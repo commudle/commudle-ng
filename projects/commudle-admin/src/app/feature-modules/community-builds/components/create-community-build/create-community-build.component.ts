@@ -43,7 +43,9 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['', [Validators.required, this.validateLink()]],
+    link: ['', [this.validateLink()]],
+    live_app_link: ['', [this.validateLink()]],
+    video_iframe: ['', [this.embedded()]],
     team: this.fb.array([]),
   });
 
@@ -84,6 +86,20 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       const link: string = control.value;
       if (link) {
         if (link.startsWith('http://') || link.startsWith('https://')) {
+          return null;
+        } else {
+          return { invalidLink: true };
+        }
+      }
+      return null;
+    };
+  }
+
+  embedded(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const link: string = control.value;
+      if (link) {
+        if (link.startsWith('<iframe') && link.endsWith('</iframe>')) {
           return null;
         } else {
           return { invalidLink: true };
@@ -162,7 +178,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   linkDisplay() {
-    this.communityBuildForm.get('link').valueChanges.subscribe((val) => {
+    this.communityBuildForm.get('video_iframe').valueChanges.subscribe((val) => {
       if (val && val.startsWith('<iframe') && val.endsWith('</iframe>')) {
         this.embeddedLink = this.sanitizer.bypassSecurityTrustHtml(val);
       } else {

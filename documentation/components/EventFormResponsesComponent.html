@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -80,7 +80,7 @@
 
 <section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover metadata">
         <tbody>
 
 
@@ -158,6 +158,9 @@
                                 <a href="#emptyMessage" >emptyMessage</a>
                             </li>
                             <li>
+                                <a href="#EUserRoles" >EUserRoles</a>
+                            </li>
+                            <li>
                                 <a href="#event" >event</a>
                             </li>
                             <li>
@@ -200,6 +203,9 @@
                                 <a href="#totalEntries" >totalEntries</a>
                             </li>
                             <li>
+                                <a href="#userRoles" >userRoles</a>
+                            </li>
+                            <li>
                                 <a href="#windowRef" >windowRef</a>
                             </li>
                         </ul>
@@ -225,6 +231,9 @@
                             </li>
                             <li>
                                 <a href="#getResponses" >getResponses</a>
+                            </li>
+                            <li>
+                                <a href="#getUserRoles" >getUserRoles</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -280,12 +289,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(eventDataFormEntityGroupsService: <a href="../injectables/EventDataFormEntityGroupsService.html" target="_self">EventDataFormEntityGroupsService</a>, registrationStatusesService: <a href="../injectables/RegistrationStatusesService.html" target="_self">RegistrationStatusesService</a>, dataFormsService: <a href="../injectables/DataFormsService.html" target="_self">DataFormsService</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, dataFormEntityResponseGroupsService: <a href="../injectables/DataFormEntityResponseGroupsService.html" target="_self">DataFormEntityResponseGroupsService</a>, windowService: NbWindowService, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, toastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>)</code>
+<code>constructor(eventDataFormEntityGroupsService: <a href="../injectables/EventDataFormEntityGroupsService.html" target="_self">EventDataFormEntityGroupsService</a>, registrationStatusesService: <a href="../injectables/RegistrationStatusesService.html" target="_self">RegistrationStatusesService</a>, dataFormsService: <a href="../injectables/DataFormsService.html" target="_self">DataFormsService</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, dataFormEntityResponseGroupsService: <a href="../injectables/DataFormEntityResponseGroupsService.html" target="_self">DataFormEntityResponseGroupsService</a>, windowService: NbWindowService, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, toastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>, appUsersService: <a href="../injectables/AppUsersService.html" target="_self">AppUsersService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -398,6 +407,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>appUsersService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppUsersService.html" target="_self" >AppUsersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -436,8 +457,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="256"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:256</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:243</a></div>
                 </td>
             </tr>
 
@@ -501,8 +522,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="238"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:238</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:229</a></div>
                 </td>
             </tr>
 
@@ -566,8 +587,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="167"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:167</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:173</a></div>
                 </td>
             </tr>
 
@@ -640,8 +661,45 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserRoles"></a>
+                    <span class="name">
+                        <span ><b>getUserRoles</b></span>
+                        <a href="#getUserRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserRoles()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:108</a></div>
                 </td>
             </tr>
 
@@ -677,8 +735,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:75</a></div>
                 </td>
             </tr>
 
@@ -714,8 +772,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:195</a></div>
                 </td>
             </tr>
 
@@ -779,8 +837,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="211"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:211</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:209</a></div>
                 </td>
             </tr>
 
@@ -816,8 +874,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="195"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:195</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:197</a></div>
                 </td>
             </tr>
 
@@ -853,8 +911,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:135</a></div>
                 </td>
             </tr>
 
@@ -918,8 +976,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="228"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:228</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:221</a></div>
                 </td>
             </tr>
 
@@ -955,8 +1013,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:141</a></div>
                 </td>
             </tr>
 
@@ -1020,8 +1078,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:159</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:166</a></div>
                 </td>
             </tr>
 
@@ -1085,8 +1143,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:191</a></div>
                 </td>
             </tr>
 
@@ -1150,8 +1208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:187</a></div>
                 </td>
             </tr>
 
@@ -1224,8 +1282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:114</a></div>
                 </td>
             </tr>
 
@@ -1261,8 +1319,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:183</a></div>
                 </td>
             </tr>
 
@@ -1445,7 +1503,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -1523,6 +1581,31 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EUserRoles"></a>
+                    <span class="name">
+                        <span ><b>EUserRoles</b></span>
+                        <a href="#EUserRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EUserRoles</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1826,13 +1909,13 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this.fb.group({
-    name: [&#x27;&#x27;]
+    name: [&#x27;&#x27;],
   })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -1886,7 +1969,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -1923,6 +2006,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="userRoles"></a>
+                    <span class="name">
+                        <span ><b>userRoles</b></span>
+                        <a href="#userRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-form-responses/event-form-responses.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="windowRef"></a>
                     <span class="name">
                         <span ><b>windowRef</b></span>
@@ -1946,35 +2060,35 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
-import { IRegistrationStatus } from &#x27;projects/shared-models/registration_status.model&#x27;;
-import { IDataForm } from &#x27;projects/shared-models/data_form.model&#x27;;
-import { RegistrationStatusesService } from &#x27;projects/commudle-admin/src/app/services/registration-statuses.service&#x27;;
-import { DataFormsService } from &#x27;projects/commudle-admin/src/app/services/data_forms.service&#x27;;
+import { FormBuilder } from &#x27;@angular/forms&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { DataFormEntityResponseGroupsService } from &#x27;projects/commudle-admin/src/app/services/data-form-entity-response-groups.service&#x27;;
-import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
-import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
-import { ColumnMode, SortType, DatatableComponent } from &#x27;@swimlane/ngx-datatable&#x27;;
-import { IQuestion } from &#x27;projects/shared-models/question.model&#x27;;
-import { EventDataFormEntityGroupsService } from &#x27;projects/commudle-admin/src/app/services/event-data-form-entity-groups.service&#x27;;
-import { IEventDataFormEntityGroup } from &#x27;projects/shared-models/event_data_form_enity_group.model&#x27;;
 import { NbWindowService } from &#x27;@nebular/theme&#x27;;
-import { EemailTypes } from &#x27;projects/shared-models/enums/email_types.enum&#x27;;
-import { FormBuilder, FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
-import { debounceTime, switchMap } from &#x27;rxjs/operators&#x27;;
+import { ColumnMode, SortType } from &#x27;@swimlane/ngx-datatable&#x27;;
 import { EmailerComponent } from &#x27;projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component&#x27;;
+import { AppUsersService } from &#x27;projects/commudle-admin/src/app/services/app-users.service&#x27;;
+import { DataFormEntityResponseGroupsService } from &#x27;projects/commudle-admin/src/app/services/data-form-entity-response-groups.service&#x27;;
+import { DataFormsService } from &#x27;projects/commudle-admin/src/app/services/data_forms.service&#x27;;
+import { EventDataFormEntityGroupsService } from &#x27;projects/commudle-admin/src/app/services/event-data-form-entity-groups.service&#x27;;
+import { RegistrationStatusesService } from &#x27;projects/commudle-admin/src/app/services/registration-statuses.service&#x27;;
+import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
+import { IDataForm } from &#x27;projects/shared-models/data_form.model&#x27;;
+import { EemailTypes } from &#x27;projects/shared-models/enums/email_types.enum&#x27;;
+import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
+import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
+import { IEventDataFormEntityGroup } from &#x27;projects/shared-models/event_data_form_enity_group.model&#x27;;
+import { IQuestion } from &#x27;projects/shared-models/question.model&#x27;;
+import { IRegistrationStatus } from &#x27;projects/shared-models/registration_status.model&#x27;;
 import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
+import { debounceTime, switchMap } from &#x27;rxjs/operators&#x27;;
 
 @Component({
   selector: &#x27;app-event-form-responses&#x27;,
   templateUrl: &#x27;./event-form-responses.component.html&#x27;,
-  styleUrls: [&#x27;./event-form-responses.component.scss&#x27;]
+  styleUrls: [&#x27;./event-form-responses.component.scss&#x27;],
 })
 export class EventFormResponsesComponent implements OnInit {
-
   @ViewChild(&#x27;table&#x27;) table;
   @ViewChild(&#x27;confirmStatusChange&#x27;, { read: TemplateRef }) confirmStatusChange: TemplateRef&lt;HTMLElement&gt;;
-
 
   event: IEvent;
   community: ICommunity;
@@ -1999,11 +2113,12 @@ export class EventFormResponsesComponent implements OnInit {
   filterValue &#x3D; &#x27;&#x27;;
   registrationStatusId &#x3D; 0;
 
-
   searchForm &#x3D; this.fb.group({
-    name: [&#x27;&#x27;]
+    name: [&#x27;&#x27;],
   });
 
+  userRoles &#x3D; [];
+  EUserRoles &#x3D; EUserRoles;
 
   //TODO past event stats
   constructor(
@@ -2015,24 +2130,24 @@ export class EventFormResponsesComponent implements OnInit {
     private windowService: NbWindowService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-  ) { }
+    private appUsersService: AppUsersService,
+  ) {}
 
   ngOnInit() {
-
     this.activatedRoute.data.subscribe((data) &#x3D;&gt; {
       this.event &#x3D; data.event;
       this.community &#x3D; data.community;
+      this.getUserRoles();
     });
 
     this.eventDataFormEntityGroupId &#x3D; this.activatedRoute.snapshot.queryParamMap[&#x27;params&#x27;][&#x27;parent_id&#x27;];
 
     // get event_data_form_entity_group
-    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroup(this.eventDataFormEntityGroupId).subscribe(
-      (data) &#x3D;&gt; {
+    this.eventDataFormEntityGroupsService
+      .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
+      .subscribe((data) &#x3D;&gt; {
         this.eventDataFormEntityGroup &#x3D; data;
-      }
-    );
-
+      });
 
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) &#x3D;&gt; {
@@ -2040,37 +2155,43 @@ export class EventFormResponsesComponent implements OnInit {
     });
 
     // get the dataform associated
-    this.dataFormsService.getDataFormDetails(this.activatedRoute.snapshot.queryParamMap[&#x27;params&#x27;][&#x27;data_form_id&#x27;]).subscribe((data) &#x3D;&gt; {
-      this.dataForm &#x3D; data;
-      this.questions &#x3D; this.dataForm.questions;
-    });
+    this.dataFormsService
+      .getDataFormDetails(this.activatedRoute.snapshot.queryParamMap[&#x27;params&#x27;][&#x27;data_form_id&#x27;])
+      .subscribe((data) &#x3D;&gt; {
+        this.dataForm &#x3D; data;
+        this.questions &#x3D; this.dataForm.questions;
+      });
 
     // this.getResponses();
     this.updateFilter();
   }
 
-
-
-
-  updateFilter() {
-    this.searchForm.valueChanges.pipe(
-      debounceTime(800),
-      switchMap(() &#x3D;&gt; {
-        this.page &#x3D; 1;
-        this.emptyMessage &#x3D; &#x27;Loading...&#x27;;
-        return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
-          this.eventDataFormEntityGroupId,
-          this.searchForm.get(&#x27;name&#x27;).value.toLowerCase(),
-          this.registrationStatusId,
-          this.page,
-          this.count
-          );
-      })
-    ).subscribe((data) &#x3D;&gt; {
-      this.setResponses(data);
+  getUserRoles() {
+    this.appUsersService.getMyRoles(&#x27;Kommunity&#x27;, this.community.id).subscribe((res) &#x3D;&gt; {
+      this.userRoles &#x3D; res;
     });
   }
 
+  updateFilter() {
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(800),
+        switchMap(() &#x3D;&gt; {
+          this.page &#x3D; 1;
+          this.emptyMessage &#x3D; &#x27;Loading...&#x27;;
+          return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
+            this.eventDataFormEntityGroupId,
+            this.searchForm.get(&#x27;name&#x27;).value.toLowerCase(),
+            this.registrationStatusId,
+            this.page,
+            this.count,
+          );
+        }),
+      )
+      .subscribe((data) &#x3D;&gt; {
+        this.setResponses(data);
+      });
+  }
 
   registrationStatusFilter(selectedRegistrationStatusId) {
     this.page &#x3D; 1;
@@ -2087,20 +2208,20 @@ export class EventFormResponsesComponent implements OnInit {
     this.emptyMessage &#x3D; &#x27;Loading...&#x27;;
     this.isLoading &#x3D; false;
     this.rows &#x3D; [];
-    this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
-      this.eventDataFormEntityGroupId,
-      this.filterValue,
-      this.registrationStatusId,
-      this.page,
-      this.count
-      ).subscribe(
-      (data) &#x3D;&gt; {
+    this.dataFormEntityResponseGroupsService
+      .getEventDataFormResponses(
+        this.eventDataFormEntityGroupId,
+        this.filterValue,
+        this.registrationStatusId,
+        this.page,
+        this.count,
+      )
+      .subscribe((data) &#x3D;&gt; {
         this.totalEntries &#x3D; data.total;
         this.rows &#x3D; data.data_form_entity_response_groups;
         this.isLoading &#x3D; false;
         this.emptyMessage &#x3D; &#x27;No data to display&#x27;;
-      }
-    );
+      });
   }
 
   setResponses(data) {
@@ -2110,88 +2231,69 @@ export class EventFormResponsesComponent implements OnInit {
     this.emptyMessage &#x3D; &#x27;No entries found&#x27;;
   }
 
-
   getQuestionResponse(userResponses, questionId) {
-    const userQuestionResponses &#x3D; userResponses.filter(k &#x3D;&gt; k.question_id &#x3D;&#x3D;&#x3D; questionId);
+    const userQuestionResponses &#x3D; userResponses.filter((k) &#x3D;&gt; k.question_id &#x3D;&#x3D;&#x3D; questionId);
     let responses &#x3D; &#x27;&#x27;;
     for (let resp of userQuestionResponses) {
       responses +&#x3D; &#x60;${resp.response_text} \n&#x60;;
     }
 
-    return (userQuestionResponses.length &#x3D;&#x3D;&#x3D; 0 ? &#x27;..&#x27; : responses);
+    return userQuestionResponses.length &#x3D;&#x3D;&#x3D; 0 ? &#x27;..&#x27; : responses;
   }
-
 
   updateRegistrationStatus(registrationStatus, userResponseId) {
-    this.rows.find(k &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; userResponseId).registration_status &#x3D; registrationStatus;
+    this.rows.find((k) &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; userResponseId).registration_status &#x3D; registrationStatus;
   }
 
-
   updateEntryPass(entryPass, userResponseId) {
-    this.rows.find(k &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; userResponseId).entry_pass &#x3D; entryPass;
+    this.rows.find((k) &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; userResponseId).entry_pass &#x3D; entryPass;
   }
 
   toggleExpandRow(row) {
     this.table.rowDetail.toggleExpandRow(row);
   }
 
-  onDetailToggle(event) {
-  }
-
+  onDetailToggle(event) {}
 
   openRSVPEmailWindow() {
-    this.windowService.open(
-      EmailerComponent,
-      {
-        title: &#x60;Send RSVP To All Shortlisted&#x60;,
-        context: {
-          community: this.community,
-          event: this.event,
-          eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
-          mailType: EemailTypes.RSVP,
-        }
-      }
-    );
+    this.windowService.open(EmailerComponent, {
+      title: &#x60;Send RSVP To All Shortlisted&#x60;,
+      context: {
+        community: this.community,
+        event: this.event,
+        eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
+        mailType: EemailTypes.RSVP,
+      },
+    });
   }
-
 
   openEntryPassEmailWindow() {
-    this.windowService.open(
-      EmailerComponent,
-      {
-        title: &#x60;Send Entry Pass All Confirmed&#x60;,
-        context: {
-          community: this.community,
-          event: this.event,
-          eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
-          mailType: EemailTypes.ENTRY_PASS,
-        }
-      }
-    );
-
+    this.windowService.open(EmailerComponent, {
+      title: &#x60;Send Entry Pass All Confirmed&#x60;,
+      context: {
+        community: this.community,
+        event: this.event,
+        eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
+        mailType: EemailTypes.ENTRY_PASS,
+      },
+    });
   }
 
-
   sendCSV() {
-    this.eventDataFormEntityGroupsService.mailCSV(this.eventDataFormEntityGroupId).subscribe(
-      data &#x3D;&gt; {
-        if (data) {
-          this.toastLogService.successDialog(&#x27;CSV will be delivered to your email!&#x27;, 5000);
-        }
+    this.eventDataFormEntityGroupsService.mailCSV(this.eventDataFormEntityGroupId).subscribe((data) &#x3D;&gt; {
+      if (data) {
+        this.toastLogService.successDialog(&#x27;CSV will be delivered to your email!&#x27;, 5000);
       }
-    );
+    });
   }
 
   bulkStatusChangeConfirmation(registrationStatus) {
-    this.windowRef &#x3D; this.windowService.open(
-      this.confirmStatusChange,
-      {
-        title: &#x60;Are you sure?&#x60;,
-        context: {
-          registration_status: registrationStatus
-        }
-      }
-    );
+    this.windowRef &#x3D; this.windowService.open(this.confirmStatusChange, {
+      title: &#x60;Are you sure?&#x60;,
+      context: {
+        registration_status: registrationStatus,
+      },
+    });
 
     this.windowRef.onClose.subscribe(() &#x3D;&gt; {
       this.bulkStatus &#x3D; null;
@@ -2199,193 +2301,217 @@ export class EventFormResponsesComponent implements OnInit {
     });
   }
 
-
   bulkStatusChange(registrationStatusId) {
-    this.eventDataFormEntityGroupsService.changeBulkRegistrationStatus(registrationStatusId, this.eventDataFormEntityGroupId, this.bulkStatusChangeForCanceled).subscribe(
-      data &#x3D;&gt; {
+    this.eventDataFormEntityGroupsService
+      .changeBulkRegistrationStatus(
+        registrationStatusId,
+        this.eventDataFormEntityGroupId,
+        this.bulkStatusChangeForCanceled,
+      )
+      .subscribe((data) &#x3D;&gt; {
         if (data) {
           this.getResponses();
           this.toastLogService.successDialog(&#x27;Updated!&#x27;);
         }
-      }
-    );
+      });
     this.bulkStatus &#x3D; null;
     this.windowRef.close();
   }
-
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page-padding&quot;&gt;
-  &lt;div&gt;
-    &lt;nb-card&gt;
-      &lt;nb-card-body&gt;
-        &lt;h3&gt;{{ event.name }}&lt;/h3&gt;
-        &lt;p *ngIf&#x3D;&quot;dataForm&quot;&gt;{{ dataForm.name }} Responses&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;base-layout&quot;&gt;
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;one-column-layout&quot;&gt;
+      &lt;nb-card&gt;
+        &lt;nb-card-body&gt;
+          &lt;h3&gt;{{ event.name }}&lt;/h3&gt;
+          &lt;p *ngIf&#x3D;&quot;dataForm&quot;&gt;{{ dataForm.name }} Responses&lt;/p&gt;
 
-        &lt;div class&#x3D;&quot;group-actions&quot;&gt;
-          &lt;button (click)&#x3D;&quot;openRSVPEmailWindow()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;primary&quot;&gt;
-            Send All RSVP Emails
-          &lt;/button&gt;
-          &lt;button (click)&#x3D;&quot;openEntryPassEmailWindow()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;primary&quot;&gt;
-            Send All Entry Passes
-          &lt;/button&gt;
+          &lt;div class&#x3D;&quot;group-actions&quot;&gt;
+            &lt;button (click)&#x3D;&quot;openRSVPEmailWindow()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;primary&quot;&gt;
+              Send All RSVP Emails
+            &lt;/button&gt;
+            &lt;button (click)&#x3D;&quot;openEntryPassEmailWindow()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;primary&quot;&gt;
+              Send All Entry Passes
+            &lt;/button&gt;
 
-          &lt;button (click)&#x3D;&quot;sendCSV()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;info&quot;&gt;
-            &lt;nb-icon icon&#x3D;&quot;email-outline&quot;&gt;&lt;/nb-icon&gt;
-            CSV
-          &lt;/button&gt;
+            &lt;button
+              *ngIf&#x3D;&quot;
+                userRoles.length &gt; 0 &amp;&amp;
+                (userRoles.includes(EUserRoles.COMMUNITY_ADMIN) ||
+                  userRoles.includes(EUserRoles.EVENT_ORGANIZER) ||
+                  userRoles.includes(EUserRoles.EVENT_VOLUNTEER) ||
+                  userRoles.includes(EUserRoles.ORGANIZER))
+              &quot;
+              [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug, &#x27;event-dashboard&#x27;, event.slug, &#x27;scan-entry-pass&#x27;]&quot;
+              nbButton
+              outline
+              size&#x3D;&quot;small&quot;
+              status&#x3D;&quot;primary&quot;
+            &gt;
+              Scan Entry Pass
+            &lt;/button&gt;
 
-          &lt;nb-select
-            (selectedChange)&#x3D;&quot;bulkStatusChangeConfirmation($event)&quot;
-            *ngIf&#x3D;&quot;event.editable&quot;
-            [(ngModel)]&#x3D;&quot;bulkStatus&quot;
-            [ngModelOptions]&#x3D;&quot;{standalone: true}&quot;
-            filled
-            placeholder&#x3D;&quot;Bulk Status Change&quot;
-            status&#x3D;&quot;info&quot;
-          &gt;
-            &lt;nb-option *ngFor&#x3D;&quot;let rs of registrationStatuses&quot; [value]&#x3D;&quot;rs&quot;&gt; {{ rs.name | titlecase }} &lt;/nb-option&gt;
-          &lt;/nb-select&gt;
-        &lt;/div&gt;
-      &lt;/nb-card-body&gt;
-    &lt;/nb-card&gt;
-  &lt;/div&gt;
+            &lt;button (click)&#x3D;&quot;sendCSV()&quot; nbButton outline size&#x3D;&quot;small&quot; status&#x3D;&quot;info&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;email-outline&quot;&gt;&lt;/nb-icon&gt;
+              CSV
+            &lt;/button&gt;
 
-  &lt;div&gt;
-    &lt;!-- &lt;nb-card&gt;
-      &lt;nb-card-body&gt; --&gt;
-    &lt;div class&#x3D;&quot;data-table-container&quot;&gt;
-      &lt;ngx-datatable
-        #table
-        (page)&#x3D;&quot;setPage($event.offset)&quot;
-        [columnMode]&#x3D;&quot;ColumnMode.force&quot;
-        [count]&#x3D;&quot;totalEntries&quot;
-        [externalPaging]&#x3D;&quot;true&quot;
-        [footerHeight]&#x3D;&quot;50&quot;
-        [headerHeight]&#x3D;&quot;100&quot;
-        [limit]&#x3D;&quot;count&quot;
-        [loadingIndicator]&#x3D;&quot;isLoading&quot;
-        [messages]&#x3D;&quot;{emptyMessage: emptyMessage}&quot;
-        [offset]&#x3D;&quot;page - 1&quot;
-        [rows]&#x3D;&quot;rows&quot;
-        [scrollbarH]&#x3D;&quot;true&quot;
-        [scrollbarV]&#x3D;&quot;true&quot;
-        [sortType]&#x3D;&quot;SortType.single&quot;
-        [virtualization]&#x3D;&quot;false&quot;
-        class&#x3D;&quot;material expandable&quot;
-        rowHeight&#x3D;&quot;auto&quot;
-      &gt;
-        &lt;!-- responsive row format --&gt;
-        &lt;ngx-datatable-row-detail (toggle)&#x3D;&quot;onDetailToggle($event)&quot; [rowHeight]&#x3D;&quot;300&quot;&gt;
-          &lt;ng-template let-expanded&#x3D;&quot;expanded&quot; let-row&#x3D;&quot;row&quot; ngx-datatable-row-detail-template&gt;
-            &lt;div style&#x3D;&quot;padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll&quot;&gt;
-              &lt;div *ngFor&#x3D;&quot;let question of questions&quot;&gt;
-                &lt;p&gt;
-                  &lt;strong&gt; Q. {{ question.title }} &lt;/strong&gt;
-                &lt;/p&gt;
-                &lt;div&gt;
-                  &lt;p
-                    [innerHTML]&#x3D;&quot;getQuestionResponse(row.data_form_entity_response_values, question.id) | linky:{sanitizeHtml: true}&quot;
-                    class&#x3D;&quot;question-responses&quot;
-                  &gt;&lt;/p&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/ng-template&gt;
-        &lt;/ngx-datatable-row-detail&gt;
-        &lt;!-- responsive row format --&gt;
+            &lt;nb-select
+              (selectedChange)&#x3D;&quot;bulkStatusChangeConfirmation($event)&quot;
+              *ngIf&#x3D;&quot;event.editable&quot;
+              [(ngModel)]&#x3D;&quot;bulkStatus&quot;
+              [ngModelOptions]&#x3D;&quot;{ standalone: true }&quot;
+              filled
+              placeholder&#x3D;&quot;Bulk Status Change&quot;
+              status&#x3D;&quot;info&quot;
+            &gt;
+              &lt;nb-option *ngFor&#x3D;&quot;let rs of registrationStatuses&quot; [value]&#x3D;&quot;rs&quot;&gt; {{ rs.name | titlecase }} &lt;/nb-option&gt;
+            &lt;/nb-select&gt;
+          &lt;/div&gt;
+        &lt;/nb-card-body&gt;
+      &lt;/nb-card&gt;
 
-        &lt;!-- complete table format --&gt;
-        &lt;ngx-datatable-column [canAutoResize]&#x3D;&quot;true&quot; [frozenLeft]&#x3D;&quot;true&quot; [width]&#x3D;&quot;360&quot; name&#x3D;&quot;User Details&quot;&gt;
-          &lt;ng-template let-column&#x3D;&quot;column&quot; ngx-datatable-header-template&gt;
-            &lt;div class&#x3D;&quot;header-column-template&quot;&gt;
-              &lt;p&gt;User Details&lt;/p&gt;
-              &lt;form [formGroup]&#x3D;&quot;searchForm&quot;&gt;
-                &lt;div class&#x3D;&quot;name-filter&quot;&gt;
-                  &lt;input
-                    [disabled]&#x3D;&quot;isLoading&quot;
-                    fieldSize&#x3D;&quot;tiny&quot;
-                    formControlName&#x3D;&quot;name&quot;
-                    fullWidth
-                    nbInput
-                    placeholder&#x3D;&quot;{{ isLoading ? &#x27;Still Loading&#x27; : &#x27;Search by name or email&#x27; }}&quot;
-                    type&#x3D;&quot;text&quot;
-                  /&gt;
-                &lt;/div&gt;
-              &lt;/form&gt;
+      &lt;nb-card class&#x3D;&quot;data-table-responses&quot;&gt;
+        &lt;nb-card-body&gt;
+          &lt;div class&#x3D;&quot;data-table-container&quot;&gt;
+            &lt;ngx-datatable
+              #table
+              (page)&#x3D;&quot;setPage($event.offset)&quot;
+              [columnMode]&#x3D;&quot;ColumnMode.force&quot;
+              [count]&#x3D;&quot;totalEntries&quot;
+              [externalPaging]&#x3D;&quot;true&quot;
+              [footerHeight]&#x3D;&quot;50&quot;
+              [headerHeight]&#x3D;&quot;100&quot;
+              [limit]&#x3D;&quot;count&quot;
+              [loadingIndicator]&#x3D;&quot;isLoading&quot;
+              [messages]&#x3D;&quot;{ emptyMessage: emptyMessage }&quot;
+              [offset]&#x3D;&quot;page - 1&quot;
+              [rows]&#x3D;&quot;rows&quot;
+              [scrollbarH]&#x3D;&quot;true&quot;
+              [scrollbarV]&#x3D;&quot;true&quot;
+              [sortType]&#x3D;&quot;SortType.single&quot;
+              [virtualization]&#x3D;&quot;false&quot;
+              class&#x3D;&quot;material expandable&quot;
+              rowHeight&#x3D;&quot;auto&quot;
+            &gt;
+              &lt;!-- responsive row format --&gt;
+              &lt;ngx-datatable-row-detail (toggle)&#x3D;&quot;onDetailToggle($event)&quot; [rowHeight]&#x3D;&quot;300&quot;&gt;
+                &lt;ng-template let-expanded&#x3D;&quot;expanded&quot; let-row&#x3D;&quot;row&quot; ngx-datatable-row-detail-template&gt;
+                  &lt;div style&#x3D;&quot;padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll&quot;&gt;
+                    &lt;div *ngFor&#x3D;&quot;let question of questions&quot;&gt;
+                      &lt;p&gt;
+                        &lt;strong&gt; Q. {{ question.title }} &lt;/strong&gt;
+                      &lt;/p&gt;
+                      &lt;div&gt;
+                        &lt;p
+                          [innerHTML]&#x3D;&quot;
+                            getQuestionResponse(row.data_form_entity_response_values, question.id)
+                              | linky: { sanitizeHtml: true }
+                          &quot;
+                          class&#x3D;&quot;question-responses&quot;
+                        &gt;&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
+              &lt;/ngx-datatable-row-detail&gt;
+              &lt;!-- responsive row format --&gt;
 
-              &lt;div class&#x3D;&quot;registration-status-filter&quot;&gt;
-                &lt;div (click)&#x3D;&quot;registrationStatusFilter(0)&quot;&gt;
-                  &lt;p [ngClass]&#x3D;&quot;{&#x27;text-primary&#x27;: 0 &#x3D;&#x3D; registrationStatusId}&quot;&gt;All&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div (click)&#x3D;&quot;registrationStatusFilter(rs.id)&quot; *ngFor&#x3D;&quot;let rs of registrationStatuses&quot;&gt;
-                  &lt;p [ngClass]&#x3D;&quot;{&#x27;text-primary&#x27;: rs.id &#x3D;&#x3D; registrationStatusId}&quot;&gt;{{ rs.name | titlecase }}&lt;/p&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/ng-template&gt;
+              &lt;!-- complete table format --&gt;
+              &lt;ngx-datatable-column [canAutoResize]&#x3D;&quot;true&quot; [frozenLeft]&#x3D;&quot;true&quot; [width]&#x3D;&quot;360&quot; name&#x3D;&quot;User Details&quot;&gt;
+                &lt;ng-template let-column&#x3D;&quot;column&quot; ngx-datatable-header-template&gt;
+                  &lt;div class&#x3D;&quot;header-column-template&quot;&gt;
+                    &lt;p&gt;User Details&lt;/p&gt;
+                    &lt;form [formGroup]&#x3D;&quot;searchForm&quot;&gt;
+                      &lt;div class&#x3D;&quot;name-filter&quot;&gt;
+                        &lt;input
+                          [disabled]&#x3D;&quot;isLoading&quot;
+                          fieldSize&#x3D;&quot;tiny&quot;
+                          formControlName&#x3D;&quot;name&quot;
+                          fullWidth
+                          nbInput
+                          placeholder&#x3D;&quot;{{ isLoading ? &#x27;Still Loading&#x27; : &#x27;Search by name or email&#x27; }}&quot;
+                          type&#x3D;&quot;text&quot;
+                        /&gt;
+                      &lt;/div&gt;
+                    &lt;/form&gt;
 
-          &lt;ng-template let-expanded&#x3D;&quot;expanded&quot; let-row&#x3D;&quot;row&quot; ngx-datatable-cell-template&gt;
-            &lt;div class&#x3D;&quot;row-header user-details&quot;&gt;
-              &lt;app-user-details-cell
-                (updateEntryPass)&#x3D;&quot;updateEntryPass($event, row.id)&quot;
-                (updatedRegistrationStatus)&#x3D;&quot;updateRegistrationStatus($event, row.id)&quot;
-                [community]&#x3D;&quot;community&quot;
-                [eventDataFormEntityGroupId]&#x3D;&quot;eventDataFormEntityGroup.id&quot;
-                [event]&#x3D;&quot;event&quot;
-                [registrationStatuses]&#x3D;&quot;registrationStatuses&quot;
-                [registrationType]&#x3D;&quot;eventDataFormEntityGroup.registration_type&quot;
-                [userResponse]&#x3D;&quot;row&quot;
+                    &lt;div class&#x3D;&quot;registration-status-filter&quot;&gt;
+                      &lt;div (click)&#x3D;&quot;registrationStatusFilter(0)&quot;&gt;
+                        &lt;p [ngClass]&#x3D;&quot;{ &#x27;text-primary&#x27;: 0 &#x3D;&#x3D; registrationStatusId }&quot;&gt;All&lt;/p&gt;
+                      &lt;/div&gt;
+                      &lt;div (click)&#x3D;&quot;registrationStatusFilter(rs.id)&quot; *ngFor&#x3D;&quot;let rs of registrationStatuses&quot;&gt;
+                        &lt;p [ngClass]&#x3D;&quot;{ &#x27;text-primary&#x27;: rs.id &#x3D;&#x3D; registrationStatusId }&quot;&gt;{{ rs.name | titlecase }}&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
+
+                &lt;ng-template let-expanded&#x3D;&quot;expanded&quot; let-row&#x3D;&quot;row&quot; ngx-datatable-cell-template&gt;
+                  &lt;div class&#x3D;&quot;row-header user-details&quot;&gt;
+                    &lt;app-user-details-cell
+                      (updateEntryPass)&#x3D;&quot;updateEntryPass($event, row.id)&quot;
+                      (updatedRegistrationStatus)&#x3D;&quot;updateRegistrationStatus($event, row.id)&quot;
+                      [community]&#x3D;&quot;community&quot;
+                      [eventDataFormEntityGroupId]&#x3D;&quot;eventDataFormEntityGroup.id&quot;
+                      [event]&#x3D;&quot;event&quot;
+                      [registrationStatuses]&#x3D;&quot;registrationStatuses&quot;
+                      [registrationType]&#x3D;&quot;eventDataFormEntityGroup.registration_type&quot;
+                      [userResponse]&#x3D;&quot;row&quot;
+                    &gt;
+                    &lt;/app-user-details-cell&gt;
+                    &lt;p
+                      (click)&#x3D;&quot;toggleExpandRow(row)&quot;
+                      [class.datatable-icon-down]&#x3D;&quot;expanded&quot;
+                      [class.datatable-icon-right]&#x3D;&quot;!expanded&quot;
+                      class&#x3D;&quot;desktop-hidden view-mobile-response&quot;
+                      title&#x3D;&quot;Expand/Collapse Row&quot;
+                    &gt;
+                      View Responses
+                    &lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
+              &lt;/ngx-datatable-column&gt;
+
+              &lt;ngx-datatable-column
+                *ngFor&#x3D;&quot;let question of questions&quot;
+                [canAutoResize]&#x3D;&quot;true&quot;
+                [width]&#x3D;&quot;200&quot;
+                name&#x3D;&quot;{{ question.title }}&quot;
               &gt;
-              &lt;/app-user-details-cell&gt;
-              &lt;p
-                (click)&#x3D;&quot;toggleExpandRow(row)&quot;
-                [class.datatable-icon-down]&#x3D;&quot;expanded&quot;
-                [class.datatable-icon-right]&#x3D;&quot;!expanded&quot;
-                class&#x3D;&quot;desktop-hidden view-mobile-response&quot;
-                title&#x3D;&quot;Expand/Collapse Row&quot;
-              &gt;
-                View Responses
-              &lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/ng-template&gt;
-        &lt;/ngx-datatable-column&gt;
+                &lt;ng-template ngx-datatable-header-template&gt;
+                  &lt;div class&#x3D;&quot;row-header question mobile-hidden&quot;&gt;
+                    &lt;p *ngIf&#x3D;&quot;question.title.length &gt; 20&quot; nbTooltip&#x3D;&quot;{{ question.title }}&quot;&gt;{{ question.title }}&lt;/p&gt;
+                    &lt;p *ngIf&#x3D;&quot;question.title.length &lt;&#x3D; 20&quot;&gt;{{ question.title }}&lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
 
-        &lt;ngx-datatable-column
-          *ngFor&#x3D;&quot;let question of questions&quot;
-          [canAutoResize]&#x3D;&quot;true&quot;
-          [width]&#x3D;&quot;200&quot;
-          name&#x3D;&quot;{{ question.title }}&quot;
-        &gt;
-          &lt;ng-template ngx-datatable-header-template&gt;
-            &lt;div class&#x3D;&quot;row-header question mobile-hidden&quot;&gt;
-              &lt;p *ngIf&#x3D;&quot;question.title.length &gt; 20&quot; nbTooltip&#x3D;&quot;{{question.title}}&quot;&gt;{{question.title}}&lt;/p&gt;
-              &lt;p *ngIf&#x3D;&quot;question.title.length &lt;&#x3D; 20&quot;&gt;{{question.title}}&lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/ng-template&gt;
-
-          &lt;ng-template let-row&#x3D;&quot;row&quot; let-value&#x3D;&quot;value&quot; ngx-datatable-cell-template&gt;
-            &lt;div class&#x3D;&quot;row-cell question mobile-hidden&quot; style&#x3D;&quot;height: 100px&quot;&gt;
-              &lt;p
-                [innerHTML]&#x3D;&quot;getQuestionResponse(row.data_form_entity_response_values, question.id) | linky:{sanitizeHtml: true}&quot;
-                class&#x3D;&quot;question-responses&quot;
-              &gt;&lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/ng-template&gt;
-        &lt;/ngx-datatable-column&gt;
-      &lt;/ngx-datatable&gt;
+                &lt;ng-template let-row&#x3D;&quot;row&quot; let-value&#x3D;&quot;value&quot; ngx-datatable-cell-template&gt;
+                  &lt;div class&#x3D;&quot;row-cell question mobile-hidden&quot; style&#x3D;&quot;height: 100px&quot;&gt;
+                    &lt;p
+                      [innerHTML]&#x3D;&quot;
+                        getQuestionResponse(row.data_form_entity_response_values, question.id)
+                          | linky: { sanitizeHtml: true }
+                      &quot;
+                      class&#x3D;&quot;question-responses&quot;
+                    &gt;&lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
+              &lt;/ngx-datatable-column&gt;
+            &lt;/ngx-datatable&gt;
+          &lt;/div&gt;
+        &lt;/nb-card-body&gt;
+      &lt;/nb-card&gt;
     &lt;/div&gt;
-
-    &lt;!-- &lt;/nb-card-body&gt;
-  &lt;/nb-card&gt; --&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;ng-template #confirmStatusChange let-data&gt;
-  &lt;p&gt;This will change the status of all {{totalEntries}} entries and &lt;strong&gt;cannot be undone&lt;/strong&gt;.&lt;/p&gt;
+  &lt;p&gt;This will change the status of all {{ totalEntries }} entries and &lt;strong&gt;cannot be undone&lt;/strong&gt;.&lt;/p&gt;
   &lt;p&gt;
     &lt;nb-checkbox [(ngModel)]&#x3D;&quot;bulkStatusChangeForCanceled&quot;&gt;Change status of &#x27;Canceled&#x27; responses also&lt;/nb-checkbox&gt;
   &lt;/p&gt;
@@ -2404,9 +2530,15 @@ export class EventFormResponsesComponent implements OnInit {
                     <code>./event-form-responses.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">:host {
+  .data-table-responses {
+    overflow: hidden;
+
+    nb-card-body {
+      padding: 0;
+    }
+  }
 
   .data-table-container {
-
     @media screen and (max-width: 800px) {
       .desktop-hidden {
         display: initial;
@@ -2415,11 +2547,12 @@ export class EventFormResponsesComponent implements OnInit {
         display: none;
       }
 
-      .view-mobile-response{
-        margin-top: 0.5rem;
+      .view-mobile-response {
         display: block;
+        margin-top: 0.5rem;
       }
     }
+
     @media screen and (min-width: 800px) {
       .desktop-hidden {
         display: none;
@@ -2429,67 +2562,69 @@ export class EventFormResponsesComponent implements OnInit {
       }
     }
 
-
-    .ngx-datatable{
+    .ngx-datatable {
       height: 70vh;
 
       .header-column-template {
         p {
           margin: 0;
         }
-        &gt;.name-filter {
+
+        &gt; .name-filter {
           margin-top: 5px;
         }
 
-        &gt;.registration-status-filter{
+        &gt; .registration-status-filter {
           display: flex;
           flex-wrap: nowrap;
+
           div {
             border: 0.5px solid lightgrey;
-            padding: 5px;
             cursor: pointer;
+            padding: 5px;
           }
+
           p {
             font-size: 12px;
-            margin: 0
+            margin: 0;
           }
         }
       }
+
       .row-header {
         white-space: normal;
-
       }
 
+      .row-header.question {
+        overflow-y: visible;
 
-
-      .row-header.question{
         white-space: normal;
+
         .small-text {
           font-size: 10px;
         }
-        overflow-y: visible;
       }
 
-      .row-cell.question{
+      .row-cell.question {
         white-space: normal;
-        p{
+
+        p {
           font-size: 14px;
         }
       }
     }
   }
-
 }
 
 .group-actions {
   display: flex;
   flex-wrap: wrap;
-  button, nb-select {
+
+  button,
+  nb-select {
     margin: 0.5rem;
   }
-
 }
-
 
 .question-responses {
   white-space: pre-wrap;
@@ -2522,12 +2657,14 @@ export class EventFormResponsesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="page-padding">  <div>    <nb-card>      <nb-card-body>        <h3>{{ event.name }}</h3>        <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>        <div class="group-actions">          <button (click)="openRSVPEmailWindow()" nbButton outline size="small" status="primary">            Send All RSVP Emails          </button>          <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">            Send All Entry Passes          </button>          <button (click)="sendCSV()" nbButton outline size="small" status="info">            <nb-icon icon="email-outline"></nb-icon>            CSV          </button>          <nb-select            (selectedChange)="bulkStatusChangeConfirmation($event)"            *ngIf="event.editable"            [(ngModel)]="bulkStatus"            [ngModelOptions]="{standalone: true}"            filled            placeholder="Bulk Status Change"            status="info"          >            <nb-option *ngFor="let rs of registrationStatuses" [value]="rs"> {{ rs.name | titlecase }} </nb-option>          </nb-select>        </div>      </nb-card-body>    </nb-card>  </div>  <div>    <!-- <nb-card>      <nb-card-body> -->    <div class="data-table-container">      <ngx-datatable        #table        (page)="setPage($event.offset)"        [columnMode]="ColumnMode.force"        [count]="totalEntries"        [externalPaging]="true"        [footerHeight]="50"        [headerHeight]="100"        [limit]="count"        [loadingIndicator]="isLoading"        [messages]="{emptyMessage: emptyMessage}"        [offset]="page - 1"        [rows]="rows"        [scrollbarH]="true"        [scrollbarV]="true"        [sortType]="SortType.single"        [virtualization]="false"        class="material expandable"        rowHeight="auto"      >        <!-- responsive row format -->        <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>            <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">              <div *ngFor="let question of questions">                <p>                  <strong> Q. {{ question.title }} </strong>                </p>                <div>                  <p                    [innerHTML]="getQuestionResponse(row.data_form_entity_response_values, question.id) | linky:{sanitizeHtml: true}"                    class="question-responses"                  ></p>                </div>              </div>            </div>          </ng-template>        </ngx-datatable-row-detail>        <!-- responsive row format -->        <!-- complete table format -->        <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">          <ng-template let-column="column" ngx-datatable-header-template>            <div class="header-column-template">              <p>User Details</p>              <form [formGroup]="searchForm">                <div class="name-filter">                  <input                    [disabled]="isLoading"                    fieldSize="tiny"                    formControlName="name"                    fullWidth                    nbInput                    placeholder="{{ isLoading ? \'Still Loading\' : \'Search by name or email\' }}"                    type="text"                  />                </div>              </form>              <div class="registration-status-filter">                <div (click)="registrationStatusFilter(0)">                  <p [ngClass]="{\'text-primary\': 0 == registrationStatusId}">All</p>                </div>                <div (click)="registrationStatusFilter(rs.id)" *ngFor="let rs of registrationStatuses">                  <p [ngClass]="{\'text-primary\': rs.id == registrationStatusId}">{{ rs.name | titlecase }}</p>                </div>              </div>            </div>          </ng-template>          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>            <div class="row-header user-details">              <app-user-details-cell                (updateEntryPass)="updateEntryPass($event, row.id)"                (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"                [community]="community"                [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"                [event]="event"                [registrationStatuses]="registrationStatuses"                [registrationType]="eventDataFormEntityGroup.registration_type"                [userResponse]="row"              >              </app-user-details-cell>              <p                (click)="toggleExpandRow(row)"                [class.datatable-icon-down]="expanded"                [class.datatable-icon-right]="!expanded"                class="desktop-hidden view-mobile-response"                title="Expand/Collapse Row"              >                View Responses              </p>            </div>          </ng-template>        </ngx-datatable-column>        <ngx-datatable-column          *ngFor="let question of questions"          [canAutoResize]="true"          [width]="200"          name="{{ question.title }}"        >          <ng-template ngx-datatable-header-template>            <div class="row-header question mobile-hidden">              <p *ngIf="question.title.length > 20" nbTooltip="{{question.title}}">{{question.title}}</p>              <p *ngIf="question.title.length <= 20">{{question.title}}</p>            </div>          </ng-template>          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>            <div class="row-cell question mobile-hidden" style="height: 100px">              <p                [innerHTML]="getQuestionResponse(row.data_form_entity_response_values, question.id) | linky:{sanitizeHtml: true}"                class="question-responses"              ></p>            </div>          </ng-template>        </ngx-datatable-column>      </ngx-datatable>    </div>    <!-- </nb-card-body>  </nb-card> -->  </div></div><ng-template #confirmStatusChange let-data>  <p>This will change the status of all {{totalEntries}} entries and <strong>cannot be undone</strong>.</p>  <p>    <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of \'Canceled\' responses also</nb-checkbox>  </p>  <div>    <button (click)="bulkStatusChange(data.registration_status.id)" ghost nbButton size="medium" status="success">      Yes    </button>    <button (click)="windowRef.close()" ghost nbButton size="medium" status="danger">No</button>  </div></ng-template></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+        var COMPONENT_TEMPLATE = '<div><div class="base-layout">  <div class="container">    <div class="one-column-layout">      <nb-card>        <nb-card-body>          <h3>{{ event.name }}</h3>          <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>          <div class="group-actions">            <button (click)="openRSVPEmailWindow()" nbButton outline size="small" status="primary">              Send All RSVP Emails            </button>            <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">              Send All Entry Passes            </button>            <button              *ngIf="                userRoles.length > 0 &&                (userRoles.includes(EUserRoles.COMMUNITY_ADMIN) ||                  userRoles.includes(EUserRoles.EVENT_ORGANIZER) ||                  userRoles.includes(EUserRoles.EVENT_VOLUNTEER) ||                  userRoles.includes(EUserRoles.ORGANIZER))              "              [routerLink]="[\'/admin/communities\', community.slug, \'event-dashboard\', event.slug, \'scan-entry-pass\']"              nbButton              outline              size="small"              status="primary"            >              Scan Entry Pass            </button>            <button (click)="sendCSV()" nbButton outline size="small" status="info">              <nb-icon icon="email-outline"></nb-icon>              CSV            </button>            <nb-select              (selectedChange)="bulkStatusChangeConfirmation($event)"              *ngIf="event.editable"              [(ngModel)]="bulkStatus"              [ngModelOptions]="{ standalone: true }"              filled              placeholder="Bulk Status Change"              status="info"            >              <nb-option *ngFor="let rs of registrationStatuses" [value]="rs"> {{ rs.name | titlecase }} </nb-option>            </nb-select>          </div>        </nb-card-body>      </nb-card>      <nb-card class="data-table-responses">        <nb-card-body>          <div class="data-table-container">            <ngx-datatable              #table              (page)="setPage($event.offset)"              [columnMode]="ColumnMode.force"              [count]="totalEntries"              [externalPaging]="true"              [footerHeight]="50"              [headerHeight]="100"              [limit]="count"              [loadingIndicator]="isLoading"              [messages]="{ emptyMessage: emptyMessage }"              [offset]="page - 1"              [rows]="rows"              [scrollbarH]="true"              [scrollbarV]="true"              [sortType]="SortType.single"              [virtualization]="false"              class="material expandable"              rowHeight="auto"            >              <!-- responsive row format -->              <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">                <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>                  <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">                    <div *ngFor="let question of questions">                      <p>                        <strong> Q. {{ question.title }} </strong>                      </p>                      <div>                        <p                          [innerHTML]="                            getQuestionResponse(row.data_form_entity_response_values, question.id)                              | linky: { sanitizeHtml: true }                          "                          class="question-responses"                        ></p>                      </div>                    </div>                  </div>                </ng-template>              </ngx-datatable-row-detail>              <!-- responsive row format -->              <!-- complete table format -->              <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">                <ng-template let-column="column" ngx-datatable-header-template>                  <div class="header-column-template">                    <p>User Details</p>                    <form [formGroup]="searchForm">                      <div class="name-filter">                        <input                          [disabled]="isLoading"                          fieldSize="tiny"                          formControlName="name"                          fullWidth                          nbInput                          placeholder="{{ isLoading ? \'Still Loading\' : \'Search by name or email\' }}"                          type="text"                        />                      </div>                    </form>                    <div class="registration-status-filter">                      <div (click)="registrationStatusFilter(0)">                        <p [ngClass]="{ \'text-primary\': 0 == registrationStatusId }">All</p>                      </div>                      <div (click)="registrationStatusFilter(rs.id)" *ngFor="let rs of registrationStatuses">                        <p [ngClass]="{ \'text-primary\': rs.id == registrationStatusId }">{{ rs.name | titlecase }}</p>                      </div>                    </div>                  </div>                </ng-template>                <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>                  <div class="row-header user-details">                    <app-user-details-cell                      (updateEntryPass)="updateEntryPass($event, row.id)"                      (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"                      [community]="community"                      [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"                      [event]="event"                      [registrationStatuses]="registrationStatuses"                      [registrationType]="eventDataFormEntityGroup.registration_type"                      [userResponse]="row"                    >                    </app-user-details-cell>                    <p                      (click)="toggleExpandRow(row)"                      [class.datatable-icon-down]="expanded"                      [class.datatable-icon-right]="!expanded"                      class="desktop-hidden view-mobile-response"                      title="Expand/Collapse Row"                    >                      View Responses                    </p>                  </div>                </ng-template>              </ngx-datatable-column>              <ngx-datatable-column                *ngFor="let question of questions"                [canAutoResize]="true"                [width]="200"                name="{{ question.title }}"              >                <ng-template ngx-datatable-header-template>                  <div class="row-header question mobile-hidden">                    <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">{{ question.title }}</p>                    <p *ngIf="question.title.length <= 20">{{ question.title }}</p>                  </div>                </ng-template>                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>                  <div class="row-cell question mobile-hidden" style="height: 100px">                    <p                      [innerHTML]="                        getQuestionResponse(row.data_form_entity_response_values, question.id)                          | linky: { sanitizeHtml: true }                      "                      class="question-responses"                    ></p>                  </div>                </ng-template>              </ngx-datatable-column>            </ngx-datatable>          </div>        </nb-card-body>      </nb-card>    </div>  </div></div><ng-template #confirmStatusChange let-data>  <p>This will change the status of all {{ totalEntries }} entries and <strong>cannot be undone</strong>.</p>  <p>    <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of \'Canceled\' responses also</nb-checkbox>  </p>  <div>    <button (click)="bulkStatusChange(data.registration_status.id)" ghost nbButton size="medium" status="success">      Yes    </button>    <button (click)="windowRef.close()" ghost nbButton size="medium" status="danger">No</button>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutOldComponent', 'selector': 'app-about-old'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminStaticAssetFormComponent', 'selector': 'app-admin-static-asset-form'},{'name': 'AdminStaticAssetsComponent', 'selector': 'app-admin-static-assets'},{'name': 'AdminStaticAssetsListComponent', 'selector': 'app-admin-static-assets-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendedMembersComponent', 'selector': 'app-attended-members'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicInfoComponent', 'selector': 'app-basic-info'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogsListComponent', 'selector': 'app-blogs'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CircularProgressiveBarComponent', 'selector': 'app-circular-progressive-bar'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBlockedUsersComponent', 'selector': 'app-community-blocked-users'},{'name': 'CommunityBuildCardComponent', 'selector': 'app-community-build-card'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardChannelListComponent', 'selector': 'app-community-channels-dashboard-channel-list'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityMembersListComponent', 'selector': 'app-community-members-list'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EditUserProfileComponent', 'selector': 'app-edit-user-profile'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailPreferencesComponent', 'selector': 'app-email-preferences'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'EntryPassScanComponent', 'selector': 'app-entry-pass-scan'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventDetailsComponent', 'selector': 'app-event-details'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomepageAboutComponent', 'selector': 'app-homepage-about'},{'name': 'HomepageBuildsComponent', 'selector': 'app-homepage-builds'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'HomepageEventsCardComponent', 'selector': 'app-homepage-events-card'},{'name': 'HomepageEventsComponent', 'selector': 'app-homepage-events'},{'name': 'HomepageExpertsComponent', 'selector': 'app-homepage-experts'},{'name': 'HomepageFeaturedCommunitiesComponent', 'selector': 'app-homepage-featured-communities'},{'name': 'HomepageFeaturesComponent', 'selector': 'app-homepage-features'},{'name': 'HomepageLabsComponent', 'selector': 'app-homepage-labs'},{'name': 'HomepageTestimonialsComponent', 'selector': 'app-homepage-testimonials'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsCardComponent', 'selector': 'app-labs-card'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsHeaderComponent', 'selector': 'app-labs-header'},{'name': 'LabsSearchComponent', 'selector': 'app-labs-search'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MiniUserProfileComponent', 'selector': 'app-mini-user-profile'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'NewsletterListComponent', 'selector': 'app-newsletter-list'},{'name': 'NotificationsListComponent', 'selector': 'app-notifications-list'},{'name': 'NotificationsListItemComponent', 'selector': 'app-notifications-list-item'},{'name': 'NotificationsPageComponent', 'selector': 'app-notifications-page'},{'name': 'NotificationsPopoverComponent', 'selector': 'app-notifications-popover'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'ProfileStatusBarComponent', 'selector': 'app-profile-status-bar'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicPageGuidelinesComponent', 'selector': 'app-public-page-guidelines'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'PushNotificationComponent', 'selector': 'app-push-notification'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'RecommendedBuildsComponent', 'selector': 'app-recommended-builds'},{'name': 'RecommendedCommunitiesComponent', 'selector': 'app-recommended-communities'},{'name': 'RecommendedLabsComponent', 'selector': 'app-recommended-labs'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBoxComponent', 'selector': 'app-search-box'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'ShareButtonComponent', 'selector': 'app-share-button'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SocialLinksComponent', 'selector': 'app-social-links'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'StepperComponent', 'selector': 'app-stepper'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UsernameComponent', 'selector': 'app-username'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserResumeCardComponent', 'selector': 'app-user-resume-card'},{'name': 'UserResumeComponent', 'selector': 'app-user-resume'},{'name': 'UserResumePreviewComponent', 'selector': 'app-user-resume-preview'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'UserWorkHistoryCardComponent', 'selector': 'app-user-work-history-card'},{'name': 'UserWorkHistoryComponent', 'selector': 'app-user-work-history'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'BreakpointsDirective', 'selector': '[appBreakpoints]'},{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'InfiniteScrollDirective', 'selector': '[appInfiniteScroll]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'},{'name': 'MiniUserProfileDirective', 'selector': '[appMiniUserProfile]'}];
     var ACTUAL_COMPONENT = {'name': 'EventFormResponsesComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 
@@ -2556,6 +2693,15 @@ export class EventFormResponsesComponent implements OnInit {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -82,7 +82,7 @@
 
 <section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover metadata">
         <tbody>
 
 
@@ -139,19 +139,16 @@
                                 <a href="#channelSubscription" >channelSubscription</a>
                             </li>
                             <li>
-                                <a href="#connectedToChannel" >connectedToChannel</a>
-                            </li>
-                            <li>
-                                <a href="#currentState" >currentState</a>
+                                <a href="#currentUser" >currentUser</a>
                             </li>
                             <li>
                                 <a href="#EHmsStates" >EHmsStates</a>
                             </li>
                             <li>
-                                <a href="#hmsClient" >hmsClient</a>
+                                <a href="#hmsState" >hmsState</a>
                             </li>
                             <li>
-                                <a href="#loading" >loading</a>
+                                <a href="#isInitialConnection" >isInitialConnection</a>
                             </li>
                             <li>
                                 <a href="#selectedRole" >selectedRole</a>
@@ -161,9 +158,6 @@
                             </li>
                             <li>
                                 <a href="#subscriptions" >subscriptions</a>
-                            </li>
-                            <li>
-                                <a href="#user" >user</a>
                             </li>
                         </ul>
                     </td>
@@ -178,6 +172,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#connectToChannel" >connectToChannel</a>
+                            </li>
+                            <li>
                                 <a href="#getClient" >getClient</a>
                             </li>
                             <li>
@@ -190,10 +187,7 @@
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#setSelectedRole" >setSelectedRole</a>
-                            </li>
-                            <li>
-                                <a href="#subscribeChannel" >subscribeChannel</a>
+                                <a href="#reload" >reload</a>
                             </li>
                         </ul>
                     </td>
@@ -208,12 +202,26 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#roomId" >roomId</a>
+                                <a href="#embeddedVideoStream" >embeddedVideoStream</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#beamStatus" >beamStatus</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -227,12 +235,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(hmsVideoStateService: <a href="../injectables/HmsVideoStateService.html" target="_self">HmsVideoStateService</a>, hmsApiService: <a href="../injectables/HmsApiService.html" target="_self">HmsApiService</a>, hmsLiveChannel: <a href="../injectables/HmsLiveChannel.html" target="_self">HmsLiveChannel</a>, hmsClientManagerService: <a href="../injectables/HmsClientManagerService.html" target="_self">HmsClientManagerService</a>, authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>)</code>
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, hmsVideoStateService: <a href="../injectables/HmsVideoStateService.html" target="_self">HmsVideoStateService</a>, hmsApiService: <a href="../injectables/HmsApiService.html" target="_self">HmsApiService</a>, hmsLiveChannel: <a href="../injectables/HmsLiveChannel.html" target="_self">HmsLiveChannel</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -249,6 +257,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>authWatchService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibAuthwatchService.html" target="_self" >LibAuthwatchService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>hmsVideoStateService</td>
                                                   
@@ -285,30 +305,6 @@
                                                     </td>
                                                     
                                                 </tr>
-                                                <tr>
-                                                        <td>hmsClientManagerService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/HmsClientManagerService.html" target="_self" >HmsClientManagerService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>authWatchService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/LibAuthwatchService.html" target="_self" >LibAuthwatchService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -324,13 +320,13 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="roomId"></a>
-                        <b>roomId</b>
+                        <a name="embeddedVideoStream"></a>
+                        <b>embeddedVideoStream</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/IEmbeddedVideoStream.html" target="_self" >IEmbeddedVideoStream</a></code>
 
                     </td>
                 </tr>
@@ -342,7 +338,30 @@
             </tbody>
         </table>
 </section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="beamStatus"></a>
+                        <b>beamStatus</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;boolean&gt;</code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:21</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
 
     <section>
@@ -350,6 +369,43 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectToChannel"></a>
+                    <span class="name">
+                        <span ><b>connectToChannel</b></span>
+                        <a href="#connectToChannel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>connectToChannel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -370,8 +426,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:74</a></div>
                 </td>
             </tr>
 
@@ -400,15 +456,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnChanges()</code>
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:55</a></div>
                 </td>
             </tr>
 
@@ -417,8 +473,40 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -444,8 +532,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:68</a></div>
                 </td>
             </tr>
 
@@ -481,8 +569,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:42</a></div>
                 </td>
             </tr>
 
@@ -502,89 +590,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="setSelectedRole"></a>
+                    <a name="reload"></a>
                     <span class="name">
-                        <span ><b>setSelectedRole</b></span>
-                        <a href="#setSelectedRole"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>reload</b></span>
+                        <a href="#reload"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setSelectedRole(role)</code>
+<code>reload()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:92</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>role</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="subscribeChannel"></a>
-                    <span class="name">
-                        <span ><b>subscribeChannel</b></span>
-                        <a href="#subscribeChannel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>subscribeChannel()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:116</a></div>
                 </td>
             </tr>
 
@@ -619,58 +642,33 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:26</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="connectedToChannel"></a>
-                    <span class="name">
-                        <span ><b>connectedToChannel</b></span>
-                        <a href="#connectedToChannel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:27</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="currentState"></a>
-                    <span class="name">
-                        <span ><b>currentState</b></span>
-                        <a href="#currentState"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EHmsStates" target="_self" >EHmsStates</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -695,32 +693,6 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:30</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="hmsClient"></a>
-                    <span class="name">
-                        <span ><b>hmsClient</b></span>
-                        <a href="#hmsClient"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>HMSClient</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:25</a></div>
                         </td>
                     </tr>
@@ -732,10 +704,36 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loading"></a>
+                    <a name="hmsState"></a>
                     <span class="name">
-                        <span ><b>loading</b></span>
-                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>hmsState</b></span>
+                        <a href="#hmsState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EHmsStates" target="_self" >EHmsStates</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isInitialConnection"></a>
+                    <span class="name">
+                        <span ><b>isInitialConnection</b></span>
+                        <a href="#isInitialConnection"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -746,7 +744,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -772,7 +770,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -798,7 +796,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -818,7 +816,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
+                        <i>Type : </i>    <code>Subscription[]</code>
 
                     </td>
                 </tr>
@@ -829,33 +827,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:28</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="user"></a>
-                    <span class="name">
-                        <span ><b>user</b></span>
-                        <a href="#user"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/shared-modules/hms-video/components/hms-video/hms-video.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -868,167 +840,165 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HMSClient } from &#x27;@100mslive/hmsvideo-web&#x27;;
-import { Component, Input, OnChanges, OnInit, OnDestroy, Inject } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from &#x27;@angular/core&#x27;;
 import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
+import { IEmbeddedVideoStream } from &#x27;projects/shared-models/embedded_video_stream.model&#x27;;
+import { EHmsRoles } from &#x27;projects/shared-modules/hms-video/enums/hms-roles.enum&#x27;;
 import { EHmsStates } from &#x27;projects/shared-modules/hms-video/enums/hms-states.enum&#x27;;
 import { IHmsClient } from &#x27;projects/shared-modules/hms-video/models/hms-client.model&#x27;;
+import { HmsApiService } from &#x27;projects/shared-modules/hms-video/services/hms-api.service&#x27;;
+import { HmsVideoStateService } from &#x27;projects/shared-modules/hms-video/services/hms-video-state.service&#x27;;
+import { HmsLiveChannel } from &#x27;projects/shared-modules/hms-video/services/websockets/hms-live.channel&#x27;;
 import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
-import { HmsApiService } from &#x27;../../services/hms-api.service&#x27;;
-import { HmsClientManagerService } from &#x27;../../services/hms-client-manager.service&#x27;;
-import { HmsVideoStateService } from &#x27;../../services/hms-video-state.service&#x27;;
-import { HmsLiveChannel } from &#x27;../../services/websockets/hms-live.channel&#x27;;
-import { EHmsRoles } from &#x27;projects/shared-modules/hms-video/enums/hms-roles.enum&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+
 @Component({
   selector: &#x27;app-hms-video&#x27;,
   templateUrl: &#x27;./hms-video.component.html&#x27;,
-  styleUrls: [&#x27;./hms-video.component.scss&#x27;]
+  styleUrls: [&#x27;./hms-video.component.scss&#x27;],
 })
 export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
-  loading &#x3D; true;
-  @Input() roomId: string;
+  @Input() embeddedVideoStream: IEmbeddedVideoStream;
 
-  // this is the client with auth token and role
-  serverClient: IHmsClient;
+  @Output() beamStatus: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter&lt;boolean&gt;();
 
-  // this is the client which the hms library creates
-  hmsClient: HMSClient;
-  channelSubscription;
-  connectedToChannel &#x3D; false;
-  subscriptions &#x3D; [];
+  currentUser: ICurrentUser;
 
   EHmsStates &#x3D; EHmsStates;
-  currentState: EHmsStates;
+  hmsState: EHmsStates;
 
+  serverClient: IHmsClient;
   selectedRole: EHmsRoles;
-  user: ICurrentUser;
+
+  channelSubscription;
+  isInitialConnection &#x3D; true;
+  subscriptions: Subscription[] &#x3D; [];
 
   constructor(
+    private authWatchService: LibAuthwatchService,
     private hmsVideoStateService: HmsVideoStateService,
     private hmsApiService: HmsApiService,
     private hmsLiveChannel: HmsLiveChannel,
-    private hmsClientManagerService: HmsClientManagerService,
-    private authWatchService: LibAuthwatchService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-    // todo set this as per the user&#x27;s role [webinar, or conference]
-    this.hmsVideoStateService.setState(EHmsStates.INIT);
+    // Set the initial hms state
+    // TODO: set this as per the user&#x27;s role [webinar, or conference]
+    // this.hmsVideoStateService.setState(EHmsStates.INIT);
 
+    // Subscribe to hms state service
     this.subscriptions.push(
-      this.hmsVideoStateService.hmsState$.subscribe(
-        data &#x3D;&gt; this.currentState &#x3D; data
-      ),
-      this.authWatchService.currentUser$.subscribe(
-        data &#x3D;&gt; {
-          this.user &#x3D; data;
+      this.hmsVideoStateService.hmsState$.subscribe((value: EHmsStates) &#x3D;&gt; {
+        this.hmsState &#x3D; value;
+      }),
+    );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.embeddedVideoStream.hms_room_id) {
+      // Get current user
+      this.subscriptions.push(
+        this.authWatchService.currentUser$.subscribe((value: ICurrentUser) &#x3D;&gt; {
+          this.currentUser &#x3D; value;
+          // Get client token
           this.getClient();
-        }
-      )
+        }),
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe all subscriptions
+    this.channelSubscription?.unsubscribe();
+    this.subscriptions.forEach((subscription: Subscription) &#x3D;&gt; subscription.unsubscribe());
+  }
+
+  getClient(): void {
+    this.subscriptions.push(
+      this.hmsApiService.getClientToken(this.embeddedVideoStream.hms_room_id).subscribe((value: IHmsClient) &#x3D;&gt; {
+        this.serverClient &#x3D; value;
+        this.connectToChannel();
+      }),
     );
   }
 
-
-  ngOnChanges() {
-    if (this.roomId &amp;&amp; !this.serverClient &amp;&amp; this.user) {
-      this.getClient();
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.channelSubscription) {
-      this.channelSubscription.unsubscribe();
-    }
-
-    for (let subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-  }
-
-  getClient() {
-    this.hmsApiService.getClientToken(this.roomId).subscribe(data &#x3D;&gt; {
-      this.serverClient &#x3D; data;
-
-      // by default, the selected role will be same as the one we have received in the client
-      this.selectedRole &#x3D; this.serverClient.role;
-      this.hmsClient &#x3D; this.hmsClientManagerService.createClient(this.user.name, this.serverClient.token);
-      this.subscribeChannel();
-      this.loading &#x3D; false;
-
-    });
-  }
-
-  setSelectedRole(role) {
-    this.selectedRole &#x3D; role;
-  }
-
-
-  // subscribe the parent component to the live channel to update the status of the user
-  subscribeChannel() {
+  connectToChannel(): void {
+    // Subscribe to channel
     this.channelSubscription &#x3D; this.hmsLiveChannel.subscribe(
-      this.roomId,
-      this.hmsClient.uid,
+      this.embeddedVideoStream.hms_room_id,
+      this.currentUser.id,
       this.serverClient.token,
-      this.user.name,
-      this.serverClient.role
+      this.currentUser.name,
+      this.selectedRole,
     );
 
+    // Check if session has ended
     this.subscriptions.push(
-      this.hmsLiveChannel.channelConnectionStatus$[&#x60;${this.hmsClient.uid}&#x60;].subscribe(
-        data &#x3D;&gt; {
-          if (data) {
-            this.connectedToChannel &#x3D; true;
-          }
-        }
-      )
-    );
-
-    this.subscriptions.push(
-      this.hmsLiveChannel.channelData$[&#x60;${this.hmsClient.uid}&#x60;].subscribe(
-        data &#x3D;&gt; {
-          if (data) {
-            switch (data.action) {
-              case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
-                if (data.room_ended &#x3D;&#x3D;&#x3D; true) {
+      this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((data: any) &#x3D;&gt; {
+        if (data) {
+          switch (data.action) {
+            case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
+              if (this.isInitialConnection) {
+                if (data.room_ended) {
                   this.hmsVideoStateService.setState(EHmsStates.ENDED);
+                } else {
+                  this.hmsVideoStateService.setState(EHmsStates.INIT);
                 }
-                break;
+
+                this.isInitialConnection &#x3D; false;
               }
+              break;
             }
           }
         }
-      )
+      }),
     );
   }
 
+  reload() {
+    window.location.reload();
+  }
 }
-
-
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;hms-video&quot;&gt;
-  &lt;div class&#x3D;&quot;state-container d-flex justify-content-center align-items-center&quot; [ngSwitch]&#x3D;&quot;currentState&quot; [nbSpinner]&#x3D;&quot;!this.hmsClient&quot; nbSpinnerStatus&#x3D;&quot;info&quot;&gt;
-    &lt;div *ngSwitchCase&#x3D;&quot;EHmsStates.INIT&quot; class&#x3D;&quot;select-role&quot;&gt;
-      &lt;app-select-role
-        *ngIf&#x3D;&quot;hmsClient &amp;&amp; connectedToChannel&quot;
-        [roomId]&#x3D;&quot;roomId&quot;
-        [client]&#x3D;&quot;serverClient&quot;
-        [hmsClient]&#x3D;&quot;hmsClient&quot;
-        [user]&#x3D;&quot;user&quot;
-        (selectedRole)&#x3D;&quot;setSelectedRole($event)&quot;
-      &gt;&lt;/app-select-role&gt;
-    &lt;/div&gt;
-
-    &lt;app-local-preview *ngSwitchCase&#x3D;&quot;EHmsStates.PREVIEW&quot; class&#x3D;&quot;local-preview&quot; [hmsClient]&#x3D;&quot;hmsClient&quot;&gt;&lt;/app-local-preview&gt;
-    &lt;app-conference *ngSwitchCase&#x3D;&quot;EHmsStates.ROOM&quot; class&#x3D;&quot;room&quot; [roomId]&#x3D;&quot;roomId&quot; [serverClient]&#x3D;&quot;serverClient&quot; [serverClient]&#x3D;&quot;serverClient&quot; [client]&#x3D;&quot;hmsClient&quot; [selectedRole]&#x3D;&quot;selectedRole&quot;&gt;&lt;/app-conference&gt;
-    &lt;div *ngSwitchCase&#x3D;&quot;EHmsStates.ENDED&quot; class&#x3D;&quot;webinar-ended&quot;&gt;
-      &lt;nb-alert accent&#x3D;&quot;info&quot;&gt;
-        This session has completed!
-      &lt;/nb-alert&gt;
-    &lt;/div&gt;
+  &lt;div
+    [nbSpinner]&#x3D;&quot;!serverClient || !currentUser || !hmsState&quot;
+    [ngSwitch]&#x3D;&quot;hmsState&quot;
+    class&#x3D;&quot;state-container&quot;
+    nbSpinnerStatus&#x3D;&quot;primary&quot;
+  &gt;
+    &lt;!-- Select role --&gt;
+    &lt;app-select-role
+      (selectedRole)&#x3D;&quot;selectedRole &#x3D; $event&quot;
+      *ngSwitchCase&#x3D;&quot;EHmsStates.INIT&quot;
+      [serverClient]&#x3D;&quot;serverClient&quot;
+    &gt;&lt;/app-select-role&gt;
+    &lt;!-- Preview video and audio --&gt;
+    &lt;app-local-preview *ngSwitchCase&#x3D;&quot;EHmsStates.PREVIEW&quot;&gt;&lt;/app-local-preview&gt;
+    &lt;!-- Join room --&gt;
+    &lt;app-conference
+      (beamStatus)&#x3D;&quot;beamStatus.emit($event)&quot;
+      *ngSwitchCase&#x3D;&quot;EHmsStates.ROOM&quot;
+      [currentUser]&#x3D;&quot;currentUser&quot;
+      [embeddedVideoStream]&#x3D;&quot;embeddedVideoStream&quot;
+      [selectedRole]&#x3D;&quot;selectedRole&quot;
+      [serverClient]&#x3D;&quot;serverClient&quot;
+    &gt;&lt;/app-conference&gt;
+    &lt;!-- Left session --&gt;
+    &lt;nb-alert *ngSwitchCase&#x3D;&quot;EHmsStates.LEFT&quot; accent&#x3D;&quot;info&quot;&gt;You have left the session!&lt;/nb-alert&gt;
+    &lt;!-- Session end --&gt;
+    &lt;nb-alert *ngSwitchCase&#x3D;&quot;EHmsStates.ENDED&quot; accent&#x3D;&quot;info&quot;&gt;This session has completed!&lt;/nb-alert&gt;
+    &lt;!-- Disconnected --&gt;
+    &lt;nb-alert *ngSwitchCase&#x3D;&quot;EHmsStates.DISCONNECTED&quot; accent&#x3D;&quot;info&quot;&gt;
+      You have been disconnected from the session! Please refresh the page to reconnect.
+      &lt;button (click)&#x3D;&quot;reload()&quot; class&#x3D;&quot;com-w-max com-ml-auto&quot; nbButton size&#x3D;&quot;small&quot; status&#x3D;&quot;info&quot;&gt;
+        &lt;nb-icon icon&#x3D;&quot;refresh-outline&quot;&gt;&lt;/nb-icon&gt;
+        Refresh
+      &lt;/button&gt;
+    &lt;/nb-alert&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
@@ -1038,42 +1008,27 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
                 <p class="comment">
                     <code>./hms-video.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">:host {
-  width: 100%;
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;./projects/commudle-admin/src/assets/styles/variables&#x27;;
+
+:host {
   height: 100%;
+  width: 100%;
 
   .hms-video {
-    position: relative;
-    width: 100%;
+    background-color: $black;
     height: 100%;
-    background-color: black;
+    width: 100%;
+    border-radius: 12px;
+
     .state-container {
-      width: 100%;
       height: 100%;
+      width: 100%;
 
-      .select-role {
-        position: absolute;
+      nb-alert {
         left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .local-preview {
-        width: fit-content;
-      }
-
-      .room {
-        width: 100%;
-        height: 100%;
-      }
-
-      .webinar-ended {
-        nb-alert {
-          position: absolute;
-          top: 25%;
-          left: 50%;
-          transform: translate(-50%, 0);
-        }
+        position: absolute;
+        top: 25%;
+        transform: translateX(-50%);
       }
     }
   }
@@ -1106,12 +1061,14 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="hms-video">  <div class="state-container d-flex justify-content-center align-items-center" [ngSwitch]="currentState" [nbSpinner]="!this.hmsClient" nbSpinnerStatus="info">    <div *ngSwitchCase="EHmsStates.INIT" class="select-role">      <app-select-role        *ngIf="hmsClient && connectedToChannel"        [roomId]="roomId"        [client]="serverClient"        [hmsClient]="hmsClient"        [user]="user"        (selectedRole)="setSelectedRole($event)"      ></app-select-role>    </div>    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW" class="local-preview" [hmsClient]="hmsClient"></app-local-preview>    <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId" [serverClient]="serverClient" [serverClient]="serverClient" [client]="hmsClient" [selectedRole]="selectedRole"></app-conference>    <div *ngSwitchCase="EHmsStates.ENDED" class="webinar-ended">      <nb-alert accent="info">        This session has completed!      </nb-alert>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+        var COMPONENT_TEMPLATE = '<div><div class="hms-video">  <div    [nbSpinner]="!serverClient || !currentUser || !hmsState"    [ngSwitch]="hmsState"    class="state-container"    nbSpinnerStatus="primary"  >    <!-- Select role -->    <app-select-role      (selectedRole)="selectedRole = $event"      *ngSwitchCase="EHmsStates.INIT"      [serverClient]="serverClient"    ></app-select-role>    <!-- Preview video and audio -->    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW"></app-local-preview>    <!-- Join room -->    <app-conference      (beamStatus)="beamStatus.emit($event)"      *ngSwitchCase="EHmsStates.ROOM"      [currentUser]="currentUser"      [embeddedVideoStream]="embeddedVideoStream"      [selectedRole]="selectedRole"      [serverClient]="serverClient"    ></app-conference>    <!-- Left session -->    <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>    <!-- Session end -->    <nb-alert *ngSwitchCase="EHmsStates.ENDED" accent="info">This session has completed!</nb-alert>    <!-- Disconnected -->    <nb-alert *ngSwitchCase="EHmsStates.DISCONNECTED" accent="info">      You have been disconnected from the session! Please refresh the page to reconnect.      <button (click)="reload()" class="com-w-max com-ml-auto" nbButton size="small" status="info">        <nb-icon icon="refresh-outline"></nb-icon>        Refresh      </button>    </nb-alert>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutOldComponent', 'selector': 'app-about-old'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminStaticAssetFormComponent', 'selector': 'app-admin-static-asset-form'},{'name': 'AdminStaticAssetsComponent', 'selector': 'app-admin-static-assets'},{'name': 'AdminStaticAssetsListComponent', 'selector': 'app-admin-static-assets-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendedMembersComponent', 'selector': 'app-attended-members'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicInfoComponent', 'selector': 'app-basic-info'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogsListComponent', 'selector': 'app-blogs'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CircularProgressiveBarComponent', 'selector': 'app-circular-progressive-bar'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBlockedUsersComponent', 'selector': 'app-community-blocked-users'},{'name': 'CommunityBuildCardComponent', 'selector': 'app-community-build-card'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardChannelListComponent', 'selector': 'app-community-channels-dashboard-channel-list'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityMembersListComponent', 'selector': 'app-community-members-list'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EditUserProfileComponent', 'selector': 'app-edit-user-profile'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailPreferencesComponent', 'selector': 'app-email-preferences'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'EntryPassScanComponent', 'selector': 'app-entry-pass-scan'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventDetailsComponent', 'selector': 'app-event-details'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomepageAboutComponent', 'selector': 'app-homepage-about'},{'name': 'HomepageBuildsComponent', 'selector': 'app-homepage-builds'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'HomepageEventsCardComponent', 'selector': 'app-homepage-events-card'},{'name': 'HomepageEventsComponent', 'selector': 'app-homepage-events'},{'name': 'HomepageExpertsComponent', 'selector': 'app-homepage-experts'},{'name': 'HomepageFeaturedCommunitiesComponent', 'selector': 'app-homepage-featured-communities'},{'name': 'HomepageFeaturesComponent', 'selector': 'app-homepage-features'},{'name': 'HomepageLabsComponent', 'selector': 'app-homepage-labs'},{'name': 'HomepageTestimonialsComponent', 'selector': 'app-homepage-testimonials'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsCardComponent', 'selector': 'app-labs-card'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsHeaderComponent', 'selector': 'app-labs-header'},{'name': 'LabsSearchComponent', 'selector': 'app-labs-search'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MiniUserProfileComponent', 'selector': 'app-mini-user-profile'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'NewsletterListComponent', 'selector': 'app-newsletter-list'},{'name': 'NotificationsListComponent', 'selector': 'app-notifications-list'},{'name': 'NotificationsListItemComponent', 'selector': 'app-notifications-list-item'},{'name': 'NotificationsPageComponent', 'selector': 'app-notifications-page'},{'name': 'NotificationsPopoverComponent', 'selector': 'app-notifications-popover'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'ProfileStatusBarComponent', 'selector': 'app-profile-status-bar'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicPageGuidelinesComponent', 'selector': 'app-public-page-guidelines'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'PushNotificationComponent', 'selector': 'app-push-notification'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'RecommendedBuildsComponent', 'selector': 'app-recommended-builds'},{'name': 'RecommendedCommunitiesComponent', 'selector': 'app-recommended-communities'},{'name': 'RecommendedLabsComponent', 'selector': 'app-recommended-labs'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBoxComponent', 'selector': 'app-search-box'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'ShareButtonComponent', 'selector': 'app-share-button'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SocialLinksComponent', 'selector': 'app-social-links'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'StepperComponent', 'selector': 'app-stepper'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UsernameComponent', 'selector': 'app-username'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserResumeCardComponent', 'selector': 'app-user-resume-card'},{'name': 'UserResumeComponent', 'selector': 'app-user-resume'},{'name': 'UserResumePreviewComponent', 'selector': 'app-user-resume-preview'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'UserWorkHistoryCardComponent', 'selector': 'app-user-work-history-card'},{'name': 'UserWorkHistoryComponent', 'selector': 'app-user-work-history'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'BreakpointsDirective', 'selector': '[appBreakpoints]'},{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'InfiniteScrollDirective', 'selector': '[appInfiniteScroll]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'},{'name': 'MiniUserProfileDirective', 'selector': '[appMiniUserProfile]'}];
     var ACTUAL_COMPONENT = {'name': 'HmsVideoComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 
@@ -1140,6 +1097,15 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

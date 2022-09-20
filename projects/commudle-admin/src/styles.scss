@@ -1,10 +1,10 @@
+@use 'themes' as *;
+@use '@nebular/theme/styles/globals' as *;
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import 'themes';
-
-@import '~@nebular/theme/styles/globals';
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';

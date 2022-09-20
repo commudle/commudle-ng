@@ -9,6 +9,7 @@ export interface ICMSAbout {
   stats: ICMSAboutStat[];
   features: ICMSAboutBlock[];
   team: ICMSAboutTeam[];
+  advisor: ICMSAboutAdvisor[];
   featuresList: {
     content: {
       title: string;
@@ -43,6 +44,16 @@ interface ICMSAboutTeam {
   image: SanityImageObject;
   social: {
     twitter: string;
-    linkedin: string;
+    commudle: string;
+  };
+}
+//advisor
+interface ICMSAboutAdvisor {
+  name: string;
+  designation: string;
+  image: SanityImageObject;
+  social: {
+    twitter: string;
+    commudle: string;
   };
 }

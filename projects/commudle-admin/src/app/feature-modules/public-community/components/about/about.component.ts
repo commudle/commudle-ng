@@ -16,6 +16,8 @@ export class AboutComponent implements OnInit {
   EUserRoles = EUserRoles;
   organizers: IUser[] = [];
 
+  isLoading = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
@@ -31,10 +33,12 @@ export class AboutComponent implements OnInit {
   }
 
   getOrganizers(roles: EUserRoles[]) {
+    this.isLoading = true;
     this.organizers = [];
     roles.forEach((role) => {
       this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, role).subscribe((data) => {
         this.organizers = this.organizers.concat(data.users);
+        this.isLoading = false;
       });
     });
   }

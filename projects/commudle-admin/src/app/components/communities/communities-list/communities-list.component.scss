@@ -1,64 +1,52 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .communities-list-container {
-  margin-top: 0;
+  @apply com-mt-0;
 
   nb-card-body {
-    padding: $space-24 $space-32;
+    @apply com-py-6 com-px-8;
 
     .communities-list-prefix {
-      margin-bottom: $space-16;
+      @apply com-mb-4;
 
       .communities-list-heading {
-        color: $gunmetal;
-        font-size: $fs-26;
-        font-weight: $fw-600;
-        line-height: 30px;
+        @apply com-text-gunmetal com-text-2xl com-font-semibold com-leading-30px;
       }
 
       .communities-list-navigation {
-        min-width: max-content;
+        @apply com-min-w-max;
 
         button {
-          background: rgba($neon-blue, 0.3);
-          height: 28px;
-          width: 40px;
+          @apply com-bg-blue-200 com-h-7 com-w-10;
 
           nb-icon {
-            color: $neon-blue;
+            @apply com-text-Very-Light-Blue;
           }
 
           &:nth-of-type(1) {
-            margin-right: $space-8;
+            @apply com-mr-2;
           }
 
           &.communities-list-left-btn {
-            border-radius: $border-8 0 0 $border-8;
+            @apply com-rounded-l-lg;
           }
 
           &.communities-list-right-btn {
-            border-radius: 0 $border-8 $border-8 0;
+            @apply com-rounded-r-lg;
           }
         }
       }
     }
 
     .communities-list-search {
-      gap: $space-8 $space-32;
-      margin: $space-44 0 $space-24;
+      @apply com-mt-11 com-mx-0 com-mb-6 com-gap-y-2 com-gap-x-8;
 
       .communities-list-search-tags {
-        gap: $space-8 $space-20;
+        @apply com-gap-y-2 com-gap-x-5;
 
         .communities-list-search-tag {
-          border-bottom: 2px solid $white;
-          color: rgba($gunmetal, 0.85);
-          font-size: $fs-h5;
-          line-height: 16px;
-          padding: $space-8 $space-6;
+          @apply com-border-b-2 com-border-solid com-border-white com-text-sm com-py-2 com-leading-4 com-px-6px com-text-gunmetal/80;
 
           &.active {
-            border-bottom: 2px solid $gunmetal;
+            @apply com-border-b-2 com-border-solid com-border-gunmetal;
           }
         }
       }
@@ -67,32 +55,20 @@
         nb-form-field {
           &::ng-deep {
             .nb-form-field-prefix-medium {
-              height: 24px;
-              margin-right: -$space-32;
-              width: 32px;
+              @apply com-h-6 -com-mr-8 com-w-8;
             }
 
             .nb-form-field-suffix-medium {
-              height: 24px;
-              margin-left: -$space-32;
-              width: 32px;
+              @apply com-h-6 -com-mr-8 com-w-8;
             }
           }
 
           nb-icon {
-            color: rgba($gunmetal, 0.85);
-            height: 16px;
-            width: 16px;
+            @apply com-h-4 com-w-4 com-text-gunmetal/80;
           }
 
           .communities-list-search-input {
-            background: #edf1f7;
-            border: none;
-            border-radius: $space-4;
-            font-size: $fs-h6;
-            height: 24px;
-            padding: $space-8 $space-32;
-            width: 140px;
+            @apply com-bg-gray-100 com-border-0 com-rounded-md com-text-xs com-h-6 com-py-2 com-px-8 com-w-140px;
           }
         }
       }

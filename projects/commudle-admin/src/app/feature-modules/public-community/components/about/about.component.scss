@@ -1,26 +1,19 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 p {
-  color: $gunmetal;
-  margin: 0;
+  @apply com-m-0 com-text-gunmetal;
 }
 
 .community-about {
-  margin: $space-32 0;
+  @apply com-my-8 com-mx-0;
 
   nb-card {
-    height: max-content;
-    margin: $space-16 0 0;
+    @apply com-h-max com-mt-4 com-mx-0 com-mb-0;
 
     nb-card-body {
-      padding: $space-40 $space-32;
+      @apply com-p-4;
+      @apply md:com-py-10 md:com-px-8;
 
       .heading {
-        @apply com-m-0;
-        font-size: $fs-32;
-        font-weight: $fw-600;
-        line-height: 38px;
-        margin-bottom: $space-32;
+        @apply com-m-0 com-text-2xl com-font-semibold com-mb-8;
       }
     }
   }
@@ -31,22 +24,10 @@ p {
         .content {
           p,
           span {
-            color: $gunmetal;
-            font-family: $primary-font-family !important;
-            font-size: $fs-h4;
-            line-height: 19px;
+            font-family: inter;
+            @apply com-text-gunmetal com-text-base com-leading-5;
           }
         }
-      }
-    }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .community-about {
-    .about {
-      nb-card-body {
-        padding: $space-16;
       }
     }
   }

@@ -1,21 +1,14 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 a {
   color: inherit;
   text-decoration: none;
 }
 
 p {
-  margin: 0;
+  @apply com-m-0;
 }
 
 .community-list-card-container {
-  border: 0.5px solid $silver-sand;
-  border-radius: $border-8;
-  height: 296px;
-  padding: $space-16;
-  position: relative;
-  width: 260px;
+  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative com-w-260px;
 
   @screen lg {
     width: inherit;
@@ -23,102 +16,61 @@ p {
 
   .community-list-card-prefix {
     @apply com-items-center;
+
     .community-list-card-logo {
-      border: 0.5px solid $silver-sand;
-      @apply com-h-12 com-w-12;
-      @apply com-rounded-full com-object-contain com-object-center;
+      @apply com-h-12 com-w-12 com-border-[0.5px] com-border-solid com-border-Silver-Sand com-rounded-full com-object-contain com-object-center;
     }
 
     .community-list-card-details {
-      margin-left: $space-8;
+      @apply com-ml-2;
 
       .community-list-card-name {
-        @apply com-m-0;
-        color: $gunmetal;
-        font-size: $fs-h5;
-        font-weight: $fw-600;
-        line-height: 16px;
+        @apply com-m-0 com-text-gunmetal com-text-sm com-font-semibold com-leading-4;
       }
 
       .community-list-card-members {
-        color: #777777;
-        font-size: $fs-h6;
-        font-style: italic;
-        line-height: 14px;
+        @apply com-text-Sonic-Silver com-text-xs com-italic;
+      }
+    }
+  }
+}
+
+.community-list-card-tags {
+  @apply com-flex com-flex-wrap com-gap-2 com-mt-4;
+
+  .community-list-card-tag {
+    @apply com-bg-Azureish-White com-rounded-md com-text-gunmetal com-text-xs com-py-1 com-px-3 com-leading-3;
+  }
+}
+
+.community-list-card-about {
+  @apply com-text-gunmetal/80 com-text-xs com-mt-4;
+}
+
+.community-list-card-suffix {
+  @apply com-bottom-4 com-absolute com-right-4;
+
+  .community-list-card-member-avatars {
+    @apply com-inline-flex com-flex-row-reverse com-h-5 com-mr-9 com-w-8;
+
+    .community-list-card-member-avatar {
+      @apply com-border com-border-solid com-border-white com-rounded-[50px] com-overflow-hidden com-relative com-w-5;
+
+      &:not(:last-child) {
+        @apply -com-ml-30px;
+      }
+
+      img {
+        @apply com-block com-w-full;
       }
     }
   }
 
-  .community-list-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-8;
-    margin-top: $space-16;
-
-    .community-list-card-tag {
-      background-color: $azureish-white;
-      border-radius: $border-5;
-      color: $gunmetal;
-      font-size: $fs-h7;
-      line-height: 12px;
-      padding: $space-4 $space-10;
-    }
-  }
-
-  .community-list-card-about {
-    color: rgba($gunmetal, 0.85);
-    font-size: $fs-h6;
-    line-height: 14px;
-    margin-top: $space-16;
-  }
-
-  .community-list-card-suffix {
-    bottom: 16px;
-    position: absolute;
-    right: 16px;
-
-    .community-list-card-member-avatars {
-      display: inline-flex;
-      flex-direction: row-reverse;
-      height: 20px;
-      margin-right: $space-36;
-      width: 32px;
-
-      .community-list-card-member-avatar {
-        border: 1px solid $white;
-        border-radius: $border-50;
-        overflow: hidden;
-        position: relative;
-        width: 20px;
-
-        &:not(:last-child) {
-          margin-left: -$space-30;
-        }
-
-        img {
-          display: block;
-          width: 100%;
-        }
-      }
-    }
-
-    .community-join-btn {
-      app-membership-toggle {
-        &::ng-deep {
-          button {
-            background: $white;
-            border: 1px solid $silver-sand;
-            border-radius: $border-4;
-            color: $neon-blue;
-            font-size: $fs-h5;
-            font-weight: normal;
-            height: 32px;
-            line-height: 16px;
-            min-width: 152px;
-            padding: $space-8;
-            text-transform: capitalize;
-            width: 152px;
-          }
+  .community-join-btn {
+    app-membership-toggle {
+      &::ng-deep {
+        button {
+          @apply com-bg-white com-border com-border-solid com-border-Silver-Sand com-text-Very-Light-Blue com-text-sm com-h-8 com-min-w-[152px] com-p-2 com-capitalize com-w-152px;
         }
       }
     }

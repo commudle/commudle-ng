@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -80,7 +80,7 @@
 
 <section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover metadata">
         <tbody>
 
 
@@ -134,52 +134,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#checkingUsername" >checkingUsername</a>
-                            </li>
-                            <li>
-                                <a href="#confirmChangeUsername" >confirmChangeUsername</a>
-                            </li>
-                            <li>
                                 <a href="#currentUser" >currentUser</a>
-                            </li>
-                            <li>
-                                <a href="#currentUsername" >currentUsername</a>
-                            </li>
-                            <li>
-                                <a href="#faBehance" >faBehance</a>
-                            </li>
-                            <li>
-                                <a href="#faDribbble" >faDribbble</a>
-                            </li>
-                            <li>
-                                <a href="#faFacebook" >faFacebook</a>
-                            </li>
-                            <li>
-                                <a href="#faGitlab" >faGitlab</a>
-                            </li>
-                            <li>
-                                <a href="#faMediumM" >faMediumM</a>
-                            </li>
-                            <li>
-                                <a href="#faYoutube" >faYoutube</a>
-                            </li>
-                            <li>
-                                <a href="#lastUsername" >lastUsername</a>
-                            </li>
-                            <li>
-                                <a href="#uploadedProfilePicture" >uploadedProfilePicture</a>
-                            </li>
-                            <li>
-                                <a href="#uploadedProfilePictureFile" >uploadedProfilePictureFile</a>
-                            </li>
-                            <li>
-                                <a href="#usernameForm" >usernameForm</a>
-                            </li>
-                            <li>
-                                <a href="#userProfileForm" >userProfileForm</a>
-                            </li>
-                            <li>
-                                <a href="#validUsername" >validUsername</a>
                             </li>
                         </ul>
                     </td>
@@ -194,19 +149,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#checkUsername" >checkUsername</a>
-                            </li>
-                            <li>
-                                <a href="#confirmSubmissionDialogueOpen" >confirmSubmissionDialogueOpen</a>
-                            </li>
-                            <li>
-                                <a href="#displaySelectedProfileImage" >displaySelectedProfileImage</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#setUsername" >setUsername</a>
                             </li>
                             <li>
                                 <a href="#updateUserDetails" >updateUserDetails</a>
@@ -215,21 +158,21 @@
                     </td>
                 </tr>
 
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
+                        <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#updateProfile" >updateProfile</a>
+                                <a href="#pagePadding" >pagePadding</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
 
 
 
@@ -243,12 +186,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, usersService: <a href="../injectables/AppUsersService.html" target="_self">AppUsersService</a>, toastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, dialogService: NbDialogService)</code>
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, userProfileManagerService: <a href="../injectables/UserProfileManagerService.html" target="_self">UserProfileManagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -278,58 +221,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>fb</td>
+                                                        <td>userProfileManagerService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>usersService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AppUsersService.html" target="_self" >AppUsersService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>toastLogService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/LibToastLogService.html" target="_self" >LibToastLogService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>dialogService</td>
-                                                  
-                                                        <td>
-                                                                    <code>NbDialogService</code>
+                                                                        <code><a href="../injectables/UserProfileManagerService.html" target="_self" >UserProfileManagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -346,26 +241,30 @@
         </table>
 </section>
 
-
     <section>
-    <h3 id="outputs">Outputs</h3>
+    <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="updateProfile"></a>
-                        <b>updateProfile</b>
+                        <a name="pagePadding"></a>
+                        <b>pagePadding</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:11</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -373,154 +272,12 @@
 </section>
 
 
+
     <section>
     
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="checkUsername"></a>
-                    <span class="name">
-                        <span ><b>checkUsername</b></span>
-                        <a href="#checkUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>checkUsername()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:126</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="confirmSubmissionDialogueOpen"></a>
-                    <span class="name">
-                        <span ><b>confirmSubmissionDialogueOpen</b></span>
-                        <a href="#confirmSubmissionDialogueOpen"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>confirmSubmissionDialogueOpen()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:155</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="displaySelectedProfileImage"></a>
-                    <span class="name">
-                        <span ><b>displaySelectedProfileImage</b></span>
-                        <a href="#displaySelectedProfileImage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>displaySelectedProfileImage(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:90</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>event</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -541,45 +298,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:76</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setUsername"></a>
-                    <span class="name">
-                        <span ><b>setUsername</b></span>
-                        <a href="#setUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>setUsername()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:19</a></div>
                 </td>
             </tr>
 
@@ -615,8 +335,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:27</a></div>
                 </td>
             </tr>
 
@@ -642,66 +362,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="checkingUsername"></a>
-                    <span class="name">
-                        <span ><b>checkingUsername</b></span>
-                        <a href="#checkingUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:29</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="confirmChangeUsername"></a>
-                    <span class="name">
-                        <span ><b>confirmChangeUsername</b></span>
-                        <a href="#confirmChangeUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ViewChild(&#x27;confimChangeUsername&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="currentUser"></a>
                     <span class="name">
                         <span ><b>currentUser</b></span>
@@ -717,362 +377,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:23</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="currentUsername"></a>
-                    <span class="name">
-                        <span ><b>currentUsername</b></span>
-                        <a href="#currentUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:28</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faBehance"></a>
-                    <span class="name">
-                        <span ><b>faBehance</b></span>
-                        <a href="#faBehance"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faBehance</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:63</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faDribbble"></a>
-                    <span class="name">
-                        <span ><b>faDribbble</b></span>
-                        <a href="#faDribbble"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faDribbble</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:62</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faFacebook"></a>
-                    <span class="name">
-                        <span ><b>faFacebook</b></span>
-                        <a href="#faFacebook"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faFacebook</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:65</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faGitlab"></a>
-                    <span class="name">
-                        <span ><b>faGitlab</b></span>
-                        <a href="#faGitlab"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faGitlab</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:64</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faMediumM"></a>
-                    <span class="name">
-                        <span ><b>faMediumM</b></span>
-                        <a href="#faMediumM"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faMediumM</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:61</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faYoutube"></a>
-                    <span class="name">
-                        <span ><b>faYoutube</b></span>
-                        <a href="#faYoutube"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faYoutube</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:60</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="lastUsername"></a>
-                    <span class="name">
-                        <span ><b>lastUsername</b></span>
-                        <a href="#lastUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:27</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="uploadedProfilePicture"></a>
-                    <span class="name">
-                        <span ><b>uploadedProfilePicture</b></span>
-                        <a href="#uploadedProfilePicture"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:24</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="uploadedProfilePictureFile"></a>
-                    <span class="name">
-                        <span ><b>uploadedProfilePictureFile</b></span>
-                        <a href="#uploadedProfilePictureFile"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>File</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="usernameForm"></a>
-                    <span class="name">
-                        <span ><b>usernameForm</b></span>
-                        <a href="#usernameForm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.fb.group({
-    username: [
-      &#x27;&#x27;,
-      [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator],
-    ],
-  })</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:49</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="userProfileForm"></a>
-                    <span class="name">
-                        <span ><b>userProfileForm</b></span>
-                        <a href="#userProfileForm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.fb.group({
-    name: [&#x27;&#x27;, Validators.required],
-    about_me: [&#x27;&#x27;, [Validators.required, Validators.maxLength(500)]],
-    designation: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
-    location: [&#x27;&#x27;],
-    gender: [&#x27;&#x27;],
-    personal_website: [&#x27;&#x27;],
-    github: [&#x27;&#x27;],
-    linkedin: [&#x27;&#x27;],
-    twitter: [&#x27;&#x27;],
-    dribbble: [&#x27;&#x27;],
-    behance: [&#x27;&#x27;],
-    medium: [&#x27;&#x27;],
-    gitlab: [&#x27;&#x27;],
-    facebook: [&#x27;&#x27;],
-    youtube: [&#x27;&#x27;],
-  })</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:31</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validUsername"></a>
-                    <span class="name">
-                        <span ><b>validUsername</b></span>
-                        <a href="#validUsername"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -1085,442 +390,56 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
-import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } from &#x27;@fortawesome/free-brands-svg-icons&#x27;;
-import { NbDialogService } from &#x27;@nebular/theme&#x27;;
-import { AppUsersService } from &#x27;projects/commudle-admin/src/app/services/app-users.service&#x27;;
-import {
-  NoSpecialCharactersValidator,
-  NoWhitespaceValidator,
-  WhiteSpaceNotAllowedValidator,
-} from &#x27;projects/shared-helper-modules/custom-validators.validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
 import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
 import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
-import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
-import { debounceTime, switchMap } from &#x27;rxjs/operators&#x27;;
-
+import { UserProfileManagerService } from &#x27;projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service&#x27;;
 @Component({
   selector: &#x27;app-basic-user-profile&#x27;,
   templateUrl: &#x27;./basic-user-profile.component.html&#x27;,
   styleUrls: [&#x27;./basic-user-profile.component.scss&#x27;],
 })
 export class BasicUserProfileComponent implements OnInit {
+  @Input() pagePadding &#x3D; true;
   currentUser: ICurrentUser;
-  uploadedProfilePicture: any;
-  uploadedProfilePictureFile: File;
-  validUsername;
-  lastUsername &#x3D; &#x27;&#x27;;
-  currentUsername &#x3D; &#x27;&#x27;;
-  checkingUsername &#x3D; false;
-
-  userProfileForm &#x3D; this.fb.group({
-    name: [&#x27;&#x27;, Validators.required],
-    about_me: [&#x27;&#x27;, [Validators.required, Validators.maxLength(500)]],
-    designation: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
-    location: [&#x27;&#x27;],
-    gender: [&#x27;&#x27;],
-    personal_website: [&#x27;&#x27;],
-    github: [&#x27;&#x27;],
-    linkedin: [&#x27;&#x27;],
-    twitter: [&#x27;&#x27;],
-    dribbble: [&#x27;&#x27;],
-    behance: [&#x27;&#x27;],
-    medium: [&#x27;&#x27;],
-    gitlab: [&#x27;&#x27;],
-    facebook: [&#x27;&#x27;],
-    youtube: [&#x27;&#x27;],
-  });
-
-  usernameForm &#x3D; this.fb.group({
-    username: [
-      &#x27;&#x27;,
-      [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator],
-    ],
-  });
-
-  @Output() updateProfile: EventEmitter&lt;any&gt; &#x3D; new EventEmitter&lt;any&gt;();
-
-  @ViewChild(&#x27;confimChangeUsername&#x27;) confirmChangeUsername: TemplateRef&lt;any&gt;;
-
-  faYoutube &#x3D; faYoutube;
-  faMediumM &#x3D; faMediumM;
-  faDribbble &#x3D; faDribbble;
-  faBehance &#x3D; faBehance;
-  faGitlab &#x3D; faGitlab;
-  faFacebook &#x3D; faFacebook;
 
   constructor(
     private authWatchService: LibAuthwatchService,
-    private fb: FormBuilder,
-    private usersService: AppUsersService,
-    private toastLogService: LibToastLogService,
-    private router: Router,
-    private dialogService: NbDialogService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe((currentUser) &#x3D;&gt; {
       if (currentUser) {
         this.currentUser &#x3D; currentUser;
-        this.userProfileForm.patchValue(this.currentUser);
-        this.uploadedProfilePicture &#x3D; this.currentUser.avatar;
-        this.currentUsername &#x3D; this.lastUsername &#x3D; this.currentUser.username;
-        this.usernameForm.patchValue({ username: this.currentUser.username });
       }
     });
-
-    this.checkUsername();
-  }
-
-  displaySelectedProfileImage(event: any) {
-    if (event.target.files &amp;&amp; event.target.files[0]) {
-      const file &#x3D; event.target.files[0];
-      if (file.size &gt; 2425190) {
-        this.toastLogService.warningDialog(&#x27;Image should be less than 2 Mb&#x27;, 3000);
-        return;
-      }
-      this.uploadedProfilePictureFile &#x3D; file;
-      const reader &#x3D; new FileReader();
-      reader.onload &#x3D; () &#x3D;&gt; (this.uploadedProfilePicture &#x3D; reader.result);
-      reader.readAsDataURL(file);
-    }
   }
 
   updateUserDetails() {
-    const formData: any &#x3D; new FormData();
-    //removing extra new lines from the about_me input
-    this.userProfileForm.patchValue({
-      about_me: this.userProfileForm.get(&#x27;about_me&#x27;).value.replace(/[\n]+/g, &#x27;\n&#x27;).trim(),
-    });
-    const userFormData &#x3D; this.userProfileForm.value;
-    Object.keys(userFormData).forEach((key) &#x3D;&gt;
-      !(userFormData[key] &#x3D;&#x3D; null) ? formData.append(&#x60;user[${key}]&#x60;, userFormData[key]) : &#x27;&#x27;,
-    );
-
-    if (this.uploadedProfilePictureFile !&#x3D; null) {
-      formData.append(&#x27;user[profile_image]&#x27;, this.uploadedProfilePictureFile);
-    }
-
-    this.usersService.updateUserProfile(formData).subscribe(() &#x3D;&gt; {
-      this.authWatchService.updateSignedInUser();
-      this.toastLogService.successDialog(&#x27;Your Profile is now updated!&#x27;);
-      this.updateProfile.emit();
-    });
-  }
-
-  checkUsername() {
-    this.usernameForm.valueChanges
-      .pipe(
-        debounceTime(800),
-        switchMap(() &#x3D;&gt; {
-          this.checkingUsername &#x3D; true;
-          this.currentUsername &#x3D; this.usernameForm.get(&#x27;username&#x27;).value;
-          return this.usersService.checkUsername(this.currentUsername);
-        }),
-      )
-      .subscribe((data) &#x3D;&gt; {
-        this.validUsername &#x3D; data &#x3D;&#x3D;&#x3D; true;
-        this.checkingUsername &#x3D; false;
-      });
-  }
-
-  setUsername() {
-    const newUsername &#x3D; this.usernameForm.get(&#x27;username&#x27;).value;
-    this.usersService.setUsername(newUsername).subscribe((data) &#x3D;&gt; {
-      if (data) {
-        // this.toastLogService.successDialog(&#x27;Updated!&#x27;);
-        this.lastUsername &#x3D; newUsername;
-        this.router.navigate([&#x27;/users&#x27;, newUsername]).then(() &#x3D;&gt; location.reload());
-        // get the user again from the server
-        this.authWatchService.checkAlreadySignedIn().subscribe();
-      }
-    });
-  }
-
-  confirmSubmissionDialogueOpen() {
-    //open the dialogue to confirm username submission
-    this.dialogService.open(this.confirmChangeUsername, {
-      closeOnBackdropClick: false,
-      closeOnEsc: false,
-    });
+    this.userProfileManagerService.updateUserDetails(true);
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;currentUser&quot; class&#x3D;&quot;page-padding&quot;&gt;
-  &lt;div class&#x3D;&quot;username&quot;&gt;
-    &lt;form (ngSubmit)&#x3D;&quot;confirmSubmissionDialogueOpen()&quot; [formGroup]&#x3D;&quot;usernameForm&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          Choose a username to for your public profile
-          &lt;nb-form-field&gt;
-            &lt;nb-icon icon&#x3D;&quot;at-outline&quot; nbPrefix&gt;&lt;/nb-icon&gt;
-            &lt;input
-              (change)&#x3D;&quot;checkUsername()&quot;
-              fieldSize&#x3D;&quot;small&quot;
-              formControlName&#x3D;&quot;username&quot;
-              nbInput
-              status&#x3D;&quot;primary&quot;
-              type&#x3D;&quot;text&quot;
-            /&gt;
-          &lt;/nb-form-field&gt;
-        &lt;/label&gt;
-        &lt;p
-          *ngIf&#x3D;&quot;usernameForm.controls.username.errors&quot;
-          class&#x3D;&quot;field-error validation-error-text&quot;
-          icon&#x3D;&quot;alert-circle-outline&quot;
-          status&#x3D;&quot;danger&quot;
-        &gt;
-          &lt;small&gt; *Username cannot contain spaces &amp; special characters &lt;/small&gt;
-        &lt;/p&gt;
-        &lt;p
-          *ngIf&#x3D;&quot;validUsername &#x3D;&#x3D; false &amp;&amp; currentUsername !&#x3D; currentUser.username&quot;
-          class&#x3D;&quot;field-error validation-error-text&quot;
-          icon&#x3D;&quot;alert-circle-outline&quot;
-          status&#x3D;&quot;danger&quot;
-        &gt;
-          &lt;small&gt; *Username already taken &lt;/small&gt;
-        &lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;button
-          [disabled]&#x3D;&quot;!validUsername || currentUsername &#x3D;&#x3D; lastUsername || checkingUsername&quot;
-          [nbSpinner]&#x3D;&quot;checkingUsername&quot;
-          nbButton
-          size&#x3D;&quot;small&quot;
-          status&#x3D;&quot;success&quot;
-          type&#x3D;&quot;submit&quot;
-        &gt;
-          Save
-        &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;currentUser&quot; [ngClass]&#x3D;&quot;{ &#x27;page-padding&#x27;: pagePadding }&quot; class&#x3D;&quot;page-padding basic-details-container&quot;&gt;
+  &lt;app-username&gt;&lt;/app-username&gt;
+  &lt;app-basic-info&gt;&lt;/app-basic-info&gt;
+  &lt;app-social-links&gt;&lt;/app-social-links&gt;
+  &lt;div class&#x3D;&quot;submit-button&quot;&gt;
+    &lt;button
+      [disabled]&#x3D;&quot;!userProfileManagerService.userProfileForm.valid&quot;
+      fullWidth
+      nbButton
+      size&#x3D;&quot;medium&quot;
+      status&#x3D;&quot;primary&quot;
+      (click)&#x3D;&quot;updateUserDetails()&quot;
+    &gt;
+      Save
+    &lt;/button&gt;
   &lt;/div&gt;
-
-  &lt;ng-template #confimChangeUsername let-ref&#x3D;&quot;dialogRef&quot;&gt;
-    &lt;nb-card&gt;
-      &lt;nb-card-header class&#x3D;&quot;text-center&quot;&gt; Confirmation&lt;/nb-card-header&gt;
-      &lt;nb-card-body&gt;
-        &lt;p&gt;
-          &lt;nb-icon icon&#x3D;&quot;info&quot;&gt;&lt;/nb-icon&gt;
-          Are you sure you want to change your username?
-        &lt;/p&gt;
-      &lt;/nb-card-body&gt;
-      &lt;nb-card-footer class&#x3D;&quot;d-flex justify-content-start&quot;&gt;
-        &lt;button (click)&#x3D;&quot;ref.close()&quot; ghost nbButton status&#x3D;&quot;danger&quot;&gt;No&lt;/button&gt;
-        &lt;button (click)&#x3D;&quot;setUsername()&quot; nbButton status&#x3D;&quot;success&quot;&gt;Yes&lt;/button&gt;
-      &lt;/nb-card-footer&gt;
-    &lt;/nb-card&gt;
-  &lt;/ng-template&gt;
-
-  &lt;form (ngSubmit)&#x3D;&quot;updateUserDetails()&quot; [formGroup]&#x3D;&quot;userProfileForm&quot;&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          Profile Picture*
-          &lt;input (change)&#x3D;&quot;displaySelectedProfileImage($event)&quot; accept&#x3D;&quot;image/*&quot; fullWidth nbInput type&#x3D;&quot;file&quot; /&gt;
-        &lt;/label&gt;
-
-        &lt;div&gt;
-          &lt;div *ngIf&#x3D;&quot;uploadedProfilePicture &#x3D;&#x3D; null&quot; class&#x3D;&quot;uploaded-profile&quot;&gt;&lt;/div&gt;
-          &lt;div *ngIf&#x3D;&quot;uploadedProfilePicture&quot; class&#x3D;&quot;uploaded-profile-image&quot;&gt;
-            &lt;img alt&#x3D;&quot;Profile Picture&quot; src&#x3D;&quot;{{ uploadedProfilePicture }}&quot; title&#x3D;&quot;Profile Picture&quot; /&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          Name*
-          &lt;input formControlName&#x3D;&quot;name&quot; fullWidth nbInput type&#x3D;&quot;text&quot; /&gt;
-        &lt;/label&gt;
-        &lt;span
-          *ngIf&#x3D;&quot;
-            userProfileForm[&#x27;controls&#x27;].name.touched &amp;&amp;
-            userProfileForm[&#x27;controls&#x27;].name.invalid &amp;&amp;
-            userProfileForm[&#x27;controls&#x27;].name.errors.required
-          &quot;
-          class&#x3D;&quot;validation-error-text&quot;
-        &gt;
-          Required Field
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          What&#x27;s Your Tagline?*
-          &lt;input
-            formControlName&#x3D;&quot;designation&quot;
-            fullWidth
-            nbInput
-            placeholder&#x3D;&quot;Blogger, Developer, Designer&quot;
-            type&#x3D;&quot;text&quot;
-          /&gt;
-        &lt;/label&gt;
-        &lt;span
-          *ngIf&#x3D;&quot;
-            userProfileForm[&#x27;controls&#x27;].designation.touched &amp;&amp;
-            userProfileForm[&#x27;controls&#x27;].designation.invalid &amp;&amp;
-            userProfileForm[&#x27;controls&#x27;].designation.errors.required
-          &quot;
-          class&#x3D;&quot;validation-error-text&quot;
-        &gt;
-          Required Field
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          About Me*
-          &lt;textarea
-            formControlName&#x3D;&quot;about_me&quot;
-            fullWidth
-            nbInput
-            placeholder&#x3D;&quot;A little bit about your interests! (max 250 characters)&quot;
-            rows&#x3D;&quot;3&quot;
-          &gt;&lt;/textarea&gt;
-        &lt;/label&gt;
-        &lt;span
-          *ngIf&#x3D;&quot;
-            (userProfileForm[&#x27;controls&#x27;].about_me.touched || userProfileForm.get(&#x27;about_me&#x27;).value) &amp;&amp;
-            userProfileForm[&#x27;controls&#x27;].about_me.invalid
-          &quot;
-          class&#x3D;&quot;validation-error-text&quot;
-        &gt;
-          Required field. Maximum 300 characters.
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;nb-icon icon&#x3D;&quot;pin&quot;&gt;&lt;/nb-icon&gt;
-          Location
-          &lt;input formControlName&#x3D;&quot;location&quot; fullWidth nbInput placeholder&#x3D;&quot;Where are you from?&quot; type&#x3D;&quot;text&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;gender-input&quot;&gt;
-        &lt;label&gt;
-          Gender
-          &lt;nb-radio-group formControlName&#x3D;&quot;gender&quot; name&#x3D;&quot;gender&quot;&gt;
-            &lt;nb-radio value&#x3D;&quot;male&quot;&gt;Male&lt;/nb-radio&gt;
-            &lt;nb-radio value&#x3D;&quot;female&quot;&gt;Female&lt;/nb-radio&gt;
-            &lt;nb-radio value&#x3D;&quot;prefer_not_to_answer&quot;&gt;Other/Prefer Not To answer&lt;/nb-radio&gt;
-          &lt;/nb-radio-group&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;nb-icon icon&#x3D;&quot;info&quot;&gt;&lt;/nb-icon&gt;
-          Personal Website
-          &lt;input formControlName&#x3D;&quot;personal_website&quot; fullWidth nbInput placeholder&#x3D;&quot;Enter complete url&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;nb-icon icon&#x3D;&quot;github&quot;&gt;&lt;/nb-icon&gt;
-          Github
-          &lt;input formControlName&#x3D;&quot;github&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your profile&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;nb-icon icon&#x3D;&quot;linkedin&quot;&gt;&lt;/nb-icon&gt;
-          Linkedin
-          &lt;input formControlName&#x3D;&quot;linkedin&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your profile&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;nb-icon icon&#x3D;&quot;twitter&quot;&gt;&lt;/nb-icon&gt;
-          Twitter
-          &lt;input formControlName&#x3D;&quot;twitter&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your profile&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faYoutube&quot;&gt;&lt;/fa-icon&gt;
-          Youtube
-          &lt;input formControlName&#x3D;&quot;youtube&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your channel&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faMediumM&quot;&gt;&lt;/fa-icon&gt;
-          Medium
-          &lt;input
-            formControlName&#x3D;&quot;medium&quot;
-            fullWidth
-            nbInput
-            placeholder&#x3D;&quot;Link to your profile / publication&quot;
-            type&#x3D;&quot;url&quot;
-          /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faDribbble&quot;&gt;&lt;/fa-icon&gt;
-          Dribbble
-          &lt;input formControlName&#x3D;&quot;dribbble&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your work&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faBehance&quot;&gt;&lt;/fa-icon&gt;
-          Behance
-          &lt;input formControlName&#x3D;&quot;behance&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your work&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faGitlab&quot;&gt;&lt;/fa-icon&gt;
-          Gitlab
-          &lt;input formControlName&#x3D;&quot;gitlab&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your work&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;label&gt;
-          &lt;fa-icon [icon]&#x3D;&quot;faFacebook&quot;&gt;&lt;/fa-icon&gt;
-          Facebook
-          &lt;input formControlName&#x3D;&quot;facebook&quot; fullWidth nbInput placeholder&#x3D;&quot;Link to your profile / page&quot; type&#x3D;&quot;url&quot; /&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;submit-button&quot;&gt;
-      &lt;button [disabled]&#x3D;&quot;!userProfileForm.valid&quot; fullWidth nbButton size&#x3D;&quot;medium&quot; status&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot;&gt;
-        Save
-      &lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1529,64 +448,8 @@ export class BasicUserProfileComponent implements OnInit {
                 <p class="comment">
                     <code>./basic-user-profile.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.row {
-  display: flex;
-  flex-direction: column;
-  margin: 0 -0.5rem 0.8rem;
-  @media screen and (min-width: 800px) {
-    flex-direction: row;
-  }
-
-  &gt; div {
-    flex: 1 0 100%;
-    flex-direction: column;
-    margin: 0 0.5rem 0.8rem;
-    @media screen and (min-width: 800px) {
-      flex: 1 0 calc(50% - 1rem);
-      flex-direction: row;
-    }
-  }
-
-}
-
-.uploaded-profile {
-  height: 150px;
-  max-width: 300px;
-  overflow: hidden;
-  background: #d3d3d36b;
-  margin: 0 auto;
-  position: relative;
-}
-
-
-.uploaded-profile-image {
-  height: 150px;
-  max-width: 300px;
-  overflow: hidden;
-  // background: #d3d3d36b;
-  margin: 0 auto;
-  text-align: center;
-
-  img {
-    height: 100%;
-  }
-}
-
-.username {
-  margin-bottom: 2rem;
-
-  .field-error {
-    margin: 0;
-  }
-
-  form {
-    display: flex;
-    flex-wrap: wrap;
-
-    button {
-      margin: 1.2rem 1rem 0;
-    }
-  }
+                <pre class="line-numbers"><code class="language-scss">.basic-details-container {
+  height: 630px;
 }
 </code></pre>
     </div>
@@ -1616,12 +479,14 @@ export class BasicUserProfileComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="currentUser" class="page-padding">  <div class="username">    <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">      <div>        <label>          Choose a username to for your public profile          <nb-form-field>            <nb-icon icon="at-outline" nbPrefix></nb-icon>            <input              (change)="checkUsername()"              fieldSize="small"              formControlName="username"              nbInput              status="primary"              type="text"            />          </nb-form-field>        </label>        <p          *ngIf="usernameForm.controls.username.errors"          class="field-error validation-error-text"          icon="alert-circle-outline"          status="danger"        >          <small> *Username cannot contain spaces & special characters </small>        </p>        <p          *ngIf="validUsername == false && currentUsername != currentUser.username"          class="field-error validation-error-text"          icon="alert-circle-outline"          status="danger"        >          <small> *Username already taken </small>        </p>      </div>      <div>        <button          [disabled]="!validUsername || currentUsername == lastUsername || checkingUsername"          [nbSpinner]="checkingUsername"          nbButton          size="small"          status="success"          type="submit"        >          Save        </button>      </div>    </form>  </div>  <ng-template #confimChangeUsername let-ref="dialogRef">    <nb-card>      <nb-card-header class="text-center"> Confirmation</nb-card-header>      <nb-card-body>        <p>          <nb-icon icon="info"></nb-icon>          Are you sure you want to change your username?        </p>      </nb-card-body>      <nb-card-footer class="d-flex justify-content-start">        <button (click)="ref.close()" ghost nbButton status="danger">No</button>        <button (click)="setUsername()" nbButton status="success">Yes</button>      </nb-card-footer>    </nb-card>  </ng-template>  <form (ngSubmit)="updateUserDetails()" [formGroup]="userProfileForm">    <div class="row">      <div>        <label>          Profile Picture*          <input (change)="displaySelectedProfileImage($event)" accept="image/*" fullWidth nbInput type="file" />        </label>        <div>          <div *ngIf="uploadedProfilePicture == null" class="uploaded-profile"></div>          <div *ngIf="uploadedProfilePicture" class="uploaded-profile-image">            <img alt="Profile Picture" src="{{ uploadedProfilePicture }}" title="Profile Picture" />          </div>        </div>      </div>    </div>    <div class="row">      <div>        <label>          Name*          <input formControlName="name" fullWidth nbInput type="text" />        </label>        <span          *ngIf="            userProfileForm[\'controls\'].name.touched &&            userProfileForm[\'controls\'].name.invalid &&            userProfileForm[\'controls\'].name.errors.required          "          class="validation-error-text"        >          Required Field        </span>      </div>    </div>    <div class="row">      <div>        <label>          What\'s Your Tagline?*          <input            formControlName="designation"            fullWidth            nbInput            placeholder="Blogger, Developer, Designer"            type="text"          />        </label>        <span          *ngIf="            userProfileForm[\'controls\'].designation.touched &&            userProfileForm[\'controls\'].designation.invalid &&            userProfileForm[\'controls\'].designation.errors.required          "          class="validation-error-text"        >          Required Field        </span>      </div>    </div>    <div class="row">      <div>        <label>          About Me*          <textarea            formControlName="about_me"            fullWidth            nbInput            placeholder="A little bit about your interests! (max 250 characters)"            rows="3"          ></textarea>        </label>        <span          *ngIf="            (userProfileForm[\'controls\'].about_me.touched || userProfileForm.get(\'about_me\').value) &&            userProfileForm[\'controls\'].about_me.invalid          "          class="validation-error-text"        >          Required field. Maximum 300 characters.        </span>      </div>    </div>    <div class="row">      <div>        <label>          <nb-icon icon="pin"></nb-icon>          Location          <input formControlName="location" fullWidth nbInput placeholder="Where are you from?" type="text" />        </label>      </div>    </div>    <div class="row">      <div class="gender-input">        <label>          Gender          <nb-radio-group formControlName="gender" name="gender">            <nb-radio value="male">Male</nb-radio>            <nb-radio value="female">Female</nb-radio>            <nb-radio value="prefer_not_to_answer">Other/Prefer Not To answer</nb-radio>          </nb-radio-group>        </label>      </div>    </div>    <div class="row">      <div>        <label>          <nb-icon icon="info"></nb-icon>          Personal Website          <input formControlName="personal_website" fullWidth nbInput placeholder="Enter complete url" type="url" />        </label>      </div>      <div>        <label>          <nb-icon icon="github"></nb-icon>          Github          <input formControlName="github" fullWidth nbInput placeholder="Link to your profile" type="url" />        </label>      </div>    </div>    <div class="row">      <div>        <label>          <nb-icon icon="linkedin"></nb-icon>          Linkedin          <input formControlName="linkedin" fullWidth nbInput placeholder="Link to your profile" type="url" />        </label>      </div>      <div>        <label>          <nb-icon icon="twitter"></nb-icon>          Twitter          <input formControlName="twitter" fullWidth nbInput placeholder="Link to your profile" type="url" />        </label>      </div>    </div>    <div class="row">      <div>        <label>          <fa-icon [icon]="faYoutube"></fa-icon>          Youtube          <input formControlName="youtube" fullWidth nbInput placeholder="Link to your channel" type="url" />        </label>      </div>      <div>        <label>          <fa-icon [icon]="faMediumM"></fa-icon>          Medium          <input            formControlName="medium"            fullWidth            nbInput            placeholder="Link to your profile / publication"            type="url"          />        </label>      </div>    </div>    <div class="row">      <div>        <label>          <fa-icon [icon]="faDribbble"></fa-icon>          Dribbble          <input formControlName="dribbble" fullWidth nbInput placeholder="Link to your work" type="url" />        </label>      </div>      <div>        <label>          <fa-icon [icon]="faBehance"></fa-icon>          Behance          <input formControlName="behance" fullWidth nbInput placeholder="Link to your work" type="url" />        </label>      </div>    </div>    <div class="row">      <div>        <label>          <fa-icon [icon]="faGitlab"></fa-icon>          Gitlab          <input formControlName="gitlab" fullWidth nbInput placeholder="Link to your work" type="url" />        </label>      </div>      <div>        <label>          <fa-icon [icon]="faFacebook"></fa-icon>          Facebook          <input formControlName="facebook" fullWidth nbInput placeholder="Link to your profile / page" type="url" />        </label>      </div>    </div>    <div class="submit-button">      <button [disabled]="!userProfileForm.valid" fullWidth nbButton size="medium" status="primary" type="submit">        Save      </button>    </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="currentUser" [ngClass]="{ \'page-padding\': pagePadding }" class="page-padding basic-details-container">  <app-username></app-username>  <app-basic-info></app-basic-info>  <app-social-links></app-social-links>  <div class="submit-button">    <button      [disabled]="!userProfileManagerService.userProfileForm.valid"      fullWidth      nbButton      size="medium"      status="primary"      (click)="updateUserDetails()"    >      Save    </button>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutOldComponent', 'selector': 'app-about-old'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminStaticAssetFormComponent', 'selector': 'app-admin-static-asset-form'},{'name': 'AdminStaticAssetsComponent', 'selector': 'app-admin-static-assets'},{'name': 'AdminStaticAssetsListComponent', 'selector': 'app-admin-static-assets-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendedMembersComponent', 'selector': 'app-attended-members'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicInfoComponent', 'selector': 'app-basic-info'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogsListComponent', 'selector': 'app-blogs'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CircularProgressiveBarComponent', 'selector': 'app-circular-progressive-bar'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBlockedUsersComponent', 'selector': 'app-community-blocked-users'},{'name': 'CommunityBuildCardComponent', 'selector': 'app-community-build-card'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardChannelListComponent', 'selector': 'app-community-channels-dashboard-channel-list'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityMembersListComponent', 'selector': 'app-community-members-list'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EditUserProfileComponent', 'selector': 'app-edit-user-profile'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailPreferencesComponent', 'selector': 'app-email-preferences'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'EntryPassScanComponent', 'selector': 'app-entry-pass-scan'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventDetailsComponent', 'selector': 'app-event-details'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomepageAboutComponent', 'selector': 'app-homepage-about'},{'name': 'HomepageBuildsComponent', 'selector': 'app-homepage-builds'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'HomepageEventsCardComponent', 'selector': 'app-homepage-events-card'},{'name': 'HomepageEventsComponent', 'selector': 'app-homepage-events'},{'name': 'HomepageExpertsComponent', 'selector': 'app-homepage-experts'},{'name': 'HomepageFeaturedCommunitiesComponent', 'selector': 'app-homepage-featured-communities'},{'name': 'HomepageFeaturesComponent', 'selector': 'app-homepage-features'},{'name': 'HomepageLabsComponent', 'selector': 'app-homepage-labs'},{'name': 'HomepageTestimonialsComponent', 'selector': 'app-homepage-testimonials'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsCardComponent', 'selector': 'app-labs-card'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsHeaderComponent', 'selector': 'app-labs-header'},{'name': 'LabsSearchComponent', 'selector': 'app-labs-search'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MiniUserProfileComponent', 'selector': 'app-mini-user-profile'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'NewsletterListComponent', 'selector': 'app-newsletter-list'},{'name': 'NotificationsListComponent', 'selector': 'app-notifications-list'},{'name': 'NotificationsListItemComponent', 'selector': 'app-notifications-list-item'},{'name': 'NotificationsPageComponent', 'selector': 'app-notifications-page'},{'name': 'NotificationsPopoverComponent', 'selector': 'app-notifications-popover'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'ProfileStatusBarComponent', 'selector': 'app-profile-status-bar'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicPageGuidelinesComponent', 'selector': 'app-public-page-guidelines'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'PushNotificationComponent', 'selector': 'app-push-notification'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'RecommendedBuildsComponent', 'selector': 'app-recommended-builds'},{'name': 'RecommendedCommunitiesComponent', 'selector': 'app-recommended-communities'},{'name': 'RecommendedLabsComponent', 'selector': 'app-recommended-labs'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBoxComponent', 'selector': 'app-search-box'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'ShareButtonComponent', 'selector': 'app-share-button'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SocialLinksComponent', 'selector': 'app-social-links'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'StepperComponent', 'selector': 'app-stepper'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UsernameComponent', 'selector': 'app-username'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserResumeCardComponent', 'selector': 'app-user-resume-card'},{'name': 'UserResumeComponent', 'selector': 'app-user-resume'},{'name': 'UserResumePreviewComponent', 'selector': 'app-user-resume-preview'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'UserWorkHistoryCardComponent', 'selector': 'app-user-work-history-card'},{'name': 'UserWorkHistoryComponent', 'selector': 'app-user-work-history'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'BreakpointsDirective', 'selector': '[appBreakpoints]'},{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'InfiniteScrollDirective', 'selector': '[appInfiniteScroll]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'},{'name': 'MiniUserProfileDirective', 'selector': '[appMiniUserProfile]'}];
     var ACTUAL_COMPONENT = {'name': 'BasicUserProfileComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 
@@ -1650,6 +515,15 @@ export class BasicUserProfileComponent implements OnInit {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import {
   Component,
   EventEmitter,
@@ -9,23 +10,22 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { Match } from 'autolinker';
 import * as moment from 'moment';
+import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
-import { Clipboard } from '@angular/cdk/clipboard';
+import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -305,6 +305,8 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
         return `<a href="${environment.app_url}/users/${match
           .getMatchedText()
           .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
+      default:
+        return match.getMatchedText();
     }
   }
 }
