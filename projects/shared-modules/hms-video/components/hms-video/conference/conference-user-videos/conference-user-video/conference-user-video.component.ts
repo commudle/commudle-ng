@@ -111,10 +111,6 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
     this.appUsersService.toggleFollow(username).subscribe(() => {
       this.checkFollowing();
     });
-
-    if (this.isFollowing === false) {
-      this.toastLogService.successDialog(`Now you are following to ${this.metaData.name}`);
-    }
   }
   //for checking current user is following or not
   checkFollowing() {

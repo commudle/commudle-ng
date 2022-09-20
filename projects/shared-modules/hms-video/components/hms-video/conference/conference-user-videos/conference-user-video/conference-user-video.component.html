@@ -70,23 +70,27 @@
       class="user-avatar"
     />
   </div>
-  <div class="user-name">
-    <a *ngIf="metaData" [routerLink]="['/users', metaData?.username]" target="_blank">
+
+  <div *ngIf="metaData" class="user-name">
+    <a [routerLink]="['/users', metaData?.username]" target="_blank">
       <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
       {{ displayText }}
     </a>
+    <!-- <app-user-follow [username]="metaData?.username" appearance="outline"></app-user-follow> -->
     <!-- button to follow speaker -->
     <button
       *ngIf="currentUser.id !== metaData.id"
       (click)="toggleFollow(metaData.username)"
       ghost
       nbButton
-      [nbTooltip]="isFollowing ? 'Following' : 'Follow'"
       shape="round"
       size="small"
+      class="!com-text-white"
     >
-      <nb-icon *ngIf="!isFollowing" icon="plus-outline"></nb-icon>
-      <nb-icon *ngIf="isFollowing" icon="checkmark"></nb-icon>
+      <nb-icon [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
+      {{ isFollowing ? 'Following' : 'Follow' }}
+      <!-- <nb-icon *ngIf="!isFollowing" icon="plus-outline"></nb-icon>
+      <nb-icon *ngIf="isFollowing" icon="checkmark"></nb-icon> -->
     </button>
   </div>
 </div>
