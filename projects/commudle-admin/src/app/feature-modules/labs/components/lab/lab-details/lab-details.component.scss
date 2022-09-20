@@ -21,7 +21,7 @@
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal com-text-Azure;
+          @apply com-text-sm com-m-0 com-font-normal com-text-black;
         }
 
         app-badge {
@@ -31,7 +31,7 @@
 
       .active {
         .lab-step-title {
-          @apply com-underline com-font-extrabold;
+          @apply com-underline com-font-black;
         }
       }
     }
