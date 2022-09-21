@@ -16,11 +16,11 @@ export class ChatsWindowComponent implements OnInit {
   @Output() removeFromUnread: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() removeChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
+  //menu for mbMenu
   items = [{ title: 'Block' }];
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
-  blocked = false;
 
   channelSubscription;
 
@@ -35,6 +35,7 @@ export class ChatsWindowComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDiscussion();
+    this.checkBlocked();
 
     //if the field 'minimized' exsists and is true the chat box will open minimized
     if (this.discussionFollower['minimized']) {
@@ -66,19 +67,20 @@ export class ChatsWindowComponent implements OnInit {
 
   blockChat() {
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
-    this.checkBlocked();
   }
 
   //check if the user is blocked or not
   checkBlocked() {
-    this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
-      if (data) {
-        if (data.blocked === true) {
-          this.items = [{ title: 'Unblock' }];
-        } else {
-          this.items = [{ title: 'Block' }];
+    if (this.discussion) {
+      this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
+        if (data) {
+          if (data.blocked === true) {
+            this.items = [{ title: 'Unblock' }];
+          } else {
+            this.items = [{ title: 'Block' }];
+          }
         }
-      }
-    });
+      });
+    }
   }
 }
