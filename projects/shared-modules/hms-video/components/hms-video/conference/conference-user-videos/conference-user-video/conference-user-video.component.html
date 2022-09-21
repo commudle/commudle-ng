@@ -71,26 +71,14 @@
     />
   </div>
 
-  <div *ngIf="metaData" class="user-name">
+  <div *ngIf="metaData" class="user-name com-flex com-items-center">
     <a [routerLink]="['/users', metaData?.username]" target="_blank">
       <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
       {{ displayText }}
     </a>
-    <!-- <app-user-follow [username]="metaData?.username" appearance="outline"></app-user-follow> -->
     <!-- button to follow speaker -->
-    <button
-      *ngIf="currentUser.id !== metaData.id"
-      (click)="toggleFollow(metaData.username)"
-      ghost
-      nbButton
-      shape="round"
-      size="small"
-      class="!com-text-white"
-    >
-      <nb-icon [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
-      {{ isFollowing ? 'Following' : 'Follow' }}
-      <!-- <nb-icon *ngIf="!isFollowing" icon="plus-outline"></nb-icon>
-      <nb-icon *ngIf="isFollowing" icon="checkmark"></nb-icon> -->
-    </button>
+    <div class="com-ml-2">
+      <app-user-follow [username]="metaData.username" appearance="outline" status="base"></app-user-follow>
+    </div>
   </div>
 </div>

@@ -15,6 +15,7 @@ import {
   NbTooltipModule,
 } from '@nebular/theme';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { HmsBeamComponent } from './components/hms-beam/hms-beam.component';
 import { ConferenceSettingsComponent } from './components/hms-video/conference/conference-settings/conference-settings.component';
@@ -42,6 +43,7 @@ import { SelectRoleComponent } from './components/hms-video/select-role/select-r
     ReactiveFormsModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbButtonModule,
