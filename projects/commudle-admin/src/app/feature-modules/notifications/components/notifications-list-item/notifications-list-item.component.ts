@@ -5,28 +5,33 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'projects/shared-models/enums/notification_sender_types.enum';
 import { INotificationMessage } from 'projects/shared-models/notification.model';
-import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
+// import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 
 @Component({
   selector: 'app-notifications-list-item',
   templateUrl: './notifications-list-item.component.html',
   styleUrls: ['./notifications-list-item.component.scss'],
 })
-export class NotificationsListItemComponent implements OnInit, OnChanges, AfterViewInit {
+export class NotificationsListItemComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  timeout: any;
+  observer: any;
   @Input() notificationMessage: INotificationMessage[] = [];
+  @Input() ENotificationStatusesUnread: boolean;
 
   @Output() notificationClicked: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('viewPort') viewPort: ElementRef;
+  @ViewChild('notification') notification: ElementRef;
 
   @Output() markRead: EventEmitter<any> = new EventEmitter<any>();
 
@@ -40,22 +45,31 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
     }
   }
 
+  ngOnDestroy(): void {
+    clearTimeout(this.timeout);
+    if (!this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   ngAfterViewInit() {
-    const threshold = 1; // how much % of the element is in view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              this.markRead.emit(); // emit the function to mark message as read
-            }, 5000); // time for 5 Sec
-            observer.disconnect(); // disconnect if you want to stop observing else it will rerun every time its back in view.
-          }
-        });
-      },
-      { threshold },
-    );
-    observer.observe(this.viewPort.nativeElement); //observe the native element
+    if (this.ENotificationStatusesUnread === true) {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.timeout = setTimeout(() => {
+                this.markRead.emit(); // emit the function to mark message as read
+              }, 5000);
+            } else {
+              clearTimeout(this.timeout);
+            }
+          });
+        },
+        { threshold: 1 }, // how much % of the element is in view
+      );
+      this.observer.observe(this.notification.nativeElement);
+    }
   }
 
   // handlebar replacement value using path

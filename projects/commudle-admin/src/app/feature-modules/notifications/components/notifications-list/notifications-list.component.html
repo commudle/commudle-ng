@@ -16,6 +16,7 @@
           (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
           [notificationMessage]="notification.notification_message"
+          [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
         ></app-notifications-list-item>
       </div>
     </div>
