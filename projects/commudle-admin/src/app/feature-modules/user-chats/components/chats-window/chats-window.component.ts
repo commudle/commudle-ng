@@ -22,6 +22,8 @@ export class ChatsWindowComponent implements OnInit {
   chatsWindowWidth = 350;
   blocked = false;
 
+  channelSubscription;
+
   discussion: IDiscussion;
 
   constructor(
@@ -38,6 +40,7 @@ export class ChatsWindowComponent implements OnInit {
     if (this.discussionFollower['minimized']) {
       this.toggleChatsWindowHeight();
     }
+    //nb service used for nbMenu
     this.nbMenuService.onItemClick().subscribe(() => this.blockChat());
   }
 
@@ -63,5 +66,19 @@ export class ChatsWindowComponent implements OnInit {
 
   blockChat() {
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
+    this.checkBlocked();
+  }
+
+  //check if the user is blocked or not
+  checkBlocked() {
+    this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
+      if (data) {
+        if (data.blocked === true) {
+          this.items = [{ title: 'Unblock' }];
+        } else {
+          this.items = [{ title: 'Block' }];
+        }
+      }
+    });
   }
 }

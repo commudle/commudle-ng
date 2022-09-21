@@ -4,7 +4,7 @@
       <div class="window-options">
         <app-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></app-user-profile-mini>
         <div class="com-flex com-items-center">
-          <button ghost nbButton [nbContextMenu]="items" nbContextMenuTag="block">
+          <button (click)="checkBlocked()" ghost nbButton [nbContextMenu]="items" nbContextMenuTag="block">
             <nb-icon icon="more-vertical" pack="eva"></nb-icon>
           </button>
           <button (click)="toggleChatsWindowHeight()" ghost nbButton>
