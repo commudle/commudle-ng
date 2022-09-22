@@ -68,7 +68,11 @@
     left: 0;
     padding: $space-4;
     position: absolute;
-    text-decoration: none;
+
+    a {
+      color: $white;
+      text-decoration: none;
+    }
 
     &:hover {
       background-color: rgba($black, 0.4);

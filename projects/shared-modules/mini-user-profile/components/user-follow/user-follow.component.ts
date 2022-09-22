@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, TemplateRef } from '@angular/core';
-import { NbButtonAppearance, NbDialogService } from '@nebular/theme';
+import { NbButtonAppearance, NbComponentStatus, NbDialogService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
@@ -15,6 +15,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() username: string;
   @Input() showIcon = true;
   @Input() appearance: NbButtonAppearance;
+  @Input() status: NbComponentStatus;
 
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
 
