@@ -1,37 +1,55 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserChatMessagesChannel } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
 import { SDiscussionsService } from 'projects/shared-components/services/s-discussions.service';
+import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/dicussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { NbMenuService } from '@nebular/theme';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chats-window',
   templateUrl: './chats-window.component.html',
   styleUrls: ['./chats-window.component.scss'],
 })
-export class ChatsWindowComponent implements OnInit {
+export class ChatsWindowComponent implements OnInit, OnDestroy {
   @Input() discussionFollower: IDiscussionFollower;
   @Output() removeFromUnread: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() removeChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
+  //menu for mbMenu
+  items = [{ title: 'Block' }];
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
 
+  channelSubscription;
+
   discussion: IDiscussion;
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private sDiscussionService: SDiscussionsService,
     private userChatMessagesChannel: UserChatMessagesChannel,
+    private discussionChatChannel: DiscussionPersonalChatChannel,
+    private nbMenuService: NbMenuService,
   ) {}
 
   ngOnInit(): void {
     this.getDiscussion();
+    this.checkBlocked();
 
     //if the field 'minimized' exsists and is true the chat box will open minimized
     if (this.discussionFollower['minimized']) {
       this.toggleChatsWindowHeight();
     }
+    //nb service used for nbMenu
+    this.subscriptions.push(this.nbMenuService.onItemClick().subscribe(() => this.blockChat()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   // Toggle chats window height
@@ -43,14 +61,37 @@ export class ChatsWindowComponent implements OnInit {
 
   getDiscussion() {
     // also set the last read time and unread messages on the server side for this API
-    this.sDiscussionService.getPersonalChat(this.discussionFollower.discussion_id).subscribe((data) => {
-      this.discussion = data;
-      this.userChatMessagesChannel.subscribe(this.discussion.id);
-      this.removeFromUnread.emit(this.discussionFollower);
-    });
+    this.subscriptions.push(
+      this.sDiscussionService.getPersonalChat(this.discussionFollower.discussion_id).subscribe((data) => {
+        this.discussion = data;
+        this.userChatMessagesChannel.subscribe(this.discussion.id);
+        this.removeFromUnread.emit(this.discussionFollower);
+      }),
+    );
   }
 
   closeChat() {
     this.removeChat.emit(this.discussionFollower);
+  }
+
+  blockChat() {
+    this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
+  }
+
+  //check if the user is blocked or not
+  checkBlocked() {
+    if (this.discussion) {
+      this.subscriptions.push(
+        (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
+          if (data) {
+            if (data.blocked === true) {
+              this.items = [{ title: 'Unblock' }];
+            } else {
+              this.items = [{ title: 'Block' }];
+            }
+          }
+        })),
+      );
+    }
   }
 }

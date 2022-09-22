@@ -1,21 +1,15 @@
 .chats-container {
-  position: fixed;
-  bottom: 0;
-  z-index: 100;
+  @apply com-fixed com-bottom-0 com-z-50;
 
   .chats-list {
-    position: fixed;
-    right: 5px;
-    bottom: 0;
+    @apply com-fixed com-bottom-0 com-right-1;
   }
 
   .chats-windows {
-    display: flex;
-    position: fixed;
-    bottom: 0;
+    @apply com-flex com-fixed com-bottom-0;
 
     app-chats-window {
-      align-self: flex-end;
+      @apply com-self-end;
     }
   }
 }
