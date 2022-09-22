@@ -16,7 +16,6 @@ import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/lab
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
@@ -45,7 +44,6 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
-    private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
     private seoService: SeoService,

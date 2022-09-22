@@ -1,74 +1,51 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .message {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+  @apply com-flex com-flex-row com-flex-nowrap com-justify-start;
 
   .content-controls {
-    width: 100%;
+    @apply com-w-full;
 
     .author-details {
       a,
       a:hover,
       a:focus,
       a:active {
-        text-decoration: none;
+        @apply com-no-underline;
       }
 
       .name {
-        font-weight: $fw-600;
-        font-size: $fs-h5;
-        line-height: 16px;
-        color: $gunmetal;
+        @apply com-font-semibold com-text-sm com-text-gunmetal;
       }
 
       .username {
-        margin-left: $space-8;
-        font-size: $fs-h6;
-        line-height: 14px;
-        color: rgba($gunmetal, 0.85);
+        @apply com-ml-2 com-text-xs com-text-gunmetal/80;
       }
 
       .expert-icon {
-        margin-left: $space-8;
-        width: 16px;
-        height: 16px;
+        @apply com-ml-2 com-w-4 com-h-4;
       }
 
       .date {
-        font-size: $fs-h5;
-        line-height: 16px;
-        color: $spanish-gray;
+        @apply com-text-sm com-leading-4 com-text-Sonic-Silver;
       }
     }
 
     .content {
-      margin-top: $space-4;
-      white-space: pre-wrap;
       word-break: break-word;
-      font-size: $fs-h5;
-      line-height: 16px;
-      color: $raisin-black;
+      @apply com-mt-1 com-whitespace-pre-wrap com-text-sm com-leading-4 com-text-gunmetal;
     }
 
     .details-flag {
-      align-items: flex-start;
-      display: flex;
-      justify-content: flex-start;
+      @apply com-items-start com-flex com-justify-start;
 
       nb-icon {
-        color: #8080808c;
-        font-size: 1rem;
+        @apply com-text-Sonic-Silver com-text-base;
       }
 
       > div {
-        margin-right: 10px;
+        @apply com-mr-[10px];
 
         p {
-          margin: 5px 0 0;
-          color: #808080;
+          @apply com-text-Sonic-Silver com-mt-5px com-mx-0 com-mb-0;
         }
       }
     }
@@ -76,33 +53,33 @@
 }
 
 .replies-container {
-  margin: $space-16 0 $space-16 $space-16;
+  @apply com-my-4 com-mr-0 com-ml-4;
 
   .reply-message {
-    margin-bottom: 0.5 * $space-16;
+    margin-bottom: 0.5 * 16px;
   }
 
   .reply-form {
     nb-form-field {
       textarea {
         resize: none;
-        padding: $space-8 $space-80 $space-8 $space-40;
+        @apply com-resize-none com-py-2 com-pr-20 com-pl-10;
 
         &::placeholder {
-          padding-top: 2px;
+          @apply com-pt-20px;
         }
       }
 
       &::ng-deep {
         .nb-form-field-prefix-medium {
-          margin-bottom: auto;
+          @apply com-mb-auto;
         }
 
         .nb-form-field-suffix-medium {
-          margin: 0 0 auto -4.35rem;
+          @apply com-mt-0 com-mr-0 com-mb-auto -com-ml-16;
 
           button {
-            text-transform: capitalize;
+            @apply com-capitalize;
           }
         }
       }
