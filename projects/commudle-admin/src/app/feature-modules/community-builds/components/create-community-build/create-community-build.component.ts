@@ -78,7 +78,6 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-    // this.tags = this.tags.concat(this.userType);
   }
 
   ngOnDestroy() {
