@@ -3,10 +3,16 @@
     <nb-card-header class="clickable">
       <div class="window-options">
         <app-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></app-user-profile-mini>
-        <div class="com-flex com-items-center">
-          <button ghost nbButton [nbContextMenu]="items" nbContextMenuTag="block">
+        <div *ngIf="discussion" class="com-flex com-items-center">
+          <button
+            ghost
+            nbButton
+            [nbContextMenu]="items"
+            nbContextMenuTag="user-personal-chat-menu-{{ discussionFollower.discussion_id }}"
+          >
             <nb-icon icon="more-vertical" pack="eva"></nb-icon>
           </button>
+          <!-- <nb-menu tag="menu" [items]="items"></nb-menu> -->
           <button (click)="toggleChatsWindowHeight()" ghost nbButton>
             <nb-icon icon="minus" pack="eva"></nb-icon>
           </button>
@@ -21,7 +27,12 @@
       [style.maxHeight.vh]="chatsWindowHeight"
       [style.minHeight.vh]="chatsWindowHeight"
     >
-      <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
+      <app-discussion-personal-chat
+        *ngIf="discussion"
+        [discussion]="discussion"
+        [blocked]="blocked"
+        (updateBlocked)="blocked = $event"
+      ></app-discussion-personal-chat>
     </nb-card-body>
   </nb-card>
 </div>

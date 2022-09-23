@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
@@ -15,16 +26,17 @@ import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-
   templateUrl: './discussion-personal-chat.component.html',
   styleUrls: ['./discussion-personal-chat.component.scss'],
 })
-export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
+export class DiscussionPersonalChatComponent implements OnInit, OnChanges, OnDestroy {
   @Input() discussion: IDiscussion;
+  @Input() blocked = false;
   @Output() newMessage = new EventEmitter();
+  @Output() updateBlocked = new EventEmitter();
   moment = moment;
   currentUser: ICurrentUser;
   currentUserSubscription;
   channelSubscription;
   messages: IUserMessage[] = [];
   permittedActions = [];
-  blocked = false;
   pageSize = 10;
   nextPage = 1;
   allMessagesLoaded = false;
@@ -53,6 +65,22 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
     this.getDiscussionMessages();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    //detect if blocked is change
+    if (
+      changes.blocked &&
+      this.chatChannelSubscription &&
+      changes.blocked.currentValue == changes.blocked.previousValue
+    ) {
+      console.log(
+        changes.blocked.currentValue,
+        changes.blocked.previousValue,
+        changes.blocked.currentValue !== changes.blocked.previousValue,
+      );
+      this.blockChat();
+    }
   }
 
   ngOnDestroy() {
@@ -153,7 +181,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
         switch (data.action) {
           case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS: {
             this.permittedActions = data.permitted_actions;
-            this.blocked = data.blocked;
+            this.updateBlocked.emit(data.blocked);
             break;
           }
           case this.discussionChatChannel.ACTIONS.ADD: {
@@ -197,8 +225,8 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             break;
           }
           case this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK: {
-            this.blocked = data.blocked;
-            if (this.blocked) {
+            this.updateBlocked.emit(data.blocked);
+            if (data.blocked) {
               this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
             }
             break;

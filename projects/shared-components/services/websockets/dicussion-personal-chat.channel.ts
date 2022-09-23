@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
-import {APPLICATION_CABLE_CHANNELS} from 'projects/shared-services/application-cable-channels.constants';
-import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-
+import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
+import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DiscussionPersonalChatChannel {
   ACTIONS = {
@@ -18,7 +17,7 @@ export class DiscussionPersonalChatChannel {
     FLAG: 'flag',
     DELETE: 'delete',
     TOGGLE_BLOCK: 'toggle_block',
-    ERROR: 'error'
+    ERROR: 'error',
   };
 
   actionCable = actionCable;
@@ -33,12 +32,11 @@ export class DiscussionPersonalChatChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
   ) {
-    this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        this.cableConnection = connection;
-      });
+    this.actionCableConnection.acSocket$.subscribe((connection) => {
+      this.cableConnection = connection;
+    });
   }
 
   subscribe(discussionId) {
@@ -48,24 +46,28 @@ export class DiscussionPersonalChatChannel {
       this.channelData$[connectionName] = this.channelData[connectionName].asObservable();
       this.channelList.next(this.channelList.getValue().add(connectionName));
 
-      this.subscriptions[discussionId] = this.cableConnection.subscriptions.create({
-        channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
-        room: discussionId,
-        app_token: this.authWatchService.getAppToken()
-      }, {
-        received: data => {
-          this.channelData[connectionName].next(data);
-        }
-      });
+      this.subscriptions[discussionId] = this.cableConnection.subscriptions.create(
+        {
+          channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
+          room: discussionId,
+          app_token: this.authWatchService.getAppToken(),
+        },
+        {
+          received: (data) => {
+            this.channelData[connectionName].next(data);
+          },
+        },
+      );
     }
-
     return this.subscriptions[connectionName];
   }
 
   sendData(discussionId, action, data) {
+    console.log(this.subscriptions[discussionId], 'www');
+
     this.subscriptions[discussionId].send({
       perform: action,
-      data
+      data,
     });
   }
 
@@ -75,5 +77,4 @@ export class DiscussionPersonalChatChannel {
       this.subscriptions[discussionId].unsubscribe();
     }
   }
-
 }
