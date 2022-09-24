@@ -74,7 +74,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
 
-    this.paramsTags = this.activatedRoute.snapshot.queryParamMap.getAll('tag[]');
+    this.paramsTags = this.activatedRoute.snapshot.queryParamMap.getAll('tags[]');
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
