@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserChatMessagesChannel } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
 import { SDiscussionsService } from 'projects/shared-components/services/s-discussions.service';
-import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/dicussion-personal-chat.channel';
+import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/discussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
@@ -20,6 +20,8 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
+
+  discussionChannelSubscribed = false;
 
   channelSubscription;
 
@@ -62,7 +64,28 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
         } else if (title === 'Unblock') {
           this.blocked = false;
         }
+        this.discussionChatChannel.setDiscussionBlockedStatuses(this.discussionFollower.discussion_id, this.blocked);
       });
+  }
+
+  getMenuBlockedTitle() {
+    this.discussionChatChannel.discussionBlockedStatuses$[this.discussionFollower.discussion_id].subscribe(
+      (data: boolean) => {
+        if (this.blocked !== data) {
+          this.blocked = data;
+        }
+        console.log(data);
+        this.setMenuBlockedTitle();
+      },
+    );
+  }
+
+  setMenuBlockedTitle() {
+    if (this.blocked === true) {
+      this.items = [{ title: 'Unblock' }];
+    } else {
+      this.items = [{ title: 'Block' }];
+    }
   }
 
   ngOnDestroy(): void {
@@ -91,26 +114,26 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
     this.removeChat.emit(this.discussionFollower);
   }
 
-  blockChat() {
-    this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
-  }
+  // blockChat() {
+  //   this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
+  // }
 
-  // check if the user is blocked or not
-  checkBlocked() {
-    console.log(this.discussion.id, 'checkBlocked');
+  // // check if the user is blocked or not
+  // checkBlocked() {
+  //   console.log(this.discussion.id, 'checkBlocked');
 
-    if (this.discussion) {
-      this.subscriptions.push(
-        (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
-          if (data) {
-            if (data.blocked === true) {
-              this.items = [{ title: 'Unblock' }];
-            } else {
-              this.items = [{ title: 'Block' }];
-            }
-          }
-        })),
-      );
-    }
-  }
+  //   if (this.discussion) {
+  //     this.subscriptions.push(
+  //       (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
+  //         if (data) {
+  //           if (data.blocked === true) {
+  //             this.items = [{ title: 'Unblock' }];
+  //           } else {
+  //             this.items = [{ title: 'Block' }];
+  //           }
+  //         }
+  //       })),
+  //     );
+  //   }
+  // }
 }

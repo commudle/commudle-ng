@@ -23,12 +23,14 @@ export class DiscussionPersonalChatChannel {
   actionCable = actionCable;
   cableConnection;
 
-  public channelData$ = {};
   private subscriptions = {};
+  private discussionBlockedStatuses = {};
+  public discussionBlockedStatuses$ = {};
   // all the communications received will be observables
   private channelList: BehaviorSubject<any> = new BehaviorSubject(new Set());
   public channelList$ = this.channelList.asObservable();
   private channelData = {};
+  public channelData$ = {};
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
@@ -45,6 +47,8 @@ export class DiscussionPersonalChatChannel {
       this.channelData[connectionName] = new BehaviorSubject(null);
       this.channelData$[connectionName] = this.channelData[connectionName].asObservable();
       this.channelList.next(this.channelList.getValue().add(connectionName));
+      this.discussionBlockedStatuses[discussionId] = new BehaviorSubject(null);
+      this.discussionBlockedStatuses$[discussionId] = this.discussionBlockedStatuses[discussionId].asObservable();
 
       this.subscriptions[discussionId] = this.cableConnection.subscriptions.create(
         {
@@ -60,6 +64,10 @@ export class DiscussionPersonalChatChannel {
       );
     }
     return this.subscriptions[connectionName];
+  }
+
+  setDiscussionBlockedStatuses(discussionId: number, value: boolean) {
+    this.discussionBlockedStatuses[discussionId].next(value);
   }
 
   sendData(discussionId, action, data) {
