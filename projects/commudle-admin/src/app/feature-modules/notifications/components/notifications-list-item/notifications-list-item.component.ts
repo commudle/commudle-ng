@@ -45,8 +45,8 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   }
 
   ngOnDestroy(): void {
-    clearTimeout(this.timeout);
-    if (!this.observer) {
+    if (this.observer) {
+      clearTimeout(this.timeout);
       this.observer.disconnect();
     }
   }
