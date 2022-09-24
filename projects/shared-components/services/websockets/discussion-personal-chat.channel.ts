@@ -71,8 +71,6 @@ export class DiscussionPersonalChatChannel {
   }
 
   sendData(discussionId, action, data) {
-    console.log(this.subscriptions[discussionId], 'www');
-
     this.subscriptions[discussionId].send({
       perform: action,
       data,

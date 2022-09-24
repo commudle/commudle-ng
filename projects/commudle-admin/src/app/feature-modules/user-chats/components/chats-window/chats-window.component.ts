@@ -4,7 +4,7 @@ import { SDiscussionsService } from 'projects/shared-components/services/s-discu
 import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/discussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
-import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { NbMenuService } from '@nebular/theme';
 import { filter, map, Subscription } from 'rxjs';
 
 @Component({
@@ -74,7 +74,6 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
         if (this.blocked !== data) {
           this.blocked = data;
         }
-        console.log(data);
         this.setMenuBlockedTitle();
       },
     );
@@ -113,27 +112,4 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
   closeChat() {
     this.removeChat.emit(this.discussionFollower);
   }
-
-  // blockChat() {
-  //   this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
-  // }
-
-  // // check if the user is blocked or not
-  // checkBlocked() {
-  //   console.log(this.discussion.id, 'checkBlocked');
-
-  //   if (this.discussion) {
-  //     this.subscriptions.push(
-  //       (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
-  //         if (data) {
-  //           if (data.blocked === true) {
-  //             this.items = [{ title: 'Unblock' }];
-  //           } else {
-  //             this.items = [{ title: 'Block' }];
-  //           }
-  //         }
-  //       })),
-  //     );
-  //   }
-  // }
 }
