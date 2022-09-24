@@ -24,10 +24,9 @@ export class CookieConsentComponent implements OnInit {
       setTimeout(() => {
         if (this.seoService.isBot) {
           this.cookieConstent = false;
+        } else {
+          this.cookieConstent = true;
         }
-        // else {
-        //   this.cookieConstent = true;
-        // }
       }, 3000);
     }
   }
