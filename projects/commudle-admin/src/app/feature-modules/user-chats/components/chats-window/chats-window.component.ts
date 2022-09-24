@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserChatMessagesChannel } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
 import { SDiscussionsService } from 'projects/shared-components/services/s-discussions.service';
-import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/dicussion-personal-chat.channel';
+import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/discussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
-import { NbMenuService } from '@nebular/theme';
-import { Subscription } from 'rxjs';
+import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chats-window',
@@ -17,17 +17,25 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
   @Output() removeFromUnread: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() removeChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
-  //menu for mbMenu
-  items = [{ title: 'Block' }];
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
+
+  discussionChannelSubscribed = false;
 
   channelSubscription;
 
   discussion: IDiscussion;
 
   subscriptions: Subscription[] = [];
+
+  items = [
+    {
+      title: 'Block',
+    },
+  ];
+
+  blocked = false;
 
   constructor(
     private sDiscussionService: SDiscussionsService,
@@ -38,14 +46,46 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getDiscussion();
-    this.checkBlocked();
 
     //if the field 'minimized' exsists and is true the chat box will open minimized
     if (this.discussionFollower['minimized']) {
       this.toggleChatsWindowHeight();
     }
     //nb service used for nbMenu
-    this.subscriptions.push(this.nbMenuService.onItemClick().subscribe(() => this.blockChat()));
+    this.nbMenuService
+      .onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'user-personal-chat-menu-' + this.discussionFollower.discussion_id),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe((title) => {
+        if (title === 'Block') {
+          this.blocked = true;
+        } else if (title === 'Unblock') {
+          this.blocked = false;
+        }
+        this.discussionChatChannel.setDiscussionBlockedStatuses(this.discussionFollower.discussion_id, this.blocked);
+      });
+  }
+
+  getMenuBlockedTitle() {
+    this.discussionChatChannel.discussionBlockedStatuses$[this.discussionFollower.discussion_id].subscribe(
+      (data: boolean) => {
+        if (this.blocked !== data) {
+          this.blocked = data;
+        }
+        console.log(data);
+        this.setMenuBlockedTitle();
+      },
+    );
+  }
+
+  setMenuBlockedTitle() {
+    if (this.blocked === true) {
+      this.items = [{ title: 'Unblock' }];
+    } else {
+      this.items = [{ title: 'Block' }];
+    }
   }
 
   ngOnDestroy(): void {
@@ -74,24 +114,26 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
     this.removeChat.emit(this.discussionFollower);
   }
 
-  blockChat() {
-    this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
-  }
+  // blockChat() {
+  //   this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
+  // }
 
-  //check if the user is blocked or not
-  checkBlocked() {
-    if (this.discussion) {
-      this.subscriptions.push(
-        (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
-          if (data) {
-            if (data.blocked === true) {
-              this.items = [{ title: 'Unblock' }];
-            } else {
-              this.items = [{ title: 'Block' }];
-            }
-          }
-        })),
-      );
-    }
-  }
+  // // check if the user is blocked or not
+  // checkBlocked() {
+  //   console.log(this.discussion.id, 'checkBlocked');
+
+  //   if (this.discussion) {
+  //     this.subscriptions.push(
+  //       (this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe((data) => {
+  //         if (data) {
+  //           if (data.blocked === true) {
+  //             this.items = [{ title: 'Unblock' }];
+  //           } else {
+  //             this.items = [{ title: 'Block' }];
+  //           }
+  //         }
+  //       })),
+  //     );
+  //   }
+  // }
 }
