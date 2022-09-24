@@ -254,7 +254,12 @@
             <div class="field">
               <label>
                 Tags*
-                <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"></app-tag>
+                <app-tag
+                  (tagAdd)="onTagAdd($event)"
+                  (tagDelete)="onTagDelete($event)"
+                  [editable]="true"
+                  [tags]="tags"
+                ></app-tag>
               </label>
             </div>
 
