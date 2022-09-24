@@ -29,7 +29,9 @@ export class UserJobComponent implements OnChanges, OnDestroy {
 
   jobs: IJob[] = [];
   page = 1;
-  count = 10;
+  count = 3;
+  total = -1;
+  isLoading = false;
 
   jobCategories = Object.values(EJobCategory);
   jobSalaryTypes = Object.values(EJobSalaryType);
@@ -106,9 +108,14 @@ export class UserJobComponent implements OnChanges, OnDestroy {
   }
 
   getJobs() {
+    this.isLoading = true;
     this.subscriptions.push(
       this.jobService.getJobs(this.page, this.count, this.user.id).subscribe((data) => {
         this.jobs = data.jobs;
+        this.count = data.count;
+        this.total = data.total;
+        this.page++;
+        this.isLoading = false;
         this.userProfileMenuService.addMenuItem('jobs', this.jobs.length > 0 || this.user?.id === this.currentUser?.id);
       }),
     );
