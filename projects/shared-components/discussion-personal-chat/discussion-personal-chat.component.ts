@@ -53,10 +53,9 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     this.chatChannelSubscription = this.discussionChatChannel.subscribe(this.discussion.id);
     this.discussionSubscribed.emit(true);
     this.discussionChatChannel.discussionBlockedStatuses$[this.discussion.id].subscribe((data: boolean) => {
-      console.log(data, this.blocked, 'child');
       let previousBlockedStatus = this.blocked;
       this.blocked = data;
-      if (previousBlockedStatus !== data && data !== null) {
+      if (previousBlockedStatus !== data && data !== null && previousBlockedStatus !== null) {
         this.blockChat();
       }
     });
