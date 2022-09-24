@@ -16,7 +16,6 @@ import { EventEntryPassesService } from 'projects/commudle-admin/src/app/service
 import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'projects/shared-models/enums/notification_sender_types.enum';
 import { INotificationMessage } from 'projects/shared-models/notification.model';
-// import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 
 @Component({
   selector: 'app-notifications-list-item',
