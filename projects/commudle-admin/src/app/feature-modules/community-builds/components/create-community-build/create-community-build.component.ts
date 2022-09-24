@@ -38,6 +38,8 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
 
+  paramsTags = [];
+
   communityBuildForm = this.fb.group({
     name: ['', Validators.required],
     build_type: ['', Validators.required],
@@ -72,6 +74,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
 
+    this.paramsTags = this.activatedRoute.snapshot.queryParamMap.getAll('tag[]');
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
@@ -125,7 +128,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
           this.cBuild = data;
           this.prefillCommunityBuild();
           this.tags = data.tags;
+          this.tags = this.tags.concat(this.paramsTags);
         });
+      } else {
+        this.tags = this.tags.concat(this.paramsTags);
       }
     });
   }
