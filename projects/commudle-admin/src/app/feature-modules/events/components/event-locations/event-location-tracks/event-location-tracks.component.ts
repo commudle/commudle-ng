@@ -131,7 +131,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   }
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return moment(slot.start_time).hours() * 0.5 * 60 + moment(slot.start_time).minute() * 0.5;
+    return moment(slot.start_time).hours() * 0.5 * 60 + moment(slot.start_time).minute() * 0.5 + 2.5;
   }
 
   slotSessionOffsetFromLeft(trackIndex: number): number {
