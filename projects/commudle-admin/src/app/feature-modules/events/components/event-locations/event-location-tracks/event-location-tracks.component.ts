@@ -13,8 +13,6 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
-import { FormControl } from '@angular/forms';
-
 
 
 @Component({
@@ -63,6 +61,7 @@ export class EventLocationTracksComponent implements OnInit {
 
   hours;
   minutes;
+  timeBlocks = [];
 
 
   eventLocationTrackForm = this.fb.group({
@@ -95,6 +94,17 @@ export class EventLocationTracksComponent implements OnInit {
   ngOnInit() {
     this.hours = [...Array(24).keys()];
     this.minutes = [...Array(60).keys()];
+    this.hours.forEach(h => {
+      this.minutes.forEach((m) => {
+        if (m % 5 === 0) {
+          this.timeBlocks.push({
+            hour: h,
+            minute: m,
+            display: this.displayTime(h, m),
+          });
+        }
+      });
+    });
     this.findLocation();
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
@@ -410,6 +420,5 @@ export class EventLocationTracksComponent implements OnInit {
     this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').updateValueAndValidity();
     this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
   }
-
 
 }
