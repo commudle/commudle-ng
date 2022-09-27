@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ElementRef, NgZone } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  TemplateRef,
+  EventEmitter,
+  Output,
+  ElementRef,
+  NgZone,
+} from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -13,8 +23,6 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
-
-
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -55,7 +63,6 @@ export class EventLocationTracksComponent implements OnInit {
   @Output() updateSession = new EventEmitter();
   @Output() removeSession = new EventEmitter();
 
-
   moment = moment;
 
   minSlotDate;
@@ -64,11 +71,10 @@ export class EventLocationTracksComponent implements OnInit {
   minutes;
   timeBlocks = [];
 
-
   eventLocationTrackForm = this.fb.group({
     event_location_track: this.fb.group({
       name: ['', Validators.required],
-    })
+    }),
   });
 
   trackSlotForm = this.fb.group({
@@ -79,8 +85,8 @@ export class EventLocationTracksComponent implements OnInit {
       end_time: ['', Validators.required],
       session_title: ['', Validators.required],
       tags_list: [''],
-      speaker_registration_id: ['']
-    })
+      speaker_registration_id: [''],
+    }),
   });
 
   constructor(
@@ -90,8 +96,8 @@ export class EventLocationTracksComponent implements OnInit {
     private eventLocationTracksService: EventLocationTracksService,
     private trackSlotsService: TrackSlotsService,
     private sanitizer: DomSanitizer,
-    private _ngZone: NgZone
-  ) { }
+    private _ngZone: NgZone,
+  ) {}
 
   ngOnInit() {
     this._ngZone.runOutsideAngular(() => {
@@ -103,13 +109,13 @@ export class EventLocationTracksComponent implements OnInit {
             this.timeBlocks.push({
               hour: h,
               minute: m,
-              display: this.displayTime(h, m)
+              display: this.displayTime(h, m),
             });
           }
         });
       });
     });
-    
+
     this.findLocation();
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
@@ -126,19 +132,23 @@ export class EventLocationTracksComponent implements OnInit {
 
   slotSessionHeight(slot: ITrackSlot): number {
     let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
-    return (0.2 * diff);
+    return 0.2 * diff;
   }
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return ((moment(slot.start_time).hours() * 0.2 * 60 ) + ((moment(slot.start_time).minute()) * 0.2) + 2.5);
+    return moment(slot.start_time).hours() * 0.2 * 60 + moment(slot.start_time).minute() * 0.2 + 2.5;
   }
 
   scrollFromTop() {
-    if (this.eventLocationTracks && this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
-     this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.2 * 950);
+    if (
+      this.eventLocationTracks &&
+      this.eventLocationTracks.length > 0 &&
+      this.eventLocationTracks[0].track_slots.length > 0
+    ) {
+      this.tracksContainer.nativeElement.scrollTop =
+        moment(this.eventLocationTracks[0].track_slots[0].start_time).hours() * 0.2 * 950;
     }
   }
-
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this._ngZone.runOutsideAngular(() => {
@@ -150,22 +160,19 @@ export class EventLocationTracksComponent implements OnInit {
       sTime.setMinutes(minute);
 
       eTime.setHours(hour);
-      eTime.setMinutes(minute+5);
+      eTime.setMinutes(minute + 5);
 
-        this.trackSlotForm.get('track_slot').patchValue({
+      this.trackSlotForm.get('track_slot').patchValue({
         event_location_track_id: eventLocationTrack.id,
         date: this.minSlotDate,
         start_time: sTime,
-        end_time: eTime
+        end_time: eTime,
       });
 
-
-
-      this.windowRef = this.windowService.open(
-        this.trackSlotFormTemplate,
-        { title: 'Add a session', context: {operationType: 'create'}},
-      );
-
+      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+        title: 'Add a session',
+        context: { operationType: 'create' },
+      });
     });
   }
 
@@ -178,32 +185,28 @@ export class EventLocationTracksComponent implements OnInit {
       date: newSlot.date.getDate(),
     });
 
-
     delete newSlot['date'];
     // const sTime = newSlot['start_time'].split(':');
     const sTime = newSlot['start_time'];
-    newSlot['start_time'] = startTime.set({hour: sTime.getHours(), minute: sTime.getMinutes()}).toDate();
+    newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
 
     // const eTime = newSlot['end_time'].split(':');
     const eTime = newSlot['end_time'];
-    newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes()}).toDate();
+    newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
 
-    if(newSlot['start_time'] >= newSlot['end_time'])
-    {
-      this.toastLogService.warningDialog("End time should be greater than Start time!");
+    if (newSlot['start_time'] >= newSlot['end_time']) {
+      this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;
     }
 
-
     this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
       this.addSession.emit(data);
-      this.toastLogService.successDialog("Slot Added!");
+      this.toastLogService.successDialog('Slot Added!');
       this.trackSlotForm.reset();
     });
   }
 
-  showEditSlotForm(trackSlot)
-  {
+  showEditSlotForm(trackSlot) {
     this.trackSlotForm.reset();
     let sTime = trackSlot['start_time'];
     let eTime = trackSlot['end_time'];
@@ -222,7 +225,6 @@ export class EventLocationTracksComponent implements OnInit {
     eTimeNew.setHours(eTimeHour);
     eTimeNew.setMinutes(eTimeMinute);
 
-
     let trackDate = moment(trackSlot.start_time).toDate();
 
     this.trackSlotForm.get('track_slot').patchValue({
@@ -232,19 +234,19 @@ export class EventLocationTracksComponent implements OnInit {
       end_time: eTimeNew,
       session_title: trackSlot.session_title,
       tags_list: trackSlot.tags_list,
-      speaker_registration_id: trackSlot.speaker_registration_id
+      speaker_registration_id: trackSlot.speaker_registration_id,
     });
 
     if (trackSlot.embedded_video_stream) {
       this.trackSlotForm.get('track_slot').patchValue({
-        embedded_video_stream: trackSlot.embedded_video_stream
+        embedded_video_stream: trackSlot.embedded_video_stream,
       });
     }
 
-    this.windowRef = this.windowService.open(
-      this.trackSlotFormTemplate,
-      { title: 'Edit Session', context: {operationType: 'edit', trackSlotId: trackSlot.id}},
-    );
+    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+      title: 'Edit Session',
+      context: { operationType: 'edit', trackSlotId: trackSlot.id },
+    });
   }
 
   editSlot(trackSlotId) {
@@ -258,37 +260,33 @@ export class EventLocationTracksComponent implements OnInit {
 
     delete slot['date'];
     const sTimeNew = slot['start_time'];
-    slot['start_time'] = startTime.set({hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes()}).toDate();
+    slot['start_time'] = startTime.set({ hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes() }).toDate();
 
     const eTimeNew = slot['end_time'];
-    slot['end_time'] = startTime.set({hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes()}).toDate();
+    slot['end_time'] = startTime.set({ hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes() }).toDate();
 
-
-
-    if(slot['start_time'] >= slot['end_time'])
-    {
-      this.toastLogService.warningDialog("End time should be greater than Start time!");
+    if (slot['start_time'] >= slot['end_time']) {
+      this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;
     }
 
     this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
       this.updateSession.emit(data);
-      this.toastLogService.successDialog("Slot Updated!");
+      this.toastLogService.successDialog('Slot Updated!');
       this.trackSlotForm.reset();
     });
   }
 
   confirmDeleteSlot(trackSlot) {
-    this.windowRef = this.windowService.open(
-      this.deleteTrackSlotTemplate,
-      { title: `Delete ${trackSlot.session_title}`, context: { trackSlot } },
-    );
+    this.windowRef = this.windowService.open(this.deleteTrackSlotTemplate, {
+      title: `Delete ${trackSlot.session_title}`,
+      context: { trackSlot },
+    });
   }
-
 
   deleteSlot(deleteConf, trackSlot) {
     if (deleteConf) {
-      this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data)=>{
+      this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
         this.removeSession.emit(trackSlot);
         this.toastLogService.successDialog('Deleted');
       });
@@ -296,26 +294,26 @@ export class EventLocationTracksComponent implements OnInit {
     this.windowRef.close();
   }
 
-
-
   showAddTrackForm() {
     this.eventLocationTrackForm.reset();
-    this.windowRef = this.windowService.open(
-      this.eventLocationTrackFormTemplate,
-      { title: 'Add a track', context: {operationType: 'create'} },
-    );
+    this.windowRef = this.windowService.open(this.eventLocationTrackFormTemplate, {
+      title: 'Add a track',
+      context: { operationType: 'create' },
+    });
   }
 
   createTrack() {
     this.windowRef.close();
 
-    this.eventLocationTracksService.createEventLocationTrack(
-      this.event.id,
-      this.eventLocationId,
-      this.eventLocationTrackForm.get('event_location_track').value
-      ).subscribe((data) => {
+    this.eventLocationTracksService
+      .createEventLocationTrack(
+        this.event.id,
+        this.eventLocationId,
+        this.eventLocationTrackForm.get('event_location_track').value,
+      )
+      .subscribe((data) => {
         this.addTrack.emit(data);
-        this.toastLogService.successDialog("New Track Added!");
+        this.toastLogService.successDialog('New Track Added!');
         this.eventLocationTrackForm.reset();
       });
   }
@@ -323,45 +321,42 @@ export class EventLocationTracksComponent implements OnInit {
   showEditTrackForm(eventLocationTrack) {
     this.eventLocationTrackForm.reset();
     this.eventLocationTrackForm.get('event_location_track').patchValue({
-      name: eventLocationTrack.name
+      name: eventLocationTrack.name,
     });
 
     if (eventLocationTrack.embedded_video_stream) {
       this.eventLocationTrackForm.get('event_location_track').patchValue({
-        embedded_video_stream: eventLocationTrack.embedded_video_stream
+        embedded_video_stream: eventLocationTrack.embedded_video_stream,
       });
     }
 
-    this.windowRef = this.windowService.open(
-      this.eventLocationTrackFormTemplate,
-      { title: `Edit ${eventLocationTrack.name}`, context: {operationType: 'edit', eventLocationTrackId: eventLocationTrack.id} },
-    );
+    this.windowRef = this.windowService.open(this.eventLocationTrackFormTemplate, {
+      title: `Edit ${eventLocationTrack.name}`,
+      context: { operationType: 'edit', eventLocationTrackId: eventLocationTrack.id },
+    });
   }
 
   editTrack(eventLocationTrackId) {
     this.windowRef.close();
-    this.eventLocationTracksService.updateEventLocationTrack(
-      eventLocationTrackId,
-      this.eventLocationTrackForm.get('event_location_track').value).subscribe(
-        data => {
-          this.updateTrack.emit(data);
-          this.toastLogService.successDialog(`Updated to ${data.name}`);
-          this.eventLocationTrackForm.reset();
-        }
-      );
+    this.eventLocationTracksService
+      .updateEventLocationTrack(eventLocationTrackId, this.eventLocationTrackForm.get('event_location_track').value)
+      .subscribe((data) => {
+        this.updateTrack.emit(data);
+        this.toastLogService.successDialog(`Updated to ${data.name}`);
+        this.eventLocationTrackForm.reset();
+      });
   }
 
-  confirmDeleteTrack(eventLocationTrack){
-    this.windowRef = this.windowService.open(
-      this.deleteEventLocationTrackTemplate,
-      { title: `Delete ${eventLocationTrack.name}`, context: {eventLocationTrackId: eventLocationTrack.id} },
-    );
+  confirmDeleteTrack(eventLocationTrack) {
+    this.windowRef = this.windowService.open(this.deleteEventLocationTrackTemplate, {
+      title: `Delete ${eventLocationTrack.name}`,
+      context: { eventLocationTrackId: eventLocationTrack.id },
+    });
   }
-
 
   deleteTrack(deleteConf, eventLocationTrackId) {
     if (deleteConf) {
-      this.eventLocationTracksService.deleteEventLocationTrack(eventLocationTrackId).subscribe((data)=>{
+      this.eventLocationTracksService.deleteEventLocationTrack(eventLocationTrackId).subscribe((data) => {
         this.removeTrack.emit(eventLocationTrackId);
         this.toastLogService.successDialog('Deleted');
       });
@@ -370,39 +365,50 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   findLocation() {
-    const location = this.eventLocations.find(el => el.id === this.eventLocationId);
-    if (location.event_type === EEventType.ONLINE_ONLY ) {
+    const location = this.eventLocations.find((el) => el.id === this.eventLocationId);
+    if (location.event_type === EEventType.ONLINE_ONLY) {
       (this.eventLocationTrackForm.controls.event_location_track as FormGroup).addControl(
-        'embedded_video_stream', this.fb.group({
+        'embedded_video_stream',
+        this.fb.group({
           source: [''],
           embed_code: [''],
           zoom_host_email: ['', Validators.email],
-          zoom_password: ['']
-        })
+          zoom_password: [''],
+        }),
       );
 
       (this.trackSlotForm.controls.track_slot as FormGroup).addControl(
-        'embedded_video_stream', this.fb.group({
+        'embedded_video_stream',
+        this.fb.group({
           source: [''],
           embed_code: [''],
           zoom_host_email: ['', Validators.email],
-          zoom_password: ['']
-        })
+          zoom_password: [''],
+        }),
       );
     }
     this.eventLocation = location;
   }
 
-
   sanitizedEmbeddedHTML(val) {
-    return  this.sanitizer.bypassSecurityTrustHtml(val);
-   }
-
+    return this.sanitizer.bypassSecurityTrustHtml(val);
+  }
 
   updateTrackSlotFormZoomValidators() {
-    if (this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
-      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_host_email').setValidators([Validators.required, Validators.email]);
-      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').setValidators(Validators.required);
+    if (
+      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value ===
+      EEmbeddedVideoStreamSources.ZOOM
+    ) {
+      this.trackSlotForm
+        .get('track_slot')
+        .get('embedded_video_stream')
+        .get('zoom_host_email')
+        .setValidators([Validators.required, Validators.email]);
+      this.trackSlotForm
+        .get('track_slot')
+        .get('embedded_video_stream')
+        .get('zoom_password')
+        .setValidators(Validators.required);
     } else {
       this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_host_email').clearValidators();
       this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').clearValidators();
@@ -412,20 +418,43 @@ export class EventLocationTracksComponent implements OnInit {
     this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
   }
 
-
-
   updateEventLocationTrackFormZoomValidators() {
-    if (this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
-      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').setValidators([Validators.required, Validators.email]);
-      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').setValidators(Validators.required);
+    if (
+      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value ===
+      EEmbeddedVideoStreamSources.ZOOM
+    ) {
+      this.eventLocationTrackForm
+        .get('event_location_track')
+        .get('embedded_video_stream')
+        .get('zoom_host_email')
+        .setValidators([Validators.required, Validators.email]);
+      this.eventLocationTrackForm
+        .get('event_location_track')
+        .get('embedded_video_stream')
+        .get('zoom_password')
+        .setValidators(Validators.required);
     } else {
-      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').clearValidators();
-      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').clearValidators();
+      this.eventLocationTrackForm
+        .get('event_location_track')
+        .get('embedded_video_stream')
+        .get('zoom_host_email')
+        .clearValidators();
+      this.eventLocationTrackForm
+        .get('event_location_track')
+        .get('embedded_video_stream')
+        .get('zoom_password')
+        .clearValidators();
     }
 
-    this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').updateValueAndValidity();
-    this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
+    this.eventLocationTrackForm
+      .get('event_location_track')
+      .get('embedded_video_stream')
+      .get('zoom_host_email')
+      .updateValueAndValidity();
+    this.eventLocationTrackForm
+      .get('event_location_track')
+      .get('embedded_video_stream')
+      .get('zoom_password')
+      .updateValueAndValidity();
   }
-
-
 }
