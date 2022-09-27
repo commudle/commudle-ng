@@ -8,6 +8,7 @@ import {
   Output,
   ElementRef,
   NgZone,
+  AfterViewInit,
 } from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
@@ -30,7 +31,7 @@ import { IEvent } from 'projects/shared-models/event.model';
   styleUrls: ['./event-location-tracks.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EventLocationTracksComponent implements OnInit {
+export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTrackTemplate') deleteEventLocationTrackTemplate: TemplateRef<any>;
   @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
@@ -101,10 +102,8 @@ export class EventLocationTracksComponent implements OnInit {
 
   ngOnInit() {
     this._ngZone.runOutsideAngular(() => {
-      this.hours = [...Array(24).keys()];
-      this.minutes = [...Array(60).keys()];
-      this.hours.forEach((h) => {
-        this.minutes.forEach((m) => {
+      [...Array(24).keys()].forEach((h) => {
+        [...Array(60).keys()].forEach((m) => {
           if (m === 0) {
             this.timeBlocks.push({
               hour: h,
@@ -456,5 +455,9 @@ export class EventLocationTracksComponent implements OnInit {
       .get('embedded_video_stream')
       .get('zoom_password')
       .updateValueAndValidity();
+  }
+
+  trackByFn(index, item) {
+    return item.id; // or item.id
   }
 }

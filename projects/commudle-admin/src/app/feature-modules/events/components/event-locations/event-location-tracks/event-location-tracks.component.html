@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div *ngFor="let lt of eventLocationTracks; let t = index" class="track">
+    <div *ngFor="let lt of eventLocationTracks; let t = index;" class="track">
       <div class="track-name">
         <p>{{ lt.name }}</p>
         <div *ngIf="lt.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="time-container">
-        <div *ngFor="let timeBlock of timeBlocks">
+        <div *ngFor="let timeBlock of timeBlocks;">
           <div (click)="event.editable && showAddSlotForm(lt, timeBlock.hour, timeBlock.minute)" class="time-cell fill">
             <p class="filler-text">
               <small *ngIf="event.editable">
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="track-slots-container">
-        <div *ngFor="let slot of lt.track_slots">
+        <div *ngFor="let slot of lt.track_slots;">
           <div
             [ngStyle]="{ height: slotSessionHeight(slot) + 'rem', top: slotSessionOffsetFromTop(slot) + 'rem' }"
             class="track-slot"
@@ -88,7 +88,7 @@
                 target="_blank"
               >
                 <nb-icon icon="clipboard-outline"></nb-icon>
-                <span *ngIf="slot.speaker_resource">Edit Session Details/Slides</span>
+                <span>Edit Session Details/Slides</span>
               </a>
             </div>
             <p>
