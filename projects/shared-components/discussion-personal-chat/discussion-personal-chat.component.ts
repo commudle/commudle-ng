@@ -8,7 +8,7 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-personal-chat.channel';
+import { DiscussionPersonalChatChannel } from '../services/websockets/discussion-personal-chat.channel';
 
 @Component({
   selector: 'app-discussion-personal-chat',
@@ -18,17 +18,18 @@ import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-
 export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
+  @Output() discussionSubscribed = new EventEmitter();
   moment = moment;
   currentUser: ICurrentUser;
   currentUserSubscription;
   channelSubscription;
   messages: IUserMessage[] = [];
   permittedActions = [];
-  blocked = false;
   pageSize = 10;
   nextPage = 1;
   allMessagesLoaded = false;
   loadingMessages = false;
+  blocked: boolean;
   showReplyForm = 0;
   allActions;
   chatChannelSubscription;
@@ -50,6 +51,14 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentUserSubscription = this.authWatchService.currentUser$.subscribe((user) => (this.currentUser = user));
     this.chatChannelSubscription = this.discussionChatChannel.subscribe(this.discussion.id);
+    this.discussionSubscribed.emit(true);
+    this.discussionChatChannel.discussionBlockedStatuses$[this.discussion.id].subscribe((data: boolean) => {
+      let previousBlockedStatus = this.blocked;
+      this.blocked = data;
+      if (previousBlockedStatus !== data && data !== null && previousBlockedStatus !== null) {
+        this.blockChat();
+      }
+    });
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
     this.getDiscussionMessages();
@@ -153,7 +162,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
         switch (data.action) {
           case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS: {
             this.permittedActions = data.permitted_actions;
-            this.blocked = data.blocked;
+            this.discussionChatChannel.setDiscussionBlockedStatuses(this.discussion.id, data.blocked);
             break;
           }
           case this.discussionChatChannel.ACTIONS.ADD: {
@@ -197,8 +206,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             break;
           }
           case this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK: {
-            this.blocked = data.blocked;
-            if (this.blocked) {
+            if (data.blocked) {
               this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
             }
             break;

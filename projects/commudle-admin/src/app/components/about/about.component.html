@@ -1,29 +1,19 @@
 <div class="about-page">
   <section class="about-page-section">
-    <div class="com-w-full com-mx-auto com-text-left md:com-w-11/12 xl:com-w-9/12 md:com-text-center">
+    <div class="about-page-heading-section">
       <h1 class="page-heading">
         We're building a diverse
-        <span
-          class="
-            com-block
-            com-w-full
-            com-text-transparent
-            com-bg-clip-text
-            com-bg-gradient-to-r
-            com-from-green-400
-            com-to-purple-500
-            lg:com-inline
-          "
-        >
-          Developer Ecosystem
-        </span>
+        <span> Developer Ecosystem </span>
       </h1>
       <p class="page-subheading">{{ ICmsAbout?.description }}</p>
     </div>
-    <div class="com-w-full com-mx-auto com-mt-20 com-text-center md:com-w-10/12">
+  </section>
+
+  <section class="landing-image-section">
+    <div class="com-min-h-full">
       <img
         alt="Landing image"
-        class="com-w-full com-rounded-lg com-shadow-2xl"
+        class="com-w-full"
         src="{{ getImageUrl(ICmsAbout?.landingImage) }}"
         title="Landing image"
       />
@@ -31,7 +21,7 @@
   </section>
 
   <section class="about-page-section stats-section">
-    <div class="com-grid com-gap-10 com-row-gap-8 lg:com-grid-cols-3">
+    <div class="about-page-stats-section com-row-gap-8">
       <div *ngFor="let stat of ICmsAbout?.stats">
         <div class="com-flex">
           <h2 class="count">{{ stat.count }}</h2>
@@ -76,9 +66,9 @@
   </section>
 
   <section class="about-page-section cta-section">
-    <div class="com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 lg:com-grid-cols-4">
-      <div class="com-p-8 com-text-center com-bg-indigo-600 sm:com-col-span-2 sm:com-p-16 lg:com-py-24">
-        <div class="com-max-w-lg com-mx-auto com-my-8">
+    <div class="about-page-cta-section">
+      <div class="center-section">
+        <div>
           <h2 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing.</h2>
 
           <p class="description">
@@ -94,27 +84,25 @@
         </div>
       </div>
 
-      <div class="com-relative com-h-64 lg:com-order-first lg:com-h-full">
+      <div class="left-section">
         <img
           alt="Sunset with palm trees"
-          class="com-absolute com-inset-0 com-object-cover com-w-full com-h-full"
           src="https://images.unsplash.com/photo-1625239185060-88135bd3519b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
         />
       </div>
 
-      <div class="com-relative com-h-64 lg:com-h-full">
+      <div class="right-section">
         <img
           alt="Man in a hat and yellow jumper"
-          class="com-absolute com-inset-0 com-object-cover com-w-full com-h-full"
           src="https://images.unsplash.com/photo-1625175619292-ff5e5b2dfaf1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
         />
       </div>
     </div>
   </section>
 
-  <section class="about-page-section com-text-center teams-section">
-    <div class="com-my-12">
-      <div class="com-my-5 sm:com-mx-auto sm:com-max-w-xl sm:com-my-4 lg:com-max-w-5xl">
+  <section class="about-page-section teams-section">
+    <div class="about-page-teams-section">
+      <div class="team-section-heading">
         <h2 class="title">Meet our team</h2>
         <p class="description">
           Ornare sagittis, suspendisse in hendrerit quis. Sed dui aliquet lectus sit pretium egestas vel mattis neque.
@@ -126,7 +114,7 @@
             <img
               [alt]="member.name"
               [title]="member.name"
-              class="com-mx-auto com-h-32 com-w-32 com-rounded-full xl:com-w-48 xl:com-h-48"
+              class="profile-image"
               src="{{ getImageUrl(member.image) }}"
             />
             <div class="com-my-2">
@@ -145,7 +133,7 @@
                     <img
                       alt="Commudle"
                       title="Commudle"
-                      class="social-link com-h-5"
+                      class="social-link com-h-5 com-grayscale"
                       src="/assets/images/commudle-logo128.png"
                     />
                   </a>
@@ -158,20 +146,15 @@
     </div>
   </section>
 
-  <section class="about-page-section com-text-center advisor-section">
-    <div class="com-my-12">
-      <div class="com-my-5 sm:com-mx-auto sm:com-max-w-xl sm:com-my-4 lg:com-max-w-5xl">
+  <section class="about-page-section advisor-section">
+    <div class="about-page-advisor-section">
+      <div class="advisor-section-heading">
         <h2 class="title">Our Advisors</h2>
       </div>
       <ul class="grid">
         <li *ngFor="let member of ICmsAbout?.advisor">
           <div class="com-my-6">
-            <img
-              [alt]="member.name"
-              [title]="member.name"
-              class="com-mx-auto com-h-32 com-w-32 com-rounded-full xl:com-w-48 xl:com-h-48"
-              src="{{ getImageUrl(member.image) }}"
-            />
+            <img [alt]="member.name" [title]="member.name" class="profile-img" src="{{ getImageUrl(member.image) }}" />
             <div class="com-my-2">
               <div class="com-my-1">
                 <p class="name">{{ member.name }}</p>
@@ -188,7 +171,7 @@
                     <img
                       alt="Commudle"
                       title="Commudle"
-                      class="social-link com-h-5"
+                      class="social-link com-h-5 com-grayscale"
                       src="/assets/images/commudle-logo128.png"
                     />
                   </a>
@@ -207,7 +190,7 @@
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
         <a
-          *ngIf="ICmsAbout.featuresList.content.button !== null"
+          *ngIf="ICmsAbout.featuresList.content.button !== undefined"
           [href]="ICmsAbout?.featuresList?.content?.button?.url"
           nbButton
           shape="semi-round"

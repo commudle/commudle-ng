@@ -1,9 +1,15 @@
 <nb-card>
-  <nb-card-header>
+  <nb-card-header class="com-flex com-items-center">
     <h6>
       <nb-icon icon="info-outline" status="info"></nb-icon>
       Details
     </h6>
+    <app-share-button
+      *ngIf="share"
+      [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+      [title]="'Meet me at ' + event.name"
+      [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+    ></app-share-button>
   </nb-card-header>
   <nb-card-body>
     <div [innerHTML]="event.description"></div>

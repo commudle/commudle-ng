@@ -54,7 +54,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.notificationsService.subscribeToNotifications();
 
         if (this.currentUser) {
-          this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
+          // this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
         }
       }
     });

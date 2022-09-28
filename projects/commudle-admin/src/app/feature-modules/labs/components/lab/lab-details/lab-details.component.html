@@ -26,8 +26,8 @@
             <h2 class="lab-step-title">{{ i + 1 }}. {{ step.name }}</h2>
             <app-badge
               *ngIf="showContinue && i !== lab.lab_steps.length - 1 && lab.lab_steps[i].id === lab.last_visited_step_id"
-              [color]="'blue'"
-              [fontSize]="'small'"
+              [color]="'#2590EB'"
+              [fontSize]="'12px'"
               [text]="'Continue'"
             ></app-badge>
           </a>

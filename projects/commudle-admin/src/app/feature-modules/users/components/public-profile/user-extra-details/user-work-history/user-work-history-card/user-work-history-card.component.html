@@ -4,7 +4,7 @@
       <div class="job">
         <div class="com-flex com-items-center com-gap-3 com-flex-wrap">
           <p class="job-title">{{ userWorkHistory.job_title }}</p>
-          <div *ngIf="currentUser?.id === user.id" class="com-flex">
+          <div *ngIf="currentUser?.id === user.id" class="button">
             <button
               (click)="updateUserWorkHistory.emit()"
               fullWidth

@@ -32,11 +32,11 @@ p {
     @apply com-my-5 com-mx-0;
 
     .community-build-embed {
-      @apply com-flex com-justify-center com-max-w-full com-overflow-auto;
+      // @apply com-w-9 com-overflow-auto;
 
-      iframe {
-        width: 100% !important;
-      }
+      // iframe {
+      //   width: 100% !important;
+      // }
     }
 
     .community-build-link {

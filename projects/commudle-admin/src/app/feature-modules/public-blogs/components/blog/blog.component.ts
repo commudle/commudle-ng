@@ -67,7 +67,6 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   setSchema() {
-    console.log('here');
     this.seoService.setSchema({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',

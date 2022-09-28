@@ -25,6 +25,7 @@ import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
+import { AttendedMembersCardComponent } from './components/attended-members/attended-members-card/attended-members-card.component';
 import { AttendedMembersComponent } from './components/attended-members/attended-members.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
 import { AutoAttendanceComponent } from './components/auto-attendance/auto-attendance.component';
@@ -69,6 +70,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SessionPagePollComponent,
     SessionPageViewersComponent,
     AttendedMembersComponent,
+    AttendedMembersCardComponent,
   ],
   imports: [
     CommonModule,

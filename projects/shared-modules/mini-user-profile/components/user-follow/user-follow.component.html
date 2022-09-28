@@ -1,13 +1,13 @@
 <div *ngIf="currentUser?.id !== user?.id" class="user-follow">
   <button
     (click)="isFollowing ? toggleFollow() : openDialog(userFollowDialog)"
-    [appearance]="isFollowing ? 'outline' : 'filled'"
+    [appearance]="appearance ?? (isFollowing ? 'outline' : 'filled')"
     [ngClass]="{ 'fixed-width': !showIcon }"
     class="follow-btn"
     nbButton
     shape="semi-round"
     size="small"
-    status="info"
+    [status]="status === 'base' ? 'base' : 'info'"
   >
     <nb-icon *ngIf="showIcon" [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
     {{ isFollowing ? 'Following' : 'Follow' }}
