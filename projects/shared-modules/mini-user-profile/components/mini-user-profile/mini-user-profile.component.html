@@ -1,11 +1,11 @@
-<nb-card (mouseout)="onMouseLeave()" (mouseover)="onMouseEnter()" class="fade-in">
+<nb-card (mouseout)="onMouseLeave()" (mouseover)="onMouseOver()" (mouseenter)="onMouseEnter()" class="fade-in">
   <nb-card-body>
-    <app-user-profile-card-large
+    <!-- <app-user-profile-card-large
       (componentClicked)="closePopup()"
       *ngIf="user"
       [activateMiniProfileDirective]="false"
       [user]="user"
-    ></app-user-profile-card-large>
+    ></app-user-profile-card-large> -->
     <div *ngIf="miniUser.tags.length > 0" class="user-tags">
       <nb-tag-list>
         <nb-tag *ngFor="let tag of miniUser.tags" [text]="tag.name"></nb-tag>
