@@ -119,7 +119,7 @@ export class MainNewslettersService {
         {
           params
         },
-        );
+      );
   }
 
 
