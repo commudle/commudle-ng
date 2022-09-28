@@ -9,6 +9,7 @@ import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-edit-data-form',
@@ -72,6 +73,14 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
+  }
+  // drag and drop function by CDK
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.editDataForm['controls'].data_form['controls'].questions['controls'],
+      event.previousIndex,
+      event.currentIndex,
+    );
   }
 
   initQuestion(): FormGroup {
