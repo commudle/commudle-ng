@@ -28,8 +28,8 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
   subscriptions: Subscription[] = [];
   miniUser: IMiniUserProfile;
   cursorOnPopover: boolean = false;
+  cursorOnParent: boolean = false;
 
-  mouseOut = false;
   private coords: { top: number; left: number } = { top: 0, left: 0 };
 
   constructor(
@@ -42,19 +42,21 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     this.nativeElement = this.inputElementRef.nativeElement;
   }
   ngOnInit(): void {
-    console.log(this.cursorOnPopover, this.componentRef, 'ngOnInit');
+    // console.log('ngOnInit');
+    // console.log(this.activateMiniProfileDirective, 'ngOnInit');
   }
 
   ngAfterViewInit(): void {
-    // console.log(this.mouseOut);
-    this.scrollDispatcher.scrolled().subscribe((scrollable) => {
-      if (scrollable && this.mouseOut) {
-        console.log('scrollable');
-        this.destroyComponent();
-        this.mouseOut = false;
-        //     this.componentRef.destroy();
-      }
-    });
+    // console.log(this.componentRef, 'ngAfterViewInit');
+    if (!this.cursorOnPopover && !this.cursorOnParent) {
+      this.destroyComponent();
+    }
+    // this.scrollDispatcher.scrolled().subscribe(() => {
+    //   if (!this.cursorOnPopover && !this.cursorOnParent) {
+    //     console.log('scrollable');
+    //     this.destroyComponent();
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
@@ -63,16 +65,18 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
 
   @HostListener('mouseenter')
   onMouseOver() {
-    this.mouseOut = false;
+    this.cursorOnParent = true;
     this.createComponent();
-    console.log(this.mouseOut, 'onMouseOver');
+    // console.log(this.cursorOnParent, 'onMouseOver');
   }
 
   @HostListener('mouseleave')
   onMouseOut() {
-    this.mouseOut = true;
-    this.destroyComponent();
-    console.log(this.mouseOut, 'mouseleave');
+    this.cursorOnParent = false;
+    if (!this.cursorOnPopover) {
+      this.destroyComponent();
+      // console.log(this.cursorOnParent, 'mouseleave');
+    }
   }
 
   loadComponent() {
@@ -90,7 +94,7 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     this.subscriptions.push(
       this.componentRef.instance.popupHover.subscribe((data) => {
         this.cursorOnPopover = data;
-        if (!this.cursorOnPopover) {
+        if (!this.cursorOnPopover && !this.cursorOnParent) {
           this.destroyComponent();
         }
       }),
@@ -125,15 +129,15 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
 
   @debounce(50)
   destroyComponent() {
-    // setTimeout(() => {
-    // console.log(this.cursorOnPopover, this.componentRef, 'destroyComponent');
+    setTimeout(() => {
+      // console.log(this.cursorOnPopover, this.componentRef, 'destroyComponent');
 
-    // if (!this.cursorOnPopover && this.componentRef) {
-    console.log('destroyComponent');
-    this.componentRef.destroy();
-    // console.log('setTimeout');
-    // }
-    // }, 1000);
+      if (!this.cursorOnPopover && this.componentRef && !this.cursorOnParent) {
+        console.log('Component Destroyed');
+        // console.log('setTimeout');
+        this.componentRef.destroy();
+      }
+    }, 1000);
     // console.log('destroyComponent');
 
     // if (!this.cursorOnPopover && this.componentRef) {

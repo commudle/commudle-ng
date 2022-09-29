@@ -1,5 +1,11 @@
 <nb-card (mouseout)="onMouseLeave()" (mouseover)="onMouseOver()" (mouseenter)="onMouseEnter()" class="fade-in">
   <nb-card-body>
+    <app-user-profile-card-large
+      *ngIf="user"
+      [activateMiniProfileDirective]="false"
+      [user]="user"
+    ></app-user-profile-card-large>
+    <!-- FIXME -->
     <!-- <app-user-profile-card-large
       (componentClicked)="closePopup()"
       *ngIf="user"
