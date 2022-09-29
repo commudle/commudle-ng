@@ -1,0 +1,131 @@
+<nb-card *ngIf="jobs.length > 0 || currentUser?.id === user.id" class="user-job" id="jobs">
+  <nb-card-header>
+    <nb-icon icon="archive" status="primary"></nb-icon>
+    Jobs
+  </nb-card-header>
+  <nb-card-body>
+    <button
+      (click)="onOpenDialog(jobDialog)"
+      *ngIf="currentUser?.id === user?.id"
+      fullWidth
+      ghost
+      nbButton
+      status="info"
+    >
+      <nb-icon icon="plus-circle"></nb-icon>
+      Add Job
+    </button>
+    <div *ngIf="jobs.length > 0" class="com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-2">
+      <app-user-job-card
+        (reloadJob)="getJobs()"
+        (updateJob)="onOpenEditJobDialog(jobDialog, job)"
+        *ngFor="let job of jobs"
+        [job]="job"
+        [user]="user"
+      ></app-user-job-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #jobDialog>
+  <nb-card class="!com-m-0 com-max-h-[100vh]" style="width: clamp(20rem, 36rem, 100vw)">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      {{ isEditing ? 'Edit Job' : 'Add Job' }}
+      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="jobForm" class="com-flex com-flex-col com-space-y-3">
+        <label>
+          Position*
+          <input formControlName="position" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Company*
+          <input formControlName="company" fullWidth nbInput type="text" />
+        </label>
+        <div class="com-grid com-grid-cols-2 com-gap-2">
+          <label class="com-col-span-1">
+            Category*
+            <nb-select formControlName="category" fullWidth>
+              <nb-option *ngFor="let jobCategory of jobCategories" [value]="jobCategory">
+                {{ jobCategory | titlecase }}
+              </nb-option>
+            </nb-select>
+          </label>
+          <label class="com-col-span-1">
+            Job Type*
+            <nb-select formControlName="job_type" fullWidth>
+              <nb-option *ngFor="let jobType of jobTypes" [value]="jobType">
+                {{ jobType | capitalizeAndRemoveUnderscore }}
+              </nb-option>
+            </nb-select>
+          </label>
+        </div>
+        <label>
+          Min Experience (in years)*
+          <input formControlName="experience" fullWidth nbInput type="number" />
+        </label>
+        <div class="com-grid com-grid-cols-5 com-gap-2">
+          <label class="com-col-span-2">
+            Min Salary*
+            <input formControlName="min_salary" fullWidth nbInput type="number" />
+          </label>
+          <label class="com-col-span-2">
+            Max Salary*
+            <input formControlName="max_salary" fullWidth nbInput type="number" />
+          </label>
+          <label class="com-col-span-1">
+            Currency*
+            <nb-select formControlName="salary_currency" fullWidth>
+              <nb-option *ngFor="let jobSalaryCurrency of jobSalaryCurrencies" [value]="jobSalaryCurrency">
+                {{ jobSalaryCurrency | uppercase }}
+              </nb-option>
+            </nb-select>
+          </label>
+        </div>
+        <label>
+          Salary Type*
+          <nb-select formControlName="salary_type" fullWidth>
+            <nb-option *ngFor="let jobSalaryType of jobSalaryTypes" [value]="jobSalaryType">
+              {{ jobSalaryType | titlecase }}
+            </nb-option>
+          </nb-select>
+        </label>
+        <div class="com-grid com-grid-cols-3 com-gap-2">
+          <label class="com-col-span-1">
+            Location Type*
+            <nb-select formControlName="location_type" fullWidth>
+              <nb-option *ngFor="let jobLocationType of jobLocationTypes" [value]="jobLocationType">
+                {{ jobLocationType | titlecase }}
+              </nb-option>
+            </nb-select>
+          </label>
+          <label class="com-col-span-2">
+            Location
+            <input formControlName="location" fullWidth nbInput type="text" />
+          </label>
+        </div>
+        <label>
+          Status*
+          <nb-select formControlName="status" fullWidth>
+            <nb-option *ngFor="let jobStatus of jobStatuses" [value]="jobStatus">
+              {{ jobStatus | titlecase }}
+            </nb-option>
+          </nb-select>
+        </label>
+        <label>
+          Description
+          <textarea formControlName="description" fullWidth nbInput rows="5" type="text"></textarea>
+        </label>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+      <button (click)="isEditing ? updateJob() : createJob()" [disabled]="jobForm.invalid" nbButton status="success">
+        {{ isEditing ? 'Update' : 'Create' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

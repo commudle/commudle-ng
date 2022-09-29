@@ -92,12 +92,6 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  // onOpenEditUserWorkHistoryDialog(templateRef: TemplateRef<any>, userWorkHistory: IUserWorkHistory) {
-  //   this.isEditing = true;
-  //   this.userWorkHistoryForm.patchValue(userWorkHistory);
-  //   this.onOpenDialog(templateRef, userWorkHistory);
-  // }
-
   onOpenEditUserResumeDialog(templateRef: TemplateRef<any>, userResume: IUserResume) {
     this.isEditing = true;
     this.userResumeForm.patchValue(userResume);
@@ -107,15 +101,6 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onCloseDialog() {
-    // this.userWorkHistoryForm.patchValue({
-    //   job_title: '',
-    //   company: '',
-    //   location: '',
-    //   start_date: new Date().toISOString().substring(0, 7),
-    //   end_date: '',
-    //   is_working: true,
-    //   description: '',
-    // });
     this.userResumeForm.patchValue({
       name: '',
     });

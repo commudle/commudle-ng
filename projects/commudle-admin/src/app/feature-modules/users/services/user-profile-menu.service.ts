@@ -8,6 +8,7 @@ export type MenuItemNames =
   | 'talksAtEvents'
   | 'communities'
   | 'labs'
+  | 'jobs'
   | 'resume'
   | 'workHistory'
   | 'content'
@@ -63,6 +64,13 @@ export class UserProfileMenuService {
       icon: 'book-open',
       icon_status: 'danger',
       link: 'labs',
+      active: false,
+    },
+    jobs: {
+      name: 'Jobs',
+      icon: 'archive',
+      icon_status: 'primary',
+      link: 'jobs',
       active: false,
     },
     resume: {
