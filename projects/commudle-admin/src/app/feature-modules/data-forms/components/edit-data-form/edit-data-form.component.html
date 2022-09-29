@@ -60,18 +60,25 @@
           </div>
         </nb-card-body>
       </nb-card>
-      <div (cdkDropListDropped)="drop($event)" cdkDropList formArrayName="questions">
+
+      <!-- FIXME check form group name -->
+      <div
+        (cdkDropListDropped)="drop($event)"
+        cdkDropList
+        formArrayName="questions"
+        class="data-form-question-choices-container"
+      >
         <div
           *ngFor="let question of editDataForm['controls'].data_form['controls'].questions['controls']; let i = index"
           cdkDrag
         >
-          <!-- FIXME fix this drag button shows on hover  -->
+          <!-- FIXME while drag position change -->
           <div class="drag-button">
-            <button cdkDragHandle nbButton size="small">
+            <button cdkDragHandle nbButton ghost size="medium">
               <nb-icon icon="move-outline"></nb-icon>
             </button>
           </div>
-          <nb-card class="data-form-question-choices-container">
+          <nb-card>
             <nb-card-body>
               <div [formGroupName]="i" class="question-container">
                 <div>
@@ -171,8 +178,8 @@
               </div>
             </nb-card-body>
           </nb-card>
-          <!-- FIXME this button create while hover only and chnge the function in ts -->
-          <div class="com-m-2">
+          <!-- FIXME change the function in ts -->
+          <div class="add-question-button">
             <button nbButton size="medium" (click)="addQuestionButtonClick()" status="primary">
               <fa-icon [icon]="faPlus"></fa-icon>
               &nbsp; Add Question
