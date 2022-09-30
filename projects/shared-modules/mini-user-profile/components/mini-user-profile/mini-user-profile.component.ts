@@ -47,13 +47,13 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy, AfterViewIni
     );
   }
   ngAfterViewInit(): void {
-    this.scrollDispatcher.scrolled().subscribe((scrollable) => {
-      console.log(scrollable);
-      // if (scrollable && this.onProfile) {
-      //   console.log('works');
-      // this.popupHover.emit(false);
-      // }
-    });
+    // this.scrollDispatcher.scrolled().subscribe((scrollable) => {
+    //   console.log(scrollable);
+    //   // if (scrollable && this.onProfile) {
+    //   //   console.log('works');
+    //   // this.popupHover.emit(false);
+    //   // }
+    // });
   }
 
   ngOnDestroy(): void {

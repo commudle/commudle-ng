@@ -69,6 +69,12 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     this.createComponent();
     // console.log(this.cursorOnParent, 'onMouseOver');
   }
+  @HostListener('onscroll')
+  onScroll() {
+    // this.cursorOnParent = true;
+    // this.createComponent();
+    console.log('onScroll');
+  }
 
   @HostListener('mouseleave')
   onMouseOut() {
