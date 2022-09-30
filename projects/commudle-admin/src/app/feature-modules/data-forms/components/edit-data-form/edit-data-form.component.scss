@@ -34,7 +34,6 @@
       border-radius: 4px;
       box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
-      @apply com-bg-red-500;
     }
     .cdk-drag-placeholder {
       nb-card {
@@ -83,7 +82,7 @@
 
   .questions-form-section {
     .drag-button {
-      @apply com-p-0 com-hidden com-justify-center com-h-10;
+      @apply com-p-0 com-hidden com-justify-center;
 
       button {
         @apply com-cursor-move;
