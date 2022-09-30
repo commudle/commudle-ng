@@ -103,8 +103,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  addQuestionButtonClick() {
-    (this.editDataForm.get('data_form').get('questions') as FormArray).push(this.initQuestion());
+  addQuestionButtonClick(index: number) {
+    (this.editDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
   }
 
   addQuestionChoiceButtonClick(questionIndex: number) {
