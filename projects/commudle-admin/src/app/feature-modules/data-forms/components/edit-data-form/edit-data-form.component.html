@@ -64,9 +64,29 @@
       <div (cdkDropListDropped)="drop($event)" cdkDropList>
         <div
           *ngFor="let question of editDataForm['controls'].data_form['controls'].questions['controls']; let i = index"
+          (cdkDragStarted)="dragStart($event)"
+          (cdkDragMoved)="dragMoved($event)"
           cdkDrag
         >
           <!-- FIXME while drag position change -->
+          <div class="custom-placeholder" *cdkDragPlaceholder></div>
+          <div formArrayName="questions" class="custom-preview" *cdkDragPreview>
+            <nb-card [formGroupName]="i" class="questions-form-section com-w-[500px] com-absolute000">
+              <nb-card-header class="com-p-0 com-flex com-justify-center">
+                <button nbButton ghost size="small">
+                  <nb-icon icon="move-outline"></nb-icon>
+                </button>
+              </nb-card-header>
+              <nb-card-body>
+                <div>
+                  <label>
+                    {{ i + 1 }}. Question*
+                    <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
+                  </label>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
           <div formArrayName="questions">
             <nb-card [formGroupName]="i" class="questions-form-section">
               <nb-card-header cdkDragHandle class="drag-button">
@@ -186,6 +206,7 @@
             </nb-card>
           </div>
         </div>
+
         <div class="add-question-button">
           <button
             nbButton
