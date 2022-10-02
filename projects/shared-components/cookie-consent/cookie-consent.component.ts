@@ -1,7 +1,6 @@
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
-// import { CookieService } from 'ngx-cookie-service';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -16,7 +15,6 @@ export class CookieConsentComponent implements OnInit {
 
   constructor(
     private cookieConsentService: CookieConsentService,
-    // private cookieService: CookieService,
     private isBrowserService: IsBrowserService,
     private seoService: SeoService,
   ) {}
@@ -26,6 +24,8 @@ export class CookieConsentComponent implements OnInit {
       setTimeout(() => {
         if (this.seoService.isBot) {
           this.cookieConstent = false;
+        } else {
+          this.cookieConstent = true;
         }
       }, 3000);
     }

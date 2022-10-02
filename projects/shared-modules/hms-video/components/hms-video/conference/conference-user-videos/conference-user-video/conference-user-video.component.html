@@ -70,8 +70,15 @@
       class="user-avatar"
     />
   </div>
-  <a *ngIf="metaData" [routerLink]="['/users', metaData?.username]" class="user-name" target="_blank">
-    <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
-    {{ displayText }}
-  </a>
+
+  <div *ngIf="metaData" class="user-name com-flex com-items-center">
+    <a [routerLink]="['/users', metaData?.username]" target="_blank">
+      <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
+      {{ displayText }}
+    </a>
+    <!-- button to follow speaker -->
+    <div class="com-ml-2">
+      <app-user-follow [username]="metaData.username" appearance="outline" status="base"></app-user-follow>
+    </div>
+  </div>
 </div>

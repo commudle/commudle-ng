@@ -1,13 +1,8 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .discussion {
-  border-radius: 0;
-  margin: $space-16;
+  @apply com-rounded-none com-m-4;
 
   nb-card-header {
-    color: $gunmetal;
-    font-size: 1.1rem;
-    font-weight: 500;
+    @apply com-text-gunmetal com-font-medium com-text-base;
   }
 
   nb-card-body {
@@ -15,28 +10,27 @@
 
     .discussion-chat-component {
       .send-message-form {
-        margin-bottom: 1.5 * $space-16;
+        margin-bottom: 1.5 * 16px;
 
         nb-form-field {
           textarea {
-            padding: $space-8 $space-80 $space-8 $space-40;
-            resize: none;
+            @apply com-py-2 com-pr-20 com-pl-10 com-resize-none;
 
             &::placeholder {
-              padding-top: 2px;
+              @apply com-pt-1;
             }
           }
 
           &::ng-deep {
             .nb-form-field-prefix-medium {
-              margin-bottom: auto;
+              @apply com-mb-auto;
             }
 
             .nb-form-field-suffix-medium {
-              margin: 0 0 auto -4.35rem;
+              @apply com-mb-auto -com-ml-16;
 
               button {
-                text-transform: capitalize;
+                @apply com-capitalize;
               }
             }
           }
@@ -45,14 +39,11 @@
     }
 
     .messages {
-      height: max-content;
+      @apply com-h-max;
     }
   }
 }
 
 .tagging-info {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 10px;
-  margin-left: 10px;
+  @apply com-text-xs com-font-normal com-leading-3 com-ml-10px;
 }

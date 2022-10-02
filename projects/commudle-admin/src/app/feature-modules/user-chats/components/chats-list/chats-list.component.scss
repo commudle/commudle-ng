@@ -1,56 +1,29 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .chats-list-container {
-  position: relative;
+  @apply com-relative;
 
   .chats-list {
-    display: none;
-    border: none;
-    margin: 0;
-    position: absolute;
-    right: $space-12;
-    bottom: $space-76;
-    width: 300px;
-    overflow: hidden;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-300px com-overflow-hidden com-right-3 com-bottom-32 com-shadow-Chat-box;
+    @apply md:com-bottom-24;
 
     &.active {
-      display: flex;
+      @apply com-flex;
     }
 
     nb-card-header {
-      padding: $space-16;
+      @apply com-p-4;
     }
 
     nb-card-body {
-      padding: 0;
-      max-height: 60vh;
+      @apply com-p-0 com-max-h-[60vh];
     }
   }
 
   .chats-list-toggle {
-    position: absolute;
-    right: $space-12;
-    bottom: $space-24;
-    padding: $space-8;
-    width: 40px;
-    height: 40px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+    @apply com-absolute com-w-10 com-h-10 com-right-3 com-p-2 com-bottom-20;
+    @apply md:com-bottom-6 com-shadow-Chat-box;
 
     nb-icon {
-      margin-left: 0 !important;
-    }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .chats-list-container {
-    .chats-list {
-      bottom: $space-128;
-    }
-
-    .chats-list-toggle {
-      bottom: $space-76;
+      @apply com-ml-0 #{!important};
     }
   }
 }

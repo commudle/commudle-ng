@@ -1,121 +1,98 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .menu {
-  height: fit-content;
-  position: sticky;
-  top: 72px;
-  width: 264px;
+  @apply com-h-fit com-sticky com-top-72px com-w-264px;
 
   nb-card {
-    width: 100%;
+    @apply com-w-full;
   }
 
   .user {
-    background-color: $white;
-    border-radius: $border-10;
-    padding: $space-16;
+    @apply com-bg-white com-p-4 com-rounded-xl;
   }
 
   .steps {
-    margin: $space-16 0 0;
+    @apply com-mt-4 com-mx-0 com-mb-0;
 
     nb-list {
-      border: none;
-      border-radius: $border-10;
+      @apply com-border-0 com-rounded-xl;
 
       nb-list-item {
         a {
-          font-size: $fs-h5;
+          @apply com-text-sm;
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal;
-          color: $neon-blue;
+          @apply com-text-sm com-m-0 com-font-normal com-text-black;
         }
 
         app-badge {
-          position: relative;
-          top: $space-10;
+          @apply com-relative com-top-10px;
         }
       }
 
       .active {
-        background-color: $neon-blue;
-
         .lab-step-title {
-          color: $white;
+          @apply com-underline com-font-black;
         }
       }
     }
 
     nb-list-item:not(:last-child) {
-      border-bottom: 2px solid rgba(83, 110, 255, 0.35);
+      @apply com-border-0 com-border-b-2 com-border-solid com-border-Azure/20;
     }
 
-
-
     a {
-      color: $neon-blue;
-      text-decoration: none;
+      @apply com-text-Azure com-no-underline;
     }
   }
 
   .related-labs {
-    margin: $space-16 0 0;
-    overflow: hidden;
+    @apply com-mt-4 com-mx-0 com-mb-0 com-hidden;
 
     nb-card-header {
-      border-bottom: none;
-      color: $neon-blue;
-      font-size: $fs-h4;
-      font-weight: $fw-400;
-      padding: $space-16;
+      @apply com-text-Azure com-text-base com-p-4 com-font-normal com-border-b-0;
     }
 
     nb-card-body {
-      padding: 0;
+      @apply com-p-0;
 
       .details {
-        padding: $space-8 $space-16;
         transition: all 0.3s ease-in-out;
+        @apply com-py-2 com-px-4;
 
         .name {
-          font-size: $fs-h5;
-          margin: 0;
+          @apply com-text-sm com-m-0;
         }
 
         .type {
-          color: $neon-blue;
-          font-size: $fs-h6;
-          margin: 0;
+          @apply com-text-Azure com-text-xs com-m-0;
         }
 
         &:hover {
-          background: rgba(0, 0, 0, 0.05);
+          @apply com-bg-black/80;
         }
       }
     }
   }
 
   .interactions {
-    margin: $space-16;
+    @apply com-m-4;
 
     app-votes-display {
       direction: rtl;
 
       &::ng-deep {
         p {
-          font-size: $fs-24;
+          @apply com-text-2xl;
 
           span {
-            color: $neon-blue;
+            @apply com-text-Azure;
           }
 
           nb-icon {
-            font-size: $fs-24;
+            @apply com-text-2xl;
 
             &:not(.voted-heart) {
-              color: $neon-blue;
+              @apply com-text-Azure;
             }
           }
         }
@@ -123,13 +100,11 @@
     }
 
     .message-count {
-      color: $neon-blue;
-      font-size: $fs-24;
+      @apply com-text-Azure com-text-2xl;
     }
 
     nb-icon {
-      color: $neon-blue;
-      font-size: $fs-24;
+      @apply com-text-Azure com-text-2xl;
     }
   }
 }

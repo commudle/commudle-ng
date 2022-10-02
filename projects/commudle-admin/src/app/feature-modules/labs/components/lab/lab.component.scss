@@ -1,160 +1,130 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .lab {
-  background: $light-purple;
-  padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
-  width: 100%;
+  @apply com-w-full com-pt-4 com-px-0 com-pb-0;
+  @apply md:com-pt-9 md:com-pb-3;
 
   .body {
-    margin: 0 auto;
-    max-width: 1152px;
+    @apply com-max-w-6xl com-my-0 com-mx-auto com-flex-col;
+    @apply md:com-flex-row;
 
     nb-sidebar,
     .toggle-details {
-      display: none;
+      @apply com-z-[3] com-bg-Azure com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
+      @apply md:com-hidden;
     }
 
     .content {
-      width: 100%;
+      @apply com-w-full md:com-max-w-[744px];
 
       nb-card {
-        border: none;
-        margin: 0 $space-16 $space-16;
-        min-height: 80vh;
+        @apply com-min-h-[80vh] com-border-none com-mt-0 com-mx-4 com-mb-4;
 
         nb-card-body {
-          padding: $space-64;
+          @apply com-p-16;
 
           .introduction {
             .lab-title {
-              color: $gunmetal;
-              font-size: $fs-35;
-              font-weight: $fw-500;
-              line-height: 2.75rem;
-              margin: 0 0 $space-20;
-              text-transform: capitalize;
+              @apply com-text-gunmetal com-text-4xl com-font-medium com-mt-0 com-mx-0 com-mb-5 com-capitalize;
             }
 
             .lab-detail {
-              margin-bottom: $space-48;
+              @apply com-mb-12;
 
               .user-profile {
                 .avatar {
-                  border-radius: 50%;
-                  height: 24px;
-                  overflow: hidden;
-                  width: 24px;
+                  @apply com-rounded-3xl com-h-6 com-overflow-hidden com-w-6;
 
                   img {
-                    width: 100%;
+                    @apply com-w-full;
                   }
                 }
 
                 .details {
-                  font-style: italic;
-                  height: max-content;
-                  width: max-content;
+                  @apply com-italic com-h-max com-w-max;
 
                   p {
-                    color: $spanish-gray;
-                    font-size: $fs-h5;
-                    margin: 0 $space-16 0 $space-8;
+                    @apply com-text-sm com-text-Spanish-Gray com-mt-0 com-mx-4 com-mb-2;
                   }
 
                   a,
                   a:hover,
                   a:focus,
                   a:active {
-                    text-decoration: none;
+                    @apply com-no-underline;
                   }
 
                   .name {
-                    color: $neon-blue;
-                    text-transform: capitalize;
+                    @apply com-capitalize com-text-Azure;
                   }
 
                   .date {
                     font-style: normal;
-                    margin-left: $space-4;
+                    @apply com-ml-1;
                   }
 
                   .expert-icon {
-                    height: 12px;
-                    margin-left: $space-4;
-                    width: 12px;
+                    @apply com-h-3 com-ml-1 com-w-3;
                   }
                 }
               }
 
               .tags {
-                margin-left: $space-64;
+                @apply com-ml-16;
 
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      background-color: $azureish-white;
-                      border: none;
-                      border-radius: $border-5;
-                      color: $gunmetal;
-                      font-size: $fs-h7;
-                      font-weight: $fw-400;
-                      line-height: 12px;
-                      padding: $space-4 $space-12;
-                      text-transform: lowercase;
+                      @apply com-border-0 com-rounded-md com-bg-Azureish-White com-text-gunmetal com-text-xs com-leading-3 com-lowercase com-py-1 com-px-3 com-font-normal;
                     }
                   }
                 }
               }
             }
 
-            @media all and (max-width: $tab-width) {
+            @media all and (max-width: 768px) {
               .lab-detail {
-                flex-direction: column;
+                @apply com-flex-col;
 
                 .user-profile {
-                  align-items: center;
+                  @apply com-items-center;
 
                   .details {
-                    width: auto;
+                    @apply com-w-auto;
                   }
                 }
 
                 .tags {
-                  margin: $space-16 0 0;
+                  @apply com-mt-4 com-mx-0 com-mb-0;
                 }
               }
             }
 
             .header-image {
               img {
-                width: 100%;
+                @apply com-w-full;
               }
             }
 
             .intro-content {
-              width: 100%;
+              @apply com-w-full;
 
               ::ng-deep {
                 img {
-                  height: auto;
-                  max-width: 100%;
+                  @apply com-max-w-full com-h-auto;
                 }
 
                 code {
-                  white-space: pre-wrap;
+                  @apply com-whitespace-pre-wrap;
                 }
 
                 @for $index from 1 through 6 {
                   h#{$index} {
-                    color: $gunmetal;
+                    @apply com-text-gunmetal;
                   }
                 }
 
                 p,
                 li {
-                  color: $raisin-black;
-                  font-size: 1.1rem;
-                  line-height: 1.5rem;
+                  @apply com-text-base com-text-Raisin-Black;
                 }
               }
             }
@@ -162,39 +132,30 @@
         }
 
         nb-card-footer {
-          background-color: $light-purple;
-          border: none;
-          padding: $space-24 0 0;
+          @apply com-bg-[#EDF1F7] com-border-0 com-pt-6 com-px-0 com-pb-0;
         }
 
-        @media all and (max-width: $tab-width) {
+        @media all and (max-width: 768px) {
           nb-card-body {
-            padding: $space-20;
+            @apply com-p-5;
 
             .introduction {
               .lab-title {
-                font-size: 1.75rem;
-                line-height: 1.75rem;
+                @apply com-text-2xl;
               }
             }
           }
 
           nb-card-footer {
-            bottom: $space-64;
-            padding: $space-8 0;
-            position: sticky;
+            @apply com-sticky com-bottom-16 com-py-2 com-px-0;
           }
         }
       }
     }
 
     .interactions {
-      display: none;
       height: fit-content;
-      margin-left: $space-16;
-      position: sticky;
-      top: 50vh;
-      width: max-content;
+      @apply com-hidden com-ml-4 com-sticky com-w-max com-top-[50vh] md:com-block;
 
       app-votes-display {
         direction: rtl;
@@ -202,17 +163,15 @@
         &::ng-deep {
           .votes {
             p {
-              color: $neon-blue;
-              font-size: 1.5rem;
+              @apply com-text-2xl com-text-Azure;
             }
 
             span {
               nb-icon {
-                font-size: 1.5rem;
-                margin-right: $space-4;
+                @apply com-text-2xl com-mr-1;
 
                 &:not(.voted-heart) {
-                  color: $neon-blue;
+                  @apply com-text-Azure;
                 }
               }
             }
@@ -221,93 +180,55 @@
       }
 
       .discussion {
-        color: $neon-blue;
-        font-size: $fs-24;
-        margin: $space-24 0 0;
+        @apply com-text-Azure com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
       nb-icon {
-        color: $neon-blue;
-        font-size: $fs-24;
+        @apply com-text-2xl com-text-Azure;
       }
 
       app-share-button {
         ::ng-deep {
           .share-button-container {
-            margin: $space-24 0 0;
+            @apply com-mt-6 com-mx-0 com-mb-0;
 
             button {
-              background-color: transparent !important;
+              @apply com-bg-transparent #{!important};
             }
           }
         }
-      }
-    }
-
-    @media (min-width: $tab-width) {
-      .content {
-        max-width: 744px;
-      }
-
-      .interactions {
-        display: block;
       }
     }
   }
 
   .steps-navigation {
     button {
-      background-color: $neon-blue;
-      border-radius: $border-10;
-      color: $white;
-      font-size: $fs-18;
-      font-weight: $fw-500;
-      text-transform: capitalize;
+      @apply com-bg-Azure com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
     }
   }
 
   .lab-discussion {
-    margin: $space-32 0 0;
-    padding: 0 0 $space-64;
+    @apply com-mt-8 com-mx-0 com-mb-0 com-pt-0 com-px-0 com-pb-16;
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: 768px) {
   .lab {
-    padding: $space-16 0 0;
-
     .body {
-      flex-direction: column;
-      justify-content: normal;
-
-      .toggle-details {
-        background-color: $neon-blue;
-        border-bottom-right-radius: $border-10;
-        border-top-right-radius: $border-10;
-        color: white;
-        display: block;
-        font-size: 2.25rem;
-        left: 0;
-        padding: $space-4;
-        position: fixed;
-        top: $space-96;
-        z-index: 3;
-      }
-
       .desktop-lab-details {
         &::ng-deep {
           .menu {
             height: initial;
             position: initial;
             top: initial;
-            width: 100%;
+            @apply com-w-full;
 
             nb-card {
               width: initial;
             }
 
             .user {
-              margin: 0 $space-16 $space-16;
+              @apply com-mt-0 com-mx-4 com-mb-4;
             }
           }
         }
@@ -320,32 +241,28 @@
           .main-container {
             backdrop-filter: blur(20px);
             height: calc(100vh - 3.5rem);
-            padding: $space-16;
-            right: 0;
-            top: $space-56;
-            width: 80vw;
-            z-index: 3;
+            @apply com-p-4 com-right-0 com-top-56px com-z-[3] com-w-80vw;
 
             .scrollable {
-              padding: 0;
+              @apply com-p-0;
 
               app-lab-details {
                 .menu {
                   height: initial;
                   position: initial;
                   top: initial;
-                  width: 100%;
+                  @apply com-w-full;
 
                   nb-card {
                     width: initial;
                   }
 
                   .user {
-                    margin: 0 $space-16 $space-16;
+                    @apply com-mt-0 com-mx-4 com-mb-4;
                   }
 
                   .related-labs {
-                    margin: $space-16 0 $space-56;
+                    @apply com-mt-4 com-mx-0 com-mb-14;
                   }
                 }
               }
@@ -358,11 +275,11 @@
 }
 
 .image {
-  @media screen and (min-width: $max-page-width) {
-    width: 70vw;
+  @media screen and (min-width: 1440px) {
+    @apply com-w-70vw;
   }
 
-  @media screen and (max-width: $tab-width) {
-    width: 80vw;
+  @media screen and (max-width: 768px) {
+    @apply com-w-80vw;
   }
 }

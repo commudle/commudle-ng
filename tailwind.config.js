@@ -9,12 +9,16 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        'gunmetal': '#2f2e41',
+        gunmetal: '#2f2e41',
         'Silver-Sand': '#c4c4c4',
         'Azureish-White': '#dae0ff',
         'Very-Light-Blue': '#536eff',
         'Sonic-Silver': '#777777',
         'Blue-Jeans': ' #29a5ff',
+        'Raisin-Black': '#231f20',
+        'Spanish-Gray': '#979797',
+        'Ultramarine-Blue': '#3366FF',
+        'Azure': '#0095ff'
       },
       lineClamp: {
         14: '14',
@@ -30,6 +34,7 @@ module.exports = {
       },
       spacing: {
         /* Adding custom spacing to the tailwind config. */
+        '2px': '2px',
         '5px': '5px',
         '6px': '6px',
         '7px': '7px',
@@ -39,8 +44,10 @@ module.exports = {
         '17px': '17px',
         '20px': '20px',
         '30px': '30px',
+        '56px': '56px',
         '68px': '68px',
         '72px': '72px',
+        '76px': '76px',
         '78px': '78px',
         '86px': '86px',
         '120px': '120px',
@@ -51,13 +58,18 @@ module.exports = {
         '212px': '212px',
         '220px': '220px',
         '260px': '260px',
+        '264px': '264px',
         '296px': '296px',
+        '300px': '300px',
         '307px': '307px',
         '318px': '318px',
+        '336px': '336px',
         '500px': '500px',
         '630px': '630px',
         '800px': '800px',
         '95vh': '95vh',
+        '70vw': '70vw',
+        '80vw': '80vw',
         '95vw': '95vw',
         '100vw': '100vw',
       },
@@ -75,6 +87,7 @@ module.exports = {
       boxShadow: {
         /* Adding a box shadow to the element. */
         Card: '0 5px 15px #dae0ff',
+        'Chat-box': '0 7px 29px 0 #64646f33 '
       },
     },
     container: {

@@ -1,12 +1,8 @@
 <div class="discussion-chat-component">
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
     <div>
-      <button class="block-chat" nbButton size="tiny" status="basic" outline *ngIf="discussion" (click)="blockChat()">
-        {{ blocked ? 'Unblock' : 'Block' }}
-      </button>
-
       <div class="message" *ngFor="let um of messages">
-        <app-user-personal-chat-message
+        <app-message
           [message]="um"
           [canReply]="!blocked"
           [permittedActions]="permittedActions"
@@ -16,7 +12,7 @@
           (sendVote)="sendVote($event)"
           (sendDelete)="delete($event)"
           (sendFlag)="sendFlag($event)"
-        ></app-user-personal-chat-message>
+        ></app-message>
       </div>
 
       <div *ngIf="messages.length === 0" class="filler-message">

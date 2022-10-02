@@ -7,7 +7,7 @@
     nbButton
     shape="semi-round"
     size="small"
-    status="info"
+    [status]="status === 'base' ? 'base' : 'info'"
   >
     <nb-icon *ngIf="showIcon" [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
     {{ isFollowing ? 'Following' : 'Follow' }}
