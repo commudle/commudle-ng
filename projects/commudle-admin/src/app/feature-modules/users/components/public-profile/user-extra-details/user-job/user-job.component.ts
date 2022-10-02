@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
-import { JobService } from 'projects/commudle-admin/src/app/feature-modules/users/services/job.service';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
+import { JobService } from 'projects/commudle-admin/src/app/services/job.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import {
   EJobCategory,
@@ -99,7 +99,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
     if (changes.user) {
-      this.getJobs();
+      this.getJobs(true);
     }
   }
 
@@ -107,11 +107,13 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getJobs() {
+  getJobs(clearJobs: boolean = false) {
+    if (clearJobs) this.page = 1;
     this.isLoading = true;
     this.subscriptions.push(
       this.jobService.getJobs(this.page, this.count, this.user.id).subscribe((data) => {
-        this.jobs = data.jobs;
+        if (clearJobs) this.jobs = [];
+        this.jobs = this.jobs.concat(data.jobs);
         this.count = data.count;
         this.total = data.total;
         this.page++;
@@ -135,7 +137,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
       this.jobService.createJob(this.jobForm.value).subscribe(() => {
         this.nbToastrService.success('Job created successfully', 'Success');
         this.onCloseDialog();
-        this.getJobs();
+        this.getJobs(true);
       }),
     );
   }
@@ -145,7 +147,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
       this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe(() => {
         this.nbToastrService.success('Job updated successfully', 'Success');
         this.onCloseDialog();
-        this.getJobs();
+        this.getJobs(true);
       }),
     );
   }

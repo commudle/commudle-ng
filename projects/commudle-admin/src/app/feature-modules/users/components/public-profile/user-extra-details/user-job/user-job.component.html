@@ -1,4 +1,4 @@
-<nb-card *ngIf="jobs.length > 0 || currentUser?.id === user.id" class="user-job" id="jobs">
+<nb-card *ngIf="jobs.length > 0 || currentUser?.id === user.id" accent="primary" class="user-job" id="jobs">
   <nb-card-header>
     <nb-icon icon="archive" status="primary"></nb-icon>
     Jobs
@@ -18,7 +18,7 @@
     <ng-container *ngIf="jobs.length > 0">
       <div class="com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-2">
         <app-user-job-card
-          (reloadJob)="getJobs()"
+          (reloadJob)="getJobs(true)"
           (updateJob)="onOpenEditJobDialog(jobDialog, job)"
           *ngFor="let job of jobs"
           [job]="job"

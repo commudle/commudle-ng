@@ -11,9 +11,9 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { JobService } from 'projects/commudle-admin/src/app/feature-modules/users/services/job.service';
+import { JobService } from 'projects/commudle-admin/src/app/services/job.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { EJobLocationType, IJob } from 'projects/shared-models/job.model';
+import { EJobLocationType, EJobStatus, IJob } from 'projects/shared-models/job.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
@@ -30,11 +30,13 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() updateJob: EventEmitter<any> = new EventEmitter<any>();
   @Output() reloadJob: EventEmitter<any> = new EventEmitter<any>();
+  @Output() toggleJobStatus: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
   jobLink: string;
 
   EJobLocationType = EJobLocationType;
+  jobStatus = EJobStatus;
 
   subscriptions: Subscription[] = [];
 
@@ -53,7 +55,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.job) {
-      this.jobLink = `${window.location.href.split('#')[0]}/(p:jobs/${this.job.id})`;
+      this.jobLink = `${window.location.href.split('#')[0]}/jobs/${this.job.id}`;
     }
   }
 
@@ -85,7 +87,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.navigatorShareService
-      .share({ title: 'Hey, check out my job!', url: this.jobLink })
+      .share({ title: 'Hey, check out this job!', url: this.jobLink })
       .then(() => this.nbToastrService.success('Shared job link!', 'Success'));
   }
 }

@@ -1,0 +1,64 @@
+p,
+h1,
+h2 {
+  @apply com-m-0;
+}
+
+.job-container {
+  .company-details {
+    .position {
+      @apply com-text-lg md:com-text-2xl com-font-semibold com-mb-2;
+    }
+
+    .company {
+      @apply com-text-base com-font-normal md:com-text-lg;
+      color: #0095ff;
+    }
+  }
+
+  .job-details {
+    @apply com-rounded-lg com-bg-gray-100 com-overflow-hidden com-shadow com-divide-y md:com-divide-y-0 md:com-grid md:com-grid-cols-3 md:com-gap-px;
+
+    .category {
+      @apply com-rounded-tl-lg com-rounded-tr-lg md:com-rounded-tr-none;
+    }
+
+    .job-type {
+      @apply md:com-rounded-tr-lg;
+    }
+
+    .location {
+      @apply md:com-rounded-bl-lg;
+    }
+
+    .salary-type {
+      @apply com-rounded-bl-lg com-rounded-br-lg md:com-rounded-bl-none;
+    }
+
+    .category,
+    .experience,
+    .job-type,
+    .location,
+    .salary,
+    .salary-type {
+      @apply com-p-6 com-bg-white com-flex com-gap-2 com-items-center;
+
+      .job-label {
+        @apply com-text-sm md:com-text-base;
+      }
+    }
+  }
+
+  .job-description {
+    @apply com-text-base md:com-text-lg com-text-gray-800 com-whitespace-pre-wrap;
+  }
+
+  .posted-by {
+    @apply com-border-t com-border-slate-400/20 com-flex com-items-center com-justify-between com-gap-4 com-pt-4;
+    border-top-style: solid;
+
+    .last-updated {
+      @apply com-text-sm com-text-gray-500;
+    }
+  }
+}

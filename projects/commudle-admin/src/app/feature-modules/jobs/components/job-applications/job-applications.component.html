@@ -1,0 +1,62 @@
+<nb-card>
+  <nb-card-header>Job Applications</nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="!isLoading; else loading">
+      <nb-list class="job-applications-list">
+        <nb-list-item *ngFor="let jobApplication of jobApplications">
+          <div class="job-application">
+            <app-user-profile-card-large [user]="jobApplication.user"></app-user-profile-card-large>
+            <div class="resume">
+              <small>Applied on: {{ jobApplication.created_at | date }}</small>
+              <a
+                [routerLink]="[
+                  '/users',
+                  jobApplication.user.username,
+                  { outlets: { p: ['resume', jobApplication.user_resume.uuid] } }
+                ]"
+                nbButton
+                shape="semi-round"
+                size="small"
+                status="info"
+              >
+                View Resume
+              </a>
+            </div>
+            <nb-select
+              (selectedChange)="updateJobApplicationStatus(jobApplication, $event)"
+              [(selected)]="jobApplication.status"
+              [status]="
+                jobApplication.status === jobApplicationStatus.ACCEPTED
+                  ? 'success'
+                  : jobApplication.status === jobApplicationStatus.REJECTED
+                  ? 'danger'
+                  : 'basic'
+              "
+              class="action"
+              filled
+              shape="semi-round"
+            >
+              <nb-option *ngFor="let status of jobApplicationStatuses" [value]="status">
+                {{ status | titlecase }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </ng-container>
+    <ng-template #loading>
+      <app-loading-spinner></app-loading-spinner>
+    </ng-template>
+
+    <app-pagination
+      (goTo)="page = $event; getJobApplications()"
+      (next)="page = $event; getJobApplications()"
+      (previous)="page = $event; getJobApplications()"
+      *ngIf="total > 0"
+      [count]="count"
+      [current]="page"
+      [total]="total"
+      class="com-mt-6"
+    ></app-pagination>
+  </nb-card-body>
+</nb-card>
