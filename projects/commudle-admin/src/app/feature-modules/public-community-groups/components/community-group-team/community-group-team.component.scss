@@ -1,5 +1,5 @@
 .team {
   .member {
-    border-bottom: 1px solid lightgrey;
+    @apply com-border com-border-solid com-border-gray-300;
   }
 }
