@@ -51,6 +51,18 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     team: this.fb.array([]),
   });
 
+  tinyMCE = {
+    height: 500,
+    menubar: false,
+    convert_urls: false,
+    plugins:
+      'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table paste code help wordcount autoresize',
+    toolbar:
+      'formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | charmap | removeformat | help',
+    default_link_target: '_blank',
+    branding: false,
+  };
+
   subscriptions: Subscription[] = [];
 
   constructor(
