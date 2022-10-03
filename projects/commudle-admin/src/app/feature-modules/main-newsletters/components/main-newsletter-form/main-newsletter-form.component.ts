@@ -40,8 +40,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     content_style: "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter';}",
     font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt 36pt',
     plugins:
-      'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table paste code help wordcount table autoresize'
-    ,
+      'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table paste code help wordcount table autoresize',
     toolbar:
       'formatselect | fontsize | bold italic forecolor backcolor | image emoticons | \
       link | alignleft aligncenter alignright alignjustify | table | \
@@ -179,21 +178,21 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
 
   // upload_inline_images
   uploadTextImage(blobInfo, progress) {
-    const promise = new Promise<any>(((resolve, reject) => {
+    const promise = new Promise<any>((resolve, reject) => {
       console.log(this.newsLetter.id);
       const formData: any = new FormData();
       formData.append('image', blobInfo.blob());
       this.mainNewsLettersService.attachImage(this.newsLetter.id, formData).subscribe({
         next: (res: any) => {
           console.log(res);
-          // this.imagesList.push()  
+          // this.imagesList.push()
           resolve(res);
         },
         error: (err: any) => {
           reject();
-        }
+        },
       });
-    }));
+    });
     return promise;
   }
 

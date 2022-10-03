@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <div>
   <form (ngSubmit)="updateCommunityDetails()" [formGroup]="communityForm" class="community-edit-details-form">
     <div formGroupName="community">
@@ -5,7 +6,7 @@
         <div>
           <label fullWidth>
             Name*
-            <input formControlName="name" fullWidth nbInput type="text">
+            <input formControlName="name" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -14,16 +15,15 @@
         <div>
           <label>
             Logo*
-            <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file">
+            <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
           </label>
         </div>
       </div>
 
       <div>
-        <div *ngIf="uploadedLogo == null" class="uploaded-logo">
-        </div>
+        <div *ngIf="uploadedLogo == null" class="uploaded-logo"></div>
         <div *ngIf="uploadedLogo" class="uploaded-logo-image">
-          <img alt="Uploaded Logo" src="{{uploadedLogo}}" title="Uploaded Logo">
+          <img alt="Uploaded Logo" src="{{ uploadedLogo }}" title="Uploaded Logo" />
         </div>
       </div>
 
@@ -31,7 +31,7 @@
         <div>
           <label>
             Email*
-            <input formControlName="contact_email" fullWidth nbInput type="text">
+            <input formControlName="contact_email" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <div>
           <label>
             Location*
-            <input formControlName="location" fullWidth nbInput type="text">
+            <input formControlName="location" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -49,12 +49,12 @@
         <div>
           <label>
             Website
-            <input formControlName="website" fullWidth nbInput type="text">
+            <input formControlName="website" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
 
-      <div class="about" role='group'>
+      <div class="about" role="group">
         <label>
           About*
           <editor
@@ -62,18 +62,16 @@
               height: 300,
               menubar: false,
               convert_urls: false,
-              plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-              ],
+              plugins:
+                'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
               toolbar:
                 'undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | removeformat | help'
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help'
             }"
             apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-            formControlName="about">
+            formControlName="about"
+          >
           </editor>
         </label>
       </div>
@@ -82,7 +80,7 @@
         <div>
           <label>
             Mini Description*
-            <input formControlName="mini_description" fullWidth nbInput type="text">
+            <input formControlName="mini_description" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -91,7 +89,7 @@
         <div>
           <label>
             Facebook
-            <input formControlName="facebook" fullWidth nbInput type="text">
+            <input formControlName="facebook" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -100,7 +98,7 @@
         <div>
           <label>
             Twitter
-            <input formControlName="twitter" fullWidth nbInput type="text">
+            <input formControlName="twitter" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -109,7 +107,7 @@
         <div>
           <label>
             Github
-            <input formControlName="github" fullWidth nbInput type="text">
+            <input formControlName="github" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -118,7 +116,7 @@
         <div>
           <label>
             Linkedin
-            <input formControlName="linkedin" fullWidth nbInput type="text">
+            <input formControlName="linkedin" fullWidth nbInput type="text" />
           </label>
         </div>
       </div>
@@ -127,17 +125,19 @@
         <div>
           <label fullWidth>
             Tags
-            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
-                     [tags]="tags"></app-tag>
+            <app-tag
+              (tagAdd)="onTagAdd($event)"
+              (tagDelete)="onTagDelete($event)"
+              [editable]="true"
+              [tags]="tags"
+            ></app-tag>
           </label>
         </div>
       </div>
     </div>
 
     <div>
-      <button [disabled]="!communityForm.valid" nbButton status="primary" type="submit">
-        Save
-      </button>
+      <button [disabled]="!communityForm.valid" nbButton status="primary" type="submit">Save</button>
     </div>
   </form>
 </div>
