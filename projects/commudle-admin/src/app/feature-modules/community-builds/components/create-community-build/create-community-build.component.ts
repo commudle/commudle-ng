@@ -55,6 +55,8 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     height: 500,
     menubar: false,
     convert_urls: false,
+    placeholder:
+      'Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too.',
     plugins:
       'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table paste code help wordcount autoresize',
     toolbar:

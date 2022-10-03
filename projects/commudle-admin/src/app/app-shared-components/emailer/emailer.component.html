@@ -116,21 +116,7 @@
       >
         Required Field
       </span>
-      <editor
-        formControlName="body"
-        apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-        [init]="{
-          height: 200,
-          menubar: false,
-          convert_urls: false,
-          plugins:
-            'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
-          toolbar:
-            'undo redo | formatselect | bold italic backcolor | \
-            alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | help'
-        }"
-      >
+      <editor formControlName="body" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" [init]="tinyMCE">
       </editor>
     </div>
 
