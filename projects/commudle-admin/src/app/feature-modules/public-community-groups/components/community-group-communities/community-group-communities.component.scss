@@ -1,12 +1,15 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .chapter-count {
   @apply com-m-0;
 }
 
 .chapters {
+  @apply md:com-gap-y-4 md:com-gap-x-[3.5%];
+
   .community {
     @apply com-cursor-pointer com-p-2 com-w-full com-border com-border-solid com-border-gray-300 com-flex com-justify-between com-flex-col com-text-center;
+
+    @apply md:com-w-300px hover:com-shadow-Card;
+
     .logo {
       @apply com-w-24 com-h-24 com-overflow-hidden com-my-0 com-mx-auto;
       img {
@@ -14,19 +17,7 @@
       }
     }
     h4 {
-      background: #4e74ff;
-      @apply com-m-0 com-p-5px com-text-white com-rounded-md;
-    }
-
-    &:hover {
-      box-shadow: 0px 2px 5px 1px lightgrey;
-    }
-  }
-
-  @media screen and (min-width: 800px) {
-    gap: $space-16 3.5%;
-    .community {
-      @apply com-w-300px;
+      @apply com-m-0 com-p-5px com-text-white com-rounded-md com-bg-Blueberry;
     }
   }
 }

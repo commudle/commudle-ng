@@ -18,7 +18,8 @@ module.exports = {
         'Raisin-Black': '#231f20',
         'Spanish-Gray': '#979797',
         'Ultramarine-Blue': '#3366FF',
-        'Azure': '#0095ff'
+        Azure: '#0095ff',
+        Blueberry: '#4e74ff',
       },
       lineClamp: {
         14: '14',
@@ -87,7 +88,7 @@ module.exports = {
       boxShadow: {
         /* Adding a box shadow to the element. */
         Card: '0 5px 15px #dae0ff',
-        'Chat-box': '0 7px 29px 0 #64646f33 '
+        'Chat-box': '0 7px 29px 0 #64646f33 ',
       },
     },
     container: {

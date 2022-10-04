@@ -1,14 +1,14 @@
 .community-group {
   @apply com-min-h-screen com-py-0 com-px-2;
   div.logo {
-    @apply com-w-52;
+    @apply com-w-20 md:com-w-52;
     img {
       @apply com-w-full;
     }
   }
 
   .basic-details {
-    @apply com-flex com-items-center;
+    @apply com-flex com-items-center com-justify-center md:com-justify-start;
     .content {
       @apply com-ml-4;
       h1.name {
