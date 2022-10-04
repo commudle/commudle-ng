@@ -1,9 +1,7 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .community-group-form {
   .header {
     h1 {
-      font-weight: 300;
+      @apply com-font-light;
     }
   }
 
@@ -11,53 +9,39 @@
     form {
       div[role='group'] {
         > div {
-          margin-bottom: $space-16;
+          @apply com-mb-4;
         }
       }
 
       .logo {
-        margin-bottom: 1.5rem;
-        margin-top: 1.5rem;
+        @apply com-my-6;
 
         label {
-          padding: 150px 0;
-          position: relative;
+          @apply com-py-152px com-px-0;
 
           > span {
-            align-items: center;
-            color: grey;
-            display: flex;
-            flex-direction: column;
-            font-size: 1.5rem;
-
-            font-weight: 300;
-            height: 100%;
-            justify-content: center;
+            @apply com-items-center com-text-gray-500 com-flex com-flex-col com-text-2xl com-font-light com-h-full com-justify-center;
 
             nb-icon {
-              font-size: 4rem;
-              margin-bottom: 0.5rem;
+              @apply com-text-6xl com-mb-2;
             }
           }
 
           input {
-            display: none;
+            @apply com-hidden;
           }
         }
 
         .uploaded-logo {
-          align-items: center;
-          display: flex;
-          justify-content: center;
-          overflow: hidden;
+          @apply com-items-center com-flex com-justify-center com-overflow-hidden;
 
           img {
-            max-width: 100%;
+            @apply com-max-w-full;
           }
         }
 
         .delete-logo-button {
-          text-align: center;
+          @apply com-text-center;
         }
       }
     }
