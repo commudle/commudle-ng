@@ -614,4 +614,13 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/jobs',
     DESTROY: 'api/v2/jobs',
   },
+
+  JOB_APPLICATIONS: {
+    INDEX: 'api/v2/job_applications',
+    MY_APPLICATIONS: 'api/v2/job_applications/my_applications',
+    CREATE: 'api/v2/job_applications',
+    UPDATE_STATUS: 'api/v2/job_applications/update_status',
+    UPDATE: 'api/v2/job_applications',
+    DESTROY: 'api/v2/job_applications',
+  },
 };

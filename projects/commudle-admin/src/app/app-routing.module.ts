@@ -117,6 +117,10 @@ const routes = [
     loadChildren: () => import('./feature-modules/labs/labs.module').then((m) => m.LabsModule),
   },
   {
+    path: 'jobs',
+    loadChildren: () => import('./feature-modules/jobs/jobs.module').then((m) => m.JobsModule),
+  },
+  {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then((m) => m.PricingModule),
   },

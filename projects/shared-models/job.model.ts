@@ -1,3 +1,5 @@
+import { IUser } from './user.model';
+
 export interface IJob {
   id: number;
   position: string;
@@ -14,6 +16,7 @@ export interface IJob {
   status: EJobStatus;
   description: string;
   updated_at: string;
+  user: IUser;
 }
 
 export enum EJobCategory {

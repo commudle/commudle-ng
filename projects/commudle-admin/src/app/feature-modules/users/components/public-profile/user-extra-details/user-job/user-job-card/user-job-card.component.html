@@ -1,6 +1,12 @@
 <nb-card class="user-job-card">
   <nb-card-body>
     <p class="position">{{ job.position }}</p>
+    <div class="com-flex com-items-center com-gap-1.5">
+      <nb-icon icon="pin" status="primary"></nb-icon>
+      <p class="location">
+        {{ job.location_type === EJobLocationType.REMOTE ? 'Remote' : job.location }}
+      </p>
+    </div>
     <nb-tag-list class="tags">
       <nb-tag [text]="job.category | titlecase" appearance="outline" size="tiny" status="info"></nb-tag>
       <nb-tag
@@ -16,47 +22,76 @@
         text="Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience"
       ></nb-tag>
     </nb-tag-list>
-    <div class="com-flex com-items-center com-gap-1.5 com-my-4">
-      <nb-icon icon="pin" status="primary"></nb-icon>
-      <p class="location">
-        {{ job.location_type === EJobLocationType.REMOTE ? 'Remote' : job.location }}
-      </p>
-    </div>
-    <div class="com-grid com-grid-cols-5 com-gap-2">
-      <button
-        *ngIf="user.id !== currentUser?.id; else editButton"
-        class="com-col-span-2"
-        fullWidth
-        nbButton
-        size="small"
-        status="info"
-      >
-        <nb-icon icon="checkmark-circle"></nb-icon>
-        Apply
-      </button>
-      <ng-template #editButton>
-        <button (click)="updateJob.emit()" class="com-col-span-2" fullWidth nbButton size="small" status="info">
-          <nb-icon icon="edit"></nb-icon>
-          Edit
+    <!--    <nb-toggle (checkedChange)="toggleJobStatus.emit()" [checked]="job.status === jobStatus.OPEN">-->
+    <!--      {{ job.status | titlecase }}-->
+    <!--    </nb-toggle>-->
+    <nb-actions class="actions" fullWidth>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button
+          (click)="updateJob.emit()"
+          ghost
+          nbButton
+          nbTooltip="Edit"
+          nbTooltipStatus="warning"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="edit" status="warning"></nb-icon>
         </button>
-      </ng-template>
-      <button class="com-col-span-2" fullWidth ghost nbButton size="small" status="info">
-        <nb-icon icon="eye"></nb-icon>
-        View
-      </button>
-      <button
-        (click)="onDialogOpen(deleteJobDialog)"
-        *ngIf="user.id === currentUser?.id"
-        class="com-col-span-1"
-        fullWidth
-        ghost
-        nbButton
-        size="small"
-        status="danger"
-      >
-        <nb-icon icon="trash"></nb-icon>
-      </button>
-    </div>
+      </nb-action>
+      <nb-action>
+        <button
+          (click)="copyTextToClipboard()"
+          ghost
+          nbButton
+          nbTooltip="Share"
+          nbTooltipStatus="primary"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="share" status="primary"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <a
+          [routerLink]="['/jobs', job.id, 'applications']"
+          ghost
+          nbButton
+          nbTooltip="Applications"
+          nbTooltipStatus="success"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="people" status="success"></nb-icon>
+        </a>
+      </nb-action>
+      <nb-action>
+        <a
+          [routerLink]="['/jobs', job.id]"
+          ghost
+          nbButton
+          nbTooltip="View"
+          nbTooltipStatus="info"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="eye" status="info"></nb-icon>
+        </a>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button
+          (click)="onDialogOpen(deleteJobDialog)"
+          ghost
+          nbButton
+          nbTooltip="Delete"
+          nbTooltipStatus="danger"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="trash" status="danger"></nb-icon>
+        </button>
+      </nb-action>
+    </nb-actions>
   </nb-card-body>
 </nb-card>
 

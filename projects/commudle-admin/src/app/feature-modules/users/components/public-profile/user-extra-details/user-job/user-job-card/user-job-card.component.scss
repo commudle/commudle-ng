@@ -6,13 +6,13 @@ p {
   @apply com-m-0;
 
   nb-card-body {
+    @apply com-space-y-4;
+
     .position {
       @apply com-text-base com-font-semibold com-line-clamp-1;
     }
 
     .tags {
-      @apply com-mt-4;
-
       nb-tag {
         @apply com-text-sm com-font-medium com-border-none;
       }
@@ -20,6 +20,12 @@ p {
 
     .location {
       @apply com-text-sm;
+    }
+
+    .actions {
+      nb-action {
+        @apply com-px-2.5;
+      }
     }
   }
 }

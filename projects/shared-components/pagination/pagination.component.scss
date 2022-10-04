@@ -14,7 +14,7 @@ a {
     @apply com-hidden md:com-flex;
 
     .page {
-      @apply com-text-gray-500 com-px-3 com-py-2 com-rounded com-inline-flex com-items-center com-text-sm com-font-medium hover:com-text-gray-700 hover:com-bg-gray-50;
+      @apply com-cursor-pointer com-text-gray-500 com-px-3 com-py-2 com-rounded com-inline-flex com-items-center com-text-sm com-font-medium hover:com-text-gray-700 hover:com-bg-gray-50;
 
       &.active {
         @apply com-text-blue-600 com-bg-blue-50;
