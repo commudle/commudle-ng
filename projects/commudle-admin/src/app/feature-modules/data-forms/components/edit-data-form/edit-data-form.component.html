@@ -68,10 +68,9 @@
           (cdkDragMoved)="dragMoved($event)"
           cdkDrag
         >
-          <!-- FIXME while drag position change -->
           <div class="custom-placeholder" *cdkDragPlaceholder></div>
           <div formArrayName="questions" class="custom-preview" *cdkDragPreview>
-            <nb-card [formGroupName]="i" class="questions-form-section com-w-[500px] com-absolute000">
+            <nb-card [formGroupName]="i" class="questions-form-section com-w-80 md:com-w-500px">
               <nb-card-header class="com-p-0 com-flex com-justify-center">
                 <button nbButton ghost size="small">
                   <nb-icon icon="move-outline"></nb-icon>
