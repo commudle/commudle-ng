@@ -1,54 +1,63 @@
-:host{
+:host {
   .clone-form-button {
-    margin-top: 1rem
+    margin-top: 1rem;
   }
 
-  div.data-form-container{
+  div.data-form-container {
     max-width: 920px;
     margin: 0 auto;
 
-
-
-    .validation-error-text  {
+    .validation-error-text {
       color: red; /* red */
     }
 
-    input{
+    input {
       background-color: white;
     }
 
-    textarea{
+    textarea {
       background-color: white;
     }
 
-    nb-card.data-form-question-choices-container{
+    .data-form-question-choices-container {
       margin-bottom: 0;
     }
 
+    .add-question-button {
+      @apply com-m-2;
+    }
 
-    .question-container{
+    .cdk-drag-animating {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+    .custom-placeholder {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+      @apply com-min-h-[120px] com-border-0 com-rounded-xl com-bg-slate-200 com-min-w-full;
+    }
+
+    .question-container {
       display: flex;
       flex-direction: column;
-      margin-bottom: 3rem;
+      // margin-bottom: 3rem;
 
-      .question-settings{
+      .question-settings {
         margin: 1rem;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         flex-wrap: wrap;
 
-        nb-select{
+        nb-select {
           background-color: white;
         }
 
-        label, nb-checkbox{
+        label,
+        nb-checkbox {
           margin-right: 1.5rem;
-
         }
       }
 
-      .choices-container{
+      .choices-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -57,4 +66,24 @@
     }
   }
 
+  .questions-form-section {
+    .drag-button {
+      @apply com-p-0 com-flex com-justify-center;
+
+      button {
+        @apply com-cursor-move;
+      }
+    }
+    .question-form-footer {
+      @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
+
+      button {
+        @apply com-justify-start com-pl-0 md:com-pl-4;
+      }
+
+      nb-checkbox {
+        @apply com-mr-0 md:com-mr-10;
+      }
+    }
+  }
 }

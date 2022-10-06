@@ -42,7 +42,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     plugins:
       'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table paste code help wordcount table autoresize',
     toolbar:
-      'formatselect | fontsize | bold italic forecolor backcolor | image emoticons | \
+      'formatselect | fontsizeselect | bold italic forecolor backcolor | image emoticons | \
       link | alignleft aligncenter alignright alignjustify | table | \
       bullist numlist outdent indent | codesample | code | removeformat',
     table_toolbar:

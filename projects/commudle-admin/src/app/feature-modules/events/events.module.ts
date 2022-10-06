@@ -62,6 +62,7 @@ import { VolunteersComponent } from './components/volunteers/volunteers.componen
 import { EventsRoutingModule } from './events-routing.module';
 import { UserEngagementDataComponent } from './components/event-form-responses/user-engagement-data/user-engagement-data.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     SharedDirectivesModule,
     MiniUserProfileModule,
     SharedComponentsModule,
+    ScrollingModule,
     SharedPipesModule,
 
     // External
