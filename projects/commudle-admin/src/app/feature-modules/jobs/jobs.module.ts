@@ -17,9 +17,18 @@ import { JobComponent } from './components/job/job.component';
 import { MyJobApplicationComponent } from './components/my-job-applications/my-job-application/my-job-application.component';
 import { MyJobApplicationsComponent } from './components/my-job-applications/my-job-applications.component';
 import { JobsRoutingModule } from './jobs-routing.module';
+import { JobsListsComponent } from './components/jobs-lists/jobs-lists.component';
+import { JobsListCardComponent } from 'projects/commudle-admin/src/app/feature-modules/jobs/components/jobs-lists/jobs-list-card/jobs-list-card.component';
 
 @NgModule({
-  declarations: [MyJobApplicationsComponent, MyJobApplicationComponent, JobComponent, JobApplicationsComponent],
+  declarations: [
+    MyJobApplicationsComponent,
+    MyJobApplicationComponent,
+    JobComponent,
+    JobApplicationsComponent,
+    JobsListsComponent,
+    JobsListCardComponent,
+  ],
   imports: [
     CommonModule,
     JobsRoutingModule,

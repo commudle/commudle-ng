@@ -1,0 +1,28 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="two-column-layout">
+      <div class="right-column">
+        <nb-card>
+          <nb-card-header>
+            <h6>Filter</h6>
+          </nb-card-header>
+          <nb-card-body>
+            <p>Filter</p>
+            <button (click)="filter()">category</button>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <div class="main-column">
+        <nb-card>
+          <nb-card-header>
+            <h1>Jobs</h1>
+          </nb-card-header>
+          <nb-card-body>
+            <app-jobs-list-card [Jobs]="Jobs"></app-jobs-list-card>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

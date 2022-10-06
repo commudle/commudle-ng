@@ -1,0 +1,12 @@
+nb-card {
+  @apply hover:com-shadow-Card;
+  .text-section {
+    .position {
+      @apply com-text-xl com-text-Ultramarine-Blue;
+    }
+
+    p {
+      @apply com-m-0;
+    }
+  }
+}
