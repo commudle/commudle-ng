@@ -73,7 +73,7 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
   onScroll() {
     // this.cursorOnParent = true;
     // this.createComponent();
-    console.log('onScroll');
+    // console.log('onScroll');
   }
 
   @HostListener('mouseleave')
@@ -139,7 +139,6 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
       // console.log(this.cursorOnPopover, this.componentRef, 'destroyComponent');
 
       if (!this.cursorOnPopover && this.componentRef && !this.cursorOnParent) {
-        console.log('Component Destroyed');
         // console.log('setTimeout');
         this.componentRef.destroy();
       }
