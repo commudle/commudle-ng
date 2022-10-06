@@ -1,12 +1,20 @@
+p {
+  @apply com-m-1 com-ml-2;
+}
+
 nb-card {
   @apply hover:com-shadow-Card;
-  .text-section {
-    .position {
-      @apply com-text-xl com-text-Ultramarine-Blue;
-    }
+  nb-card-body {
+    a {
+      .job-details {
+        @apply com-flex com-items-center;
 
-    p {
-      @apply com-m-0;
+        &.position {
+          p {
+            @apply com-text-2xl;
+          }
+        }
+      }
     }
   }
 }
