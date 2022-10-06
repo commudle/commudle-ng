@@ -41,22 +41,12 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
   ) {
     this.nativeElement = this.inputElementRef.nativeElement;
   }
-  ngOnInit(): void {
-    // console.log('ngOnInit');
-    // console.log(this.activateMiniProfileDirective, 'ngOnInit');
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // console.log(this.componentRef, 'ngAfterViewInit');
     if (!this.cursorOnPopover && !this.cursorOnParent) {
       this.destroyComponent();
     }
-    // this.scrollDispatcher.scrolled().subscribe(() => {
-    //   if (!this.cursorOnPopover && !this.cursorOnParent) {
-    //     console.log('scrollable');
-    //     this.destroyComponent();
-    //   }
-    // });
   }
 
   ngOnDestroy(): void {
@@ -67,13 +57,13 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
   onMouseOver() {
     this.cursorOnParent = true;
     this.createComponent();
-    // console.log(this.cursorOnParent, 'onMouseOver');
   }
-  @HostListener('onscroll')
+  @HostListener('window:scroll')
   onScroll() {
-    // this.cursorOnParent = true;
-    // this.createComponent();
-    console.log('onScroll');
+    this.cursorOnParent = false;
+    if (!this.cursorOnPopover) {
+      this.destroyComponent();
+    }
   }
 
   @HostListener('mouseleave')
@@ -81,7 +71,6 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     this.cursorOnParent = false;
     if (!this.cursorOnPopover) {
       this.destroyComponent();
-      // console.log(this.cursorOnParent, 'mouseleave');
     }
   }
 
@@ -136,19 +125,10 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
   @debounce(50)
   destroyComponent() {
     setTimeout(() => {
-      // console.log(this.cursorOnPopover, this.componentRef, 'destroyComponent');
-
       if (!this.cursorOnPopover && this.componentRef && !this.cursorOnParent) {
-        console.log('Component Destroyed');
-        // console.log('setTimeout');
         this.componentRef.destroy();
       }
     }, 1000);
-    // console.log('destroyComponent');
-
-    // if (!this.cursorOnPopover && this.componentRef) {
-    //   this.componentRef.destroy();
-    // }
   }
 
   getElementCoordinates() {
