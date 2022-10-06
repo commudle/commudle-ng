@@ -247,9 +247,7 @@
         </div>
         <div>
           <nb-select formControlName="speaker_registration_id" placeholder="Select Speaker (optional)">
-            <nb-option *ngFor="let speaker of eventSpeakers | orderBy: ['user.name']:['asc']" [value]="speaker.id">
-              {{ speaker.user.name }}
-            </nb-option>
+            <nb-option *ngFor="let speaker of eventSpeakers" [value]="speaker.id"> {{ speaker.user.name }} </nb-option>
           </nb-select>
         </div>
         <div>
