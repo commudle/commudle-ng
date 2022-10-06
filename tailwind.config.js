@@ -19,6 +19,7 @@ module.exports = {
         'Spanish-Gray': '#979797',
         'Ultramarine-Blue': '#3366FF',
         Azure: '#0095ff',
+        Blueberry: '#4e74ff',
       },
       lineClamp: {
         14: '14',
@@ -31,17 +32,6 @@ module.exports = {
         'span-19': 'span 19 / span 19',
         'span-20': 'span 20 / span 20',
         'span-22': 'span 22 / span 22',
-      },
-      fontSize: {
-        /* This is a custom font size. */
-        'Public-Page-CTA-Heading': '60px',
-        'Page-Heading': '36px',
-        'Page-Section-Header': '24px',
-        'Page-Subheading': '20px',
-        'Card-Subheading': '18px',
-        'Paragraph-1': '16px',
-        'Paragraph-2': '14px', //Button text, Input
-        'Caption': '12px',
       },
       spacing: {
         /* Adding custom spacing to the tailwind config. */

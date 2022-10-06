@@ -1,45 +1,23 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .chapter-count {
-  margin: 0;
+  @apply com-m-0;
 }
 
 .chapters {
+  @apply md:com-gap-y-4 md:com-gap-x-[3.5%];
+
   .community {
-    cursor: pointer;
-    padding: 0.5rem;
-    width: 100%;
-    border: 1px solid lightgrey;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    text-align: center;
+    @apply com-cursor-pointer com-p-2 com-w-full com-border com-border-solid com-border-gray-300 com-flex com-justify-between com-flex-col com-text-center;
+
+    @apply md:com-w-300px hover:com-shadow-Card;
+
     .logo {
-      width: 100px;
-      height: 100px;
-      overflow: hidden;
-      margin: 0 auto;
+      @apply com-w-24 com-h-24 com-overflow-hidden com-my-0 com-mx-auto;
       img {
-        width: 100%;
+        @apply com-w-full;
       }
     }
     h4 {
-      margin: 0;
-      padding: 5px;
-      background: #4e74ff;
-      color: white;
-      border-radius: 5px;
-    }
-
-    &:hover {
-      box-shadow: 0px 2px 5px 1px lightgrey;
-    }
-  }
-
-  @media screen and (min-width: 800px) {
-    gap: $space-16 3.5%;
-    .community {
-      width: 300px;
+      @apply com-m-0 com-p-5px com-text-white com-rounded-md com-bg-Blueberry;
     }
   }
 }
