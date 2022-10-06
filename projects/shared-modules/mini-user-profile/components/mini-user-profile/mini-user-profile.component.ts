@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { Subscription } from 'rxjs';
+// import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'app-mini-user-profile',
   templateUrl: './mini-user-profile.component.html',
   styleUrls: ['./mini-user-profile.component.scss'],
 })
-export class MiniUserProfileComponent implements OnInit, OnDestroy {
+export class MiniUserProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() username: string;
   @Input() miniUser: IMiniUserProfile;
   @Output() popupHover = new EventEmitter();
@@ -21,10 +23,13 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  mouseLeave = false;
+
   constructor(
     private userChatsService: UserChatsService,
     private appUsersService: AppUsersService,
     private router: Router,
+    private scrollDispatcher: ScrollDispatcher,
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +46,19 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
       }),
     );
   }
+  ngAfterViewInit(): void {
+    // this.scrollDispatcher.scrolled().subscribe((scrollable) => {
+    //   console.log(scrollable);
+    //   // if (scrollable && this.onProfile) {
+    //   //   console.log('works');
+    //   // this.popupHover.emit(false);
+    //   // }
+    // });
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
+    this.popupHover.emit(false);
   }
 
   openChatWithUser(): void {
@@ -51,11 +66,17 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
   }
 
   onMouseEnter() {
+    // console.log('onMouseEnter');
+  }
+  onMouseOver() {
+    // this.mouseLeave = true;
     this.popupHover.emit(true);
+    // console.log('onMouseOver');
   }
 
   onMouseLeave() {
     this.popupHover.emit(false);
+    // console.log('onMouseLeave');
   }
 
   closePopup() {

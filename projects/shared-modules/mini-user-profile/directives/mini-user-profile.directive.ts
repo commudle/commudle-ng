@@ -1,4 +1,6 @@
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
+  AfterViewInit,
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
@@ -6,6 +8,7 @@ import {
   HostListener,
   Input,
   OnDestroy,
+  OnInit,
   ViewContainerRef,
 } from '@angular/core';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
@@ -17,7 +20,7 @@ import { Subscription } from 'rxjs';
 @Directive({
   selector: '[appMiniUserProfile]',
 })
-export class MiniUserProfileDirective implements OnDestroy {
+export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewInit {
   @Input() username: string;
   @Input() activateMiniProfileDirective: boolean = true;
   componentRef: ComponentRef<MiniUserProfileComponent>;
@@ -25,6 +28,8 @@ export class MiniUserProfileDirective implements OnDestroy {
   subscriptions: Subscription[] = [];
   miniUser: IMiniUserProfile;
   cursorOnPopover: boolean = false;
+  cursorOnParent: boolean = false;
+
   private coords: { top: number; left: number } = { top: 0, left: 0 };
 
   constructor(
@@ -32,8 +37,26 @@ export class MiniUserProfileDirective implements OnDestroy {
     private _viewContainerRef: ViewContainerRef,
     private _componentResolver: ComponentFactoryResolver,
     private miniUserProfileService: MiniUserProfileService,
+    private scrollDispatcher: ScrollDispatcher,
   ) {
     this.nativeElement = this.inputElementRef.nativeElement;
+  }
+  ngOnInit(): void {
+    // console.log('ngOnInit');
+    // console.log(this.activateMiniProfileDirective, 'ngOnInit');
+  }
+
+  ngAfterViewInit(): void {
+    // console.log(this.componentRef, 'ngAfterViewInit');
+    if (!this.cursorOnPopover && !this.cursorOnParent) {
+      this.destroyComponent();
+    }
+    // this.scrollDispatcher.scrolled().subscribe(() => {
+    //   if (!this.cursorOnPopover && !this.cursorOnParent) {
+    //     console.log('scrollable');
+    //     this.destroyComponent();
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
@@ -42,12 +65,24 @@ export class MiniUserProfileDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseOver() {
+    this.cursorOnParent = true;
     this.createComponent();
+    // console.log(this.cursorOnParent, 'onMouseOver');
+  }
+  @HostListener('onscroll')
+  onScroll() {
+    // this.cursorOnParent = true;
+    // this.createComponent();
+    console.log('onScroll');
   }
 
   @HostListener('mouseleave')
   onMouseOut() {
-    this.destroyComponent();
+    this.cursorOnParent = false;
+    if (!this.cursorOnPopover) {
+      this.destroyComponent();
+      // console.log(this.cursorOnParent, 'mouseleave');
+    }
   }
 
   loadComponent() {
@@ -65,7 +100,7 @@ export class MiniUserProfileDirective implements OnDestroy {
     this.subscriptions.push(
       this.componentRef.instance.popupHover.subscribe((data) => {
         this.cursorOnPopover = data;
-        if (!this.cursorOnPopover) {
+        if (!this.cursorOnPopover && !this.cursorOnParent) {
           this.destroyComponent();
         }
       }),
@@ -100,9 +135,20 @@ export class MiniUserProfileDirective implements OnDestroy {
 
   @debounce(50)
   destroyComponent() {
-    if (!this.cursorOnPopover && this.componentRef) {
-      this.componentRef.destroy();
-    }
+    setTimeout(() => {
+      // console.log(this.cursorOnPopover, this.componentRef, 'destroyComponent');
+
+      if (!this.cursorOnPopover && this.componentRef && !this.cursorOnParent) {
+        console.log('Component Destroyed');
+        // console.log('setTimeout');
+        this.componentRef.destroy();
+      }
+    }, 1000);
+    // console.log('destroyComponent');
+
+    // if (!this.cursorOnPopover && this.componentRef) {
+    //   this.componentRef.destroy();
+    // }
   }
 
   getElementCoordinates() {
