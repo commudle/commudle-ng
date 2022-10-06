@@ -36,11 +36,9 @@ export class EditLabComponent implements OnInit, OnDestroy {
     skin: 'outside',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 20px !important;}",
-    plugins: [
-      'emoticons advlist lists autolink link charmap preview anchor',
-      'visualblocks code charmap image codesample',
-      'insertdatetime table paste code help wordcount autoresize media,',
-    ],
+    plugins:
+      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table paste code help wordcount autoresize media',
+
     toolbar:
       'formatselect | bold italic backcolor | codesample emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
