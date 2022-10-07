@@ -1,0 +1,12 @@
+// FIXME IMPROVE CSS OF FILTER OPTION
+
+::ng-deep {
+  .custom-ngx-slider .ngx-slider .ngx-slider-pointer {
+    width: 10px;
+    height: 15px;
+  }
+
+  .custom-ngx-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+}

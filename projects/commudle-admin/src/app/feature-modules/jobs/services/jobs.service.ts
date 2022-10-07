@@ -14,22 +14,16 @@ export class JobsService {
   getJobsByFilter(
     page: number,
     count: number,
-    category?: string,
-    salary_type?: string,
-    salary_currency?: string,
-    location_type?: string,
-    job_type?: string,
-    status?: string,
+    category: string,
+    location_type: string,
+    job_type: string,
   ): Observable<IJobs> {
     const params = new HttpParams()
       .set('page', String(page))
       .set('count', String(count))
-      .set('category?', String(category))
-      .set(' salary_type?', String(salary_type))
-      .set('salary_currency?', String(salary_currency))
-      .set('location_type?', String(location_type))
-      .set('job_type?', String(job_type))
-      .set('status?', String(status));
+      .set('category', String(category))
+      .set('location_type', String(location_type))
+      .set('job_type', String(job_type));
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), {
       params,
     });

@@ -19,7 +19,8 @@ import { MyJobApplicationsComponent } from './components/my-job-applications/my-
 import { JobsRoutingModule } from './jobs-routing.module';
 import { JobsListsComponent } from './components/jobs-lists/jobs-lists.component';
 import { JobsListCardComponent } from 'projects/commudle-admin/src/app/feature-modules/jobs/components/jobs-lists/jobs-list-card/jobs-list-card.component';
-
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     MyJobApplicationsComponent,
@@ -43,6 +44,8 @@ import { JobsListCardComponent } from 'projects/commudle-admin/src/app/feature-m
     NbIconModule,
     NbSelectModule,
     NbAlertModule,
+    NgxSliderModule,
+    FormsModule,
   ],
 })
 export class JobsModule {}

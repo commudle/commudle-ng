@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IJob } from 'projects/shared-models/job.model';
 import { Subscription } from 'rxjs';
 import { JobsService } from 'projects/commudle-admin/src/app/feature-modules/jobs/services/jobs.service';
-import { runInThisContext } from 'vm';
+import { FormControl, FormGroup } from '@angular/forms';
+import { LabelType, Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-jobs-lists',
@@ -10,6 +11,14 @@ import { runInThisContext } from 'vm';
   styleUrls: ['./jobs-lists.component.scss'],
 })
 export class JobsListsComponent implements OnInit {
+  minSalary: number = 10000;
+  maxSalary: number = 40000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+    step: 10000,
+    noSwitching: true,
+  };
   Jobs: IJob[] = [];
 
   subscriptions: Subscription[] = [];
@@ -19,25 +28,35 @@ export class JobsListsComponent implements OnInit {
   ngOnInit(): void {
     this.getJobsList();
   }
+  onValueChange(value) {
+    this.minSalary = value;
+  }
+
+  onHighValueChange(value) {
+    this.maxSalary = value;
+  }
 
   getJobsList() {
     this.subscriptions.push(
       this.jobsService.getJobs(1, 10).subscribe((data) => {
         this.Jobs = data.jobs;
-        // console.log(data.jobs);
       }),
     );
   }
-  filter() {
-    console.log(this.Jobs);
-    // this.Jobs.find('job');
-
-    // this.Jobs.indexOf('location');
-    // console.log('filter works');
-    // this.subscriptions.push(
-    //   this.jobsService.getJobsByFilter(1, 10, 'job').subscribe((data) => {
-    //     console.log(data);
-    //   }),
-    // );
+  formSubmit(form) {
+    this.subscriptions.push(
+      this.jobsService
+        .getJobsByFilter(1, 10, form.value.category, form.value.location_type, form.value.job_type)
+        .subscribe((data) => {
+          this.Jobs = data.jobs;
+        }),
+    );
+  }
+  freset(form) {
+    form.reset();
+    form.value.category = ' ';
+    form.value.job_type = ' ';
+    form.value.location_type = ' ';
+    this.getJobsList();
   }
 }
