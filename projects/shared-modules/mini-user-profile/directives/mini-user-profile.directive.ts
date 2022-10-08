@@ -11,6 +11,7 @@ import {
   OnInit,
   ViewContainerRef,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
 import { MiniUserProfileComponent } from 'projects/shared-modules/mini-user-profile/components/mini-user-profile/mini-user-profile.component';
 import { debounce } from 'projects/shared-modules/mini-user-profile/helpers/debounce';
@@ -38,10 +39,17 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     private _componentResolver: ComponentFactoryResolver,
     private miniUserProfileService: MiniUserProfileService,
     private scrollDispatcher: ScrollDispatcher,
+    private router: Router,
   ) {
     this.nativeElement = this.inputElementRef.nativeElement;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      if (this.componentRef) {
+        this.componentRef.destroy();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     if (!this.cursorOnPopover && !this.cursorOnParent) {
@@ -51,6 +59,7 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
+    this.destroyComponent();
   }
 
   @HostListener('mouseenter')
