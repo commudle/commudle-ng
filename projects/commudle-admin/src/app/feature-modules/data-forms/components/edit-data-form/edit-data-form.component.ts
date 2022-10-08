@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';

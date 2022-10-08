@@ -64,8 +64,6 @@
       <div (cdkDropListDropped)="drop($event)" cdkDropList>
         <div
           *ngFor="let question of editDataForm['controls'].data_form['controls'].questions['controls']; let i = index"
-          (cdkDragStarted)="dragStart($event)"
-          (cdkDragMoved)="dragMoved($event)"
           cdkDrag
         >
           <div class="custom-placeholder" *cdkDragPlaceholder></div>
