@@ -1,11 +1,8 @@
 <div *ngFor="let job of Jobs">
-  <!-- FIXME WHAT IF STATUS IS CLOSED -->
-  <!-- FIXME AND WHAT TO SHOW IF STATUS IS CLOSED -->
-  <!-- <nb-card *ngIf="job.status === 'open'"> -->
   <nb-card>
     <nb-card-body>
       <a class="com-no-underline" [routerLink]="[job.id]">
-        <div class="company-salary com-flex com-justify-between">
+        <div class="company-salary com-flex com-justify-between com-flex-col md:com-flex-row">
           <div class="job-details position">
             <p>{{ job.position }}</p>
           </div>

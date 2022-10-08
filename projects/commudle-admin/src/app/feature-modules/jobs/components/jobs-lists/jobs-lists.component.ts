@@ -74,7 +74,7 @@ export class JobsListsComponent implements OnInit {
           this.Jobs = data.jobs;
         }),
     );
-    form.reset();
+    // form.reset();
   }
 
   filterReset(form) {
