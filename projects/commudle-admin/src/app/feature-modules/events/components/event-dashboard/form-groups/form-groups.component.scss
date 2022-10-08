@@ -7,7 +7,7 @@
       align-self: flex-start;
     }
 
-    .edfeg-details{
+    .edfeg-details {
       background: #f4f7ff;
       display: flex;
       flex-direction: column;
@@ -17,11 +17,11 @@
         justify-content: space-between;
       }
 
-      >div{
+      > div {
         margin: 0.25rem;
       }
 
-      .display-details{
+      .display-details {
         display: flex;
         .copy-link {
           padding: 0.25rem;
@@ -41,22 +41,19 @@
         @media screen and (min-width: 1000px) {
           width: 50%;
         }
-
       }
-
-
 
       .stats {
         display: flex;
 
         @media screen and (min-width: 640px) {
-          width: 9.5rem;
+          width: 10rem;
           max-width: 50%;
           padding: 0.25rem;
           flex-direction: column;
         }
 
-        p{
+        p {
           font-size: 2rem;
           margin: 0.5rem 0;
         }
@@ -67,24 +64,22 @@
         div {
           margin: 0.5rem 0;
         }
-
       }
     }
-
   }
 }
 
 .dfeg-create-form {
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
-    >div{
+    > div {
       margin: 0.5rem;
     }
-
   }
 
-  .data-form-select, .data-form-type-select{
+  .data-form-select,
+  .data-form-type-select {
     margin: 0.5rem;
     display: flex;
     align-items: flex-end;
@@ -95,18 +90,19 @@
   }
 
   @media screen and (min-width: 640px) {
-    >div {
+    > div {
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-between;
-      >div{
+      > div {
         margin: 0 0.25rem;
         width: 30%;
 
         label {
           width: 100%;
 
-          nb-select, input {
+          nb-select,
+          input {
             width: 100%;
           }
         }
