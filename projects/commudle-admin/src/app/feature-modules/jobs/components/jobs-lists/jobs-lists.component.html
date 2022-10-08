@@ -2,46 +2,55 @@
   <div class="container">
     <div class="two-column-layout">
       <div class="right-column">
-        <nb-card>
+        <nb-card class="filter-section">
           <nb-card-header>
             <h6>Filter</h6>
           </nb-card-header>
-          <nb-card-body>
-            <form (ngSubmit)="formSubmit(myform)" #myform="ngForm">
-              <p>category</p>
+          <nb-card-body class="filter">
+            <form (ngSubmit)="formSubmit(filterForm)" #filterForm="ngForm">
+              <p>Category</p>
               <input type="radio" id="internship" name="category" value="internship" ngModel />
               <label for="internship">Internship</label><br />
               <input type="radio" id="job" name="category" value="job" ngModel />
               <label for="job">Job</label>
 
               <p>Salary</p>
-              <div class="custom-ngx-slider">
+              <div class="custom-ngx-slider salary">
                 <!-- <p>Min value: <input type="number" name="salary" [(ngModel)]="minSalary" /></p>
                 <p>Max value: <input type="number" name="salary" [(ngModel)]="maxSalary" /></p> -->
                 <ngx-slider
                   [(value)]="minSalary"
                   [(highValue)]="maxSalary"
-                  [options]="options"
+                  [options]="salary_options"
                   (valueChange)="onValueChange($event)"
                   (highValueChange)="onHighValueChange($event)"
                 ></ngx-slider>
               </div>
+              <!-- <p>Experience</p>
+              <div class="custom-ngx-slider experience">
+                <ngx-slider
+                  [(value)]="experience"
+                  [options]="exp_options"
+                  (valueChange)="onExpChange($event)"
+                ></ngx-slider>
+              </div> -->
 
               <p>Job Type</p>
               <input type="radio" id="full_time" name="job_type" value="full_time" ngModel />
-              <label for="full_time">full_time</label><br />
+              <label for="full_time">Full Time</label><br />
               <input type="radio" id="part_time" name="job_type" value="part_time" ngModel />
-              <label for="part_time">part_time</label>
+              <label for="part_time">Part Time</label>
 
-              <p>location_type</p>
+              <p>Location</p>
               <input type="radio" id="remote" name="location_type" value="remote" ngModel />
-              <label for="remote">remote</label><br />
+              <label for="remote">Remote</label><br />
               <input type="radio" id="local" name="location_type" value="local" ngModel />
-              <label for="local">local</label>
-
-              <button type="submit">Filter</button>
+              <label for="local">Local</label>
             </form>
-            <button type="submit" (click)="freset(myform)">Reset</button>
+            <div class="form-button">
+              <button type="submit" nbButton status="primary" (click)="filterReset(filterForm)">Reset</button>
+              <button type="submit" nbButton status="primary" (click)="formSubmit(filterForm)">Filter</button>
+            </div>
           </nb-card-body>
         </nb-card>
       </div>

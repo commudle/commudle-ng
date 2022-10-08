@@ -2,11 +2,26 @@
 
 ::ng-deep {
   .custom-ngx-slider .ngx-slider .ngx-slider-pointer {
-    width: 10px;
-    height: 15px;
+    @apply com-w-2 com-h-4 com-bg-Ultramarine-Blue;
+  }
+  .custom-ngx-slider .ngx-slider .ngx-slider-selection {
+    @apply com-bg-Ultramarine-Blue;
   }
 
   .custom-ngx-slider .ngx-slider .ngx-slider-pointer:after {
     display: none;
+  }
+}
+.filter-section {
+  .filter {
+    p {
+      @apply com-mb-0 com-font-semibold;
+    }
+    label {
+      @apply com-ml-1;
+    }
+    .form-button {
+      @apply com-flex com-justify-evenly com-mt-3;
+    }
   }
 }
