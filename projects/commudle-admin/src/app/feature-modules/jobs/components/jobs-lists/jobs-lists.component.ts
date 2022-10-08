@@ -69,7 +69,7 @@ export class JobsListsComponent implements OnInit {
     }
     this.subscriptions.push(
       this.jobsService
-        .getJobsByFilter(1, 10, form.value.category, form.value.location_type, form.value.job_type)
+        .getJobsByFilter(this.page, this.count, form.value.category, form.value.location_type, form.value.job_type)
         .subscribe((data) => {
           this.Jobs = data.jobs;
         }),
