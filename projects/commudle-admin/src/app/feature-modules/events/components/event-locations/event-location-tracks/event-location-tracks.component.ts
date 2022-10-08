@@ -1,4 +1,15 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  TemplateRef,
+  EventEmitter,
+  Output,
+  ElementRef,
+  NgZone,
+  AfterViewInit,
+} from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -13,7 +24,6 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -61,7 +71,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   hours;
   minutes;
   timeBlocks = [];
-  virtualScrollOffset = 0;
 
   eventLocationTrackForm = this.fb.group({
     event_location_track: this.fb.group({
@@ -88,23 +97,24 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     private eventLocationTracksService: EventLocationTracksService,
     private trackSlotsService: TrackSlotsService,
     private sanitizer: DomSanitizer,
-    private scrollDispatcher: ScrollDispatcher,
+    private _ngZone: NgZone,
   ) {}
 
   ngOnInit() {
-    this.hours = [...Array(24).keys()];
-    this.minutes = [...Array(60).keys()];
-    this.hours.forEach((h) => {
-      this.minutes.forEach((m) => {
-        if (m % 5 === 0) {
-          this.timeBlocks.push({
-            hour: h,
-            minute: m,
-            display: this.displayTime(h, m)
-          });
-        }
+    this._ngZone.runOutsideAngular(() => {
+      [...Array(24).keys()].forEach((h) => {
+        [...Array(60).keys()].forEach((m) => {
+          if (m === 0) {
+            this.timeBlocks.push({
+              hour: h,
+              minute: m,
+              display: this.displayTime(h, m),
+            });
+          }
+        });
       });
     });
+
     this.findLocation();
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
@@ -113,12 +123,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.scrollFromTop();
-
-    this.scrollDispatcher.scrolled().subscribe((scrollable) => {
-      if (scrollable && scrollable.measureScrollOffset) {
-        this.virtualScrollOffset = scrollable.measureScrollOffset('top');
-      }
-    });
   }
 
   displayTime(hour, minute) {
@@ -127,15 +131,11 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   slotSessionHeight(slot: ITrackSlot): number {
     let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
-    return 0.5 * diff + 2.5;
+    return 0.2 * diff;
   }
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return moment(slot.start_time).hours() * 0.5 * 60 + moment(slot.start_time).minute() * 0.5 + 2.5;
-  }
-
-  slotSessionOffsetFromLeft(trackIndex: number): number {
-    return (trackIndex * 20) + 5;
+    return moment(slot.start_time).hours() * 0.2 * 60 + moment(slot.start_time).minute() * 0.2 + 2.5;
   }
 
   scrollFromTop() {
@@ -145,31 +145,33 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       this.eventLocationTracks[0].track_slots.length > 0
     ) {
       this.tracksContainer.nativeElement.scrollTop =
-        moment(this.eventLocationTracks[0].track_slots[0].start_time).hours() * 0.5 * 950;
+        moment(this.eventLocationTracks[0].track_slots[0].start_time).hours() * 0.2 * 950;
     }
   }
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
-    this.trackSlotForm.reset();
+    this._ngZone.runOutsideAngular(() => {
+      this.trackSlotForm.reset();
 
-    let sTime = new Date();
-    let eTime = new Date();
-    sTime.setHours(hour);
-    sTime.setMinutes(minute);
+      let sTime = new Date();
+      let eTime = new Date();
+      sTime.setHours(hour);
+      sTime.setMinutes(minute);
 
-    eTime.setHours(hour);
-    eTime.setMinutes(minute + 5);
+      eTime.setHours(hour);
+      eTime.setMinutes(minute + 5);
 
-    this.trackSlotForm.get('track_slot').patchValue({
-      event_location_track_id: eventLocationTrack.id,
-      date: this.minSlotDate,
-      start_time: sTime,
-      end_time: eTime,
-    });
+      this.trackSlotForm.get('track_slot').patchValue({
+        event_location_track_id: eventLocationTrack.id,
+        date: this.minSlotDate,
+        start_time: sTime,
+        end_time: eTime,
+      });
 
-    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-      title: 'Add a session',
-      context: { operationType: 'create' },
+      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+        title: 'Add a session',
+        context: { operationType: 'create' },
+      });
     });
   }
 
@@ -453,5 +455,9 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       .get('embedded_video_stream')
       .get('zoom_password')
       .updateValueAndValidity();
+  }
+
+  trackByFn(index, item) {
+    return item.id; // or item.id
   }
 }

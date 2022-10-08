@@ -61,7 +61,6 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { UserEngagementDataComponent } from './components/event-form-responses/user-engagement-data/user-engagement-data.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -102,7 +101,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     SharedDirectivesModule,
     MiniUserProfileModule,
     SharedComponentsModule,
-    ScrollingModule,
 
     // External
     FontAwesomeModule,

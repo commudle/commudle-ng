@@ -23,12 +23,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   questionTypes: IQuestionType[];
 
   editDataForm: FormGroup;
-  startX: number;
-  startY: number;
-  currentX: number;
-  currentY: number;
-
-  cloned;
 
   @ViewChild('cdkDrag') cdkDrag: any;
 
@@ -39,7 +33,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     private seoService: SeoService,
-    private renderer: Renderer2,
   ) {}
 
   get questions() {
@@ -90,35 +83,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       event.previousIndex,
       event.currentIndex,
     );
-  }
-  dragStart(Event) {
-    const rect = Event.source.element.nativeElement.getBoundingClientRect();
-    console.log(rect);
-
-    // initialize start X coord
-    this.startX = rect.x;
-    // initialize start Y coord
-    this.startY = rect.y;
-  }
-
-  dragMoved(event, action, index) {
-    this.currentX = event.event.clientX;
-    this.currentY = event.event.clientY;
-    // logic to set startX and startY
-    // TRYING TO CHANGE CARD BORDER COLOR IF this.endX - this.startX > some number
-    if (this.startX > this.currentX) {
-      console.log(this.cdkDrag);
-      this.renderer.setStyle(this.cdkDrag.nativeElement, 'border-style', 'solid');
-      this.renderer.setStyle(this.cdkDrag.nativeElement, 'border-color', 'red');
-    }
-    // console.log(this.cdkDrag.nativeElement);
-    // this.cloned = document.getElementsByClassName('drag-button')[1];
-    // this.cloned.style.backgroundColor = 'red';
-    // console.log(this.cloned.style.backgroundColor);
-    // event.source.element.nativeElement.style.backgroundColor = 'red';
-    // console.log(event.source.element.nativeElement.style.backgroundColor);
-    // console.log(this.elementDragged);
-    // console.log(index);
   }
 
   initQuestion(): FormGroup {
