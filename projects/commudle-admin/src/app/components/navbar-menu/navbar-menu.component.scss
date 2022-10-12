@@ -29,7 +29,7 @@ nb-actions {
       }
 
       span {
-        @apply com-font-normal com-text-gray-500 com-text-xs;
+        @apply com-font-normal com-text-gray-500 com-text-xs md:com-text-sm;
       }
     }
   }
