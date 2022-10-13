@@ -16,7 +16,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   constructor(private cmsService: CmsService, private seoService: SeoService) {}
 
   ngOnInit(): void {
-    // this.setMeta();
+    this.setMeta();
     this.getData();
 
     this.seoService.noIndex(true);
@@ -26,35 +26,18 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
   }
 
-  // setMeta(): void {
-  //   this.seoService.setTitle('About');
-  //   this.meta.updateTag({
-  //     name: 'description',
-  //     content: `We aim to provide a platform where all the amazing content, ranging from slides, to sessions (even links to those) are all at one place. We want to know what those amazing side projects you have built, even if it's yet to be given those finishing touches.`,
-  //   });
-  //
-  //   this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-  //   this.meta.updateTag({
-  //     name: 'og:image:secure_url',
-  //     content: 'https://commudle.com/assets/images/commudle-logo192.png',
-  //   });
-  //   this.meta.updateTag({ name: 'og:title', content: `About` });
-  //   this.meta.updateTag({
-  //     name: 'og:description',
-  //     content: `We aim to provide a platform where all the amazing content, ranging from slides, to sessions (even links to those) are all at one place. We want to know what those amazing side projects you have built, even if it's yet to be given those finishing touches.`,
-  //   });
-  //   this.meta.updateTag({ name: 'og:type', content: 'website' });
-  //
-  //   this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-  //   this.meta.updateTag({ name: 'twitter:title', content: `About` });
-  //   this.meta.updateTag({
-  //     name: 'twitter:description',
-  //     content: `We aim to provide a platform where all the amazing content, ranging from slides, to sessions (even links to those) are all at one place. We want to know what those amazing side projects you have built, even if it's yet to be given those finishing touches.`,
-  //   });
-  // }
+  setMeta(): void {
+    this.seoService.setTags(
+      'About - Commudle',
+      'Commudle helps businesses to build and scale developer programs globally. We are a developer ecosystem where developers can engage, share knowledge, opportunities and grow in their career journeys.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
 
   getData(): void {
-    this.cmsService.getDataBySlug('about-page').subscribe((value) => (this.ICmsAbout = value));
+    this.cmsService.getDataBySlug('about-page').subscribe((value) => {
+      this.ICmsAbout = value;
+    });
   }
 
   getImageUrl(value: SanityImageObject): ImageUrlBuilder {

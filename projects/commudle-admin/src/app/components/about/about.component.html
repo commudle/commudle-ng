@@ -10,7 +10,7 @@
   </section>
 
   <section class="landing-image-section">
-    <div class="com-min-h-full">
+    <div>
       <img
         alt="Landing image"
         class="com-w-full"
@@ -52,7 +52,7 @@
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
         <h2 class="title">{{ feature.title }}</h2>
         <p class="description">{{ feature.description }}</p>
-        <a [href]="feature.button?.url" nbButton shape="semi-round">{{ feature.button?.text }}</a>
+        <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
       </div>
       <div class="com-w-full com-h-full">
         <img
@@ -65,7 +65,7 @@
     </div>
   </section>
 
-  <section class="about-page-section cta-section">
+  <!-- <section class="about-page-section cta-section">
     <div class="about-page-cta-section">
       <div class="center-section">
         <div>
@@ -98,7 +98,7 @@
         />
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="about-page-section teams-section">
     <div class="about-page-teams-section">
@@ -189,13 +189,8 @@
       <div *ngIf="ICmsAbout">
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
-        <a
-          *ngIf="ICmsAbout.featuresList.content.button !== undefined"
-          [href]="ICmsAbout?.featuresList?.content?.button?.url"
-          nbButton
-          shape="semi-round"
-        >
-          {{ ICmsAbout?.featuresList?.content?.button?.text }}
+        <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
+          {{ ICmsAbout?.featuresList?.content?.Button?.text }}
         </a>
       </div>
       <div class="features-list">
