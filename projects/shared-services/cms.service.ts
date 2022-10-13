@@ -32,14 +32,14 @@ export class CmsService {
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result[0]));
   }
 
-  getDataByType(type: string, order?: string) {
-    if (order) {
-      const params = new HttpParams().set('query', `*[_type == "${type}"]{${order}} | order(publishedAt desc) `);
-      return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
-    } else {
-      const params = new HttpParams().set('query', `*[_type == "${type}"]`);
-      return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
-    }
+  getDataByType(type: string) {
+    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+  }
+
+  getDataByTypeFieldOrder(type: string, field: string, order?: string) {
+    const params = new HttpParams().set('query', `*[_type == "${type}"]{${field}} | order(${order}) `);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
   getBlogsByOrder(order: string) {

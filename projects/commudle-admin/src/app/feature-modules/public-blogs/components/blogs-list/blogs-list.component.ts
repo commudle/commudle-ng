@@ -29,8 +29,9 @@ export class BlogsListComponent implements OnInit {
   }
 
   getBlogs() {
-    let order = '_id,slug,title,publishedAt,meta_description,headerImage';
-    this.cmsService.getDataByType('blog', order).subscribe((value: IBlog) => {
+    let field = '_id,slug,title,publishedAt,meta_description,headerImage';
+    let order = 'publishedAt desc';
+    this.cmsService.getDataByTypeFieldOrder('blog', field, order).subscribe((value: IBlog) => {
       this.blogs = value;
       this.isLoading = false;
     });
