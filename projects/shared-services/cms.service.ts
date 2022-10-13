@@ -37,13 +37,8 @@ export class CmsService {
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
-  getDataByTypeFieldOrder(type: string, field: string, order?: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"]{${field}} | order(${order}) `);
-    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
-  }
-
-  getBlogsByOrder(order: string) {
-    const params = new HttpParams().set('query', `*[_type == "blog"]{${order}} | order(publishedAt desc)`);
+  getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
+    const params = new HttpParams().set('query', `*[_type == "${type}"]{${fields}} | order(${order}) `);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
