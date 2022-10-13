@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -17,12 +17,10 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss'],
 })
-export class SearchBoxComponent implements OnInit, AfterViewInit {
+export class SearchBoxComponent implements OnInit {
   @Input() overrideSearchStatus = false;
   @Input() showSuggestions = true;
   @Input() shape: 'round' | 'rectangle' | 'semi-round';
-
-  @HostBinding('class') hostClass = '';
 
   inputFormControl: FormControl;
   total = -1;
@@ -48,10 +46,6 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.observeInput();
     this.observeSearchStatus();
-  }
-
-  ngAfterViewInit() {
-    this.searchInputRef.nativeElement.blur();
   }
 
   observeInput() {
@@ -96,17 +90,5 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/search'], {
       queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
     });
-  }
-
-  onFocus() {
-    if (this.showSuggestions) {
-      this.hostClass = 'full-width';
-    }
-  }
-
-  onBlur() {
-    if (this.showSuggestions) {
-      this.hostClass = '';
-    }
   }
 }
