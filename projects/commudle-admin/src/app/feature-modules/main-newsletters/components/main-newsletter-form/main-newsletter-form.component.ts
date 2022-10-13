@@ -38,14 +38,15 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     convert_urls: false,
     skin: 'outside',
     content_style: "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter';}",
-    fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt 36pt',
+    font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt 36pt',
     plugins: [
       'emoticons advlist lists autolink link charmap preview anchor',
       'visualblocks code charmap image codesample',
-      'insertdatetime table paste code help wordcount autoresize table',
+      'insertdatetime table paste code help wordcount table',
+      'autoresize',
     ],
     toolbar:
-      'formatselect | fontsizeselect | bold italic forecolor backcolor | image emoticons | \
+      'formatselect | fontsize | bold italic forecolor backcolor | image emoticons | \
       link | alignleft aligncenter alignright alignjustify | table | \
       bullist numlist outdent indent | codesample | code | removeformat',
     table_toolbar:
