@@ -18,10 +18,14 @@ a {
 }
 
 .about-page {
-  @apply com-w-full com-min-h-screen com-bg-white com-overflow-hidden;
+  @apply com-w-full com-min-h-screen com-bg-white com-overflow-hidden com-pb-36;
+
+  .landing-image-section {
+    @apply com-min-h-[206px] md:com-min-h-[1000px];
+  }
 
   .about-page-section {
-    @apply com-max-w-screen-xl com-container com-px-4 com-pt-14 md:com-pt-24;
+    @apply com-max-w-screen-xl com-container com-px-4 com-pt-14 md:com-pt-24 com-max-h-max;
 
     .about-page-heading-section {
       @apply com-w-full com-mx-auto com-text-left md:com-w-11/12 xl:com-w-9/12 md:com-text-center;
@@ -40,6 +44,7 @@ a {
     }
 
     &.stats-section {
+      @apply com-min-h-[528px] md:com-min-h-[230px];
       .about-page-stats-section {
         @apply com-grid com-gap-10 lg:com-grid-cols-3;
 
@@ -58,8 +63,9 @@ a {
     }
 
     &.features-section {
+      @apply com-min-h-[2091px] md:com-min-h-[1840px];
       .grid {
-        @apply com-grid com-items-center com-grid-cols-1 com-mb-24 com-gap-y-10 com-gap-x-10 md:com-grid-cols-2 md:com-gap-y-32 md:com-gap-x-24;
+        @apply com-grid com-items-center com-grid-cols-1 com-mb-4 com-gap-y-10 com-gap-x-10 md:com-grid-cols-2 md:com-gap-y-32 md:com-gap-x-24;
 
         .title {
           @apply com-mb-4 com-text-2xl com-font-extrabold com-tracking-tight com-text-center com-text-black md:com-leading-tight sm:com-text-left md:com-text-4xl;
@@ -72,6 +78,7 @@ a {
     }
 
     &.cta-section {
+      @apply md:com-min-h-[568px];
       .about-page-cta-section {
         @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 lg:com-grid-cols-4;
 
@@ -106,7 +113,7 @@ a {
     }
 
     &.teams-section {
-      @apply com-text-center;
+      @apply com-text-center com-min-h-[2031px] md:com-min-h-[1147px];
 
       .about-page-teams-section {
         @apply com-my-12;
@@ -145,7 +152,7 @@ a {
     }
 
     &.advisor-section {
-      @apply com-text-center;
+      @apply com-text-center com-min-h-[923px] md:com-min-h-[537px];
 
       .about-page-advisor-section {
         @apply com-my-12;
@@ -181,6 +188,7 @@ a {
     }
 
     &.features-list-section {
+      @apply com-min-h-[474px] md:com-min-h-[296px];
       .grid {
         @apply com-grid com-items-center com-grid-cols-1 com-gap-y-10 com-gap-x-10 lg:com-grid-cols-2 lg:com-gap-y-32 lg:com-gap-x-24;
 

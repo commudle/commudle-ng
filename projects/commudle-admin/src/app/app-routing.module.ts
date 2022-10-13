@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
-import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
@@ -24,13 +23,10 @@ const routes = [
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
-    path: 'about-wip',
+    path: 'about',
     component: AboutComponent,
   },
-  {
-    path: 'about',
-    component: AboutOldComponent,
-  },
+
   {
     path: 'notifications',
     loadChildren: () =>

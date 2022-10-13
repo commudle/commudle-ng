@@ -35,13 +35,13 @@
         </div>
         <p class="company">{{ userWorkHistory.company }}</p>
       </div>
-      <p class="date">
+      <div class="date">
         <nb-icon icon="calendar"></nb-icon>
         {{ userWorkHistory.start_date | date: 'MMM yyyy' }} -
         <span *ngIf="userWorkHistory.is_working; else endDate">Present</span>
         <ng-template #endDate>{{ userWorkHistory.end_date | date: 'MMM yyyy' }}</ng-template>
-      </p>
-      <p class="location">
+      </div>
+      <p class="location com-justify-start md:com-justify-end">
         <nb-icon icon="pin"></nb-icon>
         {{ userWorkHistory.location }}
       </p>
