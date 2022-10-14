@@ -11,7 +11,6 @@ import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum
 import { IEvent } from 'projects/shared-models/event.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
-import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
 
 @Component({
   selector: 'app-home-event',
@@ -43,7 +42,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   subscriptions = [];
 
   isOrganizer = false;
-  eventLocationAddress: string = '';
 
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
@@ -61,7 +59,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
-    private eventLocationsService: EventLocationsService,
   ) {}
 
   ngOnInit() {
@@ -84,7 +81,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.getCommunity(event.kommunity_id);
       this.getDiscussionChat();
       if (!this.event.custom_agenda) {
-        this.getEventLocations();
+        this.setSchema();
       }
     });
   }
@@ -102,15 +99,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  getEventLocations() {
-    this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
-      if (data.event_locations[0]) {
-        this.eventLocationAddress = data.event_locations[0].location.address;
-      }
-      this.setSchema();
-    });
-  }
-
   setSchema() {
     if (this.event.start_time) {
       this.seoService.setSchema({
@@ -122,19 +110,10 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         startDate: this.event.start_time,
         endDate: this.event.end_time,
         eventStatus: 'https://schema.org/EventScheduled',
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
         location: {
-          '@type': 'Place',
-          name: this.eventLocationAddress,
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: this.eventLocationAddress,
-            addressCountry: 'IN',
-          },
-        },
-        performer: {
-          '@type': 'Person',
-          name: '',
+          '@type': 'VirtualLocation',
+          url: '',
         },
       });
     }
