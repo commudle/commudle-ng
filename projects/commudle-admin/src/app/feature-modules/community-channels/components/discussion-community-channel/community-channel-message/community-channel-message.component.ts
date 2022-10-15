@@ -305,8 +305,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
         return `<a href="${environment.app_url}/users/${match
           .getMatchedText()
           .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
+
       default:
-        return match.getMatchedText();
+        return `<a href="${match.getMatchedText()}" target="_blank" > ${match.getMatchedText()}</a>`;
     }
   }
 }
