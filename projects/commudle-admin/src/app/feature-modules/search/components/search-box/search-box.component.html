@@ -2,8 +2,6 @@
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
   <input
     #searchInput
-    (blur)="onBlur()"
-    (focus)="onFocus()"
     (keyup.enter)="onSubmit()"
     [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
     [formControl]="inputFormControl"

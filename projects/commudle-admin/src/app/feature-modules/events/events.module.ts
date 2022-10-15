@@ -61,6 +61,7 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { UserEngagementDataComponent } from './components/event-form-responses/user-engagement-data/user-engagement-data.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { UserEngagementDataComponent } from './components/event-form-responses/u
     SharedDirectivesModule,
     MiniUserProfileModule,
     SharedComponentsModule,
+    SharedPipesModule,
 
     // External
     FontAwesomeModule,

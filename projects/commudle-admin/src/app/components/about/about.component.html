@@ -2,7 +2,7 @@
   <section class="about-page-section">
     <div class="about-page-heading-section">
       <h1 class="page-heading">
-        We're building a diverse
+        Grow with a diverse <br />
         <span> Developer Ecosystem </span>
       </h1>
       <p class="page-subheading">{{ ICmsAbout?.description }}</p>
@@ -10,7 +10,7 @@
   </section>
 
   <section class="landing-image-section">
-    <div class="com-min-h-full">
+    <div>
       <img
         alt="Landing image"
         class="com-w-full"
@@ -52,7 +52,7 @@
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
         <h2 class="title">{{ feature.title }}</h2>
         <p class="description">{{ feature.description }}</p>
-        <a [href]="feature.button?.url" nbButton shape="semi-round">{{ feature.button?.text }}</a>
+        <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
       </div>
       <div class="com-w-full com-h-full">
         <img
@@ -65,7 +65,7 @@
     </div>
   </section>
 
-  <section class="about-page-section cta-section">
+  <!-- <section class="about-page-section cta-section">
     <div class="about-page-cta-section">
       <div class="center-section">
         <div>
@@ -98,14 +98,14 @@
         />
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="about-page-section teams-section">
     <div class="about-page-teams-section">
       <div class="team-section-heading">
-        <h2 class="title">Meet our team</h2>
+        <h2 class="title">A Team With A Dream</h2>
         <p class="description">
-          Ornare sagittis, suspendisse in hendrerit quis. Sed dui aliquet lectus sit pretium egestas vel mattis neque.
+          We all people whose career journeys are outcomes of communities.
         </p>
       </div>
       <ul class="grid">
@@ -149,7 +149,10 @@
   <section class="about-page-section advisor-section">
     <div class="about-page-advisor-section">
       <div class="advisor-section-heading">
-        <h2 class="title">Our Advisors</h2>
+        <h2 class="title">Our Guiding Stars</h2>
+        <p class="description">
+          We're backed by experts who have built, shaped & scaled the developer ecosystems globally.
+        </p>
       </div>
       <ul class="grid">
         <li *ngFor="let member of ICmsAbout?.advisor">
@@ -189,13 +192,8 @@
       <div *ngIf="ICmsAbout">
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
-        <a
-          *ngIf="ICmsAbout.featuresList.content.button !== undefined"
-          [href]="ICmsAbout?.featuresList?.content?.button?.url"
-          nbButton
-          shape="semi-round"
-        >
-          {{ ICmsAbout?.featuresList?.content?.button?.text }}
+        <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
+          {{ ICmsAbout?.featuresList?.content?.Button?.text }}
         </a>
       </div>
       <div class="features-list">

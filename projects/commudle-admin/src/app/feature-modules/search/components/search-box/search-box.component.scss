@@ -1,10 +1,11 @@
 :host {
   &.full-width {
-    width: 100%;
+    @apply com-w-full;
   }
 }
 
 nb-form-field {
+  @apply com-w-11/12;
   &.hide {
     @apply com-hidden;
   }
@@ -18,9 +19,12 @@ nb-form-field {
       }
     }
   }
+
+  ::placeholder {
+    @apply com-text-xs;
+  }
 }
 
-
-.navigate{
+.navigate {
   @apply com-no-underline;
 }

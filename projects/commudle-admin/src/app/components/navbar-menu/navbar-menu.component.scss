@@ -1,8 +1,6 @@
 :host {
   @media screen and (max-width: theme('screens.md')) {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    width: 100vw;
+    @apply com-overflow-x-scroll com-overflow-y-hidden com-w-screen;
   }
 }
 
@@ -11,16 +9,16 @@ a {
 }
 
 nb-actions {
-  @apply com-h-full;
+  @apply com-h-full com-flex com-justify-evenly;
 
   nb-action {
-    @apply com-px-2 com-py-4 md:com-p-0 md:com-border-none;
+    @apply com-px-0 com-py-4 md:com-p-0 com-border-none;
 
     a {
       @apply com-flex com-flex-col com-items-center com-px-2 md:com-px-4 com-border-none md:com-w-24;
 
       fa-icon {
-        @apply com-text-lg md:com-text-xl com-text-gray-300;
+        @apply com-text-base md:com-text-xl com-text-gray-300;
       }
 
       &.active {
@@ -31,7 +29,7 @@ nb-actions {
       }
 
       span {
-        @apply com-font-normal com-text-gray-500;
+        @apply com-font-normal com-text-gray-500 com-text-xs md:com-text-sm;
       }
     }
   }
