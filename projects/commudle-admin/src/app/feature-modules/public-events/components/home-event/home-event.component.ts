@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
@@ -59,6 +59,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -113,7 +114,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
         location: {
           '@type': 'VirtualLocation',
-          url: '',
+          url: environment.app_url + this.router.url,
         },
       });
     }
