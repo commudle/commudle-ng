@@ -36,11 +36,9 @@ export class EditLabComponent implements OnInit, OnDestroy {
     skin: 'outside',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 20px !important;}",
-    plugins: [
-      'emoticons advlist lists autolink link charmap preview anchor',
-      'visualblocks code charmap image codesample',
-      'insertdatetime table paste code help wordcount autoresize media,',
-    ],
+    plugins:
+      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
+
     toolbar:
       'formatselect | bold italic backcolor | codesample emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
@@ -219,15 +217,21 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   // upload_inline_images
-  uploadTextImage(blobInfo, success, failure) {
-    const formData: any = new FormData();
-    formData.append('image', blobInfo.blob());
-    this.labsService.uploadTextImage(this.lab.id, formData).subscribe((data) => {
-      if (data) {
-        this.imagesList.push({ title: data, value: data });
-        success(data);
-      }
+  uploadTextImage(blobInfo, progress) {
+    const promise = new Promise<any>((resolve, reject) => {
+      const formData: any = new FormData();
+      formData.append('image', blobInfo.blob());
+      this.labsService.uploadTextImage(this.lab.id, formData).subscribe({
+        next: (res: any) => {
+          this.imagesList.push({ value: res });
+          resolve(res);
+        },
+        error: (err: any) => {
+          reject(err);
+        },
+      });
     });
+    return promise;
   }
 
   updateLab(publishStatus, forceSubmit: boolean = false) {
