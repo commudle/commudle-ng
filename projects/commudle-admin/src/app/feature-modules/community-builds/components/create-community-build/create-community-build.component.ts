@@ -58,7 +58,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     placeholder:
       'Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too.',
     plugins:
-      'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table paste code help wordcount autoresize',
+      'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table code help wordcount autoresize',
     toolbar:
       'formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | charmap | removeformat | help',
     default_link_target: '_blank',

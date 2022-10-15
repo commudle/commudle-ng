@@ -59,7 +59,7 @@ export class EditEventComponent implements OnInit {
     convert_urls: false,
     font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt',
     plugins:
-      'advlist autolink link image charmap print preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+      'advlist autolink link image charmap preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:
       'undo redo | h2 h3 h4 fontsize | bullist numlist | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \

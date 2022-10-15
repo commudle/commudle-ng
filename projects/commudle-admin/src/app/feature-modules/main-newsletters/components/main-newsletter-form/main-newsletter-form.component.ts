@@ -40,9 +40,9 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     content_style: "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter';}",
     font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt 36pt',
     plugins:
-      'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table paste code help wordcount table autoresize',
+      'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table code help wordcount table autoresize',
     toolbar:
-      'formatselect | fontsize | bold italic forecolor backcolor | image emoticons | \
+      'formatselect | fontsize | paste | bold italic forecolor backcolor | image emoticons | \
       link | alignleft aligncenter alignright alignjustify | table | \
       bullist numlist outdent indent | codesample | code | removeformat',
     table_toolbar:
@@ -108,14 +108,17 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     this.currentRoute = this.router.url;
 
     this.setMeta();
+    console.log(this.newsLetter);
   }
 
   ngAfterViewInit(): void {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((data) => {
+        console.log(data);
         if (data.main_newsletter_id) {
           this.mainNewsLettersService.show(data.main_newsletter_id).subscribe((data) => {
             this.newsLetter = data;
+            console.log(this.newsLetter);
             this.form.patchValue({
               title: this.newsLetter.title,
               email_subject: this.newsLetter.email_subject,

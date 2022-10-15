@@ -43,7 +43,7 @@ export class CommunityEditDetailsComponent implements OnInit {
     convert_urls: false,
     skin: 'outside',
     plugins:
-      'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+      'advlist autolink lists link image charmap  preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:
       'undo redo | formatselect | bold italic backcolor | \
     alignleft aligncenter alignright alignjustify | \
