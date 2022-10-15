@@ -108,17 +108,14 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     this.currentRoute = this.router.url;
 
     this.setMeta();
-    console.log(this.newsLetter);
   }
 
   ngAfterViewInit(): void {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((data) => {
-        console.log(data);
         if (data.main_newsletter_id) {
           this.mainNewsLettersService.show(data.main_newsletter_id).subscribe((data) => {
             this.newsLetter = data;
-            console.log(this.newsLetter);
             this.form.patchValue({
               title: this.newsLetter.title,
               email_subject: this.newsLetter.email_subject,
@@ -182,17 +179,15 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   // upload_inline_images
   uploadTextImage(blobInfo, progress) {
     const promise = new Promise<any>((resolve, reject) => {
-      console.log(this.newsLetter.id);
       const formData: any = new FormData();
       formData.append('image', blobInfo.blob());
       this.mainNewsLettersService.attachImage(this.newsLetter.id, formData).subscribe({
         next: (res: any) => {
-          console.log(res);
-          // this.imagesList.push()
+          this.imagesList.push({ value: res });
           resolve(res);
         },
         error: (err: any) => {
-          reject();
+          reject(err);
         },
       });
     });

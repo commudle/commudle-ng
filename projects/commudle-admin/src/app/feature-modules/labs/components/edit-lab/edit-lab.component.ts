@@ -217,15 +217,21 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   // upload_inline_images
-  uploadTextImage(blobInfo, success, failure) {
-    const formData: any = new FormData();
-    formData.append('image', blobInfo.blob());
-    this.labsService.uploadTextImage(this.lab.id, formData).subscribe((data) => {
-      if (data) {
-        this.imagesList.push({ title: data, value: data });
-        success(data);
-      }
+  uploadTextImage(blobInfo, progress) {
+    const promise = new Promise<any>((resolve, reject) => {
+      const formData: any = new FormData();
+      formData.append('image', blobInfo.blob());
+      this.labsService.uploadTextImage(this.lab.id, formData).subscribe({
+        next: (res: any) => {
+          this.imagesList.push({ value: res });
+          resolve(res);
+        },
+        error: (err: any) => {
+          reject(err);
+        },
+      });
     });
+    return promise;
   }
 
   updateLab(publishStatus, forceSubmit: boolean = false) {
