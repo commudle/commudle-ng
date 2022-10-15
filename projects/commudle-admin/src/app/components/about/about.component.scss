@@ -39,12 +39,13 @@ a {
       }
 
       .page-subheading {
-        @apply com-px-0 com-mb-6 com-text-lg com-text-gray-600 md:com-text-xl lg:com-px-24;
+        @apply com-px-0 com-text-lg com-text-gray-600 md:com-text-xl lg:com-px-24;
       }
     }
 
     &.stats-section {
       @apply com-min-h-[528px] md:com-min-h-[230px];
+      @apply com-pt-0 #{!important};
       .about-page-stats-section {
         @apply com-grid com-gap-10 lg:com-grid-cols-3;
 
@@ -64,6 +65,7 @@ a {
 
     &.features-section {
       @apply com-min-h-[2091px] md:com-min-h-[1840px];
+      @apply com-pt-8 #{!important};
       .grid {
         @apply com-grid com-items-center com-grid-cols-1 com-mb-4 com-gap-y-10 com-gap-x-10 md:com-grid-cols-2 md:com-gap-y-32 md:com-gap-x-24;
 
