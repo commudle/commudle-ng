@@ -2,120 +2,95 @@
   <nb-card>
     <nb-card-body>
       <h3>Create an Event For {{ community.name }}</h3>
-      <p>
-        Let's begin by adding some details
-      </p>
+      <p>Let's begin by adding some details</p>
     </nb-card-body>
   </nb-card>
   <nb-card>
     <nb-card-body>
       <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="createEvent()">
         <div formGroupName="event">
-          <div role="group" >
+          <div role="group">
             <div>
               <label fullWidth>
                 Name*
-                <input type="text" nbInput fullWidth formControlName="name">
+                <input type="text" nbInput fullWidth formControlName="name" />
               </label>
-              <span *ngIf="eventForm['controls'].event['controls'].name.touched && eventForm['controls'].event['controls'].name.invalid && eventForm['controls'].event['controls'].name.errors.required" class="validation-error-text">
+              <span
+                *ngIf="
+                  eventForm['controls'].event['controls'].name.touched &&
+                  eventForm['controls'].event['controls'].name.invalid &&
+                  eventForm['controls'].event['controls'].name.errors.required
+                "
+                class="validation-error-text"
+              >
                 Required Field
               </span>
             </div>
-
           </div>
 
-
-
-            <div class="event-date-details">
-              <label>Timings (Leave empty if you are yet to decide)</label>
+          <div class="event-date-details">
+            <label>Timings (Leave empty if you are yet to decide)</label>
+            <div>
               <div>
-                <div>
-                  <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date">
-                  <nb-datepicker #datepicker [min]="minDate" ></nb-datepicker>
-                </div>
+                <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date" />
+                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
               </div>
-              <br>
+            </div>
+            <br />
 
-              <label [ngClass]="{'required': hasDate}">
-                  Starts At
-              </label>
+            <label [ngClass]="{ required: hasDate }"> Starts At </label>
+            <div>
               <div>
-                <div>
-                  <input nbInput type="time" formControlName="start_time_pick">
-                </div>
+                <input nbInput type="time" formControlName="start_time_pick" />
               </div>
-
-
-             
             </div>
-
-
-            <div class="event-date-details">
-              <label [ngClass]="{'required': hasDate}">
-                Ends At
-              </label>
-
-                <div>
-                  <div>
-                    <input nbInput type="time" formControlName="end_time_pick">
-                  </div>
-                </div>
-            </div>
-
-            <div role="group" class="event-date-details">
-              <label>
-
-                <nb-select placeholder="TimeZone*" formControlName="timezone" status="primary" size="large" hero>
-                  <nb-option *ngFor="let tz of allTimeZones" [value]="tz">
-                    {{ tz }}
-                  </nb-option>
-                </nb-select>
-              </label>
-            </div>
-
-
-
-
-          <div role='individual'>
-              <label>
-                Description*
-              </label>
-              <span *ngIf="eventForm['controls'].event['controls'].description.touched && eventForm['controls'].event['controls'].description.invalid && eventForm['controls'].event['controls'].description.errors.required" class="validation-error-text">
-                Required Field
-              </span>
-                <editor
-                  formControlName="description"
-                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                 [init]="{
-                  height: 300,
-                  menubar: false,
-                  convert_urls: false,
-                  plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                  ],
-                  toolbar:
-                    'undo redo | formatselect | bold italic backcolor | \
-                    alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | help'
-                }">
-
-                </editor>
-
           </div>
 
+          <div class="event-date-details">
+            <label [ngClass]="{ required: hasDate }"> Ends At </label>
+
+            <div>
+              <div>
+                <input nbInput type="time" formControlName="end_time_pick" />
+              </div>
+            </div>
+          </div>
+
+          <div role="group" class="event-date-details">
+            <label>
+              <nb-select placeholder="TimeZone*" formControlName="timezone" status="primary" size="large" hero>
+                <nb-option *ngFor="let tz of allTimeZones" [value]="tz">
+                  {{ tz }}
+                </nb-option>
+              </nb-select>
+            </label>
+          </div>
+
+          <div role="individual">
+            <label> Description* </label>
+            <span
+              *ngIf="
+                eventForm['controls'].event['controls'].description.touched &&
+                eventForm['controls'].event['controls'].description.invalid &&
+                eventForm['controls'].event['controls'].description.errors.required
+              "
+              class="validation-error-text"
+            >
+              Required Field
+            </span>
+            <editor
+              formControlName="description"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+              [init]="tinyMCE"
+            >
+            </editor>
+          </div>
         </div>
 
         <div class="save-button-bottom">
-          <button [disabled]="!eventForm.valid" type="submit" nbButton fullWidth status="info">
-            Save
-          </button>
+          <button [disabled]="!eventForm.valid" type="submit" nbButton fullWidth status="info">Save</button>
         </div>
-
       </form>
-
     </nb-card-body>
   </nb-card>
-
 </div>

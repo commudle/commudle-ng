@@ -48,6 +48,18 @@ export class CreateEventComponent implements OnInit {
     }),
   });
 
+  tinyMCE = {
+    height: 300,
+    menubar: false,
+    convert_urls: false,
+    plugins:
+      'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help',
+  };
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,

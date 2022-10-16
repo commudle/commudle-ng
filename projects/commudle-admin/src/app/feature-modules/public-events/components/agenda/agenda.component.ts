@@ -1,16 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import * as _ from "lodash";
-import * as moment from "moment";
-import { EventLocationsService } from "projects/commudle-admin/src/app/services/event-locations.service";
-import { ICommunity } from "projects/shared-models/community.model";
-import { IEventLocation } from "projects/shared-models/event-location.model";
-import { IEvent } from "projects/shared-models/event.model";
-import { ITrackSlot } from "projects/shared-models/track-slot.model";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEventLocation } from 'projects/shared-models/event-location.model';
+import { IEvent } from 'projects/shared-models/event.model';
+import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
-  selector: "app-agenda",
-  templateUrl: "./agenda.component.html",
-  styleUrls: ["./agenda.component.scss"],
+  selector: 'app-agenda',
+  templateUrl: './agenda.component.html',
+  styleUrls: ['./agenda.component.scss'],
 })
 export class AgendaComponent implements OnInit {
   moment = moment;
@@ -21,7 +22,7 @@ export class AgendaComponent implements OnInit {
 
   eventLocations: IEventLocation[] = [];
 
-  constructor(private eventLocationsService: EventLocationsService) {}
+  constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService) {}
 
   ngOnInit() {
     if (this.event.custom_agenda) {
@@ -35,19 +36,49 @@ export class AgendaComponent implements OnInit {
       if (this.eventLocations.length > 0) {
         this.hasAgenda.emit(true);
       }
+      this.setSchema();
     });
+  }
+
+  setSchema() {
+    if (this.event.start_time) {
+      this.seoService.setSchema({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: this.event.name,
+        description: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+        image: this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
+        startDate: this.event.start_time,
+        endDate: this.event.end_time,
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: {
+          '@type': 'Place',
+          name: this.eventLocations[0].location.address,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: this.eventLocations[0].location.address,
+            addressCountry: 'IN',
+          },
+        },
+        performer: {
+          '@type': 'Person',
+          name: '',
+        },
+      });
+    }
   }
 
   getLocationName(eventLocation: IEventLocation) {
     return eventLocation.embedded_video_stream
-      ? "Video Stream"
+      ? 'Video Stream'
       : eventLocation.location
       ? eventLocation.location.name
-      : "";
+      : '';
   }
 
   getTabIcon(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream ? "video" : "pin";
+    return eventLocation.embedded_video_stream ? 'video' : 'pin';
   }
 
   updateSessionPreference(data, locationIndex) {
