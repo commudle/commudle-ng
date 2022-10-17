@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
@@ -59,7 +59,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
-    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -81,9 +80,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.event = event;
       this.getCommunity(event.kommunity_id);
       this.getDiscussionChat();
-      if (!this.event.custom_agenda) {
-        this.setSchema();
-      }
     });
   }
 
@@ -91,6 +87,9 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
       this.isOrganizerCheck(this.community.slug);
+      if (!this.event.custom_agenda) {
+        this.setSchema();
+      }
 
       this.seoService.setTags(
         `${this.event.name} | ${this.community.name}`,
@@ -114,7 +113,17 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
         location: {
           '@type': 'VirtualLocation',
-          url: environment.app_url + this.router.url,
+          url: environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug,
+        },
+        organizer: {
+          '@type': 'Organization',
+          name: this.community.name,
+          url: environment.app_url + '/communities/' + this.community.slug,
+        },
+        offers: {
+          '@type': 'Offer',
+          name: this.event.name,
+          url: environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug,
         },
       });
     }
