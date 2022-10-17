@@ -1,73 +1,51 @@
 .community-group-dashboard {
-  >nb-card {
-    >nb-card-header {
-      display: flex;
-      align-items: center;
+  > nb-card {
+    > nb-card-header {
+      @apply com-flex com-items-center;
       .logo {
-        width: 100px;
+        @apply com-w-28;
         img {
-          width: 100%;
+          @apply com-w-full;
         }
       }
 
       h1 {
-        margin: 0 0.5rem;
-        font-weight: 300;
+        @apply com-my-0 com-mx-2 com-font-light;
         small {
-          font-size: 1rem;
+          @apply com-text-base;
         }
       }
     }
 
-    @media screen and (max-width: 800px) {
-      nb-card-body {
-        padding: 1rem 0;
-      }
+    nb-card-body {
+      @apply md:com-py-4 md:com-px-0;
     }
-
 
     nb-tabset {
       ::ng-deep {
         ul.tabset {
-          overflow-x: auto !important;
-          padding: 5px !important;
+          @apply com-overflow-x-auto com-p-5px #{!important};
         }
       }
     }
 
     .chapters {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      flex-direction: column;
-      margin-top: 1rem;
+      @apply com-flex com-justify-start com-flex-wrap com-flex-col com-mt-4;
+      @apply md:com-flex-row;
+
       .community-chapter {
-        padding: 0.5rem;
-        height: 150px;
-        width: 100%;
-        border: 1px solid grey;
-        border-radius: 5px;
-        margin: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        h3, p {
-          margin: 0;
+        @apply com-p-2 com-h-36  com-w-full com-border com-border-solid com-border-gray-500 com-rounded-md com-m-2 com-flex com-flex-col com-justify-between;
+        @apply md:com-w-[30%];
+
+        h3,
+        p {
+          @apply com-m-0;
         }
 
         .links {
           a {
-            display: block;
-            text-decoration: none;
+            @apply com-block com-no-underline;
           }
-        }
-
-      }
-
-      @media screen and (min-width: 800px) {
-        flex-direction: row;
-        .community-chapter {
-          width: 30%;
         }
       }
     }
@@ -75,32 +53,16 @@
     .team-invitation-form {
       form {
         p {
-          margin-top: 0;
+          @apply com-mt-0;
         }
-        width: fit-content;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        padding: 0.5rem;
+        @apply com-w-fit com-border com-border-solid com-border-gray-300 com-rounded-md com-p-2;
       }
     }
 
     .team {
       .member {
-        padding: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        flex-wrap: wrap;
-        border: 1px solid lightgrey;
-        margin: 0.5rem 0;
-        width: 800px;
-        max-width: 100%;
-        align-items: center;
-
-        @media screen and (min-width: 800px) {
-          flex-direction: row;
-
-        }
+        @apply com-p-2 com-flex com-justify-between com-flex-col com-flex-wrap com-border com-border-solid com-border-gray-200 com-my-2 com-mx-0 com-w-800px com-items-center;
+        @apply md:com-flex-row;
       }
     }
   }
