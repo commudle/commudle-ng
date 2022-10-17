@@ -33,7 +33,12 @@ export class CmsService {
   }
 
   getDataByType(type: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"] | order(publishedAt desc)`);
+    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+  }
+
+  getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
+    const params = new HttpParams().set('query', `*[_type == "${type}"]{${fields}} | order(${order}) `);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 

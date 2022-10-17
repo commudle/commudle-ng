@@ -9,11 +9,9 @@
         <p>Time</p>
       </div>
       <div class="time-container">
-        <div *ngFor="let hour of hours">
-          <div *ngFor="let minute of minutes">
-            <div *ngIf="minute % 5 == 0" class="time-cell">
-              <p class="time-display">{{ displayTime(hour, minute) }}</p>
-            </div>
+        <div *ngFor="let timeBlock of timeBlocks">
+          <div class="time-cell">
+            <p class="time-display">{{ timeBlock.display }}</p>
           </div>
         </div>
       </div>
@@ -22,15 +20,15 @@
       <div class="track-name">
         <p>{{ lt.name }}</p>
         <div *ngIf="lt.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
-          <nb-icon [nbPopover]="embeddedVideo" icon="tv-outline" nbPopoverTrigger="hover"></nb-icon>
+          <!-- <nb-icon [nbPopover]="embeddedVideo" icon="tv-outline" nbPopoverTrigger="hover"></nb-icon>
           <ng-template #embeddedVideo>
             <div class="embedded-video">
-              <!-- <app-video-stream
+              <app-video-stream
               [videoCode]="lt.embedded_video_stream.embed_code"
               [videoSource]="lt.embedded_video_stream.source"
-              [fillerText]="'Auto Preview'" ></app-video-stream> -->
+              [fillerText]="'Auto Preview'" ></app-video-stream>
             </div>
-          </ng-template>
+          </ng-template> -->
         </div>
         <div *ngIf="event.editable">
           <button (click)="showEditTrackForm(lt)" nbButton size="tiny" status="info">
@@ -42,19 +40,13 @@
         </div>
       </div>
       <div class="time-container">
-        <div *ngFor="let hour of hours">
-          <div *ngFor="let minute of minutes">
-            <div
-              (click)="event.editable && showAddSlotForm(lt, hour, minute)"
-              *ngIf="minute % 5 == 0"
-              class="time-cell fill"
-            >
-              <p class="filler-text">
-                <small *ngIf="event.editable">
-                  <nb-icon icon="plus-square-outline"></nb-icon>
-                </small>
-              </p>
-            </div>
+        <div *ngFor="let timeBlock of timeBlocks">
+          <div (click)="event.editable && showAddSlotForm(lt, timeBlock.hour, timeBlock.minute)" class="time-cell fill">
+            <p class="filler-text">
+              <small *ngIf="event.editable">
+                <nb-icon icon="plus-square-outline"></nb-icon>
+              </small>
+            </p>
           </div>
         </div>
       </div>
@@ -65,35 +57,15 @@
             class="track-slot"
           >
             <!-- TODO: check why having a div tag inside p tag causes error, the below was initially a p tag -->
-            <div *ngIf="event.editable" class="actions">
-              <nb-icon (click)="showEditSlotForm(slot)" class="clickable" icon="edit-outline"></nb-icon>
-              <nb-icon
-                *ngIf="slot.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY"
-                [nbPopover]="embeddedVideo"
-                icon="tv-outline"
-                nbPopoverTrigger="hover"
-              ></nb-icon>
-              <ng-template #embeddedVideo>
-                <div class="embedded-video">
-                  <app-video-stream
-                    [videoCode]="slot.embedded_video_stream.embed_code"
-                    [videoSource]="slot.embedded_video_stream.source"
-                    fillerText="Auto Preview"
-                  ></app-video-stream>
-                </div>
-              </ng-template>
-              <nb-icon (click)="confirmDeleteSlot(slot)" class="clickable" icon="close-square-outline"></nb-icon>
-            </div>
-            <p>
+            <p class="slot-time">
               <nb-icon icon="clock-outline"></nb-icon>
-              <br />
               {{ moment(slot.start_time).format('HH:mm A') }} - {{ moment(slot.end_time).format('HH:mm A') }}
             </p>
-            <p>
+            <p class="slot-title">
               <nb-icon icon="info"></nb-icon>
-              &nbsp; {{ slot.session_title }}
+              {{ slot.session_title }}
             </p>
-            <p *ngIf="slot.user">
+            <p class="slot-speaker" *ngIf="slot.user">
               <nb-icon icon="person-outline"></nb-icon>
               {{ slot.user.name }}
             </p>
@@ -116,7 +88,7 @@
                 target="_blank"
               >
                 <nb-icon icon="clipboard-outline"></nb-icon>
-                <span *ngIf="slot.speaker_resource">Edit Session Details/Slides</span>
+                <span>Edit Session Details/Slides</span>
               </a>
             </div>
             <p>
@@ -131,6 +103,26 @@
                 </a>
               </small>
             </p>
+
+            <div *ngIf="event.editable" class="actions">
+              <nb-icon (click)="showEditSlotForm(slot)" class="clickable" icon="edit-outline"></nb-icon>
+              <!-- <nb-icon
+                *ngIf="slot.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY"
+                [nbPopover]="embeddedVideo"
+                icon="tv-outline"
+                nbPopoverTrigger="hover"
+              ></nb-icon>
+              <ng-template #embeddedVideo>
+                <div class="embedded-video">
+                  <app-video-stream
+                    [videoCode]="slot.embedded_video_stream.embed_code"
+                    [videoSource]="slot.embedded_video_stream.source"
+                    fillerText="Auto Preview"
+                  ></app-video-stream>
+                </div>
+              </ng-template> -->
+              <nb-icon (click)="confirmDeleteSlot(slot)" class="clickable" icon="close-square-outline"></nb-icon>
+            </div>
           </div>
         </div>
       </div>
@@ -255,7 +247,9 @@
         </div>
         <div>
           <nb-select formControlName="speaker_registration_id" placeholder="Select Speaker (optional)">
-            <nb-option *ngFor="let speaker of eventSpeakers" [value]="speaker.id"> {{ speaker.user.name }} </nb-option>
+            <nb-option *ngFor="let speaker of eventSpeakers | orderBy: ['user.name']:['asc']" [value]="speaker.id">
+              {{ speaker.user.name }}
+            </nb-option>
           </nb-select>
         </div>
         <div>

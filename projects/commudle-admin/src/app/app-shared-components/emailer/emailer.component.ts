@@ -15,10 +15,9 @@ import { IEventSimpleRegistration } from 'projects/shared-models/event_simple_re
 @Component({
   selector: 'app-emailer',
   templateUrl: './emailer.component.html',
-  styleUrls: ['./emailer.component.scss']
+  styleUrls: ['./emailer.component.scss'],
 })
 export class EmailerComponent implements OnInit {
-
   EemailTypes = EemailTypes;
 
   // external properties received via windowRef
@@ -29,7 +28,6 @@ export class EmailerComponent implements OnInit {
   recipientEmail: string;
 
   prefillCompleted = false;
-
 
   selectedEvent: IEvent;
   selectedEventDataFormEntityGroup: IEventDataFormEntityGroup;
@@ -50,134 +48,145 @@ export class EmailerComponent implements OnInit {
     resend: [false],
     recipient_email: [''],
     subject: ['', Validators.required],
-    body: ['']
+    body: [''],
   });
 
+  tinyMCE = {
+    height: 200,
+    menubar: false,
+    convert_urls: false,
+    plugins:
+      'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | help',
+  };
 
   registrationSelectionType = {
     one_click_registration: [
       {
         value: EemailTypes.SEND_LINK,
         display: 'Send Form Link To All Members (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.ALL,
-        display: 'All Who Registered'
+        display: 'All Who Registered',
       },
       {
         value: EemailTypes.ENTRY_PASS,
         display: 'Entry Pass (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.REGISTERED,
-        display: 'Status: Registered'
+        display: 'Status: Registered',
       },
       {
         value: EemailTypes.WAITING,
-        display: 'Status: Waiting'
+        display: 'Status: Waiting',
       },
       {
         value: EemailTypes.SHORTLISTED,
-        display: 'Status: Shortlisted'
+        display: 'Status: Shortlisted',
       },
       {
         value: EemailTypes.CONFIRMED,
-        display: 'Status: Confirmed'
+        display: 'Status: Confirmed',
       },
       {
         value: EemailTypes.CANCELED,
-        display: 'Status: Canceled'
+        display: 'Status: Canceled',
       },
       {
         value: EemailTypes.ATTENDED,
-        display: 'All Who Attended'
+        display: 'All Who Attended',
       },
       {
         value: EemailTypes.NO_SHOW,
-        display: 'Invited But No Show'
-      }
+        display: 'Invited But No Show',
+      },
     ],
     attendee: [
       {
         value: EemailTypes.SEND_LINK,
         display: 'Send Form Link To All Members (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.ALL,
-        display: 'All Who Filled the Form'
+        display: 'All Who Filled the Form',
       },
       {
         value: EemailTypes.REGISTERED,
-        display: 'Status: Registered'
+        display: 'Status: Registered',
       },
       {
         value: EemailTypes.WAITING,
-        display: 'Status: Waiting'
+        display: 'Status: Waiting',
       },
       {
         value: EemailTypes.RSVP,
         display: 'RSVP (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.ENTRY_PASS,
         display: 'Entry Pass (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.CANCELED,
-        display: 'Status: Canceled'
+        display: 'Status: Canceled',
       },
       {
         value: EemailTypes.ATTENDED,
-        display: 'All Who Attended'
+        display: 'All Who Attended',
       },
       {
         value: EemailTypes.UNINVITED,
-        display: 'Uninvited Attendees'
+        display: 'Uninvited Attendees',
       },
       {
         value: EemailTypes.NO_SHOW,
-        display: 'Invited But No Show'
-      }
+        display: 'Invited But No Show',
+      },
     ],
     speaker: [
       {
         value: EemailTypes.SEND_LINK,
         display: 'Send Form Link To All Members (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.RSVP,
         display: 'RSVP (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.ENTRY_PASS,
         display: 'Entry Pass (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.CANCELED,
-        display: 'Status: Canceled'
+        display: 'Status: Canceled',
       },
       {
         value: EemailTypes.ATTENDED,
-        display: 'All Who Attended'
-      }
+        display: 'All Who Attended',
+      },
     ],
     feedback: [
       {
         value: EemailTypes.SEND_LINK,
         display: 'Send Link To Attendees (Pre-formatted email)',
-        preformatted_email: true
+        preformatted_email: true,
       },
       {
         value: EemailTypes.ALL,
-        display: 'All Who Filled the Form'
+        display: 'All Who Filled the Form',
       },
       // {
       //   value: EemailTypes.NOT_FILLED,
@@ -188,9 +197,9 @@ export class EmailerComponent implements OnInit {
       {
         value: EemailTypes.SEND_LINK,
         display: 'Send Link To Those Who Filled Any Form For Selected Event ((Pre-formatted email)',
-        preformatted_email: true
-      }
-    ]
+        preformatted_email: true,
+      },
+    ],
   };
 
   constructor(
@@ -200,12 +209,11 @@ export class EmailerComponent implements OnInit {
     private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
     private emailsService: EmailsService,
     private toastLogService: LibToastLogService,
-    protected windowRef: NbWindowRef
-  ) { }
+    protected windowRef: NbWindowRef,
+  ) {}
 
   ngOnInit() {
-
-    this.eventsService.communityEventsForEmail(this.community.id).subscribe(data => {
+    this.eventsService.communityEventsForEmail(this.community.id).subscribe((data) => {
       this.events = data.events;
 
       if (this.event) {
@@ -218,7 +226,6 @@ export class EmailerComponent implements OnInit {
         this.prefillForm('recipient_email');
       }
     });
-
   }
 
   getEventDataFormEntityGroups(eventId) {
@@ -226,8 +233,7 @@ export class EmailerComponent implements OnInit {
     this.selectedFormRegistrationType = [];
     this.eMailForm.controls.registration_selection_type.reset();
 
-
-    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(eventId).subscribe(data => {
+    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(eventId).subscribe((data) => {
       this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
       this.prefillForm('event_data_form_entity_group_id');
     });
@@ -238,18 +244,17 @@ export class EmailerComponent implements OnInit {
     this.selectedFormRegistrationType = [];
     this.eMailForm.controls.registration_selection_type.reset();
 
-    this.eventSimpleRegistrationsService.pGet(eventId).subscribe(data => {
+    this.eventSimpleRegistrationsService.pGet(eventId).subscribe((data) => {
       this.eventSimpleRegistration = data;
       this.prefillForm('event_simple_registration');
       this.selectedFormRegistrationType = this.registrationSelectionType.one_click_registration;
       if (this.mailType && !this.prefillCompleted) {
         this.eMailForm.patchValue({
-          registration_selection_type: this.mailType
+          registration_selection_type: this.mailType,
         });
         this.toggleEmailBodyValidation(this.mailType);
         this.prefillCompleted = true;
       }
-
     });
   }
 
@@ -258,7 +263,6 @@ export class EmailerComponent implements OnInit {
   }
 
   toggleEventSpecificEmail($event) {
-
     // if not, then reset the form below the event select
     switch ($event) {
       case EemailTypes.GENERAL_ALL:
@@ -281,37 +285,33 @@ export class EmailerComponent implements OnInit {
         this.isEventSpecificEmail = false;
         break;
     }
-
   }
-
 
   toggleEventDataFormEntityGroupType($event) {
     this.selectedFormRegistrationType = [];
-    this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find(k => k.id === $event);
+    this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find((k) => k.id === $event);
     this.eventDataFormEntityGroupId = this.selectedEventDataFormEntityGroup.id;
-    this.selectedFormRegistrationType = this.registrationSelectionType[this.selectedEventDataFormEntityGroup.registration_type.name];
+    this.selectedFormRegistrationType =
+      this.registrationSelectionType[this.selectedEventDataFormEntityGroup.registration_type.name];
 
     if (this.mailType && !this.prefillCompleted) {
       this.eMailForm.patchValue({
-        registration_selection_type: this.mailType
+        registration_selection_type: this.mailType,
       });
       this.toggleEmailBodyValidation(this.mailType);
       this.prefillCompleted = true;
     }
   }
 
-
   toggleEmailBodyValidation($event) {
     this.selectedEmailType = $event;
-    if (!([EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes($event))) {
+    if (![EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes($event)) {
       this.eMailForm.controls['body'].setValidators([Validators.required]);
     } else {
       this.eMailForm.controls['body'].clearValidators();
-
     }
     this.setEmailSubject($event);
   }
-
 
   setEmailSubject(emailType) {
     let subjectLine = '';
@@ -334,14 +334,11 @@ export class EmailerComponent implements OnInit {
         break;
     }
     this.eMailForm.patchValue({
-      subject: subjectLine
+      subject: subjectLine,
     });
   }
 
-
-
   prefillForm(fieldToFill) {
-
     if (!this.prefillCompleted) {
       switch (fieldToFill) {
         case EemailTypes.GENERAL_ALL:
@@ -357,7 +354,7 @@ export class EmailerComponent implements OnInit {
 
             this.eMailForm.patchValue({
               members: 'event',
-              event_id: this.event.id
+              event_id: this.event.id,
             });
 
             if (this.event.custom_registration) {
@@ -371,10 +368,12 @@ export class EmailerComponent implements OnInit {
 
         case 'event_data_form_entity_group_id':
           if (this.eventDataFormEntityGroupId && !this.prefillCompleted) {
-            this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find(k => k.id === this.eventDataFormEntityGroupId);
+            this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find(
+              (k) => k.id === this.eventDataFormEntityGroupId,
+            );
             this.eventSimpleRegistration = null;
             this.eMailForm.patchValue({
-              event_data_form_entity_group_id: this.eventDataFormEntityGroupId
+              event_data_form_entity_group_id: this.eventDataFormEntityGroupId,
             });
             this.toggleEventDataFormEntityGroupType(this.selectedEventDataFormEntityGroup.id);
           }
@@ -384,15 +383,14 @@ export class EmailerComponent implements OnInit {
           if (this.eventSimpleRegistration && !this.prefillCompleted) {
             this.selectedEventDataFormEntityGroup = null;
             this.eMailForm.patchValue({
-              event_simple_registration_id: this.eventSimpleRegistration.id
+              event_simple_registration_id: this.eventSimpleRegistration.id,
             });
-
           }
           break;
         case 'recipient_email':
           if (this.recipientEmail) {
             this.eMailForm.patchValue({
-              recipient_email: this.recipientEmail
+              recipient_email: this.recipientEmail,
             });
           }
           break;
@@ -403,13 +401,9 @@ export class EmailerComponent implements OnInit {
   }
 
   submitForm() {
-    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe(data => {
+    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe((data) => {
       this.close();
       this.toastLogService.successDialog('Emails are being delivered!');
     });
   }
-
-
-
-
 }

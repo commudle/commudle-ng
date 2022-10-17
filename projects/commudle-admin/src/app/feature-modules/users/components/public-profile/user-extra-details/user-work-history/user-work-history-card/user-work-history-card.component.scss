@@ -17,11 +17,11 @@ p {
         @apply md:com-col-span-3;
 
         .job-title {
-          @apply com-text-xl com-font-semibold com-w-48 md:com-w-max;
+          @apply com-text-xl com-font-semibold com-w-44 md:com-w-max;
         }
 
         .button {
-          @apply md:com-flex;
+          @apply md:com-flex com-justify-end;
         }
 
         .company {
@@ -31,10 +31,10 @@ p {
 
       .date,
       .location {
-        @apply com-text-sm com-text-gray-700 md:com-text-right;
+        @apply com-text-sm com-text-gray-700 com-flex;
 
         nb-icon {
-          @apply com-text-[#42aaff];
+          @apply com-text-Blue-Jeans com-mr-1;
         }
       }
     }
