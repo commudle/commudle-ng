@@ -16,16 +16,16 @@
       Add Job
     </button>
     <ng-container *ngIf="jobs.length > 0">
-      <div class="com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-2">
+      <div class="com-grid com-grid-cols-1 com-gap-2">
         <app-user-job-card
-          (reloadJob)="getJobs(true)"
+          (deleteJob)="onDeleteJob($event)"
           (updateJob)="onOpenEditJobDialog(jobDialog, job)"
           *ngFor="let job of jobs"
           [job]="job"
           [user]="user"
         ></app-user-job-card>
       </div>
-      <button (click)="getJobs()" *ngIf="jobs.length !== total" [nbSpinner]="isLoading" fullWidth ghost nbButton>
+      <button (click)="getJobs()" *ngIf="page_info?.has_next_page" [nbSpinner]="isLoading" fullWidth ghost nbButton>
         Get more jobs
       </button>
     </ng-container>

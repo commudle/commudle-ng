@@ -27,68 +27,33 @@
     <!--    </nb-toggle>-->
     <nb-actions class="actions" fullWidth>
       <nb-action *ngIf="user.id === currentUser?.id">
-        <button
-          (click)="updateJob.emit()"
-          ghost
-          nbButton
-          nbTooltip="Edit"
-          nbTooltipStatus="warning"
-          shape="round"
-          size="small"
-        >
+        <button (click)="updateJob.emit()" ghost nbButton shape="round" size="small" status="warning">
           <nb-icon icon="edit" status="warning"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Edit</ng-container>
         </button>
       </nb-action>
       <nb-action>
-        <button
-          (click)="copyTextToClipboard()"
-          ghost
-          nbButton
-          nbTooltip="Share"
-          nbTooltipStatus="primary"
-          shape="round"
-          size="small"
-        >
+        <button (click)="copyTextToClipboard()" ghost nbButton shape="round" size="small" status="primary">
           <nb-icon icon="share" status="primary"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Share</ng-container>
         </button>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
-        <a
-          [routerLink]="['/jobs', job.id, 'applications']"
-          ghost
-          nbButton
-          nbTooltip="Applications"
-          nbTooltipStatus="success"
-          shape="round"
-          size="small"
-        >
+        <a [routerLink]="['/jobs', job.id, 'applications']" ghost nbButton shape="round" size="small" status="success">
           <nb-icon icon="people" status="success"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Applications</ng-container>
         </a>
       </nb-action>
       <nb-action>
-        <a
-          [routerLink]="['/jobs', job.id]"
-          ghost
-          nbButton
-          nbTooltip="View"
-          nbTooltipStatus="info"
-          shape="round"
-          size="small"
-        >
+        <a [routerLink]="['/jobs', job.id]" ghost nbButton shape="round" size="small" status="info">
           <nb-icon icon="eye" status="info"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">View</ng-container>
         </a>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
-        <button
-          (click)="onDialogOpen(deleteJobDialog)"
-          ghost
-          nbButton
-          nbTooltip="Delete"
-          nbTooltipStatus="danger"
-          shape="round"
-          size="small"
-        >
+        <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton shape="round" size="small" status="danger">
           <nb-icon icon="trash" status="danger"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Delete</ng-container>
         </button>
       </nb-action>
     </nb-actions>
@@ -117,7 +82,7 @@
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
       <button (click)="ref.close()" ghost nbButton status="danger">No</button>
-      <button (click)="deleteJob(); ref.close()" nbButton status="success">Yes</button>
+      <button (click)="onDeleteJob(); ref.close()" nbButton status="success">Yes</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

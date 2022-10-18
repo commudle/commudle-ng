@@ -1,9 +1,8 @@
+import { Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
+import { JobsService } from 'projects/commudle-admin/src/app/feature-modules/jobs/services/jobs.service';
 import { IJob } from 'projects/shared-models/job.model';
 import { Subscription } from 'rxjs';
-import { JobsService } from 'projects/commudle-admin/src/app/feature-modules/jobs/services/jobs.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { LabelType, Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-jobs-lists',
@@ -38,9 +37,11 @@ export class JobsListsComponent implements OnInit {
   ngOnInit(): void {
     this.getJobsList();
   }
+
   onValueChange(value) {
     this.minSalary = value;
   }
+
   onExpChange(value) {
     console.log(value);
   }
@@ -50,11 +51,11 @@ export class JobsListsComponent implements OnInit {
   }
 
   getJobsList() {
-    this.subscriptions.push(
-      this.jobsService.getJobs(this.page, this.count).subscribe((data) => {
-        this.Jobs = data.jobs;
-      }),
-    );
+    // this.subscriptions.push(
+    //   this.jobsService.getJobs(this.page, this.count).subscribe((data) => {
+    //     this.Jobs = data.jobs;
+    //   }),
+    // );
   }
 
   formSubmit(form) {
@@ -67,13 +68,13 @@ export class JobsListsComponent implements OnInit {
     if (form.value.job_type == null) {
       form.value.job_type = '';
     }
-    this.subscriptions.push(
-      this.jobsService
-        .getJobsByFilter(this.page, this.count, form.value.category, form.value.location_type, form.value.job_type)
-        .subscribe((data) => {
-          this.Jobs = data.jobs;
-        }),
-    );
+    // this.subscriptions.push(
+    //   this.jobsService
+    //     .getJobsByFilter(this.page, this.count, form.value.category, form.value.location_type, form.value.job_type)
+    //     .subscribe((data) => {
+    //       this.Jobs = data.jobs;
+    //     }),
+    // );
     // form.reset();
   }
 

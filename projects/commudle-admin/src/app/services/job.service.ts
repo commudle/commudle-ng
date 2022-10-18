@@ -1,6 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IJob } from 'projects/shared-models/job.model';
+import {
+  EJobCategory,
+  EJobLocationType,
+  EJobSalaryCurrency,
+  EJobSalaryType,
+  EJobStatus,
+  EJobType,
+  IJob,
+} from 'projects/shared-models/job.model';
 import { IJobs } from 'projects/shared-models/jobs.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
@@ -12,11 +20,27 @@ import { Observable } from 'rxjs';
 export class JobService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getJobs(page: number, count: number, user_id: number): Observable<IJobs> {
+  getJobs(
+    after?: string,
+    limit: number = 10,
+    user_id?: number,
+    category?: EJobCategory,
+    salary_type?: EJobSalaryType,
+    salary_currency?: EJobSalaryCurrency,
+    location_type?: EJobLocationType,
+    job_type?: EJobType,
+    status?: EJobStatus,
+  ): Observable<IJobs> {
     const params = new HttpParams()
-      .set('page', String(page))
-      .set('count', String(count))
-      .set('user_id', String(user_id));
+      .set('after', after || '')
+      .set('limit', String(limit))
+      .set('user_id', String(user_id))
+      .set('category', category || '')
+      .set('salary_type', salary_type || '')
+      .set('salary_currency', salary_currency || '')
+      .set('location_type', location_type || '')
+      .set('job_type', job_type || '')
+      .set('status', status || '');
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
   }
 

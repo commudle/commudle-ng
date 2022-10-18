@@ -13,6 +13,7 @@ import {
   EJobType,
   IJob,
 } from 'projects/shared-models/job.model';
+import { IPageInfo } from 'projects/shared-models/page-info.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -28,9 +29,8 @@ export class UserJobComponent implements OnChanges, OnDestroy {
   currentUser: ICurrentUser;
 
   jobs: IJob[] = [];
-  page = 1;
-  count = 3;
-  total = -1;
+  limit = 3;
+  page_info: IPageInfo;
   isLoading = false;
 
   jobCategories = Object.values(EJobCategory);
@@ -59,24 +59,13 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     },
     {
       validators: [
-        // if location_type is local, then location is required
-        (fb) => {
-          if (fb.get('location_type').value === EJobLocationType.LOCAL) {
-            if (!fb.get('location').value) {
-              return { location: true };
-            }
-          }
-
-          return null;
-        },
+        // if location_type is office, then location is required
+        (fb) =>
+          fb.get('location_type').value === EJobLocationType.OFFICE && !fb.get('location').value
+            ? { location: true }
+            : null,
         // max_salary must be greater than or equal to min_salary
-        (fb) => {
-          if (fb.get('max_salary').value < fb.get('min_salary').value) {
-            return { max_salary: true };
-          }
-
-          return null;
-        },
+        (fb) => (fb.get('max_salary').value < fb.get('min_salary').value ? { max_salary: true } : null),
       ],
     },
   );
@@ -99,7 +88,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
     if (changes.user) {
-      this.getJobs(true);
+      this.getJobs();
     }
   }
 
@@ -107,16 +96,12 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getJobs(clearJobs: boolean = false) {
-    if (clearJobs) this.page = 1;
+  getJobs() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.jobService.getJobs(this.page, this.count, this.user.id).subscribe((data) => {
-        if (clearJobs) this.jobs = [];
-        this.jobs = this.jobs.concat(data.jobs);
-        this.count = data.count;
-        this.total = data.total;
-        this.page++;
+      this.jobService.getJobs(this.page_info?.end_cursor, this.limit, this.user.id).subscribe((data) => {
+        this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page_info = data.page_info;
         this.isLoading = false;
         this.userProfileMenuService.addMenuItem('jobs', this.jobs.length > 0 || this.user?.id === this.currentUser?.id);
       }),
@@ -134,22 +119,26 @@ export class UserJobComponent implements OnChanges, OnDestroy {
 
   createJob() {
     this.subscriptions.push(
-      this.jobService.createJob(this.jobForm.value).subscribe(() => {
+      this.jobService.createJob(this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job created successfully', 'Success');
         this.onCloseDialog();
-        this.getJobs(true);
+        this.jobs.unshift(data);
       }),
     );
   }
 
   updateJob() {
     this.subscriptions.push(
-      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe(() => {
+      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job updated successfully', 'Success');
         this.onCloseDialog();
-        this.getJobs(true);
+        this.jobs = this.jobs.map((job) => (job.id === data.id ? data : job));
       }),
     );
+  }
+
+  onDeleteJob(job_id: number) {
+    this.jobs = this.jobs.filter((job) => job.id !== job_id);
   }
 
   onOpenDialog(templateRef: TemplateRef<any>) {
