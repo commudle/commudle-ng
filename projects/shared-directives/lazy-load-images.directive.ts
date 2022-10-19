@@ -61,7 +61,6 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
   }
 
   isImageInViewport(): boolean {
-    console.log(this.src, 'isImageInViewport');
     const rect = this.el.nativeElement.getBoundingClientRect();
     return (
       rect.top >= 0 &&
@@ -87,7 +86,6 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
     }, config);
 
     observer.observe(this.el.nativeElement);
-    console.log(this.src, 'lazyLoadImage');
   }
 
   loadImage(): void {
