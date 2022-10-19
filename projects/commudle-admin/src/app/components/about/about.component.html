@@ -52,7 +52,9 @@
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
         <h2 class="title">{{ feature.title }}</h2>
         <p class="description">{{ feature.description }}</p>
-        <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
+        <div class="com-flex com-justify-center md:com-justify-start">
+          <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
+        </div>
       </div>
       <div class="com-w-full com-h-full">
         <img
@@ -104,9 +106,7 @@
     <div class="about-page-teams-section">
       <div class="team-section-heading">
         <h2 class="title">A Team With A Dream</h2>
-        <p class="description">
-          We all people whose career journeys are outcomes of communities.
-        </p>
+        <p class="description">We are people whose career journeys are outcomes of communities.</p>
       </div>
       <ul class="grid">
         <li *ngFor="let member of ICmsAbout?.team">
@@ -192,9 +192,11 @@
       <div *ngIf="ICmsAbout">
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
-        <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
-          {{ ICmsAbout?.featuresList?.content?.Button?.text }}
-        </a>
+        <div class="com-flex com-justify-center md:com-justify-start">
+          <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
+            {{ ICmsAbout?.featuresList?.content?.Button?.text }}
+          </a>
+        </div>
       </div>
       <div class="features-list">
         <div *ngFor="let item of ICmsAbout?.featuresList?.list" class="com-flex com-items-start">
