@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
@@ -7,6 +7,7 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
   selector: 'app-homepage-events',
   templateUrl: './homepage-events.component.html',
   styleUrls: ['./homepage-events.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageEventsComponent implements OnInit {
   events: IEvent[];
@@ -14,7 +15,11 @@ export class HomepageEventsComponent implements OnInit {
   eventsStartIdx = 0;
   isLoading = true;
 
-  constructor(private homeService: HomeService, private isBrowserService: IsBrowserService) {}
+  constructor(
+    private homeService: HomeService,
+    private isBrowserService: IsBrowserService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     if (this.isBrowserService.isBrowser()) {
@@ -26,6 +31,7 @@ export class HomepageEventsComponent implements OnInit {
     this.homeService.pUpcomingEvents().subscribe((data) => {
       this.events = data.events;
       this.getRandomPastEvents(Math.max(0, this.maxEventsCount - this.events.length));
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -33,6 +39,7 @@ export class HomepageEventsComponent implements OnInit {
     this.homeService.pPastRandomEvents(count).subscribe((data) => {
       this.events.push(...data.events);
       this.isLoading = false;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -40,5 +47,6 @@ export class HomepageEventsComponent implements OnInit {
     this.isLoading = true;
     this.eventsStartIdx = (this.eventsStartIdx + value) % this.maxEventsCount;
     this.isLoading = false;
+    this.changeDetectorRef.markForCheck();
   }
 }
