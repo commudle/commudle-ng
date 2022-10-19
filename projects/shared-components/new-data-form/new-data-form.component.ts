@@ -1,24 +1,19 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { Title } from '@angular/platform-browser';
 import { QuestionTypesService } from 'projects/shared-components/services/question-types.service';
-import { NbWindowRef } from '@nebular/theme';
-
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 enum EFormPurposes {
   DATA_FORM = 'data_form',
-  POLL = 'poll'
+  POLL = 'poll',
 }
 
 @Component({
   selector: 'app-new-data-form',
   templateUrl: './new-data-form.component.html',
-  styleUrls: ['./new-data-form.component.scss']
+  styleUrls: ['./new-data-form.component.scss'],
 })
 export class NewDataFormComponent implements OnInit {
   EFormPurposes = EFormPurposes;
@@ -32,7 +27,6 @@ export class NewDataFormComponent implements OnInit {
 
   @Output() newDataForm = new EventEmitter();
 
-
   showNameField = true;
   showQuestionRequiredField = true;
   showQuestionDisabledField = true;
@@ -43,7 +37,6 @@ export class NewDataFormComponent implements OnInit {
   // define the form
   createDataForm: FormGroup;
 
-
   initQuestion(): FormGroup {
     return this.fb.group({
       question_type_id: ['', Validators.required],
@@ -52,10 +45,16 @@ export class NewDataFormComponent implements OnInit {
       required: [this.defaultQuestionRequiredValue()],
       disabled: [false],
       has_responses: [false],
-      question_choices: this.fb.array([
-
-      ])
+      question_choices: this.fb.array([]),
     });
+  }
+  //drag and drop function by CDK
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.createDataForm['controls'].data_form['controls'].questions['controls'],
+      event.previousIndex,
+      event.currentIndex,
+    );
   }
 
   defaultQuestionRequiredValue() {
@@ -92,12 +91,12 @@ export class NewDataFormComponent implements OnInit {
     return this.fb.group({
       id: [''],
       title: ['', Validators.required],
-      has_responses: [false]
+      has_responses: [false],
     });
   }
 
-  addQuestionButtonClick() {
-    (this.createDataForm.get('data_form').get('questions') as FormArray).push(this.initQuestion());
+  addQuestionButtonClick(index: number) {
+    (this.createDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
     this.updateQuestionsCount();
   }
 
@@ -105,10 +104,12 @@ export class NewDataFormComponent implements OnInit {
     this.totalQuestions = (this.createDataForm.get('data_form').get('questions') as FormArray).length;
   }
 
-
   addQuestionChoiceButtonClick(questionIndex: number) {
-    ((this.createDataForm.get('data_form').get('questions') as FormArray)
-    .controls[questionIndex].get('question_choices') as FormArray).push(this.initQuestionChoice());
+    (
+      (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
+        'question_choices',
+      ) as FormArray
+    ).push(this.initQuestionChoice());
   }
 
   removeQuestionButtonClick(questionIndex: number) {
@@ -117,17 +118,26 @@ export class NewDataFormComponent implements OnInit {
   }
 
   removeQuestionChoiceButtonClick(questionIndex: number, choiceIndex: number) {
-    ((this.createDataForm.get('data_form').get('questions') as FormArray)
-    .controls[questionIndex].get('question_choices') as FormArray).removeAt(choiceIndex);
+    (
+      (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
+        'question_choices',
+      ) as FormArray
+    ).removeAt(choiceIndex);
   }
 
   questionTypeChange(questionType, questionIndex: number) {
     if (![4, 5].includes(questionType)) {
-      const choiceCount = ((this.createDataForm.get('data_form').get('questions') as FormArray)
-      .controls[questionIndex].get('question_choices') as FormArray).length;
+      const choiceCount = (
+        (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
+          'question_choices',
+        ) as FormArray
+      ).length;
       for (let i = 0; i < choiceCount; i++) {
-        ((this.createDataForm.get('data_form').get('questions') as FormArray)
-      .controls[questionIndex].get('question_choices') as FormArray).removeAt(0);
+        (
+          (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
+            'question_choices',
+          ) as FormArray
+        ).removeAt(0);
       }
     }
   }
@@ -138,28 +148,21 @@ export class NewDataFormComponent implements OnInit {
 
   get question_choices() {
     return this.fb.group({
-      title: ['', Validators.required]
+      title: ['', Validators.required],
     });
   }
 
   submitButtonText() {
-    return (this.createDataForm.valid ? "Save" : "Form Is Incomplete");
+    return this.createDataForm.valid ? 'Save' : 'Form Is Incomplete';
   }
 
-
-  constructor(
-    private fb: FormBuilder,
-    private questionTypesService: QuestionTypesService
-  ) { }
+  constructor(private fb: FormBuilder, private questionTypesService: QuestionTypesService) {}
 
   ngOnInit() {
-
     // get the question types
-    this.questionTypesService.getQuestionTypes().subscribe(
-      data => {
-        this.questionTypes = data.question_types;
-      }
-    );
+    this.questionTypesService.getQuestionTypes().subscribe((data) => {
+      this.questionTypes = data.question_types;
+    });
 
     // initiate the form
     this.createDataForm = this.fb.group({
@@ -167,10 +170,8 @@ export class NewDataFormComponent implements OnInit {
         id: [''],
         name: ['', Validators.required],
         description: [''],
-        questions: this.fb.array([
-
-        ])
-      })
+        questions: this.fb.array([]),
+      }),
     });
 
     // if (this.showName === false) {
@@ -183,14 +184,12 @@ export class NewDataFormComponent implements OnInit {
 
     if (this.minQuestionCount && this.minQuestionCount > 0) {
       for (let i = 0; i < this.minQuestionCount; i++) {
-        this.addQuestionButtonClick();
+        this.addQuestionButtonClick(i);
       }
     }
-
   }
 
   saveDataForm() {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
-
 }

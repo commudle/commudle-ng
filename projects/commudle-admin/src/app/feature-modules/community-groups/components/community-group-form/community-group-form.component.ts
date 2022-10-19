@@ -1,4 +1,3 @@
-
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -9,10 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-community-group-form',
   templateUrl: './community-group-form.component.html',
-  styleUrls: ['./community-group-form.component.scss']
+  styleUrls: ['./community-group-form.component.scss'],
 })
 export class CommunityGroupFormComponent implements OnInit {
-
   communityGroup: ICommunityGroup;
   uploadedLogoImage;
   uploadedLogoImageFile: File;
@@ -26,19 +24,31 @@ export class CommunityGroupFormComponent implements OnInit {
     facebook: [''],
     twitter: [''],
     github: [''],
-    linkedin: ['']
+    linkedin: [''],
   });
+
+  tinyMCE = {
+    height: 300,
+    menubar: false,
+    convert_urls: false,
+    plugins:
+      'advlist autolink lists link image charmap  preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help',
+  };
 
   constructor(
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private communityGroupsService: CommunityGroupsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(data => {
+    this.activatedRoute.params.subscribe((data) => {
       if (data.community_group_id) {
         this.getCommunityGroup(data.community_group_id);
       }
@@ -46,7 +56,7 @@ export class CommunityGroupFormComponent implements OnInit {
   }
 
   getCommunityGroup(communityGroupId) {
-    this.communityGroupsService.show(communityGroupId).subscribe(data => {
+    this.communityGroupsService.show(communityGroupId).subscribe((data) => {
       this.communityGroup = data;
       this.communityGroupForm.patchValue({
         name: this.communityGroup.name,
@@ -56,13 +66,12 @@ export class CommunityGroupFormComponent implements OnInit {
         facebook: this.communityGroup.facebook,
         twitter: this.communityGroup.twitter,
         github: this.communityGroup.github,
-        linkedin: this.communityGroup.linkedin
+        linkedin: this.communityGroup.linkedin,
       });
     });
   }
 
   displaySelectedLogo(event: any) {
-
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file.size > 2425190) {
@@ -76,7 +85,6 @@ export class CommunityGroupFormComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
-
   }
 
   removeLogo() {
@@ -86,40 +94,34 @@ export class CommunityGroupFormComponent implements OnInit {
     this.communityGroupForm.get('logo').patchValue('');
   }
 
-
   createOrUpdateCommunityGroup() {
     const formData: any = new FormData();
 
     const communityGroupFormData = this.communityGroupForm.value;
-    Object.keys(communityGroupFormData).forEach(
-      key => (!(communityGroupFormData[key] == null) ? formData.append(`community_group[${key}]`, communityGroupFormData[key]) : '')
-      );
+    Object.keys(communityGroupFormData).forEach((key) =>
+      !(communityGroupFormData[key] == null)
+        ? formData.append(`community_group[${key}]`, communityGroupFormData[key])
+        : '',
+    );
 
     if (this.uploadedLogoImageFile) {
       formData.append('community_group[logo]', this.uploadedLogoImageFile);
     }
     if (!this.communityGroup) {
-
-      this.communityGroupsService.create(formData).subscribe(
-        data => {
-          this.communityGroup = data;
-          this.redirect();
-        }
-      );
+      this.communityGroupsService.create(formData).subscribe((data) => {
+        this.communityGroup = data;
+        this.redirect();
+      });
     } else {
-      this.communityGroupsService.update(this.communityGroup.slug, formData).subscribe(
-        data => {
-          this.communityGroup = data;
-          this.redirect();
-        }
-      );
+      this.communityGroupsService.update(this.communityGroup.slug, formData).subscribe((data) => {
+        this.communityGroup = data;
+        this.redirect();
+      });
     }
-
   }
 
   redirect() {
     this.toastLogService.successDialog('Saved!');
     this.router.navigate(['/admin/orgs', this.communityGroup.slug]);
   }
-
 }

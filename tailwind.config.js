@@ -19,6 +19,7 @@ module.exports = {
         'Spanish-Gray': '#979797',
         'Ultramarine-Blue': '#3366FF',
         Azure: '#0095ff',
+        Blueberry: '#4e74ff',
       },
       lineClamp: {
         14: '14',

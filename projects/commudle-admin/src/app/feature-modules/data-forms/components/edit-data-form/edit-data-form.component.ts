@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-edit-data-form',
@@ -22,6 +23,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   questionTypes: IQuestionType[];
 
   editDataForm: FormGroup;
+
+  @ViewChild('cdkDrag') cdkDrag: any;
 
   constructor(
     private dataFormsService: DataFormsService,
@@ -73,6 +76,14 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.seoService.noIndex(false);
   }
+  // drag and drop function by CDK
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.editDataForm['controls'].data_form['controls'].questions['controls'],
+      event.previousIndex,
+      event.currentIndex,
+    );
+  }
 
   initQuestion(): FormGroup {
     return this.fb.group({
@@ -94,8 +105,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  addQuestionButtonClick() {
-    (this.editDataForm.get('data_form').get('questions') as FormArray).push(this.initQuestion());
+  addQuestionButtonClick(index: number) {
+    (this.editDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
   }
 
   addQuestionChoiceButtonClick(questionIndex: number) {
