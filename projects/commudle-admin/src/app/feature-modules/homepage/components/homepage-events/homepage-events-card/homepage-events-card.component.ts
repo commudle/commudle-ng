@@ -20,14 +20,12 @@ export class HomepageEventsCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCommunity();
-    console.log(this.event.header_image.i350, 'sss');
   }
 
   getCommunity(): void {
     this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((value) => {
       this.community = value;
       this.changeDetectorRef.markForCheck();
-      // console.log(this.community.logo_path,'getCommunity');
     });
   }
 }
