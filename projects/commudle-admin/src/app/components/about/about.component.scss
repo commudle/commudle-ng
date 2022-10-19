@@ -165,6 +165,9 @@ a {
           .title {
             @apply com-text-3xl com-font-extrabold com-tracking-tight sm:com-text-4xl;
           }
+          .description {
+            @apply com-text-xl com-text-gray-500;
+          }
         }
 
         .grid {
