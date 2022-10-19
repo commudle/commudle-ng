@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   HostBinding,
@@ -20,13 +21,19 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
 
   private isBrowser: boolean = this.IsBrowserService.isBrowser();
 
-  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private IsBrowserService: IsBrowserService,
+    private renderer: Renderer2,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.isBrowser) {
       this.addClass('lazy-load');
       this.srcAttr = null;
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
+      this.changeDetectorRef.markForCheck();
     } else {
       this.loadImage();
     }
@@ -36,6 +43,7 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
     if (changes.src) {
       if (!changes.src.firstChange && changes.src.previousValue !== changes.src.currentValue) {
         this.srcAttr = changes.src.currentValue;
+        this.changeDetectorRef.markForCheck();
       }
     }
   }
@@ -53,6 +61,7 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
   }
 
   isImageInViewport(): boolean {
+    console.log(this.src, 'isImageInViewport');
     const rect = this.el.nativeElement.getBoundingClientRect();
     return (
       rect.top >= 0 &&
@@ -78,10 +87,12 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
     }, config);
 
     observer.observe(this.el.nativeElement);
+    console.log(this.src, 'lazyLoadImage');
   }
 
   loadImage(): void {
     this.srcAttr = this.src;
     this.renderer.listen(this.el.nativeElement, 'load', () => this.removeClass('lazy-load'));
+    this.changeDetectorRef.markForCheck();
   }
 }

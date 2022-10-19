@@ -39,6 +39,7 @@ export class HomepageEventsComponent implements OnInit {
     this.homeService.pPastRandomEvents(count).subscribe((data) => {
       this.events.push(...data.events);
       this.isLoading = false;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -46,5 +47,6 @@ export class HomepageEventsComponent implements OnInit {
     this.isLoading = true;
     this.eventsStartIdx = (this.eventsStartIdx + value) % this.maxEventsCount;
     this.isLoading = false;
+    this.changeDetectorRef.markForCheck();
   }
 }

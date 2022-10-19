@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -25,12 +25,14 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
     private userChatsService: UserChatsService,
     private appUsersService: AppUsersService,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.appUsersService.getProfile(this.username).subscribe((response) => {
         this.user = response;
+        this.changeDetectorRef.markForCheck();
       }),
     );
 

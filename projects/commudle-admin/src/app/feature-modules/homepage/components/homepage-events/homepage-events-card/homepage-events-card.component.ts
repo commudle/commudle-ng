@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -16,15 +16,18 @@ export class HomepageEventsCardComponent implements OnInit {
   community: ICommunity;
   registrations = 0;
 
-  constructor(private communitiesService: CommunitiesService) {}
+  constructor(private communitiesService: CommunitiesService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getCommunity();
+    console.log(this.event.header_image.i350, 'sss');
   }
 
   getCommunity(): void {
-    this.communitiesService
-      .pGetCommunityDetails(this.event.kommunity_id)
-      .subscribe((value) => (this.community = value));
+    this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((value) => {
+      this.community = value;
+      this.changeDetectorRef.markForCheck();
+      // console.log(this.community.logo_path,'getCommunity');
+    });
   }
 }
