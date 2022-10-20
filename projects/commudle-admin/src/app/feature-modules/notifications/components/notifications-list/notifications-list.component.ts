@@ -74,6 +74,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   receiveData() {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
+        console.log(data, 'receiveData');
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {

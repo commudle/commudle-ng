@@ -23,6 +23,8 @@ export class NotificationChannel {
   constructor(private actionCableConnection: ActionCableConnectionSocket) {
     this.actionCableConnection.acSocket$.subscribe((connection) => {
       this.cableConnection = connection;
+      console.log(connection, 'works');
+
       this.subscribe();
     });
   }
@@ -32,8 +34,10 @@ export class NotificationChannel {
       {
         channel: APPLICATION_CABLE_CHANNELS.NOTIFICATION_CHANNEL,
       },
+      console.log('dds'),
       {
         received: (data) => {
+          console.log(data, 'received');
           this.notificationData.next(data);
         },
       },

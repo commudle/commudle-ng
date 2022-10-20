@@ -41,10 +41,10 @@ const routes = [
         path: 'speakers',
         component: SpeakersComponent,
       },
-      // {
-      //   path: 'notifications',
-      //   component: PublicCommunityNotificationsComponent,
-      // },
+      {
+        path: 'communityNotifications',
+        component: PublicCommunityNotificationsComponent,
+      },
     ],
   },
 ];
