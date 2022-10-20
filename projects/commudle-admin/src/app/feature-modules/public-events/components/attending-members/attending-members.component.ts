@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
@@ -9,7 +9,8 @@ import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/s
 @Component({
   selector: 'app-attending-members',
   templateUrl: './attending-members.component.html',
-  styleUrls: ['./attending-members.component.scss']
+  styleUrls: ['./attending-members.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttendingMembersComponent implements OnInit {
   EEventStatuses = EEventStatuses;
@@ -22,8 +23,8 @@ export class AttendingMembersComponent implements OnInit {
 
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
-    private userEventRegistrationsService: UserEventRegistrationsService
-  ) { }
+    private userEventRegistrationsService: UserEventRegistrationsService,
+  ) {}
 
   ngOnInit() {
     if (this.event.custom_registration) {
@@ -33,31 +34,25 @@ export class AttendingMembersComponent implements OnInit {
     }
   }
 
-
   getInterestedMembers() {
-    this.dataFormEntityResponseGroupsService.pEventInterestedUsers(this.event.id).subscribe(
-      data => {
-        this.users = data.users;
-        this.totalCount = data.total_count;
+    this.dataFormEntityResponseGroupsService.pEventInterestedUsers(this.event.id).subscribe((data) => {
+      this.users = data.users;
+      this.totalCount = data.total_count;
 
-        if (this.users.length > 0) {
-          this.hasInterestedMembers.emit(true);
-        }
+      if (this.users.length > 0) {
+        this.hasInterestedMembers.emit(true);
       }
-    );
+    });
   }
 
   getUserEventRegistrations() {
-    this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe(
-      data => {
-        this.users = data.users;
-        this.totalCount = data.total;
+    this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe((data) => {
+      this.users = data.users;
+      this.totalCount = data.total;
 
-        if (this.users.length > 0) {
-          this.hasInterestedMembers.emit(true);
-        }
+      if (this.users.length > 0) {
+        this.hasInterestedMembers.emit(true);
       }
-    );
+    });
   }
-
 }

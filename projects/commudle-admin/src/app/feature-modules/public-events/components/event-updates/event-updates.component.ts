@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { EventUpdatesService } from 'projects/commudle-admin/src/app/services/event-updates.service';
@@ -7,7 +7,8 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-event-updates',
   templateUrl: './event-updates.component.html',
-  styleUrls: ['./event-updates.component.scss']
+  styleUrls: ['./event-updates.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventUpdatesComponent implements OnInit {
   moment = moment;
@@ -18,23 +19,18 @@ export class EventUpdatesComponent implements OnInit {
 
   eventUpdates: IEventUpdate[] = [];
 
-  constructor(
-    private eventUpdatesService: EventUpdatesService
-  ) { }
+  constructor(private eventUpdatesService: EventUpdatesService) {}
 
   ngOnInit() {
     this.getEventUpdates();
   }
 
   getEventUpdates() {
-    this.eventUpdatesService.pGetEventUpdates(this.event.id).subscribe(
-      data => {
-        this.eventUpdates = data.event_updates;
-        if (this.eventUpdates.length > 0) {
-          this.hasUpdates.emit(true);
-        }
+    this.eventUpdatesService.pGetEventUpdates(this.event.id).subscribe((data) => {
+      this.eventUpdates = data.event_updates;
+      if (this.eventUpdates.length > 0) {
+        this.hasUpdates.emit(true);
       }
-    );
+    });
   }
-
 }

@@ -1,4 +1,12 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
@@ -16,6 +24,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
   selector: 'app-home-event',
   templateUrl: './home-event.component.html',
   styleUrls: ['./home-event.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeEventComponent implements OnInit, OnDestroy {
   moment = moment;
@@ -59,6 +68,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -80,6 +90,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.event = event;
       this.getCommunity(event.kommunity_id);
       this.getDiscussionChat();
+      // this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -96,6 +107,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
         this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
       );
+      // this.changeDetectorRef.markForCheck();
     });
   }
 
