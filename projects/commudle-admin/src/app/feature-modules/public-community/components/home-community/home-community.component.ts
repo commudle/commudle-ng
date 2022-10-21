@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 import { NotificationsService } from '../../../notifications/services/notifications.service';
+import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
 
 @Component({
   selector: 'app-home-community',
@@ -16,11 +18,14 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   notificationCount = 0;
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communitiesService: CommunitiesService,
     private notificationsService: NotificationsService,
+    private notificationChannel: NotificationChannel,
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +43,32 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       }
     });
     this.getUnreadNotificationsCount(this.community.id);
+    this.receiveData();
   }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
   getUnreadNotificationsCount(id) {
     this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
       this.notificationCount = count;
     });
+  }
+
+  receiveData() {
+    this.subscriptions.push(
+      this.notificationChannel.notificationData$.subscribe((data) => {
+        if (data) {
+          switch (data.action) {
+            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              if (data.notification_filter == 'community') {
+                this.notificationCount++;
+              }
+            }
+          }
+        }
+      }),
+    );
   }
 }

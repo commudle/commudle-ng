@@ -47,8 +47,6 @@ export class CommunityNotificationsComponent implements OnInit {
   }
 
   markAllAsRead() {
-    console.log(this.id);
-
     this.notificationsService.markAllAsRead('community', this.id).subscribe((res) => {
       if (res) {
         this.nbToastrService.success('All notifications marked as read', 'Success');
@@ -66,6 +64,7 @@ export class CommunityNotificationsComponent implements OnInit {
             this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
             this.page += 1;
             this.total = value.total;
+            this.isLoading = false;
             if (this.notifications.length >= this.total) {
               this.canLoadMore = false;
             }
@@ -76,7 +75,6 @@ export class CommunityNotificationsComponent implements OnInit {
   receiveData() {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
-        console.log(data);
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {

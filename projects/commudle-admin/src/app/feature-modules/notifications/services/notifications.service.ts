@@ -12,21 +12,12 @@ import { Observable } from 'rxjs';
 export class NotificationsService {
   constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {}
 
-  // getAllNotifications(page, count): Observable<INotifications> {
-  //   const params = new HttpParams().set('page', page).set('count', count);
-  //   return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
-  // }
-
   getAllNotifications(page, count, id?, filter?): Observable<INotifications> {
     const params = new HttpParams().set('page', page).set('count', count).set('recipient_id', id).set('filter', filter);
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), {
       params,
     });
   }
-
-  // getUnreadNotificationsCount(): Observable<number> {
-  //   return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
-  // }
 
   getUnreadNotificationsCount(id?, filter?): Observable<number> {
     const params = new HttpParams().set('recipient_id', id).set('filter', filter);
@@ -39,7 +30,7 @@ export class NotificationsService {
     const params = new HttpParams().set('recipient_id', id).set('filter', filter);
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.MARK_ALL_AS_READ),
-      { filter },
+      {},
       { params },
     );
   }
