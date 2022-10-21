@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { NotificationsService } from '../../../notifications/services/notifications.service';
 
 @Component({
   selector: 'app-home-community',
@@ -13,10 +14,13 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
   isOrganizer = false;
 
+  notificationCount = 0;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communitiesService: CommunitiesService,
+    private notificationsService: NotificationsService,
   ) {}
 
   ngOnInit(): void {
@@ -33,9 +37,16 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         this.isOrganizer = true;
       }
     });
+    this.getUnreadNotificationsCount(this.community.id);
   }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
+  }
+  getUnreadNotificationsCount(id) {
+    this.notificationsService.getUnreadNotificationsCount(id).subscribe((count) => {
+      this.notificationCount = count;
+      console.log(count);
+    });
   }
 }

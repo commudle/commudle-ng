@@ -107,6 +107,12 @@
                 </a>
                 <div *ngIf="isOrganizer">
                   <a [routerLink]="['communityNotifications']" class="d-flex" routerLinkActive="active">
+                    <nb-badge
+                      *ngIf="notificationCount > 0"
+                      [text]="notificationCount.toString()"
+                      status="danger"
+                    ></nb-badge>
+
                     <nb-icon icon="bell-outline" status="success"></nb-icon>
                     <span class="title">Activity</span>
                   </a>

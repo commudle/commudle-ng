@@ -45,17 +45,14 @@ export class CommunityNotificationsComponent implements OnInit {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationsService
-          .getCommunityNotifications(this.id, this.page, this.count, 'community')
-          .subscribe((value) => {
-            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-            this.page += 1;
-            this.total = value.total;
-            this.isLoading = false;
-            if (this.notifications.length >= this.total) {
-              this.canLoadMore = false;
-            }
-          }),
+        this.notificationsService.getAllNotifications(this.id, this.page, this.count).subscribe((value) => {
+          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+          this.page += 1;
+          this.total = value.total;
+          if (this.notifications.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }),
       );
     }
   }
@@ -63,6 +60,29 @@ export class CommunityNotificationsComponent implements OnInit {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
         console.log(data);
+        if (data) {
+          switch (data.action) {
+            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              // add only if it's not already in the list
+              if (
+                !this.notifications.find((notification) => notification.id === data.notification.id) &&
+                data.notification_filter === 'community'
+              ) {
+                this.notifications.unshift(data.notification);
+              }
+              break;
+            }
+            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+              const idx = this.notifications.findIndex(
+                (notification) => notification.id === data.notification_queue_id,
+              );
+              if (idx != -1) {
+                this.notifications[idx].status = data.status;
+              }
+              break;
+            }
+          }
+        }
       }),
     );
   }

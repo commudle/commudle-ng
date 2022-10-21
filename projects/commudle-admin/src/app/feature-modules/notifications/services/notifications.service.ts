@@ -12,20 +12,27 @@ import { Observable } from 'rxjs';
 export class NotificationsService {
   constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {}
 
-  getAllNotifications(page, count): Observable<INotifications> {
-    const params = new HttpParams().set('page', page).set('count', count);
-    return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
-  }
+  // getAllNotifications(page, count): Observable<INotifications> {
+  //   const params = new HttpParams().set('page', page).set('count', count);
+  //   return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
+  // }
 
-  getCommunityNotifications(id, page, count, filter): Observable<INotifications> {
-    const params = new HttpParams().set('community_id', id).set('page', page).set('count', count).set('filter', filter);
+  getAllNotifications(page, count, id?): Observable<INotifications> {
+    const params = new HttpParams().set('recipient_id', id).set('page', page).set('count', count);
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), {
       params,
     });
   }
 
-  getUnreadNotificationsCount(): Observable<number> {
-    return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
+  // getUnreadNotificationsCount(): Observable<number> {
+  //   return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
+  // }
+
+  getUnreadNotificationsCount(id?): Observable<number> {
+    const params = new HttpParams().set('recipient_id', id);
+    return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT), {
+      params,
+    });
   }
 
   markAllAsRead(): Observable<boolean> {

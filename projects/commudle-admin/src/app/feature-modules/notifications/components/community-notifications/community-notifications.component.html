@@ -23,6 +23,8 @@
           <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
           <app-notifications-list-item
             (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
+            (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
+            (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
             [notificationMessage]="notification.notification_message"
           ></app-notifications-list-item>
         </div>
