@@ -17,8 +17,8 @@ export class NotificationsService {
   //   return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
   // }
 
-  getAllNotifications(page, count, id?): Observable<INotifications> {
-    const params = new HttpParams().set('recipient_id', id).set('page', page).set('count', count);
+  getAllNotifications(page, count, id?, filter?): Observable<INotifications> {
+    const params = new HttpParams().set('page', page).set('count', count).set('recipient_id', id).set('filter', filter);
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), {
       params,
     });
@@ -28,15 +28,20 @@ export class NotificationsService {
   //   return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
   // }
 
-  getUnreadNotificationsCount(id?): Observable<number> {
-    const params = new HttpParams().set('recipient_id', id);
+  getUnreadNotificationsCount(id?, filter?): Observable<number> {
+    const params = new HttpParams().set('recipient_id', id).set('filter', filter);
     return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT), {
       params,
     });
   }
 
-  markAllAsRead(): Observable<boolean> {
-    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.MARK_ALL_AS_READ), {});
+  markAllAsRead(filter?, id?): Observable<boolean> {
+    const params = new HttpParams().set('recipient_id', id).set('filter', filter);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.MARK_ALL_AS_READ),
+      { filter },
+      { params },
+    );
   }
 
   updateNotificationStatus(status: ENotificationStatuses, id: number): Observable<boolean> {

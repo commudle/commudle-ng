@@ -44,9 +44,8 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
   }
   getUnreadNotificationsCount(id) {
-    this.notificationsService.getUnreadNotificationsCount(id).subscribe((count) => {
+    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
       this.notificationCount = count;
-      console.log(count);
     });
   }
 }

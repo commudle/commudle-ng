@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { NotificationChannel } from '../../services/websockets/notification.channel';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-community-notifications',
@@ -30,7 +31,11 @@ export class CommunityNotificationsComponent implements OnInit {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
+  constructor(
+    private notificationsService: NotificationsService,
+    private notificationChannel: NotificationChannel,
+    private nbToastrService: NbToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -41,18 +46,30 @@ export class CommunityNotificationsComponent implements OnInit {
     this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
   }
 
+  markAllAsRead() {
+    console.log(this.id);
+
+    this.notificationsService.markAllAsRead('community', this.id).subscribe((res) => {
+      if (res) {
+        this.nbToastrService.success('All notifications marked as read', 'Success');
+      }
+    });
+  }
+
   getNotifications() {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationsService.getAllNotifications(this.id, this.page, this.count).subscribe((value) => {
-          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-          this.page += 1;
-          this.total = value.total;
-          if (this.notifications.length >= this.total) {
-            this.canLoadMore = false;
-          }
-        }),
+        this.notificationsService
+          .getAllNotifications(this.page, this.count, this.id, 'community')
+          .subscribe((value) => {
+            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+            this.page += 1;
+            this.total = value.total;
+            if (this.notifications.length >= this.total) {
+              this.canLoadMore = false;
+            }
+          }),
       );
     }
   }

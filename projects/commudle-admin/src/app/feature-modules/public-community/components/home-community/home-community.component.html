@@ -105,7 +105,7 @@
                   <nb-icon icon="hash" status="success"></nb-icon>
                   <span class="title">Channels</span>
                 </a>
-                <div *ngIf="isOrganizer">
+                <div *ngIf="isOrganizer" class="com-relative">
                   <a [routerLink]="['communityNotifications']" class="d-flex" routerLinkActive="active">
                     <nb-badge
                       *ngIf="notificationCount > 0"
