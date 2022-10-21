@@ -13,7 +13,7 @@
       />
     </div>
 
-    <nb-card class="home-event-menu">
+    <!-- <nb-card class="home-event-menu">
       <nb-card-body>
         <nb-actions>
           <nb-action (click)="scroll(updatesSectionRef)" *ngIf="hasUpdates" class="clickable">
@@ -54,7 +54,7 @@
           </nb-action>
         </nb-actions>
       </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 
     <div class="two-column-layout wide mobile-reverse">
       <div class="main-column">
@@ -85,7 +85,7 @@
             [event]="event"
           ></app-collaboration-communities>
         </div>
-        <div #commentsSection>
+        <!-- <div #commentsSection>
           <nb-card *ngIf="discussionChat" class="home-event-discussion">
             <nb-card-header>
               <nb-icon icon="message-circle-outline" status="info"></nb-icon>
@@ -95,7 +95,7 @@
               <app-messages [discussion]="discussionChat"></app-messages>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
         <div #volunteersSection>
           <app-team (hasVolunteers)="hasVolunteers = $event" [community]="community" [event]="event"></app-team>
         </div>
