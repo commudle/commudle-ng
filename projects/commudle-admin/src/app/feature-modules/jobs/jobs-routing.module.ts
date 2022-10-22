@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JobsListsComponent } from 'projects/commudle-admin/src/app/feature-modules/jobs/components/jobs-lists/jobs-lists.component';
+
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { JobApplicationsComponent } from './components/job-applications/job-applications.component';
+import { JobListComponent } from './components/job-list/job-list.component';
 import { JobComponent } from './components/job/job.component';
 import { MyJobApplicationsComponent } from './components/my-job-applications/my-job-applications.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: JobsListsComponent,
+    component: JobListComponent,
   },
   {
     path: 'my-applications',

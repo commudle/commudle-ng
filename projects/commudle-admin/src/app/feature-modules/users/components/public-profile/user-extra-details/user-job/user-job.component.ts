@@ -99,12 +99,17 @@ export class UserJobComponent implements OnChanges, OnDestroy {
   getJobs() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.jobService.getJobs(this.page_info?.end_cursor, this.limit, this.user.id).subscribe((data) => {
-        this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        this.page_info = data.page_info;
-        this.isLoading = false;
-        this.userProfileMenuService.addMenuItem('jobs', this.jobs.length > 0 || this.user?.id === this.currentUser?.id);
-      }),
+      this.jobService
+        .getJobs({ after: this.page_info?.end_cursor, limit: this.limit, user_id: this.user.id })
+        .subscribe((data) => {
+          this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.page_info = data.page_info;
+          this.isLoading = false;
+          this.userProfileMenuService.addMenuItem(
+            'jobs',
+            this.jobs.length > 0 || this.user?.id === this.currentUser?.id,
+          );
+        }),
     );
   }
 
