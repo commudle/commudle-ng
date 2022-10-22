@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import _ from 'lodash';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { INotification } from 'projects/shared-models/notification.model';
@@ -13,7 +13,7 @@ import { NbToastrService } from '@nebular/theme';
   templateUrl: './community-notifications.component.html',
   styleUrls: ['./community-notifications.component.scss'],
 })
-export class CommunityNotificationsComponent implements OnInit {
+export class CommunityNotificationsComponent implements OnInit, OnDestroy {
   @Input() id = 0;
 
   isLoading = false;
@@ -42,8 +42,14 @@ export class CommunityNotificationsComponent implements OnInit {
     this.receiveData();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
+    this.subscriptions.push(
+      this.notificationsService.updateNotificationStatus(status, notification.id, this.id).subscribe(),
+    );
   }
 
   markAllAsRead() {
