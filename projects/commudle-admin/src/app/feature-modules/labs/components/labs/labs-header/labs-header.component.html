@@ -9,6 +9,12 @@
           projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.
         </p>
       </div>
+      <div class="com-pt-7">
+        <button class="labs-create-btn" nbButton routerLink="/labs/create" status="primary">
+          <nb-icon icon="plus"></nb-icon>
+          Create Lab
+        </button>
+      </div>
 
       <div *ngIf="tags.length > 0" class="lab-content-search">
         <div class="lab-search-tags">Labs on {{ tags.join(', ') }}</div>
