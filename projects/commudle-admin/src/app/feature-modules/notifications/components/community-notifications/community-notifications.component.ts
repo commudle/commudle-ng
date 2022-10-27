@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import _ from 'lodash';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { INotification } from 'projects/shared-models/notification.model';
@@ -6,15 +6,15 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { NotificationChannel } from '../../services/websockets/notification.channel';
-import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-community-notifications',
   templateUrl: './community-notifications.component.html',
   styleUrls: ['./community-notifications.component.scss'],
 })
-export class CommunityNotificationsComponent implements OnInit, OnDestroy {
+export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnChanges {
   @Input() id = 0;
+  @Input() markAllAsRead: boolean;
 
   isLoading = false;
 
@@ -31,11 +31,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
-    private nbToastrService: NbToastrService,
-  ) {}
+  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -52,12 +48,10 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy {
     );
   }
 
-  markAllAsRead() {
-    this.notificationsService.markAllAsRead('community', this.id).subscribe((res) => {
-      if (res) {
-        this.nbToastrService.success('All notifications marked as read', 'Success');
-      }
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.markAllAsRead) {
+      this.notifications.forEach((notification) => (notification.status = ENotificationStatuses.READ));
+    }
   }
 
   getNotifications() {
