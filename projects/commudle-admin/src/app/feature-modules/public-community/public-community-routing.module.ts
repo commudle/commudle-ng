@@ -42,7 +42,7 @@ const routes = [
         component: SpeakersComponent,
       },
       {
-        path: 'communityNotifications',
+        path: 'notifications',
         component: PublicCommunityNotificationsComponent,
       },
     ],

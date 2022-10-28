@@ -10,39 +10,40 @@
             <h4>{{ community.name }}</h4>
           </div>
 
-          <p>
-            <nb-icon icon="people-outline"></nb-icon>
-            {{ community.member_count }} Members&nbsp;&nbsp;
-            <button (click)="sendEmails()" nbButton size="small" status="primary">
-              <nb-icon icon="email-outline"></nb-icon>
-              Send Emails
-            </button>
-            &nbsp;&nbsp;
-            <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
-              Public Page
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-            &nbsp;&nbsp;
-            <a
-              [routerLink]="['/communities', community.slug, 'channels']"
-              nbButton
-              size="small"
-              status="primary"
-              target="_blank"
-            >
-              Channels
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-            &nbsp;&nbsp;
-            <a [routerLink]="['stats']" nbButton size="small" status="success">
-              <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats <sup>Beta</sup>&nbsp;
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-          </p>
+          <section>
+            <div>
+              <nb-icon icon="people-outline"></nb-icon>
+              {{ community.member_count }} Members
+            </div>
+            <div class="buttons">
+              <button (click)="sendEmails()" nbButton size="small" status="primary">
+                <nb-icon icon="email-outline"></nb-icon>
+                Send Emails
+              </button>
+              <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
+                Public Page
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+              <a
+                [routerLink]="['/communities', community.slug, 'channels']"
+                nbButton
+                size="small"
+                status="primary"
+                target="_blank"
+              >
+                Channels
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+              <a [routerLink]="['stats']" nbButton size="small" status="success">
+                <nb-icon icon="trending-up-outline"></nb-icon>
+                Stats <sup>Beta</sup>&nbsp;
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </div>
+          </section>
         </nb-card-header>
-        <nb-card-body>
-          <div class="menu-items d-flex">
+        <nb-card-body class="com-px-0 md:com-px-6">
+          <div class="menu d-flex">
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['./']"
@@ -53,14 +54,14 @@
               <span class="title">Events</span>
             </a>
             <div class="com-relative">
-              <a [routerLink]="['communityNotifications']" class="d-flex" routerLinkActive="active">
+              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
                 <nb-badge
                   *ngIf="notificationCount > 0"
                   [text]="notificationCount.toString()"
                   status="danger"
                 ></nb-badge>
 
-                <nb-icon icon="bell-outline" status="success"></nb-icon>
+                <nb-icon icon="bell" status="success"></nb-icon>
                 <span class="title">Activity</span>
               </a>
             </div>
@@ -68,10 +69,6 @@
               <nb-icon icon="people" status="success"></nb-icon>
               <span class="title">Members</span>
             </a>
-            <!-- <a [routerLink]="['resources']" routerLinkActive="active">
-                <nb-icon icon="award" status="info"></nb-icon>
-                <span>Sessions by Experts</span>
-              </a> -->
             <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="list" status="success"></nb-icon>
               <span class="title">Forms</span>

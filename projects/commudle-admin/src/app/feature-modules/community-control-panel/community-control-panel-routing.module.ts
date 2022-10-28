@@ -34,7 +34,7 @@ const routes = [
         component: CommunityEventsListComponent,
       },
       {
-        path: 'communityNotifications',
+        path: 'notifications',
         component: CommunityAdminNotificationsComponent,
       },
       {
