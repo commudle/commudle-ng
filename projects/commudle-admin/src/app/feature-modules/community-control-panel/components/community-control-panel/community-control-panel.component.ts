@@ -9,6 +9,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { NotificationsService } from '../../../notifications/services/notifications.service';
 import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
+import { faScroll } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -19,6 +20,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   community: ICommunity;
 
   notificationCount = 0;
+  faScroll = faScroll;
 
   subscriptions: Subscription[] = [];
 

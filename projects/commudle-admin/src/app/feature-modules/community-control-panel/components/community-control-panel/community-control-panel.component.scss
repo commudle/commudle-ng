@@ -38,12 +38,26 @@
   }
 }
 
+section {
+  div {
+    @apply com-mb-4;
+  }
+  .buttons {
+    @apply com-flex com-flex-wrap com-justify-evenly md:com-justify-start;
+    a,
+    button {
+      @apply com-mr-4 com-mt-4;
+    }
+  }
+}
+
 .menu {
   @apply com-border-0 com-border-b com-border-solid com-border-gray-200 com-w-auto com-overflow-auto com-scrollbar-hide;
   a {
     @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
-    nb-icon {
+    nb-icon,
+    fa-icon {
       @apply com-text-gray-500;
     }
 
@@ -58,26 +72,17 @@
   nb-icon {
     @apply com-text-2xl;
   }
+  fa-icon {
+    @apply com-text-xl;
+  }
 
   .active {
     @apply com-border-0 com-border-b-3 com-border-solid com-border-Blueberry;
 
     nb-icon,
+    fa-icon,
     .title {
       @apply com-text-Blueberry;
-    }
-  }
-}
-
-section {
-  div {
-    @apply com-mb-4;
-  }
-  .buttons {
-    @apply com-flex com-flex-wrap;
-    a,
-    button {
-      @apply com-mr-4 com-mt-4;
     }
   }
 }
