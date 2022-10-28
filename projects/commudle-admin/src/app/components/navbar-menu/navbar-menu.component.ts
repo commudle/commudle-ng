@@ -59,7 +59,9 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              this.notificationCount++;
+              if (data.notification_filter == 'user') {
+                this.notificationCount++;
+              }
             }
           }
         }

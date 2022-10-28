@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <nb-card *ngIf="community">
-        <nb-card-body>
+        <nb-card-header>
           <div class="basic-details">
             <div>
               <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
@@ -10,38 +10,81 @@
             <h4>{{ community.name }}</h4>
           </div>
 
-          <p>
-            <nb-icon icon="people-outline"></nb-icon>
-            {{ community.member_count }} Members&nbsp;&nbsp;
-            <button (click)="sendEmails()" nbButton size="small" status="primary">
-              <nb-icon icon="email-outline"></nb-icon>
-              Send Emails
-            </button>
-            &nbsp;&nbsp;
-            <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
-              Public Page
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-            &nbsp;&nbsp;
+          <section>
+            <div>
+              <nb-icon icon="people-outline"></nb-icon>
+              {{ community.member_count }} Members
+            </div>
+            <div class="buttons">
+              <button (click)="sendEmails()" nbButton size="small" status="primary">
+                <nb-icon icon="email-outline"></nb-icon>
+                Send Emails
+              </button>
+              <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
+                Public Page
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+              <a
+                [routerLink]="['/communities', community.slug, 'channels']"
+                nbButton
+                size="small"
+                status="primary"
+                target="_blank"
+              >
+                Channels
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+              <a [routerLink]="['stats']" nbButton size="small" status="success">
+                <nb-icon icon="trending-up-outline"></nb-icon>
+                Stats <sup>Beta</sup>&nbsp;
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </div>
+          </section>
+        </nb-card-header>
+        <nb-card-body class="com-px-0 md:com-px-6">
+          <div class="menu d-flex">
             <a
-              [routerLink]="['/communities', community.slug, 'channels']"
-              nbButton
-              size="small"
-              status="primary"
-              target="_blank"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['./']"
+              class="d-flex"
+              routerLinkActive="active"
             >
-              Channels
-              <nb-icon icon="external-link"></nb-icon>
+              <nb-icon icon="calendar" status="info"></nb-icon>
+              <span class="title">Events</span>
             </a>
-            &nbsp;&nbsp;
-            <a [routerLink]="['stats']" nbButton size="small" status="success">
-              <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats <sup>Beta</sup>&nbsp;
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-          </p>
+            <div class="com-relative">
+              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
+                <nb-badge
+                  *ngIf="notificationCount > 0"
+                  [text]="notificationCount.toString()"
+                  status="danger"
+                ></nb-badge>
 
-          <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+                <nb-icon icon="bell" status="success"></nb-icon>
+                <span class="title">Activity</span>
+              </a>
+            </div>
+            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Members</span>
+            </a>
+            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="faScroll"></fa-icon>
+              <span class="title">Forms</span>
+            </a>
+            <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Team</span>
+            </a>
+            <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="edit" status="success"></nb-icon>
+              <span class="title">Edit Details</span>
+            </a>
+          </div>
+          <div class="router-outlet">
+            <router-outlet></router-outlet>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>

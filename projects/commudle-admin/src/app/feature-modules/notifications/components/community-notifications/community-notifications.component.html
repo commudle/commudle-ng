@@ -1,40 +1,34 @@
-<nb-card-header>
-  <h6>Notifications</h6>
-  <button ghost nbButton size="small">
-    Mark all as read
-    <nb-icon icon="checkmark-circle-outline"></nb-icon>
-  </button>
-</nb-card-header>
-<nb-card-body>
-  <nb-list
-    (scrolled)="getNotifications()"
-    [infiniteScrollDisabled]="!(canLoadMore && total)"
-    appInfiniteScroll
-    class="notification-list"
+<nb-list
+  (scrolled)="getNotifications()"
+  [infiniteScrollDisabled]="!(canLoadMore && total)"
+  appInfiniteScroll
+  class="notification-list"
+>
+  <nb-list-item
+    *ngFor="let notification of notifications"
+    [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
+    class="com-justify-between"
   >
-    <nb-list-item
-      *ngFor="let notification of notifications"
-      [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
-      class="com-justify-between"
-    >
-      <div class="com-flex com-justify-between com-items-center">
-        <nb-user [picture]="notification.sender.photo.i64" onlyPicture></nb-user>
-        <div>
-          <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
-          <app-notifications-list-item
-            (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
-            [notificationMessage]="notification.notification_message"
-          ></app-notifications-list-item>
-        </div>
+    <div class="com-flex com-justify-between com-items-center">
+      <nb-user [picture]="notification.sender.photo.i64" onlyPicture></nb-user>
+      <div>
+        <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+        <app-notifications-list-item
+          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
+          (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
+          [notificationMessage]="notification.notification_message"
+          [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
+        ></app-notifications-list-item>
       </div>
-      <button
-        (click)="changeStatus(ENotificationStatuses.READ, notification)"
-        *ngIf="notification.status === ENotificationStatuses.UNREAD"
-        class="mark-as-read"
-        nbButton
-        nbTooltip="Mark as read"
-        size="small"
-      >
-        <nb-icon icon="checkmark-outline"></nb-icon></button></nb-list-item
-  ></nb-list>
-</nb-card-body>
+    </div>
+    <button
+      (click)="changeStatus(ENotificationStatuses.READ, notification)"
+      *ngIf="notification.status === ENotificationStatuses.UNREAD"
+      class="mark-as-read"
+      nbButton
+      nbTooltip="Mark as read"
+      size="small"
+    >
+      <nb-icon icon="checkmark-outline"></nb-icon></button></nb-list-item
+></nb-list>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
