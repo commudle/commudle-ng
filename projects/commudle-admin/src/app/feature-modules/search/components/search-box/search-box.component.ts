@@ -54,6 +54,7 @@ export class SearchBoxComponent implements OnInit {
         filter((value) => typeof value === 'string'),
         map((value: string) => value.trim().toLowerCase()),
         filter(Boolean),
+        debounceTime(500),
         distinctUntilChanged(),
         tap(() => {
           if (!this.showSuggestions) {
