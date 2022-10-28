@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <nb-card *ngIf="community">
-        <nb-card-body>
+        <nb-card-header>
           <div class="basic-details">
             <div>
               <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
@@ -40,8 +40,54 @@
               <nb-icon icon="external-link"></nb-icon>
             </a>
           </p>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="menu-items d-flex">
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['./']"
+              class="d-flex"
+              routerLinkActive="active"
+            >
+              <nb-icon icon="calendar" status="info"></nb-icon>
+              <span class="title">Events</span>
+            </a>
+            <div class="com-relative">
+              <a [routerLink]="['communityNotifications']" class="d-flex" routerLinkActive="active">
+                <nb-badge
+                  *ngIf="notificationCount > 0"
+                  [text]="notificationCount.toString()"
+                  status="danger"
+                ></nb-badge>
 
-          <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+                <nb-icon icon="bell-outline" status="success"></nb-icon>
+                <span class="title">Activity</span>
+              </a>
+            </div>
+            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Members</span>
+            </a>
+            <!-- <a [routerLink]="['resources']" routerLinkActive="active">
+                <nb-icon icon="award" status="info"></nb-icon>
+                <span>Sessions by Experts</span>
+              </a> -->
+            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="list" status="success"></nb-icon>
+              <span class="title">Forms</span>
+            </a>
+            <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Team</span>
+            </a>
+            <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="edit" status="success"></nb-icon>
+              <span class="title">Edit Details</span>
+            </a>
+          </div>
+          <div class="router-outlet">
+            <router-outlet></router-outlet>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>

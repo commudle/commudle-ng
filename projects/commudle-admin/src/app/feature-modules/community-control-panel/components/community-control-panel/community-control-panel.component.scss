@@ -38,11 +38,34 @@
   }
 }
 
-nb-tabset {
-  ::ng-deep {
-    ul.tabset {
-      overflow-x: auto !important;
-      padding: 5px !important;
+.menu-items {
+  a {
+    @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
+
+    nb-icon {
+      @apply com-text-gunmetal/80;
+    }
+
+    .title {
+      @apply com-self-center com-ml-2;
+    }
+
+    span {
+      @apply com-hidden;
+      @apply md:com-inline;
+    }
+  }
+
+  nb-icon {
+    @apply com-text-2xl;
+  }
+
+  .active {
+    @apply com-border-0 com-border-b-3 com-border-solid com-border-Blue-Jeans;
+
+    nb-icon,
+    .title {
+      @apply com-text-Blue-Jeans;
     }
   }
 }
