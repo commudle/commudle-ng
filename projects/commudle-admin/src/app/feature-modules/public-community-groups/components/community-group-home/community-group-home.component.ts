@@ -4,7 +4,6 @@ import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { SeoService } from 'projects/shared-services/seo.service';
-import { log } from 'console';
 
 @Component({
   selector: 'app-community-group-home',
@@ -41,7 +40,7 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.seoService.setTags(
-      `${this.communityGroup.name} - commudle`,
+      this.communityGroup.name,
       this.communityGroup.description.replace(/<[^>]*>/g, ''),
       this.communityGroup.logo.url,
     );
