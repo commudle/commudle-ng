@@ -37,13 +37,15 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         this.seoService.noIndex(true);
       }
     });
-    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
-        this.isOrganizer = true;
-        this.getUnreadNotificationsCount(this.community.id);
-        this.receiveData();
-      }
-    });
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+          this.isOrganizer = true;
+          this.getUnreadNotificationsCount(this.community.id);
+          this.receiveData();
+        }
+      }),
+    );
   }
 
   ngOnDestroy(): void {
@@ -51,9 +53,11 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
   getUnreadNotificationsCount(id) {
-    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
-      this.notificationCount = count;
-    });
+    this.subscriptions.push(
+      this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+        this.notificationCount = count;
+      }),
+    );
   }
 
   receiveData() {

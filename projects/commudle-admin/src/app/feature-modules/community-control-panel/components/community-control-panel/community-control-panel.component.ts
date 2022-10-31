@@ -67,9 +67,11 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount(id) {
-    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
-      this.notificationCount = count;
-    });
+    this.subscriptions.push(
+      this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+        this.notificationCount = count;
+      }),
+    );
   }
   receiveData() {
     this.subscriptions.push(
