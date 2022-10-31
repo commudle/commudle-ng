@@ -40,10 +40,10 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
       if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
         this.isOrganizer = true;
+        this.getUnreadNotificationsCount(this.community.id);
+        this.receiveData();
       }
     });
-    this.getUnreadNotificationsCount(this.community.id);
-    this.receiveData();
   }
 
   ngOnDestroy(): void {
