@@ -14,9 +14,11 @@ import { RedirectToMyProfileGuard } from './feature-modules/users/guards/redirec
 import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
+  // FIXME discuss in future for order of paths
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'notifications',
+    loadChildren: () =>
+      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
     path: '',
@@ -25,12 +27,6 @@ const routes = [
   {
     path: 'about',
     component: AboutComponent,
-  },
-
-  {
-    path: 'notifications',
-    loadChildren: () =>
-      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   // {
   //   path: 'features',
