@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -12,7 +12,7 @@ import { NbToastrService } from '@nebular/theme';
   templateUrl: './public-community-notifications.component.html',
   styleUrls: ['./public-community-notifications.component.scss'],
 })
-export class PublicCommunityNotificationsComponent implements OnInit {
+export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy {
   community: ICommunity;
 
   trackMarkAllAsRead = false;
@@ -26,11 +26,15 @@ export class PublicCommunityNotificationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('PublicCommunityNotificationsComponent');
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
       }),
     );
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   markAllAsRead() {
