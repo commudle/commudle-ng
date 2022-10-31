@@ -54,7 +54,6 @@ export class SearchBoxComponent implements OnInit {
         filter((value) => typeof value === 'string'),
         map((value: string) => value.trim().toLowerCase()),
         filter(Boolean),
-        debounceTime(500),
         distinctUntilChanged(),
         tap(() => {
           if (!this.showSuggestions) {
@@ -66,6 +65,7 @@ export class SearchBoxComponent implements OnInit {
           this.searchLoader = true;
           this.groupedResults = {};
         }),
+        debounceTime(500),
         switchMap((value: string) => this.searchService.getSearchResults(value)),
       )
       .subscribe((value: ISearch) => {
