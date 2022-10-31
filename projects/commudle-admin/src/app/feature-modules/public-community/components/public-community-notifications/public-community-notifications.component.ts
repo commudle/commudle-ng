@@ -26,7 +26,6 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
   ) {}
 
   ngOnInit(): void {
-    console.log('PublicCommunityNotificationsComponent');
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
