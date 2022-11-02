@@ -103,6 +103,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       case ENotificationParentTypes.KOMMUNITY:
         this.router.navigate(['/communities', slug]);
         break;
+      case ENotificationParentTypes.EVENT:
+        this.router.navigate(['/event', slug]);
+        break;
     }
 
     this.notificationClicked.emit();
