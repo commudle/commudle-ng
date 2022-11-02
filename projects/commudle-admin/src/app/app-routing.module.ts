@@ -6,7 +6,6 @@ import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
@@ -14,7 +13,7 @@ import { RedirectToMyProfileGuard } from './feature-modules/users/guards/redirec
 import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
-  // FIXME discuss in future for order of paths
+  // TODO discuss in future for order of paths
   {
     path: 'notifications',
     loadChildren: () =>

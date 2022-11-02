@@ -53,7 +53,7 @@
               <nb-icon icon="calendar" status="info"></nb-icon>
               <span class="title">Events</span>
             </a>
-            <div class="com-relative">
+            <div class="com-relative" *ngIf="isOrganizer">
               <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
                 <nb-badge
                   *ngIf="notificationCount > 0"

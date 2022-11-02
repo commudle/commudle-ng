@@ -18,7 +18,7 @@ export interface INotification {
 }
 
 export interface INotificationMessage {
-  type: 'link' | 'text';
+  type: 'link' | 'text' | 'href';
   value: string;
   sender: IUser;
   sender_type: ENotificationSenderTypes;
