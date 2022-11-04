@@ -2,12 +2,16 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
   NbAlertModule,
   NbButtonModule,
   NbCardModule,
+  NbCheckboxModule,
   NbIconModule,
   NbListModule,
+  NbRadioModule,
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
@@ -40,6 +44,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     SharedPipesModule,
     MiniUserProfileModule,
 
+    FontAwesomeModule,
+
     NbCardModule,
     NbListModule,
     NbTabsetModule,
@@ -47,6 +53,9 @@ import { JobsRoutingModule } from './jobs-routing.module';
     NbIconModule,
     NbSelectModule,
     NbAlertModule,
+    NbRadioModule,
+    NbCheckboxModule,
+    NbEvaIconsModule,
 
     NgxSliderModule,
     ReactiveFormsModule,

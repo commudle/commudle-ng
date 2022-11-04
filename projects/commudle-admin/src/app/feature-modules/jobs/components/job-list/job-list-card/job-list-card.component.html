@@ -6,7 +6,7 @@
           <p>{{ job.position }}</p>
         </div>
 
-        <div class="job-details salary">
+        <div class="job-details salary" *ngIf="job.max_salary !== 0">
           <div>
             <span class="com-rounded-lg com-inline-flex com-bg-rose-50 com-text-rose-700 com-ring-4 com-ring-white">
               <svg
