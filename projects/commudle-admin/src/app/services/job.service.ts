@@ -12,13 +12,41 @@ import { Observable } from 'rxjs';
 export class JobService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getJobs(page: number, count: number, user_id: number): Observable<IJobs> {
-    const params = new HttpParams()
-      .set('page', String(page))
-      .set('count', String(count))
-      .set('user_id', String(user_id));
+  getJobs({ after, limit = 10, ...filters }: { after?: string; limit: number; [key: string]: any }): Observable<IJobs> {
+    let params = new HttpParams().set('after', after || '').set('limit', String(limit));
+
+    Object.keys(filters).forEach((key) => (params = params.set(key, filters[key])));
+
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
   }
+
+  // getJobs(
+  //   after?: string,
+  //   limit: number = 10,
+  //   user_id?: number,
+  //   category?: EJobCategory,
+  //   salary_type?: EJobSalaryType,
+  //   salary_currency?: EJobSalaryCurrency,
+  //   location_type?: EJobLocationType,
+  //   job_type?: EJobType,
+  //   status?: EJobStatus,
+  // ): Observable<IJobs> {
+  //   let params = new HttpParams()
+  //     .set('after', after || '')
+  //     .set('limit', String(limit))
+  //     .set('category', category || '')
+  //     .set('salary_type', salary_type || '')
+  //     .set('salary_currency', salary_currency || '')
+  //     .set('location_type', location_type || '')
+  //     .set('job_type', job_type || '')
+  //     .set('status', status || '');
+  //
+  //   if (user_id) {
+  //     params = params.set('user_id', String(user_id));
+  //   }
+  //
+  //   return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
+  // }
 
   getJob(id: number): Observable<IJob> {
     const params = new HttpParams().set('job_id', String(id));

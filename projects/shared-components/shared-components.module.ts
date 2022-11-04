@@ -66,6 +66,7 @@ import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,9 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     NbActionsModule,
     NbFormFieldModule,
     FontAwesomeModule,
+
+    //cdk
+    DragDropModule,
   ],
   exports: [
     WorkInProgressComponent,

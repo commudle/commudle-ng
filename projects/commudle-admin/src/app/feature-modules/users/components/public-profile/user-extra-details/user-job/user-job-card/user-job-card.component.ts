@@ -29,7 +29,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input() job: IJob;
 
   @Output() updateJob: EventEmitter<any> = new EventEmitter<any>();
-  @Output() reloadJob: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteJob: EventEmitter<any> = new EventEmitter<any>();
   @Output() toggleJobStatus: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -63,12 +63,12 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  deleteJob(): void {
+  onDeleteJob(): void {
     this.subscriptions.push(
       this.jobService.deleteJob(this.job.id).subscribe((value) => {
         if (value) {
           this.nbToastrService.success('Job deleted successfully', 'Success');
-          this.reloadJob.emit();
+          this.deleteJob.emit(this.job.id);
         }
       }),
     );

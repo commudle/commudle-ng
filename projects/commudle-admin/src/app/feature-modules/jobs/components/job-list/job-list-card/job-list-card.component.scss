@@ -1,9 +1,14 @@
+:host {
+  @apply com-block;
+}
+
 p {
   @apply com-m-1 com-ml-2;
 }
 
 nb-card {
-  @apply hover:com-shadow-Card;
+  @apply hover:com-shadow-Card com-m-0;
+
   nb-card-body {
     a {
       .job-details {

@@ -44,13 +44,14 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
+    this.popupHover.emit(false);
   }
 
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.miniUser.id);
   }
 
-  onMouseEnter() {
+  onMouseOver() {
     this.popupHover.emit(true);
   }
 

@@ -1,0 +1,69 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="two-column-layout mobile-reverse">
+      <div class="main-column">
+        <nb-card>
+          <nb-card-header>Jobs</nb-card-header>
+          <nb-card-body class="com-space-y-4">
+            <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
+            <button
+              (click)="getJobs()"
+              *ngIf="page_info?.has_next_page"
+              [nbSpinner]="isLoading"
+              fullWidth
+              ghost
+              nbButton
+            >
+              Get more jobs
+            </button>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="right-column">
+        <nb-card>
+          <nb-card-header>Filters</nb-card-header>
+          <nb-card-body>
+            <form [formGroup]="filterForm" class="com-space-y-3">
+              <!-- category -->
+              <nb-select formControlName="category" fullWidth placeholder="Category">
+                <nb-option *ngFor="let category of jobCategories" [value]="category">
+                  {{ category | titlecase }}
+                </nb-option>
+              </nb-select>
+              <!-- salary_type -->
+              <nb-select formControlName="salary_type" fullWidth placeholder="Salary Type">
+                <nb-option *ngFor="let salaryType of jobSalaryTypes" [value]="salaryType">
+                  {{ salaryType | titlecase }}
+                </nb-option>
+              </nb-select>
+              <!-- salary_currency -->
+              <nb-select formControlName="salary_currency" fullWidth placeholder="Salary Currency">
+                <nb-option *ngFor="let salaryCurrency of jobSalaryCurrencies" [value]="salaryCurrency">
+                  {{ salaryCurrency | uppercase }}
+                </nb-option>
+              </nb-select>
+              <!-- location_type -->
+              <nb-select formControlName="location_type" fullWidth placeholder="Location Type">
+                <nb-option *ngFor="let locationType of jobLocationTypes" [value]="locationType">
+                  {{ locationType | titlecase }}
+                </nb-option>
+              </nb-select>
+              <!-- job_type -->
+              <nb-select formControlName="job_type" fullWidth placeholder="Job Type">
+                <nb-option *ngFor="let jobType of jobTypes" [value]="jobType">
+                  {{ jobType | enumFormat }}
+                </nb-option>
+              </nb-select>
+              <!-- status -->
+              <nb-select formControlName="status" fullWidth placeholder="Status">
+                <nb-option *ngFor="let status of jobStatuses" [value]="status">
+                  {{ status | titlecase }}
+                </nb-option>
+              </nb-select>
+            </form>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

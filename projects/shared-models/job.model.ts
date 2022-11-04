@@ -22,6 +22,7 @@ export interface IJob {
 export enum EJobCategory {
   JOB = 'job',
   INTERNSHIP = 'internship',
+  FREELANCE = 'freelance',
 }
 
 export enum EJobSalaryType {
@@ -38,7 +39,8 @@ export enum EJobSalaryCurrency {
 
 export enum EJobLocationType {
   REMOTE = 'remote',
-  LOCAL = 'local',
+  OFFICE = 'office',
+  FLEXIBLE = 'flexible',
 }
 
 export enum EJobType {

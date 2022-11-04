@@ -1,4 +1,6 @@
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
+  AfterViewInit,
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
@@ -6,8 +8,10 @@ import {
   HostListener,
   Input,
   OnDestroy,
+  OnInit,
   ViewContainerRef,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
 import { MiniUserProfileComponent } from 'projects/shared-modules/mini-user-profile/components/mini-user-profile/mini-user-profile.component';
 import { debounce } from 'projects/shared-modules/mini-user-profile/helpers/debounce';
@@ -17,7 +21,7 @@ import { Subscription } from 'rxjs';
 @Directive({
   selector: '[appMiniUserProfile]',
 })
-export class MiniUserProfileDirective implements OnDestroy {
+export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewInit {
   @Input() username: string;
   @Input() activateMiniProfileDirective: boolean = true;
   componentRef: ComponentRef<MiniUserProfileComponent>;
@@ -25,6 +29,8 @@ export class MiniUserProfileDirective implements OnDestroy {
   subscriptions: Subscription[] = [];
   miniUser: IMiniUserProfile;
   cursorOnPopover: boolean = false;
+  cursorOnParent: boolean = false;
+
   private coords: { top: number; left: number } = { top: 0, left: 0 };
 
   constructor(
@@ -32,22 +38,49 @@ export class MiniUserProfileDirective implements OnDestroy {
     private _viewContainerRef: ViewContainerRef,
     private _componentResolver: ComponentFactoryResolver,
     private miniUserProfileService: MiniUserProfileService,
+    private scrollDispatcher: ScrollDispatcher,
+    private router: Router,
   ) {
     this.nativeElement = this.inputElementRef.nativeElement;
+  }
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      if (this.componentRef) {
+        this.componentRef.destroy();
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.cursorOnPopover && !this.cursorOnParent) {
+      this.destroyComponent();
+    }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
+    this.destroyComponent();
   }
 
   @HostListener('mouseenter')
   onMouseOver() {
+    this.cursorOnParent = true;
     this.createComponent();
+  }
+  @HostListener('window:scroll')
+  onScroll() {
+    this.cursorOnParent = false;
+    if (!this.cursorOnPopover) {
+      this.destroyComponent();
+    }
   }
 
   @HostListener('mouseleave')
   onMouseOut() {
-    this.destroyComponent();
+    this.cursorOnParent = false;
+    if (!this.cursorOnPopover) {
+      this.destroyComponent();
+    }
   }
 
   loadComponent() {
@@ -65,7 +98,7 @@ export class MiniUserProfileDirective implements OnDestroy {
     this.subscriptions.push(
       this.componentRef.instance.popupHover.subscribe((data) => {
         this.cursorOnPopover = data;
-        if (!this.cursorOnPopover) {
+        if (!this.cursorOnPopover && !this.cursorOnParent) {
           this.destroyComponent();
         }
       }),
@@ -100,9 +133,11 @@ export class MiniUserProfileDirective implements OnDestroy {
 
   @debounce(50)
   destroyComponent() {
-    if (!this.cursorOnPopover && this.componentRef) {
-      this.componentRef.destroy();
-    }
+    setTimeout(() => {
+      if (!this.cursorOnPopover && this.componentRef && !this.cursorOnParent) {
+        this.componentRef.destroy();
+      }
+    }, 1000);
   }
 
   getElementCoordinates() {

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
@@ -59,6 +59,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -80,6 +81,9 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.event = event;
       this.getCommunity(event.kommunity_id);
       this.getDiscussionChat();
+      if (!this.event.custom_agenda) {
+        this.setSchema();
+      }
     });
   }
 
@@ -94,6 +98,26 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
       );
     });
+  }
+
+  setSchema() {
+    if (this.event.start_time) {
+      this.seoService.setSchema({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: this.event.name,
+        description: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+        image: this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
+        startDate: this.event.start_time,
+        endDate: this.event.end_time,
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+        location: {
+          '@type': 'VirtualLocation',
+          url: environment.app_url + this.router.url,
+        },
+      });
+    }
   }
 
   isOrganizerCheck(community) {

@@ -1,8 +1,8 @@
 import { IJob } from './job.model';
+import { IPageInfo } from './page-info.model';
 
 export interface IJobs {
-  jobs: IJob[];
-  page: number;
-  count: number;
+  page: Array<{ cursor: string; data: IJob[] }>;
+  page_info: IPageInfo;
   total: number;
 }

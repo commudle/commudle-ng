@@ -129,7 +129,13 @@ import { UsersRoutingModule } from './users-routing.module';
     NbToggleModule,
     NbSelectModule,
   ],
-  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
+  exports: [
+    BasicUserProfileComponent,
+    UsernameComponent,
+    BasicInfoComponent,
+    SocialLinksComponent,
+    CapitalizeAndRemoveUnderscorePipe,
+  ],
   providers: [UserProfileMenuService],
 })
 export class UsersModule {}
