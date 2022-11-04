@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEventLocation } from 'projects/shared-models/event-location.model';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -61,9 +62,15 @@ export class AgendaComponent implements OnInit {
             addressCountry: 'IN',
           },
         },
-        performer: {
-          '@type': 'Person',
-          name: '',
+        organizer: {
+          '@type': 'Organization',
+          name: this.community.name,
+          url: environment.app_url + '/communities/' + this.community.slug,
+        },
+        offers: {
+          '@type': 'Offer',
+          name: this.event.name,
+          url: environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug,
         },
       });
     }

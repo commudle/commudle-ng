@@ -1,3 +1,27 @@
-nb-card-header {
-  @apply com-flex com-justify-between com-items-center;
+.notification-list {
+  nb-list-item {
+    @apply com-justify-between;
+
+    &.active {
+      @apply com-bg-gray-100;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .mark-as-read {
+      @apply com-hidden;
+    }
+
+    &:hover {
+      .mark-as-read {
+        @apply com-block;
+      }
+    }
+  }
 }

@@ -15,6 +15,7 @@ import {
   NbRouteTabsetModule,
   NbSelectModule,
   NbTabsetModule,
+  NbBadgeModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -38,6 +39,7 @@ import { CommunityStatsComponent } from './components/community-stats/community-
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
 import { CommunityAdminNotificationsComponent } from './components/community-admin-notifications/community-admin-notifications.component';
 import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-modules/notifications/notifications.module';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-mod
     NbContextMenuModule,
     NbCheckboxModule,
     NotificationsModule,
+    NbEvaIconsModule,
+    NbBadgeModule,
   ],
 })
 export class CommunityGroupsModule {}

@@ -58,7 +58,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationsService.getAllNotifications(this.page, this.count).subscribe((value) => {
+        this.notificationsService.getAllNotifications(this.page, this.count, '', '').subscribe((value) => {
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page += 1;
           this.total = value.total;
@@ -78,7 +78,10 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
               // add only if it's not already in the list
-              if (!this.notifications.find((notification) => notification.id === data.notification.id)) {
+              if (
+                !this.notifications.find((notification) => notification.id === data.notification.id) &&
+                data.notification_filter == 'user'
+              ) {
                 this.notifications.unshift(data.notification);
               }
               break;

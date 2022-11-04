@@ -2,5 +2,8 @@
   <ng-container *ngFor="let message of notificationMessage" [ngSwitch]="message.type">
     <a (click)="redirectTo(message)" *ngSwitchCase="'link'" class="com-cursor-pointer">{{ message.value }}</a>
     <span *ngSwitchCase="'text'"> {{ message.value }} </span>
+    <a *ngSwitchCase="'href'" href="{{ message.href }}" class="com-cursor-pointer" target="_blank">{{
+      message.value
+    }}</a>
   </ng-container>
 </p>

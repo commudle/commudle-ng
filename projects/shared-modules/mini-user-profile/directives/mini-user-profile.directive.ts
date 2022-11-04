@@ -1,6 +1,6 @@
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
@@ -38,8 +38,8 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
     private _viewContainerRef: ViewContainerRef,
     private _componentResolver: ComponentFactoryResolver,
     private miniUserProfileService: MiniUserProfileService,
-    private scrollDispatcher: ScrollDispatcher,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.nativeElement = this.inputElementRef.nativeElement;
   }
@@ -124,6 +124,7 @@ export class MiniUserProfileDirective implements OnDestroy, OnInit, AfterViewIni
             window.requestAnimationFrame(() => {
               this.getElementCoordinates();
               this.positionElement();
+              this.changeDetectorRef.markForCheck();
             });
           }
         }),
