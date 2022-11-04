@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { NotificationsService } from '../../../notifications/services/notifications.service';
 import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
+import { NotificationsStore } from '../../../notifications/store/notifications.store';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -33,6 +34,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit() {
@@ -80,10 +82,16 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
-        this.notificationCount = count;
+      this.notificationsStore.unreadNotificationsCount$.subscribe((data: number) => {
+        console.log(data, 'getUnreadNotificationsCount');
+        this.notificationCount = data;
       }),
     );
+    // this.subscriptions.push(
+    //   this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+    //     this.notificationCount = count;
+    //   }),
+    // );
   }
   receiveData() {
     this.subscriptions.push(

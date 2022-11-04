@@ -6,6 +6,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { NotificationsService } from '../../../notifications/services/notifications.service';
 import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
+import { NotificationsStore } from '../../../notifications/store/notifications.store';
 
 @Component({
   selector: 'app-home-community',
@@ -26,6 +27,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -52,10 +54,11 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
+
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
-        this.notificationCount = count;
+      this.notificationsStore.unreadNotificationsCount$.subscribe((data: number) => {
+        this.notificationCount = data;
       }),
     );
   }

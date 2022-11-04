@@ -11,6 +11,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { NotificationsStore } from '../../feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -31,12 +32,15 @@ export class SidebarMenuComponent implements OnInit {
   isFeaturedCommunitiesAdmin = false;
   isAssetsAdmin = false;
 
+  notificationCount = 0;
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
     private router: Router,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +48,9 @@ export class SidebarMenuComponent implements OnInit {
     this.closeSidebar();
     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
       this.managedCommunities = data;
+      for (let communities of data) {
+        this.getUnreadNotificationsCount(communities.id);
+      }
     });
   }
 
@@ -106,6 +113,12 @@ export class SidebarMenuComponent implements OnInit {
       if (event instanceof NavigationStart) {
         this.sidebarService.collapse('mainMenu');
       }
+    });
+  }
+
+  getUnreadNotificationsCount(id) {
+    this.notificationsStore.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+      this.notificationCount = count;
     });
   }
 }
