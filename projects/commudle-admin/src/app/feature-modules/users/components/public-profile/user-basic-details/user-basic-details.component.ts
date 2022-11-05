@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -6,6 +7,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { JobService } from '../../../services/job.service';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -27,6 +29,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   environment = environment;
 
+  lookingForWorked = false;
+  hiring = false;
   editTagDialog: NbDialogRef<any>;
 
   @ViewChild('editTags') editTags: TemplateRef<any>;
@@ -37,6 +41,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private appUsersService: AppUsersService,
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService,
+    private router: Router,
+    private jobService: JobService,
   ) {}
 
   ngOnInit(): void {
@@ -105,5 +111,25 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // Open a chat with the particular user
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  openToWork() {
+    if (!this.lookingForWorked) {
+      this.jobService.toggleEmployee().subscribe(() => {
+        this.toastrService.success("I'm looking for job", ' success');
+        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
+        this.lookingForWorked = true;
+      });
+    }
+  }
+
+  openToHiring() {
+    if (!this.hiring) {
+      this.jobService.toggleEmployer().subscribe(() => {
+        this.toastrService.success("i'm hiring", ' success');
+        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
+        this.hiring = true;
+      });
+    }
   }
 }
