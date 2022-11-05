@@ -3,6 +3,7 @@ import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesom
 import { NbPopoverDirective } from '@nebular/theme';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -32,6 +33,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
     private authwatchService: LibAuthwatchService,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount() {
-    this.notificationsService.getUnreadNotificationsCount().subscribe((count) => (this.notificationCount = count));
+    this.notificationsStore.getUserNotificationCount().subscribe((count) => (this.notificationCount = count));
   }
 
   receiveData() {

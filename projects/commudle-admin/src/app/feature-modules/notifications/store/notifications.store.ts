@@ -3,17 +3,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { Injectable } from '@angular/core';
-import { NotificationsService } from '../services/notifications.service';
-
+import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationsStore {
-  private unreadNotificationsCount: BehaviorSubject<any> = new BehaviorSubject(new Set());
-  public unreadNotificationsCount$: Observable<number> = this.unreadNotificationsCount.asObservable();
+  public communityNotificationCount = {};
+  public communityNotificationCount$ = {};
 
-  private notificationData = {};
-  public notificationData$ = {};
+  public userNotificationCount: BehaviorSubject<number> = new BehaviorSubject(0);
+  public userNotificationCount$: Observable<number> = this.userNotificationCount.asObservable();
 
   constructor(
     private apiRoutesService: ApiRoutesService,
@@ -21,18 +20,21 @@ export class NotificationsStore {
     private notificationsService: NotificationsService,
   ) {}
 
-  get(id) {
-    const connectionName = `${id}`;
-    this.notificationData[`${id}`] = new BehaviorSubject(null);
-    this.notificationData$[`${id}`] = this.notificationData[`${id}`].asObservable();
-    this.unreadNotificationsCount.next(this.unreadNotificationsCount.getValue().add(`${id}`));
-  }
-
-  getUnreadNotificationsCount(id?, filter?): Observable<number> {
+  getCommunityUnreadNotificationsCount(id, filter): Observable<number> {
+    this.communityNotificationCount[`${id}`] = new BehaviorSubject(0);
+    this.communityNotificationCount$[`${id}`] = this.communityNotificationCount[`${id}`].asObservable();
     return this.notificationsService.getUnreadNotificationsCount(id, filter).pipe(
       tap((data: number) => {
-        data;
-        this.unreadNotificationsCount.next(data);
+        this.communityNotificationCount[`${id}`].next(data);
+      }),
+    );
+  }
+
+  getUserNotificationCount(): Observable<number> {
+    return this.notificationsService.getUnreadNotificationsCount('', '').pipe(
+      tap((data: number) => {
+        this.userNotificationCount.next(data);
+        console.log(data);
       }),
     );
   }

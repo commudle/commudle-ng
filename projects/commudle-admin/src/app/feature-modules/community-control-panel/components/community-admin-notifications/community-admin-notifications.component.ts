@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
+import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { NotificationsService } from '../../../notifications/services/notifications.service';
 
 @Component({
   selector: 'app-community-admin-notifications',
@@ -21,6 +22,7 @@ export class CommunityAdminNotificationsComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private notificationsService: NotificationsService,
     private nbToastrService: NbToastrService,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -36,8 +38,8 @@ export class CommunityAdminNotificationsComponent implements OnInit {
     this.notificationsService.markAllAsRead('community', this.community.id).subscribe((result) => {
       if (result) {
         this.nbToastrService.success('All notifications marked as read', 'Success');
-
         this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+        this.notificationsStore.communityNotificationCount[this.community.id].next(0);
       }
     });
   }

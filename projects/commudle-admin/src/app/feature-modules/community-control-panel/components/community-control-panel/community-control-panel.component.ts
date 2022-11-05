@@ -7,10 +7,9 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { NotificationsService } from '../../../notifications/services/notifications.service';
-import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
-import { NotificationsStore } from '../../../notifications/store/notifications.store';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -32,7 +31,6 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
     private seoService: SeoService,
-    private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
     private notificationsStore: NotificationsStore,
   ) {}
@@ -82,16 +80,10 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsStore.unreadNotificationsCount$.subscribe((data: number) => {
-        console.log(data, 'getUnreadNotificationsCount');
-        this.notificationCount = data;
+      this.notificationsStore.communityNotificationCount$[id].subscribe((count: number) => {
+        this.notificationCount = count;
       }),
     );
-    // this.subscriptions.push(
-    //   this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
-    //     this.notificationCount = count;
-    //   }),
-    // );
   }
   receiveData() {
     this.subscriptions.push(

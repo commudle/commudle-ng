@@ -117,7 +117,7 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   getUnreadNotificationsCount(id) {
-    this.notificationsStore.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+    this.notificationsStore.getCommunityUnreadNotificationsCount(id, 'community').subscribe((count) => {
       this.notificationCount = count;
     });
   }

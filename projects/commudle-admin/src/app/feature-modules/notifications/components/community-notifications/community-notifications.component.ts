@@ -5,7 +5,8 @@ import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
-import { NotificationChannel } from '../../services/websockets/notification.channel';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-community-notifications',
@@ -31,7 +32,11 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
+  constructor(
+    private notificationsService: NotificationsService,
+    private notificationChannel: NotificationChannel,
+    private notificationsStore: NotificationsStore,
+  ) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -44,10 +49,13 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(
-      this.notificationsService.updateNotificationStatus(status, notification.id, this.id).subscribe(),
+      this.notificationsService.updateNotificationStatus(status, notification.id, this.id).subscribe(() => {
+        this.notificationsStore.communityNotificationCount[this.id].next(
+          this.notificationsStore.communityNotificationCount[this.id].value - 1,
+        );
+      }),
     );
   }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.markAllAsRead) {
       this.notifications.forEach((notification) => (notification.status = ENotificationStatuses.READ));

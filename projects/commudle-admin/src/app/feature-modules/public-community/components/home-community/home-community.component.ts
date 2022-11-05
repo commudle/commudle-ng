@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { NotificationsService } from '../../../notifications/services/notifications.service';
-import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
-import { NotificationsStore } from '../../../notifications/store/notifications.store';
 
 @Component({
   selector: 'app-home-community',
@@ -25,7 +24,6 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communitiesService: CommunitiesService,
-    private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
     private notificationsStore: NotificationsStore,
   ) {}
@@ -57,7 +55,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsStore.unreadNotificationsCount$.subscribe((data: number) => {
+      this.notificationsStore.communityNotificationCount$[id].subscribe((data: number) => {
         this.notificationCount = data;
       }),
     );
