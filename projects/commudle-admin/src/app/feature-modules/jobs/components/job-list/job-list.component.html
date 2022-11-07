@@ -3,7 +3,12 @@
     <div class="two-column-layout mobile-reverse">
       <div class="main-column">
         <nb-card>
-          <nb-card-header>Jobs</nb-card-header>
+          <nb-card-header>
+            <div class="tittle">
+              <nb-icon icon="briefcase" class="com-mr-1"></nb-icon>
+              <p>Jobs</p>
+            </div>
+          </nb-card-header>
           <nb-card-body class="com-space-y-4">
             <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
             <button
@@ -21,7 +26,12 @@
       </div>
       <div class="right-column">
         <nb-card>
-          <nb-card-header> <fa-icon [icon]="faFilters" class="com-mr-1"></fa-icon>Filters</nb-card-header>
+          <nb-card-header class="com-py-3">
+            <div class="com-flex com-items-center">
+              <fa-icon [icon]="faFilters" class="com-mr-1"></fa-icon>
+              <p>Filters</p>
+            </div>
+          </nb-card-header>
           <nb-card-body class="com-pt-0">
             <form [formGroup]="filterForm" class="">
               <div class="category filter-options">
