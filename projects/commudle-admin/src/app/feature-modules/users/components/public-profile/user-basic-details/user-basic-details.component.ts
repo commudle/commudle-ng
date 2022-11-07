@@ -116,7 +116,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   openToWork() {
     if (!this.lookingForWorked) {
       this.jobService.toggleEmployee().subscribe(() => {
-        this.toastrService.success("I'm looking for job", ' success');
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
         this.lookingForWorked = true;
       });
@@ -126,7 +125,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   openToHiring() {
     if (!this.hiring) {
       this.jobService.toggleEmployer().subscribe(() => {
-        this.toastrService.success("i'm hiring", ' success');
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
         this.hiring = true;
       });
