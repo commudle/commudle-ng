@@ -50,9 +50,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(
       this.notificationsService.updateNotificationStatus(status, notification.id, this.id).subscribe(() => {
-        this.notificationsStore.communityNotificationCount[this.id].next(
-          this.notificationsStore.communityNotificationCount[this.id].value - 1,
-        );
+        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.id, 1);
       }),
     );
   }

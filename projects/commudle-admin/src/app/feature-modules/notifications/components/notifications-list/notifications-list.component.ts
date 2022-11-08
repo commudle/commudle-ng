@@ -6,6 +6,7 @@ import { ENotificationStatuses } from 'projects/shared-models/enums/notification
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-notifications-list',
@@ -29,7 +30,11 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
+  constructor(
+    private notificationsService: NotificationsService,
+    private notificationChannel: NotificationChannel,
+    private notificationsStore: NotificationsStore,
+  ) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -48,7 +53,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
-
+    this.notificationsStore.reduceUserUnreadNotificationsCount(1);
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
     }

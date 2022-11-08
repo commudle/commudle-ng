@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { faFlask, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
@@ -12,13 +12,14 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NotificationsStore } from '../../feature-modules/notifications/store/notifications.store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
 })
-export class SidebarMenuComponent implements OnInit {
+export class SidebarMenuComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faNewspaper = faNewspaper;
   currentUser: ICurrentUser;
@@ -33,6 +34,8 @@ export class SidebarMenuComponent implements OnInit {
   isAssetsAdmin = false;
 
   notificationCount = 0;
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -49,9 +52,13 @@ export class SidebarMenuComponent implements OnInit {
     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
       this.managedCommunities = data;
       for (let communities of data) {
-        this.getUnreadNotificationsCount(communities.id);
+        this.updateUnreadNotificationsCount(communities.id);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getCurrentUser(): void {
@@ -116,9 +123,15 @@ export class SidebarMenuComponent implements OnInit {
     });
   }
 
-  getUnreadNotificationsCount(id) {
-    this.notificationsStore.getCommunityUnreadNotificationsCount(id, 'community').subscribe((count) => {
-      this.notificationCount = count;
-    });
+  updateUnreadNotificationsCount(communityId) {
+    this.notificationsStore.getCommunityUnreadNotificationsCount(communityId).subscribe();
+  }
+
+  getUnreadNotificationsCount(communityId) {
+    this.subscriptions.push(
+      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
+        this.notificationCount = count;
+      }),
+    );
   }
 }

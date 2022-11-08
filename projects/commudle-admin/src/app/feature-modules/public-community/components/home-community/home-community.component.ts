@@ -42,7 +42,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.receiveData();
+          this.receiveData(this.community.id);
         }
       }),
     );
@@ -55,13 +55,13 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsStore.communityNotificationCount$[id].subscribe((data: number) => {
+      this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
         this.notificationCount = data;
       }),
     );
   }
 
-  receiveData() {
+  receiveData(id) {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
         if (data) {
@@ -69,6 +69,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
               if (data.notification_filter == 'community') {
                 this.notificationCount++;
+                this.notificationsStore.incrementCommunityUnreadNotificationsCount(id);
               }
             }
           }

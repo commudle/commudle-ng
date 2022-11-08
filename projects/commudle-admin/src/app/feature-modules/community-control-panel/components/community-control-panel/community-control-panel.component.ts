@@ -62,7 +62,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.receiveData();
+          this.receiveData(this.community.id);
         }
       }),
     );
@@ -80,12 +80,12 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   getUnreadNotificationsCount(id) {
     this.subscriptions.push(
-      this.notificationsStore.communityNotificationCount$[id].subscribe((count: number) => {
+      this.notificationsStore.communityNotificationsCount$[id].subscribe((count: number) => {
         this.notificationCount = count;
       }),
     );
   }
-  receiveData() {
+  receiveData(id) {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
         if (data) {
@@ -93,6 +93,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
               if (data.notification_filter == 'community') {
                 this.notificationCount++;
+                this.notificationsStore.incrementCommunityUnreadNotificationsCount(id);
               }
             }
           }

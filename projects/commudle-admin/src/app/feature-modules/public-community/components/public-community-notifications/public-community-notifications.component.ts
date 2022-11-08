@@ -41,7 +41,7 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
       if (result) {
         this.nbToastrService.success('All notifications marked as read', 'Success');
         this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
-        this.notificationsStore.communityNotificationCount[this.community.id].next(0);
+        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.community.id);
       }
     });
   }

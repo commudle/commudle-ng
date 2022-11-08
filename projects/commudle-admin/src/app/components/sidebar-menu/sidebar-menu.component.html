@@ -65,6 +65,12 @@
           <a [routerLink]="['/admin', 'communities', community.slug]">
             <nb-user name="{{ community.name }}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
           </a>
+          <nb-badge
+            *ngIf="notificationCount > 0"
+            [text]="getUnreadNotificationsCount(community.id).toString()"
+            [position]="'center right'"
+            status="danger"
+          ></nb-badge>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

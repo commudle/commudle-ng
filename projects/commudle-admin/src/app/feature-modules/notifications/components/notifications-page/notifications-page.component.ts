@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private seoService: SeoService,
     private nbToastrService: NbToastrService,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -34,8 +36,8 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
     this.notificationsService.markAllAsRead().subscribe((res) => {
       if (res) {
         this.nbToastrService.success('All notifications marked as read', 'Success');
-
         this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+        this.notificationsStore.reduceUserUnreadNotificationsCount();
       }
     });
   }
