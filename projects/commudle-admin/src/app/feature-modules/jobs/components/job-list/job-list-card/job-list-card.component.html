@@ -115,7 +115,10 @@
             </svg>
           </span>
         </div>
-        <p class="job-label">Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience</p>
+        <p class="job-label" *ngIf="job.experience == 0">Fresher</p>
+        <p class="job-label" *ngIf="job.experience > 0">
+          Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience
+        </p>
       </div>
 
       <div class="md:com-flex com-items-center md:com-justify-between">
