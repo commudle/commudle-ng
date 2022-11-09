@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -24,7 +23,6 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communitiesService: CommunitiesService,
-    private notificationChannel: NotificationChannel,
     private notificationsStore: NotificationsStore,
   ) {}
 
@@ -42,7 +40,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.receiveData(this.community.id);
+          this.notificationsStore.recievedUnreadNotificationsCount(this.community.id);
         }
       }),
     );
@@ -57,23 +55,6 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
         this.notificationCount = data;
-      }),
-    );
-  }
-
-  receiveData(id) {
-    this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              if (data.notification_filter == 'community') {
-                this.notificationCount++;
-                this.notificationsStore.incrementCommunityUnreadNotificationsCount(id);
-              }
-            }
-          }
-        }
       }),
     );
   }

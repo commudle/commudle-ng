@@ -1,6 +1,8 @@
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +13,7 @@ export class NotificationsStore {
   private userNotificationCount: BehaviorSubject<number> = new BehaviorSubject(0);
   public userNotificationCount$: Observable<number> = this.userNotificationCount.asObservable();
 
-  constructor(private notificationsService: NotificationsService) {}
+  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
 
   getCommunityUnreadNotificationsCount(id): Observable<number> {
     this.communityNotificationsCount[`${id}`] = new BehaviorSubject(0);
@@ -53,5 +55,21 @@ export class NotificationsStore {
 
   incrementUserUnreadNotificationsCount() {
     this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);
+  }
+
+  recievedUnreadNotificationsCount(communityId?) {
+    this.notificationChannel.notificationData$.subscribe((data) => {
+      if (data) {
+        switch (data.action) {
+          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+            if (data.notification_filter == 'user') {
+              this.incrementUserUnreadNotificationsCount();
+            } else if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
+              this.incrementCommunityUnreadNotificationsCount(communityId);
+            }
+          }
+        }
+      }
+    });
   }
 }

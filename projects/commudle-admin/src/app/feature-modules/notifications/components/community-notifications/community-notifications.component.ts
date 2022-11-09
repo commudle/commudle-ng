@@ -14,7 +14,7 @@ import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modu
   styleUrls: ['./community-notifications.component.scss'],
 })
 export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() id = 0;
+  @Input() communityId = 0;
   @Input() markAllAsRead: boolean;
 
   isLoading = false;
@@ -49,8 +49,8 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(
-      this.notificationsService.updateNotificationStatus(status, notification.id, this.id).subscribe(() => {
-        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.id, 1);
+      this.notificationsService.updateNotificationStatus(status, notification.id, this.communityId).subscribe(() => {
+        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.communityId, 1);
       }),
     );
   }
@@ -65,7 +65,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationsService
-          .getAllNotifications(this.page, this.count, this.id, 'community')
+          .getAllNotifications(this.page, this.count, this.communityId, 'community')
           .subscribe((value) => {
             this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
             this.page += 1;
@@ -87,7 +87,8 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
               // add only if it's not already in the list
               if (
                 !this.notifications.find((notification) => notification.id === data.notification.id) &&
-                data.notification_filter === 'community'
+                data.notification_filter === 'community' &&
+                data.notification.filter_object_id == this.communityId
               ) {
                 this.notifications.unshift(data.notification);
               }

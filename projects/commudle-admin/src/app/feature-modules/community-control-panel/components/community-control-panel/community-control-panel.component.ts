@@ -8,7 +8,6 @@ import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
@@ -31,7 +30,6 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
     private seoService: SeoService,
-    private notificationChannel: NotificationChannel,
     private notificationsStore: NotificationsStore,
   ) {}
 
@@ -62,7 +60,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.receiveData(this.community.id);
+          this.notificationsStore.recievedUnreadNotificationsCount(this.community.id);
         }
       }),
     );
@@ -78,26 +76,10 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     });
   }
 
-  getUnreadNotificationsCount(id) {
+  getUnreadNotificationsCount(communityId) {
     this.subscriptions.push(
-      this.notificationsStore.communityNotificationsCount$[id].subscribe((count: number) => {
+      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
         this.notificationCount = count;
-      }),
-    );
-  }
-  receiveData(id) {
-    this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              if (data.notification_filter == 'community') {
-                this.notificationCount++;
-                this.notificationsStore.incrementCommunityUnreadNotificationsCount(id);
-              }
-            }
-          }
-        }
       }),
     );
   }
