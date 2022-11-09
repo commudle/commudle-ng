@@ -36,7 +36,7 @@
             <form [formGroup]="filterForm" class="">
               <div class="category filter-options">
                 <p>Category</p>
-                <nb-radio-group formControlName="category">
+                <nb-radio-group formControlName="category" name="category">
                   <nb-radio *ngFor="let category of jobCategories" [value]="category">
                     {{ category | titlecase }}
                   </nb-radio>
@@ -44,7 +44,7 @@
               </div>
               <div class="experience filter-options">
                 <p>Experience</p>
-                <nb-radio-group formControlName="experience">
+                <nb-radio-group formControlName="experience" name="experience">
                   <nb-radio
                     *ngFor="let experience of experiences"
                     [value]="{ min: experience.minExperience, max: experience.maxExperience }"
@@ -55,7 +55,7 @@
               </div>
               <div class="salary filter-options">
                 <p>Salary Range</p>
-                <nb-radio-group formControlName="salary_range">
+                <nb-radio-group formControlName="salary_range" name="salary_range">
                   <nb-radio
                     *ngFor="let salary of salaryRange"
                     [value]="{ min: salary.minSalary, max: salary.maxSalary }"
@@ -66,7 +66,7 @@
               </div>
               <div class="salary-type filter-options">
                 <p>Salary Type</p>
-                <nb-radio-group formControlName="salary_type">
+                <nb-radio-group formControlName="salary_type" name="salary_type">
                   <nb-radio *ngFor="let salaryType of jobSalaryTypes" [value]="salaryType">
                     {{ salaryType | titlecase }}
                   </nb-radio>
@@ -82,7 +82,7 @@
               </div> -->
               <div class="location-type filter-options">
                 <p>Location Type</p>
-                <nb-radio-group formControlName="location_type">
+                <nb-radio-group formControlName="location_type" name="location_type">
                   <nb-radio *ngFor="let locationType of jobLocationTypes" [value]="locationType">
                     {{ locationType | uppercase }}
                   </nb-radio>
@@ -90,7 +90,7 @@
               </div>
               <div class="job-type filter-options">
                 <p>Job Type</p>
-                <nb-radio-group formControlName="job_type" fullWidth placeholder="Job Type">
+                <nb-radio-group formControlName="job_type" name="job_type">
                   <nb-radio *ngFor="let jobType of jobTypes" [value]="jobType">
                     {{ jobType | enumFormat }}
                   </nb-radio>
