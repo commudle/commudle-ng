@@ -20,6 +20,6 @@ export const staticAssets = {
   labs_home:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaHUzIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--556052b109a91c0b7bb257d872e032ed22c689b7/Labs-Home.png',
 
-  google_startups:
+  google_for_startups_badge:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmV6IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--39fdea571c3cc98d53d8725229807b13ef3e0369/GFS_Accel_DigitalBadge_2022_withyear.png',
 };
