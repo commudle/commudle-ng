@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-communities-about',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./communities-about.component.scss'],
 })
 export class CommunitiesAboutComponent implements OnInit {
+  staticAssets = staticAssets;
   constructor() {
     // do nothing
   }
