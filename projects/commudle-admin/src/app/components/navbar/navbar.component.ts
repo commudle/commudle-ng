@@ -5,6 +5,7 @@ import { AppCentralNotificationService } from 'projects/commudle-admin/src/app/s
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { TruncateTextPipe } from 'projects/shared-pipes/truncate-text.pipe';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
   sideBarState: NbSidebarState;
 
   faBars = faBars;
+  staticAssets = staticAssets;
 
   constructor(
     private sidebarService: NbSidebarService,

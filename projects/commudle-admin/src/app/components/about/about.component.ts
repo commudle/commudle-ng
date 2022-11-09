@@ -4,6 +4,7 @@ import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { ICMSAbout } from 'projects/commudle-admin/src/app/components/about/models/about-cms.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-about',
@@ -12,6 +13,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
 })
 export class AboutComponent implements OnInit, OnDestroy {
   ICmsAbout: ICMSAbout;
+  staticAssets = staticAssets;
 
   constructor(private cmsService: CmsService, private seoService: SeoService) {}
 

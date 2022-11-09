@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ILab } from 'projects/shared-models/lab.model';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-labs-header',
@@ -9,6 +10,8 @@ import { ILab } from 'projects/shared-models/lab.model';
 export class LabsHeaderComponent implements OnInit {
   @Input() tags: string[] = [];
   @Input() labs: ILab[] = [];
+
+  staticAssets = staticAssets;
 
   trending = [];
   // trending = [
