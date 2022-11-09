@@ -49,14 +49,7 @@
           <p>{{ user.designation }}</p>
         </div>
         <div *ngIf="currentUser?.id === user.id">
-          <nb-toggle
-            fragment="resume"
-            routerLink="."
-            (click)="openToWork()"
-            [(checked)]="lookingForWorked"
-            status="basic"
-            labelPosition="left"
-          >
+          <nb-toggle (click)="openToWork()" [(checked)]="lookingForWork" status="basic" labelPosition="left">
             I'm looking for work
           </nb-toggle>
         </div>

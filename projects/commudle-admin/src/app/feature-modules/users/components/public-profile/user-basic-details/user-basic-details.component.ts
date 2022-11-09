@@ -29,7 +29,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   environment = environment;
 
-  lookingForWorked = false;
+  lookingForWork = false;
   hiring = false;
   editTagDialog: NbDialogRef<any>;
 
@@ -47,6 +47,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
+    this.lookingForWork = this.user.is_employee;
+    this.hiring = this.user.is_employer;
   }
 
   ngOnChanges() {
@@ -114,20 +116,18 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   openToWork() {
-    if (!this.lookingForWorked) {
-      this.jobService.toggleEmployee().subscribe(() => {
+    this.jobService.toggleEmployee().subscribe(() => {
+      if (this.lookingForWork) {
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
-        this.lookingForWorked = true;
-      });
-    }
+      }
+    });
   }
 
   openToHiring() {
-    if (!this.hiring) {
-      this.jobService.toggleEmployer().subscribe(() => {
+    this.jobService.toggleEmployer().subscribe(() => {
+      if (this.hiring) {
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
-        this.hiring = true;
-      });
-    }
+      }
+    });
   }
 }
