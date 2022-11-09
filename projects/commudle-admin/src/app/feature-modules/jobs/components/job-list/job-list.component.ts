@@ -35,25 +35,25 @@ export class JobListComponent implements OnInit, OnDestroy {
     job_type: [''],
     status: [''],
     experience: [''],
-    minExperience: [''],
-    maxExperience: '',
+    min_experience: [''],
+    max_experience: '',
     salary_range: [''],
-    minSalary: [''],
-    maxSalary: [''],
+    min_salary: [''],
+    max_salary: [''],
   });
 
   experiences = [
-    { minExperience: '0', maxExperience: '1', label: '0-1 Year' },
-    { minExperience: '1', maxExperience: '2', label: '1-2 Year' },
-    { minExperience: '2', maxExperience: '3', label: '2-3 Year' },
-    { minExperience: '3', maxExperience: '4', label: '3-4 Year' },
-    { minExperience: '4', maxExperience: '', label: '>4 Year' },
+    { min_experience: '0', max_experience: '1', label: '0-1 Year' },
+    { min_experience: '1', max_experience: '2', label: '1-2 Year' },
+    { min_experience: '2', max_experience: '3', label: '2-3 Year' },
+    { min_experience: '3', max_experience: '4', label: '3-4 Year' },
+    { min_experience: '4', max_experience: '', label: '>4 Year' },
   ];
   salaryRange = [
-    { minSalary: '0', maxSalary: '25000', label: 'Rs 0 to Rs 25,000' },
-    { minSalary: '25001', maxSalary: '50000', label: 'Rs 25,001 to Rs 50,000' },
-    { minSalary: '50001', maxSalary: '100000', label: 'Rs 50,001 to Rs 1 Lakh' },
-    { minSalary: '100001', maxSalary: '', label: 'More than Rs 1 Lakh' },
+    { min_salary: '0', max_salary: '25000', label: 'Rs 0 to Rs 25,000' },
+    { min_salary: '25001', max_salary: '50000', label: 'Rs 25,001 to Rs 50,000' },
+    { min_salary: '50001', max_salary: '100000', label: 'Rs 50,001 to Rs 1 Lakh' },
+    { min_salary: '100001', max_salary: '', label: 'More than Rs 1 Lakh' },
   ];
 
   jobCategories = Object.values(EJobCategory);
@@ -80,10 +80,10 @@ export class JobListComponent implements OnInit, OnDestroy {
           salary_type: this.filterForm.value.salary_type,
           location_type: this.filterForm.value.location_type,
           job_type: this.filterForm.value.job_type,
-          minExperience: this.filterForm.value.experience ? this.filterForm.value.experience.min : '',
-          maxExperience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
-          minSalary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
-          maxSalary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
+          min_experience: this.filterForm.value.experience ? this.filterForm.value.experience.min : '',
+          max_experience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
+          min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
+          max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
         };
         this.getJobs(true);
       }),
@@ -120,10 +120,10 @@ export class JobListComponent implements OnInit, OnDestroy {
       salary_type: [''],
       location_type: [''],
       job_type: [''],
-      minExperience: [''],
-      maxExperience: '',
-      minSalary: [''],
-      maxSalary: [''],
+      min_experience: [''],
+      max_experience: '',
+      min_salary: [''],
+      max_salary: [''],
     };
     this.getJobs();
   }

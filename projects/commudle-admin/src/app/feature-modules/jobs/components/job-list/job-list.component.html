@@ -47,7 +47,7 @@
                 <nb-radio-group formControlName="experience" name="experience">
                   <nb-radio
                     *ngFor="let experience of experiences"
-                    [value]="{ min: experience.minExperience, max: experience.maxExperience }"
+                    [value]="{ min: experience.min_experience, max: experience.max_experience }"
                   >
                     {{ experience.label | titlecase }}
                   </nb-radio>
@@ -58,7 +58,7 @@
                 <nb-radio-group formControlName="salary_range" name="salary_range">
                   <nb-radio
                     *ngFor="let salary of salaryRange"
-                    [value]="{ min: salary.minSalary, max: salary.maxSalary }"
+                    [value]="{ min: salary.min_salary, max: salary.max_salary }"
                   >
                     {{ salary.label | titlecase }}
                   </nb-radio>

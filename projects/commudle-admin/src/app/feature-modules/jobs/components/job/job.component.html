@@ -15,7 +15,7 @@
               <div class="com-w-max com-flex com-gap-2">
                 <button
                   (click)="onDialogOpen(createJobApplicationDialog)"
-                  *ngIf="job.status === jobStatus.OPEN"
+                  *ngIf="job.status === jobStatus.OPEN && !currentUser?.id == job.user.id"
                   [disabled]="!currentUser?.id"
                   class="com-w-full md:com-w-auto"
                   nbButton
@@ -81,7 +81,6 @@
                     </svg>
                   </span>
                 </div>
-                <
                 <p class="job-label" *ngIf="job.experience == 0">Fresher</p>
                 <p class="job-label" *ngIf="job.experience > 0">
                   Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience
