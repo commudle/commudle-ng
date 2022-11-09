@@ -18,11 +18,20 @@ h4 {
     }
 
     .user-communities-role {
-      @apply com-text-xs com-text-gray-500;
+      @apply com-text-xs com-text-gray-500 com-py-2px;
     }
 
     .user-communities-members {
       @apply com-mt-1 com-text-xs com-text-blue-500;
+    }
+  }
+}
+
+.organizer {
+  .user-communities-role {
+    @apply com-text-black com-bg-[#FFAA00] com-flex com-items-center com-w-min com-p-0 com-px-2 com-font-medium com-rounded-xl #{!important};
+    nb-icon {
+      @apply com-text-white com-mr-1;
     }
   }
 }

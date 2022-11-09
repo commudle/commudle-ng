@@ -1,5 +1,11 @@
 <nb-card>
-  <nb-card-body>
-    <app-community-notifications [id]="community.id"></app-community-notifications>
+  <nb-card-header class="heading">
+    <button ghost (click)="markAllAsRead()" nbButton size="small">
+      Mark all as read
+      <nb-icon icon="checkmark-circle-outline"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body class="notification-section">
+    <app-community-notifications [id]="community.id" [markAllAsRead]="trackMarkAllAsRead"></app-community-notifications>
   </nb-card-body>
 </nb-card>

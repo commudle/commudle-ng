@@ -1,5 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 // import getImagePalette from 'image-palette-core';
 import { FeaturedCommunitiesService } from 'projects/commudle-admin/src/app/services/featured-communities.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
@@ -11,6 +11,7 @@ import { NavigatorShareService } from 'projects/shared-services/navigator-share.
   selector: 'app-homepage-featured-communities',
   templateUrl: './homepage-featured-communities.component.html',
   styleUrls: ['./homepage-featured-communities.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageFeaturedCommunitiesComponent implements OnInit {
   featuredCommunities: IFeaturedCommunity[] = [];
@@ -20,6 +21,7 @@ export class HomepageFeaturedCommunitiesComponent implements OnInit {
     private navigatorShareService: NavigatorShareService,
     private libToastLogService: LibToastLogService,
     private clipboard: Clipboard,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class HomepageFeaturedCommunitiesComponent implements OnInit {
     this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
       this.featuredCommunities = value.featured_communities.slice(0, 4);
       this.extractPalette();
+      this.changeDetectorRef.markForCheck();
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
 import { IUser } from 'projects/shared-models/user.model';
 import { Subscription } from 'rxjs';
@@ -7,13 +7,14 @@ import { Subscription } from 'rxjs';
   selector: 'app-homepage-experts',
   templateUrl: './homepage-experts.component.html',
   styleUrls: ['./homepage-experts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageExpertsComponent implements OnInit, OnDestroy {
   experts: IUser[] = [];
 
   subscription: Subscription;
 
-  constructor(private homeService: HomeService) {}
+  constructor(private homeService: HomeService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getExperts();
@@ -24,6 +25,9 @@ export class HomepageExpertsComponent implements OnInit, OnDestroy {
   }
 
   getExperts() {
-    this.subscription = this.homeService.experts().subscribe((value) => (this.experts = value));
+    this.subscription = this.homeService.experts().subscribe((value) => {
+      this.experts = value;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 }

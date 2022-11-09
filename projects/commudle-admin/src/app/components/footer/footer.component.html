@@ -2,8 +2,13 @@
   <div class="com-container com-mx-auto com-py-12 com-px-4">
     <div class="xl:com-grid xl:com-grid-cols-3 xl:com-gap-8">
       <div class="com-space-y-8 xl:com-col-span-1">
-        <img alt="Commudle" class="com-h-16" src="/assets/images/commudle-logo128.png" title="Commudle" />
+        <img alt="Commudle" class="com-h-16" src="{{ staticAssets.commudle_logo_128 }}" title="Commudle" />
         <div class="com-text-gray-500 com-text-base">Connect with experts and grow with communities.</div>
+        <a
+          href="https://blog.google/intl/en-in/introducing-the-inaugural-class-of-the-google-for-startups-accelerator-india-women-founders/"
+        >
+          <img class="com-h-16" src="{{ staticAssets.google_for_startups_badge }}" alt="Google for Startups 2022" />
+        </a>
         <div class="footer-social-links com-flex com-space-x-6">
           <a href="https://twitter.com/commudle" target="_blank">
             <nb-icon icon="twitter"></nb-icon>
@@ -26,6 +31,7 @@
               <li><a [routerLink]="['/']">Home</a></li>
               <li><a [routerLink]="['/about']">About</a></li>
               <li><a [routerLink]="['/pricing']">Pricing</a></li>
+              <li><a href="https://documentation.commudle.com/" target="_blank">Documentation</a></li>
               <!-- <li><a [routerLink]="['/features']">Features</a></li> -->
             </ul>
           </div>
