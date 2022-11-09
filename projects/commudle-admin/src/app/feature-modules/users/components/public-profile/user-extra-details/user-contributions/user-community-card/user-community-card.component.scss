@@ -26,3 +26,12 @@ h4 {
     }
   }
 }
+
+.organizer {
+  .user-communities-role {
+    @apply com-text-black com-bg-[#FFAA00] com-flex com-items-center com-w-min com-p-0 com-px-2 com-font-medium com-rounded-xl #{!important};
+    nb-icon {
+      @apply com-text-white com-mr-1;
+    }
+  }
+}
