@@ -427,6 +427,8 @@ export const API_ROUTES = {
     FOLLOWEES: 'api/v2/users/followees',
     EMAIL_UNSUBSCRIBE_GROUPS: 'api/v2/users/email_unsubscribe_groups',
     MINI_PROFILE: 'api/v2/users/profile',
+    TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
+    TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
   },
 
   SPEAKER_RESOURCES: {

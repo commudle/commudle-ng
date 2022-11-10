@@ -8,14 +8,14 @@
               <div class="company-details">
                 <h1 class="position">{{ job.position }}</h1>
                 <h2 class="company">
-                  <nb-icon icon="briefcase"></nb-icon>
+                  <fa-icon [icon]="faBuilding" class="com-px-1"></fa-icon>
                   {{ job.company }}
                 </h2>
               </div>
               <div class="com-w-max com-flex com-gap-2">
                 <button
                   (click)="onDialogOpen(createJobApplicationDialog)"
-                  *ngIf="job.status === jobStatus.OPEN"
+                  *ngIf="job.status === jobStatus.OPEN && !currentUser?.id == job.user.id"
                   [disabled]="!currentUser?.id"
                   class="com-w-full md:com-w-auto"
                   nbButton
@@ -81,7 +81,10 @@
                     </svg>
                   </span>
                 </div>
-                <p class="job-label">Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience</p>
+                <p class="job-label" *ngIf="job.experience == 0">Fresher</p>
+                <p class="job-label" *ngIf="job.experience > 0">
+                  Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience
+                </p>
               </div>
 
               <div class="job-type">

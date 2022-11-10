@@ -1,0 +1,23 @@
+.filter-options {
+  p {
+    @apply com-text-base com-font-medium com-mb-0;
+  }
+  nb-radio {
+    ::ng-deep {
+      label {
+        @apply com-p-0;
+      }
+    }
+  }
+}
+.reset-button {
+  @apply com-mt-3;
+}
+
+.tittle {
+  @apply com-flex com-items-center;
+  p,
+  nb-icon {
+    @apply com-text-4xl com-m-0 com-mr-1;
+  }
+}

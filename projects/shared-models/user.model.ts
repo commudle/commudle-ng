@@ -29,6 +29,8 @@ export interface IUser {
   followers_count: number;
   followees_count: number;
   photo: IAttachedFile;
+  is_employer: boolean;
+  is_employee: boolean;
 }
 
 export interface IUserSearch extends IUser {
