@@ -16,6 +16,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Router } from '@angular/router';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-job-list',
@@ -74,10 +75,12 @@ export class JobListComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authWatchService: LibAuthwatchService,
     private router: Router,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
     this.getJobs();
+    this.setMeta();
 
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
@@ -143,5 +146,13 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   redirectToProfile() {
     this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      'Jobs - From tech communities',
+      ' Find your next job or internship opportunity as a software developer, designers, technical content writer, volunteering and more through professionals from the developer ecosystem.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
