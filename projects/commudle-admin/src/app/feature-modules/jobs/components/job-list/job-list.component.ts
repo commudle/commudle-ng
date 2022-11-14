@@ -13,6 +13,9 @@ import {
 import { IPageInfo } from 'projects/shared-models/page-info.model';
 import { Subscription } from 'rxjs';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
@@ -21,6 +24,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 })
 export class JobListComponent implements OnInit, OnDestroy {
   jobs: IJob[] = [];
+  currentUser: ICurrentUser;
   limit = 10;
   page_info: IPageInfo;
   isLoading = false;
@@ -50,10 +54,10 @@ export class JobListComponent implements OnInit, OnDestroy {
     { min_experience: '4', max_experience: '', label: '>4 Year' },
   ];
   salaryRange = [
-    { min_salary: '0', max_salary: '25000', label: 'Rs 0 to Rs 25,000' },
-    { min_salary: '25001', max_salary: '50000', label: 'Rs 25,001 to Rs 50,000' },
-    { min_salary: '50001', max_salary: '100000', label: 'Rs 50,001 to Rs 1 Lakh' },
-    { min_salary: '100001', max_salary: '', label: 'More than Rs 1 Lakh' },
+    { min_salary: '0', max_salary: '25000', label: '0 to 25,000' },
+    { min_salary: '25001', max_salary: '50000', label: '25,001 to 50,000' },
+    { min_salary: '50001', max_salary: '100000', label: '50,001 to 1,000,00' },
+    { min_salary: '100001', max_salary: '', label: 'More than 1,000,00' },
   ];
 
   jobCategories = Object.values(EJobCategory);
@@ -65,16 +69,23 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private jobService: JobService, private fb: FormBuilder) {}
+  constructor(
+    private jobService: JobService,
+    private fb: FormBuilder,
+    private authWatchService: LibAuthwatchService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.getJobs();
 
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
+
     // listen to changes in filter form
     this.subscriptions.push(
       this.filterForm.valueChanges.subscribe(() => {
+        this.isLoading = true;
         this.page_info = null;
-        console.log(this.filterForm.value);
         this.formValue = {
           category: this.filterForm.value.category,
           salary_type: this.filterForm.value.salary_type,
@@ -84,6 +95,7 @@ export class JobListComponent implements OnInit, OnDestroy {
           max_experience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
           min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
           max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
+          salary_currency: this.filterForm.value.salary_currency,
         };
         this.getJobs(true);
       }),
@@ -118,6 +130,7 @@ export class JobListComponent implements OnInit, OnDestroy {
     this.formValue = {
       category: [''],
       salary_type: [''],
+      salary_currency: [''],
       location_type: [''],
       job_type: [''],
       min_experience: [''],
@@ -126,5 +139,9 @@ export class JobListComponent implements OnInit, OnDestroy {
       max_salary: [''],
     };
     this.getJobs();
+  }
+
+  redirectToProfile() {
+    this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
   }
 }

@@ -11,6 +11,7 @@ import { FooterService } from 'projects/commudle-admin/src/app/services/footer.s
 import { IUser } from 'projects/shared-models/user.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-public-profile',
@@ -20,6 +21,8 @@ import { Subscription } from 'rxjs';
 export class PublicProfileComponent implements OnInit, OnDestroy {
   user: IUser;
   activeMenuItems: UserProfileMenuItems | {};
+
+  faBuilding = faBuilding;
 
   subscriptions: Subscription[] = [];
 

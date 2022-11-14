@@ -33,7 +33,10 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   hiring = false;
   editTagDialog: NbDialogRef<any>;
 
+  hiringDialog: NbDialogRef<any>;
+
   @ViewChild('editTags') editTags: TemplateRef<any>;
+  @ViewChild('hiringDialogBox') hiringDialogBox: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -43,6 +46,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private toastrService: NbToastrService,
     private router: Router,
     private jobService: JobService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -115,7 +119,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     this.userChatsService.changeFollowerId(this.user.id);
   }
 
-  openToWork() {
+  openForWork() {
     this.jobService.toggleEmployee().subscribe(() => {
       if (this.lookingForWork) {
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
@@ -123,11 +127,21 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     });
   }
 
-  openToHiring() {
-    this.jobService.toggleEmployer().subscribe(() => {
-      if (this.hiring) {
+  openForHiring() {
+    if (!this.hiring) {
+      this.jobService.toggleEmployer().subscribe(() => {
         this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
-      }
-    });
+      });
+    } else if (this.hiring) {
+      this.hiringDialog = this.nbDialogService.open(this.hiringDialogBox, {
+        closeOnEsc: false,
+        closeOnBackdropClick: false,
+      });
+    }
+  }
+
+  closeHiring() {
+    this.jobService.toggleEmployer().subscribe();
+    this.hiringDialog.close();
   }
 }

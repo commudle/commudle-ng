@@ -1,17 +1,18 @@
-<nb-card>
+<nb-card [ngClass]="{ statusClosed: job.status === jobStatus.CLOSED }">
   <nb-card-body>
-    <div class="apply-button">
+    <div>
       <button
-        (click)="onDialogOpen(createJobApplicationDialog)"
-        *ngIf="job.status"
+        *ngIf="job.status === jobStatus.OPEN"
         [disabled]="!currentUser?.id"
-        class="com-w-full md:com-w-auto"
+        class="com-w-auto apply-button"
         nbButton
         shape="semi-round"
-        status="info"
+        status="primary"
+        [routerLink]="[job.id]"
       >
-        {{ currentUser?.id ? 'Apply' : 'Login to apply' }}
+        {{ currentUser?.id ? 'View Details & Apply' : 'Login to apply' }}
       </button>
+      <p *ngIf="job.status === jobStatus.CLOSED" class="com-w-full md:com-w-auto closed">Closed</p>
     </div>
     <a [routerLink]="[job.id]" class="com-no-underline">
       <div class="job-details position">
@@ -150,32 +151,3 @@
     </a>
   </nb-card-body>
 </nb-card>
-
-<ng-template #createJobApplicationDialog let-ref="dialogRef">
-  <nb-card>
-    <nb-card-header class="com-flex com-items-center com-justify-between">
-      <span>Choose resume</span>
-      <button (click)="ref.close()" ghost nbButton size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body class="com-max-w-[350px] com-space-y-3">
-      <span>Select a resume to apply with.</span>
-
-      <ng-container>
-        <nb-select [(selected)]="selectedUserResumeId" fullWidth>
-          <nb-option *ngFor="let resume of userResumes" [disabled]="userResumes.length === 0" [value]="resume.id">
-            {{ resume.name }}
-          </nb-option>
-        </nb-select>
-        <nb-alert *ngIf="userResumes.length === 0" status="warning">
-          <span>You don't have any resumes. <a routerLink="/resumes/create">Create one</a> to apply for this job.</span>
-        </nb-alert>
-      </ng-container>
-    </nb-card-body>
-    <nb-card-footer class="com-flex com-items-center com-justify-between">
-      <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
-      <button (click)="createJobApplication(); ref.close()" nbButton status="success">Confirm</button>
-    </nb-card-footer>
-  </nb-card>
-</ng-template>

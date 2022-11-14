@@ -68,7 +68,7 @@ export class UserProfileMenuService {
     },
     jobs: {
       name: 'Jobs',
-      icon: 'archive',
+      icon: 'briefcase',
       icon_status: 'primary',
       link: 'jobs',
       active: false,

@@ -13,6 +13,11 @@ nb-card {
     .apply-button {
       @apply md:com-hidden;
     }
+
+    .closed {
+      @apply com-flex com-absolute com-right-4 com-text-gray-500;
+    }
+
     a {
       .job-details {
         @apply com-flex com-items-center;
@@ -36,4 +41,8 @@ nb-card {
       @apply com-flex com-absolute com-bottom-4 com-right-4;
     }
   }
+}
+
+.statusClosed {
+  @apply com-bg-gray-100 hover:com-shadow-none;
 }
