@@ -10,6 +10,7 @@
             </div>
           </nb-card-header>
           <nb-card-body class="com-space-y-4">
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
             <button
               (click)="getJobs()"
