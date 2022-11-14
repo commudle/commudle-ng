@@ -39,8 +39,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
-          this.getUnreadNotificationsCount(this.community.id);
-          this.notificationsStore.recievedUnreadNotificationsCount(this.community.id);
+          this.getNotificationsCount(this.community.id);
         }
       }),
     );
@@ -51,7 +50,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getUnreadNotificationsCount(id) {
+  getNotificationsCount(id) {
     this.subscriptions.push(
       this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
         this.notificationCount = data;

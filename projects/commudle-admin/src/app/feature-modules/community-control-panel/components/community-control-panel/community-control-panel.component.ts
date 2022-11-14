@@ -60,7 +60,6 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.notificationsStore.recievedUnreadNotificationsCount(this.community.id);
         }
       }),
     );

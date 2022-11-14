@@ -35,7 +35,8 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
       if (currentUser) {
         this.getUnreadNotificationsCount();
-        this.notificationsStore.recievedUnreadNotificationsCount();
+        this.notificationsStore.getUserNotifications(1, 10);
+        this.notificationsStore.receivedUserUnreadNotificationsCount();
       }
     });
   }
@@ -45,7 +46,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount() {
-    this.notificationsStore.getUserNotificationsCount().subscribe();
+    this.notificationsStore.getUserNotificationsCount();
     this.notificationsStore.userNotificationCount$.subscribe((count) => {
       this.notificationCount = count;
     });

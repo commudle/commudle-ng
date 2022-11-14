@@ -53,6 +53,8 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
       this.managedCommunities = data;
       for (let communities of data) {
         this.updateUnreadNotificationsCount(communities.id);
+        this.notificationsStore.getCommunityNotifications(1, 10, communities.id);
+        this.notificationsStore.updateCommunityNotifications(communities.id);
       }
     });
   }
@@ -124,14 +126,15 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   }
 
   updateUnreadNotificationsCount(communityId) {
-    this.notificationsStore.getCommunityUnreadNotificationsCount(communityId).subscribe();
+    this.notificationsStore.getCommunityUnreadNotificationsCount(communityId);
   }
 
-  getUnreadNotificationsCount(communityId) {
+  getUnreadNotificationsCount(communityId): number {
     this.subscriptions.push(
       this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
         this.notificationCount = count;
       }),
     );
+    return this.notificationCount;
   }
 }

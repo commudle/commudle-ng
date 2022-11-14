@@ -38,7 +38,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   ngOnInit(): void {
     this.getNotifications();
-    this.receiveData();
+    // this.receiveData();
+    // this.notificationsStore.getUserNotifications(this.page, this.count);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -63,7 +64,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationsService.getAllNotifications(this.page, this.count, '', '').subscribe((value) => {
+        this.notificationsStore.userNotifications$.subscribe((value) => {
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page += 1;
           this.total = value.total;
