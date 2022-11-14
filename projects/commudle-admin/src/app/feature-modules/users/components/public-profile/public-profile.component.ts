@@ -12,6 +12,7 @@ import { IUser } from 'projects/shared-models/user.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { UserStore } from 'projects/commudle-admin/src/app/feature-modules/users/Store/user.store';
 
 @Component({
   selector: 'app-public-profile',
@@ -33,6 +34,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private updateProfileService: UpdateProfileService,
     public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
+    private userStore: UserStore,
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +70,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   getUser() {
+    this.userStore.getProfile(this.activatedRoute.snapshot.params.username);
     this.subscriptions.push(
       this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
         this.user = data;

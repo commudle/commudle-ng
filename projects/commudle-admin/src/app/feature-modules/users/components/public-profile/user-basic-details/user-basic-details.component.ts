@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef,
 import { Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import { UserStore } from 'projects/commudle-admin/src/app/feature-modules/users/Store/user.store';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -47,12 +48,15 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private router: Router,
     private jobService: JobService,
     private nbDialogService: NbDialogService,
+    private userStore: UserStore,
   ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
-    this.lookingForWork = this.user.is_employee;
-    this.hiring = this.user.is_employer;
+    this.userStore.userData$.subscribe((data) => {
+      this.lookingForWork = data.is_employee;
+      this.hiring = data.is_employer;
+    });
   }
 
   ngOnChanges() {
