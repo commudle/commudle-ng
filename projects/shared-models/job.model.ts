@@ -17,6 +17,7 @@ export interface IJob {
   description: string;
   updated_at: string;
   user: IUser;
+  tags: [];
 }
 
 export enum EJobCategory {

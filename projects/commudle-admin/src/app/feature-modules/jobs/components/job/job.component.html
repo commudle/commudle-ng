@@ -7,11 +7,11 @@
       </a>
       <nb-card class="job-container">
         <nb-card-body>
-          <div class="posted-by">
+          <div class="posted-by" *ngIf="job; else loading">
             <app-user-profile-card-large [user]="job.user"></app-user-profile-card-large>
             <p class="last-updated">Last updated: {{ job.updated_at | date }}</p>
           </div>
-          <div *ngIf="job; else loading" class="com-space-y-4 com-mt-2">
+          <div *ngIf="job" class="com-space-y-4 com-mt-2">
             <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
               <div class="company-details">
                 <h1 class="position">{{ job.position }}</h1>

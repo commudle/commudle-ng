@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { JobService } from 'projects/commudle-admin/src/app/services/job.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -29,9 +30,12 @@ export class UserJobComponent implements OnChanges, OnDestroy {
   currentUser: ICurrentUser;
 
   jobs: IJob[] = [];
+  tags: string[] = [];
+
   limit = 3;
   page_info: IPageInfo;
   isLoading = false;
+  hiring: boolean = false;
 
   jobCategories = Object.values(EJobCategory);
   jobSalaryTypes = Object.values(EJobSalaryType);
@@ -56,6 +60,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
       job_type: [EJobType.FULL_TIME, Validators.required],
       status: [EJobStatus.OPEN, Validators.required],
       description: [''],
+      tags: [''],
     },
     {
       validators: [
@@ -82,6 +87,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     private userProfileMenuService: UserProfileMenuService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -90,6 +96,10 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     if (changes.user) {
       this.getJobs();
     }
+    this.userProfileManagerService.user$.subscribe((data) => {
+      this.hiring = data.is_employer;
+      this.userProfileMenuService.addMenuItem('jobs', this.hiring);
+    });
   }
 
   ngOnDestroy(): void {
@@ -107,7 +117,7 @@ export class UserJobComponent implements OnChanges, OnDestroy {
           this.isLoading = false;
           this.userProfileMenuService.addMenuItem(
             'jobs',
-            this.jobs.length > 0 || this.user?.id === this.currentUser?.id,
+            this.jobs.length > 0 || this.user?.id === this.currentUser?.id || this.hiring,
           );
         }),
     );
@@ -117,12 +127,15 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     this.subscriptions.push(
       this.jobService.getJob(id).subscribe((data) => {
         this.job = data;
+        // this.tags.push(data.tags.toString());
         this.jobForm.patchValue(this.job);
+        this.jobForm.controls['tags'].setValue(this.tags.toString());
       }),
     );
   }
 
   createJob() {
+    this.jobForm.controls['tags'].setValue(this.tags);
     this.subscriptions.push(
       this.jobService.createJob(this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job created successfully', 'Success');
@@ -132,7 +145,26 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     );
   }
 
+  restrictComma(event) {
+    if (event.code === 'Comma') {
+      event.preventDefault();
+    }
+  }
+
+  onTagAdd({ value, input }: NbTagInputAddEvent): void {
+    if (value) {
+      this.tags.push(value);
+    }
+    input.nativeElement.value = '';
+    console.log(this.tags);
+  }
+
+  onTagRemove(tagToRemove: NbTagComponent): void {
+    this.tags = this.tags.filter((tag) => tag !== tagToRemove.text);
+  }
+
   updateJob() {
+    this.jobForm.controls['tags'].setValue(this.tags);
     this.subscriptions.push(
       this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job updated successfully', 'Success');

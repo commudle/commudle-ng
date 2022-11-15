@@ -18,6 +18,7 @@ import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-user-job-card',
@@ -55,7 +56,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.job) {
-      this.jobLink = `${window.location.href.split('#')[0]}/jobs/${this.job.id}`;
+      this.jobLink = `${environment.app_url}/jobs/${this.job.id}`;
     }
   }
 
@@ -78,7 +79,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
   }
 
-  copyTextToClipboard(): void {
+  copyTextToClipboard(id): void {
     if (!this.navigatorShareService.canShare()) {
       if (this.clipboard.copy(this.jobLink)) {
         this.nbToastrService.success('Copied job link to clipboard!', 'Success');

@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef,
 import { Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
-import { UserStore } from 'projects/commudle-admin/src/app/feature-modules/users/Store/user.store';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { JobService } from '../../../services/job.service';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -46,14 +46,14 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService,
     private router: Router,
-    private jobService: JobService,
     private nbDialogService: NbDialogService,
-    private userStore: UserStore,
+    private userProfileManagerService: UserProfileManagerService,
+    private userProfileMenuService: UserProfileMenuService,
   ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
-    this.userStore.userData$.subscribe((data) => {
+    this.userProfileManagerService.user$.subscribe((data) => {
       this.lookingForWork = data.is_employee;
       this.hiring = data.is_employer;
     });
@@ -124,17 +124,20 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   openForWork() {
-    this.jobService.toggleEmployee().subscribe(() => {
+    this.userProfileManagerService.toggleEmployee().subscribe(() => {
       if (this.lookingForWork) {
-        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
+        this.redirectTo('resume');
       }
     });
   }
 
   openForHiring() {
     if (!this.hiring) {
-      this.jobService.toggleEmployer().subscribe(() => {
-        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
+      this.userProfileManagerService.toggleEmployer().subscribe(() => {
+        this.userProfileManagerService.getProfile(this.user.username);
+        setTimeout(() => {
+          this.redirectTo('jobs');
+        }, 500);
       });
     } else if (this.hiring) {
       this.hiringDialog = this.nbDialogService.open(this.hiringDialogBox, {
@@ -145,7 +148,13 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   closeHiring() {
-    this.jobService.toggleEmployer().subscribe();
+    this.userProfileManagerService.toggleEmployer().subscribe(() => {
+      this.userProfileManagerService.getProfile(this.user.username);
+    });
     this.hiringDialog.close();
+  }
+
+  redirectTo(fragment) {
+    this.router.navigate(['/users/' + this.currentUser.username], { fragment: fragment });
   }
 }

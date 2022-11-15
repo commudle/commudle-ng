@@ -127,11 +127,28 @@
           Description
           <textarea formControlName="description" fullWidth nbInput rows="3" type="text"></textarea>
         </label>
+        <label>
+          Tags
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
+            <input
+              formControlName="tags"
+              (tagAdd)="onTagAdd($event)"
+              [separatorKeys]="[13, 188]"
+              (keypress)="restrictComma($event)"
+              fullWidth
+              nbTagInput
+              placeholder="Type a tag and press enter or comma"
+              type="text"
+              nbTagInput
+            />
+          </nb-tag-list>
+        </label>
       </form>
     </nb-card-body>
     <nb-card-footer>
       <div class="com-flex com-justify-center">
-        <p class="com-m-0">Job expires in 15 days but you can renew it.</p>
+        <p class="com-m-0">Job automatically expires in 15 days but you can renew it.</p>
       </div>
       <div class="com-flex com-justify-between">
         <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
