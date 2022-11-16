@@ -15,8 +15,20 @@ export class NotificationsStore {
   private userNotificationCount: BehaviorSubject<number> = new BehaviorSubject(0);
   public userNotificationCount$: Observable<number> = this.userNotificationCount.asObservable();
 
-  private userNotifications = new BehaviorSubject<any>(new Set());
+  private userNotifications = new BehaviorSubject<any>([]);
   public userNotifications$ = this.userNotifications.asObservable();
+
+  private newCommunityNotifications = new BehaviorSubject<any>([]);
+  public newCommunityNotifications$ = this.newCommunityNotifications.asObservable();
+
+  private updateCommunityNotifications = new BehaviorSubject<any>([]);
+  public updateCommunityNotifications$ = this.updateCommunityNotifications.asObservable();
+
+  private newUserNotifications = new BehaviorSubject<any>([]);
+  public newUserNotifications$ = this.newUserNotifications.asObservable();
+
+  private updateUserNotifications = new BehaviorSubject<any>([]);
+  public updateUserNotifications$ = this.updateUserNotifications.asObservable();
 
   private communityNotifications = {};
   public communityNotifications$ = {};
@@ -40,13 +52,10 @@ export class NotificationsStore {
     this.generateCommunityNotificationsObservable(communityId);
     this.notificationsService.getAllNotifications(page, count, communityId, 'community').subscribe((data) => {
       this.communityNotifications[`${communityId}`].next(data.notifications);
-      console.log(data.notifications);
-      console.log(this.communityNotifications[`${communityId}`].getValue());
     });
   }
 
   updateNotifications(communityId?: number) {
-    // if (this.communityNotifications[`${communityId}`]) {
     this.generateCommunityNotificationsObservable(communityId);
     this.notificationChannel.notificationData$.subscribe((data) => {
       if (data) {
@@ -54,20 +63,19 @@ export class NotificationsStore {
           case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
             if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
               this.incrementCommunityUnreadNotificationsCount(communityId);
-              this.communityNotifications[`${communityId}`].next(data.notification);
+              this.newCommunityNotifications.next(data.notification);
             } else if (data.notification_filter == 'user') {
               this.incrementUserUnreadNotificationsCount();
-              this.userNotifications.next(data.notification);
+              this.newUserNotifications.next(data.notification);
             }
             break;
           }
           case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-            // const idx = this.communityNotifications[`${communityId}`].findIndex(
-            //   (notification) => notification.id === data.notification_queue_id,
-            // );
-            // if (idx != -1) {
-            this.communityNotifications[`${communityId}`].status = data.status;
-            // }
+            if (data.notification_filter == 'community') {
+              this.updateCommunityNotifications.next(data);
+            } else if (data.notification_filter == 'user') {
+              this.updateUserNotifications.next(data);
+            }
             break;
           }
         }

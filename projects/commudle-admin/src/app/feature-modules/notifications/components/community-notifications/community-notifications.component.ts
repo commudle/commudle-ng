@@ -5,7 +5,6 @@ import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
@@ -32,16 +31,13 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   subscriptions: Subscription[] = [];
 
-  constructor(
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
-    private notificationsStore: NotificationsStore,
-  ) {}
+  constructor(private notificationsService: NotificationsService, private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
     this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
-
     this.getNotifications();
+    this.receiveData();
+    // this.changeNotificationsStatus();
   }
 
   ngOnDestroy(): void {
@@ -82,30 +78,18 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   receiveData() {
     this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              // add only if it's not already in the list
-              if (
-                !this.notifications.find((notification) => notification.id === data.notification.id) &&
-                data.notification_filter === 'community' &&
-                data.notification.filter_object_id == this.communityId
-              ) {
-                this.notifications.unshift(data.notification);
-              }
-              break;
-            }
-            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-              const idx = this.notifications.findIndex(
-                (notification) => notification.id === data.notification_queue_id,
-              );
-              if (idx != -1) {
-                this.notifications[idx].status = data.status;
-              }
-              break;
-            }
-          }
+      this.notificationsStore.newCommunityNotifications$.subscribe((data) => {
+        if (data.filter_object_id == this.communityId) {
+          this.notifications.unshift(data);
+        }
+      }),
+    );
+
+    this.subscriptions.push(
+      this.notificationsStore.updateCommunityNotifications$.subscribe((data) => {
+        const idx = this.notifications.findIndex((notification) => notification.id === data.notification_queue_id);
+        if (idx != -1) {
+          this.notifications[idx].status = data;
         }
       }),
     );
