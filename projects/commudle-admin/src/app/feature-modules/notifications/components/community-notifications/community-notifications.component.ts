@@ -31,7 +31,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsService: NotificationsService, private notificationsStore: NotificationsStore) {}
+  constructor(private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
     this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
@@ -44,12 +44,9 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(
-      this.notificationsService.updateNotificationStatus(status, notification.id, this.communityId).subscribe(() => {
-        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.communityId, 1);
-      }),
-    );
+    this.notificationsStore.changeStatus(status, notification, this.communityId);
   }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.markAllAsRead) {
       this.notifications.forEach((notification) => (notification.status = ENotificationStatuses.READ));

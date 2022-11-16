@@ -81,7 +81,16 @@ export class NotificationsStore {
         }
       }
     });
-    // }
+  }
+
+  changeStatus(status, notification, communityId?) {
+    this.notificationsService.updateNotificationStatus(status, notification.id, communityId).subscribe(() => {
+      if (communityId) {
+        this.reduceCommunityUnreadNotificationsCount(communityId, 1);
+      } else {
+        this.reduceUserUnreadNotificationsCount(1);
+      }
+    });
   }
 
   //count functions

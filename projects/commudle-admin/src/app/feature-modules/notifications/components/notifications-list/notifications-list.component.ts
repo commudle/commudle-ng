@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
@@ -30,11 +29,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
-    private notificationsStore: NotificationsStore,
-  ) {}
+  constructor(private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
     this.notificationsStore.getUserNotifications(this.page, this.count);
@@ -53,10 +48,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(
-      this.notificationsService.updateNotificationStatus(status, notification.id, '').subscribe(),
-    );
-    this.notificationsStore.reduceUserUnreadNotificationsCount(1);
+    this.notificationsStore.changeStatus(status, notification);
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
     }
