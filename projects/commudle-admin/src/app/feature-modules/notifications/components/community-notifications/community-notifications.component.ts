@@ -37,7 +37,6 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
     this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
     this.getNotifications();
     this.receiveData();
-    // this.changeNotificationsStatus();
   }
 
   ngOnDestroy(): void {

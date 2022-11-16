@@ -64,7 +64,7 @@ export class NotificationsStore {
             if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
               this.incrementCommunityUnreadNotificationsCount(communityId);
               this.newCommunityNotifications.next(data.notification);
-            } else if (data.notification_filter == 'user') {
+            } else if (data.notification_filter == 'user' && !communityId) {
               this.incrementUserUnreadNotificationsCount();
               this.newUserNotifications.next(data.notification);
             }
@@ -85,20 +85,6 @@ export class NotificationsStore {
   }
 
   //count functions
-  //TODO: change name
-  receivedUserUnreadNotificationsCount() {
-    this.notificationChannel.notificationData$.subscribe((data) => {
-      if (data) {
-        switch (data.action) {
-          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-            if (data.notification_filter == 'user') {
-              this.incrementUserUnreadNotificationsCount();
-            }
-          }
-        }
-      }
-    });
-  }
 
   incrementUserUnreadNotificationsCount() {
     this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);

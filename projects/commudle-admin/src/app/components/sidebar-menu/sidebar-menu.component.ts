@@ -58,7 +58,6 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   getCurrentUser(): void {
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
-      // this.notificationsStore.getUserNotifications(1, 10);
 
       if (currentUser) {
         // check if current user is having a specific role and add corresponding items
@@ -111,7 +110,6 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
         this.managedCommunities = data;
         for (let communities of data) {
           this.updateUnreadNotificationsCount(communities.id);
-          // this.notificationsStore.getCommunityNotifications(1, 10, communities.id);
           this.notificationsStore.updateNotifications(communities.id);
         }
       }),

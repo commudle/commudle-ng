@@ -37,11 +37,9 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   ) {}
 
   ngOnInit(): void {
-    // this.notificationsStore.getUserNotifications(this.page, this.count);
+    this.notificationsStore.getUserNotifications(this.page, this.count);
     this.getNotifications();
-    // this.notificationsStore.getUserNotifications(1, 10)
-
-    // this.receiveData();
+    this.receiveData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -55,7 +53,9 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
+    this.subscriptions.push(
+      this.notificationsService.updateNotificationStatus(status, notification.id, '').subscribe(),
+    );
     this.notificationsStore.reduceUserUnreadNotificationsCount(1);
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
@@ -67,12 +67,14 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationsStore.userNotifications$.subscribe((value) => {
-          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-          this.page += 1;
-          this.total = value.total;
-          this.isLoading = false;
-          if (this.notifications.length >= this.total) {
-            this.canLoadMore = false;
+          if (value) {
+            this.notifications = _.uniqBy(this.notifications.concat(value), 'id');
+            this.page += 1;
+            this.total = value.total;
+            this.isLoading = false;
+            if (this.notifications.length >= this.total) {
+              this.canLoadMore = false;
+            }
           }
         }),
       );
@@ -81,29 +83,20 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   receiveData() {
     this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              // add only if it's not already in the list
-              if (
-                !this.notifications.find((notification) => notification.id === data.notification.id) &&
-                data.notification_filter == 'user'
-              ) {
-                this.notifications.unshift(data.notification);
-              }
-              break;
-            }
-            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-              const idx = this.notifications.findIndex(
-                (notification) => notification.id === data.notification_queue_id,
-              );
-              if (idx != -1) {
-                this.notifications[idx].status = data.status;
-              }
-              break;
-            }
+      this.notificationsStore.newUserNotifications$.subscribe((data) => {
+        if (this.notifications.length != 0) {
+          if (!this.notifications.find((notification) => notification.id === data.id)) {
+            this.notifications.unshift(data);
           }
+        }
+      }),
+    );
+
+    this.subscriptions.push(
+      this.notificationsStore.updateUserNotifications$.subscribe((data) => {
+        const idx = this.notifications.findIndex((notification) => notification.id === data.notification_queue_id);
+        if (idx != -1) {
+          this.notifications[idx].status = data;
         }
       }),
     );

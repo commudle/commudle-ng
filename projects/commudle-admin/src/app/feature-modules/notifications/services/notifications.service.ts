@@ -35,7 +35,7 @@ export class NotificationsService {
     );
   }
 
-  updateNotificationStatus(status: ENotificationStatuses, id: number, recipientId?: number): Observable<boolean> {
+  updateNotificationStatus(status: ENotificationStatuses, id: number, recipientId?): Observable<boolean> {
     const params = new HttpParams().set('notification_queue_id', id).set('recipient_id', recipientId);
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UPDATE_STATUS),
