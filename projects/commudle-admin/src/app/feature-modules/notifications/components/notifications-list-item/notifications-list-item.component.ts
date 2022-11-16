@@ -52,24 +52,23 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   }
 
   ngAfterViewInit() {
-    //TODO comment this out
-    // if (this.ENotificationStatusesUnread === true) {
-    //   this.observer = new IntersectionObserver(
-    //     (entries) => {
-    //       entries.forEach((entry) => {
-    //         if (entry.isIntersecting) {
-    //           this.timeout = setTimeout(() => {
-    //             this.markRead.emit(); // emit the function to mark message as read
-    //           }, 5000);
-    //         } else {
-    //           clearTimeout(this.timeout);
-    //         }
-    //       });
-    //     },
-    //     { threshold: 1 }, // how much % of the element is in view
-    //   );
-    //   this.observer.observe(this.notification.nativeElement);
-    // }
+    if (this.ENotificationStatusesUnread === true) {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.timeout = setTimeout(() => {
+                this.markRead.emit(); // emit the function to mark message as read
+              }, 5000);
+            } else {
+              clearTimeout(this.timeout);
+            }
+          });
+        },
+        { threshold: 1 }, // how much % of the element is in view
+      );
+      this.observer.observe(this.notification.nativeElement);
+    }
   }
 
   // handlebar replacement value using path
