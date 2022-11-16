@@ -124,12 +124,14 @@ export class UserJobComponent implements OnChanges, OnDestroy {
   }
 
   getJob(id: number) {
+    this.tags = [];
     this.subscriptions.push(
       this.jobService.getJob(id).subscribe((data) => {
         this.job = data;
+        this.job.tags.forEach((tag) => this.tags.push(tag.name));
         // this.tags.push(data.tags.toString());
         this.jobForm.patchValue(this.job);
-        this.jobForm.controls['tags'].setValue(this.tags.toString());
+        this.jobForm.controls['tags'].setValue('');
       }),
     );
   }
@@ -156,7 +158,6 @@ export class UserJobComponent implements OnChanges, OnDestroy {
       this.tags.push(value);
     }
     input.nativeElement.value = '';
-    console.log(this.tags);
   }
 
   onTagRemove(tagToRemove: NbTagComponent): void {

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
-import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -48,7 +47,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private router: Router,
     private nbDialogService: NbDialogService,
     private userProfileManagerService: UserProfileManagerService,
-    private userProfileMenuService: UserProfileMenuService,
   ) {}
 
   ngOnInit(): void {
