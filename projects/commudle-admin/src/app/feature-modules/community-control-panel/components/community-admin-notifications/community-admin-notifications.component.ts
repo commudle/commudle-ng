@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
-import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -16,12 +14,11 @@ export class CommunityAdminNotificationsComponent implements OnInit {
   community: ICommunity;
 
   trackMarkAllAsRead = false;
+  result;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
-    private notificationsService: NotificationsService,
-    private nbToastrService: NbToastrService,
     private notificationsStore: NotificationsStore,
   ) {}
 
@@ -35,12 +32,9 @@ export class CommunityAdminNotificationsComponent implements OnInit {
   }
 
   markAllAsRead() {
-    this.notificationsService.markAllAsRead('community', this.community.id).subscribe((result) => {
-      if (result) {
-        this.nbToastrService.success('All notifications marked as read', 'Success');
-        this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
-        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.community.id);
-      }
-    });
+    this.result = this.notificationsStore.markAllAsRead(this.community.id);
+    if (this.result) {
+      this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+    }
   }
 }

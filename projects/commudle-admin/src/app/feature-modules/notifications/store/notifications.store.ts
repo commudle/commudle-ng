@@ -2,8 +2,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
-import { INotification } from 'projects/shared-models/notification.model';
-import { INotifications } from 'projects/shared-models/notifications.model';
+import { NbToastrService } from '@nebular/theme';
 
 @Injectable({
   providedIn: 'root',
@@ -33,19 +32,36 @@ export class NotificationsStore {
   private communityNotifications = {};
   public communityNotifications$ = {};
 
-  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
+  constructor(
+    private notificationsService: NotificationsService,
+    private notificationChannel: NotificationChannel,
+    private nbToastrService: NbToastrService,
+  ) {}
+
+  private generateCommunityNotificationsObservable(communityId) {
+    if (!this.communityNotifications[`${communityId}`]) {
+      this.communityNotifications[`${communityId}`] = new BehaviorSubject([]);
+      this.communityNotifications$[`${communityId}`] = this.communityNotifications[`${communityId}`].asObservable();
+    }
+    if (!this.communityNotificationsCount[`${communityId}`]) {
+      this.communityNotificationsCount[`${communityId}`] = new BehaviorSubject(0);
+      this.communityNotificationsCount$[`${communityId}`] =
+        this.communityNotificationsCount[`${communityId}`].asObservable();
+    }
+  }
+
+  private incrementUserUnreadNotificationsCount() {
+    this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);
+  }
+
+  private incrementCommunityUnreadNotificationsCount(id: number) {
+    this.communityNotificationsCount[`${id}`].next(this.communityNotificationsCount[`${id}`].getValue() + 1);
+  }
 
   getUserNotifications(page: number, count: number) {
     this.notificationsService.getAllNotifications(page, count).subscribe((data) => {
       this.userNotifications.next(data.notifications);
     });
-  }
-
-  generateCommunityNotificationsObservable(communityId) {
-    if (!this.communityNotifications[`${communityId}`]) {
-      this.communityNotifications[`${communityId}`] = new BehaviorSubject([]);
-      this.communityNotifications$[`${communityId}`] = this.communityNotifications[`${communityId}`].asObservable();
-    }
   }
 
   getCommunityNotifications(page: number, count: number, communityId) {
@@ -61,19 +77,19 @@ export class NotificationsStore {
       if (data) {
         switch (data.action) {
           case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-            if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
+            if (data.notification_filter === 'community' && data.notification.filter_object_id == communityId) {
               this.incrementCommunityUnreadNotificationsCount(communityId);
               this.newCommunityNotifications.next(data.notification);
-            } else if (data.notification_filter == 'user' && !communityId) {
+            } else if (data.notification_filter === 'user' && !communityId) {
               this.incrementUserUnreadNotificationsCount();
               this.newUserNotifications.next(data.notification);
             }
             break;
           }
           case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-            if (data.notification_filter == 'community') {
+            if (data.notification_filter === 'community') {
               this.updateCommunityNotifications.next(data);
-            } else if (data.notification_filter == 'user') {
+            } else if (data.notification_filter === 'user') {
               this.updateUserNotifications.next(data);
             }
             break;
@@ -91,16 +107,6 @@ export class NotificationsStore {
         this.reduceUserUnreadNotificationsCount(1);
       }
     });
-  }
-
-  //count functions
-
-  incrementUserUnreadNotificationsCount() {
-    this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);
-  }
-
-  incrementCommunityUnreadNotificationsCount(id: number) {
-    this.communityNotificationsCount[`${id}`].next(this.communityNotificationsCount[`${id}`].getValue() + 1);
   }
 
   getUserNotificationsCount() {
@@ -125,11 +131,31 @@ export class NotificationsStore {
     }
   }
 
-  getCommunityUnreadNotificationsCount(id: number) {
-    this.communityNotificationsCount[`${id}`] = new BehaviorSubject(0);
-    this.communityNotificationsCount$[`${id}`] = this.communityNotificationsCount[`${id}`].asObservable();
-    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((data) => {
-      this.communityNotificationsCount[`${id}`].next(data);
+  getCommunityUnreadNotificationsCount(communityId: number) {
+    this.generateCommunityNotificationsObservable(communityId);
+    this.notificationsService.getUnreadNotificationsCount(communityId, 'community').subscribe((data) => {
+      this.communityNotificationsCount[`${communityId}`].next(data);
     });
+  }
+
+  markAllAsRead(communityId?) {
+    if (communityId) {
+      this.notificationsService.markAllAsRead('community', communityId).subscribe((res) => {
+        if (res) {
+          this.nbToastrService.success('All notifications marked as read', 'Success');
+          this.reduceCommunityUnreadNotificationsCount(communityId);
+          return res;
+        }
+      });
+    } else {
+      this.notificationsService.markAllAsRead().subscribe((res) => {
+        if (res) {
+          this.nbToastrService.success('All notifications marked as read', 'Success');
+          this.reduceUserUnreadNotificationsCount();
+          return res;
+        }
+      });
+    }
+    return false;
   }
 }
