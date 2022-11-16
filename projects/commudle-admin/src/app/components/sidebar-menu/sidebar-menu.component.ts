@@ -49,14 +49,6 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getCurrentUser();
     this.closeSidebar();
-    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      this.managedCommunities = data;
-      for (let communities of data) {
-        this.updateUnreadNotificationsCount(communities.id);
-        this.notificationsStore.getCommunityNotifications(1, 10, communities.id);
-        this.notificationsStore.updateCommunityNotifications(communities.id);
-      }
-    });
   }
 
   ngOnDestroy(): void {
@@ -66,6 +58,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   getCurrentUser(): void {
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
+      // this.notificationsStore.getUserNotifications(1, 10);
 
       if (currentUser) {
         // check if current user is having a specific role and add corresponding items
@@ -107,8 +100,22 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe(() => {});
+      this.communitiesService.getRoleCommunities(role).subscribe(() => {
+        this.getCommunitiesData();
+      });
     }
+  }
+  getCommunitiesData() {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        this.managedCommunities = data;
+        for (let communities of data) {
+          this.updateUnreadNotificationsCount(communities.id);
+          // this.notificationsStore.getCommunityNotifications(1, 10, communities.id);
+          this.notificationsStore.updateNotifications(communities.id);
+        }
+      }),
+    );
   }
 
   getManagingCommunityGroups(): void {

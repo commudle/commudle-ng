@@ -35,7 +35,6 @@ export class NotificationChannel {
       {
         received: (data) => {
           this.notificationData.next(data);
-          console.log(data.notification, 'channel');
         },
       },
     );

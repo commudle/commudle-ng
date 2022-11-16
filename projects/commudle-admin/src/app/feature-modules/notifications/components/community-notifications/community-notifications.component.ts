@@ -39,10 +39,9 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   ) {}
 
   ngOnInit(): void {
-    // this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
+    this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
+
     this.getNotifications();
-    // this.receiveData();
-    // this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId).subscribe();
   }
 
   ngOnDestroy(): void {
@@ -69,7 +68,6 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
         this.notificationsStore.communityNotifications$[this.communityId].subscribe((value) => {
           if (value) {
             this.notifications = _.uniqBy(this.notifications.concat(value), 'id');
-            console.log(this.notifications);
             this.page += 1;
             this.total = value.total;
             this.isLoading = false;
@@ -81,6 +79,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
       );
     }
   }
+
   receiveData() {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {

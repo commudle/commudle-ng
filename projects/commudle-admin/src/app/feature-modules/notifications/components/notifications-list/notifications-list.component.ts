@@ -37,9 +37,11 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   ) {}
 
   ngOnInit(): void {
-    this.getNotifications();
-    // this.receiveData();
     // this.notificationsStore.getUserNotifications(this.page, this.count);
+    this.getNotifications();
+    // this.notificationsStore.getUserNotifications(1, 10)
+
+    // this.receiveData();
   }
 
   ngOnChanges(changes: SimpleChanges) {

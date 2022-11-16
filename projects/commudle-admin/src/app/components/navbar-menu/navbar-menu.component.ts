@@ -35,8 +35,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
       if (currentUser) {
         this.getUnreadNotificationsCount();
-        this.notificationsStore.getUserNotifications(1, 10);
-        this.notificationsStore.receivedUserUnreadNotificationsCount();
+        this.notificationsStore.updateNotifications();
       }
     });
   }

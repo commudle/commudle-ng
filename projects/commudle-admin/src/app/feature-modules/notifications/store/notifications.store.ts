@@ -23,45 +23,81 @@ export class NotificationsStore {
 
   constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
 
-  // TODO write data types
-  // TODO: pass default values in service while calling API
   getUserNotifications(page: number, count: number) {
     this.notificationsService.getAllNotifications(page, count).subscribe((data) => {
-      this.userNotifications.next(data);
+      this.userNotifications.next(data.notifications);
     });
+  }
+
+  generateCommunityNotificationsObservable(communityId) {
+    if (!this.communityNotifications[`${communityId}`]) {
+      this.communityNotifications[`${communityId}`] = new BehaviorSubject([]);
+      this.communityNotifications$[`${communityId}`] = this.communityNotifications[`${communityId}`].asObservable();
+    }
   }
 
   getCommunityNotifications(page: number, count: number, communityId) {
-    this.communityNotifications[`${communityId}`] = new BehaviorSubject(new Set());
-    this.communityNotifications$[`${communityId}`] = this.communityNotifications[`${communityId}`].asObservable();
+    this.generateCommunityNotificationsObservable(communityId);
     this.notificationsService.getAllNotifications(page, count, communityId, 'community').subscribe((data) => {
       this.communityNotifications[`${communityId}`].next(data.notifications);
+      console.log(data.notifications);
+      console.log(this.communityNotifications[`${communityId}`].getValue());
     });
   }
 
-  // TODO: Status case for channel
-  // updateCommunityNotifications(communityId: number) {
-  //   this.notificationChannel.notificationData$.subscribe((data) => {
-  //     console.log(data);
-  //     if (data) {
-  //       switch (data.action) {
-  //         case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-  //           if (data.notification_filter === 'community' && data.notification.filter_object_id == communityId) {
-  //             this.communityNotifications[`${communityId}`].next(data.notification);
-  //           }
-  //           break;
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-  //TODO:check case
-  getCommunityUnreadNotificationsCount(id: number) {
-    this.communityNotificationsCount[`${id}`] = new BehaviorSubject(0);
-    this.communityNotificationsCount$[`${id}`] = this.communityNotificationsCount[`${id}`].asObservable();
-    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((data) => {
-      this.communityNotificationsCount[`${id}`].next(data);
+  updateNotifications(communityId?: number) {
+    // if (this.communityNotifications[`${communityId}`]) {
+    this.generateCommunityNotificationsObservable(communityId);
+    this.notificationChannel.notificationData$.subscribe((data) => {
+      if (data) {
+        switch (data.action) {
+          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+            if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
+              this.incrementCommunityUnreadNotificationsCount(communityId);
+              this.communityNotifications[`${communityId}`].next(data.notification);
+            } else if (data.notification_filter == 'user') {
+              this.incrementUserUnreadNotificationsCount();
+              this.userNotifications.next(data.notification);
+            }
+            break;
+          }
+          case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+            // const idx = this.communityNotifications[`${communityId}`].findIndex(
+            //   (notification) => notification.id === data.notification_queue_id,
+            // );
+            // if (idx != -1) {
+            this.communityNotifications[`${communityId}`].status = data.status;
+            // }
+            break;
+          }
+        }
+      }
     });
+    // }
+  }
+
+  //count functions
+  //TODO: change name
+  receivedUserUnreadNotificationsCount() {
+    this.notificationChannel.notificationData$.subscribe((data) => {
+      if (data) {
+        switch (data.action) {
+          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+            if (data.notification_filter == 'user') {
+              this.incrementUserUnreadNotificationsCount();
+            }
+          }
+        }
+      }
+    });
+  }
+
+  incrementUserUnreadNotificationsCount() {
+    this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);
+  }
+
+  incrementCommunityUnreadNotificationsCount(id: number) {
+    this.communityNotificationsCount[`${id}`].next(this.communityNotificationsCount[`${id}`].getValue() + 1);
   }
 
   getUserNotificationsCount() {
@@ -86,44 +122,11 @@ export class NotificationsStore {
     }
   }
 
-  incrementCommunityUnreadNotificationsCount(id: number) {
-    this.communityNotificationsCount[`${id}`].next(this.communityNotificationsCount[`${id}`].getValue() + 1);
-  }
-
-  updateCommunityNotifications(communityId: number) {
-    if (this.communityNotifications[`${communityId}`]) {
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              if (data.notification_filter == 'community' && data.notification.filter_object_id == communityId) {
-                this.incrementCommunityUnreadNotificationsCount(communityId);
-                console.log(this.communityNotifications[`${communityId}`].getValue());
-                this.communityNotifications[`${communityId}`].next(data.notification);
-              }
-            }
-          }
-        }
-      });
-    }
-  }
-
-  incrementUserUnreadNotificationsCount() {
-    this.userNotificationCount.next(this.userNotificationCount.getValue() + 1);
-  }
-  //TODO: change name
-  receivedUserUnreadNotificationsCount() {
-    this.notificationChannel.notificationData$.subscribe((data) => {
-      if (data) {
-        console.log(data);
-        switch (data.action) {
-          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-            if (data.notification_filter == 'user') {
-              this.incrementUserUnreadNotificationsCount();
-            }
-          }
-        }
-      }
+  getCommunityUnreadNotificationsCount(id: number) {
+    this.communityNotificationsCount[`${id}`] = new BehaviorSubject(0);
+    this.communityNotificationsCount$[`${id}`] = this.communityNotificationsCount[`${id}`].asObservable();
+    this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((data) => {
+      this.communityNotificationsCount[`${id}`].next(data);
     });
   }
 }
