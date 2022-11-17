@@ -38,9 +38,7 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
     private cmsService: CmsService,
     public isBrowserService: IsBrowserService,
   ) {
-    if (this.isBrowserService.isBrowser()) {
-      this.timer$ = timer(0, 3000);
-    }
+    this.timer$ = timer(0, 3000);
   }
 
   ngOnInit(): void {
