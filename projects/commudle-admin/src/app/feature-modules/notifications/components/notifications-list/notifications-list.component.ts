@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
-import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,6 +16,8 @@ import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modu
 export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
   @Input() markAllAsRead: boolean;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
+
+  currentUser: ICurrentUser;
 
   notifications: INotification[] = [];
 
@@ -29,9 +32,13 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsStore: NotificationsStore) {}
+  constructor(private notificationsStore: NotificationsStore, private authWatchService: LibAuthwatchService) {}
 
   ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+      this.currentUser = currentUser;
+    });
+
     this.notificationsStore.getUserNotifications(this.page, this.count);
     this.getNotifications();
     this.receiveData();
@@ -76,8 +83,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   receiveData() {
     this.subscriptions.push(
       this.notificationsStore.newUserNotifications$.subscribe((data) => {
-        if (this.notifications.length != 0) {
-          if (!this.notifications.find((notification) => notification.id === data.id)) {
+        if (this.notifications.length != 0 && this.currentUser.id == data.filter_object_id) {
+          if (!this.notifications.find((notification) => notification.id == data.id)) {
             this.notifications.unshift(data);
           }
         }

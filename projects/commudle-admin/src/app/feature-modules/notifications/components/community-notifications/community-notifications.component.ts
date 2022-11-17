@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import _ from 'lodash';
-import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';

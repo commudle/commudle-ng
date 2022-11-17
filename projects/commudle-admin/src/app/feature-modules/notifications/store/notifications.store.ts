@@ -89,7 +89,7 @@ export class NotificationsStore {
           case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
             if (data.notification_filter === 'community') {
               this.updateCommunityNotifications.next(data);
-            } else if (data.notification_filter === 'user') {
+            } else if (data.notification_filter === 'user' && !communityId) {
               this.updateUserNotifications.next(data);
             }
             break;
