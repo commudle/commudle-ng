@@ -13,17 +13,7 @@
               src="/assets/images/Expert-Tick.svg"
               title="Expert Tick"
             />
-            <!-- <p class="tag">LOOKING FOR WORK</p> -->
-            <div *ngIf="lookingForWork && hiring" class="anime">
-              <img src="{{ staticAssets.looking_for_work }}" alt="" />
-              &nbsp;&nbsp;
-              <img src="{{ staticAssets.hiring }}" alt="" />
-            </div>
-            <div *ngIf="!(lookingForWork && hiring)">
-              <img *ngIf="lookingForWork" src="{{ staticAssets.looking_for_work }}" alt="" />
-
-              <img *ngIf="hiring" src="{{ staticAssets.hiring }}" alt="" />
-            </div>
+            <app-hiring-looking-works-tags></app-hiring-looking-works-tags>
           </div>
           <p class="username">@{{ user.username }}</p>
         </div>
