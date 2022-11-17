@@ -26,7 +26,7 @@
         <span class="com-flex com-items-center">
           <p class="username com-line-clamp-1">@{{ user.username | truncatetext: maxUserNameLength }}</p>
           &nbsp;
-          <app-hiring-looking-works-tags></app-hiring-looking-works-tags>
+          <app-hiring-looking-works-tags [user]="user"></app-hiring-looking-works-tags>
         </span>
         <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation">
           {{ user.designation || '--' }}

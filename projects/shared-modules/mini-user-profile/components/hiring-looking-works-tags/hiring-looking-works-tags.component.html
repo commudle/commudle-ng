@@ -1,13 +1,14 @@
 <div *ngIf="user">
   <div *ngIf="user.is_employee && user.is_employer">
     <!-- <div #animeWorkHiring></div> -->
+    <p class="tag">for both</p>
   </div>
 
-  <img
+  <!-- <img
     *ngIf="user.is_employee && user.is_employer"
     src="{{ staticAssets.looking_for_work }}"
     alt="I'm Looking for Work"
-  />
+  /> -->
   <div *ngIf="!(user.is_employee && user.is_employer)">
     <img *ngIf="user.is_employee" src="{{ staticAssets.looking_for_work }}" alt="I'm Looking for Work" />
     <img *ngIf="user.is_employer" src="{{ staticAssets.hiring }}" alt="I'm Hiring" />
