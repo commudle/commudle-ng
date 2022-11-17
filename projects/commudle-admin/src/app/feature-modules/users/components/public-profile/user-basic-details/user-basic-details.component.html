@@ -4,7 +4,7 @@
     <div class="user-info">
       <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
         <div class="com-text-center md:com-text-left">
-          <div class="name">
+          <div class="name com-flex com-items-center">
             <h1>{{ user.name }}</h1>
             <img
               *ngIf="user.is_expert"
@@ -13,6 +13,31 @@
               src="/assets/images/Expert-Tick.svg"
               title="Expert Tick"
             />
+            <!-- <p class="tag">LOOKING FOR WORK</p> -->
+            <div *ngIf="lookingForWork && hiring" class="anime">
+              <img
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg"
+                alt=""
+              />
+              &nbsp;&nbsp;
+              <img
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDdFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79cf5c64d9ec3996559ca09ebedec9be27b74a33/Hiring.svg"
+                alt=""
+              />
+            </div>
+            <div *ngIf="!(lookingForWork && hiring)">
+              <img
+                *ngIf="lookingForWork"
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg"
+                alt=""
+              />
+              &nbsp;&nbsp;
+              <img
+                *ngIf="hiring"
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDdFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79cf5c64d9ec3996559ca09ebedec9be27b74a33/Hiring.svg"
+                alt=""
+              />
+            </div>
           </div>
           <p class="username">@{{ user.username }}</p>
         </div>
