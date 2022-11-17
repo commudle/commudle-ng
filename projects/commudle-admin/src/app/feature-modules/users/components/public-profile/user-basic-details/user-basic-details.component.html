@@ -15,28 +15,14 @@
             />
             <!-- <p class="tag">LOOKING FOR WORK</p> -->
             <div *ngIf="lookingForWork && hiring" class="anime">
-              <img
-                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg"
-                alt=""
-              />
+              <img src="{{ staticAssets.looking_for_work }}" alt="" />
               &nbsp;&nbsp;
-              <img
-                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDdFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79cf5c64d9ec3996559ca09ebedec9be27b74a33/Hiring.svg"
-                alt=""
-              />
+              <img src="{{ staticAssets.hiring }}" alt="" />
             </div>
             <div *ngIf="!(lookingForWork && hiring)">
-              <img
-                *ngIf="lookingForWork"
-                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg"
-                alt=""
-              />
-              &nbsp;&nbsp;
-              <img
-                *ngIf="hiring"
-                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDdFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79cf5c64d9ec3996559ca09ebedec9be27b74a33/Hiring.svg"
-                alt=""
-              />
+              <img *ngIf="lookingForWork" src="{{ staticAssets.looking_for_work }}" alt="" />
+
+              <img *ngIf="hiring" src="{{ staticAssets.hiring }}" alt="" />
             </div>
           </div>
           <p class="username">@{{ user.username }}</p>

@@ -8,6 +8,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -28,6 +29,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   maxTags = 5;
 
   environment = environment;
+
+  staticAssets = staticAssets;
 
   lookingForWork = false;
   hiring = false;

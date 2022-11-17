@@ -22,4 +22,10 @@ export const staticAssets = {
 
   google_for_startups_badge:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmV6IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--39fdea571c3cc98d53d8725229807b13ef3e0369/GFS_Accel_DigitalBadge_2022_withyear.png',
+
+  hiring:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDdFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79cf5c64d9ec3996559ca09ebedec9be27b74a33/Hiring.svg',
+
+  looking_for_work:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg',
 };
