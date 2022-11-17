@@ -4,8 +4,7 @@
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <nb-card *ngIf="blog">
         <nb-card-header>
-          <button routerLink="/blogs" nbButton><nb-icon icon="arrow-back"></nb-icon>back</button>
-          <div class="com-flex com-flex-row com-justify-between com-items-center">
+          <div class="md:com-flex com-flex-row com-justify-between com-items-center">
             <h1 class="blog-title">{{ blog.title }}</h1>
             <app-share-button
               [content]="environment.app_url + '/blogs/' + blog.slug.current"
@@ -60,6 +59,10 @@
           ></app-share-button>
         </nb-card-body>
       </nb-card>
+      <a [routerLink]="['/blogs']" ghost nbButton size="small" class="com-w-max">
+        <nb-icon icon="arrow-ios-back"></nb-icon>
+        Back to list of blogs
+      </a>
     </div>
   </div>
 </div>
