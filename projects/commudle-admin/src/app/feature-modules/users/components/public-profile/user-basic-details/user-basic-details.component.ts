@@ -18,6 +18,8 @@ import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @Input() user: IUser;
 
+  users: IUser;
+
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -32,8 +34,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   staticAssets = staticAssets;
 
-  lookingForWork = false;
-  hiring = false;
   editTagDialog: NbDialogRef<any>;
 
   hiringDialog: NbDialogRef<any>;
@@ -54,14 +54,14 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
-    this.userProfileManagerService.user$.subscribe((data) => {
-      this.lookingForWork = data.is_employee;
-      this.hiring = data.is_employer;
+    this.userProfileManagerService.user$.subscribe((data: IUser) => {
+      this.users = data;
     });
   }
 
   ngOnChanges() {
     this.getUserTags();
+    this.userProfileManagerService.getProfile(this.user.username);
   }
 
   getUserTags() {
@@ -126,21 +126,21 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   openForWork() {
     this.userProfileManagerService.toggleEmployee().subscribe(() => {
-      if (this.lookingForWork) {
+      if (this.users.is_employee) {
         this.redirectTo('resume');
       }
     });
   }
 
   openForHiring() {
-    if (!this.hiring) {
+    if (!this.users.is_employer) {
       this.userProfileManagerService.toggleEmployer().subscribe(() => {
         this.userProfileManagerService.getProfile(this.user.username);
         setTimeout(() => {
           this.redirectTo('jobs');
         }, 500);
       });
-    } else if (this.hiring) {
+    } else if (this.users.is_employer) {
       this.hiringDialog = this.nbDialogService.open(this.hiringDialogBox, {
         closeOnEsc: false,
         closeOnBackdropClick: false,
@@ -156,6 +156,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   redirectTo(fragment) {
-    this.router.navigate(['/users/' + this.currentUser.username], { fragment: fragment });
+    this.router.navigate([], { fragment: fragment });
   }
 }

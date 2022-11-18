@@ -11,21 +11,23 @@ export class HiringLookingWorksTagsComponent implements OnInit, AfterViewInit {
   @Input() user: IUser;
   staticAssets = staticAssets;
 
-  // @ViewChild('animeWorkHiring', { static: false }) animeWorkHiringContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('animeWorkHiring', { static: false }) animeWorkHiringContainer: ElementRef<HTMLDivElement>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // import('lottie-web').then((l) => {
-    //   l.default.loadAnimation({
-    //     container: this.animeWorkHiringContainer.nativeElement,
-    //     renderer: 'svg',
-    //     loop: true,
-    //     autoplay: true,
-    //     path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
-    //   });
-    // });
+    if (this.user.is_employee && this.user.is_employer) {
+      import('lottie-web').then((l) => {
+        l.default.loadAnimation({
+          container: this.animeWorkHiringContainer.nativeElement,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'https://assets4.lottiefiles.com/packages/lf20_gT2Vp6fEM2.json',
+        });
+      });
+    }
   }
 }

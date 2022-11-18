@@ -24,11 +24,13 @@
           <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
         </div>
         <span class="com-flex com-items-center">
-          <p class="username com-line-clamp-1">@{{ user.username | truncatetext: maxUserNameLength }}</p>
+          <p class="username com-line-clamp-1" title="{{ user.username }}">
+            @{{ user.username | truncatetext: maxUserNameLength }}
+          </p>
           &nbsp;
           <app-hiring-looking-works-tags [user]="user"></app-hiring-looking-works-tags>
         </span>
-        <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation">
+        <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">
