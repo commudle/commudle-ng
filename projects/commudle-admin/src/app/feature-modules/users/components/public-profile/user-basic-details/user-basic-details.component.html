@@ -61,7 +61,7 @@
           <p>{{ user.location }}</p>
         </div>
         <div *ngIf="currentUser?.id === user.id">
-          <nb-toggle (click)="openForHiring()" status="basic" [(checked)]="users.is_employer" labelPosition="left"
+          <nb-toggle (click)="openForHiring()" status="basic" [(checked)]="hiring" labelPosition="left"
             >I'm hiring</nb-toggle
           >
         </div>

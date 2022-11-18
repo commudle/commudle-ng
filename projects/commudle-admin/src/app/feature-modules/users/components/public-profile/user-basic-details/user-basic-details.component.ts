@@ -8,7 +8,6 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -19,7 +18,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @Input() user: IUser;
 
   users: IUser;
-
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -29,10 +27,9 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // The original tags
   tags: string[] = [];
   maxTags = 5;
+  hiring: boolean = false;
 
   environment = environment;
-
-  staticAssets = staticAssets;
 
   editTagDialog: NbDialogRef<any>;
 
@@ -55,6 +52,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.userProfileManagerService.user$.subscribe((data: IUser) => {
+      this.hiring = data.is_employer;
       this.users = data;
     });
   }
@@ -145,6 +143,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
         closeOnEsc: false,
         closeOnBackdropClick: false,
       });
+      this.hiring = true;
     }
   }
 

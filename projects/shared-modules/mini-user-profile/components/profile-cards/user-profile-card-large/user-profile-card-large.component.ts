@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { IUser } from 'projects/shared-models/user.model';
-import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-user-profile-card-large',
@@ -19,8 +18,6 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() showSocialLinks = false;
   @Input() activateMiniProfileDirective = true;
   @Output() componentClicked = new EventEmitter();
-
-  staticAssets = staticAssets;
 
   constructor(private userChatsService: UserChatsService) {}
 
