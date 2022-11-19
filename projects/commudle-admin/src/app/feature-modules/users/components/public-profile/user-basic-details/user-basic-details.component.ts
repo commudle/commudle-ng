@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef,
 import { Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { JobService } from '../../../services/job.service';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -17,6 +17,7 @@ import { JobService } from '../../../services/job.service';
 export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @Input() user: IUser;
 
+  users: IUser;
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -26,14 +27,16 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // The original tags
   tags: string[] = [];
   maxTags = 5;
+  hiring: boolean = false;
 
   environment = environment;
 
-  lookingForWork = false;
-  hiring = false;
   editTagDialog: NbDialogRef<any>;
 
+  hiringDialog: NbDialogRef<any>;
+
   @ViewChild('editTags') editTags: TemplateRef<any>;
+  @ViewChild('hiringDialogBox') hiringDialogBox: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -42,17 +45,21 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService,
     private router: Router,
-    private jobService: JobService,
+    private nbDialogService: NbDialogService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
-    this.lookingForWork = this.user.is_employee;
-    this.hiring = this.user.is_employer;
+    this.userProfileManagerService.user$.subscribe((data: IUser) => {
+      this.hiring = data.is_employer;
+      this.users = data;
+    });
   }
 
   ngOnChanges() {
     this.getUserTags();
+    this.userProfileManagerService.getProfile(this.user.username);
   }
 
   getUserTags() {
@@ -115,19 +122,39 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     this.userChatsService.changeFollowerId(this.user.id);
   }
 
-  openToWork() {
-    this.jobService.toggleEmployee().subscribe(() => {
-      if (this.lookingForWork) {
-        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'resume' });
+  openForWork() {
+    this.userProfileManagerService.toggleEmployee().subscribe(() => {
+      if (this.users.is_employee) {
+        this.redirectTo('resume');
       }
     });
   }
 
-  openToHiring() {
-    this.jobService.toggleEmployer().subscribe(() => {
-      if (this.hiring) {
-        this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
-      }
+  openForHiring() {
+    if (!this.users.is_employer) {
+      this.userProfileManagerService.toggleEmployer().subscribe(() => {
+        this.userProfileManagerService.getProfile(this.user.username);
+        setTimeout(() => {
+          this.redirectTo('jobs');
+        }, 500);
+      });
+    } else if (this.users.is_employer) {
+      this.hiringDialog = this.nbDialogService.open(this.hiringDialogBox, {
+        closeOnEsc: false,
+        closeOnBackdropClick: false,
+      });
+      this.hiring = true;
+    }
+  }
+
+  closeHiring() {
+    this.userProfileManagerService.toggleEmployer().subscribe(() => {
+      this.userProfileManagerService.getProfile(this.user.username);
     });
+    this.hiringDialog.close();
+  }
+
+  redirectTo(fragment) {
+    this.router.navigate([], { fragment: fragment });
   }
 }

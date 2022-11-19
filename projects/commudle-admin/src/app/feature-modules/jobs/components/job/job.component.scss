@@ -4,6 +4,10 @@ h2 {
   @apply com-m-0;
 }
 
+a {
+  width: max-content;
+}
+
 .job-container {
   .company-details {
     .position {
@@ -54,8 +58,7 @@ h2 {
   }
 
   .posted-by {
-    @apply com-border-t com-border-slate-400/20 com-flex com-items-center com-justify-between com-gap-4 com-pt-4;
-    border-top-style: solid;
+    @apply com-border-0 com-border-solid com-border-b com-border-slate-400/20 com-flex com-items-center com-justify-between com-gap-4 com-pb-4;
 
     .last-updated {
       @apply com-text-sm com-text-gray-500;

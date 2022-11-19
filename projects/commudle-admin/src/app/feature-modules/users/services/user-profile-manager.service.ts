@@ -5,6 +5,11 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { Observable } from 'rxjs';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +17,9 @@ import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-us
 export class UserProfileManagerService {
   private updateUsername: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public updateUsername$ = this.updateUsername.asObservable();
+
+  private user: BehaviorSubject<IUser> = new BehaviorSubject<IUser>(null);
+  public user$ = this.user.asObservable();
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
@@ -39,6 +47,8 @@ export class UserProfileManagerService {
     private toastLogService: LibToastLogService,
     private updateProfileService: UpdateProfileService,
     private authWatchService: LibAuthwatchService,
+    private http: HttpClient,
+    private apiRoutesService: ApiRoutesService,
   ) {}
 
   setUpdateUsername(value: boolean) {
@@ -66,6 +76,19 @@ export class UserProfileManagerService {
         this.toastLogService.successDialog(`Your Profile is now updated!`);
       }
       this.updateProfileService.setUpdateProfileStatus(true);
+    });
+  }
+
+  toggleEmployee(): Observable<any> {
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_EMPLOYEE_ROLE), {});
+  }
+  toggleEmployer(): Observable<any> {
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_EMPLOYER_ROLE), {});
+  }
+
+  getProfile(username) {
+    this.usersService.getProfile(username).subscribe((data) => {
+      this.user.next(data);
     });
   }
 }

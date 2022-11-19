@@ -6,6 +6,7 @@
     <div [username]="user.username" appMiniUserProfile class="name d-flex align-items-center">
       {{ user.name | truncatetext: maxNameLength }}
       <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
+      <!-- <app-hiring-looking-works-tags [user]="user" [fontSize]="'12px'"></app-hiring-looking-works-tags> -->
     </div>
   </div>
 </a>

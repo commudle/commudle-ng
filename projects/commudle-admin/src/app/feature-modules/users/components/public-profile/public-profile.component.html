@@ -9,7 +9,16 @@
             <nb-actions>
               <nb-action *ngFor="let item of activeMenuItems | keyvalue: originalOrder">
                 <a class="item" fragment="{{ item.value.link }}" routerLink=".">
-                  <nb-icon [icon]="item.value.icon" [status]="item.value.icon_status"></nb-icon>
+                  <nb-icon
+                    *ngIf="item.value.name !== 'Work History'"
+                    [icon]="item.value.icon"
+                    [status]="item.value.icon_status"
+                  ></nb-icon>
+                  <fa-icon
+                    *ngIf="item.value.name == 'Work History'"
+                    [icon]="faBuilding"
+                    class="com-text-[#00D68F]"
+                  ></fa-icon>
                   {{ item.value.name }}
                 </a>
               </nb-action>

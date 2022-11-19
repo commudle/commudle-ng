@@ -10,6 +10,7 @@ import { IUserResume } from 'projects/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { SeoService } from 'projects/shared-services/seo.service';
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
@@ -37,6 +38,7 @@ export class JobComponent implements OnInit, OnDestroy {
     private userResumeService: UserResumeService,
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,12 @@ export class JobComponent implements OnInit, OnDestroy {
   }
 
   getJob(id: number): void {
-    this.subscriptions.push(this.jobService.getJob(id).subscribe((value) => (this.job = value)));
+    this.subscriptions.push(
+      this.jobService.getJob(id).subscribe((value) => {
+        this.job = value;
+        this.setMeta();
+      }),
+    );
   }
 
   getResumes(): void {
@@ -76,6 +83,15 @@ export class JobComponent implements OnInit, OnDestroy {
           this.nbToastrService.success('You have successfully applied for this job', 'Success');
         }
       }),
+    );
+  }
+
+  setMeta(): void {
+    let text = this.job.status === EJobStatus.OPEN ? ', Apply Now!' : '.';
+    this.seoService.setTags(
+      `Job Title - Job Type ${this.job.job_type} - ${this.job.company}`,
+      `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${text}`,
+      'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
 }

@@ -18,7 +18,6 @@
   "dependencies": {
     "@100mslive/hms-video": "0.1.18",
     "@100mslive/hms-video-store": "0.2.71",
-    "@angular-slider/ngx-slider": "^2.0.4",
     "@angular/animations": "13.3.0",
     "@angular/cdk": "13.3.0",
     "@angular/common": "13.3.0",

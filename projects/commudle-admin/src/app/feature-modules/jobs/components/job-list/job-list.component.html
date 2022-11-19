@@ -1,7 +1,7 @@
 <div class="base-layout">
   <div class="container">
     <div class="two-column-layout mobile-reverse">
-      <div class="main-column">
+      <div class="main-column com-mb-20">
         <nb-card>
           <nb-card-header>
             <div class="tittle">
@@ -10,6 +10,7 @@
             </div>
           </nb-card-header>
           <nb-card-body class="com-space-y-4">
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
             <button
               (click)="getJobs()"
@@ -24,7 +25,18 @@
           </nb-card-body>
         </nb-card>
       </div>
-      <div class="right-column">
+      <div class="right-column com-mb-10">
+        <button
+          *ngIf="currentUser"
+          nbButton
+          shape="semi-round"
+          fullWidth
+          status="primary"
+          class="post-job"
+          (click)="redirectToProfile()"
+        >
+          Post a job
+        </button>
         <nb-card>
           <nb-card-header class="com-py-3">
             <div class="com-flex com-items-center">
@@ -54,7 +66,12 @@
                 </nb-radio-group>
               </div>
               <div class="salary filter-options">
-                <p>Salary Range</p>
+                <p>Salary</p>
+                <nb-select formControlName="salary_currency" fullWidth placeholder="Salary Currency" class="com-my-2">
+                  <nb-option *ngFor="let salaryCurrency of jobSalaryCurrencies" [value]="salaryCurrency">
+                    {{ salaryCurrency | uppercase }}
+                  </nb-option>
+                </nb-select>
                 <nb-radio-group formControlName="salary_range" name="salary_range">
                   <nb-radio
                     *ngFor="let salary of salaryRange"
@@ -72,19 +89,11 @@
                   </nb-radio>
                 </nb-radio-group>
               </div>
-              <!-- <div class="salary-currency filter-options">
-                <p>Salary Currency</p>
-                <nb-radio-group formControlName="salary_currency">
-                  <nb-radio *ngFor="let salaryCurrency of jobSalaryCurrencies" [value]="salaryCurrency">
-                    {{ salaryCurrency | uppercase }}
-                  </nb-radio>
-                </nb-radio-group>
-              </div> -->
               <div class="location-type filter-options">
                 <p>Location Type</p>
                 <nb-radio-group formControlName="location_type" name="location_type">
                   <nb-radio *ngFor="let locationType of jobLocationTypes" [value]="locationType">
-                    {{ locationType | uppercase }}
+                    {{ locationType | titlecase }}
                   </nb-radio>
                 </nb-radio-group>
               </div>
@@ -96,14 +105,6 @@
                   </nb-radio>
                 </nb-radio-group>
               </div>
-              <!-- <div class="status filter-options">
-                <p>Status</p>
-                <nb-radio-group formControlName="status" >
-                  <nb-radio *ngFor="let status of jobStatuses" [value]="status">
-                    {{ status | titlecase }}
-                  </nb-radio>
-                </nb-radio-group>
-              </div> -->
             </form>
             <div class="reset-button">
               <button nbButton (click)="reset()" status="primary">Reset Filter</button>

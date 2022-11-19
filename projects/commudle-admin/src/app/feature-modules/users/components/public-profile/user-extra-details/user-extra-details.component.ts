@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { IUser } from 'projects/shared-models/user.model';
 import { Subscription } from 'rxjs';
@@ -11,13 +12,21 @@ import { Subscription } from 'rxjs';
 })
 export class UserExtraDetailsComponent implements OnInit, OnDestroy {
   user: IUser;
+  hiring: boolean = false;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private usersService: AppUsersService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private usersService: AppUsersService,
+    private userProfileManagerService: UserProfileManagerService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.activatedRoute.params.subscribe((data) => this.getUserData(data.username)));
+    this.userProfileManagerService.user$.subscribe((data) => {
+      this.hiring = data.is_employer;
+    });
   }
 
   ngOnDestroy() {
@@ -25,6 +34,10 @@ export class UserExtraDetailsComponent implements OnInit, OnDestroy {
   }
 
   getUserData(username: string) {
-    this.subscriptions.push(this.usersService.getProfile(username).subscribe((data) => (this.user = data)));
+    this.subscriptions.push(
+      this.usersService.getProfile(username).subscribe((data) => {
+        this.user = data;
+      }),
+    );
   }
 }

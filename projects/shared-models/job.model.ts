@@ -1,4 +1,5 @@
 import { IUser } from './user.model';
+import { ITag } from './tag.model';
 
 export interface IJob {
   id: number;
@@ -17,6 +18,7 @@ export interface IJob {
   description: string;
   updated_at: string;
   user: IUser;
+  tags: ITag[];
 }
 
 export enum EJobCategory {

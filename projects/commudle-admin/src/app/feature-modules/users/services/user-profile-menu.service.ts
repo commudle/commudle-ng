@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { BehaviorSubject } from 'rxjs';
 
 export type MenuItemNames =
@@ -68,7 +69,7 @@ export class UserProfileMenuService {
     },
     jobs: {
       name: 'Jobs',
-      icon: 'archive',
+      icon: 'briefcase',
       icon_status: 'primary',
       link: 'jobs',
       active: false,
@@ -106,7 +107,8 @@ export class UserProfileMenuService {
   private activeMenuItems = new BehaviorSubject<UserProfileMenuItems>(this.userProfileMenuItems);
   public activeMenuItems$ = this.activeMenuItems.asObservable();
 
-  constructor() {}
+  hiring: boolean = false;
+  constructor(private userProfileManagerService: UserProfileManagerService) {}
 
   addMenuItem(item: MenuItemNames, value: boolean) {
     this.userProfileMenuItems[item].active = value;

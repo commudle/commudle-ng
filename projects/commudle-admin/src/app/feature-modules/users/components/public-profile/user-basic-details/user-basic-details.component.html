@@ -4,7 +4,7 @@
     <div class="user-info">
       <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
         <div class="com-text-center md:com-text-left">
-          <div class="name">
+          <div class="name com-flex com-items-center">
             <h1>{{ user.name }}</h1>
             <img
               *ngIf="user.is_expert"
@@ -13,6 +13,7 @@
               src="/assets/images/Expert-Tick.svg"
               title="Expert Tick"
             />
+            <app-hiring-looking-works-tags [user]="users"></app-hiring-looking-works-tags>
           </div>
           <p class="username">@{{ user.username }}</p>
         </div>
@@ -49,7 +50,7 @@
           <p>{{ user.designation }}</p>
         </div>
         <div *ngIf="currentUser?.id === user.id">
-          <nb-toggle (click)="openToWork()" [(checked)]="lookingForWork" status="basic" labelPosition="left">
+          <nb-toggle (click)="openForWork()" [(checked)]="users.is_employee" status="basic" labelPosition="left">
             I'm looking for work
           </nb-toggle>
         </div>
@@ -60,7 +61,7 @@
           <p>{{ user.location }}</p>
         </div>
         <div *ngIf="currentUser?.id === user.id">
-          <nb-toggle (click)="openToHiring()" status="basic" [(checked)]="hiring" labelPosition="left"
+          <nb-toggle (click)="openForHiring()" status="basic" [(checked)]="hiring" labelPosition="left"
             >I'm hiring</nb-toggle
           >
         </div>
@@ -111,6 +112,18 @@
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
       <button (click)="onTagDialogSubmit()" nbButton status="success">Save</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #hiringDialogBox let-ref="dialogRef">
+  <nb-card class="tag-dialog">
+    <nb-card-body class="text-center">
+      <p>All your posted jobs will be marked as closed, are you sure?</p>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="(this.hiring = true) && ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="closeHiring()" nbButton status="success">Yes</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

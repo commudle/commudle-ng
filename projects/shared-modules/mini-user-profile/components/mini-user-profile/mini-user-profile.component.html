@@ -5,6 +5,7 @@
       *ngIf="user"
       [activateMiniProfileDirective]="false"
       [user]="user"
+      [maxUserNameLength]="user.is_employee || user.is_employer ? '2' : '20'"
     ></app-user-profile-card-large>
     <div *ngIf="miniUser.tags.length > 0" class="user-tags">
       <nb-tag-list>

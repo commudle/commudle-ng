@@ -59,7 +59,6 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   checkOrganizer() {
     this.subscriptions.push(
       this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        console.log(data);
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);

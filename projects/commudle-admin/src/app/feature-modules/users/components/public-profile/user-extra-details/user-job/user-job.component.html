@@ -1,6 +1,6 @@
 <nb-card *ngIf="jobs.length > 0 || currentUser?.id === user.id" accent="primary" class="user-job" id="jobs">
   <nb-card-header>
-    <nb-icon icon="archive" status="primary"></nb-icon>
+    <nb-icon icon="briefcase" status="primary"></nb-icon>
     Jobs
   </nb-card-header>
   <nb-card-body>
@@ -35,21 +35,16 @@
 <ng-template #jobDialog>
   <nb-card class="!com-m-0 com-max-h-[100vh]" style="width: clamp(20rem, 36rem, 100vw)">
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      {{ isEditing ? 'Edit Job' : 'Add Job' }}
+      <div class="tittle">
+        <nb-icon icon="briefcase" class="com-mr-1"></nb-icon>
+        <p>{{ isEditing ? 'Edit Job' : 'Post a Job' }}</p>
+      </div>
       <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
     <nb-card-body>
       <form [formGroup]="jobForm" class="com-flex com-flex-col com-space-y-3">
-        <label>
-          Position*
-          <input formControlName="position" fullWidth nbInput type="text" />
-        </label>
-        <label>
-          Company*
-          <input formControlName="company" fullWidth nbInput type="text" />
-        </label>
         <div class="com-grid com-grid-cols-2 com-gap-2">
           <label class="com-col-span-1">
             Category*
@@ -68,6 +63,14 @@
             </nb-select>
           </label>
         </div>
+        <label>
+          Position*
+          <input formControlName="position" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Company*
+          <input formControlName="company" fullWidth nbInput type="text" />
+        </label>
         <label>
           Min Experience (in years)*
           <input formControlName="experience" fullWidth nbInput type="number" />
@@ -112,7 +115,7 @@
             <input formControlName="location" fullWidth nbInput type="text" />
           </label>
         </div>
-        <label>
+        <label *ngIf="isEditing">
           Status*
           <nb-select formControlName="status" fullWidth>
             <nb-option *ngFor="let jobStatus of jobStatuses" [value]="jobStatus">
@@ -122,15 +125,37 @@
         </label>
         <label>
           Description
-          <textarea formControlName="description" fullWidth nbInput rows="5" type="text"></textarea>
+          <textarea formControlName="description" fullWidth nbInput rows="3" type="text"></textarea>
+        </label>
+        <label>
+          Tags
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
+            <input
+              formControlName="tags"
+              (tagAdd)="onTagAdd($event)"
+              [separatorKeys]="[13, 188]"
+              (keypress)="restrictComma($event)"
+              fullWidth
+              nbTagInput
+              placeholder="Type a tag and press enter or comma"
+              type="text"
+              nbTagInput
+            />
+          </nb-tag-list>
         </label>
       </form>
     </nb-card-body>
-    <nb-card-footer class="com-flex com-justify-between">
-      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
-      <button (click)="isEditing ? updateJob() : createJob()" [disabled]="jobForm.invalid" nbButton status="success">
-        {{ isEditing ? 'Update' : 'Create' }}
-      </button>
+    <nb-card-footer>
+      <div class="com-flex com-justify-center">
+        <p class="com-m-0">Job automatically expires in 15 days but you can renew it.</p>
+      </div>
+      <div class="com-flex com-justify-between">
+        <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+        <button (click)="isEditing ? updateJob() : createJob()" [disabled]="jobForm.invalid" nbButton status="success">
+          {{ isEditing ? 'Update' : 'Create' }}
+        </button>
+      </div>
     </nb-card-footer>
   </nb-card>
 </ng-template>

@@ -1,0 +1,10 @@
+<div class="com-h-7">
+  <div *ngIf="user.is_employee && user.is_employer" class="tag">
+    <p [ngStyle]="{ 'font-size': fontSize }" class="work">LOOKING FOR WORK</p>
+    <p [ngStyle]="{ 'font-size': fontSize }" class="hiring">HIRING</p>
+  </div>
+  <div *ngIf="!(user.is_employee && user.is_employer)">
+    <p [ngStyle]="{ 'font-size': fontSize }" *ngIf="user.is_employee" class="work tags">LOOKING FOR WORK</p>
+    <p [ngStyle]="{ 'font-size': fontSize }" *ngIf="user.is_employer" class="hiring tags">HIRING</p>
+  </div>
+</div>

@@ -11,6 +11,8 @@ import { FooterService } from 'projects/commudle-admin/src/app/services/footer.s
 import { IUser } from 'projects/shared-models/user.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 
 @Component({
   selector: 'app-public-profile',
@@ -21,6 +23,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   user: IUser;
   activeMenuItems: UserProfileMenuItems | {};
 
+  faBuilding = faBuilding;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -30,6 +34,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private updateProfileService: UpdateProfileService,
     public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +70,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   getUser() {
+    this.userProfileManagerService.getProfile(this.activatedRoute.snapshot.params.username);
     this.subscriptions.push(
       this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
         this.user = data;
