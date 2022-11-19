@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
@@ -30,7 +30,8 @@ export class JobListComponent implements OnInit, OnDestroy {
   page_info: IPageInfo;
   isLoading = false;
   faFilters = faFilter;
-  formValue;
+  selectedFormValue;
+  URLParam = {};
 
   filterForm = this.fb.group({
     category: [''],
@@ -76,37 +77,87 @@ export class JobListComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private router: Router,
     private seoService: SeoService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.getJobs();
-    this.setMeta();
-
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
+    this.getJobs();
+    this.collectQueryParamValue();
+
     // listen to changes in filter form
+    this.formFilterValueChange();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
+  }
+
+  formFilterValueChange() {
     this.subscriptions.push(
       this.filterForm.valueChanges.subscribe(() => {
         this.isLoading = true;
         this.page_info = null;
-        this.formValue = {
-          category: this.filterForm.value.category,
-          salary_type: this.filterForm.value.salary_type,
-          location_type: this.filterForm.value.location_type,
-          job_type: this.filterForm.value.job_type,
-          min_experience: this.filterForm.value.experience ? this.filterForm.value.experience.min : '',
-          max_experience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
-          min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
-          max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
-          salary_currency: this.filterForm.value.salary_currency,
-        };
+        this.updateselectedFormValues();
+        this.addFilterFormChangeValueToParams();
         this.getJobs(true);
       }),
     );
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((value) => value.unsubscribe());
+  updateselectedFormValues() {
+    this.selectedFormValue = {
+      category: this.filterForm.value.category,
+      salary_type: this.filterForm.value.salary_type,
+      location_type: this.filterForm.value.location_type,
+      job_type: this.filterForm.value.job_type,
+      min_experience: this.filterForm.value.experience ? this.filterForm.value.experience.min : '',
+      max_experience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
+      min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
+      max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
+      salary_currency: this.filterForm.value.salary_currency,
+    };
+  }
+
+  updateFilterFormFromQueyParams(key, queryParams) {
+    if (key == 'min_experience') {
+      this.filterForm.get('min_experience').patchValue(queryParams.min_experience);
+      this.filterForm.get('max_experience').setValue(queryParams.max_experience);
+    }
+    if (key == 'min_salary') {
+      this.filterForm.get('min_salary').setValue(queryParams.min_salary);
+      this.filterForm.get('max_salary').setValue(queryParams.max_salary);
+    }
+    this.getJobs(true);
+  }
+
+  collectQueryParamValue() {
+    this.route.queryParams.subscribe((queryParams) => {
+      Object.keys(queryParams).forEach((querykeys) => {
+        if (queryParams[querykeys]) {
+          Object.keys(this.filterForm.controls).forEach((key) => {
+            if (querykeys == key) {
+              this.filterForm.patchValue(queryParams);
+              this.updateFilterFormFromQueyParams(key, queryParams);
+              this.updateselectedFormValues();
+              this.getJobs(true);
+            }
+          });
+        }
+      });
+    });
+  }
+  //change select to selected
+  //change params name
+
+  addFilterFormChangeValueToParams() {
+    Object.keys(this.selectedFormValue).forEach((key) => {
+      if (this.selectedFormValue[key] && this.selectedFormValue[key] !== '') {
+        this.URLParam[key] = this.selectedFormValue[key];
+        this.router.navigate([], { queryParams: { ...this.URLParam } });
+      }
+    });
   }
 
   getJobs(clear = false) {
@@ -116,7 +167,7 @@ export class JobListComponent implements OnInit, OnDestroy {
         .getJobs({
           after: this.page_info?.end_cursor,
           limit: this.limit,
-          ...this.formValue,
+          ...this.selectedFormValue,
         })
         .subscribe((data) => {
           if (clear) {
@@ -127,10 +178,12 @@ export class JobListComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         }),
     );
+    this.setMeta();
   }
+
   reset() {
     this.filterForm.reset();
-    this.formValue = {
+    this.selectedFormValue = {
       category: [''],
       salary_type: [''],
       salary_currency: [''],
@@ -145,7 +198,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   }
 
   redirectToProfile() {
-    this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
+    this.router.navigate([], { fragment: 'jobs' });
   }
 
   setMeta(): void {
