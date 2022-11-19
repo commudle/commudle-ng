@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { faFlask, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
@@ -11,13 +11,15 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { NotificationsStore } from '../../feature-modules/notifications/store/notifications.store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
 })
-export class SidebarMenuComponent implements OnInit {
+export class SidebarMenuComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faNewspaper = faNewspaper;
   currentUser: ICurrentUser;
@@ -31,20 +33,26 @@ export class SidebarMenuComponent implements OnInit {
   isFeaturedCommunitiesAdmin = false;
   isAssetsAdmin = false;
 
+  notificationCount = 0;
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
     private router: Router,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUser();
     this.closeSidebar();
-    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      this.managedCommunities = data;
-    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getCurrentUser(): void {
@@ -91,8 +99,21 @@ export class SidebarMenuComponent implements OnInit {
   getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe(() => {});
+      this.communitiesService.getRoleCommunities(role).subscribe(() => {
+        this.getCommunitiesData();
+      });
     }
+  }
+  getCommunitiesData() {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        this.managedCommunities = data;
+        for (let communities of data) {
+          this.updateUnreadNotificationsCount(communities.id);
+          this.notificationsStore.updateNotifications(communities.id);
+        }
+      }),
+    );
   }
 
   getManagingCommunityGroups(): void {
@@ -107,5 +128,18 @@ export class SidebarMenuComponent implements OnInit {
         this.sidebarService.collapse('mainMenu');
       }
     });
+  }
+
+  updateUnreadNotificationsCount(communityId) {
+    this.notificationsStore.getCommunityUnreadNotificationsCount(communityId);
+  }
+
+  getUnreadNotificationsCount(communityId): number {
+    this.subscriptions.push(
+      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
+        this.notificationCount = count;
+      }),
+    );
+    return this.notificationCount;
   }
 }

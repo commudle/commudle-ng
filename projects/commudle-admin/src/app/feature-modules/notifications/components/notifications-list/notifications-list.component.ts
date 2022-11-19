@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
-import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,6 +16,8 @@ import * as _ from 'lodash';
 export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
   @Input() markAllAsRead: boolean;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
+
+  currentUser: ICurrentUser;
 
   notifications: INotification[] = [];
 
@@ -29,9 +32,14 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
+  constructor(private notificationsStore: NotificationsStore, private authWatchService: LibAuthwatchService) {}
 
   ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+      this.currentUser = currentUser;
+    });
+
+    this.notificationsStore.getUserNotifications(this.page, this.count);
     this.getNotifications();
     this.receiveData();
   }
@@ -47,8 +55,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
-
+    this.notificationsStore.changeStatus(status, notification);
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
     }
@@ -58,13 +65,15 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationsService.getAllNotifications(this.page, this.count, '', '').subscribe((value) => {
-          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-          this.page += 1;
-          this.total = value.total;
-          this.isLoading = false;
-          if (this.notifications.length >= this.total) {
-            this.canLoadMore = false;
+        this.notificationsStore.userNotifications$.subscribe((value) => {
+          if (value) {
+            this.notifications = _.uniqBy(this.notifications.concat(value), 'id');
+            this.page += 1;
+            this.total = value.total;
+            this.isLoading = false;
+            if (this.notifications.length >= this.total) {
+              this.canLoadMore = false;
+            }
           }
         }),
       );
@@ -73,29 +82,20 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   receiveData() {
     this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              // add only if it's not already in the list
-              if (
-                !this.notifications.find((notification) => notification.id === data.notification.id) &&
-                data.notification_filter == 'user'
-              ) {
-                this.notifications.unshift(data.notification);
-              }
-              break;
-            }
-            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-              const idx = this.notifications.findIndex(
-                (notification) => notification.id === data.notification_queue_id,
-              );
-              if (idx != -1) {
-                this.notifications[idx].status = data.status;
-              }
-              break;
-            }
+      this.notificationsStore.newUserNotifications$.subscribe((data) => {
+        if (this.notifications.length != 0 && this.currentUser.id == data.filter_object_id) {
+          if (!this.notifications.find((notification) => notification.id == data.id)) {
+            this.notifications.unshift(data);
           }
+        }
+      }),
+    );
+
+    this.subscriptions.push(
+      this.notificationsStore.updateUserNotifications$.subscribe((data) => {
+        const idx = this.notifications.findIndex((notification) => notification.id === data.notification_queue_id);
+        if (idx != -1) {
+          this.notifications[idx].status = data;
         }
       }),
     );

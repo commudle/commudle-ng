@@ -7,9 +7,8 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { NotificationsService } from '../../../notifications/services/notifications.service';
-import { NotificationChannel } from '../../../notifications/services/websockets/notification.channel';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -31,8 +30,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
     private seoService: SeoService,
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit() {
@@ -59,11 +57,9 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   checkOrganizer() {
     this.subscriptions.push(
       this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        console.log(data);
         if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
           this.isOrganizer = true;
           this.getUnreadNotificationsCount(this.community.id);
-          this.receiveData();
         }
       }),
     );
@@ -79,25 +75,10 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     });
   }
 
-  getUnreadNotificationsCount(id) {
+  getUnreadNotificationsCount(communityId) {
     this.subscriptions.push(
-      this.notificationsService.getUnreadNotificationsCount(id, 'community').subscribe((count) => {
+      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
         this.notificationCount = count;
-      }),
-    );
-  }
-  receiveData() {
-    this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              if (data.notification_filter == 'community') {
-                this.notificationCount++;
-              }
-            }
-          }
-        }
       }),
     );
   }
