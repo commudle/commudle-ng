@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { staticAssets } from 'projects/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-home-head-banner',
@@ -8,6 +9,7 @@ import { faFlask } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeHeadBannerComponent implements OnInit {
   faFlask = faFlask;
+  staticAssets = staticAssets;
 
   constructor() {}
 

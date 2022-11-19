@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
@@ -7,20 +7,26 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
   selector: 'app-homepage-builds',
   templateUrl: './homepage-builds.component.html',
   styleUrls: ['./homepage-builds.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageBuildsComponent implements OnInit {
   builds: ICommunityBuild[] = [];
 
-  constructor(private homeService: HomeService, private isBrowserService: IsBrowserService) {}
+  constructor(
+    private homeService: HomeService,
+    private isBrowserService: IsBrowserService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
-    if (this.isBrowserService.isBrowser()) {
-      this.getBuilds();
-    }
+    this.getBuilds();
   }
 
   getBuilds(): void {
-    this.homeService.communityBuilds().subscribe((value) => (this.builds = value.community_builds.slice(0, 3)));
+    this.homeService.communityBuilds().subscribe((value) => {
+      this.builds = value.community_builds.slice(0, 3);
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   getDescription(build: ICommunityBuild): string {

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-community',
@@ -13,10 +15,15 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
   isOrganizer = false;
 
+  notificationCount = 0;
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communitiesService: CommunitiesService,
+    private notificationsStore: NotificationsStore,
   ) {}
 
   ngOnInit(): void {
@@ -28,14 +35,26 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         this.seoService.noIndex(true);
       }
     });
-    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
-        this.isOrganizer = true;
-      }
-    });
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+          this.isOrganizer = true;
+          this.getNotificationsCount(this.community.id);
+        }
+      }),
+    );
   }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getNotificationsCount(id) {
+    this.subscriptions.push(
+      this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
+        this.notificationCount = data;
+      }),
+    );
   }
 }

@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { ICommunity } from 'projects/shared-models/community.model';
-
 import { Subscription } from 'rxjs';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 
 @Component({
   selector: 'app-public-community-notifications',
   templateUrl: './public-community-notifications.component.html',
   styleUrls: ['./public-community-notifications.component.scss'],
 })
-export class PublicCommunityNotificationsComponent implements OnInit {
+export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy {
   community: ICommunity;
 
-  subscriptions: Subscription[] = [];
+  trackMarkAllAsRead = false;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  subscriptions: Subscription[] = [];
+  result;
+
+  constructor(private activatedRoute: ActivatedRoute, private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -23,5 +25,15 @@ export class PublicCommunityNotificationsComponent implements OnInit {
         this.community = data.community;
       }),
     );
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  markAllAsRead() {
+    this.result = this.notificationsStore.markAllAsRead(this.community.id);
+    if (this.result) {
+      this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+    }
   }
 }

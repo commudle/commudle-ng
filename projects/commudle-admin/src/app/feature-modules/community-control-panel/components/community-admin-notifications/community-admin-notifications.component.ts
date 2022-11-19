@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 
@@ -12,7 +13,14 @@ export class CommunityAdminNotificationsComponent implements OnInit {
   communityId;
   community: ICommunity;
 
-  constructor(private activatedRoute: ActivatedRoute, private communitiesService: CommunitiesService) {}
+  trackMarkAllAsRead = false;
+  result;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private communitiesService: CommunitiesService,
+    private notificationsStore: NotificationsStore,
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(() => {
@@ -21,5 +29,12 @@ export class CommunityAdminNotificationsComponent implements OnInit {
     this.communitiesService.getCommunityDetails(this.communityId).subscribe((data) => {
       this.community = data;
     });
+  }
+
+  markAllAsRead() {
+    this.result = this.notificationsStore.markAllAsRead(this.community.id);
+    if (this.result) {
+      this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+    }
   }
 }

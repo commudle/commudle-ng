@@ -1,4 +1,8 @@
-<nb-card [routerLink]="['/communities', community.community.slug]" class="user-communities-card">
+<nb-card
+  [routerLink]="['/communities', community.community.slug]"
+  class="user-communities-card"
+  [ngClass]="{ organizer: community.user_role.name == 'organizer' }"
+>
   <nb-card-body>
     <img
       [alt]="community.community.name"
@@ -8,7 +12,12 @@
     />
     <div class="com-flex com-flex-col">
       <h4 class="user-communities-name">{{ community.community.name }}</h4>
-      <p class="user-communities-role">{{ community.user_role.name | titlecase }}</p>
+      <p class="user-communities-role">
+        <nb-icon icon="star" *ngIf="community.user_role.name == 'organizer'"></nb-icon>
+        <span>
+          {{ community.user_role.name | titlecase }}
+        </span>
+      </p>
       <p class="user-communities-members">{{ community.community.member_count }} members</p>
     </div>
   </nb-card-body>

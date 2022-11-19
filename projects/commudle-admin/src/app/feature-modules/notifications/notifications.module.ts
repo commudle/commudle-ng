@@ -16,6 +16,7 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
 import { NotificationsPopoverComponent } from './components/notifications-popover/notifications-popover.component';
 import { NotificationRoutingModule } from './notification-routing.module';
 import { CommunityNotificationsComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/community-notifications/community-notifications.component';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CommunityNotificationsComponent } from 'projects/commudle-admin/src/app
     CommonModule,
     NotificationRoutingModule,
     InfiniteScrollModule,
+    SharedComponentsModule,
 
     //Nebular
     NbListModule,

@@ -33,8 +33,4 @@
   </nb-list-item>
 </nb-list>
 
-<div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-  <div class="spinner">
-    <div *ngFor="let _ of [].constructor(5)"></div>
-  </div>
-</div>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
