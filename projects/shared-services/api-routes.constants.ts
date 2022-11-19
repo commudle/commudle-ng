@@ -427,6 +427,8 @@ export const API_ROUTES = {
     FOLLOWEES: 'api/v2/users/followees',
     EMAIL_UNSUBSCRIBE_GROUPS: 'api/v2/users/email_unsubscribe_groups',
     MINI_PROFILE: 'api/v2/users/profile',
+    TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
+    TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
   },
 
   SPEAKER_RESOURCES: {
@@ -605,5 +607,22 @@ export const API_ROUTES = {
     CREATE: 'api/v2/user_resumes',
     UPDATE: 'api/v2/user_resumes',
     DESTROY: 'api/v2/user_resumes',
+  },
+
+  JOBS: {
+    INDEX: 'api/v2/jobs',
+    SHOW: 'api/v2/jobs/show',
+    CREATE: 'api/v2/jobs',
+    UPDATE: 'api/v2/jobs',
+    DESTROY: 'api/v2/jobs',
+  },
+
+  JOB_APPLICATIONS: {
+    INDEX: 'api/v2/job_applications',
+    MY_APPLICATIONS: 'api/v2/job_applications/my_applications',
+    CREATE: 'api/v2/job_applications',
+    UPDATE_STATUS: 'api/v2/job_applications/update_status',
+    UPDATE: 'api/v2/job_applications',
+    DESTROY: 'api/v2/job_applications',
   },
 };

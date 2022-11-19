@@ -1,0 +1,88 @@
+<nb-card class="user-job-card">
+  <nb-card-body>
+    <p class="position">{{ job.position }}</p>
+    <div class="com-flex com-items-center com-gap-1.5">
+      <nb-icon icon="pin" status="primary"></nb-icon>
+      <p class="location">
+        {{ job.location_type === EJobLocationType.REMOTE ? 'Remote' : job.location }}
+      </p>
+    </div>
+    <nb-tag-list class="tags">
+      <nb-tag [text]="job.category | titlecase" appearance="outline" size="tiny" status="info"></nb-tag>
+      <nb-tag
+        [text]="job.job_type | capitalizeAndRemoveUnderscore"
+        appearance="outline"
+        size="tiny"
+        status="info"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        size="tiny"
+        status="info"
+        text="Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience"
+      ></nb-tag>
+    </nb-tag-list>
+    <!--    <nb-toggle (checkedChange)="toggleJobStatus.emit()" [checked]="job.status === jobStatus.OPEN">-->
+    <!--      {{ job.status | titlecase }}-->
+    <!--    </nb-toggle>-->
+    <nb-actions class="actions" fullWidth>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button (click)="updateJob.emit()" ghost nbButton size="small" status="warning">
+          <nb-icon icon="edit" status="warning"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Edit</ng-container>
+        </button>
+      </nb-action>
+      <nb-action>
+        <button (click)="copyTextToClipboard(job.id)" ghost nbButton size="small" status="primary">
+          <nb-icon icon="share" status="primary"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Share</ng-container>
+        </button>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <a [routerLink]="['/jobs', job.id, 'applications']" ghost nbButton size="small" status="success">
+          <nb-icon icon="people" status="success"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Applications</ng-container>
+        </a>
+      </nb-action>
+      <nb-action>
+        <a [routerLink]="['/jobs', job.id]" ghost nbButton size="small" status="info">
+          <nb-icon icon="eye" status="info"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">View</ng-container>
+        </a>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton size="small" status="danger">
+          <nb-icon icon="trash" status="danger"></nb-icon>
+          <ng-container *appBreakpoints="'>md'">Delete</ng-container>
+        </button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #deleteJobDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure your want to delete
+        <strong> {{ job.position }} @ {{ job.company }} </strong>? <br />
+        All the received applications will be deleted permanently as well.
+      </p>
+      <br />
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="onDeleteJob(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

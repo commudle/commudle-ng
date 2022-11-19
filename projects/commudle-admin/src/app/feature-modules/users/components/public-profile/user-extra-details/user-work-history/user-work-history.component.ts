@@ -8,6 +8,7 @@ import { IUser } from 'projects/shared-models/user.model';
 import { IUserWorkHistory } from 'projects/shared-models/user_work_history.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-work-history',
@@ -18,6 +19,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   currentUser: ICurrentUser;
+  faBuilding = faBuilding;
 
   userWorkHistories: IUserWorkHistory[] = [];
   userWorkHistoryForm = this.fb.group(
