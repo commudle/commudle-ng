@@ -121,11 +121,11 @@ export class JobListComponent implements OnInit, OnDestroy {
   }
 
   updateFilterFormFromQueyParams(key, queryParams) {
-    if (key == 'min_experience') {
+    if (key == 'min_experience' || key == 'max_experience') {
       this.filterForm.get('min_experience').patchValue(queryParams.min_experience);
       this.filterForm.get('max_experience').setValue(queryParams.max_experience);
     }
-    if (key == 'min_salary') {
+    if (key == 'min_salary' || key == 'max_salary') {
       this.filterForm.get('min_salary').setValue(queryParams.min_salary);
       this.filterForm.get('max_salary').setValue(queryParams.max_salary);
     }
@@ -194,11 +194,12 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: [''],
       max_salary: [''],
     };
-    this.getJobs();
+    this.router.navigate([]);
+    this.getJobs(true);
   }
 
   redirectToProfile() {
-    this.router.navigate([], { fragment: 'jobs' });
+    this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
   }
 
   setMeta(): void {
