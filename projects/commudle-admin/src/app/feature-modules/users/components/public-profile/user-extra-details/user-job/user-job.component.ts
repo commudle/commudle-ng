@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
@@ -24,7 +25,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-job.component.html',
   styleUrls: ['./user-job.component.scss'],
 })
-export class UserJobComponent implements OnChanges, OnDestroy {
+export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   currentUser: ICurrentUser;
@@ -77,8 +78,11 @@ export class UserJobComponent implements OnChanges, OnDestroy {
 
   isEditing: boolean = false;
   dialogRef: NbDialogRef<any>;
+  createJobDialog: NbDialogRef<any>;
 
   subscriptions: Subscription[] = [];
+
+  @ViewChild('jobDialog', { static: true }) jobDialog: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -88,7 +92,21 @@ export class UserJobComponent implements OnChanges, OnDestroy {
     private nbToastrService: NbToastrService,
     private userProfileMenuService: UserProfileMenuService,
     private userProfileManagerService: UserProfileManagerService,
+    private route: ActivatedRoute,
   ) {}
+
+  ngOnInit(): void {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === 'jobs') {
+        setTimeout(() => {
+          this.onOpenDialog(this.jobDialog);
+        }, 500);
+      }
+      if (this.route.snapshot.queryParams['postJobTag']) {
+        this.tags.push(this.route.snapshot.queryParams['postJobTag']);
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));

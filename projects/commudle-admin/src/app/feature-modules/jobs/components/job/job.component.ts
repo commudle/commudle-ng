@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { JobApplicationService } from 'projects/commudle-admin/src/app/feature-modules/jobs/services/job-application.service';
 import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
@@ -39,6 +39,7 @@ export class JobComponent implements OnInit, OnDestroy {
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     private seoService: SeoService,
+    private route: Router,
   ) {}
 
   ngOnInit(): void {
@@ -93,5 +94,12 @@ export class JobComponent implements OnInit, OnDestroy {
       `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${text}`,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  reDirectTo() {
+    this.route.navigate(['/users/', this.currentUser.username], {
+      fragment: 'resume',
+      queryParams: { job: this.job.id },
+    });
   }
 }

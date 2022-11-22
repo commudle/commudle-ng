@@ -7,7 +7,7 @@
         </nb-card-header>
         <nb-card-body>
           <ng-container *ngIf="!isLoading; else loading">
-            <nb-tabset *ngIf="jobApplications.length > 0">
+            <!-- <nb-tabset *ngIf="jobApplications.length > 0">
               <nb-tab
                 *ngFor="let jobApplicationStatus of jobApplicationStatuses"
                 tabTitle="{{ jobApplicationStatus | uppercase }} ({{
@@ -23,7 +23,12 @@
                   </nb-list-item>
                 </nb-list>
               </nb-tab>
-            </nb-tabset>
+            </nb-tabset> -->
+            <nb-list>
+              <nb-list-item *ngFor="let jobApplication of jobApplications">
+                <app-my-job-application [jobApplication]="jobApplication"></app-my-job-application>
+              </nb-list-item>
+            </nb-list>
           </ng-container>
           <ng-template #loading>
             <app-loading-spinner></app-loading-spinner>

@@ -127,3 +127,15 @@
     </nb-card-footer>
   </nb-card>
 </ng-template>
+
+<ng-template #enableHiring let-ref="dialogRef">
+  <nb-card class="tag-dialog">
+    <nb-card-body class="text-center">
+      <p>Welcome! You can now post a job on your profile your next rockstar techie teammate</p>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="openForHiring()" nbButton status="success">Yes, I'm Hiring</button>
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
