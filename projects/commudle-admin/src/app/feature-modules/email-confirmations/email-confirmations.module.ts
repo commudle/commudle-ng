@@ -9,6 +9,7 @@ import { NbIconModule, NbCardModule, NbSpinnerModule, NbToggleModule } from '@ne
 import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
 import { FormsModule } from '@angular/forms';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     EmailConfirmationsRoutingModule,
     FormsModule,
     SharedDirectivesModule,
+    SharedPipesModule,
 
     // Nebular
     NbIconModule,
