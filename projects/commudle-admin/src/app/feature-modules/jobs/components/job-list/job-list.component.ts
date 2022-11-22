@@ -29,6 +29,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   limit = 10;
   page_info: IPageInfo;
   isLoading = false;
+  isFilterLoading: boolean = false;
   faFilters = faFilter;
   selectedFormValue;
   URLParam = {};
@@ -107,6 +108,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   }
 
   updateselectedFormValues() {
+    console.log(this.filterForm.value, 'filterform');
     this.selectedFormValue = {
       category: this.filterForm.value.category,
       salary_type: this.filterForm.value.salary_type,
@@ -122,34 +124,38 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   updateFilterFormFromQueyParams(key, queryParams) {
     if (key == 'min_experience' || key == 'max_experience') {
-      this.filterForm.get('min_experience').patchValue(queryParams.min_experience);
-      this.filterForm.get('max_experience').setValue(queryParams.max_experience);
+      this.filterForm.get('experience').patchValue({
+        min: queryParams.min_experience ? queryParams.min_experience : '',
+        max: queryParams.max_experience ? queryParams.max_experience : '',
+      });
     }
     if (key == 'min_salary' || key == 'max_salary') {
-      this.filterForm.get('min_salary').setValue(queryParams.min_salary);
-      this.filterForm.get('max_salary').setValue(queryParams.max_salary);
+      this.filterForm.get('salary_range').patchValue({
+        min: queryParams.min_salary ? queryParams.min_salary : '',
+        max: queryParams.max_salary ? queryParams.max_salary : '',
+      });
     }
+    this.updateselectedFormValues();
     this.getJobs(true);
   }
 
   collectQueryParamValue() {
+    this.isFilterLoading = true;
     this.route.queryParams.subscribe((queryParams) => {
       Object.keys(queryParams).forEach((querykeys) => {
         if (queryParams[querykeys]) {
           Object.keys(this.filterForm.controls).forEach((key) => {
             if (querykeys == key) {
               this.filterForm.patchValue(queryParams);
+              console.log(this.filterForm.get('max_experience').value);
               this.updateFilterFormFromQueyParams(key, queryParams);
               this.updateselectedFormValues();
-              this.getJobs(true);
             }
           });
         }
       });
     });
   }
-  //change select to selected
-  //change params name
 
   addFilterFormChangeValueToParams() {
     Object.keys(this.selectedFormValue).forEach((key) => {
@@ -176,6 +182,7 @@ export class JobListComponent implements OnInit, OnDestroy {
           this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
           this.isLoading = false;
+          this.isFilterLoading = false;
         }),
     );
     this.setMeta();
