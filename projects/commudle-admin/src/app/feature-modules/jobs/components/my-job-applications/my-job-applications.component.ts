@@ -43,7 +43,6 @@ export class MyJobApplicationsComponent implements OnInit, OnDestroy {
   getMyJobApplications() {
     this.subscriptions.push(
       this.jobApplicationService.getMyJobApplications().subscribe((data) => {
-        console.log(data.job_applications);
         this.jobApplications = data.job_applications;
         // this.jobApplicationGroups = _.groupBy(data.job_applications, 'status');
         // add status 'all' to the job application statuses
