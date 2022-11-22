@@ -33,6 +33,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   faFilters = faFilter;
   selectedFormValue;
   URLParam = {};
+  heading = '';
 
   filterForm = this.fb.group({
     category: [''],
@@ -47,6 +48,7 @@ export class JobListComponent implements OnInit, OnDestroy {
     salary_range: [''],
     min_salary: [''],
     max_salary: [''],
+    tags: [],
   });
 
   experiences = [
@@ -89,6 +91,10 @@ export class JobListComponent implements OnInit, OnDestroy {
 
     // listen to changes in filter form
     this.formFilterValueChange();
+    if (this.route.snapshot.queryParams['tags'] === 'devfestnewdelhi22') {
+      console.log(this.route.snapshot.queryParams['tags']);
+      this.heading = 'DevFest Jobs';
+    }
   }
 
   ngOnDestroy(): void {
@@ -108,7 +114,6 @@ export class JobListComponent implements OnInit, OnDestroy {
   }
 
   updateselectedFormValues() {
-    console.log(this.filterForm.value, 'filterform');
     this.selectedFormValue = {
       category: this.filterForm.value.category,
       salary_type: this.filterForm.value.salary_type,
@@ -119,6 +124,7 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
       max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
       salary_currency: this.filterForm.value.salary_currency,
+      tags: this.filterForm.value.tags,
     };
   }
 
@@ -147,7 +153,6 @@ export class JobListComponent implements OnInit, OnDestroy {
           Object.keys(this.filterForm.controls).forEach((key) => {
             if (querykeys == key) {
               this.filterForm.patchValue(queryParams);
-              console.log(this.filterForm.get('max_experience').value);
               this.updateFilterFormFromQueyParams(key, queryParams);
               this.updateselectedFormValues();
             }
