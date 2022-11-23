@@ -60,7 +60,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
       this.hiring = data.is_employer;
       this.users = data;
     });
-    if (this.route.snapshot.queryParams['hiring']) {
+    if (this.route.snapshot.queryParams['hiring'] === 'true') {
       this.queryParamIsHiring = true;
       if (!this.hiring) {
         this.openEnableHiring();
