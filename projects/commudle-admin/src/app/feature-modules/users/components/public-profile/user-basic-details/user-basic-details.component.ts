@@ -64,9 +64,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
       this.queryParamIsHiring = true;
       if (!this.hiring) {
         this.openEnableHiring();
-        if (this.hiring) {
-          this.router.navigate([], { queryParams: { job: 'DevFestNewDelhi22' } });
-        }
       }
     }
   }
@@ -158,7 +155,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
         if (this.queryParamIsHiring) {
           this.enableHiringDialog.close();
           setTimeout(() => {
-            this.router.navigate([], { fragment: 'jobs', queryParams: { postJobTag: 'DevFestNewDelhi22' } });
+            this.router.navigate([], { fragment: 'jobs', queryParams: { job_tag: 'DevFestNewDelhi22' } });
           }, 500);
         } else {
           setTimeout(() => {

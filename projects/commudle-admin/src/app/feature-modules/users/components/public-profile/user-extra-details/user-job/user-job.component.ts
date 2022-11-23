@@ -102,8 +102,8 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
           this.onOpenDialog(this.jobDialog);
         }, 500);
       }
-      if (this.route.snapshot.queryParams['postJobTag']) {
-        this.tags.push(this.route.snapshot.queryParams['postJobTag']);
+      if (this.route.snapshot.queryParams['job_tag']) {
+        this.tags.push(this.route.snapshot.queryParams['job_tag']);
       }
     });
   }
@@ -147,7 +147,6 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       this.jobService.getJob(id).subscribe((data) => {
         this.job = data;
         this.job.tags.forEach((tag) => this.tags.push(tag.name));
-        // this.tags.push(data.tags.toString());
         this.jobForm.patchValue(this.job);
         this.jobForm.controls['tags'].setValue('');
       }),

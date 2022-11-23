@@ -122,8 +122,8 @@
       <p>All your posted jobs will be marked as closed, are you sure?</p>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
-      <button (click)="(this.hiring = true) && ref.close()" ghost nbButton status="danger">No</button>
       <button (click)="closeHiring()" nbButton status="success">Yes</button>
+      <button (click)="(this.hiring = true) && ref.close()" ghost nbButton status="danger">No</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

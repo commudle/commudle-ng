@@ -85,16 +85,20 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
-
-    this.getJobs();
+    if (!this.route.snapshot.queryParams) {
+    }
     this.collectQueryParamValue();
 
     // listen to changes in filter form
     this.formFilterValueChange();
-    if (this.route.snapshot.queryParams['tags'] === 'devfestnewdelhi22') {
-      console.log(this.route.snapshot.queryParams['tags']);
-      this.heading = 'DevFest Jobs';
+    if (this.route.snapshot.queryParams['tags']) {
+      this.heading = this.route.snapshot.queryParams['tags'] + ' Jobs';
     }
+    this.route.queryParams.subscribe((params) => {
+      if (!params) {
+        this.getJobs();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -124,7 +128,7 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
       max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
       salary_currency: this.filterForm.value.salary_currency,
-      tags: this.filterForm.value.tags,
+      tags: this.filterForm.value.tags ? this.filterForm.value.tags : '',
     };
   }
 
@@ -142,7 +146,7 @@ export class JobListComponent implements OnInit, OnDestroy {
       });
     }
     this.updateselectedFormValues();
-    this.getJobs(true);
+    this.getJobs();
   }
 
   collectQueryParamValue() {

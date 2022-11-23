@@ -131,7 +131,7 @@
             </nb-select>
           </label>
           <label class="com-col-span-2">
-            Location
+            Location<span *ngIf="jobForm['controls'].location_type.value === 'office'">*</span>
             <input formControlName="location" fullWidth nbInput type="text" />
           </label>
         </div>
