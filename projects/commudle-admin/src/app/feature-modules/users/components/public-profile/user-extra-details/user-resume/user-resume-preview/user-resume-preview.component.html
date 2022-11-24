@@ -1,7 +1,7 @@
 <ng-template #previewResume let-ref="dialogRef">
   <nb-card style="width: calc(100vw - 16px); height: calc(100vh - 32px)">
     <nb-card-header class="com-flex com-justify-between com-items-center com-gap-2">
-      Viewing Resume - {{ userResume?.name }}
+      Resume: {{ userResume?.name }}
       <button (click)="ref.close()" ghost nbButton shape="round" size="small">
         <nb-icon icon="close"></nb-icon>
       </button>

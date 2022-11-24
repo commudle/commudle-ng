@@ -41,13 +41,13 @@
       <nb-action *ngIf="user.id === currentUser?.id">
         <a [routerLink]="['/jobs', job.id, 'applications']" ghost nbButton size="small" status="success">
           <nb-icon icon="people" status="success"></nb-icon>
-          <ng-container *appBreakpoints="'>md'">Applications</ng-container>
+          <ng-container *appBreakpoints="'>md'">All Received Applications</ng-container>
         </a>
       </nb-action>
       <nb-action>
         <a [routerLink]="['/jobs', job.id]" ghost nbButton size="small" status="info">
           <nb-icon icon="eye" status="info"></nb-icon>
-          <ng-container *appBreakpoints="'>md'">View</ng-container>
+          <ng-container *appBreakpoints="'>md'">View Details</ng-container>
         </a>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">

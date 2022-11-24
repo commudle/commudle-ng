@@ -29,6 +29,6 @@ p {
   }
 
   .actions {
-    @apply com-flex com-gap-2;
+    @apply com-flex com-gap-2 com-w-44 com-justify-between;
   }
 }

@@ -29,6 +29,7 @@ export class MyJobApplicationComponent implements OnInit {
     this.jobApplicationService.deleteJobApplication(this.jobApplication.id).subscribe((value) => {
       if (value) {
         this.nbToastrService.success('Job Application Withdrawn!', 'Success');
+        this.reloadJobApplication.emit(true);
       }
     });
   }

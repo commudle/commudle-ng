@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { JobApplicationService } from 'projects/commudle-admin/src/app/feature-modules/jobs/services/job-application.service';
 import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
@@ -39,6 +39,7 @@ export class JobComponent implements OnInit, OnDestroy {
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     private seoService: SeoService,
+    private route: Router,
   ) {}
 
   ngOnInit(): void {
@@ -81,17 +82,26 @@ export class JobComponent implements OnInit, OnDestroy {
       this.jobApplicationService.createJobApplication(this.job.id, this.selectedUserResumeId).subscribe((value) => {
         if (value) {
           this.nbToastrService.success('You have successfully applied for this job', 'Success');
+          this.route.navigate(['/jobs/my-applications']);
         }
       }),
     );
   }
 
   setMeta(): void {
-    let text = this.job.status === EJobStatus.OPEN ? ', Apply Now!' : '.';
     this.seoService.setTags(
-      `Job Title - Job Type ${this.job.job_type} - ${this.job.company}`,
-      `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${text}`,
+      `${this.job.position} - ${this.job.job_type} - ${this.job.company}`,
+      `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${
+        this.job.status === EJobStatus.OPEN ? ', Apply Now!' : '.'
+      }`,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  reDirectTo() {
+    this.route.navigate(['/users/', this.currentUser.username], {
+      fragment: 'resume',
+      queryParams: { job: this.job.id },
+    });
   }
 }

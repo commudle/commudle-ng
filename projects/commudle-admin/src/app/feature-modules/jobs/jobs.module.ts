@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
   NbAlertModule,
+  NbBadgeModule,
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
@@ -55,6 +56,7 @@ import { JobsRoutingModule } from './jobs-routing.module';
     NbEvaIconsModule,
     ReactiveFormsModule,
     NbSpinnerModule,
+    NbBadgeModule,
   ],
 })
 export class JobsModule {}
