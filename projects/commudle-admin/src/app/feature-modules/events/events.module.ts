@@ -62,6 +62,7 @@ import { VolunteersComponent } from './components/volunteers/volunteers.componen
 import { EventsRoutingModule } from './events-routing.module';
 import { UserEngagementDataComponent } from './components/event-form-responses/user-engagement-data/user-engagement-data.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { TimeBlocksComponent } from './components/event-locations/event-location-tracks/time-blocks/time-blocks.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     EventDetailsComponent,
     EntryPassScanComponent,
     UserEngagementDataComponent,
+    TimeBlocksComponent,
   ],
   imports: [
     CommonModule,

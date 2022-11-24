@@ -40,7 +40,8 @@
         </div>
       </div>
       <div class="time-container">
-        <div *ngFor="let timeBlock of timeBlocks">
+        <app-time-blocks [timeBlocks]="timeBlocks" [event]="event"></app-time-blocks>
+        <!-- <div *ngFor="let timeBlock of timeBlocks">
           <div (click)="event.editable && showAddSlotForm(lt, timeBlock.hour, timeBlock.minute)" class="time-cell fill">
             <p class="filler-text">
               <small *ngIf="event.editable">
@@ -48,7 +49,7 @@
               </small>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="track-slots-container">
         <div *ngFor="let slot of lt.track_slots">
