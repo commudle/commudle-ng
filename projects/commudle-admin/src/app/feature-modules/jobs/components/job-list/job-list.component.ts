@@ -29,9 +29,11 @@ export class JobListComponent implements OnInit, OnDestroy {
   limit = 10;
   page_info: IPageInfo;
   isLoading = false;
+  isFilterLoading: boolean = false;
   faFilters = faFilter;
   selectedFormValue;
   URLParam = {};
+  heading = '';
 
   filterForm = this.fb.group({
     category: [''],
@@ -46,6 +48,7 @@ export class JobListComponent implements OnInit, OnDestroy {
     salary_range: [''],
     min_salary: [''],
     max_salary: [''],
+    tags: [],
   });
 
   experiences = [
@@ -82,12 +85,20 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
-
-    this.getJobs();
+    if (!this.route.snapshot.queryParams) {
+    }
     this.collectQueryParamValue();
 
     // listen to changes in filter form
     this.formFilterValueChange();
+    if (this.route.snapshot.queryParams['tags']) {
+      this.heading = this.route.snapshot.queryParams['tags'] + ' Jobs';
+    }
+    this.route.queryParams.subscribe((params) => {
+      if (Object.keys(params).length === 0) {
+        this.getJobs();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -117,22 +128,29 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
       max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
       salary_currency: this.filterForm.value.salary_currency,
+      tags: this.filterForm.value.tags ? this.filterForm.value.tags : '',
     };
   }
 
   updateFilterFormFromQueyParams(key, queryParams) {
-    if (key == 'min_experience') {
-      this.filterForm.get('min_experience').patchValue(queryParams.min_experience);
-      this.filterForm.get('max_experience').setValue(queryParams.max_experience);
+    if (key == 'min_experience' || key == 'max_experience') {
+      this.filterForm.get('experience').patchValue({
+        min: queryParams.min_experience ? queryParams.min_experience : '',
+        max: queryParams.max_experience ? queryParams.max_experience : '',
+      });
     }
-    if (key == 'min_salary') {
-      this.filterForm.get('min_salary').setValue(queryParams.min_salary);
-      this.filterForm.get('max_salary').setValue(queryParams.max_salary);
+    if (key == 'min_salary' || key == 'max_salary') {
+      this.filterForm.get('salary_range').patchValue({
+        min: queryParams.min_salary ? queryParams.min_salary : '',
+        max: queryParams.max_salary ? queryParams.max_salary : '',
+      });
     }
-    this.getJobs(true);
+    this.updateselectedFormValues();
+    this.getJobs();
   }
 
   collectQueryParamValue() {
+    this.isFilterLoading = true;
     this.route.queryParams.subscribe((queryParams) => {
       Object.keys(queryParams).forEach((querykeys) => {
         if (queryParams[querykeys]) {
@@ -141,15 +159,12 @@ export class JobListComponent implements OnInit, OnDestroy {
               this.filterForm.patchValue(queryParams);
               this.updateFilterFormFromQueyParams(key, queryParams);
               this.updateselectedFormValues();
-              this.getJobs(true);
             }
           });
         }
       });
     });
   }
-  //change select to selected
-  //change params name
 
   addFilterFormChangeValueToParams() {
     Object.keys(this.selectedFormValue).forEach((key) => {
@@ -176,6 +191,7 @@ export class JobListComponent implements OnInit, OnDestroy {
           this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
           this.isLoading = false;
+          this.isFilterLoading = false;
         }),
     );
     this.setMeta();
@@ -194,17 +210,18 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: [''],
       max_salary: [''],
     };
-    this.getJobs();
+    this.router.navigate([]);
+    this.getJobs(true);
   }
 
   redirectToProfile() {
-    this.router.navigate([], { fragment: 'jobs' });
+    this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
   }
 
   setMeta(): void {
     this.seoService.setTags(
-      'Jobs - From tech communities',
-      ' Find your next job or internship opportunity as a software developer, designers, technical content writer, volunteering and more through professionals from the developer ecosystem.',
+      'Jobs & Internships',
+      'Find your next job, internship or freelancing opportunity as a software developer, designers, technical content writer, volunteer and more through professionals from the developer ecosystem.',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }

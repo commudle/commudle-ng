@@ -32,14 +32,14 @@
   </nb-card-body>
 </nb-card>
 
-<ng-template #jobDialog>
+<ng-template #jobDialog let-ref="dialogRef">
   <nb-card class="!com-m-0 com-max-h-[100vh]" style="width: clamp(20rem, 36rem, 100vw)">
     <nb-card-header class="com-flex com-justify-between com-items-center">
       <div class="tittle">
         <nb-icon icon="briefcase" class="com-mr-1"></nb-icon>
         <p>{{ isEditing ? 'Edit Job' : 'Post a Job' }}</p>
       </div>
-      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+      <button (click)="onCloseDialog() && ref.close()" ghost nbButton shape="round" size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
@@ -66,10 +66,30 @@
         <label>
           Position*
           <input formControlName="position" fullWidth nbInput type="text" />
+          <span
+            *ngIf="
+              jobForm['controls'].position.touched &&
+              jobForm['controls'].position.invalid &&
+              jobForm['controls'].position.errors.required
+            "
+            class="validation-error-text"
+          >
+            Required Field
+          </span>
         </label>
         <label>
           Company*
           <input formControlName="company" fullWidth nbInput type="text" />
+          <span
+            *ngIf="
+              jobForm['controls'].company.touched &&
+              jobForm['controls'].company.invalid &&
+              jobForm['controls'].company.errors.required
+            "
+            class="validation-error-text"
+          >
+            Required Field
+          </span>
         </label>
         <label>
           Min Experience (in years)*
@@ -111,7 +131,7 @@
             </nb-select>
           </label>
           <label class="com-col-span-2">
-            Location
+            Location<span *ngIf="jobForm['controls'].location_type.value === 'office'">*</span>
             <input formControlName="location" fullWidth nbInput type="text" />
           </label>
         </div>
@@ -151,8 +171,14 @@
         <p class="com-m-0">Job automatically expires in 15 days but you can renew it.</p>
       </div>
       <div class="com-flex com-justify-between">
-        <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
-        <button (click)="isEditing ? updateJob() : createJob()" [disabled]="jobForm.invalid" nbButton status="success">
+        <button (click)="onCloseDialog() && ref.close()" ghost nbButton size="small" status="danger">Cancel</button>
+        <button
+          (click)="isEditing ? updateJob() : createJob()"
+          [disabled]="jobForm.invalid"
+          [nbSpinner]="formSubmitLoading"
+          nbButton
+          status="success"
+        >
           {{ isEditing ? 'Update' : 'Create' }}
         </button>
       </div>

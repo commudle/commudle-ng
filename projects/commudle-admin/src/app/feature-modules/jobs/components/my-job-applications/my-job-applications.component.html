@@ -2,12 +2,13 @@
   <div class="container">
     <div class="one-column-layout">
       <nb-card class="job-applications-card">
-        <nb-card-header>
+        <nb-card-header class="com-flex com-items-center com-justify-between">
           <h2>My Job Applications</h2>
+          <button nbButton status="info" shape="semi-round">Apply to more Jobs</button>
         </nb-card-header>
         <nb-card-body>
           <ng-container *ngIf="!isLoading; else loading">
-            <nb-tabset *ngIf="jobApplications.length > 0">
+            <!-- <nb-tabset *ngIf="jobApplications.length > 0">
               <nb-tab
                 *ngFor="let jobApplicationStatus of jobApplicationStatuses"
                 tabTitle="{{ jobApplicationStatus | uppercase }} ({{
@@ -23,7 +24,15 @@
                   </nb-list-item>
                 </nb-list>
               </nb-tab>
-            </nb-tabset>
+            </nb-tabset> -->
+            <nb-list>
+              <nb-list-item *ngFor="let jobApplication of jobApplications">
+                <app-my-job-application
+                  (reloadJobApplication)="getMyJobApplications()"
+                  [jobApplication]="jobApplication"
+                ></app-my-job-application>
+              </nb-list-item>
+            </nb-list>
           </ng-container>
           <ng-template #loading>
             <app-loading-spinner></app-loading-spinner>

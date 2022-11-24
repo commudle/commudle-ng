@@ -44,11 +44,11 @@ export class MyJobApplicationsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.jobApplicationService.getMyJobApplications().subscribe((data) => {
         this.jobApplications = data.job_applications;
-        this.jobApplicationGroups = _.groupBy(data.job_applications, 'status');
+        // this.jobApplicationGroups = _.groupBy(data.job_applications, 'status');
         // add status 'all' to the job application statuses
-        this.jobApplicationStatuses.unshift('all');
+        // this.jobApplicationStatuses.unshift('all');
         // add all job applications to the group
-        this.jobApplicationGroups['all'] = data.job_applications;
+        // this.jobApplicationGroups['all'] = data.job_applications;
         this.isLoading = false;
       }),
     );

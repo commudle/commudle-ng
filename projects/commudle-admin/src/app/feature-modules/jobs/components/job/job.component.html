@@ -241,8 +241,8 @@
         </nb-select>
         <nb-alert *ngIf="userResumes.length === 0" status="warning">
           <span>
-            <a routerLink="/users/{{ currentUser.username }}" (click)="ref.close()">Upload you Resume</a> to apply for
-            this job</span
+            <a (click)="reDirectTo(); ref.close()" class="com-cursor-pointer">Upload you Resume</a> to apply for this
+            job</span
           >
         </nb-alert>
       </ng-container>

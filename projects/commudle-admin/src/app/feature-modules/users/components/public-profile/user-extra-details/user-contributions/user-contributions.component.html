@@ -32,7 +32,10 @@
   </nb-card-header>
   <nb-card-body>
     <div class="grid">
-      <app-user-community-card *ngFor="let community of communities" [community]="community"></app-user-community-card>
+      <app-user-community-card
+        *ngFor="let community of communities | orderBy: ['user_role.id']:['desc']"
+        [community]="community"
+      ></app-user-community-card>
     </div>
   </nb-card-body>
 </nb-card>

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
@@ -19,6 +20,7 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   currentUser: ICurrentUser;
+  jobId: number;
 
   userResumes: IUserResume[] = [];
   userResumeForm = this.fb.group({
@@ -39,9 +41,15 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     public userProfileMenuService: UserProfileMenuService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.route.snapshot.queryParams['job']) {
+      this.jobId = this.route.snapshot.queryParams['job'];
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
@@ -70,6 +78,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
         this.nbToastrService.success('Resume uploaded successfully', 'Success');
         this.onCloseDialog();
         this.getUserResumes();
+        if (this.jobId) {
+          this.router.navigate(['/jobs/', this.jobId]);
+        }
       }),
     );
   }
