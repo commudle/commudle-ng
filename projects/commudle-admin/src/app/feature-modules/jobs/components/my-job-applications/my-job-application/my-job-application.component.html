@@ -26,6 +26,9 @@
     >
       Withdraw
     </button>
+    <button *ngIf="jobApplication.job.status === 'closed'" disabled ghost nbButton shape="semi-round" size="small">
+      Closed
+    </button>
   </div>
 </div>
 

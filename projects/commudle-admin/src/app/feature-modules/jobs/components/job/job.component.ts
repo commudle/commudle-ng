@@ -82,16 +82,18 @@ export class JobComponent implements OnInit, OnDestroy {
       this.jobApplicationService.createJobApplication(this.job.id, this.selectedUserResumeId).subscribe((value) => {
         if (value) {
           this.nbToastrService.success('You have successfully applied for this job', 'Success');
+          this.route.navigate(['/jobs/my-applications']);
         }
       }),
     );
   }
 
   setMeta(): void {
-    let text = this.job.status === EJobStatus.OPEN ? ', Apply Now!' : '.';
     this.seoService.setTags(
-      `Job Title - Job Type ${this.job.job_type} - ${this.job.company}`,
-      `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${text}`,
+      `${this.job.position} - ${this.job.job_type} - ${this.job.company}`,
+      `${this.job.user.name} is hiring - ${this.job.position} - ${this.job.job_type} for ${this.job.company} ${
+        this.job.status === EJobStatus.OPEN ? ', Apply Now!' : '.'
+      }`,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }

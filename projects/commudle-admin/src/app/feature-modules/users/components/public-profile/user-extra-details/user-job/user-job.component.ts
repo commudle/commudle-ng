@@ -37,6 +37,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   page_info: IPageInfo;
   isLoading = false;
   hiring: boolean = false;
+  formSubmitLoading: boolean = false;
 
   jobCategories = Object.values(EJobCategory);
   jobSalaryTypes = Object.values(EJobSalaryType);
@@ -154,11 +155,13 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   createJob() {
+    this.formSubmitLoading = true;
     this.jobForm.controls['tags'].setValue(this.tags);
     this.subscriptions.push(
       this.jobService.createJob(this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job created successfully', 'Success');
         this.onCloseDialog();
+        this.formSubmitLoading = false;
         this.jobs.unshift(data);
       }),
     );
@@ -182,11 +185,13 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   updateJob() {
+    this.formSubmitLoading = true;
     this.jobForm.controls['tags'].setValue(this.tags);
     this.subscriptions.push(
       this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job updated successfully', 'Success');
         this.onCloseDialog();
+        this.formSubmitLoading = true;
         this.jobs = this.jobs.map((job) => (job.id === data.id ? data : job));
       }),
     );

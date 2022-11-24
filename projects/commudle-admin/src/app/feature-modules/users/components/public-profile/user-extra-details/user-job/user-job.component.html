@@ -172,7 +172,13 @@
       </div>
       <div class="com-flex com-justify-between">
         <button (click)="onCloseDialog() && ref.close()" ghost nbButton size="small" status="danger">Cancel</button>
-        <button (click)="isEditing ? updateJob() : createJob()" [disabled]="jobForm.invalid" nbButton status="success">
+        <button
+          (click)="isEditing ? updateJob() : createJob()"
+          [disabled]="jobForm.invalid"
+          [nbSpinner]="formSubmitLoading"
+          nbButton
+          status="success"
+        >
           {{ isEditing ? 'Update' : 'Create' }}
         </button>
       </div>

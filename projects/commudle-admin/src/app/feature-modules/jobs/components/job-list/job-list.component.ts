@@ -95,7 +95,7 @@ export class JobListComponent implements OnInit, OnDestroy {
       this.heading = this.route.snapshot.queryParams['tags'] + ' Jobs';
     }
     this.route.queryParams.subscribe((params) => {
-      if (!params) {
+      if (Object.keys(params).length === 0) {
         this.getJobs();
       }
     });
@@ -220,8 +220,8 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.seoService.setTags(
-      'Jobs - From tech communities',
-      ' Find your next job or internship opportunity as a software developer, designers, technical content writer, volunteering and more through professionals from the developer ecosystem.',
+      'Jobs & Internships',
+      'Find your next job, internship or freelancing opportunity as a software developer, designers, technical content writer, volunteer and more through professionals from the developer ecosystem.',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
