@@ -209,6 +209,9 @@
                 <p class="job-label">{{ job.salary_type | titlecase }}</p>
               </div>
             </div>
+            <nb-tag-list *ngIf="job">
+              <nb-tag *ngFor="let tag of job.tags" [text]="tag.name" status="basic"></nb-tag>
+            </nb-tag-list>
             <p class="job-description">{{ job.description }}</p>
           </div>
           <ng-template #loading>

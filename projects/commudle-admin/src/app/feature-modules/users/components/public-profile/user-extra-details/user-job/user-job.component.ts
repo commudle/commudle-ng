@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -94,12 +95,15 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     private userProfileMenuService: UserProfileMenuService,
     private userProfileManagerService: UserProfileManagerService,
     private route: ActivatedRoute,
+    private scroller: ViewportScroller,
   ) {}
 
   ngOnInit(): void {
+    // TODO optimize this
     this.route.fragment.subscribe((fragment) => {
       if (fragment === 'jobs') {
         setTimeout(() => {
+          this.scroller.scrollToAnchor(fragment);
           this.onOpenDialog(this.jobDialog);
         }, 500);
       }
@@ -174,7 +178,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
-    if (value) {
+    if (value && this.tags.length <= 5) {
       this.tags.push(value);
     }
     input.nativeElement.value = '';
