@@ -42,8 +42,10 @@
             </nb-select>
           </div>
         </nb-list-item>
+        <nb-list-item *ngIf="jobApplications.length === 0">People are yet to apply for this job</nb-list-item>
       </nb-list>
     </ng-container>
+
     <ng-template #loading>
       <app-loading-spinner></app-loading-spinner>
     </ng-template>

@@ -13,8 +13,10 @@ export class JobService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getJobs({ after, limit = 10, ...filters }: { after?: string; limit: number; [key: string]: any }): Observable<IJobs> {
-    let params = new HttpParams().set('after', after || '').set('limit', String(limit));
-
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
     Object.keys(filters).forEach((key) => (params = params.set(key, filters[key])));
 
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
