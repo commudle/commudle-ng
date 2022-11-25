@@ -40,7 +40,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
 
         this.seoService.setTags(
           `Members who attended ${this.event.name}`,
-          `Connect with the community members who attended ${this.event.name} with you`,
+          `Connect with the community members who attended ${this.event.name} by ${this.activatedRoute.snapshot.params.community_id} with you`,
           'https://commudle.com/assets/images/commudle-logo192.png',
         );
 

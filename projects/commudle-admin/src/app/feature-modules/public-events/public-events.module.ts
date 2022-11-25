@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  NbAccordionModule,
   NbActionsModule,
   NbAlertModule,
   NbBadgeModule,
@@ -101,6 +102,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbToggleModule,
     NbFormFieldModule,
     NbSpinnerModule,
+    NbAccordionModule,
   ],
 })
 export class PublicEventsModule {}

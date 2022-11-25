@@ -7,65 +7,68 @@
   </div>
 
   <div class="track-container">
-    <nb-card *ngFor="let elt of eventLocation.event_location_tracks; let elti = index">
-      <nb-card-header>
-        <nb-icon icon="arrowhead-right-outline"></nb-icon>&nbsp;
-        <p class="track-name">{{ elt.name }}</p>
-        &nbsp;
-        <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
-      </nb-card-header>
-      <nb-card-body>
-        <nb-list>
-          <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index">
-            <div class="session-time">
-              <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
-              <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
-            </div>
-            <div class="session-details">
-              <div class="session-title">
-                <div *ngIf="slot.tags_list">
-                  <app-badge
-                    *ngFor="let tag of slot.tags_list.split(',')"
-                    [fontSize]="'small'"
-                    [text]="tag"
-                  ></app-badge>
-                </div>
-                <p>{{ slot.session_title }}</p>
-                <div *ngIf="slot.user" class="session-speaker">
-                  <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
-                </div>
-                <!-- <div *ngIf="slot.user_vote != null && event.editable">
+    <nb-accordion *ngFor="let elt of eventLocation.event_location_tracks; let elti = index" class="com-mb-3">
+      <nb-accordion-item collapsed="{{ elt.track_slots.length == 0 }}">
+        <nb-accordion-item-header>
+          <!-- <nb-icon icon="arrowhead-right-outline"></nb-icon>&nbsp; -->
+          <p class="track-name">{{ elt.name }}</p>
+          &nbsp;
+          <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon
+        ></nb-accordion-item-header>
+        <nb-accordion-item-body class="com-rounded-b-2xl"
+          ><nb-list>
+            <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index">
+              <div class="session-time">
+                <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
+                <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
+              </div>
+              <div class="session-details">
+                <div class="session-title">
+                  <div *ngIf="slot.tags_list">
+                    <app-badge
+                      *ngFor="let tag of slot.tags_list.split(',')"
+                      [fontSize]="'small'"
+                      [text]="tag"
+                    ></app-badge>
+                  </div>
+                  <p>{{ slot.session_title }}</p>
+                  <div *ngIf="slot.user" class="session-speaker">
+                    <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                  </div>
+                  <!-- <div *ngIf="slot.user_vote != null && event.editable">
                   <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
                     <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>
                     <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>
                   </div>
                 </div> -->
+                </div>
               </div>
-            </div>
 
-            <!--              <nb-action *ngIf="slot.user" style="min-width: max-content">-->
-            <!--                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.photo.i64 }}" showTitle="false"-->
-            <!--                         size="small"></nb-user>-->
-            <!--              </nb-action>-->
-            <!--              <nb-action *ngIf="slot.user_vote != null && event.editable">-->
-            <!--                <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">-->
-            <!--                  <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>-->
-            <!--                  <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>-->
-            <!--                </div>-->
-            <!--              </nb-action>-->
-            <div class="link">
-              <a
-                [queryParams]="{ track_slot_id: slot.id }"
-                [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-                target="_blank"
-              >
-                <span>Ask Q's</span>
-                <nb-icon icon="external-link" status="primary" class="com-pl-1"></nb-icon>
-              </a>
-            </div>
-          </nb-list-item>
-        </nb-list>
-      </nb-card-body>
-    </nb-card>
+              <!--              <nb-action *ngIf="slot.user" style="min-width: max-content">-->
+              <!--                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.photo.i64 }}" showTitle="false"-->
+              <!--                         size="small"></nb-user>-->
+              <!--              </nb-action>-->
+              <!--              <nb-action *ngIf="slot.user_vote != null && event.editable">-->
+              <!--                <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">-->
+              <!--                  <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>-->
+              <!--                  <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>-->
+              <!--                </div>-->
+              <!--              </nb-action>-->
+              <div class="link">
+                <a
+                  [queryParams]="{ track_slot_id: slot.id }"
+                  [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                  target="_blank"
+                >
+                  <span>Ask Q's</span>
+                  <nb-icon icon="external-link" status="primary" class="com-pl-1"></nb-icon>
+                </a>
+              </div>
+              <div *ngIf="elt.track_slots.length == 0">no slots yet</div>
+            </nb-list-item>
+          </nb-list></nb-accordion-item-body
+        >
+      </nb-accordion-item>
+    </nb-accordion>
   </div>
 </div>
