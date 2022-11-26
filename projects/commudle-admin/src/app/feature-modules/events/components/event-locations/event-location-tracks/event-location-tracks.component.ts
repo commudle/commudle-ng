@@ -149,29 +149,19 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showAddSlotForm(eventLocationTrack, hour, minute) {
-    this._ngZone.runOutsideAngular(() => {
-      this.trackSlotForm.reset();
+  showAddSlotForm(dataFromTimeBlocks) {
+    this.trackSlotForm.reset();
 
-      let sTime = new Date();
-      let eTime = new Date();
-      sTime.setHours(hour);
-      sTime.setMinutes(minute);
+    this.trackSlotForm.get('track_slot').patchValue({
+      event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
+      date: this.minSlotDate,
+      start_time: dataFromTimeBlocks.eTime,
+      end_time: dataFromTimeBlocks.eTime,
+    });
 
-      eTime.setHours(hour);
-      eTime.setMinutes(minute + 5);
-
-      this.trackSlotForm.get('track_slot').patchValue({
-        event_location_track_id: eventLocationTrack.id,
-        date: this.minSlotDate,
-        start_time: sTime,
-        end_time: eTime,
-      });
-
-      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-        title: 'Add a session',
-        context: { operationType: 'create' },
-      });
+    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+      title: 'Add a session',
+      context: { operationType: 'create' },
     });
   }
 
