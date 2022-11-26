@@ -93,7 +93,10 @@ export class JobListComponent implements OnInit, OnDestroy {
     this.detectFilterValueChange();
 
     if (this.activatedRoute.snapshot.queryParams['tags[]']) {
-      this.heading = this.activatedRoute.snapshot.queryParams['tags[]'] + ' Jobs';
+      this.heading =
+        (typeof this.activatedRoute.snapshot.queryParams['tags[]'] === 'string'
+          ? this.activatedRoute.snapshot.queryParams['tags[]']
+          : this.activatedRoute.snapshot.queryParams['tags[]'].join(', ')) + ' Jobs';
     }
   }
 
