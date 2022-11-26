@@ -67,7 +67,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.userResumeService.getResumes().subscribe((data) => {
         this.userResumes = data;
-        this.userProfileMenuService.addMenuItem('resume', true);
+        if (this.currentUser.id === this.user.id) {
+          this.userProfileMenuService.addMenuItem('resume', true);
+        }
       }),
     );
   }

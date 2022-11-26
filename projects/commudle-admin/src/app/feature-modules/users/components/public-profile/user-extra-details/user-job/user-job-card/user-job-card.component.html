@@ -41,7 +41,10 @@
       <nb-action *ngIf="user.id === currentUser?.id">
         <a [routerLink]="['/jobs', job.id, 'applications']" ghost nbButton size="small" status="success">
           <nb-icon icon="people" status="success"></nb-icon>
-          <ng-container *appBreakpoints="'>md'">All Received Applications</ng-container>
+          <ng-container *appBreakpoints="'>md'"
+            >All Received Applications
+            <span *ngIf="job.job_applications_count !== 0">({{ job.job_applications_count }})</span></ng-container
+          >
         </a>
       </nb-action>
       <nb-action>

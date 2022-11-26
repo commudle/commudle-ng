@@ -15,6 +15,7 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -57,6 +58,7 @@ import { JobsRoutingModule } from './jobs-routing.module';
     ReactiveFormsModule,
     NbSpinnerModule,
     NbBadgeModule,
+    NbTagModule,
   ],
 })
 export class JobsModule {}
