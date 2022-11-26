@@ -17,9 +17,7 @@ export class TrackSlotsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.slots);
-  }
+  ngOnInit(): void {}
 
   slotSessionHeight(slot: ITrackSlot): number {
     let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
