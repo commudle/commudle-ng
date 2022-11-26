@@ -17,8 +17,18 @@ export class JobService {
     if (after) {
       params = params.set('after', after);
     }
-    Object.keys(filters).forEach((key) => (params = params.set(key, filters[key])));
+    Object.keys(filters).forEach((key) => {
+      if (key == 'tags') {
+        let data = Array.from(filters[key]);
+        for (let i = 0; i < data.length; i++) {}
 
+        filters[key].forEach((currentValue) => {
+          params = params.set('tags[]', currentValue);
+        });
+      } else {
+        params = params.set(key, filters[key]);
+      }
+    });
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
   }
 
