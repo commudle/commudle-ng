@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmailUnsubscribeGroupsService } from 'projects/commudle-admin/src/app/feature-modules/email-confirmations/services/email-unsubscribe-groups.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IEmailUnsubscribeGroup } from 'projects/shared-models/email-unsubscribe-group.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -20,6 +21,7 @@ export class EmailUnsubscribeComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
 
   subscriptions: Subscription[] = [];
+  environment = environment;
 
   constructor(
     private activatedRoute: ActivatedRoute,

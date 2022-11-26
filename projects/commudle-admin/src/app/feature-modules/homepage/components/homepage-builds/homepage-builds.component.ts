@@ -19,9 +19,7 @@ export class HomepageBuildsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.isBrowserService.isBrowser()) {
-      this.getBuilds();
-    }
+    this.getBuilds();
   }
 
   getBuilds(): void {

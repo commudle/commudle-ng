@@ -1,25 +1,32 @@
-<div class="email-unsubscribe d-flex justify-content-center align-items-center" [nbSpinner]="loading">
+<div class="email-unsubscribe com-flex com-flex-col justify-content-center align-items-center" [nbSpinner]="loading">
   <nb-card *ngIf="emailUnsubscribeGroup">
     <nb-card-body>
       <div class="details">
-        <h2 *ngIf="currentUser">
-          Hi {{currentUser.name}}
-        </h2>
+        <h2 *ngIf="currentUser">Hi {{ currentUser.name }}</h2>
         <p>
           Set Email Preferences for:
-          <br/>
+          <br />
           <span>
-            {{emailUnsubscribeGroup.name}}
+            {{ emailUnsubscribeGroup.name | enumFormat }}
           </span>
         </p>
       </div>
       <div class="d-flex justify-content-center align-items-center">
         <p>Off</p>
         &nbsp;
-        <nb-toggle [(ngModel)]="emailUnsubscribeGroup.subscribed" [ngModelOptions]="{standalone: true}" (checkedChange)="toggleSubscription()"></nb-toggle>
+        <nb-toggle
+          [(ngModel)]="emailUnsubscribeGroup.subscribed"
+          [ngModelOptions]="{ standalone: true }"
+          (checkedChange)="toggleSubscription()"
+        ></nb-toggle>
         &nbsp;
         <p>On</p>
       </div>
     </nb-card-body>
   </nb-card>
+  <div class="com-flex com-justify-center" *ngIf="currentUser">
+    <a href="{{ environment.app_url }}/users/{{ currentUser.username }}/(p:settings/email-preferences)"
+      >Update Email Preferences</a
+    >
+  </div>
 </div>

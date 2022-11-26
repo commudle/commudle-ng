@@ -22,9 +22,7 @@ export class HomepageEventsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.isBrowserService.isBrowser()) {
-      this.getUpcomingEvents();
-    }
+    this.getUpcomingEvents();
   }
 
   getUpcomingEvents() {

@@ -74,7 +74,15 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.results = [...this.results, ...value.results];
       this.total = value.total;
       this.page++;
-      this.filters = [...new Set(this.results.map((result) => result.type))];
+      this.filters = [
+        ...new Set(
+          this.results.map((result) => {
+            if (result) {
+              return result.type;
+            }
+          }),
+        ),
+      ];
 
       this.searchLoader = false;
       this.loadMoreLoader = false;
@@ -91,6 +99,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   getResults() {
     const filters = this.selectedFilters.length ? this.selectedFilters : this.filters;
-    return this.results.filter((result) => filters.includes(result.type));
+    return this.results.filter((result) => {
+      if (result) {
+        return filters.includes(result.type);
+      }
+    });
   }
 }

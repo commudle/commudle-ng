@@ -5,5 +5,8 @@
   </button>
 </div>
 <div *ngIf="community" class="notification-section">
-  <app-community-notifications [id]="community.id" [markAllAsRead]="trackMarkAllAsRead"></app-community-notifications>
+  <app-community-notifications
+    [communityId]="community.id"
+    [markAllAsRead]="trackMarkAllAsRead"
+  ></app-community-notifications>
 </div>

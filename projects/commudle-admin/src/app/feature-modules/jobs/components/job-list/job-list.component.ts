@@ -32,7 +32,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   isFilterLoading: boolean = false;
   faFilters = faFilter;
   selectedFormValue;
-  URLParam = {};
+  UrlParamsFromFilters = {};
   heading = '';
 
   filterForm = this.fb.group({
@@ -44,7 +44,7 @@ export class JobListComponent implements OnInit, OnDestroy {
     status: [''],
     experience: [''],
     min_experience: [''],
-    max_experience: '',
+    max_experience: [''],
     salary_range: [''],
     min_salary: [''],
     max_salary: [''],
@@ -52,17 +52,18 @@ export class JobListComponent implements OnInit, OnDestroy {
   });
 
   experiences = [
-    { min_experience: '0', max_experience: '1', label: '0-1 Year' },
-    { min_experience: '1', max_experience: '2', label: '1-2 Year' },
-    { min_experience: '2', max_experience: '3', label: '2-3 Year' },
-    { min_experience: '3', max_experience: '4', label: '3-4 Year' },
-    { min_experience: '4', max_experience: '', label: '>4 Year' },
+    { value_range: {min: '0', max: '1'}, label: '0-1 Year' },
+    { value_range: {min: '1', max: '2'}, label: '1-2 Year' },
+    { value_range: {min: '2', max: '3'}, label: '2-3 Year' },
+    { value_range: {min: '3', max: '4'}, label: '3-4 Year' },
+    { value_range: {min: '4', max: ''}, label: '>4 Year' },
   ];
+
   salaryRange = [
-    { min_salary: '0', max_salary: '25000', label: '0 to 25,000' },
-    { min_salary: '25001', max_salary: '50000', label: '25,001 to 50,000' },
-    { min_salary: '50001', max_salary: '100000', label: '50,001 to 1,000,00' },
-    { min_salary: '100001', max_salary: '', label: 'More than 1,000,00' },
+    { value_range: {min: '0', max: '25000'}, label: '0 to 25,000' },
+    { value_range: {min: '25001', max: '50000'}, label: '25,001 to 50,000' },
+    { value_range: {min: '50001', max: '100000'}, label: '50,001 to 1,000,00' },
+    { value_range: {min: '100001', max: ''}, label: 'More than 1,000,00' },
   ];
 
   jobCategories = Object.values(EJobCategory);
@@ -80,103 +81,95 @@ export class JobListComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private router: Router,
     private seoService: SeoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
-    if (!this.route.snapshot.queryParams) {
-    }
-    this.collectQueryParamValue();
+
+    this.urlParamsToForm();
 
     // listen to changes in filter form
-    this.formFilterValueChange();
-    if (this.route.snapshot.queryParams['tags']) {
-      this.heading = this.route.snapshot.queryParams['tags'] + ' Jobs';
+    this.detectFilterValueChange();
+
+    if (this.activatedRoute.snapshot.queryParams['tags']) {
+      this.heading = this.activatedRoute.snapshot.queryParams['tags'] + ' Jobs';
     }
-    this.route.queryParams.subscribe((params) => {
-      if (Object.keys(params).length === 0) {
-        this.getJobs();
-      }
-    });
+
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  formFilterValueChange() {
+
+  urlParamsToForm () {
+    this.isFilterLoading = true;
+    const qParams = this.activatedRoute.snapshot.queryParams;
+    for (const key of Object.keys(qParams)) {
+      if (this.filterForm.controls[key]) {
+        if (key == 'min_experience' || key == 'max_experience') {
+          this.filterForm.get('experience').patchValue(
+            `${qParams.min_experience ? qParams.min_experience : ''}-${qParams.max_experience ? qParams.max_experience : ''}`
+          );
+        } else if (key == 'min_salary' || key == 'max_salary') {
+          this.filterForm.get('salary_range').patchValue(
+            `${qParams.min_salary ? qParams.min_salary : ''}-${qParams.max_salary ? qParams.max_salary : ''}`
+          );
+        } else {
+          this.filterForm.get(key).patchValue(qParams[key]);
+        }
+      }
+    }
+    
+    
+    this.getJobs();
+  }
+
+  formToUrlParams () {
+    this.UrlParamsFromFilters = {};
+    Object.keys(this.filterForm.controls).forEach((key) => {
+      if (this.filterForm.controls[key].value != '') {
+        if (key != 'experience' && key != 'salary_range') {
+          this.UrlParamsFromFilters[key] = this.filterForm.controls[key].value;
+        }
+      }
+    });
+    this.router.navigate([], { queryParams: { ...this.UrlParamsFromFilters } });
+
+  }
+
+  detectFilterValueChange() {
     this.subscriptions.push(
       this.filterForm.valueChanges.subscribe(() => {
         this.isLoading = true;
         this.page_info = null;
-        this.updateselectedFormValues();
-        this.addFilterFormChangeValueToParams();
+        this.formToUrlParams();
         this.getJobs(true);
       }),
     );
   }
 
-  updateselectedFormValues() {
+
+  updateApiQueryParams() {
     this.selectedFormValue = {
       category: this.filterForm.value.category,
       salary_type: this.filterForm.value.salary_type,
       location_type: this.filterForm.value.location_type,
       job_type: this.filterForm.value.job_type,
-      min_experience: this.filterForm.value.experience ? this.filterForm.value.experience.min : '',
-      max_experience: this.filterForm.value.experience ? this.filterForm.value.experience.max : '',
-      min_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.min : '',
-      max_salary: this.filterForm.value.salary_range ? this.filterForm.value.salary_range.max : '',
+      min_experience: this.filterForm.value.min_experience ? this.filterForm.value.min_experience : '',
+      max_experience: this.filterForm.value.max_experience ? this.filterForm.value.max_experience : '',
+      min_salary: this.filterForm.value.min_salary ? this.filterForm.value.min_salary : '',
+      max_salary: this.filterForm.value.max_salary ? this.filterForm.value.max_salary : '',
       salary_currency: this.filterForm.value.salary_currency,
       tags: this.filterForm.value.tags ? this.filterForm.value.tags : '',
     };
   }
 
-  updateFilterFormFromQueyParams(key, queryParams) {
-    if (key == 'min_experience' || key == 'max_experience') {
-      this.filterForm.get('experience').patchValue({
-        min: queryParams.min_experience ? queryParams.min_experience : '',
-        max: queryParams.max_experience ? queryParams.max_experience : '',
-      });
-    }
-    if (key == 'min_salary' || key == 'max_salary') {
-      this.filterForm.get('salary_range').patchValue({
-        min: queryParams.min_salary ? queryParams.min_salary : '',
-        max: queryParams.max_salary ? queryParams.max_salary : '',
-      });
-    }
-    this.updateselectedFormValues();
-    this.getJobs();
-  }
-
-  collectQueryParamValue() {
-    this.isFilterLoading = true;
-    this.route.queryParams.subscribe((queryParams) => {
-      Object.keys(queryParams).forEach((querykeys) => {
-        if (queryParams[querykeys]) {
-          Object.keys(this.filterForm.controls).forEach((key) => {
-            if (querykeys == key) {
-              this.filterForm.patchValue(queryParams);
-              this.updateFilterFormFromQueyParams(key, queryParams);
-              this.updateselectedFormValues();
-            }
-          });
-        }
-      });
-    });
-  }
-
-  addFilterFormChangeValueToParams() {
-    Object.keys(this.selectedFormValue).forEach((key) => {
-      if (this.selectedFormValue[key] && this.selectedFormValue[key] !== '') {
-        this.URLParam[key] = this.selectedFormValue[key];
-        this.router.navigate([], { queryParams: { ...this.URLParam } });
-      }
-    });
-  }
 
   getJobs(clear = false) {
     this.isLoading = true;
+    this.updateApiQueryParams();
     this.subscriptions.push(
       this.jobService
         .getJobs({
@@ -200,15 +193,15 @@ export class JobListComponent implements OnInit, OnDestroy {
   reset() {
     this.filterForm.reset();
     this.selectedFormValue = {
-      category: [''],
-      salary_type: [''],
-      salary_currency: [''],
-      location_type: [''],
-      job_type: [''],
-      min_experience: [''],
+      category: '',
+      salary_type: '',
+      salary_currency: '',
+      location_type: '',
+      job_type: '',
+      min_experience: '',
       max_experience: '',
-      min_salary: [''],
-      max_salary: [''],
+      min_salary: '',
+      max_salary: '',
     };
     this.router.navigate([]);
     this.getJobs(true);

@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { NbPopoverDirective } from '@nebular/theme';
-import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { NotificationsStore } from 'projects/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -28,19 +27,15 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
-  constructor(
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
-    private authwatchService: LibAuthwatchService,
-  ) {}
+  constructor(private authwatchService: LibAuthwatchService, private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
     this.authwatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
 
       if (currentUser) {
-        this.receiveData();
         this.getUnreadNotificationsCount();
+        this.notificationsStore.updateNotifications();
       }
     });
   }
@@ -50,23 +45,10 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount() {
-    this.notificationsService.getUnreadNotificationsCount().subscribe((count) => (this.notificationCount = count));
-  }
-
-  receiveData() {
-    this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              if (data.notification_filter == 'user') {
-                this.notificationCount++;
-              }
-            }
-          }
-        }
-      }),
-    );
+    this.notificationsStore.getUserNotificationsCount();
+    this.notificationsStore.userNotificationCount$.subscribe((count) => {
+      this.notificationCount = count;
+    });
   }
 
   closePopover() {
