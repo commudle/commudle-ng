@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-time-blocks',
@@ -8,14 +8,15 @@ import { Component, Input, NgZone, OnInit } from '@angular/core';
 export class TimeBlocksComponent implements OnInit {
   @Input() timeBlocks;
   @Input() event;
+  @Input() lt;
+  @Output() addSlotForm = new EventEmitter<object>();
+
   constructor(private _ngZone: NgZone) {}
 
   ngOnInit(): void {}
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this._ngZone.runOutsideAngular(() => {
-      // this.trackSlotForm.reset();
-
       let sTime = new Date();
       let eTime = new Date();
       sTime.setHours(hour);
@@ -24,17 +25,7 @@ export class TimeBlocksComponent implements OnInit {
       eTime.setHours(hour);
       eTime.setMinutes(minute + 5);
 
-      // this.trackSlotForm.get('track_slot').patchValue({
-      //   event_location_track_id: eventLocationTrack.id,
-      //   date: this.minSlotDate,
-      //   start_time: sTime,
-      //   end_time: eTime,
-      // });
-
-      // this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-      //   title: 'Add a session',
-      //   context: { operationType: 'create' },
-      // });
+      this.addSlotForm.emit({ eventLocationTrack, sTime, eTime });
     });
   }
 }
