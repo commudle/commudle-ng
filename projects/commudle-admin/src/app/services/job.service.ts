@@ -19,12 +19,13 @@ export class JobService {
     }
     Object.keys(filters).forEach((key) => {
       if (key == 'tags') {
-        let data = Array.from(filters[key]);
-        for (let i = 0; i < data.length; i++) {}
-
-        filters[key].forEach((currentValue) => {
-          params = params.set('tags[]', currentValue);
-        });
+        if (typeof filters[key] === 'string') {
+          params = params.set('tags[]', filters[key]);
+        } else {
+          for (let i = 0; i < filters[key].length; i++) {
+            params = params.append('tags[]', filters[key][i]);
+          }
+        }
       } else {
         params = params.set(key, filters[key]);
       }

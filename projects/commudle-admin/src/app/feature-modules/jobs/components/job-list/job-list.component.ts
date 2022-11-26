@@ -48,7 +48,7 @@ export class JobListComponent implements OnInit, OnDestroy {
     salary_range: [''],
     min_salary: [''],
     max_salary: [''],
-    tags: ([] = [[]]),
+    tags: [],
   });
 
   experiences = [
@@ -94,7 +94,6 @@ export class JobListComponent implements OnInit, OnDestroy {
 
     if (this.activatedRoute.snapshot.queryParams['tags[]']) {
       this.heading = this.activatedRoute.snapshot.queryParams['tags[]'] + ' Jobs';
-      this.filterForm.get('tags').value.push(this.activatedRoute.snapshot.queryParams['tags[]']);
     }
   }
 
@@ -164,7 +163,9 @@ export class JobListComponent implements OnInit, OnDestroy {
       min_salary: this.filterForm.value.min_salary ? this.filterForm.value.min_salary : '',
       max_salary: this.filterForm.value.max_salary ? this.filterForm.value.max_salary : '',
       salary_currency: this.filterForm.value.salary_currency,
-      tags: this.filterForm.value.tags ? this.filterForm.value.tags : [],
+      tags: this.activatedRoute.snapshot.queryParams['tags[]']
+        ? this.activatedRoute.snapshot.queryParams['tags[]']
+        : [],
     };
   }
 
