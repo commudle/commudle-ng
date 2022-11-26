@@ -1,0 +1,71 @@
+<nb-card *ngIf="currentUser?.id === user.id" class="user-resume" id="resume">
+  <nb-card-header>
+    <nb-icon icon="clipboard" status="info"></nb-icon>
+    Resume
+  </nb-card-header>
+  <nb-card-body>
+    <button
+      (click)="onOpenDialog(userResumeDialog)"
+      [disabled]="userResumes.length >= 3"
+      fullWidth
+      ghost
+      nbButton
+      status="info"
+    >
+      <nb-icon icon="plus-circle"></nb-icon>
+      Add Resume/Portfolio
+    </button>
+    <div
+      *ngIf="userResumes.length > 0"
+      class="com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-2"
+    >
+      <app-user-resume-card
+        (reloadUserResume)="getUserResumes()"
+        (updateUserResume)="onOpenEditUserResumeDialog(userResumeDialog, userResume)"
+        *ngFor="let userResume of userResumes"
+        [userResume]="userResume"
+        [user]="user"
+      ></app-user-resume-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #userResumeDialog let-data>
+  <nb-card class="!com-m-0 com-max-w-[100vw] com-max-h-[100vh]">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      {{ isEditing ? 'Edit Resume/Portfolio' : 'Add Resume/Portfolio' }}
+      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="userResumeForm" class="com-flex com-flex-col com-space-y-3">
+        <label>
+          Name*
+          <input formControlName="name" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          File* (PDF, max size: 5MB)
+          <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
+        </label>
+      </form>
+      <object
+        *ngIf="uploadedResumeSrc"
+        class="com-mt-6 com-min-w-full md:com-min-w-[50vw] com-min-h-[70vh]"
+        data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
+        type="application/pdf"
+      ></object>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+      <button
+        (click)="isEditing ? updateResume(data.uuid) : createResume()"
+        [disabled]="userResumeForm.invalid || !uploadedResumeSrc"
+        nbButton
+        status="success"
+      >
+        {{ isEditing ? 'Update' : 'Create' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,106 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.user {
+  align-items: flex-start;
+  display: flex;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  position: relative;
+
+  .profile-picture {
+    border-radius: 50%;
+    display: flex;
+    margin-right: 0.5rem;
+    max-height: 40px;
+    max-width: 40px;
+    min-width: 40px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+
+    &.medium {
+      width: 75px;
+      min-height: 75px;
+      margin-right: 0.75rem;
+    }
+
+    &.small {
+      width: 50px;
+      min-height: 50px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .profile-info {
+    // word-break: break-word;
+    max-width: 80%;
+    text-align: left;
+    .name {
+      margin: 0;
+      font-size: $fs-card-secondary;
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      &.medium {
+        font-size: 1.2rem;
+      }
+      &.small {
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+
+    .designation {
+      margin: 0;
+      font-size: $fs-card-secondary;
+      word-break: break-all;
+
+      &.medium {
+        font-size: 0.9rem;
+      }
+      &.small {
+        font-size: 0.8rem;
+      }
+    }
+
+    .user-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      a {
+        margin: 0 0.5rem;
+        nb-icon {
+          font-size: 0.8rem;
+        }
+      }
+
+      &.medium {
+        nb-icon {
+          font-size: 1rem;
+        }
+      }
+
+      &.small {
+        nb-icon {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .about-me {
+      font-size: 0.8rem;
+
+      &.medium {
+        font-size: 0.8rem;
+      }
+
+      &.small {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

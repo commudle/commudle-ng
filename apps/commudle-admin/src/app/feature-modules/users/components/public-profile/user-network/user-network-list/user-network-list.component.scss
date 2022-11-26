@@ -1,0 +1,24 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.user-network-list-container {
+  nb-list {
+    nb-list-item {
+      padding: $space-16;
+
+      app-user-profile-card-large {
+        width: 100%;
+      }
+      //a {
+      //  width: 100%;
+      //  height: 100%;
+      //  color: initial;
+      //  text-decoration: none;
+      //  transition: all 0.2s ease-in-out;
+      //
+      //  &:hover {
+      //    background-color: rgba(0, 0, 0, 0.05);
+      //  }
+      //}
+    }
+  }
+}

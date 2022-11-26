@@ -1,0 +1,192 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.labs-search-container {
+  padding: $space-24 0 0;
+
+  .lab-search {
+    padding-left: $space-8;
+    position: relative;
+    width: 100%;
+
+    .labs-search-form {
+      max-width: 100%;
+
+      .labs-search-input {
+        background-color: $white;
+        border: none;
+        border-radius: 0;
+        height: $space-48;
+        max-width: 100%;
+        @apply com-text-sm;
+
+        &::placeholder {
+          color: rgba($gunmetal, 0.7);
+          @apply com-text-sm;
+        }
+      }
+
+      &::ng-deep {
+        .nb-form-field-prefix-medium {
+          color: $gunmetal;
+        }
+      }
+    }
+
+    .labs-search-suffix {
+      left: 0;
+      margin-left: $space-8;
+      position: absolute;
+      right: 0;
+      z-index: 2;
+
+      .labs-search-params {
+        &::ng-deep {
+          nb-tag-list {
+            background-color: $white;
+            border: none;
+            border-radius: 0;
+            min-height: $space-48;
+
+            .nb-tag-list-tags-wrapper {
+              border-top: 1px solid rgba($gunmetal, 0.1);
+
+              nb-tag {
+                background-color: $azureish-white;
+                border: none;
+                border-radius: $border-5;
+                font-weight: $fw-500;
+                text-transform: lowercase;
+                @apply com-text-sm;
+
+                nb-icon {
+                  color: rgba($gunmetal, 0.5);
+                  margin-left: $space-8;
+                  @apply com-text-xl;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .labs-tag-search-results {
+        background-color: $white;
+        height: 0;
+        overflow: auto;
+        transition: all 0.3s ease-in-out;
+
+        p {
+          align-self: center;
+          color: rgba($gunmetal, 0.6);
+          margin: 0;
+          padding: 0 $space-16;
+          width: 100%;
+          @apply com-text-base;
+        }
+
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+
+          .labs-tag-search-result {
+            padding: 0.4 * $space-16 $space-16;
+            transition: all 0.2s ease-in-out;
+            @apply com-text-sm;
+
+            &:hover {
+              background-color: darken($white, 3%);
+            }
+          }
+        }
+
+        // Custom scrollbar
+        &::-webkit-scrollbar {
+          width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-clip: content-box;
+          background-color: darken($white, 5%);
+          border: 3px solid transparent;
+          border-radius: $border-10;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: darken($white, 8%);
+        }
+      }
+
+      .labs-tag-search-results.active {
+        @apply com-shadow-lg;
+        height: 30vh;
+      }
+    }
+  }
+
+  .labs-search-actions {
+    min-width: max-content;
+
+    button {
+      border: 1px solid $neon-blue;
+      border-radius: $border-5;
+      height: $space-48;
+
+      &::ng-deep {
+        font-weight: $fw-500;
+        text-transform: capitalize;
+      }
+    }
+
+    .filter-btn {
+      background: $white;
+      color: $neon-blue;
+      margin: 0 $space-16;
+
+      &:hover {
+        background-color: $neon-blue;
+        color: $white;
+      }
+    }
+
+    .labs-create-btn {
+      background-color: $neon-blue;
+      color: white;
+      margin: 0 $space-8;
+      @apply com-text-sm;
+
+      &:hover {
+        background-color: $white;
+        border: 1px solid $neon-blue;
+        color: $neon-blue;
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    flex-direction: column;
+
+    .lab-search {
+      margin: 0 $space-16 $space-16;
+      padding: 0;
+      width: initial;
+
+      .labs-search-suffix {
+        margin-left: 0;
+      }
+    }
+
+    .labs-search-actions {
+      align-self: center;
+
+      .filter-btn {
+        margin: 0 $space-16 0 0;
+      }
+    }
+  }
+}

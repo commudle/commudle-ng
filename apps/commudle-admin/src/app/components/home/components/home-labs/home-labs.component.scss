@@ -1,0 +1,59 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.home-labs-container {
+  padding: $space-16;
+
+  .home-labs-header {
+    border-bottom: none;
+    color: $gunmetal;
+    font-size: $fs-h2;
+    font-weight: $fw-600;
+    padding: $space-16 0 $space-12;
+
+    .home-labs-sub-header {
+      color: $spanish-gray;
+      font-size: $fs-card-list-title;
+      line-height: normal;
+      margin: $space-4 0 0;
+    }
+  }
+
+  .home-labs-body {
+    padding: 0;
+
+    .home-labs-list {
+      nb-list-item {
+        align-items: flex-start;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: $space-16 0;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+
+        .home-lab-name {
+          color: $gunmetal;
+          font-size: $fs-text;
+          font-weight: $fw-500;
+          line-height: normal;
+          margin-bottom: $space-4;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .home-labs-all {
+      color: rgba($neon-blue, 0.95);
+      display: block;
+      font-size: $fs-h5;
+      padding: $space-12 0 $space-8;
+    }
+  }
+}

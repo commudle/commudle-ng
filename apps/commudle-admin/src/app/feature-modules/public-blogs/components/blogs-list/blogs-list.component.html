@@ -1,0 +1,55 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="blog-container">
+        <nb-card-header>
+          <h1>Relating with Developers & Communities</h1>
+          <p>
+            Read and connect with developers, devrels & community managers from their experiences in building
+            communities, helping folks to learn new technologies. From diverse backgrounds, people come together and
+            share how they have built their careers, found opportunities and empowered people around them.
+          </p>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="blog-cards">
+            <div *ngFor="let blog of blogs">
+              <div class="blog-card">
+                <div class="blog-actions">
+                  <app-share-button
+                    [content]="environment.app_url + '/blogs/' + blog.slug.current"
+                    [round]="true"
+                    [showText]="false"
+                    [text]="blog.title"
+                    [title]="blog.title"
+                    [url]="environment.app_url + '/blogs/' + blog.slug.current"
+                  ></app-share-button>
+                </div>
+                <div [routerLink]="['/blogs', blog.slug.current]" class="com-w-full com-aspect-[16/9]">
+                  <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
+                </div>
+                <div class="com-p-4">
+                  <div [routerLink]="['/blogs', blog.slug.current]" class="com-h-36">
+                    <h2 class="name">
+                      {{ blog.title }}
+                    </h2>
+                    <p class="date">
+                      {{ blog.publishedAt | date }}
+                    </p>
+                    <div class="com-line-clamp-3">
+                      {{ blog.meta_description }}
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
+                    Read More
+                    <nb-icon icon="arrow-forward-outline"></nb-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

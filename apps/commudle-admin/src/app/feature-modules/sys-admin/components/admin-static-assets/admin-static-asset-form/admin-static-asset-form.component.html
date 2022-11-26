@@ -1,0 +1,24 @@
+<nb-card class="admin-asset-form">
+  <nb-card-header class="card-header">
+    Static Assets
+    <button [routerLink]="['/sys-admin', 'static-assets']" ghost nbButton shape="round" size="small">
+      Show All Assets
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="submitForm()" [formGroup]="assetForm">
+      <label>
+        Name*
+        <input formControlName="name" fullWidth nbInput required type="text" />
+      </label>
+      <label>
+        Asset*
+        <input #inputFile (change)="addFile($event)" formControlName="asset" fullWidth nbInput required type="file" />
+      </label>
+      <div *ngIf="fileSrc" class="file-container">
+        <img alt="{{ uploadedFile.file?.name || uploadedFile.name }}" src="{{ fileSrc | safeUrl }}" />
+      </div>
+      <button fullWidth ghost nbButton status="primary" type="submit">Save</button>
+    </form>
+  </nb-card-body>
+</nb-card>

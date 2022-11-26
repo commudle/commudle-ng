@@ -1,0 +1,33 @@
+<nb-card class="admin-assets-list">
+  <nb-card-header class="d-flex justify-content-space-between align-items-center">
+    <span>Static Assets</span>
+    <div>
+      <button [routerLink]="['/sys-admin', 'static-assets', 'new']" ghost nbButton shape="round" size="small">
+        <nb-icon icon="plus"></nb-icon>
+        Create Assets
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="assets-list-container">
+      <nb-list>
+        <nb-list-item *ngFor="let asset of assets" class="d-flex justify-content-space-between">
+          <div class="assets-details">
+            <p class="title">
+              {{ asset.name }}
+              ({{ asset.id }})
+            </p>
+            <div *ngIf="asset.file" class="asset-image">
+              <img alt="{{ asset.name }}" src="{{ asset.file.url | safeUrl }}" title="{{ asset.name }}" />
+            </div>
+          </div>
+          <div class="controls d-flex">
+            <div *ngIf="asset.file">
+              <a href="{{ asset.file.url }}" nbButton outline size="small" status="primary" target="_blank"> Link </a>
+            </div>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </div>
+  </nb-card-body>
+</nb-card>
