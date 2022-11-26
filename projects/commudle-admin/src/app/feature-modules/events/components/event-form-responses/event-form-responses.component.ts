@@ -112,6 +112,7 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   updateFilter() {
+    console.log(this.searchForm.get('name').value.toLowerCase(), 'start');
     this.searchForm.valueChanges
       .pipe(
         debounceTime(800),
@@ -140,7 +141,21 @@ export class EventFormResponsesComponent implements OnInit {
 
   setPage(pageNumber) {
     this.page = pageNumber + 1;
-    this.getResponses();
+    if (this.searchForm.get('name').value) {
+      this.dataFormEntityResponseGroupsService
+        .getEventDataFormResponses(
+          this.eventDataFormEntityGroupId,
+          this.searchForm.get('name').value.toLowerCase(),
+          this.registrationStatusId,
+          this.page,
+          this.count,
+        )
+        .subscribe((data) => {
+          this.setResponses(data);
+        });
+    } else {
+      this.getResponses();
+    }
   }
 
   getResponses() {
