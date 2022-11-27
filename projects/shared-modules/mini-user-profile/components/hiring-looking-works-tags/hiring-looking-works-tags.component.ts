@@ -9,6 +9,8 @@ import { IUser } from 'projects/shared-models/user.model';
 export class HiringLookingWorksTagsComponent implements OnInit {
   @Input() user: IUser;
   @Input() fontSize = '14px';
+  /* Setting the default value of the size property to 'large' if the value is not passed in. */
+  @Input() size = 'large' || 'medium' || 'small';
 
   constructor() {}
 
