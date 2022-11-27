@@ -23,6 +23,9 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  viewMoreCommunitiesSection: boolean = true;
+  footerCommunitiesCardText: string;
+
   constructor(private appUsersService: AppUsersService, public userProfileMenuService: UserProfileMenuService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,6 +56,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
         // TODO: If some community is undefined then remove it, is that required?
         this.communities = value.user_roles_users.filter((community) => community.community);
         this.userProfileMenuService.addMenuItem('communities', this.communities.length > 0);
+        this.footerCommunitiesCardText = `View More (${this.communities.length - 6})`;
       }),
     );
   }
@@ -73,5 +77,14 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
         this.userProfileMenuService.addMenuItem('builds', this.builds.length > 0);
       }),
     );
+  }
+
+  viewMoreCommunities() {
+    this.viewMoreCommunitiesSection = !this.viewMoreCommunitiesSection;
+    if (!this.viewMoreCommunitiesSection) {
+      this.footerCommunitiesCardText = `View Less`;
+    } else {
+      this.footerCommunitiesCardText = `View More (${this.communities.length - 6})`;
+    }
   }
 }
