@@ -38,13 +38,11 @@
       ></app-user-community-card>
     </div>
   </nb-card-body>
-  <nb-card-footer
-    *ngIf="communities?.length > 6"
-    (click)="viewMoreCommunities()"
-    class="com-cursor-pointer com-bg-[#1694FB] com-text-white hover:com-bg-[#43A9FB]"
-  >
-    <div class="com-flex com-justify-center">
+  <nb-card-footer *ngIf="communities?.length > 6" (click)="viewMoreCommunities()" class="com-cursor-pointer">
+    <div>
       {{ footerCommunitiesCardText }}
+      <nb-icon *ngIf="viewMoreCommunitiesSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreCommunitiesSection" icon="arrow-ios-upward-outline"></nb-icon>
     </div>
   </nb-card-footer>
 </nb-card>
