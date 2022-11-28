@@ -9,20 +9,23 @@ import { IUserEventRegistration } from 'projects/shared-models/user_event_regist
 @Component({
   selector: 'app-speakers',
   templateUrl: './speakers.component.html',
-  styleUrls: ['./speakers.component.scss']
+  styleUrls: ['./speakers.component.scss'],
 })
 export class SpeakersComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() event: IEvent;
-  @Output() hasSpeakers = new EventEmitter();
+
+  viewMoreSection: boolean = true;
+  footerText: string = 'View More';
+  isLoading = true;
 
   speakers: IDataFormEntityResponseGroup[] = [];
   simpleAgendaSpeakers: IUserEventRegistration[] = [];
 
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
-    private userEventRegistrationsService: UserEventRegistrationsService
-  ) { }
+    private userEventRegistrationsService: UserEventRegistrationsService,
+  ) {}
 
   ngOnInit() {
     if (this.event.custom_agenda || this.event.custom_registration) {
@@ -33,22 +36,26 @@ export class SpeakersComponent implements OnInit {
   }
 
   getCustomAgendaSpeakers() {
-    this.dataFormEntityResponseGroupsService.pGetEventSpeakers(this.event.id).subscribe(
-      data => {
-        this.speakers = data.data_form_entity_response_groups;
-        if (this.speakers.length > 0) {
-          this.hasSpeakers.emit(true);
-        }
-      }
-    );
+    this.dataFormEntityResponseGroupsService.pGetEventSpeakers(this.event.id).subscribe((data) => {
+      this.speakers = data.data_form_entity_response_groups;
+      this.isLoading = false;
+      this.footerText = `View More (${this.speakers.length - 5})`;
+    });
   }
 
   getSimpleAgendaSpeakers() {
-    this.userEventRegistrationsService.pSpeakers(this.event.slug).subscribe(
-      data => {
-        this.simpleAgendaSpeakers = data.user_event_registrations;
-      }
-    );
+    this.userEventRegistrationsService.pSpeakers(this.event.slug).subscribe((data) => {
+      this.simpleAgendaSpeakers = data.user_event_registrations;
+      this.footerText = `View More (${this.simpleAgendaSpeakers.length - 5})`;
+    });
   }
 
+  viewMore() {
+    this.viewMoreSection = !this.viewMoreSection;
+    if (!this.viewMoreSection) {
+      this.footerText = `View Less`;
+    } else {
+      this.footerText = `View More (${this.speakers.length + this.simpleAgendaSpeakers.length - 5})`;
+    }
+  }
 }

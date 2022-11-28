@@ -25,6 +25,7 @@
 
     nb-accordion-item-body {
       padding: 0;
+      @apply com-border com-border-t-0 com-border-solid com-border-gray-100;
 
       nb-list {
         nb-list-item {
