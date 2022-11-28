@@ -1,9 +1,4 @@
-<nb-list
-  (scrolled)="getNotifications()"
-  [infiniteScrollDisabled]="!(canLoadMore && total)"
-  appInfiniteScroll
-  class="notification-list"
->
+<nb-list (scrolled)="getNotifications()" appInfiniteScroll class="notification-list">
   <nb-list-item
     *ngFor="let notification of notifications"
     [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
