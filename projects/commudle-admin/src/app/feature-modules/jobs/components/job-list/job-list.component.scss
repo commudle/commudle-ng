@@ -26,3 +26,16 @@
 .reset-button {
   @apply com-mt-3;
 }
+
+nb-accordion {
+  @apply com-block md:com-hidden com-shadow-none #{!important};
+  @apply com-mx-2 com-mt-4 com-border-0 com-rounded-xl;
+
+  nb-accordion-item {
+    @apply com-border-0 com-rounded-xl;
+
+    nb-accordion-item-header {
+      @apply com-p-0 com-px-5;
+    }
+  }
+}
