@@ -13,7 +13,11 @@
               src="/assets/images/Expert-Tick.svg"
               title="Expert Tick"
             />
-            <app-hiring-looking-works-tags [user]="users" [fontSize]="'12px'"></app-hiring-looking-works-tags>
+            <app-hiring-looking-works-tags
+              [user]="users"
+              [size]="'large'"
+              class="com-h-7"
+            ></app-hiring-looking-works-tags>
           </div>
           <p class="username">@{{ user.username }}</p>
         </div>

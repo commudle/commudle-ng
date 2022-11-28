@@ -20,9 +20,22 @@
 }
 
 .post-job {
-  @apply com-mt-5 com-ml-3 com-w-60;
+  @apply com-mt-5 com-w-[95%] com-ml-3 md:com-w-60;
 }
 
 .reset-button {
   @apply com-mt-3;
+}
+
+nb-accordion {
+  @apply com-block md:com-hidden com-shadow-none #{!important};
+  @apply com-mx-2 com-mt-4 com-border-0 com-rounded-xl;
+
+  nb-accordion-item {
+    @apply com-border-0 com-rounded-xl;
+
+    nb-accordion-item-header {
+      @apply com-p-0 com-px-5;
+    }
+  }
 }
