@@ -64,7 +64,7 @@ export class NotificationsStore {
     });
   }
 
-  getCommunityNotifications(page: number, count: number, communityId) {
+  getCommunityNotifications(page: number, count: number, communityId: number) {
     this.generateCommunityNotificationsObservable(communityId);
     this.notificationsService.getAllNotifications(page, count, communityId, 'community').subscribe((data) => {
       this.communityNotifications[`${communityId}`].next(data.notifications);
@@ -110,7 +110,7 @@ export class NotificationsStore {
   }
 
   getUserNotificationsCount() {
-    this.notificationsService.getUnreadNotificationsCount('', '').subscribe((data) => {
+    this.notificationsService.getUnreadNotificationsCount().subscribe((data) => {
       this.userNotificationCount.next(data);
     });
   }
