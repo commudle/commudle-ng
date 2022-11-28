@@ -131,7 +131,7 @@ export class NotificationsStore {
     }
   }
 
-  getCommunityUnreadNotificationsCount(communityId) {
+  getCommunityUnreadNotificationsCount(communityId: number) {
     this.generateCommunityNotificationsObservable(communityId);
     this.notificationsService.getUnreadNotificationsCount(communityId, 'community').subscribe((data) => {
       this.communityNotificationsCount[`${communityId}`].next(data);
