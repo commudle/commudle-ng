@@ -112,7 +112,6 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   updateFilter() {
-    console.log(this.searchForm.get('name').value.toLowerCase(), 'start');
     this.searchForm.valueChanges
       .pipe(
         debounceTime(800),

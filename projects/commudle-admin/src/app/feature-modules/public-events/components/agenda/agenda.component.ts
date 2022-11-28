@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
@@ -13,6 +13,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgendaComponent implements OnInit {
   moment = moment;
@@ -24,7 +25,7 @@ export class AgendaComponent implements OnInit {
 
   isLoading = true;
 
-  constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService) {}
+  constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.event.custom_agenda) {
@@ -37,6 +38,7 @@ export class AgendaComponent implements OnInit {
       this.eventLocations = data.event_locations;
       this.isLoading = false;
       this.setSchema();
+      this.changeDetectorRef.markForCheck();
     });
   }
 

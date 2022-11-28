@@ -22,7 +22,7 @@
         ></nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
           <nb-list *ngIf="trackSlotVisibility[elt.id]">
-            <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index">
+            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
                 <p>{{ moment(slot.end_time).format('HH:mm') }}</p>

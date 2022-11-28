@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEventLocation } from 'projects/shared-models/event-location.model';
@@ -10,6 +10,7 @@ import * as _ from 'lodash';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationTracksComponent implements OnInit {
   moment = moment;
@@ -18,6 +19,7 @@ export class EventLocationTracksComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
   @Output() updateSessionPreference = new EventEmitter();
+  sortedTrackSlots = {};
 
   trackSlotVisibility = {};
 
@@ -27,6 +29,7 @@ export class EventLocationTracksComponent implements OnInit {
     let visibility = this.eventLocation.event_location_tracks.length <= 2;
     for (let event_location_track of this.eventLocation.event_location_tracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
+      this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots)
     }
   }
 
