@@ -39,7 +39,6 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       this.currentUser = currentUser;
     });
 
-    this.notificationsStore.getUserNotifications(this.page, this.count);
     this.getNotifications();
     this.receiveData();
   }
@@ -62,7 +61,9 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   getNotifications() {
+    console.log('called');
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
+      this.notificationsStore.getUserNotifications(this.page, this.count);
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationsStore.userNotifications$.subscribe((value) => {
