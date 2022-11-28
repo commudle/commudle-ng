@@ -11,14 +11,17 @@
       *ngFor="let elt of eventLocation.event_location_tracks; let elti = index"
       class="com-mb-3 com-shadow-none"
     >
-      <nb-accordion-item collapsed="{{ elt.track_slots.length == 0 }}">
+      <nb-accordion-item
+        collapsed="{{ !trackSlotVisibility[elt.id] }}"
+        (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
+      >
         <nb-accordion-item-header>
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon
         ></nb-accordion-item-header>
-        <nb-accordion-item-body class="com-rounded-b-2xl"
-          ><nb-list>
+        <nb-accordion-item-body class="com-rounded-b-2xl">
+          <nb-list *ngIf="trackSlotVisibility[elt.id]">
             <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
