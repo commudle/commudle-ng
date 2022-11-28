@@ -1,4 +1,4 @@
-<nb-card *ngIf="speakers.length > 0 || simpleAgendaSpeakers.length > 0">
+<nb-card>
   <nb-card-header>
     <h6>
       <nb-icon icon="people-outline" status="success"></nb-icon>
@@ -6,6 +6,7 @@
     </h6>
   </nb-card-header>
   <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
+    <app-skeleton-loading *ngIf="isLoading"></app-skeleton-loading>
     <div *ngFor="let speaker of speakers | orderBy: ['user.name']:['asc']" class="speaker">
       <app-user-profile-card-large
         [alignFollowToRight]="true"
@@ -21,13 +22,11 @@
       ></app-user-profile-card-large>
     </div>
   </nb-card-body>
-  <nb-card-footer
-    *ngIf="speakers.length + simpleAgendaSpeakers.length > 5"
-    (click)="viewMore()"
-    class="com-cursor-pointer com-bg-[#1694FB] com-text-white hover:com-bg-[#43A9FB]"
-  >
-    <div class="com-flex com-justify-center">
+  <nb-card-footer *ngIf="event.event_speakers_count > 5" (click)="viewMore()" class="com-cursor-pointer">
+    <div>
       {{ footerText }}
+      <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreSection" icon="arrow-ios-upward-outline"></nb-icon>
     </div>
   </nb-card-footer>
 </nb-card>

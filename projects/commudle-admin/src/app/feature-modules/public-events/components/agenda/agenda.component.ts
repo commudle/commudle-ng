@@ -19,9 +19,10 @@ export class AgendaComponent implements OnInit {
 
   @Input() community: ICommunity;
   @Input() event: IEvent;
-  @Output() hasAgenda = new EventEmitter();
 
   eventLocations: IEventLocation[] = [];
+
+  isLoading = true;
 
   constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService) {}
 
@@ -34,9 +35,7 @@ export class AgendaComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
       this.eventLocations = data.event_locations;
-      if (this.eventLocations.length > 0) {
-        this.hasAgenda.emit(true);
-      }
+      this.isLoading = false;
       this.setSchema();
     });
   }

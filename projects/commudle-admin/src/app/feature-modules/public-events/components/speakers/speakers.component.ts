@@ -14,10 +14,10 @@ import { IUserEventRegistration } from 'projects/shared-models/user_event_regist
 export class SpeakersComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() event: IEvent;
-  @Output() hasSpeakers = new EventEmitter();
 
   viewMoreSection: boolean = true;
   footerText: string = 'View More';
+  isLoading = true;
 
   speakers: IDataFormEntityResponseGroup[] = [];
   simpleAgendaSpeakers: IUserEventRegistration[] = [];
@@ -38,9 +38,7 @@ export class SpeakersComponent implements OnInit {
   getCustomAgendaSpeakers() {
     this.dataFormEntityResponseGroupsService.pGetEventSpeakers(this.event.id).subscribe((data) => {
       this.speakers = data.data_form_entity_response_groups;
-      if (this.speakers.length > 0) {
-        this.hasSpeakers.emit(true);
-      }
+      this.isLoading = false;
       this.footerText = `View More (${this.speakers.length - 5})`;
     });
   }
