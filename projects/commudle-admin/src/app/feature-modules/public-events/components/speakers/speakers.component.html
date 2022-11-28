@@ -6,7 +6,7 @@
     </h6>
   </nb-card-header>
   <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
-    <app-skeleton-loading *ngIf="isLoading"></app-skeleton-loading>
+    <app-skeleton-cards *ngIf="isLoading" [cards]="5"></app-skeleton-cards>
     <div *ngFor="let speaker of speakers | orderBy: ['user.name']:['asc']" class="speaker">
       <app-user-profile-card-large
         [alignFollowToRight]="true"

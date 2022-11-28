@@ -67,7 +67,6 @@ import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { SkeletonLoadingComponent } from './skeleton-loading/skeleton-loading.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +105,6 @@ import { SkeletonLoadingComponent } from './skeleton-loading/skeleton-loading.co
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
-    SkeletonLoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -171,7 +169,6 @@ import { SkeletonLoadingComponent } from './skeleton-loading/skeleton-loading.co
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
-    SkeletonLoadingComponent,
   ],
 })
 export class SharedComponentsModule {}

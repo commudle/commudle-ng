@@ -20,6 +20,7 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
+import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -82,6 +83,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SharedPipesModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    SkeletonScreensModule,
 
     // external
     FontAwesomeModule,

@@ -18,7 +18,6 @@ export class EventLocationTracksComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
   @Output() updateSessionPreference = new EventEmitter();
-  @Output() collapsedChange = new EventEmitter();
 
   trackSlotVisibility = {};
 
