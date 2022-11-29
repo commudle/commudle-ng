@@ -1,0 +1,9 @@
+<div *ngFor="let timeBlock of timeBlocks">
+  <div (click)="event.editable && showAddSlotForm(lt, timeBlock.hour, timeBlock.minute)" class="time-cell fill">
+    <p class="filler-text">
+      <small *ngIf="event.editable">
+        <nb-icon icon="plus-square-outline"></nb-icon>
+      </small>
+    </p>
+  </div>
+</div>

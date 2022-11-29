@@ -11,9 +11,10 @@
       }
     }
 
-    nb-card-header {
+    nb-accordion-item-header {
       padding: 0.5rem;
-      background-color: #FFAA00;
+      background-color: #ffaa00;
+      @apply com-border-0 com-rounded-xl;
 
       .track-name {
         display: inline-block;
@@ -22,8 +23,9 @@
       }
     }
 
-    nb-card-body {
+    nb-accordion-item-body {
       padding: 0;
+      @apply com-border com-border-t-0 com-border-solid com-border-gray-100;
 
       nb-list {
         nb-list-item {
@@ -69,7 +71,6 @@
         }
       }
     }
-
 
     // @media all and (max-width: 767px) {
     //   .track-name {

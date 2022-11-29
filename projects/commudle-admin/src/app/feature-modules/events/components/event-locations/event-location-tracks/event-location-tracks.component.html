@@ -40,91 +40,20 @@
         </div>
       </div>
       <div class="time-container">
-        <div *ngFor="let timeBlock of timeBlocks">
-          <div (click)="event.editable && showAddSlotForm(lt, timeBlock.hour, timeBlock.minute)" class="time-cell fill">
-            <p class="filler-text">
-              <small *ngIf="event.editable">
-                <nb-icon icon="plus-square-outline"></nb-icon>
-              </small>
-            </p>
-          </div>
-        </div>
+        <app-time-blocks
+          [timeBlocks]="timeBlocks"
+          [event]="event"
+          [lt]="lt"
+          (addSlotForm)="showAddSlotForm($event)"
+        ></app-time-blocks>
       </div>
       <div class="track-slots-container">
-        <div *ngFor="let slot of lt.track_slots">
-          <div
-            [ngStyle]="{ height: slotSessionHeight(slot) + 'rem', top: slotSessionOffsetFromTop(slot) + 'rem' }"
-            class="track-slot"
-          >
-            <!-- TODO: check why having a div tag inside p tag causes error, the below was initially a p tag -->
-            <p class="slot-time">
-              <nb-icon icon="clock-outline"></nb-icon>
-              {{ moment(slot.start_time).format('HH:mm A') }} - {{ moment(slot.end_time).format('HH:mm A') }}
-            </p>
-            <p class="slot-title">
-              <nb-icon icon="info"></nb-icon>
-              {{ slot.session_title }}
-            </p>
-            <p class="slot-speaker" *ngIf="slot.user">
-              <nb-icon icon="person-outline"></nb-icon>
-              {{ slot.user.name }}
-            </p>
-            <div *ngIf="event.editable">
-              <a
-                *ngIf="!slot.speaker_resource"
-                [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
-                [routerLink]="['/speaker-resource-form']"
-                class="text-info"
-                target="_blank"
-              >
-                <nb-icon icon="clipboard-outline"></nb-icon>
-                Add session details
-              </a>
-              <a
-                *ngIf="slot.speaker_resource"
-                [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
-                [routerLink]="['/speaker-resource-form']"
-                class="clickable text-info"
-                target="_blank"
-              >
-                <nb-icon icon="clipboard-outline"></nb-icon>
-                <span>Edit Session Details/Slides</span>
-              </a>
-            </div>
-            <p>
-              <small>
-                <a
-                  [queryParams]="{ track_slot_id: slot.id }"
-                  [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-                  target="_blank"
-                >
-                  <nb-icon icon="external-link"></nb-icon>
-                  Public Session Page
-                </a>
-              </small>
-            </p>
-
-            <div *ngIf="event.editable" class="actions">
-              <nb-icon (click)="showEditSlotForm(slot)" class="clickable" icon="edit-outline"></nb-icon>
-              <!-- <nb-icon
-                *ngIf="slot.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY"
-                [nbPopover]="embeddedVideo"
-                icon="tv-outline"
-                nbPopoverTrigger="hover"
-              ></nb-icon>
-              <ng-template #embeddedVideo>
-                <div class="embedded-video">
-                  <app-video-stream
-                    [videoCode]="slot.embedded_video_stream.embed_code"
-                    [videoSource]="slot.embedded_video_stream.source"
-                    fillerText="Auto Preview"
-                  ></app-video-stream>
-                </div>
-              </ng-template> -->
-              <nb-icon (click)="confirmDeleteSlot(slot)" class="clickable" icon="close-square-outline"></nb-icon>
-            </div>
-          </div>
-        </div>
+        <app-track-slots
+          [slots]="lt.track_slots"
+          [event]="event"
+          (editSlotForm)="showEditSlotForm($event)"
+          (deleteSlot)="confirmDeleteSlot($event)"
+        ></app-track-slots>
       </div>
     </div>
   </div>

@@ -116,6 +116,7 @@ export class EventFormResponsesComponent implements OnInit {
       .pipe(
         debounceTime(800),
         switchMap(() => {
+          this.rows = [];
           this.page = 1;
           this.emptyMessage = 'Loading...';
           return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
@@ -140,7 +141,21 @@ export class EventFormResponsesComponent implements OnInit {
 
   setPage(pageNumber) {
     this.page = pageNumber + 1;
-    this.getResponses();
+    if (this.searchForm.get('name').value) {
+      this.dataFormEntityResponseGroupsService
+        .getEventDataFormResponses(
+          this.eventDataFormEntityGroupId,
+          this.searchForm.get('name').value.toLowerCase(),
+          this.registrationStatusId,
+          this.page,
+          this.count,
+        )
+        .subscribe((data) => {
+          this.setResponses(data);
+        });
+    } else {
+      this.getResponses();
+    }
   }
 
   getResponses() {
