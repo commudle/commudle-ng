@@ -116,7 +116,6 @@ export class EventFormResponsesComponent implements OnInit {
       .pipe(
         debounceTime(800),
         switchMap(() => {
-          this.rows = [];
           this.page = 1;
           this.emptyMessage = 'Loading...';
           return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
