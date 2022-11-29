@@ -1,0 +1,25 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout com-mb-10">
+      <nb-card>
+        <nb-card-header>List of Employees</nb-card-header>
+        <nb-card-body>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+          <div *ngFor="let user of users" class="employee">
+            <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+          </div>
+          <button
+            (click)="getEmployeesList()"
+            *ngIf="page_info?.has_next_page"
+            [nbSpinner]="isLoading"
+            ghost
+            fullWidth
+            nbButton
+          >
+            View More
+          </button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

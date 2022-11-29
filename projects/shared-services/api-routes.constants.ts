@@ -615,6 +615,8 @@ export const API_ROUTES = {
     CREATE: 'api/v2/jobs',
     UPDATE: 'api/v2/jobs',
     DESTROY: 'api/v2/jobs',
+    EMPLOYEES: 'api/v2/jobs/employees',
+    EMPLOYERS: 'api/v2/jobs/employers',
   },
 
   JOB_APPLICATIONS: {
