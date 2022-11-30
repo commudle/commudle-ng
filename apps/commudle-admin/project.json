@@ -79,10 +79,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/commudle-admin/**/*.ts",
-          "apps/commudle-admin/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/commudle-admin/**/*.ts", "apps/commudle-admin/**/*.html"]
       }
     },
     "test": {
@@ -91,6 +88,12 @@
       "options": {
         "jestConfig": "apps/commudle-admin/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nx-extend/firebase-hosting:deploy",
+      "options": {
+        "site": "commudle-eacee"
       }
     }
   },
