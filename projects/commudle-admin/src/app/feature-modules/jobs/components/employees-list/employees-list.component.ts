@@ -27,7 +27,6 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployeesList() {
-    console.log('getEmployeesList');
     this.subscriptions.push(
       this.jobService
         .getEmployeesList({
