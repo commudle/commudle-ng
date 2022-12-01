@@ -18,6 +18,7 @@ export class ExitPassScanComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
   entryPass: IEventEntryPass;
+  exitPass: IEventEntryPass;
 
   hasDevices: boolean;
   hasPermission: boolean;
@@ -31,6 +32,7 @@ export class ExitPassScanComponent implements OnInit {
   @ViewChild('entryPassWindow') entryPassWindow: TemplateRef<NbCardComponent>;
   @ViewChild('correctSound') correctSound: ElementRef<HTMLAudioElement>;
   @ViewChild('incorrectSound') incorrectSound: ElementRef<HTMLAudioElement>;
+  @ViewChild('formDetailsWindow') formDetailsWindow: TemplateRef<NbCardComponent>;
 
   subscriptions: Subscription[] = [];
 
@@ -61,12 +63,11 @@ export class ExitPassScanComponent implements OnInit {
     });
   }
 
-  getExitPass(entryCode: string): void {
+  getEntryPass(entryCode: string): void {
     this.isLoadingEntryPass = true;
-    this.eventEntryPassesService.getExitPass(this.event.id, entryCode).subscribe(
+    this.eventEntryPassesService.getEntryPass(this.event.id, entryCode).subscribe(
       (entryPass) => {
         this.entryPass = entryPass;
-        console.log(this.entryPass);
 
         if (this.entryPass.attendance) {
           this.correctSound.nativeElement.play();
@@ -76,7 +77,7 @@ export class ExitPassScanComponent implements OnInit {
           );
         }
 
-        this.openWindow();
+        this.openEntryPassWindow();
         // TODO: Switching off the scanner is continuously triggering the onScanSuccess event.
         // this.scanner.reset();
         // this.disableScanner();
@@ -89,6 +90,15 @@ export class ExitPassScanComponent implements OnInit {
         this.isLoadingEntryPass = false;
       },
     );
+  }
+
+  getExitPass(entryCode: string) {
+    this.eventEntryPassesService.getExitPass(this.event.id, entryCode).subscribe((exitPass) => {
+      this.exitPass = exitPass;
+      console.log(this.exitPass);
+
+      this.openWindow();
+    });
   }
 
   unmarkAttendance() {
@@ -133,6 +143,13 @@ export class ExitPassScanComponent implements OnInit {
   }
 
   openWindow() {
+    this.isWindowOpen = true;
+    this.nbDialogService.open(this.formDetailsWindow, {
+      closeOnEsc: false,
+      closeOnBackdropClick: false,
+    });
+  }
+  openEntryPassWindow() {
     this.isWindowOpen = true;
     this.nbDialogService.open(this.entryPassWindow, {
       closeOnEsc: false,
