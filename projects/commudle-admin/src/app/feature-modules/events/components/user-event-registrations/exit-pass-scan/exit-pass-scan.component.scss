@@ -1,0 +1,49 @@
+p {
+  @apply com-m-0;
+}
+
+.entry-pass-scan-container {
+  nb-card-header {
+    @apply com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4;
+
+    .actions {
+      @apply com-flex com-gap-2;
+    }
+  }
+
+  nb-card-body {
+    .scanner-controls {
+      @apply com-flex com-flex-col-reverse md:com-flex-row com-items-center com-justify-between com-gap-4 com-mb-4;
+
+      .camera-controls {
+        @apply com-flex com-items-center com-gap-2;
+      }
+    }
+
+    .scanner {
+      @apply com-relative;
+
+      nb-alert {
+        @apply com-p-6 com-absolute com-top-4 com-left-1/2 com--translate-x-1/2 com-w-72;
+      }
+    }
+
+    .divider {
+      @apply com-flex com-items-center com-my-12 com-mx-auto com-w-72;
+
+      &:before,
+      &:after {
+        background: black;
+        box-shadow: 0 0.5px 0 black; // Chrome
+        content: '';
+        flex: 1;
+        height: 1px;
+        margin: 0 1em;
+      }
+    }
+
+    .manual-entry-pass {
+      @apply com-mx-auto com-w-max;
+    }
+  }
+}
