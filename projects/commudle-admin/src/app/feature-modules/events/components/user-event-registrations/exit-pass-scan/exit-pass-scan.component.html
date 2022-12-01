@@ -108,22 +108,27 @@
 
 <ng-template #entryPassWindow let-ref="dialogRef">
   <nb-card class="com-w-72">
-    <nb-card-header>Entry Pass - {{ entryPass?.unique_code }}</nb-card-header>
+    <nb-card-header>Forms Filled by {{ entryPass.user.name }}</nb-card-header>
     <nb-card-body>
-      <app-user-profile-card-large
-        *ngIf="entryPass.user"
-        [showSocialLinks]="true"
-        [user]="entryPass.user"
-      ></app-user-profile-card-large>
+      <div *ngFor="let forms of entryPass.forms_filled">
+        {{ forms }}
+      </div>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
-      <button (click)="handleOk(); ref.close()" nbButton size="small" status="info">
+      <button (click)="ref.close()" nbButton size="small" status="success">
         <nb-icon icon="checkmark-outline"></nb-icon>
-        Ok
+        Close
       </button>
-      <button (click)="handleCancel(); ref.close()" ghost nbButton size="small" status="danger">
+      <button
+        *ngIf="!entryPass.attendance"
+        (click)="handleCancel(); ref.close()"
+        ghost
+        nbButton
+        size="small"
+        status="danger"
+      >
         <nb-icon icon="close-outline"></nb-icon>
-        Not the right person
+        Mark Attendance
       </button>
     </nb-card-footer>
   </nb-card>

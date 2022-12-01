@@ -61,11 +61,12 @@ export class ExitPassScanComponent implements OnInit {
     });
   }
 
-  getEntryPass(entryCode: string): void {
+  getExitPass(entryCode: string): void {
     this.isLoadingEntryPass = true;
-    this.eventEntryPassesService.getEntryPass(this.event.id, entryCode).subscribe(
+    this.eventEntryPassesService.getExitPass(this.event.id, entryCode).subscribe(
       (entryPass) => {
         this.entryPass = entryPass;
+        console.log(this.entryPass);
 
         if (this.entryPass.attendance) {
           this.correctSound.nativeElement.play();
@@ -103,7 +104,7 @@ export class ExitPassScanComponent implements OnInit {
 
   onScanSuccess(value: string): void {
     if (!this.isWindowOpen) {
-      this.getEntryPass(value);
+      this.getExitPass(value);
     }
   }
 
@@ -151,7 +152,7 @@ export class ExitPassScanComponent implements OnInit {
 
   onSubmit(value: string) {
     if (value?.length) {
-      this.getEntryPass(value);
+      this.getExitPass(value);
     }
   }
 }
