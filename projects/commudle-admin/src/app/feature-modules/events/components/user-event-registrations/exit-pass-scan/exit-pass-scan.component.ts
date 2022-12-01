@@ -29,7 +29,6 @@ export class ExitPassScanComponent implements OnInit {
   isWindowOpen: boolean = false;
 
   @ViewChild('scannerComponent', { static: false }) scanner: ZXingScannerComponent;
-  @ViewChild('entryPassWindow') entryPassWindow: TemplateRef<NbCardComponent>;
   @ViewChild('correctSound') correctSound: ElementRef<HTMLAudioElement>;
   @ViewChild('incorrectSound') incorrectSound: ElementRef<HTMLAudioElement>;
   @ViewChild('formDetailsWindow') formDetailsWindow: TemplateRef<NbCardComponent>;
@@ -76,11 +75,6 @@ export class ExitPassScanComponent implements OnInit {
             'Success',
           );
         }
-
-        this.openEntryPassWindow();
-        // TODO: Switching off the scanner is continuously triggering the onScanSuccess event.
-        // this.scanner.reset();
-        // this.disableScanner();
       },
       (error) => {
         console.error('Error: ', error);
@@ -95,21 +89,9 @@ export class ExitPassScanComponent implements OnInit {
   getExitPass(entryCode: string) {
     this.eventEntryPassesService.getExitPass(this.event.id, entryCode).subscribe((exitPass) => {
       this.exitPass = exitPass;
-      console.log(this.exitPass);
 
       this.openWindow();
     });
-  }
-
-  unmarkAttendance() {
-    this.subscriptions.push(
-      this.eventEntryPassesService.toggleAttendance(this.entryPass.id).subscribe((value) => {
-        if (value) {
-          this.nbToastrService.success('Attendance Unmarked', 'Success');
-          this.enableScanner();
-        }
-      }),
-    );
   }
 
   onScanSuccess(value: string): void {
@@ -148,23 +130,6 @@ export class ExitPassScanComponent implements OnInit {
       closeOnEsc: false,
       closeOnBackdropClick: false,
     });
-  }
-  openEntryPassWindow() {
-    this.isWindowOpen = true;
-    this.nbDialogService.open(this.entryPassWindow, {
-      closeOnEsc: false,
-      closeOnBackdropClick: false,
-    });
-  }
-
-  handleOk() {
-    this.enableScanner();
-    this.isWindowOpen = false;
-  }
-
-  handleCancel() {
-    this.unmarkAttendance();
-    this.isWindowOpen = false;
   }
 
   onSubmit(value: string) {
