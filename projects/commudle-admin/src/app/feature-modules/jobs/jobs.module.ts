@@ -30,7 +30,6 @@ import { MyJobApplicationsComponent } from './components/my-job-applications/my-
 import { JobsRoutingModule } from './jobs-routing.module';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { EmployersListComponent } from './components/employers-list/employers-list.component';
-import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,6 @@ import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-m
     SharedComponentsModule,
     SharedPipesModule,
     MiniUserProfileModule,
-    SkeletonScreensModule,
 
     //nb module
     FontAwesomeModule,
