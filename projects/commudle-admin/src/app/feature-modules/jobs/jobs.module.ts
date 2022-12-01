@@ -49,6 +49,7 @@ import { EmployersListComponent } from './components/employers-list/employers-li
     SharedComponentsModule,
     SharedPipesModule,
     MiniUserProfileModule,
+
     //nb module
     FontAwesomeModule,
     NbCardModule,

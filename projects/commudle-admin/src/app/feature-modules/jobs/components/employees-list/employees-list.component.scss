@@ -2,7 +2,7 @@ nb-card-body {
   @apply com-flex com-flex-col com-py-2 com-px-6;
 
   .employee {
-    @apply com-py-2 com-px-0 com-flex com-justify-start com-border-0 com-border-b com-border-dotted com-border-gray-300;
+    @apply com-py-2 com-px-0 com-flex com-justify-start com-border-0 com-border-b com-border-dotted com-border-gray-300 com-items-center;
 
     &:last-child {
       @apply com-border-b-0;
