@@ -101,7 +101,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     // TODO optimize this
     this.route.fragment.subscribe((fragment) => {
-      if (fragment === 'jobs') {
+      if (fragment === 'jobs' && this.route.snapshot.queryParams['hiring'] === 'true') {
         setTimeout(() => {
           if (this.route.snapshot.queryParams['job_tag']) {
             this.tags.push(this.route.snapshot.queryParams['job_tag']);
