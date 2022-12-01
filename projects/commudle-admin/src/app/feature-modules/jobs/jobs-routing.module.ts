@@ -20,11 +20,11 @@ const routes: Routes = [
     component: MyJobApplicationsComponent,
   },
   {
-    path: 'employees',
+    path: 'looking-for-work',
     component: EmployeesListComponent,
   },
   {
-    path: 'employers',
+    path: 'hiring',
     component: EmployersListComponent,
   },
   {
