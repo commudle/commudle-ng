@@ -162,7 +162,10 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
           }, 500);
         } else {
           setTimeout(() => {
-            this.redirectTo('jobs');
+            this.router.navigate([], {
+              fragment: 'jobs',
+              queryParams: { hiring: 'true' },
+            });
           }, 500);
         }
       });

@@ -5,6 +5,8 @@ import { IJobs } from 'projects/shared-models/jobs.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
+import { IPagination } from 'projects/shared-models/pagination.model';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -78,5 +80,21 @@ export class JobService {
   deleteJob(id: number): Observable<boolean> {
     const params = new HttpParams().set('job_id', String(id));
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.DESTROY), { params });
+  }
+
+  getEmployeesList({ after, limit = 10 }: { after?: string; limit: number }): Observable<IPagination<IUser>> {
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYEES), { params });
+  }
+
+  getEmployersList({ after, limit = 10 }: { after?: string; limit: number }): Observable<IPagination<IUser>> {
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS));
   }
 }

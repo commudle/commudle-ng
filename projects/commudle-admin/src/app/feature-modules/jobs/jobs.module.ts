@@ -28,6 +28,8 @@ import { JobComponent } from './components/job/job.component';
 import { MyJobApplicationComponent } from './components/my-job-applications/my-job-application/my-job-application.component';
 import { MyJobApplicationsComponent } from './components/my-job-applications/my-job-applications.component';
 import { JobsRoutingModule } from './jobs-routing.module';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
+import { EmployersListComponent } from './components/employers-list/employers-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     JobApplicationsComponent,
     JobListComponent,
     JobListCardComponent,
+    EmployeesListComponent,
+    EmployersListComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +49,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     SharedComponentsModule,
     SharedPipesModule,
     MiniUserProfileModule,
+
+    //nb module
     FontAwesomeModule,
     NbCardModule,
     NbListModule,

@@ -1,0 +1,38 @@
+<div class="base-layout">
+  <div class="container !com-max-w-5xl">
+    <div class="one-column-layout com-mb-10">
+      <nb-card>
+        <nb-card-header class="com-flex com-justify-between com-items-center">
+          <span class="com-text-4xl com-font-normal">Techies Who Are Hiring</span>
+          <button routerLink="/jobs" status="primary" nbButton shape="semi-round">View All Jobs</button>
+        </nb-card-header>
+        <nb-card-body>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+          <div *ngFor="let user of users" class="employer">
+            <app-user-profile-card-large [user]="user" class="com-py-2"></app-user-profile-card-large>
+            <button
+              class="com-h-9"
+              (click)="redirectToProfile(user.username)"
+              status="info"
+              nbButton
+              size="small"
+              shape="semi-round"
+            >
+              View Posted Jobs
+            </button>
+          </div>
+          <button
+            (click)="getEmployersList()"
+            *ngIf="page_info?.has_next_page"
+            [nbSpinner]="isLoading"
+            fullWidth
+            ghost
+            nbButton
+          >
+            View More
+          </button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
