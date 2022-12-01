@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { JobService } from 'projects/commudle-admin/src/app/services/job.service';
 import { IPageInfo } from 'projects/shared-models/page-info.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./employees-list.component.scss'],
 })
 export class EmployeesListComponent implements OnInit {
-  constructor(private jobService: JobService, private route: Router) {}
+  constructor(private jobService: JobService, private route: Router, private seoService: SeoService) {}
 
   page_info: IPageInfo;
   users: IUser[] = [];
@@ -22,6 +23,7 @@ export class EmployeesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployeesList();
+    this.setMeta();
   }
 
   ngOnDestroy(): void {
@@ -45,5 +47,13 @@ export class EmployeesListComponent implements OnInit {
 
   redirectToProfile(username) {
     this.route.navigate(['/users/', username]);
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      'Techies Looking To Get Hired',
+      'Find interns, volunteers, full time and part time teammates or freelancers too. Hire for office and remote locations from the thousands of techies on Commudle',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
