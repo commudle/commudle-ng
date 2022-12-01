@@ -1,12 +1,22 @@
 <div class="base-layout">
-  <div class="container">
+  <div class="container !com-max-w-5xl">
     <div class="one-column-layout com-mb-10">
       <nb-card>
-        <nb-card-header>List of Employees</nb-card-header>
+        <nb-card-header>Techies Looking To Get Hired</nb-card-header>
         <nb-card-body>
-          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+          <app-skeleton-cards *ngIf="isLoading" [cards]="10"></app-skeleton-cards>
           <div *ngFor="let user of users" class="employee">
             <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+            <button
+              class="com-h-9"
+              (click)="getEmployeesList()"
+              status="primary"
+              nbButton
+              size="small"
+              shape="semi-round"
+            >
+              View Profile
+            </button>
           </div>
           <button
             (click)="getEmployeesList()"
@@ -18,6 +28,16 @@
           >
             View More
           </button>
+          <!-- <app-pagination
+            (goTo)="page = $event; getEmployeesList()"
+            (next)="page = $event; getEmployeesList()"
+            (previous)="page = $event; getEmployeesList()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+            class="com-mt-6"
+          ></app-pagination> -->
         </nb-card-body>
       </nb-card>
     </div>

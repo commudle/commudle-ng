@@ -16,6 +16,8 @@ export class EmployeesListComponent implements OnInit {
   users: IUser[] = [];
   limit = 10;
   isLoading = true;
+  total;
+  count;
 
   subscriptions: Subscription[] = [];
 
@@ -27,6 +29,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployeesList() {
+    this.users = [];
     this.subscriptions.push(
       this.jobService
         .getEmployeesList({
@@ -36,6 +39,8 @@ export class EmployeesListComponent implements OnInit {
         .subscribe((data) => {
           this.users = this.users.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
+          this.total = data.total;
+          this.count = this.total / 10;
           this.isLoading = false;
         }),
     );
