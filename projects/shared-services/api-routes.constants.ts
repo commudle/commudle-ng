@@ -148,6 +148,7 @@ export const API_ROUTES = {
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
     ATTENDED_MEMBERS: 'api/v2/events/attended_members',
+    ATTENDED_MEMBERS_NOTIFICATION: 'api/v2/events/create_attended_members_notification',
     COMMON_EVENTS: 'api/v2/events/common_events',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
