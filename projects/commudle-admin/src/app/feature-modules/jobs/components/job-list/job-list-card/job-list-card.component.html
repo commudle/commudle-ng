@@ -3,16 +3,18 @@
     <div>
       <button
         *ngIf="job.status === jobStatus.OPEN"
-        [disabled]="!currentUser?.id"
         class="com-w-auto apply-button"
         nbButton
         shape="semi-round"
         status="primary"
         [routerLink]="[job.id]"
       >
-        {{ currentUser?.id ? 'View Details & Apply' : 'Login to apply' }}
+        View Details & Apply
       </button>
       <p *ngIf="job.status === jobStatus.CLOSED" class="com-w-full md:com-w-auto closed">Closed</p>
+      <p class="com-flex com-absolute com-right-4 com-text-gray-500 com-top-14">
+        {{ job.job_applications_count }} Applications
+      </p>
     </div>
     <a [routerLink]="[job.id]" class="com-no-underline">
       <div class="job-details position">
