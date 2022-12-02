@@ -26,6 +26,9 @@
               Stats<sup>Beta</sup> &nbsp;
               <nb-icon icon="external-link"></nb-icon>
             </a>
+            <button (click)="sendAttendedMemberEmailer()" nbButton outline size="small" status="primary">
+              Send Attended Member Emailers
+            </button>
             <button
               [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
               nbButton
