@@ -41,18 +41,19 @@
       </div>
       <div class="time-container">
         <app-time-blocks
-          [timeBlocks]="timeBlocks"
+          (addSlotForm)="showAddSlotForm($event)"
           [event]="event"
           [lt]="lt"
-          (addSlotForm)="showAddSlotForm($event)"
+          [timeBlocks]="timeBlocks"
         ></app-time-blocks>
       </div>
       <div class="track-slots-container">
         <app-track-slots
-          [slots]="lt.track_slots"
-          [event]="event"
-          (editSlotForm)="showEditSlotForm($event)"
           (deleteSlot)="confirmDeleteSlot($event)"
+          (editSlotForm)="showEditSlotForm($event)"
+          [community]="community"
+          [event]="event"
+          [slots]="lt.track_slots"
         ></app-track-slots>
       </div>
     </div>

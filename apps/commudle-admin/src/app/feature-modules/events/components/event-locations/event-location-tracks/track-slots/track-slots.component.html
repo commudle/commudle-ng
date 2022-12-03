@@ -40,12 +40,11 @@
     </div>
     <p>
       <small>
-        <!-- <a
+        <a
           [queryParams]="{ track_slot_id: slot.id }"
           [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
           target="_blank"
-        > -->
-        <a [queryParams]="{ track_slot_id: slot.id }" target="_blank">
+        >
           <nb-icon icon="external-link"></nb-icon>
           Public Session Page
         </a>

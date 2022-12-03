@@ -10,6 +10,7 @@ import * as moment from 'moment';
 export class TrackSlotsComponent implements OnInit {
   @Input() slots;
   @Input() event;
+  @Input() community;
   @Output() editSlotForm = new EventEmitter<any>();
   @Output() deleteSlot = new EventEmitter<any>();
 

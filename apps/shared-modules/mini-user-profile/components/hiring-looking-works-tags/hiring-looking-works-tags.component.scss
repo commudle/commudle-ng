@@ -12,6 +12,7 @@
     opacity: 0;
   }
 }
+
 @keyframes fadeOut {
   0% {
     z-index: 10;
@@ -31,22 +32,23 @@
   @apply com-relative;
 
   p {
-    @apply com-absolute com-m-0 com-tracking-wider  com-text-white com-px-2 com-w-max com-font-extrabold com-rounded-md;
+    @apply com-absolute com-m-0 com-tracking-wider com-text-white com-px-2 com-w-max com-font-extrabold com-rounded-md;
   }
+
   p.work {
+    animation-direction: alternate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
     animation-name: fadeIn;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-duration: 5s;
-    animation-direction: alternate;
   }
 
   p.hiring {
+    animation-direction: alternate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
     animation-name: fadeOut;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-duration: 5s;
-    animation-direction: alternate;
   }
 }
 
@@ -59,7 +61,7 @@
 }
 
 .tags {
-  @apply com-absolute com-m-0 com-tracking-wider  com-text-white com-px-1 com-w-max com-h-max com-font-extrabold com-rounded-md;
+  @apply com-absolute com-m-0 com-tracking-wider com-text-white com-px-1 com-w-max com-h-max com-font-extrabold com-rounded-md;
 }
 
 .large {

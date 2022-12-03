@@ -36,14 +36,16 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   playerUrl: any;
 
   environment = environment;
-  isBrowser: boolean = this.isBrowserService.isBrowser();
+  isBrowser: boolean;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
   constructor(
     private sanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef,
     private isBrowserService: IsBrowserService,
-  ) {}
+  ) {
+    this.isBrowser = this.isBrowserService.isBrowser();
+  }
 
   ngOnInit() {}
 
