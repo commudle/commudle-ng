@@ -148,6 +148,7 @@ export const API_ROUTES = {
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
     ATTENDED_MEMBERS: 'api/v2/events/attended_members',
+    ATTENDED_MEMBERS_NOTIFICATION: 'api/v2/events/create_attended_members_notification',
     COMMON_EVENTS: 'api/v2/events/common_events',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
@@ -241,6 +242,7 @@ export const API_ROUTES = {
     TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
     AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance',
     SHOW: 'api/v2/event_entry_passes/show',
+    VERIFY_FILLED_EVENT_FORMS: 'api/v2/event_entry_passes/verify_filled_event_forms',
   },
 
   // locations
@@ -615,6 +617,8 @@ export const API_ROUTES = {
     CREATE: 'api/v2/jobs',
     UPDATE: 'api/v2/jobs',
     DESTROY: 'api/v2/jobs',
+    EMPLOYEES: 'api/v2/jobs/employees',
+    EMPLOYERS: 'api/v2/jobs/employers',
   },
 
   JOB_APPLICATIONS: {

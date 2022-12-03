@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/users/users.module').then((m) => m.UsersModule),
   },
   {
+    path: 'me',
+    loadChildren: () => import('./feature-modules/users/users.module').then((m) => m.UsersModule),
+  },
+  {
     path: 'communities',
     component: CommunitiesComponent,
   },

@@ -33,7 +33,6 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   constructor(private notificationsStore: NotificationsStore) {}
 
   ngOnInit(): void {
-    this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
     this.getNotifications();
     this.receiveData();
   }
@@ -54,6 +53,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   getNotifications() {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
+      this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationsStore.communityNotifications$[this.communityId].subscribe((value) => {

@@ -147,4 +147,10 @@ export class EventsService {
     const params = new HttpParams().set('user_id', String(userId));
     return this.http.get<IEvent[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.COMMON_EVENTS), { params });
   }
+
+  attendedMemberNotification(event_id: number): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.ATTENDED_MEMBERS_NOTIFICATION), {
+      event_id,
+    });
+  }
 }

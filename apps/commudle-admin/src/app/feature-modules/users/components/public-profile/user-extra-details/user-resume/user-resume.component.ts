@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@commudle/theme';
@@ -30,6 +31,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   isEditing = false;
   dialogRef: NbDialogRef<any>;
 
+  @ViewChild('userResumeDialog', { static: true }) userResumeDialog: TemplateRef<any>;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -41,6 +44,7 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     public userProfileMenuService: UserProfileMenuService,
     private route: ActivatedRoute,
     private router: Router,
+    private scroller: ViewportScroller,
   ) {
     this.userResumeForm = this.fb.group({
       name: ['', Validators.required],
@@ -48,8 +52,13 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
+    // TODO optimize this
     if (this.route.snapshot.queryParams['job']) {
       this.jobId = this.route.snapshot.queryParams['job'];
+      setTimeout(() => {
+        this.scroller.scrollToAnchor('resume');
+        this.onOpenDialog(this.userResumeDialog);
+      }, 1000);
     }
   }
 
@@ -69,7 +78,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.userResumeService.getResumes().subscribe((data) => {
         this.userResumes = data;
-        this.userProfileMenuService.addMenuItem('resume', true);
+        if (this.currentUser.id === this.user.id) {
+          this.userProfileMenuService.addMenuItem('resume', true);
+        }
       }),
     );
   }

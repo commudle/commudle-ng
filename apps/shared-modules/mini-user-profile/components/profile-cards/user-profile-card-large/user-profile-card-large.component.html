@@ -25,22 +25,22 @@
         </div>
         <span class="com-flex com-w-max com-mt-1">
           <p class="username com-line-clamp-1" title="{{ user.username }}">
-            @{{ user.username | truncatetext: maxUserNameLength }}
+            @{{ user.username | truncatetext : maxUserNameLength }}
           </p>
           &nbsp;
-          <app-hiring-looking-works-tags [user]="user" [fontSize]="'8px'"></app-hiring-looking-works-tags>
+          <app-hiring-looking-works-tags [user]="user" [size]="'small'"></app-hiring-looking-works-tags>
         </span>
         <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">
-          <a *ngIf="user.linkedin" [href]="user.linkedin | completeurl: 'linkedin'" target="_blank">
+          <a *ngIf="user.linkedin" [href]="user.linkedin | completeurl : 'linkedin'" target="_blank">
             <nb-icon icon="linkedin" status="primary"></nb-icon>
           </a>
-          <a *ngIf="user.twitter" [href]="user.twitter | completeurl: 'twitter'" target="_blank">
+          <a *ngIf="user.twitter" [href]="user.twitter | completeurl : 'twitter'" target="_blank">
             <nb-icon icon="twitter" status="primary"></nb-icon>
           </a>
-          <a *ngIf="user.github" [href]="user.github | completeurl: 'github'" target="_blank">
+          <a *ngIf="user.github" [href]="user.github | completeurl : 'github'" target="_blank">
             <nb-icon icon="github" status="primary"></nb-icon>
           </a>
           <a *ngIf="user.personal_website" [href]="user.personal_website | completeurl" target="_blank">

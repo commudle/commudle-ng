@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  NbAccordionModule,
   NbActionsModule,
   NbAlertModule,
   NbBadgeModule,
@@ -19,6 +20,7 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@commudle/theme';
+import { SkeletonScreensModule } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -81,6 +83,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SharedPipesModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    SkeletonScreensModule,
 
     // external
     FontAwesomeModule,
@@ -101,6 +104,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbToggleModule,
     NbFormFieldModule,
     NbSpinnerModule,
+    NbAccordionModule,
   ],
 })
 export class PublicEventsModule {}

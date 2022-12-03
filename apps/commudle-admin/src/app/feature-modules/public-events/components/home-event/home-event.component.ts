@@ -42,6 +42,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   subscriptions = [];
 
   isOrganizer = false;
+  isLoading = true;
 
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
@@ -78,6 +79,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   getEvent(eventId) {
     this.eventsService.pGetEvent(eventId).subscribe((event) => {
       this.event = event;
+      this.isLoading = false;
       this.getCommunity(event.kommunity_id);
       this.getDiscussionChat();
     });

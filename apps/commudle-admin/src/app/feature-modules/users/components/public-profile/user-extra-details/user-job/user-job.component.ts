@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -66,6 +67,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     private userProfileMenuService: UserProfileMenuService,
     private userProfileManagerService: UserProfileManagerService,
     private route: ActivatedRoute,
+    private scroller: ViewportScroller,
   ) {
     this.jobForm = this.fb.group(
       {
@@ -99,14 +101,16 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
+    // TODO optimize this
     this.route.fragment.subscribe((fragment) => {
-      if (fragment === 'jobs') {
+      if (fragment === 'jobs' && this.route.snapshot.queryParams['hiring'] === 'true') {
         setTimeout(() => {
+          if (this.route.snapshot.queryParams['job_tag']) {
+            this.tags.push(this.route.snapshot.queryParams['job_tag']);
+          }
+          this.scroller.scrollToAnchor(fragment);
           this.onOpenDialog(this.jobDialog);
         }, 500);
-      }
-      if (this.route.snapshot.queryParams['job_tag']) {
-        this.tags.push(this.route.snapshot.queryParams['job_tag']);
       }
     });
   }
@@ -179,7 +183,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
-    if (value) {
+    if (value && this.tags.length <= 5) {
       this.tags.push(value);
     }
     input.nativeElement.value = '';

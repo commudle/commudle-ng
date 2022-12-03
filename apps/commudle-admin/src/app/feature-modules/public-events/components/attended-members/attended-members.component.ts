@@ -21,7 +21,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   page = 1;
   count = 10;
   total = 0;
-  query: string = '';
+  query = '';
   queryChanged: Subject<string> = new Subject<string>();
 
   subscriptions: Subscription[] = [];
@@ -40,7 +40,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
 
         this.seoService.setTags(
           `Members who attended ${this.event.name}`,
-          `Connect with the community members who attended ${this.event.name} with you`,
+          `Connect with the community members who attended ${this.event.name} by ${this.activatedRoute.snapshot.params.community_id} with you`,
           'https://commudle.com/assets/images/commudle-logo192.png',
         );
 

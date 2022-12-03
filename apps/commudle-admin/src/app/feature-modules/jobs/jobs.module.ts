@@ -15,6 +15,8 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
+  NbAccordionModule,
 } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -26,6 +28,8 @@ import { JobComponent } from './components/job/job.component';
 import { MyJobApplicationComponent } from './components/my-job-applications/my-job-application/my-job-application.component';
 import { MyJobApplicationsComponent } from './components/my-job-applications/my-job-applications.component';
 import { JobsRoutingModule } from './jobs-routing.module';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
+import { EmployersListComponent } from './components/employers-list/employers-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     JobApplicationsComponent,
     JobListComponent,
     JobListCardComponent,
+    EmployeesListComponent,
+    EmployersListComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +49,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     SharedComponentsModule,
     SharedPipesModule,
     MiniUserProfileModule,
+
+    //nb module
     FontAwesomeModule,
     NbCardModule,
     NbListModule,
@@ -57,6 +65,8 @@ import { JobsRoutingModule } from './jobs-routing.module';
     ReactiveFormsModule,
     NbSpinnerModule,
     NbBadgeModule,
+    NbTagModule,
+    NbAccordionModule,
   ],
 })
 export class JobsModule {}

@@ -27,10 +27,10 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // The original tags
   tags: string[] = [];
   maxTags = 5;
-  hiring: boolean = false;
+  hiring = false;
 
   environment = environment;
-  queryParamIsHiring: boolean = false;
+  queryParamIsHiring = false;
 
   editTagDialog: NbDialogRef<any>;
 
@@ -155,11 +155,17 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
         if (this.queryParamIsHiring) {
           this.enableHiringDialog.close();
           setTimeout(() => {
-            this.router.navigate([], { fragment: 'jobs', queryParams: { job_tag: 'DevFestNewDelhi22' } });
+            this.router.navigate([], {
+              fragment: 'jobs',
+              queryParamsHandling: 'preserve',
+            });
           }, 500);
         } else {
           setTimeout(() => {
-            this.redirectTo('jobs');
+            this.router.navigate([], {
+              fragment: 'jobs',
+              queryParams: { hiring: 'true' },
+            });
           }, 500);
         }
       });

@@ -19,6 +19,7 @@ export interface IJob {
   updated_at: string;
   user: IUser;
   tags: ITag[];
+  job_applications_count: number;
 }
 
 export enum EJobCategory {

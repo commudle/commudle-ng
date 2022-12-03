@@ -1,9 +1,10 @@
-<nb-card *ngIf="jobs.length > 0 || currentUser?.id === user.id" accent="primary" class="user-job" id="jobs">
+<nb-card accent="primary" class="user-job" id="jobs">
   <nb-card-header>
     <nb-icon icon="briefcase" status="primary"></nb-icon>
     Jobs
   </nb-card-header>
   <nb-card-body>
+    <div *ngIf="jobs.length == 0" class="com-text-2xl com-text-gray-400">No Jobs Posted</div>
     <button
       (click)="onOpenDialog(jobDialog)"
       *ngIf="currentUser?.id === user?.id"
@@ -144,7 +145,7 @@
           </nb-select>
         </label>
         <label>
-          Description
+          Responsibilities & Perks
           <textarea formControlName="description" fullWidth nbInput rows="3" type="text"></textarea>
         </label>
         <label>
@@ -158,8 +159,7 @@
               formControlName="tags"
               fullWidth
               nbTagInput
-              nbTagInput
-              placeholder="Type a tag and press enter or comma"
+              placeholder="Type a tag and press enter or comma (Max 5 tags)"
               type="text"
             />
           </nb-tag-list>

@@ -7,4 +7,5 @@ export interface IEventEntryPass {
   uninvited: boolean;
   is_first_time_attendance: boolean;
   user: IUser;
+  forms_filled?: [];
 }

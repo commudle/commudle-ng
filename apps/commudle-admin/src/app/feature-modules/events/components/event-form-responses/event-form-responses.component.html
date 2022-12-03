@@ -32,6 +32,23 @@
             </button>
 
             <button
+              *ngIf="
+                userRoles.length > 0 &&
+                (userRoles.includes(EUserRoles.COMMUNITY_ADMIN) ||
+                  userRoles.includes(EUserRoles.EVENT_ORGANIZER) ||
+                  userRoles.includes(EUserRoles.EVENT_VOLUNTEER) ||
+                  userRoles.includes(EUserRoles.ORGANIZER))
+              "
+              [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'scan-exit-pass']"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+            >
+              Scan Exit Pass
+            </button>
+
+            <button
               [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
               nbButton
               outline
@@ -96,7 +113,7 @@
                         <p
                           [innerHTML]="
                             getQuestionResponse(row.data_form_entity_response_values, question.id)
-                              | linky: { sanitizeHtml: true }
+                              | linky : { sanitizeHtml: true }
                           "
                           class="question-responses"
                         ></p>
@@ -194,7 +211,7 @@
                     <p
                       [innerHTML]="
                         getQuestionResponse(row.data_form_entity_response_values, question.id)
-                          | linky: { sanitizeHtml: true }
+                          | linky : { sanitizeHtml: true }
                       "
                       class="question-responses"
                     ></p>

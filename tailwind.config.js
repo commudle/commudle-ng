@@ -45,6 +45,8 @@ module.exports = {
         'Paragraph-1': '16px',
         'Paragraph-2': '14px', //Button text, Input
         Caption: '12px',
+        '10px': '10px',
+        '8px': '8px',
       },
       spacing: {
         /* Adding custom spacing to the tailwind config. */

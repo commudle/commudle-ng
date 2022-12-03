@@ -119,4 +119,12 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   openGuide() {
     this.windowService.open(this.eventGuideSectionRef, { title: "It's simple!" });
   }
+
+  sendAttendedMemberEmailer() {
+    this.eventsService.attendedMemberNotification(this.event.id).subscribe((data) => {
+      if (data) {
+        this.toastLogService.successDialog('Email Sent');
+      }
+    });
+  }
 }

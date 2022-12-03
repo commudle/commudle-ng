@@ -5,6 +5,8 @@ import { IJobs } from 'apps/shared-models/jobs.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
+import { IPagination } from 'projects/shared-models/pagination.model';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +15,23 @@ export class JobService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getJobs({ after, limit = 10, ...filters }: { after?: string; limit: number; [key: string]: any }): Observable<IJobs> {
-    let params = new HttpParams().set('after', after || '').set('limit', String(limit));
-
-    Object.keys(filters).forEach((key) => (params = params.set(key, filters[key])));
-
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
+    Object.keys(filters).forEach((key) => {
+      if (key == 'tags') {
+        if (typeof filters[key] === 'string') {
+          params = params.set('tags[]', filters[key]);
+        } else {
+          for (let i = 0; i < filters[key].length; i++) {
+            params = params.append('tags[]', filters[key][i]);
+          }
+        }
+      } else {
+        params = params.set(key, filters[key]);
+      }
+    });
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
   }
 
@@ -65,5 +80,21 @@ export class JobService {
   deleteJob(id: number): Observable<boolean> {
     const params = new HttpParams().set('job_id', String(id));
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.DESTROY), { params });
+  }
+
+  getEmployeesList({ after, limit = 10 }: { after?: string; limit: number }): Observable<IPagination<IUser>> {
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYEES), { params });
+  }
+
+  getEmployersList({ after, limit = 10 }: { after?: string; limit: number }): Observable<IPagination<IUser>> {
+    let params = new HttpParams().set('limit', String(limit));
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS));
   }
 }

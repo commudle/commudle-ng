@@ -10,7 +10,7 @@ import { IUser } from 'apps/shared-models/user.model';
 export class UserProfileCardLargeComponent implements OnInit {
   @Input() user: IUser;
   @Input() maxNameLength = 50;
-  @Input() maxUserNameLength = 50;
+  @Input() maxUserNameLength = 10;
   @Input() truncateDesignation = true;
   @Input() showFollowButton = false;
   @Input() alignFollowToRight = false;

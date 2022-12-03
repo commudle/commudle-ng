@@ -12,10 +12,20 @@ export class EventEntryPassesService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getEntryPass(eventId: number, entryCode: string): Observable<IEventEntryPass> {
-    let params = new HttpParams().set('event_id', eventId).set('unique_code', entryCode);
+    const params = new HttpParams().set('event_id', eventId).set('unique_code', entryCode);
     return this.http.get<IEventEntryPass>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.SHOW), {
       params,
     });
+  }
+
+  getExitPass(eventId: number, entryCode: string): Observable<IEventEntryPass> {
+    const params = new HttpParams().set('event_id', eventId).set('unique_code', entryCode);
+    return this.http.get<IEventEntryPass>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.VERIFY_FILLED_EVENT_FORMS),
+      {
+        params,
+      },
+    );
   }
 
   // this creates an entry pass for custom form registrations
