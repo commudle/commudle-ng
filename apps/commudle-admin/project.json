@@ -95,6 +95,18 @@
       "options": {
         "site": "commudle-eacee"
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/commudle-admin/tsconfig.editor.json",
+        "outputPath": "dist/compodoc/commudle-admin"
+      },
+      "configurations": {
+        "json": {
+          "exportFormat": "json"
+        }
+      }
     }
   },
   "tags": []
