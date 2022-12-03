@@ -12,7 +12,7 @@
       <nb-icon icon="info"></nb-icon>
       {{ slot.session_title }}
     </p>
-    <p class="slot-speaker" *ngIf="slot.user">
+    <p *ngIf="slot.user" class="slot-speaker">
       <nb-icon icon="person-outline"></nb-icon>
       {{ slot.user.name }}
     </p>

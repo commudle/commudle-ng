@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SkeletonCardsComponent implements OnInit {
   @Input() cards: number;
   cardsArray;
+
   constructor() {}
 
   ngOnInit(): void {

@@ -8,12 +8,12 @@
           <div *ngFor="let user of users" class="employee">
             <app-user-profile-card-large [user]="user" class="com-py-2"></app-user-profile-card-large>
             <button
-              class="com-h-9"
               (click)="redirectToProfile(user.username)"
-              status="primary"
+              class="com-h-9"
               nbButton
-              size="small"
               shape="semi-round"
+              size="small"
+              status="primary"
             >
               View Profile
             </button>
@@ -22,8 +22,8 @@
             (click)="getEmployeesList()"
             *ngIf="page_info?.has_next_page"
             [nbSpinner]="isLoading"
-            ghost
             fullWidth
+            ghost
             nbButton
           >
             View More

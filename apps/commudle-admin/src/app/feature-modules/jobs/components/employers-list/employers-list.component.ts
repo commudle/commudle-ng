@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JobService } from 'projects/commudle-admin/src/app/services/job.service';
-import { IPageInfo } from 'projects/shared-models/page-info.model';
-import { IUser } from 'projects/shared-models/user.model';
-import { SeoService } from 'projects/shared-services/seo.service';
+import { JobService } from 'apps/commudle-admin/src/app/services/job.service';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { IUser } from 'apps/shared-models/user.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,19 +11,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './employers-list.component.html',
   styleUrls: ['./employers-list.component.scss'],
 })
-export class EmployersListComponent implements OnInit {
-  constructor(private jobService: JobService, private route: Router, private seoService: SeoService) {}
+export class EmployersListComponent implements OnInit, OnDestroy {
   page_info: IPageInfo;
   users: IUser[] = [];
   limit = 10;
   isLoading = true;
-
   subscriptions: Subscription[] = [];
+
+  constructor(private jobService: JobService, private route: Router, private seoService: SeoService) {}
 
   ngOnInit(): void {
     this.getEmployersList();
     this.setMeta();
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }

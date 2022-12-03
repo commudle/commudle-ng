@@ -2,11 +2,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IJob } from 'apps/shared-models/job.model';
 import { IJobs } from 'apps/shared-models/jobs.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
+import { IUser } from 'apps/shared-models/user.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
-import { IPagination } from 'projects/shared-models/pagination.model';
-import { IUser } from 'projects/shared-models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,34 +34,6 @@ export class JobService {
     });
     return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
   }
-
-  // getJobs(
-  //   after?: string,
-  //   limit: number = 10,
-  //   user_id?: number,
-  //   category?: EJobCategory,
-  //   salary_type?: EJobSalaryType,
-  //   salary_currency?: EJobSalaryCurrency,
-  //   location_type?: EJobLocationType,
-  //   job_type?: EJobType,
-  //   status?: EJobStatus,
-  // ): Observable<IJobs> {
-  //   let params = new HttpParams()
-  //     .set('after', after || '')
-  //     .set('limit', String(limit))
-  //     .set('category', category || '')
-  //     .set('salary_type', salary_type || '')
-  //     .set('salary_currency', salary_currency || '')
-  //     .set('location_type', location_type || '')
-  //     .set('job_type', job_type || '')
-  //     .set('status', status || '');
-  //
-  //   if (user_id) {
-  //     params = params.set('user_id', String(user_id));
-  //   }
-  //
-  //   return this.http.get<IJobs>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.INDEX), { params });
-  // }
 
   getJob(id: number): Observable<IJob> {
     const params = new HttpParams().set('job_id', String(id));
@@ -95,6 +67,6 @@ export class JobService {
     if (after) {
       params = params.set('after', after);
     }
-    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS));
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS), { params });
   }
 }

@@ -1,27 +1,32 @@
 .time-cell.fill {
-  width: 20rem;
-  max-width: 100%;
-  height: 12rem;
+  align-items: center;
   border: 1px solid lightgrey;
   border-radius: 5px;
-  // margin: 1px;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  // margin: 1px;
+  height: 12rem;
   justify-content: center;
+  max-width: 100%;
+  width: 20rem;
+
   .filler-text {
     color: #3365ff;
   }
+
   &:hover {
     background: #a2b9ff;
+
     .filler-text {
       color: white;
     }
   }
+
   .time-display {
     margin: 0;
   }
 }
+
 .time-cell.fill {
   .filler-text {
     margin: 0;

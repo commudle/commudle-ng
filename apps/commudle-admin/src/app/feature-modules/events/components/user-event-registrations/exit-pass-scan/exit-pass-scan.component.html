@@ -116,13 +116,13 @@
       </ul>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
-      <button *ngIf="exitPass.attendance" (click)="ref.close()" nbButton size="small" status="success">
+      <button (click)="ref.close()" *ngIf="exitPass.attendance" nbButton size="small" status="success">
         <nb-icon icon="checkmark-outline"></nb-icon>
         Close
       </button>
       <button
-        *ngIf="!exitPass.attendance"
         (click)="getEntryPass(exitPass.unique_code); ref.close()"
+        *ngIf="!exitPass.attendance"
         nbButton
         size="small"
         status="info"

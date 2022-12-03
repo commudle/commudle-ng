@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ExitPassScanComponent } from 'projects/commudle-admin/src/app/feature-modules/events/components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
@@ -10,6 +9,7 @@ import { EventDashboardComponent } from './components/event-dashboard/event-dash
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
 import { EventStatsComponent } from './components/event-stats/event-stats.component';
 import { EntryPassScanComponent } from './components/user-event-registrations/entry-pass-scan/entry-pass-scan.component';
+import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 

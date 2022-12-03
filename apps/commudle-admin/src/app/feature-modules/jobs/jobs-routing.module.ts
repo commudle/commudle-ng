@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeesListComponent } from 'projects/commudle-admin/src/app/feature-modules/jobs/components/employees-list/employees-list.component';
-import { EmployersListComponent } from 'projects/commudle-admin/src/app/feature-modules/jobs/components/employers-list/employers-list.component';
-
 import { AuthGuard } from 'apps/shared-services/lib-authwatch.guard';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
+import { EmployersListComponent } from './components/employers-list/employers-list.component';
 import { JobApplicationsComponent } from './components/job-applications/job-applications.component';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { JobComponent } from './components/job/job.component';

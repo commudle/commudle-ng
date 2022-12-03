@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import * as moment from 'moment';
 
 @Component({
@@ -20,7 +20,7 @@ export class TrackSlotsComponent implements OnInit {
   ngOnInit(): void {}
 
   slotSessionHeight(slot: ITrackSlot): number {
-    let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
+    const diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
     return 0.2 * diff;
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-time-blocks',
@@ -17,8 +17,8 @@ export class TimeBlocksComponent implements OnInit {
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this._ngZone.runOutsideAngular(() => {
-      let sTime = new Date();
-      let eTime = new Date();
+      const sTime = new Date();
+      const eTime = new Date();
       sTime.setHours(hour);
       sTime.setMinutes(minute);
 

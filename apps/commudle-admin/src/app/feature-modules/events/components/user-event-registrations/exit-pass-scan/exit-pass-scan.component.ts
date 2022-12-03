@@ -1,12 +1,12 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbCardComponent, NbToastrService, NbDialogService } from '@nebular/theme';
+import { NbCardComponent, NbDialogService, NbToastrService } from '@commudle/theme';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
-import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { IEvent } from 'projects/shared-models/event.model';
-import { IEventEntryPass } from 'projects/shared-models/event_entry_pass.model';
-import { SeoService } from 'projects/shared-services/seo.service';
+import { EventEntryPassesService } from 'apps/commudle-admin/src/app/services/event-entry-passes.service';
+import { ICommunity } from 'apps/shared-models/community.model';
+import { IEvent } from 'apps/shared-models/event.model';
+import { IEventEntryPass } from 'apps/shared-models/event_entry_pass.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './exit-pass-scan.component.html',
   styleUrls: ['./exit-pass-scan.component.scss'],
 })
-export class ExitPassScanComponent implements OnInit {
+export class ExitPassScanComponent implements OnInit, OnDestroy {
   event: IEvent;
   community: ICommunity;
   entryPass: IEventEntryPass;
@@ -22,11 +22,11 @@ export class ExitPassScanComponent implements OnInit {
 
   hasDevices: boolean;
   hasPermission: boolean;
-  isScannerEnabled: boolean = true;
-  isLoadingEntryPass: boolean = false;
+  isScannerEnabled = true;
+  isLoadingEntryPass = false;
   selectedDevice: MediaDeviceInfo;
   availableDevices: MediaDeviceInfo[] = [];
-  isWindowOpen: boolean = false;
+  isWindowOpen = false;
 
   @ViewChild('scannerComponent', { static: false }) scanner: ZXingScannerComponent;
   @ViewChild('correctSound') correctSound: ElementRef<HTMLAudioElement>;
