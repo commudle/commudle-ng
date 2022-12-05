@@ -203,7 +203,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   updateHeaderImage() {
-    const formData: any = new FormData();
+    const formData: FormData = new FormData();
     formData.append('header_image', this.uploadedHeaderImageFile);
     this.labsService.updateHeaderImage(this.lab.id, formData).subscribe((data) => {
       this.lab.header_image = data;
@@ -290,6 +290,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   onSubmitDialogClose() {
-    this.submitDialogRef.close();
+    this.submitDialogRef?.close();
   }
 }
