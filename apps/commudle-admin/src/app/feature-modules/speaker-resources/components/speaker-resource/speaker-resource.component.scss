@@ -1,0 +1,75 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.speaker-resources {
+  .left-column {
+    width: 370px;
+
+    .user-profile {
+      nb-card-body {
+        padding: $space-16;
+      }
+    }
+  }
+
+  .center-column {
+    width: min(856px, 100vw);
+
+    .details {
+      nb-card-body {
+        .title {
+          font-size: $fs-h1;
+          font-weight: $fw-500;
+        }
+
+        .event {
+          margin-top: $space-24;
+        }
+
+        .date {
+          margin-top: $space-12;
+        }
+
+        .content {
+          margin-top: $space-16;
+          white-space: pre-wrap;
+
+          .embedded-content {
+            margin-top: $space-8;
+          }
+        }
+
+        .interactions {
+          margin-top: $space-16;
+
+          .discussion {
+            margin-left: $space-8;
+          }
+        }
+      }
+    }
+
+    .speaker-resource-discussion {
+      nb-card-body {
+        overflow: initial;
+        padding: 0;
+
+        app-messages {
+          @apply com-block com-h-96;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .speaker-resources {
+    align-items: center;
+    flex-direction: column;
+
+    .left-column {
+      .user-profile {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

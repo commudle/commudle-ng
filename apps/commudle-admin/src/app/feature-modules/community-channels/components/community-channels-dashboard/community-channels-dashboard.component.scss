@@ -1,0 +1,77 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.community-channels-dashboard {
+  display: flex;
+  flex-wrap: nowrap;
+  height: calc(100vh - 56px);
+  justify-content: center;
+  padding-bottom: $space-72;
+  padding-top: $space-16;
+
+  .community-channel-list {
+    background: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .community-channel-discussion {
+    background: white;
+    //overflow: hidden;
+  }
+
+  @media screen and (min-width: 1080px) {
+    .community-list {
+      width: 80px;
+    }
+
+    .community-channel-list {
+      width: 200px !important;
+    }
+
+    .community-channel-discussion {
+      flex-grow: 1;
+      width: 1000px;
+    }
+  }
+
+  @media screen and (max-width: 1079px) {
+    padding-bottom: $space-120;
+    position: relative;
+
+    .community-list {
+      overflow: hidden;
+      width: 0;
+
+      &.show {
+        background-color: #f7f7f7;
+        height: 100vh;
+        left: 0;
+        overflow-y: auto;
+        position: absolute;
+        width: 80px;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-list {
+      overflow: hidden;
+      width: 0;
+
+      &.show {
+        background-color: white;
+        height: 100vh;
+        left: 80px;
+        overflow-y: auto;
+        position: absolute;
+        width: 200px;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-discussion {
+      flex-grow: 1;
+      width: 1000px;
+    }
+  }
+}

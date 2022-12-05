@@ -1,0 +1,75 @@
+<div class="newsletter">
+  <p>
+    {{ this.newsletter.title }}
+    <a [routerLink]="['/newsletters', this.newsletter.id]" ghost nbButton size="small" target="_blank">
+      <nb-icon icon="external-link"></nb-icon>
+      Preview
+    </a>
+  </p>
+  <div>
+    <app-main-newsletter-email-stats [mainNewsletterId]="newsletter.id"></app-main-newsletter-email-stats>
+  </div>
+  <div>
+    <div class="actions d-flex">
+      <a
+        [routerLink]="['/admin', 'newsletters', this.newsletter.id, 'edit']"
+        disabled="{{ newsletter.scheduled_for || newsletter.sent_at }}"
+        nbButton
+        outline
+        size="small"
+      >
+        Edit
+      </a>
+      <nb-select
+        (selectedChange)="updateStatus($event)"
+        [disabled]="newsletter.scheduled_for !== null"
+        [nbTooltip]="
+          newsletter.scheduled_for === null
+            ? 'Admin Communication will not be visible publicly'
+            : 'Status cannot be changed when schedule is set'
+        "
+        [selected]="this.newsletter.status"
+        [size]="'small'"
+      >
+        <nb-option *ngFor="let status of EMainNewsletterStatuses | keyvalue" [value]="status.value">
+          {{ status.key }}
+        </nb-option>
+      </nb-select>
+
+      <button (click)="sendTestEmail()" nbButton outline size="small">Send Test Email</button>
+
+      <button
+        (click)="showScheduler = true"
+        *ngIf="
+          [EMainNewsletterStatuses.PUBLISHED, EMainNewsletterStatuses.ADMIN_COMMUNICATION].includes(
+            newsletter.status
+          ) &&
+          !showScheduler &&
+          !newsletter.scheduled_for &&
+          !newsletter.sent_at
+        "
+        nbButton
+        outline
+        size="small"
+      >
+        <nb-icon icon="clock-outline"></nb-icon>
+        Set Schedule
+      </button>
+
+      <div
+        *ngIf="
+          [EMainNewsletterStatuses.PUBLISHED, EMainNewsletterStatuses.ADMIN_COMMUNICATION].includes(
+            newsletter.status
+          ) &&
+          (showScheduler || newsletter.scheduled_for)
+        "
+        class="d-flex align-items-center"
+      >
+        <app-main-newsletter-scheduler
+          (updatedNewsLetter)="updateSchedule($event)"
+          [newsletter]="newsletter"
+        ></app-main-newsletter-scheduler>
+      </div>
+    </div>
+  </div>
+</div>

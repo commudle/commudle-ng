@@ -1,0 +1,10 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.join-by-token {
+  height: $min-page-height;
+
+  nb-card {
+    width: 500px;
+    max-width: 90vw;
+  }
+}

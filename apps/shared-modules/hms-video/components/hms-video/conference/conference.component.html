@@ -1,0 +1,127 @@
+<div *ngIf="isConnectedToRoom" class="conference-container">
+  <app-conference-user-videos></app-conference-user-videos>
+  <div *ngIf="localPeer" class="d-flex controls">
+    <!-- Recording -->
+    <!--    <button-->
+    <!--      (click)="toggleRecording()"-->
+    <!--      *ngIf="-->
+    <!--        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&-->
+    <!--        embeddedVideoStream?.rtmp_url.length <= 0-->
+    <!--      "-->
+    <!--      [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"-->
+    <!--      ghost-->
+    <!--      nbButton-->
+    <!--      shape="round"-->
+    <!--    >-->
+    <!--      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'" [status]="isRecording ? 'success' : ''"></nb-icon>-->
+    <!--    </button>-->
+    <!-- Streaming -->
+    <button
+      (click)="toggleStreaming()"
+      *ngIf="
+        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&
+        embeddedVideoStream?.rtmp_url.length > 0
+      "
+      [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isStreaming ? 'success' : ''" icon="radio"></nb-icon>
+    </button>
+    <!-- Microphone -->
+    <button
+      (click)="toggleAudio()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+    </button>
+    <!-- Camera -->
+    <button
+      (click)="toggleVideo()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+    </button>
+    <!-- Screen share -->
+    <button
+      (click)="toggleScreenShare()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [disabled]="isScreenSharing && !isLocalScreenSharing"
+      [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
+    </button>
+    <!-- Settings -->
+    <button
+      (click)="openSettings()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltipTrigger]="NbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Open Settings"
+      shape="round"
+    >
+      <nb-icon icon="settings"></nb-icon>
+    </button>
+    <!--     Leave session -->
+    <button
+      (click)="leaveSession()"
+      [nbTooltipTrigger]="NbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Leave session"
+      shape="round"
+    >
+      <nb-icon icon="log-out"></nb-icon>
+    </button>
+    <!--     Join/Leave Stage -->
+    <button
+      (click)="toggleStage()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
+      {{ isOnStage ? 'Leave stage' : 'Join stage' }}
+    </button>
+    <!-- End session -->
+    <button
+      (click)="endSession()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
+      End session
+    </button>
+  </div>
+
+  <nb-alert *ngIf="showReconnecting" class="reconnecting">
+    <svg
+      class="com-animate-spin com--ml-1 com-mr-3 com-h-5 com-w-5 com-text-blue-600"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle class="com-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path
+        class="com-opacity-75"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        fill="currentColor"
+      ></path>
+    </svg>
+    <span>Your internet connection seems to be unstable. We are trying to get you back into the session...</span>
+  </nb-alert>
+</div>

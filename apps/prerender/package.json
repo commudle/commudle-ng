@@ -1,0 +1,13 @@
+{
+  "name": "prerender",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "pm2-runtime start assets/ecosystem.config.js --env production"
+  },
+  "dependencies": {
+    "pm2": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

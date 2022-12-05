@@ -1,0 +1,58 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.actions {
+  a {
+    text-decoration: none;
+    display: block;
+  }
+}
+
+.collaboration-communities {
+  display: flex;
+  flex-wrap: wrap;
+  .community {
+    margin-right: 1rem;
+    width: 150px;
+    height: 160px;
+    border: 0.5px solid lightgrey;
+    padding: 0.5rem;
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 0 auto;
+      overflow: hidden;
+      img {
+        width: 100%;
+        vertical-align: text-bottom;
+      }
+    }
+
+    .details {
+      text-align: center;
+    }
+  }
+
+  nb-icon {
+    font-size: 1rem;
+  }
+}
+
+::ng-deep {
+  nb-option-list {
+    .option-list {
+      nb-option {
+        .logo {
+          max-width: 30px;
+          max-height: 30px;
+          margin: $space-5 $space-5 0 0;
+          border-radius: $border-50;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

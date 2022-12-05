@@ -1,0 +1,6 @@
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--  This is the parent sitemap linking to additional sitemaps for products, collections and pages as shown below. The sitemap can not be edited manually, but is kept up to date in real time.  -->
+<sitemap>
+  <loc>https://json.commudle.com/sitemaps/sitemap.xml</loc>
+</sitemap>
+</sitemapindex>
