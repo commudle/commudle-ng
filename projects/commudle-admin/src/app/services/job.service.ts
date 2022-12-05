@@ -95,6 +95,6 @@ export class JobService {
     if (after) {
       params = params.set('after', after);
     }
-    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS));
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.EMPLOYERS), { params });
   }
 }
