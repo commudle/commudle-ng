@@ -19,3 +19,10 @@ nb-card-body {
     }
   }
 }
+
+.view-more {
+  @apply com-max-h-[435px] com-overflow-y-hidden;
+}
+.view-less {
+  @apply com-max-h-max;
+}

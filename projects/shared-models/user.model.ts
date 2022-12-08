@@ -30,6 +30,8 @@ export interface IUser {
   followees_count: number;
   photo: IAttachedFile;
   logo_image?: IAttachedFile;
+  is_employee: boolean;
+  is_employer: boolean;
 }
 
 export interface IUserSearch extends IUser {

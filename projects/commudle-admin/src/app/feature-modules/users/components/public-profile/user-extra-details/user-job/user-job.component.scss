@@ -1,0 +1,17 @@
+.tittle {
+  @apply com-flex com-items-center;
+  p,
+  nb-icon {
+    @apply com-m-0 com-mr-1;
+  }
+}
+
+.user-job {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
+
+  nb-card-body {
+    @apply com-space-y-2;
+  }
+}

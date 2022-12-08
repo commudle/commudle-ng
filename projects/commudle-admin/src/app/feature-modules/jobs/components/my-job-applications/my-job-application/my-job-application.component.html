@@ -1,0 +1,60 @@
+<div class="my-job-application">
+  <div class="details">
+    <div class="job">
+      <p class="position">
+        <span>{{ jobApplication.job.position }}</span>
+        <small>&nbsp;(Applied on {{ jobApplication.created_at | date }})</small>
+      </p>
+      <p class="company">
+        <nb-icon icon="briefcase-outline" status="info"></nb-icon>
+        {{ jobApplication.job.company }}
+      </p>
+    </div>
+  </div>
+  <div class="actions">
+    <a [routerLink]="['/jobs', jobApplication.job.id]" nbButton shape="semi-round" size="small" status="info">
+      View Job
+    </a>
+    <button
+      *ngIf="jobApplication.job.status === 'open'"
+      (click)="onDialogOpen(deleteJobApplicationDialog)"
+      ghost
+      nbButton
+      shape="semi-round"
+      size="small"
+      status="danger"
+    >
+      Withdraw
+    </button>
+    <button *ngIf="jobApplication.job.status === 'closed'" disabled ghost nbButton shape="semi-round" size="small">
+      Closed
+    </button>
+  </div>
+</div>
+
+<ng-template #deleteJobApplicationDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure you want to <strong>withdraw</strong>
+        <em> {{ jobApplication.job.position }} @ {{ jobApplication.job.company }}</em>
+        ?
+      </p>
+      <br />
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="deleteJobApplication(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

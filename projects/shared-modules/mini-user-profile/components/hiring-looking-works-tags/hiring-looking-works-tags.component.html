@@ -1,0 +1,17 @@
+<div>
+  <div
+    *ngIf="user.is_employee && user.is_employer"
+    class="tag"
+    [ngClass]="{ large: size === 'large', medium: size === 'medium', small: size === 'small' }"
+  >
+    <p class="work">LOOKING FOR WORK</p>
+    <p class="hiring">HIRING</p>
+  </div>
+  <div
+    *ngIf="!(user.is_employee && user.is_employer)"
+    [ngClass]="{ large: size === 'large', medium: size === 'medium', small: size === 'small' }"
+  >
+    <p *ngIf="user.is_employee" class="work tags">LOOKING FOR WORK</p>
+    <p *ngIf="user.is_employer" class="hiring tags">HIRING</p>
+  </div>
+</div>

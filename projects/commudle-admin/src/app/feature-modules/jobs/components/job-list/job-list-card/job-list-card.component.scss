@@ -1,0 +1,48 @@
+:host {
+  @apply com-block;
+}
+
+p {
+  @apply com-m-1 com-ml-2;
+}
+
+nb-card {
+  @apply hover:com-shadow-Card com-m-0;
+  nb-card-body {
+    @apply com-relative;
+    .apply-button {
+      @apply md:com-hidden;
+    }
+
+    .closed {
+      @apply com-flex com-absolute com-right-4 com-text-gray-500;
+    }
+
+    a {
+      .job-details {
+        @apply com-flex com-items-center;
+        &.position {
+          p {
+            @apply com-text-2xl;
+          }
+        }
+      }
+    }
+  }
+
+  nb-card-body:hover {
+    .apply-button {
+      @apply com-flex com-absolute com-right-4;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .apply-button {
+      @apply com-flex com-absolute com-bottom-4 com-right-4;
+    }
+  }
+}
+
+.statusClosed {
+  @apply com-bg-gray-100 hover:com-shadow-none;
+}

@@ -1,0 +1,135 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="entry-pass-scan-container">
+        <nb-card-header>
+          <h2 class="fs-h2">{{ event.name }}</h2>
+          <div class="actions">
+            <a
+              [routerLink]="['/communities', community.slug, 'events', event.slug]"
+              nbButton
+              size="small"
+              status="primary"
+            >
+              Public Event Page
+            </a>
+            <a
+              [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
+              nbButton
+              size="small"
+              status="primary"
+            >
+              Admin Event Dashboard
+            </a>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngIf="hasPermission; else noPermission" class="scanner-controls">
+            <div *ngIf="hasDevices; else noDevices" class="camera-controls">
+              <p>Select a camera:</p>
+              <nb-form-field *ngIf="selectedDevice && availableDevices.length > 0">
+                <nb-icon icon="camera-outline" nbPrefix></nb-icon>
+                <nb-select (selectedChange)="onSelectedChange($event)" [selected]="selectedDevice.deviceId">
+                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">
+                    {{ device.label }}
+                  </nb-option>
+                </nb-select>
+              </nb-form-field>
+            </div>
+
+            <ng-template #noDevices>
+              <p class="com-text-center">No cameras found.</p>
+            </ng-template>
+
+            <nb-toggle [(checked)]="isScannerEnabled" labelPosition="left">Enable scanner</nb-toggle>
+          </div>
+
+          <ng-template #noPermission>
+            <p class="com-text-center">Please give permission to use the camera to scan the pass.</p>
+          </ng-template>
+
+          <div class="scanner">
+            <nb-alert *ngIf="isLoadingEntryPass">
+              <nb-spinner message="Loading entry pass..."></nb-spinner>
+            </nb-alert>
+
+            <zxing-scanner
+              #scannerComponent
+              (camerasFound)="onCamerasFound($event)"
+              (hasDevices)="onHasDevices($event)"
+              (permissionResponse)="onPermissionResponse($event)"
+              (scanSuccess)="onScanSuccess($event)"
+              [(device)]="selectedDevice"
+              [autofocusEnabled]="true"
+              [delayBetweenScanSuccess]="5000"
+              [enable]="isScannerEnabled"
+              [timeBetweenScans]="5000"
+              [tryHarder]="true"
+              previewFitMode="contain"
+            ></zxing-scanner>
+
+            <audio #correctSound>
+              <source
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1FkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9255d1e05be35d9fb971bfb38d1a67d8c39c8b0f/success_sound.mp3"
+                type="audio/mp3"
+              />
+            </audio>
+            <audio #incorrectSound>
+              <source
+                src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1VkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--52910f934db167843387e03f3500aeff6be3a366/error_sound.mp3"
+                type="audio/mp3"
+              />
+            </audio>
+          </div>
+
+          <p class="divider">OR</p>
+
+          <div class="manual-entry-pass">
+            <form (ngSubmit)="onSubmit(manualEntryPassInput.value); manualEntryPassInput.value = ''">
+              <nb-form-field>
+                <input
+                  #manualEntryPassInput
+                  id="manual-entry-pass-input"
+                  nbInput
+                  placeholder="Enter the pass code"
+                  type="text"
+                />
+                <button [disabled]="!manualEntryPassInput.value" ghost nbButton nbSuffix status="info" type="submit">
+                  <nb-icon icon="checkmark-outline"></nb-icon>
+                </button>
+              </nb-form-field>
+            </form>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #formDetailsWindow let-ref="dialogRef">
+  <nb-card class="com-w-72">
+    <nb-card-header>Forms Filled by {{ exitPass.user.name }}</nb-card-header>
+    <nb-card-body>
+      <app-user-profile-card-large *ngIf="exitPass.user" [user]="exitPass.user"></app-user-profile-card-large>
+      <ul *ngFor="let formName of exitPass.forms_filled">
+        <li>{{ formName }}</li>
+      </ul>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button *ngIf="exitPass.attendance" (click)="ref.close()" nbButton size="small" status="success">
+        <nb-icon icon="checkmark-outline"></nb-icon>
+        Close
+      </button>
+      <button
+        *ngIf="!exitPass.attendance"
+        (click)="getEntryPass(exitPass.unique_code); ref.close()"
+        nbButton
+        size="small"
+        status="info"
+      >
+        <nb-icon icon="checkmark-outline"></nb-icon>
+        Mark Attendance
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

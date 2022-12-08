@@ -1,0 +1,214 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="two-column-layout mobile-reverse">
+      <div class="main-column com-mb-20">
+        <nb-card>
+          <nb-card-header class="com-relative">
+            <div class="tittle">
+              <nb-icon icon="briefcase" class="com-mr-1"></nb-icon>
+              <p>
+                {{ heading ? heading : 'Jobs' }}
+              </p>
+              <span class="com-mb-4">({{ jobs.length }})</span>
+              <nb-badge text="Beta" status="primary" class="!com-relative com-mb-5"></nb-badge>
+            </div>
+          </nb-card-header>
+          <nb-card-body class="com-space-y-4">
+            <app-loading-spinner *ngIf="isLoading || isFilterLoading"></app-loading-spinner>
+            <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
+            <button
+              (click)="getJobs()"
+              *ngIf="page_info?.has_next_page"
+              [nbSpinner]="isLoading"
+              fullWidth
+              ghost
+              nbButton
+            >
+              Get more jobs
+            </button>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="right-column">
+        <button
+          *ngIf="currentUser"
+          nbButton
+          shape="semi-round"
+          fullWidth
+          status="primary"
+          class="post-job"
+          (click)="redirectToProfile()"
+        >
+          <nb-icon icon="plus"></nb-icon>
+          Post a job
+        </button>
+        <nb-card class="!com-hidden md:!com-flex com-mb-10">
+          <nb-card-header class="com-py-3">
+            <div class="com-flex com-items-center">
+              <fa-icon [icon]="faFilters" class="com-mr-1"></fa-icon>
+              <p>Filters</p>
+            </div>
+          </nb-card-header>
+          <nb-card-body class="com-pt-0">
+            <form [formGroup]="filterForm" class="">
+              <div class="category filter-options">
+                <p>Category</p>
+                <nb-radio-group formControlName="category" name="category">
+                  <nb-radio *ngFor="let category of jobCategories" [value]="category">
+                    {{ category | titlecase }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="experience filter-options">
+                <p>Experience</p>
+                <nb-radio-group formControlName="experience" name="experience">
+                  <nb-radio
+                    *ngFor="let experience of experiences"
+                    value="{{ experience.value_range.min }}-{{ experience.value_range.max }}"
+                    (click)="
+                      filterForm.patchValue({ min_experience: experience.value_range.min });
+                      filterForm.patchValue({ max_experience: experience.value_range.max })
+                    "
+                  >
+                    {{ experience.label | titlecase }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="salary filter-options">
+                <p>Salary</p>
+                <nb-select formControlName="salary_currency" fullWidth placeholder="Salary Currency" class="com-my-2">
+                  <nb-option *ngFor="let salaryCurrency of jobSalaryCurrencies" [value]="salaryCurrency">
+                    {{ salaryCurrency | uppercase }}
+                  </nb-option>
+                </nb-select>
+                <nb-radio-group formControlName="salary_range" name="salary_range">
+                  <nb-radio
+                    *ngFor="let salary of salaryRange"
+                    value="{{ salary.value_range.min }}-{{ salary.value_range.max }}"
+                    (click)="
+                      filterForm.patchValue({ min_salary: salary.value_range.min });
+                      filterForm.patchValue({ max_salary: salary.value_range.max })
+                    "
+                  >
+                    {{ salary.label | titlecase }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="salary-type filter-options">
+                <p>Salary Type</p>
+                <nb-radio-group formControlName="salary_type" name="salary_type">
+                  <nb-radio *ngFor="let salaryType of jobSalaryTypes" [value]="salaryType">
+                    {{ salaryType | titlecase }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="location-type filter-options">
+                <p>Location Type</p>
+                <nb-radio-group formControlName="location_type" name="location_type">
+                  <nb-radio *ngFor="let locationType of jobLocationTypes" [value]="locationType">
+                    {{ locationType | titlecase }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="job-type filter-options">
+                <p>Job Type</p>
+                <nb-radio-group formControlName="job_type" name="job_type">
+                  <nb-radio *ngFor="let jobType of jobTypes" [value]="jobType">
+                    {{ jobType | enumFormat }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+            </form>
+            <div class="reset-button">
+              <button nbButton (click)="reset()" status="primary">Reset Filter</button>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <nb-accordion>
+          <nb-accordion-item>
+            <nb-accordion-item-header>
+              <div class="com-flex com-items-center">
+                <fa-icon [icon]="faFilters" class="com-mr-1"></fa-icon>
+                <p>Filters</p>
+              </div></nb-accordion-item-header
+            >
+            <nb-accordion-item-body
+              ><form [formGroup]="filterForm" class="">
+                <div class="category filter-options">
+                  <p>Category</p>
+                  <nb-radio-group formControlName="category" name="category">
+                    <nb-radio *ngFor="let category of jobCategories" [value]="category">
+                      {{ category | titlecase }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+                <div class="experience filter-options">
+                  <p>Experience</p>
+                  <nb-radio-group formControlName="experience" name="experience">
+                    <nb-radio
+                      *ngFor="let experience of experiences"
+                      value="{{ experience.value_range.min }}-{{ experience.value_range.max }}"
+                      (click)="
+                        filterForm.patchValue({ min_experience: experience.value_range.min });
+                        filterForm.patchValue({ max_experience: experience.value_range.max })
+                      "
+                    >
+                      {{ experience.label | titlecase }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+                <div class="salary filter-options">
+                  <p>Salary</p>
+                  <nb-select formControlName="salary_currency" fullWidth placeholder="Salary Currency" class="com-my-2">
+                    <nb-option *ngFor="let salaryCurrency of jobSalaryCurrencies" [value]="salaryCurrency">
+                      {{ salaryCurrency | uppercase }}
+                    </nb-option>
+                  </nb-select>
+                  <nb-radio-group formControlName="salary_range" name="salary_range">
+                    <nb-radio
+                      *ngFor="let salary of salaryRange"
+                      value="{{ salary.value_range.min }}-{{ salary.value_range.max }}"
+                      (click)="
+                        filterForm.patchValue({ min_salary: salary.value_range.min });
+                        filterForm.patchValue({ max_salary: salary.value_range.max })
+                      "
+                    >
+                      {{ salary.label | titlecase }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+                <div class="salary-type filter-options">
+                  <p>Salary Type</p>
+                  <nb-radio-group formControlName="salary_type" name="salary_type">
+                    <nb-radio *ngFor="let salaryType of jobSalaryTypes" [value]="salaryType">
+                      {{ salaryType | titlecase }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+                <div class="location-type filter-options">
+                  <p>Location Type</p>
+                  <nb-radio-group formControlName="location_type" name="location_type">
+                    <nb-radio *ngFor="let locationType of jobLocationTypes" [value]="locationType">
+                      {{ locationType | titlecase }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+                <div class="job-type filter-options">
+                  <p>Job Type</p>
+                  <nb-radio-group formControlName="job_type" name="job_type">
+                    <nb-radio *ngFor="let jobType of jobTypes" [value]="jobType">
+                      {{ jobType | enumFormat }}
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+              </form>
+              <div class="reset-button">
+                <button nbButton (click)="reset()" status="primary">Reset Filter</button>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </div>
+    </div>
+  </div>
+</div>

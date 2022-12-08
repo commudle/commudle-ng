@@ -1,5 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
@@ -19,6 +21,7 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   currentUser: ICurrentUser;
+  jobId: number;
 
   userResumes: IUserResume[] = [];
   userResumeForm = this.fb.group({
@@ -30,6 +33,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   isEditing: boolean = false;
   dialogRef: NbDialogRef<any>;
 
+  @ViewChild('userResumeDialog', { static: true }) userResumeDialog: TemplateRef<any>;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -39,9 +44,21 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     public userProfileMenuService: UserProfileMenuService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private scroller: ViewportScroller,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // TODO optimize this
+    if (this.route.snapshot.queryParams['job']) {
+      this.jobId = this.route.snapshot.queryParams['job'];
+      setTimeout(() => {
+        this.scroller.scrollToAnchor('resume');
+        this.onOpenDialog(this.userResumeDialog);
+      }, 1000);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
@@ -59,7 +76,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.userResumeService.getResumes().subscribe((data) => {
         this.userResumes = data;
-        this.userProfileMenuService.addMenuItem('resume', true);
+        if (this.currentUser.id === this.user.id) {
+          this.userProfileMenuService.addMenuItem('resume', true);
+        }
       }),
     );
   }
@@ -70,6 +89,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
         this.nbToastrService.success('Resume uploaded successfully', 'Success');
         this.onCloseDialog();
         this.getUserResumes();
+        if (this.jobId) {
+          this.router.navigate(['/jobs/', this.jobId]);
+        }
       }),
     );
   }
@@ -92,12 +114,6 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  // onOpenEditUserWorkHistoryDialog(templateRef: TemplateRef<any>, userWorkHistory: IUserWorkHistory) {
-  //   this.isEditing = true;
-  //   this.userWorkHistoryForm.patchValue(userWorkHistory);
-  //   this.onOpenDialog(templateRef, userWorkHistory);
-  // }
-
   onOpenEditUserResumeDialog(templateRef: TemplateRef<any>, userResume: IUserResume) {
     this.isEditing = true;
     this.userResumeForm.patchValue(userResume);
@@ -107,15 +123,6 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onCloseDialog() {
-    // this.userWorkHistoryForm.patchValue({
-    //   job_title: '',
-    //   company: '',
-    //   location: '',
-    //   start_date: new Date().toISOString().substring(0, 7),
-    //   end_date: '',
-    //   is_working: true,
-    //   description: '',
-    // });
     this.userResumeForm.patchValue({
       name: '',
     });

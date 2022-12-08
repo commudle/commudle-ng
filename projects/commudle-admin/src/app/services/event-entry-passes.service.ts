@@ -18,6 +18,16 @@ export class EventEntryPassesService {
     });
   }
 
+  getExitPass(eventId: number, entryCode: string): Observable<IEventEntryPass> {
+    let params = new HttpParams().set('event_id', eventId).set('unique_code', entryCode);
+    return this.http.get<IEventEntryPass>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.VERIFY_FILLED_EVENT_FORMS),
+      {
+        params,
+      },
+    );
+  }
+
   // this creates an entry pass for custom form registrations
   createEntryPass(dataFormEntityResponseGroupId): Observable<IEventEntryPass> {
     return this.http.post<IEventEntryPass>(

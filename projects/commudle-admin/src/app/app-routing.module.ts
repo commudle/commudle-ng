@@ -36,6 +36,10 @@ const routes = [
     loadChildren: () => import('./feature-modules/users/users.module').then((m) => m.UsersModule),
   },
   {
+    path: 'me',
+    loadChildren: () => import('./feature-modules/users/users.module').then((m) => m.UsersModule),
+  },
+  {
     path: 'communities',
     component: CommunitiesComponent,
   },
@@ -106,6 +110,10 @@ const routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then((m) => m.LabsModule),
+  },
+  {
+    path: 'jobs',
+    loadChildren: () => import('./feature-modules/jobs/jobs.module').then((m) => m.JobsModule),
   },
   {
     path: 'pricing',

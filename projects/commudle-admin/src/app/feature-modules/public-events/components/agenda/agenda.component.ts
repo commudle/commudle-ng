@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
@@ -13,17 +13,19 @@ import { SeoService } from 'projects/shared-services/seo.service';
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgendaComponent implements OnInit {
   moment = moment;
 
   @Input() community: ICommunity;
   @Input() event: IEvent;
-  @Output() hasAgenda = new EventEmitter();
 
   eventLocations: IEventLocation[] = [];
 
-  constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService) {}
+  isLoading = true;
+
+  constructor(private eventLocationsService: EventLocationsService, private seoService: SeoService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.event.custom_agenda) {
@@ -34,10 +36,9 @@ export class AgendaComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
       this.eventLocations = data.event_locations;
-      if (this.eventLocations.length > 0) {
-        this.hasAgenda.emit(true);
-      }
+      this.isLoading = false;
       this.setSchema();
+      this.changeDetectorRef.markForCheck();
     });
   }
 

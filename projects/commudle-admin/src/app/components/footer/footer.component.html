@@ -2,16 +2,12 @@
   <div class="com-container com-mx-auto com-py-12 com-px-4">
     <div class="xl:com-grid xl:com-grid-cols-3 xl:com-gap-8">
       <div class="com-space-y-8 xl:com-col-span-1">
-        <img alt="Commudle" class="com-h-16" src="/assets/images/commudle-logo128.png" title="Commudle" />
+        <img alt="Commudle" class="com-h-16" src="{{ staticAssets.commudle_logo_128 }}" title="Commudle" />
         <div class="com-text-gray-500 com-text-base">Connect with experts and grow with communities.</div>
         <a
           href="https://blog.google/intl/en-in/introducing-the-inaugural-class-of-the-google-for-startups-accelerator-india-women-founders/"
         >
-          <img
-            class="com-h-16"
-            src="https://kommunity-app.s3.ap-south-1.amazonaws.com/l3dzf3h63y0w2d7xvvvqk8eaqzb2?response-content-disposition=inline%3B%20filename%3D%22GFS_Accel_DigitalBadge_2022_withyear.png%22%3B%20filename%2A%3DUTF-8%27%27GFS_Accel_DigitalBadge_2022_withyear.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXUMQJEJBCK2EC566%2F20221019%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20221019T042503Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3ef81901b24e87660cdc164005e5866aa799dc991eaa4f92e1ddd6fa2019cbb1"
-            alt="Google for Startups 2022"
-          />
+          <img class="com-h-16" src="{{ staticAssets.google_for_startups_badge }}" alt="Google for Startups 2022" />
         </a>
         <div class="footer-social-links com-flex com-space-x-6">
           <a href="https://twitter.com/commudle" target="_blank">
@@ -35,6 +31,7 @@
               <li><a [routerLink]="['/']">Home</a></li>
               <li><a [routerLink]="['/about']">About</a></li>
               <li><a [routerLink]="['/pricing']">Pricing</a></li>
+              <li><a href="https://documentation.commudle.com/" target="_blank">Documentation</a></li>
               <!-- <li><a [routerLink]="['/features']">Features</a></li> -->
             </ul>
           </div>

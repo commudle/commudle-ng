@@ -1,0 +1,31 @@
+p {
+  @apply com-m-0;
+}
+
+.user-job-card {
+  @apply com-m-0;
+
+  nb-card-body {
+    @apply com-space-y-4;
+
+    .position {
+      @apply com-text-base com-font-semibold com-line-clamp-1;
+    }
+
+    .tags {
+      nb-tag {
+        @apply com-text-sm com-font-medium com-border-none;
+      }
+    }
+
+    .location {
+      @apply com-text-sm;
+    }
+
+    .actions {
+      nb-action {
+        @apply com-px-2.5;
+      }
+    }
+  }
+}

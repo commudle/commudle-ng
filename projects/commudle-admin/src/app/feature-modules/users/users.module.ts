@@ -14,6 +14,7 @@ import {
   NbListModule,
   NbRadioModule,
   NbRouteTabsetModule,
+  NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
   NbTagModule,
@@ -47,6 +48,8 @@ import { UserFeedInputComponent } from './components/public-profile/user-extra-d
 import { UserFeedPostComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
 import { UserFeedPostsComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-posts.component';
 import { UserFeedComponent } from './components/public-profile/user-extra-details/user-feed/user-feed.component';
+import { UserJobCardComponent } from './components/public-profile/user-extra-details/user-job/user-job-card/user-job-card.component';
+import { UserJobComponent } from './components/public-profile/user-extra-details/user-job/user-job.component';
 import { UserResumeCardComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-card/user-resume-card.component';
 import { UserResumePreviewComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-preview/user-resume-preview.component';
 import { UserResumeComponent } from './components/public-profile/user-extra-details/user-resume/user-resume.component';
@@ -92,6 +95,8 @@ import { UsersRoutingModule } from './users-routing.module';
     UserResumeComponent,
     UserResumeCardComponent,
     UserResumePreviewComponent,
+    UserJobComponent,
+    UserJobCardComponent,
   ],
   imports: [
     CommonModule,
@@ -122,8 +127,15 @@ import { UsersRoutingModule } from './users-routing.module';
     NbAlertModule,
     NbRouteTabsetModule,
     NbToggleModule,
+    NbSelectModule,
   ],
-  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
+  exports: [
+    BasicUserProfileComponent,
+    UsernameComponent,
+    BasicInfoComponent,
+    SocialLinksComponent,
+    CapitalizeAndRemoveUnderscorePipe,
+  ],
   providers: [UserProfileMenuService],
 })
 export class UsersModule {}

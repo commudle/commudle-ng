@@ -4,14 +4,14 @@
       *appBreakpoints="'<=md'"
       alt="Commudle"
       class="com-d-block com-w-8 com-h-8 com-object-contain"
-      src="/assets/images/commudle-logo72.png"
+      src="{{ staticAssets.commudle_logo_72 }}"
       title="Commudle"
     />
     <img
       *appBreakpoints="'>md'"
       alt="Commudle"
       class="com-d-block com-w-auto com-h-8 com-object-contain"
-      src="/assets/images/commudle-logo-full.png"
+      src="{{ staticAssets.commudle_logo_full }}"
       title="Commudle"
     />
   </a>
@@ -19,6 +19,7 @@
   <div class="home-navbar">
     <app-search-box
       class="com-col-span-3 md:com-col-span-1 md:com-justify-self-start com-w-10/12"
+      shape="semi-round"
     ></app-search-box>
 
     <app-navbar-menu *appBreakpoints="'>md'" class="com-justify-self-center"></app-navbar-menu>

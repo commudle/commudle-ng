@@ -20,6 +20,8 @@ module.exports = {
         'Ultramarine-Blue': '#3366FF',
         Azure: '#0095ff',
         Blueberry: '#4e74ff',
+        'Dark-Spring-Green': '#10654c',
+        'Blue-Violet': '#6F22DF',
       },
       lineClamp: {
         14: '14',
@@ -42,7 +44,9 @@ module.exports = {
         'Card-Subheading': '18px',
         'Paragraph-1': '16px',
         'Paragraph-2': '14px', //Button text, Input
-        'Caption': '12px',
+        Caption: '12px',
+        '10px': '10px',
+        '8px': '8px',
       },
       spacing: {
         /* Adding custom spacing to the tailwind config. */

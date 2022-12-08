@@ -9,6 +9,7 @@ import { UserProfileCardMediumComponent } from './components/profile-cards/user-
 import { UserProfileCardSmallComponent } from './components/profile-cards/user-profile-card-small/user-profile-card-small.component';
 import { UserFollowComponent } from './components/user-follow/user-follow.component';
 import { MiniUserProfileDirective } from './directives/mini-user-profile.directive';
+import { HiringLookingWorksTagsComponent } from './components/hiring-looking-works-tags/hiring-looking-works-tags.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MiniUserProfileDirective } from './directives/mini-user-profile.directi
     UserProfileCardMediumComponent,
     UserProfileCardLargeComponent,
     UserFollowComponent,
+    HiringLookingWorksTagsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { MiniUserProfileDirective } from './directives/mini-user-profile.directi
     UserProfileCardMediumComponent,
     UserProfileCardLargeComponent,
     UserFollowComponent,
+    HiringLookingWorksTagsComponent,
   ],
 })
 export class MiniUserProfileModule {}

@@ -1,0 +1,81 @@
+@keyframes fadeIn {
+  0% {
+    z-index: 0;
+    opacity: 0;
+  }
+  50% {
+    z-index: 10;
+    opacity: 1;
+  }
+  100% {
+    z-index: 0;
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    z-index: 10;
+    opacity: 1;
+  }
+  50% {
+    z-index: 0;
+    opacity: 0;
+  }
+  100% {
+    z-index: 10;
+    opacity: 1;
+  }
+}
+
+.tag {
+  @apply com-relative;
+
+  p {
+    @apply com-absolute com-m-0 com-tracking-wider  com-text-white com-px-2 com-w-max com-font-extrabold com-rounded-md;
+  }
+  p.work {
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-direction: alternate;
+  }
+
+  p.hiring {
+    animation-name: fadeOut;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-direction: alternate;
+  }
+}
+
+.work {
+  @apply com-bg-Dark-Spring-Green;
+}
+
+.hiring {
+  @apply com-bg-Blue-Violet;
+}
+
+.tags {
+  @apply com-absolute com-m-0 com-tracking-wider  com-text-white com-px-1 com-w-max com-h-max com-font-extrabold com-rounded-md;
+}
+
+.large {
+  p {
+    @apply com-text-xs;
+  }
+}
+
+.medium {
+  p {
+    @apply com-text-10px;
+  }
+}
+
+.small {
+  p {
+    @apply com-text-8px com-leading-3;
+  }
+}

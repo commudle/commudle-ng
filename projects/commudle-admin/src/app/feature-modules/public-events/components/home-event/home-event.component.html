@@ -24,11 +24,11 @@
             <nb-icon icon="info-outline" status="info"></nb-icon>
             <span>Details</span>
           </nb-action>
-          <nb-action (click)="scroll(agendaSectionRef)" *ngIf="hasAgenda" class="clickable">
+          <nb-action (click)="scroll(agendaSectionRef)" *ngIf="event.event_locations_count > 0" class="clickable">
             <nb-icon icon="calendar-outline" status="primary"></nb-icon>
             <span>Agenda</span>
           </nb-action>
-          <nb-action (click)="scroll(speakersSectionRef)" *ngIf="hasSpeakers" class="clickable">
+          <nb-action (click)="scroll(speakersSectionRef)" *ngIf="event.event_speakers_count > 0" class="clickable">
             <nb-icon icon="people-outline" status="success"></nb-icon>
             <span>Speakers</span>
           </nb-action>
@@ -69,11 +69,11 @@
         <div #descriptionSection>
           <app-event-description [community]="community" [event]="event" [share]="true"></app-event-description>
         </div>
-        <div #agendaSection>
-          <app-agenda (hasAgenda)="hasAgenda = $event" [community]="community" [event]="event"></app-agenda>
+        <div #agendaSection *ngIf="event.event_locations_count > 0">
+          <app-agenda [community]="community" [event]="event"></app-agenda>
         </div>
-        <div #speakersSection>
-          <app-speakers (hasSpeakers)="hasSpeakers = $event" [community]="community" [event]="event"></app-speakers>
+        <div #speakersSection *ngIf="event.event_speakers_count > 0">
+          <app-speakers [community]="community" [event]="event"></app-speakers>
         </div>
         <div #sponsorsSection>
           <app-sponsors (hasSponsors)="hasSponsors = $event" [event]="event"></app-sponsors>

@@ -30,11 +30,21 @@
     Communities
     <span *ngIf="communities.length > 4">({{ communities.length }})</span>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [ngClass]="{ 'view-more': viewMoreCommunitiesSection, 'view-less': !viewMoreCommunitiesSection }">
     <div class="grid">
-      <app-user-community-card *ngFor="let community of communities" [community]="community"></app-user-community-card>
+      <app-user-community-card
+        *ngFor="let community of communities | orderBy: ['user_role.id']:['desc']"
+        [community]="community"
+      ></app-user-community-card>
     </div>
   </nb-card-body>
+  <nb-card-footer *ngIf="communities?.length > 6" (click)="viewMoreCommunities()" class="com-cursor-pointer">
+    <div>
+      {{ footerCommunitiesCardText }}
+      <nb-icon *ngIf="viewMoreCommunitiesSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreCommunitiesSection" icon="arrow-ios-upward-outline"></nb-icon>
+    </div>
+  </nb-card-footer>
 </nb-card>
 
 <nb-card *ngIf="labs?.length > 0" id="labs">

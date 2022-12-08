@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExitPassScanComponent } from 'projects/commudle-admin/src/app/feature-modules/events/components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
@@ -62,6 +63,10 @@ const routes = [
             path: 'scan-entry-pass',
             component: EntryPassScanComponent,
           },
+          {
+            path: 'scan-exit-pass',
+            component: ExitPassScanComponent,
+          },
         ],
       },
     ],
@@ -73,4 +78,4 @@ const routes = [
   exports: [RouterModule],
   providers: [CommunityDetailsResolver, EventDetailsResolver],
 })
-export class EventsRoutingModule { }
+export class EventsRoutingModule {}
