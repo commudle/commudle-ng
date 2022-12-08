@@ -29,6 +29,7 @@ export interface IUser {
   followers_count: number;
   followees_count: number;
   photo: IAttachedFile;
+  logo_image?: IAttachedFile;
 }
 
 export interface IUserSearch extends IUser {
