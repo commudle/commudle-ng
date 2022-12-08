@@ -223,9 +223,9 @@
                 <div *ngFor="let image of uploadedImagesFiles; let i = index">
                   <div *ngIf="!uploadedImagesFiles[i]['delete']">
                     <img
-                      alt="{{ uploadedImages[i].name || 'Image' }}"
+                      alt="{{ uploadedImages[i]?.name || 'Image' }}"
                       src="{{ uploadedImages[i] }}"
-                      title="{{ uploadedImages[i].name || 'Image' }}"
+                      title="{{ uploadedImages[i]?.name || 'Image' }}"
                     />
                     <p class="clickable">
                       <nb-icon (click)="removeImage(i)" icon="close-circle" status="danger"></nb-icon>

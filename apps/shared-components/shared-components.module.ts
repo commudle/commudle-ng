@@ -1,10 +1,10 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxDatatableModule } from '@commudle/ngx-datatable';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -24,8 +24,8 @@ import {
   NbTooltipModule,
   NbWindowModule,
 } from '@commudle/theme';
-import { NgxDatatableModule } from '@commudle/ngx-datatable';
-import { LinkyModule } from 'ngx-linky';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MessageComponent } from 'apps/shared-components/messages/messages-list/message/message.component';
 import { MessagesListComponent } from 'apps/shared-components/messages/messages-list/messages-list.component';
 import { MessagesComponent } from 'apps/shared-components/messages/messages.component';
@@ -34,6 +34,7 @@ import { HmsVideoModule } from 'apps/shared-modules/hms-video/hms-video.module';
 import { MentionModule } from 'apps/shared-modules/mention/mention.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { LinkyModule } from 'ngx-linky';
 import { BadgeComponent } from './badge/badge.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
 import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
@@ -44,6 +45,7 @@ import { FlagsDisplayComponent } from './flags-display/flags-display.component';
 import { FormResponsesComponent } from './form-responses/form-responses.component';
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
 import { UserDetailsCellComponent } from './form-responses/responses-table/user-details-cell/user-details-cell.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PollResultComponent } from './poll-result/poll-result.component';
@@ -65,8 +67,6 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [

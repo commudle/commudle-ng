@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 
 /**
  * Gets the width of the scrollbar.  Nesc for windows
@@ -7,9 +7,11 @@ import { DOCUMENT } from '@angular/common';
  */
 @Injectable()
 export class ScrollbarHelper {
-  width: number = this.getWidth();
+  width: number;
 
-  constructor(@Inject(DOCUMENT) private document: any) {}
+  constructor(@Inject(DOCUMENT) private document: any) {
+    this.width = this.getWidth();
+  }
 
   getWidth(): number {
     const outer = this.document.createElement('div');
