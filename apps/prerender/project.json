@@ -14,7 +14,7 @@
         "outputPath": "dist/apps/prerender",
         "main": "apps/prerender/src/main.ts",
         "tsConfig": "apps/prerender/tsconfig.app.json",
-        "assets": ["apps/prerender/src/assets"],
+        "assets": ["apps/prerender/src/assets", "apps/prerender/src/.npmrc", "apps/prerender/src/ecosystem.config.js"],
         "generatePackageJson": true
       },
       "configurations": {
