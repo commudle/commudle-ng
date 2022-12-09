@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { Validators, FormBuilder } from '@angular/forms';
 import { IUserRolesUser, EUserRolesUserStatus } from 'projects/shared-models/user_roles_user.model';
@@ -9,7 +9,8 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
-  styleUrls: ['./volunteers.component.scss']
+  styleUrls: ['./volunteers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VolunteersComponent implements OnInit {
   @Input() event: IEvent;
@@ -19,67 +20,57 @@ export class VolunteersComponent implements OnInit {
 
   volunteers: IUserRolesUser[] = [];
 
-
   userRolesUserForm = this.fb.group({
     email: ['', Validators.required],
     user_role_name: [EUserRoles.EVENT_VOLUNTEER, Validators.required],
     parent_type: ['Event', Validators.required],
-    parent_id: ['', Validators.required]
+    parent_id: ['', Validators.required],
   });
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
-  ) { }
+    private toastLogService: LibToastLogService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
     this.getVolunteers();
     this.userRolesUserForm.patchValue({
-      parent_id: this.event.id
+      parent_id: this.event.id,
     });
   }
 
-
   getVolunteers() {
-    this.userRolesUsersService.getEventVolunteers(
-      this.event.slug).subscribe(
-        data => {
-          this.volunteers = data.user_roles_users;
-        }
-      );
+    this.userRolesUsersService.getEventVolunteers(this.event.slug).subscribe((data) => {
+      this.volunteers = data.user_roles_users;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   resendInvitationMail(userRolesUser) {
-    this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe(
-      (data) => {
-        this.toastLogService.successDialog("Invite sent again!");
-      }
-    );
+    this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe((data) => {
+      this.toastLogService.successDialog('Invite sent again!');
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   remove(userRolesUser, index) {
-    this.userRolesUsersService.removeUserRolesUser(userRolesUser.id).subscribe(
-      (data) => {
-
-        this.volunteers.splice(index, 1);
-
-        this.toastLogService.successDialog("Removed!", 3000);
-      }
-    );
+    this.userRolesUsersService.removeUserRolesUser(userRolesUser.id).subscribe((data) => {
+      this.volunteers.splice(index, 1);
+      this.toastLogService.successDialog('Removed!', 3000);
+      this.changeDetectorRef.markForCheck();
+    });
   }
-
 
   createUserRolesUser() {
-    this.userRolesUsersService.createUserRolesUser(this.userRolesUserForm.value).subscribe(
-      data => {
-        this.volunteers.push(data);
-        this.userRolesUserForm.patchValue({
-          email: null
-        });
-        this.toastLogService.successDialog('Invitation Email Sent!');
-      }
-    );
+    this.userRolesUsersService.createUserRolesUser(this.userRolesUserForm.value).subscribe((data) => {
+      this.volunteers.push(data);
+      this.userRolesUserForm.patchValue({
+        email: null,
+      });
+      this.toastLogService.successDialog('Invitation Email Sent!');
+      this.changeDetectorRef.markForCheck();
+    });
   }
-
 }

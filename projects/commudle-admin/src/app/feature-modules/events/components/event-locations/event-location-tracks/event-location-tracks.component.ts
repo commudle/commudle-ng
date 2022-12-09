@@ -9,6 +9,7 @@ import {
   ElementRef,
   NgZone,
   AfterViewInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
@@ -29,7 +30,7 @@ import { IEvent } from 'projects/shared-models/event.model';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;

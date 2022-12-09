@@ -1,4 +1,13 @@
-import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
@@ -14,6 +23,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
   styleUrls: ['./event-dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDashboardComponent implements OnInit, OnDestroy {
   event: IEvent;
@@ -47,6 +57,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private seoService: SeoService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -67,12 +78,14 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   updateRegistrationType(value) {
     this.eventsService.updateCustomRegistration(this.event.id, value).subscribe((data) => {
       this.event = data;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   updateAgendaType(value) {
     this.eventsService.updateCustomAgenda(this.event.id, value).subscribe((data) => {
       this.event = data;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -98,6 +111,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.eventsService.updateHeaderImage(this.event.id, formData).subscribe((data) => {
       this.event = data;
       this.toastLogService.successDialog('Updated!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -111,6 +125,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.uploadedHeaderImageFile = null;
       this.event = data;
       this.toastLogService.successDialog('Deleted');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -122,6 +137,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.eventsService.attendedMemberNotification(this.event.id).subscribe((data) => {
       if (data) {
         this.toastLogService.successDialog('Email Sent');
+        this.changeDetectorRef.markForCheck();
       }
     });
   }

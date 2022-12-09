@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -7,6 +7,7 @@ import { IEvent } from 'projects/shared-models/event.model';
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailsComponent implements OnInit {
   @Input() event: IEvent;

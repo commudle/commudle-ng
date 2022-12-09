@@ -1,9 +1,16 @@
 import { EventSponsorsService } from './../../../../services/event-sponsors.service';
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  TemplateRef,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { NbWindowService } from '@nebular/theme';
 import { IEventSponsor } from 'projects/shared-models/event_sponsor.model';
-import { ISponsors } from 'projects/shared-models/sponsors.model';
 import { ISponsor } from 'projects/shared-models/sponsor.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -11,7 +18,8 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 @Component({
   selector: 'app-sponsors',
   templateUrl: './sponsors.component.html',
-  styleUrls: ['./sponsors.component.scss']
+  styleUrls: ['./sponsors.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SponsorsComponent implements OnInit {
   @ViewChild('sponsorFormTemplate') sponsorFormTemplate: TemplateRef<any>;
@@ -25,7 +33,7 @@ export class SponsorsComponent implements OnInit {
   sponsorForm = this.fb.group({
     logo: ['', Validators.required],
     name: ['', Validators.required],
-    link: ['']
+    link: [''],
   });
 
   uploadedLogoImageFile: File;
@@ -35,8 +43,9 @@ export class SponsorsComponent implements OnInit {
     private windowService: NbWindowService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-    private eventSponsorsService: EventSponsorsService
-  ) { }
+    private eventSponsorsService: EventSponsorsService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
     this.getAllSponsors();
@@ -44,71 +53,62 @@ export class SponsorsComponent implements OnInit {
   }
 
   getAllSponsors() {
-    this.eventSponsorsService.index(this.event.slug).subscribe(data => {
+    this.eventSponsorsService.index(this.event.slug).subscribe((data) => {
       this.sponsors = data.event_sponsors;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   openForm() {
-    this.windowRef = this.windowService.open(
-      this.sponsorFormTemplate, {
-        title: 'Add a Sponsor'
-      }
-    );
+    this.windowRef = this.windowService.open(this.sponsorFormTemplate, {
+      title: 'Add a Sponsor',
+    });
   }
 
   getPastSponsors() {
-    this.eventSponsorsService.getExistingSponsors(this.event.slug).subscribe(
-      data => {
-        this.existingSponsors = data.sponsors;
-      }
-    );
+    this.eventSponsorsService.getExistingSponsors(this.event.slug).subscribe((data) => {
+      this.existingSponsors = data.sponsors;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   addExistingSponsor(sponsorId) {
-    this.eventSponsorsService.addExistingSponsor(this.event.slug, sponsorId).subscribe(
-      data => {
-        this.sponsors.push(data);
-        this.windowRef.close();
-        this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
-      }
-    );
+    this.eventSponsorsService.addExistingSponsor(this.event.slug, sponsorId).subscribe((data) => {
+      this.sponsors.push(data);
+      this.windowRef.close();
+      this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   createSponsor() {
     const formData: any = new FormData();
 
     const sponsorFormData = this.sponsorForm.value;
-    Object.keys(sponsorFormData).forEach(
-      key => (!(sponsorFormData[key] == null) ? formData.append(`sponsor[${key}]`, sponsorFormData[key]) : '')
-      );
+    Object.keys(sponsorFormData).forEach((key) =>
+      !(sponsorFormData[key] == null) ? formData.append(`sponsor[${key}]`, sponsorFormData[key]) : '',
+    );
 
     if (this.uploadedLogoImageFile) {
       formData.append('sponsor[logo]', this.uploadedLogoImageFile);
     }
-    this.eventSponsorsService.create(this.event.slug, formData).subscribe(
-      data => {
-        this.sponsors.push(data);
-        this.windowRef.close();
-        this.removeLogo();
-        this.sponsorForm.reset();
-        this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
-      }
-    );
+    this.eventSponsorsService.create(this.event.slug, formData).subscribe((data) => {
+      this.sponsors.push(data);
+      this.windowRef.close();
+      this.removeLogo();
+      this.sponsorForm.reset();
+      this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
+    });
   }
 
   removeSponsor(eventSponsorId, index) {
-    this.eventSponsorsService.destroy(eventSponsorId).subscribe(
-      data => {
-        this.sponsors.splice(index, 1);
-      }
-    );
+    this.eventSponsorsService.destroy(eventSponsorId).subscribe((data) => {
+      this.sponsors.splice(index, 1);
+    });
   }
-
 
   // form functionalities
   displaySelectedLogo(event: any) {
-
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file.size > 2425190) {
@@ -129,5 +129,4 @@ export class SponsorsComponent implements OnInit {
     this.uploadedLogoImageFile = null;
     this.sponsorForm.get('logo').patchValue('');
   }
-
 }

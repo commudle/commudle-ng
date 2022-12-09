@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-event-embedded-video-stream',
   templateUrl: './event-embedded-video-stream.component.html',
   styleUrls: ['./event-embedded-video-stream.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
@@ -40,6 +41,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private toastLogService: LibToastLogService,
     private authService: LibAuthwatchService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -50,7 +52,10 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
 
     this.getEmbeddedVideoStream();
 
-    this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => (this.currentUser = data));
+    this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => {
+      this.currentUser = data;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   ngOnDestroy() {
@@ -72,6 +77,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
         this.evs = data;
         this.embeddedVideoStreamForm.patchValue(data);
         this.updateValidators();
+        this.changeDetectorRef.markForCheck();
       }
     });
   }
@@ -86,6 +92,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
       this.embeddedVideoStreamForm.patchValue(data);
       this.updateValidators();
       this.toastLogService.successDialog('Saved!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 

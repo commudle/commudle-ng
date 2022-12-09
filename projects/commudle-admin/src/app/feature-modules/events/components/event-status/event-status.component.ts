@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -9,6 +17,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   selector: 'app-event-status',
   templateUrl: './event-status.component.html',
   styleUrls: ['./event-status.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventStatusComponent implements OnInit {
   @Input() event: IEvent;
@@ -16,7 +25,11 @@ export class EventStatusComponent implements OnInit {
 
   eventStatuses: string[] = Object.values(EEventStatuses);
 
-  constructor(private eventsService: EventsService, private toastLogService: LibToastLogService) {}
+  constructor(
+    private eventsService: EventsService,
+    private toastLogService: LibToastLogService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {}
 
@@ -26,6 +39,7 @@ export class EventStatusComponent implements OnInit {
     this.eventsService.updateStatus(this.event.id, status).subscribe((value: IEventStatus) => {
       this.updatedEventStatus.emit(value);
       this.toastLogService.successDialog('Status Updated!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 }
