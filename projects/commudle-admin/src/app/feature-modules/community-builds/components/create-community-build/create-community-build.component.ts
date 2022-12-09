@@ -17,6 +17,7 @@ import { EUserRolesUserStatus, IUserRolesUser } from 'projects/shared-models/use
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-community-build',
@@ -39,6 +40,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   buildTypes = Object.keys(EBuildType);
 
   paramsTags = [];
+  faEdit = faEdit;
 
   communityBuildForm = this.fb.group({
     name: ['', Validators.required],

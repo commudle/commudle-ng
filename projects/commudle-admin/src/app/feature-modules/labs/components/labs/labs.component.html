@@ -10,7 +10,7 @@
             <div
               (click)="onTagAdd(tag.name)"
               *ngFor="let tag of popularTags"
-              class="labs-popular-tag com-mr-5"
+              class="labs-popular-tag com-mr-5 com-cursor-pointer"
               [ngClass]="{ active: tags === tag.name }"
             >
               {{ tag.name }}
