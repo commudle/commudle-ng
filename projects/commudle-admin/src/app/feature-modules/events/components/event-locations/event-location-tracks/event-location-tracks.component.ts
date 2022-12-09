@@ -30,7 +30,7 @@ import { IEvent } from 'projects/shared-models/event.model';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;
@@ -156,7 +156,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
       date: this.minSlotDate,
-      start_time: dataFromTimeBlocks.eTime,
+      start_time: dataFromTimeBlocks.sTime,
       end_time: dataFromTimeBlocks.eTime,
     });
 

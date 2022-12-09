@@ -1,9 +1,10 @@
-import { Component, Input, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, NgZone, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-time-blocks',
   templateUrl: './time-blocks.component.html',
   styleUrls: ['./time-blocks.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeBlocksComponent implements OnInit {
   @Input() timeBlocks;
@@ -23,7 +24,7 @@ export class TimeBlocksComponent implements OnInit {
       sTime.setMinutes(minute);
 
       eTime.setHours(hour);
-      eTime.setMinutes(minute + 5);
+      eTime.setMinutes(minute + 30);
 
       this.addSlotForm.emit({ eventLocationTrack, sTime, eTime });
     });
