@@ -15,6 +15,7 @@ export class LabsComponent implements OnInit {
   page = 1;
   count = 9;
   total = -1;
+  tags = '';
 
   popularTags: ITag[] = [];
   popularLabs: ILab[] = [];
@@ -43,6 +44,7 @@ export class LabsComponent implements OnInit {
 
   onTagAdd(value: string) {
     if (!this.searchedTags.includes(value)) {
+      this.tags = value;
       this.searchedTags.push(value);
       this.total = -1;
       this.page = 1;

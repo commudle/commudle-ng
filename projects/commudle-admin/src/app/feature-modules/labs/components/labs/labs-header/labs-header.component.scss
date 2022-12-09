@@ -31,8 +31,7 @@
       .lab-search-tags {
         color: $neon-blue;
         font-weight: 600;
-        margin-bottom: $space-8;
-        @apply com-text-4xl;
+        @apply com-text-4xl com-my-2;
       }
     }
   }

@@ -58,3 +58,7 @@
     margin: $space-12 0 $space-32;
   }
 }
+
+.active {
+  @apply com-border-2 com-border-solid com-border-[#2563EB] com-rounded-lg com-bg-[#2563EB]/10 com-px-2;
+}
