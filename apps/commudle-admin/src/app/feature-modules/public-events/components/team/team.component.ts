@@ -7,32 +7,38 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss']
+  styleUrls: ['./team.component.scss'],
 })
 export class TeamComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() event: IEvent;
-  @Output() hasVolunteers = new EventEmitter();
 
   volunteers: IUser[] = [];
+  isLoading = true;
 
-  constructor(
-    private eventsService: EventsService
-  ) { }
+  viewMoreSection = true;
+  footerText = 'View More';
+
+  constructor(private eventsService: EventsService) {}
 
   ngOnInit() {
+    this.footerText = `View More (${this.event.event_volunteers_count - 10})`;
     this.getVolunteers();
   }
 
   getVolunteers() {
-    this.eventsService.pGetEventVolunteers(this.event.id).subscribe(
-      data => {
-        this.volunteers = data.users;
-        if (this.volunteers.length > 0) {
-          this.hasVolunteers.emit(true);
-        }
-      }
-    );
+    this.eventsService.pGetEventVolunteers(this.event.id).subscribe((data) => {
+      this.volunteers = data.users;
+      this.isLoading = false;
+    });
   }
 
+  viewMore() {
+    this.viewMoreSection = !this.viewMoreSection;
+    if (!this.viewMoreSection) {
+      this.footerText = `View Less`;
+    } else {
+      this.footerText = `View More (${this.event.event_volunteers_count - 10})`;
+    }
+  }
 }
