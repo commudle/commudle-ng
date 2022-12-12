@@ -1,7 +1,14 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@commudle/theme';
 import { faLink, faMapPin, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
@@ -17,6 +24,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-event-locations',
   templateUrl: './event-locations.component.html',
   styleUrls: ['./event-locations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
@@ -41,13 +49,13 @@ export class EventLocationsComponent implements OnInit {
   selectedEventType = EEventType.OFFLINE_ONLY;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private eventLocationsService: EventLocationsService,
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private toastLogService: LibToastLogService,
     private sanitizer: DomSanitizer,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.eventLocationForm = this.fb.group({
       location: this.fb.group({
@@ -79,6 +87,7 @@ export class EventLocationsComponent implements OnInit {
   getEventSpeakers() {
     this.dataFormEntityResponseGroupsService.getEventSpeakers(this.event.id).subscribe((data) => {
       this.eventSpeakers = data.data_form_entity_response_groups;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -135,6 +144,7 @@ export class EventLocationsComponent implements OnInit {
       this.eventLocations.push(data);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -169,6 +179,7 @@ export class EventLocationsComponent implements OnInit {
       this.eventLocations[locationIndex] = data;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -185,6 +196,7 @@ export class EventLocationsComponent implements OnInit {
         const locationIndex = this.eventLocations.findIndex((k) => data.id);
         this.eventLocations.splice(locationIndex, 1);
         this.toastLogService.successDialog('Deleted');
+        this.changeDetectorRef.markForCheck();
       });
     }
     this.windowRef.close();

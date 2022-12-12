@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import * as moment from 'moment';
 
@@ -6,6 +6,7 @@ import * as moment from 'moment';
   selector: 'app-track-slots',
   templateUrl: './track-slots.component.html',
   styleUrls: ['./track-slots.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackSlotsComponent implements OnInit {
   @Input() slots;

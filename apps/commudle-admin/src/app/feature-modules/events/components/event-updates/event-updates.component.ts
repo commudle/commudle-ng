@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EventUpdatesService } from 'apps/commudle-admin/src/app/services/event-updates.service';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -9,6 +9,7 @@ import * as moment from 'moment';
   selector: 'app-event-updates',
   templateUrl: './event-updates.component.html',
   styleUrls: ['./event-updates.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventUpdatesComponent implements OnInit {
   @Input() event: IEvent;
@@ -18,7 +19,11 @@ export class EventUpdatesComponent implements OnInit {
 
   eventUpdateForm;
 
-  constructor(private eventUpdatesService: EventUpdatesService, private fb: FormBuilder) {
+  constructor(
+    private eventUpdatesService: EventUpdatesService,
+    private fb: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
     this.eventUpdateForm = this.fb.group({
       details: ['', Validators.required],
     });
@@ -31,6 +36,7 @@ export class EventUpdatesComponent implements OnInit {
   getEventUpdates() {
     this.eventUpdatesService.getEventUpdates(this.event.id).subscribe((data) => {
       this.eventUpdates = data.event_updates;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -38,12 +44,14 @@ export class EventUpdatesComponent implements OnInit {
     this.eventUpdatesService.createEventUpdate(this.eventUpdateForm.value, this.event.id).subscribe((data) => {
       this.eventUpdates.unshift(data);
       this.eventUpdateForm.reset();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   deleteEventUpdate(eventUpdateId, index) {
     this.eventUpdatesService.deleteEventUpdate(eventUpdateId).subscribe((data) => {
       this.eventUpdates.splice(index, 1);
+      this.changeDetectorRef.markForCheck();
     });
   }
 }

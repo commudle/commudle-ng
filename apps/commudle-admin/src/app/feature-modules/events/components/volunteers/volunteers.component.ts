@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
@@ -10,6 +10,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
   styleUrls: ['./volunteers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VolunteersComponent implements OnInit {
   @Input() event: IEvent;
@@ -25,6 +26,7 @@ export class VolunteersComponent implements OnInit {
     private userRolesUsersService: UserRolesUsersService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.userRolesUserForm = this.fb.group({
       email: ['', Validators.required],
@@ -44,12 +46,14 @@ export class VolunteersComponent implements OnInit {
   getVolunteers() {
     this.userRolesUsersService.getEventVolunteers(this.event.slug).subscribe((data) => {
       this.volunteers = data.user_roles_users;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   resendInvitationMail(userRolesUser) {
     this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe((data) => {
       this.toastLogService.successDialog('Invite sent again!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -58,6 +62,7 @@ export class VolunteersComponent implements OnInit {
       this.volunteers.splice(index, 1);
 
       this.toastLogService.successDialog('Removed!', 3000);
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -68,6 +73,7 @@ export class VolunteersComponent implements OnInit {
         email: null,
       });
       this.toastLogService.successDialog('Invitation Email Sent!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 }

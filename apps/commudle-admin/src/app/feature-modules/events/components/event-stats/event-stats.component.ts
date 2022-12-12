@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@commudle/theme';
 import { Chart } from 'chart.js';
@@ -16,6 +16,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
   selector: 'app-event-stats',
   templateUrl: './event-stats.component.html',
   styleUrls: ['./event-stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventStatsComponent implements OnInit {
   event: IEvent;
@@ -38,6 +39,7 @@ export class EventStatsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
     private seoService: SeoService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -52,6 +54,7 @@ export class EventStatsComponent implements OnInit {
       this.getAttendees();
       this.getDiscussions();
       this.getPolls();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -97,6 +100,7 @@ export class EventStatsComponent implements OnInit {
           },
         },
       });
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -104,11 +108,13 @@ export class EventStatsComponent implements OnInit {
     if (this.event.custom_registration) {
       this.statsEventsService.customRegistration(this.event.slug).subscribe((data) => {
         this.registrations = data.chart_data;
+        this.changeDetectorRef.markForCheck();
       });
     } else {
       this.statsEventsService.simpleEventRegistration(this.event.slug).subscribe((data) => {
         this.registrations = data.chart_data;
         this.calculateTotalSimpleRegistrations();
+        this.changeDetectorRef.markForCheck();
       });
     }
   }
@@ -172,12 +178,14 @@ export class EventStatsComponent implements OnInit {
           responsive: true,
         },
       });
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   getDiscussions() {
     this.statsEventsService.discussions(this.event.slug).subscribe((data) => {
       this.discussions = data.discussions;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -201,6 +209,7 @@ export class EventStatsComponent implements OnInit {
   getPolls() {
     this.statsEventsService.polls(this.event.slug).subscribe((data) => {
       this.polls = data.polls;
+      this.changeDetectorRef.markForCheck();
     });
   }
 

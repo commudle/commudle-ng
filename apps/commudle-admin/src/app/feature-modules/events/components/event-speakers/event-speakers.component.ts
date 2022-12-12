@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserEventRegistrationsService } from 'apps/commudle-admin/src/app/services/user-event-registrations.service';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -11,6 +11,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-event-speakers',
   templateUrl: './event-speakers.component.html',
   styleUrls: ['./event-speakers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventSpeakersComponent implements OnInit {
   @Input() event: IEvent;
@@ -23,6 +24,7 @@ export class EventSpeakersComponent implements OnInit {
     private fb: FormBuilder,
     private userEventRegistrationsService: UserEventRegistrationsService,
     private toastLogService: LibToastLogService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.speakerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,6 +38,7 @@ export class EventSpeakersComponent implements OnInit {
   getSpeakers() {
     this.userEventRegistrationsService.speakers(this.event.id).subscribe((data) => {
       this.speakers = data.user_event_registrations;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -46,12 +49,14 @@ export class EventSpeakersComponent implements OnInit {
         this.speakers.push(data);
         this.speakerForm.reset();
         this.toastLogService.successDialog('Invitation sent by email');
+        this.changeDetectorRef.markForCheck();
       });
   }
 
   resendRequest(speakerId) {
     this.userEventRegistrationsService.resendSpeakerInvitation(speakerId).subscribe((data) => {
       this.toastLogService.successDialog('Invite Sent Again');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -59,6 +64,7 @@ export class EventSpeakersComponent implements OnInit {
     this.userEventRegistrationsService.removeSpeaker(speakerId).subscribe((data) => {
       this.speakers.splice(index, 1);
       this.toastLogService.successDialog('Removed');
+      this.changeDetectorRef.markForCheck();
     });
   }
 }
