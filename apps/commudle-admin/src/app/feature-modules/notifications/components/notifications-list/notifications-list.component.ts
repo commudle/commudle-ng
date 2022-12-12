@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 
 @Component({
   selector: 'app-notifications-list',
@@ -28,6 +29,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   canLoadMore = true;
 
   ENotificationStatuses = ENotificationStatuses;
+  ENotificationSenderTypes = ENotificationSenderTypes;
   moment = moment;
 
   subscriptions: Subscription[] = [];
@@ -66,8 +68,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationsStore.userNotifications$.subscribe((value) => {
-          if (value) {
-            this.notifications = _.uniqBy(this.notifications.concat(value), 'id');
+          if (value.notifications) {
+            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
             this.page += 1;
             this.total = value.total;
             this.isLoading = false;

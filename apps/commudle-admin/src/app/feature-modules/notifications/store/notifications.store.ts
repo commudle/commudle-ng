@@ -60,14 +60,14 @@ export class NotificationsStore {
 
   getUserNotifications(page: number, count: number) {
     this.notificationsService.getAllNotifications(page, count).subscribe((data) => {
-      this.userNotifications.next(data.notifications);
+      this.userNotifications.next(data);
     });
   }
 
   getCommunityNotifications(page: number, count: number, communityId: number) {
     this.generateCommunityNotificationsObservable(communityId);
     this.notificationsService.getAllNotifications(page, count, communityId, 'community').subscribe((data) => {
-      this.communityNotifications[`${communityId}`].next(data.notifications);
+      this.communityNotifications[`${communityId}`].next(data);
     });
   }
 

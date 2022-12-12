@@ -5,6 +5,7 @@ import { INotification } from 'apps/shared-models/notification.model';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 
 @Component({
   selector: 'app-community-notifications',
@@ -25,6 +26,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   moment = moment;
   ENotificationStatuses = ENotificationStatuses;
+  ENotificationSenderTypes = ENotificationSenderTypes;
 
   notifications: INotification[] = [];
 
@@ -53,12 +55,12 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   getNotifications() {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
-      this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
       this.isLoading = true;
+      this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
       this.subscriptions.push(
         this.notificationsStore.communityNotifications$[this.communityId].subscribe((value) => {
-          if (value) {
-            this.notifications = _.uniqBy(this.notifications.concat(value), 'id');
+          if (value.notifications) {
+            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
             this.page += 1;
             this.total = value.total;
             this.isLoading = false;

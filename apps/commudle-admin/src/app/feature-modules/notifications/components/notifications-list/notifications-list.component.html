@@ -1,11 +1,27 @@
-<nb-list (scrolled)="getNotifications()" appInfiniteScroll class="notification-list">
+<nb-list
+  (scrolled)="getNotifications()"
+  [infiniteScrollDisabled]="!(canLoadMore && total)"
+  appInfiniteScroll
+  class="notification-list"
+>
   <nb-list-item
     *ngFor="let notification of notifications"
     [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
   >
     <div class="com-flex com-items-center">
-      <nb-user [picture]="notification.sender.photo?.i64" onlyPicture></nb-user>
-      <div>
+      <img
+        *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
+        src="{{ notification.sender.photo.i64 }}"
+        alt="{{ notification.sender.name }}"
+        class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+      />
+      <img
+        *ngIf="notification.sender_type === ENotificationSenderTypes.KOMMUNITY"
+        src="{{ notification.sender.logo_image.i64 }}"
+        alt="{{ notification.sender.name }}"
+        class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+      />
+      <div class="com-ml-2">
         <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
         <app-notifications-list-item
           (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
