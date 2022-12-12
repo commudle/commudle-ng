@@ -1,4 +1,13 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventCollaborationCommunitiesService } from 'apps/commudle-admin/src/app/services/event-collaboration-communities.service';
@@ -11,6 +20,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-collaborating-communities',
   templateUrl: './collaborating-communities.component.html',
   styleUrls: ['./collaborating-communities.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
@@ -30,6 +40,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     private eventCollaborationCommunitiesService: EventCollaborationCommunitiesService,
     private toastLogService: LibToastLogService,
     private communitiesService: CommunitiesService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -50,21 +61,24 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   }
 
   onChange() {
-    return this.communitiesService
-      .searchByName(this.input.nativeElement.value)
-      .subscribe((data) => (this.communities = data));
+    return this.communitiesService.searchByName(this.input.nativeElement.value).subscribe((data) => {
+      this.communities = data;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   getCollaborations() {
-    this.eventCollaborationCommunitiesService
-      .get(this.event.id)
-      .subscribe((data) => (this.collaborationCommunities = data.event_collaboration_communities));
+    this.eventCollaborationCommunitiesService.get(this.event.id).subscribe((data) => {
+      this.collaborationCommunities = data.event_collaboration_communities;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   createCollaboration(selectedCommunityId) {
     this.eventCollaborationCommunitiesService.create(this.event.id, selectedCommunityId).subscribe((data) => {
       this.collaborationCommunities.push(data);
       this.toastLogService.successDialog('Collaboration request sent to the primary email of all organizers');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -72,12 +86,14 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     this.eventCollaborationCommunitiesService.destroy(collaborationCommunityId).subscribe((data) => {
       this.collaborationCommunities.splice(index, 1);
       this.toastLogService.successDialog('Collaboration removed!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   resendConfirmationEmail(collaborationCommunityId) {
     this.eventCollaborationCommunitiesService.resendInvitationMail(collaborationCommunityId).subscribe((data) => {
       this.toastLogService.successDialog('Collaboration request email resent!');
+      this.changeDetectorRef.markForCheck();
     });
   }
 

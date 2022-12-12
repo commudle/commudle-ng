@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowService } from '@commudle/theme';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -11,6 +19,7 @@ import { EventSponsorsService } from './../../../../services/event-sponsors.serv
   selector: 'app-sponsors',
   templateUrl: './sponsors.component.html',
   styleUrls: ['./sponsors.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SponsorsComponent implements OnInit {
   @Input() event: IEvent;
@@ -31,6 +40,7 @@ export class SponsorsComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private eventSponsorsService: EventSponsorsService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.sponsorForm = this.fb.group({
       logo: ['', Validators.required],
@@ -47,6 +57,7 @@ export class SponsorsComponent implements OnInit {
   getAllSponsors() {
     this.eventSponsorsService.index(this.event.slug).subscribe((data) => {
       this.sponsors = data.event_sponsors;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -59,6 +70,7 @@ export class SponsorsComponent implements OnInit {
   getPastSponsors() {
     this.eventSponsorsService.getExistingSponsors(this.event.slug).subscribe((data) => {
       this.existingSponsors = data.sponsors;
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -67,6 +79,7 @@ export class SponsorsComponent implements OnInit {
       this.sponsors.push(data);
       this.windowRef.close();
       this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -93,6 +106,7 @@ export class SponsorsComponent implements OnInit {
   removeSponsor(eventSponsorId, index) {
     this.eventSponsorsService.destroy(eventSponsorId).subscribe((data) => {
       this.sponsors.splice(index, 1);
+      this.changeDetectorRef.markForCheck();
     });
   }
 

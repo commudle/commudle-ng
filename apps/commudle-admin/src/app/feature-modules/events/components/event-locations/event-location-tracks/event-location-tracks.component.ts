@@ -1,5 +1,7 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -29,7 +31,7 @@ import * as moment from 'moment';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   @Input() eventLocations: IEventLocation[] = [];
@@ -78,6 +80,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     private trackSlotsService: TrackSlotsService,
     private sanitizer: DomSanitizer,
     private _ngZone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.eventLocationTrackForm = this.fb.group({
       event_location_track: this.fb.group({
@@ -153,7 +156,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
       date: this.minSlotDate,
-      start_time: dataFromTimeBlocks.eTime,
+      start_time: dataFromTimeBlocks.sTime,
       end_time: dataFromTimeBlocks.eTime,
     });
 
@@ -190,6 +193,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       this.addSession.emit(data);
       this.toastLogService.successDialog('Slot Added!');
       this.trackSlotForm.reset();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -265,6 +269,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       this.updateSession.emit(data);
       this.toastLogService.successDialog('Slot Updated!');
       this.trackSlotForm.reset();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -280,6 +285,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
         this.removeSession.emit(trackSlot);
         this.toastLogService.successDialog('Deleted');
+        this.changeDetectorRef.markForCheck();
       });
     }
     this.windowRef.close();
@@ -306,6 +312,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         this.addTrack.emit(data);
         this.toastLogService.successDialog('New Track Added!');
         this.eventLocationTrackForm.reset();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -336,6 +343,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         this.updateTrack.emit(data);
         this.toastLogService.successDialog(`Updated to ${data.name}`);
         this.eventLocationTrackForm.reset();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -351,6 +359,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       this.eventLocationTracksService.deleteEventLocationTrack(eventLocationTrackId).subscribe((data) => {
         this.removeTrack.emit(eventLocationTrackId);
         this.toastLogService.successDialog('Deleted');
+        this.changeDetectorRef.markForCheck();
       });
     }
     this.windowRef.close();
