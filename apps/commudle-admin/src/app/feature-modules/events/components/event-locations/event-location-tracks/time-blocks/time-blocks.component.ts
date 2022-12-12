@@ -15,6 +15,11 @@ export class TimeBlocksComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  log(event: any) {
+    const hour = (event.layerY - 42) / 190;
+    this.showAddSlotForm(this.lt, hour, 0);
+  }
+
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this._ngZone.runOutsideAngular(() => {
       const sTime = new Date();
@@ -23,7 +28,7 @@ export class TimeBlocksComponent implements OnInit {
       sTime.setMinutes(minute);
 
       eTime.setHours(hour);
-      eTime.setMinutes(minute + 5);
+      eTime.setMinutes(minute + 30);
 
       this.addSlotForm.emit({ eventLocationTrack, sTime, eTime });
     });

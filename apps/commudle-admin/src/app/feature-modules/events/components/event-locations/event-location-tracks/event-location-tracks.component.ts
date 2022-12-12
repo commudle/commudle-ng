@@ -153,7 +153,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
       date: this.minSlotDate,
-      start_time: dataFromTimeBlocks.eTime,
+      start_time: dataFromTimeBlocks.sTime,
       end_time: dataFromTimeBlocks.eTime,
     });
 
