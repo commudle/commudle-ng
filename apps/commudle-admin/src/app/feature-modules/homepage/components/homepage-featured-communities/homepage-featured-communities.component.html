@@ -6,15 +6,14 @@
       <!--          <nb-icon icon="people"></nb-icon>-->
       <!--        </button>-->
       <!--      </a>-->
-      <button
-        (click)="copyTextToClipboard(featuredCommunity)"
-        class="featured-community-share-btn"
-        nbButton
-        shape="round"
-        size="small"
-      >
-        <nb-icon icon="share"></nb-icon>
-      </button>
+      <app-share-button
+        [content]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
+        [title]="featuredCommunity.kommunity.name"
+        [text]="featuredCommunity.reason"
+        [url]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
+        [showText]="false"
+        [round]="true"
+      ></app-share-button>
     </div>
     <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" class="com-no-underline">
       <div

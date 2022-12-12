@@ -17,6 +17,7 @@ import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_ro
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-community-build',
@@ -39,6 +40,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   buildTypes = Object.keys(EBuildType);
 
   paramsTags = [];
+  faEdit = faEdit;
 
   communityBuildForm;
 
@@ -270,7 +272,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       );
     }
 
-    for (let entries in cBuildFormValue['team']) {
+    for (const entries in cBuildFormValue['team']) {
       formData.append(`community_build[team][][value]`, cBuildFormValue['team'][entries]['value']);
     }
 

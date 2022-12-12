@@ -75,32 +75,35 @@
   }
 
   .interactions {
-    @apply com-m-4;
+    @apply com-m-4 com-flex com-justify-around com-flex-row com-items-center;
 
     app-votes-display {
       direction: rtl;
+      @apply com-flex;
 
       &::ng-deep {
+        div {
+          @apply com-flex com-items-center;
+        }
         p {
           @apply com-text-2xl;
+        }
+        span {
+          @apply com-text-Azure;
+        }
 
-          span {
+        nb-icon {
+          @apply com-text-2xl;
+
+          &:not(.voted-heart) {
             @apply com-text-Azure;
-          }
-
-          nb-icon {
-            @apply com-text-2xl;
-
-            &:not(.voted-heart) {
-              @apply com-text-Azure;
-            }
           }
         }
       }
     }
 
     .message-count {
-      @apply com-text-Azure com-text-2xl;
+      @apply com-text-Azure com-text-2xl com-flex com-items-center;
     }
 
     nb-icon {

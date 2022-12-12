@@ -11,7 +11,7 @@
 
 <div *ngIf="lab" class="lab page-padding">
   <div class="body d-flex justify-content-center">
-    <nb-icon (click)="toggleDetails()" class="toggle-details" icon="bookmark"></nb-icon>
+    <nb-icon (click)="toggleDetails()" class="toggle-details com-p-1" icon="bookmark"></nb-icon>
     <nb-sidebar right state="collapsed" tag="labMenu">
       <app-lab-details
         (scrollToChat)="scroll(discussionChatContainer)"

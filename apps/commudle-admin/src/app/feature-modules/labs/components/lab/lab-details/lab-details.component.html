@@ -47,11 +47,11 @@
   <ng-container *ngIf="!hideRecommendedLabs">
     <app-recommended-labs></app-recommended-labs>
   </ng-container>
-  <div *ngIf="!hideInteractions" class="interactions d-flex flex-row justify-content-space-around">
+  <div *ngIf="!hideInteractions" class="interactions">
     <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
     <div (click)="onScrollToChat()" *ngIf="discussionChat" class="message-count clickable">
       <nb-icon icon="message-circle-outline"></nb-icon>
-      {{ messagesCount }}
+      <span> {{ messagesCount }} </span>
     </div>
     <div class="share-button">
       <button (click)="copyTextToClipboard(lab)" nbButton shape="round" size="small">

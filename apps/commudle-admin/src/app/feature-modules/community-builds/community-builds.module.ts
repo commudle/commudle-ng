@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbButtonModule,
   NbCardModule,
@@ -63,6 +64,9 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
+
+    //FontAwesomeModule
+    FontAwesomeModule,
   ],
 })
 export class CommunityBuildsModule {}
