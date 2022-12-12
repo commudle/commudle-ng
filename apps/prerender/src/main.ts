@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as expressStaticGzip from 'express-static-gzip';
 import * as path from 'path';
 import * as prerender from 'prerender-node';
 
@@ -10,18 +11,13 @@ const distFolder = path.join(process.cwd(), 'commudle-admin');
 
 app.use(prerender.set('prerenderServiceUrl', prerenderUrl));
 
+// app.get('*.*', express.static(distFolder, { maxAge: '1y' }));
+app.get('*.*', expressStaticGzip(distFolder, { enableBrotli: true, serveStatic: { maxAge: '1y' } }));
+
 // health check
-app.get('/health-check', (req, res) => {
-  res.status(200).send({ health: 'good' });
-});
+app.get('/health-check', (req, res) => res.status(200).send({ health: 'good' }));
 
-app.get('*.*', express.static(distFolder, { maxAge: '1y' }));
+app.get('*', (req, res) => res.sendFile('index.html', { root: distFolder }));
 
-app.get('*', (req, res) => {
-  res.sendFile('index.html', { root: distFolder });
-});
-
-const server = app.listen(port, () => {
-  console.log(`Listening at port ${port}`);
-});
+const server = app.listen(port, () => console.log(`Listening at port ${port}`));
 server.on('error', console.error);

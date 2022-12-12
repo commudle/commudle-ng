@@ -6,9 +6,15 @@
   "prefix": "commudle",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-builders/custom-webpack:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "customWebpackConfig": {
+          "path": "./custom-webpack.config.ts",
+          "mergeRules": {
+            "externals": "replace"
+          }
+        },
         "outputPath": "dist/apps/commudle-admin",
         "index": "apps/commudle-admin/src/index.html",
         "main": "apps/commudle-admin/src/main.ts",
