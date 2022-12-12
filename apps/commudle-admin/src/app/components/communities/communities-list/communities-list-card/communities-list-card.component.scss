@@ -48,10 +48,8 @@ p {
 }
 
 .community-list-card-suffix {
-  @apply com-bottom-4 com-absolute com-right-4;
-
   .community-list-card-member-avatars {
-    @apply com-inline-flex com-flex-row-reverse com-h-5 com-mr-9 com-w-8;
+    @apply com-inline-flex com-flex-row-reverse com-h-5 com-mr-9 com-w-8 com-bottom-5 com-absolute;
 
     .community-list-card-member-avatar {
       @apply com-border com-border-solid com-border-white com-rounded-[50px] com-overflow-hidden com-relative com-w-5;
@@ -67,6 +65,7 @@ p {
   }
 
   .community-join-btn {
+    @apply com-bottom-4 com-absolute com-right-4;
     app-membership-toggle {
       &::ng-deep {
         button {
