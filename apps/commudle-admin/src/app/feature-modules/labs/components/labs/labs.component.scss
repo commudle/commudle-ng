@@ -5,7 +5,11 @@
     .labs-popular-tag {
       color: $gunmetal;
       font-weight: $fw-400;
-      @apply com-text-xl com-lowercase;
+      @apply com-text-xl com-lowercase com-mr-4 com-cursor-pointer;
+    }
+
+    .active {
+      @apply com-border-2 com-border-solid com-border-[#2563EB] com-rounded-lg com-bg-[#2563EB]/10 com-px-2;
     }
   }
 
