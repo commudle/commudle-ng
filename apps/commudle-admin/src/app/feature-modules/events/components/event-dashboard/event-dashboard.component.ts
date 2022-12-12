@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService, NbWindowService, NbDialogRef } from '@commudle/theme';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
@@ -36,6 +36,9 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   uploadedHeaderImage;
 
   eventHeaderImageForm;
+  attendedMemberEmailerDialog: NbDialogRef<any>;
+
+  isLoading = false;
 
   @ViewChild('statusSection') statusSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('detailsSection') detailsSectionRef: ElementRef<HTMLDivElement>;
@@ -47,6 +50,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   @ViewChild('sponsorsSection') sponsorsSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('emailsSection') emailsSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('eventGuideSection') eventGuideSectionRef: TemplateRef<any>;
+  @ViewChild('attendedMemberEmailer') attendedMemberEmailer: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +60,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private windowService: NbWindowService,
     private seoService: SeoService,
     private changeDetectorRef: ChangeDetectorRef,
+    private nbDialogService: NbDialogService,
   ) {
     this.eventHeaderImageForm = this.fb.group({
       header_image: ['', Validators.required],
@@ -135,12 +140,23 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.windowService.open(this.eventGuideSectionRef, { title: "It's simple!" });
   }
 
+  // To open confirmations dialog bor for sending attended members email
+  openAttendedMemberEmailerDialog() {
+    this.attendedMemberEmailerDialog = this.nbDialogService.open(this.attendedMemberEmailer, {
+      closeOnEsc: true,
+      closeOnBackdropClick: false,
+    });
+  }
+
+  // To send email to attended members
   sendAttendedMemberEmailer() {
+    this.isLoading = true;
     this.eventsService.attendedMemberNotification(this.event.id).subscribe((data) => {
       if (data) {
         this.toastLogService.successDialog('Email Sent');
+      } else {
+        this.toastLogService.warningDialog('Something Wrong');
       }
-      this.changeDetectorRef.markForCheck();
     });
   }
 }
