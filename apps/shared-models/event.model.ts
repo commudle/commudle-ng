@@ -22,6 +22,7 @@ export interface IEvent {
   header_image?: IAttachedFile;
   event_locations_count: number;
   event_speakers_count: number;
+  event_volunteers_count: number;
 }
 
 export interface IEventSearch extends IEvent {

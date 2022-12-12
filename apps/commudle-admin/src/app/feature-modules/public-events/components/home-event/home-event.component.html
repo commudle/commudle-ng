@@ -48,7 +48,7 @@
             <nb-icon icon="message-circle-outline" status="info"></nb-icon>
             <span>Comments</span>
           </nb-action>
-          <nb-action (click)="scroll(volunteersSectionRef)" *ngIf="hasVolunteers" class="clickable">
+          <nb-action (click)="scroll(volunteersSectionRef)" *ngIf="event.event_volunteers_count > 0" class="clickable">
             <nb-icon icon="headphones-outline" status="basic"></nb-icon>
             <span>Volunteers</span>
           </nb-action>
@@ -96,8 +96,8 @@
             </nb-card-body>
           </nb-card>
         </div>
-        <div #volunteersSection>
-          <app-team (hasVolunteers)="hasVolunteers = $event" [community]="community" [event]="event"></app-team>
+        <div #volunteersSection *ngIf="event.event_volunteers_count > 0">
+          <app-team [community]="community" [event]="event"></app-team>
         </div>
       </div>
       <div class="right-column">
