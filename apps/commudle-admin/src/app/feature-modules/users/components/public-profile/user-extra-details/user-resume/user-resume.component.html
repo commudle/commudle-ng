@@ -52,7 +52,7 @@
       <object
         *ngIf="uploadedResumeSrc"
         class="com-mt-6 com-min-w-full md:com-min-w-[50vw] com-min-h-[70vh]"
-        data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
+        attr.data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
         type="application/pdf"
       ></object>
     </nb-card-body>

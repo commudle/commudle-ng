@@ -10,7 +10,8 @@
       <ng-container *ngIf="userResume; else loading">
         <label class="com-block com-text-sm com-mb-6">Last updated: {{ userResume.updated_at | date }}</label>
         <object
-          [data]="userResume.resume.url | safe: 'resourceUrl'"
+          *ngIf="userResume.resume"
+          attr.data="{{ userResume.resume.url | safe : 'resourceUrl' }}"
           style="height: calc(100vh - 180px)"
           type="application/pdf"
           width="100%"
