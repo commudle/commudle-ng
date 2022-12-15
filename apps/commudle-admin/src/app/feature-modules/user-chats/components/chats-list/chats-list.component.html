@@ -11,6 +11,7 @@
         <nb-list-item (click)="openChat(chatUser)" *ngFor="let chatUser of allPersonalChatUsers" class="clickable">
           <app-user-profile-mini
             [showLiveStatus]="showLiveStatus"
+            [disableAnchor]="true"
             [size]="'small'"
             [user]="chatUser.user"
           ></app-user-profile-mini>
