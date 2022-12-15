@@ -141,7 +141,8 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  delete(userMessageId) {
+  delete(data) {
+    let userMessageId = data.messageId;
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.DELETE, {
       user_message_id: userMessageId,
     });
