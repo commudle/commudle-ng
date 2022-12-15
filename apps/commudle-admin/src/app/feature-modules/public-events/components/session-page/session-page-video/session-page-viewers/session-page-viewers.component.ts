@@ -37,11 +37,10 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   pingInterval;
   searchQuery: string;
+  isBrowser: boolean;
 
   faChalkboardTeacher = faChalkboardTeacher;
   faCommentDots = faCommentDots;
-
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
@@ -51,7 +50,9 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: object,
     private hmsStageService: HmsStageService,
     private userChatsService: UserChatsService,
-  ) {}
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
     if (this.isBrowser) {
