@@ -398,7 +398,6 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
     if (this.serverClient.role === EHmsRoles.HOST || this.serverClient.role === EHmsRoles.HOST_VIEWER) {
       if (window.confirm('Are you sure you want to end the session?')) {
         this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.END_STREAM, this.currentUser.id, {});
-        this.hmsVideoStateService.setState(EHmsStates.ENDED);
         this.toastLogService.successDialog('Session has ended');
       }
     }
