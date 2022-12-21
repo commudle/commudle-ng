@@ -23,7 +23,7 @@ import * as moment from 'moment';
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
   styleUrls: ['./event-dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDashboardComponent implements OnInit, OnDestroy {
   event: IEvent;
@@ -59,7 +59,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private seoService: SeoService,
-    private changeDetectorRef: ChangeDetectorRef,
     private nbDialogService: NbDialogService,
   ) {
     this.eventHeaderImageForm = this.fb.group({
@@ -74,7 +73,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.event = value.event;
       this.community = value.community;
       this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -85,14 +83,12 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   updateRegistrationType(value) {
     this.eventsService.updateCustomRegistration(this.event.id, value).subscribe((data) => {
       this.event = data;
-      this.changeDetectorRef.markForCheck();
     });
   }
 
   updateAgendaType(value) {
     this.eventsService.updateCustomAgenda(this.event.id, value).subscribe((data) => {
       this.event = data;
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -118,7 +114,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.eventsService.updateHeaderImage(this.event.id, formData).subscribe((data) => {
       this.event = data;
       this.toastLogService.successDialog('Updated!');
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -132,7 +127,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.uploadedHeaderImageFile = null;
       this.event = data;
       this.toastLogService.successDialog('Deleted');
-      this.changeDetectorRef.markForCheck();
     });
   }
 

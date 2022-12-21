@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { NbButtonAppearance, NbComponentStatus, NbDialogService } from '@commudle/theme';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -10,6 +20,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-user-follow',
   templateUrl: './user-follow.component.html',
   styleUrls: ['./user-follow.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() username: string;
@@ -29,6 +40,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
     private appUsersService: AppUsersService,
     private authWatchService: LibAuthwatchService,
     private nbDialogService: NbDialogService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnChanges(): void {
@@ -40,6 +52,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
         this.checkFollowing();
+        this.changeDetectorRef.markForCheck();
       }),
     );
   }
@@ -51,7 +64,10 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   checkFollowing() {
     if (this.currentUser) {
       this.subscriptions.push(
-        this.appUsersService.check_followee(this.username).subscribe((value) => (this.isFollowing = value)),
+        this.appUsersService.check_followee(this.username).subscribe((value) => {
+          this.isFollowing = value;
+          this.changeDetectorRef.markForCheck();
+        }),
       );
     }
   }
@@ -61,6 +77,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         this.userFollowed.emit();
+        this.changeDetectorRef.markForCheck();
       }),
     );
   }

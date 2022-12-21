@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-event-embedded-video-stream',
   templateUrl: './event-embedded-video-stream.component.html',
   styleUrls: ['./event-embedded-video-stream.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
@@ -33,7 +33,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private toastLogService: LibToastLogService,
     private authService: LibAuthwatchService,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.embeddedVideoStreamForm = this.fb.group({
       streamable_type: ['', Validators.required],
@@ -56,7 +55,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
 
     this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => {
       this.currentUser = data;
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -80,7 +78,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
         this.embeddedVideoStreamForm.patchValue(data);
         this.updateValidators();
       }
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -94,7 +91,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
       this.embeddedVideoStreamForm.patchValue(data);
       this.updateValidators();
       this.toastLogService.successDialog('Saved!');
-      this.changeDetectorRef.markForCheck();
     });
   }
 

@@ -2,7 +2,7 @@
   <nb-card [nbSpinner]="community === null" class="about lg:com-col-span-2">
     <nb-card-body>
       <h3 class="heading">Who we are</h3>
-      <p [innerHTML]="community.about | linky: { sanitizeHtml: false } | safeHtml" class="content"></p>
+      <p [innerHTML]="community.about | linky : { sanitizeHtml: false } | safeHtml" class="content"></p>
     </nb-card-body>
   </nb-card>
 
@@ -16,7 +16,11 @@
           </div>
         </div>
         <ng-container *ngFor="let organizer of organizers">
-          <app-user-profile-card-large [user]="organizer"></app-user-profile-card-large>
+          <app-user-profile-card-large
+            [user]="organizer"
+            [showFollowButton]="true"
+            [alignFollowToRight]="true"
+          ></app-user-profile-card-large>
         </ng-container>
       </div>
     </nb-card-body>
