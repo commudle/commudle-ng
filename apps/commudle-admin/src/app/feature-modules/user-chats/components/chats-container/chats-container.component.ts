@@ -7,6 +7,7 @@ import { IDiscussionFollower } from 'apps/shared-models/discussion-follower.mode
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 import { UserChatNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-notifications.channel';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-chats-container',
@@ -34,6 +35,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private userChatsService: UserChatsService,
     private userChatNotificationsChannel: UserChatNotificationsChannel,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit() {
@@ -104,6 +106,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
       // Insert into the back of the array
       this.discussionFollowers.push(follower);
     }
+    this.gtm.dataLayerPushEvent('click-chatlist-chatbox-open', { com_chat_user_id: follower.id });
   }
 
   // Close and unsubscribe a particular chat
