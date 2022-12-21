@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserChatNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-notifications.channel';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussionFollower } from 'apps/shared-models/discussion-follower.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -22,6 +23,7 @@ export class ChatsListComponent implements OnInit {
   constructor(
     private authWatchService: LibAuthwatchService,
     private userChatNotificationsChannel: UserChatNotificationsChannel,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +47,9 @@ export class ChatsListComponent implements OnInit {
         this.userChatNotificationsChannel.resetMessageCounter();
       }
     });
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-chatlist-open', {});
   }
 }

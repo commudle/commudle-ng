@@ -9,13 +9,12 @@ import { DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
-
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LibAuthwatchService {
-
   private currentUserVerified: BehaviorSubject<any> = new BehaviorSubject(null);
   public currentUserVerified$ = this.currentUserVerified.asObservable();
   // private authCookieName = 'commudle_user_auth';
@@ -28,8 +27,9 @@ export class LibAuthwatchService {
     @Inject(DOCUMENT) private document: Document,
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService,
-    private cookieService: CookieService
-  ) { }
+    private cookieService: CookieService,
+    private gtm: GoogleTagManagerService,
+  ) {}
 
   // to check if cookie exists
   getAuthCookie() {
@@ -38,9 +38,10 @@ export class LibAuthwatchService {
     // if (parts.length === 2) {
     //   return parts.pop().split(';').shift();
     // }
-    return (this.cookieService.check(environment.auth_cookie_name) === true ? this.cookieService.get(environment.auth_cookie_name) : null);
+    return this.cookieService.check(environment.auth_cookie_name) === true
+      ? this.cookieService.get(environment.auth_cookie_name)
+      : null;
     // return null;
-
   }
 
   getAppToken() {
@@ -52,32 +53,30 @@ export class LibAuthwatchService {
     if (!this.cookieService.check(environment.session_cookie_name)) {
       this.cookieService.set(environment.session_cookie_name, uuidv4(), 30, environment.base_url);
     }
-    return this.http.post<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
-      {}).pipe(
-        tap(data => {
-          this.appToken = data.app_token;
-          if (data.user) {
-            this.currentUser.next(data.user);
-            this.currentUserVerified.next(true);
-          } else {
-            this.currentUserVerified.next(false);
-          }
-        })
-      );
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION), {}).pipe(
+      tap((data) => {
+        this.appToken = data.app_token;
+        if (data.user) {
+          this.currentUser.next(data.user);
+          this.currentUserVerified.next(true);
+          this.gtm.dataLayerPushEvent('session_start', {
+            com_user_name: data.user.name,
+            com_user_id: data.user.id,
+            com_user_email: data.user.email,
+          });
+        } else {
+          this.currentUserVerified.next(false);
+        }
+      }),
+    );
   }
-
 
   // logout
   signOut(): Observable<boolean> {
     this.currentUser.next(null);
     this.currentUserVerified.next(false);
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.LOGOUT)
-    );
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.LOGOUT));
   }
-
-
 
   updateSignedInUser() {
     this.checkAlreadySignedIn().subscribe();
@@ -86,5 +85,4 @@ export class LibAuthwatchService {
   logInUser() {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }
-
 }
