@@ -36,6 +36,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   heading = '';
 
   filterForm;
+  total: number;
 
   experiences = [
     { value_range: { min: '0', max: '1' }, label: '0-1 Year' },
@@ -195,6 +196,7 @@ export class JobListComponent implements OnInit, OnDestroy {
             this.jobs = [];
           }
           this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.total = data.total;
           this.page_info = data.page_info;
           this.isLoading = false;
           this.isFilterLoading = false;
