@@ -18,7 +18,7 @@
               ({{ asset.id }})
             </p>
             <div *ngIf="asset.file" class="asset-image">
-              <img alt="{{ asset.name }}" src="{{ asset.file.url | safeUrl }}" title="{{ asset.name }}" />
+              <img alt="{{ asset.name }}" src="{{ asset.file.url }}" title="{{ asset.name }}" />
             </div>
           </div>
           <div class="controls d-flex">
@@ -28,6 +28,7 @@
           </div>
         </nb-list-item>
       </nb-list>
+      <button (click)="getAsset()" *ngIf="assets.length !== total" fullWidth ghost nbButton>Get more Assets</button>
     </div>
   </nb-card-body>
 </nb-card>
