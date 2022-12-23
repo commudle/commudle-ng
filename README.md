@@ -13,7 +13,7 @@ experiences of Community Organizers.
 - Install [@angular/cli](https://cli.angular.io/)
 - Clone the project.
 - Run `npm ci`.
-- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+- Run `npx nx run commudle-admin:serve` for a dev server. Navigate to `http://localhost:4200/`.
 - The development server directly interacts with the production APIs.
 
 ## Login/Sign Up for Development
@@ -35,7 +35,7 @@ experiences of Community Organizers.
 
 ## Build for production
 
-- Run `sh prod.sh` to build the project. The build artifacts will be stored in the `prod-server.zip` file.
+- Run `npx nx run prerender:release` to build the project. The build artifacts will be stored in the `prod-server.zip` file.
 
 ## Design Framework / UI Kit
 

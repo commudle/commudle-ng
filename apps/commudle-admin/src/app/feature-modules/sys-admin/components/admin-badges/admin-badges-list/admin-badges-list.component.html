@@ -23,7 +23,7 @@
               <nb-tag [text]="badge.badge_type" size="tiny" status="info"></nb-tag>
             </p>
             <div *ngIf="badge.image" class="badge-image">
-              <img alt="{{ badge.name }}" src="{{ badge.image.url | safeUrl }}" title="{{ badge.name }}" />
+              <img alt="{{ badge.name }}" src="{{ badge.image.url }}" title="{{ badge.name }}" />
             </div>
           </div>
           <div class="controls d-flex">
