@@ -2,7 +2,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NotificationsService } from 'apps/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationChannel } from 'apps/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
-import { NbToastrService } from '@commudle/theme';
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +31,7 @@ export class NotificationsStore {
   private communityNotifications = {};
   public communityNotifications$ = {};
 
-  constructor(
-    private notificationsService: NotificationsService,
-    private notificationChannel: NotificationChannel,
-    private nbToastrService: NbToastrService,
-  ) {}
+  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
 
   private generateCommunityNotificationsObservable(communityId) {
     if (!this.communityNotifications[`${communityId}`]) {
@@ -140,22 +135,9 @@ export class NotificationsStore {
 
   markAllAsRead(communityId?) {
     if (communityId) {
-      this.notificationsService.markAllAsRead('community', communityId).subscribe((res) => {
-        if (res) {
-          this.nbToastrService.success('All notifications marked as read', 'Success');
-          this.reduceCommunityUnreadNotificationsCount(communityId);
-          return res;
-        }
-      });
+      return this.notificationsService.markAllAsRead('community', communityId);
     } else {
-      this.notificationsService.markAllAsRead().subscribe((res) => {
-        if (res) {
-          this.nbToastrService.success('All notifications marked as read', 'Success');
-          this.reduceUserUnreadNotificationsCount();
-          return res;
-        }
-      });
+      return this.notificationsService.markAllAsRead();
     }
-    return false;
   }
 }

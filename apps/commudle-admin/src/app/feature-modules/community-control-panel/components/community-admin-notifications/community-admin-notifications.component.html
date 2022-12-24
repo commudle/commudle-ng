@@ -1,5 +1,5 @@
 <div class="heading">
-  <button ghost (click)="markAllAsRead()" nbButton size="small">
+  <button ghost (click)="markAllAsRead()" nbButton size="small" [disabled]="notificationCount === 0" status="primary">
     Mark all as read
     <nb-icon icon="checkmark-circle-outline"></nb-icon>
   </button>

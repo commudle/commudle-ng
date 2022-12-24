@@ -118,7 +118,7 @@
             </svg>
           </span>
         </div>
-        <p class="job-label" *ngIf="job.experience == 0">Fresher</p>
+        <p class="job-label" *ngIf="job.experience === 0">Fresher</p>
         <p class="job-label" *ngIf="job.experience > 0">
           Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience
         </p>
@@ -146,7 +146,7 @@
           </div>
           <p class="job-label">{{ job.job_type | enumFormat }}</p>
         </div>
-        <div class="com-w-36">
+        <div class="com-w-40">
           <app-user-profile-card-medium [user]="job.user"></app-user-profile-card-medium>
         </div>
       </div>
