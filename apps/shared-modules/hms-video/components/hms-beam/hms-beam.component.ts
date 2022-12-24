@@ -15,13 +15,15 @@ import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 export class HmsBeamComponent implements OnInit {
   authToken: string;
 
-  isBrowser: boolean = this.isBrowserService.isBrowser();
+  isBrowser: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private isBrowserService: IsBrowserService,
     private footerService: FooterService,
-  ) {}
+  ) {
+    this.isBrowser = this.isBrowserService.isBrowser();
+  }
 
   ngOnInit(): void {
     hmsActions.setLogLevel(HMSLogLevel.VERBOSE);
