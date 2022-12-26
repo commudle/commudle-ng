@@ -5,6 +5,17 @@ module.exports = {
     extend: {
       colors: {
         /* Adding custom colors to the tailwind config. by www.color-name.com */
+        primary: {
+          100: '#d6e0ff',
+          200: '#adc2ff',
+          300: '#85a3ff',
+          400: '#5c85ff',
+          500: '#3366ff',
+          600: '#2952cc',
+          700: '#1f3d99',
+          800: '#142966',
+          900: '#0a1433',
+        },
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
@@ -21,7 +32,9 @@ module.exports = {
         Blueberry: '#4e74ff',
         'Dark-Spring-Green': '#10654c',
         'Blue-Violet': '#6F22DF',
+        Blond: '#FFF1BB',
       },
+
       lineClamp: {
         14: '14',
       },

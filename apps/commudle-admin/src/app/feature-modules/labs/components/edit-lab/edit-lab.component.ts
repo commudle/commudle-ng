@@ -27,7 +27,8 @@ export class EditLabComponent implements OnInit, OnDestroy {
   headerImageForm;
   labForm: FormGroup;
   tinyMCE: any = {
-    placeholder: 'Start typing here...*',
+    placeholder:
+      'Add a description with some pictures to help the user get a brief of what you are going to teach them in this tutorial!*',
     min_height: 500,
     menubar: false,
     convert_urls: false,
