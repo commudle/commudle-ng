@@ -4,7 +4,14 @@
       <nb-card class="notifications-container">
         <nb-card-header>
           <h6>Notifications</h6>
-          <button (click)="markAllAsRead()" ghost nbButton size="small">
+          <button
+            ghost
+            (click)="markAllAsRead()"
+            nbButton
+            size="small"
+            [disabled]="notificationCount === 0"
+            status="primary"
+          >
             Mark all as read
             <nb-icon icon="checkmark-circle-outline"></nb-icon>
           </button>

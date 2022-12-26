@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NbToastrService } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { SeoService } from 'apps/shared-services/seo.service';
 
@@ -9,12 +10,17 @@ import { SeoService } from 'apps/shared-services/seo.service';
 })
 export class NotificationsPageComponent implements OnInit, OnDestroy {
   trackMarkAllAsRead = false;
-  result;
+  notificationCount: number;
 
-  constructor(private seoService: SeoService, private notificationsStore: NotificationsStore) {}
+  constructor(
+    private seoService: SeoService,
+    private notificationsStore: NotificationsStore,
+    private nbToastrService: NbToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.seoService.noIndex(true);
+    this.notificationsCount();
     this.seoService.setTags(
       'Notifications',
       'View all notifications',
@@ -27,9 +33,17 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
   }
 
   markAllAsRead() {
-    this.result = this.notificationsStore.markAllAsRead();
-    if (this.result) {
-      this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
-    }
+    this.notificationsStore.markAllAsRead().subscribe((data) => {
+      if (data) {
+        this.nbToastrService.success('All notifications marked as read', 'Success');
+        this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+        this.notificationsStore.reduceUserUnreadNotificationsCount();
+      }
+    });
+  }
+  notificationsCount() {
+    this.notificationsStore.userNotificationCount$.subscribe((count) => {
+      this.notificationCount = count;
+    });
   }
 }

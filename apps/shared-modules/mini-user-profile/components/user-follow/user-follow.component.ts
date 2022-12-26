@@ -45,7 +45,12 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(): void {
     // Get user's data
-    this.subscriptions.push(this.appUsersService.getProfile(this.username).subscribe((data) => (this.user = data)));
+    this.subscriptions.push(
+      this.appUsersService.getProfile(this.username).subscribe((data) => {
+        this.user = data;
+        this.changeDetectorRef.markForCheck();
+      }),
+    );
 
     // Get logged in user
     this.subscriptions.push(
