@@ -37,7 +37,6 @@ export class JobListComponent implements OnInit, OnDestroy {
   total: number;
 
   filterForm;
-  total: number;
 
   experiences = [
     { value_range: { min: '0', max: '1' }, label: '0-1 Year' },
