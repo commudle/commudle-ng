@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from "@commudle/auth";
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
@@ -41,7 +42,6 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
-import { PushNotificationComponent } from 'apps/commudle-admin/src/app/components/push-notification/push-notification.component';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'apps/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -79,6 +79,7 @@ import { HomeLabsComponent } from './components/home/components/home-labs/home-l
 import { HomePromotionsComponent } from './components/home/components/home-promotions/home-promotions.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -86,6 +87,7 @@ import { CommunityComponent } from './components/organizer-communities-list/comm
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
 import { CircularProgressiveBarComponent } from './components/profile-status-bar/circular-progressive-bar/circular-progressive-bar.component';
 import { ProfileStatusBarComponent } from './components/profile-status-bar/profile-status-bar.component';
+import { PushNotificationComponent } from './components/push-notification/push-notification.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { StepperComponent } from './components/stepper/stepper.component';
@@ -144,6 +146,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NavbarComponent,
     FooterComponent,
     PushNotificationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -180,6 +183,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
 
     // external service modules
     LibErrorHandlerModule,
+    AuthModule,
 
     // Nebula modules
     NbThemeModule.forRoot({ name: 'default' }),
@@ -230,6 +234,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbSidebarService,
     IsBrowserService,
     PrismJsHighlightCodeService,
+    AuthService,
     {
       provide: APP_INITIALIZER,
       useFactory: initApp,
@@ -247,6 +252,18 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiParserResponseInterceptor,
       multi: true,
+    },
+    {
+      provide: 'AuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.google_client_id),
+          },
+        ],
+      } as AuthServiceConfig,
     },
   ],
   bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbSidebarService, NbSidebarState } from '@commudle/theme';
 import { AppCentralNotificationService } from 'apps/commudle-admin/src/app/services/app-central-notifications.service';
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   staticAssets = staticAssets;
 
   constructor(
+    private router: Router,
     private sidebarService: NbSidebarService,
     private authwatchService: LibAuthwatchService,
     private appCentralNotificationService: AppCentralNotificationService,
@@ -78,6 +80,6 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    window.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+    this.router.navigate(['/login'], { queryParams: { redirect: this.router.url } });
   }
 }

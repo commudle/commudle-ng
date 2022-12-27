@@ -35,7 +35,7 @@ speed-measure-plugin*.json
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.angular
 .sass-cache/
 /connect.lock
 /coverage
@@ -61,5 +61,3 @@ firebase-debug.log
 # Scripts
 ssr-deployment-prod.sh
 ssr-deployment-staging.sh
-
-
