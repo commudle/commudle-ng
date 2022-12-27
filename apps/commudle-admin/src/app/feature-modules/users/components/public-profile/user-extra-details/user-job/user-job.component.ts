@@ -202,7 +202,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
         this.nbToastrService.success('Job updated successfully', 'Success');
         this.onCloseDialog();
-        this.formSubmitLoading = true;
+        this.formSubmitLoading = false;
         this.jobs = this.jobs.map((job) => (job.id === data.id ? data : job));
       }),
     );

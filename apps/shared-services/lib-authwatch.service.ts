@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
-import { AuthService } from "@commudle/auth";
+import { AuthService } from '@commudle/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ICurrentUser } from '../shared-models/current_user.model';
 import { API_ROUTES } from './api-routes.constants';
 import { ApiRoutesService } from './api-routes.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,7 @@ export class LibAuthwatchService {
     private apiRoutesService: ApiRoutesService,
     private cookieService: CookieService,
     private authService: AuthService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   // to check if cookie exists
@@ -52,6 +54,11 @@ export class LibAuthwatchService {
         if (data.user) {
           this.currentUser.next(data.user);
           this.currentUserVerified.next(true);
+          this.gtm.dataLayerPushEvent('session_start', {
+            com_user_name: data.user.name,
+            com_user_id: data.user.id,
+            com_user_email: data.user.email,
+          });
         } else {
           this.currentUserVerified.next(false);
         }

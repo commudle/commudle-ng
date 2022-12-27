@@ -25,7 +25,7 @@
           <app-user-profile-card-large [user]="user_badge.user"></app-user-profile-card-large>
         </div>
         <div *ngIf="user_badge.badge.image" class="badge-image">
-          <img alt="{{ user_badge.user.name }}" src="{{ user_badge.badge.image.url }} | safeUrl" />
+          <img alt="{{ user_badge.user.name }}" src="{{ user_badge.badge.image.url }}" />
         </div>
         <button (click)="confirmUnassignBadgeOpen(user_badge.id)" nbButton outline size="medium" status="danger">
           Delete

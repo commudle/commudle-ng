@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { Subscription } from 'rxjs';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
+import { NbToastrService } from '@commudle/theme';
 
 @Component({
   selector: 'app-public-community-notifications',
@@ -16,13 +17,19 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
 
   subscriptions: Subscription[] = [];
   result;
+  notificationCount: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private notificationsStore: NotificationsStore) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private nbToastrService: NbToastrService,
+    private notificationsStore: NotificationsStore,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
+        this.notificationsCount(data.community.id);
       }),
     );
   }
@@ -31,9 +38,17 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
   }
 
   markAllAsRead() {
-    this.result = this.notificationsStore.markAllAsRead(this.community.id);
-    if (this.result) {
-      this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
-    }
+    this.notificationsStore.markAllAsRead(this.community.id).subscribe((data) => {
+      if (data) {
+        this.nbToastrService.success('All notifications marked as read', 'Success');
+        this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+        this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.community.id);
+      }
+    });
+  }
+  notificationsCount(communityId) {
+    this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count) => {
+      this.notificationCount = count;
+    });
   }
 }

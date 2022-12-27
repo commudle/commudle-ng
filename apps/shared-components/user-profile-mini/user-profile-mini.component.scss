@@ -60,6 +60,9 @@
 
     .name {
       margin: 0;
+      .disable-anchor {
+        pointer-events: none;
+      }
 
       a {
         text-decoration: none;

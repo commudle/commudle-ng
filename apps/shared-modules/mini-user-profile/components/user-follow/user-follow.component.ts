@@ -1,6 +1,17 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { NbButtonAppearance, NbComponentStatus, NbDialogService } from '@commudle/theme';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -10,6 +21,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-user-follow',
   templateUrl: './user-follow.component.html',
   styleUrls: ['./user-follow.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() username: string;
@@ -29,17 +41,25 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
     private appUsersService: AppUsersService,
     private authWatchService: LibAuthwatchService,
     private nbDialogService: NbDialogService,
+    private gtm: GoogleTagManagerService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnChanges(): void {
     // Get user's data
-    this.subscriptions.push(this.appUsersService.getProfile(this.username).subscribe((data) => (this.user = data)));
+    this.subscriptions.push(
+      this.appUsersService.getProfile(this.username).subscribe((data) => {
+        this.user = data;
+        this.changeDetectorRef.markForCheck();
+      }),
+    );
 
     // Get logged in user
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
         this.checkFollowing();
+        this.changeDetectorRef.markForCheck();
       }),
     );
   }
@@ -51,7 +71,10 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   checkFollowing() {
     if (this.currentUser) {
       this.subscriptions.push(
-        this.appUsersService.check_followee(this.username).subscribe((value) => (this.isFollowing = value)),
+        this.appUsersService.check_followee(this.username).subscribe((value) => {
+          this.isFollowing = value;
+          this.changeDetectorRef.markForCheck();
+        }),
       );
     }
   }
@@ -61,11 +84,14 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         this.userFollowed.emit();
+        this.gtm.dataLayerPushEvent('user_follow_confirm', { followee_id: this.user.id });
+        this.changeDetectorRef.markForCheck();
       }),
     );
   }
 
   openDialog(ref: TemplateRef<any>) {
     this.nbDialogService.open(ref);
+    this.gtm.dataLayerPushEvent('user_follow_initiate', { followee_id: this.user.id });
   }
 }

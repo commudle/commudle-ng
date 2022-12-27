@@ -1,38 +1,22 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
-
 .create-lab {
-  background: $light-purple;
-
   .three-column-layout {
-    @media screen and (max-width: $mobile-width) {
-      display: flex;
-      flex-direction: column;
-    }
+    @apply com-flex com-flex-col md:com-grid;
 
     .left-col {
       .help-video {
-        background: #f1f1ff;
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-        height: 75px;
-        position: relative;
-        width: 100%;
+        @apply com-bg-white com-border com-border-solid com-border-gray-300 com-rounded-lg com-relative com-w-full com-h-20;
 
         p {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: $neon-blue;
+          @apply com-absolute com-top-2/3 com-left-1/2 com-text-primary-400 -com-translate-y-2/4 -com-translate-x-2/4;
         }
 
         nb-icon {
-          font-size: 35px;
+          @apply com-text-4xl;
         }
 
         &:hover {
           nb-icon {
-            color: $bittersweet;
+            @apply com-text-rose-400;
           }
         }
       }
@@ -40,128 +24,99 @@
 
     .center-col {
       .container {
+        @apply lg:com-max-w-[1024px] lg:com-my-0 lg:com-mx-auto;
         .header {
-          font-weight: 300;
+          @apply com-font-light;
 
           fa-icon {
-            color: #4e74ff;
+            @apply com-text-primary-700;
           }
         }
 
         form.lab-header-image {
-          margin-bottom: 2rem;
+          @apply com-mb-8;
 
           label {
-            padding: 150px 0;
-            position: relative;
+            @apply com-relative com-py-36 com-px-0;
 
             > span {
-              border: 2px dashed lightgrey;
-              border-radius: 10px;
-              color: grey;
-              font-size: 18px;
-
-              font-weight: 300;
-              height: 100%;
-              padding: 10px;
+              @apply com-border-2 com-border-dashed com-border-gray-300 com-rounded-lg com-text-gray-500 com-text-lg com-font-light com-h-full com-p-2;
 
               nb-icon {
-                font-size: 4rem;
-                margin-bottom: 0.5rem;
+                // font-size: 4rem;
+                // margin-bottom: 0.5rem;
+                @apply com-text-6xl com-mb-2;
               }
             }
 
             input {
-              display: none;
+              @apply com-hidden;
             }
           }
 
           .uploaded-header-image {
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @apply com-overflow-hidden com-flex com-justify-center com-items-center;
 
             img {
-              max-width: 100%;
+              @apply com-max-w-full;
             }
           }
 
           .delete-header-image-button {
-            display: block;
-            margin: 0 auto;
+            @apply com-block com-my-0 com-mx-auto;
           }
         }
 
         form.lab-form {
           .overview {
             input {
-              font-size: $input-title;
-              font-weight: 300;
+              @apply com-font-light com-text-xl;
             }
 
             > div {
-              margin-bottom: 1rem;
+              @apply com-mb-4;
             }
           }
 
           .lab-step {
-            margin-top: 4.5rem;
+            @apply com-mt-16;
 
             h3.steps-counter {
-              font-weight: 300;
-              margin-bottom: 0;
+              @apply com-font-light com-mb-0;
             }
 
             .name input {
-              font-size: 1.5rem;
-              font-weight: 300;
-              margin-bottom: 1rem;
+              @apply com-text-xl com-font-light com-mb-4;
             }
           }
         }
 
         .tags {
-          margin-top: 3.5rem;
-        }
-
-        @media screen and (min-width: 1020px) {
-          max-width: 1020px;
-          margin: 0 auto;
+          @apply com-mt-14;
         }
       }
 
       .add-step-button {
-        width: 100%;
+        @apply com-w-full;
       }
 
       .actions-card {
-        margin: 8px;
+        @apply com-m-2;
       }
 
       .actions {
-        margin-top: 1rem;
+        @apply com-mt-4;
 
         button {
-          margin-right: 0.5rem;
+          @apply com-mr-2 com-mb-4;
         }
       }
     }
 
     .right-col {
-      > button {
-        position: sticky;
-        top: 4.5rem;
+      > a {
+        @apply com-sticky com-top-20;
       }
-    }
-  }
-}
-
-// tinymce style
-editor {
-  ::ng-deep {
-    div.tox.tox-tinymce {
-      border: none;
     }
   }
 }

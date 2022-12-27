@@ -11,6 +11,7 @@
         <nb-list-item (click)="openChat(chatUser)" *ngFor="let chatUser of allPersonalChatUsers" class="clickable">
           <app-user-profile-mini
             [showLiveStatus]="showLiveStatus"
+            [disableAnchor]="true"
             [size]="'small'"
             [user]="chatUser.user"
           ></app-user-profile-mini>
@@ -24,7 +25,7 @@
       </nb-list>
     </nb-card-body>
   </nb-card>
-  <button (click)="showChat = !showChat" class="chats-list-toggle" nbButton shape="round">
+  <button (click)="showChat = !showChat; gtmService()" class="chats-list-toggle" nbButton shape="round">
     <nb-badge *ngIf="unreadCount > 0" status="info" text="{{ unreadCount }}"></nb-badge>
     <nb-icon icon="message-square-outline"></nb-icon>
   </button>

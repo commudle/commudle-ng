@@ -16,7 +16,7 @@
         <input #inputFile (change)="addFile($event)" formControlName="asset" fullWidth nbInput required type="file" />
       </label>
       <div *ngIf="fileSrc" class="file-container">
-        <img alt="{{ uploadedFile.file?.name || uploadedFile.name }}" src="{{ fileSrc | safeUrl }}" />
+        <img alt="{{ uploadedFile.file?.name || uploadedFile.name }}" src="{{ fileSrc }}" />
       </div>
       <button fullWidth ghost nbButton status="primary" type="submit">Save</button>
     </form>

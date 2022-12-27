@@ -42,7 +42,7 @@ speed-measure-plugin*.json
 /libpeerconnection.log
 testem.log
 /typings
-.ebextensions/
+# .ebextensions/
 dist.zip
 .eslintcache
 report*

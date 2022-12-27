@@ -30,7 +30,6 @@ export class LibErrorHandlerService {
         this.toastrService.show(errorCode, errorMessage, {
           icon: '',
           status: 'danger',
-          duration: 0,
         });
         break;
     }

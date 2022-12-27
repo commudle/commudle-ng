@@ -1,40 +1,36 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
-
 .create-lab {
-  // background: $light-purple;
-
   .form-container {
+    @apply lg:com-max-w-[1020px] lg:com-my-0 lg:com-mx-auto;
+
     .header {
-      font-weight: 300;
+      @apply com-font-light;
 
       fa-icon {
-        color: #4e74ff;
+        @apply com-text-primary-500;
       }
+    }
+    .description {
+      @apply com-text-xl;
     }
 
     form {
       input {
-        font-size: 1.8rem;
+        @apply com-text-xl;
 
         &::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
-          font-size: 1.3rem;
+          @apply com-text-xl;
         }
 
         &::-moz-placeholder {
           /* Firefox 19+ */
-          font-size: 1.3rem;
+          @apply com-text-xl;
         }
       }
 
       .submit-button {
-        margin-top: 1rem;
+        @apply com-mt-4;
       }
-    }
-
-    @media screen and (min-width: 1020px) {
-      max-width: 1020px;
-      margin: 0 auto;
     }
   }
 }
