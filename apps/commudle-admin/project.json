@@ -26,7 +26,7 @@
           "apps/commudle-admin/src/assets",
           "apps/commudle-admin/src/manifest.webmanifest"
         ],
-        "styles": ["apps/commudle-admin/src/styles.scss"],
+        "styles": ["node_modules/@fortawesome/fontawesome-svg-core/styles.css", "apps/commudle-admin/src/styles.scss"],
         "scripts": [],
         "serviceWorker": true,
         "ngswConfigPath": "apps/commudle-admin/ngsw-config.json"

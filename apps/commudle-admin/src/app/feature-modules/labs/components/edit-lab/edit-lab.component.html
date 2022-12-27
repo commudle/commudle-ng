@@ -27,7 +27,7 @@
           <nb-card-body>
             <div class="container">
               <p class="text-center">
-                <span class="text-highlight-yellow">Changes will be auto saved every 10 seconds</span>
+                <span class="com-text-primary-500">Changes will be auto saved every 10 seconds</span>
               </p>
 
               <form [formGroup]="headerImageForm" class="lab-header-image">
@@ -207,9 +207,7 @@
             >
               <nb-icon icon="checkmark"></nb-icon>
 
-              <span *ngIf="lab.publish_status !== EPublishStatus.published && !autoSaving">
-                Submit For Review
-              </span>
+              <span *ngIf="lab.publish_status !== EPublishStatus.published && !autoSaving"> Submit For Review </span>
 
               <span *ngIf="lab.publish_status === EPublishStatus.published && !autoSaving"> Save Changes </span>
 

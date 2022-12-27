@@ -30,7 +30,7 @@
           &nbsp;
           <app-hiring-looking-works-tags [user]="user" [size]="'small'"></app-hiring-looking-works-tags>
         </span>
-        <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation" title="{{ user.designation }}">
+        <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">

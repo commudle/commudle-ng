@@ -14,6 +14,12 @@ export class AdminStaticAssetsService {
 
   getAssets(page?: number, count?: number): Observable<IStaticAssets> {
     let params = new HttpParams();
+    if (page) {
+      params = params.append('page', String(page));
+    }
+    if (count) {
+      params = params.append('count', String(count));
+    }
     return this.http.get<IStaticAssets>(this.apiRoutesService.getRoute(API_ROUTES.STATIC_ASSETS.SHOW), { params });
   }
 

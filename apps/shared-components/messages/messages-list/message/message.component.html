@@ -20,7 +20,7 @@
         />
         <p class="time">{{ moment(message.created_at).fromNow() }}</p>
       </div>
-      <p [innerHTML]="message.content | linky: { sanitizeHtml: true }" class="content"></p>
+      <p [innerHTML]="message.content | linky : { sanitizeHtml: true }" class="content"></p>
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
@@ -48,7 +48,8 @@
     <nb-action
       *ngIf="
         permittedActions.includes(allActions.DELETE_ANY) ||
-        (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id)
+        (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id) ||
+        message.user.id === currentUser.id
       "
     >
       <nb-icon

@@ -16,17 +16,10 @@
           <nb-card-body class="com-space-y-4">
             <app-loading-spinner *ngIf="isLoading || isFilterLoading"></app-loading-spinner>
             <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
-            <button
-              (click)="getJobs()"
-              *ngIf="page_info?.has_next_page"
-              [nbSpinner]="isLoading"
-              fullWidth
-              ghost
-              nbButton
-            >
-              Get more jobs
-            </button>
           </nb-card-body>
+          <button (click)="getJobs()" *ngIf="page_info?.has_next_page" [nbSpinner]="isLoading" fullWidth ghost nbButton>
+            Get more jobs
+          </button>
         </nb-card>
       </div>
       <div class="right-column">

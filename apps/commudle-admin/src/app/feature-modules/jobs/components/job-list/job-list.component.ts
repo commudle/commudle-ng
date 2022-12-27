@@ -34,6 +34,7 @@ export class JobListComponent implements OnInit, OnDestroy {
   selectedFormValue;
   UrlParamsFromFilters = {};
   heading = '';
+  total: number;
 
   filterForm;
   total: number;
@@ -77,16 +78,10 @@ export class JobListComponent implements OnInit, OnDestroy {
       location_type: [''],
       job_type: [''],
       status: [''],
-      experience: this.fb.group({
-        min: [''],
-        max: [''],
-      }),
+      experience: [''],
       min_experience: [''],
       max_experience: [''],
-      salary_range: this.fb.group({
-        min: [''],
-        max: [''],
-      }),
+      salary_range: [''],
       min_salary: [''],
       max_salary: [''],
       tags: [],

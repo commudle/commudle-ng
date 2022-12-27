@@ -5,7 +5,7 @@
   </div>
   <div class="profile-info">
     <p class="name {{ size }} d-flex">
-      <a [routerLink]="['/users', user.username]" target="_blank"
+      <a [routerLink]="['/users', user.username]" target="_blank" [ngClass]="{ 'disable-anchor': disableAnchor }"
         ><strong>{{ user.name }}</strong></a
       >
       <img
@@ -17,7 +17,7 @@
       />
     </p>
     <p *ngIf="designation" class="designation {{ size }}">
-      {{ user.designation | slice: 0:50 }}
+      {{ user.designation | slice : 0 : 50 }}
       <span *ngIf="user.designation?.length > 25">...</span>
     </p>
   </div>
