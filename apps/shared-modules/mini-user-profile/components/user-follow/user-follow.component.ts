@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { NbButtonAppearance, NbComponentStatus, NbDialogService } from '@commudle/theme';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -40,6 +41,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
     private appUsersService: AppUsersService,
     private authWatchService: LibAuthwatchService,
     private nbDialogService: NbDialogService,
+    private gtm: GoogleTagManagerService,
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
@@ -82,12 +84,15 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         this.userFollowed.emit();
+        this.gtm.dataLayerPushEvent('user_follow_confirm', { followee_id: this.user.id });
         this.changeDetectorRef.markForCheck();
+
       }),
     );
   }
 
   openDialog(ref: TemplateRef<any>) {
     this.nbDialogService.open(ref);
+    this.gtm.dataLayerPushEvent('user_follow_initiate', { followee_id: this.user.id });
   }
 }
