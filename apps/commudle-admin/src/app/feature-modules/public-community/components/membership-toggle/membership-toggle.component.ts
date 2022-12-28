@@ -45,10 +45,7 @@ export class MembershipToggleComponent implements OnInit {
       this.isMember = data;
       if (this.isMember) {
         this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
-        this.gtm.dataLayerPushEvent('join_community_confirm', {
-          com_user_id: this.currentUser.id,
-          com_community_id: this.community.id,
-        });
+        this.gtmDatalayerPush('join-community-confirm');
       }
       this.dialogRef.close();
     });
@@ -57,7 +54,11 @@ export class MembershipToggleComponent implements OnInit {
   openDialog(dialog: TemplateRef<any>) {
     this.dialogRef = this.dialogService.open(dialog, { autoFocus: false });
     this.selectExit = null;
-    this.gtm.dataLayerPushEvent('join_community_click', {
+    this.gtmDatalayerPush('join-community-click');
+  }
+
+  gtmDatalayerPush(event: string) {
+    this.gtm.dataLayerPushEvent(event, {
       com_user_id: this.currentUser.id,
       com_community_id: this.community.id,
     });

@@ -70,6 +70,6 @@ export class PricingComponent implements OnInit {
   }
 
   gtmDatalayerPush(event) {
-    this.gtm.dataLayerPushEvent('click_pricing_plan', { com_plan_type: event });
+    this.gtm.dataLayerPushEvent('click-pricing-plan', { com_plan_type: event });
   }
 }

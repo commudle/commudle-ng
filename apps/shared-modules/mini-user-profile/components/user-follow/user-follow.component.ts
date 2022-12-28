@@ -84,15 +84,14 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         this.userFollowed.emit();
-        this.gtm.dataLayerPushEvent('user_follow_confirm', { followee_id: this.user.id });
+        this.gtm.dataLayerPushEvent('user-follow-confirm', { followee_id: this.user.id });
         this.changeDetectorRef.markForCheck();
-
       }),
     );
   }
 
   openDialog(ref: TemplateRef<any>) {
     this.nbDialogService.open(ref);
-    this.gtm.dataLayerPushEvent('user_follow_initiate', { followee_id: this.user.id });
+    this.gtm.dataLayerPushEvent('user-follow-initiate', { followee_id: this.user.id });
   }
 }
