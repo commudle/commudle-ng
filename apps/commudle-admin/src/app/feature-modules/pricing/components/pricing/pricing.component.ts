@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
@@ -58,7 +59,7 @@ export class PricingComponent implements OnInit {
     },
   ];
 
-  constructor(private seoService: SeoService) {}
+  constructor(private seoService: SeoService, private gtm: GoogleTagManagerService) {}
 
   ngOnInit(): void {
     this.seoService.setTags(
@@ -66,5 +67,9 @@ export class PricingComponent implements OnInit {
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  gtmDatalayerPush(event) {
+    this.gtm.dataLayerPushEvent('click_pricing_plan', { com_plan_type: event });
   }
 }
