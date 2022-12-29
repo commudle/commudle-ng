@@ -188,17 +188,6 @@
 
           <div class="actions">
             <button
-              (click)="updateLab(EPublishStatus.draft)"
-              *ngIf="lab.publish_status !== EPublishStatus.published"
-              [disabled]="!labForm.valid"
-              nbButton
-              status="info"
-              type="submit"
-            >
-              <nb-icon icon="edit"></nb-icon>
-              Save as Draft
-            </button>
-            <button
               (click)="updateLab(EPublishStatus.submitted)"
               [disabled]="!labForm.valid || autoSaving"
               nbButton
@@ -212,6 +201,18 @@
               <span *ngIf="lab.publish_status === EPublishStatus.published && !autoSaving"> Save Changes </span>
 
               <span *ngIf="autoSaving"> Auto Saving... </span>
+            </button>
+            <button
+              (click)="updateLab(EPublishStatus.draft)"
+              *ngIf="lab.publish_status !== EPublishStatus.published"
+              [disabled]="!labForm.valid"
+              nbButton
+              outline
+              status="primary"
+              type="submit"
+            >
+              <nb-icon icon="edit"></nb-icon>
+              Save as Draft
             </button>
           </div>
         </div>
