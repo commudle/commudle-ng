@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@commudle/auth';
 import { NbToastrService } from '@commudle/theme';
-// import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { EmailCodeService } from 'apps/shared-services/email-code.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private libAuthWatchService: LibAuthwatchService,
     private cookieService: CookieService,
     private activatedRoute: ActivatedRoute,
@@ -59,11 +57,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       }),
     );
-    this.libAuthWatchService.currentUser$.subscribe((currentUser) => {
-      if (currentUser) {
-        this.router.navigate(['/']);
-      }
-    });
   }
 
   ngOnDestroy(): void {
@@ -78,7 +71,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   redirect(): void {
-    window.location.href = window.location.origin + this.activatedRoute.snapshot.queryParams.redirect || '/';
+    window.location.href = this.activatedRoute.snapshot.queryParams.redirect
+      ? window.location.origin + this.activatedRoute.snapshot.queryParams.redirect
+      : window.location.origin || '/';
   }
 
   sendVerificationEmail(): void {
