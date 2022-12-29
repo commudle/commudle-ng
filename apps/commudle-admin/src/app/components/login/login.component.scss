@@ -16,5 +16,8 @@
       text-align: center;
       text-transform: uppercase;
     }
+    button {
+      @apply com-mt-8 com-mb-20 #{!important};
+    }
   }
 }

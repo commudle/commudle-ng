@@ -1,5 +1,5 @@
 <div class="base-layout thin">
-  <div class="container">
+  <div class="container md:!com-w-[530px]">
     <div class="one-column-layout">
       <nb-card class="login-container">
         <nb-card-body class="com-self-center com-space-y-8">
@@ -9,7 +9,14 @@
 
           <form [formGroup]="loginForm" class="login-form">
             <input formControlName="email" fullWidth nbInput placeholder="Ex. more@commudle.com" type="email" />
-            <input *ngIf="isEmailSent" formControlName="code" fullWidth nbInput type="password" />
+            <input
+              *ngIf="isEmailSent"
+              formControlName="code"
+              fullWidth
+              nbInput
+              placeholder="Verification Code"
+              type="password"
+            />
             <button
               (click)="sendVerificationEmail()"
               *ngIf="!isEmailSent"
@@ -17,6 +24,7 @@
               [nbSpinner]="isLoading"
               fullWidth
               nbButton
+              status="primary"
             >
               Send Verification Code
             </button>
@@ -27,6 +35,7 @@
               [nbSpinner]="isLoading"
               fullWidth
               nbButton
+              status="primary"
             >
               Login
             </button>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@commudle/auth';
 import { NbToastrService } from '@commudle/theme';
+// import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { EmailCodeService } from 'apps/shared-services/email-code.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -58,6 +59,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       }),
     );
+    this.libAuthWatchService.currentUser$.subscribe((currentUser) => {
+      if (currentUser) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   ngOnDestroy(): void {

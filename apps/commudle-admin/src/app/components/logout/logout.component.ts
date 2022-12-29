@@ -21,8 +21,8 @@ export class LogoutComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(true);
 
     this.authWatchService.signOut().subscribe(() => {
-      this.gtm.dataLayerPushEvent('logout', {});
       this.document.location.href = '/';
+      this.gtm.dataLayerPushEvent('logout', {});
     });
   }
 
