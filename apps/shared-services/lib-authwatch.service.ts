@@ -78,6 +78,7 @@ export class LibAuthwatchService {
     this.injector.get(AuthService).signOut();
     this.currentUser.next(null);
     this.currentUserVerified.next(false);
+    this.cookieService.delete(environment.auth_cookie_name, environment.app_url);
     return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.LOGOUT));
   }
 
