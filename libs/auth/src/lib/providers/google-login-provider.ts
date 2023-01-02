@@ -35,7 +35,7 @@ export interface GoogleInitOptions {
 }
 
 const defaultInitOptions: GoogleInitOptions = {
-  oneTapEnabled: false,
+  oneTapEnabled: true,
 };
 
 export class GoogleLoginProvider extends BaseLoginProvider {

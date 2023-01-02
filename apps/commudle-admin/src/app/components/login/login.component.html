@@ -5,7 +5,12 @@
         <nb-card-body class="com-self-center com-space-y-8">
           <h2>Login/Signup with Commudle</h2>
 
-          <div class="com-flex com-justify-center" commudle-google-signin type="standard"></div>
+          <div
+            *ngIf="!libAuthWatchService.getAuthCookie()"
+            class="com-flex com-justify-center"
+            commudle-google-signin
+            type="standard"
+          ></div>
 
           <form [formGroup]="loginForm" class="login-form">
             <input formControlName="email" fullWidth nbInput placeholder="Ex. more@commudle.com" type="email" />
