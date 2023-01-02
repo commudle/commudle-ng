@@ -1,7 +1,13 @@
 export const API_ROUTES = {
+  VERIFY_AND_LOGIN: 'api/v2/token_authentication/verify_and_login',
   VERIFY_AUTHENTICATION: 'api/v2/token_authentication/verify_authentication',
   LOGOUT: 'api/v2/token_authentication/logout',
   CURRENT_USER: 'api/v2/users/signed_in_user',
+
+  EMAIL_CODE_AUTH: {
+    CREATE: 'api/v2/verification_codes/',
+    VERIFY: 'api/v2/verification_codes/verify',
+  },
 
   // admin_surveys
   ADMIN_SURVEYS: {

@@ -86,7 +86,6 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
         this.userFollowed.emit();
         this.gtm.dataLayerPushEvent('user_follow_confirm', { followee_id: this.user.id });
         this.changeDetectorRef.markForCheck();
-
       }),
     );
   }

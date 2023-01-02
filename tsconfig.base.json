@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@commudle/auth": ["libs/auth/src/index.ts"],
       "@commudle/ngx-datatable": ["libs/ngx-datatable/src/index.ts"]
     }
   },

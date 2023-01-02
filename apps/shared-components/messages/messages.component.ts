@@ -11,6 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import { UserMessagesService } from 'apps/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'apps/shared-components/services/websockets/discussion-chat.channel';
@@ -58,6 +59,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     private userMessagesService: UserMessagesService,
     private fb: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
+    private router: Router,
   ) {
     this.messageForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
@@ -190,6 +192,6 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
   }
 
   login() {
-    window.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+    this.router.navigate(['/login'], { queryParams: { redirect: this.router.url } });
   }
 }

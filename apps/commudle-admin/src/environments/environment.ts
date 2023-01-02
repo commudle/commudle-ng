@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+
   // app_url: 'http://localhost:4200',
   // base_url: 'http://localhost:3000',
   // action_cable_url: 'http://localhost:3000/live',
@@ -29,6 +30,7 @@ export const environment = {
   auth_cookie_name: 'commudle_user_auth',
   zoom_call_server_url: 'https://zoom.commudle.com',
   vapid_public_key: 'BKK5b61SLimEeIdVcYTGqp-zOkSVooNfKF6JX-_-N2eDza_tzZldncoCHdZtl8xHQ-cX20Vo7lBGo_p5n7hVG4g=',
+  google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
 };
 
 /*

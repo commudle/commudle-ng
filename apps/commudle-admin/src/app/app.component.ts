@@ -1,10 +1,4 @@
-import {
-  AfterViewChecked,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NbSidebarService, NbSidebarState } from '@commudle/theme';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
@@ -52,20 +46,18 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnInit(): void {
     this.seoService.setCanonical();
-    this.authWatchService.currentUser$.subscribe(
-      (currentUser: ICurrentUser) => {
-        this.currentUser = currentUser;
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+      this.currentUser = currentUser;
 
-        if (this.isBrowser) {
-          this.actionCableConnectionSocket.connectToServer();
-          this.notificationsService.subscribeToNotifications();
+      if (this.isBrowser) {
+        this.actionCableConnectionSocket.connectToServer();
+        this.notificationsService.subscribeToNotifications();
 
-          if (this.currentUser) {
-            // this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
-          }
+        if (this.currentUser) {
+          // this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
         }
       }
-    );
+    });
     if (this.cookieConsentService.isCookieConsentAccepted()) {
       this.cookieAccepted = true;
     }
@@ -74,9 +66,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked(): void {
-    this.profileStatusBarService.profileBarStatus$.subscribe(
-      (value) => (this.profileBarStatus = value)
-    );
+    this.profileStatusBarService.profileBarStatus$.subscribe((value) => (this.profileBarStatus = value));
     this.cdr.detectChanges();
   }
 
