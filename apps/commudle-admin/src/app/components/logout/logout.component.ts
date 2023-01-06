@@ -1,7 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { CookieService } from 'ngx-cookie-service';
 import { GoogleTagManagerService } from '../../services/google-tag-manager.service';
 
 @Component({
@@ -15,6 +17,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private seoService: SeoService,
     private gtm: GoogleTagManagerService,
+    private cookieService: CookieService,
   ) {}
 
   ngOnInit() {
@@ -23,6 +26,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     this.authWatchService.signOut().subscribe(() => {
       this.gtm.dataLayerPushEvent('logout', {});
       this.document.location.href = '/';
+      this.cookieService.delete(environment.auth_cookie_name, environment.app_url);
     });
   }
 
