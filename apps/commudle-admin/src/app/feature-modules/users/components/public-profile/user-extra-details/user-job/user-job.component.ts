@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -67,7 +66,6 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     private userProfileMenuService: UserProfileMenuService,
     private userProfileManagerService: UserProfileManagerService,
     private route: ActivatedRoute,
-    private scroller: ViewportScroller,
   ) {
     this.jobForm = this.fb.group(
       {
@@ -108,11 +106,18 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
           if (this.route.snapshot.queryParams['job_tag']) {
             this.tags.push(this.route.snapshot.queryParams['job_tag']);
           }
-          this.scroller.scrollToAnchor(fragment);
-          this.onOpenDialog(this.jobDialog);
+          document.querySelector('#' + fragment).scrollIntoView({
+            behavior: 'smooth',
+          });
+          this.openJobDialogBox();
         }, 500);
       }
     });
+  }
+  openJobDialogBox() {
+    setTimeout(() => {
+      this.onOpenDialog(this.jobDialog); //
+    }, 1000);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -140,10 +145,6 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
           this.jobs = this.jobs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
           this.isLoading = false;
-          this.userProfileMenuService.addMenuItem(
-            'jobs',
-            this.jobs.length > 0 || this.user?.id === this.currentUser?.id || this.hiring,
-          );
         }),
     );
   }
