@@ -11,7 +11,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDataFormEntity } from 'apps/shared-models/data_form_entity.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-// import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from '../../services/google-tag-manager.service';
@@ -48,7 +48,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private errorHandler: LibErrorHandlerService,
     private dataFormEntityResponsesService: DataFormEntityResponsesService,
-    // private toastLogService: LibToastLogService,
+    private toastLogService: LibToastLogService,
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
@@ -152,7 +152,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
 
   submitForm($event) {
     this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      // this.toastLogService.successDialog('Saved!');
+      this.toastLogService.successDialog('Saved!');
       this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
       this.redirectTo();
     });
