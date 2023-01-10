@@ -25,7 +25,6 @@ export class MembershipToggleComponent implements OnInit {
     private dialogService: NbDialogService,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
-
     private gtm: GoogleTagManagerService,
   ) {}
 
