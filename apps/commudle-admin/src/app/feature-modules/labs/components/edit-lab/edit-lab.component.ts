@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ILabStep } from 'apps/shared-models/lab-step.model';
 import { EPublishStatus, ILab } from 'apps/shared-models/lab.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -78,6 +79,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: object,
     private seoService: SeoService,
     private dialogService: NbDialogService,
+    private gtm: GoogleTagManagerService,
   ) {
     this.headerImageForm = this.fb.group({
       header_image: ['', Validators.required],
@@ -280,6 +282,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   submitTags(redirect = true) {
     this.labsService.updateTags(this.lab.id, this.tags).subscribe(() => {
       if (redirect) {
+        this.gtmService();
         this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/labs/my-labs']);
       }
@@ -292,5 +295,13 @@ export class EditLabComponent implements OnInit, OnDestroy {
 
   onSubmitDialogClose() {
     this.submitDialogRef?.close();
+  }
+  gtmService() {
+    this.gtm.dataLayerPushEvent('submit_lab', {
+      com_name: this.lab.name,
+      com_section_count: this.lab.lab_steps.length,
+      com_tags: this.tags.toString(),
+      com_submit_type: this.lab.publish_status,
+    });
   }
 }

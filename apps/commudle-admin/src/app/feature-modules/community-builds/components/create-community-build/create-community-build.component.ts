@@ -18,6 +18,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-create-community-build',
@@ -68,6 +69,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     private router: Router,
     private communityBuildsService: CommunityBuildsService,
     private toastLogService: LibToastLogService,
+    private gtm: GoogleTagManagerService,
   ) {
     this.communityBuildForm = this.fb.group({
       name: ['', Validators.required],
@@ -307,7 +309,18 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
 
   submitTags() {
     this.communityBuildsService.updateTags(this.cBuild.id, this.tags).subscribe(() => {
+      this.gtmService();
       this.router.navigate(['/builds/my-builds']).then(() => this.toastLogService.successDialog('Saved!'));
+    });
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('submit_build', {
+      com_name: this.cBuild.name,
+      com_category: this.cBuild.build_type,
+      com_id: this.cBuild.id,
+      com_tags: this.tags.toString(),
+      com_submit_type: this.cBuild.publish_status,
     });
   }
 }

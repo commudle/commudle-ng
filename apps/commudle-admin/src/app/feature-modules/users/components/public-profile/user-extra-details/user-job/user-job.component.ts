@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserProfileMenuService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { JobService } from 'apps/commudle-admin/src/app/services/job.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import {
@@ -68,6 +69,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     private userProfileManagerService: UserProfileManagerService,
     private route: ActivatedRoute,
     private scroller: ViewportScroller,
+    private gtm: GoogleTagManagerService,
   ) {
     this.jobForm = this.fb.group(
       {
@@ -172,6 +174,14 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
         this.onCloseDialog();
         this.formSubmitLoading = false;
         this.jobs.unshift(data);
+        this.gtmService('submit_add_job', {
+          com_user_id: this.currentUser.id,
+          com_job_type: data.job_type,
+          com_position: data.position,
+          com_min_experience: data.experience,
+          com_location_type: data.location_type,
+          com_tags: data.tags.toString(),
+        });
       }),
     );
   }
@@ -214,6 +224,10 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
 
   onOpenDialog(templateRef: TemplateRef<any>) {
     this.dialogRef = this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
+    this.gtmService('click_add_job', {
+      com_user_id: this.currentUser.id,
+      com_profile_complete: this.currentUser.profile_completed,
+    });
   }
 
   onOpenEditJobDialog(templateRef: TemplateRef<any>, job: IJob) {
@@ -240,5 +254,9 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     });
     this.dialogRef.close();
     this.isEditing = false;
+  }
+
+  gtmService(event, data) {
+    this.gtm.dataLayerPushEvent(event, data);
   }
 }

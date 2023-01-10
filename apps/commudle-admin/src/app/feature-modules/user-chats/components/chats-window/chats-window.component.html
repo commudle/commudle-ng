@@ -25,6 +25,7 @@
       <app-discussion-personal-chat
         *ngIf="discussion"
         [discussion]="discussion"
+        [user]="discussionFollower.user"
         (discussionSubscribed)="getMenuBlockedTitle()"
       ></app-discussion-personal-chat>
     </nb-card-body>
