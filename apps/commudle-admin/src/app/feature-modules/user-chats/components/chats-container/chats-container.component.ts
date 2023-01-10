@@ -106,7 +106,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
       // Insert into the back of the array
       this.discussionFollowers.push(follower);
     }
-    this.gtm.dataLayerPushEvent('click-chatlist-chatbox-open', { com_chat_user_id: follower.id });
+    this.gtm.dataLayerPushEvent('click_chatlist_chatbox_open', { com_chat_user_id: follower.id });
   }
 
   // Close and unsubscribe a particular chat

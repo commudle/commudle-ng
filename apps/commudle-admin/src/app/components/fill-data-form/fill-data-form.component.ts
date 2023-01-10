@@ -153,7 +153,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   submitForm($event) {
     this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
       this.toastLogService.successDialog('Saved!');
-      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+      this.gtm.dataLayerPushEvent('submit_form', this.gtmData);
       this.redirectTo();
     });
   }
