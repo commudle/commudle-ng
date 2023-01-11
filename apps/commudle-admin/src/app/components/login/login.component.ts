@@ -78,7 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   redirect(): void {
-    window.location.href = window.location.origin + this.activatedRoute.snapshot.queryParams.redirect || '/';
+    window.location.href = this.activatedRoute.snapshot.queryParams.redirect
+      ? window.location.origin + this.activatedRoute.snapshot.queryParams.redirect
+      : window.location.origin || '/';
   }
 
   sendVerificationEmail(): void {
