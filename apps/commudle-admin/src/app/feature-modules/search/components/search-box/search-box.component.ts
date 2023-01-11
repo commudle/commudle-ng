@@ -73,6 +73,7 @@ export class SearchBoxComponent implements OnInit {
 
         this.searchLoader = false;
         this.total = value.total;
+        console.log(value);
       });
   }
 

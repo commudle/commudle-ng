@@ -249,7 +249,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('send_chat_message', {
+    this.gtm.dataLayerPushEvent('send-chat-message', {
       com_user_id: this.currentUser.id,
       com_to_user_id: this.user.id,
     });

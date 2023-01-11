@@ -50,6 +50,6 @@ export class ChatsListComponent implements OnInit {
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('click_chatlist_open', {});
+    this.gtm.dataLayerPushEvent('click-chatlist-open', {});
   }
 }

@@ -174,7 +174,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
         this.onCloseDialog();
         this.formSubmitLoading = false;
         this.jobs.unshift(data);
-        this.gtmService('submit_add_job', {
+        this.gtmService('submit-add-job', {
           com_user_id: this.currentUser.id,
           com_job_type: data.job_type,
           com_position: data.position,
@@ -224,7 +224,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
 
   onOpenDialog(templateRef: TemplateRef<any>) {
     this.dialogRef = this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
-    this.gtmService('click_add_job', {
+    this.gtmService('click-add-job', {
       com_user_id: this.currentUser.id,
       com_profile_complete: this.currentUser.profile_completed,
     });

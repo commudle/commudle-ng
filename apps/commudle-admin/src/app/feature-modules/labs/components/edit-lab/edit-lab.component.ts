@@ -297,7 +297,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     this.submitDialogRef?.close();
   }
   gtmService() {
-    this.gtm.dataLayerPushEvent('submit_lab', {
+    this.gtm.dataLayerPushEvent('submit-lab', {
       com_name: this.lab.name,
       com_section_count: this.lab.lab_steps.length,
       com_tags: this.tags.toString(),

@@ -493,7 +493,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('join_channel', {
+    this.gtm.dataLayerPushEvent('join-channel', {
       com_user_id: this.currentUser.id,
       com_channel_id: this.discussion.parent_id,
     });

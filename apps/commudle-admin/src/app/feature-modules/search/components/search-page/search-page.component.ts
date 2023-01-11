@@ -7,6 +7,7 @@ import {
 } from 'apps/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ISearch } from 'apps/shared-models/search.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 
@@ -37,6 +38,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private searchStatusService: SearchStatusService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   getSearchData() {
     this.loadMoreLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
+      this.gtmService(this.query);
       this.seoService.setTitle(`Search results for "${this.query}"`);
 
       this.results = [...this.results, ...value.results];
@@ -104,5 +107,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         return filters.includes(result.type);
       }
     });
+  }
+
+  gtmService(query) {
+    this.gtm.dataLayerPushEvent('search_query', { query });
   }
 }

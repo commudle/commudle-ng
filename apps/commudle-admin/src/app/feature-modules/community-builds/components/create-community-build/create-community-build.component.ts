@@ -315,7 +315,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('submit_build', {
+    this.gtm.dataLayerPushEvent('submit-build', {
       com_name: this.cBuild.name,
       com_category: this.cBuild.build_type,
       com_id: this.cBuild.id,
