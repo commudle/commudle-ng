@@ -282,9 +282,9 @@ export class EditLabComponent implements OnInit, OnDestroy {
   submitTags(redirect = true) {
     this.labsService.updateTags(this.lab.id, this.tags).subscribe(() => {
       if (redirect) {
-        this.gtmService();
         this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/labs/my-labs']);
+        this.gtmService();
       }
     });
   }

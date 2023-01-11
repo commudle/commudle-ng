@@ -181,8 +181,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.communityChannelsService.joinChannel(this.discussion.parent_id).subscribe((data) => {
       if (data) {
         this.toastLogService.successDialog('Welcome to the channel!');
-        this.gtmService();
         location.reload();
+        this.gtmService();
       }
     });
   }

@@ -71,7 +71,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   getSearchData() {
     this.loadMoreLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
-      this.gtmService(this.query);
       this.seoService.setTitle(`Search results for "${this.query}"`);
       this.results = [...this.results, ...value.results];
       this.total = value.total;
@@ -88,6 +87,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
       this.searchLoader = false;
       this.loadMoreLoader = false;
+      this.gtmService(this.query);
     });
   }
 

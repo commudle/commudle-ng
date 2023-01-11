@@ -309,8 +309,8 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
 
   submitTags() {
     this.communityBuildsService.updateTags(this.cBuild.id, this.tags).subscribe(() => {
-      this.gtmService();
       this.router.navigate(['/builds/my-builds']).then(() => this.toastLogService.successDialog('Saved!'));
+      this.gtmService();
     });
   }
 
