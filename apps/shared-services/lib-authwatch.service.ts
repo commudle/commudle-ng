@@ -54,7 +54,7 @@ export class LibAuthwatchService {
         if (data.user) {
           this.currentUser.next(data.user);
           this.currentUserVerified.next(true);
-          this.gtm.dataLayerPushEvent('session_start', {
+          this.gtm.dataLayerPushEvent('session-start', {
             com_user_name: data.user.name,
             com_user_id: data.user.id,
             com_user_email: data.user.email,

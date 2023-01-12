@@ -17,6 +17,7 @@ import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feat
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -72,6 +73,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private communityChannelsService: CommunityChannelsService,
     private nbDialogService: NbDialogService,
     private activatedRoute: ActivatedRoute,
+    private gtm: GoogleTagManagerService,
   ) {
     this.chatMessageForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
@@ -180,6 +182,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       if (data) {
         this.toastLogService.successDialog('Welcome to the channel!');
         location.reload();
+        this.gtmService();
       }
     });
   }
@@ -487,5 +490,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
 
   findReplyIndex(questionIndex, replyId) {
     return this.messages[questionIndex].user_messages.findIndex((q) => q.id === replyId);
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('join-channel', {
+      com_user_id: this.currentUser.id,
+      com_channel_id: this.discussion.parent_id,
+    });
   }
 }

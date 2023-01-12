@@ -4,7 +4,7 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieService } from 'ngx-cookie-service';
-import { GoogleTagManagerService } from '../../services/google-tag-manager.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-logout',
