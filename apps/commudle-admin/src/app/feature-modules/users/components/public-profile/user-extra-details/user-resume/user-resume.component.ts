@@ -50,8 +50,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.route.snapshot.queryParams['jobId']) {
-      this.jobId = this.route.snapshot.queryParams['jobId'];
+    if (this.route.snapshot.queryParams['job_id']) {
+      this.jobId = this.route.snapshot.queryParams['job_id'];
       setTimeout(() => {
         document.querySelector('#resume').scrollIntoView({
           behavior: 'smooth',
