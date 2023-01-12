@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { AuthService } from '@commudle/auth';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { ICurrentUser } from '../shared-models/current_user.model';
 import { API_ROUTES } from './api-routes.constants';
 import { ApiRoutesService } from './api-routes.service';
-import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +28,8 @@ export class LibAuthwatchService {
     private router: Router,
     private apiRoutesService: ApiRoutesService,
     private cookieService: CookieService,
-    private authService: AuthService,
     private gtm: GoogleTagManagerService,
+    private injector: Injector,
   ) {}
 
   // to check if cookie exists
@@ -75,7 +75,7 @@ export class LibAuthwatchService {
 
   // logout
   signOut(): Observable<boolean> {
-    this.authService.signOut();
+    this.injector.get(AuthService).signOut();
     this.currentUser.next(null);
     this.currentUserVerified.next(false);
     return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.LOGOUT));

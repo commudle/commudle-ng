@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@commudle/auth';
@@ -21,16 +21,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  private authService: AuthService;
+
   constructor(
-    private authService: AuthService,
+    public libAuthWatchService: LibAuthwatchService,
     private router: Router,
-    private libAuthWatchService: LibAuthwatchService,
     private cookieService: CookieService,
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private fb: FormBuilder,
     private emailCodeService: EmailCodeService,
     private nbToastrService: NbToastrService,
+    private injector: Injector,
   ) {
     this.seoService.noIndex(true);
 
@@ -42,23 +44,27 @@ export class LoginComponent implements OnInit, OnDestroy {
       }),
     );
 
+    if (this.libAuthWatchService.getAuthCookie() === null) {
+      this.authService = this.injector.get(AuthService);
+
+      this.subscriptions.push(
+        this.authService.authState.subscribe((user) => {
+          if (user) {
+            this.libAuthWatchService.signIn(user.provider.toLowerCase(), user.idToken).subscribe((data: any) => {
+              this.setCookie(data.auth_token);
+            });
+          }
+        }),
+      );
+    }
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
     });
   }
 
-  ngOnInit(): void {
-    this.subscriptions.push(
-      this.authService.authState.subscribe((user) => {
-        if (user) {
-          this.libAuthWatchService.signIn(user.provider.toLowerCase(), user.idToken).subscribe((data: any) => {
-            this.setCookie(data.auth_token);
-          });
-        }
-      }),
-    );
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
@@ -72,7 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   redirect(): void {
-    window.location.href = window.location.origin + this.activatedRoute.snapshot.queryParams.redirect || '/';
+    window.location.href = this.activatedRoute.snapshot.queryParams.redirect
+      ? window.location.origin + this.activatedRoute.snapshot.queryParams.redirect
+      : window.location.origin || '/';
   }
 
   sendVerificationEmail(): void {
