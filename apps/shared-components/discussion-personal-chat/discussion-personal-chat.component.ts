@@ -1,9 +1,11 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { UserMessagesService } from 'apps/commudle-admin/src/app/services/user-messages.service';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
+import { IUser } from 'apps/shared-models/user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -17,6 +19,7 @@ import { DiscussionPersonalChatChannel } from '../services/websockets/discussion
 })
 export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   @Input() discussion: IDiscussion;
+  @Input() user: IUser;
   @Output() newMessage = new EventEmitter();
   @Output() discussionSubscribed = new EventEmitter();
   moment = moment;
@@ -44,6 +47,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     private userMessagesService: UserMessagesService,
     private discussionChatChannel: DiscussionPersonalChatChannel,
     private authWatchService: LibAuthwatchService,
+    private gtm: GoogleTagManagerService,
   ) {
     this.chatMessageForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
@@ -127,6 +131,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
       },
     });
     this.chatMessageForm.reset();
+    this.gtmService();
   }
 
   sendVote(userMessageId) {
@@ -241,5 +246,12 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
       content: currentValue.concat(event.emoji.native),
     });
     this.inputElement?.nativeElement.focus();
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('send-chat-message', {
+      com_user_id: this.currentUser.id,
+      com_to_user_id: this.user.id,
+    });
   }
 }

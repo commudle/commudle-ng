@@ -4,7 +4,7 @@
 
 .login-container {
   .login-form {
-    @apply com-flex com-flex-col com-space-y-2;
+    @apply com-flex com-flex-col;
 
     &::before {
       color: rgb(151, 160, 175);
@@ -15,6 +15,12 @@
       margin-bottom: 16px;
       text-align: center;
       text-transform: uppercase;
+    }
+    input {
+      @apply com-mb-2;
+    }
+    button {
+      @apply com-my-8;
     }
   }
 }

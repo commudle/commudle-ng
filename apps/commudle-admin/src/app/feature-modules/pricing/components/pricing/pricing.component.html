@@ -29,18 +29,7 @@
     <div class="pricing-cards">
       <div
         aria-hidden="true"
-        class="
-          com-hidden
-          com-absolute
-          com-top-4
-          com-bottom-6
-          com-left-8
-          com-right-8
-          com-inset-0
-          com-bg-[#3aa49a]
-          com-rounded-lg
-          lg:com-block
-        "
+        class="com-hidden com-absolute com-top-4 com-bottom-6 com-left-8 com-right-8 com-inset-0 com-bg-[#3aa49a] com-rounded-lg lg:com-block"
       ></div>
 
       <div class="com-relative com-space-y-6 lg:com-space-y-0 lg:com-grid lg:com-grid-cols-3">
@@ -55,7 +44,9 @@
                 <!--                  <div class="com-text-blue-200 com-text-sm">Billed yearly ($56)</div>-->
                 <!--                </div>-->
               </div>
-              <a [routerLink]="['/fill-form', 1343]" class="buy-btn">Get Started</a>
+              <a [routerLink]="['/fill-form', 1343]" (click)="gtmDatalayerPush('non_profit')" class="buy-btn"
+                >Get Started</a
+              >
             </div>
           </div>
           <ul class="features">
@@ -97,7 +88,7 @@
                   <!--                  <div class="com-text-gray-500 com-text-sm">Billed yearly ($220)</div>-->
                 </div>
               </div>
-              <a [routerLink]="['/fill-form', 1344]" class="buy-btn">Buy now</a>
+              <a [routerLink]="['/fill-form', 1344]" (click)="gtmDatalayerPush('startup')" class="buy-btn">Buy now</a>
             </div>
           </div>
           <ul class="features">
@@ -139,7 +130,9 @@
                 <!--                  <div class="com-text-blue-200 com-text-sm">Billed yearly ($140)</div>-->
                 <!--                </div>-->
               </div>
-              <a [routerLink]="['/fill-form', 1345]" class="buy-btn">Talk to Commudle Expert</a>
+              <a [routerLink]="['/fill-form', 1345]" (click)="gtmDatalayerPush('enterprise')" class="buy-btn"
+                >Talk to Commudle Expert</a
+              >
             </div>
           </div>
           <ul class="features">
@@ -177,11 +170,7 @@
   <section class="pricing-quotes">
     <div class="com-relative com-max-w-7xl com-mx-auto com-px-4 sm:com-px-6 lg:com-px-8">
       <svg
-        class="
-          com-absolute com-top-full com-left-full com-transform com--translate-x-1/3 com--translate-y-1/4
-          lg:com--translate-x-1/2
-          xl:com--translate-y-1/2
-        "
+        class="com-absolute com-top-full com-left-full com-transform com--translate-x-1/3 com--translate-y-1/4 lg:com--translate-x-1/2 xl:com--translate-y-1/2"
         fill="none"
         height="404"
         role="img"
@@ -1591,19 +1580,25 @@
 
         <div class="com-px-4 com--mt-px com-w-1/4">
           <div class="com-py-6">
-            <a [routerLink]="['/fill-form', 1343]" class="buy-btn light">Get Started</a>
+            <a [routerLink]="['/fill-form', 1343]" (click)="gtmDatalayerPush('non_profit')" class="buy-btn light"
+              >Get Started</a
+            >
           </div>
         </div>
 
         <div class="com-px-4 com--mt-px com-w-1/4">
           <div class="com-py-6">
-            <a [routerLink]="['/fill-form', 1344]" class="buy-btn dark">Buy Now</a>
+            <a [routerLink]="['/fill-form', 1344]" (click)="gtmDatalayerPush('startup')" class="buy-btn dark"
+              >Buy Now</a
+            >
           </div>
         </div>
 
         <div class="com--mt-px com-pl-4 com-w-1/4">
           <div class="com-py-6">
-            <a [routerLink]="['/fill-form', 1345]" class="buy-btn light">Talk to Commudle Expert</a>
+            <a [routerLink]="['/fill-form', 1345]" (click)="gtmDatalayerPush('enterprise')" class="buy-btn light"
+              >Talk to Commudle Expert</a
+            >
           </div>
         </div>
       </div>
@@ -1625,11 +1620,7 @@
   <section class="pricing-quotes">
     <div class="com-relative com-max-w-7xl com-mx-auto com-px-4 sm:com-px-6 lg:com-px-8">
       <svg
-        class="
-          com-absolute com-top-full com-right-full com-transform com-translate-x-1/3 com--translate-y-1/4
-          lg:com-translate-x-1/2
-          xl:com--translate-y-1/2
-        "
+        class="com-absolute com-top-full com-right-full com-transform com-translate-x-1/3 com--translate-y-1/4 lg:com-translate-x-1/2 xl:com--translate-y-1/2"
         fill="none"
         height="404"
         role="img"
@@ -1664,12 +1655,7 @@
   <div class="pricing-logo-cloud">
     <p class="subheading">Communities already on Commudle</p>
     <div
-      class="
-        com-grid com-grid-cols-1 com-gap-4
-        sm:com-grid-cols-2 sm:com-gap-6
-        md:com-grid-cols-3 md:com-gap-8
-        lg:com-grid-cols-4 lg:com-gap-10
-      "
+      class="com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-8 lg:com-grid-cols-4 lg:com-gap-10"
     >
       <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]" class="logo">
         <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
