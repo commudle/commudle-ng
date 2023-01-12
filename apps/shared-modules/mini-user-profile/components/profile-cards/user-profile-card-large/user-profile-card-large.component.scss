@@ -1,0 +1,81 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+.user-profile-large {
+  background-color: $white;
+
+  .avatar {
+    @apply com-h-14 com-w-14;
+    @apply com-rounded-full com-object-cover com-object-center com-align-middle;
+  }
+
+  .details {
+    margin-left: $space-16;
+
+    .name {
+      p {
+        color: $black;
+        font-size: $fs-18;
+        line-height: 21px;
+        word-break: break-word;
+      }
+
+      img {
+        height: 16px;
+        margin-left: $space-4;
+        width: 16px;
+      }
+    }
+
+    .username {
+      color: rgba($gunmetal, 0.85);
+      font-size: $fs-h6;
+      line-height: 12px;
+      margin-top: $space-4;
+      word-break: break-word;
+    }
+
+    .designation {
+      color: $black;
+      font-size: $fs-h5;
+      line-height: 16px;
+      margin-top: $space-4;
+      word-break: break-word;
+    }
+
+    .about {
+      color: $black;
+      font-size: $fs-h6;
+      line-height: 16px;
+      margin-top: $space-8;
+      word-break: break-word;
+    }
+
+    .social {
+      a {
+        nb-icon {
+          font-size: $fs-h5;
+        }
+      }
+    }
+  }
+}
+
+.followers {
+  margin: $space-8 0 0 $space-72;
+}
+
+.align-right {
+  margin-left: auto;
+}

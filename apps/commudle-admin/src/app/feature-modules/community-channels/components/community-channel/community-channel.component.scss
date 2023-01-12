@@ -1,0 +1,198 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.community-channel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+
+  header {
+    display: flex;
+    height: 2.5rem;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #edf1f7;
+
+    .channel-details {
+      min-width: 50%;
+      overflow: hidden;
+
+      p {
+        color: grey;
+
+        margin: 0;
+
+        nb-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .extra-details {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 60%;
+
+      fa-icon {
+        cursor: pointer;
+        margin-right: 10px;
+        color: $black;
+      }
+
+      nb-actions {
+        nb-action {
+          position: relative;
+          @media screen and (min-width: 1089px) {
+            &.channel-list-menu-button {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .latest-pinned-message {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 0.5rem 1rem;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    height: 60px;
+    overflow: hidden;
+
+    .message-controls {
+      margin-left: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+
+      nb-icon {
+        cursor: pointer;
+      }
+
+      button {
+        height: 15px;
+        width: 40px;
+      }
+    }
+  }
+
+  main {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 0.5rem 1rem;
+
+    .discussion {
+      flex-grow: 1;
+      height: 100%;
+    }
+
+    .resources {
+      max-width: 100vw;
+      position: relative;
+      right: 0;
+      top: 0;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 1089px) {
+      position: relative;
+
+      .resources {
+        height: 100%;
+        max-width: 80%;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+
+  main.not-found {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    p {
+      color: grey;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+
+      nb-icon {
+        color: lightgrey;
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+.complete-description {
+  white-space: pre-wrap;
+}
+
+.pinned-messages-container {
+  margin: 0;
+  height: auto;
+  max-height: 368px;
+  max-width: 450px;
+  border-radius: inherit;
+
+  nb-card-body {
+    padding: 0;
+
+    nb-list {
+      nb-list-item {
+        &:first-child {
+          border-top: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .message-controls {
+          margin-left: auto;
+          margin-bottom: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 15px;
+
+          nb-icon {
+            cursor: pointer;
+          }
+
+          button {
+            height: 15px;
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.highlight-message {
+  animation: highlight 2s;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: initial;
+  }
+}
+
+.with-latest-pinned-message {
+  height: calc(100% - 6rem);
+}
+
+.without-latest-pinned-message {
+  height: calc(100% - 2.5rem);
+}

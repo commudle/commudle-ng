@@ -1,0 +1,85 @@
+.communities-list-container {
+  @apply com-mt-0;
+
+  nb-card-body {
+    @apply com-py-6 com-px-8;
+
+    .communities-list-prefix {
+      @apply com-mb-4;
+
+      .communities-list-heading {
+        @apply com-text-gunmetal com-text-2xl com-font-semibold com-leading-30px;
+      }
+
+      .communities-list-navigation {
+        @apply com-min-w-max;
+
+        button {
+          @apply com-bg-blue-200 com-h-7 com-w-10;
+
+          nb-icon {
+            @apply com-text-Very-Light-Blue;
+          }
+
+          &:nth-of-type(1) {
+            @apply com-mr-2;
+          }
+
+          &.communities-list-left-btn {
+            @apply com-rounded-l-lg;
+          }
+
+          &.communities-list-right-btn {
+            @apply com-rounded-r-lg;
+          }
+        }
+      }
+    }
+
+    .communities-list-search {
+      @apply com-mt-11 com-mx-0 com-mb-6 com-gap-y-2 com-gap-x-8;
+
+      .communities-list-search-tags {
+        @apply com-gap-y-2 com-gap-x-5 com-overflow-auto com-items-center;
+
+        .communities-list-search-tag {
+          @apply com-border-b-2 com-border-solid com-border-white com-text-sm com-py-2 com-leading-4 com-px-6px com-text-gunmetal/80;
+
+          &.active {
+            @apply com-border-0  com-border-b-2 com-border-solid com-border-primary-500;
+          }
+        }
+      }
+
+      .communities-list-search-bar {
+        nb-form-field {
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              @apply com-h-6 -com-mr-8 com-w-8;
+            }
+
+            .nb-form-field-suffix-medium {
+              @apply com-h-6 -com-mr-8 com-w-8;
+            }
+          }
+
+          nb-icon {
+            @apply com-h-4 com-w-4 com-text-gunmetal/80;
+          }
+
+          .communities-list-search-input {
+            @apply com-bg-gray-100 com-border-0 com-rounded-md com-text-xs com-h-6 com-py-2 com-px-8 com-w-140px;
+          }
+        }
+      }
+    }
+
+    .communities-list-cards {
+      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+
+      @screen lg {
+        @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
+      }
+    }
+  }
+}

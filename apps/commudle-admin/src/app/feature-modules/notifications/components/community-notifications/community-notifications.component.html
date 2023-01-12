@@ -1,0 +1,45 @@
+<nb-list
+  (scrolled)="getNotifications()"
+  [infiniteScrollDisabled]="!(canLoadMore && total)"
+  appInfiniteScroll
+  class="notification-list"
+>
+  <nb-list-item
+    *ngFor="let notification of notifications"
+    [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
+    class="com-justify-between"
+  >
+    <div class="com-flex com-justify-between com-items-center">
+      <img
+        *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
+        src="{{ notification.sender.photo.i64 }}"
+        alt="{{ notification.sender.name }}"
+        class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+      />
+      <img
+        *ngIf="notification.sender_type === ENotificationSenderTypes.KOMMUNITY"
+        src="{{ notification.sender.logo_image.i64 }}"
+        alt="{{ notification.sender.name }}"
+        class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+      />
+      <div class="com-ml-2">
+        <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+        <app-notifications-list-item
+          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
+          (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
+          [notificationMessage]="notification.notification_message"
+          [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
+        ></app-notifications-list-item>
+      </div>
+    </div>
+    <button
+      (click)="changeStatus(ENotificationStatuses.READ, notification)"
+      *ngIf="notification.status === ENotificationStatuses.UNREAD"
+      class="mark-as-read"
+      nbButton
+      nbTooltip="Mark as read"
+      size="small"
+    >
+      <nb-icon icon="checkmark-outline"></nb-icon></button></nb-list-item
+></nb-list>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>

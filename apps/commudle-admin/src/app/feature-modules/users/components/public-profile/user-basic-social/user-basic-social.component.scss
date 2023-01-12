@@ -1,0 +1,35 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.user-basic-social-container {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
+
+  nb-card-body {
+    .about {
+      @apply com-mb-6 com-text-base;
+    }
+
+    .user-social {
+      @apply com-flex com-flex-wrap com-gap-5;
+
+      a {
+        align-items: center;
+        background-color: $water;
+        border-radius: $border-16;
+        color: initial;
+        display: flex;
+        height: 32px;
+        justify-content: center;
+        padding: $space-4;
+        text-decoration: none;
+        width: 32px;
+
+        nb-icon,
+        fa-icon {
+          color: $neon-blue;
+        }
+      }
+    }
+  }
+}

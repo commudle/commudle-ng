@@ -1,0 +1,31 @@
+{
+  "name": "@commudle/ngx-datatable",
+  "version": "1.0.0",
+  "description": "ngx-datatable is an Angular table grid component for presenting large and complex data.",
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/platform-browser": "^14.2.0",
+    "rxjs": "^7.4.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commudle/ngx-datatable.git"
+  },
+  "keywords": [
+    "angularjs",
+    "angular",
+    "javascript",
+    "datatable",
+    "grid",
+    "table"
+  ],
+  "author": "Commudle",
+  "bugs": {
+    "url": "https://github.com/commudle/ngx-datatable/issues"
+  },
+  "homepage": "https://github.com/commudle/ngx-datatable#readme"
+}

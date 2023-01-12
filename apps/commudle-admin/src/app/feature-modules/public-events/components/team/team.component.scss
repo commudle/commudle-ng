@@ -1,0 +1,24 @@
+.volunteers {
+  display: flex;
+  flex-direction: column;
+
+  app-user-profile-card-large {
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    app-user-profile-card-large {
+      width: 50%;
+    }
+  }
+}
+
+.view-more {
+  @apply com-max-h-[415px] com-overflow-y-hidden;
+}
+.view-less {
+  @apply com-max-h-max;
+}

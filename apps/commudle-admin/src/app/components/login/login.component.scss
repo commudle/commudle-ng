@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.login-container {
+  .login-form {
+    @apply com-flex com-flex-col;
+
+    &::before {
+      color: rgb(151, 160, 175);
+      content: 'or';
+      display: block;
+      font-size: 11px;
+      line-height: 1;
+      margin-bottom: 16px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    input {
+      @apply com-mb-2;
+    }
+    button {
+      @apply com-my-8;
+    }
+  }
+}

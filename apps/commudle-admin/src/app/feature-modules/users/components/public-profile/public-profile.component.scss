@@ -1,0 +1,21 @@
+.user-profile-menu {
+  @apply com-sticky com-top-[68px] com-z-10;
+
+  nb-card-body {
+    @apply com-px-2;
+
+    .item {
+      @apply com-flex com-items-center com-gap-2 md:com-text-base com-w-max;
+      color: inherit;
+      text-decoration: none;
+
+      nb-icon {
+        @apply md:com-text-xl;
+      }
+    }
+  }
+  .highlight {
+    @apply com-border-0 com-border-b-4 com-border-solid com-border-primary-500 com-pt-3;
+    width: calc(100% + 30px);
+  }
+}

@@ -1,0 +1,63 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.home-events-container {
+  nb-card-header {
+    border-bottom: none;
+    color: $gunmetal;
+    font-size: $fs-h2;
+    font-weight: $fw-600;
+    padding: $space-32 $space-16 $space-4;
+  }
+
+  nb-card-body {
+    padding: $space-16;
+
+    .home-events-cards {
+      @apply com-grid com-grid-cols-1 lg:com-grid-cols-2 com-gap-4;
+      min-height: 524px;
+
+      app-skeleton-text {
+        width: 100%;
+      }
+    }
+
+    .home-events-cards-mobile {
+      display: none;
+    }
+
+    .home-events-navigation {
+      padding-top: $space-16;
+
+      button {
+        background-color: $neon-blue;
+        border: none;
+        border-radius: $border-5;
+        color: $white;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $pc-width) {
+  .home-events-container {
+    nb-card-body {
+      .home-events-cards {
+        display: none;
+      }
+
+      .home-events-cards-mobile {
+        display: flex;
+        gap: $space-16;
+        min-height: 222px;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+      }
+
+      .home-events-navigation {
+        display: none;
+      }
+    }
+  }
+}

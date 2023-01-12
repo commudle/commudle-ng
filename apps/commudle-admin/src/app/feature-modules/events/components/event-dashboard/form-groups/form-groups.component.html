@@ -1,0 +1,202 @@
+<div class="event-data-form-groups">
+  <div>
+    <nb-list *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
+      <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
+        <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
+          <div class="display-details">
+            <div class="copy-link clickable">
+              <a
+                *ngIf="event.editable"
+                [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
+                class="text-primary"
+                target="_blank"
+              >
+                <nb-icon icon="external-link"></nb-icon>
+                <br />
+                <small>Link to fill</small>
+              </a>
+            </div>
+            <div class="basic-details">
+              <p>
+                {{ edfeg.name }}
+                <br />
+                <small *ngIf="communityDataForms.length > 0">{{
+                  getAttachedDataFormName(edfeg.data_form_entity.data_form_id)
+                }}</small>
+              </p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
+          </div>
+          <div class="actions">
+            <div class="visibility">
+              <nb-select
+                (selectedChange)="changeVisibility($event, edfeg.data_form_entity.id)"
+                *ngIf="event.editable"
+                [(selected)]="edfeg.data_form_entity.visibility"
+                size="small"
+              >
+                <nb-option value="{{ visibilityOptions.YET_TO_ANNOUNCE }}">Yet to announce</nb-option>
+                <nb-option value="{{ visibilityOptions.OPEN_BUT_INVISIBLE }}">Open but invisible</nb-option>
+                <nb-option value="{{ visibilityOptions.OPEN }}">Open to all</nb-option>
+                <nb-option value="{{ visibilityOptions.CLOSED }}">Closed to all</nb-option>
+                <nb-option value="{{ visibilityOptions.ON_THE_SPOT_UNINVITED }}">On the spot uninvited</nb-option>
+                <nb-option value="{{ visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED }}"
+                  >Members who have attended
+                </nb-option>
+              </nb-select>
+            </div>
+            <div>
+              <a
+                [queryParams]="{
+                  parent_type: 'EventDataFormEntityGroup',
+                  parent_id: edfeg.id,
+                  data_form_id: edfeg.data_form_entity.data_form_id
+                }"
+                [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
+                nbButton
+                size="tiny"
+                status="info"
+              >
+                Show Responses
+              </a>
+            </div>
+            <div
+              *ngIf="
+                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                event.editable
+              "
+            >
+              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                Allow RSVP
+              </nb-toggle>
+            </div>
+            <div *ngIf="event.editable">
+              <a (click)="openEmailWindow(edfeg)" nbButton outline size="tiny" status="info">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+                &nbsp; Send By EMail
+              </a>
+            </div>
+            <div *ngIf="edfeg.responses_count >= 0">
+              <a
+                (click)="deleteEventDataFormEntityGroup(edfeg.id)"
+                *ngIf="edfeg.responses_count === 0"
+                nbButton
+                outline
+                size="tiny"
+                status="danger"
+              >
+                <fa-icon [icon]="faTimesCircle"></fa-icon>
+                &nbsp; Delete
+              </a>
+            </div>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </div>
+
+  <div *ngIf="event.editable">
+    <p>
+      Attach a Form
+      <small
+        >You can add more forms if you want members to fill more information for this event, by filling the form
+        below</small
+      >
+    </p>
+    <form
+      (ngSubmit)="createEventDataFormEntityGroup()"
+      [formGroup]="eventDataFormEntityGroupForm"
+      class="dfeg-create-form"
+    >
+      <div formGroupName="data_form_entity_group">
+        <div>
+          <label fullWidth>
+            Name*
+            <span
+              *ngIf="
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required
+              "
+              class="validation-error-text"
+            >
+              Required Field
+            </span>
+            <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
+          </label>
+        </div>
+
+        <div class="data-form-type-select">
+          <label>
+            Form Type
+            <br />
+            <nb-select
+              formControlName="registration_type_id"
+              hero
+              placeholder="Form Type*"
+              size="tiny"
+              status="primary"
+            >
+              <nb-option *ngFor="let rt of registrationTypes" [value]="rt.id">
+                {{ rt.name }}
+              </nb-option>
+            </nb-select>
+          </label>
+        </div>
+
+        <div class="data-form-select">
+          <label>
+            Select Form
+            <br />
+            <nb-select formControlName="data_form_id" placeholder="Which Form? *" size="tiny" status="primary">
+              <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
+                {{ df.name }}
+              </nb-option>
+            </nb-select>
+          </label>
+          <span>
+            <nb-icon
+              (click)="openNewFormWindow()"
+              class="clickable"
+              icon="plus-circle"
+              nbTooltip="Add New Form"
+              status="success"
+            ></nb-icon>
+          </span>
+          <a
+            *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
+            [routerLink]="[
+              '/forms',
+              eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value,
+              'edit'
+            ]"
+            target="_blank"
+          >
+            <nb-icon class="clickable" icon="eye" nbTooltip="View Form" status="info"></nb-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="save-button-bottom">
+        <button
+          [disabled]="!eventDataFormEntityGroupForm.valid"
+          fullWidth
+          nbButton
+          outline
+          size="tiny"
+          status="primary"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #newDataFormTemplate let-data>
+  <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+</ng-template>

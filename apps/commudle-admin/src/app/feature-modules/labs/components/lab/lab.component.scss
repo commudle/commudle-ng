@@ -1,0 +1,285 @@
+.lab {
+  @apply com-w-full com-pt-4 com-px-0 com-pb-0;
+  @apply md:com-pt-9 md:com-pb-3;
+
+  .body {
+    @apply com-max-w-6xl com-my-0 com-mx-auto com-flex-col;
+    @apply md:com-flex-row;
+
+    nb-sidebar,
+    .toggle-details {
+      @apply com-z-[3] com-bg-Azure com-block com-text-white com-text-4xl com-left-0 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
+      @apply md:com-hidden;
+    }
+
+    .content {
+      @apply com-w-full md:com-max-w-[744px];
+
+      nb-card {
+        @apply com-min-h-[80vh] com-border-none com-mt-0 com-mx-4 com-mb-4;
+
+        nb-card-body {
+          @apply com-p-16;
+
+          .introduction {
+            .lab-title {
+              @apply com-text-gunmetal com-text-4xl com-font-medium com-mt-0 com-mx-0 com-mb-5 com-capitalize;
+            }
+
+            .lab-detail {
+              @apply com-mb-12;
+
+              .user-profile {
+                .avatar {
+                  @apply com-rounded-3xl com-h-6 com-overflow-hidden com-w-6;
+
+                  img {
+                    @apply com-w-full;
+                  }
+                }
+
+                .details {
+                  @apply com-italic com-h-max com-w-max;
+
+                  p {
+                    @apply com-text-sm com-text-Spanish-Gray com-mt-0 com-mx-4 com-mb-2;
+                  }
+
+                  a,
+                  a:hover,
+                  a:focus,
+                  a:active {
+                    @apply com-no-underline;
+                  }
+
+                  .name {
+                    @apply com-capitalize com-text-Azure;
+                  }
+
+                  .date {
+                    font-style: normal;
+                    @apply com-ml-1;
+                  }
+
+                  .expert-icon {
+                    @apply com-h-3 com-ml-1 com-w-3;
+                  }
+                }
+              }
+
+              .tags {
+                @apply com-ml-16;
+
+                &::ng-deep {
+                  .nb-tag-list-tags-wrapper {
+                    nb-tag {
+                      @apply com-border-0 com-rounded-md com-bg-Azureish-White com-text-gunmetal com-text-xs com-leading-3 com-lowercase com-py-1 com-px-3 com-font-normal;
+                    }
+                  }
+                }
+              }
+            }
+
+            @media all and (max-width: 768px) {
+              .lab-detail {
+                @apply com-flex-col;
+
+                .user-profile {
+                  @apply com-items-center;
+
+                  .details {
+                    @apply com-w-auto;
+                  }
+                }
+
+                .tags {
+                  @apply com-mt-4 com-mx-0 com-mb-0;
+                }
+              }
+            }
+
+            .header-image {
+              img {
+                @apply com-w-full;
+              }
+            }
+
+            .intro-content {
+              @apply com-w-full;
+
+              ::ng-deep {
+                img {
+                  @apply com-max-w-full com-h-auto;
+                }
+
+                code {
+                  @apply com-whitespace-pre-wrap;
+                }
+
+                @for $index from 1 through 6 {
+                  h#{$index} {
+                    @apply com-text-gunmetal;
+                  }
+                }
+
+                p,
+                li {
+                  @apply com-text-base com-text-Raisin-Black;
+                }
+              }
+            }
+          }
+        }
+
+        nb-card-footer {
+          @apply com-bg-[#EDF1F7] com-border-0 com-pt-6 com-px-0 com-pb-0;
+        }
+
+        @media all and (max-width: 768px) {
+          nb-card-body {
+            @apply com-p-5;
+
+            .introduction {
+              .lab-title {
+                @apply com-text-2xl;
+              }
+            }
+          }
+
+          nb-card-footer {
+            @apply com-sticky com-bottom-16 com-py-2 com-px-0;
+          }
+        }
+      }
+    }
+
+    .interactions {
+      height: fit-content;
+      @apply com-hidden com-ml-4 com-sticky com-w-max com-top-[50vh] md:com-block;
+
+      app-votes-display {
+        direction: rtl;
+
+        &::ng-deep {
+          .votes {
+            p {
+              @apply com-text-2xl com-text-Azure;
+            }
+
+            span {
+              nb-icon {
+                @apply com-text-2xl com-mr-1;
+
+                &:not(.voted-heart) {
+                  @apply com-text-Azure;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .discussion {
+        @apply com-text-Azure com-text-2xl com-mt-6 com-mx-0 com-mb-0;
+      }
+
+      nb-icon {
+        @apply com-text-2xl com-text-Azure;
+      }
+
+      app-share-button {
+        ::ng-deep {
+          .share-button-container {
+            @apply com-mt-6 com-mx-0 com-mb-0;
+
+            button {
+              @apply com-bg-transparent #{!important};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .steps-navigation {
+    button {
+      @apply com-bg-Azure com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
+    }
+  }
+
+  .lab-discussion {
+    @apply com-mt-8 com-mx-0 com-mb-0 com-pt-0 com-px-0 com-pb-16;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .lab {
+    .body {
+      .desktop-lab-details {
+        &::ng-deep {
+          .menu {
+            height: initial;
+            position: initial;
+            top: initial;
+            @apply com-w-full;
+
+            nb-card {
+              width: initial;
+            }
+
+            .user {
+              @apply com-mt-0 com-mx-4 com-mb-4;
+            }
+          }
+        }
+      }
+
+      nb-sidebar.right.expanded {
+        display: inherit;
+
+        &::ng-deep {
+          .main-container {
+            backdrop-filter: blur(20px);
+            height: calc(100vh - 3.5rem);
+            @apply com-p-4 com-right-0 com-top-56px com-z-[3] com-w-80vw;
+
+            .scrollable {
+              @apply com-p-0;
+
+              app-lab-details {
+                .menu {
+                  height: initial;
+                  position: initial;
+                  top: initial;
+                  @apply com-w-full;
+
+                  nb-card {
+                    width: initial;
+                  }
+
+                  .user {
+                    @apply com-mt-0 com-mx-4 com-mb-4;
+                  }
+
+                  .related-labs {
+                    @apply com-mt-4 com-mx-0 com-mb-14;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.image {
+  @media screen and (min-width: 1440px) {
+    @apply com-w-70vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    @apply com-w-80vw;
+  }
+}
