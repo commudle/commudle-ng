@@ -14,7 +14,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -34,6 +34,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   existingResponses;
 
   subscriptions: Subscription[] = [];
+  gtmData: any = {};
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
@@ -49,6 +50,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit() {
@@ -66,7 +68,12 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       }),
     );
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        this.gtmData.com_user_id = this.currentUser.id;
+      }),
+    );
   }
 
   ngOnDestroy() {
@@ -78,6 +85,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
       this.dataFormEntity = data;
+      this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
       this.seoService.setTags(
         `${this.dataFormEntity.name}`,
         `Fill the form for ${this.dataFormEntity.name}`,
@@ -118,6 +126,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   getEvent() {
     this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
       this.event = data;
+      this.gtmData.com_event_name = this.event.name;
       this.seoService.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
       this.getCommunity(this.event.kommunity_id);
 
@@ -142,7 +151,8 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
 
   submitForm($event) {
     this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      // this.toastLogService.successDialog('Saved!');
+      this.toastLogService.successDialog('Saved!');
+      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
       this.redirectTo();
     });
   }
