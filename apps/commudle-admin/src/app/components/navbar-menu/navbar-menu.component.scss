@@ -20,6 +20,7 @@ nb-actions {
       fa-icon {
         @apply com-text-base md:com-text-xl com-text-gray-300;
       }
+      
       &.active {
         fa-icon,
         span {
