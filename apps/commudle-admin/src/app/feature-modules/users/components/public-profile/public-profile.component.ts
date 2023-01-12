@@ -21,9 +21,10 @@ import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-m
 })
 export class PublicProfileComponent implements OnInit, OnDestroy {
   user: IUser;
-  activeMenuItems: UserProfileMenuItems | {};
+  activeMenuItems: UserProfileMenuItems | any;
 
   faBuilding = faBuilding;
+  highlight: string;
 
   subscriptions: Subscription[] = [];
 
@@ -38,6 +39,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.checkFragment();
     this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
 
     this.footerService.changeFooterStatus(false);
@@ -67,6 +69,12 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 
     this.footerService.changeFooterStatus(true);
+  }
+
+  checkFragment() {
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      this.highlight = fragment;
+    });
   }
 
   getUser() {

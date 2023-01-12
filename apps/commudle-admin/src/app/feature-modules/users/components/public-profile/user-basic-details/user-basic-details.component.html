@@ -14,7 +14,7 @@
               title="Expert Tick"
             />
             <app-hiring-looking-works-tags
-              [user]="users"
+              [user]="user"
               [size]="'large'"
               class="com-block com-h-3 md:com-h-7"
             ></app-hiring-looking-works-tags>
@@ -62,16 +62,16 @@
           </div>
         </div>
         <div
-          *ngIf="currentUser?.id === user.id && users"
+          *ngIf="currentUser?.id === user.id"
           class="com-flex com-items-end com-flex-col com-gap-3 com-mt-3 md:com-mt-0"
         >
-          <nb-toggle (click)="openForWork()" [(checked)]="users.is_employee" status="basic" labelPosition="right">
+          <nb-toggle (click)="openForWork()" [(checked)]="user.is_employee" status="basic" labelPosition="right">
             I'm looking for work
           </nb-toggle>
           <nb-toggle
             (click)="openForHiring()"
             status="basic"
-            [(checked)]="hiring"
+            [(checked)]="user.is_employer"
             labelPosition="right"
             class="com-w-[186px]"
             >I'm hiring</nb-toggle
@@ -135,7 +135,7 @@
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="closeHiring()" nbButton status="success">Yes</button>
-      <button (click)="(this.hiring = true) && ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="(user.is_employer = true) && ref.close()" ghost nbButton status="danger">No</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

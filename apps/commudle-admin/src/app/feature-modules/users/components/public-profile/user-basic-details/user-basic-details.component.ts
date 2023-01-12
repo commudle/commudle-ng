@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
@@ -15,9 +15,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
   styleUrls: ['./user-basic-details.component.scss'],
 })
 export class UserBasicDetailsComponent implements OnInit, OnChanges {
-  @Input() user: IUser;
-
-  users: IUser;
+  user: IUser;
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -39,7 +37,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   @ViewChild('editTags') editTags: TemplateRef<any>;
   @ViewChild('hiringDialogBox') hiringDialogBox: TemplateRef<any>;
-  // @ViewChild('enableHiring') enableHiring: TemplateRef<any>;
   @ViewChild('enableHiring', { static: true }) enableHiring: TemplateRef<any>;
 
   constructor(
@@ -50,26 +47,24 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private toastrService: NbToastrService,
     private router: Router,
     private route: ActivatedRoute,
-    private nbDialogService: NbDialogService,
     private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.userProfileManagerService.user$.subscribe((data: IUser) => {
-      this.hiring = data.is_employer;
-      this.users = data;
+      this.user = data;
     });
     if (this.route.snapshot.queryParams['hiring'] === 'true') {
       this.queryParamIsHiring = true;
-      if (!this.hiring) {
+      if (!this.user.is_employer) {
         this.openEnableHiring();
       }
     }
   }
 
   openEnableHiring() {
-    this.enableHiringDialog = this.nbDialogService.open(this.enableHiring, {
+    this.enableHiringDialog = this.dialogService.open(this.enableHiring, {
       closeOnEsc: false,
       closeOnBackdropClick: false,
     });
@@ -142,14 +137,14 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   openForWork() {
     this.userProfileManagerService.toggleEmployee().subscribe(() => {
-      if (this.users.is_employee) {
+      if (this.user.is_employee) {
         this.redirectTo('resume');
       }
     });
   }
 
   openForHiring() {
-    if (!this.users.is_employer) {
+    if (!this.user.is_employer) {
       this.userProfileManagerService.toggleEmployer().subscribe(() => {
         this.userProfileManagerService.getProfile(this.user.username);
         if (this.queryParamIsHiring) {
@@ -169,12 +164,12 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
           }, 500);
         }
       });
-    } else if (this.users.is_employer) {
-      this.hiringDialog = this.nbDialogService.open(this.hiringDialogBox, {
+    } else if (this.user.is_employer) {
+      this.hiringDialog = this.dialogService.open(this.hiringDialogBox, {
         closeOnEsc: false,
         closeOnBackdropClick: false,
       });
-      this.hiring = true;
+      this.user.is_employer = true;
     }
   }
 

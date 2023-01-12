@@ -5,9 +5,9 @@
       <p class="communities-about-subheader">For you to build along with your developer friends & learn from Experts</p>
       <div class="communities-about-navigation d-flex">
         <a [routerLink]="['/pricing']" target="_blank">
-          <button class="community-create-btn" nbButton size="small">
+          <button nbButton size="small" status="primary">
             <nb-icon icon="plus"></nb-icon>
-            Start Your Community
+            <span class="com-text-sm">Start Your Community</span>
           </button>
         </a>
         <button (click)="scrollToCommunitiesList()" class="communities-explore" nbButton size="small">Explore</button>

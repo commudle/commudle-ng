@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -44,7 +43,6 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
     public userProfileMenuService: UserProfileMenuService,
     private route: ActivatedRoute,
     private router: Router,
-    private scroller: ViewportScroller,
   ) {
     this.userResumeForm = this.fb.group({
       name: ['', Validators.required],
@@ -52,14 +50,21 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    // TODO optimize this
-    if (this.route.snapshot.queryParams['job']) {
-      this.jobId = this.route.snapshot.queryParams['job'];
+    if (this.route.snapshot.queryParams['job_id']) {
+      this.jobId = this.route.snapshot.queryParams['job_id'];
       setTimeout(() => {
-        this.scroller.scrollToAnchor('resume');
-        this.onOpenDialog(this.userResumeDialog);
-      }, 1000);
+        document.querySelector('#resume').scrollIntoView({
+          behavior: 'smooth',
+        });
+        this.openResumeDialogBox();
+      }, 500);
     }
+  }
+
+  openResumeDialogBox() {
+    setTimeout(() => {
+      this.onOpenDialog(this.userResumeDialog); //
+    }, 1000);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

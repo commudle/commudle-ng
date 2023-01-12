@@ -24,16 +24,8 @@ a {
       .communities-about-navigation {
         @apply com-gap-4 com-mt-72px;
 
-        button {
-          @apply com-border com-border-solid com-border-gunmetal com-text-sm com-p-2 com-capitalize;
-        }
-
-        .community-create-btn {
-          @apply com-text-white com-bg-gunmetal;
-        }
-
         .communities-explore {
-          @apply com-bg-white com-text-gunmetal;
+          @apply com-bg-white com-text-gunmetal com-border com-border-solid com-border-gunmetal com-text-sm com-p-2 com-capitalize;
         }
       }
     }

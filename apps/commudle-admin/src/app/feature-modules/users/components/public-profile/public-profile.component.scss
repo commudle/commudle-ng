@@ -14,4 +14,8 @@
       }
     }
   }
+  .highlight {
+    @apply com-border-0 com-border-b-4 com-border-solid com-border-primary-500 com-pt-3;
+    width: calc(100% + 30px);
+  }
 }

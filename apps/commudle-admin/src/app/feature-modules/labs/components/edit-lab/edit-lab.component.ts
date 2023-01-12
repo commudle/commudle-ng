@@ -9,6 +9,7 @@ import { ILabStep } from 'apps/shared-models/lab-step.model';
 import { EPublishStatus, ILab } from 'apps/shared-models/lab.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-edit-lab',
@@ -27,6 +28,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   tags: string[] = [];
   headerImageForm;
   labForm: FormGroup;
+  faEdit = faEdit;
   tinyMCE: any = {
     placeholder:
       'Add a description with some pictures to help the user get a brief of what you are going to teach them in this tutorial!*',

@@ -255,17 +255,6 @@
             </div>
 
             <div class="field actions">
-              <button
-                (click)="submitForm(EPublishStatus.draft)"
-                [disabled]="!communityBuildForm.valid"
-                nbButton
-                outline
-                status="info"
-                type="submit"
-              >
-                <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
-                Save as Draft
-              </button>
               <!-- <button
                 (click)="submitForm(EPublishStatus.submitted)"
                 [disabled]="!communityBuildForm.valid"
@@ -281,12 +270,22 @@
                 (click)="submitForm(EPublishStatus.published)"
                 [disabled]="communityBuildForm.invalid"
                 nbButton
-                outline
-                status="success"
+                status="primary"
                 type="submit"
               >
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
+              </button>
+              <button
+                (click)="submitForm(EPublishStatus.draft)"
+                [disabled]="!communityBuildForm.valid"
+                nbButton
+                outline
+                status="primary"
+                type="submit"
+              >
+                <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
+                Save as Draft
               </button>
             </div>
           </form>

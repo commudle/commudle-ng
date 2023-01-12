@@ -101,7 +101,7 @@ export class JobComponent implements OnInit, OnDestroy {
   reDirectTo() {
     this.route.navigate(['/users/', this.currentUser.username], {
       fragment: 'resume',
-      queryParams: { job: this.job.id },
+      queryParams: { job_id: this.job.id },
     });
   }
 }
