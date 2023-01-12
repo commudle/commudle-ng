@@ -67,7 +67,6 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     private userProfileMenuService: UserProfileMenuService,
     private userProfileManagerService: UserProfileManagerService,
     private route: ActivatedRoute,
-    private scroller: ViewportScroller,
     private gtm: GoogleTagManagerService,
   ) {
     this.jobForm = this.fb.group(
