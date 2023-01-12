@@ -14,8 +14,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { GoogleTagManagerService } from '../../services/google-tag-manager.service';
-
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',

@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { GoogleTagManagerService } from '../../services/google-tag-manager.service';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-logout',
