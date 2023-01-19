@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
@@ -68,10 +60,10 @@ export class AgendaComponent implements OnInit {
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
         location: {
           '@type': 'Place',
-          name: this.eventLocations[0].location.address,
+          name: this.eventLocations[0].location ? this.eventLocations[0].location.address : '',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: this.eventLocations[0].location.address,
+            streetAddress: this.eventLocations[0].location ? this.eventLocations[0].location.address : '',
             addressCountry: 'IN',
           },
         },
