@@ -59,6 +59,54 @@
           ></app-share-button>
         </nb-card-body>
       </nb-card>
+
+      <!-- blogFAQ's section -->
+      <div *ngIf="blog?.faq">
+        <div *ngFor="let item of blog?.faq">
+          <nb-card>
+            <nb-card-body>
+              <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
+              <div>{{ item?.answer }}</div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+
+      <!-- similarBlogs Section -->
+      <nb-card *ngIf="blog?.similarBlogs">
+        <nb-card-body>
+          <div>
+            <p class="com-text-base com-font-bold">Explore More Blogs</p>
+          </div>
+          <div class="blog-cards">
+            <div *ngFor="let similarBlog of similarBlogs">
+              <div class="blog-card">
+                <div [routerLink]="['/blogs', similarBlog?.slug.current]" class="com-w-full com-aspect-[16/9]">
+                  <img [alt]="similarBlog?.title" [src]="imageUrl(similarBlog?.headerImage).url()" class="com-w-full" />
+                </div>
+                <div class="com-p-4">
+                  <div [routerLink]="['/blogs', similarBlog?.slug.current]" class="com-h-36">
+                    <h6 class="name">
+                      {{ similarBlog?.title }}
+                    </h6>
+                    <p class="date">
+                      {{ similarBlog?.publishedAt | date }}
+                    </p>
+                    <div class="com-line-clamp-3">
+                      {{ similarBlog?.meta_description }}
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blogs', similarBlog?.slug.current]" class="read-more">
+                    Read More
+                    <nb-icon icon="arrow-forward-outline"></nb-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
       <a [routerLink]="['/blogs']" ghost nbButton size="small" class="com-w-max">
         <nb-icon icon="arrow-ios-back"></nb-icon>
         Back to list of blogs

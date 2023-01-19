@@ -16,6 +16,7 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
 export class BlogComponent implements OnInit, OnDestroy {
   @Input() activateMiniProfileDirective = true;
   blog: IBlog;
+  similarBlogs: IBlog[] = [];
   richText: string;
   user: IUser;
 
@@ -31,11 +32,13 @@ export class BlogComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private appUsersService: AppUsersService,
     private seoService: SeoService,
-  ) {}
-
-  ngOnInit(): void {
-    this.getData();
+  ) {
+    activatedRoute.params.subscribe(() => {
+      this.getData();
+    });
   }
+
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
@@ -48,13 +51,28 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   getData() {
     const slug: string = this.activatedRoute.snapshot.params.id;
-    this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
-      this.blog = value;
-      this.richText = this.cmsService.getHtmlFromBlock(value);
-      this.setUser();
-      this.setMeta();
-      this.isLoading = false;
-    });
+    this.subscriptions.push(
+      this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
+        this.blog = value;
+        this.richText = this.cmsService.getHtmlFromBlock(value);
+        this.setUser();
+        this.setMeta();
+        this.isLoading = false;
+        if (this.blog.similarBlogs) {
+          this.getSimilarBlogs(this.blog.similarBlogs);
+        }
+      }),
+    );
+  }
+
+  getSimilarBlogs(similarBlogsSlug) {
+    for (const blogSlug of similarBlogsSlug) {
+      this.subscriptions.push(
+        this.cmsService.getDataBySlug(blogSlug).subscribe((value: IBlog) => {
+          this.similarBlogs.push(value);
+        }),
+      );
+    }
   }
 
   setUser() {
@@ -84,6 +102,21 @@ export class BlogComponent implements OnInit, OnDestroy {
       },
       datePublished: this.blog.publishedAt,
     });
+
+    for (const blogFaq of this.blog.faq) {
+      this.seoService.setSchema({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: {
+          '@type': 'Question',
+          name: blogFaq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: blogFaq.answer,
+          },
+        },
+      });
+    }
   }
 
   setMeta(): void {
