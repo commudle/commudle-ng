@@ -61,23 +61,20 @@
       </nb-card>
 
       <!-- blogFAQ's section -->
-      <div *ngIf="blog?.faq">
-        <div *ngFor="let item of blog?.faq">
-          <nb-card>
-            <nb-card-body>
-              <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
-              <div>{{ item?.answer }}</div>
-            </nb-card-body>
-          </nb-card>
-        </div>
-      </div>
+      <nb-card *ngIf="blog?.faq">
+        <nb-card-body>
+          <h2>FAQ's</h2>
+          <div *ngFor="let item of blog?.faq" class="com-mb-10">
+            <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
+            <div>{{ item?.answer }}</div>
+          </div>
+        </nb-card-body>
+      </nb-card>
 
       <!-- similarBlogs Section -->
       <nb-card *ngIf="blog?.similarBlogs">
         <nb-card-body>
-          <div>
-            <p class="com-text-base com-font-bold">Explore More Blogs</p>
-          </div>
+          <h2>Recommended from Commudle</h2>
           <div class="blog-cards">
             <div *ngFor="let similarBlog of similarBlogs">
               <div class="blog-card">

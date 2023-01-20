@@ -102,20 +102,21 @@ export class BlogComponent implements OnInit, OnDestroy {
       },
       datePublished: this.blog.publishedAt,
     });
-
-    for (const blogFaq of this.blog.faq) {
-      this.seoService.setSchema({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: {
-          '@type': 'Question',
-          name: blogFaq.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: blogFaq.answer,
+    if (this.blog.faq) {
+      for (const blogFaq of this.blog.faq) {
+        this.seoService.setSchema({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: {
+            '@type': 'Question',
+            name: blogFaq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: blogFaq.answer,
+            },
           },
-        },
-      });
+        });
+      }
     }
   }
 
