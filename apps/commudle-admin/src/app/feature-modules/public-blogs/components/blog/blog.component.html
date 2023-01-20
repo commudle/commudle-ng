@@ -65,8 +65,12 @@
         <nb-card-body>
           <h2>FAQ's</h2>
           <div *ngFor="let item of blog?.faq" class="com-mb-10">
-            <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
-            <div>{{ item?.answer }}</div>
+            <ul>
+              <li>
+                <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
+                <div>{{ item?.answer }}</div>
+              </li>
+            </ul>
           </div>
         </nb-card-body>
       </nb-card>
