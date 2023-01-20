@@ -7,7 +7,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
-import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { UserObjectVisitsService } from 'apps/shared-components/services/user-object-visits.service';
@@ -71,7 +70,6 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     private cookieService: CookieService,
     private usersService: AppUsersService,
     @Inject(PLATFORM_ID) private platformId: object,
-    private footerService: FooterService,
   ) {}
 
   setMeta() {
@@ -91,16 +89,12 @@ export class SessionPageComponent implements OnInit, OnDestroy {
         this.getMyRoles();
       }),
     );
-
-    // Hide Footer
-    this.footerService.changeFooterStatus(false);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((value) => value.unsubscribe());
 
     // Show Footer
-    this.footerService.changeFooterStatus(true);
   }
 
   getMyRoles() {

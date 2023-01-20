@@ -7,7 +7,6 @@ import {
   UserProfileMenuService,
 } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
@@ -31,7 +30,6 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private usersService: AppUsersService,
-    private footerService: FooterService,
     private updateProfileService: UpdateProfileService,
     public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
@@ -41,8 +39,6 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.checkFragment();
     this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
-
-    this.footerService.changeFooterStatus(false);
 
     this.subscriptions.push(
       this.updateProfileService.updateProfile$.subscribe((value) => {
@@ -67,8 +63,6 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-
-    this.footerService.changeFooterStatus(true);
   }
 
   checkFragment() {

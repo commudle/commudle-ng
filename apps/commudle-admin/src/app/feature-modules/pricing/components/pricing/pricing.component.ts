@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
   styleUrls: ['./pricing.component.scss'],
 })
-export class PricingComponent implements OnInit {
+export class PricingComponent implements OnInit, OnDestroy {
   logoCloud: { image: string; name: string; slug: string }[] = [
     {
       name: 'GDG New Delhi',
@@ -59,14 +60,23 @@ export class PricingComponent implements OnInit {
     },
   ];
 
-  constructor(private seoService: SeoService, private gtm: GoogleTagManagerService) {}
+  constructor(
+    private seoService: SeoService,
+    private gtm: GoogleTagManagerService,
+    private footerService: FooterService,
+  ) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.seoService.setTags(
       'Pricing: Students, DevRels, Startups',
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
   }
 
   gtmDatalayerPush(event) {

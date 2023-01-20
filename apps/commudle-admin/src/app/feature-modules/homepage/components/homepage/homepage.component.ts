@@ -5,6 +5,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Observable, timer } from 'rxjs';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-homepage',
@@ -37,12 +38,14 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
     private searchStatusService: SearchStatusService,
     private cmsService: CmsService,
     public isBrowserService: IsBrowserService,
+    private footerService: FooterService,
   ) {
     this.timer$ = timer(0, 3000);
   }
 
   ngOnInit(): void {
     this.searchStatusService.setSearchStatus(false);
+    this.footerService.changeFooterStatus(true);
 
     this.getHomepageActions();
 
@@ -56,6 +59,7 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.searchStatusService.setSearchStatus(true);
+    this.footerService.changeFooterStatus(false);
   }
 
   ngAfterViewInit(): void {
