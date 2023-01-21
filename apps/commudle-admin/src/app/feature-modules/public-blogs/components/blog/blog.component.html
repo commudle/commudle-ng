@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-      <nb-card *ngIf="blog">
+      <nb-card *ngIf="blog" class="blog">
         <nb-card-header>
           <div class="md:com-flex com-flex-row com-justify-between com-items-center">
             <h1 class="blog-title">{{ blog.title }}</h1>
@@ -64,8 +64,8 @@
       <nb-card *ngIf="blog?.faq">
         <nb-card-body>
           <h2>FAQ's</h2>
-          <div *ngFor="let item of blog?.faq" class="com-mb-10">
-            <ul>
+          <div>
+            <ul style="list-style-type: none; padding-left: 0" *ngFor="let item of blog?.faq">
               <li>
                 <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
                 <div>{{ item?.answer }}</div>
