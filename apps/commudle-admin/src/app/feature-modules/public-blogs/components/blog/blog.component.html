@@ -79,32 +79,7 @@
       <nb-card *ngIf="blog?.similarBlogs">
         <nb-card-body>
           <h2>Recommended from Commudle</h2>
-          <div class="blog-cards">
-            <div *ngFor="let similarBlog of similarBlogs">
-              <div class="blog-card">
-                <div [routerLink]="['/blogs', similarBlog?.slug.current]" class="com-w-full com-aspect-[16/9]">
-                  <img [alt]="similarBlog?.title" [src]="imageUrl(similarBlog?.headerImage).url()" class="com-w-full" />
-                </div>
-                <div class="com-p-4">
-                  <div [routerLink]="['/blogs', similarBlog?.slug.current]" class="com-h-36">
-                    <h6 class="name">
-                      {{ similarBlog?.title }}
-                    </h6>
-                    <p class="date">
-                      {{ similarBlog?.publishedAt | date }}
-                    </p>
-                    <div class="com-line-clamp-3">
-                      {{ similarBlog?.meta_description }}
-                    </div>
-                  </div>
-                  <a [routerLink]="['/blogs', similarBlog?.slug.current]" class="read-more">
-                    Read More
-                    <nb-icon icon="arrow-forward-outline"></nb-icon>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <commudle-blog-card [blogs]="similarBlogs" [shareButton]="false"></commudle-blog-card>
         </nb-card-body>
       </nb-card>
 

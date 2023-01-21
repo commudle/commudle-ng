@@ -66,6 +66,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   getSimilarBlogs(similarBlogsSlug) {
+    this.similarBlogs = [];
     for (const blogSlug of similarBlogsSlug) {
       this.subscriptions.push(
         this.cmsService.getDataBySlug(blogSlug).subscribe((value: IBlog) => {
@@ -102,6 +103,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       },
       datePublished: this.blog.publishedAt,
     });
+
     if (this.blog.faq) {
       for (const blogFaq of this.blog.faq) {
         this.seoService.setSchema({
