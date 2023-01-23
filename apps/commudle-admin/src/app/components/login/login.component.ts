@@ -1,6 +1,6 @@
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@commudle/auth';
 import { NbToastrService } from '@commudle/theme';
 import { EmailCodeService } from 'apps/shared-services/email-code.service';
@@ -8,6 +8,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'commudle-login',
@@ -25,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     public libAuthWatchService: LibAuthwatchService,
-    private router: Router,
     private cookieService: CookieService,
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private emailCodeService: EmailCodeService,
     private nbToastrService: NbToastrService,
     private injector: Injector,
+    private gtm: GoogleTagManagerService,
   ) {
     this.seoService.noIndex(true);
 
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.authState.subscribe((user) => {
           if (user) {
             this.libAuthWatchService.signIn(user.provider.toLowerCase(), user.idToken).subscribe((data: any) => {
-              this.setCookie(data.auth_token);
+              this.setCookie(data.auth_token, 'google');
             });
           }
         }),
@@ -72,8 +73,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  setCookie(authToken: string): void {
+  setCookie(authToken: string, loginType: string): void {
     this.cookieService.set('commudle_user_auth', authToken);
+    this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });
     this.redirect();
   }
 
@@ -101,7 +103,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.subscriptions.push(
       this.emailCodeService.loginUser(this.loginForm.value).subscribe(
-        (data: any) => this.setCookie(data.auth_token),
+        (data: any) => this.setCookie(data.auth_token, 'otp'),
         () => this.nbToastrService.danger('Error while trying to log you in, try again in a few minutes!', 'Error'),
         () => (this.isLoading = false),
       ),

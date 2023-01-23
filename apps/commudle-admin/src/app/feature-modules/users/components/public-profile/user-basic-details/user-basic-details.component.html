@@ -1,5 +1,5 @@
 <nb-card class="user-details-container">
-  <nb-card-body>
+  <nb-card-body *ngIf="user">
     <img [alt]="user.name" [src]="user.avatar" [title]="user.name" class="user-avatar" />
     <div class="user-info">
       <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
