@@ -19,6 +19,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   similarBlogs: IBlog[] = [];
   richText: string;
   user: IUser;
+  faqSchemaData: any;
+  faqSchemaDataMainEntity = [];
 
   subscriptions: Subscription[] = [];
 
@@ -80,46 +82,56 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.appUsersService.getProfile(this.blog.username).subscribe((data) => {
         this.user = data;
-        this.setSchema();
+        this.setFaqSchemaData();
       }),
     );
   }
 
-  setSchema() {
-    this.seoService.setSchema({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${environment.app_url}/blogs/${this.blog.slug}`,
-      },
-      headline: this.blog.title,
-      description: this.blog.meta_description,
-      image: this.imageUrl(this.blog.headerImage).url(),
-      author: {
-        type: 'Person',
-        name: this.user.name,
-        url: `${environment.app_url}/users/${this.blog.username}`,
-      },
-      datePublished: this.blog.publishedAt,
-    });
-
+  setFaqSchemaData() {
     if (this.blog.faq) {
       for (const blogFaq of this.blog.faq) {
-        this.seoService.setSchema({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: {
-            '@type': 'Question',
-            name: blogFaq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: blogFaq.answer,
-            },
+        this.faqSchemaDataMainEntity.push({
+          '@type': 'Question',
+          name: blogFaq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: blogFaq.answer,
           },
         });
       }
+      this.faqSchemaData = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        headline: 'FAQPage',
+        mainEntity: this.faqSchemaDataMainEntity,
+      };
+      this.setSchema(this.faqSchemaData);
+    } else {
+      this.setSchema();
     }
+  }
+
+  setSchema(faqSchemaData?) {
+    this.seoService.setSchema([
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `${environment.app_url}/blogs/${this.blog.slug}`,
+        },
+        headline: this.blog.title,
+        description: this.blog.meta_description,
+        image: this.imageUrl(this.blog.headerImage).url(),
+        author: {
+          type: 'Person',
+          name: this.user.name,
+          url: `${environment.app_url}/users/${this.blog.username}`,
+        },
+        datePublished: this.blog.publishedAt,
+      },
+      faqSchemaData ? faqSchemaData : '',
+    ]);
   }
 
   setMeta(): void {
