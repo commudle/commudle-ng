@@ -15,7 +15,6 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@commudle/theme';
 import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
-import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { ILab } from 'apps/shared-models/lab.model';
@@ -60,7 +59,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private discussionsService: DiscussionsService,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private dialogService: NbDialogService,
-    private footerService: FooterService,
     private nbSidebarService: NbSidebarService,
     private navigatorShareService: NavigatorShareService,
     private libToastLogService: LibToastLogService,
@@ -95,7 +93,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
 
     // Hide Footer
-    this.footerService.changeFooterStatus(false);
   }
 
   // ngAfterViewChecked() would be invoked once the DOM tree gets any change, so since we are building the HTML on the
@@ -127,9 +124,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   // Called once, before the instance is destroyed.
   ngOnDestroy(): void {
     this.routeSubscriptions.forEach((subscription) => subscription.unsubscribe());
-
-    // Show Footer
-    this.footerService.changeFooterStatus(true);
   }
 
   highlightCodeSnippets() {

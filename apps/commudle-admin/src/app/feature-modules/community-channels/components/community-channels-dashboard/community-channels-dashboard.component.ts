@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -27,7 +26,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
-    private footerService: FooterService,
   ) {}
 
   ngOnInit() {
@@ -52,14 +50,10 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
         this.showCommunityList = data;
       }),
     );
-
-    this.footerService.changeFooterStatus(false);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-
-    this.footerService.changeFooterStatus(true);
   }
 
   setMeta() {

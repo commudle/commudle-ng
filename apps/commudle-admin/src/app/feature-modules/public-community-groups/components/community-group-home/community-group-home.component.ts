@@ -1,8 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
-import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
-import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
@@ -14,14 +12,9 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   private subscriptions = [];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private footerService: FooterService,
-    private seoService: SeoService,
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
   ngOnInit() {
-    this.footerService.changeFooterStatus(false);
     this.subscriptions.push(
       this.activatedRoute.data.subscribe((data) => {
         this.communityGroup = data.community_group;
@@ -31,9 +24,7 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.footerService.changeFooterStatus(true);
-
-    for (let sub of this.subscriptions) {
+    for (const sub of this.subscriptions) {
       sub.unsubscribe();
     }
   }

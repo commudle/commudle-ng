@@ -3,6 +3,7 @@ import { PublicNewslettersService } from 'apps/commudle-admin/src/app/feature-mo
 import { IMainNewsletter } from 'apps/shared-models/main-newsletter.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-newsletter-list',
@@ -13,9 +14,14 @@ export class NewsletterListComponent implements OnInit, OnDestroy {
   newsletters: IMainNewsletter[] = [];
   subscriptions: Subscription[] = [];
 
-  constructor(private publicNewslettersService: PublicNewslettersService, private seoService: SeoService) {}
+  constructor(
+    private publicNewslettersService: PublicNewslettersService,
+    private seoService: SeoService,
+    private footerService: FooterService,
+  ) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.seoService.setTags(
       'Commudle IDE: Newsletters from the Community',
       'We publish every month from different activities, events, channels, projects, tutorials and more from the techies, developers & designers around you!',
@@ -26,6 +32,7 @@ export class NewsletterListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.footerService.changeFooterStatus(false);
   }
 
   getPublishedNewsletters() {
