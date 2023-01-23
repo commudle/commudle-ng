@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="com-w-full com-aspect-[16/9]">
-              <app-loading-spinner *ngIf="ImageLoading"></app-loading-spinner>
+              <app-loading-spinner *ngIf="imageLoading"></app-loading-spinner>
               <img
                 [alt]="blog.title"
                 [src]="imageUrl(blog.headerImage).url()"

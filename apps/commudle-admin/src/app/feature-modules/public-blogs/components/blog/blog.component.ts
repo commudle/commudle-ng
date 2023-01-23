@@ -25,7 +25,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   isLoading = true;
-  ImageLoading = true;
+  imageLoading = true;
 
   environment = environment;
 
@@ -47,7 +47,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   imageUrl(source: any) {
-    this.ImageLoading = false;
+    this.imageLoading = false;
     return this.cmsService.getImageUrl(source);
   }
 

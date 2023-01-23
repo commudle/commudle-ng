@@ -12,14 +12,14 @@ export class BlogCardComponent implements OnInit {
   @Input() blogs: IBlog[];
   @Input() shareButton = true;
   environment = environment;
-  ImageLoading = true;
+  imageLoading = true;
 
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {}
 
   imageUrl(source: any) {
-    this.ImageLoading = false;
+    this.imageLoading = false;
     return this.cmsService.getImageUrl(source);
   }
 }

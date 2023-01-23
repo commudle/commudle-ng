@@ -13,6 +13,7 @@
         ></app-share-button>
       </div>
       <div [routerLink]="['/blogs', blog?.slug.current]" class="com-w-full com-aspect-[16/9]">
+        <app-loading-spinner *ngIf="imageLoading"></app-loading-spinner>
         <img [alt]="blog?.title" [src]="imageUrl(blog?.headerImage).url()" class="com-w-full" />
       </div>
       <div class="com-p-4">
