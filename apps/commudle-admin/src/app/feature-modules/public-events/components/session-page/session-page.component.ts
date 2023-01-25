@@ -29,8 +29,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./session-page.component.scss'],
 })
 export class SessionPageComponent implements OnInit, OnDestroy {
-  isBrowser: boolean = isPlatformBrowser(this.platformId);
-
+  isBrowser: boolean;
   trackSlot: ITrackSlot;
   speaker: IUser;
 
@@ -70,7 +69,9 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     private cookieService: CookieService,
     private usersService: AppUsersService,
     @Inject(PLATFORM_ID) private platformId: object,
-  ) {}
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   setMeta() {
     this.seoService.setTags(
