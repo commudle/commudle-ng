@@ -6,21 +6,18 @@ import { IEvent } from 'apps/shared-models/event.model';
 @Component({
   selector: 'app-home-events',
   templateUrl: './home-events.component.html',
-  styleUrls: ['./home-events.component.scss']
+  styleUrls: ['./home-events.component.scss'],
 })
 export class HomeEventsComponent implements OnInit {
-
   events: IEvent[];
   maxEventsCount = 12;
   eventsStartIdx = 0;
   isLoading = true;
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean;
 
-  constructor(
-    private homeService: HomeService,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
+  constructor(private homeService: HomeService, @Inject(PLATFORM_ID) private platformId: object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
@@ -30,14 +27,14 @@ export class HomeEventsComponent implements OnInit {
   }
 
   getUpcomingEvents() {
-    this.homeService.pUpcomingEvents().subscribe(data => {
+    this.homeService.pUpcomingEvents().subscribe((data) => {
       this.events = data.events;
       this.getRandomPastEvents(Math.max(0, this.maxEventsCount - this.events.length));
     });
   }
 
   getRandomPastEvents(count) {
-    this.homeService.pPastRandomEvents(count).subscribe(data => {
+    this.homeService.pPastRandomEvents(count).subscribe((data) => {
       this.events.push(...data.events);
       this.isLoading = false;
     });
@@ -48,5 +45,4 @@ export class HomeEventsComponent implements OnInit {
     this.eventsStartIdx = (this.eventsStartIdx + value) % this.maxEventsCount;
     this.isLoading = false;
   }
-
 }

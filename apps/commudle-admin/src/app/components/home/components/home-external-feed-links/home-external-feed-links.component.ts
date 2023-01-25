@@ -6,18 +6,15 @@ import { IFeedItem } from 'apps/shared-models/feed-item.model';
 @Component({
   selector: 'app-home-external-feed-links',
   templateUrl: './home-external-feed-links.component.html',
-  styleUrls: ['./home-external-feed-links.component.scss']
+  styleUrls: ['./home-external-feed-links.component.scss'],
 })
 export class HomeExternalFeedLinksComponent implements OnInit {
-
   feedItems: IFeedItem[] = [];
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean;
 
-  constructor(
-    private homeService: HomeService,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
+  constructor(private homeService: HomeService, @Inject(PLATFORM_ID) private platformId: object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
@@ -27,7 +24,6 @@ export class HomeExternalFeedLinksComponent implements OnInit {
   }
 
   getFeed(): void {
-    this.homeService.pFeed().subscribe((data) => this.feedItems = data.feed_items.slice(0, 3));
+    this.homeService.pFeed().subscribe((data) => (this.feedItems = data.feed_items.slice(0, 3)));
   }
-
 }
