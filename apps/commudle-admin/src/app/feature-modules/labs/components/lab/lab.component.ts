@@ -47,7 +47,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
@@ -64,7 +64,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private libToastLogService: LibToastLogService,
     private clipboard: Clipboard,
     private seoService: SeoService,
-  ) {}
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
   // defined on the server side, we need isBrowser

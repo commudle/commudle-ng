@@ -37,7 +37,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('content') private content: ElementRef;
   @ViewChild('dialog') private dialog: any;
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
@@ -47,7 +47,9 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
     private seoService: SeoService,
-  ) {}
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit() {
     this.subscriptions.push(
