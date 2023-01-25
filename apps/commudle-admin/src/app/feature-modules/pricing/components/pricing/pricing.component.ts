@@ -73,6 +73,64 @@ export class PricingComponent implements OnInit, OnDestroy {
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+    this.setSchema();
+  }
+
+  setSchema() {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Do I need to purchase any other platform when I setup a Community on Commudle?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "We don't think so, the Developer Communities on Commudle are able to manage all their activities here.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many Communities can I host on Commudle?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "You can host your complete Developer Ecosystem with 100's of Communities on Commudle. We have an organization page too. You have access to all the data and stats you need.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: "I'm looking to build a career in DevRel, how can Commudle be useful in that?",
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: " As a DevRel, it's important to have an experience of building and growing your own Developer Community. Some folks are at leading DevRel positions who started by building their own Community here.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'I want to display activities from Commudle on my website, is it possible?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of your communities' activities on your own web page.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Will you help me migrate from other platforms?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Yes! And it's very easy.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'I lead a Design Community, is Commudle for me?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Absolutely, a few Design Communities are already using Commudle.',
+          },
+        },
+      ],
+    });
   }
 
   ngOnDestroy(): void {

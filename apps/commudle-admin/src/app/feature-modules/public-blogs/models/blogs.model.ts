@@ -9,4 +9,11 @@ export interface IBlog {
   headerImage: SanityImageObject;
   meta_description: string;
   content: [];
+  similarBlogs: string[];
+  faq: [
+    {
+      question: string;
+      answer: string;
+    },
+  ];
 }

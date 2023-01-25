@@ -16,13 +16,16 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
 export class BlogComponent implements OnInit, OnDestroy {
   @Input() activateMiniProfileDirective = true;
   blog: IBlog;
+  similarBlogs: IBlog[] = [];
   richText: string;
   user: IUser;
+  faqSchemaData: any;
+  faqSchemaDataMainEntity = [];
 
   subscriptions: Subscription[] = [];
 
   isLoading = true;
-  ImageLoading = true;
+  imageLoading = true;
 
   environment = environment;
 
@@ -31,59 +34,104 @@ export class BlogComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private appUsersService: AppUsersService,
     private seoService: SeoService,
-  ) {}
-
-  ngOnInit(): void {
-    this.getData();
+  ) {
+    activatedRoute.params.subscribe(() => {
+      this.getData();
+    });
   }
+
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   imageUrl(source: any) {
-    this.ImageLoading = false;
+    this.imageLoading = false;
     return this.cmsService.getImageUrl(source);
   }
 
   getData() {
     const slug: string = this.activatedRoute.snapshot.params.id;
-    this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
-      this.blog = value;
-      this.richText = this.cmsService.getHtmlFromBlock(value);
-      this.setUser();
-      this.setMeta();
-      this.isLoading = false;
-    });
+    this.subscriptions.push(
+      this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
+        this.blog = value;
+        this.richText = this.cmsService.getHtmlFromBlock(value);
+        this.setUser();
+        this.setMeta();
+        this.isLoading = false;
+        if (this.blog.similarBlogs) {
+          this.getSimilarBlogs(this.blog.similarBlogs);
+        }
+      }),
+    );
+  }
+
+  getSimilarBlogs(similarBlogsSlug) {
+    this.similarBlogs = [];
+    for (const blogSlug of similarBlogsSlug) {
+      this.subscriptions.push(
+        this.cmsService.getDataBySlug(blogSlug).subscribe((value: IBlog) => {
+          this.similarBlogs.push(value);
+        }),
+      );
+    }
   }
 
   setUser() {
     this.subscriptions.push(
       this.appUsersService.getProfile(this.blog.username).subscribe((data) => {
         this.user = data;
-        this.setSchema();
+        this.setFaqSchemaData();
       }),
     );
   }
 
-  setSchema() {
-    this.seoService.setSchema({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${environment.app_url}/blogs/${this.blog.slug}`,
+  setFaqSchemaData() {
+    if (this.blog.faq) {
+      for (const blogFaq of this.blog.faq) {
+        this.faqSchemaDataMainEntity.push({
+          '@type': 'Question',
+          name: blogFaq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: blogFaq.answer,
+          },
+        });
+      }
+      this.faqSchemaData = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        headline: 'FAQPage',
+        mainEntity: this.faqSchemaDataMainEntity,
+      };
+      this.setSchema(this.faqSchemaData);
+    } else {
+      this.setSchema();
+    }
+  }
+
+  setSchema(faqSchemaData?) {
+    this.seoService.setSchema([
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `${environment.app_url}/blogs/${this.blog.slug}`,
+        },
+        headline: this.blog.title,
+        description: this.blog.meta_description,
+        image: this.imageUrl(this.blog.headerImage).url(),
+        author: {
+          type: 'Person',
+          name: this.user.name,
+          url: `${environment.app_url}/users/${this.blog.username}`,
+        },
+        datePublished: this.blog.publishedAt,
       },
-      headline: this.blog.title,
-      description: this.blog.meta_description,
-      image: this.imageUrl(this.blog.headerImage).url(),
-      author: {
-        type: 'Person',
-        name: this.user.name,
-        url: `${environment.app_url}/users/${this.blog.username}`,
-      },
-      datePublished: this.blog.publishedAt,
-    });
+      faqSchemaData ? faqSchemaData : '',
+    ]);
   }
 
   setMeta(): void {

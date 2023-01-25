@@ -1,4 +1,4 @@
-nb-card {
+.blog {
   @apply com-pb-8;
   button {
     @apply com-mt-3 com-mb-5;
@@ -35,11 +35,7 @@ nb-card {
 }
 
 app-loading-spinner {
-  ::ng-deep {
-    .spinner {
-      @apply com-flex com-justify-center com-mt-28;
-    }
-  }
+  @apply com-flex com-justify-center com-mt-28;
 }
 
 app-share-button {

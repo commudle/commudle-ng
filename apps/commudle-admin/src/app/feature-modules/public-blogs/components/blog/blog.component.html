@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-      <nb-card *ngIf="blog">
+      <nb-card *ngIf="blog" class="blog">
         <nb-card-header>
           <div class="md:com-flex com-flex-row com-justify-between com-items-center">
             <h1 class="blog-title">{{ blog.title }}</h1>
@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="com-w-full com-aspect-[16/9]">
-              <app-loading-spinner *ngIf="ImageLoading"></app-loading-spinner>
+              <app-loading-spinner *ngIf="imageLoading"></app-loading-spinner>
               <img
                 [alt]="blog.title"
                 [src]="imageUrl(blog.headerImage).url()"
@@ -59,6 +59,30 @@
           ></app-share-button>
         </nb-card-body>
       </nb-card>
+
+      <!-- blogFAQ's section -->
+      <nb-card *ngIf="blog?.faq">
+        <nb-card-body>
+          <h2>FAQ's</h2>
+          <div>
+            <ul style="list-style-type: none; padding-left: 0" *ngFor="let item of blog?.faq">
+              <li>
+                <div class="com-text-xl com-font-bold com-pb-3">{{ item?.question }}</div>
+                <div>{{ item?.answer }}</div>
+              </li>
+            </ul>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <!-- similarBlogs Section -->
+      <nb-card *ngIf="blog?.similarBlogs">
+        <nb-card-body>
+          <h2>Recommended from Commudle</h2>
+          <commudle-blog-card [blogs]="similarBlogs" [shareButton]="false"></commudle-blog-card>
+        </nb-card-body>
+      </nb-card>
+
       <a [routerLink]="['/blogs']" ghost nbButton size="small" class="com-w-max">
         <nb-icon icon="arrow-ios-back"></nb-icon>
         Back to list of blogs

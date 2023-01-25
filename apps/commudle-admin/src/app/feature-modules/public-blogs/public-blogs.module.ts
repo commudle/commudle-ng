@@ -7,8 +7,9 @@ import { NbButtonModule, NbCardModule, NbIconModule, NbSpinnerModule } from '@co
 import { BlogComponent } from './components/blog/blog.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { BlogCardComponent } from './components/blog-card/blog-card.component';
 @NgModule({
-  declarations: [BlogsListComponent, BlogComponent],
+  declarations: [BlogsListComponent, BlogComponent, BlogCardComponent],
   imports: [
     CommonModule,
     PublicBlogsRoutingModule,
