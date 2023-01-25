@@ -6,18 +6,15 @@ import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 @Component({
   selector: 'app-home-builds',
   templateUrl: './home-builds.component.html',
-  styleUrls: ['./home-builds.component.scss']
+  styleUrls: ['./home-builds.component.scss'],
 })
 export class HomeBuildsComponent implements OnInit {
-
   builds: ICommunityBuild[] = [];
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean;
 
-  constructor(
-    private homeService: HomeService,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
+  constructor(private homeService: HomeService, @Inject(PLATFORM_ID) private platformId: object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
@@ -27,7 +24,6 @@ export class HomeBuildsComponent implements OnInit {
   }
 
   getBuilds() {
-    this.homeService.communityBuilds().subscribe(value => this.builds = value.community_builds.slice(0, 3));
+    this.homeService.communityBuilds().subscribe((value) => (this.builds = value.community_builds.slice(0, 3)));
   }
-
 }
