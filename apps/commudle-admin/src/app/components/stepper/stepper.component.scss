@@ -32,16 +32,22 @@ nb-card {
 
           .content {
             height: calc(95% - 56px - 68px);
-            @apply com-overflow-x-hidden;
+            @apply com-overflow-x-hidden com-relative;
 
-            .skills-gif,
-            .completed-gif {
-              @apply com-block com-mt-4 com-mx-auto com-mb-0 com-max-h-[60%];
-            }
-
-            .skills-gif {
-              @apply com-hidden;
-              @apply md:com-block;
+            .info {
+              @apply com-grid com-grid-cols-1 md:com-grid-cols-2;
+              div {
+                @apply md:com-px-10 md:com-py-6;
+                fa-icon {
+                  @apply com-text-6xl com-text-[#00B589];
+                }
+                p {
+                  @apply com-text-xl com-font-semibold com-leading-3;
+                }
+                span {
+                  @apply com-text-lg com-text-gray-500 com-leading-tight;
+                }
+              }
             }
 
             // Custom scrollbar

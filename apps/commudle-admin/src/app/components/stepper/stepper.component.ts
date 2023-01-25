@@ -4,7 +4,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.service';
-
+import { faUsersViewfinder, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faComments } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -13,7 +14,18 @@ import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.ser
 export class StepperComponent implements OnInit {
   tagsDialog: string[] = [];
   tags: string[] = [];
-  maxTags = 5;
+  existingTags = [
+    'Web Development',
+    'Devops',
+    'UI/UX Design',
+    'DSA Problem Solving',
+    'Product Design',
+    'App Development',
+  ];
+  faUser = faUser;
+  faUsersViewfinder = faUsersViewfinder;
+  faComments = faComments;
+  faGlobe = faGlobe;
 
   validUsername = true;
   validBasicDetailsStatus: boolean;
@@ -50,7 +62,7 @@ export class StepperComponent implements OnInit {
   // Function to add a tag
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
     // Add a tag if the value is not empty and the number of tags is under the allowed limit
-    if (value && this.tagsDialog.length < this.maxTags) {
+    if (value) {
       // Add a tag only if it is not present
       if (!this.tagsDialog.includes(value)) {
         this.tagsDialog.push(value);
@@ -58,6 +70,15 @@ export class StepperComponent implements OnInit {
     }
     // Reset the input
     input.nativeElement.value = '';
+  }
+
+  addTag(tag) {
+    if (!this.tagsDialog.includes(tag)) {
+      this.tagsDialog.push(tag);
+      this.existingTags.forEach((element, index) => {
+        if (element == tag) this.existingTags.splice(index, 1);
+      });
+    }
   }
 
   restrictComma(event) {
