@@ -2,14 +2,15 @@
   <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
     <div>
       <label>
-        Choose a username for your public profile
+        <p class="title">Choose a username for your public profile</p>
         <nb-form-field>
           <nb-icon icon="at-outline" nbPrefix></nb-icon>
           <input
             (change)="checkUsername()"
-            fieldSize="small"
+            fieldSize="medium"
             formControlName="username"
             nbInput
+            fullWidth
             status="primary"
             type="text"
           />

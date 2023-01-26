@@ -4,8 +4,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.service';
-import { faUsersViewfinder, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { faUser, faComments } from '@fortawesome/free-regular-svg-icons';
+import { faUsersViewfinder, faGlobe, faUser, faComments } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',

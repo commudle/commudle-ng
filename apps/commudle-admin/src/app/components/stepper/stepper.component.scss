@@ -2,7 +2,7 @@ nb-card {
   @apply com-w-95vw md:com-w-800px com-h-95vh;
 
   nb-card-body {
-    @apply com-p-4 com-overflow-hidden;
+    @apply com-p-4;
 
     .user-profile-completion-stepper {
       @apply com-h-full;
@@ -10,17 +10,20 @@ nb-card {
       &::ng-deep {
         .header {
           .connector-past {
-            @apply com-bg-Caribbean-Green;
+            @apply com-bg-[#30A17B] com-h-1;
           }
 
           .step {
             .label-index {
-              @apply com-border-Caribbean-Green;
+              @apply com-border-[#30A17B] com-border-2 com-text-xl com-h-10 com-w-10 com-font-semibold;
+              span {
+                @apply com-text-[#30A17B];
+              }
             }
 
             &.completed {
               .label-index {
-                @apply com-bg-Caribbean-Green com-border-Caribbean-Green;
+                @apply com-bg-[#30A17B] com-border-[#30A17B];
               }
             }
           }
@@ -39,13 +42,13 @@ nb-card {
               div {
                 @apply md:com-px-10 md:com-py-6;
                 fa-icon {
-                  @apply com-text-6xl com-text-[#00B589];
+                  @apply com-text-5xl com-text-[#00B589];
                 }
                 p {
-                  @apply com-text-xl com-font-semibold com-leading-3;
+                  @apply com-text-lg com-font-semibold com-leading-3;
                 }
                 span {
-                  @apply com-text-lg com-text-gray-500 com-leading-tight;
+                  @apply com-text-base com-text-gray-500 com-leading-tight;
                 }
               }
             }

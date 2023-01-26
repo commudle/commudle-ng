@@ -4,6 +4,7 @@ import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-m
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-basic-info',
@@ -16,6 +17,8 @@ export class BasicInfoComponent implements OnInit {
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
+
+  faFileImage = faFileImage;
 
   basicInfoForm;
 

@@ -1,15 +1,17 @@
 .username {
   @apply com-mb-4;
 
+  .title {
+    @apply com-text-sm;
+  }
+
   .field-error {
     @apply com-m-0;
   }
 
   form {
-    @apply com-flex com-flex-wrap;
-
     button {
-      @apply com-mt-20 com-mx-4 com-mb-0;
+      @apply com-flex com-mt-2 com-mx-auto com-mb-0;
     }
   }
 }
