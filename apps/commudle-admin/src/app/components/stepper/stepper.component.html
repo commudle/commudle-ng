@@ -5,147 +5,210 @@
         <nb-icon icon="close"></nb-icon>
       </button>
     </div>
-    <div class="com-px-4">
-      <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
-        <nb-step [label]="stepOne">
-          <ng-template #stepOne>
-            <label class="step-one-heading">Username & Skills</label>
-          </ng-template>
-          <div class="content">
-            <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
-            <div>
-              <div class="com-text-sm com-pb-4">
-                Add your skills
-                <br />
-                <span class="com-text-xs com-text-primary-500">
-                  (Add atleast 5 skills to make your profile strong & approachable for Developers and Employers)
-                </span>
-              </div>
-              <nb-tag-list (tagRemove)="onTagRemove($event)" class="com-w-[90vw]">
-                <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
-                <input
-                  (tagAdd)="onTagAdd($event)"
-                  [separatorKeys]="[13, 188]"
-                  (keypress)="restrictComma($event)"
-                  fullWidth
-                  fieldSize="large"
-                  nbTagInput
-                  placeholder="Type a tag and press enter or comma"
-                  type="text"
-                />
+    <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
+      <nb-step [label]="stepOne">
+        <ng-template #stepOne>
+          <label class="step-one-heading">Username & Skills</label>
+        </ng-template>
+        <div class="content">
+          <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
+          <div>
+            <div class="com-text-sm com-pb-4">
+              Add your skills
+              <br />
+              <span class="com-text-xs com-text-primary-500">
+                (Add atleast 5 skills to make your profile strong & approachable for Developers and Employers)
+              </span>
+            </div>
+            <nb-tag-list (tagRemove)="onTagRemove($event)" class="com-w-[90vw]">
+              <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
+              <input
+                (tagAdd)="onTagAdd($event)"
+                [separatorKeys]="[13, 188]"
+                (keypress)="restrictComma($event)"
+                fullWidth
+                fieldSize="large"
+                nbTagInput
+                placeholder="Type a tag and press enter or comma"
+                type="text"
+              />
+            </nb-tag-list>
+            <div class="com-py-4">
+              <nb-tag-list>
+                <nb-tag
+                  appearance="outline"
+                  *ngFor="let tag of existingTags"
+                  [text]="tag"
+                  status="primary"
+                  (click)="addTag(tag)"
+                >
+                </nb-tag>
               </nb-tag-list>
-              <div class="com-py-4">
-                <nb-tag-list>
-                  <nb-tag
-                    appearance="outline"
-                    *ngFor="let tag of existingTags"
-                    [text]="tag"
-                    status="primary"
-                    (click)="addTag(tag)"
-                  >
-                  </nb-tag>
-                </nb-tag-list>
-              </div>
-            </div>
-            <div class="info">
-              <div>
-                <fa-icon [icon]="faGlobe"></fa-icon>
-                <p>Build a strong network</p>
-                <span>Build a strong network of techies with same skills & grow together</span>
-              </div>
-              <div>
-                <fa-icon [icon]="faUser"></fa-icon>
-                <p>Build your unique profile</p>
-                <span>Make your profile stand out by adding your projects and tutorials</span>
-              </div>
-              <div>
-                <fa-icon [icon]="faComments"></fa-icon>
-                <p>Join communities</p>
-                <span>Find your relevant communities to join and share your knowledge </span>
-              </div>
-              <div>
-                <fa-icon [icon]="faUsersViewfinder"></fa-icon>
-                <p>Find your dream job</p>
-                <span>Get discovered by employers or find jobs matching to your skills</span>
-              </div>
             </div>
           </div>
-          <div class="navigation-buttons next-button-only">
-            <button
-              [disabled]="!validUsername || tagsDialog.length <= 4"
-              nbButton
-              nbStepperNext
+          <div class="info">
+            <div>
+              <fa-icon [icon]="faGlobe"></fa-icon>
+              <p>Build a strong network</p>
+              <span>Build a strong network of techies with same skills & grow together</span>
+            </div>
+            <div>
+              <fa-icon [icon]="faUser"></fa-icon>
+              <p>Build your unique profile</p>
+              <span>Make your profile stand out by adding your projects and tutorials</span>
+            </div>
+            <div>
+              <fa-icon [icon]="faComments"></fa-icon>
+              <p>Join communities</p>
+              <span>Find your relevant communities to join and share your knowledge </span>
+            </div>
+            <div>
+              <fa-icon [icon]="faUsersViewfinder"></fa-icon>
+              <p>Find your dream job</p>
+              <span>Get discovered by employers or find jobs matching to your skills</span>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-buttons next-button-only">
+          <button
+            [disabled]="!validUsername || tagsDialog.length <= 0"
+            nbButton
+            nbStepperNext
+            status="primary"
+            (click)="submitStepOne()"
+          >
+            Next
+          </button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepTwo">
+        <ng-template #stepTwo>
+          <label>Basic profile</label>
+        </ng-template>
+        <div class="content">
+          <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
+        </div>
+        <div class="navigation-buttons both-buttons">
+          <button outline nbButton nbStepperPrevious status="primary">Prev</button>
+          <button
+            [disabled]="!validBasicDetailsStatus"
+            nbButton
+            nbStepperNext
+            status="primary"
+            (click)="submitStepTwo()"
+          >
+            Next
+          </button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepThree">
+        <ng-template #stepThree>
+          <label>Jobs Profile</label>
+        </ng-template>
+        <div class="content jobs" *ngIf="user">
+          <div class="toggle-section">
+            <p class="heading">Select one of the following</p>
+            <nb-toggle
               status="primary"
-              shape="semi-round"
-              (click)="submitStepOne()"
+              (click)="openForWork()"
+              [(checked)]="user.is_employee"
+              labelPosition="right"
+              class="com-mb-4"
             >
-              Next
-            </button>
-          </div>
-        </nb-step>
-
-        <nb-step [label]="stepTwo">
-          <ng-template #stepTwo>
-            <label>Basic profile</label>
-          </ng-template>
-          <div class="content">
-            <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
-          </div>
-          <div class="navigation-buttons both-buttons">
-            <button outline nbButton nbStepperPrevious status="primary" shape="semi-round">Prev</button>
-            <button
-              [disabled]="!validBasicDetailsStatus"
-              nbButton
-              nbStepperNext
-              status="primary"
-              shape="semi-round"
-              (click)="submitStepTwo()"
-            >
-              Next
-            </button>
-          </div>
-        </nb-step>
-
-        <nb-step [label]="stepThree">
-          <ng-template #stepThree>
-            <label>Jobs Profile</label>
-          </ng-template>
-          <div class="content">
-            <!-- <app-social-links (socialLinksFormValidity)="checkSocialLinksValidity($event)"></app-social-links> -->
-            <div class="com-flex com-flex-col">
-              <nb-toggle status="primary" labelPosition="right"> I'm looking for work </nb-toggle>
-              <nb-toggle status="primary" labelPosition="right">I'm hiring</nb-toggle>
+              I'm looking for work
+            </nb-toggle>
+            <nb-toggle status="primary" (click)="openForHiring()" [(checked)]="user.is_employer" labelPosition="right"
+              >I'm hiring
+            </nb-toggle>
+            <div class="info !com-flex">
+              <nb-icon icon="info"></nb-icon>
+              <p>You can select both options too but, you have to complete both process individually</p>
             </div>
           </div>
-          <div class="navigation-buttons both-buttons">
-            <button nbButton nbStepperPrevious status="basic">Prev</button>
-            <button
-              [disabled]="!validSocialLinksStatus"
-              nbButton
-              nbStepperNext
-              status="success"
-              (click)="submitStepThree()"
-            >
-              Next
-            </button>
+          <div *ngIf="user.is_employee">
+            <p class="heading">Upload your resume</p>
+            <div class="upload-section">
+              <form [formGroup]="userResumeForm" class="com-flex com-flex-col com-space-y-3">
+                <label>
+                  Name of the file*
+                  <input formControlName="name" fullWidth nbInput type="text" />
+                </label>
+                <div class="com-flex com-w-full com-justify-between">
+                  <object
+                    *ngIf="uploadedResumeSrc"
+                    class="com-w-2/6 com-h-40"
+                    attr.data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
+                    type="application/pdf"
+                  ></object>
+                  <div class="com-w-full" [ngClass]="{ '!com-w-3/5': uploadedResumeSrc }">
+                    <div
+                      class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
+                    >
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        (change)="onFileChange($event)"
+                        class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+                      />
+                      <div
+                        class="com-text-center com-absolute com-top-6 com-right-0 com-left-0 com-m-auto com-text-gray-400"
+                      >
+                        <fa-icon [icon]="faFile" class="com-text-5xl"></fa-icon>
+                        <p>
+                          Drag file here
+                          <br />
+                          or<span class="com-text-primary-500"> BROWSE </span>
+                          <br />
+                          (PDF, max size: 5MB)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <button
+                nbButton
+                status="primary"
+                *ngIf="jobButton"
+                routerLink="/jobs"
+                (click)="closeStepper()"
+                class="com-mt-4"
+              >
+                Apply to jobs
+              </button>
+            </div>
           </div>
-        </nb-step>
+          <div *ngIf="user.is_employer">
+            <p class="heading">Post a Job</p>
+            <div class="info !com-flex">
+              <nb-icon icon="info"></nb-icon>
+              <p>Posting a job application will help you find relevant candidates with great skills and knowledge</p>
+            </div>
+            <button nbButton status="primary">Add a Job</button>
+          </div>
+        </div>
+        <div class="navigation-buttons both-buttons">
+          <button nbButton outline nbStepperPrevious status="primary">Prev</button>
+          <button nbButton nbStepperNext status="primary" (click)="submitStepThree()">Next</button>
+        </div>
+      </nb-step>
 
-        <nb-step [hidden]="true">
-          <div class="content">
-            <h3 class="text-center">Thank you for completing your profile!</h3>
-            <img
-              alt="Completed"
-              src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGNaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33ad326a4cad4e6d33e037188dd68e9ccedc0ee5/userflow-done.gif"
-              title="Completed"
-              class="completed-gif"
-            />
-          </div>
-          <div class="navigation-buttons next-button-only">
-            <button nbButton status="success" (click)="closeStepper()">Close</button>
-          </div>
-        </nb-step>
-      </nb-stepper>
-    </div>
+      <nb-step [hidden]="true">
+        <div class="content">
+          <h3 class="text-center">Thank you for completing your profile!</h3>
+          <img
+            alt="Completed"
+            src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGNaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33ad326a4cad4e6d33e037188dd68e9ccedc0ee5/userflow-done.gif"
+            title="Completed"
+            class="completed-gif"
+          />
+        </div>
+        <div class="navigation-buttons next-button-only">
+          <button nbButton status="success" (click)="closeStepper()">Close</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
   </nb-card-body>
 </nb-card>

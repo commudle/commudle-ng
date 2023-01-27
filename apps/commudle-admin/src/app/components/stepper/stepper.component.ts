@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
+import { NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.service';
-import { faUsersViewfinder, faGlobe, faUser, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faUsersViewfinder, faGlobe, faUser, faComments, faFile } from '@fortawesome/free-solid-svg-icons';
+import { IUser } from 'apps/shared-models/user.model';
+import { FormBuilder, Validators } from '@angular/forms';
+import { IAttachedFile } from 'apps/shared-models/attached-file.model';
+import { Subscription } from 'rxjs';
+import { UserResumeService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -13,6 +18,25 @@ import { faUsersViewfinder, faGlobe, faUser, faComments } from '@fortawesome/fre
 export class StepperComponent implements OnInit {
   tagsDialog: string[] = [];
   tags: string[] = [];
+  user: IUser;
+  uploadedResume: IAttachedFile;
+
+  faUser = faUser;
+  faUsersViewfinder = faUsersViewfinder;
+  faComments = faComments;
+  faGlobe = faGlobe;
+  faFile = faFile;
+
+  uploadedResumeSrc: string;
+  userResumeForm;
+
+  validUsername = true;
+  jobButton = false;
+  validBasicDetailsStatus: boolean;
+  validSocialLinksStatus: boolean;
+
+  subscriptions: Subscription[] = [];
+
   existingTags = [
     'Web Development',
     'Devops',
@@ -21,27 +45,27 @@ export class StepperComponent implements OnInit {
     'Product Design',
     'App Development',
   ];
-  faUser = faUser;
-  faUsersViewfinder = faUsersViewfinder;
-  faComments = faComments;
-  faGlobe = faGlobe;
-
-  validUsername = true;
-  validBasicDetailsStatus: boolean;
-  validSocialLinksStatus: boolean;
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private usersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
     private stepperService: StepperService,
-  ) {}
+    private fb: FormBuilder,
+    private nbToastrService: NbToastrService,
+    private userResumeService: UserResumeService,
+  ) {
+    this.userResumeForm = this.fb.group({
+      name: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((currentUser) => {
       if (currentUser) {
         this.usersService.getProfile(currentUser.username).subscribe((data) => {
           if (data) {
+            this.user = data;
             if (this.tags.length != data.tags.length) {
               data.tags.forEach((tag) => this.tags.push(tag.name));
               this.tagsDialog = [];
@@ -119,5 +143,64 @@ export class StepperComponent implements OnInit {
 
   closeStepper() {
     this.stepperService.dialogRef.close();
+  }
+
+  openForWork() {
+    this.userProfileManagerService.toggleEmployee().subscribe(() => {});
+  }
+
+  openForHiring() {
+    this.userProfileManagerService.toggleEmployer().subscribe(() => {});
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files.length) {
+      if (event.target.files[0].type !== 'application/pdf') {
+        this.nbToastrService.warning('File must be a pdf', 'Warning');
+        return;
+      } else if (event.target.files[0].size > 5000000) {
+        this.nbToastrService.warning('File must be less than 5mb', 'Warning');
+        return;
+      }
+
+      const file = event.target.files[0];
+      this.uploadedResume = {
+        id: null,
+        file: file,
+        url: null,
+        name: null,
+        type: null,
+      };
+
+      const reader = new FileReader();
+      reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
+      reader.readAsDataURL(file);
+      this.createResume();
+    }
+  }
+
+  createResume() {
+    this.subscriptions.push(
+      this.userResumeService.createResume(this.getResumeFormData()).subscribe(() => {
+        this.nbToastrService.success('Resume uploaded successfully', 'Success');
+        // this.getUserResumes();
+        this.jobButton = true;
+      }),
+    );
+  }
+
+  getResumeFormData(): FormData {
+    const formData = new FormData();
+    const resumeValue = this.userResumeForm.value;
+
+    Object.keys(resumeValue).forEach((key) => {
+      formData.append(`user_resume[${key}]`, resumeValue[key]);
+    });
+
+    Object.keys(this.uploadedResume).forEach((key) => {
+      formData.append(`user_resume[resume][${key}]`, this.uploadedResume[key]);
+    });
+
+    return formData;
   }
 }

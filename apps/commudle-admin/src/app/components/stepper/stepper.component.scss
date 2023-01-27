@@ -2,7 +2,7 @@ nb-card {
   @apply com-w-95vw md:com-w-800px com-h-95vh;
 
   nb-card-body {
-    @apply com-p-4;
+    @apply com-p-4 com-overflow-hidden;
 
     .user-profile-completion-stepper {
       @apply com-h-full;
@@ -35,7 +35,11 @@ nb-card {
 
           .content {
             height: calc(95% - 56px - 68px);
-            @apply com-overflow-x-hidden com-relative;
+            @apply com-overflow-x-hidden;
+
+            .completed-gif {
+              @apply com-block com-mt-4 com-mx-auto com-mb-0 com-max-h-[60%];
+            }
 
             .info {
               @apply com-grid com-grid-cols-1 md:com-grid-cols-2;
@@ -66,6 +70,24 @@ nb-card {
               @apply com-bg-gray-300 hover:com-bg-gray-400 com-bg-clip-content com-rounded-xl com-border-2 com-border-solid com-border-transparent;
             }
           }
+          .content.jobs {
+            .toggle-section {
+              @apply com-flex com-flex-col;
+            }
+            .info {
+              @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
+              p,
+              nb-icon {
+                @apply com-text-primary-500;
+              }
+              nb-icon {
+                @apply com-text-2xl com-mx-2;
+              }
+            }
+            .heading {
+              @apply com-text-xl com-font-semibold;
+            }
+          }
         }
       }
     }
@@ -78,7 +100,7 @@ nb-card {
       }
 
       &.next-button-only {
-        @apply com-flex com-justify-end;
+        @apply com-flex com-justify-end com-pt-0;
       }
 
       &.prev-button-only {
