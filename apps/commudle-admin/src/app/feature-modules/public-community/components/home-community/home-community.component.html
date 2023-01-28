@@ -2,79 +2,96 @@
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
-        <div class="page-header d-flex flex-column">
-          <img alt="{{ community.name }}" class="logo" src="{{ community.logo_path }}" title="{{ community.name }}" />
-          <div class="details">
-            <div class="com-flex com-justify-between com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0">
-              <h1>{{ community.name }}</h1>
-              <div class="com-text-3xl" *ngIf="isOrganizer">
-                <a nbButton status="danger" [routerLink]="['/admin', 'communities', community.slug]">
-                  Go to Admin Panel
-                  <nb-icon icon="edit-outline"></nb-icon>
-                </a>
+        <nb-card class="!com-mt-0">
+          <nb-card-body class="!com-p-0">
+            <img src="/assets/images/Frame-340.png" alt="" class="com-object-contain com-w-[1262px]" />
+            <div class="page-header d-flex flex-column">
+              <div class="com-h-52 com-w-52 com-rounded-full -com-mt-28 com-mx-4 com-bg-white">
+                <img
+                  alt="{{ community.name }}"
+                  class="logo"
+                  src="{{ community.logo_path }}"
+                  title="{{ community.name }}"
+                />
+              </div>
+              <div class="details">
+                <div
+                  class="com-flex com-justify-between com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
+                >
+                  <div class="com-grid com-grid-cols-2 com-items-center">
+                    <h1>{{ community.name }}</h1>
+                    <app-share-button
+                      [content]="environment.app_url + '/communities/' + community.slug"
+                      [title]="community.name"
+                      [url]="environment.app_url + '/communities/' + community.slug"
+                      [showText]="true"
+                      [appearance]="'outline'"
+                      class="com-pl-4"
+                    ></app-share-button>
+                  </div>
+                </div>
+                <div class="membership d-flex flex-column">
+                  <p class="member-count">
+                    <a [routerLink]="['members']">
+                      <nb-icon icon="people" status="basic"></nb-icon>
+                      {{ community.member_count }} Community Members
+                    </a>
+                  </p>
+                  <div class="community-social-links d-flex align-items-center">
+                    <a
+                      *ngIf="community.facebook"
+                      href="{{ community.facebook | completeurl : 'facebook' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="facebook" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.linkedin"
+                      href="{{ community.linkedin | completeurl : 'linkedin' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="linkedin" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.twitter"
+                      href="{{ community.twitter | completeurl : 'twitter' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="twitter" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.github"
+                      href="{{ community.github | completeurl : 'github' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="github" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.website"
+                      href="{{ community.website | completeurl }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="globe" status="info"></nb-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="membership-toggle">
+                <app-membership-toggle [community]="community"></app-membership-toggle>
+                <div class="com-text-3xl com-mt-4" *ngIf="isOrganizer">
+                  <a nbButton status="danger" [routerLink]="['/admin', 'communities', community.slug]">
+                    Go to Admin Panel
+                    <nb-icon icon="edit-outline"></nb-icon>
+                  </a>
+                </div>
               </div>
             </div>
-            <div class="membership d-flex flex-column">
-              <p class="member-count">
-                <a [routerLink]="['members']">
-                  <nb-icon icon="people" status="basic"></nb-icon>
-                  {{ community.member_count }} Members
-                </a>
-              </p>
-              <div class="social-links-container d-flex justify-content-space-between">
-                <div class="membership-toggle">
-                  <app-membership-toggle [community]="community"></app-membership-toggle>
-                </div>
-
-                <div class="community-social-links d-flex align-items-center">
-                  <a
-                    *ngIf="community.facebook"
-                    href="{{ community.facebook | completeurl: 'facebook' }}"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <nb-icon icon="facebook" status="info"></nb-icon>
-                  </a>
-                  <a
-                    *ngIf="community.linkedin"
-                    href="{{ community.linkedin | completeurl: 'linkedin' }}"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <nb-icon icon="linkedin" status="info"></nb-icon>
-                  </a>
-                  <a
-                    *ngIf="community.twitter"
-                    href="{{ community.twitter | completeurl: 'twitter' }}"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <nb-icon icon="twitter" status="info"></nb-icon>
-                  </a>
-                  <a
-                    *ngIf="community.github"
-                    href="{{ community.github | completeurl: 'github' }}"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <nb-icon icon="github" status="info"></nb-icon>
-                  </a>
-                  <a
-                    *ngIf="community.website"
-                    href="{{ community.website | completeurl }}"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <nb-icon icon="globe" status="info"></nb-icon>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="page-menu">
-          <nb-card>
-            <nb-card-body>
+            <div class="page-menu">
               <div class="menu-items d-flex">
                 <a
                   [routerLinkActiveOptions]="{ exact: true }"
@@ -118,10 +135,9 @@
                   </a>
                 </div>
               </div>
-            </nb-card-body>
-          </nb-card>
-        </div>
-
+            </div>
+          </nb-card-body>
+        </nb-card>
         <div class="router-outlet">
           <router-outlet></router-outlet>
         </div>

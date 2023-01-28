@@ -5,6 +5,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { ICommunity } from 'apps/shared-models/community.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-home-community',
@@ -14,6 +15,8 @@ import { Subscription } from 'rxjs';
 export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
   isOrganizer = false;
+
+  environment = environment;
 
   notificationCount = 0;
 

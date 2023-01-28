@@ -1,6 +1,6 @@
 .home-component {
   .page-header {
-    @apply com-flex-col com-content-start com-mx-0 com-mt-8 com-mb-16;
+    @apply com-flex-col com-content-start com-mx-0 com-mb-16;
     @apply md:com-flex-row;
 
     .logo {
@@ -13,51 +13,45 @@
       @apply com-w-full;
 
       h1 {
-        @apply com-text-4xl com-font-semibold com-text-gunmetal com-mx-auto com-mt-7 com-mb-2;
-        @apply md:com-mx-0;
+        @apply com-font-semibold;
       }
 
       .membership {
         @apply com-items-center md:com-items-stretch;
 
         .member-count {
-          @apply com-mx-0 com-mt-0 com-mb-78px;
+          @apply com-mx-0 com-mt-0;
 
           a {
             @apply com-text-gunmetal com-no-underline;
           }
         }
 
-        .social-links-container {
-          @apply com-w-fit  com-gap-6 com-flex-col;
-          @apply md:com-flex-row md:com-w-full;
+        .community-social-links {
+          @apply com-gap-6;
 
-          .membership-toggle {
-            ::ng-deep {
-              button {
-                @apply com-p-2 com-font-normal com-text-sm com-text-white com-bg-Very-Light-Blue com-normal-case;
-              }
-
-              nb-select {
-                button {
-                  background-color: initial;
-                  color: initial;
-                  @apply com-p-1 com-w-44;
-                }
-              }
-            }
+          nb-icon {
+            @apply com-text-Very-Light-Blue;
           }
 
-          .community-social-links {
-            @apply com-self-center com-gap-6;
+          a {
+            @apply com-no-underline;
+          }
+        }
+      }
+    }
+    .membership-toggle {
+      @apply com-mr-4 com-mt-6;
+      ::ng-deep {
+        button {
+          @apply com-p-2 com-font-normal com-text-sm com-text-white com-bg-Very-Light-Blue com-normal-case;
+        }
 
-            nb-icon {
-              @apply com-text-Very-Light-Blue;
-            }
-
-            a {
-              @apply com-no-underline;
-            }
+        nb-select {
+          button {
+            background-color: initial;
+            color: initial;
+            @apply com-p-1 com-w-44;
           }
         }
       }
@@ -103,11 +97,11 @@
     }
 
     .active {
-      @apply com-border-0 com-border-b-3 com-border-solid com-border-Blue-Jeans;
+      @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
 
       nb-icon,
       .title {
-        @apply com-text-Blue-Jeans;
+        @apply com-text-primary-500;
       }
     }
   }
