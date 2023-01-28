@@ -16,7 +16,7 @@ import { ApiRoutesService } from './api-routes.service';
   providedIn: 'root',
 })
 export class LibAuthwatchService {
-  private currentUserVerified: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private currentUserVerified: BehaviorSubject<boolean> = new BehaviorSubject(null);
   public currentUserVerified$ = this.currentUserVerified.asObservable();
   private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
   public currentUser$ = this.currentUser.asObservable();
@@ -54,11 +54,11 @@ export class LibAuthwatchService {
         if (data.user) {
           this.currentUser.next(data.user);
           this.currentUserVerified.next(true);
-          this.gtm.dataLayerPushEvent('session-start', {
-            com_user_name: data.user.name,
-            com_user_id: data.user.id,
-            com_user_email: data.user.email,
-          });
+          // this.gtm.dataLayerPushEvent('session-start', {
+          //   com_user_name: data.user.name,
+          //   com_user_id: data.user.id,
+          //   com_user_email: data.user.email,
+          // });
         } else {
           this.currentUserVerified.next(false);
         }
