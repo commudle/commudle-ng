@@ -18,17 +18,9 @@ experiences of Community Organizers.
 
 ## Login/Sign Up for Development
 
-- Go to `https://auther.commudle.com`.
-- Sign in using your **Google Account** (Other options will be added soon).
-- Navigate to `http://localhost:4200/` and you should get signed in automatically.
-- If the above step does not sign you in, then:
-  - Go to `https://commudle.com` where you should be signed in.
-  - Open the developer tools of your respective browser.
-  - Navigate to the _Application_ Tab.
-  - In the left side navigation bar, under _Storage_ you can find _Cookies_.
-  - By clicking on it, you can find a cookie named **commudle_user_auth** with its corresponding value.
-  - Copy this particular cookie and its value to `http://localhost:4200`'s cookies and refresh the page to get signed
-    in.
+- Go to `http://localhost:4200/login`
+- Sign in using your **Google Account** or **By enter your email address** (Other options will be added soon).
+- Now you are sign in successfully.
   - [Contribution Guidelines](CONTRIBUTING.md)
   - [Contributors.md](CONTRIBUTORS.md)
   - [Code Of Conduct](CODE_OF_CONDUCT.md)
