@@ -16,7 +16,7 @@ import { ApiRoutesService } from './api-routes.service';
   providedIn: 'root',
 })
 export class LibAuthwatchService {
-  private currentUserVerified: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private currentUserVerified: BehaviorSubject<boolean> = new BehaviorSubject(null);
   public currentUserVerified$ = this.currentUserVerified.asObservable();
   private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
   public currentUser$ = this.currentUser.asObservable();
