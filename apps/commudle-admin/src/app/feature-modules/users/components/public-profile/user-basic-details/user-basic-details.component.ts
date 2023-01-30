@@ -54,13 +54,13 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.userProfileManagerService.user$.subscribe((data: IUser) => {
       this.user = data;
-    });
-    if (this.route.snapshot.queryParams['hiring'] === 'true') {
-      this.queryParamIsHiring = true;
-      if (!this.user.is_employer) {
-        this.openEnableHiring();
+      if (this.route.snapshot.queryParams['hiring'] === 'true') {
+        this.queryParamIsHiring = true;
+        if (!this.user.is_employer) {
+          this.openEnableHiring();
+        }
       }
-    }
+    });
   }
 
   openEnableHiring() {
