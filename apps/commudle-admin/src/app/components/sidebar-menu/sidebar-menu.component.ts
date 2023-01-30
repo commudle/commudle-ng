@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { faFlask, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faFlask, faNewspaper, faHouse, faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@commudle/theme';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
@@ -20,6 +20,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sidebar-menu.component.scss'],
 })
 export class SidebarMenuComponent implements OnInit, OnDestroy {
+  faSuitcase = faSuitcase;
+  faHouse = faHouse;
   faFlask = faFlask;
   faNewspaper = faNewspaper;
   currentUser: ICurrentUser;
@@ -108,7 +110,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
         this.managedCommunities = data;
-        for (let communities of data) {
+        for (const communities of data) {
           this.updateUnreadNotificationsCount(communities.id);
           this.notificationsStore.updateNotifications(communities.id);
         }
