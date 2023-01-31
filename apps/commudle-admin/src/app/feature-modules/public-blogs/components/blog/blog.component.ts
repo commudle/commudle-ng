@@ -130,7 +130,7 @@ export class BlogComponent implements OnInit, OnDestroy {
         },
         datePublished: this.blog.publishedAt,
       },
-      faqSchemaData ? faqSchemaData : '',
+      faqSchemaData ? faqSchemaData : {},
     ]);
   }
 
