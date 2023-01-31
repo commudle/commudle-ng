@@ -6,6 +6,7 @@ export interface ICommunity {
   name: string;
   logo_path: string;
   logo_image: IAttachedFile;
+  banner_image: IAttachedFile;
   about: string;
   slug: string;
   mini_description: string;

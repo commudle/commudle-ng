@@ -2,11 +2,9 @@
   padding: 1.5rem;
   margin: 0 auto;
 
-
   div[role='individual'] {
     margin: 2rem auto;
   }
-
 
   .uploaded-logo {
     height: 150px;
@@ -16,7 +14,7 @@
     background: #d3d3d36b;
     margin: 0;
     position: relative;
-    &::before{
+    &::before {
       content: 'Logo';
       position: absolute;
       font-size: 2rem;
@@ -28,16 +26,44 @@
     }
   }
 
-  .uploaded-logo-image{
+  .uploaded-logo-image {
     width: 300px;
     overflow: hidden;
     // background: #d3d3d36b;
     text-align: center;
     img {
       max-width: 100%;
-
     }
+  }
 
+  .uploaded-banner {
+    height: 320px;
+    width: 1280px;
+    max-width: 100%;
+    overflow: hidden;
+    background: #d3d3d36b;
+    margin: 0;
+    position: relative;
+    &::before {
+      content: 'Banner Image';
+      position: absolute;
+      font-size: 2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #b9b9b9;
+      font-weight: bolder;
+    }
+  }
+
+  .uploaded-banner-image {
+    width: 1000px;
+    overflow: hidden;
+    // background: #d3d3d36b;
+    text-align: center;
+    img {
+      max-width: 100%;
+    }
   }
 
   .about {
@@ -52,22 +78,19 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    >div{
+    > div {
       width: 100%;
       margin: 10px;
     }
 
     @media (min-width: 768px) {
-      >div{
+      > div {
         width: 50%;
       }
-
     }
   }
-
 
   .save-button-top {
     margin-top: 2rem;
   }
-
 }

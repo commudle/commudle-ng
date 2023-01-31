@@ -14,7 +14,9 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 export class CommunityEditDetailsComponent implements OnInit {
   community: ICommunity;
   uploadedLogo: any;
+  uploadedBanner: any;
   uploadedLogoFile: File;
+  uploadedBannerFile: File;
   tags: string[] = [];
 
   @Output() updateCommunity = new EventEmitter();
@@ -73,16 +75,27 @@ export class CommunityEditDetailsComponent implements OnInit {
       this.updateCommunity.emit(this.community);
       this.communityForm.get('community').patchValue(this.community);
       this.uploadedLogo = this.community.logo_image.url;
+      this.uploadedBanner = this.community.banner_image.url;
     });
   }
 
   displaySelectedLogo(event: any) {
     if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      this.uploadedLogoFile = file;
+      const logoFile = event.target.files[0];
+      this.uploadedLogoFile = logoFile;
       const reader = new FileReader();
       reader.onload = (e: any) => (this.uploadedLogo = reader.result);
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(logoFile);
+    }
+  }
+
+  displaySelectedBanner(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const bannerFile = event.target.files[0];
+      this.uploadedBannerFile = bannerFile;
+      const reader = new FileReader();
+      reader.onload = (e: any) => (this.uploadedBanner = reader.result);
+      reader.readAsDataURL(bannerFile);
     }
   }
 
@@ -96,6 +109,10 @@ export class CommunityEditDetailsComponent implements OnInit {
 
     if (this.uploadedLogoFile != null) {
       formData.append('community[logo_image]', this.uploadedLogoFile);
+    }
+
+    if (this.uploadedBannerFile != null) {
+      formData.append('community[banner_image]', this.uploadedBannerFile);
     }
 
     if (this.tags.length > 0) {

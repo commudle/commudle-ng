@@ -1,10 +1,18 @@
 .home-component {
+  .banner-image {
+    img {
+      @apply com-object-contain com-w-[1262px];
+    }
+    .edit-button {
+      @apply com-absolute com-top-3 com-right-3 com-bg-white com-rounded-md;
+    }
+  }
   .page-header {
-    @apply com-flex-col com-content-start com-mx-0 com-mt-8 com-mb-16;
+    @apply com-flex-col com-content-start com-mx-0 com-mb-16;
     @apply md:com-flex-row;
 
     .logo {
-      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain;
+      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-full;
       @apply md:com-mr-20;
       @apply lg:com-h-52 lg:com-w-52;
     }
@@ -13,51 +21,41 @@
       @apply com-w-full;
 
       h1 {
-        @apply com-text-4xl com-font-semibold com-text-gunmetal com-mx-auto com-mt-7 com-mb-2;
-        @apply md:com-mx-0;
+        @apply com-font-semibold;
       }
 
       .membership {
         @apply com-items-center md:com-items-stretch;
 
         .member-count {
-          @apply com-mx-0 com-mt-0 com-mb-78px;
+          @apply com-mx-0 com-mt-0;
 
           a {
             @apply com-text-gunmetal com-no-underline;
           }
         }
 
-        .social-links-container {
-          @apply com-w-fit  com-gap-6 com-flex-col;
-          @apply md:com-flex-row md:com-w-full;
+        .community-social-links {
+          @apply com-gap-6;
 
-          .membership-toggle {
-            ::ng-deep {
-              button {
-                @apply com-p-2 com-font-normal com-text-sm com-text-white com-bg-Very-Light-Blue com-normal-case;
-              }
-
-              nb-select {
-                button {
-                  background-color: initial;
-                  color: initial;
-                  @apply com-p-1 com-w-44;
-                }
-              }
-            }
+          nb-icon {
+            @apply com-text-Very-Light-Blue;
           }
 
-          .community-social-links {
-            @apply com-self-center com-gap-6;
-
-            nb-icon {
-              @apply com-text-Very-Light-Blue;
-            }
-
-            a {
-              @apply com-no-underline;
-            }
+          a {
+            @apply com-no-underline;
+          }
+        }
+      }
+    }
+    .membership-toggle {
+      @apply com-mr-4 com-mt-6;
+      ::ng-deep {
+        nb-select {
+          button {
+            background-color: initial;
+            color: initial;
+            @apply com-p-1 com-w-44;
           }
         }
       }
@@ -65,7 +63,7 @@
   }
 
   .router-outlet {
-    @apply com-w-full;
+    @apply com-w-full com-px-2;
   }
 }
 
@@ -81,6 +79,7 @@
   }
 
   .menu-items {
+    @apply com-ml-2;
     a {
       @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
@@ -103,11 +102,11 @@
     }
 
     .active {
-      @apply com-border-0 com-border-b-3 com-border-solid com-border-Blue-Jeans;
+      @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
 
       nb-icon,
       .title {
-        @apply com-text-Blue-Jeans;
+        @apply com-text-primary-500;
       }
     }
   }

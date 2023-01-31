@@ -30,6 +30,22 @@
       <div role="group">
         <div>
           <label>
+            Banner Image*
+            <input (change)="displaySelectedBanner($event)" accept="image/*" fullWidth nbInput type="file" />
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="uploadedBanner == null" class="uploaded-banner"></div>
+        <div *ngIf="uploadedBanner" class="uploaded-banner-image">
+          <img alt="Uploaded Logo" src="{{ uploadedBanner }}" title="Uploaded Banner" />
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
             Email*
             <input formControlName="contact_email" fullWidth nbInput type="text" />
           </label>
