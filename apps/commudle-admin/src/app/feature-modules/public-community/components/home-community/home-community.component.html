@@ -5,16 +5,14 @@
         <nb-card class="!com-my-0">
           <nb-card-body class="!com-p-0">
             <div class="banner-image">
-              <img
-                src="{{ community.banner_image ? community.banner_image.url : '/assets/images/Frame-340.png' }}"
-                alt="{{ community.name }}"
-              />
+              <img *ngIf="community.banner_image" src="{{ community.banner_image.url }}" alt="{{ community.name }}" />
+              <div class="com-bg-[#B3DCF9] without-banner" *ngIf="!community.banner_image"></div>
               <div class="edit-button" *ngIf="isOrganizer">
-                <button nbButton status="primary" outline>Edit Banner</button>
+                <button nbButton status="primary" outline (click)="openUpdateBannerDialogBox()">Edit Banner</button>
               </div>
             </div>
             <div class="page-header d-flex flex-column">
-              <div class="com-h-52 com-w-52 com-rounded-full -com-mt-28 com-mx-4 com-bg-white com-shadow-md">
+              <div class="com-h-44 com-w-44 com-rounded-xl -com-mt-28 com-mx-8 com-bg-white com-shadow-md">
                 <img
                   alt="{{ community.name }}"
                   class="logo"
@@ -166,3 +164,27 @@
     </div>
   </div>
 </div>
+
+<ng-template #updateBannerDialogBox let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <label>
+        Banner Image*
+        <input (change)="displaySelectedBanner($event)" accept="image/*" fullWidth nbInput type="file" />
+      </label>
+
+      <div class="com-w-800px">
+        <img
+          alt="Uploaded Banner Image"
+          src="{{ uploadedBanner }}"
+          title="Uploaded Banner"
+          class="com-w-800px com-h-auto com-mt-4"
+        />
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="updateBanner(); ref.close()" nbButton status="success">Update</button>
+      <button (click)="ref.close()" ghost nbButton status="danger">Close</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

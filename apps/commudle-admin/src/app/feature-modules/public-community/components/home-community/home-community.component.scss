@@ -1,7 +1,12 @@
 .home-component {
   .banner-image {
-    img {
+    @apply com-min-h-[320px];
+    img,
+    .without-banner {
       @apply com-object-contain com-w-[1262px];
+    }
+    .without-banner {
+      @apply com-h-80;
     }
     .edit-button {
       @apply com-absolute com-top-3 com-right-3 com-bg-white com-rounded-md;
@@ -12,9 +17,9 @@
     @apply md:com-flex-row;
 
     .logo {
-      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-full;
+      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-xl;
       @apply md:com-mr-20;
-      @apply lg:com-h-52 lg:com-w-52;
+      @apply lg:com-h-44 lg:com-w-44;
     }
 
     .details {
