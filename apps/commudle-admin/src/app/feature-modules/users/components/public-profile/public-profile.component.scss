@@ -11,6 +11,9 @@
 
       nb-icon {
         @apply md:com-text-xl;
+        &.status-default {
+          color: #595867;
+        }
       }
     }
   }

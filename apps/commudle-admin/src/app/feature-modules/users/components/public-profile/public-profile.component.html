@@ -12,12 +12,12 @@
                   <nb-icon
                     *ngIf="item.value.name !== 'Work History'"
                     [icon]="item.value.icon"
-                    [status]="item.value.icon_status"
+                    status="{{ highlight === item.value.link ? item.value.icon_status : 'default' }}"
                   ></nb-icon>
                   <fa-icon
                     *ngIf="item.value.name === 'Work History'"
                     [icon]="faBuilding"
-                    class="com-text-[#00D68F]"
+                    class="{{ highlight === item.value.link ? 'com-text-[#00D687]' : 'com-text-[#595867]' }}"
                   ></fa-icon>
                   {{ item.value.name }}
                 </a>
