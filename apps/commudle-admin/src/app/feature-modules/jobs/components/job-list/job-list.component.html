@@ -18,7 +18,7 @@
             <app-job-list-card *ngFor="let job of jobs" [job]="job"></app-job-list-card>
           </nb-card-body>
           <button (click)="getJobs()" *ngIf="page_info?.has_next_page" [nbSpinner]="isLoading" fullWidth ghost nbButton>
-            Get more jobs
+            Load More Jobs
           </button>
         </nb-card>
       </div>
