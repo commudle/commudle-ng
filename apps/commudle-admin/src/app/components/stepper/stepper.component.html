@@ -34,6 +34,7 @@
               />
             </nb-tag-list>
             <div class="com-py-4">
+              <p class="com-text-xs">Some Suggested Tags</p>
               <nb-tag-list>
                 <nb-tag
                   appearance="outline"
@@ -46,7 +47,7 @@
               </nb-tag-list>
             </div>
           </div>
-          <div class="info">
+          <div class="content-section">
             <div>
               <fa-icon [icon]="faGlobe"></fa-icon>
               <p>Build a strong network</p>
@@ -108,6 +109,7 @@
           <label>Jobs Profile</label>
         </ng-template>
         <div class="content jobs" *ngIf="user">
+          <!-- toggle section -->
           <div class="toggle-section">
             <p class="heading">Select one of the following</p>
             <nb-toggle
@@ -127,19 +129,16 @@
               <p>You can select both options too but, you have to complete both process individually</p>
             </div>
           </div>
+          <!-- resume upload section -->
           <div *ngIf="user.is_employee">
             <p class="heading">Upload your resume</p>
             <div class="upload-section">
               <form [formGroup]="userResumeForm" class="com-flex com-flex-col com-space-y-3">
-                <label>
-                  Name of the file*
-                  <input formControlName="name" fullWidth nbInput type="text" />
-                </label>
                 <div class="com-flex com-w-full com-justify-between">
                   <object
-                    *ngIf="uploadedResumeSrc"
+                    *ngIf="uploadedResumeSrc || userResumes.length > 0"
                     class="com-w-2/6 com-h-40"
-                    attr.data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
+                    attr.data="{{ uploadedResumeSrc || userResumes[0]?.resume.url | safe : 'resourceUrl' }}"
                     type="application/pdf"
                   ></object>
                   <div class="com-w-full" [ngClass]="{ '!com-w-3/5': uploadedResumeSrc }">
@@ -167,26 +166,60 @@
                     </div>
                   </div>
                 </div>
+                <label>
+                  Name of the file*
+                  <input formControlName="name" fullWidth placeholder="Resume Name" nbInput type="text" />
+                </label>
               </form>
+              <button
+                *ngIf="!haveResume"
+                nbButton
+                [disabled]="userResumeForm.invalid || !uploadedResumeSrc"
+                status="primary"
+                class="com-mt-4 !com-bg-[#222B45] !com-border-[#222B45]"
+                (click)="createResume()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="jobApplySection && user.is_employee">
+            <p class="heading">Apply to jobs</p>
+            <div class="border-section">
+              <div class="info !com-flex !com-bg-transparent">
+                <nb-icon icon="info"></nb-icon>
+                <p>Applying to job will help you a lot as your profile will be seen by top recruiters</p>
+              </div>
               <button
                 nbButton
                 status="primary"
-                *ngIf="jobButton"
                 routerLink="/jobs"
                 (click)="closeStepper()"
-                class="com-mt-4"
+                class="!com-bg-[#222B45] !com-border-[#222B45]"
               >
                 Apply to jobs
               </button>
             </div>
           </div>
-          <div *ngIf="user.is_employer">
+          <!-- apply job section -->
+          <div *ngIf="user.is_employer" class="com-mb-4">
             <p class="heading">Post a Job</p>
-            <div class="info !com-flex">
-              <nb-icon icon="info"></nb-icon>
-              <p>Posting a job application will help you find relevant candidates with great skills and knowledge</p>
+            <div class="border-section">
+              <div class="info !com-flex !com-bg-transparent">
+                <nb-icon icon="info"></nb-icon>
+                <p>Posting a job application will help you find relevant candidates with great skills and knowledge</p>
+              </div>
+              <button
+                nbButton
+                status="primary"
+                routerLink="/jobs"
+                (click)="closeStepper()"
+                class="!com-bg-[#222B45] !com-border-[#222B45]"
+              >
+                Add a Job
+              </button>
             </div>
-            <button nbButton status="primary">Add a Job</button>
           </div>
         </div>
         <div class="navigation-buttons both-buttons">

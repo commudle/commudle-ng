@@ -15,9 +15,18 @@ nb-card {
 
           .step {
             .label-index {
-              @apply com-border-[#30A17B] com-border-2 com-text-xl com-h-10 com-w-10 com-font-semibold;
-              span {
-                @apply com-text-[#30A17B];
+              // @apply com-border-[#30A17B] com-border-2 com-text-xl com-h-10 com-w-10 com-font-semibold;
+              // span {
+              //   @apply com-text-[#30A17B];
+              // }
+            }
+
+            &.selected {
+              .label-index {
+                @apply com-border-[#30A17B] com-border-2 com-text-xl com-h-10 com-w-10 com-font-semibold;
+                span {
+                  @apply com-text-[#30A17B];
+                }
               }
             }
 
@@ -41,7 +50,7 @@ nb-card {
               @apply com-block com-mt-4 com-mx-auto com-mb-0 com-max-h-[60%];
             }
 
-            .info {
+            .content-section {
               @apply com-grid com-grid-cols-1 md:com-grid-cols-2;
               div {
                 @apply md:com-px-10 md:com-py-6;
@@ -96,11 +105,11 @@ nb-card {
       @apply com-pt-4;
 
       &.both-buttons {
-        @apply com-flex com-justify-between com-relative com-bottom-2;
+        @apply com-flex com-justify-between com-relative com-bottom-4 com-mt-2;
       }
 
       &.next-button-only {
-        @apply com-flex com-justify-end com-pt-0;
+        @apply com-flex com-justify-end com-pt-0 com-mt-2;
       }
 
       &.prev-button-only {
@@ -112,4 +121,11 @@ nb-card {
 
 .step-one-heading {
   @apply com-ml-6;
+}
+
+.border-section {
+  @apply com-border com-rounded-md  com-border-dashed com-bg-gray-100;
+  button {
+    @apply com-mb-3 com-ml-3;
+  }
 }

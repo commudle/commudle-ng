@@ -10,6 +10,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 import { Subscription } from 'rxjs';
 import { UserResumeService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
+import { IUserResume } from 'apps/shared-models/user_resume.model';
+
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -20,6 +22,7 @@ export class StepperComponent implements OnInit {
   tags: string[] = [];
   user: IUser;
   uploadedResume: IAttachedFile;
+  userResumes: IUserResume[] = [];
 
   faUser = faUser;
   faUsersViewfinder = faUsersViewfinder;
@@ -31,9 +34,10 @@ export class StepperComponent implements OnInit {
   userResumeForm;
 
   validUsername = true;
-  jobButton = false;
+  jobApplySection = false;
   validBasicDetailsStatus: boolean;
   validSocialLinksStatus: boolean;
+  haveResume = false;
 
   subscriptions: Subscription[] = [];
 
@@ -75,6 +79,7 @@ export class StepperComponent implements OnInit {
         });
       }
     });
+    this.getResume();
   }
 
   // Function to remove a tag
@@ -175,16 +180,17 @@ export class StepperComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
       reader.readAsDataURL(file);
-      this.createResume();
     }
+    this.haveResume = false;
+    this.userResumeForm.get('name').patchValue('');
   }
 
   createResume() {
     this.subscriptions.push(
       this.userResumeService.createResume(this.getResumeFormData()).subscribe(() => {
         this.nbToastrService.success('Resume uploaded successfully', 'Success');
-        // this.getUserResumes();
-        this.jobButton = true;
+        this.jobApplySection = true;
+        this.getResume();
       }),
     );
   }
@@ -202,5 +208,18 @@ export class StepperComponent implements OnInit {
     });
 
     return formData;
+  }
+
+  getResume() {
+    this.subscriptions.push(
+      this.userResumeService.getResumes().subscribe((data) => {
+        this.userResumes = data;
+        if (this.userResumes.length > 0) {
+          this.userResumeForm.get('name').patchValue(this.userResumes[0].name);
+          this.haveResume = true;
+          this.jobApplySection = true;
+        }
+      }),
+    );
   }
 }
