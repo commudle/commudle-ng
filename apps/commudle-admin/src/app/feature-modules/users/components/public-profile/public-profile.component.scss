@@ -11,6 +11,10 @@
 
       nb-icon {
         @apply md:com-text-xl;
+
+        &.status-default {
+          @apply com-text-Black-Coral;
+        }
       }
     }
   }
