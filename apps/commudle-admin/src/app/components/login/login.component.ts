@@ -75,8 +75,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   setCookie(authToken: string, loginType: string): void {
     this.cookieService.set('commudle_user_auth', authToken);
-    this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });
     this.redirect();
+    this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });
   }
 
   redirect(): void {
