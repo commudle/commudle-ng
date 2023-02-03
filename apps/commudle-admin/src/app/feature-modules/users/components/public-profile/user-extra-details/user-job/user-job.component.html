@@ -80,12 +80,13 @@
         </label>
         <label>
           Company*
-          <input formControlName="company" fullWidth nbInput type="text" />
+          <input formControlName="company" fullWidth nbInput maxlength="150" type="text" />
           <span
             *ngIf="
               jobForm['controls'].company.touched &&
               jobForm['controls'].company.invalid &&
-              jobForm['controls'].company.errors.required
+              jobForm['controls'].company.errors.required &&
+              jobForm['controls'].company.errors
             "
             class="validation-error-text"
           >
