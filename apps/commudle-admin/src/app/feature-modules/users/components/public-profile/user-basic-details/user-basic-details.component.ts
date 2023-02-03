@@ -24,7 +24,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   tagsDialog: string[] = [];
   // The original tags
   tags: string[] = [];
-  maxTags = 5;
   hiring = false;
 
   environment = environment;
@@ -114,7 +113,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // Function to add a tag
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
     // Add a tag if the value is not empty and the number of tags is under the allowed limit
-    if (value && this.tagsDialog.length < this.maxTags) {
+    if (value) {
       // Add a tag only if it is not present
       if (!this.tagsDialog.includes(value)) {
         this.tagsDialog.push(value);
