@@ -1,9 +1,7 @@
 <nb-card>
   <nb-card-body>
     <div class="com-flex com-justify-end">
-      <button nbButton ghost (click)="closeStepper()" class="!com-p-2 com-mb-3">
-        <nb-icon icon="close"></nb-icon>
-      </button>
+      <button nbButton ghost (click)="closeStepper()" class="!com-p-2 com-mb-3">X</button>
     </div>
     <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
       <nb-step [label]="stepOne">
@@ -13,7 +11,7 @@
         <div class="content">
           <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
           <div>
-            <div class="com-text-sm com-pb-4">
+            <div class="com-text-base com-pb-4">
               Add your skills
               <br />
               <span class="com-text-xs com-text-primary-500">
@@ -34,7 +32,7 @@
               />
             </nb-tag-list>
             <div class="com-py-4">
-              <p class="com-text-xs">Some Suggested Tags</p>
+              <p class="com-text-sm com-my-1">Some Suggested Tags</p>
               <nb-tag-list>
                 <nb-tag
                   appearance="outline"
@@ -91,7 +89,7 @@
           <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button outline nbButton nbStepperPrevious status="primary">Prev</button>
+          <button outline nbButton nbStepperPrevious status="primary" class="com-mr-4">Prev</button>
           <button
             [disabled]="!validBasicDetailsStatus"
             nbButton
@@ -141,7 +139,7 @@
                     attr.data="{{ uploadedResumeSrc || userResumes[0]?.resume.url | safe : 'resourceUrl' }}"
                     type="application/pdf"
                   ></object>
-                  <div class="com-w-full" [ngClass]="{ '!com-w-3/5': uploadedResumeSrc }">
+                  <div class="com-w-full" [ngClass]="{ '!com-w-3/5': uploadedResumeSrc || userResumes.length > 0 }">
                     <div
                       class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
                     >
@@ -152,9 +150,11 @@
                         class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
                       />
                       <div
-                        class="com-text-center com-absolute com-top-6 com-right-0 com-left-0 com-m-auto com-text-gray-400"
+                        class="com-text-center com-absolute com-top-1 com-right-0 com-left-0 com-m-auto com-text-gray-400"
                       >
-                        <fa-icon [icon]="faFile" class="com-text-5xl"></fa-icon>
+                        <p>
+                          Selected: <strong> {{ fileName ? fileName : 'No File Selected' }} </strong>
+                        </p>
                         <p>
                           Drag file here
                           <br />
@@ -223,7 +223,7 @@
           </div>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button nbButton outline nbStepperPrevious status="primary">Prev</button>
+          <button nbButton outline nbStepperPrevious status="primary" class="com-mr-4">Prev</button>
           <button nbButton nbStepperNext status="primary" (click)="submitStepThree()">Next</button>
         </div>
       </nb-step>
@@ -239,7 +239,7 @@
           />
         </div>
         <div class="navigation-buttons next-button-only">
-          <button nbButton status="success" (click)="closeStepper()">Close</button>
+          <button nbButton status="primary" (click)="closeStepper()">Close</button>
         </div>
       </nb-step>
     </nb-stepper>

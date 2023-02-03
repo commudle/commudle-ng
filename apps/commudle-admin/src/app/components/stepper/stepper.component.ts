@@ -32,6 +32,7 @@ export class StepperComponent implements OnInit {
 
   uploadedResumeSrc: string;
   userResumeForm;
+  fileName: string;
 
   validUsername = true;
   jobApplySection = false;
@@ -160,6 +161,7 @@ export class StepperComponent implements OnInit {
 
   onFileChange(event) {
     if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
       if (event.target.files[0].type !== 'application/pdf') {
         this.nbToastrService.warning('File must be a pdf', 'Warning');
         return;
