@@ -54,6 +54,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.userProfileManagerService.user$.subscribe((data: IUser) => {
       this.user = data;
+      this.getUserTags();
     });
     if (this.route.snapshot.queryParams['hiring'] === 'true' && this.user) {
       this.queryParamIsHiring = true;
@@ -71,7 +72,6 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.getUserTags();
     this.userProfileManagerService.getProfile(this.user.username);
   }
 
