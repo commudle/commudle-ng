@@ -6,13 +6,13 @@
           <nb-card-body class="!com-p-0">
             <div class="banner-image">
               <img *ngIf="community.banner_image" src="{{ community.banner_image.url }}" alt="{{ community.name }}" />
-              <div class="com-bg-[#B3DCF9] without-banner" *ngIf="!community.banner_image"></div>
+              <div class="without-banner" *ngIf="!community.banner_image"></div>
               <div class="edit-button" *ngIf="isOrganizer">
                 <button nbButton status="primary" outline (click)="openUpdateBannerDialogBox()">Edit Banner</button>
               </div>
             </div>
             <div class="page-header d-flex flex-column">
-              <div class="com-h-44 com-w-44 com-rounded-xl -com-mt-28 com-mx-8 com-bg-white com-shadow-md">
+              <div class="com-h-44 com-w-44 com-rounded-xl -com-mt-24 com-mx-8 com-bg-white com-shadow-md">
                 <img
                   alt="{{ community.name }}"
                   class="logo"
