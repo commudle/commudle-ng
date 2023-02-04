@@ -52,7 +52,7 @@
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
         <h2 class="title">{{ feature.title }}</h2>
         <p class="description">{{ feature.description }}</p>
-        <div class="com-flex com-justify-center md:com-justify-start">
+        <div *ngIf="feature.Button" class="com-flex com-justify-center md:com-justify-start">
           <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
         </div>
       </div>
