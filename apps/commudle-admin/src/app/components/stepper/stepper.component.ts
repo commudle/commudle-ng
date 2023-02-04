@@ -11,6 +11,7 @@ import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 import { Subscription } from 'rxjs';
 import { UserResumeService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
+import * as confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-stepper',
@@ -50,6 +51,8 @@ export class StepperComponent implements OnInit {
     'Product Design',
     'App Development',
   ];
+
+  canvas = <HTMLCanvasElement>document.getElementById('confetti');
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -133,6 +136,14 @@ export class StepperComponent implements OnInit {
 
   submitStepThree() {
     this.userProfileManagerService.updateUserDetails(false);
+    confetti.create(this.canvas, { resize: true })({
+      shapes: ['square', 'circle', 'star'],
+      particleCount: 1000,
+      spread: 360,
+      zIndex: 9999,
+      disableForReducedMotion: true,
+      ticks: 500,
+    });
   }
 
   checkUsername(validUsername) {
