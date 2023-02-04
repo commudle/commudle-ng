@@ -24,7 +24,9 @@
         "assets": [
           "apps/commudle-admin/src/favicon.ico",
           "apps/commudle-admin/src/assets",
-          "apps/commudle-admin/src/manifest.webmanifest"
+          "apps/commudle-admin/src/manifest.webmanifest",
+          "apps/commudle-admin/src/sitemap.xml",
+          "apps/commudle-admin/src/robots.txt"
         ],
         "styles": ["node_modules/@fortawesome/fontawesome-svg-core/styles.css", "apps/commudle-admin/src/styles.scss"],
         "scripts": [],

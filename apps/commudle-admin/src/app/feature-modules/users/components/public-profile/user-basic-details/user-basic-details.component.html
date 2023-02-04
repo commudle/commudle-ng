@@ -106,7 +106,7 @@
     <nb-card-body class="text-center">
       <div class="tag-dialog-info">
         <nb-icon icon="info-outline"></nb-icon>
-        Add {{ maxTags }} of your skills which you want other developers to see!
+        Add tags of your skills which you want other developers to see!
       </div>
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
