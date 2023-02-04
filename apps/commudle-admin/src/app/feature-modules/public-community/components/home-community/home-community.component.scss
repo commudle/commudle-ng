@@ -1,7 +1,7 @@
 .home-component {
-  .banner-image {
+  .banner {
     @apply com-min-h-[320px];
-    img,
+    .banner-image,
     .without-banner {
       @apply com-object-contain com-w-[1262px];
     }
