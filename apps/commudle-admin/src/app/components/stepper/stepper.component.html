@@ -48,27 +48,27 @@
           <div class="content-section">
             <div>
               <fa-icon [icon]="faGlobe"></fa-icon>
-              <p>Build a strong network</p>
-              <span>Build a strong network of techies with same skills & grow together</span>
+              <p class="heading">Build a strong network</p>
+              <p class="description">Build a strong network of techies with same skills & grow together</p>
             </div>
             <div>
               <fa-icon [icon]="faUser"></fa-icon>
-              <p>Build your unique profile</p>
-              <span>Make your profile stand out by adding your projects and tutorials</span>
+              <p class="heading">Build your unique profile</p>
+              <p class="description">Make your profile stand out by adding your projects and tutorials</p>
             </div>
             <div>
               <fa-icon [icon]="faComments"></fa-icon>
-              <p>Join communities</p>
-              <span>Find your relevant communities to join and share your knowledge </span>
+              <p class="heading">Join communities</p>
+              <p class="description">Find your relevant communities to join and share your knowledge</p>
             </div>
             <div>
               <fa-icon [icon]="faUsersViewfinder"></fa-icon>
-              <p>Find your dream job</p>
-              <span>Get discovered by employers or find jobs matching to your skills</span>
+              <p class="heading">Find your dream job</p>
+              <p class="description">Get discovered by employers or find jobs matching to your skills</p>
             </div>
           </div>
         </div>
-        <div class="navigation-buttons next-button-only">
+        <div class="navigation-buttons">
           <button
             [disabled]="!validUsername || tagsDialog.length <= 0"
             nbButton
@@ -88,7 +88,7 @@
         <div class="content">
           <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
         </div>
-        <div class="navigation-buttons both-buttons">
+        <div class="navigation-buttons">
           <button outline nbButton nbStepperPrevious status="primary" class="com-mr-4">Prev</button>
           <button
             [disabled]="!validBasicDetailsStatus"
@@ -222,7 +222,7 @@
             </div>
           </div>
         </div>
-        <div class="navigation-buttons both-buttons">
+        <div class="navigation-buttons">
           <canvas id="confetti" width="1" height="1"></canvas>
           <button nbButton outline nbStepperPrevious status="primary" class="com-mr-4">Prev</button>
           <button nbButton nbStepperNext status="primary" (click)="submitStepThree()">Next</button>
@@ -239,7 +239,7 @@
             class="completed-gif"
           />
         </div>
-        <div class="navigation-buttons next-button-only">
+        <div class="navigation-buttons">
           <button nbButton status="primary" (click)="closeStepper()">Close</button>
         </div>
       </nb-step>

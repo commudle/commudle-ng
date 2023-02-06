@@ -36,7 +36,7 @@ nb-card {
           @apply com-p-0;
 
           .content {
-            height: calc(95% - 56px - 68px);
+            height: calc(95% - 56px - 75px);
             @apply com-overflow-x-hidden;
 
             .completed-gif {
@@ -46,14 +46,14 @@ nb-card {
             .content-section {
               @apply com-grid com-grid-cols-1 md:com-grid-cols-2 com-border com-border-solid com-border-Caribbean-Green com-rounded-3xl com-mx-2;
               div {
-                @apply md:com-px-10 md:com-py-6;
+                @apply md:com-px-10 com-py-6 com-text-center md:com-text-start;
                 fa-icon {
                   @apply com-text-5xl com-text-Caribbean-Green;
                 }
-                p {
+                .heading {
                   @apply com-text-lg com-font-normal com-leading-3;
                 }
-                span {
+                .description {
                   @apply com-text-base com-text-gray-500 com-leading-tight;
                 }
               }
@@ -95,19 +95,7 @@ nb-card {
     }
 
     .navigation-buttons {
-      @apply com-pt-4;
-
-      &.both-buttons {
-        @apply com-flex com-justify-end com-relative com-bottom-4 com-mt-2;
-      }
-
-      &.next-button-only {
-        @apply com-flex com-justify-end com-pt-0 com-mt-2;
-      }
-
-      &.prev-button-only {
-        @apply com-flex com-justify-start;
-      }
+      @apply com-flex com-justify-end com-mt-1;
     }
   }
 }
