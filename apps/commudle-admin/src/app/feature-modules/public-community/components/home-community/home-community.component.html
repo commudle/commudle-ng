@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
-        <nb-card class="!com-my-0">
+        <nb-card class="!com-my-0 !com-mx-0 md:!com-mx-2">
           <nb-card-body class="!com-p-0">
             <div class="banner">
               <img
@@ -19,21 +19,31 @@
               </div>
             </div>
             <div class="page-header d-flex flex-column">
-              <div class="com-h-44 com-w-44 com-rounded-xl -com-mt-24 com-mx-8 com-bg-white com-shadow-md">
+              <div class="logo-section">
                 <img
                   alt="{{ community.name }}"
                   class="logo"
                   src="{{ community.logo_path }}"
                   title="{{ community.name }}"
                 />
+                <app-share-button
+                  *appBreakpoints="'<=md'"
+                  [content]="environment.app_url + '/communities/' + community.slug"
+                  [title]="community.name"
+                  [url]="environment.app_url + '/communities/' + community.slug"
+                  [showText]="true"
+                  [appearance]="'outline'"
+                  class="com-pl-12 com-pb-3"
+                ></app-share-button>
               </div>
               <div class="details">
                 <div
-                  class="com-flex com-justify-between com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
+                  class="com-flex com-justify-between md:com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
                 >
-                  <div class="com-grid com-grid-cols-2 com-items-center">
+                  <div class="com-grid com-grid-cols-1 com-items-start md:com-grid-cols-2 md:com-items-center">
                     <h1>{{ community.name }}</h1>
                     <app-share-button
+                      *appBreakpoints="'>md'"
                       [content]="environment.app_url + '/communities/' + community.slug"
                       [title]="community.name"
                       [url]="environment.app_url + '/communities/' + community.slug"
@@ -95,7 +105,7 @@
                 </div>
               </div>
               <div class="membership-toggle">
-                <div class="com-flex com-justify-end">
+                <div class="com-flex md:com-justify-end">
                   <app-membership-toggle
                     [community]="community"
                     [shapes]="'semi-round'"

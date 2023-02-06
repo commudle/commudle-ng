@@ -23,22 +23,26 @@
     @apply com-flex-col com-content-start com-mx-0 com-mb-16;
     @apply md:com-flex-row;
 
-    .logo {
-      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-xl;
-      @apply md:com-mr-20;
+    .logo-section {
+      @apply com-h-40 com-w-40  com-rounded-xl -com-mt-24 com-mx-8 com-bg-white com-shadow-md com-flex com-items-end com-justify-between;
+      @apply md:com-block;
       @apply lg:com-h-44 lg:com-w-44;
+
+      .logo {
+        @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-xl;
+        @apply md:com-mr-20;
+        @apply lg:com-h-44 lg:com-w-44;
+      }
     }
 
     .details {
-      @apply com-w-full;
+      @apply com-w-full com-ml-8 md:com-ml-0;
 
       h1 {
         @apply com-font-semibold;
       }
 
       .membership {
-        @apply com-items-center md:com-items-stretch;
-
         .member-count {
           @apply com-mx-0 com-mt-0;
 
@@ -61,7 +65,7 @@
       }
     }
     .membership-toggle {
-      @apply com-mr-4 com-mt-6;
+      @apply com-mr-4 com-mt-6 com-ml-8 md:com-ml-0;
       ::ng-deep {
         nb-select {
           button {
