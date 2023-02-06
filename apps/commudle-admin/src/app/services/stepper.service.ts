@@ -10,14 +10,14 @@ import { StepperComponent } from 'apps/commudle-admin/src/app/components/stepper
 })
 export class StepperService {
   private profileWeights: Record<string, number> = {
-    username: 10,
-    avatar: 20,
-    name: 10,
-    designation: 10,
-    about_me: 10,
+    username: 5,
+    avatar: 10,
+    name: 5,
+    designation: 20,
+    about_me: 15,
     location: 10,
     gender: 10,
-    skills: 20,
+    skills: 25,
     // socialLinks: 10,
   };
 
