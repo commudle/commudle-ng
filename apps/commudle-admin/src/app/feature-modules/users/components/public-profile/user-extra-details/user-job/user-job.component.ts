@@ -260,11 +260,4 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   gtmService(event, data) {
     this.gtm.dataLayerPushEvent(event, data);
   }
-
-  autogrow() {
-    const textArea = document.getElementById('textarea');
-    textArea.style.overflow = 'hidden';
-    textArea.style.height = '0px';
-    textArea.style.height = textArea.scrollHeight + 'px';
-  }
 }
