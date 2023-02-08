@@ -217,7 +217,10 @@ export class JobListComponent implements OnInit, OnDestroy {
   }
 
   redirectToProfile() {
-    this.router.navigate(['/users/' + this.currentUser.username], { fragment: 'jobs' });
+    this.router.navigate(['/users/' + this.currentUser.username], {
+      fragment: 'jobs',
+      queryParams: { hiring: 'true' },
+    });
   }
 
   setMeta(): void {
