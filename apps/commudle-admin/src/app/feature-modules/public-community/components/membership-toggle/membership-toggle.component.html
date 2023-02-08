@@ -1,4 +1,11 @@
-<button (click)="openDialog(addMemberDialog)" *ngIf="!isMember" nbButton size="small">
+<button
+  (click)="openDialog(addMemberDialog)"
+  *ngIf="!isMember"
+  nbButton
+  [shape]="shapes"
+  [status]="status"
+  [size]="size"
+>
   <nb-icon icon="plus"></nb-icon>
   Join Community
 </button>
@@ -11,7 +18,7 @@
   size="small"
   status="success"
 >
-  <nb-option [value]="'false'">Exit {{community.name}}</nb-option>
+  <nb-option [value]="'false'">Exit {{ community.name }}</nb-option>
 </nb-select>
 
 <ng-template #addMemberDialog let-data>
@@ -21,18 +28,18 @@
       <div>
         <p>We are excited to have you join our Community!</p>
         <p>
-          As a part of <strong>{{community.name}}</strong>, the following information will be shared between you and the
-          organizers:
+          As a part of <strong>{{ community.name }}</strong
+          >, the following information will be shared between you and the organizers:
         </p>
         <ul>
           <li>Your email address</li>
           <li>
-            {{community.name}} and platform admins are permitted to send you communication mails for different events,
+            {{ community.name }} and platform admins are permitted to send you communication mails for different events,
             surveys, newsletters and community initiatives
           </li>
           <li>
-            Organizers of {{community.name}} have the right to permit or revoke your membership of the community at any
-            point of time
+            Organizers of {{ community.name }} have the right to permit or revoke your membership of the community at
+            any point of time
           </li>
         </ul>
       </div>
@@ -49,7 +56,7 @@
     <nb-card-header>Confirmation</nb-card-header>
     <nb-card-body>
       <div>
-        <p>Are you sure you want to leave {{community.name}}?</p>
+        <p>Are you sure you want to leave {{ community.name }}?</p>
       </div>
     </nb-card-body>
     <nb-card-footer>
