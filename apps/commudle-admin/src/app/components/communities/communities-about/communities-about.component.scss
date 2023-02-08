@@ -1,5 +1,5 @@
 p {
-  @apply com-m-0 com-text-gunmetal;
+  @apply md:com-m-0 com-text-gunmetal;
 }
 
 a {
@@ -10,7 +10,7 @@ a {
 .communities-about-container {
   nb-card-body {
     @apply com-flex-col-reverse com-p-4;
-    @apply md:com-py-10 md:com-pr-0 md:com-pl-16 md:com-flex-row;
+    @apply md:com-py-10 md:com-px-8 md:com-flex-row;
 
     .communities-about-content {
       .communities-about-header {
@@ -18,7 +18,7 @@ a {
       }
 
       .communities-about-subheader {
-        @apply com-text-lg;
+        @apply com-text-lg md:com-mt-2 sm:com-mt-12;
       }
 
       .communities-about-navigation {

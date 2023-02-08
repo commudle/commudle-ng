@@ -38,7 +38,7 @@
 
     @media all and (max-width: $mobile-width) {
       padding: 0;
-      width: 360px;
+      width: 100%;
       .animation-container {
         width: 360px;
         img {
@@ -46,7 +46,14 @@
         }
       }
       .links {
-        width: 360px;
+        width: 95%;
+      }
+
+      .title {
+        color: $gunmetal;
+        position: relative;
+        bottom: $space-32;
+        width: 90%;
       }
     }
   }
