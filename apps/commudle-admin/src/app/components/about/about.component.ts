@@ -5,6 +5,7 @@ import { ICMSAbout } from 'apps/commudle-admin/src/app/components/about/models/a
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-about',
@@ -15,9 +16,10 @@ export class AboutComponent implements OnInit, OnDestroy {
   ICmsAbout: ICMSAbout;
   staticAssets = staticAssets;
 
-  constructor(private cmsService: CmsService, private seoService: SeoService) {}
+  constructor(private cmsService: CmsService, private seoService: SeoService, private footerService: FooterService) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getData();
 
@@ -25,6 +27,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.footerService.changeFooterStatus(false);
     this.seoService.noIndex(false);
   }
 
