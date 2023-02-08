@@ -90,6 +90,5 @@ export class SearchBoxComponent implements OnInit {
     this.router.navigate(['/search'], {
       queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
     });
-    this.inputFormControl.reset('');
   }
 }
