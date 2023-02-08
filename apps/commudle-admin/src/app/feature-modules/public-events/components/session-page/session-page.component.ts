@@ -1,6 +1,6 @@
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { isPlatformBrowser, Location } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CookieService } from 'ngx-cookie-service';
@@ -27,6 +27,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-session-page',
   templateUrl: './session-page.component.html',
   styleUrls: ['./session-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SessionPageComponent implements OnInit, OnDestroy {
   isBrowser: boolean;
