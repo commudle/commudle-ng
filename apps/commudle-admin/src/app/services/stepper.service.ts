@@ -10,29 +10,29 @@ import { StepperComponent } from 'apps/commudle-admin/src/app/components/stepper
 })
 export class StepperService {
   private profileWeights: Record<string, number> = {
-    username: 10,
+    username: 5,
     avatar: 10,
-    name: 10,
-    designation: 10,
-    about_me: 10,
+    name: 5,
+    designation: 20,
+    about_me: 15,
     location: 10,
     gender: 10,
-    skills: 20,
-    socialLinks: 10,
+    skills: 25,
+    // socialLinks: 10,
   };
 
-  private socialLinks = [
-    'personal_website',
-    'github',
-    'linkedin',
-    'twitter',
-    'youtube',
-    'medium',
-    'dribble',
-    'behance',
-    'gitlab',
-    'facebook',
-  ];
+  // private socialLinks = [
+  //   'personal_website',
+  //   'github',
+  //   'linkedin',
+  //   'twitter',
+  //   'youtube',
+  //   'medium',
+  //   'dribble',
+  //   'behance',
+  //   'gitlab',
+  //   'facebook',
+  // ];
 
   currentUser: ICurrentUser;
   dialogRef: NbDialogRef<any>;
@@ -58,17 +58,17 @@ export class StepperService {
       profilePercentage += this.profileWeights['skills'];
     }
 
-    let socialLinksPresent = 0;
+    // let socialLinksPresent = 0;
 
-    for (const link of this.socialLinks) {
-      if (this.currentUser[link]) {
-        socialLinksPresent += 1;
-      }
-    }
+    // for (const link of this.socialLinks) {
+    //   if (this.currentUser[link]) {
+    //     socialLinksPresent += 1;
+    //   }
+    // }
 
-    if (socialLinksPresent >= 3) {
-      profilePercentage += this.profileWeights['socialLinks'];
-    }
+    // if (socialLinksPresent >= 3) {
+    //   profilePercentage += this.profileWeights['socialLinks'];
+    // }
 
     for (const field in this.profileWeights) {
       if (this.currentUser[field]) {
@@ -80,7 +80,7 @@ export class StepperService {
 
   showStepper() {
     this.dialogRef = this.dialogService.open(StepperComponent, {
-      hasScroll: true,
+      hasScroll: false,
       closeOnBackdropClick: false,
       closeOnEsc: false,
     });

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from "@commudle/auth";
+import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from '@commudle/auth';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
@@ -35,6 +35,7 @@ import {
   NbThemeModule,
   NbTimepickerModule,
   NbToastrModule,
+  NbToggleModule,
   NbTooltipModule,
   NbUserModule,
   NbWindowModule,
@@ -217,6 +218,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbStepperModule,
     NbTagModule,
     NbPopoverModule,
+    NbToggleModule,
 
     // Other external npm modules
     Angular2SmartTableModule,

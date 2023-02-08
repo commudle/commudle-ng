@@ -1,5 +1,19 @@
 .row {
   @apply com-mb-3;
+  label {
+    @apply com-text-base;
+  }
+
+  .info {
+    @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
+    p,
+    nb-icon {
+      @apply com-text-primary-500;
+    }
+    nb-icon {
+      @apply com-text-2xl com-mx-2;
+    }
+  }
 }
 
 .uploaded-profile {
@@ -7,9 +21,9 @@
 }
 
 .uploaded-profile-image {
-  @apply com-h-36 com-max-w-xs com-overflow-hidden com-my-0 com-mx-auto com-text-center;
+  @apply com-w-36 com-overflow-hidden com-my-auto com-ml-4 com-mr-8 com-text-center;
 
   img {
-    @apply com-h-full;
+    @apply com-block com-mx-auto com-w-full;
   }
 }
