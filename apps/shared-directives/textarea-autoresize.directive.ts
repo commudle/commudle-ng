@@ -18,7 +18,7 @@ export class TextareaAutoresizeDirective {
 
   resize() {
     this.elementRef.nativeElement.style.overflow = 'hidden';
-    this.elementRef.nativeElement.style.height = '0';
+    this.elementRef.nativeElement.style.height = '96px';
     this.elementRef.nativeElement.style.height = this.elementRef.nativeElement.scrollHeight + 'px';
   }
 }
