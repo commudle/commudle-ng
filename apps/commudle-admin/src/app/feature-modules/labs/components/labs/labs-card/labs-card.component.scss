@@ -8,7 +8,7 @@ a:active {
 }
 
 .labs-card-container {
-  @apply com-border com-border-solid com-border-Silver-Sand;
+  border: 1px solid $maya-blue;
   border-radius: $border-5;
   height: max-content;
   overflow: hidden;
@@ -19,7 +19,7 @@ a:active {
   }
 
   .labs-card-header {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $maya-blue;
     border-top-left-radius: $border-5;
     border-top-right-radius: $border-5;
     display: block;
