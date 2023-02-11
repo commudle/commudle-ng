@@ -15,6 +15,7 @@ export class PaginationComponent implements OnChanges {
   @Output() previous: EventEmitter<number> = new EventEmitter<number>();
 
   public pages: number[] = [];
+  public page: number;
 
   private static getPages(current: number, total: number): number[] {
     if (total <= 7) {
@@ -35,8 +36,8 @@ export class PaginationComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if ((changes.current && changes.current.currentValue) || (changes.total && changes.total.currentValue)) {
       // get the number of pages
-      this.total = Math.ceil(this.total / this.count);
-      this.pages = PaginationComponent.getPages(this.current, this.total);
+      this.page = Math.ceil(this.total / this.count);
+      this.pages = PaginationComponent.getPages(this.current, this.page);
     }
   }
 
