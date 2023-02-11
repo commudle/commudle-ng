@@ -14,7 +14,14 @@
 
           <form [formGroup]="loginForm" class="login-form">
             <input formControlName="email" fullWidth nbInput placeholder="Ex. more@commudle.com" type="email" />
-            <input *ngIf="isEmailSent" formControlName="code" fullWidth nbInput type="password" />
+            <input
+              *ngIf="isEmailSent"
+              formControlName="code"
+              fullWidth
+              nbInput
+              placeholder="Enter OTP here"
+              type="password"
+            />
             <button
               (click)="sendVerificationEmail()"
               *ngIf="!isEmailSent"
