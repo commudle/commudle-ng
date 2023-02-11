@@ -135,7 +135,7 @@ export class NotificationsStore {
 
   markAllAsRead(communityId?) {
     if (communityId) {
-      return this.notificationsService.markAllAsRead('community', communityId);
+      return this.notificationsService.markAllAsRead(communityId, 'community');
     } else {
       return this.notificationsService.markAllAsRead();
     }
