@@ -19,6 +19,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-job-card',
@@ -40,6 +41,9 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
   jobStatus = EJobStatus;
 
   subscriptions: Subscription[] = [];
+
+  closeJob = true;
+  faBuilding = faBuilding;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -90,5 +94,16 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     this.navigatorShareService
       .share({ title: 'Hey, check out this job!', url: this.jobLink })
       .then(() => this.nbToastrService.success('Shared job link!', 'Success'));
+  }
+
+  oncloseJob(): void {
+    this.closeJob = !this.closeJob;
+    if (this.closeJob) {
+      this.subscriptions.push(
+        this.jobService.updateJob(this.job.id, this.job).subscribe((data) => {
+          this.nbToastrService.success('Job updated successfully', 'Success');
+        }),
+      );
+    }
   }
 }

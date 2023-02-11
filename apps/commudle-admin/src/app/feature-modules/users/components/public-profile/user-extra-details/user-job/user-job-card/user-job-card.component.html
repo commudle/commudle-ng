@@ -1,6 +1,10 @@
 <nb-card class="user-job-card">
   <nb-card-body>
     <p class="position">{{ job.position }}</p>
+    <p>
+      <fa-icon [icon]="faBuilding" class="com-text-primary-500"></fa-icon>
+      {{ job.company }}
+    </p>
     <div class="com-flex com-items-center com-gap-1.5">
       <nb-icon icon="pin" status="primary"></nb-icon>
       <p class="location">
@@ -52,6 +56,18 @@
           <nb-icon icon="eye" status="info"></nb-icon>
           <ng-container *appBreakpoints="'>md'">View Details</ng-container>
         </a>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button (click)="oncloseJob()" ghost nbButton size="small" status="basic">
+          <ng-container *ngIf="closeJob">
+            <nb-icon icon="eye-off" status="basic"></nb-icon>
+            <ng-container *appBreakpoints="'>md'">Close Job</ng-container>
+          </ng-container>
+          <ng-container *ngIf="!closeJob">
+            <nb-icon icon="eye" status="basic"></nb-icon>
+            <ng-container *appBreakpoints="'>md'">Open Job</ng-container>
+          </ng-container>
+        </button>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
         <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton size="small" status="danger">
