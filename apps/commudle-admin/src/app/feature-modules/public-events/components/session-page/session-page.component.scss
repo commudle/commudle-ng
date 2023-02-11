@@ -1,9 +1,11 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
+.router-outlet {
+  @apply com-min-h-[calc(100vh-56px-12px)];
+}
 
 .session-page-container {
-  height: calc(100vh - 56px - 12px);
+  @apply com-h-[calc(100vh-56px-12px)];
 
   .session-page {
-    padding-top: $space-8;
+    @apply com-pt-2;
   }
 }
