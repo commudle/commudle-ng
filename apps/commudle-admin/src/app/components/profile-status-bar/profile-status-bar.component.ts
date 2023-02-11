@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProfileStatusBarService } from 'apps/commudle-admin/src/app/services/profile-status-bar.service';
 import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.service';
 
@@ -10,10 +11,17 @@ import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.ser
 export class ProfileStatusBarComponent implements OnInit {
   value = 0;
 
-  constructor(private stepperService: StepperService, private profileStatusBarService: ProfileStatusBarService) {}
+  constructor(
+    private stepperService: StepperService,
+    private profileStatusBarService: ProfileStatusBarService,
+    private activeRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.stepperService.getProfilePercentage();
+    if (this.activeRoute.snapshot.queryParams['show-profile-complete-popup'] === 'true') {
+      this.stepperService.showStepper();
+    }
     this.stepperService.profileCompletePercentage$.subscribe((percentage) => {
       this.value = percentage;
       if (percentage >= 90) {
