@@ -19,15 +19,15 @@ export class ProfileStatusBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.stepperService.getProfilePercentage();
-    if (this.activeRoute.snapshot.queryParams['show-profile-complete-popup'] === 'true') {
-      this.stepperService.showStepper();
-    }
     this.stepperService.profileCompletePercentage$.subscribe((percentage) => {
       this.value = percentage;
       if (percentage >= 90) {
         this.profileStatusBarService.changeProfileBarStatus(false);
       } else {
         this.profileStatusBarService.changeProfileBarStatus(true);
+        if (this.activeRoute.snapshot.queryParams['show-profile-complete-popup'] === 'true') {
+          this.stepperService.showStepper();
+        }
       }
     });
   }
