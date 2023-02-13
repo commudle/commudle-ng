@@ -183,15 +183,16 @@
                   </span>
                 </div>
                 <p class="job-label">
-                  <span *ngIf="job.max_salary === 0">Not Disclose</span>
+                  <span *ngIf="job.max_salary === 0 && job.category !== jobCategory.VOLUNTEER">Not Disclose</span>
                   <span *ngIf="job.max_salary !== 0">
                     {{ job.salary_currency | uppercase }} {{ job.min_salary }} - {{ job.max_salary }}
                   </span>
+                  <span *ngIf="job.category === jobCategory.VOLUNTEER"> Unpaid </span>
                 </p>
               </div>
 
               <div class="salary-type">
-                <div>
+                <div *ngIf="job.category !== jobCategory.VOLUNTEER">
                   <span
                     class="com-rounded-lg com-inline-flex com-p-2 com-bg-indigo-50 com-text-indigo-700 com-ring-4 com-ring-white"
                   >
@@ -211,7 +212,9 @@
                     </svg>
                   </span>
                 </div>
-                <p class="job-label">{{ job.salary_type | titlecase }}</p>
+                <p class="job-label" *ngIf="job.category !== jobCategory.VOLUNTEER">
+                  {{ job.salary_type | titlecase }}
+                </p>
               </div>
             </div>
             <nb-tag-list *ngIf="job">

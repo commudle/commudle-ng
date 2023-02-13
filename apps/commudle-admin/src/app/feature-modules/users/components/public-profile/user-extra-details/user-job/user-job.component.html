@@ -96,7 +96,7 @@
           Min Experience (in years)*
           <input formControlName="experience" fullWidth nbInput type="number" />
         </label>
-        <div class="com-grid com-grid-cols-5 com-gap-2">
+        <div class="com-grid com-grid-cols-5 com-gap-2" *ngIf="jobForm['controls'].category.value !== 'Volunteer'">
           <label class="com-col-span-2">
             Min Salary*
             <input formControlName="min_salary" fullWidth nbInput type="number" />
@@ -114,7 +114,7 @@
             </nb-select>
           </label>
         </div>
-        <label>
+        <label *ngIf="jobForm['controls'].category.value !== 'Volunteer'">
           Salary Type*
           <nb-select formControlName="salary_type" fullWidth>
             <nb-option *ngFor="let jobSalaryType of jobSalaryTypes" [value]="jobSalaryType">

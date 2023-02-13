@@ -26,6 +26,7 @@ export enum EJobCategory {
   JOB = 'job',
   INTERNSHIP = 'internship',
   FREELANCE = 'freelance',
+  VOLUNTEER = 'Volunteer',
 }
 
 export enum EJobSalaryType {
