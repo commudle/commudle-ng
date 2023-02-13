@@ -1,7 +1,7 @@
 import { Router as router } from '@angular/router';
 import { ISearchResult } from 'apps/shared-models/search.model';
 
-export function groupResults(value: ISearchResult[]): {} {
+export function groupResults(value: ISearchResult[]): object {
   return value.filter(Boolean).reduce((r, a) => {
     r[a.type] = [...(r[a.type] || []), a];
     return r;
@@ -62,13 +62,13 @@ export function getPicture(option: ISearchResult): string {
     case 'User':
       return 'avatar' in option ? option.avatar : '';
     case 'Lab':
-      return 'header_image' in option ? option.header_image?.i32 : '';
+      return 'header_image' in option ? option.header_image?.i64 : '';
     case 'Community':
-      return 'logo_image' in option ? option.logo_image?.i32 : '';
+      return 'logo_image' in option ? option.logo_image?.i64 : '';
     case 'Community Build':
-      return 'images' in option ? option.images[0]?.i32 : '';
+      return 'images' in option ? option.images[0]?.i64 : '';
     case 'Event':
-      return 'header_image' in option ? option.header_image?.i32 : '';
+      return 'header_image' in option ? option.header_image?.i64 : '';
   }
 }
 
