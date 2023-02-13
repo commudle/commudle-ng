@@ -27,5 +27,9 @@ p {
         @apply com-px-2.5;
       }
     }
+
+    .company {
+      @apply com-text-sm com-text-primary-500 com-mr-3;
+    }
   }
 }

@@ -20,6 +20,7 @@ import { NavigatorShareService } from 'apps/shared-services/navigator-share.serv
 import { Subscription } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-job-card',
@@ -44,7 +45,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   closeJob = true;
   faBuilding = faBuilding;
-
+  jobForm;
   constructor(
     private authWatchService: LibAuthwatchService,
     private jobService: JobService,
@@ -52,7 +53,10 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     private nbToastrService: NbToastrService,
     private navigatorShareService: NavigatorShareService,
     private clipboard: Clipboard,
-  ) {}
+    private fb: FormBuilder,
+  ) {
+    this.jobForm = this.fb.group({ status: [''] });
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
@@ -98,12 +102,13 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   oncloseJob(): void {
     this.closeJob = !this.closeJob;
-    if (this.closeJob) {
-      this.subscriptions.push(
-        this.jobService.updateJob(this.job.id, this.job).subscribe((data) => {
+    this.jobForm.controls['status'].setValue('close');
+    this.subscriptions.push(
+      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
+        if (data) {
           this.nbToastrService.success('Job updated successfully', 'Success');
-        }),
-      );
-    }
+        }
+      }),
+    );
   }
 }
