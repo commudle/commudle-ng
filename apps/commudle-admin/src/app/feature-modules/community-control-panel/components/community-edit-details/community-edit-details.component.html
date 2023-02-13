@@ -35,6 +35,10 @@
           </label>
         </div>
       </div>
+      <div class="info com-flex">
+        <nb-icon icon="info"></nb-icon>
+        <p>Banner Image dimensions should be 1280 X 320</p>
+      </div>
 
       <div>
         <div *ngIf="uploadedBanner == null" class="uploaded-banner"></div>
@@ -126,7 +130,7 @@
       <div role="group">
         <div>
           <label fullWidth>
-            Tags
+            Tags*
             <app-tag
               (tagAdd)="onTagAdd($event)"
               (tagDelete)="onTagDelete($event)"
@@ -139,7 +143,9 @@
     </div>
 
     <div>
-      <button [disabled]="!communityForm.valid" nbButton status="primary" type="submit">Save</button>
+      <button [disabled]="!communityForm.valid || tags.length <= 0" nbButton status="primary" type="submit">
+        Save
+      </button>
     </div>
   </form>
 </div>

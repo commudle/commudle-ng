@@ -6,6 +6,17 @@
     margin: 2rem auto;
   }
 
+  .info {
+    @apply com-bg-primary-100/30 com-rounded-lg com-items-center com-my-2;
+    p,
+    nb-icon {
+      @apply com-text-primary-500;
+    }
+    nb-icon {
+      @apply com-text-2xl com-mx-2;
+    }
+  }
+
   .uploaded-logo {
     height: 150px;
     width: 300px;

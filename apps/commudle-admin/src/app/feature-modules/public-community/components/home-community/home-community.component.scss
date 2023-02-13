@@ -127,3 +127,14 @@
     }
   }
 }
+
+.info {
+  @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
+  p,
+  nb-icon {
+    @apply com-text-primary-500;
+  }
+  nb-icon {
+    @apply com-text-2xl com-mx-2;
+  }
+}

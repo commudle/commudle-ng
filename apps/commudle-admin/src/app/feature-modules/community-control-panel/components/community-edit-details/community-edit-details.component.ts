@@ -75,7 +75,9 @@ export class CommunityEditDetailsComponent implements OnInit {
       this.updateCommunity.emit(this.community);
       this.communityForm.get('community').patchValue(this.community);
       this.uploadedLogo = this.community.logo_image.url;
-      this.uploadedBanner = this.community.banner_image.url;
+      if (this.community.banner_image) {
+        this.uploadedBanner = this.community.banner_image.url;
+      }
     });
   }
 
