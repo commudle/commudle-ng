@@ -183,7 +183,7 @@
                   </span>
                 </div>
                 <p class="job-label">
-                  <span *ngIf="job.max_salary === 0 && job.category !== jobCategory.VOLUNTEER">Not Disclose</span>
+                  <span *ngIf="job.max_salary === 0 && job.category !== jobCategory.VOLUNTEER">Not Disclosed</span>
                   <span *ngIf="job.max_salary !== 0">
                     {{ job.salary_currency | uppercase }} {{ job.min_salary }} - {{ job.max_salary }}
                   </span>
