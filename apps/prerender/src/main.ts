@@ -1,3 +1,4 @@
+import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as expressStaticGzip from 'express-static-gzip';
 import * as path from 'path';
@@ -9,9 +10,15 @@ const port = process.env.PORT || '8080';
 const prerenderUrl = process.env.PRERENDER_URL || 'https://prerender.commudle.com';
 const distFolder = path.join(process.cwd(), 'commudle-admin');
 
-app.use(prerender.set('prerenderServiceUrl', prerenderUrl));
+app.use(cookieParser());
+app.use(prerender.set('prerenderServiceUrl', prerenderUrl).set('forwardHeaders', true));
 
-// app.get('*.*', express.static(distFolder, { maxAge: '1y' }));
+app.get('*', (req, res, next) => {
+  if (req.headers['x-prerender'] === '1') {
+    res.cookie('x-prerender', '1');
+  }
+  next();
+});
 app.get('*.*', expressStaticGzip(distFolder, { enableBrotli: true, serveStatic: { maxAge: '1y' } }));
 
 // health check
