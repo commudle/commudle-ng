@@ -1,22 +1,6 @@
 <nb-card [ngClass]="{ statusClosed: job.status === jobStatus.CLOSED }">
   <nb-card-body>
-    <div>
-      <button
-        *ngIf="job.status === jobStatus.OPEN"
-        class="com-w-auto apply-button"
-        nbButton
-        shape="semi-round"
-        status="primary"
-        [routerLink]="[job.id]"
-      >
-        View Details & Apply
-      </button>
-      <p *ngIf="job.status === jobStatus.CLOSED" class="com-w-full md:com-w-auto closed">Closed</p>
-      <p class="com-flex com-absolute com-right-4 com-text-gray-500 com-top-14">
-        {{ job.job_applications_count }} Applications
-      </p>
-    </div>
-    <a [routerLink]="[job.id]" class="com-no-underline">
+    <a [routerLink]="[job.id]" class="com-no-underline md:com-w-4/5">
       <div class="job-details position">
         <p>{{ job.position }}</p>
       </div>
@@ -48,9 +32,9 @@
         </p>
       </div>
 
-      <div class="job-details company_name">
+      <div class="job-details company_name !com-items-baseline">
         <fa-icon [icon]="faBuilding" class="com-px-1"></fa-icon>
-        <p>
+        <p class="com-text-justify">
           {{ job.company }}
         </p>
       </div>
@@ -146,10 +130,33 @@
           </div>
           <p class="job-label">{{ job.job_type | enumFormat }}</p>
         </div>
-        <div class="com-w-40">
-          <app-user-profile-card-medium [user]="job.user"></app-user-profile-card-medium>
-        </div>
       </div>
     </a>
+
+    <div class="com-flex com-justify-between com-flex-col com-relative md:com-w-1/5">
+      <div>
+        <div class="com-min-h-[40px]">
+          <button
+            *ngIf="job.status === jobStatus.OPEN"
+            class="com-w-auto apply-button"
+            nbButton
+            shape="semi-round"
+            status="primary"
+            [routerLink]="[job.id]"
+          >
+            View Details & Apply
+          </button>
+          <div class="com-flex md:com-justify-end com-items-center">
+            <p *ngIf="job.status === jobStatus.CLOSED">Closed</p>
+          </div>
+        </div>
+        <div class="com-flex md:com-justify-end com-my-3 md:com-m-0">
+          <p class="com-text-gray-500">{{ job.job_applications_count }} Applications</p>
+        </div>
+      </div>
+      <div class="com-w-44">
+        <app-user-profile-card-medium [user]="job.user"></app-user-profile-card-medium>
+      </div>
+    </div>
   </nb-card-body>
 </nb-card>

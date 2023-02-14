@@ -1,21 +1,13 @@
-:host {
-  @apply com-block;
-}
-
 p {
   @apply com-m-1 com-ml-2;
 }
 
 nb-card {
-  @apply hover:com-shadow-Card com-m-0;
+  @apply hover:com-shadow-Card com-mx-0 com-my-4;
   nb-card-body {
-    @apply com-relative;
+    @apply com-flex com-flex-col md:com-flex-row;
     .apply-button {
       @apply md:com-hidden;
-    }
-
-    .closed {
-      @apply com-flex com-absolute com-right-4 com-text-gray-500;
     }
 
     a {
@@ -32,13 +24,7 @@ nb-card {
 
   nb-card-body:hover {
     .apply-button {
-      @apply com-flex com-absolute com-right-4;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    .apply-button {
-      @apply com-flex com-absolute com-bottom-4 com-right-4;
+      @apply com-flex;
     }
   }
 }
