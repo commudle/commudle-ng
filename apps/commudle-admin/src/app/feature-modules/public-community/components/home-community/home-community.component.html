@@ -11,7 +11,7 @@
                 alt="{{ community.name }}"
                 class="banner-image"
               />
-              <div class="without-banner" *ngIf="!community.banner_image"></div>
+              <div class="banner-image" *ngIf="!community.banner_image"></div>
               <div class="edit-button" *ngIf="isOrganizer">
                 <button nbButton status="primary" outline (click)="openUpdateBannerDialogBox()">
                   <img src="https://json.commudle.com/icons/add-banner-icon.svg" />Edit Banner
@@ -185,22 +185,25 @@
 <ng-template #updateBannerDialogBox let-ref="dialogRef">
   <nb-card>
     <nb-card-body>
-      <label>
+      <div>
         Banner Image*
-        <input (change)="displaySelectedBanner($event)" accept="image/*" fullWidth nbInput type="file" />
-      </label>
-
-      <div class="info !com-flex">
-        <nb-icon icon="info"></nb-icon>
-        <p>Banner Image dimensions should be 1280 X 320</p>
+        <label
+          class="com-my-4 com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md"
+        >
+          <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="com-mt-2 com-text-base" *ngIf="!uploadedBanner">Upload a Banner Image</span>
+          <span class="com-mt-2 com-text-base" *ngIf="uploadedBanner">Change Banner Image</span>
+          <span class="com-text-base"><small>(1280px x 320px)</small></span>
+          <input (change)="displaySelectedBanner($event)" accept="image/*" class="com-hidden" type="file" />
+        </label>
       </div>
-      <div class="com-w-800px">
-        <img
-          alt="Uploaded Banner Image"
-          src="{{ uploadedBanner }}"
-          title="Uploaded Banner"
-          class="com-w-800px com-h-auto com-mt-4"
-        />
+
+      <div>
+        <img alt="Uploaded Banner Image" src="{{ uploadedBanner }}" title="Uploaded Banner" class="banner-image" />
       </div>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">

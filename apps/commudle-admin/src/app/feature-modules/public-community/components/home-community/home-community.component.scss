@@ -1,20 +1,7 @@
 .home-component {
   .banner {
     @apply com-min-h-[320px];
-    .banner-image,
-    .without-banner {
-      @apply com-object-contain com-w-[1262px];
-    }
-    .without-banner {
-      @apply com-h-80;
-      background: linear-gradient(
-        180deg,
-        #8a8a8a -35.31%,
-        rgba(173, 173, 173, 0) 109.06%,
-        #adadad 109.06%,
-        rgba(224, 224, 224, 0) 109.06%
-      );
-    }
+
     .edit-button {
       @apply com-absolute com-top-3 com-right-3 com-bg-white com-rounded-md;
     }
@@ -128,13 +115,13 @@
   }
 }
 
-.info {
-  @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
-  p,
-  nb-icon {
-    @apply com-text-primary-500;
-  }
-  nb-icon {
-    @apply com-text-2xl com-mx-2;
-  }
+.banner-image {
+  @apply com-aspect-4 com-object-contain com-w-[1262px];
+  background: linear-gradient(
+    180deg,
+    #8a8a8a -35.31%,
+    rgba(173, 173, 173, 0) 109.06%,
+    #adadad 109.06%,
+    rgba(224, 224, 224, 0) 109.06%
+  );
 }
