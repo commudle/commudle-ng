@@ -65,7 +65,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seoService.setTags(
+      'Login or Sign Up',
+      'Enter the world of techies and knowledge, just one step to begin your journey. Login or sign up now!',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
