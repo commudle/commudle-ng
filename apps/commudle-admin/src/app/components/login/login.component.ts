@@ -74,8 +74,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.seoService.noIndex(false);
-
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
