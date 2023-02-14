@@ -36,26 +36,6 @@
     }
   }
 
-  .uploaded-banner {
-    height: 320px;
-    width: 1280px;
-    max-width: 100%;
-    overflow: hidden;
-    background: #d3d3d36b;
-    margin: 0;
-    position: relative;
-    &::before {
-      content: 'Banner Image';
-      position: absolute;
-      font-size: 2rem;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #b9b9b9;
-      font-weight: bolder;
-    }
-  }
-
   .uploaded-banner-image {
     width: 1000px;
     overflow: hidden;
