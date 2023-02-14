@@ -14,7 +14,7 @@ export class ProfileStatusBarComponent implements OnInit {
   constructor(
     private stepperService: StepperService,
     private profileStatusBarService: ProfileStatusBarService,
-    private activeRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class ProfileStatusBarComponent implements OnInit {
         this.profileStatusBarService.changeProfileBarStatus(false);
       } else {
         this.profileStatusBarService.changeProfileBarStatus(true);
-        if (this.activeRoute.snapshot.queryParams['show-profile-complete-popup'] === 'true') {
+        if (this.activatedRoute.snapshot.queryParams['show-profile-complete-popup'] === 'true') {
           this.stepperService.showStepper();
         }
       }
