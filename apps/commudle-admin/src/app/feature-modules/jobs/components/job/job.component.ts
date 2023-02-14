@@ -5,7 +5,7 @@ import { JobApplicationService } from 'apps/commudle-admin/src/app/feature-modul
 import { UserResumeService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
 import { JobService } from 'apps/commudle-admin/src/app/services/job.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { EJobLocationType, EJobStatus, IJob } from 'apps/shared-models/job.model';
+import { EJobLocationType, EJobStatus, EJobCategory, IJob } from 'apps/shared-models/job.model';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -24,8 +24,9 @@ export class JobComponent implements OnInit, OnDestroy {
   selectedUserResumeId: number;
   isResumeLoading = false;
 
-  jobStatus = EJobStatus;
-  jobLocationType = EJobLocationType;
+  EJobStatus = EJobStatus;
+  EJobCategory = EJobCategory;
+  EJobLocationType = EJobLocationType;
 
   subscriptions: Subscription[] = [];
   faBuilding = faBuilding;
