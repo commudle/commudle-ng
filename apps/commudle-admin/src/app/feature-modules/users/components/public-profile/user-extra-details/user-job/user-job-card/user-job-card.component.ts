@@ -43,7 +43,6 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  closeJob = true;
   faBuilding = faBuilding;
   jobForm;
   constructor(
@@ -54,9 +53,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     private navigatorShareService: NavigatorShareService,
     private clipboard: Clipboard,
     private fb: FormBuilder,
-  ) {
-    this.jobForm = this.fb.group({ status: [''] });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
@@ -100,13 +97,25 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
       .then(() => this.nbToastrService.success('Shared job link!', 'Success'));
   }
 
-  oncloseJob(): void {
-    this.closeJob = !this.closeJob;
-    this.jobForm.controls['status'].setValue('close');
+  updateJobStatus(): void {
+    this.jobForm = this.fb.group({
+      position: [this.job.position],
+      company: [this.job.company],
+      category: [this.job.category],
+      experience: [this.job.experience],
+      min_salary: [this.job.min_salary],
+      max_salary: [this.job.max_salary],
+      salary_type: [this.job.salary_type],
+      salary_currency: [this.job.salary_currency],
+      location_type: [this.job.location_type],
+      job_type: [this.job.job_type],
+      status: [this.job.status == 'open' ? 'closed' : 'open'],
+    });
     this.subscriptions.push(
-      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data) => {
+      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data: IJob) => {
         if (data) {
           this.nbToastrService.success('Job updated successfully', 'Success');
+          this.job = data;
         }
       }),
     );

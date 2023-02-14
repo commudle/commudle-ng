@@ -3,7 +3,7 @@
     <p class="position">{{ job.position }}</p>
     <div class="com-flex com-items-center com-ml-1">
       <fa-icon [icon]="faBuilding" class="company"></fa-icon>
-      <p class="company">
+      <p>
         {{ job.company }}
       </p>
     </div>
@@ -60,12 +60,12 @@
         </a>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
-        <button (click)="oncloseJob()" ghost nbButton size="small" status="basic">
-          <ng-container *ngIf="closeJob">
+        <button (click)="updateJobStatus()" ghost nbButton size="small" status="basic">
+          <ng-container *ngIf="job.status === jobStatus.OPEN">
             <nb-icon icon="eye-off" status="basic"></nb-icon>
             <ng-container *appBreakpoints="'>md'">Close Job</ng-container>
           </ng-container>
-          <ng-container *ngIf="!closeJob">
+          <ng-container *ngIf="job.status === jobStatus.CLOSED">
             <nb-icon icon="eye" status="basic"></nb-icon>
             <ng-container *appBreakpoints="'>md'">Open Job</ng-container>
           </ng-container>
