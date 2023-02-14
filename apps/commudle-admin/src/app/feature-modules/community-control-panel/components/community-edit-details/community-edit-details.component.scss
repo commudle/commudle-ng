@@ -6,17 +6,6 @@
     margin: 2rem auto;
   }
 
-  .info {
-    @apply com-bg-primary-100/30 com-rounded-lg com-items-center com-my-2;
-    p,
-    nb-icon {
-      @apply com-text-primary-500;
-    }
-    nb-icon {
-      @apply com-text-2xl com-mx-2;
-    }
-  }
-
   .uploaded-logo {
     height: 150px;
     width: 300px;
@@ -44,26 +33,6 @@
     text-align: center;
     img {
       max-width: 100%;
-    }
-  }
-
-  .uploaded-banner {
-    height: 320px;
-    width: 1280px;
-    max-width: 100%;
-    overflow: hidden;
-    background: #d3d3d36b;
-    margin: 0;
-    position: relative;
-    &::before {
-      content: 'Banner Image';
-      position: absolute;
-      font-size: 2rem;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #b9b9b9;
-      font-weight: bolder;
     }
   }
 
