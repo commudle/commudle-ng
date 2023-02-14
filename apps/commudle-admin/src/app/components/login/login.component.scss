@@ -17,10 +17,11 @@
       text-transform: uppercase;
     }
     input {
-      @apply com-mb-2;
+      @apply com-mb-4;
     }
     button {
-      @apply com-my-8;
+      @apply com-mt-6;
+      @apply com-mb-8;
     }
   }
 }
