@@ -24,7 +24,7 @@
                 <div class="com-w-max com-flex com-gap-2">
                   <button
                     (click)="onDialogOpen(createJobApplicationDialog)"
-                    *ngIf="job.status === jobStatus.OPEN && currentUser?.id !== job.user.id"
+                    *ngIf="job.status === EJobStatus.OPEN && currentUser?.id !== job.user.id"
                     [disabled]="!currentUser?.id"
                     class="com-w-full md:com-w-auto"
                     nbButton
@@ -43,7 +43,7 @@
                     View applications
                   </button>
                   <button
-                    *ngIf="job.status === jobStatus.CLOSED"
+                    *ngIf="job.status === EJobStatus.CLOSED"
                     class="com-w-full md:com-w-auto"
                     disabled
                     nbButton
@@ -80,7 +80,7 @@
                     </svg>
                   </span>
                 </div>
-                <p class="job-label">{{ job.category | titlecase }}</p>
+                <p class="job-label">{{ job.category | capitalizeAndRemoveUnderscore }}</p>
               </div>
 
               <div class="experience">
@@ -157,12 +157,12 @@
                   </span>
                 </div>
                 <p class="job-label">
-                  {{ job.location_type === jobLocationType.OFFICE ? job.location : (job.location_type | titlecase) }}
+                  {{ job.location_type === EJobLocationType.OFFICE ? job.location : (job.location_type | titlecase) }}
                 </p>
               </div>
 
               <div class="salary">
-                <div>
+                <div *ngIf="(job.max_salary === 0 && job.category !== EJobCategory.VOLUNTEER) || job.max_salary !== 0">
                   <span
                     class="com-rounded-lg com-inline-flex com-p-2 com-bg-rose-50 com-text-rose-700 com-ring-4 com-ring-white"
                   >
@@ -183,16 +183,15 @@
                   </span>
                 </div>
                 <p class="job-label">
-                  <span *ngIf="job.max_salary === 0 && job.category !== jobCategory.VOLUNTEER">Not Disclosed</span>
+                  <span *ngIf="job.max_salary === 0 && job.category !== EJobCategory.VOLUNTEER">Not Disclosed</span>
                   <span *ngIf="job.max_salary !== 0">
                     {{ job.salary_currency | uppercase }} {{ job.min_salary }} - {{ job.max_salary }}
                   </span>
-                  <span *ngIf="job.category === jobCategory.VOLUNTEER"> Unpaid </span>
                 </p>
               </div>
 
               <div class="salary-type">
-                <div *ngIf="job.category !== jobCategory.VOLUNTEER">
+                <div *ngIf="job.category !== EJobCategory.VOLUNTEER">
                   <span
                     class="com-rounded-lg com-inline-flex com-p-2 com-bg-indigo-50 com-text-indigo-700 com-ring-4 com-ring-white"
                   >
@@ -212,7 +211,7 @@
                     </svg>
                   </span>
                 </div>
-                <p class="job-label" *ngIf="job.category !== jobCategory.VOLUNTEER">
+                <p class="job-label" *ngIf="job.category !== EJobCategory.VOLUNTEER">
                   {{ job.salary_type | titlecase }}
                 </p>
               </div>

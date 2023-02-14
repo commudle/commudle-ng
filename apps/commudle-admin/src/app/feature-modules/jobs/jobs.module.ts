@@ -30,6 +30,7 @@ import { MyJobApplicationsComponent } from './components/my-job-applications/my-
 import { JobsRoutingModule } from './jobs-routing.module';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { EmployersListComponent } from './components/employers-list/employers-list.component';
+import { UsersModule } from 'apps/commudle-admin/src/app/feature-modules/users/users.module';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { EmployersListComponent } from './components/employers-list/employers-li
     NbBadgeModule,
     NbTagModule,
     NbAccordionModule,
+    UsersModule,
   ],
 })
 export class JobsModule {}

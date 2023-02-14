@@ -39,6 +39,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   isLoading = false;
   hiring = false;
   formSubmitLoading = false;
+  EJobCategory = EJobCategory;
 
   jobCategories = Object.values(EJobCategory);
   jobSalaryTypes = Object.values(EJobSalaryType);

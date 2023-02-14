@@ -24,9 +24,9 @@ export class JobComponent implements OnInit, OnDestroy {
   selectedUserResumeId: number;
   isResumeLoading = false;
 
-  jobStatus = EJobStatus;
-  jobCategory = EJobCategory;
-  jobLocationType = EJobLocationType;
+  EJobStatus = EJobStatus;
+  EJobCategory = EJobCategory;
+  EJobLocationType = EJobLocationType;
 
   subscriptions: Subscription[] = [];
   faBuilding = faBuilding;

@@ -51,7 +51,7 @@
             Category*
             <nb-select formControlName="category" fullWidth>
               <nb-option *ngFor="let jobCategory of jobCategories" [value]="jobCategory">
-                {{ jobCategory | titlecase }}
+                {{ jobCategory | capitalizeAndRemoveUnderscore }}
               </nb-option>
             </nb-select>
           </label>
@@ -96,7 +96,10 @@
           Min Experience (in years)*
           <input formControlName="experience" fullWidth nbInput type="number" />
         </label>
-        <div class="com-grid com-grid-cols-5 com-gap-2" *ngIf="jobForm['controls'].category.value !== 'Volunteer'">
+        <div
+          class="com-grid com-grid-cols-5 com-gap-2"
+          *ngIf="jobForm['controls'].category.value !== EJobCategory.VOLUNTEER"
+        >
           <label class="com-col-span-2">
             Min Salary*
             <input formControlName="min_salary" fullWidth nbInput type="number" />
@@ -114,7 +117,7 @@
             </nb-select>
           </label>
         </div>
-        <label *ngIf="jobForm['controls'].category.value !== 'Volunteer'">
+        <label *ngIf="jobForm['controls'].category.value !== EJobCategory.VOLUNTEER">
           Salary Type*
           <nb-select formControlName="salary_type" fullWidth>
             <nb-option *ngFor="let jobSalaryType of jobSalaryTypes" [value]="jobSalaryType">
