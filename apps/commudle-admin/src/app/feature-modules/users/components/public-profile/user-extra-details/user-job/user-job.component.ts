@@ -194,7 +194,10 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
-    if (value && this.tags.length <= 5) {
+    const finalValue = value.trim();
+    const isDuplicateTag = this.tags.indexOf(finalValue) !== -1;
+
+    if (finalValue && !isDuplicateTag) {
       this.tags.push(value);
     }
     input.nativeElement.value = '';

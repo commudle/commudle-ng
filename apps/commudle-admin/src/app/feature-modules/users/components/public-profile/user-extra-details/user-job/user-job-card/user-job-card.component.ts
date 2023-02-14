@@ -19,6 +19,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-job-card',
@@ -41,6 +43,8 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  faBuilding = faBuilding;
+  jobForm;
   constructor(
     private authWatchService: LibAuthwatchService,
     private jobService: JobService,
@@ -48,6 +52,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     private nbToastrService: NbToastrService,
     private navigatorShareService: NavigatorShareService,
     private clipboard: Clipboard,
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -90,5 +95,29 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
     this.navigatorShareService
       .share({ title: 'Hey, check out this job!', url: this.jobLink })
       .then(() => this.nbToastrService.success('Shared job link!', 'Success'));
+  }
+
+  updateJobStatus(): void {
+    this.jobForm = this.fb.group({
+      position: [this.job.position],
+      company: [this.job.company],
+      category: [this.job.category],
+      experience: [this.job.experience],
+      min_salary: [this.job.min_salary],
+      max_salary: [this.job.max_salary],
+      salary_type: [this.job.salary_type],
+      salary_currency: [this.job.salary_currency],
+      location_type: [this.job.location_type],
+      job_type: [this.job.job_type],
+      status: [this.job.status == 'open' ? 'closed' : 'open'],
+    });
+    this.subscriptions.push(
+      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data: IJob) => {
+        if (data) {
+          this.nbToastrService.success('Job updated successfully', 'Success');
+          this.job = data;
+        }
+      }),
+    );
   }
 }

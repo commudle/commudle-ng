@@ -1,6 +1,12 @@
 <nb-card class="user-job-card">
   <nb-card-body>
     <p class="position">{{ job.position }}</p>
+    <div class="com-flex com-items-center com-ml-1">
+      <fa-icon [icon]="faBuilding" class="company"></fa-icon>
+      <p>
+        {{ job.company }}
+      </p>
+    </div>
     <div class="com-flex com-items-center com-gap-1.5">
       <nb-icon icon="pin" status="primary"></nb-icon>
       <p class="location">
@@ -49,9 +55,21 @@
       </nb-action>
       <nb-action>
         <a [routerLink]="['/jobs', job.id]" ghost nbButton size="small" status="info">
-          <nb-icon icon="eye" status="info"></nb-icon>
+          <nb-icon icon="info" status="info"></nb-icon>
           <ng-container *appBreakpoints="'>md'">View Details</ng-container>
         </a>
+      </nb-action>
+      <nb-action *ngIf="user.id === currentUser?.id">
+        <button (click)="updateJobStatus()" ghost nbButton size="small" status="basic">
+          <ng-container *ngIf="job.status === jobStatus.OPEN">
+            <nb-icon icon="eye-off" status="basic"></nb-icon>
+            <ng-container *appBreakpoints="'>md'">Close Job</ng-container>
+          </ng-container>
+          <ng-container *ngIf="job.status === jobStatus.CLOSED">
+            <nb-icon icon="eye" status="basic"></nb-icon>
+            <ng-container *appBreakpoints="'>md'">Open Job</ng-container>
+          </ng-container>
+        </button>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
         <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton size="small" status="danger">
