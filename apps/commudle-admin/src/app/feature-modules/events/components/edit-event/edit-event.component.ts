@@ -198,7 +198,6 @@ export class EditEventComponent implements OnInit {
 
   onTagAdd(value: string) {
     if (!this.tags.includes(value)) {
-      this.tags.push(value);
       const finalValue = value.trim();
       this.tags.push(finalValue);
     }
