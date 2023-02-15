@@ -152,6 +152,10 @@ export class EditEventComponent implements OnInit {
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });
+
+    if (this.tags.length > 0) {
+      this.tags.forEach((value) => formValue.append('event[tags][]', value));
+    }
   }
 
   setStartDateTime() {
