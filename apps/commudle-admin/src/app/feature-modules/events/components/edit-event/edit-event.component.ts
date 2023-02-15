@@ -43,6 +43,8 @@ export class EditEventComponent implements OnInit {
 
   eventForm;
 
+  tags: string[] = [];
+
   tinyMCE = {
     height: 300,
     menubar: false,
@@ -192,5 +194,17 @@ export class EditEventComponent implements OnInit {
     }
     this.endTime = null;
     return false;
+  }
+
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value);
+      const finalValue = value.trim();
+      this.tags.push(finalValue);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter((tag) => tag !== value);
   }
 }

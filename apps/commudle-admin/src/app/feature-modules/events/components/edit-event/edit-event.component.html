@@ -93,10 +93,31 @@
             >
             </editor>
           </div>
+
+          <div role="group">
+            <div>
+              <label fullWidth>
+                Tags*
+                <app-tag
+                  (tagAdd)="onTagAdd($event)"
+                  (tagDelete)="onTagDelete($event)"
+                  [editable]="true"
+                  [tags]="tags"
+                ></app-tag>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="save-button-bottom">
-          <button *ngIf="!uneditable" [disabled]="!eventForm.valid" type="submit" nbButton fullWidth status="info">
+          <button
+            *ngIf="!uneditable"
+            [disabled]="!eventForm.valid || tags.length < 5"
+            type="submit"
+            nbButton
+            fullWidth
+            status="info"
+          >
             Save
           </button>
         </div>
