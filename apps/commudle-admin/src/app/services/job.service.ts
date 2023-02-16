@@ -54,6 +54,11 @@ export class JobService {
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.DESTROY), { params });
   }
 
+  toggleStatus(id: number): Observable<IJob> {
+    const params = new HttpParams().set('job_id', String(id));
+    return this.http.put<IJob>(this.apiRoutesService.getRoute(API_ROUTES.JOBS.TOGGLE_STATUS), { params });
+  }
+
   getEmployeesList({ after, limit = 10 }: { after?: string; limit: number }): Observable<IPagination<IUser>> {
     let params = new HttpParams().set('limit', String(limit));
     if (after) {

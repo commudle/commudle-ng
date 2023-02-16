@@ -625,6 +625,7 @@ export const API_ROUTES = {
     DESTROY: 'api/v2/jobs',
     EMPLOYEES: 'api/v2/jobs/employees',
     EMPLOYERS: 'api/v2/jobs/employers',
+    TOGGLE_STATUS: 'api/v2/toggle_status',
   },
 
   JOB_APPLICATIONS: {
