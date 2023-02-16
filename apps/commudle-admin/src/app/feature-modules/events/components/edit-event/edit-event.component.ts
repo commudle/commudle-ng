@@ -44,6 +44,7 @@ export class EditEventComponent implements OnInit {
   eventForm;
 
   tags: string[] = [];
+  minimumTags = '3';
 
   tinyMCE = {
     height: 300,
@@ -148,14 +149,15 @@ export class EditEventComponent implements OnInit {
         formValue['end_time'] = this.endTime;
       }
     }
+
+    if (this.tags.length > 0) {
+      this.tags.forEach((value) => this.eventForm.append('event[tags][]', value));
+    }
+
     this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });
-
-    if (this.tags.length > 0) {
-      this.tags.forEach((value) => formValue.append('event[tags][]', value));
-    }
   }
 
   setStartDateTime() {
