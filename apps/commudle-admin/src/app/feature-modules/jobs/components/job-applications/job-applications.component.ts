@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@commudle/theme';
 import { JobApplicationService } from 'apps/commudle-admin/src/app/feature-modules/jobs/services/job-application.service';
@@ -27,12 +28,16 @@ export class JobApplicationsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private jobApplicationService: JobApplicationService,
     private nbToastrService: NbToastrService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.params.subscribe((data) => {
         this.job_id = data.id;
+        if (this.activatedRoute.snapshot.queryParams['page']) {
+          this.page = this.activatedRoute.snapshot.queryParams['page'];
+        }
         this.getJobApplications();
       }),
     );
@@ -49,6 +54,7 @@ export class JobApplicationsComponent implements OnInit, OnDestroy {
         this.jobApplications = value.job_applications;
         this.total = value.total;
         this.isLoading = false;
+        this.router.navigate(['/jobs', this.job_id, 'applications'], { queryParams: { page: this.page } });
       }),
     );
   }
