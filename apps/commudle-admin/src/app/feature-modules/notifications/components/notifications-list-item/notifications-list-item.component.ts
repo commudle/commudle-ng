@@ -79,16 +79,24 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
 
   replaceLinkValue() {
     this.notificationMessage
-      .filter((message) => message.type === 'link' && message.value.startsWith('{{') && message.value.endsWith('}}'))
+      .filter((message) => message.value.startsWith('{{') && message.value.endsWith('}}'))
       .forEach((message) => {
         message.value = this.getValue(message.value.replace(/{{|}}/g, ''), message);
       });
   }
 
   redirectTo(notificationMessage: INotificationMessage) {
-    const value = notificationMessage.sender || notificationMessage.entity || notificationMessage.parent;
-    const type = notificationMessage.sender_type || notificationMessage.entity_type || notificationMessage.parent_type;
-    const slug = value['username'] || value['slug'];
+    const value =
+      notificationMessage.sender ||
+      notificationMessage.entity ||
+      notificationMessage.parent ||
+      notificationMessage.owner;
+    const type =
+      notificationMessage.sender_type ||
+      notificationMessage.entity_type ||
+      notificationMessage.parent_type ||
+      notificationMessage.owner_type;
+    const slug = value['username'] || value['slug'] || value['id'];
 
     switch (type) {
       case ENotificationSenderTypes.USER:
@@ -105,6 +113,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         break;
       case ENotificationParentTypes.EVENT:
         this.router.navigate(['/event', slug]);
+        break;
+      case ENotificationParentTypes.JOB:
+        this.router.navigate(['/jobs', slug]);
         break;
     }
 
