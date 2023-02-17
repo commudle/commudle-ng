@@ -12,8 +12,6 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
-import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { ICurrentUser } from 'apps/shared-models/current_user.model';
 
 @Component({
   selector: 'app-public-profile',
@@ -36,18 +34,12 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
     private userProfileManagerService: UserProfileManagerService,
-    private authWatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit(): void {
     this.checkFragment();
-    this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
 
-    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
-      if (!currentUser.profile_completed) {
-        this.seoService.noIndex(true);
-      }
-    });
+    this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
 
     this.subscriptions.push(
       this.updateProfileService.updateProfile$.subscribe((value) => {
