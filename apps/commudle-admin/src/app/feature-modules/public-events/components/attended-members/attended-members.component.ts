@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUser } from 'apps/shared-models/user.model';
@@ -29,12 +30,17 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private seoService: SeoService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.event = data.event;
+
+        if (this.activatedRoute.snapshot.queryParams['page']) {
+          this.page = this.activatedRoute.snapshot.queryParams['page'];
+        }
 
         this.seoService.setTags(
           `Members who attended ${this.event.name}`,
@@ -65,6 +71,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
         this.members = data.users;
         this.total = data.total;
         this.isLoading = false;
+        this.router.navigate([], { queryParams: { page: this.page } });
       }),
     );
   }
