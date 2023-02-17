@@ -13,18 +13,16 @@ const distFolder = path.join(process.cwd(), 'commudle-admin');
 app.use(cookieParser());
 app.use(prerender.set('prerenderServiceUrl', prerenderUrl).set('forwardHeaders', true));
 
-app.get('*', (req, res, next) => {
-  if (req.headers['x-prerender'] === '1') {
-    res.cookie('x-prerender', '1');
-  }
-  next();
-});
 app.get('*.*', expressStaticGzip(distFolder, { enableBrotli: true, serveStatic: { maxAge: '1y' } }));
 
-// health check
 app.get('/health-check', (req, res) => res.status(200).send({ health: 'good' }));
 
-app.get('*', (req, res) => res.sendFile('index.html', { root: distFolder }));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', {
+    root: distFolder,
+    headers: { 'Set-Cookie': 'x-prerender=1; Path=/' },
+  });
+});
 
 const server = app.listen(port, () => console.log(`Listening at port ${port}`));
 server.on('error', console.error);
