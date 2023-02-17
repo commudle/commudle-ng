@@ -18,10 +18,11 @@ app.get('*.*', expressStaticGzip(distFolder, { enableBrotli: true, serveStatic: 
 app.get('/health-check', (req, res) => res.status(200).send({ health: 'good' }));
 
 app.get('*', (req, res) => {
-  res.sendFile('index.html', {
-    root: distFolder,
-    headers: { 'Set-Cookie': 'x-prerender=1; Path=/' },
-  });
+  if (req.headers['x-prerender'] === '1') {
+    res.sendFile('index.html', { root: distFolder, headers: { 'Set-Cookie': 'x-prerender=1; Path=/' } });
+  } else {
+    res.sendFile('index.html', { root: distFolder });
+  }
 });
 
 const server = app.listen(port, () => console.log(`Listening at port ${port}`));
