@@ -36,7 +36,7 @@ export class JobApplicationsComponent implements OnInit, OnDestroy {
       this.activatedRoute.parent.params.subscribe((data) => {
         this.job_id = data.id;
         if (this.activatedRoute.snapshot.queryParams['page']) {
-          this.page = this.activatedRoute.snapshot.queryParams['page'];
+          this.page = Number(this.activatedRoute.snapshot.queryParams['page']);
         }
         this.getJobApplications();
       }),

@@ -39,7 +39,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
         this.event = data.event;
 
         if (this.activatedRoute.snapshot.queryParams['page']) {
-          this.page = this.activatedRoute.snapshot.queryParams['page'];
+          this.page = Number(this.activatedRoute.snapshot.queryParams['page']);
         }
 
         this.seoService.setTags(
