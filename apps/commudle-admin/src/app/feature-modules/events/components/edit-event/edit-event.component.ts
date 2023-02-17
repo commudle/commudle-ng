@@ -44,7 +44,7 @@ export class EditEventComponent implements OnInit {
   eventForm;
 
   tags: string[] = [];
-  minimumTags = '3';
+  minimumTags = 3;
 
   tinyMCE = {
     height: 300,
