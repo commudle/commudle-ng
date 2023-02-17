@@ -76,6 +76,7 @@ export class EditEventComponent implements OnInit {
         start_time_pick: [''],
         end_time_pick: [''],
         timezone: ['', Validators.required],
+        tags: [''],
       }),
     });
   }
@@ -151,7 +152,9 @@ export class EditEventComponent implements OnInit {
     }
 
     if (this.tags.length > 0) {
-      this.tags.forEach((value) => this.eventForm.append('event[tags][]', value));
+      this.tags.forEach((value) => {
+        formValue['tags[]'] = value;
+      });
     }
 
     this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
