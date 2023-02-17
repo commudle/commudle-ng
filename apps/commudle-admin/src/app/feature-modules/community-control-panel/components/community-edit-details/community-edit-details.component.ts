@@ -18,7 +18,7 @@ export class CommunityEditDetailsComponent implements OnInit {
   uploadedLogoFile: File;
   uploadedBannerFile: File;
   tags: string[] = [];
-  minimumTags = '5';
+  minimumTags = 5;
 
   @Output() updateCommunity = new EventEmitter();
 
