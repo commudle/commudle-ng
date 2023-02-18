@@ -17,7 +17,9 @@
                   <fa-icon
                     *ngIf="item.value.name === 'Work History'"
                     [icon]="faBuilding"
-                    class="{{ highlight === item.value.link ? 'com-text-Caribbean-Green' : 'com-text-[#595867]' }}"
+                    class="{{
+                      highlight === item.value.link ? 'com-text-Caribbean-Green' : 'com-text-[#595867]'
+                    }} com-text-[18px] com-leading-[24px]"
                   ></fa-icon>
                   {{ item.value.name }}
                 </a>

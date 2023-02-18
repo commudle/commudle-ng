@@ -1,6 +1,11 @@
-<nb-card class="user-job-card">
+<nb-card *ngIf="user.id === currentUser?.id || job.status === jobStatus.OPEN" class="user-job-card">
   <nb-card-body>
-    <p class="position">{{ job.position }}</p>
+    <div class="com-flex com-justify-between com-items-center">
+      <p class="position">{{ job.position }}</p>
+      <button *ngIf="job.status === jobStatus.CLOSED" disabled nbButton shape="semi-round" class="closed">
+        <span class="com-text-xs md:com-text-sm"> Closed </span>
+      </button>
+    </div>
     <div class="com-flex com-items-center com-ml-1">
       <fa-icon [icon]="faBuilding" class="company"></fa-icon>
       <p>
