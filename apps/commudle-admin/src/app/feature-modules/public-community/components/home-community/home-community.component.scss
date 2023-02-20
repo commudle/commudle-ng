@@ -1,22 +1,36 @@
 .home-component {
   .banner {
-    @apply com-min-h-[320px];
+    .banner-image {
+      @apply com-w-full com-aspect-4 com-object-contain md:com-w-[1262px];
+    }
 
     .edit-button {
       @apply com-absolute com-top-3 com-right-3 com-bg-white com-rounded-md;
     }
   }
+
+  .without-banner {
+    @apply com-min-h-[160px] md:com-min-h-[320px];
+    background: linear-gradient(
+      180deg,
+      #8a8a8a -35.31%,
+      rgba(173, 173, 173, 0) 109.06%,
+      #adadad 109.06%,
+      rgba(224, 224, 224, 0) 109.06%
+    );
+  }
+
   .page-header {
     @apply com-flex-col com-content-start com-mx-0 com-mb-16;
     @apply md:com-flex-row;
 
     .logo-section {
-      @apply com-h-40 com-w-40  com-rounded-xl -com-mt-24 com-mx-8 com-bg-white com-shadow-md com-flex com-items-end com-justify-between;
-      @apply md:com-block;
+      @apply com-h-28 com-w-28  com-rounded-xl -com-mt-14 com-mx-8 com-bg-white com-shadow-md com-flex com-items-end com-justify-between;
+      @apply md:com-block md:-com-mt-24;
       @apply lg:com-h-44 lg:com-w-44;
 
       .logo {
-        @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain com-rounded-xl;
+        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl;
         @apply md:com-mr-20;
         @apply lg:com-h-44 lg:com-w-44;
       }
@@ -113,15 +127,4 @@
       }
     }
   }
-}
-
-.banner-image {
-  @apply com-aspect-4 com-object-contain com-w-[1262px];
-  background: linear-gradient(
-    180deg,
-    #8a8a8a -35.31%,
-    rgba(173, 173, 173, 0) 109.06%,
-    #adadad 109.06%,
-    rgba(224, 224, 224, 0) 109.06%
-  );
 }

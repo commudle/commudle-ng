@@ -11,10 +11,11 @@
                 alt="{{ community.name }}"
                 class="banner-image"
               />
-              <div class="banner-image" *ngIf="!community.banner_image"></div>
+              <div class="without-banner" *ngIf="!community.banner_image"></div>
               <div class="edit-button" *ngIf="isOrganizer">
-                <button nbButton status="primary" outline (click)="openUpdateBannerDialogBox()">
-                  <img src="https://json.commudle.com/icons/add-banner-icon.svg" />Edit Banner
+                <button nbButton status="primary" outline size="small" (click)="openUpdateBannerDialogBox()">
+                  <img src="https://json.commudle.com/icons/add-banner-icon.svg" />
+                  <span class="com-hidden md:com-flex"> Edit Banner </span>
                 </button>
               </div>
             </div>
