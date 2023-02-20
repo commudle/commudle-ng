@@ -1,5 +1,38 @@
 .base-layout {
   .container {
+    .event-image-container {
+      @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-h-auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 460px;
+
+      .event-background {
+        @apply com-px-2 com-my-4;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        z-index: 0;
+      }
+
+      .event-image {
+        @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-object-contain;
+        position: relative;
+        width: fit-content;
+        z-index: 1;
+      }
+    }
+
     .home-event-menu {
       @apply com-sticky com-top-14 com-z-10;
 
