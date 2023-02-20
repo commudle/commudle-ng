@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private injector: Injector,
     private gtm: GoogleTagManagerService,
   ) {
-    this.seoService.noIndex(true);
-
     this.subscriptions.push(
       this.libAuthWatchService.currentUserVerified$.subscribe((value: boolean) => {
         if (value) {
