@@ -38,6 +38,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.checkFragment();
+
     this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
 
     this.subscriptions.push(
@@ -63,6 +64,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.seoService.noIndex(false);
   }
 
   checkFragment() {
@@ -75,6 +77,9 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this.userProfileManagerService.getProfile(this.activatedRoute.snapshot.params.username);
     this.subscriptions.push(
       this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
+        if (!this.user.profile_completed) {
+          this.seoService.noIndex(true);
+        }
         this.user = data;
         this.setMeta();
       }),
