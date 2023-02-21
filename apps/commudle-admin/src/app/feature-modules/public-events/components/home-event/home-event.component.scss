@@ -9,7 +9,7 @@
       min-height: 460px;
 
       .event-background {
-        @apply com-px-2 com-my-4;
+        @apply com-px-2;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -28,7 +28,6 @@
       .event-image {
         @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-object-contain;
         position: relative;
-        width: fit-content;
         z-index: 1;
       }
     }

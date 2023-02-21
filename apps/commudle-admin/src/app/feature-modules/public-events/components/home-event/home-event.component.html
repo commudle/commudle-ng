@@ -4,7 +4,7 @@
 
     <h2 *ngIf="!event.header_image_path" class="fs-h2">{{ event.name }}</h2>
     <div *ngIf="event.header_image_path" class="event-image-container">
-      <div class="event-background" [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"></div>
+      <div class="event-background" [style.background-image]="'url(' + event.header_image_path + ')'"></div>
       <img alt="{{ event.name }}" class="event-image" src="{{ event.header_image_path }}" title="{{ event.name }}" />
     </div>
 
