@@ -28,8 +28,10 @@
             @{{ user.username | truncatetext : maxUserNameLength }}
           </p>
           &nbsp;
-          <app-hiring-looking-works-tags [user]="user" [size]="'small'"></app-hiring-looking-works-tags>
         </span>
+        <div>
+          <app-hiring-looking-works-tags [user]="user" [size]="'small'"></app-hiring-looking-works-tags>
+        </div>
         <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>

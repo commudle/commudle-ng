@@ -1,28 +1,25 @@
 <nb-card class="user-details-container">
   <nb-card-body *ngIf="user">
-    <img [alt]="user.name" [src]="user.avatar" [title]="user.name" class="user-avatar" />
-    <div class="user-info">
-      <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
-        <div class="com-text-center md:com-text-left">
-          <div class="name !com-contents md:!com-flex">
-            <h1>{{ user.name }}</h1>
-            <img
-              *ngIf="user.is_expert"
-              alt="Expert Tick"
-              class="expert-icon"
-              src="/assets/images/Expert-Tick.svg"
-              title="Expert Tick"
-            />
-            <app-hiring-looking-works-tags
-              [user]="user"
-              [size]="'large'"
-              class="com-block com-h-3 md:com-h-7"
-            ></app-hiring-looking-works-tags>
+    <app-user-cover-photo [user]="user" (coverImageUpdate)="updateProfile.emit()"></app-user-cover-photo>
+    <div class="com-px-6 com-pb-4">
+      <div class="com-flex com-flex-col com-items-center md:com-flex-row md:com-justify-between md:com-items-end">
+        <div class="com-flex com-items-end">
+          <div class="user-avatar">
+            <img [alt]="user.name" [src]="user.avatar" [title]="user.name" class="avatar" />
           </div>
-          <p class="username">@{{ user.username }}</p>
+          <app-user-follow
+            *appBreakpoints="'>md'"
+            (userFollowed)="updateProfile.emit()"
+            [username]="user.username"
+            class="com-ml-6 com-mb-4"
+          ></app-user-follow>
         </div>
-        <div class="com-flex com-space-x-2">
-          <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
+        <div class="com-flex com-space-x-2 com-mt-4">
+          <app-user-follow
+            *appBreakpoints="'<=md'"
+            (userFollowed)="updateProfile.emit()"
+            [username]="user.username"
+          ></app-user-follow>
           <app-share-button
             [content]="environment.app_url + '/users/' + user.username"
             [title]="user.name + ' ' + user.designation"
@@ -48,54 +45,78 @@
           </ng-template>
         </div>
       </div>
-      <div class="com-flex com-justify-between com-items-start md:com-items-center com-flex-col md:com-flex-row">
-        <div>
-          <!-- <div class="com-flex com-justify-between"> -->
-          <div *ngIf="user.designation" class="designation">
-            <nb-icon icon="briefcase-outline"></nb-icon>
-            <p>{{ user.designation }}</p>
+      <div class="user-info">
+        <div class="com-flex com-flex-col md:com-flex-row com-justify-between">
+          <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
+            <div class="com-text-center md:com-text-left">
+              <div class="name !com-contents md:!com-flex">
+                <h1>{{ user.name }}</h1>
+                <img
+                  *ngIf="user.is_expert"
+                  alt="Expert Tick"
+                  class="expert-icon"
+                  src="/assets/images/Expert-Tick.svg"
+                  title="Expert Tick"
+                />
+                <app-hiring-looking-works-tags
+                  [user]="user"
+                  [size]="'large'"
+                  class="com-block com-h-3 md:com-h-7"
+                ></app-hiring-looking-works-tags>
+              </div>
+              <p class="username">@{{ user.username }}</p>
+            </div>
           </div>
-
-          <div *ngIf="user.location" class="location">
-            <nb-icon icon="pin"></nb-icon>
-            <p>{{ user.location }}</p>
-          </div>
-        </div>
-        <div
-          *ngIf="currentUser?.id === user.id"
-          class="com-flex com-items-end com-flex-col com-gap-3 com-mt-3 md:com-mt-0"
-        >
-          <nb-toggle (click)="openForWork()" [(checked)]="user.is_employee" status="basic" labelPosition="right">
-            I'm looking for work
-          </nb-toggle>
-          <nb-toggle
-            (click)="openForHiring()"
-            status="basic"
-            [(checked)]="user.is_employer"
-            labelPosition="right"
-            class="com-w-[186px]"
-            >I'm hiring</nb-toggle
+          <div
+            *ngIf="currentUser?.id === user.id"
+            class="com-flex md:com-items-end com-flex-col com-gap-3 com-mt-3 md:com-mt-0"
           >
+            <nb-toggle (click)="openForWork()" [(checked)]="user.is_employee" status="basic" labelPosition="right">
+              I'm looking for work
+            </nb-toggle>
+            <nb-toggle
+              (click)="openForHiring()"
+              status="basic"
+              [(checked)]="user.is_employer"
+              labelPosition="right"
+              class="com-w-[186px]"
+              >I'm hiring</nb-toggle
+            >
+          </div>
         </div>
+        <div class="com-flex com-justify-between com-items-start md:com-items-center com-flex-col md:com-flex-row">
+          <div>
+            <!-- <div class="com-flex com-justify-between"> -->
+            <div *ngIf="user.designation" class="designation">
+              <nb-icon icon="briefcase-outline"></nb-icon>
+              <p>{{ user.designation }}</p>
+            </div>
+
+            <div *ngIf="user.location" class="location">
+              <nb-icon icon="pin"></nb-icon>
+              <p>{{ user.location }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="network">
+          <a routerLink="followers">
+            <span>{{ user.followers_count || 0 }}</span> Followers
+          </a>
+          <a routerLink="following">
+            <span>{{ user.followees_count || 0 }}</span> Following
+          </a>
+        </div>
+        <nb-tag-list *ngIf="user.tags.length > 0" class="tags">
+          <nb-tag *ngFor="let tag of user.tags" [text]="tag.name" appearance="outline" status="info"></nb-tag>
+          <nb-tag
+            (click)="onTagDialogOpen()"
+            *ngIf="currentUser?.id === user.id"
+            class="com-cursor-pointer"
+            status="info"
+            text="+"
+          ></nb-tag>
+        </nb-tag-list>
       </div>
-      <div class="network">
-        <a routerLink="followers">
-          <span>{{ user.followers_count || 0 }}</span> Followers
-        </a>
-        <a routerLink="following">
-          <span>{{ user.followees_count || 0 }}</span> Following
-        </a>
-      </div>
-      <nb-tag-list *ngIf="user.tags.length > 0" class="tags">
-        <nb-tag *ngFor="let tag of user.tags" [text]="tag.name" appearance="outline" status="info"></nb-tag>
-        <nb-tag
-          (click)="onTagDialogOpen()"
-          *ngIf="currentUser?.id === user.id"
-          class="com-cursor-pointer"
-          status="info"
-          text="+"
-        ></nb-tag>
-      </nb-tag-list>
     </div>
   </nb-card-body>
 </nb-card>
