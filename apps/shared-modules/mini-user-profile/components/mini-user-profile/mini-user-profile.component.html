@@ -4,7 +4,6 @@
       (componentClicked)="closePopup()"
       *ngIf="user"
       [activateMiniProfileDirective]="false"
-      [maxUserNameLength]="user.is_employee || user.is_employer ? 2 : 20"
       [user]="user"
     ></app-user-profile-card-large>
     <div *ngIf="miniUser.tags.length > 0" class="user-tags">
