@@ -9,10 +9,10 @@ p {
   nb-card-body {
     @apply com-p-0;
     .user-avatar {
-      @apply com-h-[180px] com-w-[180px] com-bg-white com-rounded-full com-relative com-z-50 -com-mt-24;
+      @apply md:com-h-[180px] md:com-w-[180px] com-bg-white com-rounded-full com-relative com-z-50 -com-mt-24;
       @apply com-relative com-z-50 -com-mt-20 md:-com-mt-24;
       .avatar {
-        @apply com-m-1 com-block com-h-40 com-w-40 md:com-h-44 md:com-w-44 com-rounded-full com-object-cover com-object-center com-mx-auto com-border com-border-solid com-border-gray-300;
+        @apply md:com-m-2px com-block com-h-40 com-w-40 md:com-h-44 md:com-w-44 com-rounded-full com-object-cover com-object-center com-mx-auto com-border com-border-solid com-border-gray-300;
       }
     }
 
