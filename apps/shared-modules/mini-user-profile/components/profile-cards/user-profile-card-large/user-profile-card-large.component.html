@@ -1,6 +1,6 @@
 <div [ngClass]="{ 'com-flex': alignFollowToRight }">
   <a (click)="profileClicked()" [routerLink]="['/users', user.username]">
-    <div class="user-profile-large d-flex align-items-center">
+    <div class="user-profile-large d-flex align-items-start">
       <img
         [activateMiniProfileDirective]="activateMiniProfileDirective"
         [alt]="user.name"
