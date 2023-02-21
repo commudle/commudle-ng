@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   constructor(private seoService: SeoService) {}
 
   ngOnInit() {
@@ -16,5 +16,9 @@ export class HomeComponent implements OnInit {
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
     this.seoService.noIndex(true);
+  }
+
+  ngOnDestroy(): void {
+    this.seoService.noIndex(false);
   }
 }

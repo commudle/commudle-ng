@@ -112,7 +112,7 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
       status: [this.job.status == 'open' ? 'closed' : 'open'],
     });
     this.subscriptions.push(
-      this.jobService.updateJob(this.job.id, this.jobForm.value).subscribe((data: IJob) => {
+      this.jobService.toggleStatus(this.job.id).subscribe((data: IJob) => {
         if (data) {
           this.nbToastrService.success('Job updated successfully', 'Success');
           this.job = data;

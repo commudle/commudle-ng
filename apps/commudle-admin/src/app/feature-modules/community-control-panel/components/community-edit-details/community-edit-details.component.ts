@@ -18,6 +18,7 @@ export class CommunityEditDetailsComponent implements OnInit {
   uploadedLogoFile: File;
   uploadedBannerFile: File;
   tags: string[] = [];
+  minimumTags = 5;
 
   @Output() updateCommunity = new EventEmitter();
 
@@ -129,7 +130,8 @@ export class CommunityEditDetailsComponent implements OnInit {
 
   onTagAdd(value: string) {
     if (!this.tags.includes(value)) {
-      this.tags.push(value);
+      const finalValue = value.trim();
+      this.tags.push(finalValue);
     }
   }
 

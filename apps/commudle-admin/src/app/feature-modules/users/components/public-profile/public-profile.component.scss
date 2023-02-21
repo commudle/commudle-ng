@@ -1,5 +1,5 @@
 .user-profile-menu {
-  @apply com-sticky com-top-[68px] com-z-10;
+  @apply com-sticky com-top-[68px] com-z-10 com-mt-0 com-rounded-tl-none com-rounded-tr-none;
 
   nb-card-body {
     @apply com-px-2;

@@ -3,6 +3,8 @@ import { ENotificationMessageTypes } from 'apps/shared-models/enums/notification
 import { ENotificationParentTypes } from 'apps/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { ENotificationStatuses } from 'apps/shared-models/enums/notification_statuses.enum';
+import { IEvent } from 'apps/shared-models/event.model';
+import { IJob } from 'apps/shared-models/job.model';
 import { ICommunityBuild } from './community-build.model';
 import { ICommunity } from './community.model';
 import { ILab } from './lab.model';
@@ -32,4 +34,6 @@ export interface INotificationMessage {
   entity_type: ENotificationEntityTypes;
   parent: ILab | ICommunityBuild;
   parent_type: ENotificationParentTypes;
+  owner: OnlyOne<IJob, IEvent>;
+  owner_type: ENotificationParentTypes;
 }

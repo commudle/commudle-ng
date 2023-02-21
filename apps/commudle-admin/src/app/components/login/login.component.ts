@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private injector: Injector,
     private gtm: GoogleTagManagerService,
   ) {
-    this.seoService.noIndex(true);
-
     this.subscriptions.push(
       this.libAuthWatchService.currentUserVerified$.subscribe((value: boolean) => {
         if (value) {
@@ -78,7 +76,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   setCookie(authToken: string, loginType: string): void {
-    this.cookieService.set('commudle_user_auth', authToken);
+    this.cookieService.set('commudle_user_auth', authToken, {
+      domain: window.location.hostname === 'localhost' ? window.location.hostname : '.commudle.com',
+    });
     this.redirect();
     this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });
   }

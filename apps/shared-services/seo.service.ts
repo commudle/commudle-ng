@@ -1,26 +1,32 @@
-import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { DOCUMENT, Location } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { DOCUMENT, Location } from '@angular/common';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeoService {
   public isBot: boolean;
+  private isBotLegacy: boolean;
 
   constructor(
     private meta: Meta,
     private title: Title,
     private location: Location,
-    private activatedRoute: ActivatedRoute,
+    private cookieService: CookieService,
     @Inject(DOCUMENT) private document: any,
   ) {
-    // using native js because angular's route takes somewhere between 100-200ms to initialize and get the queryparam
+    // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
     const url = new URL(window.location.href);
-    const bot = url.searchParams.get('bot');
-    this.isBot = bot ? true : false;
+    this.isBotLegacy = url.searchParams.get('bot') === 'true';
+    if (this.isBotLegacy) {
+      this.noIndex(true);
+    }
+    // TODO: don't remove above code since we need to no-index the existing bot pages
+    // check if cookie is set (x-prerender: 1)
+    this.isBot = this.cookieService.get('x-prerender') === '1';
   }
 
   setCanonical() {

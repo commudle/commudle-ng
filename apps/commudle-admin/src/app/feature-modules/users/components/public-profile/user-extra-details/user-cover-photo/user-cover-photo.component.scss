@@ -4,7 +4,6 @@
   background-color: $white;
   border-radius: $border-10 $border-10 0 0;
   height: 222px;
-  margin: $space-16 $space-8 0;
   overflow: hidden;
   position: relative;
 
@@ -23,14 +22,13 @@
   .cover-change {
     border: none;
     border-radius: $border-10;
-    bottom: 16px;
     color: $neon-blue;
     font-weight: $fw-400;
     position: absolute;
-    //background-color: rgba(196, 196, 196, 0.6);
     right: 16px;
     text-transform: none;
     transition: all 0.2s ease-in-out;
+    @apply com-bottom-44 md:com-bottom-4;
 
     &:hover {
       transform: scale(1.05);

@@ -31,6 +31,7 @@ export interface IUser {
   photo: IAttachedFile;
   is_employee: boolean;
   is_employer: boolean;
+  profile_completed: boolean;
 }
 
 export interface IUserSearch extends IUser {

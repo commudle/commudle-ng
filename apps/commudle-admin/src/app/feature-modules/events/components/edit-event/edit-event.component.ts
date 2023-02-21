@@ -43,6 +43,9 @@ export class EditEventComponent implements OnInit {
 
   eventForm;
 
+  tags: string[] = [];
+  minimumTags = 3;
+
   tinyMCE = {
     height: 300,
     menubar: false,
@@ -73,6 +76,7 @@ export class EditEventComponent implements OnInit {
         start_time_pick: [''],
         end_time_pick: [''],
         timezone: ['', Validators.required],
+        tags: [''],
       }),
     });
   }
@@ -146,6 +150,13 @@ export class EditEventComponent implements OnInit {
         formValue['end_time'] = this.endTime;
       }
     }
+
+    if (this.tags.length > 0) {
+      this.tags.forEach((value) => {
+        formValue['tags[]'] = value;
+      });
+    }
+
     this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
@@ -192,5 +203,16 @@ export class EditEventComponent implements OnInit {
     }
     this.endTime = null;
     return false;
+  }
+
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      const finalValue = value.trim();
+      this.tags.push(finalValue);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter((tag) => tag !== value);
   }
 }

@@ -38,6 +38,9 @@ export class CreateEventComponent implements OnInit {
 
   eventForm;
 
+  tags: string[] = [];
+  minimumTags = 3;
+
   tinyMCE = {
     height: 300,
     menubar: false,
@@ -113,6 +116,11 @@ export class CreateEventComponent implements OnInit {
         formValue['end_time'] = this.endTime;
       }
     }
+
+    if (this.tags.length > 0) {
+      this.tags.forEach((value) => formValue.append('event[tags][]', value));
+    }
+
     this.eventsService.createEvent(formValue, this.community).subscribe((data) => {
       this.toastLogService.successDialog('Created!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
@@ -154,5 +162,16 @@ export class CreateEventComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      const finalValue = value.trim();
+      this.tags.push(finalValue);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter((tag) => tag !== value);
   }
 }

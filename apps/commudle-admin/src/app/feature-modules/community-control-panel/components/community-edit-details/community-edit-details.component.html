@@ -141,6 +141,7 @@
               (tagDelete)="onTagDelete($event)"
               [editable]="true"
               [tags]="tags"
+              [minimumTags]="minimumTags"
             ></app-tag>
           </label>
         </div>
@@ -148,9 +149,7 @@
     </div>
 
     <div>
-      <button [disabled]="!communityForm.valid || tags.length <= 0" nbButton status="primary" type="submit">
-        Save
-      </button>
+      <button [disabled]="!communityForm.valid || tags.length < 5" nbButton status="primary" type="submit">Save</button>
     </div>
   </form>
 </div>
