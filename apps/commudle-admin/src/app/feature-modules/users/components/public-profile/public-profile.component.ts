@@ -77,10 +77,10 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this.userProfileManagerService.getProfile(this.activatedRoute.snapshot.params.username);
     this.subscriptions.push(
       this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
+        this.user = data;
         if (!this.user.profile_completed) {
           this.seoService.noIndex(true);
         }
-        this.user = data;
         this.setMeta();
       }),
     );
