@@ -4,12 +4,8 @@
       @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-h-auto;
       position: relative;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 460px;
 
       .event-background {
-        @apply com-px-2;
         position: absolute;
         width: 100%;
         height: 100%;
