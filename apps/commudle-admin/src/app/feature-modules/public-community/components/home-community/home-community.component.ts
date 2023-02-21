@@ -80,7 +80,6 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   }
 
   displaySelectedBanner(event: any) {
-    console.log(this.uploadedBanner);
     if (event.target.files && event.target.files[0]) {
       const bannerFile = event.target.files[0];
       this.uploadedBannerFile = bannerFile;
@@ -104,9 +103,5 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       this.toastLogService.successDialog('Updated! Reloading the app for changes to apply...');
       this.document.location.reload();
     });
-  }
-
-  removeBanner() {
-    this.uploadedBanner = '';
   }
 }

@@ -198,18 +198,17 @@
             />
           </svg>
           <span class="com-mt-2 com-text-base">Upload a Banner Image</span>
-          <span class="com-mt-2 com-text-base" *ngIf="uploadedBanner">Change Banner Image</span>
           <span class="com-text-base"><small>(1280px x 320px)</small></span>
           <input (change)="displaySelectedBanner($event)" accept="image/*" class="com-hidden" type="file" />
         </label>
       </div>
       <div class="com-flex com-justify-center com-mb-2">
-        <button *ngIf="uploadedBanner" (click)="removeBanner()" nbButton outline size="tiny" status="danger">
+        <button *ngIf="uploadedBanner" (click)="uploadedBanner = ''" nbButton outline size="tiny" status="danger">
           <nb-icon icon="trash-2-outline"></nb-icon>
           Delete
         </button>
       </div>
-      <div>
+      <div *ngIf="uploadedBanner">
         <img alt="Uploaded Banner Image" src="{{ uploadedBanner }}" title="Uploaded Banner" class="banner-image" />
       </div>
     </nb-card-body>
