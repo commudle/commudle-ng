@@ -1,7 +1,7 @@
 .home-component {
   .banner {
     .banner-image {
-      @apply com-w-full com-object-contain md:com-w-[1262px];
+      @apply com-w-full com-min-h-[320px] com-object-contain md:com-w-[1262px];
     }
 
     .edit-button {
@@ -127,4 +127,15 @@
       }
     }
   }
+}
+
+.banner-image {
+  @apply com-aspect-4 com-object-contain com-w-[1262px];
+  background: linear-gradient(
+    180deg,
+    #8a8a8a -35.31%,
+    rgba(173, 173, 173, 0) 109.06%,
+    #adadad 109.06%,
+    rgba(224, 224, 224, 0) 109.06%
+  );
 }
