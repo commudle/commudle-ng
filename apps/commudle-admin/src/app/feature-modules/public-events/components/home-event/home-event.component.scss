@@ -1,9 +1,10 @@
 .base-layout {
   .container {
     .event-image-container {
-      @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-h-auto;
+      @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-h-auto lg:com-mx-2 lg:com-my-4 com-px-2 com-my-2;
       position: relative;
       display: flex;
+      overflow: hidden;
 
       .event-background {
         position: absolute;
