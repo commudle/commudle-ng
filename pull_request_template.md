@@ -1,20 +1,14 @@
-## Describe your changes
+## Type
+- ( ) Fix
+- ( ) Refactor
+- ( ) Style
+- ( ) Docs
+- (X) Feat
+- ( ) Hotfix
 
+## Screenshots
 
 
 ## Bundle Size
-
-
-
-## Type
-- [ ] Fix
-- [ ] Refactor
-- [ ] Style
-- [ ] Docs
-- [ ] Feat
-- [ ] Hotfix
-
-## Image Related to changes (Output)
-
 
 
