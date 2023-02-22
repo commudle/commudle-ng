@@ -65,19 +65,31 @@
 }
 
 .large {
-  p {
-    @apply com-text-xs;
+  div {
+    margin: 7px 0px;
+    height: 20px;
+    p {
+      @apply com-text-xs;
+    }
   }
 }
 
 .medium {
-  p {
-    @apply com-text-10px;
+  div {
+    margin: 6px 0px;
+    height: 15px;
+    p {
+      @apply com-text-10px;
+    }
   }
 }
 
 .small {
-  p {
-    @apply com-text-8px com-leading-3;
+  div {
+    margin: 5px 0px;
+    height: 10px;
+    p {
+      @apply com-text-8px com-leading-3;
+    }
   }
 }
