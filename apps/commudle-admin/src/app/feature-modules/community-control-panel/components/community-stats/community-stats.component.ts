@@ -5,7 +5,6 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { StatsCommunitiesService } from 'apps/commudle-admin/src/app/services/stats/stats-communities.service';
 import { Subscription } from 'rxjs';
 import { IEventAttendees } from 'apps/shared-models/event-attendees';
-import { NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 @Component({
   selector: 'app-community-stats',
   templateUrl: './community-stats.component.html',
@@ -211,7 +210,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getMembersWorkExperienceDistribution() {
     this.subscriptions.push(
       this.statsCommunitiesService.membersWorkExperienceDistribution(this.community.slug).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       }),
     );
   }

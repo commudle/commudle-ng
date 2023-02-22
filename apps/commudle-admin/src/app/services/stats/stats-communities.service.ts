@@ -35,7 +35,6 @@ export class StatsCommunitiesService {
     return this.http.get<IFixedEmails>(this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.EMAILS), { params });
   }
 
-  //new
   popularProfileSkillTags(communityId): Observable<any> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.POPULAR_PROFILE_SKILL_TAGS), {
