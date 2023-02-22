@@ -68,6 +68,16 @@
               }}</span>
             </p>
           </div>
+          <div class="chart-container">
+            <p *ngIf="speaker">
+              <span>
+                {{ speaker.male + speaker.female + speaker.na + speaker.prefer_not_to_answer }}
+              </span>
+              <br />
+              Total Speaker In The Event
+            </p>
+            <canvas id="speaker"></canvas>
+          </div>
         </nb-card-body>
         <nb-card-footer>
           <p>

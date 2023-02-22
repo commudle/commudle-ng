@@ -33,6 +33,7 @@ export class EventStatsComponent implements OnInit {
 
   entryPassesChart;
   attendeesChart;
+  speaker;
 
   constructor(
     private statsEventsService: StatsEventsService,
@@ -54,6 +55,8 @@ export class EventStatsComponent implements OnInit {
       this.getAttendees();
       this.getDiscussions();
       this.getPolls();
+      this.getSpeakers();
+      // this.getMemberStats();
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -100,8 +103,8 @@ export class EventStatsComponent implements OnInit {
           },
         },
       });
-      this.changeDetectorRef.markForCheck();
     });
+    this.changeDetectorRef.markForCheck();
   }
 
   getRegistrations() {
@@ -215,5 +218,35 @@ export class EventStatsComponent implements OnInit {
 
   openPollWindow(poll: IPoll) {
     this.windowService.open(PollResultComponent, { title: 'Poll', context: { pollId: poll.id } });
+  }
+
+  getSpeakers() {
+    this.statsEventsService.speakers(this.event.slug).subscribe((data) => {
+      console.log(data);
+      this.speaker = data.chart_data;
+      return new Chart('speaker', {
+        type: 'pie',
+        data: {
+          datasets: [
+            {
+              data: [this.speaker.male, this.speaker.female, this.speaker.prefer_not_to_answer + this.speaker.na],
+              backgroundColor: ['blue', '#ff43bc', 'purple'],
+            },
+          ],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: ['Male', 'Female', 'NA'],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+    });
+  }
+
+  getMemberStats() {
+    this.statsEventsService.memberStats(this.event.slug).subscribe((data) => {
+      // console.log(data);
+    });
   }
 }
