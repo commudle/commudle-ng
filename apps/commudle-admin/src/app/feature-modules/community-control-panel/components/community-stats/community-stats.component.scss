@@ -82,14 +82,17 @@
 
     nb-card-body {
       align-items: center;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      // display: flex;
+      // flex-wrap: wrap;
+      // justify-content: space-around;
 
       .chart-container {
         position: relative;
         text-align: center;
         width: 330px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
       }
 
       .wide.chart-container {
@@ -98,6 +101,68 @@
         max-height: 70vh;
         max-width: 100vw;
         width: 100%;
+      }
+
+      .numbers {
+        text-align: center;
+
+        span {
+          font-size: 1.3rem;
+        }
+      }
+      .attendee {
+        @apply com-mb-4;
+        p {
+          @apply com-text-xl com-leading-3;
+        }
+        table {
+          @apply com-w-1/4 com-border-collapse;
+        }
+        td,
+        th {
+          @apply com-border com-border-solid com-border-gray-300 com-p-2;
+        }
+
+        tr:nth-child(odd) {
+          @apply com-bg-gray-300;
+        }
+      }
+    }
+  }
+
+  nb-card.stat-card.member-work {
+    nb-card-header {
+      h3 {
+        font-weight: 300;
+        margin: 0;
+      }
+    }
+
+    nb-card-body {
+      div {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 1rem 3rem;
+      }
+      > p {
+        font-size: 1.3rem;
+        margin: 0;
+        text-align: center;
+      }
+
+      .chart-container {
+        position: relative;
+        text-align: center;
+        width: 330px;
+      }
+
+      .wide.chart-container {
+        height: 300px;
+        margin-bottom: 3rem;
+        max-width: 100vw;
+        width: 500px;
       }
 
       .numbers {

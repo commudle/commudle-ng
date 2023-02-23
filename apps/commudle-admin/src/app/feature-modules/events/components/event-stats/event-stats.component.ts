@@ -56,7 +56,7 @@ export class EventStatsComponent implements OnInit {
       this.getDiscussions();
       this.getPolls();
       this.getSpeakers();
-      // this.getMemberStats();
+      this.getMemberStats();
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -222,7 +222,6 @@ export class EventStatsComponent implements OnInit {
 
   getSpeakers() {
     this.statsEventsService.speakers(this.event.slug).subscribe((data) => {
-      console.log(data);
       this.speaker = data.chart_data;
       return new Chart('speaker', {
         type: 'pie',
@@ -245,8 +244,8 @@ export class EventStatsComponent implements OnInit {
   }
 
   getMemberStats() {
-    this.statsEventsService.memberStats(this.event.slug).subscribe((data) => {
-      // console.log(data);
+    this.statsEventsService.memberStats(this.event.id).subscribe((data) => {
+      console.log(data);
     });
   }
 }

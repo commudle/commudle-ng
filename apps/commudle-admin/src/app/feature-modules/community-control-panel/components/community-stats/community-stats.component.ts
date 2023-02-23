@@ -18,6 +18,8 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   totalContentCreators;
   eventAttendees: IEventAttendees;
   tagsDistribution;
+  speakerCount: number;
+  membersWorkExperience;
 
   constructor(private statsCommunitiesService: StatsCommunitiesService, private activatedRoute: ActivatedRoute) {}
 
@@ -31,7 +33,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
       this.getMembersContentCreators();
       this.getEventAttendanceStats();
       this.getPopularProfileSkillTags();
-      // this.getMembersWorkExperienceDistribution();
+      this.getMembersWorkExperienceDistribution();
     });
   }
 
@@ -163,13 +165,14 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getSpeakersDistribution() {
     this.statsCommunitiesService.speakersDistribution(this.community.id).subscribe((data) => {
       const chartData = data.chart_data;
+      this.speakerCount = chartData.male + chartData.female + chartData.prefer_not_to_answer + chartData.na;
       return new Chart('speaker-distribution', {
         type: 'pie',
         data: {
           datasets: [
             {
               data: [chartData.male, chartData.female, chartData.prefer_not_to_answer + chartData.na],
-              backgroundColor: ['yellow', '#ff43', 'red'],
+              backgroundColor: ['blue', '#ff43bc', 'purple'],
             },
           ],
 
@@ -210,7 +213,8 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getMembersWorkExperienceDistribution() {
     this.subscriptions.push(
       this.statsCommunitiesService.membersWorkExperienceDistribution(this.community.slug).subscribe((data) => {
-        // console.log(data);
+        console.log(data);
+        this.membersWorkExperience = data.chart_data;
       }),
     );
   }
