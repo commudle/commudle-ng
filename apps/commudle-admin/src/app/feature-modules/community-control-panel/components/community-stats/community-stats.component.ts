@@ -67,7 +67,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getMembersTimeLine() {
     this.statsCommunitiesService.membersTimeline(this.community.slug).subscribe((data) => {
       return new Chart('chart-member-growth', {
-        type: 'line',
+        type: 'bar',
         data: {
           datasets: [
             {
@@ -84,13 +84,14 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
             xAxes: [
               {
                 type: 'time',
-                distribution: 'linear',
+                distribution: 'series',
                 time: {
                   unit: 'month',
+                  unitStepSize: 1,
                 },
                 scaleLabel: {
-                  // display: true,
-                  // labelString: 'Time'
+                  display: true,
+                  labelString: 'Time',
                 },
               },
             ],
@@ -100,9 +101,9 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
                   display: true,
                   labelString: 'Number of Members',
                 },
-                ticks: {
-                  suggestedMin: 0,
-                },
+                // ticks: {
+                //   suggestedMin: 0,
+                // },
               },
             ],
           },
@@ -121,7 +122,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
           datasets: [
             {
               label: 'Events By Quarter',
-              data: data.chart_data,
+              data: chartData,
               backgroundColor: '#5072ff',
             },
           ],
@@ -215,6 +216,29 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
       this.statsCommunitiesService.membersWorkExperienceDistribution(this.community.slug).subscribe((data) => {
         console.log(data);
         this.membersWorkExperience = data.chart_data;
+        const charData = data.chart_data.work_experience_distribution;
+        return new Chart('work-experience-distribution', {
+          type: 'pie',
+          data: {
+            datasets: [
+              {
+                data: [
+                  this.membersWorkExperience.work_experience_distribution.less_than_one,
+                  this.membersWorkExperience.work_experience_distribution.one_to_two,
+                  this.membersWorkExperience.work_experience_distribution.three_to_five,
+                  this.membersWorkExperience.work_experience_distribution.greater_than_five,
+                ],
+                backgroundColor: ['blue', '#ff43bc', 'purple', 'red'],
+              },
+            ],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: ['>One', 'One - Two', 'Three - Five', 'Five<'],
+          },
+          options: {
+            responsive: true,
+          },
+        });
       }),
     );
   }

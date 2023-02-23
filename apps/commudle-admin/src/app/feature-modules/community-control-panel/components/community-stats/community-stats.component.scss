@@ -144,18 +144,22 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        padding: 0 1rem 3rem;
+        padding: 0 1rem 1rem;
       }
       > p {
         font-size: 1.3rem;
         margin: 0;
         text-align: center;
+        // @apply com-text-xl;
       }
 
       .chart-container {
         position: relative;
         text-align: center;
         width: 330px;
+        p {
+          @apply com-text-xl com-leading-3;
+        }
       }
 
       .wide.chart-container {
@@ -170,6 +174,23 @@
 
         span {
           font-size: 1.3rem;
+        }
+      }
+      .work-status {
+        @apply com-flex-col com-items-start;
+        p {
+          @apply com-text-xl com-leading-3 com-mx-auto;
+        }
+        table {
+          @apply com-border-collapse;
+        }
+        td,
+        th {
+          @apply com-border com-border-solid com-border-gray-300 com-p-2;
+        }
+
+        tr:nth-child(odd) {
+          @apply com-bg-gray-300;
         }
       }
     }
