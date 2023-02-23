@@ -74,6 +74,7 @@ export class CommunityMembersComponent implements OnInit {
       .getCommunityMembers(this.query, this.communityId, this.count, this.page)
       .subscribe((data) => {
         this.isLoading = false;
+        console.log(data);
         this.userRolesUsers = data.user_roles_users;
         this.page = +data.page;
         this.total = data.total;

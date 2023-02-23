@@ -16,32 +16,13 @@
     </div>
   </form>
 
-  <div class="pages">
-    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
-      <nb-icon icon="arrow-ios-back"></nb-icon>
-    </p>
-    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
-      <p
-        (click)="getPageData(p)"
-        *ngIf="p > 0 && count * p < total"
-        [ngClass]="{ 'selected-page': this.page === p }"
-        class="clickable"
-      >
-        {{ p }}
-      </p>
-    </div>
-
-    <p (click)="getPageData(page + 1)" *ngIf="count * page < total" class="clickable">
-      <nb-icon icon="arrow-ios-forward"></nb-icon>
-    </p>
-  </div>
   <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
     <div *ngFor="let userRole of userRolesUsers" class="member">
       <app-badge
         *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
         [color]="'blue'"
         [fontSize]="'small'"
-        [text]="'Organizer'"
+        [text]="userRole.user_role.name"
       ></app-badge>
       <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
         <app-user-profile-card-large
@@ -62,25 +43,15 @@
       </div>
     </div>
   </div>
-  <div *ngIf="total > 25 && !isLoading" class="pages">
-    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
-      <nb-icon icon="arrow-ios-back"></nb-icon>
-    </p>
-    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
-      <p
-        (click)="getPageData(p)"
-        *ngIf="p > 0 && count * p < total"
-        [ngClass]="{ 'selected-page': this.page === p }"
-        class="clickable"
-      >
-        {{ p }}
-      </p>
-    </div>
-
-    <p (click)="getPageData(page + 1)" class="clickable">
-      <nb-icon icon="arrow-ios-forward"></nb-icon>
-    </p>
-  </div>
+  <app-pagination
+    (goTo)="page = $event; getMembers()"
+    (next)="page = $event; getMembers()"
+    (previous)="page = $event; getMembers()"
+    *ngIf="total > 0"
+    [count]="count"
+    [current]="page"
+    [total]="total"
+  ></app-pagination>
 </div>
 
 <ng-template #removeUserDialog let-data let-ref="dialogRef">
