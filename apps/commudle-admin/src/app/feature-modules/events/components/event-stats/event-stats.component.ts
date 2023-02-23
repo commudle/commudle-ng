@@ -34,6 +34,7 @@ export class EventStatsComponent implements OnInit {
   entryPassesChart;
   attendeesChart;
   speaker;
+  members;
 
   constructor(
     private statsEventsService: StatsEventsService,
@@ -65,7 +66,7 @@ export class EventStatsComponent implements OnInit {
     this.statsEventsService.uniqueVisitors(this.event.slug).subscribe((data) => {
       this.uniqueVisitors = data.total_unique_visitors;
       return new Chart(`${this.event.id}-event-visitors`, {
-        type: 'line',
+        type: 'bar',
         data: {
           datasets: [
             {
@@ -82,9 +83,9 @@ export class EventStatsComponent implements OnInit {
             xAxes: [
               {
                 type: 'time',
-                distribution: 'series',
+                distribution: 'linear',
                 time: {
-                  unit: 'day',
+                  unit: 'month',
                 },
                 scaleLabel: {
                   display: true,
@@ -245,7 +246,25 @@ export class EventStatsComponent implements OnInit {
 
   getMemberStats() {
     this.statsEventsService.memberStats(this.event.id).subscribe((data) => {
-      console.log(data);
+      this.members = data.chart_data;
+      const chartData = data.chart_data.diversity;
+      return new Chart('member', {
+        type: 'pie',
+        data: {
+          datasets: [
+            {
+              data: [chartData.male, chartData.female, chartData.prefer_not_to_answer + chartData.NA],
+              backgroundColor: ['blue', '#ff43bc', 'purple'],
+            },
+          ],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: ['Male', 'Female', 'NA'],
+        },
+        options: {
+          responsive: true,
+        },
+      });
     });
   }
 }

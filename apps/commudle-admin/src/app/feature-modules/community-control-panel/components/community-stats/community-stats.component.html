@@ -22,14 +22,19 @@
         </nb-card-header>
         <nb-card-body>
           <div>
-            <div *ngIf="membersWorkExperience">
+            <div *ngIf="membersWorkExperience" class="working-member">
               <p>
-                <!-- Total working Members: {{ this.membersWorkExperience.total_working_members }} -->
                 {{ this.membersWorkExperience.total_working_members }}
-                <br />
                 <br />
                 Total working Members
               </p>
+            </div>
+
+            <div>
+              <div class="chart-container">
+                <p>Work Experience</p>
+                <canvas id="work-experience-distribution"></canvas>
+              </div>
             </div>
             <div *ngIf="membersWorkExperience">
               <div class="work-status">
@@ -44,12 +49,6 @@
                     <td>{{ membersWorkExperience.work_status.looking_for_work }}</td>
                   </tr>
                 </table>
-              </div>
-            </div>
-            <div>
-              <div class="chart-container">
-                <p>Work Experience</p>
-                <canvas id="work-experience-distribution"></canvas>
               </div>
             </div>
           </div>

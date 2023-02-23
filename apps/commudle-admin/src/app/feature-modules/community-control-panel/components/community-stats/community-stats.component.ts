@@ -214,9 +214,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getMembersWorkExperienceDistribution() {
     this.subscriptions.push(
       this.statsCommunitiesService.membersWorkExperienceDistribution(this.community.slug).subscribe((data) => {
-        console.log(data);
         this.membersWorkExperience = data.chart_data;
-        const charData = data.chart_data.work_experience_distribution;
         return new Chart('work-experience-distribution', {
           type: 'pie',
           data: {
@@ -228,7 +226,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
                   this.membersWorkExperience.work_experience_distribution.three_to_five,
                   this.membersWorkExperience.work_experience_distribution.greater_than_five,
                 ],
-                backgroundColor: ['blue', '#ff43bc', 'purple', 'red'],
+                backgroundColor: ['#3366ff', '#ff43bc', 'purple', 'red'],
               },
             ],
 

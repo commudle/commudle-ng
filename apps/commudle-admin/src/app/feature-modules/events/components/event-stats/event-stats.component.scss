@@ -150,6 +150,33 @@
     }
   }
 
+  nb-card.stat-card.event-members {
+    nb-card-header {
+      h3 {
+        @apply com-m-0 com-font-light;
+      }
+    }
+
+    nb-card-body {
+      @apply com-flex com-flex-wrap com-justify-evenly;
+
+      .chart-container {
+        @apply com-py-4 com-px-0 com-relative com-text-center com-w-80;
+
+        p {
+          @apply com-text-xl com-m-0;
+        }
+      }
+
+      .members {
+        @apply com-flex com-flex-wrap com-justify-around com-items-center;
+        p {
+          @apply com-text-xl com-m-0 com-text-center;
+        }
+      }
+    }
+  }
+
   nb-card.stat-card.discussions {
     nb-card-header {
       h3 {

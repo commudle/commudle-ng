@@ -150,7 +150,6 @@
         font-size: 1.3rem;
         margin: 0;
         text-align: center;
-        // @apply com-text-xl;
       }
 
       .chart-container {
@@ -174,6 +173,13 @@
 
         span {
           font-size: 1.3rem;
+        }
+      }
+
+      .working-member {
+        @apply com-flex com-flex-wrap com-justify-around com-items-center;
+        p {
+          @apply com-text-xl com-m-0 com-text-center;
         }
       }
       .work-status {
