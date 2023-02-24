@@ -37,12 +37,30 @@ export class UserRolesUsersService {
     );
   }
 
-  getCommunityMembers(query, communityId, count, page): Observable<IUserRolesUsers> {
-    const params = new HttpParams()
-      .set('community_id', communityId)
-      .set('query', query)
-      .set('count', count)
-      .set('page', page);
+  getCommunityMembers(
+    query,
+    communityId,
+    count,
+    page,
+    employer?,
+    employee?,
+    contentCreator?,
+    speaker?,
+  ): Observable<IUserRolesUsers> {
+    let params = new HttpParams();
+    params = params.set('community_id', communityId).set('query', query).set('count', count).set('page', page);
+    if (employer) {
+      params = params.set('employer', employer);
+    }
+    if (employee) {
+      params = params.set('employee', employee);
+    }
+    if (employer) {
+      params = params.set('content_creator', contentCreator);
+    }
+    if (employer) {
+      params = params.set('speaker', speaker);
+    }
     return this.http.get<IUserRolesUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS),
       { params },

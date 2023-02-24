@@ -22,6 +22,7 @@ export class CommunityMembersComponent implements OnInit {
   query = '';
   isLoading = false;
   EUserRoles = EUserRoles;
+  options;
 
   contextMenuItems = [
     {
@@ -55,6 +56,7 @@ export class CommunityMembersComponent implements OnInit {
     this.removeUserForm = this.fb.group({
       user_roles_user_ids: this.fb.array([]),
     });
+    this.options = ['speakers', 'employer', 'content creator', 'employee'];
   }
 
   get userRolesUserIds(): FormArray {
@@ -68,7 +70,8 @@ export class CommunityMembersComponent implements OnInit {
     this.handleContextMenu();
   }
 
-  getMembers() {
+  getMembers(employer?) {
+    // console.log(employer);
     this.isLoading = true;
     this.userRolesUsersService
       .getCommunityMembers(this.query, this.communityId, this.count, this.page)
@@ -159,5 +162,13 @@ export class CommunityMembersComponent implements OnInit {
       this.toastrService.success('User blocked from community', 'Success');
       this.getMembers();
     });
+  }
+
+  click(event) {
+    // console.log(event);
+    // if (event === this.options[0])
+    //   // this.getMembers(event === true);
+    //   this.options[0] === true;
+    // console.log(this.options);
   }
 }

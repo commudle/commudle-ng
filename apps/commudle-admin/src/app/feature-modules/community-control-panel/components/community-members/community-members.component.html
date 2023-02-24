@@ -15,8 +15,20 @@
       </nb-form-field>
     </div>
   </form>
+  <br />
+  <div>
+    <nb-tag-list>
+      <nb-tag
+        appearance="outline"
+        *ngFor="let tree of options"
+        [text]="tree"
+        status="basic"
+        (click)="click(tree)"
+      ></nb-tag>
+    </nb-tag-list>
+  </div>
 
-  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
+  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-my-4">
     <div *ngFor="let userRole of userRolesUsers" class="member">
       <app-badge
         *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"

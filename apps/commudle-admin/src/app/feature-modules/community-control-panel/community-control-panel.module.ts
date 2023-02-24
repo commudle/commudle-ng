@@ -16,6 +16,7 @@ import {
   NbSelectModule,
   NbTabsetModule,
   NbBadgeModule,
+  NbTagModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -87,6 +88,7 @@ import { NbEvaIconsModule } from '@commudle/eva-icons';
     NotificationsModule,
     NbEvaIconsModule,
     NbBadgeModule,
+    NbTagModule,
   ],
 })
 export class CommunityGroupsModule {}

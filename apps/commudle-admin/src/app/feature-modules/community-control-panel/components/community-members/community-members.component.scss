@@ -1,5 +1,5 @@
 .community-members {
-  padding: 1.5rem;
+  @apply com-px-6 com-pt-6;
 
   .pages {
     display: flex;
@@ -20,6 +20,7 @@
   }
 
   .member {
+    @apply com-relative;
     .context-menu {
       @apply com-invisible;
     }
@@ -28,6 +29,9 @@
       .context-menu {
         @apply com-visible;
       }
+    }
+    app-badge {
+      @apply com-absolute com-top-16;
     }
   }
 }
