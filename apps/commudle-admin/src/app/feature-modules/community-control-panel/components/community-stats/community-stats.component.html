@@ -16,134 +16,55 @@
         </nb-card-header>
       </nb-card>
 
-      <nb-card class="stat-card member-work">
-        <nb-card-header>
-          <h3>Member Work Experience</h3>
-        </nb-card-header>
-        <nb-card-body>
-          <div>
-            <div *ngIf="membersWorkExperience" class="working-member">
-              <p>
-                {{ this.membersWorkExperience.total_working_members }}
-                <br />
-                Total working Members
-              </p>
-            </div>
-
-            <div>
-              <div class="chart-container">
-                <p>Work Experience</p>
-                <canvas id="work-experience-distribution"></canvas>
-              </div>
-            </div>
-            <div *ngIf="membersWorkExperience">
-              <div class="work-status">
-                <p>Work status</p>
-                <table>
-                  <tr>
-                    <td>Hiring</td>
-                    <td>{{ membersWorkExperience.work_status.hiring }}</td>
-                  </tr>
-                  <tr>
-                    <td>Looking For Work</td>
-                    <td>{{ membersWorkExperience.work_status.looking_for_work }}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="membersWorkExperience">
-            <div class="com-text-center">
-              <p class="com-text-xl">
-                Job Title Distribution ({{ membersWorkExperience.job_title_distribution.total }})
-              </p>
-              <nb-tag-list>
-                <nb-tag
-                  status="info"
-                  appearance="outline"
-                  *ngFor="let tag of membersWorkExperience.job_title_distribution.top"
-                  [text]="tag[0]"
-                  [removable]="false"
-                ></nb-tag>
-              </nb-tag-list>
-            </div>
-
-            <div class="com-text-center">
-              <p class="com-text-xl">
-                Work company Distribution ({{ membersWorkExperience.work_company_distribution.total }})
-              </p>
-              <nb-tag-list>
-                <nb-tag
-                  status="info"
-                  appearance="outline"
-                  *ngFor="let tag of membersWorkExperience.work_company_distribution.top"
-                  [text]="tag[0]"
-                  [removable]="false"
-                ></nb-tag>
-              </nb-tag-list>
-            </div>
-          </div>
-        </nb-card-body>
-      </nb-card>
-
       <nb-card class="stat-card members">
         <nb-card-header>
           <h3>Members</h3>
         </nb-card-header>
         <nb-card-body>
-          <p>
-            {{ this.community.member_count }}
-            <br />
-            <br />
-            Total Members
-          </p>
-          <div class="chart-container">
-            <p>Diversity in Unity</p>
-            <canvas id="chart-member-distibution"></canvas>
+          <div class="first-section">
+            <div class="count">
+              <p>
+                {{ this.community.member_count }}
+                <br />
+                Total Members
+              </p>
+            </div>
+
+            <div class="chart-container">
+              <p>Diversity in Unity</p>
+              <canvas id="chart-member-distibution"></canvas>
+            </div>
+
+            <div class="wide chart-container">
+              <p>Member Growth Over Time!</p>
+              <canvas id="chart-member-growth"></canvas>
+            </div>
           </div>
 
-          <div class="wide chart-container">
-            <p>Member Growth Over Time!</p>
-            <canvas id="chart-member-growth"></canvas>
-          </div>
+          <section class="section-second">
+            <div class="com-flex">
+              <div class="count com-w-[30%]">
+                <p *ngIf="totalContentCreators">
+                  {{ this.totalContentCreators.total_content_creators }}
+                  <br />
+                  Total Content Creators
+                </p>
+              </div>
 
-          <div *ngIf="tagsDistribution" class="com-text-center com-mt-3">
-            <p class="com-text-xl">Tags Distribution ({{ tagsDistribution.total }})</p>
-            <nb-tag-list>
-              <nb-tag
-                status="info"
-                appearance="outline"
-                *ngFor="let tag of tagsDistribution.top"
-                [text]="tag[0]"
-                [removable]="false"
-              ></nb-tag>
-            </nb-tag-list>
-          </div>
-        </nb-card-body>
-      </nb-card>
-
-      <nb-card class="stat-card members">
-        <nb-card-header>
-          <h3>Speakers</h3>
-        </nb-card-header>
-        <nb-card-body>
-          <p>
-            {{ speakerCount }}
-            <br />
-            <br />
-            Total Speakers
-          </p>
-          <div class="chart-container">
-            <p>Speaker Distribution</p>
-            <canvas id="speaker-distribution"></canvas>
-          </div>
-
-          <p *ngIf="totalContentCreators">
-            {{ this.totalContentCreators.total_content_creators }}
-            <br />
-            <br />
-            Total Content Creators
-          </p>
+              <div *ngIf="tagsDistribution" class="tag-section">
+                <p>Popular Skills Tags ({{ tagsDistribution.total }})</p>
+                <nb-tag-list>
+                  <nb-tag
+                    status="info"
+                    appearance="outline"
+                    *ngFor="let tag of tagsDistribution.top"
+                    [text]="tag"
+                    [removable]="false"
+                  ></nb-tag>
+                </nb-tag-list>
+              </div>
+            </div>
+          </section>
         </nb-card-body>
       </nb-card>
 
@@ -152,27 +73,116 @@
           <h3>Events</h3>
         </nb-card-header>
         <nb-card-body>
-          <div *ngIf="eventAttendees" class="attendee">
-            <p>Event Attendees</p>
-            <table>
-              <tr>
-                <td>Total Attendees</td>
-                <td>{{ eventAttendees.total }}</td>
-              </tr>
-              <tr>
-                <td>Total Unique Attendees</td>
-                <td>{{ eventAttendees.total_unique }}</td>
-              </tr>
-              <tr>
-                <td>Average Attendance Rate</td>
-                <td>{{ eventAttendees.avg_attendance_rate }}%</td>
-              </tr>
-            </table>
-          </div>
+          <section class="first-section !com-justify-start">
+            <div *ngIf="eventAttendees" class="table">
+              <p>Event Attendees</p>
+              <table>
+                <tr>
+                  <td>Total Attendees</td>
+                  <td>{{ eventAttendees.total }}</td>
+                </tr>
+                <tr>
+                  <td>Total Unique Attendees</td>
+                  <td>{{ eventAttendees.total_unique }}</td>
+                </tr>
+                <tr>
+                  <td>Average Attendance Rate</td>
+                  <td>{{ eventAttendees.avg_attendance_rate }}%</td>
+                </tr>
+              </table>
+            </div>
+          </section>
+          <section class="section-second">
+            <div class="wide chart-container">
+              <p>Events Over Time</p>
+              <canvas id="chart-community-events-timeline"></canvas>
+            </div>
+          </section>
+        </nb-card-body>
+      </nb-card>
 
-          <div class="wide chart-container">
-            <p>Events Over Time</p>
-            <canvas id="chart-community-events-timeline"></canvas>
+      <nb-card class="stat-card speakers">
+        <nb-card-header>
+          <h3>Speakers</h3>
+        </nb-card-header>
+        <nb-card-body>
+          <section class="first-section">
+            <div class="count" *ngIf="speakerCount">
+              <p>
+                {{ speakerCount }}
+                <br />
+                Total Speakers
+              </p>
+            </div>
+
+            <div class="chart-container">
+              <p>Speaker Distribution</p>
+              <canvas id="speaker-distribution"></canvas>
+            </div>
+          </section>
+
+          <section></section>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="stat-card work-experience-insights">
+        <nb-card-header>
+          <h3>Work Experience Insights</h3>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="first-section">
+            <div *ngIf="membersWorkExperience" class="count">
+              <p>
+                {{ this.membersWorkExperience.total_working_members }}
+                <br />
+                Total working Members
+              </p>
+            </div>
+
+            <div class="chart-container">
+              <p>Work Experience</p>
+              <canvas id="work-experience-distribution"></canvas>
+            </div>
+
+            <div *ngIf="membersWorkExperience" class="work-status table">
+              <table>
+                <tr>
+                  <td>Hiring</td>
+                  <td>{{ membersWorkExperience.work_status.hiring }}</td>
+                </tr>
+                <tr>
+                  <td>Looking For Work</td>
+                  <td>{{ membersWorkExperience.work_status.looking_for_work }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="membersWorkExperience" class="section-second">
+            <div class="tag-section">
+              <p>Popular Job Titles ({{ membersWorkExperience.job_title_distribution.total }})</p>
+              <nb-tag-list>
+                <nb-tag
+                  status="info"
+                  appearance="outline"
+                  *ngFor="let tag of membersWorkExperience.job_title_distribution.top"
+                  [text]="tag"
+                  [removable]="false"
+                ></nb-tag>
+              </nb-tag-list>
+            </div>
+
+            <div class="tag-section">
+              <p>Popular Work companies ({{ membersWorkExperience.work_company_distribution.total }})</p>
+              <nb-tag-list>
+                <nb-tag
+                  status="info"
+                  appearance="outline"
+                  *ngFor="let tag of membersWorkExperience.work_company_distribution.top"
+                  [text]="tag"
+                  [removable]="false"
+                ></nb-tag>
+              </nb-tag-list>
+            </div>
           </div>
         </nb-card-body>
       </nb-card>
