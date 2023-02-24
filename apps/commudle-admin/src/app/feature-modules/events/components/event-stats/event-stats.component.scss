@@ -133,6 +133,7 @@
         position: relative;
         text-align: center;
         width: 330px;
+        @apply com-mb-4;
 
         p {
           font-size: 1.2rem;

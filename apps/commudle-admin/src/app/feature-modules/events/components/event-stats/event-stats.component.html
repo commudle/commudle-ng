@@ -27,56 +27,83 @@
           <h3>Attendees</h3>
         </nb-card-header>
         <nb-card-body>
-          <div class="chart-container">
-            <p *ngIf="attendees">
-              {{
-                attendees.entry_passes.male +
-                  attendees.entry_passes.female +
-                  attendees.entry_passes.NA +
-                  attendees.entry_passes.prefer_not_to_answer
-              }}
-              <br />
-              Entry Passes Sent
-            </p>
-            <canvas id="entry-passes-distribution"></canvas>
-          </div>
-          <div class="chart-container">
-            <p *ngIf="attendees">
-              <span>
+          <div>
+            <div class="chart-container">
+              <p *ngIf="attendees">
                 {{
-                  this.attendees.invited_attendees.male +
-                    this.attendees.uninvited_attendees.male +
-                    this.attendees.invited_attendees.female +
+                  attendees.entry_passes.male +
+                    attendees.entry_passes.female +
+                    attendees.entry_passes.NA +
+                    attendees.entry_passes.prefer_not_to_answer
+                }}
+                <br />
+                Entry Passes Sent
+              </p>
+              <canvas id="entry-passes-distribution"></canvas>
+            </div>
+
+            <div class="chart-container">
+              <p *ngIf="attendees">
+                <span>
+                  {{
+                    this.attendees.invited_attendees.male +
+                      this.attendees.uninvited_attendees.male +
+                      this.attendees.invited_attendees.female +
+                      this.attendees.uninvited_attendees.female +
+                      this.attendees.invited_attendees.NA +
+                      this.attendees.invited_attendees.prefer_not_to_answer +
+                      this.attendees.uninvited_attendees.NA +
+                      this.attendees.uninvited_attendees.prefer_not_to_answer
+                  }}
+                </span>
+                <br />
+                Total Attendees
+              </p>
+              <canvas id="attendees-distribution"></canvas>
+              <p *ngIf="attendees" class="com-pt-3">
+                Uninvited:
+                <span>{{
+                  this.attendees.uninvited_attendees.male +
                     this.attendees.uninvited_attendees.female +
-                    this.attendees.invited_attendees.NA +
-                    this.attendees.invited_attendees.prefer_not_to_answer +
                     this.attendees.uninvited_attendees.NA +
                     this.attendees.uninvited_attendees.prefer_not_to_answer
-                }}
-              </span>
-              <br />
-              Total People In The Event
-            </p>
-            <canvas id="attendees-distribution"></canvas>
-            <p *ngIf="attendees">
-              Uninvited:
-              <span>{{
-                this.attendees.uninvited_attendees.male +
-                  this.attendees.uninvited_attendees.female +
-                  this.attendees.uninvited_attendees.NA +
-                  this.attendees.uninvited_attendees.prefer_not_to_answer
-              }}</span>
-            </p>
+                }}</span>
+              </p>
+            </div>
           </div>
-          <div class="chart-container">
-            <p *ngIf="speaker">
-              <span>
-                {{ speaker.male + speaker.female + speaker.na + speaker.prefer_not_to_answer }}
-              </span>
-              <br />
-              Total Speaker In The Event
-            </p>
-            <canvas id="speaker"></canvas>
+          <div>
+            <div class="chart-container">
+              <p *ngIf="members">
+                <span>
+                  {{ members.members_added }}
+                </span>
+                <br />
+                New Members Added
+              </p>
+              <canvas id="member"></canvas>
+            </div>
+
+            <div class="chart-container">
+              <p *ngIf="speaker">
+                <span>
+                  {{ speaker.male + speaker.female + speaker.na + speaker.prefer_not_to_answer }}
+                </span>
+                <br />
+                Total Speakers
+              </p>
+              <canvas id="speaker"></canvas>
+            </div>
+          </div>
+          <div *ngIf="members" class="com-mt-3">
+            <nb-tag-list>
+              <nb-tag
+                status="info"
+                appearance="outline"
+                *ngFor="let tag of members.top_skill_tags"
+                text="{{ tag[0] }} ({{ tag[1] }})"
+                [removable]="false"
+              ></nb-tag>
+            </nb-tag-list>
           </div>
         </nb-card-body>
         <nb-card-footer>
@@ -89,49 +116,6 @@
             <small> **Auto attendance marking for online events has started from 21st August, 2020 only </small>
           </p>
         </nb-card-footer>
-      </nb-card>
-
-      <nb-card class="stat-card event-members">
-        <nb-card-header>
-          <h3>Members</h3>
-        </nb-card-header>
-        <nb-card-body>
-          <div *ngIf="members" class="members">
-            <p>
-              {{ members.members_added }}
-              <br />
-              Total Members Added
-            </p>
-          </div>
-
-          <div class="chart-container">
-            <p *ngIf="members">
-              <span>
-                {{
-                  members.diversity.male +
-                    members.diversity.female +
-                    members.diversity.NA +
-                    members.diversity.prefer_not_to_answer
-                }}
-              </span>
-              <br />
-              Total Members Added In The Event
-            </p>
-            <canvas id="member"></canvas>
-          </div>
-
-          <div *ngIf="members" class="com-mt-3">
-            <nb-tag-list>
-              <nb-tag
-                status="info"
-                appearance="outline"
-                *ngFor="let tag of members.top_skill_tags"
-                [text]="tag[0]"
-                [removable]="false"
-              ></nb-tag>
-            </nb-tag-list>
-          </div>
-        </nb-card-body>
       </nb-card>
 
       <nb-card class="stat-card visitors">
