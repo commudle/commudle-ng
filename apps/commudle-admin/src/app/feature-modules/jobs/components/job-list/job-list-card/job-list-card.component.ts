@@ -4,7 +4,14 @@ import { EJobStatus, IJob } from 'apps/shared-models/job.model';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBuilding,
+  faMoneyBills,
+  faLocationDot,
+  faIdCard,
+  faClock,
+  faSuitcase,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-job-list-card',
@@ -22,6 +29,11 @@ export class JobListCardComponent implements OnInit {
 
   selectedUserResumeId: number;
   faBuilding = faBuilding;
+  faMoneyBills = faMoneyBills;
+  faLocationDot = faLocationDot;
+  faIdCard = faIdCard;
+  faClock = faClock;
+  faSuitcase = faSuitcase;
 
   constructor(private authWatchService: LibAuthwatchService) {}
 

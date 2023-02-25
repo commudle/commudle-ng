@@ -19,7 +19,16 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBuilding,
+  faPencil,
+  faShareAlt,
+  faUsers,
+  faInfoCircle,
+  faEyeSlash,
+  faEye,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -43,7 +52,15 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  faPencil = faPencil;
   faBuilding = faBuilding;
+  faShareAlt = faShareAlt;
+  faUsers = faUsers;
+  faInfoCircle = faInfoCircle;
+  faEyeSlash = faEyeSlash;
+  faEye = faEye;
+  faTrash = faTrash;
+
   jobForm;
   constructor(
     private authWatchService: LibAuthwatchService,
