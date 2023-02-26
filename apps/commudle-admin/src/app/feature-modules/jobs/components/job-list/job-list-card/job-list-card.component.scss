@@ -19,6 +19,10 @@ nb-card {
           }
         }
       }
+
+      .icons {
+        @apply com-rounded-lg com-inline-flex com-ring-4 com-ring-white com-justify-center com-w-4;
+      }
     }
   }
 

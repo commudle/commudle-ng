@@ -61,8 +61,8 @@
             <div class="job-details">
               <div class="category">
                 <div>
-                  <span class="com-inline-flex com-p-2 com-bg-teal-50 com-text-teal-700 com-ring-4 com-ring-white">
-                    <fa-icon [icon]="faIdCard" class="icons"></fa-icon>
+                  <span class="icons com-bg-teal-50 com-text-teal-700">
+                    <fa-icon [icon]="faIdCard"></fa-icon>
                   </span>
                 </div>
                 <p class="job-label">{{ job.category | capitalizeAndRemoveUnderscore }}</p>
@@ -70,10 +70,8 @@
 
               <div class="experience">
                 <div>
-                  <span
-                    class="com-rounded-lg com-inline-flex com-p-2 com-bg-purple-50 com-text-purple-700 com-ring-4 com-ring-white"
-                  >
-                    <fa-icon [icon]="faClock" class="icons"></fa-icon>
+                  <span class="icons com-bg-purple-50 com-text-purple-700">
+                    <fa-icon [icon]="faClock"></fa-icon>
                   </span>
                 </div>
                 <p class="job-label" *ngIf="job.experience === 0">Fresher</p>
@@ -84,10 +82,8 @@
 
               <div class="job-type">
                 <div>
-                  <span
-                    class="com-rounded-lg com-inline-flex com-p-2 com-bg-sky-50 com-text-sky-700 com-ring-4 com-ring-white"
-                  >
-                    <fa-icon [icon]="faSuitcase" class="icons"></fa-icon>
+                  <span class="icons com-bg-sky-50 com-text-sky-700">
+                    <fa-icon [icon]="faSuitcase"></fa-icon>
                   </span>
                 </div>
                 <p class="job-label">{{ job.job_type | enumFormat }}</p>
@@ -95,10 +91,8 @@
 
               <div class="location">
                 <div>
-                  <span
-                    class="com-rounded-lg com-inline-flex com-p-2 com-bg-yellow-50 com-text-yellow-700 com-ring-4 com-ring-white"
-                  >
-                    <fa-icon [icon]="faLocationDot" class="icons"></fa-icon>
+                  <span class="icons com-bg-yellow-50 com-text-yellow-700">
+                    <fa-icon [icon]="faLocationDot"></fa-icon>
                   </span>
                 </div>
                 <p class="job-label">
@@ -108,9 +102,7 @@
 
               <div class="salary">
                 <div *ngIf="(job.max_salary === 0 && job.category !== EJobCategory.VOLUNTEER) || job.max_salary !== 0">
-                  <span
-                    class="com-rounded-lg com-inline-flex com-p-2 com-bg-rose-50 com-text-rose-700 com-ring-4 com-ring-white"
-                  >
+                  <span class="icons com-bg-rose-50 com-text-rose-700">
                     <fa-icon [icon]="faMoneyBills"></fa-icon>
                   </span>
                 </div>
@@ -124,10 +116,8 @@
 
               <div class="salary-type">
                 <div *ngIf="job.category !== EJobCategory.VOLUNTEER">
-                  <span
-                    class="com-rounded-lg com-inline-flex com-p-2 com-bg-indigo-50 com-text-indigo-700 com-ring-4 com-ring-white"
-                  >
-                    <fa-icon [icon]="faCalendar" class="icons"></fa-icon>
+                  <span class="icons com-bg-indigo-50 com-text-indigo-700">
+                    <fa-icon [icon]="faCalendar"></fa-icon>
                   </span>
                 </div>
                 <p class="job-label" *ngIf="job.category !== EJobCategory.VOLUNTEER">
