@@ -23,6 +23,10 @@ a {
   .job-details {
     @apply com-rounded-lg com-bg-gray-100 com-overflow-hidden com-shadow com-divide-y md:com-divide-y-0 md:com-grid md:com-grid-cols-3 md:com-gap-px;
 
+    .icons {
+      @apply com-rounded-lg com-inline-flex com-p-2 com-ring-4 com-ring-white;
+    }
+
     .category {
       @apply com-rounded-tl-lg com-rounded-tr-lg md:com-rounded-tr-none;
     }

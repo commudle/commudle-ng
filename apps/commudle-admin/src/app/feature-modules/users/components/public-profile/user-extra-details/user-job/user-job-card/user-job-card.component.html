@@ -1,6 +1,7 @@
 <nb-card class="user-job-card">
   <nb-card-body>
-    <nb-actions class="actions" fullWidth>
+    <app-job-list-card [job]="job"></app-job-list-card>
+    <nb-actions>
       <nb-action *ngIf="user.id === currentUser?.id">
         <button (click)="updateJob.emit()" ghost nbButton size="small" status="warning">
           <fa-icon [icon]="faPencil" class="icons"></fa-icon>
