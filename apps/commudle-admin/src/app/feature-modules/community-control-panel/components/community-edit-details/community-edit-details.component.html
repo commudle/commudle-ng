@@ -35,6 +35,7 @@
 
       <div>
         <label
+          *ngIf="!uploadedBanner"
           class="com-ml-5 com-mb-5 com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md"
         >
           <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -42,12 +43,17 @@
               d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
             />
           </svg>
-          <span class="com-mt-2 com-text-base" *ngIf="!uploadedBanner">Upload a Banner Image</span>
-          <span class="com-mt-2 com-text-base" *ngIf="uploadedBanner">Change Banner image</span>
+          <span class="com-mt-2 com-text-base">Upload a Banner Image</span>
           <span class="com-text-base"><small>(1280px x 320px)</small></span>
           <input (change)="displaySelectedBanner($event)" accept="image/*" class="com-hidden" type="file" />
         </label>
         <div *ngIf="uploadedBanner" class="uploaded-banner-image">
+          <div class="com-flex com-justify-center com-mb-2">
+            <button *ngIf="uploadedBanner" (click)="uploadedBanner = ''" nbButton outline size="tiny" status="danger">
+              <nb-icon icon="trash-2-outline"></nb-icon>
+              Delete
+            </button>
+          </div>
           <img alt="Uploaded Banner Image" src="{{ uploadedBanner }}" title="Uploaded Banner Image" />
         </div>
       </div>
