@@ -16,13 +16,17 @@ import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
 export class CommunityMembersComponent implements OnInit {
   communityId;
   page = 1;
-  count = 24;
+  count = 10;
   total = 0;
   userRolesUsers: IUserRolesUser[];
   query = '';
   isLoading = false;
   EUserRoles = EUserRoles;
   options;
+  speakers = false;
+  employer = false;
+  contentCreator = false;
+  employee = false;
 
   contextMenuItems = [
     {
@@ -70,14 +74,12 @@ export class CommunityMembersComponent implements OnInit {
     this.handleContextMenu();
   }
 
-  getMembers(employer?) {
-    // console.log(employer);
+  getMembers() {
     this.isLoading = true;
     this.userRolesUsersService
       .getCommunityMembers(this.query, this.communityId, this.count, this.page)
       .subscribe((data) => {
         this.isLoading = false;
-        console.log(data);
         this.userRolesUsers = data.user_roles_users;
         this.page = +data.page;
         this.total = data.total;
@@ -164,11 +166,5 @@ export class CommunityMembersComponent implements OnInit {
     });
   }
 
-  click(event) {
-    // console.log(event);
-    // if (event === this.options[0])
-    //   // this.getMembers(event === true);
-    //   this.options[0] === true;
-    // console.log(this.options);
-  }
+  click(event) {}
 }

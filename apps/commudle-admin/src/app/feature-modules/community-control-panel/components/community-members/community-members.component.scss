@@ -20,7 +20,6 @@
   }
 
   .member {
-    @apply com-relative;
     .context-menu {
       @apply com-invisible;
     }
@@ -30,8 +29,22 @@
         @apply com-visible;
       }
     }
-    app-badge {
-      @apply com-absolute com-top-16;
+    .user-communities-role {
+      @apply com-text-black com-bg-[#FFAA00] com-flex com-items-center com-w-min com-p-0 com-px-2 com-font-medium com-rounded-xl com-mt-0;
+      nb-icon {
+        @apply com-text-white com-mr-1;
+      }
     }
+  }
+}
+
+table {
+  @apply com-border-collapse com-w-full;
+  td,
+  th {
+    @apply com-border com-border-solid com-border-gray-200 com-p-4;
+  }
+  th {
+    @apply com-font-extrabold com-text-lg;
   }
 }

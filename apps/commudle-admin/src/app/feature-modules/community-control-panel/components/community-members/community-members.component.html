@@ -22,39 +22,80 @@
         appearance="outline"
         *ngFor="let tree of options"
         [text]="tree"
-        status="basic"
+        status="primary"
         (click)="click(tree)"
       ></nb-tag>
     </nb-tag-list>
   </div>
 
-  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-my-4">
-    <div *ngFor="let userRole of userRolesUsers" class="member">
-      <app-badge
-        *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
-        [color]="'blue'"
-        [fontSize]="'small'"
-        [text]="userRole.user_role.name"
-      ></app-badge>
-      <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
-        <app-user-profile-card-large
-          [showAbout]="true"
-          [showSocialLinks]="true"
-          [user]="userRole.user"
-        ></app-user-profile-card-large>
-        <button
-          (click)="activeContextMenuUser = userRole.user"
-          [nbContextMenu]="contextMenuItems"
-          class="context-menu"
-          ghost
-          nbButton
-          nbContextMenuTag="community-member-context-menu"
-        >
-          <nb-icon icon="more-vertical"></nb-icon>
-        </button>
-      </div>
-    </div>
+  <div class="com-my-4" style="overflow-x: auto">
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <table *ngIf="!isLoading">
+      <thead>
+        <tr class="heading">
+          <th>Users</th>
+          <th>Skills Tag</th>
+          <th>Activity Stats</th>
+          <th>Speaker At</th>
+          <th>Content Creator</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userRole of userRolesUsers">
+          <td class="member com-w-[350px]">
+            <p class="user-communities-role" *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER">
+              <nb-icon icon="star"></nb-icon>
+              <span>
+                {{ userRole.user_role.name | titlecase }}
+              </span>
+            </p>
+            <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
+              <app-user-profile-card-large
+                [showAbout]="true"
+                [showSocialLinks]="true"
+                [user]="userRole.user"
+              ></app-user-profile-card-large>
+              <button
+                (click)="activeContextMenuUser = userRole.user"
+                [nbContextMenu]="contextMenuItems"
+                class="context-menu"
+                ghost
+                nbButton
+                nbContextMenuTag="community-member-context-menu"
+              >
+                <nb-icon icon="more-vertical"></nb-icon>
+              </button>
+            </div>
+          </td>
+          <td class="com-w-[200px]">
+            <nb-tag-list>
+              <nb-tag
+                *ngFor="let tag of userRole.user.tags"
+                [text]="tag.name"
+                appearance="outline"
+                status="info"
+                size="tiny"
+              ></nb-tag>
+            </nb-tag-list>
+          </td>
+          <td class="com-w-[300px]">
+            <app-user-engagement-data [userResponse]="userRole" [communityId]="communityId"></app-user-engagement-data>
+          </td>
+          <td>
+            <app-tag [tags]="userRole.user.speaker_events"></app-tag>
+          </td>
+          <td class="com-w-[10px]">
+            <div class="com-flex com-justify-center com-text-base">
+              {{
+                userRole.user.community_builds_count + userRole.user.labs_count + userRole.user.social_resources_count
+              }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
   <app-pagination
     (goTo)="page = $event; getMembers()"
     (next)="page = $event; getMembers()"
