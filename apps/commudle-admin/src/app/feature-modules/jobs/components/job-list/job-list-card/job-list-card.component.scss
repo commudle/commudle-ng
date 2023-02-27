@@ -1,0 +1,34 @@
+p {
+  @apply com-m-1 com-ml-2;
+}
+
+nb-card {
+  @apply hover:com-shadow-Card com-mx-0 com-my-4;
+  nb-card-body {
+    @apply com-flex com-flex-col md:com-flex-row;
+    .apply-button {
+      @apply md:com-hidden;
+    }
+
+    a {
+      .job-details {
+        @apply com-flex com-items-center;
+        &.position {
+          p {
+            @apply com-text-2xl;
+          }
+        }
+      }
+    }
+  }
+
+  nb-card-body:hover {
+    .apply-button {
+      @apply com-flex;
+    }
+  }
+}
+
+.statusClosed {
+  @apply com-bg-gray-100 hover:com-shadow-none;
+}

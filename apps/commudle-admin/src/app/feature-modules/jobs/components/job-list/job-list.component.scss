@@ -1,0 +1,41 @@
+.tittle {
+  @apply com-flex com-items-center;
+  p,
+  nb-icon {
+    @apply com-text-4xl com-m-0 com-mr-1;
+  }
+}
+
+.filter-options {
+  p {
+    @apply com-text-base com-font-medium com-mb-0;
+  }
+  nb-radio {
+    ::ng-deep {
+      label {
+        @apply com-p-0;
+      }
+    }
+  }
+}
+
+.post-job {
+  @apply com-mt-5 com-w-[95%] com-ml-3 md:com-w-60;
+}
+
+.reset-button {
+  @apply com-mt-3;
+}
+
+nb-accordion {
+  @apply com-block md:com-hidden com-shadow-none #{!important};
+  @apply com-mx-2 com-mt-4 com-border-0 com-rounded-xl;
+
+  nb-accordion-item {
+    @apply com-border-0 com-rounded-xl;
+
+    nb-accordion-item-header {
+      @apply com-p-0 com-px-5;
+    }
+  }
+}

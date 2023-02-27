@@ -1,0 +1,23 @@
+.job-applications-card {
+  nb-card-header {
+    h2 {
+      @apply com-text-lg com-font-medium;
+    }
+  }
+
+  nb-card-body {
+    nb-list {
+      nb-list-item {
+        @apply com-px-0;
+
+        &:first-of-type {
+          border-top: none;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

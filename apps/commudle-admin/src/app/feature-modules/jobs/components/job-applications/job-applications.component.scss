@@ -1,0 +1,23 @@
+.job-applications-list {
+  nb-list-item {
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .job-application {
+      @apply com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-4 com-w-full;
+
+      .resume {
+        @apply com-justify-self-center com-flex com-flex-col com-gap-1;
+      }
+
+      .action {
+        @apply com-justify-self-end;
+      }
+    }
+  }
+}

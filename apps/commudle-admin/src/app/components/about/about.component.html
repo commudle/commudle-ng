@@ -1,0 +1,219 @@
+<div class="about-page">
+  <section class="about-page-section">
+    <div class="about-page-heading-section">
+      <h1 class="page-heading">
+        Grow with a diverse <br />
+        <span> Developer Ecosystem </span>
+      </h1>
+      <p class="page-subheading">{{ ICmsAbout?.description }}</p>
+    </div>
+  </section>
+
+  <section class="landing-image-section">
+    <div>
+      <img
+        alt="Landing image"
+        class="com-w-full"
+        src="{{ getImageUrl(ICmsAbout?.landingImage) }}"
+        title="Landing image"
+      />
+    </div>
+  </section>
+
+  <section class="about-page-section stats-section">
+    <div class="about-page-stats-section com-row-gap-8">
+      <div *ngFor="let stat of ICmsAbout?.stats">
+        <div class="com-flex">
+          <h2 class="count">{{ stat.count }}</h2>
+          <div class="com-flex com-items-center com-justify-center com-rounded-full com-bg-blue-200 com-w-7 com-h-7">
+            <svg class="com-text-blue-600 com-w-7 com-h-7" stroke="currentColor" viewBox="0 0 52 52">
+              <polygon
+                fill="none"
+                points="29 13 14 29 25 29 23 39 38 23 27 23"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+              ></polygon>
+            </svg>
+          </div>
+        </div>
+        <p class="title">{{ stat.title }}</p>
+        <p class="description">{{ stat.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-page-section features-section">
+    <div
+      *ngFor="let feature of ICmsAbout?.features; let odd = odd"
+      [ngClass]="{ 'com-flex-col-reverse': odd }"
+      class="grid"
+    >
+      <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
+        <h2 class="title">{{ feature.title }}</h2>
+        <p class="description">{{ feature.description }}</p>
+        <div *ngIf="feature.Button" class="com-flex com-justify-center md:com-justify-start">
+          <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
+        </div>
+      </div>
+      <div class="com-w-full com-h-full">
+        <img
+          [alt]="feature.title"
+          [title]="feature.title"
+          class="com-w-full com-h-full com-object-cover"
+          src="{{ getImageUrl(feature.image) }}"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="about-page-section cta-section">
+    <div class="about-page-cta-section">
+      <div class="center-section">
+        <div>
+          <h2 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing.</h2>
+
+          <p class="description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio unde maiores natus placeat earum, atque
+            necessitatibus sunt. Ducimus inventore qui unde, corporis itaque rerum illum tempore quod? Quae, quam
+            quaerat.
+          </p>
+
+          <button nbButton shape="semi-round">
+            Come and see
+            <nb-icon icon="arrow-forward"></nb-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="left-section">
+        <img
+          alt="Sunset with palm trees"
+          src="https://images.unsplash.com/photo-1625239185060-88135bd3519b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
+        />
+      </div>
+
+      <div class="right-section">
+        <img
+          alt="Man in a hat and yellow jumper"
+          src="https://images.unsplash.com/photo-1625175619292-ff5e5b2dfaf1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
+        />
+      </div>
+    </div>
+  </section> -->
+
+  <section class="about-page-section teams-section">
+    <div class="about-page-teams-section">
+      <div class="team-section-heading">
+        <h2 class="title">A Team With A Dream</h2>
+        <p class="description">We are people whose career journeys are outcomes of communities.</p>
+      </div>
+      <ul class="grid">
+        <li *ngFor="let member of ICmsAbout?.team">
+          <div class="com-my-6">
+            <img
+              [alt]="member.name"
+              [title]="member.name"
+              class="profile-image"
+              src="{{ getImageUrl(member.image) }}"
+            />
+            <div class="com-my-2">
+              <div class="com-my-1">
+                <p class="name">{{ member.name }}</p>
+                <p class="designation">{{ member.designation }}</p>
+              </div>
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
+                <li *ngIf="member.social.twitter">
+                  <a [href]="member.social.twitter" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="twitter"></nb-icon>
+                  </a>
+                </li>
+                <li *ngIf="member.social.commudle">
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5 com-grayscale"
+                      src="{{ staticAssets.commudle_logo_32 }}"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-page-section advisor-section">
+    <div class="about-page-advisor-section">
+      <div class="advisor-section-heading">
+        <h2 class="title">Our Guiding Stars</h2>
+        <p class="description">
+          We're backed by experts who have built, shaped & scaled the developer ecosystems globally.
+        </p>
+      </div>
+      <ul class="grid">
+        <li *ngFor="let member of ICmsAbout?.advisor">
+          <div class="com-my-6">
+            <img [alt]="member.name" [title]="member.name" class="profile-img" src="{{ getImageUrl(member.image) }}" />
+            <div class="com-my-2">
+              <div class="com-my-1">
+                <p class="name">{{ member.name }}</p>
+                <p class="designation">{{ member.designation }}</p>
+              </div>
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
+                <li *ngIf="member.social.twitter">
+                  <a [href]="member.social.twitter" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="twitter"></nb-icon>
+                  </a>
+                </li>
+                <li *ngIf="member.social.commudle">
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5 com-grayscale"
+                      src="{{ staticAssets.commudle_logo_32 }}"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-page-section features-list-section">
+    <div class="grid">
+      <div *ngIf="ICmsAbout">
+        <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
+        <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
+        <div class="com-flex com-justify-center md:com-justify-start">
+          <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
+            {{ ICmsAbout?.featuresList?.content?.Button?.text }}
+          </a>
+        </div>
+      </div>
+      <div class="features-list">
+        <div *ngFor="let item of ICmsAbout?.featuresList?.list" class="com-flex com-items-start">
+          <svg
+            class="com-flex-none com-w-5 com-h-5 com-mt-1 com-mr-2 com-text-primary"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+          <p class="item">{{ item }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,20 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="blog-container">
+        <nb-card-header>
+          <h1>Relating with Developers & Communities</h1>
+          <p>
+            Read and connect with developers, devrels & community managers from their experiences in building
+            communities, helping folks to learn new technologies. From diverse backgrounds, people come together and
+            share how they have built their careers, found opportunities and empowered people around them.
+          </p>
+        </nb-card-header>
+        <nb-card-body>
+          <commudle-blog-card [blogs]="blogs"></commudle-blog-card>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

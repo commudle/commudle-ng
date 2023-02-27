@@ -1,0 +1,141 @@
+.home-component {
+  .banner {
+    .banner-image {
+      @apply com-w-full com-min-h-[320px] com-object-contain md:com-w-[1262px];
+    }
+
+    .edit-button {
+      @apply com-absolute com-top-3 com-right-3 com-bg-white com-rounded-md;
+    }
+  }
+
+  .without-banner {
+    @apply com-min-h-[160px] md:com-min-h-[320px];
+    background: linear-gradient(
+      180deg,
+      #8a8a8a -35.31%,
+      rgba(173, 173, 173, 0) 109.06%,
+      #adadad 109.06%,
+      rgba(224, 224, 224, 0) 109.06%
+    );
+  }
+
+  .page-header {
+    @apply com-flex-col com-content-start com-mx-0 com-mb-16;
+    @apply md:com-flex-row;
+
+    .logo-section {
+      @apply com-h-28 com-w-28  com-rounded-xl -com-mt-14 com-mx-8 com-bg-white com-shadow-md com-flex com-items-end com-justify-between;
+      @apply md:com-block md:-com-mt-24;
+      @apply lg:com-h-44 lg:com-w-44;
+
+      .logo {
+        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl;
+        @apply md:com-mr-20;
+        @apply lg:com-h-44 lg:com-w-44;
+      }
+    }
+
+    .details {
+      @apply com-w-full com-ml-8 md:com-ml-0;
+
+      h1 {
+        @apply com-font-semibold;
+      }
+
+      .membership {
+        .member-count {
+          @apply com-mx-0 com-mt-0;
+
+          a {
+            @apply com-text-gunmetal com-no-underline;
+          }
+        }
+
+        .community-social-links {
+          @apply com-gap-6;
+
+          nb-icon {
+            @apply com-text-Very-Light-Blue;
+          }
+
+          a {
+            @apply com-no-underline;
+          }
+        }
+      }
+    }
+    .membership-toggle {
+      @apply com-mr-4 com-mt-6 com-ml-8 md:com-ml-0;
+      ::ng-deep {
+        nb-select {
+          button {
+            background-color: initial;
+            color: initial;
+            @apply com-p-1 com-w-44;
+          }
+        }
+      }
+    }
+  }
+
+  .router-outlet {
+    @apply com-w-full com-px-2;
+  }
+}
+
+.page-menu {
+  @apply com-w-full com-sticky com-top-16 com-z-20;
+
+  nb-card {
+    @apply com-m-0;
+
+    nb-card-body {
+      @apply com-pt-5 com-px-5 com-pb-0;
+    }
+  }
+
+  .menu-items {
+    @apply com-ml-2;
+    a {
+      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
+
+      nb-icon {
+        @apply com-text-gunmetal/80;
+      }
+
+      .title {
+        @apply com-self-center com-ml-2;
+      }
+
+      span {
+        @apply com-hidden;
+        @apply md:com-inline;
+      }
+    }
+
+    nb-icon {
+      @apply com-text-2xl;
+    }
+
+    .active {
+      @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
+
+      nb-icon,
+      .title {
+        @apply com-text-primary-500;
+      }
+    }
+  }
+}
+
+.banner-image {
+  @apply com-aspect-4 com-object-contain com-w-[1262px];
+  background: linear-gradient(
+    180deg,
+    #8a8a8a -35.31%,
+    rgba(173, 173, 173, 0) 109.06%,
+    #adadad 109.06%,
+    rgba(224, 224, 224, 0) 109.06%
+  );
+}

@@ -1,0 +1,41 @@
+:host {
+  @media screen and (max-width: theme('screens.md')) {
+    @apply com-overflow-x-scroll com-overflow-y-hidden com-w-screen;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+nb-actions {
+  @apply com-h-full com-flex com-gap-x-11 com-justify-evenly;
+
+  nb-action {
+    @apply com-px-0 com-py-4 md:com-p-0 com-border-none;
+
+    a {
+      @apply com-flex com-flex-col com-items-center com-border-none;
+
+      fa-icon {
+        @apply com-text-base md:com-text-xl com-text-gray-300;
+      }
+
+      nb-icon {
+        @apply com-text-2xl md:com-text-3xl com-text-gray-300;
+      }
+
+      &.active {
+        fa-icon,
+        nb-icon,
+        span {
+          @apply com-text-blue-600 com-font-medium;
+        }
+      }
+
+      span {
+        @apply com-font-normal com-text-gray-500 com-text-xs md:com-text-sm;
+      }
+    }
+  }
+}

@@ -1,0 +1,222 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <div *ngIf="community" class="home-component">
+        <nb-card class="!com-my-0 !com-mx-0 md:!com-mx-2">
+          <nb-card-body class="!com-p-0">
+            <div class="banner">
+              <img
+                *ngIf="community.banner_image"
+                src="{{ community.banner_image.url }}"
+                alt="{{ community.name }}"
+                class="banner-image"
+              />
+              <div class="banner-image" *ngIf="!community.banner_image"></div>
+              <div class="edit-button" *ngIf="isOrganizer">
+                <button nbButton status="primary" outline size="small" (click)="openUpdateBannerDialogBox()">
+                  <img src="https://json.commudle.com/icons/add-banner-icon.svg" />
+                  <span class="com-hidden md:com-flex"> Edit Banner </span>
+                </button>
+              </div>
+            </div>
+            <div class="page-header d-flex flex-column">
+              <div class="logo-section">
+                <img
+                  alt="{{ community.name }}"
+                  class="logo"
+                  src="{{ community.logo_path }}"
+                  title="{{ community.name }}"
+                />
+                <app-share-button
+                  *appBreakpoints="'<=md'"
+                  [content]="environment.app_url + '/communities/' + community.slug"
+                  [title]="community.name"
+                  [url]="environment.app_url + '/communities/' + community.slug"
+                  [showText]="true"
+                  [appearance]="'outline'"
+                  class="com-pl-12 com-pb-3"
+                ></app-share-button>
+              </div>
+              <div class="details">
+                <div
+                  class="com-flex com-justify-between md:com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
+                >
+                  <div class="com-grid com-grid-cols-1 com-items-start md:com-grid-cols-2 md:com-items-center">
+                    <h1>{{ community.name }}</h1>
+                    <app-share-button
+                      *appBreakpoints="'>md'"
+                      [content]="environment.app_url + '/communities/' + community.slug"
+                      [title]="community.name"
+                      [url]="environment.app_url + '/communities/' + community.slug"
+                      [showText]="true"
+                      [appearance]="'outline'"
+                      class="com-pl-4"
+                    ></app-share-button>
+                  </div>
+                </div>
+                <div class="membership d-flex flex-column">
+                  <p class="member-count">
+                    <a [routerLink]="['members']">
+                      <nb-icon icon="people" status="basic"></nb-icon>
+                      {{ community.member_count }} Community Members
+                    </a>
+                  </p>
+                  <div class="community-social-links d-flex align-items-center">
+                    <a
+                      *ngIf="community.facebook"
+                      href="{{ community.facebook | completeurl : 'facebook' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="facebook" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.linkedin"
+                      href="{{ community.linkedin | completeurl : 'linkedin' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="linkedin" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.twitter"
+                      href="{{ community.twitter | completeurl : 'twitter' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="twitter" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.github"
+                      href="{{ community.github | completeurl : 'github' }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="github" status="info"></nb-icon>
+                    </a>
+                    <a
+                      *ngIf="community.website"
+                      href="{{ community.website | completeurl }}"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <nb-icon icon="globe" status="info"></nb-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="membership-toggle">
+                <div class="com-flex md:com-justify-end">
+                  <app-membership-toggle
+                    [community]="community"
+                    [shapes]="'semi-round'"
+                    [size]="'medium'"
+                    [status]="'primary'"
+                  ></app-membership-toggle>
+                </div>
+                <div class="com-text-3xl com-mt-10" *ngIf="isOrganizer">
+                  <a
+                    nbButton
+                    status="danger"
+                    [routerLink]="['/admin', 'communities', community.slug]"
+                    target="_blank"
+                    shape="semi-round"
+                  >
+                    Go to Admin Panel
+                    <nb-icon icon="edit-outline"></nb-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="page-menu">
+              <div class="menu-items d-flex">
+                <a
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/communities', community.slug]"
+                  class="d-flex"
+                  routerLinkActive="active"
+                >
+                  <nb-icon icon="info" status="basic"></nb-icon>
+                  <span class="title">About</span>
+                </a>
+                <a [routerLink]="['events']" class="d-flex" routerLinkActive="active">
+                  <nb-icon icon="calendar" status="info"></nb-icon>
+                  <span class="title">Events</span>
+                </a>
+                <!-- <a [routerLink]="['resources']" routerLinkActive="active">
+                  <nb-icon icon="award" status="info"></nb-icon>
+                  <span>Sessions by Experts</span>
+                </a> -->
+                <a [routerLink]="['speakers']" class="d-flex" routerLinkActive="active">
+                  <nb-icon icon="mic" status="success"></nb-icon>
+                  <span class="title">Speakers</span>
+                </a>
+                <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
+                  <nb-icon icon="people" status="success"></nb-icon>
+                  <span class="title">Members</span>
+                </a>
+                <a [routerLink]="['public-channels']" class="d-flex" routerLinkActive="active">
+                  <nb-icon icon="hash" status="success"></nb-icon>
+                  <span class="title">Channels</span>
+                </a>
+                <div *ngIf="isOrganizer" class="com-relative">
+                  <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
+                    <nb-badge
+                      *ngIf="notificationCount > 0"
+                      [text]="notificationCount.toString()"
+                      status="danger"
+                    ></nb-badge>
+
+                    <nb-icon icon="bell" status="success"></nb-icon>
+                    <span class="title">Activity</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <div class="router-outlet">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #updateBannerDialogBox let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <div>
+        Banner Image*
+        <label
+          *ngIf="!uploadedBanner"
+          class="com-my-4 com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md"
+        >
+          <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="com-mt-2 com-text-base">Upload a Banner Image</span>
+          <span class="com-text-base"><small>(1280px x 320px)</small></span>
+          <input (change)="displaySelectedBanner($event)" accept="image/*" class="com-hidden" type="file" />
+        </label>
+      </div>
+      <div class="com-flex com-justify-center com-mb-2">
+        <button *ngIf="uploadedBanner" (click)="uploadedBanner = ''" nbButton outline size="tiny" status="danger">
+          <nb-icon icon="trash-2-outline"></nb-icon>
+          Delete
+        </button>
+      </div>
+      <div *ngIf="uploadedBanner">
+        <img alt="Uploaded Banner Image" src="{{ uploadedBanner }}" title="Uploaded Banner" class="banner-image" />
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="updateBanner(); ref.close()" nbButton status="success" [disabled]="uploadedBanner">
+        Update
+      </button>
+      <button (click)="ref.close()" ghost nbButton status="danger">Close</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

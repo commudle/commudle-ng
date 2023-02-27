@@ -1,0 +1,20 @@
+<a [routerLink]="['/users', user.username]">
+  <div class="user-profile-medium d-flex align-items-center">
+    <img
+      [alt]="user.name"
+      [src]="user.photo.i32"
+      [title]="user.name"
+      [username]="user.username"
+      appMiniUserProfile
+      class="avatar"
+    />
+    <div class="details">
+      <div [username]="user.username" appMiniUserProfile class="name d-flex align-items-center com-line-clamp-1">
+        {{ user.name }}
+        <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
+        <!-- <app-hiring-looking-works-tags [user]="user" [fontSize]="'12px'"></app-hiring-looking-works-tags> -->
+      </div>
+      <p class="designation com-line-clamp-1">{{ user.designation || '--' }}</p>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,181 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+p {
+  color: $gunmetal;
+  margin: 0;
+}
+
+//*::-webkit-scrollbar {
+//  width: 0;
+//  height: 0;
+//}
+//
+//*::-webkit-scrollbar-track,
+//*::-webkit-scrollbar-thumb {
+//  background: transparent;
+//  border: none;
+//}
+
+.page-ads-container {
+  background-color: transparent;
+  border: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+
+  a {
+    color: initial;
+    text-decoration: none;
+
+    //.carousel {
+    //  position: relative;
+    //  padding-top: 100%;
+    //  //filter: drop-shadow(0 0 10px #0003);
+    //  //perspective: 100px;
+    //
+    //  &:hover,
+    //  &:focus-within {
+    //    .carousel__viewport {
+    //      .carousel__slide {
+    //        .carousel__snapper {
+    //          animation-name: none;
+    //        }
+    //      }
+    //    }
+    //  }
+    //
+    //  ol,
+    //  li {
+    //    list-style: none;
+    //    margin: 0;
+    //    padding: 0;
+    //  }
+    //
+    //  .carousel__viewport {
+    //    position: absolute;
+    //    top: 0;
+    //    right: 0;
+    //    bottom: 0;
+    //    left: 0;
+    //    display: flex;
+    //    overflow-x: scroll;
+    //    scroll-behavior: smooth;
+    //    scroll-snap-type: x mandatory;
+    //
+    //    .carousel__slide {
+    //      position: relative;
+    //      flex: 0 0 100%;
+    //      width: 100%;
+    //
+    //      .carousel__snapper {
+    //        position: absolute;
+    //        top: 0;
+    //        left: 0;
+    //        width: 100%;
+    //        height: 100%;
+    //        scroll-snap-align: center;
+    //
+    //        img,
+    //        video {
+    //          width: 100%;
+    //          position: absolute;
+    //          top: 50%;
+    //          left: 50%;
+    //          transform: translate3d(-50%, -40%, 70px);
+    //        }
+    //      }
+    //    }
+    //
+    //    @media (hover: hover) {
+    //      .carousel__snapper {
+    //        animation-name: tonext, snap;
+    //        animation-timing-function: ease-in-out;
+    //        animation-duration: 4s;
+    //        animation-iteration-count: infinite;
+    //      }
+    //
+    //      .carousel__slide:last-child .carousel__snapper {
+    //        animation-name: tostart, snap;
+    //      }
+    //    }
+    //
+    //    @media (prefers-reduced-motion: reduce) {
+    //      .carousel__snapper {
+    //        animation-name: none;
+    //      }
+    //    }
+    //  }
+    //}
+
+    .image {
+      border-radius: $border-10;
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .info {
+      margin-top: $space-8;
+
+      .title {
+        font-size: $fs-h5;
+        font-weight: $fw-600;
+        line-height: 16px;
+      }
+
+      .content {
+        font-size: $fs-h6;
+        line-height: 14px;
+        margin-top: $space-4;
+      }
+    }
+  }
+}
+
+//@keyframes tonext {
+//  75% {
+//    left: 0;
+//  }
+//  95% {
+//    left: 100%;
+//  }
+//  98% {
+//    left: 100%;
+//  }
+//  99% {
+//    left: 0;
+//  }
+//}
+//
+//@keyframes tostart {
+//  75% {
+//    left: 0;
+//  }
+//  95% {
+//    left: -300%;
+//  }
+//  98% {
+//    left: -300%;
+//  }
+//  99% {
+//    left: 0;
+//  }
+//}
+//
+//@keyframes snap {
+//  96% {
+//    scroll-snap-align: center;
+//  }
+//  97% {
+//    scroll-snap-align: none;
+//  }
+//  99% {
+//    scroll-snap-align: none;
+//  }
+//  100% {
+//    scroll-snap-align: center;
+//  }
+//}

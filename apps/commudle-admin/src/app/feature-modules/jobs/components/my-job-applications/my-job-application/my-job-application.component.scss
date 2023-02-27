@@ -1,0 +1,34 @@
+:host {
+  @apply com-w-full;
+}
+
+p {
+  @apply com-m-0;
+}
+
+.my-job-application {
+  @apply com-flex com-flex-col md:com-flex-row com-gap-2 com-justify-between com-items-center;
+
+  .details {
+    .job {
+      @apply com-flex com-flex-col com-gap-1;
+
+      .position {
+        @apply com-text-lg;
+
+        span {
+          @apply com-font-semibold;
+        }
+      }
+
+      .company {
+        @apply com-text-sm com-text-gray-700;
+        color: #0095ff;
+      }
+    }
+  }
+
+  .actions {
+    @apply com-flex com-gap-2 com-w-44 com-justify-between;
+  }
+}

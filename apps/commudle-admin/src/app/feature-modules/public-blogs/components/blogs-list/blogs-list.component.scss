@@ -1,0 +1,16 @@
+.blog-container {
+  @apply com-min-h-screen;
+
+  nb-card-header {
+    h1 {
+      @apply com-pt-10;
+    }
+    p {
+      @apply com-text-base;
+    }
+  }
+}
+
+app-loading-spinner {
+  @apply com-flex com-justify-center;
+}

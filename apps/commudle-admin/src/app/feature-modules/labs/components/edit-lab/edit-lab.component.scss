@@ -1,0 +1,122 @@
+.create-lab {
+  .three-column-layout {
+    @apply com-flex com-flex-col md:com-grid;
+
+    .left-col {
+      .help-video {
+        @apply com-bg-white com-border com-border-solid com-border-gray-300 com-rounded-lg com-relative com-w-full com-h-20;
+
+        p {
+          @apply com-absolute com-top-2/3 com-left-1/2 com-text-primary-400 -com-translate-y-2/4 -com-translate-x-2/4;
+        }
+
+        nb-icon {
+          @apply com-text-4xl;
+        }
+
+        &:hover {
+          nb-icon {
+            @apply com-text-rose-400;
+          }
+        }
+      }
+    }
+
+    .center-col {
+      .container {
+        @apply lg:com-max-w-[1024px] lg:com-my-0 lg:com-mx-auto;
+        .header {
+          @apply com-font-light;
+
+          fa-icon {
+            @apply com-text-primary-700;
+          }
+        }
+
+        form.lab-header-image {
+          @apply com-mb-8;
+
+          label {
+            @apply com-relative com-py-36 com-px-0;
+
+            > span {
+              @apply com-border-2 com-border-dashed com-border-gray-300 com-rounded-lg com-text-gray-500 com-text-lg com-font-light com-h-full com-p-2;
+
+              nb-icon {
+                // font-size: 4rem;
+                // margin-bottom: 0.5rem;
+                @apply com-text-6xl com-mb-2;
+              }
+            }
+
+            input {
+              @apply com-hidden;
+            }
+          }
+
+          .uploaded-header-image {
+            @apply com-overflow-hidden com-flex com-justify-center com-items-center;
+
+            img {
+              @apply com-max-w-full;
+            }
+          }
+
+          .delete-header-image-button {
+            @apply com-block com-my-0 com-mx-auto;
+          }
+        }
+
+        form.lab-form {
+          .overview {
+            input {
+              @apply com-font-light com-text-xl;
+            }
+
+            > div {
+              @apply com-mb-4;
+            }
+          }
+
+          .lab-step {
+            @apply com-mt-16;
+
+            h3.steps-counter {
+              @apply com-font-light com-mb-0;
+            }
+
+            .name input {
+              @apply com-text-xl com-font-light com-mb-4;
+            }
+          }
+        }
+
+        .tags {
+          @apply com-mt-14;
+        }
+      }
+
+      .add-step-button {
+        @apply com-w-full;
+      }
+
+      .actions-card {
+        @apply com-m-2;
+      }
+
+      .actions {
+        @apply com-mt-4;
+
+        button {
+          @apply com-mr-2 com-mb-4;
+        }
+      }
+    }
+
+    .right-col {
+      > a {
+        @apply com-sticky com-top-20;
+      }
+    }
+  }
+}

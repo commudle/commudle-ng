@@ -1,0 +1,161 @@
+<!-- eslint-disable prettier/prettier -->
+<div>
+  <form (ngSubmit)="updateCommunityDetails()" [formGroup]="communityForm" class="community-edit-details-form">
+    <div formGroupName="community">
+      <div role="group">
+        <div>
+          <label fullWidth>
+            Name*
+            <input formControlName="name" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Logo*
+            <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="uploadedLogo == null" class="uploaded-logo"></div>
+        <div *ngIf="uploadedLogo" class="uploaded-logo-image">
+          <img alt="Uploaded Logo" src="{{ uploadedLogo }}" title="Uploaded Logo" />
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label> Banner Image </label>
+        </div>
+      </div>
+
+      <div>
+        <label
+          *ngIf="!uploadedBanner"
+          class="com-ml-5 com-mb-5 com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md"
+        >
+          <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="com-mt-2 com-text-base">Upload a Banner Image</span>
+          <span class="com-text-base"><small>(1280px x 320px)</small></span>
+          <input (change)="displaySelectedBanner($event)" accept="image/*" class="com-hidden" type="file" />
+        </label>
+        <div *ngIf="uploadedBanner" class="uploaded-banner-image">
+          <div class="com-flex com-justify-center com-mb-2">
+            <button *ngIf="uploadedBanner" (click)="uploadedBanner = ''" nbButton outline size="tiny" status="danger">
+              <nb-icon icon="trash-2-outline"></nb-icon>
+              Delete
+            </button>
+          </div>
+          <img alt="Uploaded Banner Image" src="{{ uploadedBanner }}" title="Uploaded Banner Image" />
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Email*
+            <input formControlName="contact_email" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Location*
+            <input formControlName="location" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Website
+            <input formControlName="website" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div class="about" role="group">
+        <label>
+          About*
+          <editor [init]="tinyMCE" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" formControlName="about">
+          </editor>
+        </label>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Mini Description*
+            <input formControlName="mini_description" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Facebook
+            <input formControlName="facebook" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Twitter
+            <input formControlName="twitter" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Github
+            <input formControlName="github" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Linkedin
+            <input formControlName="linkedin" fullWidth nbInput type="text" />
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label fullWidth>
+            Tags*
+            <app-tag
+              (tagAdd)="onTagAdd($event)"
+              (tagDelete)="onTagDelete($event)"
+              [editable]="true"
+              [tags]="tags"
+              [minimumTags]="minimumTags"
+            ></app-tag>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button [disabled]="!communityForm.valid || tags.length < 5" nbButton status="primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>

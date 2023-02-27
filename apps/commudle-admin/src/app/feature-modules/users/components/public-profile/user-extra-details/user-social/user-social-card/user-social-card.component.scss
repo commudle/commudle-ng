@@ -1,0 +1,93 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+.user-social-card {
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  margin: $space-12 0;
+
+  nb-card-body {
+    flex-direction: row;
+    padding: $space-16;
+    width: 100%;
+
+    .user-social-card-image {
+      height: 120px;
+      overflow: hidden;
+      text-decoration: none;
+      width: 250px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .user-social-card-details {
+      margin-left: $space-16;
+      text-decoration: none;
+      width: 100%;
+
+      .user-social-card-tags {
+        flex-wrap: wrap;
+        gap: $space-4;
+        margin-bottom: $space-12;
+
+        .user-social-card-tag {
+          background-color: $lavender;
+          border-radius: $border-20;
+          color: $neon-blue;
+          font-size: $fs-h6;
+          padding: 0 $space-8;
+        }
+      }
+
+      .user-social-card-title {
+        color: $gunmetal;
+        font-size: $fs-h4;
+        font-weight: $fw-600;
+        line-height: 19px;
+      }
+
+      .user-social-card-description {
+        color: $spanish-gray;
+        font-size: $fs-h6;
+        font-style: italic;
+        line-height: 14px;
+        margin-top: $space-4;
+      }
+
+      .user-social-card-favicon {
+        border-radius: 50%;
+        margin-top: $space-12;
+        max-width: 20px;
+      }
+    }
+
+    .user-social-card-delete {
+      float: right;
+      font-weight: $fw-400;
+      position: relative;
+      text-transform: capitalize;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-social-card {
+    nb-card-body {
+      flex-direction: column;
+
+      .user-social-card-image {
+        margin-bottom: $space-16;
+        width: 100%;
+      }
+
+      .user-social-card-details {
+        margin-left: 0;
+      }
+    }
+  }
+}

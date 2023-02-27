@@ -1,0 +1,50 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.user-cover-photo {
+  background-color: $white;
+  border-radius: $border-10 $border-10 0 0;
+  height: 222px;
+  overflow: hidden;
+  position: relative;
+
+  .cover-image {
+    height: inherit;
+    overflow: hidden;
+
+    img {
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+    }
+  }
+
+  .cover-change {
+    border: none;
+    border-radius: $border-10;
+    color: $neon-blue;
+    font-weight: $fw-400;
+    position: absolute;
+    right: 16px;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+    @apply com-bottom-44 md:com-bottom-4;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+}
+
+.cover-image-dialog {
+  nb-card-body {
+    img {
+      height: 187px;
+      margin-top: $space-16;
+    }
+  }
+}

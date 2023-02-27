@@ -1,0 +1,11 @@
+.router-outlet {
+  @apply com-min-h-[calc(100vh-56px-12px)];
+}
+
+.session-page-container {
+  @apply com-h-[calc(100vh-56px-12px)];
+
+  .session-page {
+    @apply com-pt-2;
+  }
+}

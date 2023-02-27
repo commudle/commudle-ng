@@ -1,0 +1,36 @@
+.create-lab {
+  .form-container {
+    @apply lg:com-max-w-[1020px] lg:com-my-0 lg:com-mx-auto;
+
+    .header {
+      @apply com-font-light;
+
+      fa-icon {
+        @apply com-text-primary-500;
+      }
+    }
+    .description {
+      @apply com-text-xl;
+    }
+
+    form {
+      input {
+        @apply com-text-xl;
+
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          @apply com-text-xl;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          @apply com-text-xl;
+        }
+      }
+
+      .submit-button {
+        @apply com-mt-4;
+      }
+    }
+  }
+}
