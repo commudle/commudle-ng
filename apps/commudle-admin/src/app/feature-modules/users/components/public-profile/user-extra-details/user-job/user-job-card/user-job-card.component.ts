@@ -115,19 +115,6 @@ export class UserJobCardComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   updateJobStatus(): void {
-    this.jobForm = this.fb.group({
-      position: [this.job.position],
-      company: [this.job.company],
-      category: [this.job.category],
-      experience: [this.job.experience],
-      min_salary: [this.job.min_salary],
-      max_salary: [this.job.max_salary],
-      salary_type: [this.job.salary_type],
-      salary_currency: [this.job.salary_currency],
-      location_type: [this.job.location_type],
-      job_type: [this.job.job_type],
-      status: [this.job.status == 'open' ? 'closed' : 'open'],
-    });
     this.subscriptions.push(
       this.jobService.toggleStatus(this.job.id).subscribe((data: IJob) => {
         if (data) {
