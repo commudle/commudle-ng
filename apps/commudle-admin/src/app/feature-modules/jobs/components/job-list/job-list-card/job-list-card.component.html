@@ -105,13 +105,13 @@
     <nb-actions>
       <nb-action *ngIf="user?.id === currentUser?.id">
         <button (click)="updateJob.emit()" ghost nbButton size="small" status="warning">
-          <fa-icon [icon]="faPencil" class="com-px-2"></fa-icon>
+          <fa-icon [icon]="faPencil" class="com-px-1 md:com-px-2"></fa-icon>
           <ng-container *appBreakpoints="'>md'">Edit</ng-container>
         </button>
       </nb-action>
       <nb-action>
         <button (click)="copyTextToClipboard(job.id)" ghost nbButton size="small" status="primary">
-          <fa-icon [icon]="faShareAlt" class="com-px-2"></fa-icon>
+          <fa-icon [icon]="faShareAlt" class="com-px-1 md:com-px-2"></fa-icon>
           <ng-container *appBreakpoints="'>md'">Share</ng-container>
         </button>
       </nb-action>
@@ -124,7 +124,7 @@
           status="success"
           class="com-p-0"
         >
-          <fa-icon [icon]="faUsers" class="com-px-2"></fa-icon>
+          <fa-icon [icon]="faUsers" class="com-px-1 md:com-px-2"></fa-icon>
           <ng-container *appBreakpoints="'>md'"
             >All Received Applications
             <span *ngIf="job.job_applications_count !== 0">({{ job.job_applications_count }})</span></ng-container
@@ -133,25 +133,25 @@
       </nb-action>
       <nb-action>
         <a [routerLink]="['/jobs', job.id]" ghost nbButton size="small" status="info">
-          <fa-icon [icon]="faInfoCircle" class="com-px-2"></fa-icon>
+          <fa-icon [icon]="faInfoCircle" class="com-px-1 md:com-px-2"></fa-icon>
           <ng-container *appBreakpoints="'>md'">View Details</ng-container>
         </a>
       </nb-action>
       <nb-action *ngIf="user?.id === currentUser?.id">
         <button (click)="updateJobStatus()" ghost nbButton size="small" status="basic">
           <ng-container *ngIf="job.status === jobStatus.OPEN">
-            <fa-icon [icon]="faEyeSlash" class="com-px-2"></fa-icon>
+            <fa-icon [icon]="faEyeSlash" class="com-px-1 md:com-px-2"></fa-icon>
             <ng-container *appBreakpoints="'>md'">Close Job</ng-container>
           </ng-container>
           <ng-container *ngIf="job.status === jobStatus.CLOSED">
-            <fa-icon [icon]="faEye" class="com-px-2"></fa-icon>
+            <fa-icon [icon]="faEye" class="com-px-1 md:com-px-2"></fa-icon>
             <ng-container *appBreakpoints="'>md'">Open Job</ng-container>
           </ng-container>
         </button>
       </nb-action>
       <nb-action *ngIf="user?.id === currentUser?.id">
         <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton size="small" status="danger">
-          <fa-icon [icon]="faTrash" class="com-px-2"></fa-icon>
+          <fa-icon [icon]="faTrash" class="com-px-1 md:com-px-2"></fa-icon>
           <ng-container *appBreakpoints="'>md'">Delete</ng-container>
         </button>
       </nb-action>
