@@ -1,6 +1,11 @@
 <nb-card class="user-job-card">
   <nb-card-body>
-    <app-job-list-card [job]="job"></app-job-list-card>
+    <app-job-list-card
+      [job]="job"
+      [applyButton]="true"
+      [applicationsCount]="true"
+      [userProfile]="true"
+    ></app-job-list-card>
     <nb-actions>
       <nb-action *ngIf="user.id === currentUser?.id">
         <button (click)="updateJob.emit()" ghost nbButton size="small" status="warning">
@@ -15,7 +20,14 @@
         </button>
       </nb-action>
       <nb-action *ngIf="user.id === currentUser?.id">
-        <a [routerLink]="['/jobs', job.id, 'applications']" ghost nbButton size="small" status="success">
+        <a
+          [routerLink]="['/jobs', job.id, 'applications']"
+          ghost
+          nbButton
+          size="small"
+          status="success"
+          class="com-p-0"
+        >
           <fa-icon [icon]="faUsers" class="icons"></fa-icon>
           <ng-container *appBreakpoints="'>md'"
             >All Received Applications
