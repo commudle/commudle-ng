@@ -213,7 +213,9 @@
       </div>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
-      <button (click)="updateBanner(); ref.close()" nbButton status="success">Update</button>
+      <button (click)="updateBanner(); ref.close()" nbButton status="success" [disabled]="uploadedBanner">
+        Update
+      </button>
       <button (click)="ref.close()" ghost nbButton status="danger">Close</button>
     </nb-card-footer>
   </nb-card>
