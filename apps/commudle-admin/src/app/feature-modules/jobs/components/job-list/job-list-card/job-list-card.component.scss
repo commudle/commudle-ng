@@ -26,6 +26,18 @@ nb-card {
     }
   }
 
+  nb-card-footer {
+    @apply com-px-0 com-overflow-auto;
+
+    nb-actions {
+      @apply com-justify-start md:com-justify-center;
+
+      nb-action {
+        @apply com-px-[1px] md:com-px-[10px];
+      }
+    }
+  }
+
   nb-card-body:hover {
     .apply-button {
       @apply com-flex;
