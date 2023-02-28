@@ -55,10 +55,10 @@ export class UserRolesUsersService {
     if (employee) {
       params = params.set('employee', employee);
     }
-    if (employer) {
+    if (contentCreator) {
       params = params.set('content_creator', contentCreator);
     }
-    if (employer) {
+    if (speaker) {
       params = params.set('speaker', speaker);
     }
     return this.http.get<IUserRolesUsers>(

@@ -23,7 +23,7 @@ export class CommunityMembersComponent implements OnInit {
   isLoading = false;
   EUserRoles = EUserRoles;
   options;
-  speakers = false;
+  speaker = false;
   employer = false;
   contentCreator = false;
   employee = false;
@@ -77,7 +77,16 @@ export class CommunityMembersComponent implements OnInit {
   getMembers() {
     this.isLoading = true;
     this.userRolesUsersService
-      .getCommunityMembers(this.query, this.communityId, this.count, this.page)
+      .getCommunityMembers(
+        this.query,
+        this.communityId,
+        this.count,
+        this.page,
+        this.employer,
+        this.employee,
+        this.contentCreator,
+        this.speaker,
+      )
       .subscribe((data) => {
         this.isLoading = false;
         this.userRolesUsers = data.user_roles_users;
@@ -94,7 +103,16 @@ export class CommunityMembersComponent implements OnInit {
           this.page = 1;
           this.isLoading = true;
           this.query = this.searchForm.get('name').value;
-          return this.userRolesUsersService.getCommunityMembers(this.query, this.communityId, this.count, this.page);
+          return this.userRolesUsersService.getCommunityMembers(
+            this.query,
+            this.communityId,
+            this.count,
+            this.page,
+            this.employer,
+            this.employee,
+            this.contentCreator,
+            this.speaker,
+          );
         }),
       )
       .subscribe((data) => {
@@ -166,5 +184,19 @@ export class CommunityMembersComponent implements OnInit {
     });
   }
 
-  click(event) {}
+  click(event) {
+    if (event === this.options[0]) {
+      this.speaker = !this.speaker;
+    }
+    if (event === this.options[1]) {
+      this.employer = !this.employer;
+    }
+    if (event === this.options[2]) {
+      this.contentCreator = !this.contentCreator;
+    }
+    if (event === this.options[3]) {
+      this.employee = !this.employee;
+    }
+    this.getMembers();
+  }
 }
