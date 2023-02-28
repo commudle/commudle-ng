@@ -184,7 +184,7 @@ export class CommunityMembersComponent implements OnInit {
     });
   }
 
-  click(event) {
+  filterByTags(event) {
     if (event === this.options[0]) {
       this.speaker = !this.speaker;
     }

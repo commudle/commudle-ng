@@ -20,10 +20,10 @@
     <nb-tag-list>
       <nb-tag
         appearance="outline"
-        *ngFor="let tree of options"
-        [text]="tree"
+        *ngFor="let name of options"
+        [text]="name"
         status="primary"
-        (click)="click(tree)"
+        (click)="filterByTags(name)"
       ></nb-tag>
     </nb-tag-list>
   </div>
