@@ -2,7 +2,6 @@
   <div class="container">
     <div *ngIf="user" class="two-column-layout">
       <div class="main-column">
-        <app-user-cover-photo (coverImageUpdate)="getUser()" [user]="user"></app-user-cover-photo>
         <app-user-basic-details (updateProfile)="getUser()"></app-user-basic-details>
         <nb-card *ngIf="(activeMenuItems | numkeys) > 0" class="user-profile-menu">
           <nb-card-body class="com-scrollbar-hide">
