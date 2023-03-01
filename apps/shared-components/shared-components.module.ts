@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { InViewportModule } from '@commudle/in-viewport';
 import { NgxDatatableModule } from '@commudle/ngx-datatable';
 import {
   NbAccordionModule,
@@ -26,9 +27,6 @@ import {
 } from '@commudle/theme';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MessageComponent } from 'apps/shared-components/messages/messages-list/message/message.component';
-import { MessagesListComponent } from 'apps/shared-components/messages/messages-list/messages-list.component';
-import { MessagesComponent } from 'apps/shared-components/messages/messages.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { HmsVideoModule } from 'apps/shared-modules/hms-video/hms-video.module';
 import { MentionModule } from 'apps/shared-modules/mention/mention.module';
@@ -46,6 +44,9 @@ import { FormResponsesComponent } from './form-responses/form-responses.componen
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
 import { UserDetailsCellComponent } from './form-responses/responses-table/user-details-cell/user-details-cell.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MessageComponent } from './messages/messages-list/message/message.component';
+import { MessagesListComponent } from './messages/messages-list/messages-list.component';
+import { MessagesComponent } from './messages/messages.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PollResultComponent } from './poll-result/poll-result.component';
@@ -120,6 +121,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     SharedDirectivesModule,
     MentionModule,
     MiniUserProfileModule,
+    InViewportModule,
 
     // Nebular
     NbButtonModule,

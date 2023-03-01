@@ -1,4 +1,10 @@
-<div *ngIf="message" class="message-container">
+<div
+  (inViewportAction)="markAsRead(message?.id, $event)"
+  *ngIf="message"
+  [inViewportOptions]="{ threshold: [0] }"
+  class="message-container"
+  inViewport
+>
   <div class="prefix d-flex align-items-start">
     <img
       alt="{{ message.user.name }}"

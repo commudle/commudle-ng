@@ -528,6 +528,10 @@ export const API_ROUTES = {
     PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES: 'api/v2/user_messages/public_community_channel_discussion_messages',
   },
 
+  USER_MESSAGE_RECEIPTS: {
+    CREATE: 'api/v2/user_message_receipts',
+  },
+
   USER_OBJECT_VISITS: {
     CREATE: 'api/v2/user_object_visits',
     MARK_END_TIME: 'api/v2/user_object_visits/mark_end_time',
