@@ -9,6 +9,7 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
+        "allowedCommonJsDependencies": ["ngx-google-places-autocomplete"],
         "project": "libs/auth/ng-package.json",
         "tailwindConfig": "libs/auth/tailwind.config.js"
       },

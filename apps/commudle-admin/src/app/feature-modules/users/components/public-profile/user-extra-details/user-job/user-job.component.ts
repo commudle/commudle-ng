@@ -1,4 +1,14 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
@@ -19,15 +29,23 @@ import {
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Subscription } from 'rxjs';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 
 @Component({
   selector: 'app-user-job',
   templateUrl: './user-job.component.html',
   styleUrls: ['./user-job.component.scss'],
 })
-export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
+export class UserJobComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @Input() user: IUser;
+
+  options: any = {
+    componentRestrictions: { country: 'IN' },
+  };
+
+  @ViewChild('placesRef') placesRef!: GooglePlaceDirective;
 
   currentUser: ICurrentUser;
 
@@ -117,6 +135,11 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+  ngAfterViewInit() {
+    this.placesRef.options.componentRestrictions = { country: 'SG' };
+    this.placesRef.options.fields = ['formatted_address', 'geometry', 'place_id'];
+  }
+
   openJobDialogBox() {
     setTimeout(() => {
       this.onOpenDialog(this.jobDialog); //
@@ -263,5 +286,11 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
 
   gtmService(event, data) {
     this.gtm.dataLayerPushEvent(event, data);
+  }
+
+  handleAddressChange(address: Address) {
+    console.log(address.formatted_address);
+    // console.log(address.geometry.location.lat())
+    // console.log(address.geometry.location.lng())
   }
 }

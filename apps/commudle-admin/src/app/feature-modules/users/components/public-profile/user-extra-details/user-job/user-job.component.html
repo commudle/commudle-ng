@@ -137,7 +137,15 @@
           </label>
           <label class="com-col-span-2">
             Location<span *ngIf="jobForm['controls'].location_type.value === 'office'">*</span>
-            <input formControlName="location" fullWidth nbInput type="text" />
+            <input
+              formControlName="location"
+              fullWidth
+              nbInput
+              type="text"
+              ngx-google-places-autocomplete
+              [options]="options"
+              (onAddressChange)="handleAddressChange($event)"
+            />
           </label>
         </div>
         <label *ngIf="isEditing">
