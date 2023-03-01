@@ -19,17 +19,38 @@
   <div>
     <nb-tag-list>
       <nb-tag
-        appearance="outline"
-        *ngFor="let name of options"
-        [text]="name"
+        [appearance]="speaker ? 'filled' : 'outline'"
+        [text]="options[0]"
         status="primary"
-        (click)="filterByTags(name)"
+        [removable]="speaker ? 'true' : 'false'"
+        (click)="filterByTags(options[0])"
+      ></nb-tag>
+      <nb-tag
+        [appearance]="employer ? 'filled' : 'outline'"
+        [text]="options[1]"
+        status="primary"
+        [removable]="employer ? 'true' : 'false'"
+        (click)="filterByTags(options[1])"
+      ></nb-tag>
+      <nb-tag
+        [appearance]="contentCreator ? 'filled' : 'outline'"
+        [text]="options[2]"
+        status="primary"
+        [removable]="contentCreator ? 'true' : 'false'"
+        (click)="filterByTags(options[2])"
+      ></nb-tag>
+      <nb-tag
+        [appearance]="employee ? 'filled' : 'outline'"
+        [text]="options[3]"
+        status="primary"
+        [removable]="employee ? 'true' : 'false'"
+        (click)="filterByTags(options[3])"
       ></nb-tag>
     </nb-tag-list>
   </div>
 
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div class="com-my-4" style="overflow-x: auto">
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <table *ngIf="!isLoading">
       <thead>
         <tr class="heading">
