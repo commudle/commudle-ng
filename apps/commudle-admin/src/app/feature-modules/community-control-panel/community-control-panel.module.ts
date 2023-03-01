@@ -40,6 +40,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
 import { CommunityAdminNotificationsComponent } from './components/community-admin-notifications/community-admin-notifications.component';
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
+import { CommunityEventsListPublicPageComponent } from './components/community-events-list/community-events-list-public-page/community-events-list-public-page.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { NbEvaIconsModule } from '@commudle/eva-icons';
     CommunityBlockedUsersComponent,
     CommunityMembersListComponent,
     CommunityAdminNotificationsComponent,
+    CommunityEventsListPublicPageComponent,
   ],
   imports: [
     CommonModule,

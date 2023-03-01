@@ -16,6 +16,7 @@ export class CommunityFormsListComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   newFormParentId;
   dataForms: IDataForm[];
+  isLoading = false;
   tableSettings: Settings = {
     actions: false,
     pager: {
@@ -46,6 +47,7 @@ export class CommunityFormsListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
+      this.isLoading = true;
       this.newFormParentId = this.activatedRoute.parent.snapshot.params['community_id'];
       this.getDataForms();
     });
@@ -54,6 +56,7 @@ export class CommunityFormsListComponent implements OnInit {
   getDataForms() {
     this.dataFormsService.getCommunityDataForms(this.newFormParentId).subscribe((data) => {
       this.dataForms = data.data_forms;
+      this.isLoading = false;
     });
   }
 }
