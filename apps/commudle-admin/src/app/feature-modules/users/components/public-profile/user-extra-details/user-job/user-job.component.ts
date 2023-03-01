@@ -58,6 +58,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   subscriptions: Subscription[] = [];
 
   @ViewChild('jobDialog', { static: true }) jobDialog: TemplateRef<any>;
+  @ViewChild('deleteJobDialog', { static: true }) deleteJobDialog: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,

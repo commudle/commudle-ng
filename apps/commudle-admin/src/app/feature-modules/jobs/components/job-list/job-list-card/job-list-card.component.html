@@ -7,21 +7,8 @@
 
       <div class="job-details salary" *ngIf="job.max_salary !== 0">
         <div>
-          <span class="com-rounded-lg com-inline-flex com-bg-rose-50 com-text-rose-700 com-ring-4 com-ring-white">
-            <svg
-              class="com-h-5 com-w-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <span class="icons com-bg-rose-50 com-text-rose-700">
+            <fa-icon [icon]="faMoneyBills"></fa-icon>
           </span>
         </div>
 
@@ -33,7 +20,11 @@
       </div>
 
       <div class="job-details company_name !com-items-baseline">
-        <fa-icon [icon]="faBuilding" class="com-px-1"></fa-icon>
+        <div>
+          <span class="icons com-bg-blue-50 com-text-blue-700">
+            <fa-icon [icon]="faBuilding"></fa-icon>
+          </span>
+        </div>
         <p class="com-text-justify">
           {{ job.company }}
         </p>
@@ -41,22 +32,8 @@
 
       <div class="job-details location_type">
         <div>
-          <span class="com-rounded-lg com-inline-flex com-bg-yellow-50 com-text-yellow-700 com-ring-4 com-ring-white">
-            <svg
-              class="com-h-5 com-w-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" />
-              <path
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <span class="icons com-bg-yellow-50 com-text-yellow-700">
+            <fa-icon [icon]="faLocationDot"></fa-icon>
           </span>
         </div>
         <div class="com-flex">
@@ -67,21 +44,8 @@
 
       <div class="job-details category">
         <div>
-          <span class="com-rounded-lg com-inline-flex com-bg-teal-50 com-text-teal-700 com-ring-4 com-ring-white">
-            <svg
-              class="com-h-5 com-w-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <span class="icons com-bg-teal-50 com-text-teal-700">
+            <fa-icon [icon]="faIdCard"></fa-icon>
           </span>
         </div>
         <p>{{ job.category | titlecase }}</p>
@@ -89,17 +53,8 @@
 
       <div class="job-details experience">
         <div>
-          <span class="com-rounded-lg com-inline-flex com-bg-purple-50 com-text-purple-700 com-ring-4 com-ring-white">
-            <svg
-              class="com-w-5 com-h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+          <span class="icons com-bg-purple-50 com-text-purple-700">
+            <fa-icon [icon]="faClock"></fa-icon>
           </span>
         </div>
         <p class="job-label" *ngIf="job.experience === 0">Fresher</p>
@@ -111,21 +66,8 @@
       <div class="md:com-flex com-items-center md:com-justify-between">
         <div class="job-details job-type">
           <div>
-            <span class="com-rounded-lg com-inline-flex com-bg-sky-50 com-text-sky-700 com-ring-4 com-ring-white">
-              <svg
-                class="com-w-5 com-h-5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+            <span class="icons com-bg-sky-50 com-text-sky-700">
+              <fa-icon [icon]="faSuitcase"></fa-icon>
             </span>
           </div>
           <p class="job-label">{{ job.job_type | enumFormat }}</p>
@@ -137,7 +79,7 @@
       <div>
         <div class="com-min-h-[40px]">
           <button
-            *ngIf="job.status === jobStatus.OPEN"
+            *ngIf="job.status === jobStatus.OPEN && applyButton"
             class="com-w-auto apply-button"
             nbButton
             shape="semi-round"
@@ -151,12 +93,95 @@
           </div>
         </div>
         <div class="com-flex md:com-justify-end com-my-3 md:com-m-0">
-          <p class="com-text-gray-500">{{ job.job_applications_count }} Applications</p>
+          <p *ngIf="applicationsCount" class="com-text-gray-500">{{ job.job_applications_count }} Applications</p>
         </div>
       </div>
       <div class="com-w-44">
-        <app-user-profile-card-medium [user]="job.user"></app-user-profile-card-medium>
+        <app-user-profile-card-medium *ngIf="userProfile" [user]="job.user"></app-user-profile-card-medium>
       </div>
     </div>
   </nb-card-body>
+  <nb-card-footer *ngIf="showAdminButtons">
+    <nb-actions>
+      <nb-action *ngIf="user?.id === currentUser?.id">
+        <button (click)="updateJob.emit()" ghost nbButton size="small" status="warning">
+          <fa-icon [icon]="faPencil" class="com-px-1 md:com-px-2"></fa-icon>
+          <ng-container *appBreakpoints="'>md'">Edit</ng-container>
+        </button>
+      </nb-action>
+      <nb-action>
+        <button (click)="copyTextToClipboard(job.id)" ghost nbButton size="small" status="primary">
+          <fa-icon [icon]="faShareAlt" class="com-px-1 md:com-px-2"></fa-icon>
+          <ng-container *appBreakpoints="'>md'">Share</ng-container>
+        </button>
+      </nb-action>
+      <nb-action *ngIf="user?.id === currentUser?.id">
+        <a
+          [routerLink]="['/jobs', job.id, 'applications']"
+          ghost
+          nbButton
+          size="small"
+          status="success"
+          class="com-p-0"
+        >
+          <fa-icon [icon]="faUsers" class="com-px-1 md:com-px-2"></fa-icon>
+          <ng-container *appBreakpoints="'>md'"
+            >All Received Applications
+            <span *ngIf="job.job_applications_count !== 0">({{ job.job_applications_count }})</span></ng-container
+          >
+        </a>
+      </nb-action>
+      <nb-action>
+        <a [routerLink]="['/jobs', job.id]" ghost nbButton size="small" status="info">
+          <fa-icon [icon]="faInfoCircle" class="com-px-1 md:com-px-2"></fa-icon>
+          <ng-container *appBreakpoints="'>md'">View Details</ng-container>
+        </a>
+      </nb-action>
+      <nb-action *ngIf="user?.id === currentUser?.id">
+        <button (click)="updateJobStatus()" ghost nbButton size="small" status="basic">
+          <ng-container *ngIf="job.status === jobStatus.OPEN">
+            <fa-icon [icon]="faEyeSlash" class="com-px-1 md:com-px-2"></fa-icon>
+            <ng-container *appBreakpoints="'>md'">Close Job</ng-container>
+          </ng-container>
+          <ng-container *ngIf="job.status === jobStatus.CLOSED">
+            <fa-icon [icon]="faEye" class="com-px-1 md:com-px-2"></fa-icon>
+            <ng-container *appBreakpoints="'>md'">Open Job</ng-container>
+          </ng-container>
+        </button>
+      </nb-action>
+      <nb-action *ngIf="user?.id === currentUser?.id">
+        <button (click)="onDialogOpen(deleteJobDialog)" ghost nbButton size="small" status="danger">
+          <fa-icon [icon]="faTrash" class="com-px-1 md:com-px-2"></fa-icon>
+          <ng-container *appBreakpoints="'>md'">Delete</ng-container>
+        </button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
 </nb-card>
+
+<ng-template #deleteJobDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure your want to delete
+        <strong> {{ job.position }} @ {{ job.company }} </strong>? <br />
+        All the received applications will be deleted permanently as well.
+      </p>
+      <br />
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="onDeleteJob(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
