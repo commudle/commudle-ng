@@ -48,7 +48,7 @@ export class UserProfileMenuService {
     badges: {
       name: 'Badges',
       icon: faAward,
-      active_color: 'com-text-Chrome-Yellow',
+      active_color: 'com-text-[#ffaa00]',
       link: 'badges',
       active: false,
     },
@@ -69,14 +69,14 @@ export class UserProfileMenuService {
     communities: {
       name: 'Communities',
       icon: faUsers,
-      active_color: 'com-text-Chrome-Yellow',
+      active_color: 'com-text-[#ffaa00]',
       link: 'communities',
       active: false,
     },
     labs: {
       name: 'Labs',
       icon: faBookOpen,
-      active_color: 'com-text-Infra-Red',
+      active_color: 'com-text-[#ff3d71]',
       link: 'labs',
       active: false,
     },
