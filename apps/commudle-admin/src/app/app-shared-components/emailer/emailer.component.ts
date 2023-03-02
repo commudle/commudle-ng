@@ -190,18 +190,6 @@ export class EmailerComponent implements OnInit {
         preformatted_email: true,
       },
       {
-        value: EemailTypes.REGISTERED,
-        display: 'Status: Registered',
-      },
-      {
-        value: EemailTypes.WAITING,
-        display: 'Status: Waiting',
-      },
-      {
-        value: EemailTypes.CANCELED,
-        display: 'Status: Canceled',
-      },
-      {
         value: EemailTypes.ATTENDED,
         display: 'All Who Attended',
       },
@@ -212,7 +200,7 @@ export class EmailerComponent implements OnInit {
       {
         value: EemailTypes.NO_SHOW,
         display: 'Invited But No Show',
-      }
+      },
     ],
   };
 
