@@ -7,6 +7,7 @@ import { IPost } from 'apps/shared-models/post.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { faChromecast } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-user-feed',
@@ -20,6 +21,8 @@ export class UserFeedComponent implements OnInit, OnChanges, OnDestroy {
   posts: IPost[];
 
   subscriptions: Subscription[] = [];
+
+  faChromecast = faChromecast;
 
   constructor(
     private appUsersService: AppUsersService,
