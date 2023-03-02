@@ -100,7 +100,7 @@
             </nb-tag-list>
           </td>
           <td class="com-w-[300px]">
-            <app-user-engagement-data [userResponse]="userRole" [communityId]="communityId"></app-user-engagement-data>
+            <app-user-engagement-data [user]="userRole.user" [communityId]="communityId"></app-user-engagement-data>
           </td>
           <td>
             <app-tag [tags]="userRole.user.speaker_events"></app-tag>

@@ -9,21 +9,19 @@ import { IUserCommunityEngagementData } from 'apps/shared-models/user_community_
   styleUrls: ['./user-engagement-data.component.scss'],
 })
 export class UserEngagementDataComponent implements OnInit {
-  @Input() userResponse;
+  @Input() user: IUser;
   @Input() communityId: number;
-  users: IUser;
   engagementData: IUserCommunityEngagementData;
 
   constructor(private userCommunityEngagementDataService: UserCommunityEngagementDataService) {}
 
   ngOnInit(): void {
-    this.users = this.userResponse.user;
-    this.getEngagementData(this.users);
+    this.getEngagementData();
   }
 
-  getEngagementData(user) {
+  getEngagementData() {
     this.userCommunityEngagementDataService
-      .getUserCommunityEngagementData(user.id, this.communityId)
+      .getUserCommunityEngagementData(this.user.id, this.communityId)
       .subscribe((data: IUserCommunityEngagementData) => {
         this.engagementData = data;
       });
