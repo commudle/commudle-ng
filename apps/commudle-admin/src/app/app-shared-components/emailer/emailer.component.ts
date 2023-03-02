@@ -186,9 +186,33 @@ export class EmailerComponent implements OnInit {
     communication: [
       {
         value: EemailTypes.SEND_LINK,
-        display: 'Send Link To Those Who Filled Any Form For Selected Event ((Pre-formatted email)',
+        display: 'Send Form Link To All Members (Pre-formatted email)',
         preformatted_email: true,
       },
+      {
+        value: EemailTypes.REGISTERED,
+        display: 'Status: Registered',
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: 'Status: Waiting',
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: 'Status: Canceled',
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: 'All Who Attended',
+      },
+      {
+        value: EemailTypes.UNINVITED,
+        display: 'Uninvited Attendees',
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: 'Invited But No Show',
+      }
     ],
   };
 
