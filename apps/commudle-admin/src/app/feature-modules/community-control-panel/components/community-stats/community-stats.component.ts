@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { StatsCommunitiesService } from 'apps/commudle-admin/src/app/services/stats/stats-communities.service';
 import { Subscription } from 'rxjs';
-import { IEventAttendees } from 'apps/shared-models/event-attendees';
+
 @Component({
   selector: 'app-community-stats',
   templateUrl: './community-stats.component.html',
@@ -16,10 +16,10 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   totalEvents;
   totalContentCreators;
-  eventAttendees: IEventAttendees;
+  eventAttendees;
   tagsDistribution;
-  speakerCount: number;
   membersWorkExperience;
+  speakers;
 
   constructor(private statsCommunitiesService: StatsCommunitiesService, private activatedRoute: ActivatedRoute) {}
 
@@ -43,6 +43,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
 
   getMembersDistribution() {
     this.statsCommunitiesService.membersDistribution(this.community.slug).subscribe((data) => {
+      console.log(data);
       const chartData = data.chart_data;
       return new Chart('chart-member-distibution', {
         type: 'pie',
@@ -165,14 +166,13 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
 
   getSpeakersDistribution() {
     this.statsCommunitiesService.speakersDistribution(this.community.id).subscribe((data) => {
-      const chartData = data.chart_data;
-      this.speakerCount = chartData.male + chartData.female + chartData.prefer_not_to_answer + chartData.na;
+      this.speakers = data.chart_data;
       return new Chart('speaker-distribution', {
         type: 'pie',
         data: {
           datasets: [
             {
-              data: [chartData.male, chartData.female, chartData.prefer_not_to_answer + chartData.na],
+              data: [this.speakers.male, this.speakers.female, this.speakers.prefer_not_to_answer + this.speakers.na],
               backgroundColor: ['blue', '#ff43bc', 'purple'],
             },
           ],
@@ -198,7 +198,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getEventAttendanceStats() {
     this.subscriptions.push(
       this.statsCommunitiesService.eventAttendanceStats(this.community.slug).subscribe((data) => {
-        this.eventAttendees = data.chart_data.event_attendees;
+        this.eventAttendees = data.chart_data;
       }),
     );
   }
@@ -206,7 +206,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
   getPopularProfileSkillTags() {
     this.subscriptions.push(
       this.statsCommunitiesService.popularProfileSkillTags(this.community.slug).subscribe((data) => {
-        this.tagsDistribution = data.chart_data.tags_distribution;
+        this.tagsDistribution = data.chart_data;
       }),
     );
   }

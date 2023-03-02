@@ -52,12 +52,12 @@
               </div>
 
               <div *ngIf="tagsDistribution" class="tag-section">
-                <p>Popular Skills Tags ({{ tagsDistribution.total }})</p>
+                <p>Popular Skills Tags ({{ tagsDistribution.tags_distribution.total }})</p>
                 <nb-tag-list>
                   <nb-tag
                     status="info"
                     appearance="outline"
-                    *ngFor="let tag of tagsDistribution.top"
+                    *ngFor="let tag of tagsDistribution.tags_distribution.top"
                     text="{{ tag[0] }} ({{ tag[1] }})"
                     [removable]="false"
                   ></nb-tag>
@@ -79,15 +79,15 @@
               <table>
                 <tr>
                   <td>Total Attendees</td>
-                  <td>{{ eventAttendees.total }}</td>
+                  <td>{{ eventAttendees.event_attendees.total }}</td>
                 </tr>
                 <tr>
                   <td>Total Unique Attendees</td>
-                  <td>{{ eventAttendees.total_unique }}</td>
+                  <td>{{ eventAttendees.event_attendees.total_unique }}</td>
                 </tr>
                 <tr>
                   <td>Average Attendance Rate</td>
-                  <td>{{ eventAttendees.avg_attendance_rate }}%</td>
+                  <td>{{ eventAttendees.event_attendees.avg_attendance_rate }}%</td>
                 </tr>
               </table>
             </div>
@@ -107,9 +107,9 @@
         </nb-card-header>
         <nb-card-body>
           <section class="first-section">
-            <div class="count" *ngIf="speakerCount">
+            <div class="count" *ngIf="speakers">
               <p>
-                {{ speakerCount }}
+                {{ speakers.male + speakers.female + speakers.prefer_not_to_answer + speakers.na }}
                 <br />
                 Total Speakers
               </p>

@@ -5,7 +5,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IPolls } from 'apps/shared-models/polls.model';
-
+import { IStat } from 'apps/shared-models/stats/stat.model';
+import { IMembers } from 'apps/shared-models/stats/members.model';
+import { ISpeakers } from 'apps/shared-models/stats/speaker.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -44,13 +46,17 @@ export class StatsEventsService {
     return this.http.get<IPolls>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.POLLS), { params });
   }
 
-  speakers(eventId): Observable<any> {
+  speakers(eventId): Observable<IStat<ISpeakers>> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.SPEAKERS), { params });
+    return this.http.get<IStat<ISpeakers>>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.SPEAKERS), {
+      params,
+    });
   }
 
-  memberStats(eventId): Observable<any> {
+  memberStats(eventId): Observable<IStat<IMembers>> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.MEMBER_STATS), { params });
+    return this.http.get<IStat<IMembers>>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.MEMBER_STATS), {
+      params,
+    });
   }
 }

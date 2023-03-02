@@ -247,13 +247,16 @@ export class EventStatsComponent implements OnInit {
   getMemberStats() {
     this.statsEventsService.memberStats(this.event.id).subscribe((data) => {
       this.members = data.chart_data;
-      const chartData = data.chart_data.diversity;
       return new Chart('member', {
         type: 'pie',
         data: {
           datasets: [
             {
-              data: [chartData.male, chartData.female, chartData.prefer_not_to_answer + chartData.NA],
+              data: [
+                this.members.diversity.male,
+                this.members.diversity.female,
+                this.members.diversity.prefer_not_to_answer + this.members.diversity.NA,
+              ],
               backgroundColor: ['blue', '#ff43bc', 'purple'],
             },
           ],
