@@ -117,6 +117,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+
   openJobDialogBox() {
     setTimeout(() => {
       this.onOpenDialog(this.jobDialog); //
