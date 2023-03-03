@@ -33,6 +33,7 @@ export class VolunteersComponent implements OnInit {
       user_role_name: [EUserRoles.EVENT_VOLUNTEER, Validators.required],
       parent_type: ['Event', Validators.required],
       parent_id: [0, Validators.required],
+      role_designation: ['', Validators.required],
     });
   }
 

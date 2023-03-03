@@ -1,12 +1,10 @@
 .user-roles-user-form {
-  display: flex;
-  flex-wrap: wrap;
-
   > div {
     margin-right: 1rem;
   }
 
-  .save-button-bottom {
+  .save-button-bottom,
+  .designation {
     margin-top: 18px;
   }
 }

@@ -48,16 +48,25 @@
         </span>
       </div>
 
+      <div class="designation">
+        <label fullWidth>
+          Designation*
+          <input
+            fieldSize="medium"
+            formControlName="role_designation"
+            fullWidth
+            nbInput
+            placeholder="Role Designation"
+            type="text"
+          />
+        </label>
+        <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+
       <div class="save-button-bottom">
-        <button
-          [disabled]="!userRolesUserForm.valid"
-          fullWidth
-          nbButton
-          outline
-          size="tiny"
-          status="primary"
-          type="submit"
-        >
+        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
           Save
         </button>
       </div>
