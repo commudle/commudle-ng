@@ -9,6 +9,7 @@ import { SafePipe } from './safe.pipe';
 import { SearchByPipe } from './search-by.pipe';
 import { TextToLinksPipe } from './text-to-links.pipe';
 import { TruncateTextPipe } from './truncate-text.pipe';
+import { CapitalizeAndRemoveUnderscorePipe } from './capitalize-and-remove-underscore.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     OrderByPipe,
     SafePipe,
     EnumFormatPipe,
+    CapitalizeAndRemoveUnderscorePipe,
   ],
   imports: [],
   exports: [
@@ -35,6 +37,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     OrderByPipe,
     SafePipe,
     EnumFormatPipe,
+    CapitalizeAndRemoveUnderscorePipe,
   ],
 })
 export class SharedPipesModule {}

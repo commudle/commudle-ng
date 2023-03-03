@@ -18,13 +18,17 @@
     </button>
     <ng-container *ngIf="jobs.length > 0">
       <div class="com-grid com-grid-cols-1 com-gap-2">
-        <app-user-job-card
-          (deleteJob)="onDeleteJob($event)"
-          (updateJob)="onOpenEditJobDialog(jobDialog, job)"
+        <app-job-list-card
           *ngFor="let job of jobs"
           [job]="job"
           [user]="user"
-        ></app-user-job-card>
+          [applyButton]="false"
+          [applicationsCount]="false"
+          [showAdminButtons]="true"
+          [userProfile]="false"
+          (deleteJob)="onDeleteJob($event)"
+          (updateJob)="onOpenEditJobDialog(jobDialog, job)"
+        ></app-job-list-card>
       </div>
       <button (click)="getJobs()" *ngIf="page_info?.has_next_page" [nbSpinner]="isLoading" fullWidth ghost nbButton>
         Load More Jobs

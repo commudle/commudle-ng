@@ -59,8 +59,8 @@ import { UserWorkHistoryCardComponent } from './components/public-profile/user-e
 import { UserWorkHistoryComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
-import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
 import { UsersRoutingModule } from './users-routing.module';
+import { JobsModule } from '../jobs/jobs.module';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,6 @@ import { UsersRoutingModule } from './users-routing.module';
     UserBasicSocialComponent,
     EditUserProfileComponent,
     EmailPreferencesComponent,
-    CapitalizeAndRemoveUnderscorePipe,
     UsernameComponent,
     BasicInfoComponent,
     SocialLinksComponent,
@@ -109,6 +108,7 @@ import { UsersRoutingModule } from './users-routing.module';
     SharedDirectivesModule,
     MiniUserProfileModule,
     SharedComponentsModule,
+    JobsModule,
 
     // Nebular
     NbCardModule,
@@ -129,13 +129,7 @@ import { UsersRoutingModule } from './users-routing.module';
     NbToggleModule,
     NbSelectModule,
   ],
-  exports: [
-    BasicUserProfileComponent,
-    UsernameComponent,
-    BasicInfoComponent,
-    SocialLinksComponent,
-    CapitalizeAndRemoveUnderscorePipe,
-  ],
+  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
   providers: [UserProfileMenuService],
 })
 export class UsersModule {}
