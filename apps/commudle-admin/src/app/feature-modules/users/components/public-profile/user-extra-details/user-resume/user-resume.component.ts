@@ -70,9 +70,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
-    if (changes.user) {
-      this.userProfileMenuService.addMenuItem('resume', false);
-      if (this.user?.id === this.currentUser?.id) this.getUserResumes();
+    if (changes.user && this.user?.id === this.currentUser?.id) {
+      this.getUserResumes();
     }
   }
 
