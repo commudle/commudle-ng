@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
@@ -38,14 +28,12 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
   templateUrl: './user-job.component.html',
   styleUrls: ['./user-job.component.scss'],
 })
-export class UserJobComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   options: any = {
     componentRestrictions: { country: 'IN' },
   };
-
-  @ViewChild('placesRef') placesRef!: GooglePlaceDirective;
 
   currentUser: ICurrentUser;
 
@@ -134,10 +122,6 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy, AfterView
         }, 500);
       }
     });
-  }
-  ngAfterViewInit() {
-    this.placesRef.options.componentRestrictions = { country: 'SG' };
-    this.placesRef.options.fields = ['formatted_address', 'geometry', 'place_id'];
   }
 
   openJobDialogBox() {
@@ -289,7 +273,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   handleAddressChange(address: Address) {
-    console.log(address.formatted_address);
+    // console.log(address.formatted_address);
     // console.log(address.geometry.location.lat())
     // console.log(address.geometry.location.lng())
   }
