@@ -10,8 +10,10 @@
 }
 
 .volunteers {
-  display: flex;
-  flex-wrap: wrap;
+  .heading_role_designation {
+    font-weight: 500;
+  }
+
   .user-profile {
     border: 0.5px solid lightgrey;
     padding: 5px;

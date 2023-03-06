@@ -1,18 +1,23 @@
 <div>
   <div *ngIf="volunteers.length > 0">
     <div class="volunteers">
-      <div *ngFor="let org of volunteers; let i = index" class="user-profile">
-        <div class="user-details com-w-3/4">
+      <div *ngFor="let group of groupedVolunteers | keyvalue">
+        <p class="heading_role_designation">{{ group.key }}</p>
+        <div *ngFor="let org of group.value; let i = index" class="user-profile">
           <app-user-profile-horizontal [socialMediaLinks]="true" [user]="org.user"></app-user-profile-horizontal>
-        </div>
-        <div class="actions">
-          <a (click)="resendInvitationMail(org)" *ngIf="org.status === EUserRolesUserStatus.INVITED" class="clickable">
-            <small>Resend Invite</small>
-          </a>
-          <br />
-          <a (click)="remove(org, i)" class="clickable">
-            <small>Remove</small>
-          </a>
+          <div class="actions">
+            <a
+              (click)="resendInvitationMail(org)"
+              *ngIf="org.status === EUserRolesUserStatus.INVITED"
+              class="clickable"
+            >
+              <small>Resend Invite</small>
+            </a>
+            <br />
+            <a (click)="remove(org, i)" class="clickable">
+              <small>Remove</small>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
@@ -20,6 +20,7 @@ export class VolunteersComponent implements OnInit {
 
   volunteers: IUserRolesUser[] = [];
 
+  groupedVolunteers: object;
   userRolesUserForm;
 
   constructor(
@@ -48,6 +49,7 @@ export class VolunteersComponent implements OnInit {
     this.userRolesUsersService.getEventVolunteers(this.event.slug).subscribe((data) => {
       this.volunteers = data.user_roles_users;
       this.changeDetectorRef.markForCheck();
+      this.groupedVolunteers = _.groupBy(this.volunteers, 'role_designation');
     });
   }
 
