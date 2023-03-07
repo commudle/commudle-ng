@@ -1,4 +1,65 @@
 <div>
+  <div *ngIf="event.editable" class="com-mb-6">
+    <h6>Add a Volunteer</h6>
+    <p>
+      <small> *Volunteers can only access the attendance page (which is applicable only for offline events) </small>
+    </p>
+    <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
+      <div class="com-flex com-mt-4">
+        <label fullWidth>
+          Email*
+          <input
+            fieldSize="small"
+            formControlName="email"
+            nbInput
+            placeholder="Google/Gmail Email"
+            type="email"
+            fullWidth
+          />
+        </label>
+        <span
+          *ngIf="
+            userRolesUserForm['controls'].email.touched &&
+            userRolesUserForm['controls'].email.invalid &&
+            userRolesUserForm['controls'].email.errors.required
+          "
+          class="validation-error-text"
+        >
+          Required Field
+        </span>
+      </div>
+
+      <div class="designation">
+        <label fullWidth>
+          Designation*
+          <input
+            fieldSize="small"
+            formControlName="role_designation"
+            nbInput
+            placeholder="Role Designation"
+            type="text"
+            [nbAutocomplete]="autoComplete"
+            fullWidth
+            [(ngModel)]="inputValue"
+            (input)="getAutocomplete(inputValue)"
+          />
+        </label>
+        <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+
+      <nb-autocomplete #autoComplete optionsListClass="search-autocomplete">
+        <nb-option *ngFor="let group of groupedVolunteers | keyvalue" [value]="">{{ group.key }}</nb-option>
+      </nb-autocomplete>
+
+      <div class="save-button-bottom">
+        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
   <div *ngIf="volunteers.length > 0">
     <div class="volunteers">
       <div *ngFor="let group of groupedVolunteers | keyvalue">
@@ -21,60 +82,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div *ngIf="event.editable">
-    <h6>Add a Volunteer</h6>
-    <p>
-      <small> *Volunteers can only access the attendance page (which is applicable only for offline events) </small>
-    </p>
-    <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
-      <div>
-        <label fullWidth>
-          Email*
-          <input
-            fieldSize="tiny"
-            formControlName="email"
-            fullWidth
-            nbInput
-            placeholder="Google/Gmail Email"
-            type="email"
-          />
-        </label>
-        <span
-          *ngIf="
-            userRolesUserForm['controls'].email.touched &&
-            userRolesUserForm['controls'].email.invalid &&
-            userRolesUserForm['controls'].email.errors.required
-          "
-          class="validation-error-text"
-        >
-          Required Field
-        </span>
-      </div>
-
-      <div class="designation">
-        <label fullWidth>
-          Designation*
-          <input
-            fieldSize="medium"
-            formControlName="role_designation"
-            fullWidth
-            nbInput
-            placeholder="Role Designation"
-            type="text"
-          />
-        </label>
-        <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
-          Required Field
-        </span>
-      </div>
-
-      <div class="save-button-bottom">
-        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
-          Save
-        </button>
-      </div>
-    </form>
   </div>
 </div>

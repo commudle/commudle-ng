@@ -14,6 +14,8 @@ import * as _ from 'lodash';
 })
 export class VolunteersComponent implements OnInit {
   @Input() event: IEvent;
+  inputValue: string;
+  autoComplete: object;
 
   EUserRolesUserStatus = EUserRolesUserStatus;
   EUserRoles = EUserRoles;
@@ -50,6 +52,13 @@ export class VolunteersComponent implements OnInit {
       this.volunteers = data.user_roles_users;
       this.changeDetectorRef.markForCheck();
       this.groupedVolunteers = _.groupBy(this.volunteers, 'role_designation');
+    });
+  }
+
+  getAutocomplete(inputValue: string) {
+    this.userRolesUsersService.autocompleteRoleDesignation(inputValue).subscribe((data) => {
+      console.log(data);
+      this.autoComplete = data;
     });
   }
 

@@ -29,6 +29,14 @@ export class UserRolesUsersService {
     );
   }
 
+  autocompleteRoleDesignation(query: string): Observable<any> {
+    const params = new HttpParams().set('query', query);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.AUTOCOMPLETE_ROLE_DESIGNATION),
+      { params },
+    );
+  }
+
   getCommunityGroupLeaders(communityGroupId): Observable<IUserRolesUsers> {
     const params = new HttpParams().set('community_group_id', communityGroupId);
     return this.http.get<IUserRolesUsers>(
