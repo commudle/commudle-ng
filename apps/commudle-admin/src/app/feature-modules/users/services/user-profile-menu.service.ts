@@ -13,7 +13,7 @@ import {
   faLightbulb,
   faAward,
 } from '@fortawesome/free-solid-svg-icons';
-import { faChromecast } from '@fortawesome/free-brands-svg-icons';
+// import { faChromecast } from '@fortawesome/free-brands-svg-icons';
 
 export type MenuItemNames =
   | 'about'
@@ -25,8 +25,8 @@ export type MenuItemNames =
   | 'jobs'
   | 'resume'
   | 'workHistory'
-  | 'content'
-  | 'feed';
+  | 'content';
+// | 'feed';
 
 export type UserProfileMenuItems = Record<
   MenuItemNames,
@@ -108,13 +108,13 @@ export class UserProfileMenuService {
       link: 'content',
       active: false,
     },
-    feed: {
-      name: 'Feed',
-      icon: faChromecast,
-      active_color: 'com-text-primary-500',
-      link: 'feed',
-      active: false,
-    },
+    // feed: {
+    //   name: 'Feed',
+    //   icon: faChromecast,
+    //   active_color: 'com-text-primary-500',
+    //   link: 'feed',
+    //   active: false,
+    // },
   };
 
   private activeMenuItems = new BehaviorSubject<UserProfileMenuItems>(this.userProfileMenuItems);

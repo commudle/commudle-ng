@@ -1,6 +1,6 @@
 <nb-card *ngIf="(user?.is_expert && currentUser?.id === user.id) || posts?.length > 0" class="user-feed" id="feed">
   <nb-card-header>
-    <fa-icon [icon]="faChromecast" class="com-text-Azure"></fa-icon>
+    <nb-icon icon="cast" status="primary"></nb-icon>
     Feed
   </nb-card-header>
   <nb-card-body>
