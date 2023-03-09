@@ -32,8 +32,13 @@ export interface IUser {
   is_employee: boolean;
   is_employer: boolean;
   profile_completed: boolean;
+  user_roles_users?: UserRolesUsers;
 }
 
 export interface IUserSearch extends IUser {
   type: string;
+}
+
+export interface UserRolesUsers {
+  role_designation: string;
 }

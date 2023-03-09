@@ -5,7 +5,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-
+import { debounceTime, map, Observable, switchMap } from 'rxjs';
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
@@ -14,6 +14,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class VolunteersComponent implements OnInit {
   @Input() event: IEvent;
+  inputValue: string;
 
   EUserRolesUserStatus = EUserRolesUserStatus;
   EUserRoles = EUserRoles;
@@ -21,6 +22,7 @@ export class VolunteersComponent implements OnInit {
   volunteers: IUserRolesUser[] = [];
 
   userRolesUserForm;
+  roleDesignations: Observable<string[]>;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -33,10 +35,19 @@ export class VolunteersComponent implements OnInit {
       user_role_name: [EUserRoles.EVENT_VOLUNTEER, Validators.required],
       parent_type: ['Event', Validators.required],
       parent_id: [0, Validators.required],
+      role_designation: ['', Validators.required],
     });
   }
 
   ngOnInit() {
+    this.roleDesignations = this.userRolesUserForm.get('role_designation').valueChanges.pipe(
+      debounceTime(500),
+      switchMap((values: string) =>
+        this.userRolesUsersService.autocompleteRoleDesignation(values, this.event.kommunity_id),
+      ),
+      map((value: any) => value.role_designations),
+    );
+
     this.getVolunteers();
     this.userRolesUserForm.patchValue({
       parent_id: this.event.id,
@@ -48,6 +59,10 @@ export class VolunteersComponent implements OnInit {
       this.volunteers = data.user_roles_users;
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  onSelectionChange(value): void {
+    this.userRolesUserForm.get('role_designation').setValue(value);
   }
 
   resendInvitationMail(userRolesUser) {

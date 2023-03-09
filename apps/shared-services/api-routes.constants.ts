@@ -373,6 +373,7 @@ export const API_ROUTES = {
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
+    ROLE_DESIGNATIONS: 'api/v2/user_roles_users/role_designations',
 
     COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
     REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
