@@ -6,7 +6,6 @@
   .save-button-bottom,
   .designation {
     margin-top: 18px;
-    display: flex;
   }
 }
 
@@ -22,7 +21,7 @@
     display: flex;
 
     margin: 1rem;
-    @apply com-w-full  md:com-w-80;
+    @apply com-w-full  md:com-w-96;
     @media screen and (min-width: 1000px) {
       align-items: center;
       justify-content: space-between;
@@ -37,4 +36,13 @@ h6 {
 
 p {
   margin: 0;
+}
+
+table {
+  @apply com-border-collapse com-w-3/5;
+}
+
+td,
+th {
+  @apply com-border com-border-solid com-border-gray-300 com-text-left com-p-2;
 }

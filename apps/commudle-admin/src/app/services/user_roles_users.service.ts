@@ -29,10 +29,10 @@ export class UserRolesUsersService {
     );
   }
 
-  autocompleteRoleDesignation(query: string): Observable<any> {
-    const params = new HttpParams().set('query', query);
+  autocompleteRoleDesignation(query: string, community_id: number): Observable<any> {
+    const params = new HttpParams().set('query', query).set('community_id', community_id);
     return this.http.get<IUserRolesUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.AUTOCOMPLETE_ROLE_DESIGNATION),
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ROLE_DESIGNATIONS),
       { params },
     );
   }
