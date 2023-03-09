@@ -5,7 +5,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import * as _ from 'lodash';
+import { debounceTime, map, Observable, switchMap } from 'rxjs';
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
@@ -15,15 +15,14 @@ import * as _ from 'lodash';
 export class VolunteersComponent implements OnInit {
   @Input() event: IEvent;
   inputValue: string;
-  autoComplete: object;
 
   EUserRolesUserStatus = EUserRolesUserStatus;
   EUserRoles = EUserRoles;
 
   volunteers: IUserRolesUser[] = [];
 
-  groupedVolunteers: object;
   userRolesUserForm;
+  roleDesignations: Observable<string[]>;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -41,6 +40,14 @@ export class VolunteersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.roleDesignations = this.userRolesUserForm.get('role_designation').valueChanges.pipe(
+      debounceTime(500),
+      switchMap((values: string) =>
+        this.userRolesUsersService.autocompleteRoleDesignation(values, this.event.kommunity_id),
+      ),
+      map((value: any) => value.role_designations),
+    );
+
     this.getVolunteers();
     this.userRolesUserForm.patchValue({
       parent_id: this.event.id,
@@ -51,15 +58,11 @@ export class VolunteersComponent implements OnInit {
     this.userRolesUsersService.getEventVolunteers(this.event.slug).subscribe((data) => {
       this.volunteers = data.user_roles_users;
       this.changeDetectorRef.markForCheck();
-      this.groupedVolunteers = _.groupBy(this.volunteers, 'role_designation');
     });
   }
 
-  getAutocomplete(inputValue: string) {
-    this.userRolesUsersService.autocompleteRoleDesignation(inputValue).subscribe((data) => {
-      console.log(data);
-      this.autoComplete = data;
-    });
+  onSelectionChange(value): void {
+    this.userRolesUserForm.get('role_designation').setValue(value);
   }
 
   resendInvitationMail(userRolesUser) {

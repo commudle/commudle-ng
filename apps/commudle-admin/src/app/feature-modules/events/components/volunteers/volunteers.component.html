@@ -5,18 +5,13 @@
       <small> *Volunteers can only access the attendance page (which is applicable only for offline events) </small>
     </p>
     <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
-      <div class="com-flex com-mt-4">
-        <label fullWidth>
+      <div>
+        <label>
           Email*
-          <input
-            fieldSize="small"
-            formControlName="email"
-            nbInput
-            placeholder="Google/Gmail Email"
-            type="email"
-            fullWidth
-          />
+          <br />
+          <input fieldSize="small" formControlName="email" nbInput placeholder="Google/Gmail Email" type="email" />
         </label>
+        <br />
         <span
           *ngIf="
             userRolesUserForm['controls'].email.touched &&
@@ -30,8 +25,9 @@
       </div>
 
       <div class="designation">
-        <label fullWidth>
+        <label>
           Designation*
+          <br />
           <input
             fieldSize="small"
             formControlName="role_designation"
@@ -39,18 +35,17 @@
             placeholder="Role Designation"
             type="text"
             [nbAutocomplete]="autoComplete"
-            fullWidth
-            [(ngModel)]="inputValue"
-            (input)="getAutocomplete(inputValue)"
           />
         </label>
+        <br />
         <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
           Required Field
         </span>
       </div>
-
-      <nb-autocomplete #autoComplete optionsListClass="search-autocomplete">
-        <nb-option *ngFor="let group of groupedVolunteers | keyvalue" [value]="">{{ group.key }}</nb-option>
+      <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">
+        <nb-option *ngFor="let roleDesignation of roleDesignations | async" [value]="roleDesignation">{{
+          roleDesignation
+        }}</nb-option>
       </nb-autocomplete>
 
       <div class="save-button-bottom">
@@ -62,25 +57,36 @@
   </div>
   <div *ngIf="volunteers.length > 0">
     <div class="volunteers">
-      <div *ngFor="let group of groupedVolunteers | keyvalue">
-        <p class="heading_role_designation">{{ group.key }}</p>
-        <div *ngFor="let org of group.value; let i = index" class="user-profile">
-          <app-user-profile-horizontal [socialMediaLinks]="true" [user]="org.user"></app-user-profile-horizontal>
-          <div class="actions">
-            <a
-              (click)="resendInvitationMail(org)"
-              *ngIf="org.status === EUserRolesUserStatus.INVITED"
-              class="clickable"
-            >
-              <small>Resend Invite</small>
-            </a>
-            <br />
-            <a (click)="remove(org, i)" class="clickable">
-              <small>Remove</small>
-            </a>
-          </div>
-        </div>
-      </div>
+      <table>
+        <tr>
+          <th>Users</th>
+          <th>Designation</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let org of volunteers; let i = index">
+          <td>
+            <app-user-profile-card-medium [user]="org.user"></app-user-profile-card-medium>
+          </td>
+          <td>
+            {{ org.role_designation }}
+          </td>
+          <td>
+            <div class="actions">
+              <a
+                (click)="resendInvitationMail(org)"
+                *ngIf="org.status === EUserRolesUserStatus.INVITED"
+                class="clickable"
+              >
+                <small>Resend Invite</small>
+              </a>
+              <br />
+              <a (click)="remove(org, i)" class="clickable">
+                <small>Remove</small>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
