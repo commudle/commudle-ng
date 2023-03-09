@@ -5,7 +5,10 @@
       Team
     </h6>
   </nb-card-header>
-  <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }" class="com-flex">
+  <nb-card-body
+    [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }"
+    class="com-flex com-flex-wrap"
+  >
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
     <div class="volunteers" *ngFor="let user of volunteers">
