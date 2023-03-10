@@ -121,6 +121,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+
   openJobDialogBox() {
     setTimeout(() => {
       this.onOpenDialog(this.jobDialog); //
@@ -131,6 +132,10 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
     if (changes.user) {
+      this.jobs = [];
+      if (this.page_info) {
+        this.page_info.end_cursor = '';
+      }
       this.getJobs();
     }
     this.userProfileManagerService.user$.subscribe((data) => {
