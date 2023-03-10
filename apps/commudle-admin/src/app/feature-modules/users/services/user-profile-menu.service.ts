@@ -1,6 +1,19 @@
 import { Injectable } from '@angular/core';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { BehaviorSubject } from 'rxjs';
+import {
+  faExclamationCircle,
+  faCalendar,
+  faUsers,
+  faBookOpen,
+  faBriefcase,
+  faBuilding,
+  faFileText,
+  faClipboard,
+  faLightbulb,
+  faAward,
+} from '@fortawesome/free-solid-svg-icons';
+// import { faChromecast } from '@fortawesome/free-brands-svg-icons';
 
 export type MenuItemNames =
   | 'about'
@@ -12,12 +25,12 @@ export type MenuItemNames =
   | 'jobs'
   | 'resume'
   | 'workHistory'
-  | 'content'
-  | 'feed';
+  | 'content';
+// | 'feed';
 
 export type UserProfileMenuItems = Record<
   MenuItemNames,
-  { name: string; icon: string; icon_status: string; link: string; active: boolean }
+  { name: string; icon: any; active_color: string; link: string; active: boolean }
 >;
 
 @Injectable({
@@ -27,87 +40,87 @@ export class UserProfileMenuService {
   userProfileMenuItems: UserProfileMenuItems = {
     about: {
       name: 'About',
-      icon: 'alert-circle',
-      icon_status: 'primary',
+      icon: faExclamationCircle,
+      active_color: 'com-text-primary-500',
       link: 'about',
       active: false,
     },
     badges: {
       name: 'Badges',
-      icon: 'award',
-      icon_status: 'warning',
+      icon: faAward,
+      active_color: 'com-text-Chrome-Yellow',
       link: 'badges',
       active: false,
     },
     builds: {
       name: 'Builds',
-      icon: 'bulb',
-      icon_status: 'success',
+      icon: faLightbulb,
+      active_color: 'com-text-Caribbean-Green',
       link: 'builds',
       active: false,
     },
     talksAtEvents: {
       name: 'Talks at Events',
-      icon: 'calendar',
-      icon_status: 'info',
+      icon: faCalendar,
+      active_color: 'com-text-Azure',
       link: 'talks-at-events',
       active: false,
     },
     communities: {
       name: 'Communities',
-      icon: 'people',
-      icon_status: 'warning',
+      icon: faUsers,
+      active_color: 'com-text-Chrome-Yellow',
       link: 'communities',
       active: false,
     },
     labs: {
       name: 'Labs',
-      icon: 'book-open',
-      icon_status: 'danger',
+      icon: faBookOpen,
+      active_color: 'com-text-Infra-Red',
       link: 'labs',
       active: false,
     },
     jobs: {
       name: 'Jobs',
-      icon: 'briefcase',
-      icon_status: 'primary',
+      icon: faBriefcase,
+      active_color: 'com-text-primary-500',
       link: 'jobs',
       active: false,
     },
     resume: {
       name: 'Resume',
-      icon: 'clipboard',
-      icon_status: 'info',
+      icon: faClipboard,
+      active_color: 'com-text-Azure',
       link: 'resume',
       active: false,
     },
     workHistory: {
       name: 'Work History',
-      icon: 'briefcase',
-      icon_status: 'success',
+      icon: faBuilding,
+      active_color: 'com-text-Caribbean-Green',
       link: 'work-history',
       active: false,
     },
     content: {
       name: 'Content',
-      icon: 'file-text',
-      icon_status: 'info',
+      icon: faFileText,
+      active_color: 'com-text-Azure',
       link: 'content',
       active: false,
     },
-    feed: {
-      name: 'Feed',
-      icon: 'cast',
-      icon_status: 'primary',
-      link: 'feed',
-      active: false,
-    },
+    // feed: {
+    //   name: 'Feed',
+    //   icon: faChromecast,
+    //   active_color: 'com-text-primary-500',
+    //   link: 'feed',
+    //   active: false,
+    // },
   };
 
   private activeMenuItems = new BehaviorSubject<UserProfileMenuItems>(this.userProfileMenuItems);
   public activeMenuItems$ = this.activeMenuItems.asObservable();
 
-  hiring: boolean = false;
+  hiring = false;
   constructor(private userProfileManagerService: UserProfileManagerService) {}
 
   addMenuItem(item: MenuItemNames, value: boolean) {

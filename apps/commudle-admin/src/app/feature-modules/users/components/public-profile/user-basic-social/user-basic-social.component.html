@@ -1,13 +1,13 @@
 <nb-card class="user-basic-social-container" id="about">
   <nb-card-header>
-    <nb-icon icon="alert-circle" status="primary"></nb-icon>
+    <fa-icon [icon]="faExclamationCircle" class="com-text-primary-500"></fa-icon>
     About
   </nb-card-header>
   <nb-card-body>
     <div *ngIf="user.about_me" class="about">
       <span *ngIf="showFullAbout; else showLess">{{ user.about_me }}</span>
       <ng-template #showLess>
-        <span>{{ user.about_me | truncatetext: 350 }}</span>
+        <span>{{ user.about_me | truncatetext : 350 }}</span>
       </ng-template>
       &nbsp;
       <a (click)="showFullAbout = !showFullAbout" *ngIf="user.about_me.length > 350" class="clickable">
@@ -18,31 +18,31 @@
       <a *ngIf="isValid(user.personal_website)" href="{{ user.personal_website | completeurl }}" target="_blank">
         <nb-icon icon="globe" status="primary"></nb-icon>
       </a>
-      <a *ngIf="isValid(user.linkedin)" href="{{ user.linkedin | completeurl: 'linkedin' }}" target="_blank">
+      <a *ngIf="isValid(user.linkedin)" href="{{ user.linkedin | completeurl : 'linkedin' }}" target="_blank">
         <nb-icon icon="linkedin" status="primary"></nb-icon>
       </a>
-      <a *ngIf="isValid(user.twitter)" href="{{ user.twitter | completeurl: 'twitter' }}" target="_blank">
+      <a *ngIf="isValid(user.twitter)" href="{{ user.twitter | completeurl : 'twitter' }}" target="_blank">
         <nb-icon icon="twitter" status="primary"></nb-icon>
       </a>
-      <a *ngIf="isValid(user.github)" href="{{ user.github | completeurl: 'github' }}" target="_blank">
+      <a *ngIf="isValid(user.github)" href="{{ user.github | completeurl : 'github' }}" target="_blank">
         <nb-icon icon="github" status="primary"></nb-icon>
       </a>
-      <a *ngIf="isValid(user.youtube)" href="{{ user.youtube | completeurl: 'youtube' }}" target="_blank">
+      <a *ngIf="isValid(user.youtube)" href="{{ user.youtube | completeurl : 'youtube' }}" target="_blank">
         <fa-icon [icon]="faYoutube"></fa-icon>
       </a>
-      <a *ngIf="isValid(user.medium)" href="{{ user.medium | completeurl: 'medium' }}" target="_blank">
+      <a *ngIf="isValid(user.medium)" href="{{ user.medium | completeurl : 'medium' }}" target="_blank">
         <fa-icon [icon]="faMediumM"></fa-icon>
       </a>
-      <a *ngIf="isValid(user.dribbble)" href="{{ user.dribbble | completeurl: 'dribbble' }}" target="_blank">
+      <a *ngIf="isValid(user.dribbble)" href="{{ user.dribbble | completeurl : 'dribbble' }}" target="_blank">
         <fa-icon [icon]="faDribbble"></fa-icon>
       </a>
-      <a *ngIf="isValid(user.behance)" href="{{ user.behance | completeurl: 'behance' }}" target="_blank">
+      <a *ngIf="isValid(user.behance)" href="{{ user.behance | completeurl : 'behance' }}" target="_blank">
         <nb-icon icon="behance" status="primary"></nb-icon>
       </a>
-      <a *ngIf="isValid(user.gitlab)" href="{{ user.gitlab | completeurl: 'gitlab' }}" target="_blank">
+      <a *ngIf="isValid(user.gitlab)" href="{{ user.gitlab | completeurl : 'gitlab' }}" target="_blank">
         <fa-icon [icon]="faGitlab"></fa-icon>
       </a>
-      <a *ngIf="isValid(user.facebook)" href="{{ user.facebook | completeurl: 'facebook' }}" target="_blank">
+      <a *ngIf="isValid(user.facebook)" href="{{ user.facebook | completeurl : 'facebook' }}" target="_blank">
         <nb-icon icon="facebook" status="primary"></nb-icon>
       </a>
     </div>
