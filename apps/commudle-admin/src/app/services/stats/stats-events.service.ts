@@ -46,8 +46,8 @@ export class StatsEventsService {
     return this.http.get<IPolls>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.POLLS), { params });
   }
 
-  speakers(eventId): Observable<IStat<ISpeakers>> {
-    const params = new HttpParams().set('event_id', eventId);
+  speakers(eventId, registration_status): Observable<IStat<ISpeakers>> {
+    const params = new HttpParams().set('event_id', eventId).set('registration_status', registration_status);
     return this.http.get<IStat<ISpeakers>>(this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.SPEAKERS), {
       params,
     });

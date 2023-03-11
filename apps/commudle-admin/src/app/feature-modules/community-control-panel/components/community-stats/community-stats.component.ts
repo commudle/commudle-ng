@@ -43,20 +43,19 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
 
   getMembersDistribution() {
     this.statsCommunitiesService.membersDistribution(this.community.slug).subscribe((data) => {
-      console.log(data);
       const chartData = data.chart_data;
       return new Chart('chart-member-distibution', {
         type: 'pie',
         data: {
           datasets: [
             {
-              data: [chartData.male, chartData.female, chartData.prefer_not_to_answer + chartData.NA],
-              backgroundColor: ['blue', '#ff43bc', 'purple'],
+              data: [chartData.male, chartData.female, chartData.prefer_not_to_answer, chartData.NA],
+              backgroundColor: ['#3366ff', '#ff43bc', 'purple', 'green'],
             },
           ],
 
           // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: ['Male', 'Female', 'NA'],
+          labels: ['Male', 'Female', 'Prefer Not Answer', 'NA'],
         },
         options: {
           responsive: true,
@@ -172,13 +171,13 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
         data: {
           datasets: [
             {
-              data: [this.speakers.male, this.speakers.female, this.speakers.prefer_not_to_answer + this.speakers.na],
-              backgroundColor: ['blue', '#ff43bc', 'purple'],
+              data: [this.speakers.male, this.speakers.female, this.speakers.prefer_not_to_answer, this.speakers.NA],
+              backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
             },
           ],
 
           // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: ['Male', 'Female', 'NA'],
+          labels: ['Male', 'Female', 'Prefer Not Answer', 'NA'],
         },
         options: {
           responsive: true,
@@ -231,7 +230,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
             ],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: ['>One', 'One - Two', 'Three - Five', 'Five<'],
+            labels: ['<One', 'One - Two', 'Three - Five', 'Five<'],
           },
           options: {
             responsive: true,

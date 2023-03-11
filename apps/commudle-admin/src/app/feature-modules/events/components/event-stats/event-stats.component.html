@@ -86,12 +86,19 @@
             <div class="chart-container">
               <p *ngIf="speaker">
                 <span>
-                  {{ speaker.male + speaker.female + speaker.na + speaker.prefer_not_to_answer }}
+                  {{ speaker.male + speaker.female + speaker.NA + speaker.prefer_not_to_answer }}
                 </span>
                 <br />
                 Total Speakers
               </p>
               <canvas id="speaker"></canvas>
+              <nb-select placeholder="" [selected]="'confirmed'">
+                <nb-option value="confirmed" (click)="getSpeakers('confirmed')">Confirmed</nb-option>
+                <nb-option value="shortlist" (click)="getSpeakers('shortlist')">Shortlist</nb-option>
+                <nb-option value="registered" (click)="getSpeakers('registered')">Registered</nb-option>
+                <nb-option value="Waiting" (click)="getSpeakers('waiting')">Waiting</nb-option>
+                <nb-option value="cancelled" (click)="getSpeakers('cancelled')">Cancelled</nb-option>
+              </nb-select>
             </div>
           </div>
           <div *ngIf="members" class="com-mt-3">

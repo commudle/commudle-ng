@@ -49,6 +49,35 @@
         </nb-card-body>
       </nb-card>
 
+      <nb-card>
+        <nb-card-body>
+          <p *ngIf="statsMembersCount">New Members Added: {{ statsMembersCount.members_added }}</p>
+          <p *ngIf="statsSpeakersCount">
+            Total Speakers:
+            {{
+              statsSpeakersCount.male +
+                statsSpeakersCount.female +
+                statsSpeakersCount.NA +
+                statsSpeakersCount.prefer_not_to_answer
+            }}
+          </p>
+          <p *ngIf="statsAttendancesCount">
+            Total Attendees
+            {{
+              statsAttendancesCount.invited_attendees.male +
+                statsAttendancesCount.uninvited_attendees.male +
+                statsAttendancesCount.invited_attendees.female +
+                statsAttendancesCount.uninvited_attendees.female +
+                statsAttendancesCount.invited_attendees.NA +
+                statsAttendancesCount.invited_attendees.prefer_not_to_answer +
+                statsAttendancesCount.uninvited_attendees.NA +
+                statsAttendancesCount.uninvited_attendees.prefer_not_to_answer
+            }}
+          </p>
+          <p *ngIf="statsAttendancesCount">Entry Passes Sent: {{ statsAttendancesCount.entry_passes.total }}</p>
+        </nb-card-body>
+      </nb-card>
+
       <nb-card class="event-dashboard-menu">
         <nb-card-body>
           <nb-actions>
