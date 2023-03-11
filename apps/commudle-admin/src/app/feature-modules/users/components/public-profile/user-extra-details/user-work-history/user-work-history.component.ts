@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@commudle/theme';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { UserProfileMenuService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
@@ -22,7 +22,15 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
   faBuilding = faBuilding;
 
   userWorkHistories: IUserWorkHistory[] = [];
-  userWorkHistoryForm;
+  userWorkHistoryForm: FormGroup<{
+    job_title: FormControl<string>;
+    company: FormControl<string>;
+    location: FormControl<string>;
+    start_date: FormControl<string>;
+    end_date: FormControl<string>;
+    is_working: FormControl<boolean>;
+    description: FormControl<string>;
+  }>;
 
   isEditing = false;
   dialogRef: NbDialogRef<any>;
@@ -42,7 +50,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
         job_title: ['', Validators.required],
         company: ['', Validators.required],
         location: ['', Validators.required],
-        start_date: [new Date().toISOString().substring(0, 10), Validators.required],
+        start_date: [new Date().toISOString().substring(0, 7), Validators.required],
         end_date: [''],
         is_working: [true, Validators.required],
         description: [''],
@@ -103,22 +111,42 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
 
   createWorkHistory() {
     this.subscriptions.push(
-      this.userWorkHistoryService.createWorkHistory(this.userWorkHistoryForm.value).subscribe(() => {
-        this.nbToastrService.success('Work history created successfully', 'Success');
-        this.onCloseDialog();
-        this.getUserWorkHistories();
-      }),
+      this.userWorkHistoryService
+        .createWorkHistory(this.updateWorkHistoryDates(this.userWorkHistoryForm.value))
+        .subscribe(() => {
+          this.nbToastrService.success('Work history created successfully', 'Success');
+          this.onCloseDialog();
+          this.getUserWorkHistories();
+        }),
     );
   }
 
   updateWorkHistory(userWorkHistoryId: number) {
     this.subscriptions.push(
-      this.userWorkHistoryService.updateWorkHistory(userWorkHistoryId, this.userWorkHistoryForm.value).subscribe(() => {
-        this.nbToastrService.success('Work history updated successfully', 'Success');
-        this.onCloseDialog();
-        this.getUserWorkHistories();
-      }),
+      this.userWorkHistoryService
+        .updateWorkHistory(userWorkHistoryId, this.updateWorkHistoryDates(this.userWorkHistoryForm.value))
+        .subscribe(() => {
+          this.nbToastrService.success('Work history updated successfully', 'Success');
+          this.onCloseDialog();
+          this.getUserWorkHistories();
+        }),
     );
+  }
+
+  addDay(date: string) {
+    return new Date(date).toISOString().substring(0, 10);
+  }
+
+  removeDay(date: string) {
+    return new Date(date).toISOString().substring(0, 7);
+  }
+
+  updateWorkHistoryDates(userWorkHistory) {
+    return {
+      ...this.userWorkHistoryForm.value,
+      start_date: this.addDay(userWorkHistory.start_date),
+      end_date: userWorkHistory.end_date ? this.addDay(userWorkHistory.end_date) : '',
+    };
   }
 
   onOpenDialog(templateRef: TemplateRef<any>, data?: any) {
@@ -131,8 +159,11 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
 
   onOpenEditUserWorkHistoryDialog(templateRef: TemplateRef<any>, userWorkHistory: IUserWorkHistory) {
     this.isEditing = true;
-    // @ts-ignore
-    this.userWorkHistoryForm.patchValue(userWorkHistory);
+    this.userWorkHistoryForm.patchValue({
+      ...userWorkHistory,
+      start_date: this.removeDay(userWorkHistory.start_date),
+      end_date: userWorkHistory.end_date ? this.removeDay(userWorkHistory.end_date) : '',
+    });
     this.onOpenDialog(templateRef, userWorkHistory);
   }
 
@@ -141,7 +172,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
       job_title: '',
       company: '',
       location: '',
-      start_date: new Date().toISOString().substring(0, 10),
+      start_date: new Date().toISOString().substring(0, 7),
       end_date: '',
       is_working: true,
       description: '',
