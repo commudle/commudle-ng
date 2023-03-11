@@ -19,6 +19,9 @@ export class EventsComponent implements OnInit {
   events: IEvent[] = [];
   eventLoader = false;
 
+  upcomingEvents = [];
+  pastEvents = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
@@ -37,6 +40,14 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
       this.events = data.events;
+
+      this.events.forEach((event) => {
+        if (moment(event.end_time) > moment()) {
+          this.upcomingEvents.push(event);
+        } else {
+          this.pastEvents.push(event);
+        }
+      });
       this.eventLoader = false;
     });
   }
