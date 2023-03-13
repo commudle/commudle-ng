@@ -1,93 +1,109 @@
 <nb-card [nbSpinner]="eventLoader">
   <nb-card-body>
     <div class="events">
-      <div *ngIf="upcomingEvents.length >= 1">
-        <h3 class="com-text-left com-pl-2 com">Upcoming Events</h3>
-        <a
-          *ngFor="let event of upcomingEvents"
-          [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
-        >
-          <nb-card class="com-mb-4">
-            <nb-card-body class="d-flex com-flex-col com-overflow-hidden">
-              <div class="header-image-upcoming">
-                <span>
-                  <app-badge
-                    *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
-                    [color]="'rgb(255 45 45)'"
-                    [text]="'Live'"
-                  ></app-badge>
-                </span>
-                <img
-                  *ngIf="event.header_image_path"
-                  alt="{{ event.name }}"
-                  src="{{ event.header_image_path }}"
-                  title="{{ event.name }}"
-                />
-                <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
-              </div>
-              <div class="upcoming-details">
-                <div class="com-flex com-justify-between">
-                  <p class="event-name">{{ event.name }}</p>
-                  <button nbButton size="small"><nb-icon icon="location"></nb-icon>Offline</button>
-                </div>
-                <p class="timing">{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</p>
-                <div class="location-attended">
-                  <span>
-                    <nb-icon icon="location"></nb-icon>
-                    <p>{{ event.location }}</p>
-                  </span>
-                  <div class="com-flex com-justify-between">
+      <div *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
+        <p class="heading">Upcoming Events</p>
+        <div class="com-flex com-flex-row com-flex-wrap">
+          <a
+            *ngFor="let event of upcomingEvents"
+            [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
+          >
+            <div
+              [ngClass]="{
+                'd-flex flex-row com-w-50': upcomingEvents.length > 1,
+                'd-flex flex-col com-w-100%': upcomingEvents.length === 1
+              }"
+              [ngStyle]="{ width: upcomingEvents.length === 1 ? '100%' : '50%' }"
+            >
+              <nb-card class="upcoming">
+                <nb-card-body class="d-flex com-flex-col">
+                  <div *ngIf="event.header_image_path" class="event-image-container">
                     <span>
-                      <nb-icon icon="users"></nb-icon>
-                      <p>{{ event.attended_members }}</p>
+                      <app-badge
+                        *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
+                        [color]="'rgb(255 45 45)'"
+                        [text]="'Live'"
+                      ></app-badge>
                     </span>
-                    <p class="com-font-medium com-text-lg">Register</p>
+                    <div
+                      class="event-background"
+                      [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"
+                    ></div>
+                    <img
+                      alt="{{ event.name }}"
+                      src="{{ event.header_image_path }}"
+                      title="{{ event.name }}"
+                      class="event-image-container"
+                    />
                   </div>
-                </div>
-              </div>
-            </nb-card-body>
-          </nb-card>
-        </a>
+                  <div class="com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto">
+                    <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
+                  </div>
+                  <div class="upcoming-details">
+                    <div class="com-flex com-justify-between">
+                      <p class="event-name">{{ event.name }}</p>
+                      <button
+                        nbButton
+                        status="none"
+                        size="small"
+                        class="com-mt-4 com-bg-transparent com-rounded-lg com-text-AuroMetalSaurus"
+                      >
+                        <!-- <fa-icon [icon]="faMapPin" class="com-p-9"></fa-icon> -->
+                        <!-- "com-text-red-500 -->
+                        <!-- <nb-icon icon="pin-outline" class="com-border-AuroMetalSaurus"></nb-icon> -->
+                        {{ event.event_type }} Event
+                      </button>
+                    </div>
+                    <p class="timing">{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</p>
+                    <div class="interested_members">
+                      <div class="com-flex com-items-center">
+                        <nb-icon icon="people-outline" class="com-bg-white com-text-black"></nb-icon>
+                        <span>{{ event.interested_members_count }} Interested Members</span>
+                      </div>
+                      <div>
+                        <p class="register">Register</p>
+                      </div>
+                    </div>
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div *ngIf="pastEvents.length >= 1" class="past">
-        <h3 class="com-text-left com-pl-2">Past Events</h3>
-        <div class="com-flex com-flex-col">
+      <div *ngIf="pastEvents.length >= 1" class="past-events">
+        <h3 class="heading">Past Events</h3>
+        <div class="com-flex com-flex-row com-flex-wrap">
           <a
             *ngFor="let event of pastEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
-            class="com-flex com-flex-col com-flex-wrap"
           >
-            <nb-card class="com-h-full com-w-full com-flex com-flex-col com-flex-wrap com-mb-4">
-              <nb-card-body class="d-flex com-flex-col com-overflow-hidden">
-                <div class="header-image-past">
+            <nb-card class="past">
+              <nb-card-body>
+                <div *ngIf="event.header_image_path" class="event-image-container-past">
+                  <div
+                    class="event-background-past"
+                    [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"
+                  ></div>
                   <img
-                    *ngIf="event.header_image_path"
                     alt="{{ event.name }}"
                     src="{{ event.header_image_path }}"
                     title="{{ event.name }}"
+                    class="event-image-container-past"
                   />
-                  <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
+                </div>
+                <div *ngIf="!event.header_image_path" class="no-image-path">
+                  <nb-icon icon="link" status="primary"></nb-icon>
                 </div>
                 <div class="past-details">
-                  <div class="com-flex com-flex-space-between">
-                    <span>
-                      <p class="completed">
-                        Completed
-                        <nb-icon
-                          icon="checkmark-circle-2"
-                          nbTooltip="Completed"
-                          status="success"
-                          class="com-text-xs com-mx-0"
-                        ></nb-icon>
-                      </p>
-                    </span>
-                    <span class="com-ml-auto">
-                      <p class="attended">Attended Members :</p>
-                    </span>
-                  </div>
+                  <span>
+                    <p class="completed">
+                      Completed
+                      <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success"></nb-icon></p
+                  ></span>
                   <p class="event-name">{{ event.name }}</p>
-                  <p class="timing">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+                  <p class="timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
                   <a class="view-details">View Details</a>
                 </div>
               </nb-card-body>
@@ -97,4 +113,5 @@
       </div>
     </div>
   </nb-card-body>
-</nb-card>
+  <nb-card> </nb-card
+></nb-card>
