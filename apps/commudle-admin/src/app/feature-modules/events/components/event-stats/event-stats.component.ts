@@ -228,7 +228,7 @@ export class EventStatsComponent implements OnInit {
         data: {
           datasets: [
             {
-              data: [this.speaker.male, this.speaker.female, this.speaker.prefer_not_to_answer, this.speaker.na],
+              data: [this.speaker.male, this.speaker.female, this.speaker.prefer_not_to_answer, this.speaker.NA],
               backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
             },
           ],
