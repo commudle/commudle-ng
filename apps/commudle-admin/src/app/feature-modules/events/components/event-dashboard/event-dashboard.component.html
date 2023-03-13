@@ -51,30 +51,50 @@
 
       <nb-card>
         <nb-card-body>
-          <p *ngIf="statsMembersCount">New Members Added: {{ statsMembersCount.members_added }}</p>
-          <p *ngIf="statsSpeakersCount">
-            Total Speakers:
-            {{
-              statsSpeakersCount.male +
-                statsSpeakersCount.female +
-                statsSpeakersCount.NA +
-                statsSpeakersCount.prefer_not_to_answer
-            }}
-          </p>
-          <p *ngIf="statsAttendancesCount">
-            Total Attendees
-            {{
-              statsAttendancesCount.invited_attendees.male +
-                statsAttendancesCount.uninvited_attendees.male +
-                statsAttendancesCount.invited_attendees.female +
-                statsAttendancesCount.uninvited_attendees.female +
-                statsAttendancesCount.invited_attendees.NA +
-                statsAttendancesCount.invited_attendees.prefer_not_to_answer +
-                statsAttendancesCount.uninvited_attendees.NA +
-                statsAttendancesCount.uninvited_attendees.prefer_not_to_answer
-            }}
-          </p>
-          <p *ngIf="statsAttendancesCount">Entry Passes Sent: {{ statsAttendancesCount.entry_passes.total }}</p>
+          <div class="stats">
+            <p *ngIf="statsMembersCount">
+              <span>
+                {{ statsMembersCount.members_added }}
+              </span>
+              <br />
+              New Members Added
+            </p>
+            <p *ngIf="statsSpeakersCount">
+              <span>
+                {{
+                  statsSpeakersCount.male +
+                    statsSpeakersCount.female +
+                    statsSpeakersCount.na +
+                    statsSpeakersCount.prefer_not_to_answer
+                }}
+              </span>
+              <br />
+              Total Speakers
+            </p>
+            <p *ngIf="statsAttendancesCount">
+              <span>
+                {{
+                  statsAttendancesCount.invited_attendees.male +
+                    statsAttendancesCount.uninvited_attendees.male +
+                    statsAttendancesCount.invited_attendees.female +
+                    statsAttendancesCount.uninvited_attendees.female +
+                    statsAttendancesCount.invited_attendees.NA +
+                    statsAttendancesCount.invited_attendees.prefer_not_to_answer +
+                    statsAttendancesCount.uninvited_attendees.NA +
+                    statsAttendancesCount.uninvited_attendees.prefer_not_to_answer
+                }}
+              </span>
+              <br />
+              Total Attendees
+            </p>
+            <p *ngIf="statsAttendancesCount">
+              <span>
+                {{ statsAttendancesCount.entry_passes.total }}
+              </span>
+              <br />
+              Entry Passes Sent
+            </p>
+          </div>
         </nb-card-body>
       </nb-card>
 
