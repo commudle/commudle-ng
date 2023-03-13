@@ -10,6 +10,8 @@ a {
 
 .job-container {
   .company-details {
+    @apply com-text-center;
+
     .position {
       @apply com-text-lg md:com-text-2xl com-font-semibold com-mb-2;
     }
@@ -22,6 +24,10 @@ a {
 
   .job-details {
     @apply com-rounded-lg com-bg-gray-100 com-overflow-hidden com-shadow com-divide-y md:com-divide-y-0 md:com-grid md:com-grid-cols-3 md:com-gap-px;
+
+    .icons {
+      @apply com-rounded-lg com-inline-flex com-p-2 com-ring-4 com-ring-white;
+    }
 
     .category {
       @apply com-rounded-tl-lg com-rounded-tr-lg md:com-rounded-tr-none;
@@ -61,7 +67,7 @@ a {
     @apply com-border-0 com-border-solid com-border-b com-border-slate-400/20 com-flex com-items-center com-justify-between com-gap-4 com-pb-4;
 
     .last-updated {
-      @apply com-text-sm com-text-gray-500;
+      @apply com-text-sm com-text-gray-500 com-w-[100px] md:com-w-max;
     }
   }
 }

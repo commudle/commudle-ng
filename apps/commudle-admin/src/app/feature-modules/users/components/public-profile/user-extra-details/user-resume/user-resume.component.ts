@@ -10,6 +10,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-resume',
@@ -29,6 +30,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
 
   isEditing = false;
   dialogRef: NbDialogRef<any>;
+
+  faClipboard = faClipboard;
 
   @ViewChild('userResumeDialog', { static: true }) userResumeDialog: TemplateRef<any>;
 
@@ -70,8 +73,9 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
-    if (changes.user && this.user?.id === this.currentUser?.id) {
-      this.getUserResumes();
+    if (changes.user) {
+      this.userProfileMenuService.addMenuItem('resume', false);
+      if (this.user?.id === this.currentUser?.id) this.getUserResumes();
     }
   }
 

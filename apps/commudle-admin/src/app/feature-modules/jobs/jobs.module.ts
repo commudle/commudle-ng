@@ -17,6 +17,7 @@ import {
   NbTabsetModule,
   NbTagModule,
   NbAccordionModule,
+  NbActionsModule,
 } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -30,7 +31,7 @@ import { MyJobApplicationsComponent } from './components/my-job-applications/my-
 import { JobsRoutingModule } from './jobs-routing.module';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { EmployersListComponent } from './components/employers-list/employers-list.component';
-import { UsersModule } from 'apps/commudle-admin/src/app/feature-modules/users/users.module';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { UsersModule } from 'apps/commudle-admin/src/app/feature-modules/users/u
     SharedComponentsModule,
     SharedPipesModule,
     MiniUserProfileModule,
+    SharedDirectivesModule,
 
     //nb module
     FontAwesomeModule,
@@ -68,7 +70,8 @@ import { UsersModule } from 'apps/commudle-admin/src/app/feature-modules/users/u
     NbBadgeModule,
     NbTagModule,
     NbAccordionModule,
-    UsersModule,
+    NbActionsModule,
   ],
+  exports: [JobListCardComponent],
 })
 export class JobsModule {}

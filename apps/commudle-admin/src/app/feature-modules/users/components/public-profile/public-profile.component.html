@@ -8,15 +8,9 @@
             <nb-actions>
               <nb-action *ngFor="let item of activeMenuItems | keyvalue : originalOrder" class="com-flex-col">
                 <a class="item" fragment="{{ item.value.link }}" routerLink=".">
-                  <nb-icon
-                    *ngIf="item.value.name !== 'Work History'"
-                    [icon]="item.value.icon"
-                    status="{{ highlight === item.value.link ? item.value.icon_status : 'default' }}"
-                  ></nb-icon>
                   <fa-icon
-                    *ngIf="item.value.name === 'Work History'"
-                    [icon]="faBuilding"
-                    class="{{ highlight === item.value.link ? 'com-text-Caribbean-Green' : 'com-text-[#595867]' }}"
+                    [icon]="item.value.icon"
+                    class="{{ highlight === item.value.link ? item.value.active_color : 'com-text-Black-Coral' }}"
                   ></fa-icon>
                   {{ item.value.name }}
                 </a>

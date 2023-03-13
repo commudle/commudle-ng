@@ -12,6 +12,7 @@ export interface IUserRolesUser {
   parent_name: string;
   status: EUserRolesUserStatus;
   community?: ICommunity;
+  role_designation?: string;
 }
 
 export enum EUserRolesUserStatus {

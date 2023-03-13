@@ -36,8 +36,13 @@ export interface IUser {
   community_builds_count?: number;
   social_resources_count?: number;
   labs_count?: number;
+  user_roles_users?: UserRolesUsers;
 }
 
 export interface IUserSearch extends IUser {
   type: string;
+}
+
+export interface UserRolesUsers {
+  role_designation: string;
 }
