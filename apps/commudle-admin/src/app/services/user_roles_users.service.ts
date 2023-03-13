@@ -48,19 +48,15 @@ export class UserRolesUsersService {
     speaker?,
   ): Observable<IUserRolesUsers> {
     let params = new HttpParams();
-    params = params.set('community_id', communityId).set('query', query).set('count', count).set('page', page);
-    if (employer) {
-      params = params.set('employer', employer);
-    }
-    if (employee) {
-      params = params.set('employee', employee);
-    }
-    if (contentCreator) {
-      params = params.set('content_creator', contentCreator);
-    }
-    if (speaker) {
-      params = params.set('speaker', speaker);
-    }
+    params = params
+      .set('community_id', communityId)
+      .set('query', query)
+      .set('count', count)
+      .set('page', page)
+      .set('employer', employer)
+      .set('employee', employee)
+      .set('content_creator', contentCreator)
+      .set('speaker', speaker);
     return this.http.get<IUserRolesUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS),
       { params },

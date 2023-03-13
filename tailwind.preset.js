@@ -33,7 +33,8 @@ module.exports = {
         'Dark-Spring-Green': '#10654c',
         'Blue-Violet': '#6F22DF',
         Blond: '#FFF1BB',
-        'Black-Coral': '#595867'
+        'Black-Coral': '#595867',
+        'Chrome-Yellow': '#FF9900',
       },
 
       lineClamp: {

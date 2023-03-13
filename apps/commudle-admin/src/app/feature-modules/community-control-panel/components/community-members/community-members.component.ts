@@ -18,7 +18,7 @@ export class CommunityMembersComponent implements OnInit {
   page = 1;
   count = 10;
   total = 0;
-  userRolesUsers: IUserRolesUser[];
+  userRolesUsers;
   query = '';
   isLoading = false;
   EUserRoles = EUserRoles;

@@ -19,31 +19,35 @@
   <div>
     <nb-tag-list>
       <nb-tag
-        [appearance]="speaker ? 'filled' : 'outline'"
+        appearance="outline"
         [text]="options[0]"
         status="primary"
         [removable]="speaker ? 'true' : 'false'"
+        [ngClass]="{ activeTag: speaker }"
         (click)="filterByTags(options[0])"
       ></nb-tag>
       <nb-tag
-        [appearance]="employer ? 'filled' : 'outline'"
+        appearance="outline"
         [text]="options[1]"
         status="primary"
         [removable]="employer ? 'true' : 'false'"
+        [ngClass]="{ activeTag: employer }"
         (click)="filterByTags(options[1])"
       ></nb-tag>
       <nb-tag
-        [appearance]="contentCreator ? 'filled' : 'outline'"
+        appearance="outline"
         [text]="options[2]"
         status="primary"
         [removable]="contentCreator ? 'true' : 'false'"
+        [ngClass]="{ activeTag: contentCreator }"
         (click)="filterByTags(options[2])"
       ></nb-tag>
       <nb-tag
-        [appearance]="employee ? 'filled' : 'outline'"
+        appearance="outline"
         [text]="options[3]"
         status="primary"
         [removable]="employee ? 'true' : 'false'"
+        [ngClass]="{ activeTag: employee }"
         (click)="filterByTags(options[3])"
       ></nb-tag>
     </nb-tag-list>
@@ -63,7 +67,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let userRole of userRolesUsers">
-          <td class="member com-w-[350px]">
+          <td class="member com-w-[350px]" valign="top">
             <p class="user-communities-role" *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER">
               <nb-icon icon="star"></nb-icon>
               <span>
@@ -88,7 +92,7 @@
               </button>
             </div>
           </td>
-          <td class="com-w-[200px]">
+          <td class="com-w-[200px]" valign="top">
             <nb-tag-list>
               <nb-tag
                 *ngFor="let tag of userRole.user.tags"
@@ -99,17 +103,28 @@
               ></nb-tag>
             </nb-tag-list>
           </td>
-          <td class="com-w-[300px]">
+          <td class="com-w-[300px]" valign="top">
             <app-user-engagement-data [user]="userRole.user" [communityId]="communityId"></app-user-engagement-data>
           </td>
-          <td>
-            <app-tag [tags]="userRole.user.speaker_events"></app-tag>
+          <td class="com-w-[300px]" valign="top">
+            <div *ngFor="let item of userRole.user.speaker_events">
+              <span>
+                <strong>Event: </strong>
+                <a [href]="'communities/' + item.kommunity_id + '/events/' + item.id" target="_blank">
+                  {{ item.name }}
+                </a>
+                @
+                <a [href]="'communities/' + item.kommunity_id" target="_blank">
+                  {{ item.kommunity.name }}
+                </a>
+              </span>
+            </div>
           </td>
-          <td class="com-w-[10px]">
-            <div class="com-flex com-justify-center com-text-base">
-              {{
-                userRole.user.community_builds_count + userRole.user.labs_count + userRole.user.social_resources_count
-              }}
+          <td class="com-w-[200px]" valign="top">
+            <div>
+              <p>Builds: {{ userRole.user.community_builds_count }}</p>
+              <p>Labs: {{ userRole.user.labs_count }}</p>
+              <p>Social Resource: {{ userRole.user.social_resources_count }}</p>
             </div>
           </td>
         </tr>
