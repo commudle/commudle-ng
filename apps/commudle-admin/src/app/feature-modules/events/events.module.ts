@@ -145,6 +145,6 @@ import { ExitPassScanComponent } from './components/user-event-registrations/exi
     NbSpinnerModule,
     NbTagModule,
   ],
-  exports: [UserDetailsComponent],
+  exports: [UserDetailsComponent, UserEngagementDataComponent],
 })
 export class EventsModule {}
