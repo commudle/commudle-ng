@@ -29,3 +29,13 @@ a {
     }
   }
 }
+
+.stats {
+  @apply com-flex com-justify-evenly com-flex-wrap;
+  p {
+    @apply com-text-center com-text-base;
+  }
+  span {
+    @apply com-font-medium;
+  }
+}
