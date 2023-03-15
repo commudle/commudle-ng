@@ -1,11 +1,12 @@
 .community-team {
   padding: 1.5rem;
-  .organizers, .event_organizers {
+  .organizers,
+  .event_organizers {
     display: flex;
     flex-wrap: wrap;
     .user-profile {
-      border: 0.5px solid lightgrey;
-      border-radius: 5px;
+      // border: 0.5px solid lightgrey;
+      // border-radius: 5px;
       padding: 5px;
       width: 800px;
       max-width: 90vw;
@@ -15,9 +16,34 @@
       flex-direction: column;
 
       margin: 0.5rem;
+
+      .actions {
+        @apply com-text-primary-500;
+        // width: 530px;
+        // height: 200px;
+        // line-height: 20px;
+
+        .clickable {
+          text-decoration: none;
+          small {
+            // position: absolute;
+            // left: 275px;
+            // top: 0px;
+            // width: 530px;
+            // height: 200px;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+      .user-details {
+        // @apply com-w-full md:com-w-[625px];
+        // @apply com-ml-8;
+      }
+
       @media screen and (min-width: 1000px) {
         flex-direction: row;
-        align-items: center;
+        // align-items: center;
         justify-content: space-between;
       }
     }
@@ -32,14 +58,12 @@
     display: flex;
     flex-wrap: wrap;
 
-    >div {
+    > div {
       margin-right: 1rem;
     }
 
     .save-button-bottom {
       margin-top: 18px;
     }
-
   }
-
 }

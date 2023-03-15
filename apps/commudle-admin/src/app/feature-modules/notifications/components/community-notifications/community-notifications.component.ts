@@ -91,4 +91,12 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
       }),
     );
   }
+
+  unread() {
+    this.notifications = this.notifications.filter(
+      (notification) => notification.status === ENotificationStatuses.UNREAD,
+    );
+  }
+
+  allNotifications() {}
 }

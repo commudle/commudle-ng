@@ -1,3 +1,6 @@
+<button nbButton (click)="unread()" status="info">Unread</button>
+<button nbButton (click)="allNotifications()" status="info">All</button>
+
 <nb-list
   (scrolled)="getNotifications()"
   [infiniteScrollDisabled]="!(canLoadMore && total)"
