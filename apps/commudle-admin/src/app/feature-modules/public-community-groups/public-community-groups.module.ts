@@ -14,6 +14,8 @@ import { NbTagModule } from '@commudle/theme';
 import { CommunityGroupActivityComponent } from './components/community-group-activity/community-group-activity.component';
 import { CommunityGroupEventsComponent } from './components/community-group-events/community-group-events.component';
 import { CommunityGroupChannelsComponent } from './components/community-group-channels/community-group-channels.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CommunityGroupChannelsComponent } from './components/community-group-ch
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    FontAwesomeModule,
+    PublicCommunityModule,
 
     // Nebular
     NbCardModule,
