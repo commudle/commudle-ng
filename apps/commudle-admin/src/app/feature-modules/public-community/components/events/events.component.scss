@@ -18,12 +18,11 @@ nb-card {
         .upcoming {
           @apply com-border com-border-solid com-border-Silver-Sand com-mb-4;
           @apply com-overflow-hidden hover:com-shadow-Card com-rounded-md;
-          @apply com-flex com-flex-row com-flex-wrap;
+          @apply com-flex com-flex-row com-flex-wrap com-mx-1;
 
           nb-card-body {
             .event-image-container {
-              @apply com-w-full com-h-auto
-              md:com-w-[1214px] md:com-h-[676px];
+              @apply com-w-full;
               position: relative;
               display: flex;
               overflow: hidden;
@@ -47,7 +46,7 @@ nb-card {
               }
 
               .event-image {
-                @apply com-object-contain md:com-w-[1214px] md:com-h-[676px] com-w-full com-h-auto;
+                @apply com-object-contain com-w-full com-rounded-md;
                 position: relative;
                 z-index: 1;
               }
@@ -61,12 +60,11 @@ nb-card {
               @apply com-px-6 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Silver-Sand;
 
               .event-name {
-                @apply com-font-semibold com-text-[32px] com-leading-7 com-mb-0 com-text-gunmetal
-                com-h-[60px];
+                @apply com-font-semibold com-text-[32px] com-leading-8 com-mb-0 com-text-gunmetal;
               }
 
               .timing {
-                @apply com-text-base com-mb-2 com-font-normal com-text-AuroMetalSaurus com-p-0 com-mt-0;
+                @apply com-text-base com-mb-2 com-font-normal com-text-AuroMetalSaurus com-p-0 com-mt-1;
               }
 
               .location {
@@ -118,7 +116,7 @@ nb-card {
             }
 
             .event-image-container-past {
-              @apply com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto;
+              @apply com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto com-mx-0;
               position: relative;
               display: flex;
               overflow: hidden;
@@ -165,8 +163,7 @@ nb-card {
               }
 
               .event-name {
-                @apply com-text-gunmetal com-font-semibold com-text-xl com-pt-4 com-leading-6 com-mx-4 com-my-0
-                com-h-[85px];
+                @apply com-text-gunmetal com-font-semibold com-text-xl com-pt-4 com-leading-6 com-mx-4 com-my-0;
               }
 
               // .attended {

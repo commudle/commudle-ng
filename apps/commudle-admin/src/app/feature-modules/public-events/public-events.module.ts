@@ -73,6 +73,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SessionPageViewersComponent,
     AttendedMembersComponent,
     AttendedMembersCardComponent,
+    HomeEventComponent,
   ],
   imports: [
     CommonModule,

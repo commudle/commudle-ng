@@ -67,6 +67,8 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { BannerImageComponent } from './banner-image/banner-image.component';
+// import { HomeEventComponent } from 'apps/commudle-admin/src/app/feature-modules/public-events/components/home-event/home-event.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
   ],
   imports: [
     CommonModule,
@@ -169,6 +172,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
   ],
 })
 export class SharedComponentsModule {}
