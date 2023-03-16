@@ -10,7 +10,6 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 
 @Component({
@@ -21,8 +20,6 @@ import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-m
 export class PublicProfileComponent implements OnInit, OnDestroy {
   user: IUser;
   activeMenuItems: UserProfileMenuItems | any;
-
-  faBuilding = faBuilding;
   highlight: string;
 
   subscriptions: Subscription[] = [];

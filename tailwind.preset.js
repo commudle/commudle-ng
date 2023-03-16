@@ -36,6 +36,9 @@ module.exports = {
         'Black-Coral': '#595867',
         AuroMetalSaurus: '#667085',
         Charcoal: '#344054',
+        'Chrome-Yellow': '#FFAA00',
+        'Infra-Red': '#FF3D71',
+
       },
 
       lineClamp: {

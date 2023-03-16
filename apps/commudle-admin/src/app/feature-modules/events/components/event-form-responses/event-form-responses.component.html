@@ -132,7 +132,8 @@
 
                 <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
                   <app-user-engagement-data
-                    [userResponse]="row"
+                    *ngIf="row"
+                    [user]="row.user"
                     [communityId]="community.id"
                   ></app-user-engagement-data>
                 </ng-template>

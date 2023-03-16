@@ -46,6 +46,7 @@ export class SpeakersComponent implements OnInit {
   getSimpleAgendaSpeakers() {
     this.userEventRegistrationsService.pSpeakers(this.event.slug).subscribe((data) => {
       this.simpleAgendaSpeakers = data.user_event_registrations;
+      this.isLoading = false;
       this.footerText = `View More (${this.simpleAgendaSpeakers.length - 5})`;
     });
   }

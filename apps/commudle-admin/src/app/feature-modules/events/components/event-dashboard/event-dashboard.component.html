@@ -23,7 +23,7 @@
             </a>
             <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank">
               <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats<sup>Beta</sup> &nbsp;
+              Stats<sup>new</sup> &nbsp;
               <nb-icon icon="external-link"></nb-icon>
             </a>
             <button
@@ -45,6 +45,55 @@
             >
               View attended members
             </button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card>
+        <nb-card-body>
+          <div class="stats">
+            <p *ngIf="statsMembersCount">
+              <span>
+                {{ statsMembersCount.members_added }}
+              </span>
+              <br />
+              New Members Added
+            </p>
+            <p *ngIf="statsSpeakersCount">
+              <span>
+                {{
+                  statsSpeakersCount.male +
+                    statsSpeakersCount.female +
+                    statsSpeakersCount.NA +
+                    statsSpeakersCount.prefer_not_to_answer
+                }}
+              </span>
+              <br />
+              Total Speakers
+            </p>
+            <p *ngIf="statsAttendancesCount">
+              <span>
+                {{
+                  statsAttendancesCount.invited_attendees.male +
+                    statsAttendancesCount.uninvited_attendees.male +
+                    statsAttendancesCount.invited_attendees.female +
+                    statsAttendancesCount.uninvited_attendees.female +
+                    statsAttendancesCount.invited_attendees.NA +
+                    statsAttendancesCount.invited_attendees.prefer_not_to_answer +
+                    statsAttendancesCount.uninvited_attendees.NA +
+                    statsAttendancesCount.uninvited_attendees.prefer_not_to_answer
+                }}
+              </span>
+              <br />
+              Total Attendees
+            </p>
+            <p *ngIf="statsAttendancesCount">
+              <span>
+                {{ statsAttendancesCount.entry_passes.total }}
+              </span>
+              <br />
+              Entry Passes Sent
+            </p>
           </div>
         </nb-card-body>
       </nb-card>
@@ -82,7 +131,7 @@
             </nb-action>
             <nb-action (click)="scroll(volunteersSectionRef)" class="clickable">
               <nb-icon icon="headphones-outline"></nb-icon>
-              <span>Volunteers</span>
+              <span>Team</span>
             </nb-action>
             <nb-action (click)="scroll(sponsorsSectionRef)" class="clickable">
               <nb-icon icon="briefcase-outline"></nb-icon>
@@ -243,7 +292,7 @@
           <nb-card-header>
             <h6>
               <nb-icon icon="headphones-outline"></nb-icon>
-              Volunteers
+              Team
             </h6>
           </nb-card-header>
           <nb-card-body>
