@@ -4,10 +4,10 @@
       <nb-card *ngIf="showNameField">
         <nb-card-body>
           <div role="group">
-            <div>
+            <div class="com-mb-5">
               <label fullWidth>
                 Name*
-                <input type="text" nbInput fullWidth formControlName="name" />
+                <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
               </label>
             </div>
           </div>
@@ -21,7 +21,7 @@
                   nbInput
                   fullWidth
                   formControlName="description"
-                  placeholder="Description (optional)"
+                  placeholder="(Optional)"
                 ></textarea>
               </label>
             </div>
@@ -61,14 +61,14 @@
               </nb-card-header>
               <nb-card-body>
                 <div>
-                  <div class="question-container">
-                    <div>
-                      <button nbButton size="small" (click)="removeQuestionButtonClick(i)" outline status="danger">
+                  <div>
+                    <div class="question-container">
+                      <!-- <button nbButton size="small" (click)="removeQuestionButtonClick(i)" outline status="danger">
                         <nb-icon icon="trash-outline"></nb-icon>
-                      </button>
+                      </button> -->
                       <label>
-                        {{ i + 1 }}. Question*
-                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
+                        Question {{ i + 1 }} *
+                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
                       </label>
                       <span
                         *ngIf="
@@ -82,24 +82,17 @@
                       </span>
                     </div>
 
-                    <div class="question-settings">
-                      <label>
-                        Question Type
-                        <nb-select
-                          (selectedChange)="questionTypeChange($event, i)"
-                          placeholder="Question Type*"
-                          formControlName="question_type_id"
-                          required
-                          status="primary"
-                          size="tiny"
-                          hero
-                        >
-                          <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
-                            {{ qt.name }}
-                          </nb-option>
-                        </nb-select>
-                      </label>
-                    </div>
+                    <button
+                      nbButton
+                      size="small"
+                      ghost
+                      (click)="addQuestionButtonClick(i + 1)"
+                      status="primary"
+                      class="com-p-0"
+                    >
+                      <nb-icon icon="plus-outline"></nb-icon>
+                      &nbsp; Add Description
+                    </button>
 
                     <div *ngIf="showQuestionDescriptionField">
                       <textarea
@@ -108,6 +101,26 @@
                         formControlName="description"
                         placeholder="Description (optional)"
                       ></textarea>
+                    </div>
+
+                    <div class="question-settings">
+                      <label>
+                        <!-- Question Type -->
+                        <nb-icon icon="question-mark-circle-outline"></nb-icon>
+                        <nb-select
+                          (selectedChange)="questionTypeChange($event, i)"
+                          placeholder="Question Type"
+                          formControlName="question_type_id"
+                          required
+                          status="basic"
+                          size="large"
+                          hero
+                        >
+                          <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
+                            {{ qt.name }}
+                          </nb-option>
+                        </nb-select>
+                      </label>
                     </div>
 
                     <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
