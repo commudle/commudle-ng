@@ -10,6 +10,10 @@ import { CommunityGroupTeamComponent } from './components/community-group-team/c
 import { CommunityGroupAboutComponent } from './components/community-group-about/community-group-about.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { NbTagModule } from '@commudle/theme';
+import { CommunityGroupActivityComponent } from './components/community-group-activity/community-group-activity.component';
+import { CommunityGroupEventsComponent } from './components/community-group-events/community-group-events.component';
+import { CommunityGroupChannelsComponent } from './components/community-group-channels/community-group-channels.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,9 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     CommunityGroupCommunitiesComponent,
     CommunityGroupTeamComponent,
     CommunityGroupAboutComponent,
+    CommunityGroupActivityComponent,
+    CommunityGroupEventsComponent,
+    CommunityGroupChannelsComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +37,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     NbIconModule,
     NbTabsetModule,
     NbRouteTabsetModule,
+    NbTagModule,
   ],
 })
 export class PublicCommunityGroupsModule {}

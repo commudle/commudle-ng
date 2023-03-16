@@ -1,86 +1,110 @@
-<div class="community-group page-container" *ngIf="communityGroup">
-  <div>
-    <div class="basic-details">
-      <div>
-        <div class="logo">
-          <img alt="{{ communityGroup.name }}" src="{{ communityGroup.logo.i350 }}" title="{{ communityGroup.name }}" />
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <div class="community-group" *ngIf="communityGroup">
+        <section class="top">
+          <div class="banner-image"></div>
+          <div class="basic-details">
+            <div class="logo">
+              <img
+                alt="{{ communityGroup.name }}"
+                src="{{ communityGroup.logo.i350 }}"
+                title="{{ communityGroup.name }}"
+              />
+            </div>
+            <div class="details">
+              <h1 class="name">
+                {{ communityGroup.name }}
+              </h1>
+
+              <p class="mini-description">
+                {{ communityGroup.mini_description }}
+              </p>
+              <div class="social-links">
+                <a
+                  *ngIf="communityGroup.twitter"
+                  href="{{ communityGroup.twitter | completeurl : 'twitter' }}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <nb-icon icon="twitter" status="info"></nb-icon>
+                </a>
+                <a
+                  *ngIf="communityGroup.linkedin"
+                  href="{{ communityGroup.linkedin | completeurl : 'linkedin' }}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <nb-icon icon="linkedin" status="info"></nb-icon>
+                </a>
+                <a
+                  *ngIf="communityGroup.facebook"
+                  href="{{ communityGroup.facebook | completeurl : 'facebook' }}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <nb-icon icon="facebook" status="info"></nb-icon>
+                </a>
+
+                <a
+                  *ngIf="communityGroup.github"
+                  href="{{ communityGroup.github | completeurl : 'github' }}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <nb-icon icon="github" status="info"></nb-icon>
+                </a>
+                <a *ngIf="communityGroup.website" href="{{ communityGroup.website }}" rel="noreferrer" target="_blank">
+                  <nb-icon icon="info" status="info"></nb-icon>
+                </a>
+              </div>
+              <div class="count-details">
+                <nb-tag-list>
+                  <nb-tag text="Communities"></nb-tag>
+                  <nb-tag text="Members"></nb-tag>
+                  <nb-tag text="Channels"></nb-tag>
+                </nb-tag-list>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="responsive menu">
+          <nb-card>
+            <nb-card-body>
+              <div class="menu-items">
+                <a [routerLink]="['/orgs', communityGroup.slug, 'activity']" routerLinkActive="active">
+                  <span> Activity </span>
+                </a>
+
+                <a [routerLink]="['/orgs', communityGroup.slug, 'about']" routerLinkActive="active">
+                  <span> About </span>
+                </a>
+
+                <a [routerLink]="['/orgs', communityGroup.slug, 'communities']" routerLinkActive="active">
+                  <span> Communities </span>
+                </a>
+
+                <a [routerLink]="['/orgs', communityGroup.slug, 'events']" routerLinkActive="active">
+                  <span> Events </span>
+                </a>
+
+                <a [routerLink]="['/orgs', communityGroup.slug, 'channels']" routerLinkActive="active">
+                  <span> Channels </span>
+                </a>
+
+                <a [routerLink]="['/orgs', communityGroup.slug, 'team']" routerLinkActive="active">
+                  <span>Admin Team</span>
+                </a>
+              </div>
+            </nb-card-body>
+          </nb-card>
         </div>
-      </div>
-      <div class="content">
-        <h1 class="name">
-          {{ communityGroup.name }}
-        </h1>
-        <p class="tagline">
-          {{ communityGroup.mini_description }}
-        </p>
-        <div class="social-links d-flex">
-          <a
-            *ngIf="communityGroup.facebook"
-            href="{{ communityGroup.facebook | completeurl: 'facebook' }}"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <nb-icon icon="facebook" status="info"></nb-icon>
-          </a>
-          <a
-            *ngIf="communityGroup.linkedin"
-            href="{{ communityGroup.linkedin | completeurl: 'linkedin' }}"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <nb-icon icon="linkedin" status="info"></nb-icon>
-          </a>
-          <a
-            *ngIf="communityGroup.twitter"
-            href="{{ communityGroup.twitter | completeurl: 'twitter' }}"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <nb-icon icon="twitter" status="info"></nb-icon>
-          </a>
-          <a
-            *ngIf="communityGroup.github"
-            href="{{ communityGroup.github | completeurl: 'github' }}"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <nb-icon icon="github" status="info"></nb-icon>
-          </a>
-          <a
-            *ngIf="communityGroup.website"
-            href="{{ communityGroup.website | completeurl }}"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <nb-icon icon="info" status="info"></nb-icon>
-          </a>
+
+        <div>
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div>
-  </div>
-  <div class="responsive page-menu">
-    <nb-card>
-      <nb-card-body>
-        <div class="menu-items">
-          <a [routerLink]="['/orgs', communityGroup.slug]">
-            <nb-icon icon="globe-2-outline" status="info"></nb-icon>
-
-            <span> Communities </span>
-          </a>
-          <a [routerLink]="['/orgs', communityGroup.slug, 'about']">
-            <nb-icon icon="info" status="info"></nb-icon>
-            <span> About </span>
-          </a>
-          <a [routerLink]="['/orgs', communityGroup.slug, 'team']" routerLinkActive="active">
-            <nb-icon icon="people-outline" status="primary"></nb-icon>
-            <span>Team</span>
-          </a>
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
-
-  <div>
-    <router-outlet></router-outlet>
   </div>
 </div>

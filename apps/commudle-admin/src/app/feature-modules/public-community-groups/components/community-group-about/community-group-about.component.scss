@@ -1,0 +1,16 @@
+.details {
+  @apply com-flex com-justify-evenly;
+  nb-card {
+    nb-card-body {
+      div {
+        @apply com-text-center;
+        .heading {
+          @apply com-text-sm;
+        }
+        .count {
+          @apply com-text-3xl;
+        }
+      }
+    }
+  }
+}

@@ -35,6 +35,7 @@ module.exports = {
         Blond: '#FFF1BB',
         'Black-Coral': '#595867',
         AuroMetalSaurus: '#667085',
+        Charcoal: '#344054',
       },
 
       lineClamp: {

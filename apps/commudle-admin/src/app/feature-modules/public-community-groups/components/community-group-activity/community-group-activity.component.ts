@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-public-community-groups',
-  templateUrl: './public-community-groups.component.html',
-  styleUrls: ['./public-community-groups.component.scss'],
+  selector: 'commudle-community-group-activity',
+  templateUrl: './community-group-activity.component.html',
+  styleUrls: ['./community-group-activity.component.scss'],
 })
-export class PublicCommunityGroupsComponent implements OnInit {
+export class CommunityGroupActivityComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   constructor(private activatedRoute: ActivatedRoute) {}

@@ -1,27 +1,54 @@
 .community-group {
-  @apply com-min-h-screen com-py-0 com-px-2;
-  div.logo {
-    @apply com-w-20 md:com-w-52;
-    img {
-      @apply com-w-full;
+  .top {
+    .banner-image {
+      @apply com-w-[1262px] com-h-80 com-bg-green-800 com-absolute com-top-16 com-ml-9px;
+    }
+    .basic-details {
+      @apply com-flex com-mx-6 com-my-10 com-z-10 com-relative;
+
+      .logo {
+        @apply com-my-auto com-mx-0 com-w-56 com-flex com-justify-center com-h-56 com-bg-white com-rounded-md;
+        img {
+          @apply com-w-52 com-object-contain;
+        }
+      }
+      .details {
+        @apply com-text-white com-ml-8;
+        h1,
+        p {
+          @apply com-text-white com-leading-3;
+        }
+        .mini-description {
+          @apply com-text-xl;
+        }
+        .social-links {
+          @apply com-flex com-space-x-3 com-mt-7;
+          nb-icon {
+            @apply com-text-white;
+          }
+        }
+      }
+      .count-details {
+        @apply com-mt-14;
+      }
     }
   }
-
-  .basic-details {
-    @apply com-flex com-items-center com-justify-center md:com-justify-start;
-    .content {
-      @apply com-ml-4;
-      h1.name {
-        @apply com-mb-0;
-      }
-
-      .tagline {
-        @apply com-mt-0;
-      }
-
-      .social-links {
-        a {
-          @apply com-m-2;
+  .menu {
+    @apply com-relative;
+    nb-card {
+      @apply com-rounded-none;
+      nb-card-body {
+        .menu-items {
+          @apply com-space-x-3;
+          a {
+            @apply com-text-black com-no-underline;
+            span {
+              @apply com-text-base;
+            }
+          }
+        }
+        & .active {
+          @apply com-border-4 com-border-primary-500;
         }
       }
     }
