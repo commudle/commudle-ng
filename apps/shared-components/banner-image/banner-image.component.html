@@ -1,6 +1,11 @@
-<div class="event-image-container com-h-[460px] com-w-[1260px] com-h-1">
+<div class="event-image-container" [style.width]="width" [style.height]="height">
+  <!-- <div *ngIf="headerImagePath"> -->
   <div class="event-background" [ngStyle]="{ 'background-image': 'url(' + headerImagePath + ')' }"></div>
-  <div class="com-w-full com-aspect-[16/6]">
+  <div class="image">
     <img alt="{{ name }}" class="event-image" src="{{ headerImagePath }}" title="{{ name }}" />
   </div>
+  <!-- </div> -->
+  <!-- <div *ngIf="!headerImagePath"> -->
+  <!-- <nb-icon icon="link" status="primary"></nb-icon> -->
+  <!-- </div> -->
 </div>
