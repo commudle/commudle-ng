@@ -19,7 +19,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: CommunityGroupCommunitiesComponent,
+        component: CommunityGroupActivityComponent,
       },
       {
         path: 'activity',
