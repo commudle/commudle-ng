@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-group-channels.component.scss'],
 })
 export class CommunityGroupChannelsComponent implements OnInit {
+  channels;
   subscriptions: Subscription[] = [];
   constructor(private activatedRoute: ActivatedRoute) {}
 
@@ -16,6 +17,20 @@ export class CommunityGroupChannelsComponent implements OnInit {
       this.activatedRoute.params.subscribe((data) => {
         console.log(data);
         // this.getCommunities(data.community_group_id);
+        this.channels = [
+          {
+            name: 'explore',
+            membersCount: 40,
+          },
+          {
+            name: 'Enrich',
+            membersCount: 50,
+          },
+          {
+            name: 'Testing',
+            membersCount: 80,
+          },
+        ];
       }),
     );
   }

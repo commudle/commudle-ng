@@ -1,4 +1,4 @@
-import { NbCardModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule } from '@commudle/theme';
+import { NbCardModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbButtonModule } from '@commudle/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -42,6 +42,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
     NbTabsetModule,
     NbRouteTabsetModule,
     NbTagModule,
+    NbButtonModule,
   ],
 })
 export class PublicCommunityGroupsModule {}

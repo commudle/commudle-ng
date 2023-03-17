@@ -7,40 +7,55 @@
   position: relative;
 
   .profile-picture {
-    border-radius: 50%;
+    // border-radius: 50%;
     display: flex;
+    // max-height: 48px;
+    // max-width: 48px;
+    // min-width: 48px;
+    width: 48px;
+    height: 48px;
     margin-right: 0.5rem;
-    max-height: 40px;
-    max-width: 40px;
-    min-width: 40px;
     overflow: hidden;
     img {
-      width: 100%;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      left: 0px;
+      top: 12px;
+      border-radius: 32px;
+      // width: 100%;
     }
 
     &.medium {
-      width: 75px;
-      min-height: 75px;
+      width: 48px;
+      min-height: 48px;
       margin-right: 0.75rem;
     }
 
     &.small {
-      width: 50px;
-      min-height: 50px;
+      width: 48px;
+      min-height: 48px;
       margin-right: 0.5rem;
     }
   }
 
   .profile-info {
+    @apply com-w-full md:com-w-[625px] com-pl-2;
+    // height: 60px;
     // word-break: break-word;
-    max-width: 80%;
+    // max-width: 143%;
     text-align: left;
     .name {
+      @apply com-text-Charcoal com-p-0.5;
       margin: 0;
-      font-size: $fs-card-secondary;
+      font-size: $fs-card-list-title;
+      font-weight: 500;
+      line-height: 20px;
+      margin: 0;
       a {
         text-decoration: none;
-        color: black;
+        color: #344054;
+
         &:hover {
           text-decoration: underline;
         }
@@ -55,9 +70,29 @@
     }
 
     .designation {
+      @apply com-text-AuroMetalSaurus com-p-0.5;
       margin: 0;
-      font-size: $fs-card-secondary;
-      word-break: break-all;
+      font-size: $fs-card-list-title;
+      // word-break: break-all;
+      font-weight: 500;
+      line-height: 20px;
+
+      line-height: 20px;
+
+      &.medium {
+        font-size: 0.9rem;
+      }
+      &.small {
+        font-size: 0.8rem;
+      }
+    }
+
+    .about_me {
+      @apply com-text-AuroMetalSaurus com-p-0.5;
+      margin: 0;
+      font-size: $fs-card-list-title;
+      font-weight: 400;
+      line-height: 20px;
 
       &.medium {
         font-size: 0.9rem;
@@ -68,24 +103,28 @@
     }
 
     .user-social-links {
+      @apply com-p-1;
       display: flex;
       flex-wrap: wrap;
-      font-size: 12px;
+      font-size: 18px;
       a {
         margin: 0 0.5rem;
         nb-icon {
-          font-size: 0.8rem;
+          @apply com-text-Charcoal com-mx-[12px];
+          font-size: 18px;
         }
       }
 
       &.medium {
         nb-icon {
-          font-size: 1rem;
+          @apply com-text-Charcoal;
+          font-size: 18px;
         }
       }
 
       &.small {
         nb-icon {
+          @apply com-text-Charcoal;
           font-size: 0.9rem;
         }
       }
