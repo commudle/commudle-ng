@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^14.1.0",
-    "@angular-devkit/build-angular": "~14.2.0",
+    "@angular-devkit/build-angular": "~14.2.11",
     "@angular-devkit/core": "~14.2.0",
     "@angular-devkit/schematics": "~14.2.0",
     "@angular-eslint/eslint-plugin": "~14.0.4",
