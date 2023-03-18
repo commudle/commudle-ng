@@ -1,12 +1,16 @@
-<div *ngFor="let channel of channels">
-  <nb-card>
-    <nb-card-body>
-      <p class="com-text-3xl com-leading-3">{{ channel.name | titlecase }}</p>
-      <p class="com-text-sm com-leading-3">{{ channel.membersCount }} Members</p>
-      <p class="com-text-lg com-leading-3">Public channel for all</p>
-      <a class="com-text-sm com-leading-3 com-no-underline" href="">Public channel for all</a>
-      <br />
-      <button nbButton status="base" outline shape="round" class="com-mt-4">Enter Channel</button>
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card>
+  <nb-card-body class="com-flex com-flex-wrap">
+    <div *ngFor="let channel of channels">
+      <nb-card>
+        <nb-card-body class="com-text-center">
+          <p class="com-text-3xl com-leading-3">{{ channel.name | titlecase }}</p>
+          <p class="com-text-sm com-leading-3">{{ channel.membersCount }} Members</p>
+          <p class="com-text-lg com-leading-3">Public channel for all</p>
+          <a class="com-text-sm com-leading-3 com-no-underline" href="">Public channel for all</a>
+          <br />
+          <button nbButton status="base" fullWidth outline shape="round" class="com-mt-4">Enter Channel</button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </nb-card-body>
+</nb-card>
