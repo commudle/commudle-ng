@@ -77,7 +77,7 @@
               <nb-card-body>
                 <div>
                   <label>
-                    {{ i + 1 }}. Question*
+                    Question* .{{ i + 1 }}
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -104,10 +104,10 @@
                     >
                       <fa-icon [icon]="faTrashAlt"></fa-icon>
                     </button>
-                    <label>
+                    <!-- <label>
                       {{ i + 1 }}. Question*
                       <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
-                    </label>
+                    </label> -->
                     <span
                       *ngIf="
                         question.get('title').touched &&

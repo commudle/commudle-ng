@@ -4,12 +4,10 @@
       <nb-card *ngIf="showNameField">
         <nb-card-body>
           <div role="group">
-            <div class="com-mb-5">
-              <label fullWidth>
-                Name*
-                <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
-              </label>
-            </div>
+            <label fullWidth>
+              Name*
+              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mn-10" />
+            </label>
           </div>
 
           <div role="group">
@@ -68,7 +66,15 @@
                       </button> -->
                       <label>
                         Question {{ i + 1 }} *
-                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
+                        <input
+                          type="text"
+                          nbInput
+                          fullWidth
+                          formControlName="title"
+                          placeholder="Title"
+                          com-mb-2
+                          required
+                        />
                       </label>
                       <span
                         *ngIf="
@@ -98,6 +104,7 @@
                       <textarea
                         nbInput
                         fullWidth
+                        (click)="clickDescriptionField()"
                         formControlName="description"
                         placeholder="Description (optional)"
                       ></textarea>
@@ -105,7 +112,6 @@
 
                     <div class="question-settings">
                       <label>
-                        <!-- Question Type -->
                         <nb-icon icon="question-mark-circle-outline"></nb-icon>
                         <nb-select
                           (selectedChange)="questionTypeChange($event, i)"

@@ -8,10 +8,12 @@
     }
 
     input {
+      @apply com-mb-6 com-mt-1;
       background-color: white;
     }
 
     textarea {
+      @apply com-my-1;
       background-color: white;
     }
 

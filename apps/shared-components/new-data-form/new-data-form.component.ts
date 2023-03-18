@@ -192,4 +192,8 @@ export class NewDataFormComponent implements OnInit {
   saveDataForm() {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
+
+  clickDescriptionField() {
+    this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
+  }
 }
