@@ -5,12 +5,11 @@ import { IUser } from 'apps/shared-models/user.model';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-communities-list-card',
-  templateUrl: './communities-list-card.component.html',
-  styleUrls: ['./communities-list-card.component.scss']
+  selector: 'app-communities-card',
+  templateUrl: './communities-card.component.html',
+  styleUrls: ['./communities-card.component.scss'],
 })
-export class CommunitiesListCardComponent implements OnInit, OnDestroy {
-
+export class CommunitiesCardComponent implements OnInit, OnDestroy {
   @Input() community: ICommunity;
 
   members: IUser[] = [];
@@ -19,10 +18,7 @@ export class CommunitiesListCardComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(
-    private userRolesUsersService: UserRolesUsersService,
-  ) {
-  }
+  constructor(private userRolesUsersService: UserRolesUsersService) {}
 
   ngOnInit(): void {
     this.getMembers();
@@ -33,9 +29,10 @@ export class CommunitiesListCardComponent implements OnInit, OnDestroy {
   }
 
   getMembers(): void {
-    this.subscription = this.userRolesUsersService.pGetCommunityMembers(this.community.id, this.page, this.count).subscribe(value => {
-      this.members = value.users;
-    });
+    this.subscription = this.userRolesUsersService
+      .pGetCommunityMembers(this.community.id, this.page, this.count)
+      .subscribe((value) => {
+        this.members = value.users;
+      });
   }
-
 }

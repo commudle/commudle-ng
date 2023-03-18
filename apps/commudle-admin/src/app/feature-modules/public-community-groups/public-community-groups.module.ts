@@ -16,6 +16,7 @@ import { CommunityGroupEventsComponent } from './components/community-group-even
 import { CommunityGroupChannelsComponent } from './components/community-group-channels/community-group-channels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
+    AppSharedComponentsModule,
 
     // Nebular
     NbCardModule,

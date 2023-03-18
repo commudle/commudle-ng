@@ -1,23 +1,7 @@
-.chapter-count {
-  @apply com-m-0;
-}
+.communities-cards {
+  @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
 
-.chapters {
-  @apply md:com-gap-y-4 md:com-gap-x-[3.5%];
-
-  .community {
-    @apply com-cursor-pointer com-p-2 com-w-full com-border com-border-solid com-border-gray-300 com-flex com-justify-between com-flex-col com-text-center;
-
-    @apply md:com-w-300px hover:com-shadow-Card;
-
-    .logo {
-      @apply com-w-24 com-h-24 com-overflow-hidden com-my-0 com-mx-auto;
-      img {
-        @apply com-w-full;
-      }
-    }
-    h4 {
-      @apply com-m-0 com-p-5px com-text-white com-rounded-md com-bg-Blueberry;
-    }
+  @screen lg {
+    @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
   }
 }

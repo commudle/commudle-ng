@@ -62,7 +62,6 @@ import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
 import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
-import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
@@ -117,7 +116,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CommunityComponent,
     CommunitiesAboutComponent,
     CommunitiesListComponent,
-    CommunitiesListCardComponent,
     CommunitiesPostsComponent,
     CommunitiesFeaturedComponent,
     HomeComponent,

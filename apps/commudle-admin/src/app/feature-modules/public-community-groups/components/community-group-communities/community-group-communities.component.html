@@ -1,26 +1,5 @@
-<div>
-  <nb-card>
-    <nb-card-body>
-      <div class="chapters">
-        <div class="community" *ngFor="let community of communities" [routerLink]="['/communities', community.slug]">
-          <div class="logo d-flex">
-            <img src="{{ community.logo_path }}" />
-          </div>
-          <h4 class="lh-fw">
-            {{ community.name | slice : 0 : 20 }}
-          </h4>
-          <p>
-            <nb-icon icon="people-outline"></nb-icon>
-            {{ community.member_count }}
-          </p>
-
-          <a [routerLink]="['/communities', community.slug]"> Details </a>
-        </div>
-      </div>
-      <!-- <app-communities-list-card
-        *ngFor="let community of communities"
-        [community]="community"
-      ></app-communities-list-card> -->
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card>
+  <nb-card-body class="communities-cards">
+    <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+  </nb-card-body>
+</nb-card>
