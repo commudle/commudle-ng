@@ -1,21 +1,21 @@
 <div *ngIf="dataForm && formCreated">
   <div *ngIf="dataForm.description" class="form-description">
-    <p [innerHTML]="dataForm.description | linky: { sanitizeHtml: true }"></p>
+    <p [innerHTML]="dataForm.description | linky : { sanitizeHtml: true }"></p>
   </div>
   <form (ngSubmit)="submitForm()" [formGroup]="dataFormEntityResponseForm">
     <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <div class="detail">
-        <p>
+        <!-- <p>
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
-        </p>
+        </p> -->
         <p>
-          <span [innerHTML]="question.title | linky: { sanitizeHtml: true }" class="title">
+          <span [innerHTML]="question.title | linky : { sanitizeHtml: true }" class="title">
             <span *ngIf="question.required" class="required-question">*</span>
           </span>
           <br />
           <small
             *ngIf="question.description"
-            [innerHTML]="question.description | linky: { sanitizeHtml: true }"
+            [innerHTML]="question.description | linky : { sanitizeHtml: true }"
             class="description"
           >
           </small>
