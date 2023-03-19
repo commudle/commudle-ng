@@ -30,7 +30,7 @@ export class NewDataFormComponent implements OnInit {
   showNameField = true;
   showQuestionRequiredField = true;
   showQuestionDisabledField = true;
-  showQuestionDescriptionField = true;
+  showQuestionDescriptionField = false;
 
   totalQuestions = 0;
 
@@ -81,7 +81,7 @@ export class NewDataFormComponent implements OnInit {
         this.showNameField = true;
         this.showQuestionRequiredField = true;
         this.showQuestionDisabledField = true;
-        this.showQuestionDescriptionField = true;
+        this.showQuestionDescriptionField = false;
         break;
       }
     }
@@ -193,7 +193,7 @@ export class NewDataFormComponent implements OnInit {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
 
-  clickDescriptionField() {
+  toggleDescriptionField(): void {
     this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
   }
 }

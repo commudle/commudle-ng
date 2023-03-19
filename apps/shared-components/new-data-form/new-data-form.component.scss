@@ -4,11 +4,16 @@
     margin: 0 auto;
 
     .validation-error-text {
+      @apply com-text-sm com-my-2 com-flex com-items-center com-font-normal;
       color: red; /* red */
+
+      .info {
+        @apply com-text-sm com-mr-1;
+      }
     }
 
     input {
-      @apply com-mb-6 com-mt-1;
+      @apply com-mt-1;
       background-color: white;
     }
 
@@ -17,8 +22,19 @@
       background-color: white;
     }
 
+    label {
+      @apply com-text-base com-font-medium;
+    }
+
     .data-form-question-choices-container {
       margin-bottom: 0;
+
+      // .custom-question-container {
+      //   label {
+      //     @apply com-text-xl com-font-semibold;
+      //   }
+      // }
+
       .add-question-button {
         @apply com-m-2;
       }
@@ -33,7 +49,11 @@
     }
 
     .question-container {
-      @apply com-flex com-flex-col com-font-semibold com-text-xl com-mb-2;
+      @apply com-flex com-flex-col com-font-semibold com-text-xl;
+
+      label {
+        @apply com-text-xl com-font-semibold;
+      }
 
       .question-settings {
         margin: 4rem;
@@ -56,7 +76,20 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
-        margin: 1rem;
+
+        .choice-icon-container {
+          // display: flex;
+          // flex-direction: row;
+
+          button {
+            background-color: white;
+            border: none;
+
+            nb-icon {
+              @apply com-text-base;
+            }
+          }
+        }
       }
     }
   }
@@ -69,11 +102,14 @@
       }
     }
     .question-form-footer {
-      @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
-
-      button {
-        @apply com-justify-start com-pl-0 md:com-pl-4;
+      nb-toggle {
+        @apply com-mt-2;
       }
+      // @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
+
+      // button {
+      //   @apply com-justify-start com-pl-0 md:com-pl-4;
+      // }
     }
   }
 }

@@ -6,7 +6,7 @@
           <div role="group">
             <label fullWidth>
               Name*
-              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mn-10" />
+              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mb-6" />
             </label>
           </div>
 
@@ -41,9 +41,9 @@
                 </button>
               </nb-card-header>
               <nb-card-body>
-                <div>
+                <div class="custom-question-container">
                   <label>
-                    {{ i + 1 }}. Question*
+                    Question {{ i + 1 }} *
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -61,20 +61,9 @@
                 <div>
                   <div>
                     <div class="question-container">
-                      <!-- <button nbButton size="small" (click)="removeQuestionButtonClick(i)" outline status="danger">
-                        <nb-icon icon="trash-outline"></nb-icon>
-                      </button> -->
                       <label>
                         Question {{ i + 1 }} *
-                        <input
-                          type="text"
-                          nbInput
-                          fullWidth
-                          formControlName="title"
-                          placeholder="Title"
-                          com-mb-2
-                          required
-                        />
+                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
                       </label>
                       <span
                         *ngIf="
@@ -84,6 +73,7 @@
                         "
                         class="validation-error-text"
                       >
+                        <nb-icon icon="info" class="info"></nb-icon>
                         Required Field
                       </span>
                     </div>
@@ -92,41 +82,40 @@
                       nbButton
                       size="small"
                       ghost
-                      (click)="addQuestionButtonClick(i + 1)"
+                      (click)="toggleDescriptionField()"
                       status="primary"
-                      class="com-p-0"
+                      class="com-my-2"
                     >
-                      <nb-icon icon="plus-outline"></nb-icon>
-                      &nbsp; Add Description
+                      <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
+                      {{ showQuestionDescriptionField ? 'Close Description' : 'Add Description' }}
                     </button>
 
                     <div *ngIf="showQuestionDescriptionField">
                       <textarea
                         nbInput
                         fullWidth
-                        (click)="clickDescriptionField()"
                         formControlName="description"
-                        placeholder="Description (optional)"
+                        placeholder="Description (Optional)"
                       ></textarea>
                     </div>
 
                     <div class="question-settings">
-                      <label>
-                        <nb-icon icon="question-mark-circle-outline"></nb-icon>
+                      <nb-form-field>
+                        <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
                         <nb-select
                           (selectedChange)="questionTypeChange($event, i)"
                           placeholder="Question Type"
                           formControlName="question_type_id"
                           required
                           status="basic"
-                          size="large"
+                          size="medium"
                           hero
                         >
                           <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
-                            {{ qt.name }}
+                            {{ qt.name | capitalizeAndRemoveUnderscore }}
                           </nb-option>
                         </nb-select>
-                      </label>
+                      </nb-form-field>
                     </div>
 
                     <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
@@ -136,30 +125,46 @@
                         *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                       >
                         <div>
-                          <div [formGroupName]="chi">
-                            <input type="text" nbInput formControlName="title" placeholder="Enter Text*" required />
-                            <span
-                              *ngIf="
-                                choice.get('title').touched &&
-                                choice.get('title').invalid &&
-                                choice.get('title').errors.required
-                              "
-                              class="validation-error-text"
+                          <div class="choice-icon-container">
+                            <div [formGroupName]="chi" class="com-mt-2">
+                              <input
+                                type="text"
+                                nbInput
+                                formControlName="title"
+                                placeholder="Choice {{ chi + 1 }}"
+                                required
+                              />
+                              <span
+                                *ngIf="
+                                  choice.get('title').touched &&
+                                  choice.get('title').invalid &&
+                                  choice.get('title').errors.required
+                                "
+                                class="validation-error-text"
+                              >
+                                <nb-icon icon="info" class="info"></nb-icon>
+                                Required Field
+                              </span>
+                            </div>
+                            <button
+                              nbButton
+                              status="primary"
+                              size="small"
+                              (click)="removeQuestionChoiceButtonClick(i, chi)"
                             >
-                              Required Field
-                            </span>
+                              <nb-icon icon="close-circle-outline"></nb-icon>
+                            </button>
                           </div>
-                          <button
-                            nbButton
-                            status="danger"
-                            size="tiny"
-                            (click)="removeQuestionChoiceButtonClick(i, chi)"
-                          >
-                            <nb-icon icon="trash-outline"></nb-icon>
-                          </button>
                         </div>
                       </div>
-                      <button nbButton size="tiny" (click)="addQuestionChoiceButtonClick(i)" status="primary" hero>
+                      <button
+                        nbButton
+                        size="tiny"
+                        (click)="addQuestionChoiceButtonClick(i)"
+                        status="warning"
+                        hero
+                        class="com-mt-2"
+                      >
                         <nb-icon icon="plus-outline"></nb-icon>
                         &nbsp; Add Choice
                       </button>
@@ -167,11 +172,8 @@
                   </div>
                 </div>
                 <div class="question-form-footer">
-                  <button nbButton size="small" ghost (click)="addQuestionButtonClick(i + 1)" status="primary">
-                    <nb-icon icon="plus-outline"></nb-icon>
-                    &nbsp; Add Question Below
-                  </button>
-                  <nb-checkbox formControlName="required" status="primary">Required</nb-checkbox>
+                  <!-- [formGroup]="createDataForm" -->
+                  <nb-toggle size="small" labelPosition="right">Required</nb-toggle>
                 </div>
               </nb-card-body>
             </nb-card>
