@@ -168,7 +168,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.statsSpeakersCount = data.chart_data;
     });
     this.statsEventsService.attendees(this.event.slug).subscribe((data) => {
-      console.log(data);
       this.statsAttendancesCount = data.chart_data;
     });
   }

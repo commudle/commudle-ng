@@ -15,7 +15,7 @@ export class PublicCommunityGroupsComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.params.subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       }),
     );
   }

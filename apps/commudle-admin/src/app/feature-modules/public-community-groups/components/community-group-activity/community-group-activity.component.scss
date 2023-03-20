@@ -1,0 +1,7 @@
+.communities-cards {
+  @apply com-flex com-flex-nowrap com-gap-4 com-overflow-hidden;
+
+  @screen lg {
+    @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
+  }
+}

@@ -1,7 +1,6 @@
 import { NbCardModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbButtonModule } from '@commudle/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PublicCommunityGroupsRoutingModule } from './public-community-groups-routing.module';
 import { CommunityGroupHomeComponent } from './components/community-group-home/community-group-home.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -16,7 +15,7 @@ import { CommunityGroupEventsComponent } from './components/community-group-even
 import { CommunityGroupChannelsComponent } from './components/community-group-channels/community-group-channels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
-import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,9 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
-    AppSharedComponentsModule,
+
+    //standalone component
+    CommunitiesCardComponent,
 
     // Nebular
     NbCardModule,

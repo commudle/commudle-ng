@@ -15,7 +15,6 @@ export class CommunityGroupChannelsComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((data) => {
-        console.log(data);
         // this.getCommunities(data.community_group_id);
         this.channels = [
           {

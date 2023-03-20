@@ -13,26 +13,8 @@
     </div>
   </nb-card-header>
   <nb-card-body class="com-flex com-flex-wrap">
-    <div
-      *ngFor="let community of communities"
-      class="com-flex com-items-center com-space-x-4 com-mb-4 com-w-full md:com-w-1/2"
-    >
-      <div class="com-w-16 com-h-16">
-        <img [src]="community.logo_path" alt="" class="com-w-full" />
-      </div>
-      <div class="com-w-[300px]">
-        <span>{{ community.name }}</span>
-        <br />
-        <span class="com-text-gray-400">{{ community.member_count }} members</span>
-      </div>
-      <div>
-        <app-membership-toggle
-          [community]="community"
-          [status]="'info'"
-          [shapes]="'round'"
-          [appearance]="'outline'"
-        ></app-membership-toggle>
-      </div>
+    <div class="communities-cards">
+      <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
     </div>
   </nb-card-body>
 </nb-card>

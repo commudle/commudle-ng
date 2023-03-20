@@ -25,14 +25,9 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.getTeam(data.community_group_id);
-      }),
-    );
-
-    this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
+        this.getTeam(data.community_group.slug);
         this.seoService.setTags(
           `Team | ${this.communityGroup.name}`,
           this.communityGroup.mini_description,
