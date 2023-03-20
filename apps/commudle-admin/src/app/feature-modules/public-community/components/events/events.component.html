@@ -8,45 +8,28 @@
             *ngFor="let event of upcomingEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
           >
-            <div
-              [ngClass]="{
-                'd-flex flex-row com-w-[600px]': upcomingEvents.length > 1,
-                'd-flex flex-col com-w-[1220px]': upcomingEvents.length === 1
-              }"
-            >
-              <nb-card class="upcoming">
+            <div>
+              <nb-card
+                class="upcoming"
+                [ngClass]="{
+                  'd-flex flex-row md:com-w-[600px]': upcomingEvents.length > 1,
+                  'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1,
+                  'd-flex flex-col com-w-[340px]': upcomingEvents.length === 1 || upcomingEvents.length > 1
+                }"
+              >
                 <nb-card-body class="d-flex com-flex-col">
-                  <div
-                    *ngIf="event.header_image_path"
-                    [ngClass]="{
-                      'com-h-[334px]': upcomingEvents.length > 1,
-                      'com-h-[680px]': upcomingEvents.length === 1
-                    }"
-                  >
+                  <div *ngIf="event.header_image_path">
                     <commudle-banner-image
                       [headerImagePath]="event.header_image_path"
                       [name]="event.name"
                       [width]="upcomingEvents.length === 1 ? '1220px' : '600px'"
                       [height]="upcomingEvents.length === 1 ? '680px' : '334px'"
                     ></commudle-banner-image>
-                    <!-- <div *ngIf="event.header_image_path" class="event-image-container"> -->
-                    <!-- <span>
-                      <app-badge
-                        *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
-                        [color]="'rgb(255 45 45)'"
-                        [text]="'Live'"
-                      ></app-badge>
-                    </span>
-                    <div
-                      class="event-background"
-                      [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"
-                    ></div>
-                    <img
-                      alt="{{ event.name }}"
-                      src="{{ event.header_image_path }}"
-                      title="{{ event.name }}"
-                      class="event-image"
-                    /> -->
+                    <app-badge
+                      *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
+                      [color]="'rgb(255 45 45)'"
+                      [text]="'Live'"
+                    ></app-badge>
                   </div>
                   <div *ngIf="!event.header_image_path">
                     <nb-icon icon="link" status="primary"></nb-icon>
@@ -95,15 +78,17 @@
           >
             <nb-card class="past">
               <nb-card-body>
-                <commudle-banner-image
-                  [headerImagePath]="event.header_image_path"
-                  [name]="event.name"
-                  [width]="'390px'"
-                  [height]="'230px'"
-                ></commudle-banner-image>
-                <!-- <div *ngIf="!event.header_image_path" class="com-w-full com-h-auto"> -->
-                <!-- <nb-icon icon="link" status="primary"></nb-icon>
-                </div> -->
+                <div *ngIf="event.header_image_path">
+                  <commudle-banner-image
+                    [headerImagePath]="event.header_image_path"
+                    [name]="event.name"
+                    [width]="'390px'"
+                    [height]="'230px'"
+                  ></commudle-banner-image>
+                </div>
+                <div *ngIf="!event.header_image_path" class="com-h-[148px] com-flex com-items-center com-text-center">
+                  <nb-icon icon="link" status="primary"></nb-icon>
+                </div>
                 <div class="past-details">
                   <div class="com-h-[137px]">
                     <span>

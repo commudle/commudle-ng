@@ -47,7 +47,7 @@ nb-card {
 
             .interested_members {
               @apply com-m-0 com-text-base com-font-normal com-py-1 com-text-AuroMetalSaurus;
-              @apply com-flex com-justify-between com-items-center;
+              @apply md:com-flex md:com-justify-between com-items-center;
 
               nb-icon {
                 @apply com-w-[20px] com-h-[16px] com-mr-1;

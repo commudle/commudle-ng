@@ -1,8 +1,7 @@
-<div class="event-image-container" [style.width]="width" [style.height]="height">
-  <!-- <div *ngIf="headerImagePath"> -->
-  <div class="event-background" [ngStyle]="{ 'background-image': 'url(' + headerImagePath + ')' }"></div>
-  <div class="image">
-    <img alt="{{ name }}" class="event-image" src="{{ headerImagePath }}" title="{{ name }}" />
+<div class="image-container" style="aspect-ratio: 16/6">
+  <div class="background" [ngStyle]="{ 'background-image': 'url(' + headerImagePath + ')' }"></div>
+  <div class="image-section">
+    <img alt="{{ name }}" src="{{ headerImagePath }}" title="{{ name }}" />
   </div>
   <!-- </div> -->
   <!-- <div *ngIf="!headerImagePath"> -->
