@@ -1,10 +1,10 @@
 .community-group {
   .top {
     .banner-image {
-      @apply com-w-[1262px] com-h-80 com-bg-green-800 com-absolute com-top-16 com-ml-9px;
+      @apply com-w-[90%] md:com-w-[1262px] com-h-80 com-bg-green-800 com-absolute com-top-16 com-ml-9px;
     }
     .basic-details {
-      @apply com-flex com-mx-6 com-my-10 com-z-10 com-relative;
+      @apply com-flex com-flex-col md:com-flex-row com-mx-6 com-my-10 com-z-10 com-relative;
 
       .logo {
         @apply com-my-auto com-mx-0 com-w-56 com-flex com-justify-center com-h-56 com-bg-white com-rounded-md;
@@ -33,29 +33,9 @@
       }
     }
   }
-  // .menu {
-  //   @apply com-relative;
-  //   nb-card {
-  //     @apply com-rounded-none;
-  //     nb-card-body {
-  //       .menu-items {
-  //         @apply com-space-x-3;
-  //         a {
-  //           @apply com-text-black com-no-underline;
-  //           span {
-  //             @apply com-text-base;
-  //           }
-  //         }
-  //       }
-  //       & .active {
-  //         @apply com-border-4 com-border-primary-500;
-  //       }
-  //     }
-  //   }
-  // }
 
   .page-menu {
-    @apply com-sticky com-top-16 com-z-20 com-bg-white com-m-2 com-pt-4 com-shadow-lg;
+    @apply com-sticky com-top-16 com-z-20 com-bg-white com-m-2 com-overflow-scroll md:com-overflow-hidden com-pt-4 com-shadow-lg;
 
     nb-card {
       @apply com-m-0;
@@ -66,7 +46,6 @@
     }
 
     .menu-items {
-      @apply com-ml-2;
       a {
         @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
