@@ -35,6 +35,13 @@ module.exports = {
         Blond: '#FFF1BB',
         'Black-Coral': '#595867',
         AuroMetalSaurus: '#667085',
+        'Dark-Jungle-Green': '#101828',
+        'Light-Silver': '#D0D5DD',
+        'Bright-Gray': '#EAECF0',
+        'Crayola-Green': '#1B9F68',
+        Charcoal: '#344054',
+        'Vampire-Black': '#0A0A0A',
+        Cultured: '#F7F7F7',
       },
 
       lineClamp: {
@@ -118,6 +125,7 @@ module.exports = {
         /* Adding a box shadow to the element. */
         Card: '0 5px 15px #dae0ff',
         'Chat-box': '0 7px 29px 0 #64646f33 ',
+        'Past-Event-Card': '0px 1px 10px rgba(0, 0, 0, 0.05)',
       },
     },
     container: {
