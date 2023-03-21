@@ -3,7 +3,6 @@
     <div class="one-column-layout">
       <div class="community-group" *ngIf="communityGroup">
         <section class="top">
-          <div class="banner-image"></div>
           <div class="basic-details">
             <div class="logo">
               <img
@@ -12,6 +11,7 @@
                 title="{{ communityGroup.name }}"
               />
             </div>
+
             <div class="details">
               <h1 class="name">
                 {{ communityGroup.name }}
@@ -62,13 +62,15 @@
                 <nb-tag-list>
                   <nb-tag text="{{ communityGroup.kommunities_count }} Communities"></nb-tag>
                   <nb-tag text="{{ communityGroup.member_count }} Members"></nb-tag>
-                  <nb-tag text="{{ communityGroup.community_channels_count }} Channels"></nb-tag>
+                  <nb-tag
+                    class="com-hidden md:com-block"
+                    text="{{ communityGroup.community_channels_count }} Channels"
+                  ></nb-tag>
                 </nb-tag-list>
               </div>
             </div>
           </div>
         </section>
-
         <div class="page-menu">
           <div class="menu-items d-flex">
             <a

@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -24,6 +24,17 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
         this.setMeta();
       }),
     );
+  }
+
+  @HostListener('window:scroll')
+  scrollHandler(event) {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      document.getElementById('scroll-show').style.display = 'flex';
+      document.getElementById('basic-details').style.display = 'none';
+    } else {
+      document.getElementById('scroll-show').style.display = 'none';
+      document.getElementById('basic-details').style.display = 'flex';
+    }
   }
 
   ngOnDestroy() {
