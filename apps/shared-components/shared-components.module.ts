@@ -13,9 +13,11 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
+  NbContextMenuModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbLayoutModule,
   NbListModule,
   NbPopoverModule,
   NbRadioModule,
@@ -69,6 +71,7 @@ import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { NbToggleModule } from '@commudle/theme';
+import { AlertComponent } from './alert/alert.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -106,6 +109,7 @@ import { NbToggleModule } from '@commudle/theme';
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -142,6 +146,8 @@ import { NbToggleModule } from '@commudle/theme';
     NbFormFieldModule,
     FontAwesomeModule,
     NbToggleModule,
+    NbContextMenuModule,
+    NbLayoutModule,
 
     //cdk
     DragDropModule,

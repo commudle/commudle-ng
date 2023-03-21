@@ -8,6 +8,15 @@
               Name*
               <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mb-6" />
             </label>
+            <!-- <span
+            *ngIf="
+              question.get('title').touched &&
+              question.get('title').invalid &&
+              question.get('title').errors.required
+            "
+          >
+            <commudle-alert [validation_error]="true"></commudle-alert>
+          </span> -->
           </div>
 
           <div role="group">
@@ -87,7 +96,7 @@
                       class="com-my-2"
                     >
                       <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
-                      {{ showQuestionDescriptionField ? 'Close Description' : 'Add Description' }}
+                      {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
                     </button>
 
                     <div *ngIf="showQuestionDescriptionField">
@@ -125,7 +134,7 @@
                         *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                       >
                         <div>
-                          <div class="choice-icon-container">
+                          <div class="choice-icon-container com-flex com-align-middle">
                             <div [formGroupName]="chi" class="com-mt-2">
                               <input
                                 type="text"
@@ -146,14 +155,14 @@
                                 Required Field
                               </span>
                             </div>
-                            <button
-                              nbButton
-                              status="primary"
-                              size="small"
-                              (click)="removeQuestionChoiceButtonClick(i, chi)"
-                            >
-                              <nb-icon icon="close-circle-outline"></nb-icon>
-                            </button>
+                            <div>
+                              <!-- <button nbButton size="small" (click)="removeQuestionChoiceButtonClick(i, chi)"> -->
+                              <nb-icon
+                                icon="close-circle-outline"
+                                (click)="removeQuestionChoiceButtonClick(i, chi)"
+                              ></nb-icon>
+                            </div>
+                            <!-- </button> -->
                           </div>
                         </div>
                       </div>
@@ -174,7 +183,35 @@
                 <div class="question-form-footer">
                   <!-- [formGroup]="createDataForm" -->
                   <nb-toggle size="small" labelPosition="right">Required</nb-toggle>
+
+                  <div class="footer-icons-mobile footer-icons-desktop com-mt-2">
+                    <nb-icon icon="plus-circle-outline" status="primary" class="com-w-5 com-h-5"></nb-icon>
+                    <nb-icon icon="trash-outline" status="danger" class="com-w-5 com-h-5 com-ml-3"></nb-icon>
+                  </div>
+                  <nb-layout-column class="com-flex com-justify-end">
+                    <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
+                      <nb-icon icon="more-vertical-outline"></nb-icon>
+                    </button>
+                  </nb-layout-column>
                 </div>
+                <!-- <ng-container *ngIf="isMobile; else desktopView">
+                  <div class="footer-icons hide-mobile">
+                    <nb-icon icon="plus-circle-outline" status="primary" class="com-w-5 com-h-5"></nb-icon>
+                    <nb-icon icon="trash-outline" status="danger" class="com-w-5 com-h-5"></nb-icon>
+                  </div>
+
+                  <ng-template #desktopView>
+                    <nb-icon
+                      icon="more-vertical-outline"
+                      nbContextMenu
+                      [nbContextMenuTag]="menuItemsTemplate"
+                    ></nb-icon>
+
+                    <ng-template #menuItemsTemplate let-item="item">
+                      <nb-icon [icon]="item.icon" [status]="item.status" class="com-w-5 com-h-5"></nb-icon>
+                    </ng-template>
+                  </ng-template>
+                </ng-container> -->
               </nb-card-body>
             </nb-card>
           </div>
@@ -203,3 +240,6 @@
     </div>
   </form>
 </div>
+<!-- <ng-template nbContextMenuTag let-item>
+  <nb-icon [icon]="item.icon" [status]="item.status" class="com-w-5 com-h-5"></nb-icon>
+</ng-template> -->

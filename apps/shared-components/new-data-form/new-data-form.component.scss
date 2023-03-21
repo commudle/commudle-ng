@@ -13,17 +13,17 @@
     }
 
     input {
-      @apply com-mt-1;
+      @apply com-mt-1 com-mb-0;
       background-color: white;
     }
 
     textarea {
-      @apply com-my-1;
+      @apply com-mt-1;
       background-color: white;
     }
 
     label {
-      @apply com-text-base com-font-medium;
+      @apply com-text-base com-font-medium com-text-Charcoal;
     }
 
     .data-form-question-choices-container {
@@ -78,11 +78,8 @@
         justify-content: flex-start;
 
         .choice-icon-container {
-          // display: flex;
-          // flex-direction: row;
-
           button {
-            background-color: white;
+            background: none;
             border: none;
 
             nb-icon {
@@ -102,14 +99,32 @@
       }
     }
     .question-form-footer {
+      @apply com-flex com-space-x-2 com-items-center;
       nb-toggle {
         @apply com-mt-2;
       }
-      // @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
+    }
+    // @media (max-width: 767px) {
+    //   .footer-icons-mobile {
+    //     display: none;
+    //   }
+    // }
 
-      // button {
-      //   @apply com-justify-start com-pl-0 md:com-pl-4;
-      // }
+    @media only screen and (max-width: 768px) {
+      .footer-icons-desktop {
+        display: none;
+      }
+    }
+    @media (min-width: 992px) {
+      nb-layout-column {
+        display: none;
+      }
     }
   }
 }
+
+// @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
+
+// button {
+//   @apply com-justify-start com-pl-0 md:com-pl-4;
+// }

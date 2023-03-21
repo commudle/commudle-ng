@@ -1,0 +1,19 @@
+.validation-error-text {
+  @apply com-text-sm com-my-2 com-flex com-items-center com-font-normal;
+  color: red; /* red */
+
+  .info-icon {
+    @apply com-text-sm com-mr-1;
+  }
+}
+
+.info {
+  @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
+  p,
+  nb-icon {
+    @apply com-text-primary-500;
+  }
+  nb-icon {
+    @apply com-text-2xl com-mx-2;
+  }
+}

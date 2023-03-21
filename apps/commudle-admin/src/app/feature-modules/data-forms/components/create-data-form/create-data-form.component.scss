@@ -3,10 +3,12 @@
     max-width: 920px;
     margin: 0 auto;
 
-    // h3 {
-    //   @apply com-text-2xl com-font-normal;
-    // }
-
+    nb-card-header {
+      @apply com-px-4 com-py-3;
+      h3 {
+        @apply com-text-2xl com-font-bold;
+      }
+    }
     .validation-error-text {
       color: red; /* red */
     }
