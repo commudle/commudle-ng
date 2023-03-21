@@ -15,7 +15,7 @@ import { CommunityGroupEventsComponent } from './components/community-group-even
 import { CommunityGroupChannelsComponent } from './components/community-group-channels/community-group-channels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
-import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-list-card.component';
+import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
 
 @NgModule({
   declarations: [
