@@ -24,9 +24,6 @@ export class EventsComponent implements OnInit {
   pastEvents = [];
   faMapPin = faMapPin;
 
-  width = '390px';
-  height = '230px';
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,

@@ -14,8 +14,7 @@ nb-card {
       }
 
       a {
-        @apply com-relative;
-        text-decoration: none;
+        @apply com-relative com-no-underline;
 
         .upcoming {
           @apply com-border-2 com-border-solid com-border-Bright-Gray;

@@ -1,7 +1,7 @@
 <nb-card [nbSpinner]="eventLoader">
   <nb-card-body>
     <div class="events">
-      <div *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
+      <section *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
         <p class="heading">Upcoming Events</p>
         <div class="com-flex com-flex-row com-flex-wrap com-gap-4">
           <a
@@ -32,7 +32,7 @@
                     ></app-badge>
                   </div>
                   <div *ngIf="!event.header_image_path">
-                    <nb-icon icon="link" status="primary"></nb-icon>
+                    <nb-icon icon="link" status="primary" class="com-m-auto"></nb-icon>
                   </div>
                   <div class="upcoming-details">
                     <div class="com-h-[130px]">
@@ -65,9 +65,9 @@
             </div>
           </a>
         </div>
-      </div>
+      </section>
 
-      <div *ngIf="pastEvents.length >= 1" class="past-events">
+      <section *ngIf="pastEvents.length >= 1" class="past-events">
         <h3 class="heading">Past Events</h3>
         <div class="com-flex com-flex-row com-flex-wrap com-gap-4 com-mx-30px">
           <a
@@ -84,11 +84,8 @@
                     [height]="'230px'"
                   ></commudle-banner-image>
                 </div>
-                <div
-                  *ngIf="!event.header_image_path"
-                  class="com-h-[148px] com-flex com-items-center com-text-center com-margin-auto"
-                >
-                  <nb-icon icon="link" status="primary" class="com-my-auto"></nb-icon>
+                <div *ngIf="!event.header_image_path" class="com-h-[148px] com-flex com-items-center com-text-center">
+                  <nb-icon icon="link" status="primary" class="com-m-auto"></nb-icon>
                 </div>
                 <div class="past-details">
                   <div class="com-h-[124px] com-mb-30px">
@@ -112,7 +109,7 @@
             </nb-card>
           </a>
         </div>
-      </div>
+      </section>
     </div>
   </nb-card-body>
   ></nb-card
