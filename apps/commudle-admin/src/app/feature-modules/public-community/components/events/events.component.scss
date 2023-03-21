@@ -9,7 +9,8 @@ nb-card {
 
       .heading {
         @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center;
-        @apply md:com-font-semibold md:com-text-Page-Heading md:com-text-start com-leading-4 md:com-my-8 com-text-black;
+        @apply md:com-font-medium md:com-text-[32px] md:com-text-start  md:com-my-8;
+        @apply com-leading-4 com-text-black;
       }
 
       a {
@@ -31,12 +32,14 @@ nb-card {
 
             .event-name {
               @apply com-text-xl com-leading-6 com-mt-4;
-              @apply com-font-semibold md:com-text-[32px] md:com-leading-8 com-mb-0 com-text-Dark-Jungle-Green md:com-mt-5 com-line-clamp-2;
+              @apply md:com-text-[32px] md:com-leading-8 md:com-mt-5;
+              @apply com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
             }
 
             .event_type_button {
               @apply com-mt-3 com-px-10px com-py-2;
-              @apply com-bg-Cultured com-rounded-lg md:com-mt-5 md:com-py-5px md:com-px-9px com-border-Light-Silver com-border-[1.5px] com-text-Vampire-Black;
+              @apply md:com-mt-5 md:com-px-4 md:com-py-2 md:com-mb-0;
+              @apply com-bg-white com-rounded-lg com-border-Light-Silver com-border-[1.5px] com-text-Vampire-Black com-text-sm com-font-normal;
             }
 
             .timing {
@@ -45,7 +48,7 @@ nb-card {
             }
 
             .interested_members {
-              @apply com-text-xs com-mt-17px com-mb-0 com-my-0;
+              @apply com-text-xs com-m-5;
               @apply md:com-text-sm com-font-normal com-text-AuroMetalSaurus md:com-m-0;
               @apply md:com-flex md:com-justify-between com-items-center;
 
@@ -56,7 +59,7 @@ nb-card {
             }
 
             .register {
-              @apply com-text-base;
+              @apply com-text-base com-mb-7;
               @apply com-font-medium md:com-text-xl com-text-Azure;
             }
           }
@@ -69,8 +72,8 @@ nb-card {
 
       .heading {
         @apply com-font-semibold com-text-2xl com-text-center;
-        @apply md:com-font-medium md:com-text-4xl md:com-text-start md:com-ml-6;
-        @apply com-leading-4 com-mt-[60px] com-mb-8;
+        @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-8;
+        @apply com-leading-4 com-mt-10 com-mb-8 com-text-black;
       }
 
       a {
@@ -94,17 +97,13 @@ nb-card {
             @apply com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
 
             .completed {
-              @apply com-mt-17px;
-              @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-mx-4;
-              @apply md:com-mt-3;
-
+              @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
               nb-icon {
                 @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
               }
             }
-
             .event-name {
-              @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-14px;
+              @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
             }
 
             .timings {
@@ -112,7 +111,7 @@ nb-card {
             }
 
             .view-details {
-              @apply com-font-medium com-text-base com-text-Charcoal com-mt-0 com-mx-4;
+              @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
             }
           }
         }

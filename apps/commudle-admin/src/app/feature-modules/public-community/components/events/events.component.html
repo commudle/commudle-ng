@@ -13,8 +13,7 @@
                 class="upcoming"
                 [ngClass]="{
                   'd-flex flex-row md:com-w-[600px]': upcomingEvents.length > 1,
-                  'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1,
-                  'd-flex flex-col com-w-[340px]': upcomingEvents.length === 1 || upcomingEvents.length > 1
+                  'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1
                 }"
               >
                 <nb-card-body class="d-flex com-flex-col">
@@ -25,7 +24,12 @@
                       [width]="upcomingEvents.length === 1 ? '1220px' : '600px'"
                       [height]="upcomingEvents.length === 1 ? '680px' : '334px'"
                     ></commudle-banner-image>
-                    <app-badge [color]="'rgb(255 45 45)'" [text]="'Live'" class="com-absolute com-top-0"></app-badge>
+                    <app-badge
+                      *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
+                      [color]="'rgb(255 45 45)'"
+                      [text]="'Live'"
+                      class="com-absolute com-top-0"
+                    ></app-badge>
                   </div>
                   <div *ngIf="!event.header_image_path">
                     <nb-icon icon="link" status="primary"></nb-icon>
@@ -84,14 +88,19 @@
                   *ngIf="!event.header_image_path"
                   class="com-h-[148px] com-flex com-items-center com-text-center com-margin-auto"
                 >
-                  <nb-icon icon="link" status="primary" class="com-m-auto"></nb-icon>
+                  <nb-icon icon="link" status="primary" class="com-my-auto"></nb-icon>
                 </div>
                 <div class="past-details">
-                  <div class="com-h-[130px]">
+                  <div class="com-h-[124px] com-mb-30px">
                     <div class="com-flex com-items-center com-align-middle">
                       <span class="completed">
                         Completed
-                        <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success"></nb-icon>
+                        <nb-icon
+                          icon="checkmark-circle-2"
+                          nbTooltip="Completed"
+                          status="success"
+                          class="com-m-auto"
+                        ></nb-icon>
                       </span>
                     </div>
                     <p class="event-name">{{ event.name }}</p>

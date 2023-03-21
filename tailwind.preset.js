@@ -41,7 +41,6 @@ module.exports = {
         'Crayola-Green': '#1B9F68',
         Charcoal: '#344054',
         'Vampire-Black': '#0A0A0A',
-        Cultured: '#F7F7F7',
       },
 
       lineClamp: {
