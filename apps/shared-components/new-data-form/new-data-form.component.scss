@@ -3,6 +3,16 @@
     max-width: 920px;
     margin: 0 auto;
 
+    .card-body {
+      @apply com-px-4 com-py-5;
+
+      input,
+      textarea {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+    }
+
     .validation-error-text {
       @apply com-text-sm com-my-2 com-flex com-items-center com-font-normal;
       color: red; /* red */
@@ -11,17 +21,6 @@
         @apply com-text-sm com-mr-1;
       }
     }
-
-    input {
-      @apply com-mt-1 com-mb-0;
-      background-color: white;
-    }
-
-    textarea {
-      @apply com-mt-1;
-      background-color: white;
-    }
-
     label {
       @apply com-text-base com-font-medium com-text-Charcoal;
     }
@@ -53,6 +52,12 @@
 
       label {
         @apply com-text-xl com-font-semibold;
+      }
+
+      input,
+      textarea {
+        @apply com-mt-5 com-mb-0;
+        background-color: white;
       }
 
       .question-settings {

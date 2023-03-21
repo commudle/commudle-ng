@@ -2,7 +2,7 @@
   <form class="create-data-form" [formGroup]="createDataForm">
     <div formGroupName="data_form">
       <nb-card *ngIf="showNameField">
-        <nb-card-body>
+        <nb-card-body class="card-body">
           <div role="group">
             <label fullWidth>
               Name*
@@ -93,7 +93,7 @@
                       ghost
                       (click)="toggleDescriptionField()"
                       status="primary"
-                      class="com-my-2"
+                      class="add-description-button"
                     >
                       <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
                       {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
@@ -194,24 +194,6 @@
                     </button>
                   </nb-layout-column>
                 </div>
-                <!-- <ng-container *ngIf="isMobile; else desktopView">
-                  <div class="footer-icons hide-mobile">
-                    <nb-icon icon="plus-circle-outline" status="primary" class="com-w-5 com-h-5"></nb-icon>
-                    <nb-icon icon="trash-outline" status="danger" class="com-w-5 com-h-5"></nb-icon>
-                  </div>
-
-                  <ng-template #desktopView>
-                    <nb-icon
-                      icon="more-vertical-outline"
-                      nbContextMenu
-                      [nbContextMenuTag]="menuItemsTemplate"
-                    ></nb-icon>
-
-                    <ng-template #menuItemsTemplate let-item="item">
-                      <nb-icon [icon]="item.icon" [status]="item.status" class="com-w-5 com-h-5"></nb-icon>
-                    </ng-template>
-                  </ng-template>
-                </ng-container> -->
               </nb-card-body>
             </nb-card>
           </div>
