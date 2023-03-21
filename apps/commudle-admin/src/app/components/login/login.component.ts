@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.cookieService.set(environment.auth_cookie_name, authToken, {
       path: '/',
       ...(environment.production && { domain: '.commudle.com' }),
+      expires: 30,
     });
     this.redirect();
     this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });
