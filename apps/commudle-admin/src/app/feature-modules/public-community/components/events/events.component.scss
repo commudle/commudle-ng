@@ -8,8 +8,8 @@ nb-card {
       @apply com-bg-white com-rounded-xl com-flex com-flex-wrap;
 
       .heading {
-        @apply com-font-semibold com-text-[40px] com-leading-4 com-my-8 com-text-black;
-        // @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center;
+        @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center;
+        @apply md:com-font-semibold md:com-text-Page-Heading md:com-text-start com-leading-4 md:com-my-8 com-text-black;
       }
 
       a {
@@ -56,8 +56,8 @@ nb-card {
             }
 
             .register {
-              @apply com-font-medium com-text-xl com-text-Azure;
-              // @apply com-text-base;
+              @apply com-text-base;
+              @apply com-font-medium md:com-text-xl com-text-Azure;
             }
           }
         }

@@ -25,11 +25,7 @@
                       [width]="upcomingEvents.length === 1 ? '1220px' : '600px'"
                       [height]="upcomingEvents.length === 1 ? '680px' : '334px'"
                     ></commudle-banner-image>
-                    <app-badge
-                      *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
-                      [color]="'rgb(255 45 45)'"
-                      [text]="'Live'"
-                    ></app-badge>
+                    <app-badge [color]="'rgb(255 45 45)'" [text]="'Live'" class="com-absolute com-top-0"></app-badge>
                   </div>
                   <div *ngIf="!event.header_image_path">
                     <nb-icon icon="link" status="primary"></nb-icon>
@@ -38,7 +34,7 @@
                     <div class="md:com-flex com-flex-row com-justify-between com-items-center items-center">
                       <p class="event-name">{{ event.name }}</p>
                       <button nbButton status="none" size="small" class="event_type_button">
-                        <fa-icon [icon]="faMapPin" class="com-mr-1"></fa-icon>
+                        <fa-icon [icon]="faMapPin" class="com-mr-1 com-text-red-500"></fa-icon>
                         {{ event.event_type }} Event
                       </button>
                     </div>
@@ -100,5 +96,5 @@
       </div>
     </div>
   </nb-card-body>
-  <nb-card> </nb-card
-></nb-card>
+  ></nb-card
+>
