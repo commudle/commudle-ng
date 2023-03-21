@@ -30,16 +30,16 @@
         appearance="outline"
         [text]="options[1]"
         status="primary"
-        [removable]="employer ? 'true' : 'false'"
-        [ngClass]="{ activeTag: employer }"
+        [removable]="contentCreator ? 'true' : 'false'"
+        [ngClass]="{ activeTag: contentCreator }"
         (click)="filterByTags(options[1])"
       ></nb-tag>
       <nb-tag
         appearance="outline"
         [text]="options[2]"
         status="primary"
-        [removable]="contentCreator ? 'true' : 'false'"
-        [ngClass]="{ activeTag: contentCreator }"
+        [removable]="employer ? 'true' : 'false'"
+        [ngClass]="{ activeTag: employer }"
         (click)="filterByTags(options[2])"
       ></nb-tag>
       <nb-tag
@@ -74,7 +74,7 @@
                 {{ userRole.user_role.name | titlecase }}
               </span>
             </p>
-            <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
+            <div class="com-flex com-flex-row com-gap-4 com-justify-between">
               <app-user-profile-card-large
                 [showAbout]="true"
                 [showSocialLinks]="true"
@@ -83,7 +83,7 @@
               <button
                 (click)="activeContextMenuUser = userRole.user"
                 [nbContextMenu]="contextMenuItems"
-                class="context-menu"
+                class="context-menu com-h-2"
                 ghost
                 nbButton
                 nbContextMenuTag="community-member-context-menu"
@@ -107,9 +107,8 @@
             <app-user-engagement-data [user]="userRole.user" [communityId]="communityId"></app-user-engagement-data>
           </td>
           <td class="com-w-[300px]" valign="top">
-            <div *ngFor="let item of userRole.user.speaker_events">
-              <span>
-                <strong>Event: </strong>
+            <ul *ngFor="let item of userRole.user.speaker_events">
+              <li>
                 <a [href]="'communities/' + item.kommunity_id + '/events/' + item.id" target="_blank">
                   {{ item.name }}
                 </a>
@@ -117,14 +116,16 @@
                 <a [href]="'communities/' + item.kommunity_id" target="_blank">
                   {{ item.kommunity.name }}
                 </a>
-              </span>
-            </div>
+              </li>
+            </ul>
           </td>
           <td class="com-w-[200px]" valign="top">
             <div>
-              <p>Builds: {{ userRole.user.community_builds_count }}</p>
-              <p>Labs: {{ userRole.user.labs_count }}</p>
-              <p>Social Resource: {{ userRole.user.social_resources_count }}</p>
+              <p *ngIf="userRole.user.community_builds_count > 0">Builds: {{ userRole.user.community_builds_count }}</p>
+              <p *ngIf="userRole.user.labs_count > 0">Labs: {{ userRole.user.labs_count }}</p>
+              <p *ngIf="userRole.user.social_resources_count > 0">
+                Social Resource: {{ userRole.user.social_resources_count }}
+              </p>
             </div>
           </td>
         </tr>
