@@ -8,109 +8,115 @@ nb-card {
       @apply com-bg-white com-rounded-xl com-flex com-flex-wrap;
 
       .heading {
-        @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center;
+        @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
         @apply md:com-font-medium md:com-text-[32px] md:com-text-start  md:com-my-8;
-        @apply com-leading-4 com-text-black;
       }
 
-      a {
-        @apply com-relative com-no-underline;
+      .upcoming-events-container {
+        @apply com-flex com-flex-row com-flex-wrap com-gap-4;
 
-        .upcoming {
-          @apply com-border-2 com-border-solid com-border-Bright-Gray;
-          @apply com-overflow-hidden hover:com-shadow-Card com-rounded-lg;
-          @apply com-flex com-flex-row com-flex-wrap com-m-0;
+        a {
+          @apply com-relative com-no-underline;
 
-          nb-card-body {
-            nb-icon {
-              @apply com-text-5xl;
-            }
-          }
-          .upcoming-details {
-            @apply com-px-6 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+          .upcoming-events {
+            @apply com-border-2 com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
 
-            .event-name {
-              @apply com-text-xl com-leading-6 com-mt-4;
-              @apply md:com-text-[32px] md:com-leading-8 md:com-mt-5;
-              @apply com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
-            }
-
-            .event_type_button {
-              @apply com-mt-3 com-px-10px com-py-2;
-              @apply md:com-mt-5 md:com-px-4 md:com-py-2 md:com-mb-0;
-              @apply com-bg-white com-rounded-lg com-border-Light-Silver com-border-[1.5px] com-text-Vampire-Black com-text-sm com-font-normal;
-            }
-
-            .timing {
-              @apply com-text-xs com-mt-1;
-              @apply md:com-text-sm com-font-normal com-text-AuroMetalSaurus com-mb-0 com-p-0 md:com-mt-2;
-            }
-
-            .interested_members {
-              @apply com-text-xs com-m-5;
-              @apply md:com-text-sm com-font-normal com-text-AuroMetalSaurus md:com-m-0;
-              @apply md:com-flex md:com-justify-between com-items-center;
-
+            nb-card-body {
               nb-icon {
-                @apply com-mr-2;
-                @apply com-w-5 com-h-5 md:com-mr-6px com-text-Dark-Jungle-Green;
+                @apply com-text-5xl;
               }
             }
 
-            .register {
-              @apply com-text-base com-mb-7;
-              @apply com-font-medium md:com-text-xl com-text-Azure;
+            .without_image_path {
+              @apply com-h-[334px] com-flex com-items-center com-text-center;
+            }
+
+            .upcoming-details {
+              @apply com-px-6 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+
+              .event-name {
+                @apply com-text-xl com-leading-6 com-mt-4 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
+                @apply md:com-text-[32px] md:com-leading-8 md:com-mt-5;
+              }
+
+              .event_type_button {
+                @apply com-mt-3 com-px-10px com-py-2 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
+                @apply md:com-mt-5 md:com-px-4 md:com-py-2 md:com-mb-0;
+              }
+
+              .event-timing {
+                @apply com-text-xs com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
+                @apply md:com-text-sm md:com-mt-2;
+              }
+
+              .interested-members {
+                @apply com-text-xs com-m-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
+                @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between;
+
+                nb-icon {
+                  @apply com-mr-2 com-w-5 com-h-5 com-text-Dark-Jungle-Green;
+                  @apply md:com-mr-6px;
+                }
+              }
+
+              .register-button {
+                @apply com-text-base com-mb-7 com-font-medium com-text-Azure;
+                @apply md:com-text-xl;
+              }
             }
           }
         }
       }
-    }
 
-    .past-events {
-      @apply com-flex com-flex-col com-mx-auto com-my-0;
+      .past-events {
+        @apply com-flex com-flex-col com-mx-auto com-my-0;
 
-      .heading {
-        @apply com-font-semibold com-text-2xl com-text-center;
-        @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-8;
-        @apply com-leading-4 com-mt-10 com-mb-8 com-text-black;
-      }
+        .heading {
+          @apply com-font-semibold com-text-2xl com-text-center com-leading-4 com-mt-10 com-mb-8 com-text-black;
+          @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-8;
+        }
 
-      a {
-        @apply com-relative com-w-full md:com-w-[390px];
-        text-decoration: none;
+        .past-events-container {
+          @apply com-flex com-flex-row com-flex-wrap com-gap-4 com-mx-30px;
+          a {
+            @apply com-relative com-w-full md:com-w-[390px] com-no-underline;
 
-        .past {
-          @apply com-border com-border-solid com-border-Bright-Gray;
-          @apply com-overflow-hidden com-shadow-Card com-rounded-xl com-my-0;
+            .past-container {
+              @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden com-shadow-Card com-rounded-xl com-my-0;
 
-          .no-image-path {
-            @apply com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto com-flex com-justify-center com-items-center;
-          }
-
-          nb-icon {
-            @apply com-text-5xl;
-          }
-
-          .past-details {
-            @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
-            @apply com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
-
-            .completed {
-              @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
-              nb-icon {
-                @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+              .no-image-path {
+                @apply com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto com-flex com-justify-center com-items-center;
               }
-            }
-            .event-name {
-              @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
-            }
 
-            .timings {
-              @apply com-text-sm com-font-normal com-text-AuroMetalSaurus com-mx-4 com-mb-0 com-mt-1;
-            }
+              nb-icon {
+                @apply com-text-5xl;
+              }
 
-            .view-details {
-              @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
+              .without_image_path {
+                @apply com-h-[148px] com-flex com-items-center com-text-center;
+              }
+
+              .past-details {
+                @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
+
+                .completed {
+                  @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
+                  nb-icon {
+                    @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+                  }
+                }
+                .event-name {
+                  @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
+                }
+
+                .event-timings {
+                  @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
+                }
+
+                .view-details {
+                  @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
+                }
+              }
             }
           }
         }

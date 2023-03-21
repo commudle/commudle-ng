@@ -34,7 +34,7 @@ module.exports = {
         'Blue-Violet': '#6F22DF',
         Blond: '#FFF1BB',
         'Black-Coral': '#595867',
-        AuroMetalSaurus: '#667085',
+        'Auro-Metal-Saurus': '#667085',
         'Dark-Jungle-Green': '#101828',
         'Light-Silver': '#D0D5DD',
         'Bright-Gray': '#EAECF0',

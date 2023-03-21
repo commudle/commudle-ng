@@ -3,14 +3,14 @@
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
         <p class="heading">Upcoming Events</p>
-        <div class="com-flex com-flex-row com-flex-wrap com-gap-4">
+        <div class="upcoming-events-container">
           <a
             *ngFor="let event of upcomingEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
           >
             <div>
               <nb-card
-                class="upcoming"
+                class="upcoming-events"
                 [ngClass]="{
                   'd-flex flex-row md:com-w-[600px]': upcomingEvents.length > 1,
                   'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1
@@ -21,8 +21,6 @@
                     <commudle-banner-image
                       [headerImagePath]="event.header_image_path"
                       [name]="event.name"
-                      [width]="upcomingEvents.length === 1 ? '1220px' : '600px'"
-                      [height]="upcomingEvents.length === 1 ? '680px' : '334px'"
                     ></commudle-banner-image>
                     <app-badge
                       *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
@@ -32,14 +30,14 @@
                     ></app-badge>
                   </div>
                   <div *ngIf="!event.header_image_path">
-                    <nb-icon icon="link" status="primary" class="com-m-auto"></nb-icon>
+                    <nb-icon icon="link" status="primary" class="without_image_path"></nb-icon>
                   </div>
                   <div class="upcoming-details">
                     <div class="com-h-[130px]">
                       <div class="md:com-flex md:com-flex-row md:com-justify-between md:com-items-start">
                         <div>
                           <p class="event-name">{{ event.name }}</p>
-                          <p class="timing">
+                          <p class="event-timing">
                             {{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards
                           </p>
                         </div>
@@ -50,13 +48,13 @@
                       </div>
                     </div>
 
-                    <div class="interested_members">
+                    <div class="interested-members">
                       <div class="com-flex com-items-center">
                         <nb-icon icon="people-outline" class="people-outline"></nb-icon>
                         <span>{{ event.interested_members_count }} Interested Members</span>
                       </div>
                       <div>
-                        <p class="register">Register</p>
+                        <p class="register-button">Register</p>
                       </div>
                     </div>
                   </div>
@@ -69,22 +67,20 @@
 
       <section *ngIf="pastEvents.length >= 1" class="past-events">
         <h3 class="heading">Past Events</h3>
-        <div class="com-flex com-flex-row com-flex-wrap com-gap-4 com-mx-30px">
+        <div class="past-events-container">
           <a
             *ngFor="let event of pastEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
           >
-            <nb-card class="past">
+            <nb-card class="past-container">
               <nb-card-body>
                 <div *ngIf="event.header_image_path">
                   <commudle-banner-image
                     [headerImagePath]="event.header_image_path"
                     [name]="event.name"
-                    [width]="'390px'"
-                    [height]="'230px'"
                   ></commudle-banner-image>
                 </div>
-                <div *ngIf="!event.header_image_path" class="com-h-[148px] com-flex com-items-center com-text-center">
+                <div *ngIf="!event.header_image_path" class="without_image_path">
                   <nb-icon icon="link" status="primary" class="com-m-auto"></nb-icon>
                 </div>
                 <div class="past-details">
@@ -101,7 +97,7 @@
                       </span>
                     </div>
                     <p class="event-name">{{ event.name }}</p>
-                    <p class="timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+                    <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
                   </div>
                   <a class="view-details">View Details</a>
                 </div>
