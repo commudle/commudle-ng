@@ -27,8 +27,9 @@
     p {
       margin-bottom: 0.5rem;
       .title {
-        font-weight: 200;
-        font-size: 1.5rem;
+        @apply com-text-base com-font-medium com-text-Yankees-Blue;
+        // font-weight: 500;
+        // font-size: 1.5rem;
       }
     }
 
