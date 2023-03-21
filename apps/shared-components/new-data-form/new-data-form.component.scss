@@ -48,48 +48,51 @@
     }
 
     .question-container {
-      @apply com-flex com-flex-col com-font-semibold com-text-xl;
+      @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
       label {
         @apply com-text-xl com-font-semibold;
       }
 
-      input,
-      textarea {
+      input {
         @apply com-mt-5 com-mb-0;
         background-color: white;
       }
 
+      textarea {
+        @apply com-mt-1 com-mb-0;
+        background-color: white;
+      }
+
+      .add-description-button {
+        @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
+
+        nb-icon {
+          @apply com-mr-1;
+        }
+      }
+
       .question-settings {
-        margin: 4rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
         nb-select {
           background-color: white;
         }
-        label,
-        nb-heckbox {
+
+        label {
           @apply com-flex com-flex-col com-font-semibold com-text-xl com-mb-4;
           margin-right: 1.5rem;
         }
       }
 
       .choices-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
-        .choice-icon-container {
-          button {
-            background: none;
-            border: none;
+        .choice-container {
+          @apply com-flex;
 
-            nb-icon {
-              @apply com-text-base;
-            }
+          nb-icon {
+            @apply com-text-base com-mr-2;
           }
         }
       }
@@ -108,26 +111,33 @@
       nb-toggle {
         @apply com-mt-2;
       }
-    }
-    // @media (max-width: 767px) {
-    //   .footer-icons-mobile {
-    //     display: none;
-    //   }
-    // }
 
-    @media only screen and (max-width: 768px) {
-      .footer-icons-desktop {
-        display: none;
-      }
-    }
-    @media (min-width: 992px) {
-      nb-layout-column {
-        display: none;
-      }
+      // .footer-icons-desktop {
+      //   @apply sm:com-hidden;
+      // }
+      // nb-layout-column {
+      //   @apply md:com-hidden;
+      // }
+
+      // @media (max-width: 767px) {
+      //   .footer-icons-mobile {
+      //     display: none;
+      //   }
+      // }
+
+      // @media only screen and (max-width: 768px) {
+      //   .footer-icons-desktop {
+      //     display: none;
+      //   }
+      // }
+      // @media (min-width: 992px) {
+      //   nb-layout-column {
+      //     display: none;
+      //   }
+      // }
     }
   }
 }
-
 // @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
 
 // button {

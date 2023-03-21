@@ -80,32 +80,29 @@
                           question.get('title').invalid &&
                           question.get('title').errors.required
                         "
-                        class="validation-error-text"
                       >
-                        <nb-icon icon="info" class="info"></nb-icon>
-                        Required Field
+                        <commudle-alert [validation_error]="true"></commudle-alert>
                       </span>
-                    </div>
+                      <button
+                        nbButton
+                        size="small"
+                        ghost
+                        (click)="toggleDescriptionField()"
+                        status="primary"
+                        class="add-description-button"
+                      >
+                        <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
+                        {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
+                      </button>
 
-                    <button
-                      nbButton
-                      size="small"
-                      ghost
-                      (click)="toggleDescriptionField()"
-                      status="primary"
-                      class="add-description-button"
-                    >
-                      <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
-                      {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
-                    </button>
-
-                    <div *ngIf="showQuestionDescriptionField">
-                      <textarea
-                        nbInput
-                        fullWidth
-                        formControlName="description"
-                        placeholder="Description (Optional)"
-                      ></textarea>
+                      <div *ngIf="showQuestionDescriptionField" class="com-m-0">
+                        <textarea
+                          nbInput
+                          fullWidth
+                          formControlName="description"
+                          placeholder="Description (Optional)"
+                        ></textarea>
+                      </div>
                     </div>
 
                     <div class="question-settings">
@@ -119,6 +116,7 @@
                           status="basic"
                           size="medium"
                           hero
+                          class="com-my-5"
                         >
                           <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
@@ -133,36 +131,31 @@
                         formArrayName="question_choices"
                         *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                       >
-                        <div>
-                          <div class="choice-icon-container com-flex com-align-middle">
-                            <div [formGroupName]="chi" class="com-mt-2">
-                              <input
-                                type="text"
-                                nbInput
-                                formControlName="title"
-                                placeholder="Choice {{ chi + 1 }}"
-                                required
-                              />
-                              <span
-                                *ngIf="
-                                  choice.get('title').touched &&
-                                  choice.get('title').invalid &&
-                                  choice.get('title').errors.required
-                                "
-                                class="validation-error-text"
-                              >
-                                <nb-icon icon="info" class="info"></nb-icon>
-                                Required Field
-                              </span>
-                            </div>
-                            <div>
-                              <!-- <button nbButton size="small" (click)="removeQuestionChoiceButtonClick(i, chi)"> -->
-                              <nb-icon
-                                icon="close-circle-outline"
-                                (click)="removeQuestionChoiceButtonClick(i, chi)"
-                              ></nb-icon>
-                            </div>
-                            <!-- </button> -->
+                        <div class="choice-container com-flex">
+                          <div [formGroupName]="chi" class="com-mb-2">
+                            <input
+                              type="text"
+                              nbInput
+                              formControlName="title"
+                              placeholder="Choice {{ chi + 1 }}"
+                              required
+                            />
+                            <span
+                              *ngIf="
+                                choice.get('title').touched &&
+                                choice.get('title').invalid &&
+                                choice.get('title').errors.required
+                              "
+                            >
+                              <commudle-alert [validation_error]="true"></commudle-alert>
+                            </span>
+                          </div>
+
+                          <div class="com-mt-2 com-ml-2">
+                            <nb-icon
+                              icon="close-circle-outline"
+                              (click)="removeQuestionChoiceButtonClick(i, chi)"
+                            ></nb-icon>
                           </div>
                         </div>
                       </div>
@@ -181,13 +174,19 @@
                   </div>
                 </div>
                 <div class="question-form-footer">
-                  <!-- [formGroup]="createDataForm" -->
+                  <nb-icon
+                    class="footer-icons-desktop"
+                    icon="plus-circle-outline"
+                    status="primary"
+                    class="com-w-5 com-h-5"
+                  ></nb-icon>
                   <nb-toggle size="small" labelPosition="right">Required</nb-toggle>
-
-                  <div class="footer-icons-mobile footer-icons-desktop com-mt-2">
-                    <nb-icon icon="plus-circle-outline" status="primary" class="com-w-5 com-h-5"></nb-icon>
-                    <nb-icon icon="trash-outline" status="danger" class="com-w-5 com-h-5 com-ml-3"></nb-icon>
-                  </div>
+                  <nb-icon
+                    class="footer-icons-desktop"
+                    icon="trash-outline"
+                    status="danger"
+                    class="com-w-5 com-h-5 com-ml-3"
+                  ></nb-icon>
                   <nb-layout-column class="com-flex com-justify-end">
                     <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
                       <nb-icon icon="more-vertical-outline"></nb-icon>
@@ -198,6 +197,8 @@
             </nb-card>
           </div>
         </div>
+        <!-- <div class="footer-icons-desktop com-mt-2"></div> -->
+        <!-- [formGroup]="createDataForm" -->
         <div *ngIf="!maxQuestionCount || maxQuestionCount > totalQuestions" class="add-question-button">
           <button nbButton size="medium" (click)="addQuestionButtonClick(totalQuestions + 1)" status="primary">
             <nb-icon icon="plus-outline"></nb-icon>
