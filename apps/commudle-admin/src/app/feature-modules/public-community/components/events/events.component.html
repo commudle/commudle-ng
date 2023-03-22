@@ -85,8 +85,8 @@
                 </div>
                 <div class="past-details">
                   <div class="com-h-[124px] com-mb-30px">
-                    <div class="com-flex com-items-center com-align-middle">
-                      <span class="completed">
+                    <div class="com-flex com-justify-between">
+                      <div class="completed">
                         Completed
                         <nb-icon
                           icon="checkmark-circle-2"
@@ -94,7 +94,11 @@
                           status="success"
                           class="com-m-auto"
                         ></nb-icon>
-                      </span>
+                      </div>
+                      <div class="interested-members">
+                        <!-- <nb-icon icon="people-outline" class="people-outline"></nb-icon> -->
+                        <span>Interested Members: {{ event.interested_members_count }}</span>
+                      </div>
                     </div>
                     <p class="event-name">{{ event.name }}</p>
                     <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
@@ -108,5 +112,4 @@
       </section>
     </div>
   </nb-card-body>
-  ></nb-card
->
+</nb-card>

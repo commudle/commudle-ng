@@ -105,6 +105,17 @@ nb-card {
                     @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
                   }
                 }
+
+                .interested-members {
+                  @apply com-text-xs com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                  @apply md:com-flex md:com-justify-between;
+
+                  // nb-icon {
+                  //   @apply com-mr-2 com-w-5 com-h-5 com-text-Dark-Jungle-Green;
+                  //   @apply md:com-mr-6px;
+                  // }
+                }
+
                 .event-name {
                   @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
                 }
