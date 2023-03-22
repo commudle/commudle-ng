@@ -19,6 +19,7 @@ export class EventsComponent implements OnInit {
   community: ICommunity;
   events: IEvent[] = [];
   eventLoader = false;
+  isLoading = true;
 
   upcomingEvents = [];
   pastEvents = [];

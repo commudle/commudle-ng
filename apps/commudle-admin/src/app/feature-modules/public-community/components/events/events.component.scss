@@ -37,6 +37,10 @@ nb-card {
               .event-name {
                 @apply com-text-xl com-leading-6 com-mt-4 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
                 @apply md:com-text-[32px] md:com-leading-8 md:com-mt-5;
+
+                .collaboration {
+                  @apply com-text-sm com-font-normal;
+                }
               }
 
               .event_type_button {
@@ -118,6 +122,10 @@ nb-card {
 
                 .event-name {
                   @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
+
+                  .collaboration {
+                    @apply com-text-sm com-font-normal;
+                  }
                 }
 
                 .event-timings {

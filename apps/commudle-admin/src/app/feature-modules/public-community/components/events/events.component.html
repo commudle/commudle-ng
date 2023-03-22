@@ -1,4 +1,5 @@
-<nb-card [nbSpinner]="eventLoader">
+<nb-card>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <nb-card-body>
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
@@ -36,7 +37,12 @@
                     <div class="com-h-[130px]">
                       <div class="md:com-flex md:com-flex-row md:com-justify-between md:com-items-start">
                         <div>
-                          <p class="event-name">{{ event.name }}</p>
+                          <p class="event-name">
+                            {{ event.name }}
+                            <span *ngIf="event.kommunity_id !== community.id" class="collaboration"
+                              >(Collaboration)</span
+                            >
+                          </p>
                           <p class="event-timing">
                             {{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards
                           </p>
@@ -96,11 +102,13 @@
                         ></nb-icon>
                       </div>
                       <div class="interested-members">
-                        <!-- <nb-icon icon="people-outline" class="people-outline"></nb-icon> -->
                         <span>Interested Members: {{ event.interested_members_count }}</span>
                       </div>
                     </div>
-                    <p class="event-name">{{ event.name }}</p>
+                    <p class="event-name">
+                      {{ event.name }}
+                      <span *ngIf="event.kommunity_id !== community.id" class="collaboration">(Collaboration)</span>
+                    </p>
                     <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
                   </div>
                   <a class="view-details">View Details</a>
