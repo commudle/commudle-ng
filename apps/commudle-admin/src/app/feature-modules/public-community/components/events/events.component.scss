@@ -13,7 +13,7 @@ nb-card {
       }
 
       .upcoming-events-container {
-        @apply com-flex com-flex-row com-flex-wrap com-gap-4;
+        @apply com-flex com-flex-row com-flex-wrap md:com-gap-4 com-m-auto;
 
         a {
           @apply com-relative com-no-underline;
@@ -32,40 +32,40 @@ nb-card {
             }
 
             .upcoming-details {
-              @apply com-px-6 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+              @apply com-p-4 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
 
               .event-name {
-                @apply com-text-xl com-leading-6 com-mt-4 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
-                @apply md:com-text-[32px] md:com-leading-8 md:com-mt-5;
+                @apply com-text-xl com-leading-6 com-mt-0 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
+                @apply md:com-leading-8 md:com-mt-4;
 
                 .collaboration {
-                  @apply com-text-sm com-font-normal;
+                  @apply com-text-xs com-font-normal;
                 }
               }
 
               .event_type_button {
-                @apply com-mt-3 com-px-10px com-py-2 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
-                @apply md:com-mt-5 md:com-px-4 md:com-py-2 md:com-mb-0;
+                @apply com-mt-3 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
+                @apply md:com-mt-4 md:com-mb-0 md:com-ml-4;
               }
 
               .event-timing {
-                @apply com-text-xs com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
-                @apply md:com-text-sm md:com-mt-2;
+                @apply com-text-sm com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
+                @apply md:com-mt-2;
               }
 
               .interested-members {
-                @apply com-text-xs com-m-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
-                @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between;
+                @apply com-text-xs com-mt-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
+                @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between md:com-mt-6;
 
                 nb-icon {
-                  @apply com-mr-2 com-w-5 com-h-5 com-text-Dark-Jungle-Green;
-                  @apply md:com-mr-6px;
+                  @apply com-mr-2 com-text-Dark-Jungle-Green;
+                  @apply md:com-mr-6px com-text-base;
                 }
               }
 
               .register-button {
-                @apply com-text-base com-mb-7 com-font-medium com-text-Azure;
-                @apply md:com-text-xl;
+                @apply com-text-base com-mt-8 com-font-medium com-text-Azure com-border com-rounded-lg com-border-Azure com-bg-white com-p-0;
+                @apply md:com-my-2;
               }
             }
           }
@@ -81,16 +81,12 @@ nb-card {
         }
 
         .past-events-container {
-          @apply com-flex com-flex-row com-flex-wrap com-gap-4 com-mx-30px;
+          @apply com-flex com-flex-row com-flex-wrap com-gap-8 com-mx-30px;
           a {
             @apply com-relative com-w-full md:com-w-[390px] com-no-underline;
 
             .past-container {
               @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden com-shadow-Card com-rounded-xl com-my-0;
-
-              .no-image-path {
-                @apply com-w-full md:com-w-[390px] md:com-h-[230px] com-h-auto com-flex com-justify-center com-items-center;
-              }
 
               nb-icon {
                 @apply com-text-5xl;
@@ -111,13 +107,8 @@ nb-card {
                 }
 
                 .interested-members {
-                  @apply com-text-xs com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                  @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
                   @apply md:com-flex md:com-justify-between;
-
-                  // nb-icon {
-                  //   @apply com-mr-2 com-w-5 com-h-5 com-text-Dark-Jungle-Green;
-                  //   @apply md:com-mr-6px;
-                  // }
                 }
 
                 .event-name {
