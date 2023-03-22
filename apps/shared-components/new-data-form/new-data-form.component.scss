@@ -119,22 +119,22 @@
       //   @apply md:com-hidden;
       // }
 
-      // @media (max-width: 767px) {
-      //   .footer-icons-mobile {
-      //     display: none;
-      //   }
-      // }
+      @media (max-width: 767px) {
+        .footer-icons-mobile {
+          display: none;
+        }
+      }
 
-      // @media only screen and (max-width: 768px) {
-      //   .footer-icons-desktop {
-      //     display: none;
-      //   }
-      // }
-      // @media (min-width: 992px) {
-      //   nb-layout-column {
-      //     display: none;
-      //   }
-      // }
+      @media only screen and (max-width: 768px) {
+        .footer-icons-desktop {
+          display: none;
+        }
+      }
+      @media (min-width: 992px) {
+        nb-layout-column {
+          display: none;
+        }
+      }
     }
   }
 }

@@ -129,6 +129,7 @@
                     >
                       <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
                         {{ qt.name }}
+                        <!-- capitalizeAndRemoveUnderscore -->
                       </nb-option>
                     </nb-select>
                   </div>
@@ -187,6 +188,11 @@
                     >Disabled
                     <small>(If you don't want this question to appear anymore)</small>
                   </nb-toggle>
+                  <nb-layout-column class="com-flex com-justify-end">
+                    <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
+                      <nb-icon icon="more-vertical-outline"></nb-icon>
+                    </button>
+                  </nb-layout-column>
 
                   <!-- (click)="openForHiring()" [(checked)]="required"  -->
                   <!-- <button nbButton size="small" ghost (click)="addQuestionButtonClick(i + 1)" status="primary">

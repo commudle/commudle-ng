@@ -8,12 +8,13 @@
 }
 
 .info {
-  @apply com-bg-[#EDF5FF] com-rounded-lg com-items-center com-my-2;
-  p,
+  @apply com-mt-6 com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-px-14px com-m-auto;
+
   nb-icon {
-    @apply com-text-primary-500;
+    @apply com-w-[15px] com-h-[15px] com-text-New-Car com-mr-6px com-mt-3;
   }
-  nb-icon {
-    @apply com-text-2xl com-mx-2;
+
+  p {
+    @apply com-text-xs com-font-normal com-leading-4 com-text-New-Car;
   }
 }

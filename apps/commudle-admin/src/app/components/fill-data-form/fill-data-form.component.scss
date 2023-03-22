@@ -26,9 +26,17 @@
             width: 100%;
           }
         }
-        h3 {
-          margin: 0;
+        .event-name {
+          @apply com-text-Ultramarine-Blue com-m-0 com-text-base com-font-bold;
         }
+
+        .form-name {
+          @apply com-text-xl com-font-semibold com-mb-1 com-mt-8;
+        }
+      }
+
+      .data-form-fill-body {
+        @apply com-py-5 com-px-4;
       }
     }
 

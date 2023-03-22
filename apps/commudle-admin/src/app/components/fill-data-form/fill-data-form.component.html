@@ -18,8 +18,8 @@
                 <div *ngIf="event.header_image_path" class="header-image">
                   <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
                 </div>
-                <h3 class="com-text-Ultramarine-Blue">{{ event.name }}</h3>
-                <h1 class="form-name">{{ dataFormEntity.name }}</h1>
+                <p class="event-name">{{ event.name }}</p>
+                <p class="form-name">{{ dataFormEntity.name }}</p>
               </div>
             </nb-card-body>
           </nb-card>
@@ -34,7 +34,7 @@
           </nb-card>
 
           <nb-card>
-            <nb-card-body>
+            <nb-card-body class="data-form-fill-body">
               <app-data-form-fill
                 (formSubmitted)="submitForm($event)"
                 [dataFormId]="dataFormEntity.data_form_id"

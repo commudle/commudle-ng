@@ -12,7 +12,7 @@
     white-space: pre-wrap;
   }
   .answer {
-    padding: 0 0.5rem;
+    padding: 0;
 
     .checkboxes {
       display: flex;
@@ -24,19 +24,16 @@
   .detail {
     display: flex;
 
+    .index {
+      @apply com-mt-0 com-mb-2 com-text-base com-font-medium com-text-Yankees-Blue com-pr-1;
+    }
+
     p {
-      margin-bottom: 0.5rem;
+      @apply com-mt-0 com-mb-2;
       .title {
         @apply com-text-base com-font-medium com-text-Yankees-Blue;
-        // font-weight: 500;
-        // font-size: 1.5rem;
       }
     }
-
-    nb-icon {
-      font-size: 0.8rem;
-    }
-
     .required-question {
       color: red;
     }
@@ -52,11 +49,11 @@
   }
 }
 
-nb-alert {
-  padding: 0 5px;
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
+// nb-alert {
+//   padding: 0 5px;
+//   font-weight: 300;
+//   margin-bottom: 1rem;
+// }
 
 .submit-button {
   margin-top: 1rem;

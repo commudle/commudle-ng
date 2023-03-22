@@ -24,6 +24,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   editDataForm: FormGroup;
   showQuestionDescriptionField = false;
+  items = [{ title: 'Add Question Below' }, { title: 'Delete Question' }];
 
   @ViewChild('cdkDrag') cdkDrag: any;
 

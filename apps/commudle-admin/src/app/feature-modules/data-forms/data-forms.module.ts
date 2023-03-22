@@ -12,6 +12,8 @@ import {
   NbCheckboxModule,
   NbIconModule,
   NbToggleModule,
+  NbContextMenuModule,
+  NbLayoutModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -36,6 +38,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NbSelectModule,
     NbCheckboxModule,
     NbIconModule,
+    NbContextMenuModule,
+    NbLayoutModule,
 
     //cdk module
     DragDropModule,
