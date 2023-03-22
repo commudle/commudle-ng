@@ -1,9 +1,10 @@
 .validation-error-text {
-  @apply com-text-sm com-my-1 com-flex com-items-center com-font-normal;
-  color: red; /* red */
+  @apply com-text-sm com-flex com-items-center com-font-normal com-align-middle com-text-red-500;
+  // com-my-1;
 
   .info-icon {
-    @apply com-text-sm com-my-auto com-mr-1;
+    @apply com-text-sm com-mr-1;
+    // com-my-auto
   }
 }
 

@@ -174,40 +174,32 @@
                   </div>
                 </div>
                 <div class="question-form-footer">
-                  <button
-                    nbButton
-                    size="small"
-                    ghost
-                    (click)="addQuestionButtonClick(i + 1)"
-                    status="primary"
-                    class="footer-icons-desktop"
-                  >
-                    <nb-icon
-                      class="footer-icons-desktop"
-                      icon="plus-circle-outline"
+                  <div class="com-align-middle com-flex">
+                    <button
+                      nbButton
+                      size="small"
+                      ghost
+                      (click)="addQuestionButtonClick(i + 1)"
                       status="primary"
-                      class="com-w-5 com-h-5"
-                    ></nb-icon>
-                    &nbsp; Add Question Below
-                  </button>
-                  <nb-toggle size="small" labelPosition="right" class="toggle">Required</nb-toggle>
+                      class="footer-icons-desktop add-question-footer"
+                    >
+                      <nb-icon class="footer-icons-desktop" icon="plus-circle-outline" status="primary"></nb-icon>
+                      &nbsp; Add Question Below
+                    </button>
+                    <nb-toggle size="small" labelPosition="right" class="toggle">Required</nb-toggle>
+                  </div>
                   <button
                     nbButton
                     size="small"
                     ghost
                     (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="footer-icons-desktop com-ml-auto"
+                    class="footer-icons-desktop delete-question-footer"
                   >
-                    <nb-icon
-                      class="footer-icons-desktop"
-                      icon="trash-outline"
-                      status="danger"
-                      class="com-h-5 com-w-5"
-                    ></nb-icon>
+                    <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-                  <nb-layout-column class="com-flex com-justify-end">
+                  <nb-layout-column labelPosition="end">
                     <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
                       <nb-icon icon="more-vertical-outline"></nb-icon>
                     </button>

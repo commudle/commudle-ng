@@ -12,27 +12,12 @@
         background-color: white;
       }
     }
-
-    .validation-error-text {
-      @apply com-text-sm com-my-2 com-flex com-items-center com-font-normal;
-      color: red; /* red */
-
-      .info {
-        @apply com-text-sm com-mr-1;
-      }
-    }
     label {
       @apply com-text-base com-font-medium com-text-Charcoal;
     }
 
     .data-form-question-choices-container {
       margin-bottom: 0;
-
-      // .custom-question-container {
-      //   label {
-      //     @apply com-text-xl com-font-semibold;
-      //   }
-      // }
 
       .add-question-button {
         @apply com-m-2;
@@ -55,7 +40,7 @@
       }
 
       input {
-        @apply com-mt-5 com-mb-0;
+        @apply com-mt-4 com-mb-0;
         background-color: white;
       }
 
@@ -107,10 +92,27 @@
       }
     }
     .question-form-footer {
-      @apply com-flex com-space-x-2 com-items-center;
+      @apply com-flex com-space-x-2 com-items-center com-mt-12 com-align-middle md:com-flex-row sm:com-flex-col com-justify-between;
 
-      nb-toggle {
-        @apply com-mt-2;
+      .add-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      .toggle {
+        @apply md:com-border-l com-border-Bright-Gray com-border-solid com-pl-3 com-border-y-0 com-border-r-0 com-text-primary-500
+        com-text-sm com-font-medium com-border-0;
+      }
+
+      .delete-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
       }
 
       @media (max-width: 767px) {
