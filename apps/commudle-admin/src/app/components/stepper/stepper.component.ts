@@ -147,6 +147,7 @@ export class StepperComponent implements OnInit {
       this.gtm.dataLayerPushEvent('complete_your_profile_step_two', {
         com_name: this.currentUser.name,
         com_tagline: this.currentUser.designation,
+        com_gender: this.currentUser.gender,
       });
     }
   }
