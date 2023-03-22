@@ -44,6 +44,9 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   isOrganizer = false;
   isLoading = true;
 
+  // width = '1260px';
+  // height = '460px';
+
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('agendaSection', { static: false }) agendaSectionRef: ElementRef<HTMLDivElement>;

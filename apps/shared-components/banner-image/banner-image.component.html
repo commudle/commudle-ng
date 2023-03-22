@@ -1,0 +1,11 @@
+<div class="event-image-container" [style.width]="width" [style.height]="height">
+  <!-- <div *ngIf="headerImagePath"> -->
+  <div class="event-background" [ngStyle]="{ 'background-image': 'url(' + headerImagePath + ')' }"></div>
+  <div class="image">
+    <img alt="{{ name }}" class="event-image" src="{{ headerImagePath }}" title="{{ name }}" />
+  </div>
+  <!-- </div> -->
+  <!-- <div *ngIf="!headerImagePath"> -->
+  <!-- <nb-icon icon="link" status="primary"></nb-icon> -->
+  <!-- </div> -->
+</div>

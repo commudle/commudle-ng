@@ -1,36 +1,5 @@
 .base-layout {
   .container {
-    .event-image-container {
-      @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-h-auto lg:com-mx-2 lg:com-my-4 com-px-2 com-my-2;
-      position: relative;
-      display: flex;
-      overflow: hidden;
-      justify-content: center;
-      align-items: center;
-
-      .event-background {
-        @apply com-mx-auto lg:com-w-full com-w-[calc(100%-30px)];
-        position: absolute;
-        height: 100%;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
-        z-index: 0;
-      }
-
-      .event-image {
-        @apply com-w-full lg:com-w-[1260px] lg:com-h-[460px] com-object-contain;
-        position: relative;
-        z-index: 1;
-      }
-    }
-
     .home-event-menu {
       @apply com-sticky com-top-14 com-z-10;
 
