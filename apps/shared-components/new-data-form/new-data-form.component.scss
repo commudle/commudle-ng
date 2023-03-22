@@ -108,21 +108,25 @@
     }
     .question-form-footer {
       @apply com-flex com-space-x-2 com-items-center;
+
       nb-toggle {
         @apply com-mt-2;
       }
 
       @media (max-width: 767px) {
-        .footer-icons-mobile {
-          display: none;
+        .toggle {
+          display: block;
         }
-      }
 
-      @media only screen and (max-width: 768px) {
         .footer-icons-desktop {
           display: none;
         }
+
+        nb-layout-column {
+          display: block;
+        }
       }
+
       @media (min-width: 992px) {
         nb-layout-column {
           display: none;
@@ -131,8 +135,3 @@
     }
   }
 }
-// @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
-
-// button {
-//   @apply com-justify-start com-pl-0 md:com-pl-4;
-// }

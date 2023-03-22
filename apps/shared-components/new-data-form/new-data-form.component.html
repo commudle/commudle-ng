@@ -20,7 +20,7 @@
           </div>
 
           <div role="group">
-            <div>
+            <div class="com-mt-4">
               <label fullWidth>
                 Description
                 <textarea
@@ -174,19 +174,39 @@
                   </div>
                 </div>
                 <div class="question-form-footer">
-                  <nb-icon
-                    class="footer-icons-desktop"
-                    icon="plus-circle-outline"
+                  <button
+                    nbButton
+                    size="small"
+                    ghost
+                    (click)="addQuestionButtonClick(i + 1)"
                     status="primary"
-                    class="com-w-5 com-h-5"
-                  ></nb-icon>
-                  <nb-toggle size="small" labelPosition="right">Required</nb-toggle>
-                  <nb-icon
                     class="footer-icons-desktop"
-                    icon="trash-outline"
+                  >
+                    <nb-icon
+                      class="footer-icons-desktop"
+                      icon="plus-circle-outline"
+                      status="primary"
+                      class="com-w-5 com-h-5"
+                    ></nb-icon>
+                    &nbsp; Add Question Below
+                  </button>
+                  <nb-toggle size="small" labelPosition="right" class="toggle">Required</nb-toggle>
+                  <button
+                    nbButton
+                    size="small"
+                    ghost
+                    (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="com-w-5 com-h-5 com-ml-3"
-                  ></nb-icon>
+                    class="footer-icons-desktop com-ml-auto"
+                  >
+                    <nb-icon
+                      class="footer-icons-desktop"
+                      icon="trash-outline"
+                      status="danger"
+                      class="com-h-5 com-w-5"
+                    ></nb-icon>
+                    Delete
+                  </button>
                   <nb-layout-column class="com-flex com-justify-end">
                     <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
                       <nb-icon icon="more-vertical-outline"></nb-icon>
