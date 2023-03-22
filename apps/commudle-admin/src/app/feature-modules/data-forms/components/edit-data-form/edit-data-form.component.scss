@@ -103,15 +103,33 @@
         @apply com-cursor-move;
       }
     }
+
     .question-form-footer {
       @apply sm:com-flex-col;
-      @apply com-flex md:com-flex-row com-text-primary-500 com-align-middle com-gap-3;
+      @apply com-flex md:com-flex-row com-text-primary-500 com-align-middle com-gap-3 com-mt-12 com-justify-between com-items-center;
+
+      .add-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
 
       toggles {
-        @apply sm:com-flex-col md:com-flex-row;
-        nb-toggle {
+        .toggle {
+          @apply md:com-border-l com-border-Bright-Gray com-border-r-0 com-border-solid;
+          @apply com-text-sm com-font-medium com-border-0 md:com-border-y-0;
           @apply com-mr-0 md:com-mb-2;
-          @apply com-text-primary-500;
+          // @apply  com-pl-3
+        }
+      }
+
+      .delete-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
         }
       }
 
@@ -128,6 +146,10 @@
 
         nb-layout-column {
           display: block;
+        }
+
+        .footer-icons-desktop {
+          display: none;
         }
       }
     }

@@ -77,7 +77,7 @@
                   <nb-icon icon="move-outline"></nb-icon>
                 </button>
               </nb-card-header>
-              <nb-card-body>
+              <nb-card-body class="com-overflow-hidden">
                 <div class="question-container">
                   <div>
                     <label>
@@ -101,7 +101,7 @@
                     ghost
                     (click)="toggleDescriptionField()"
                     status="primary"
-                    class="com-my-2"
+                    class="com-mt-3"
                   >
                     <nb-icon icon="plus-outline"></nb-icon>
                     &nbsp;Add Description
@@ -181,25 +181,29 @@
                 </div>
 
                 <div class="question-form-footer">
-                  <button
-                    nbButton
-                    size="small"
-                    ghost
-                    (click)="addQuestionButtonClick(i + 1)"
-                    status="primary"
-                    class="footer-icons-desktop"
-                  >
-                    <fa-icon [icon]="faPlus" class="mt-1"></fa-icon>
-                    &nbsp; Add Question Below
-                  </button>
-                  <div class="toggles">
-                    <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4">Required</nb-toggle>
-                    <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4"
-                      >Disabled
-                      <p class="com-m-0">
-                        <small>(If you don't want this question to appear anymore)</small>
-                      </p>
-                    </nb-toggle>
+                  <div class="com-align-middle com-flex">
+                    <button
+                      nbButton
+                      size="small"
+                      ghost
+                      (click)="addQuestionButtonClick(i + 1)"
+                      status="primary"
+                      class="footer-icons-desktop add-question-footer"
+                    >
+                      <nb-icon class="footer-icons-desktop" icon="plus-circle-outline" status="primary"></nb-icon>
+                      &nbsp; Add Question Below
+                    </button>
+                    <div class="toggles">
+                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4 toggle"
+                        >Required</nb-toggle
+                      >
+                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="toggle"
+                        >Disable this question
+                        <p class="com-m-0">
+                          <small>(This question won't appear anymore)</small>
+                        </p>
+                      </nb-toggle>
+                    </div>
                   </div>
                   <button
                     nbButton
@@ -207,28 +211,16 @@
                     ghost
                     (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="footer-icons-desktop com-ml-auto"
+                    class="footer-icons-desktop delete-question-footer"
                   >
-                    <nb-icon
-                      class="footer-icons-desktop com-w-[20px] com-h-[20px] com-mt-1"
-                      icon="trash-outline"
-                      status="danger"
-                    ></nb-icon>
+                    <nb-icon icon="trash-outline" status="danger"></nb-icon>
+                    Delete
                   </button>
-                  <nb-layout-column class="com-flex com-justify-end">
-                    <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
-                      <nb-icon icon="more-vertical-outline"></nb-icon>
-                    </button>
-                  </nb-layout-column>
-
+                  <button labelPosition="end" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
+                    <nb-icon icon="more-vertical-outline"></nb-icon>
+                  </button>
                   <!-- (click)="openForHiring()" [(checked)]="required"  -->
-                  <!-- <button nbButton size="small" ghost (click)="addQuestionButtonClick(i + 1)" status="primary">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                    &nbsp; Add Question Below
-                  </button> -->
                   <!-- <nb-checkbox formControlName="disabled" status="primary"
-                    >Disabled <small>(If you don't want this question to appear anymore)</small></nb-checkbox
-                  >
                   <nb-checkbox formControlName="required" status="primary">Required</nb-checkbox> -->
                 </div>
               </nb-card-body>
