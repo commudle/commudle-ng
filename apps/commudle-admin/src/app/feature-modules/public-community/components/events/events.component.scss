@@ -64,8 +64,7 @@ nb-card {
               }
 
               .register-button {
-                @apply com-text-base com-mt-8 com-font-medium com-text-Azure com-border com-rounded-lg com-border-Azure com-bg-white com-p-0;
-                @apply md:com-my-2;
+                @apply com-mt-8 md:com-mt-0;
               }
             }
           }
@@ -81,12 +80,12 @@ nb-card {
         }
 
         .past-events-container {
-          @apply com-flex com-flex-row com-flex-wrap com-gap-8 com-mx-30px;
+          @apply com-flex com-flex-row com-flex-wrap com-mx-4 com-justify-between;
           a {
-            @apply com-relative com-w-full md:com-w-[390px] com-no-underline;
+            @apply com-relative com-w-full md:com-w-[390px] com-no-underline com-mb-8;
 
             .past-container {
-              @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden com-shadow-Card com-rounded-xl com-my-0;
+              @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-xl com-my-0;
 
               nb-icon {
                 @apply com-text-5xl;

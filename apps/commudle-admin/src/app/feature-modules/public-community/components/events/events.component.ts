@@ -18,7 +18,6 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
-  eventLoader = false;
   isLoading = true;
 
   upcomingEvents = [];
@@ -32,7 +31,6 @@ export class EventsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.eventLoader = true;
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.getEvents();
@@ -51,7 +49,7 @@ export class EventsComponent implements OnInit {
           this.pastEvents.push(event);
         }
       });
-      this.eventLoader = false;
+      this.isLoading = false;
     });
   }
 }

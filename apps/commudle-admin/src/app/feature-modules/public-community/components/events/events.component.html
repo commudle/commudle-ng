@@ -1,6 +1,6 @@
 <nb-card>
-  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
         <p class="heading">Upcoming Events</p>
@@ -59,7 +59,9 @@
                         <nb-icon icon="people-outline" class="people-outline"></nb-icon>
                         <span>{{ event.interested_members_count }} Interested Members</span>
                       </div>
-                      <button nbButton status="none" class="register-button">Register</button>
+                      <button nbButton status="primary" shape="semi-round" class="register-button" outline>
+                        Register
+                      </button>
                     </div>
                   </div>
                 </nb-card-body>
