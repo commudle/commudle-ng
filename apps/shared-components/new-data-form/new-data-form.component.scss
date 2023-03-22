@@ -20,7 +20,7 @@
       margin-bottom: 0;
 
       .add-question-button {
-        @apply com-m-2;
+        @apply com-mt-2 com-mb-12 com-mx-2;
       }
     }
 
@@ -51,6 +51,7 @@
 
       .add-description-button {
         @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
+        width: max-content;
 
         nb-icon {
           @apply com-mr-1;
@@ -62,6 +63,7 @@
 
         nb-select {
           background-color: white;
+          width: max-content;
         }
 
         label {
@@ -105,6 +107,9 @@
       .toggle {
         @apply md:com-border-l com-border-Bright-Gray com-border-solid com-pl-3 com-border-y-0 com-border-r-0 com-text-primary-500
         com-text-sm com-font-medium com-border-0;
+        span {
+          @apply com-text-primary-500;
+        }
       }
 
       .delete-question-footer {
@@ -113,6 +118,10 @@
         nb-icon {
           @apply com-h-5 com-w-5;
         }
+      }
+
+      nb-layout-column {
+        @apply md:com-hidden;
       }
 
       @media (max-width: 767px) {

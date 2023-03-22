@@ -110,13 +110,13 @@
                         <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
                         <nb-select
                           (selectedChange)="questionTypeChange($event, i)"
-                          placeholder="Question Type"
+                          placeholder="Question Type *"
                           formControlName="question_type_id"
                           required
                           status="basic"
                           size="medium"
                           hero
-                          class="com-my-5"
+                          class="com-mt-5 com-mb-3"
                         >
                           <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
@@ -186,7 +186,7 @@
                       <nb-icon class="footer-icons-desktop" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
-                    <nb-toggle size="small" labelPosition="right" class="toggle">Required</nb-toggle>
+                    <nb-toggle size="tiny" labelPosition="right" class="toggle"><span>Required</span></nb-toggle>
                   </div>
                   <button
                     nbButton
@@ -199,8 +199,13 @@
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-                  <nb-layout-column labelPosition="end">
-                    <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
+                  <nb-layout-column>
+                    <button
+                      nbButton
+                      [nbContextMenu]="items"
+                      nbContextMenuTrigger="click"
+                      class="com-flex com-justify-between"
+                    >
                       <nb-icon icon="more-vertical-outline"></nb-icon>
                     </button>
                   </nb-layout-column>
@@ -209,7 +214,6 @@
             </nb-card>
           </div>
         </div>
-        <!-- <div class="footer-icons-desktop com-mt-2"></div> -->
         <!-- [formGroup]="createDataForm" -->
         <div *ngIf="!maxQuestionCount || maxQuestionCount > totalQuestions" class="add-question-button">
           <button nbButton size="medium" (click)="addQuestionButtonClick(totalQuestions + 1)" status="primary">
@@ -235,6 +239,3 @@
     </div>
   </form>
 </div>
-<!-- <ng-template nbContextMenuTag let-item>
-  <nb-icon [icon]="item.icon" [status]="item.status" class="com-w-5 com-h-5"></nb-icon>
-</ng-template> -->

@@ -101,7 +101,7 @@
                     ghost
                     (click)="toggleDescriptionField()"
                     status="primary"
-                    class="com-mt-3"
+                    class="add-desciption"
                   >
                     <nb-icon icon="plus-outline"></nb-icon>
                     &nbsp;Add Description
@@ -194,14 +194,16 @@
                       &nbsp; Add Question Below
                     </button>
                     <div class="toggles">
-                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4 toggle"
-                        >Required</nb-toggle
+                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-pl-3 toggle"
+                        ><span>Required</span></nb-toggle
                       >
-                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="toggle"
-                        >Disable this question
-                        <p class="com-m-0">
-                          <small>(This question won't appear anymore)</small>
-                        </p>
+                      <nb-toggle size="small" labelPosition="right" [formControl]="" class="toggle com-ml-6"
+                        ><span
+                          >Disable this question
+                          <p class="com-m-0 com-text-primary-500">
+                            <small>(This question won't appear anymore)</small>
+                          </p>
+                        </span>
                       </nb-toggle>
                     </div>
                   </div>
@@ -216,15 +218,17 @@
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-                  <button
-                    labelPosition="end"
-                    nbButton
-                    [nbContextMenu]="items"
-                    nbContextMenuTrigger="click"
-                    class="context-menu"
-                  >
-                    <nb-icon icon="more-vertical-outline"></nb-icon>
-                  </button>
+                  <nb-layout-column>
+                    <button
+                      labelPosition="end"
+                      nbButton
+                      [nbContextMenu]="items"
+                      nbContextMenuTrigger="click"
+                      class="context-menu"
+                    >
+                      <nb-icon icon="more-vertical-outline"></nb-icon>
+                    </button>
+                  </nb-layout-column>
                   <!-- (click)="openForHiring()" [(checked)]="required"  -->
                   <!-- <nb-checkbox formControlName="disabled" status="primary"
                     >Disabled <small>(If you don't want this question to appear anymore)</small></nb-checkbox
