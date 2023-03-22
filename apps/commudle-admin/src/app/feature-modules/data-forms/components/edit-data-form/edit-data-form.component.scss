@@ -134,7 +134,7 @@
       }
 
       @media (min-width: 992px) {
-        nb-layout-column {
+        .context-menu {
           display: none;
         }
       }
@@ -144,7 +144,7 @@
           display: block;
         }
 
-        nb-layout-column {
+        .context-menu {
           display: block;
         }
 
@@ -152,6 +152,10 @@
           display: none;
         }
       }
+    }
+
+    .add-question-button {
+      @apply com-bg-Brandeis-Blue com-border-solid com-border-primary-500 com-border com-rounded com-text-white;
     }
   }
 }

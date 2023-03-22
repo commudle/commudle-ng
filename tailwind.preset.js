@@ -41,6 +41,7 @@ module.exports = {
         'Alice-Blue': '#EDF5FF',
         'New-Car': '#1D4ED8',
         'Bright-Gray': '#E4E9F2',
+        'Brandeis-Blue': '#0074ED',
       },
 
       lineClamp: {
