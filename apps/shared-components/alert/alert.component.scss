@@ -1,5 +1,5 @@
 .validation-error-text {
-  @apply com-text-sm com-my-2 com-flex com-items-center com-font-normal;
+  @apply com-text-sm com-my-1 com-flex com-items-center com-font-normal;
   color: red; /* red */
 
   .info-icon {
@@ -8,13 +8,13 @@
 }
 
 .info {
-  @apply com-mt-6 com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-px-14px com-m-auto;
+  @apply com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-pl-6px com-pr-14px com-m-auto;
 
   nb-icon {
-    @apply com-w-[15px] com-h-[15px] com-text-New-Car com-mr-6px com-mt-3;
+    @apply com-text-lg com-text-New-Car com-mr-6px;
   }
 
   p {
-    @apply com-text-xs com-font-normal com-leading-4 com-text-New-Car;
+    @apply com-text-xs com-font-normal com-leading-4 com-text-New-Car com-p-0 com-m-0;
   }
 }

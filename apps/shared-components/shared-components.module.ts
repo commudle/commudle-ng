@@ -177,6 +177,7 @@ import { AlertComponent } from './alert/alert.component';
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
 })
 export class SharedComponentsModule {}

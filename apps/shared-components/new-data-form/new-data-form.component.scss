@@ -112,13 +112,6 @@
         @apply com-mt-2;
       }
 
-      // .footer-icons-desktop {
-      //   @apply sm:com-hidden;
-      // }
-      // nb-layout-column {
-      //   @apply md:com-hidden;
-      // }
-
       @media (max-width: 767px) {
         .footer-icons-mobile {
           display: none;

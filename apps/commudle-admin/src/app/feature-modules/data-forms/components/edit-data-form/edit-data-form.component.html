@@ -90,10 +90,8 @@
                         question.get('title').invalid &&
                         question.get('title').errors.required
                       "
-                      class="validation-error-text"
                     >
-                      <nb-icon icon="info" class="com-text-sm com-mr-1"></nb-icon>
-                      Required Field
+                      <commudle-alert [validation_error]="true"></commudle-alert>
                     </span>
                   </div>
 
@@ -183,11 +181,40 @@
                 </div>
 
                 <div class="question-form-footer">
-                  <nb-toggle size="small" labelPosition="right" [formControl]="">Required</nb-toggle>
-                  <nb-toggle size="small" labelPosition="right" [formControl]=""
-                    >Disabled
-                    <small>(If you don't want this question to appear anymore)</small>
-                  </nb-toggle>
+                  <button
+                    nbButton
+                    size="small"
+                    ghost
+                    (click)="addQuestionButtonClick(i + 1)"
+                    status="primary"
+                    class="footer-icons-desktop"
+                  >
+                    <fa-icon [icon]="faPlus" class="mt-1"></fa-icon>
+                    &nbsp; Add Question Below
+                  </button>
+                  <div class="toggles">
+                    <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4">Required</nb-toggle>
+                    <nb-toggle size="small" labelPosition="right" [formControl]="" class="com-mr-4"
+                      >Disabled
+                      <p class="com-m-0">
+                        <small>(If you don't want this question to appear anymore)</small>
+                      </p>
+                    </nb-toggle>
+                  </div>
+                  <button
+                    nbButton
+                    size="small"
+                    ghost
+                    (click)="removeQuestionButtonClick(i + 1)"
+                    status="danger"
+                    class="footer-icons-desktop"
+                  >
+                    <nb-icon
+                      class="footer-icons-desktop com-text-5 com-ml-8 com-mt-1"
+                      icon="trash-outline"
+                      status="danger"
+                    ></nb-icon>
+                  </button>
                   <nb-layout-column class="com-flex com-justify-end">
                     <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click">
                       <nb-icon icon="more-vertical-outline"></nb-icon>

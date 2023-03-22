@@ -104,15 +104,35 @@
       }
     }
     .question-form-footer {
-      @apply com-flex com-flex-col com-mb-2 com-text-primary-500;
+      @apply sm:com-flex-col;
+      @apply com-flex md:com-flex-row com-text-primary-500 com-align-middle com-gap-3;
 
-      // .question-form-footer-toggle {
-      //   @apply com-flex com-flex-col;
-      // }
+      toggles {
+        @apply sm:com-flex-col md:com-flex-row;
+        nb-toggle {
+          @apply com-mr-0 md:com-mb-2;
+          @apply com-text-primary-500;
+        }
+      }
 
-      nb-toggle {
-        @apply com-mr-0 md:com-mb-2;
-        @apply com-text-primary-500;
+      @media (min-width: 992px) {
+        nb-layout-column {
+          display: none;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .toggles {
+          display: block;
+        }
+
+        .footer-icons-desktop {
+          display: none;
+        }
+
+        nb-layout-column {
+          display: block;
+        }
       }
     }
   }
