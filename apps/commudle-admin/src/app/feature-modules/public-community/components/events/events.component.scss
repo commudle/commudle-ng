@@ -12,59 +12,86 @@ nb-card {
         @apply md:com-font-medium md:com-text-[32px] md:com-text-start  md:com-my-8;
       }
 
-      .upcoming-events-container {
-        @apply com-flex com-flex-row com-flex-wrap md:com-gap-4 com-m-auto;
+      .upcoming-events-section {
+        @apply com-mx-auto com-my-0;
 
-        a {
-          @apply com-relative com-no-underline;
+        .upcoming-events-container {
+          @apply com-flex com-flex-row com-flex-wrap md:com-gap-4 com-m-auto;
 
-          .upcoming-events {
-            @apply com-border-2 com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
+          a {
+            @apply com-relative com-no-underline;
 
-            nb-card-body {
-              nb-icon {
-                @apply com-text-5xl;
+            .upcoming-events {
+              @apply com-border-2 com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
+
+              app-badge {
+                @apply com-absolute com-top-0;
               }
-            }
 
-            .without_image_path {
-              @apply com-h-[334px] com-flex com-items-center com-text-center;
-            }
-
-            .upcoming-details {
-              @apply com-p-4 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
-
-              .event-name {
-                @apply com-text-xl com-leading-6 com-mt-0 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
-                @apply md:com-leading-8 md:com-mt-4;
-
-                .collaboration {
-                  @apply com-text-xs com-font-normal;
+              nb-card-body {
+                nb-icon {
+                  @apply com-text-5xl;
                 }
               }
 
-              .event_type_button {
-                @apply com-mt-3 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
-                @apply md:com-mt-4 md:com-mb-0 md:com-ml-4;
-              }
-
-              .event-timing {
-                @apply com-text-sm com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
-                @apply md:com-mt-2;
-              }
-
-              .interested-members {
-                @apply com-text-xs com-mt-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
-                @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between md:com-mt-6;
+              .no-image-header {
+                @apply com-h-[334px] com-flex com-items-center com-text-center;
 
                 nb-icon {
-                  @apply com-mr-2 com-text-Dark-Jungle-Green;
-                  @apply md:com-mr-6px com-text-base;
+                  @apply com-m-auto;
                 }
               }
 
-              .register-button {
-                @apply com-mt-8 md:com-mt-0;
+              .upcoming-details {
+                @apply com-p-4 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+
+                .upcoming-details-container {
+                  @apply com-h-[116px];
+
+                  .details {
+                    @apply md:com-flex md:com-flex-row md:com-justify-between md:com-items-start;
+
+                    .event-name {
+                      @apply com-text-xl com-leading-6 com-mt-0 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
+                      @apply md:com-leading-8 md:com-mt-4;
+
+                      .collaboration {
+                        @apply com-text-xs com-font-normal;
+                      }
+                    }
+
+                    .event_type_button {
+                      @apply com-mt-3 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
+                      @apply md:com-mt-4 md:com-mb-0 md:com-ml-4;
+
+                      fa-icon {
+                        @apply com-mr-1 com-text-red-500;
+                      }
+                    }
+
+                    .event-timing {
+                      @apply com-text-sm com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
+                      @apply md:com-mt-2;
+                    }
+                  }
+                }
+
+                .interested-members {
+                  @apply com-text-xs com-mt-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
+                  @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between md:com-mt-6;
+
+                  div {
+                    @apply com-flex com-items-center;
+                    nb-icon {
+                      @apply com-mr-2 com-text-Dark-Jungle-Green;
+                      @apply md:com-mr-6px com-text-base;
+                    }
+                  }
+                }
+
+                .register-button {
+                  @apply com-mt-8 md:com-mt-0;
+                }
               }
             }
           }
@@ -91,35 +118,47 @@ nb-card {
                 @apply com-text-5xl;
               }
 
-              .without_image_path {
+              .no-image-header {
                 @apply com-h-[148px] com-flex com-items-center com-text-center;
+
+                nb-icon {
+                  @apply com-m-auto;
+                }
               }
 
               .past-details {
                 @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
 
-                .completed {
-                  @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
-                  nb-icon {
-                    @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+                .past-details-container {
+                  @apply com-h-[124px] com-mb-30px;
+
+                  .detailss {
+                    @apply com-flex com-justify-between;
+
+                    .completed {
+                      @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
+                      nb-icon {
+                        @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+                      }
+                    }
+
+                    .interested-members {
+                      @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                      @apply md:com-flex md:com-justify-between;
+                    }
                   }
-                }
 
-                .interested-members {
-                  @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
-                  @apply md:com-flex md:com-justify-between;
-                }
+                  .event-name {
+                    @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
 
-                .event-name {
-                  @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
-
-                  .collaboration {
-                    @apply com-text-sm com-font-normal;
+                    .collaboration {
+                      @apply com-text-sm com-font-normal;
+                    }
                   }
-                }
 
-                .event-timings {
-                  @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
+                  .event-timings {
+                    @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
+                  }
                 }
 
                 .view-details {
