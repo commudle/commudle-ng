@@ -200,14 +200,16 @@
                     Delete
                   </button>
                   <nb-layout-column>
-                    <button
-                      nbButton
-                      [nbContextMenu]="items"
-                      nbContextMenuTrigger="click"
-                      class="com-flex com-justify-between"
-                    >
-                      <nb-icon icon="more-vertical-outline"></nb-icon>
-                    </button>
+                    <div class="com-flex com-justify-end">
+                      <button
+                        nbButton
+                        [nbContextMenu]="items"
+                        nbContextMenuTrigger="click"
+                        class="com-flex com-justify-between"
+                      >
+                        <nb-icon icon="more-vertical-outline"></nb-icon>
+                      </button>
+                    </div>
                   </nb-layout-column>
                 </div>
               </nb-card-body>
