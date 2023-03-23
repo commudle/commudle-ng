@@ -1,5 +1,6 @@
 .image-container {
-  @apply com-relative com-overflow-hidden;
+  @apply com-relative com-overflow-hidden com-aspect-[16/6];
+  //TODO use aspect ratio in tailwind
 
   .background {
     @apply com-mx-auto lg:com-w-full com-w-[calc(100%-30px)];

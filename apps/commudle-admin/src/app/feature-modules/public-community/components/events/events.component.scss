@@ -8,8 +8,8 @@ nb-card {
       @apply com-bg-white com-rounded-xl com-flex com-flex-wrap;
 
       .heading {
-        @apply com-font-bold com-text-[28px] com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
-        @apply md:com-font-medium md:com-text-[32px] md:com-text-start  md:com-my-8;
+        @apply com-font-bold com-text-2xl com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
+        @apply md:com-font-medium md:com-text-start md:com-my-8;
       }
 
       .upcoming-events-section {
@@ -23,6 +23,14 @@ nb-card {
 
             .upcoming-events {
               @apply com-border-2 com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
+
+              .upcoming-multiple-events {
+                @apply com-flex com-flex-row md:com-w-[600px];
+              }
+
+              .upcoming-single-event {
+                @apply com-flex com-flex-col md:com-w-[1220px];
+              }
 
               app-badge {
                 @apply com-absolute com-top-0;
