@@ -42,9 +42,8 @@
             userRolesUserForm['controls'].email.invalid &&
             userRolesUserForm['controls'].email.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true"></commudle-alert>
         </span>
       </div>
 

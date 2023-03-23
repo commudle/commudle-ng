@@ -77,9 +77,8 @@
               jobForm['controls'].position.invalid &&
               jobForm['controls'].position.errors.required
             "
-            class="validation-error-text"
           >
-            Required Field
+            <commudle-alert [error]="true"></commudle-alert>
           </span>
         </label>
         <label>
@@ -92,9 +91,8 @@
               jobForm['controls'].company.errors.required &&
               jobForm['controls'].company.errors
             "
-            class="validation-error-text"
           >
-            Required Field
+            <commudle-alert [error]="true"></commudle-alert>
           </span>
         </label>
         <label>

@@ -46,9 +46,8 @@
           basicInfoForm['controls'].name.invalid &&
           basicInfoForm['controls'].name.errors.required
         "
-        class="validation-error-text"
       >
-        Required Field
+        <commudle-alert [error]="true"></commudle-alert>
       </span>
     </div>
   </div>
@@ -65,9 +64,8 @@
           basicInfoForm['controls'].designation.invalid &&
           basicInfoForm['controls'].designation.errors.required
         "
-        class="validation-error-text"
       >
-        Required Field
+        <commudle-alert [error]="true"></commudle-alert>
       </span>
     </div>
   </div>
