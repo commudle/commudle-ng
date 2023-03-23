@@ -35,7 +35,7 @@
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
         >
-          <commudle-alert [error]="true"></commudle-alert>
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.NUMBER" class="answer">
@@ -54,7 +54,7 @@
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
         >
-          <commudle-alert [error]="true"></commudle-alert>
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.LONG_ANSWER" class="answer">
@@ -72,7 +72,7 @@
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
         >
-          <commudle-alert [error]="true"></commudle-alert>
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
