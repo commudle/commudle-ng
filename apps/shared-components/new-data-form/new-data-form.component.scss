@@ -137,6 +137,14 @@
 
       nb-layout-column {
         @apply md:com-hidden;
+
+        .layout-div {
+          @apply com-flex com-justify-end;
+
+          .context-button {
+            @apply com-flex com-justify-between;
+          }
+        }
       }
 
       @media (max-width: 767px) {

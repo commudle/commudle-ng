@@ -6,9 +6,6 @@
     <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <div class="detail">
         <span class="index">{{ i + 1 }}.</span>
-        <!-- <p>
-          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
-        </p> -->
         <p>
           <span [innerHTML]="question.title | linky : { sanitizeHtml: true }" class="title">
             <span *ngIf="question.required" class="required-question">*</span>
@@ -37,9 +34,8 @@
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.NUMBER" class="answer">
@@ -57,9 +53,8 @@
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.LONG_ANSWER" class="answer">
@@ -76,9 +71,8 @@
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true"></commudle-alert>
         </span>
       </div>
 
@@ -107,11 +101,7 @@
         </div>
       </div>
     </div>
-    <!-- <nb-alert accent="warning"
-      >Never enter any personal or sensitive information which can be misused (including but not limited to passwords)
-      in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.
-    </nb-alert> -->
-    <commudle-alert [info]="true"></commudle-alert>
+    <commudle-alert [info]="true" [message]="message"></commudle-alert>
 
     <div class="submit-button">
       <button

@@ -9,6 +9,7 @@ export class AlertComponent implements OnInit {
   constructor() {}
 
   @Input() info: boolean;
-  @Input() validation_error: boolean;
+  @Input() error: boolean;
+  @Input() message: string;
   ngOnInit(): void {}
 }

@@ -15,7 +15,7 @@
                 createDataForm.get('data_form').get('name').errors.required
               "
             >
-              <commudle-alert [validation_error]="true"></commudle-alert>
+              <commudle-alert [error]="true"></commudle-alert>
             </span>
           </div>
 
@@ -81,7 +81,7 @@
                           question.get('title').errors.required
                         "
                       >
-                        <commudle-alert [validation_error]="true"></commudle-alert>
+                        <commudle-alert [error]="true"></commudle-alert>
                       </span>
                       <button
                         nbButton
@@ -147,7 +147,7 @@
                                 choice.get('title').errors.required
                               "
                             >
-                              <commudle-alert [validation_error]="true"></commudle-alert>
+                              <commudle-alert [error]="true"></commudle-alert>
                             </span>
                           </div>
 
@@ -200,13 +200,8 @@
                     Delete
                   </button>
                   <nb-layout-column>
-                    <div class="com-flex com-justify-end">
-                      <button
-                        nbButton
-                        [nbContextMenu]="items"
-                        nbContextMenuTrigger="click"
-                        class="com-flex com-justify-between"
-                      >
+                    <div class="layout-div">
+                      <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" class="context-button">
                         <nb-icon icon="more-vertical-outline"></nb-icon>
                       </button>
                     </div>
