@@ -7,11 +7,7 @@
   position: relative;
 
   .profile-picture {
-    // border-radius: 50%;
     display: flex;
-    // max-height: 48px;
-    // max-width: 48px;
-    // min-width: 48px;
     width: 48px;
     height: 48px;
     margin-right: 0.5rem;
@@ -23,7 +19,6 @@
       left: 0px;
       top: 12px;
       border-radius: 32px;
-      // width: 100%;
     }
 
     &.medium {
@@ -41,9 +36,6 @@
 
   .profile-info {
     @apply com-w-full md:com-w-[625px] com-pl-2;
-    // height: 60px;
-    // word-break: break-word;
-    // max-width: 143%;
     text-align: left;
     .name {
       @apply com-text-Charcoal com-p-0.5;
@@ -73,7 +65,7 @@
       @apply com-text-AuroMetalSaurus com-p-0.5;
       margin: 0;
       font-size: $fs-card-list-title;
-      // word-break: break-all;
+      word-break: break-all;
       font-weight: 500;
       line-height: 20px;
 
@@ -88,7 +80,7 @@
     }
 
     .about_me {
-      @apply com-text-AuroMetalSaurus com-p-0.5;
+      @apply com-text-AuroMetalSaurus com-p-0.5 com-break-all md:com-break-normal;
       margin: 0;
       font-size: $fs-card-list-title;
       font-weight: 400;

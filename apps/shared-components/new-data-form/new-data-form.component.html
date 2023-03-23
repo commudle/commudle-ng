@@ -9,14 +9,23 @@
               <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mb-6" />
             </label>
             <!-- <span
-            *ngIf="
-              question.get('title').touched &&
-              question.get('title').invalid &&
-              question.get('title').errors.required
-            "
-          >
-            <commudle-alert [validation_error]="true"></commudle-alert>
-          </span> -->
+              *ngIf="
+                createDataForm.get('name').touched &&
+                createDataForm.get('name').invalid &&
+                createDataForm.get('name').errors.required
+              "
+            >
+              <commudle-alert [validation_error]="true"></commudle-alert>
+            </span> -->
+            <!-- <span
+              *ngIf="
+                createDataForm['controls'].name.touched &&
+                createDataForm['controls'].name.invalid &&
+                createDataForm['controls'].name.errors.required
+              "
+            >
+              <commudle-alert [validation_error]="true"></commudle-alert>
+            </span> -->
           </div>
 
           <div role="group">

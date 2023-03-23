@@ -1,4 +1,5 @@
 .community-team {
+  @apply com-overflow-hidden;
   padding: 1.5rem;
   .organizers,
   .event_organizers {
@@ -19,31 +20,20 @@
 
       .actions {
         @apply com-text-primary-500;
-        // width: 530px;
-        // height: 200px;
-        // line-height: 20px;
 
         .clickable {
           text-decoration: none;
           small {
-            // position: absolute;
-            // left: 275px;
-            // top: 0px;
-            // width: 530px;
-            // height: 200px;
             font-weight: 400;
             font-size: 14px;
           }
         }
       }
       .user-details {
-        // @apply com-w-full md:com-w-[625px];
-        // @apply com-ml-8;
       }
 
       @media screen and (min-width: 1000px) {
         flex-direction: row;
-        // align-items: center;
         justify-content: space-between;
       }
     }

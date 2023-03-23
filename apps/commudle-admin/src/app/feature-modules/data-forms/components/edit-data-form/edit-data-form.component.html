@@ -101,7 +101,7 @@
                     ghost
                     (click)="toggleDescriptionField()"
                     status="primary"
-                    class="add-desciption"
+                    class="add-description"
                   >
                     <nb-icon icon="plus-outline"></nb-icon>
                     &nbsp;Add Description
@@ -155,7 +155,7 @@
                             </span>
                           </div>
                           <button
-                            *ngIf="choice.get('has_responses').value == false"
+                            *ngIf="choice.get('has_responses').value === false"
                             nbButton
                             status="basic"
                             size="small"
