@@ -15,7 +15,7 @@
                 createDataForm.get('data_form').get('name').errors.required
               "
             >
-              <commudle-alert [error]="true"></commudle-alert>
+              <commudle-alert [error]="true" [errorMessage]="errorMessage"></commudle-alert>
             </span>
           </div>
 
@@ -81,7 +81,7 @@
                           question.get('title').errors.required
                         "
                       >
-                        <commudle-alert [error]="true"></commudle-alert>
+                        <commudle-alert [error]="true" [errorMessage]="errorMessage"></commudle-alert>
                       </span>
                       <button
                         nbButton
@@ -116,7 +116,7 @@
                           status="basic"
                           size="medium"
                           hero
-                          class="com-mt-5 com-mb-3"
+                          class="com-mt-5 com-mb-3 com-bg-white com-w-max"
                         >
                           <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
@@ -131,7 +131,7 @@
                         formArrayName="question_choices"
                         *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                       >
-                        <div class="choice-container com-flex">
+                        <div class="choice-container com-flex com-items-center">
                           <div [formGroupName]="chi" class="com-mb-2">
                             <input
                               type="text"
@@ -147,7 +147,7 @@
                                 choice.get('title').errors.required
                               "
                             >
-                              <commudle-alert [error]="true"></commudle-alert>
+                              <commudle-alert [error]="true" [errorMessage]="errorMessage"></commudle-alert>
                             </span>
                           </div>
 
@@ -155,6 +155,7 @@
                             <nb-icon
                               icon="close-circle-outline"
                               (click)="removeQuestionChoiceButtonClick(i, chi)"
+                              class="com-ml-2"
                             ></nb-icon>
                           </div>
                         </div>

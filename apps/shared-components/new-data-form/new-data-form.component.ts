@@ -25,6 +25,8 @@ export class NewDataFormComponent implements OnInit {
   @Input() minQuestionCount;
   @Input() formPurpose;
 
+  errorMessage = 'Required Field';
+
   @Output() newDataForm = new EventEmitter();
 
   showNameField = true;

@@ -11,5 +11,6 @@ export class AlertComponent implements OnInit {
   @Input() info: boolean;
   @Input() error: boolean;
   @Input() message: string;
+  @Input() errorMessage: string;
   ngOnInit(): void {}
 }

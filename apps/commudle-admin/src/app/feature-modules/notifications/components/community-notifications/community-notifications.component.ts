@@ -6,6 +6,8 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { truncate } from 'fs/promises';
+import { faTruckMedical } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-notifications',
@@ -16,7 +18,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   @Input() communityId = 0;
   @Input() markAllAsRead: boolean;
 
-  isLoading = false;
+  isLoading = true;
 
   page = 1;
   count = 10;
@@ -54,8 +56,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
   }
 
   getNotifications() {
-    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
-      this.isLoading = true;
+    if (!this.total || this.notifications.length < this.total) {
       this.notificationsStore.getCommunityNotifications(this.page, this.count, this.communityId);
       this.subscriptions.push(
         this.notificationsStore.communityNotifications$[this.communityId].subscribe((value) => {
@@ -98,5 +99,10 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
     );
   }
 
-  allNotifications() {}
+  allNotifications() {
+    this.notifications = [];
+    this.page = 1;
+    this.total = 0;
+    this.getNotifications();
+  }
 }

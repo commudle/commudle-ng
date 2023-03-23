@@ -91,7 +91,7 @@
                         question.get('title').errors.required
                       "
                     >
-                      <commudle-alert [error]="true"></commudle-alert>
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
 
@@ -126,8 +126,7 @@
                       hero
                     >
                       <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
-                        {{ qt.name }}
-                        <!-- capitalizeAndRemoveUnderscore -->
+                        {{ qt.name | capitalizeAndRemoveUnderscore }}
                       </nb-option>
                     </nb-select>
                   </div>
@@ -149,7 +148,7 @@
                                 choice.get('title').errors.required
                               "
                             >
-                              <commudle-alert [error]="true"></commudle-alert>
+                              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                             </span>
                           </div>
                           <button
@@ -192,10 +191,10 @@
                       &nbsp; Add Question Below
                     </button>
                     <div class="toggles">
-                      <nb-toggle size="tiny" labelPosition="right" [formControl]="" class="md:com-pl-3 toggle"
+                      <nb-toggle size="tiny" labelPosition="right" formControlName="required" class="md:com-pl-3 toggle"
                         ><span>Required</span></nb-toggle
                       >
-                      <nb-toggle size="tiny" labelPosition="right" [formControl]="" class="toggle md:com-ml-6"
+                      <nb-toggle size="tiny" labelPosition="right" formControlName="disabled" class="toggle md:com-ml-6"
                         ><span
                           >Disable this question
                           <p class="com-m-0 com-text-primary-500">

@@ -77,8 +77,6 @@
         @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
         nb-select {
-          background-color: white;
-          width: max-content;
         }
 
         label {
@@ -91,10 +89,8 @@
         @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
         .choice-container {
-          @apply com-flex;
-
           nb-icon {
-            @apply com-text-base com-mr-2;
+            @apply com-text-base;
           }
         }
       }

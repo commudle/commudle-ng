@@ -46,6 +46,8 @@ export class EditEventComponent implements OnInit {
   tags: string[] = [];
   minimumTags = 3;
 
+  errorMessage = 'Required Field';
+
   tinyMCE = {
     height: 300,
     menubar: false,

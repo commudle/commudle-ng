@@ -18,6 +18,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [EditDataFormComponent, CreateDataFormComponent],
@@ -27,6 +28,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     SharedComponentsModule,
     NbToggleModule,
+    SharedPipesModule,
 
     // External
     FontAwesomeModule,
