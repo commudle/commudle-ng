@@ -40,7 +40,7 @@
     .name {
       @apply com-text-Charcoal com-p-0.5;
       margin: 0;
-      font-size: $fs-card-list-title;
+      font-size: 14px;
       font-weight: 500;
       line-height: 20px;
       margin: 0;
@@ -64,7 +64,7 @@
     .designation {
       @apply com-text-Auro-Metal-Saurus com-p-0.5;
       margin: 0;
-      font-size: $fs-card-list-title;
+      font-size: 14px;
       word-break: break-all;
       font-weight: 500;
       line-height: 20px;
@@ -82,7 +82,7 @@
     .about_me {
       @apply com-text-Auro-Metal-Saurus com-p-0.5 com-break-all md:com-break-normal;
       margin: 0;
-      font-size: $fs-card-list-title;
+      font-size: 14px;
       font-weight: 400;
       line-height: 20px;
 
@@ -102,7 +102,7 @@
       a {
         margin: 0 0.5rem;
         nb-icon {
-          @apply com-text-Charcoal com-mx-[12px];
+          @apply com-text-Charcoal com-mx-3;
           font-size: 18px;
         }
       }

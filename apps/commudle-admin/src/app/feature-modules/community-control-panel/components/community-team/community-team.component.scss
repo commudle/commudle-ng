@@ -6,8 +6,6 @@
     display: flex;
     flex-wrap: wrap;
     .user-profile {
-      // border: 0.5px solid lightgrey;
-      // border-radius: 5px;
       padding: 5px;
       width: 800px;
       max-width: 90vw;
@@ -28,8 +26,6 @@
             font-size: 14px;
           }
         }
-      }
-      .user-details {
       }
 
       @media screen and (min-width: 1000px) {

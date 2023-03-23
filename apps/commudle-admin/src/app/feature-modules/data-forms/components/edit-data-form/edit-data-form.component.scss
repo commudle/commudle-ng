@@ -49,7 +49,7 @@
       }
 
       textarea {
-        margin-bottom: 1rem;
+        @apply com-mb-4;
       }
 
       label {
@@ -62,7 +62,6 @@
       }
 
       .question-settings {
-        // margin: 1rem;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -163,7 +162,7 @@
           display: block;
         }
 
-        .footer-icons-desktop {
+        .footer-icons {
           display: none;
         }
       }

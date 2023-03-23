@@ -185,9 +185,9 @@
                       ghost
                       (click)="addQuestionButtonClick(i + 1)"
                       status="primary"
-                      class="footer-icons-desktop add-question-footer"
+                      class="footer-icons add-question-footer"
                     >
-                      <nb-icon class="footer-icons-desktop" icon="plus-circle-outline" status="primary"></nb-icon>
+                      <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
                     <div class="toggles">
@@ -202,7 +202,6 @@
                           </p>
                         </span>
                       </nb-toggle>
-                      <!-- <nb-toggle [formControl]="toggleFormControl">Toggle with FormControl -->
                     </div>
                   </div>
                   <button
@@ -211,7 +210,7 @@
                     ghost
                     (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="footer-icons-desktop delete-question-footer"
+                    class="footer-icons delete-question-footer"
                   >
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
@@ -229,11 +228,6 @@
                       </button>
                     </div>
                   </nb-layout-column>
-                  <!-- (click)="openForHiring()" [(checked)]="required"  -->
-                  <!-- <nb-checkbox formControlName="disabled" status="primary"
-                    >Disabled <small>(If you don't want this question to appear anymore)</small></nb-checkbox
-                  >
-                  <nb-checkbox formControlName="required" status="primary">Required</nb-checkbox> -->
                 </div>
               </nb-card-body>
             </nb-card>
