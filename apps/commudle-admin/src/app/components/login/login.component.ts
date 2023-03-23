@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@commudle/auth';
 import { NbToastrService } from '@commudle/theme';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { EmailCodeService } from 'apps/shared-services/email-code.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'commudle-login',
@@ -76,8 +77,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   setCookie(authToken: string, loginType: string): void {
-    this.cookieService.set('commudle_user_auth', authToken, {
-      domain: window.location.hostname === 'localhost' ? window.location.hostname : '.commudle.com',
+    this.cookieService.set(environment.auth_cookie_name, authToken, {
+      path: '/',
+      ...(environment.production && { domain: '.commudle.com' }),
+      expires: 30,
     });
     this.redirect();
     this.gtm.dataLayerPushEvent('login', { com_login_type: loginType });

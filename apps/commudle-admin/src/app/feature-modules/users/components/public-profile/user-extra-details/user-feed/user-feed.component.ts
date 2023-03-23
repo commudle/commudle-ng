@@ -46,7 +46,7 @@ export class UserFeedComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.appUsersService.posts(this.user.username).subscribe((value) => {
         this.posts = value.posts;
-        this.userProfileMenuService.addMenuItem('feed', this.posts.length > 0);
+        // this.userProfileMenuService.addMenuItem('feed', this.posts.length > 0);
       }),
     );
   }
