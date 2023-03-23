@@ -6,12 +6,23 @@
     .card-body {
       @apply com-px-4 com-py-5;
 
-      input,
-      textarea {
+      input {
         @apply com-mt-2 com-mb-0;
         background-color: white;
       }
+
+      .description {
+        @apply com-mt-4;
+        label {
+          @apply com-mt-4;
+          textarea {
+            @apply com-mt-2 com-mb-0;
+            background-color: white;
+          }
+        }
+      }
     }
+
     label {
       @apply com-text-base com-font-medium com-text-Charcoal;
     }
@@ -56,6 +67,10 @@
         nb-icon {
           @apply com-mr-1;
         }
+      }
+
+      .description-textbox {
+        @apply com-m-0;
       }
 
       .question-settings {

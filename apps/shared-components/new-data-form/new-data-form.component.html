@@ -6,7 +6,7 @@
           <div role="group">
             <label fullWidth>
               Name*
-              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mb-6" />
+              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
             </label>
             <span
               *ngIf="
@@ -20,7 +20,7 @@
           </div>
 
           <div role="group">
-            <div class="com-mt-4">
+            <div class="description">
               <label fullWidth>
                 Description
                 <textarea
@@ -95,7 +95,7 @@
                         {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
                       </button>
 
-                      <div *ngIf="showQuestionDescriptionField" class="com-m-0">
+                      <div *ngIf="showQuestionDescriptionField" class="description-textbox">
                         <textarea
                           nbInput
                           fullWidth
@@ -151,7 +151,7 @@
                             </span>
                           </div>
 
-                          <div class="com-mt-2 com-ml-2">
+                          <div class="close-circle-outline">
                             <nb-icon
                               icon="close-circle-outline"
                               (click)="removeQuestionChoiceButtonClick(i, chi)"
@@ -165,7 +165,7 @@
                         (click)="addQuestionChoiceButtonClick(i)"
                         status="warning"
                         hero
-                        class="com-mt-2"
+                        class="add-choice-button"
                       >
                         <nb-icon icon="plus-outline"></nb-icon>
                         &nbsp; Add Choice
