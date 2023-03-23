@@ -2,7 +2,7 @@
   <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
     <div>
       <label>
-        <p class="title">Choose a username for your public profile</p>
+        <p class="title">Choose a username for your public profile*</p>
         <nb-form-field>
           <nb-icon icon="at-outline" nbPrefix></nb-icon>
           <input
@@ -24,15 +24,15 @@
       </label>
       <p *ngIf="usernameForm.controls.username.errors" class="field-error">
         <commudle-alert
-          [info]="true"
-          [message]="'*Username cannot contain spaces & special characters'"
+          [error]="true"
+          [errorMessage]="'Username cannot contain spaces & special characters'"
         ></commudle-alert>
       </p>
       <p
         *ngIf="!validUsername && currentUsername !== currentUser.username && !usernameForm.controls.username.errors"
         class="field-error"
       >
-        <commudle-alert [info]="true" [message]="'*Username already taken'"></commudle-alert>
+        <commudle-alert [error]="true" [errorMessage]="'*Username already taken'"></commudle-alert>
       </p>
     </div>
     <div *ngIf="showSaveButton">
