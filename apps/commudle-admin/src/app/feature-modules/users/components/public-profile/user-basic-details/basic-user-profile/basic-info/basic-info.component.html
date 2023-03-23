@@ -47,7 +47,7 @@
           basicInfoForm['controls'].name.errors.required
         "
       >
-        <commudle-alert [error]="true"></commudle-alert>
+        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
       </span>
     </div>
   </div>
@@ -65,7 +65,7 @@
           basicInfoForm['controls'].designation.errors.required
         "
       >
-        <commudle-alert [error]="true"></commudle-alert>
+        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
       </span>
     </div>
   </div>
@@ -87,9 +87,8 @@
           (basicInfoForm['controls'].about_me.touched || basicInfoForm.get('about_me').value) &&
           basicInfoForm['controls'].about_me.invalid
         "
-        class="validation-error-text"
       >
-        Required field. Maximum 1000 characters.
+        <commudle-alert [error]="true" [errorMessage]="'Required field. Maximum 1000 characters.'"></commudle-alert>
       </span>
     </div>
   </div>
