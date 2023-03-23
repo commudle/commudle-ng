@@ -16,8 +16,14 @@
               }" -->
 
               <!-- [ngClass]="upcomingEvents.length > 1 ? 'upcoming-multiple-events' : 'upcoming-single-event'" -->
-              <nb-card class="upcoming-events">
-                <nb-card-body class="d-flex com-flex-col">
+              <nb-card
+                class="upcoming-events"
+                [ngClass]="{
+                  'd-flex flex-row md:com-w-[600px]': upcomingEvents.length > 1,
+                  'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1
+                }"
+              >
+                <nb-card-body class="upcoming-events-body">
                   <div *ngIf="event.header_image_path">
                     <commudle-banner-image
                       [headerImagePath]="event.header_image_path"
