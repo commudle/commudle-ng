@@ -28,9 +28,8 @@
                   eventForm['controls'].event['controls'].name.invalid &&
                   eventForm['controls'].event['controls'].name.errors.required
                 "
-                class="validation-error-text"
               >
-                Required Field
+                <commudle-alert [error]="true"></commudle-alert>
               </span>
             </div>
           </div>
@@ -82,9 +81,8 @@
                 eventForm['controls'].event['controls'].description.invalid &&
                 eventForm['controls'].event['controls'].description.errors.required
               "
-              class="validation-error-text"
             >
-              Required Field
+              <commudle-alert [error]="true"></commudle-alert>
             </span>
             <editor
               formControlName="description"
