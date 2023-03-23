@@ -62,7 +62,7 @@
     }
 
     .designation {
-      @apply com-text-AuroMetalSaurus com-p-0.5;
+      @apply com-text-Auro-Metal-Saurus com-p-0.5;
       margin: 0;
       font-size: $fs-card-list-title;
       word-break: break-all;
@@ -80,7 +80,7 @@
     }
 
     .about_me {
-      @apply com-text-AuroMetalSaurus com-p-0.5 com-break-all md:com-break-normal;
+      @apply com-text-Auro-Metal-Saurus com-p-0.5 com-break-all md:com-break-normal;
       margin: 0;
       font-size: $fs-card-list-title;
       font-weight: 400;

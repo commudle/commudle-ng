@@ -44,7 +44,6 @@ export class NewDataFormComponent implements OnInit {
       question_type_id: ['', Validators.required],
       title: ['', Validators.required],
       description: [''],
-      // name: ['', Validators.required],
       required: [this.defaultQuestionRequiredValue()],
       disabled: [false],
       has_responses: [false],

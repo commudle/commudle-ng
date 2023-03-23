@@ -8,24 +8,15 @@
               Name*
               <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" class="com-mb-6" />
             </label>
-            <!-- <span
+            <span
               *ngIf="
-                createDataForm.get('name').touched &&
-                createDataForm.get('name').invalid &&
-                createDataForm.get('name').errors.required
+                createDataForm.get('data_form').get('name').touched &&
+                createDataForm.get('data_form').get('name').invalid &&
+                createDataForm.get('data_form').get('name').errors.required
               "
             >
               <commudle-alert [validation_error]="true"></commudle-alert>
-            </span> -->
-            <!-- <span
-              *ngIf="
-                createDataForm['controls'].name.touched &&
-                createDataForm['controls'].name.invalid &&
-                createDataForm['controls'].name.errors.required
-              "
-            >
-              <commudle-alert [validation_error]="true"></commudle-alert>
-            </span> -->
+            </span>
           </div>
 
           <div role="group">
