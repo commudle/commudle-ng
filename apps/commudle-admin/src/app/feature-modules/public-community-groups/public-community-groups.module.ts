@@ -16,6 +16,7 @@ import { CommunityGroupChannelsComponent } from './components/community-group-ch
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
+import { ChannelCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/channel-card/channel-card.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared
 
     //standalone component
     CommunitiesCardComponent,
+    ChannelCardComponent,
 
     // Nebular
     NbCardModule,

@@ -1,0 +1,21 @@
+a {
+  @apply com-no-underline;
+}
+.card {
+  @apply com-h-80  md:com-h-52 com-w-[100vw] md:com-w-[590px] com-border com-border-solid com-border-gray-200 com-rounded-lg hover:com-shadow-Card com-cursor-pointer;
+  .card-body {
+    @apply com-flex com-flex-col md:com-flex-row;
+
+    .logo {
+      @apply com-h-24 com-w-24 md:com-w-44 md:com-h-44  com-m-4 com-rounded-xl com-flex com-justify-between com-items-center com-border com-border-solid com-border-gray-200;
+      img {
+        @apply com-w-full;
+      }
+    }
+    .details {
+      .button {
+        @apply com-bg-white hover:com-bg-gray-200 com-rounded-full com-text-base com-px-10 com-py-2 com-cursor-pointer com-border com-border-solid com-border-black;
+      }
+    }
+  }
+}

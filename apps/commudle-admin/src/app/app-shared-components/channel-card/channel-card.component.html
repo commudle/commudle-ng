@@ -1,0 +1,18 @@
+<a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" target="_blank">
+  <div class="card">
+    <div class="card-body">
+      <!-- <app-community-badge ></app-community-badge> -->
+      <div class="logo">
+        <img *ngIf="channel.logo" [src]="channel.logo.url" alt="{{ channel.name }}" title="{{ channel.name }}" />
+      </div>
+      <div class="details">
+        <p class="com-text-xl com-font-bold">{{ channel.name }}</p>
+        <p class="com-text-sm com-font-normal com-text-gray-400">{{ channel.member_count }} Members</p>
+        <p class="com-text-base">{{ channel.description }} Members</p>
+        <button class="button" [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]">
+          Join Channel
+        </button>
+      </div>
+    </div>
+  </div>
+</a>
