@@ -6,8 +6,6 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
-import { truncate } from 'fs/promises';
-import { faTruckMedical } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-notifications',
