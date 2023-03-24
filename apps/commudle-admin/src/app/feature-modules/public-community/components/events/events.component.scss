@@ -5,21 +5,29 @@ nb-card {
     @apply com-p-0 com-overflow-hidden;
 
     .events {
-      @apply com-bg-white com-rounded-xl com-flex com-flex-wrap;
+      @apply com-bg-white com-rounded-xl;
 
       .heading {
         @apply com-font-bold com-text-2xl com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
-        @apply md:com-font-medium md:com-text-start md:com-my-8;
+        @apply md:com-font-medium md:com-text-start md:com-my-8 com-ml-5;
       }
 
       .upcoming-events-section {
-        @apply com-mx-auto com-my-0;
+        @apply com-my-0;
 
         .upcoming-events-container {
-          @apply com-flex com-flex-row com-flex-wrap md:com-gap-4 com-m-auto;
+          @apply com-flex com-flex-row com-flex-wrap com-mx-4 com-justify-between;
 
           a {
-            @apply com-relative com-no-underline;
+            @apply com-relative com-no-underline com-mb-4;
+
+            &.upcoming-single-event {
+              @apply com-flex-col com-w-full md:com-w-[1220px];
+            }
+
+            &.upcoming-multiple-events {
+              @apply com-flex-row com-w-full md:com-w-[610px];
+            }
 
             .upcoming-events {
               @apply com-border-2 com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
@@ -36,10 +44,11 @@ nb-card {
                 }
 
                 .no-image-header {
-                  @apply com-h-[334px] com-flex com-items-center com-text-center;
+                  @apply com-flex com-items-center com-text-center;
+                  aspect-ratio: 16/6;
 
                   nb-icon {
-                    @apply com-m-auto;
+                    @apply com-m-auto com-text-5xl;
                   }
                 }
 
@@ -105,7 +114,7 @@ nb-card {
 
         .heading {
           @apply com-font-semibold com-text-2xl com-text-center com-leading-4 com-mt-10 com-mb-8 com-text-black;
-          @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-8;
+          @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-5;
         }
 
         .past-events-container {

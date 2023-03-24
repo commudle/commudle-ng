@@ -8,15 +8,13 @@
           <a
             *ngFor="let event of upcomingEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
+            [ngClass]="{
+              'upcoming-multiple-events': upcomingEvents.length > 1,
+              'upcoming-single-event': upcomingEvents.length === 1
+            }"
           >
             <div>
-              <nb-card
-                class="upcoming-events"
-                [ngClass]="{
-                  'd-flex flex-row md:com-w-[600px]': upcomingEvents.length > 1,
-                  'd-flex flex-col md:com-w-[1220px]': upcomingEvents.length === 1
-                }"
-              >
+              <nb-card class="upcoming-events">
                 <nb-card-body class="upcoming-events-body">
                   <div *ngIf="event.header_image_path">
                     <commudle-banner-image
@@ -29,8 +27,8 @@
                       [text]="'Live'"
                     ></app-badge>
                   </div>
-                  <div *ngIf="!event.header_image_path">
-                    <nb-icon icon="link" status="primary" class="no-image-header"></nb-icon>
+                  <div *ngIf="!event.header_image_path" class="no-image-header">
+                    <nb-icon icon="link" status="primary"></nb-icon>
                   </div>
                   <div class="upcoming-details">
                     <div class="upcoming-details-container">
