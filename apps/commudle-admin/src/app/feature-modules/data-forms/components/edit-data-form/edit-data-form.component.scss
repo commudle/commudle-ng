@@ -37,7 +37,7 @@
     }
 
     .add-question-button {
-      @apply com-m-2 com-mb-12 com-mx-2;
+      @apply com-mb-10 com-mx-2;
     }
 
     .cdk-drag-animating {
@@ -166,10 +166,6 @@
           display: none;
         }
       }
-    }
-
-    .add-question-button {
-      @apply com-bg-Brandeis-Blue com-border-solid com-border-primary-500 com-border com-rounded com-text-white;
     }
   }
 }
