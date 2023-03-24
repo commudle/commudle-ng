@@ -1,6 +1,6 @@
 <nb-card *ngIf="builds?.length > 0" id="builds">
   <nb-card-header>
-    <nb-icon icon="bulb" status="success"></nb-icon>
+    <fa-icon [icon]="faLightbulb" class="com-text-Caribbean-Green"></fa-icon>
     Builds
     <span *ngIf="builds.length > 4">({{ builds.length }})</span>
   </nb-card-header>
@@ -13,7 +13,7 @@
 
 <nb-card *ngIf="pastEvents?.length > 0" id="talks-at-events">
   <nb-card-header>
-    <nb-icon icon="calendar" status="info"></nb-icon>
+    <fa-icon [icon]="faCalendar" class="com-text-Azure"></fa-icon>
     Talks at Events
     <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
   </nb-card-header>
@@ -26,7 +26,7 @@
 
 <nb-card *ngIf="communities?.length > 0" id="communities">
   <nb-card-header>
-    <nb-icon icon="people" status="warning"></nb-icon>
+    <fa-icon [icon]="faUsers" class="com-text-Chrome-Yellow"></fa-icon>
     Communities
     <span *ngIf="communities.length > 4">({{ communities.length }})</span>
   </nb-card-header>
@@ -49,7 +49,7 @@
 
 <nb-card *ngIf="labs?.length > 0" id="labs">
   <nb-card-header>
-    <nb-icon icon="book-open" status="danger"></nb-icon>
+    <fa-icon [icon]="faBookOpen" class="com-text-Infra-Red"></fa-icon>
     Labs
     <span *ngIf="labs.length > 4">({{ labs.length }})</span>
   </nb-card-header>

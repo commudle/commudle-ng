@@ -42,6 +42,8 @@ module.exports = {
         'New-Car': '#1D4ED8',
         'Bright-Gray': '#E4E9F2',
         'Brandeis-Blue': '#0074ED',
+        'Chrome-Yellow': '#FFAA00',
+        'Infra-Red': '#FF3D71',
       },
 
       lineClamp: {

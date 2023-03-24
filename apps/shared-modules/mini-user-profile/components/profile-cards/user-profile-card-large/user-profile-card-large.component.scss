@@ -13,8 +13,6 @@ p {
 }
 
 .user-profile-large {
-  background-color: $white;
-
   .avatar {
     @apply com-h-14 com-w-14;
     @apply com-rounded-full com-object-cover com-object-center com-align-middle;

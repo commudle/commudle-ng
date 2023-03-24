@@ -16,6 +16,7 @@ import {
   NbSelectModule,
   NbTabsetModule,
   NbBadgeModule,
+  NbTagModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -41,6 +42,8 @@ import { CommunityAdminNotificationsComponent } from './components/community-adm
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import { CommunityEventsListPublicPageComponent } from './components/community-events-list/community-events-list-public-page/community-events-list-public-page.component';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events/events.module';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,8 @@ import { CommunityEventsListPublicPageComponent } from './components/community-e
     FontAwesomeModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    SharedPipesModule,
+    EventsModule,
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -89,6 +94,7 @@ import { CommunityEventsListPublicPageComponent } from './components/community-e
     NotificationsModule,
     NbEvaIconsModule,
     NbBadgeModule,
+    NbTagModule,
   ],
 })
 export class CommunityGroupsModule {}

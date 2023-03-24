@@ -22,6 +22,7 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
   NbTimepickerModule,
   NbToggleModule,
   NbTooltipModule,
@@ -142,7 +143,8 @@ import { ExitPassScanComponent } from './components/user-event-registrations/exi
     NbIconModule,
     NbFormFieldModule,
     NbSpinnerModule,
+    NbTagModule,
   ],
-  exports: [UserDetailsComponent],
+  exports: [UserDetailsComponent, UserEngagementDataComponent],
 })
 export class EventsModule {}
