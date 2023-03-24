@@ -34,7 +34,10 @@ export class NewDataFormComponent implements OnInit {
 
   totalQuestions = 0;
 
-  items = [{ title: 'Add Question Below' }, { title: 'Delete Question' }];
+  items = [
+    { title: 'Add Question Below', icon: 'plus-circle-outline' },
+    { title: 'Delete Question', icon: 'trash-outline' },
+  ];
 
   // define the form
   createDataForm: FormGroup;

@@ -20,14 +20,7 @@
         </p>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.SHORT_ANSWER" class="answer">
-        <input
-          formControlName="{{ question.id }}"
-          fullWidth
-          nbInput
-          placeholder="Short Answer"
-          status="primary"
-          type="text"
-        />
+        <input formControlName="{{ question.id }}" fullWidth nbInput placeholder="Short Answer" type="text" />
         <span
           *ngIf="
             dataFormEntityResponseForm['controls'][question.id].touched &&
@@ -63,7 +56,6 @@
           fullWidth
           nbInput
           placeholder="You can write a detailed answer!"
-          status="primary"
         ></textarea>
         <span
           *ngIf="

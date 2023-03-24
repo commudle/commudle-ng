@@ -3,6 +3,10 @@
     max-width: 920px;
     margin: 0 auto;
 
+    .submit-button {
+      @apply com-mx-2;
+    }
+
     .card-body {
       @apply com-px-4 com-py-5;
 
@@ -16,7 +20,7 @@
         label {
           @apply com-mt-4;
           textarea {
-            @apply com-mt-2 com-mb-0;
+            @apply com-mt-4 com-mb-0;
             background-color: white;
           }
         }
@@ -76,9 +80,6 @@
       .question-settings {
         @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
-        nb-select {
-        }
-
         label {
           @apply com-flex com-flex-col com-font-semibold com-text-xl com-mb-4;
           margin-right: 1.5rem;
@@ -116,8 +117,8 @@
       }
 
       .toggle {
-        @apply md:com-border-l com-border-Bright-Gray com-border-solid com-pl-3 com-border-y-0 com-border-r-0 com-text-primary-500
-        com-text-sm com-font-medium com-border-0;
+        @apply md:com-border-l com-border-Bright-Gray com-border-solid md:com-pl-3 com-border-y-0 com-border-r-0 com-text-primary-500
+        com-text-sm com-font-medium com-border-0 com-pl-0;
         span {
           @apply com-text-primary-500;
         }

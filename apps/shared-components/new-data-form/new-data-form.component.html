@@ -107,7 +107,11 @@
 
                     <div class="question-settings">
                       <nb-form-field>
-                        <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
+                        <nb-icon
+                          nbPrefix
+                          icon="question-mark-circle-outline"
+                          class="com-flex com-self-center com-mt-2"
+                        ></nb-icon>
                         <nb-select
                           (selectedChange)="questionTypeChange($event, i)"
                           placeholder="Question Type *"
@@ -155,7 +159,7 @@
                             <nb-icon
                               icon="close-circle-outline"
                               (click)="removeQuestionChoiceButtonClick(i, chi)"
-                              class="com-ml-2"
+                              class="com-ml-2 com-mt-4"
                             ></nb-icon>
                           </div>
                         </div>
@@ -212,7 +216,6 @@
             </nb-card>
           </div>
         </div>
-        <!-- [formGroup]="createDataForm" -->
         <div *ngIf="!maxQuestionCount || maxQuestionCount > totalQuestions" class="add-question-button">
           <button nbButton size="medium" (click)="addQuestionButtonClick(totalQuestions + 1)" status="primary">
             <nb-icon icon="plus-outline"></nb-icon>
@@ -221,7 +224,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="submit-button">
         <button
           [disabled]="!createDataForm.valid"
           type="submit"

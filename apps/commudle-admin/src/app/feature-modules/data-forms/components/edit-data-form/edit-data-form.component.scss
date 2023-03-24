@@ -7,30 +7,37 @@
     max-width: 920px;
     margin: 0 auto;
 
-    .validation-error-text {
-      @apply com-text-sm com-my-2 com-flex com-items-center;
-      color: red; /* red */
+    .submit-button {
+      @apply com-mx-2;
     }
 
-    input {
-      @apply com-mt-1 com-mb-0;
-      background-color: white;
-    }
+    .card-body {
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
 
-    textarea {
-      @apply com-mt-1;
-      background-color: white;
+      .description {
+        @apply com-mt-4;
+        label {
+          textarea {
+            @apply com-mt-2;
+            background-color: white;
+          }
+        }
+      }
     }
 
     label {
-      @apply com-text-base com-font-medium;
+      @apply com-text-base com-font-medium com-text-Charcoal;
     }
+
     .data-form-question-choices-container {
       margin-bottom: 0;
     }
 
     .add-question-button {
-      @apply com-m-2;
+      @apply com-m-2 com-mb-12 com-mx-2;
     }
 
     .cdk-drag-animating {
@@ -42,57 +49,50 @@
     }
 
     .question-container {
-      @apply com-flex com-flex-col com-font-semibold com-text-xl com-mb-4 com-justify-start;
-
-      button {
-        @apply com-flex com-justify-start;
-      }
+      @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
       textarea {
-        @apply com-mb-4;
+        @apply com-mb-0 com-mt-1;
+        background-color: white;
+      }
+
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
       }
 
       label {
         @apply com-text-xl com-font-semibold;
       }
 
-      .add-description {
-        @apply com-mt-3;
+      .add-description-button {
+        @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
         width: max-content;
+
+        nb-icon {
+          @apply com-mr-1;
+        }
+      }
+
+      .description-textbox {
+        @apply com-m-0;
       }
 
       .question-settings {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
-        nb-select {
-          background-color: white;
-        }
-
-        label,
-        nb-checkbox {
+        label {
+          @apply com-flex com-flex-col com-font-semibold com-text-xl;
           margin-right: 1.5rem;
         }
       }
 
       .choices-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin: 1rem 1rem 1rem 0;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
-        .choice-icon-container {
-          @apply com-flex com-flex-row;
-
-          button {
-            background-color: white;
-            border: none;
-
-            nb-icon {
-              @apply com-text-base;
-            }
+        .choice-container {
+          nb-icon {
+            @apply com-text-base;
           }
         }
       }

@@ -14,6 +14,7 @@ import {
   NbToggleModule,
   NbContextMenuModule,
   NbLayoutModule,
+  NbFormFieldModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -29,6 +30,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     SharedComponentsModule,
     NbToggleModule,
     SharedPipesModule,
+    NbFormFieldModule,
 
     // External
     FontAwesomeModule,
