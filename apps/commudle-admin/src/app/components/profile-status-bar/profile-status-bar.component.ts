@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ProfileStatusBarService } from 'apps/commudle-admin/src/app/services/profile-status-bar.service';
 import { StepperService } from 'apps/commudle-admin/src/app/services/stepper.service';
 
@@ -15,6 +16,7 @@ export class ProfileStatusBarComponent implements OnInit {
     private stepperService: StepperService,
     private profileStatusBarService: ProfileStatusBarService,
     private activatedRoute: ActivatedRoute,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -34,5 +36,6 @@ export class ProfileStatusBarComponent implements OnInit {
 
   showStepper() {
     this.stepperService.showStepper();
+    this.gtm.dataLayerPushEvent('click_open_complete_profile_popup', {});
   }
 }

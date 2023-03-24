@@ -86,7 +86,10 @@
           <label>Basic profile</label>
         </ng-template>
         <div class="content">
-          <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
+          <app-basic-info
+            (basicInfoFormValidity)="checkBasicDetailsValidity($event)"
+            (userData)="gtmServiceData($event)"
+          ></app-basic-info>
         </div>
         <div class="navigation-buttons">
           <button outline nbButton nbStepperPrevious status="primary" class="com-mr-4">Prev</button>
