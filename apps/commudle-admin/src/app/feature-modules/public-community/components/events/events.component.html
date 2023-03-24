@@ -10,12 +10,6 @@
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
           >
             <div>
-              <!-- [ngClass]="{
-                'upcoming-multiple-events': upcomingEvents.length > 1,
-                'upcoming-single-event': upcomingEvents.length === 1
-              }" -->
-
-              <!-- [ngClass]="upcomingEvents.length > 1 ? 'upcoming-multiple-events' : 'upcoming-single-event'" -->
               <nb-card
                 class="upcoming-events"
                 [ngClass]="{
