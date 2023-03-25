@@ -1,5 +1,6 @@
-button {
-  @apply com-m-3;
+.unread,
+.allButton {
+  @apply com-mx-3 com-mt-[-56px];
 }
 
 .notification-list {

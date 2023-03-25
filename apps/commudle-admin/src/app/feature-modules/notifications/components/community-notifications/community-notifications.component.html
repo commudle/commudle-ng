@@ -1,5 +1,5 @@
-<button nbButton size="small" (click)="unread()" status="primary">Unread</button>
-<button nbButton size="small" (click)="allNotifications()" status="primary">All</button>
+<button nbButton size="small" (click)="unread()" status="primary" class="unread">Unread</button>
+<button nbButton size="small" (click)="allNotifications()" status="primary" class="allButton">All</button>
 
 <nb-list
   (scrolled)="getNotifications(); isLoading = true"
