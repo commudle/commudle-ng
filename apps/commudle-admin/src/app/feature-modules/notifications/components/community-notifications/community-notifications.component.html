@@ -1,5 +1,8 @@
+<button nbButton size="small" (click)="unread()" status="primary">Unread</button>
+<button nbButton size="small" (click)="allNotifications()" status="primary">All</button>
+
 <nb-list
-  (scrolled)="getNotifications()"
+  (scrolled)="getNotifications(); isLoading = true"
   [infiniteScrollDisabled]="!(canLoadMore && total)"
   appInfiniteScroll
   class="notification-list"

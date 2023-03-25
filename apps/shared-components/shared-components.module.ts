@@ -13,14 +13,17 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
+  NbContextMenuModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbLayoutModule,
   NbListModule,
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
   NbTagModule,
+  NbToggleComponent,
   NbTooltipModule,
   NbWindowModule,
 } from '@commudle/theme';
@@ -68,6 +71,8 @@ import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { BannerImageComponent } from './banner-image/banner-image.component';
+import { NbToggleModule } from '@commudle/theme';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +112,7 @@ import { BannerImageComponent } from './banner-image/banner-image.component';
     PaginationComponent,
     LoadingSpinnerComponent,
     BannerImageComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -142,6 +148,9 @@ import { BannerImageComponent } from './banner-image/banner-image.component';
     NbActionsModule,
     NbFormFieldModule,
     FontAwesomeModule,
+    NbToggleModule,
+    NbContextMenuModule,
+    NbLayoutModule,
 
     //cdk
     DragDropModule,
@@ -172,6 +181,7 @@ import { BannerImageComponent } from './banner-image/banner-image.component';
     PaginationComponent,
     LoadingSpinnerComponent,
     BannerImageComponent,
+    AlertComponent,
   ],
 })
 export class SharedComponentsModule {}

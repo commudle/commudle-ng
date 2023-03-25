@@ -20,6 +20,9 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   formCreated = false;
   enabledQuestions: IQuestion[] = [];
 
+  message =
+    'Never enter any personal or sensitive information which can be misused (including but not limited to passwords) in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.';
+
   @Output() formSubmitted = new EventEmitter();
 
   dataFormEntityResponseForm;
