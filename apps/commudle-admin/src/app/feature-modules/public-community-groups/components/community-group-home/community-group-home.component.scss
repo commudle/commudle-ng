@@ -50,8 +50,8 @@
       a {
         @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-5 com-pb-17px com-cursor-pointer com-no-underline;
 
-        nb-icon {
-          @apply com-text-gunmetal/80;
+        fa-icon {
+          @apply com-text-gunmetal/80 com-text-base;
         }
 
         .title {
@@ -64,14 +64,10 @@
         }
       }
 
-      nb-icon {
-        @apply com-text-2xl;
-      }
-
       .active {
         @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
 
-        nb-icon,
+        fa-icon,
         .title {
           @apply com-text-primary-500;
         }

@@ -1,5 +1,7 @@
 <nb-card>
   <nb-card-body>
-    <commudle-channel-card *ngFor="let channel of channels" [channel]="channel"></commudle-channel-card>
+    <div *ngFor="let channel of channels" class="channels">
+      <commudle-channel-card [channel]="channel"></commudle-channel-card>
+    </div>
   </nb-card-body>
 </nb-card>

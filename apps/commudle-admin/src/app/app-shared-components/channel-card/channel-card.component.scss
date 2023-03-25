@@ -1,20 +1,33 @@
-a {
-  @apply com-no-underline;
-}
-.card {
-  @apply com-h-80  md:com-h-52 com-w-[100vw] md:com-w-[590px] com-border com-border-solid com-border-gray-200 com-rounded-lg hover:com-shadow-Card com-cursor-pointer;
-  .card-body {
-    @apply com-flex com-flex-col md:com-flex-row;
+nb-card {
+  @apply com-w-1/2 com-h-52  hover:com-shadow-Card com-cursor-pointer;
 
-    .logo {
-      @apply com-h-24 com-w-24 md:com-w-44 md:com-h-44  com-m-4 com-rounded-xl com-flex com-justify-between com-items-center com-border com-border-solid com-border-gray-200;
+  nb-card-body {
+    @apply com-overflow-hidden com-flex com-space-x-4;
+    .logo-image {
+      @apply com-w-44 com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1;
       img {
         @apply com-w-full;
       }
+      nb-icon {
+        @apply com-text-5xl;
+      }
     }
+
     .details {
-      .button {
-        @apply com-bg-white hover:com-bg-gray-200 com-rounded-full com-text-base com-px-10 com-py-2 com-cursor-pointer com-border com-border-solid com-border-black;
+      p {
+        @apply com-m-0;
+      }
+      .name {
+        @apply com-font-bold com-text-xl com-leading-5 com-my-2;
+      }
+      .members-count {
+        @apply com-font-normal com-text-sm com-text-gray-400 com-my-2;
+      }
+      .description {
+        @apply com-text-base com-leading-5 com-text-gray-500 com-my-2;
+      }
+      .join-channel {
+        @apply com-px-12 com-bg-white hover:com-bg-gray-100;
       }
     }
   }

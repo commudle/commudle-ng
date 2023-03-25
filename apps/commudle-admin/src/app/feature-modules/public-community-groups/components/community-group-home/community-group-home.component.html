@@ -79,30 +79,30 @@
               class="com-flex"
               routerLinkActive="active"
             >
-              <nb-icon icon="bell" status="success"></nb-icon>
+              <fa-icon [icon]="faArrowTrendUp"></fa-icon>
               <span class="title">Activity</span>
             </a>
 
             <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="info" status="basic"></nb-icon>
+              <fa-icon [icon]="faCircleInfo"></fa-icon>
               <span class="title">About</span>
             </a>
 
             <a [routerLink]="['/orgs', communityGroup.slug, 'communities']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="mic" status="success"></nb-icon>
+              <fa-icon [icon]="faComments"></fa-icon>
               <span class="title">Communities</span>
             </a>
             <a [routerLink]="['/orgs', communityGroup.slug, 'events']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="calendar" status="info"></nb-icon>
+              <fa-icon [icon]="faCalendarWeek"></fa-icon>
               <span class="title">Events</span>
             </a>
             <a [routerLink]="['/orgs', communityGroup.slug, 'channels']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="hash" status="success"></nb-icon>
+              <fa-icon [icon]="faHashtag"></fa-icon>
               <span class="title">Channels</span>
             </a>
             <div class="com-relative">
               <a [routerLink]="['/orgs', communityGroup.slug, 'team']" class="d-flex" routerLinkActive="active">
-                <nb-icon icon="people" status="success"></nb-icon>
+                <fa-icon [icon]="faUserGroup"></fa-icon>
                 <span class="title">Admin Team</span>
               </a>
             </div>

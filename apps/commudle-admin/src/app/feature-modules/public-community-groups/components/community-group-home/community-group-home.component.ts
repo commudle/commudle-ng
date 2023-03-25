@@ -3,6 +3,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import {
+  faUserGroup,
+  faCircleInfo,
+  faComments,
+  faHashtag,
+  faCalendarWeek,
+  faArrowTrendUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-group-home',
@@ -12,6 +20,14 @@ import { Subscription } from 'rxjs';
 export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   subscriptions: Subscription[] = [];
+
+  //icons
+  faUserGroup = faUserGroup;
+  faCircleInfo = faCircleInfo;
+  faComments = faComments;
+  faHashtag = faHashtag;
+  faCalendarWeek = faCalendarWeek;
+  faArrowTrendUp = faArrowTrendUp;
 
   constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
