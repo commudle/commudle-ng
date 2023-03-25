@@ -4,7 +4,11 @@
     <div class="organizers">
       <div class="user-profile" *ngFor="let org of organizers; let i = index">
         <div class="user-details">
-          <app-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+          <app-user-profile-horizontal
+            [user]="org.user"
+            [socialMediaLinks]="true"
+            [aboutMe]="false"
+          ></app-user-profile-horizontal>
         </div>
         <div class="actions">
           <a class="clickable" *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">

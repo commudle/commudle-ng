@@ -13,14 +13,17 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
+  NbContextMenuModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbLayoutModule,
   NbListModule,
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
   NbTagModule,
+  NbToggleComponent,
   NbTooltipModule,
   NbWindowModule,
 } from '@commudle/theme';
@@ -67,7 +70,8 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-
+import { NbToggleModule } from '@commudle/theme';
+import { AlertComponent } from './alert/alert.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -105,6 +109,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -140,6 +145,9 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NbActionsModule,
     NbFormFieldModule,
     FontAwesomeModule,
+    NbToggleModule,
+    NbContextMenuModule,
+    NbLayoutModule,
 
     //cdk
     DragDropModule,
@@ -169,6 +177,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
 })
 export class SharedComponentsModule {}

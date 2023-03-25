@@ -6,6 +6,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { IEvent } from 'apps/shared-models/event.model';
 import { CommunityEventsListActionsComponent } from './community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './community-events-list-date/community-events-list-date.component';
+import { CommunityEventsListPublicPageComponent } from './community-events-list-public-page/community-events-list-public-page.component';
 
 @Component({
   selector: 'app-community-events-list',
@@ -43,6 +44,13 @@ export class CommunityEventsListComponent implements OnInit {
         renderComponent: CommunityEventsListActionsComponent,
         isSortable: false,
       },
+      public_page: {
+        title: 'Public Page',
+        filter: false,
+        type: IColumnType.Custom,
+        renderComponent: CommunityEventsListPublicPageComponent,
+        isSortable: false,
+      },
     },
 
     rowClassFunction: (row) => {
@@ -63,9 +71,5 @@ export class CommunityEventsListComponent implements OnInit {
     this.eventsService.communityEventsForEmail(this.communityId).subscribe((data) => {
       this.events = data.events;
     });
-  }
-
-  redirectToEvent($event) {
-    this.router.navigate(['/admin/communities', this.communityId, 'event-dashboard', $event.data.slug]);
   }
 }
