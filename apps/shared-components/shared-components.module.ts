@@ -70,8 +70,10 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { BannerImageComponent } from './banner-image/banner-image.component';
 import { NbToggleModule } from '@commudle/theme';
 import { AlertComponent } from './alert/alert.component';
+
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -109,6 +111,7 @@ import { AlertComponent } from './alert/alert.component';
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
     AlertComponent,
   ],
   imports: [
@@ -177,6 +180,7 @@ import { AlertComponent } from './alert/alert.component';
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
     AlertComponent,
   ],
 })
