@@ -1,3 +1,4 @@
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { Component, OnInit } from '@angular/core';
 import { NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { UserResumeService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import * as confetti from 'canvas-confetti';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-stepper',
@@ -24,6 +26,7 @@ export class StepperComponent implements OnInit {
   user: IUser;
   uploadedResume: IAttachedFile;
   userResumes: IUserResume[] = [];
+  currentUser: ICurrentUser;
 
   faUser = faUser;
   faUsersViewfinder = faUsersViewfinder;
@@ -62,6 +65,7 @@ export class StepperComponent implements OnInit {
     private fb: FormBuilder,
     private nbToastrService: NbToastrService,
     private userResumeService: UserResumeService,
+    private gtm: GoogleTagManagerService,
   ) {
     this.userResumeForm = this.fb.group({
       name: ['', Validators.required],
@@ -125,17 +129,34 @@ export class StepperComponent implements OnInit {
     // When the save button is clicked, update the tags
     this.usersService.updateTags({ tags: this.tags }).subscribe(() => {
       this.authWatchService.updateSignedInUser();
+      this.gtm.dataLayerPushEvent('complete_your_profile_step_one', {
+        com_skills: this.tagsDialog.toString(),
+      });
     });
     //update username
     this.userProfileManagerService.setUpdateUsername(true);
   }
 
+  gtmServiceData(userData) {
+    this.currentUser = userData;
+  }
+
   submitStepTwo() {
     this.userProfileManagerService.updateUserDetails(false);
+    if (this.currentUser) {
+      this.gtm.dataLayerPushEvent('complete_your_profile_step_two', {
+        com_name: this.currentUser.name,
+        com_tagline: this.currentUser.designation,
+        com_gender: this.currentUser.gender,
+      });
+    }
   }
 
   submitStepThree() {
     this.userProfileManagerService.updateUserDetails(false);
+    this.gtm.dataLayerPushEvent('complete_your_profile_step_three', {
+      com_profile_completed: true,
+    });
     confetti.create(this.canvas, { resize: true })({
       shapes: ['square', 'circle', 'star'],
       particleCount: 1000,

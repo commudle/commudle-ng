@@ -1,0 +1,10 @@
+<div *ngIf="error" class="error-text">
+  <span><nb-icon icon="info" class="info-icon"></nb-icon>{{ errorMessage }}</span>
+</div>
+
+<div class="info" *ngIf="info">
+  <nb-icon icon="info-outline"></nb-icon>
+  <p>
+    {{ message }}
+  </p>
+</div>

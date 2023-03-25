@@ -1,50 +1,53 @@
-:host{
-  div.data-form-container{
+:host {
+  div.data-form-container {
     max-width: 920px;
     margin: 0 auto;
 
-
-
-    .validation-error-text  {
+    nb-card-header {
+      @apply com-px-4 com-py-3;
+      h3 {
+        @apply com-text-2xl com-font-bold;
+      }
+    }
+    .validation-error-text {
       color: red; /* red */
     }
 
-    input{
+    input {
       background-color: white;
     }
 
-    textarea{
+    textarea {
       background-color: white;
     }
 
-    nb-card.data-form-question-choices-container{
+    nb-card.data-form-question-choices-container {
       margin-bottom: 0;
     }
 
-
-    .question-container{
+    .question-container {
       display: flex;
       flex-direction: column;
       margin-bottom: 3rem;
 
-      .question-settings{
+      .question-settings {
         margin: 1rem;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         flex-wrap: wrap;
 
-        nb-select{
+        nb-select {
           background-color: white;
         }
 
-        label, nb-checkbox{
+        label,
+        nb-checkbox {
           margin-right: 1.5rem;
-
         }
       }
 
-      .choices-container{
+      .choices-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -52,5 +55,4 @@
       }
     }
   }
-
 }
