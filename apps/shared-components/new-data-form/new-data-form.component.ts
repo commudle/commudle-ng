@@ -1,9 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestionType } from 'apps/shared-models/question_type.model';
 import { QuestionTypesService } from 'apps/shared-components/services/question-types.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { NbMenuService } from '@commudle/theme';
+import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 enum EFormPurposes {
   DATA_FORM = 'data_form',
@@ -15,7 +18,7 @@ enum EFormPurposes {
   templateUrl: './new-data-form.component.html',
   styleUrls: ['./new-data-form.component.scss'],
 })
-export class NewDataFormComponent implements OnInit {
+export class NewDataFormComponent implements OnInit, OnDestroy {
   EFormPurposes = EFormPurposes;
 
   dataForm: IDataForm;
@@ -27,6 +30,8 @@ export class NewDataFormComponent implements OnInit {
 
   @Output() newDataForm = new EventEmitter();
 
+  subscription: Subscription;
+
   showNameField = true;
   showQuestionRequiredField = true;
   showQuestionDisabledField = true;
@@ -34,8 +39,11 @@ export class NewDataFormComponent implements OnInit {
 
   totalQuestions = 0;
 
-  items = [
-    { title: 'Add Question Below', icon: 'plus-circle-outline' },
+  menuItem = [
+    {
+      title: 'Add Question Below',
+      icon: 'plus-circle-outline',
+    },
     { title: 'Delete Question', icon: 'trash-outline' },
   ];
 
@@ -161,7 +169,11 @@ export class NewDataFormComponent implements OnInit {
     return this.createDataForm.valid ? 'Save' : 'Form Is Incomplete';
   }
 
-  constructor(private fb: FormBuilder, private questionTypesService: QuestionTypesService) {}
+  constructor(
+    private fb: FormBuilder,
+    private questionTypesService: QuestionTypesService,
+    private menuService: NbMenuService,
+  ) {}
 
   ngOnInit() {
     // get the question types
@@ -194,11 +206,38 @@ export class NewDataFormComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   saveDataForm() {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
 
-  toggleDescriptionField(): void {
+  toggleDescriptionField(index): void {
     this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
+  }
+
+  handleContextMenu(index): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.subscription = this.menuService
+      .onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'forms-context-menu-' + index),
+        map(({ item: title }) => title),
+      )
+      .subscribe((menu) => {
+        switch (menu.title) {
+          case 'Add Question Below':
+            this.addQuestionButtonClick(index + 1);
+            break;
+
+          case 'Delete Question':
+            this.removeQuestionButtonClick(index);
+            break;
+        }
+      });
   }
 }

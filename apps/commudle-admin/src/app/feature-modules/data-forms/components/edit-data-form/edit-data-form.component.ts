@@ -10,6 +10,9 @@ import { IQuestionType } from 'apps/shared-models/question_type.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { NbMenuService } from '@commudle/theme';
+import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-data-form',
@@ -22,9 +25,11 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   dataForm: IDataForm;
   questionTypes: IQuestionType[];
 
+  subscription: Subscription;
+
   editDataForm: FormGroup;
   showQuestionDescriptionField = false;
-  items = [
+  menuItem = [
     { title: 'Add Question Below', icon: 'plus-circle-outline' },
     { title: 'Delete Question', icon: 'trash-outline' },
   ];
@@ -38,6 +43,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     private seoService: SeoService,
+    private menuService: NbMenuService,
   ) {}
 
   get questions() {
@@ -80,6 +86,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
+    this.subscription.unsubscribe();
   }
   // drag and drop function by CDK
   drop(event: CdkDragDrop<string[]>) {
@@ -222,5 +229,28 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   toggleDescriptionField(): void {
     this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
+  }
+
+  handleContextMenu(index): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.subscription = this.menuService
+      .onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'forms-context-menu-' + index),
+        map(({ item: title }) => title),
+      )
+      .subscribe((menu) => {
+        switch (menu.title) {
+          case 'Add Question Below':
+            this.addQuestionButtonClick(index + 1);
+            break;
+
+          case 'Delete Question':
+            this.removeQuestionButtonClick(index);
+            break;
+        }
+      });
   }
 }

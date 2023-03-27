@@ -132,15 +132,11 @@
         }
       }
 
-      nb-layout-column {
-        @apply md:com-hidden;
+      .layout-div {
+        @apply md:com-hidden com-flex com-justify-end;
 
-        .layout-div {
-          @apply com-flex com-justify-end;
-
-          .context-button {
-            @apply com-flex com-justify-between;
-          }
+        .context-button {
+          @apply com-flex com-justify-between;
         }
       }
 
@@ -149,12 +145,12 @@
           display: block;
         }
 
-        .footer-icons-desktop {
+        .footer-icons {
           display: none;
         }
 
-        nb-layout-column {
-          display: block;
+        .layout-div {
+          display: flex;
         }
       }
 

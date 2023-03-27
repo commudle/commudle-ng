@@ -109,7 +109,7 @@
     }
 
     .question-form-footer {
-      @apply com-flex md:com-flex-row com-text-primary-500  com-gap-3 com-mt-12 com-justify-between;
+      @apply com-flex md:com-flex-row com-text-primary-500  com-gap-3 com-mt-12 com-justify-between com-items-end md:com-items-center;
 
       .add-question-footer {
         @apply com-text-sm com-font-medium;
@@ -139,16 +139,14 @@
         }
       }
 
-      nb-layout-column {
-        div {
-          @apply com-flex com-justify-end;
-          height: 100%;
-          align-items: flex-end;
-        }
+      .layout-div {
+        @apply com-flex com-justify-end;
+        height: 100%;
+        align-items: flex-end;
       }
 
       @media (min-width: 992px) {
-        nb-layout-column {
+        .layout-div {
           display: none;
         }
       }
@@ -158,7 +156,7 @@
           display: block;
         }
 
-        nb-layout-column {
+        .layout-div {
           display: block;
         }
 
