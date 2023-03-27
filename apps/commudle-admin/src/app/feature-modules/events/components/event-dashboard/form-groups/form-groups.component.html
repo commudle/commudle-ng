@@ -198,7 +198,7 @@
 </div>
 
 <ng-template #newDataFormTemplate let-data>
-  <!-- <div class="newDataFormTemplate"> -->
-  <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
-  <!-- </div> -->
+  <div class="newDataFormTemplate">
+    <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+  </div>
 </ng-template>
