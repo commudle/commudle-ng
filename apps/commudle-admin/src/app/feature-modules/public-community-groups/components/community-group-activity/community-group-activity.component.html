@@ -8,7 +8,7 @@
       </div>
       <div>
         <h5>Active Communities to join</h5>
-        <span class="com-text-gray-400">5000 Members to join and connect with</span>
+        <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
       </div>
     </div>
   </nb-card-header>
@@ -25,11 +25,32 @@
       <div
         class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
       >
+        <fa-icon [icon]="faHashtag" class="com-text-green-600 com-p-2"></fa-icon>
+      </div>
+      <div>
+        <h5>Active Channels to join</h5>
+        <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="com-flex com-flex-wrap com-justify-between">
+    <div *ngFor="let channel of channels">
+      <commudle-channel-card [channel]="channel"></commudle-channel-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>
+    <div class="com-flex com-space-x-4 com-items-center">
+      <div
+        class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
+      >
         <fa-icon [icon]="faCalendar" class="com-text-green-600"></fa-icon>
       </div>
       <div>
         <h5>Upcoming Events</h5>
-        <span class="com-text-gray-400">Events for you to join and network</span>
+        <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
       </div>
     </div>
   </nb-card-header>

@@ -1,8 +1,8 @@
 nb-card {
-  @apply com-w-1/2 com-h-52  hover:com-shadow-Card com-cursor-pointer;
+  @apply com-w-[600px] com-h-52  hover:com-shadow-Card com-cursor-pointer com-mx-0;
 
   nb-card-body {
-    @apply com-overflow-hidden com-flex com-space-x-4;
+    @apply com-overflow-hidden com-flex com-space-x-4 com-px-4;
     .logo-image {
       @apply com-w-44 com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1;
       img {

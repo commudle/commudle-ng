@@ -20,7 +20,6 @@ export class ChannelCardComponent implements OnInit {
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.channel);
     this.getCommunity();
   }
 
