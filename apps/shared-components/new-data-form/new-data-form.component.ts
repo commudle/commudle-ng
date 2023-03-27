@@ -38,6 +38,7 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
   showQuestionDescriptionField = false;
 
   totalQuestions = 0;
+  questionDescription = [];
 
   menuItem = [
     {
@@ -94,7 +95,6 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
         this.showNameField = true;
         this.showQuestionRequiredField = true;
         this.showQuestionDisabledField = true;
-        this.showQuestionDescriptionField = false;
         break;
       }
     }
@@ -111,6 +111,7 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
   addQuestionButtonClick(index: number) {
     (this.createDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
     this.updateQuestionsCount();
+    this.questionDescription[index] = false;
   }
 
   updateQuestionsCount() {
@@ -128,6 +129,7 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
   removeQuestionButtonClick(questionIndex: number) {
     (this.createDataForm.get('data_form').get('questions') as FormArray).removeAt(questionIndex);
     this.updateQuestionsCount();
+    this.questionDescription.splice(questionIndex, questionIndex + 1);
   }
 
   removeQuestionChoiceButtonClick(questionIndex: number, choiceIndex: number) {
@@ -176,6 +178,8 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.questionDescription[0] = false;
+
     // get the question types
     this.questionTypesService.getQuestionTypes().subscribe((data) => {
       this.questionTypes = data.question_types;
@@ -204,6 +208,8 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
         this.addQuestionButtonClick(i);
       }
     }
+
+    this.handleContextMenu();
   }
 
   ngOnDestroy() {
@@ -214,28 +220,38 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
 
-  toggleDescriptionField(index): void {
-    this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
+  toggleDescriptionField(index: number): void {
+    this.questionDescription[index] = !this.questionDescription[index];
   }
 
-  handleContextMenu(index): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-    this.subscription = this.menuService
+  handleContextMenu(): void {
+    let index = -1;
+    // console.log(tag);
+    // if (this.subscription) {
+    //   this.subscription.unsubscribe();
+    // }
+    // this.subscription =
+    this.menuService
       .onItemClick()
       .pipe(
-        filter(({ tag }) => tag === 'forms-context-menu-' + index),
+        filter(({ tag }) => tag === `data-form-question-context-menu-${index}`),
+        // (tag: string) => {
+        //   console.log(tag);
+        //   return tag;
+        // },
+        // filter(({ tag }) => {tag === 'forms-context-menu-' + index}),
+        // filter(({ tag }) => tag === `data-form-question-context-menu-${index}`),
+
         map(({ item: title }) => title),
       )
       .subscribe((menu) => {
         switch (menu.title) {
           case 'Add Question Below':
-            this.addQuestionButtonClick(index + 1);
+            // this.addQuestionButtonClick(index + 1);
             break;
 
           case 'Delete Question':
-            this.removeQuestionButtonClick(index);
+            // this.removeQuestionButtonClick(index);
             break;
         }
       });

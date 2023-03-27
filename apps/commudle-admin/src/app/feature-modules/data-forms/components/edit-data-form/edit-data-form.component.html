@@ -108,15 +108,15 @@
                         nbButton
                         size="small"
                         ghost
-                        (click)="toggleDescriptionField()"
+                        (click)="toggleDescriptionField(i)"
                         status="primary"
                         class="add-description-button"
                       >
-                        <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
-                        {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
+                        <nb-icon [icon]="questionDescription[i] ? 'close-outline' : 'plus-outline'"></nb-icon>
+                        {{ questionDescription[i] ? 'Remove Description' : 'Add Description' }}
                       </button>
 
-                      <div *ngIf="showQuestionDescriptionField" class="description-textbox">
+                      <div *ngIf="questionDescription[i]" class="description-textbox">
                         <textarea
                           nbInput
                           fullWidth

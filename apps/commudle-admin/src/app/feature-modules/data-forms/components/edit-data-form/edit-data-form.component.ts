@@ -29,6 +29,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   editDataForm: FormGroup;
   showQuestionDescriptionField = false;
+
+  questionDescription = [];
   menuItem = [
     { title: 'Add Question Below', icon: 'plus-circle-outline' },
     { title: 'Delete Question', icon: 'trash-outline' },
@@ -58,6 +60,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seoService.noIndex(true);
+    this.questionDescription[0] = false;
 
     // get the question types
     this.activatedRoute.data.subscribe((data) => {
@@ -119,6 +122,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   addQuestionButtonClick(index: number) {
     (this.editDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
+    this.questionDescription[index] = false;
   }
 
   addQuestionChoiceButtonClick(questionIndex: number) {
@@ -129,6 +133,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   removeQuestionButtonClick(questionIndex: number) {
     (this.editDataForm.get('data_form').get('questions') as FormArray).removeAt(questionIndex);
+    this.questionDescription.splice(questionIndex, questionIndex + 1);
   }
 
   removeQuestionChoiceButtonClick(questionIndex: number, choiceIndex: number) {
@@ -227,8 +232,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleDescriptionField(): void {
-    this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
+  toggleDescriptionField(index: number): void {
+    this.questionDescription[index] = !this.questionDescription[index];
   }
 
   handleContextMenu(index): void {

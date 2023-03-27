@@ -91,11 +91,10 @@
                         status="primary"
                         class="add-description-button"
                       >
-                        <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
-                        {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
+                        <nb-icon [icon]="questionDescription[i] ? 'close-outline' : 'plus-outline'"></nb-icon>
+                        {{ questionDescription[i] ? 'Remove Description' : 'Add Description' }}
                       </button>
-
-                      <div *ngIf="showQuestionDescriptionField" class="description-textbox">
+                      <div *ngIf="questionDescription[i]" class="description-textbox">
                         <textarea
                           nbInput
                           fullWidth
@@ -204,13 +203,12 @@
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-
+                  <!-- (click)="handleContextMenu(i)" -->
                   <div class="layout-div">
                     <button
                       nbButton
                       [nbContextMenu]="menuItem"
-                      (click)="handleContextMenu(i)"
-                      nbContextMenuTag="forms-context-menu-{{ i }}"
+                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
                       class="context-button"
                     >
                       <nb-icon icon="more-vertical-outline"></nb-icon>
