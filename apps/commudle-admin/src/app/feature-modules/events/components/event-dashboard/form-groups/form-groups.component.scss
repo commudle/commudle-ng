@@ -111,7 +111,6 @@
   }
 }
 
-.newDataFormTemplate {
-  @apply md:com-w-[720px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto;
-  width: calc(100% - 16px);
+.new-data-form-template {
+  @apply md:com-w-[720px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-w-[calc(100%-16px)];
 }
