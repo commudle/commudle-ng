@@ -7,16 +7,29 @@
     max-width: 920px;
     margin: 0 auto;
 
-    .validation-error-text {
-      color: red; /* red */
+    .submit-button {
+      @apply com-mx-2;
     }
 
-    input {
-      background-color: white;
+    .card-body {
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+
+      .description {
+        @apply com-mt-4;
+        label {
+          textarea {
+            @apply com-mt-2;
+            background-color: white;
+          }
+        }
+      }
     }
 
-    textarea {
-      background-color: white;
+    label {
+      @apply com-text-base com-font-medium com-text-Charcoal;
     }
 
     .data-form-question-choices-container {
@@ -24,7 +37,7 @@
     }
 
     .add-question-button {
-      @apply com-m-2;
+      @apply com-mb-10 com-mx-2;
     }
 
     .cdk-drag-animating {
@@ -36,31 +49,52 @@
     }
 
     .question-container {
-      display: flex;
-      flex-direction: column;
+      @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+      textarea {
+        @apply com-mb-0 com-mt-1;
+        background-color: white;
+      }
+
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+
+      label {
+        @apply com-text-xl com-font-semibold;
+      }
+
+      .add-description-button {
+        @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
+        width: max-content;
+
+        nb-icon {
+          @apply com-mr-1;
+        }
+      }
+
+      .description-textbox {
+        @apply com-m-0;
+      }
 
       .question-settings {
-        margin: 1rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
-        nb-select {
-          background-color: white;
-        }
-
-        label,
-        nb-checkbox {
+        label {
+          @apply com-flex com-flex-col com-font-semibold com-text-xl;
           margin-right: 1.5rem;
         }
       }
 
       .choices-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin: 1rem;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+        .choice-container {
+          nb-icon {
+            @apply com-text-base;
+          }
+        }
       }
     }
   }
@@ -73,15 +107,64 @@
         @apply com-cursor-move;
       }
     }
-    .question-form-footer {
-      @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
 
-      button {
-        @apply com-justify-start com-pl-0 md:com-pl-4;
+    .question-form-footer {
+      @apply com-flex md:com-flex-row com-text-primary-500  com-gap-3 com-mt-12 com-justify-between;
+
+      .add-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
       }
 
-      nb-checkbox {
-        @apply com-mr-0 md:com-mr-10;
+      .toggles {
+        @apply md:com-border-l com-border-Bright-Gray com-border-0 com-border-solid com-border-y-0;
+        .toggle {
+          @apply com-text-sm com-font-medium com-border-0;
+          @apply com-mr-0 md:com-mb-2;
+
+          span {
+            @apply com-text-primary-500;
+          }
+        }
+      }
+
+      .delete-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      nb-layout-column {
+        div {
+          @apply com-flex com-justify-end;
+          height: 100%;
+          align-items: flex-end;
+        }
+      }
+
+      @media (min-width: 992px) {
+        nb-layout-column {
+          display: none;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .toggles {
+          display: block;
+        }
+
+        nb-layout-column {
+          display: block;
+        }
+
+        .footer-icons {
+          display: none;
+        }
       }
     }
   }

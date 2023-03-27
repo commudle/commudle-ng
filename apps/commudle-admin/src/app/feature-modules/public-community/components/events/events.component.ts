@@ -18,14 +18,11 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
-  eventLoader = false;
+  isLoading = true;
 
   upcomingEvents = [];
   pastEvents = [];
   faMapPin = faMapPin;
-
-  width = '390px';
-  height = '230px';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,7 +31,6 @@ export class EventsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.eventLoader = true;
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.getEvents();
@@ -53,7 +49,7 @@ export class EventsComponent implements OnInit {
           this.pastEvents.push(event);
         }
       });
-      this.eventLoader = false;
+      this.isLoading = false;
     });
   }
 }

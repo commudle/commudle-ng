@@ -1,82 +1,64 @@
-<nb-card [nbSpinner]="eventLoader">
+<nb-card>
   <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="events">
-      <div *ngIf="upcomingEvents.length >= 1" class="com-mx-auto com-my-0">
+      <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
         <p class="heading">Upcoming Events</p>
-        <div class="com-flex com-flex-row com-flex-wrap">
+        <div class="upcoming-events-container">
           <a
             *ngFor="let event of upcomingEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
+            [ngClass]="{
+              'upcoming-multiple-events': upcomingEvents.length > 1,
+              'upcoming-single-event': upcomingEvents.length === 1
+            }"
           >
-            <div
-              [ngClass]="{
-                'd-flex flex-row com-w-[600px]': upcomingEvents.length > 1,
-                'd-flex flex-col com-w-[1220px]': upcomingEvents.length === 1
-              }"
-            >
-              <nb-card class="upcoming">
-                <nb-card-body class="d-flex com-flex-col">
-                  <div
-                    *ngIf="event.header_image_path"
-                    [ngClass]="{
-                      'com-h-[334px]': upcomingEvents.length > 1,
-                      'com-h-[680px]': upcomingEvents.length === 1
-                    }"
-                  >
+            <div>
+              <nb-card class="upcoming-events">
+                <nb-card-body class="upcoming-events-body">
+                  <div *ngIf="event.header_image_path">
                     <commudle-banner-image
                       [headerImagePath]="event.header_image_path"
                       [name]="event.name"
-                      [width]="upcomingEvents.length === 1 ? '1220px' : '600px'"
-                      [height]="upcomingEvents.length === 1 ? '680px' : '334px'"
                     ></commudle-banner-image>
-                    <!-- <div *ngIf="event.header_image_path" class="event-image-container"> -->
-                    <!-- <span>
-                      <app-badge
-                        *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
-                        [color]="'rgb(255 45 45)'"
-                        [text]="'Live'"
-                      ></app-badge>
-                    </span>
-                    <div
-                      class="event-background"
-                      [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"
-                    ></div>
-                    <img
-                      alt="{{ event.name }}"
-                      src="{{ event.header_image_path }}"
-                      title="{{ event.name }}"
-                      class="event-image"
-                    /> -->
+                    <app-badge
+                      *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
+                      [color]="'rgb(255 45 45)'"
+                      [text]="'Live'"
+                    ></app-badge>
                   </div>
-                  <div *ngIf="!event.header_image_path">
+                  <div *ngIf="!event.header_image_path" class="no-image-header">
                     <nb-icon icon="link" status="primary"></nb-icon>
                   </div>
                   <div class="upcoming-details">
-                    <div class="com-h-[120px]">
-                      <div class="md:com-flex com-flex-row com-justify-between com-items-center items-center">
-                        <p class="event-name">{{ event.name }}</p>
-                        <button
-                          nbButton
-                          status="none"
-                          size="small"
-                          class="com-mt-4 com-bg-transparent com-rounded-lg com-text-AuroMetalSaurus"
-                        >
-                          <!-- <fa-icon [icon]="faMapPin" class="com-p-9"></fa-icon> -->
-                          <!-- "com-text-red-500 -->
-                          <!-- <nb-icon icon="pin-outline" class="com-border-AuroMetalSaurus"></nb-icon> -->
+                    <div class="upcoming-details-container">
+                      <div class="details">
+                        <div>
+                          <p class="event-name">
+                            {{ event.name }}
+                            <span *ngIf="event.kommunity_id !== community.id" class="collaboration"
+                              >(Collaboration)</span
+                            >
+                          </p>
+                          <p class="event-timing">
+                            {{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards
+                          </p>
+                        </div>
+                        <button nbButton size="small" class="event_type_button">
+                          <fa-icon [icon]="faMapPin"></fa-icon>
                           {{ event.event_type }} Event
                         </button>
                       </div>
-                      <p class="timing">{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</p>
                     </div>
-                    <div class="interested_members">
-                      <div class="com-flex com-items-center">
-                        <nb-icon icon="people-outline" class="com-bg-white com-text-black"></nb-icon>
+
+                    <div class="interested-members">
+                      <div>
+                        <nb-icon icon="people-outline" class="people-outline"></nb-icon>
                         <span>{{ event.interested_members_count }} Interested Members</span>
                       </div>
-                      <div>
-                        <p class="register">Register</p>
-                      </div>
+                      <button nbButton status="primary" shape="semi-round" class="register-button" outline>
+                        Register
+                      </button>
                     </div>
                   </div>
                 </nb-card-body>
@@ -84,35 +66,47 @@
             </div>
           </a>
         </div>
-      </div>
+      </section>
 
-      <div *ngIf="pastEvents.length >= 1" class="past-events">
+      <section *ngIf="pastEvents.length >= 1" class="past-events">
         <h3 class="heading">Past Events</h3>
-        <div class="com-flex com-flex-row com-flex-wrap">
+        <div class="past-events-container">
           <a
             *ngFor="let event of pastEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
           >
-            <nb-card class="past">
+            <nb-card class="past-container">
               <nb-card-body>
-                <commudle-banner-image
-                  [headerImagePath]="event.header_image_path"
-                  [name]="event.name"
-                  [width]="'390px'"
-                  [height]="'230px'"
-                ></commudle-banner-image>
-                <!-- <div *ngIf="!event.header_image_path" class="com-w-full com-h-auto"> -->
-                <!-- <nb-icon icon="link" status="primary"></nb-icon>
-                </div> -->
+                <div *ngIf="event.header_image_path">
+                  <commudle-banner-image
+                    [headerImagePath]="event.header_image_path"
+                    [name]="event.name"
+                  ></commudle-banner-image>
+                </div>
+                <div *ngIf="!event.header_image_path" class="no-image-header">
+                  <nb-icon icon="link" status="primary"></nb-icon>
+                </div>
                 <div class="past-details">
-                  <div class="com-h-[137px]">
-                    <span>
-                      <p class="completed">
+                  <div class="past-details-container">
+                    <div class="detailss">
+                      <div class="completed">
                         Completed
-                        <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success"></nb-icon></p
-                    ></span>
-                    <p class="event-name">{{ event.name }}</p>
-                    <p class="timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+                        <nb-icon
+                          icon="checkmark-circle-2"
+                          nbTooltip="Completed"
+                          status="success"
+                          class="com-m-auto"
+                        ></nb-icon>
+                      </div>
+                      <div class="interested-members">
+                        <span>Interested Members: {{ event.interested_members_count }}</span>
+                      </div>
+                    </div>
+                    <p class="event-name">
+                      {{ event.name }}
+                      <span *ngIf="event.kommunity_id !== community.id" class="collaboration">(Collaboration)</span>
+                    </p>
+                    <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
                   </div>
                   <a class="view-details">View Details</a>
                 </div>
@@ -120,8 +114,7 @@
             </nb-card>
           </a>
         </div>
-      </div>
+      </section>
     </div>
   </nb-card-body>
-  <nb-card> </nb-card
-></nb-card>
+</nb-card>

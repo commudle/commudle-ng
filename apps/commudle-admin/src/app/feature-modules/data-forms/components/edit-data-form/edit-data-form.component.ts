@@ -23,6 +23,11 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   questionTypes: IQuestionType[];
 
   editDataForm: FormGroup;
+  showQuestionDescriptionField = false;
+  items = [
+    { title: 'Add Question Below', icon: 'plus-circle-outline' },
+    { title: 'Delete Question', icon: 'trash-outline' },
+  ];
 
   @ViewChild('cdkDrag') cdkDrag: any;
 
@@ -127,7 +132,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   questionTypeChange(questionType, questionIndex: number) {
     if (![4, 5].includes(questionType)) {
-      let choiceCount = (<FormArray>(
+      const choiceCount = (<FormArray>(
         (<FormArray>this.editDataForm.get('data_form').get('questions')).controls[questionIndex].get('question_choices')
       )).length;
       for (let i = 0; i < choiceCount; i++) {
@@ -213,5 +218,9 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.router.navigate(['/forms', data.id, 'edit']);
       this.toastLogService.successDialog('Form Cloned!');
     });
+  }
+
+  toggleDescriptionField(): void {
+    this.showQuestionDescriptionField = !this.showQuestionDescriptionField;
   }
 }

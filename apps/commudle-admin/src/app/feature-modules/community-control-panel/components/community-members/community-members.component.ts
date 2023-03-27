@@ -60,7 +60,7 @@ export class CommunityMembersComponent implements OnInit {
     this.removeUserForm = this.fb.group({
       user_roles_user_ids: this.fb.array([]),
     });
-    this.options = ['speakers', 'employer', 'content creator', 'employee'];
+    this.options = ['speakers', 'content creator', 'employer', 'employee'];
   }
 
   get userRolesUserIds(): FormArray {
@@ -189,10 +189,10 @@ export class CommunityMembersComponent implements OnInit {
       this.speaker = !this.speaker;
     }
     if (event === this.options[1]) {
-      this.employer = !this.employer;
+      this.contentCreator = !this.contentCreator;
     }
     if (event === this.options[2]) {
-      this.contentCreator = !this.contentCreator;
+      this.employer = !this.employer;
     }
     if (event === this.options[3]) {
       this.employee = !this.employee;

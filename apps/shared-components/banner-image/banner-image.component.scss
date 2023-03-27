@@ -1,20 +1,16 @@
-.event-image-container {
-  // @apply lg:com-mx-2 lg:com-my-4 com-px-2 com-my-2;
-  @apply com-relative com-flex com-overflow-hidden com-justify-center com-items-center;
+.image-container {
+  @apply com-relative com-overflow-hidden com-aspect-[16/6];
+  //TODO use aspect ratio in tailwind
 
-  .event-background {
+  .background {
     @apply com-mx-auto lg:com-w-full com-w-[calc(100%-30px)];
-    @apply com-z-0 com-blur-sm com-bg-cover com-bg-center com-h-full com-absolute com-bg-no-repeat;
+    @apply com-z-0 com-blur-sm com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
   }
 
-  .image {
-    @apply com-flex com-justify-center com-h-full com-aspect-[16/4];
-    .event-image {
-      @apply com-z-10 com-object-contain;
+  .image-section {
+    @apply com-flex com-justify-center;
+    img {
+      @apply com-h-full com-absolute com-top-0;
     }
-  }
-
-  nb-icon {
-    @apply com-text-5xl;
   }
 }

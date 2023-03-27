@@ -1,0 +1,22 @@
+.error-text {
+  @apply com-text-sm com-flex com-items-center com-font-normal com-align-middle com-text-red-500;
+  span {
+    @apply com-flex com-items-center;
+  }
+
+  .info-icon {
+    @apply com-text-sm com-mr-1;
+  }
+}
+
+.info {
+  @apply com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-pl-6px com-pr-14px com-m-auto;
+
+  nb-icon {
+    @apply com-text-lg com-text-New-Car com-mr-6px;
+  }
+
+  p {
+    @apply com-text-xs com-font-normal com-leading-4 com-text-New-Car com-p-0 com-m-0;
+  }
+}

@@ -1,44 +1,35 @@
 <div *ngIf="dataForm && formCreated">
   <div *ngIf="dataForm.description" class="form-description">
-    <p [innerHTML]="dataForm.description | linky: { sanitizeHtml: true }"></p>
+    <p [innerHTML]="dataForm.description | linky : { sanitizeHtml: true }"></p>
   </div>
   <form (ngSubmit)="submitForm()" [formGroup]="dataFormEntityResponseForm">
     <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <div class="detail">
+        <span class="index">{{ i + 1 }}.</span>
         <p>
-          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
-        </p>
-        <p>
-          <span [innerHTML]="question.title | linky: { sanitizeHtml: true }" class="title">
+          <span [innerHTML]="question.title | linky : { sanitizeHtml: true }" class="title">
             <span *ngIf="question.required" class="required-question">*</span>
           </span>
           <br />
           <small
             *ngIf="question.description"
-            [innerHTML]="question.description | linky: { sanitizeHtml: true }"
+            [innerHTML]="question.description | linky : { sanitizeHtml: true }"
             class="description"
           >
           </small>
         </p>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.SHORT_ANSWER" class="answer">
-        <input
-          formControlName="{{ question.id }}"
-          fullWidth
-          nbInput
-          placeholder="Short Answer"
-          status="primary"
-          type="text"
-        />
+        <input formControlName="{{ question.id }}" fullWidth nbInput placeholder="Short Answer" type="text" />
+        <!-- <p>{{ dataFormEntityResponseForm['controls'][question.id].errors.required }}</p> -->
         <span
           *ngIf="
             dataFormEntityResponseForm['controls'][question.id].touched &&
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.NUMBER" class="answer">
@@ -56,9 +47,8 @@
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
       <div *ngIf="question.question_type_id === EQuestionTypes.LONG_ANSWER" class="answer">
@@ -67,7 +57,6 @@
           fullWidth
           nbInput
           placeholder="You can write a detailed answer!"
-          status="primary"
         ></textarea>
         <span
           *ngIf="
@@ -75,9 +64,8 @@
             dataFormEntityResponseForm['controls'][question.id].invalid &&
             dataFormEntityResponseForm['controls'][question.id].errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
@@ -85,6 +73,14 @@
         <nb-radio-group class="options" formControlName="{{ question.id }}" name="{{ question.id }}">
           <nb-radio *ngFor="let option of question.question_choices" [value]="option.id"> {{ option.title }} </nb-radio>
         </nb-radio-group>
+        <span
+          *ngIf="
+            dataFormEntityResponseForm['controls'][question.id].touched &&
+            dataFormEntityResponseForm['controls'][question.id].invalid
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+        </span>
       </div>
 
       <div
@@ -104,12 +100,17 @@
             {{ option.title }}
           </nb-checkbox>
         </div>
+        <span
+          *ngIf="
+            dataFormEntityResponseForm['controls'][question.id].touched &&
+            dataFormEntityResponseForm['controls'][question.id].invalid
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+        </span>
       </div>
     </div>
-    <nb-alert accent="warning"
-      >Never enter any personal or sensitive information which can be misused (including but not limited to passwords)
-      in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.
-    </nb-alert>
+    <commudle-alert [info]="true" [message]="message"></commudle-alert>
 
     <div class="submit-button">
       <button
