@@ -203,10 +203,10 @@
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-                  <!-- (click)="handleContextMenu(i)" -->
                   <div class="layout-div">
                     <button
                       nbButton
+                      (click)="setContextIndex(i)"
                       [nbContextMenu]="menuItem"
                       nbContextMenuTag="data-form-question-context-menu-{{ i }}"
                       class="context-button"

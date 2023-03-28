@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestionType } from 'apps/shared-models/question_type.model';
@@ -6,7 +6,6 @@ import { QuestionTypesService } from 'apps/shared-components/services/question-t
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NbMenuService } from '@commudle/theme';
 import { filter, map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 enum EFormPurposes {
   DATA_FORM = 'data_form',
@@ -18,7 +17,7 @@ enum EFormPurposes {
   templateUrl: './new-data-form.component.html',
   styleUrls: ['./new-data-form.component.scss'],
 })
-export class NewDataFormComponent implements OnInit, OnDestroy {
+export class NewDataFormComponent implements OnInit {
   EFormPurposes = EFormPurposes;
 
   dataForm: IDataForm;
@@ -30,12 +29,12 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
 
   @Output() newDataForm = new EventEmitter();
 
-  subscription: Subscription;
-
   showNameField = true;
   showQuestionRequiredField = true;
   showQuestionDisabledField = true;
   showQuestionDescriptionField = false;
+
+  questionContextMenuIndex = -1;
 
   totalQuestions = 0;
   questionDescription = [];
@@ -174,7 +173,7 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private questionTypesService: QuestionTypesService,
-    private menuService: NbMenuService,
+    private NbmenuService: NbMenuService,
   ) {}
 
   ngOnInit() {
@@ -212,10 +211,6 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
     this.handleContextMenu();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   saveDataForm() {
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
@@ -224,34 +219,24 @@ export class NewDataFormComponent implements OnInit, OnDestroy {
     this.questionDescription[index] = !this.questionDescription[index];
   }
 
-  handleContextMenu(): void {
-    let index = -1;
-    // console.log(tag);
-    // if (this.subscription) {
-    //   this.subscription.unsubscribe();
-    // }
-    // this.subscription =
-    this.menuService
-      .onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === `data-form-question-context-menu-${index}`),
-        // (tag: string) => {
-        //   console.log(tag);
-        //   return tag;
-        // },
-        // filter(({ tag }) => {tag === 'forms-context-menu-' + index}),
-        // filter(({ tag }) => tag === `data-form-question-context-menu-${index}`),
+  setContextIndex(index: number) {
+    this.questionContextMenuIndex = index;
+  }
 
+  handleContextMenu(): void {
+    this.NbmenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === `data-form-question-context-menu-${this.questionContextMenuIndex}`),
         map(({ item: title }) => title),
       )
       .subscribe((menu) => {
         switch (menu.title) {
           case 'Add Question Below':
-            // this.addQuestionButtonClick(index + 1);
+            this.addQuestionButtonClick(this.questionContextMenuIndex + 1);
             break;
 
           case 'Delete Question':
-            // this.removeQuestionButtonClick(index);
+            this.removeQuestionButtonClick(this.questionContextMenuIndex);
             break;
         }
       });

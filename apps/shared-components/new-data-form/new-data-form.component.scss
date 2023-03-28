@@ -153,12 +153,6 @@
           display: flex;
         }
       }
-
-      @media (min-width: 992px) {
-        nb-layout-column {
-          display: none;
-        }
-      }
     }
   }
 }

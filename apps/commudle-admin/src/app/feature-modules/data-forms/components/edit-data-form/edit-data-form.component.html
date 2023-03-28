@@ -240,9 +240,9 @@
                   <div class="layout-div">
                     <button
                       nbButton
+                      (click)="setContextIndex(i)"
                       [nbContextMenu]="menuItem"
-                      (click)="handleContextMenu(i)"
-                      nbContextMenuTag="forms-context-menu-{{ i }}"
+                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
                       class="context-menu"
                     >
                       <nb-icon icon="more-vertical-outline" class="com-mb-8"></nb-icon>

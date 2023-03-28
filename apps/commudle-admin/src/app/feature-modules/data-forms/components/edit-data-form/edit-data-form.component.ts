@@ -12,7 +12,6 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NbMenuService } from '@commudle/theme';
 import { filter, map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-data-form',
@@ -25,10 +24,9 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   dataForm: IDataForm;
   questionTypes: IQuestionType[];
 
-  subscription: Subscription;
+  questionContextMenuIndex = -1;
 
   editDataForm: FormGroup;
-  showQuestionDescriptionField = false;
 
   questionDescription = [];
   menuItem = [
@@ -45,7 +43,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     private seoService: SeoService,
-    private menuService: NbMenuService,
+    private NbmenuService: NbMenuService,
   ) {}
 
   get questions() {
@@ -61,6 +59,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.seoService.noIndex(true);
     this.questionDescription[0] = false;
+    this.handleContextMenu();
 
     // get the question types
     this.activatedRoute.data.subscribe((data) => {
@@ -89,7 +88,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
-    this.subscription.unsubscribe();
   }
   // drag and drop function by CDK
   drop(event: CdkDragDrop<string[]>) {
@@ -236,24 +234,24 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     this.questionDescription[index] = !this.questionDescription[index];
   }
 
-  handleContextMenu(index): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-    this.subscription = this.menuService
-      .onItemClick()
+  setContextIndex(index: number) {
+    this.questionContextMenuIndex = index;
+  }
+
+  handleContextMenu(): void {
+    this.NbmenuService.onItemClick()
       .pipe(
-        filter(({ tag }) => tag === 'forms-context-menu-' + index),
+        filter(({ tag }) => tag === `data-form-question-context-menu-${this.questionContextMenuIndex}`),
         map(({ item: title }) => title),
       )
       .subscribe((menu) => {
         switch (menu.title) {
           case 'Add Question Below':
-            this.addQuestionButtonClick(index + 1);
+            this.addQuestionButtonClick(this.questionContextMenuIndex + 1);
             break;
 
           case 'Delete Question':
-            this.removeQuestionButtonClick(index);
+            this.removeQuestionButtonClick(this.questionContextMenuIndex);
             break;
         }
       });
