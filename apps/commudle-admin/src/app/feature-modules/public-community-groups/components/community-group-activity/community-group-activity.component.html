@@ -33,7 +33,7 @@
       </div>
     </div>
   </nb-card-header>
-  <nb-card-body class="com-flex com-flex-wrap com-justify-between">
+  <nb-card-body class="com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0">
     <div *ngFor="let channel of channels">
       <commudle-channel-card [channel]="channel"></commudle-channel-card>
     </div>
@@ -42,7 +42,7 @@
 
 <nb-card>
   <nb-card-header>
-    <div class="com-flex com-space-x-4 com-items-center">
+    <div class="com-flex com-space-x-4 com-items-center com-overflow-auto">
       <div
         class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
       >
