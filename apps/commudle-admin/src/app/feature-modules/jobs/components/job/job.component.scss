@@ -10,7 +10,7 @@ a {
 
 .job-container {
   .company-details {
-    @apply com-text-center;
+    @apply com-text-center md:com-text-left;
 
     .position {
       @apply com-text-lg md:com-text-2xl com-font-semibold com-mb-2;
