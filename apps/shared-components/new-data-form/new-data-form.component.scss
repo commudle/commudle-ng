@@ -132,7 +132,7 @@
         }
       }
 
-      .layout-div {
+      .context-menu {
         @apply md:com-hidden com-flex com-justify-end;
 
         .context-button {
@@ -142,15 +142,15 @@
 
       @media (max-width: 767px) {
         .toggle {
-          display: block;
+          @apply com-block;
         }
 
         .footer-icons {
-          display: none;
+          @apply com-hidden;
         }
 
-        .layout-div {
-          display: flex;
+        .context-menu {
+          @apply com-flex;
         }
       }
     }

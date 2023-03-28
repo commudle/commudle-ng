@@ -139,29 +139,29 @@
         }
       }
 
-      .layout-div {
+      .context-menu {
         @apply com-flex com-justify-end;
         height: 100%;
         align-items: flex-end;
       }
 
       @media (min-width: 992px) {
-        .layout-div {
-          display: none;
+        .context-menu {
+          @apply com-hidden;
         }
       }
 
       @media (max-width: 767px) {
         .toggles {
-          display: block;
+          @apply com-block;
         }
 
-        .layout-div {
-          display: block;
+        .context-menu {
+          @apply com-block;
         }
 
         .footer-icons {
-          display: none;
+          @apply com-hidden;
         }
       }
     }
