@@ -1,3 +1,6 @@
-a {
-  margin: 0.5rem auto;
+.main-div {
+  @apply com-flex com-flex-wrap;
+  a {
+    margin: 0.5rem auto;
+  }
 }
