@@ -121,6 +121,6 @@ export class JobListCardComponent implements OnInit {
   }
 
   onDialogOpen(templateRef: TemplateRef<any>) {
-    this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
+    this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: true });
   }
 }
