@@ -44,6 +44,7 @@ export class EventLocationsComponent implements OnInit {
   eventLocations: IEventLocation[];
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
+  isLoading = true;
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
@@ -81,6 +82,8 @@ export class EventLocationsComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
+      this.changeDetectorRef.markForCheck();
+      this.isLoading = false;
     });
   }
 
