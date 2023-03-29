@@ -7,6 +7,8 @@ import { faUsers, faCalendar, faHashtag } from '@fortawesome/free-solid-svg-icon
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
+import { IEvents } from 'apps/shared-models/events.model';
+import { IEvent } from 'apps/shared-models/event.model';
 
 @Component({
   selector: 'commudle-community-group-activity',
@@ -20,6 +22,7 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
   channels: ICommunityChannel[] = [];
+  events: IEvent[] = [];
   page_info: IPageInfo;
   subscriptions: Subscription[] = [];
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
@@ -28,6 +31,7 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.params.subscribe((data) => {
         this.getActiveCommunitiesAndChannels(data.community_group_id);
+        this.getEvents(data.community_group_id);
       }),
     );
   }
@@ -42,5 +46,14 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
       this.channels = data.community_channels;
       this.page_info = data.page_info;
     });
+  }
+
+  getEvents(communityGroupId) {
+    this.subscriptions.push(
+      this.communityGroupsService.pEvents(communityGroupId, 'upcoming').subscribe((data) => {
+        console.log(data);
+        this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      }),
+    );
   }
 }

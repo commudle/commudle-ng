@@ -55,6 +55,8 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <h1>waiting for prerna code</h1>
+    <div class="com-flex">
+      <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
+    </div>
   </nb-card-body>
 </nb-card>

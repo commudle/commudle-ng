@@ -8,6 +8,7 @@ import { ICommunities } from 'apps/shared-models/communities.model';
 import { ICommunityGroups } from 'apps/shared-models/community-groups.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
+import { IEvent } from 'apps/shared-models/event.model';
 
 @Injectable({
   providedIn: 'root',
@@ -67,6 +68,19 @@ export class CommunityGroupsService {
     const params = new HttpParams().set('community_group_id', communityGroupId);
     return this.http.get<IPagination<ICommunityChannel>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITY_CHANNELS),
+      {
+        params,
+      },
+    );
+  }
+
+  pEvents(communityGroupId, when?): Observable<IPagination<IEvent>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    if (when) {
+      params = params.set('when', when);
+    }
+    return this.http.get<IPagination<IEvent>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.EVENTS),
       {
         params,
       },

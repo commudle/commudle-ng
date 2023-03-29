@@ -1,0 +1,36 @@
+<div class="events-container">
+  <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+    <nb-card class="past-container">
+      <nb-card-body>
+        <div *ngIf="event.header_image_path">
+          <commudle-banner-image
+            [headerImagePath]="event.header_image_path"
+            [name]="event.name"
+          ></commudle-banner-image>
+        </div>
+        <div *ngIf="!event.header_image_path" class="no-image-header">
+          <nb-icon icon="link" status="primary"></nb-icon>
+        </div>
+        <div class="past-details">
+          <div class="past-details-container">
+            <div class="detailss">
+              <!-- <div class="completed">
+                Completed
+                <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
+              </div> -->
+              <div class="interested-members">
+                <span>Interested Members: {{ event.interested_members_count }}</span>
+              </div>
+            </div>
+            <p class="event-name">
+              {{ event.name }}
+              <!-- <span *ngIf="event.kommunity_id !== community.id" class="collaboration">(Collaboration)</span> -->
+            </p>
+            <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+          </div>
+          <a class="view-details">View Details</a>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </a>
+</div>

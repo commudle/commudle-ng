@@ -1,1 +1,7 @@
-<p>community-group-events works!</p>
+<nb-card>
+  <nb-card-body class="com-px-0">
+    <div class="com-flex com-wrap">
+      <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
+    </div>
+  </nb-card-body>
+</nb-card>
