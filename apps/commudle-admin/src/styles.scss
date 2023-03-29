@@ -153,6 +153,12 @@ nb-window.full-screen-height {
   }
 }
 
+nb-window.padding-0 {
+  nb-card-body {
+    padding: 20px 16px;
+  }
+}
+
 .lh-fw {
   font-weight: 300 !important;
 }
