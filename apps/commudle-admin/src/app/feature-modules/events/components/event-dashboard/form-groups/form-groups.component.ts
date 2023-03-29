@@ -146,7 +146,7 @@ export class FormGroupsComponent implements OnInit {
       context: {
         minQuestionCount: 1,
       },
-      windowClass: 'padding-0',
+      windowClass: 'form-window',
     });
   }
 

@@ -153,9 +153,9 @@ nb-window.full-screen-height {
   }
 }
 
-nb-window.padding-0 {
+nb-window.form-window {
   nb-card-body {
-    padding: 20px 16px;
+    @apply com-py-5 com-px-4 md:com-px-5;
   }
 }
 
