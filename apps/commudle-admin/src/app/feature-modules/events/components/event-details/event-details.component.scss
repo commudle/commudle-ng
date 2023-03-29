@@ -1,4 +1,5 @@
 .event-details-container {
+  @apply com-mx-0 md:com-mx-2 com-my-4;
   nb-card-body {
     .event-header-delete {
       @apply com-block com-mx-auto com-mt-2;
