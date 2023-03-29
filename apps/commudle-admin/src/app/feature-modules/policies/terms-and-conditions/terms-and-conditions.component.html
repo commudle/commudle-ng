@@ -1,8 +1,8 @@
-<nb-card *ngIf="termsAndConditions">
+<nb-card *ngIf="termsAndCondition">
   <nb-card-header>
-    <h1>{{ termsAndConditions.title }}</h1>
+    <h1>{{ termsAndCondition.title }}</h1>
     <p>
-      <small> Last updated on: {{ termsAndConditions.last_updated_at | date : 'medium' }} </small>
+      <small> Last updated on: {{ termsAndCondition.last_updated_at | date : 'medium' }} </small>
     </p>
   </nb-card-header>
 
