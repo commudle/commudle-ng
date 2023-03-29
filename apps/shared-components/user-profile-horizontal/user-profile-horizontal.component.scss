@@ -8,10 +8,10 @@
 
   .profile-picture {
     display: flex;
-    min-width: 48px;
-    height: 48px;
     margin-right: 0.5rem;
     overflow: hidden;
+    min-width: 48px;
+    height: 48px;
     img {
       width: 48px;
       height: 48px;
@@ -28,8 +28,8 @@
 
     &.small {
       width: 48px;
-      min-height: 48px;
-      margin-right: 0.5rem;
+      height: 48px;
+      margin-right: 0.4rem;
     }
   }
 
@@ -55,7 +55,7 @@
         font-size: 1.2rem;
       }
       &.small {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 300;
       }
     }
@@ -67,13 +67,11 @@
       font-weight: 500;
       line-height: 20px;
 
-      line-height: 20px;
-
       &.medium {
         font-size: 0.9rem;
       }
       &.small {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
       }
     }
 
@@ -88,7 +86,7 @@
         font-size: 0.9rem;
       }
       &.small {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
       }
     }
 
@@ -116,7 +114,7 @@
       &.small {
         nb-icon {
           @apply com-text-Charcoal;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -129,7 +127,7 @@
       }
 
       &.small {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
       }
     }
   }

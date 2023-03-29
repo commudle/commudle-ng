@@ -1,5 +1,5 @@
 <nb-card [ngClass]="{ statusClosed: job.status === jobStatus.CLOSED }">
-  <nb-card-body>
+  <nb-card-body class="nb-body">
     <a [routerLink]="[job.id]" class="com-no-underline md:com-w-4/5">
       <div class="job-details position">
         <p>{{ job.position }}</p>
@@ -170,7 +170,7 @@
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
-    <nb-card-body class="com-max-w-[350px]">
+    <nb-card-body class="confirmation-dialogue-box">
       <p>
         Are you sure your want to delete
         <strong> {{ job.position }} @ {{ job.company }} </strong>? <br />
@@ -179,9 +179,9 @@
       <br />
       <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
     </nb-card-body>
-    <nb-card-footer class="com-flex com-items-center com-justify-between">
-      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
-      <button (click)="onDeleteJob(); ref.close()" nbButton status="success">Yes</button>
+    <nb-card-footer class="confirmation-dialogue-footer">
+      <button (click)="onDeleteJob(); ref.close()" nbButton status="success" class="option-yes">Yes</button>
+      <button (click)="ref.close()" nbButton status="danger" class="option-no">No</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

@@ -1,5 +1,5 @@
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<div class="forms-list">
+<div *ngIf="!isLoading" class="forms-list">
   <div class="page-actions">
     <a
       nbButton
