@@ -13,7 +13,7 @@ a {
     @apply com-text-center md:com-text-left;
 
     .position {
-      @apply com-text-lg md:com-text-2xl com-font-semibold com-mb-2;
+      @apply com-text-2xl com-font-semibold com-mb-2;
     }
 
     .company {
@@ -23,7 +23,7 @@ a {
   }
 
   .job-details {
-    @apply com-rounded-lg com-bg-gray-100 com-overflow-hidden com-shadow com-divide-y md:com-divide-y-0 md:com-grid md:com-grid-cols-3 md:com-gap-px;
+    @apply com-rounded-lg com-bg-gray-100 com-overflow-hidden com-shadow com-divide-y-0 com-grid md:com-grid-cols-3 com-grid-cols-2 com-gap-px;
 
     .icons {
       @apply com-rounded-lg com-inline-flex com-p-2 com-ring-4 com-ring-white;
@@ -51,7 +51,7 @@ a {
     .location,
     .salary,
     .salary-type {
-      @apply com-p-6 com-bg-white com-flex com-gap-2 com-items-center;
+      @apply com-bg-white com-flex com-items-center md:com-p-6 com-gap-2 com-p-3;
 
       .job-label {
         @apply com-text-sm md:com-text-base;
@@ -64,10 +64,10 @@ a {
   }
 
   .posted-by {
-    @apply com-border-0 com-border-solid com-border-b com-border-slate-400/20 com-flex com-items-center com-justify-between com-gap-4 com-pb-4;
+    @apply com-border-0 com-border-solid com-border-b com-border-slate-400/20 md:com-flex com-items-center com-justify-between com-gap-4 com-pb-4;
 
     .last-updated {
-      @apply com-text-sm com-text-gray-500 com-w-[100px] md:com-w-max;
+      @apply com-text-sm com-text-gray-500 md:com-w-max com-pt-2 com-pb-1 com-ml-72px md:com-p-0 md:com-m-0;
     }
   }
 }
