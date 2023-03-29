@@ -33,11 +33,13 @@ a {
         }
       }
 
-      .event-update {
-        @apply com-mx-0 md:com-mx-2 com-my-4;
-      }
-
-      .registrations {
+      .event-update,
+      .registrations,
+      .agenda,
+      .collaborations,
+      .volunteers,
+      .sponsors,
+      .updates {
         @apply com-mx-0 md:com-mx-2 com-my-4;
       }
     }

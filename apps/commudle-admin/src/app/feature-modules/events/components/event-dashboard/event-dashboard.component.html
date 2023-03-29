@@ -161,7 +161,7 @@
         ></app-event-details>
       </div>
       <div #updatesSection *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
-        <nb-card class="update-section">
+        <nb-card class="updates">
           <nb-card-header>
             <h6>
               <nb-icon icon="star-outline"></nb-icon>
@@ -205,7 +205,7 @@
         </nb-card>
       </div>
       <div #agendaSection>
-        <nb-card>
+        <nb-card class="agenda">
           <nb-card-header>
             <h6>
               <nb-icon icon="calendar-outline"></nb-icon>
@@ -275,7 +275,7 @@
         </nb-card>
       </div>
       <div #collaborationsSection>
-        <nb-card>
+        <nb-card class="collaborations">
           <nb-card-header>
             <h6>
               <nb-icon icon="pricetags-outline"></nb-icon>
@@ -288,7 +288,7 @@
         </nb-card>
       </div>
       <div #volunteersSection>
-        <nb-card>
+        <nb-card class="volunteers">
           <nb-card-header>
             <h6>
               <nb-icon icon="headphones-outline"></nb-icon>
@@ -301,7 +301,7 @@
         </nb-card>
       </div>
       <div #sponsorsSection>
-        <nb-card>
+        <nb-card class="sponsors">
           <nb-card-header>
             <h6>
               <nb-icon icon="briefcase-outline"></nb-icon>
