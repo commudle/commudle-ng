@@ -90,12 +90,12 @@
                 </span>
                 <br />
                 Total Speakers
-                <nb-select placeholder="" [selected]="'confirmed'" size="small">
-                  <nb-option value="confirmed" (click)="getSpeakers('confirmed')">Confirmed</nb-option>
-                  <nb-option value="shortlist" (click)="getSpeakers('shortlist')">Shortlist</nb-option>
-                  <nb-option value="registered" (click)="getSpeakers('registered')">Registered</nb-option>
-                  <nb-option value="Waiting" (click)="getSpeakers('waiting')">Waiting</nb-option>
-                  <nb-option value="cancelled" (click)="getSpeakers('cancelled')">Cancelled</nb-option>
+                <nb-select [selected]="'confirmed'" size="small" (selectedChange)="getSpeakers($event)">
+                  <nb-option value="confirmed">Confirmed</nb-option>
+                  <nb-option value="shortlist">Shortlist</nb-option>
+                  <nb-option value="registered">Registered</nb-option>
+                  <nb-option value="Waiting">Waiting</nb-option>
+                  <nb-option value="cancelled">Cancelled</nb-option>
                 </nb-select>
               </p>
               <canvas id="speaker"></canvas>
