@@ -41,7 +41,16 @@ app-loading-spinner {
 app-share-button {
   ::ng-deep {
     button {
-      @apply com-text-base #{!important};
+      @apply com-rounded-lg com-text-base #{!important};
+    }
+  }
+}
+.action-buttons {
+  @apply com-flex com-mt-2 md:com-mt-0;
+  .rss-button {
+    @apply com-ml-4;
+    fa-icon {
+      @apply com-text-[32px] com-text-Azure com-rounded-lg;
     }
   }
 }
