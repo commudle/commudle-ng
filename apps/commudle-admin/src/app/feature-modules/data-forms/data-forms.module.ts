@@ -13,7 +13,6 @@ import {
   NbIconModule,
   NbToggleModule,
   NbContextMenuModule,
-  NbLayoutModule,
   NbFormFieldModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -43,7 +42,6 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     NbCheckboxModule,
     NbIconModule,
     NbContextMenuModule,
-    NbLayoutModule,
 
     //cdk module
     DragDropModule,
