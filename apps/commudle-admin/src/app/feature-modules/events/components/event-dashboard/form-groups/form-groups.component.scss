@@ -111,15 +111,6 @@
   }
 }
 
-.window-class {
-  nb-card {
-    nb-card-body {
-      padding: 0px;
-      margin: 0px;
-    }
-  }
-}
-
 .new-data-form-template {
   @apply md:com-w-[900px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
 }
