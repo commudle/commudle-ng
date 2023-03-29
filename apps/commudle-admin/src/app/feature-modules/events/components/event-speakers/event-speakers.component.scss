@@ -6,7 +6,7 @@
     flex-direction: column;
     margin: 0.5rem;
     button {
-      margin-top: 0.5rem;
+      @apply com-mt-2 md:com-mb-5 com-mb-2;
     }
 
     @media (min-width: 800px) {
