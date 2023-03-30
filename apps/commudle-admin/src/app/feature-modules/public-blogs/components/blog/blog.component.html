@@ -16,7 +16,9 @@
                 [round]="false"
               ></app-share-button>
               <a
-                [href]="'https://json.commudle.com/api/v2/sanity/blogs/rss/blog_feed.rss?blog_slug=' + blog.slug"
+                [href]="
+                  'https://json.commudle.com/api/v2/sanity/blogs/rss/blog_feed.rss?blog_slug=' + blog.slug.current
+                "
                 target="_blank"
                 class="rss-button"
                 ><fa-icon [icon]="faRssSquare"></fa-icon
