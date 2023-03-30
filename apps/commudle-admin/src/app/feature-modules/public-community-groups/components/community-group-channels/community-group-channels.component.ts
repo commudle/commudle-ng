@@ -13,6 +13,9 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 export class CommunityGroupChannelsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   channels: ICommunityChannel[] = [];
+
+  isLoading = true;
+
   page_info: IPageInfo;
 
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
@@ -29,6 +32,7 @@ export class CommunityGroupChannelsComponent implements OnInit {
     this.communityGroupsService.pChannels(communityGroupId).subscribe((data) => {
       this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.page_info = data.page_info;
+      this.isLoading = false;
     });
   }
 }

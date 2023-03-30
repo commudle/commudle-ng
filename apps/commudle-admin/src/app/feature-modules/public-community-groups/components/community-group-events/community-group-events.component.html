@@ -1,5 +1,6 @@
 <nb-card>
   <nb-card-body class="com-px-0">
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="com-flex com-wrap">
       <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
     </div>

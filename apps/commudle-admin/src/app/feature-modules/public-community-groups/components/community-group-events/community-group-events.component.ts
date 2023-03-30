@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class CommunityGroupEventsComponent implements OnInit {
   events: IEvent[] = [];
 
+  isLoading = true;
+
   subscriptions: Subscription[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
@@ -19,7 +21,6 @@ export class CommunityGroupEventsComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.params.subscribe((data) => {
-        console.log(data);
         this.getEvents(data.community_group_id);
       }),
     );
@@ -28,8 +29,8 @@ export class CommunityGroupEventsComponent implements OnInit {
   getEvents(communityGroupId) {
     this.subscriptions.push(
       this.communityGroupsService.pEvents(communityGroupId).subscribe((data) => {
-        console.log(data);
         this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.isLoading = false;
       }),
     );
   }

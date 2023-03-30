@@ -12,9 +12,12 @@
       </div>
     </div>
   </nb-card-header>
-  <nb-card-body class="com-flex com-flex-wrap">
-    <div class="communities-cards">
-      <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+  <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div class="com-flex com-flex-wrap">
+      <div class="communities-cards">
+        <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>
@@ -33,9 +36,10 @@
       </div>
     </div>
   </nb-card-header>
-  <nb-card-body class="com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0">
-    <div *ngFor="let channel of channels">
-      <commudle-channel-card [channel]="channel"></commudle-channel-card>
+  <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div class="com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0">
+      <commudle-channel-card *ngFor="let channel of channels" [channel]="channel"></commudle-channel-card>
     </div>
   </nb-card-body>
 </nb-card>

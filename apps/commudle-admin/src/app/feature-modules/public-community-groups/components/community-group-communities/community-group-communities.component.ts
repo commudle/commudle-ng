@@ -15,6 +15,8 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   communities: ICommunity[] = [];
   communityGroup: ICommunityGroup;
 
+  isLoading = true;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -44,6 +46,7 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   getCommunities(communityGroupId) {
     this.communityGroupsService.pCommunities(communityGroupId).subscribe((data) => {
       this.communities = data.communities;
+      this.isLoading = false;
     });
   }
 }

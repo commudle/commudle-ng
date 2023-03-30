@@ -15,6 +15,8 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
   team: IUserRolesUser[] = [];
   communityGroup: ICommunityGroup;
 
+  isLoading = true;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -44,6 +46,7 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
   getTeam(communityGroupId) {
     this.userRolesUserService.pGetCommunityGroupLeaders(communityGroupId).subscribe((data) => {
       this.team = data.user_roles_users;
+      this.isLoading = false;
     });
   }
 }

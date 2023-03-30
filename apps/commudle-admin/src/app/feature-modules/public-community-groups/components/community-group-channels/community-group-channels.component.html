@@ -1,5 +1,6 @@
 <nb-card>
   <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="com-flex com-flex-wrap com-justify-between">
       <commudle-channel-card *ngFor="let channel of channels" [channel]="channel"></commudle-channel-card>
     </div>
