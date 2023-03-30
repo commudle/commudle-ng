@@ -183,9 +183,15 @@
         @apply com-text-Azure com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
-      nb-icon,
-      fa-icon {
+      nb-icon {
         @apply com-text-2xl com-text-Azure;
+      }
+
+      .rss-button {
+        @apply com-mt-4;
+        fa-icon {
+          @apply com-text-lg com-text-Azure com-ml-2;
+        }
       }
 
       app-share-button {
