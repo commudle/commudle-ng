@@ -230,7 +230,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
             ],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: ['<One', 'One - Two', 'Three - Five', 'Five<'],
+            labels: ['<One', 'One - Two', 'Three - Five', '<Five'],
           },
           options: {
             responsive: true,

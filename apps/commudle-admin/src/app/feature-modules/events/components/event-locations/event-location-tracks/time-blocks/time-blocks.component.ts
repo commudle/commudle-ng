@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, NgZone, OnInit
   selector: 'app-time-blocks',
   templateUrl: './time-blocks.component.html',
   styleUrls: ['./time-blocks.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeBlocksComponent implements OnInit {
   @Input() timeBlocks;

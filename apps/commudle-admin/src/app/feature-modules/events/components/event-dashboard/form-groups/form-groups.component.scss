@@ -110,3 +110,7 @@
     }
   }
 }
+
+.new-data-form-template {
+  @apply md:com-w-[900px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
+}

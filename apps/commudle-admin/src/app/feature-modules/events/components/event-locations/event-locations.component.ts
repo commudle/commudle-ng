@@ -24,7 +24,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-event-locations',
   templateUrl: './event-locations.component.html',
   styleUrls: ['./event-locations.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
@@ -44,6 +44,7 @@ export class EventLocationsComponent implements OnInit {
   eventLocations: IEventLocation[];
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
+  isLoading = true;
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
@@ -81,6 +82,8 @@ export class EventLocationsComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
+      this.changeDetectorRef.markForCheck();
+      this.isLoading = false;
     });
   }
 
@@ -206,11 +209,13 @@ export class EventLocationsComponent implements OnInit {
 
   addTrack(newTrack, locationIndex) {
     this.eventLocations[locationIndex].event_location_tracks.push(newTrack);
+    this.changeDetectorRef.markForCheck();
   }
 
   updateTrack(track, locationIndex) {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === track.id);
     this.eventLocations[locationIndex].event_location_tracks[trackPosition] = track;
+    this.changeDetectorRef.markForCheck();
   }
 
   removeTrack(trackId, locationIndex) {
@@ -222,7 +227,11 @@ export class EventLocationsComponent implements OnInit {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
       (k) => k.id === newTrackSlot.event_location_track_id,
     );
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.push(newTrackSlot);
+    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
+      ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
+      newTrackSlot,
+    ];
+    this.changeDetectorRef.markForCheck();
   }
 
   updateSlot(trackSlot, locationIndex) {

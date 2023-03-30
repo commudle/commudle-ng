@@ -17,7 +17,6 @@ import {
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
-  NbLayoutModule,
   NbListModule,
   NbPopoverModule,
   NbRadioModule,
@@ -150,7 +149,6 @@ import { AlertComponent } from './alert/alert.component';
     FontAwesomeModule,
     NbToggleModule,
     NbContextMenuModule,
-    NbLayoutModule,
 
     //cdk
     DragDropModule,
