@@ -109,5 +109,11 @@
     nb-icon {
       @apply com-text-Azure com-text-2xl;
     }
+
+    .rss-button {
+      fa-icon {
+        @apply com-text-lg com-text-Azure com-ml-2;
+      }
+    }
   }
 }
