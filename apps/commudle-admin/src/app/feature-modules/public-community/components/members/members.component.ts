@@ -16,7 +16,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   members: IUser[] = [];
 
   page = 1;
-  count = 24;
+  count = 9;
   canLoadMore = true;
 
   subscriptions: Subscription[] = [];
