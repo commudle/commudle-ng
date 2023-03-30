@@ -1,5 +1,6 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { faRss } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { ILab } from 'apps/shared-models/lab.model';
@@ -28,6 +29,7 @@ export class LabDetailsComponent implements OnInit {
   @Output() scrollToChat: EventEmitter<any> = new EventEmitter<any>();
 
   showContinue = true;
+  faRss = faRss;
 
   constructor(
     private navigatorShareService: NavigatorShareService,
