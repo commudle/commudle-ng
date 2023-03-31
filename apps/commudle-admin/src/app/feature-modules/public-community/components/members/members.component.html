@@ -1,18 +1,33 @@
-<nb-card [nbSpinner]="members.length === 0" class="community-members">
-  <nb-card-body>
-    <p class="header-text">Explore Members</p>
-    <div class="users com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3">
-      <ng-container *ngFor="let member of members">
-        <app-user-profile-card-large
-          [user]="member"
-          [showFollowButton]="true"
-          [alignFollowToRight]="true"
-        ></app-user-profile-card-large>
-      </ng-container>
+<nb-card>
+  <nb-card-body class="speakers">
+    <div>
+      <p class="header-text">Meet Our Speakers</p>
+      <app-loading-spinner *ngIf="isLoadingSpeakers"></app-loading-spinner>
+      <div class="speakers-container">
+        <ng-container *ngFor="let speaker of speakers">
+          <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
+        </ng-container>
+      </div>
     </div>
+  </nb-card-body>
 
-    <div *ngIf="canLoadMore" class="load-more">
-      <button (click)="getMembers()" nbButton outline size="small" status="info">Load More</button>
+  <nb-card-body class="members">
+    <div class="community-members">
+      <p class="header-text">Explore Members</p>
+      <app-loading-spinner *ngIf="isLoadingMembers"></app-loading-spinner>
+      <div class="members-container">
+        <ng-container *ngFor="let member of members">
+          <app-user-profile-card-large
+            [user]="member"
+            [showFollowButton]="true"
+            [alignFollowToRight]="true"
+          ></app-user-profile-card-large>
+        </ng-container>
+      </div>
+
+      <div *ngIf="canLoadMore" class="load-more">
+        <button (click)="getMembers()" nbButton outline size="small" status="info">Load More</button>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>

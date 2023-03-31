@@ -1,6 +1,7 @@
 nb-card {
   @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden com-w-260px com-h-307px com-transition-all com-duration-500 com-cursor-pointer;
   @apply hover:com-shadow-Card;
+  @apply com-m-0;
 
   nb-card-body {
     @apply com-p-0;
