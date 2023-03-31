@@ -1,11 +1,7 @@
 <div>
   <nb-list>
-    <nb-list-item *ngFor="let voter of voters">
-      <app-user-profile-horizontal
-        [user]="voter"
-        [socialMediaLinks]="false"
-        [size]="'small'"
-      ></app-user-profile-horizontal>
+    <nb-list-item *ngFor="let voter of voters" class="com-p-0 com-m-0">
+      <app-user-profile-mini [size]="'small'" [user]="voter" [designation]="true"></app-user-profile-mini>
     </nb-list-item>
   </nb-list>
 
