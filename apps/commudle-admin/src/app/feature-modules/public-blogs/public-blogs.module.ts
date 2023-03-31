@@ -8,6 +8,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [BlogsListComponent, BlogComponent, BlogCardComponent],
   imports: [
@@ -20,6 +21,7 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     NbButtonModule,
     MiniUserProfileModule,
     SharedComponentsModule,
+    FontAwesomeModule,
   ],
 })
 export class PublicBlogsModule {}

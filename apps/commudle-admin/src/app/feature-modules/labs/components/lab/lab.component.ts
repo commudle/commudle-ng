@@ -13,6 +13,7 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@commudle/theme';
+import { faRss } from '@fortawesome/free-solid-svg-icons';
 import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
@@ -43,6 +44,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   messagesCount: number;
   window: Window = window;
   environment = environment;
+
+  faRss = faRss;
 
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
