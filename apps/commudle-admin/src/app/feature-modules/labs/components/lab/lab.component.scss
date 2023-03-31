@@ -187,6 +187,13 @@
         @apply com-text-2xl com-text-Azure;
       }
 
+      .rss-button {
+        @apply com-mt-4;
+        fa-icon {
+          @apply com-text-lg com-text-Azure com-ml-2;
+        }
+      }
+
       app-share-button {
         ::ng-deep {
           .share-button-container {

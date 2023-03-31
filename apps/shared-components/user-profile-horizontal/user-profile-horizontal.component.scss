@@ -28,13 +28,14 @@
 
     &.small {
       width: 48px;
-      height: 48px;
-      margin-right: 0.4rem;
+      min-height: 48px;
+      margin-right: 0.5rem;
     }
   }
 
   .profile-info {
-    @apply com-w-full md:com-w-[625px] com-pl-2;
+    @apply com-pl-2;
+    max-width: 80%;
     text-align: left;
     .name {
       @apply com-text-Charcoal com-p-0.5;
@@ -114,7 +115,7 @@
       &.small {
         nb-icon {
           @apply com-text-Charcoal;
-          font-size: 0.8rem;
+          font-size: 0.9rem;
         }
       }
     }
@@ -127,7 +128,7 @@
       }
 
       &.small {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
       }
     }
   }
