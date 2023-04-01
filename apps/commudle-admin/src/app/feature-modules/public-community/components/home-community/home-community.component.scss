@@ -85,7 +85,7 @@
 }
 
 .page-menu {
-  @apply com-w-full com-sticky com-top-16 com-z-20 com-overflow-y-scroll;
+  @apply com-w-full com-sticky com-top-16 com-z-20;
 
   nb-card {
     @apply com-m-0;
@@ -96,7 +96,7 @@
   }
 
   .menu-items {
-    @apply com-ml-2;
+    @apply com-ml-2 com-overflow-y-scroll md:com-overflow-y-hidden;
     a {
       @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
