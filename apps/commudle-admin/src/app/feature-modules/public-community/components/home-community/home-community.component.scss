@@ -1,7 +1,7 @@
 .home-component {
   .banner {
     .banner-image {
-      @apply com-w-full com-min-h-[320px] com-object-contain md:com-w-[1262px];
+      @apply com-w-full md:com-min-h-[320px] com-object-contain md:com-w-[1262px];
     }
 
     .edit-button {
@@ -85,7 +85,7 @@
 }
 
 .page-menu {
-  @apply com-w-full com-sticky com-top-16 com-z-20;
+  @apply com-w-full com-sticky com-top-16 com-z-20 com-overflow-y-scroll;
 
   nb-card {
     @apply com-m-0;
