@@ -16,6 +16,12 @@ experiences of Community Organizers.
 - Run `npx nx run commudle-admin:serve` for a dev server. Navigate to `http://localhost:4200/`.
 - The development server directly interacts with the production APIs.
 
+
+## To create new components, service and interface
+
+- For Component  Run `npx nx g @nrwl/angular:component <component-name>`
+- For Service  Run `npx nx g @nrwl/angular:service <component-name>`
+- For Interface  Run `npx nx g @nrwl/angular:interface <component-name>`
 ## Login/Sign Up for Development
 
 - Go to `http://localhost:4200/login`
@@ -27,6 +33,7 @@ experiences of Community Organizers.
 
 ## Build for production
 
+- Run `npx nx reset` to clear cache (If you already build the project)
 - Run `npx nx run prerender:release` to build the project. The build artifacts will be stored in the `prod-server.zip` file.
 
 ## Design Framework / UI Kit
