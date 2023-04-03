@@ -4,5 +4,6 @@
     <div class="com-flex com-wrap">
       <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
     </div>
+    <button (click)="getEvents()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
   </nb-card-body>
 </nb-card>

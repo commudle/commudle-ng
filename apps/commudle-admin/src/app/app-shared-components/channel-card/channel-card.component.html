@@ -1,22 +1,20 @@
-<div>
-  <a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" class="com-no-underline">
-    <nb-card class="channels">
-      <nb-card-body>
-        <div class="logo-image" [ngClass]="channel.logo ? 'com-bg-white' : 'com-bg-gray-100'">
-          <img *ngIf="channel.logo" [src]="channel.logo.url" [alt]="channel.name" [title]="channel.name" />
-          <nb-icon *ngIf="!channel.logo" icon="hash"></nb-icon>
-        </div>
+<a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" class="com-no-underline">
+  <nb-card class="channels">
+    <nb-card-body>
+      <div class="logo-image" [ngClass]="channel.logo ? 'com-bg-white' : 'com-bg-gray-100'">
+        <img *ngIf="channel.logo" [src]="channel.logo.url" [alt]="channel.name" [title]="channel.name" />
+        <nb-icon *ngIf="!channel.logo" icon="hash"></nb-icon>
+      </div>
 
-        <div class="details">
-          <div *ngIf="community">
-            <app-community-badge [community]="community"></app-community-badge>
-          </div>
-          <p class="name">{{ channel.name }}</p>
-          <p class="members-count">{{ channel.member_count }} Members</p>
-          <p class="description">{{ channel.description }}</p>
-          <button class="join-channel" nbButton shape="round" status="base">Join Channel</button>
+      <div class="details">
+        <div *ngIf="community">
+          <app-community-badge [community]="community"></app-community-badge>
         </div>
-      </nb-card-body>
-    </nb-card>
-  </a>
-</div>
+        <p class="name">{{ channel.name }}</p>
+        <p class="members-count">{{ channel.member_count }} Members</p>
+        <p class="description">{{ channel.description }}</p>
+        <button class="join-channel" nbButton shape="round" status="base">Join Channel</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</a>

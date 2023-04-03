@@ -14,8 +14,9 @@ export class CommunityGroupChannelsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   channels: ICommunityChannel[] = [];
 
+  limit = 1;
   isLoading = true;
-
+  community_group_slug: string;
   page_info: IPageInfo;
 
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
@@ -23,16 +24,19 @@ export class CommunityGroupChannelsComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
-        this.getChannels(data.community_group.slug);
+        this.community_group_slug = data.community_group.slug;
+        this.getChannels();
       }),
     );
   }
 
-  getChannels(communityGroupId) {
-    this.communityGroupsService.pChannels(communityGroupId).subscribe((data) => {
-      this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.page_info = data.page_info;
-      this.isLoading = false;
-    });
+  getChannels() {
+    this.communityGroupsService
+      .pChannels(this.community_group_slug, this.limit, this.page_info?.end_cursor)
+      .subscribe((data) => {
+        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page_info = data.page_info;
+        this.isLoading = false;
+      });
   }
 }

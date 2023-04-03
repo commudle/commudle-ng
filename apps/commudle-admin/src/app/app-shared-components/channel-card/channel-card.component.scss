@@ -1,10 +1,10 @@
 nb-card {
-  @apply com-w-[600px] com-h-52  hover:com-shadow-Card com-cursor-pointer com-mx-0;
+  @apply com-w-full md:com-w-[600px] com-h-80  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-mx-0 com-my-2;
 
   nb-card-body {
-    @apply com-overflow-hidden com-flex com-space-x-4 com-px-4;
+    @apply com-overflow-hidden com-flex com-flex-col md:com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
     .logo-image {
-      @apply com-w-44 com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1;
+      @apply com-w-24 com-h-24 md:com-w-44 md:com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
       img {
         @apply com-w-full;
       }
@@ -14,6 +14,7 @@ nb-card {
     }
 
     .details {
+      @apply com-flex md:com-block com-flex-col com-items-center md:com-items-start;
       p {
         @apply com-m-0;
       }

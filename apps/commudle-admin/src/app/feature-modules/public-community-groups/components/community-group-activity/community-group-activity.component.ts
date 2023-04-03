@@ -19,6 +19,8 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   faCalendar = faCalendar;
   faHashtag = faHashtag;
 
+  limit = 1;
+
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
   channels: ICommunityChannel[] = [];
@@ -46,16 +48,18 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
     this.communityGroupsService.activeCommunityAndChannels(communityGroupId).subscribe((data) => {
       this.communities = data.communities;
       this.channels = data.community_channels;
-      this.page_info = data.page_info;
       this.isLoading = false;
     });
   }
 
   getEvents(communityGroupId) {
     this.subscriptions.push(
-      this.communityGroupsService.pEvents(communityGroupId, 'upcoming').subscribe((data) => {
-        this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      }),
+      this.communityGroupsService
+        .pEvents(communityGroupId, this.limit, this.page_info.start_cursor, 'future')
+        .subscribe((data) => {
+          this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.page_info = data.page_info;
+        }),
     );
   }
 }
