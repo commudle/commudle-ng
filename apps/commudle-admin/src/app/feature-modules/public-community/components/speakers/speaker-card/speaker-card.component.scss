@@ -67,10 +67,10 @@ nb-card {
         }
 
         .user-card-tags {
-          @apply com-overflow-hidden com-max-h-20 com-gap-2 com-m-0 com-p-0;
+          @apply com-overflow-hidden com-max-h-20 com-gap-3 com-m-0 com-p-0;
 
           .user-card-tag {
-            @apply com-p-2 com-text-xs com-text-Dark-Jungle-Green com-rounded-xl com-bg-Lavender com-font-normal;
+            @apply com-px-3 com-py-1 com-text-xs com-text-Dark-Jungle-Green com-rounded-2xl com-bg-Lavender com-font-normal;
           }
         }
       }
