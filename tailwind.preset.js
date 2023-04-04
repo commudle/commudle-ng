@@ -41,7 +41,6 @@ module.exports = {
         'Crayola-Green': '#1B9F68',
         Charcoal: '#344054',
         'Vampire-Black': '#0A0A0A',
-        Charcoal: '#344054',
         'Anti-Flash-White': '#f2f2f2',
         'Yankees-Blue': '#222B45',
         'Alice-Blue': '#EDF5FF',
@@ -50,6 +49,7 @@ module.exports = {
         'Brandeis-Blue': '#0074ED',
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
+        Lavender: '#E6F1FF',
       },
 
       lineClamp: {
@@ -109,6 +109,7 @@ module.exports = {
         '307px': '307px',
         '318px': '318px',
         '336px': '336px',
+        '340px': '340px',
         '500px': '500px',
         '630px': '630px',
         '800px': '800px',

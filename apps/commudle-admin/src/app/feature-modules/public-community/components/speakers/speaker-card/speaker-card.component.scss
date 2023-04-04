@@ -1,16 +1,16 @@
 nb-card {
-  @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden com-w-260px com-h-307px com-transition-all com-duration-500 com-cursor-pointer;
+  @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden com-w-340px com-h-340px com-transition-all com-duration-500 com-cursor-pointer;
   @apply hover:com-shadow-Card;
   @apply com-m-0;
 
   nb-card-body {
-    @apply com-p-0;
+    @apply com-p-0 com-m-0;
 
     .user-card {
       @apply com-overflow-hidden;
 
       .banner {
-        @apply com-h-72px com-overflow-hidden com-w-full com-bg-Azureish-White;
+        @apply com-h-86px com-overflow-hidden com-w-full com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -26,7 +26,7 @@ nb-card {
       }
 
       .user-image {
-        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-86px com-ml-10px com-mt-6 com-overflow-hidden com-w-86px com-bg-Azureish-White;
+        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-86px com-ml-10px com-mt-39px com-overflow-hidden com-w-86px com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -34,11 +34,11 @@ nb-card {
       }
 
       app-user-follow {
-        @apply com-absolute com-right-2 com-top-20;
+        @apply com-absolute com-right-4 com-top-24;
       }
 
       .user-details {
-        @apply com-h-169px com-mt-9px com-mx-4 com-mb-4;
+        @apply com-h-169px com-mt-14px com-mx-4 com-mb-4;
 
         a {
           text-decoration: none;
@@ -50,23 +50,27 @@ nb-card {
           }
 
           .user-name {
-            @apply com-mb-2 com-text-lg com-font-semibold com-leading-21px;
+            @apply com-mb-1 com-text-lg com-font-medium com-leading-21px com-text-Charcoal;
 
             .expert-icon {
               @apply com-w-14px com-ml-1 com-h-14px com-align-middle;
             }
           }
 
+          .username {
+            @apply com-text-sm com-leading-4 com-font-normal com-text-Auro-Metal-Saurus com-mb-1;
+          }
+
           .designation {
-            @apply com-text-sm com-leading-4 com-font-normal com-text-gunmetal;
+            @apply com-text-sm com-leading-4 com-font-normal com-text-Charcoal com-mb-4;
           }
         }
 
         .user-card-tags {
-          @apply com-overflow-hidden com-max-h-20 com-gap-2;
+          @apply com-overflow-hidden com-max-h-20 com-gap-2 com-m-0 com-p-0;
 
           .user-card-tag {
-            @apply com-p-2 com-text-xs com-text-gunmetal com-rounded-lg com-bg-Azureish-White;
+            @apply com-p-2 com-text-xs com-text-Dark-Jungle-Green com-rounded-xl com-bg-Lavender com-font-normal;
           }
         }
       }

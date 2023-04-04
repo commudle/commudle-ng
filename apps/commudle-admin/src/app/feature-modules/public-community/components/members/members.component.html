@@ -1,32 +1,34 @@
 <nb-card>
-  <nb-card-body class="speakers">
-    <div>
-      <p class="header-text">Meet Our Speakers</p>
-      <app-loading-spinner *ngIf="isLoadingSpeakers"></app-loading-spinner>
-      <div class="speakers-container">
-        <ng-container *ngFor="let speaker of speakers">
-          <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
-        </ng-container>
+  <nb-card-body>
+    <div class="speakers">
+      <div>
+        <p class="header-text">Meet Our Speakers</p>
+        <app-loading-spinner *ngIf="isLoadingSpeakers"></app-loading-spinner>
+        <div class="speakers-container">
+          <ng-container *ngFor="let speaker of speakers">
+            <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
+          </ng-container>
+        </div>
       </div>
     </div>
-  </nb-card-body>
 
-  <nb-card-body class="members">
-    <div class="community-members">
-      <p class="header-text">Explore Members</p>
-      <app-loading-spinner *ngIf="isLoadingMembers"></app-loading-spinner>
-      <div class="members-container">
-        <ng-container *ngFor="let member of members">
-          <app-user-profile-card-large
-            [user]="member"
-            [showFollowButton]="true"
-            [alignFollowToRight]="true"
-          ></app-user-profile-card-large>
-        </ng-container>
-      </div>
+    <div class="members">
+      <div class="community-members">
+        <p class="header-text">Explore Members</p>
+        <app-loading-spinner *ngIf="isLoadingMembers"></app-loading-spinner>
+        <div class="members-container">
+          <ng-container *ngFor="let member of members">
+            <app-user-profile-card-large
+              [user]="member"
+              [showFollowButton]="true"
+              [alignFollowToRight]="true"
+            ></app-user-profile-card-large>
+          </ng-container>
+        </div>
 
-      <div *ngIf="canLoadMore" class="load-more">
-        <button (click)="getMembers()" nbButton outline size="small" status="info">Load More</button>
+        <div *ngIf="canLoadMore" class="load-more">
+          <button (click)="getMembers()" nbButton outline size="small" status="info">Load More</button>
+        </div>
       </div>
     </div>
   </nb-card-body>
