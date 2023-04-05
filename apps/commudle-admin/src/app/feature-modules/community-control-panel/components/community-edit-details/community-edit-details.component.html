@@ -26,6 +26,15 @@
             Logo*
             <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
           </label>
+          <span
+            *ngIf="
+              communityForm.get('community').get('about').touched &&
+              communityForm.get('community').get('about').invalid &&
+              communityForm.get('community').get('about').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -115,7 +124,13 @@
       <div class="about" role="group">
         <label>
           About*
-          <span *ngIf="communityForm.get('community').get('about').touched">
+          <span
+            *ngIf="
+              communityForm.get('community').get('about').touched &&
+              communityForm.get('community').get('about').invalid &&
+              communityForm.get('community').get('about').errors.required
+            "
+          >
             <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
           </span>
           <editor [init]="tinyMCE" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" formControlName="about">
@@ -189,6 +204,9 @@
               [minimumTags]="minimumTags"
             ></app-tag>
           </label>
+          <span *ngIf="tags.length < 5">
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
     </div>
