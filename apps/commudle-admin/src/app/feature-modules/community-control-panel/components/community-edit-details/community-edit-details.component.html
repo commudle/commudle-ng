@@ -26,13 +26,7 @@
             Logo*
             <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
           </label>
-          <span
-            *ngIf="
-              communityForm.get('community').get('about').touched &&
-              communityForm.get('community').get('about').invalid &&
-              communityForm.get('community').get('about').errors.required
-            "
-          >
+          <span *ngIf="!uploadedLogo">
             <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
           </span>
         </div>
