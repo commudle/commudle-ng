@@ -1,5 +1,26 @@
 <nb-card>
   <nb-card-header>
+    <div class="com-flex com-space-x-4 com-items-center com-overflow-auto">
+      <div
+        class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
+      >
+        <fa-icon [icon]="faCalendar" class="com-text-green-600"></fa-icon>
+      </div>
+      <div>
+        <h5>Upcoming Events</h5>
+        <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="com-px-0 com-mx-6 com-scrollbar-hide">
+    <div class="com-flex com-space-x-4">
+      <commudle-event-card *ngFor="let event of events" [event]="event" [horizontalScroll]="true"></commudle-event-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>
     <div class="com-flex com-space-x-4 com-items-center">
       <div
         class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
@@ -36,31 +57,14 @@
       </div>
     </div>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body class="com-px-0 com-mx-6">
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0">
-      <commudle-channel-card *ngFor="let channel of channels" [channel]="channel"></commudle-channel-card>
-    </div>
-  </nb-card-body>
-</nb-card>
-
-<nb-card>
-  <nb-card-header>
-    <div class="com-flex com-space-x-4 com-items-center com-overflow-auto">
-      <div
-        class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
-      >
-        <fa-icon [icon]="faCalendar" class="com-text-green-600"></fa-icon>
-      </div>
-      <div>
-        <h5>Upcoming Events</h5>
-        <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
-      </div>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <div class="com-flex">
-      <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
+      <commudle-channel-card
+        *ngFor="let channel of channels"
+        [channel]="channel"
+        [horizontalScroll]="true"
+      ></commudle-channel-card>
     </div>
   </nb-card-body>
 </nb-card>

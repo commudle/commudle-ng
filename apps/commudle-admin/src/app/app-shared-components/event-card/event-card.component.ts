@@ -17,6 +17,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class EventCardComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  @Input() horizontalScroll = false;
 
   moment = moment;
   constructor() {}

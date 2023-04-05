@@ -1,63 +1,59 @@
-.events-container {
-  @apply com-flex com-flex-row com-flex-wrap com-mx-4 com-justify-between;
+.event {
+  @apply com-flex com-flex-row com-flex-wrap com-justify-between;
   a {
-    @apply com-relative com-w-full md:com-w-[390px] com-no-underline com-mb-8;
+    @apply com-relative  md:com-w-[394px] com-no-underline;
 
-    .past-container {
-      @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-xl com-my-0;
+    nb-card {
+      @apply com-overflow-hidden hover:com-shadow-Card com-m-0;
       nb-card-body {
         @apply com-p-0;
-      }
 
-      nb-icon {
-        @apply com-text-5xl;
-      }
+        .without-header-image {
+          @apply com-flex com-items-center com-text-center com-aspect-[16/6];
 
-      .no-image-header {
-        @apply com-h-[148px] com-flex com-items-center com-text-center;
-
-        nb-icon {
-          @apply com-m-auto;
+          nb-icon {
+            @apply com-m-auto com-text-3xl md:com-text-5xl;
+          }
         }
-      }
 
-      .past-details {
-        @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
+        .details-container {
+          @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-mb-4;
 
-        .past-details-container {
-          @apply com-h-[124px] com-mb-30px;
+          .event-details {
+            @apply com-h-[124px] com-mb-7;
 
-          .detailss {
-            @apply com-flex com-justify-between;
+            .details {
+              @apply com-flex com-justify-between;
 
-            .completed {
-              @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
-              nb-icon {
-                @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+              .completed {
+                @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
+                nb-icon {
+                  @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+                }
+              }
+
+              .interested-members {
+                @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                @apply md:com-flex md:com-justify-between;
               }
             }
 
-            .interested-members {
-              @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
-              @apply md:com-flex md:com-justify-between;
+            .event-name {
+              @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
+
+              .collaboration {
+                @apply com-text-sm com-font-normal;
+              }
+            }
+
+            .event-timings {
+              @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
             }
           }
 
-          .event-name {
-            @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
-
-            .collaboration {
-              @apply com-text-sm com-font-normal;
-            }
+          .view-details {
+            @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
           }
-
-          .event-timings {
-            @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
-          }
-        }
-
-        .view-details {
-          @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
         }
       }
     }

@@ -1,8 +1,10 @@
 <nb-card>
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="com-flex com-flex-wrap com-justify-between">
-      <commudle-channel-card *ngFor="let channel of channels" [channel]="channel"></commudle-channel-card>
+    <div class="com-flex com-flex-wrap com-justify-between com-w-full">
+      <div *ngFor="let channel of channels" class="com-w-full md:com-w-auto">
+        <commudle-channel-card [channel]="channel"></commudle-channel-card>
+      </div>
     </div>
     <button (click)="getChannels()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
   </nb-card-body>

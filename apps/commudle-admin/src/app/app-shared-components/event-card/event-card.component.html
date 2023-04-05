@@ -1,6 +1,9 @@
-<div class="events-container">
-  <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
-    <nb-card class="past-container">
+<div class="event">
+  <a
+    [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
+    [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'"
+  >
+    <nb-card>
       <nb-card-body>
         <div *ngIf="event.header_image_path">
           <commudle-banner-image
@@ -8,16 +11,16 @@
             [name]="event.name"
           ></commudle-banner-image>
         </div>
-        <div *ngIf="!event.header_image_path" class="no-image-header">
+        <div *ngIf="!event.header_image_path" class="without-header-image">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
-        <div class="past-details">
-          <div class="past-details-container">
-            <div class="detailss">
-              <!-- <div class="completed">
+        <div class="details-container">
+          <div class="event-details">
+            <div class="details">
+              <div class="completed" *ngIf="event.event_status.name === 'completed'">
                 Completed
                 <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
-              </div> -->
+              </div>
               <div class="interested-members">
                 <span>Interested Members: {{ event.interested_members_count }}</span>
               </div>

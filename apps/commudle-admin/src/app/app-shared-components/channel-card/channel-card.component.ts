@@ -17,6 +17,8 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class ChannelCardComponent implements OnInit {
   @Input() channel: ICommunityChannel;
   @Input() community: ICommunity;
+  @Input() horizontalScroll = false;
+
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {

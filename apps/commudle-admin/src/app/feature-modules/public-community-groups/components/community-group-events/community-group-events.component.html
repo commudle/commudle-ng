@@ -1,8 +1,10 @@
 <nb-card>
-  <nb-card-body class="com-px-0">
+  <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="com-flex com-wrap">
-      <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
+    <div class="com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-4">
+      <div *ngFor="let event of events">
+        <commudle-event-card [event]="event"></commudle-event-card>
+      </div>
     </div>
     <button (click)="getEvents()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
   </nb-card-body>

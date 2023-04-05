@@ -8,7 +8,7 @@ p {
 }
 
 .community-card-container {
-  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative com-w-260px;
+  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative com-w-72;
 
   @screen lg {
     width: inherit;
