@@ -26,7 +26,7 @@ nb-card {
         }
 
         .members-container {
-          @apply com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3;
+          @apply com-grid com-gap-y-6 com-gap-x-12 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3;
         }
 
         .load-more {

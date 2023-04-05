@@ -50,6 +50,7 @@ module.exports = {
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
         Lavender: '#E6F1FF',
+        Quartz: '#4B4B5C',
       },
 
       lineClamp: {
