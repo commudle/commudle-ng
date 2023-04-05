@@ -1,4 +1,10 @@
 <nb-actions size="medium">
+  <!-- <nb-action *ngIf="!currentUser">
+    <a routerLink="/about" routerLinkActive="active">
+      <fa-icon [icon]="faInfo"></fa-icon>
+      <span>About</span>
+    </a>
+  </nb-action> -->
   <nb-action>
     <a routerLink="communities" routerLinkActive="active">
       <fa-icon [icon]="faUserFriends"></fa-icon>
@@ -41,6 +47,36 @@
       <span>Profile</span>
     </a>
   </nb-action>
+  <!-- <nb-action *ngIf="!currentUser">
+    <a routerLink="/jobs" routerLinkActive="active">
+      <fa-icon [icon]="faBriefcase"></fa-icon>
+      <span>Jobs</span>
+    </a>
+  </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="/pricing" routerLinkActive="active">
+      <fa-icon [icon]="faStar"></fa-icon>
+      <span>Pricing</span>
+    </a>
+  </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="/blogs" routerLinkActive="active">
+      <fa-icon [icon]="faStar"></fa-icon>
+      <span>Blogs</span>
+    </a>
+  </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <!-- <a routerLink="/documentation" routerLinkActive="active"> -->
+  <!-- <fa-icon [icon]="faFileText"></fa-icon>
+    <span>Documentation</span> -->
+  <!-- </a> -->
+  <!-- </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="/newsletters" routerLinkActive="active">
+      <fa-icon [icon]="faStar"></fa-icon>
+      <span>Newsletters</span>
+    </a>
+  </nb-action> -->
 </nb-actions>
 
 <ng-template #notificationPopover>

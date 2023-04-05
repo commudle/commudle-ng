@@ -1,5 +1,15 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  // faBriefcase,
+  faFlask,
+  // faInfo,
+  faLightbulb,
+  // faStar,
+  faUser,
+  faUserFriends,
+  // faFileText,
+} from '@fortawesome/free-solid-svg-icons';
 import { NbPopoverDirective } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -19,6 +29,10 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faUserFriends = faUserFriends;
   faBell = faBell;
   faUser = faUser;
+  // faInfo = faInfo;
+  // faBriefcase = faBriefcase;
+  // faStar = faStar;
+  // faFileText = faFileText;
 
   notificationCount = 0;
   notificationIconHighlight = false;
