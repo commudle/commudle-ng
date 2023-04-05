@@ -14,7 +14,7 @@ export class CommunityGroupChannelsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   channels: ICommunityChannel[] = [];
 
-  limit = 1;
+  limit = 10;
   isLoading = true;
   community_group_slug: string;
   page_info: IPageInfo;

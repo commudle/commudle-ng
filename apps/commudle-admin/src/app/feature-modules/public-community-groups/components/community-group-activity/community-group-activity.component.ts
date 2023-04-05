@@ -19,7 +19,7 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   faCalendar = faCalendar;
   faHashtag = faHashtag;
 
-  limit = 1;
+  limit = 10;
 
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
