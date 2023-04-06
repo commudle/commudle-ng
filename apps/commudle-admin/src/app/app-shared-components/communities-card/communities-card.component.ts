@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CommunitiesCardComponent implements OnInit, OnDestroy {
   @Input() community: ICommunity;
+  @Input() horizontalScroll = false;
 
   members: IUser[] = [];
   count = 4;

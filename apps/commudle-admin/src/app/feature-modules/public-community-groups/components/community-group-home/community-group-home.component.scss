@@ -1,6 +1,6 @@
 .community-group {
   .top {
-    @apply com-bg-green-800 com-p-10px md:com-mx-2;
+    @apply com-bg-green-800 com-p-10px md:com-mx-2 com-rounded-tl-lg com-rounded-tr-lg;
     .banner-image {
       @apply com-w-full md:com-w-[1262px] com-h-[485px] md:com-h-80 com-bg-green-800 com-absolute com-top-16 md:com-ml-9px;
     }
@@ -36,22 +36,14 @@
   }
 
   .page-menu {
-    @apply com-sticky com-top-16 com-z-20 com-bg-white com-m-0 md:com-mx-2 com-overflow-scroll md:com-overflow-hidden com-pt-4 com-shadow-lg;
-
-    nb-card {
-      @apply com-m-0;
-
-      nb-card-body {
-        @apply com-pt-5 com-px-5 com-pb-0;
-      }
-    }
+    @apply com-sticky com-top-16 com-z-20 com-bg-white com-m-0 md:com-mx-2 com-overflow-scroll md:com-overflow-hidden com-pt-3 com-shadow-lg com-rounded-bl-lg com-rounded-br-lg com-pl-1;
 
     .menu-items {
       a {
-        @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-5 com-pb-17px com-cursor-pointer com-no-underline;
+        @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-5 com-pb-3 com-cursor-pointer com-no-underline;
 
         fa-icon {
-          @apply com-text-gunmetal/80 com-text-lg;
+          @apply com-text-gunmetal/80 com-text-xl md:com-text-lg;
         }
 
         .title {

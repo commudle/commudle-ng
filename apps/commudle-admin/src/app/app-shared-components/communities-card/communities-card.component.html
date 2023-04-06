@@ -1,4 +1,4 @@
-<div *ngIf="community" class="community-card-container">
+<div *ngIf="community" class="community-card-container" [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
   <a [routerLink]="['/communities', community.slug]" class="community-card-prefix d-flex">
     <img
       alt="{{ community.name }}"

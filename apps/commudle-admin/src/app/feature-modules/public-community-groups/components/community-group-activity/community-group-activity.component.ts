@@ -19,8 +19,8 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   faCalendar = faCalendar;
   faHashtag = faHashtag;
 
-  limit = 10;
-
+  limit = 6;
+  communityGroupId: number;
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
   channels: ICommunityChannel[] = [];
@@ -34,8 +34,9 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.params.subscribe((data) => {
-        this.getActiveCommunitiesAndChannels(data.community_group_id);
-        this.getEvents(data.community_group_id);
+        this.communityGroupId = data.community_group_id;
+        this.getActiveCommunitiesAndChannels();
+        this.getEvents();
       }),
     );
   }
@@ -44,22 +45,27 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  getActiveCommunitiesAndChannels(communityGroupId) {
-    this.communityGroupsService.activeCommunityAndChannels(communityGroupId).subscribe((data) => {
+  getActiveCommunitiesAndChannels() {
+    this.communityGroupsService.activeCommunityAndChannels(this.communityGroupId).subscribe((data) => {
       this.communities = data.communities;
       this.channels = data.community_channels;
       this.isLoading = false;
     });
   }
 
-  getEvents(communityGroupId) {
+  getEvents() {
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(communityGroupId, this.limit, this.page_info?.start_cursor, 'future')
+        .pEvents(this.communityGroupId, this.limit, this.page_info?.start_cursor, 'future')
         .subscribe((data) => {
+          console.log(data);
           this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
         }),
     );
   }
+
+  getNextEvents() {}
+
+  getPreviousEvents() {}
 }

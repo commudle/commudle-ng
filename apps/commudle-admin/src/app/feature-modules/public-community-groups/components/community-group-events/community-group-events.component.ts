@@ -14,7 +14,7 @@ export class CommunityGroupEventsComponent implements OnInit {
   events: IEvent[] = [];
 
   isLoading = true;
-  limit = 10;
+  limit = 9;
   page_info: IPageInfo;
   community_group_id: number;
 
