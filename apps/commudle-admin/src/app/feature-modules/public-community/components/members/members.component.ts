@@ -40,8 +40,7 @@ export class MembersComponent implements OnInit, OnDestroy {
         if (this.community) {
           this.getMembers();
           this.getSpeakerDetails();
-          this.seoService.setTitle(`Members | ${this.community.name}`);
-          this.seoService.setTitle(`Speakers | ${this.community.name}`);
+          this.seoService.setTitle(` Community Members | ${this.community.name}`);
         }
       }),
     );
