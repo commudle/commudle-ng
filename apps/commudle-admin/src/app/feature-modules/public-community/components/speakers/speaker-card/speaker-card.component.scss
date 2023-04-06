@@ -50,7 +50,7 @@ nb-card {
           }
 
           .user-name {
-            @apply com-mb-1 com-text-lg com-font-medium com-leading-21px com-text-Charcoal;
+            @apply com-mb-2px com-text-lg com-font-normal com-leading-21px com-text-black;
 
             .expert-icon {
               @apply com-w-14px com-ml-1 com-h-14px com-align-middle;
@@ -58,11 +58,11 @@ nb-card {
           }
 
           .username {
-            @apply com-text-sm com-leading-4 com-font-normal com-text-Auro-Metal-Saurus com-mb-1;
+            @apply com-text-xs com-leading-4 com-font-normal com-text-Quartz com-mb-6px;
           }
 
           .designation {
-            @apply com-text-sm com-leading-4 com-font-normal com-text-Charcoal com-mb-4;
+            @apply com-text-sm com-leading-4 com-font-normal com-text-black com-mb-4;
           }
         }
 
