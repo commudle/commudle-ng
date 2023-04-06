@@ -1,22 +1,22 @@
 <nb-card>
   <nb-card-body>
-    <div class="speakers">
-      <div>
-        <p class="header-text">Meet Our Speakers</p>
-        <app-loading-spinner *ngIf="isLoadingSpeakers"></app-loading-spinner>
-        <div class="speakers-container">
-          <ng-container *ngFor="let speaker of speakers">
-            <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
-          </ng-container>
-        </div>
+    <div class="speakers-container">
+      <p class="header-text">Meet Our Speakers</p>
+      <div *ngIf="isLoadingSpeakers" class="com-min-h-[340px] loader">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div class="speakers-list">
+        <ng-container *ngFor="let speaker of speakers">
+          <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
+        </ng-container>
       </div>
     </div>
 
-    <div class="members">
-      <div class="community-members">
+    <div class="members-container">
+      <div class="members">
         <p class="header-text">Explore Members</p>
         <app-loading-spinner *ngIf="isLoadingMembers"></app-loading-spinner>
-        <div class="members-container">
+        <div class="members-list">
           <ng-container *ngFor="let member of members">
             <app-user-profile-card-large
               [user]="member"

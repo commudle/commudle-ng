@@ -4,28 +4,33 @@ nb-card {
   nb-card-body {
     @apply com-m-5 com-p-0;
 
-    .speakers {
+    .speakers-container {
       @apply com-mt-3 com-mb-0 com-p-0;
 
       .header-text {
         @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
       }
-      .speakers-container {
+
+      .loader {
+        @apply com-flex com-justify-center com-items-center;
+      }
+
+      .speakers-list {
         @apply com-flex com-overflow-x-auto com-scrollbar-hide com-gap-4;
       }
     }
 
-    .members {
+    .members-container {
       @apply com-mt-10 com-mb-5 com-p-0;
 
-      .community-members {
+      .members {
         @apply com-mt-0 com-mx-0 com-mb-4;
 
         .header-text {
           @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-7 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
         }
 
-        .members-container {
+        .members-list {
           @apply com-grid com-gap-y-6 com-gap-x-20 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3;
         }
 
