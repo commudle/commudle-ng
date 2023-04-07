@@ -1,0 +1,50 @@
+import { Component, Input } from '@angular/core';
+import { MentionResult } from '../../models/mentions.model';
+import { AngularNodeViewComponent } from '../node-view.component';
+
+@Component({
+  selector: 'commudle-mentions-list',
+  templateUrl: './mentions-list.component.html',
+  styleUrls: ['./mentions-list.component.scss'],
+})
+export class MentionsListComponent extends AngularNodeViewComponent {
+  @Input() props!: Record<string, any>;
+
+  selectedIndex = 0;
+
+  upHandler() {
+    this.selectedIndex = (this.selectedIndex + this.props['items'].length - 1) % this.props['items'].length;
+  }
+
+  downHandler() {
+    this.selectedIndex = (this.selectedIndex + 1) % this.props['items'].length;
+  }
+
+  enterHandler() {
+    this.selectItem(this.selectedIndex);
+  }
+
+  selectItem(index: number) {
+    const item: MentionResult = this.props['items'][index];
+
+    if (item) {
+      this.props['command']({ id: item.id, label: item.name, parent: item.parent });
+    }
+  }
+
+  onKeyDown({ event }: any) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.upHandler();
+        return true;
+      case 'ArrowDown':
+        this.downHandler();
+        return true;
+      case 'Enter':
+        this.enterHandler();
+        return true;
+      default:
+        return false;
+    }
+  }
+}

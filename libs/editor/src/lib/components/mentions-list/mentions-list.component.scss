@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.items {
+  background: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.1);
+  color: rgba(black, 0.8);
+  font-size: 0.9rem;
+  overflow: hidden;
+  padding: 2px;
+  position: relative;
+}
+
+.item {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: block;
+  padding: 0.2rem 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.item + .item {
+  margin-top: 2px;
+}
+
+.item.is-selected,
+.item:hover {
+  border-color: black;
+}

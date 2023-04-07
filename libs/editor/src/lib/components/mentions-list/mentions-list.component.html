@@ -1,0 +1,10 @@
+<div class="items">
+  <button
+    (click)="selectItem(i)"
+    *ngFor="let item of props['items']; index as i"
+    [ngClass]="{ 'is-selected': i === selectedIndex }"
+    class="item"
+  >
+    {{ item.name }}
+  </button>
+</div>
