@@ -264,4 +264,16 @@ export class EventLocationsComponent implements OnInit {
   openHelpTextWindow() {
     this.windowService.open(this.helpText, { title: 'How to Add Agenda!' });
   }
+
+  getTabIcon(eventLocation: IEventLocation) {
+    return eventLocation.embedded_video_stream ? 'video' : 'pin';
+  }
+
+  getLocationName(eventLocation: IEventLocation) {
+    return eventLocation.embedded_video_stream
+      ? 'Video Stream'
+      : eventLocation.location
+      ? eventLocation.location.name
+      : '';
+  }
 }

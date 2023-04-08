@@ -66,6 +66,8 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   timeBlocks = [];
   eventLocationTrackForm;
   trackSlotForm;
+
+  trackSlotVisibility = {};
   @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTrackTemplate') deleteEventLocationTrackTemplate: TemplateRef<any>;
   @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
@@ -101,41 +103,42 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this._ngZone.runOutsideAngular(() => {
-      [...Array(24).keys()].forEach((h) => {
-        [...Array(60).keys()].forEach((m) => {
-          if (m === 0) {
-            this.timeBlocks.push({
-              hour: h,
-              minute: m,
-              display: this.displayTime(h, m),
-            });
-          }
-        });
-      });
-    });
-
-    this.findLocation();
-    this.minSlotDate = moment(this.event.start_time).toDate();
+    const visibility = this.eventLocationTracks.length <= 2;
+    for (const event_location_track of this.eventLocationTracks) {
+      this.trackSlotVisibility[event_location_track.id] = visibility;
+      // this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+    }
+    // this._ngZone.runOutsideAngular(() => {
+    //   [...Array(24).keys()].forEach((h) => {
+    //     [...Array(60).keys()].forEach((m) => {
+    //       if (m === 0) {
+    //         this.timeBlocks.push({
+    //           hour: h,
+    //           minute: m,
+    //           display: this.displayTime(h, m),
+    //         });
+    //       }
+    //     });
+    //   });
+    // });
+    // this.findLocation();
+    // this.minSlotDate = moment(this.event.start_time).toDate();
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.scrollFromTop();
-  }
-
-  displayTime(hour, minute) {
-    return moment(`${hour}:${minute}`, 'H:m').format('hh:mm A');
-  }
-
-  slotSessionHeight(slot: ITrackSlot): number {
-    const diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
-    return 0.2 * diff;
-  }
-
-  slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return moment(slot.start_time).hours() * 0.2 * 60 + moment(slot.start_time).minute() * 0.2 + 2.5;
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
+    //   this.scrollFromTop();
+    // }
+    // displayTime(hour, minute) {
+    //   return moment(`${hour}:${minute}`, 'H:m').format('hh:mm A');
+    // }
+    // slotSessionHeight(slot: ITrackSlot): number {
+    //   const diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
+    //   return 0.2 * diff;
+    // }
+    // slotSessionOffsetFromTop(slot: ITrackSlot): number {
+    //   return moment(slot.start_time).hours() * 0.2 * 60 + moment(slot.start_time).minute() * 0.2 + 2.5;
   }
 
   scrollFromTop() {
@@ -391,9 +394,9 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     this.eventLocation = location;
   }
 
-  sanitizedEmbeddedHTML(val) {
-    return this.sanitizer.bypassSecurityTrustHtml(val);
-  }
+  //   sanitizedEmbeddedHTML(val) {
+  //     return this.sanitizer.bypassSecurityTrustHtml(val);
+  //   }
 
   updateTrackSlotFormZoomValidators() {
     if (
@@ -459,7 +462,19 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       .updateValueAndValidity();
   }
 
-  trackByFn(index, item) {
-    return item.id; // or item.id
+  //   trackByFn(index, item) {
+  //     return item.id; // or item.id
+  //   }
+  // }
+
+  changeTrackSlotVisibility(visibility, id) {
+    this.trackSlotVisibility[id] = visibility;
   }
+
+  // sortTrackSlots(track_slots) {
+  //   return _.sortBy(track_slots, (slot) => {
+  //     // @ts-ignore
+  //     return new moment(slot.start_time);
+  //   });
+  // }
 }
