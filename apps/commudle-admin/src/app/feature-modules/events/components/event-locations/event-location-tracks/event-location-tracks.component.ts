@@ -152,20 +152,49 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showAddSlotForm(dataFromTimeBlocks) {
-    this.trackSlotForm.reset();
+  // showAddSlotForm(dataFromTimeBlocks) {
+  //   console.log(dataFromTimeBlocks);
+  //   this.trackSlotForm.reset();
 
-    // @ts-ignore
-    this.trackSlotForm.get('track_slot').patchValue({
-      event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
-      date: this.minSlotDate,
-      start_time: dataFromTimeBlocks.sTime,
-      end_time: dataFromTimeBlocks.eTime,
-    });
+  //   // @ts-ignore
+  //   this.trackSlotForm.get('track_slot').patchValue({
+  //     event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
+  //     date: this.minSlotDate,
+  //     start_time: dataFromTimeBlocks.sTime,
+  //     end_time: dataFromTimeBlocks.eTime,
+  //   });
 
-    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-      title: 'Add a session',
-      context: { operationType: 'create' },
+  //   this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //     title: 'Add a session',
+  //     context: { operationType: 'create' },
+  //   });
+  // }
+
+  // showAddSlotForm(eventLocationTrack, hour, minute) {
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const sTime = new Date();
+  //     const eTime = new Date();
+  //     sTime.setHours(hour);
+  //     sTime.setMinutes(minute);
+
+  //     eTime.setHours(hour);
+  //     eTime.setMinutes(minute + 30);
+
+  //     this.addSlotForm.emit({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
+
+  showAddSlotForm(eventLocationTrack, hour, minute) {
+    this._ngZone.runOutsideAngular(() => {
+      const sTime = new Date();
+      const eTime = new Date();
+      sTime.setHours(hour);
+      sTime.setMinutes(minute);
+
+      eTime.setHours(hour);
+      eTime.setMinutes(minute + 30);
+
+      this.addSlot();
     });
   }
 
@@ -240,7 +269,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         embedded_video_stream: trackSlot.embedded_video_stream,
       });
     }
-
     this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
       title: 'Edit Session',
       context: { operationType: 'edit', trackSlotId: trackSlot.id },
