@@ -6,7 +6,7 @@
         Back
       </a>
 
-      <nb-card>
+      <nb-card class="event-heading">
         <nb-card-body>
           <h2 class="fs-h2">{{ event.name }}</h2>
           <p>Welcome to the dashboard, here you can customize your event!</p>
@@ -49,7 +49,7 @@
         </nb-card-body>
       </nb-card>
 
-      <nb-card>
+      <nb-card class="event-stats">
         <nb-card-body>
           <div class="stats">
             <p *ngIf="statsMembersCount">
@@ -161,7 +161,7 @@
         ></app-event-details>
       </div>
       <div #updatesSection *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
-        <nb-card>
+        <nb-card class="updates">
           <nb-card-header>
             <h6>
               <nb-icon icon="star-outline"></nb-icon>
@@ -174,7 +174,7 @@
         </nb-card>
       </div>
       <div #registrationsSection>
-        <nb-card>
+        <nb-card class="registrations">
           <nb-card-header>
             <h6>
               <nb-icon icon="edit-2-outline"></nb-icon>
@@ -205,7 +205,7 @@
         </nb-card>
       </div>
       <div #agendaSection>
-        <nb-card>
+        <nb-card class="agenda">
           <nb-card-header>
             <h6>
               <nb-icon icon="calendar-outline"></nb-icon>
@@ -275,7 +275,7 @@
         </nb-card>
       </div>
       <div #collaborationsSection>
-        <nb-card>
+        <nb-card class="collaborations">
           <nb-card-header>
             <h6>
               <nb-icon icon="pricetags-outline"></nb-icon>
@@ -288,7 +288,7 @@
         </nb-card>
       </div>
       <div #volunteersSection>
-        <nb-card>
+        <nb-card class="volunteers">
           <nb-card-header>
             <h6>
               <nb-icon icon="headphones-outline"></nb-icon>
@@ -301,7 +301,7 @@
         </nb-card>
       </div>
       <div #sponsorsSection>
-        <nb-card>
+        <nb-card class="sponsors">
           <nb-card-header>
             <h6>
               <nb-icon icon="briefcase-outline"></nb-icon>

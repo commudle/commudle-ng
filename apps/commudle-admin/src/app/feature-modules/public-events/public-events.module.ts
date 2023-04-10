@@ -48,6 +48,7 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { TeamComponent } from './components/team/team.component';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
+import { LinkyModule } from 'ngx-linky';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SharedDirectivesModule,
     MiniUserProfileModule,
     SkeletonScreensModule,
+    LinkyModule,
 
     // external
     FontAwesomeModule,

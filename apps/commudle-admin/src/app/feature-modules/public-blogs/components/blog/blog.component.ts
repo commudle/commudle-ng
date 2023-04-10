@@ -7,6 +7,7 @@ import { IBlog } from 'apps/commudle-admin/src/app/feature-modules/public-blogs/
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-blog',
@@ -21,6 +22,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   user: IUser;
   faqSchemaData: any;
   faqSchemaDataMainEntity = [];
+
+  faRssSquare = faRssSquare;
 
   subscriptions: Subscription[] = [];
 

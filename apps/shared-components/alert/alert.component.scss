@@ -10,10 +10,10 @@
 }
 
 .info {
-  @apply com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-pl-6px com-pr-14px com-m-auto;
+  @apply com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-pl-6px com-pr-14px com-m-auto com-items-start;
 
   nb-icon {
-    @apply com-text-lg com-text-New-Car com-mr-6px;
+    @apply md:com-text-lg com-text-New-Car com-mr-6px com-text-6xl com-h-auto com-pt-2px com-m-0;
   }
 
   p {

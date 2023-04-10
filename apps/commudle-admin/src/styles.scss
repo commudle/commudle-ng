@@ -153,6 +153,12 @@ nb-window.full-screen-height {
   }
 }
 
+nb-window.form-window {
+  nb-card-body {
+    @apply com-py-5 com-px-4 md:com-px-5;
+  }
+}
+
 .lh-fw {
   font-weight: 300 !important;
 }

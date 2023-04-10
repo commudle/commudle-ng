@@ -87,15 +87,14 @@
                         nbButton
                         size="small"
                         ghost
-                        (click)="toggleDescriptionField()"
+                        (click)="toggleDescriptionField(i)"
                         status="primary"
                         class="add-description-button"
                       >
-                        <nb-icon [icon]="showQuestionDescriptionField ? 'close-outline' : 'plus-outline'"></nb-icon>
-                        {{ showQuestionDescriptionField ? 'Remove Description' : 'Add Description' }}
+                        <nb-icon [icon]="questionDescription[i] ? 'close-outline' : 'plus-outline'"></nb-icon>
+                        {{ questionDescription[i] ? 'Remove Description' : 'Add Description' }}
                       </button>
-
-                      <div *ngIf="showQuestionDescriptionField" class="description-textbox">
+                      <div *ngIf="questionDescription[i]" class="description-textbox">
                         <textarea
                           nbInput
                           fullWidth
@@ -186,9 +185,9 @@
                       ghost
                       (click)="addQuestionButtonClick(i + 1)"
                       status="primary"
-                      class="footer-icons-desktop add-question-footer"
+                      class="footer-icons add-question-footer"
                     >
-                      <nb-icon class="footer-icons-desktop" icon="plus-circle-outline" status="primary"></nb-icon>
+                      <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
                     <nb-toggle size="tiny" labelPosition="right" class="toggle"><span>Required</span></nb-toggle>
@@ -199,18 +198,22 @@
                     ghost
                     (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="footer-icons-desktop delete-question-footer"
+                    class="footer-icons delete-question-footer"
                   >
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
-                  <nb-layout-column>
-                    <div class="layout-div">
-                      <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" class="context-button">
-                        <nb-icon icon="more-vertical-outline"></nb-icon>
-                      </button>
-                    </div>
-                  </nb-layout-column>
+                  <div class="context-menu">
+                    <button
+                      nbButton
+                      (click)="setContextIndex(i)"
+                      [nbContextMenu]="menuItem"
+                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
+                      class="context-button"
+                    >
+                      <nb-icon icon="more-vertical-outline"></nb-icon>
+                    </button>
+                  </div>
                 </div>
               </nb-card-body>
             </nb-card>

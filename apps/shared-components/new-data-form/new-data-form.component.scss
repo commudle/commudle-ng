@@ -132,35 +132,25 @@
         }
       }
 
-      nb-layout-column {
-        @apply md:com-hidden;
+      .context-menu {
+        @apply md:com-hidden com-flex com-justify-end;
 
-        .layout-div {
-          @apply com-flex com-justify-end;
-
-          .context-button {
-            @apply com-flex com-justify-between;
-          }
+        .context-button {
+          @apply com-flex com-justify-between;
         }
       }
 
       @media (max-width: 767px) {
         .toggle {
-          display: block;
+          @apply com-block;
         }
 
-        .footer-icons-desktop {
-          display: none;
+        .footer-icons {
+          @apply com-hidden;
         }
 
-        nb-layout-column {
-          display: block;
-        }
-      }
-
-      @media (min-width: 992px) {
-        nb-layout-column {
-          display: none;
+        .context-menu {
+          @apply com-flex;
         }
       }
     }

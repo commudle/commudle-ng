@@ -197,6 +197,8 @@ export class CommunityMembersComponent implements OnInit {
     if (event === this.options[3]) {
       this.employee = !this.employee;
     }
+    this.total = 0;
+    this.page = 1;
     this.getMembers();
   }
 }

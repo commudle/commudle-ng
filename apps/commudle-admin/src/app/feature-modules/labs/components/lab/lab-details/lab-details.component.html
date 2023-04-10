@@ -58,5 +58,10 @@
         <nb-icon icon="share"></nb-icon>
       </button>
     </div>
+    <div class="rss-button">
+      <a [href]="'https://json.commudle.com/api/v2/labs/rss/lab_feed.rss?lab_id=' + lab.slug" target="_blank"
+        ><fa-icon [icon]="faRss"></fa-icon
+      ></a>
+    </div>
   </div>
 </div>
