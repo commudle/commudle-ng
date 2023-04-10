@@ -27,10 +27,14 @@
           <div class="event-location-tracks">
             <div *ngIf="el.location" class="map-location">
               <p *ngIf="event.editable">
-                <fa-icon (click)="showEditEventLocationForm(el)" [icon]="faPen" class="edit-location-icon"></fa-icon>
+                <fa-icon
+                  (click)="showEditEventLocationForm(el); $event.stopPropagation()"
+                  [icon]="faPen"
+                  class="edit-location-icon"
+                ></fa-icon>
                 &nbsp;
                 <fa-icon
-                  (click)="confirmDeleteEventLocation(el)"
+                  (click)="confirmDeleteEventLocation(el); $event.stopPropagation()"
                   [icon]="faTrash"
                   class="delete-location-icon"
                 ></fa-icon>
@@ -56,8 +60,8 @@
               [event]="event"
             >
             </app-event-location-tracks>
-            <!-- </div> -->
           </div>
+          <!-- </div> -->
         </nb-tab>
       </nb-tabset>
     </div>

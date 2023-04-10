@@ -27,9 +27,8 @@
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
           <nb-list *ngIf="trackSlotVisibility[elt.id]">
-            <!-- *ngIf="trackSlotVisibility[elt.id]" -->
-            <nb-list-item *ngFor="let slot of elt.track_slots; let tsi = index">
-              <div *ngIf="elt.track_slots.length === 0">no slots yet</div>
+            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
+              <!-- *ngFor="let slot of sortedTrackSlots[elt.id] elt.track_slots; let tsi = index" -->
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
                 <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
@@ -49,15 +48,16 @@
                   </div>
                 </div>
               </div>
-              <button (click)="showEditSlotForm(slot)" nbButton size="tiny" status="info">
+              <button (click)="showEditSlotForm(slot); $event.stopPropagation()" nbButton size="tiny" status="info">
                 <nb-icon icon="edit-outline"></nb-icon>
               </button>
-              <button (click)="confirmDeleteSlot(slot)" nbButton size="tiny" status="danger">
+              <button (click)="confirmDeleteSlot(slot); $event.stopPropagation()" nbButton size="tiny" status="danger">
                 <nb-icon icon="close"></nb-icon>
               </button>
               <!-- <button (click)="addSlot()" nbButton size="tiny" status="primary">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button> -->
+              <div *ngIf="elt.track_slots.length === 0">no slots yet</div>
             </nb-list-item>
           </nb-list>
         </nb-accordion-item-body>
