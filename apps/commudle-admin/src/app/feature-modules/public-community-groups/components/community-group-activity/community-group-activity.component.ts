@@ -15,10 +15,6 @@ import { IEvent } from 'apps/shared-models/event.model';
   styleUrls: ['./community-group-activity.component.scss'],
 })
 export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
-  faUsers = faUsers;
-  faCalendar = faCalendar;
-  faHashtag = faHashtag;
-
   limit = 6;
   communityGroupId: number;
   communityGroup: ICommunityGroup;
@@ -27,7 +23,13 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   events: IEvent[] = [];
   page_info: IPageInfo;
 
+  //icons
+  faUsers = faUsers;
+  faCalendar = faCalendar;
+  faHashtag = faHashtag;
+
   isLoading = true;
+  isLoadingEvents = false;
   subscriptions: Subscription[] = [];
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
 
@@ -46,26 +48,36 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   }
 
   getActiveCommunitiesAndChannels() {
-    this.communityGroupsService.activeCommunityAndChannels(this.communityGroupId).subscribe((data) => {
-      this.communities = data.communities;
-      this.channels = data.community_channels;
-      this.isLoading = false;
-    });
+    this.subscriptions.push(
+      this.communityGroupsService.activeCommunityAndChannels(this.communityGroupId).subscribe((data) => {
+        this.communities = data.communities;
+        this.channels = data.community_channels;
+        this.isLoading = false;
+      }),
+    );
   }
 
   getEvents() {
+    this.isLoadingEvents = true;
+    this.events = [];
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.communityGroupId, this.limit, this.page_info?.start_cursor, 'future')
+        .pEvents(this.communityGroupId, this.limit, this.page_info?.end_cursor, this.page_info?.start_cursor, 'future')
         .subscribe((data) => {
-          console.log(data);
           this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
+          this.isLoadingEvents = false;
         }),
     );
   }
 
-  getNextEvents() {}
+  getPreviousEvents() {
+    this.page_info.start_cursor = '';
+    this.getEvents();
+  }
 
-  getPreviousEvents() {}
+  getNextEvents() {
+    this.page_info.end_cursor = '';
+    this.getEvents();
+  }
 }

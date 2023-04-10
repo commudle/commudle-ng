@@ -1,0 +1,100 @@
+.events-section {
+  @apply com-m-0;
+
+  .events-container {
+    @apply com-flex com-flex-row com-flex-wrap com-justify-between;
+
+    a {
+      @apply com-relative com-no-underline com-mb-4 com-w-full;
+
+      &.single-event {
+        @apply md:com-w-[1220px];
+      }
+
+      &.multiple-events {
+        @apply md:com-w-[600px];
+      }
+
+      .events {
+        @apply com-overflow-hidden hover:com-shadow-Card com-flex com-flex-row com-flex-wrap com-m-0 com-p-0;
+
+        .events-body {
+          @apply com-p-0;
+          app-badge {
+            @apply com-absolute com-top-0;
+          }
+
+          nb-card-body {
+            nb-icon,
+            fa-icon {
+              @apply com-text-5xl;
+            }
+          }
+
+          .no-image-header {
+            @apply com-flex com-items-center com-text-center;
+            aspect-ratio: 16/6;
+
+            nb-icon,
+            fa-icon {
+              @apply com-m-auto com-text-5xl;
+            }
+          }
+
+          .details-section {
+            @apply com-p-4 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+
+            .details-container {
+              @apply com-h-[116px];
+
+              .details {
+                @apply md:com-flex md:com-flex-row md:com-justify-between md:com-items-start;
+
+                .event-name {
+                  @apply com-text-xl com-leading-6 com-mt-0 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
+                  @apply md:com-leading-8 md:com-mt-4;
+
+                  .collaboration {
+                    @apply com-text-xs com-font-normal;
+                  }
+                }
+
+                .event_type_button {
+                  @apply com-mt-3 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
+                  @apply md:com-mt-4 md:com-mb-0 md:com-ml-4;
+
+                  fa-icon {
+                    @apply com-mr-1 com-text-red-500;
+                  }
+                }
+
+                .event-timing {
+                  @apply com-text-sm com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
+                  @apply md:com-mt-2;
+                }
+              }
+            }
+
+            .interested-members {
+              @apply com-text-xs com-mt-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
+              @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between md:com-mt-6;
+
+              div {
+                @apply com-flex com-items-center;
+                nb-icon,
+                fa-icon {
+                  @apply com-mr-2 com-text-Dark-Jungle-Green;
+                  @apply md:com-mr-6px com-text-base;
+                }
+              }
+            }
+
+            .register-button {
+              @apply com-mt-8 md:com-mt-0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

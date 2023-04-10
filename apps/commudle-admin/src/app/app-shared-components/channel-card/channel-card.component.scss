@@ -22,21 +22,23 @@ nb-card {
       @apply com-flex com-flex-col com-justify-between com-h-full com-text-center md:com-text-start;
       .details {
         @apply com-flex md:com-block com-flex-col com-items-center md:com-items-start;
+        .community-badge {
+        }
         p {
           @apply com-m-0;
         }
         .name {
-          @apply com-font-bold com-text-xl com-leading-5 com-my-2;
+          @apply com-font-bold com-text-xl com-leading-5 com-my-1;
         }
         .members-count {
-          @apply com-font-normal com-text-sm com-text-gray-400 com-my-2;
+          @apply com-font-normal com-text-sm com-text-gray-400 com-my-1;
         }
         .description {
-          @apply com-text-base com-leading-5 com-text-gray-500 com-my-2;
+          @apply com-text-base com-leading-5 com-text-gray-500 com-my-1 com-line-clamp-2;
         }
       }
       .join-channel {
-        @apply com-px-12 com-bg-white hover:com-bg-gray-100;
+        @apply com-bg-white hover:com-bg-gray-200 com-w-40 com-mx-auto md:com-mx-0;
       }
     }
   }

@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-header>
+  <nb-card-header class="com-flex com-justify-between com-items-center">
     <div class="com-flex com-space-x-4 com-items-center com-overflow-auto">
       <div
         class="com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4"
@@ -11,12 +11,10 @@
         <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
       </div>
     </div>
-  </nb-card-header>
-  <nb-card-body class="com-px-0 com-mx-6 com-scrollbar-hide">
-    <div class="com-flex com-justify-end md:com-mr-2 com-mb-2">
+    <div class="com-flex com-justify-end md:com-mr-2 com-mb-2 com-p-1">
       <div class="com-flex">
         <button
-          (click)="getNextEvents()"
+          (click)="getPreviousEvents()"
           [disabled]="!page_info?.has_previous_page"
           class="com-mr-2"
           nbButton
@@ -25,16 +23,15 @@
         >
           <nb-icon icon="arrow-left-outline"></nb-icon>
         </button>
-        <button
-          (click)="getPreviousEvents()"
-          [disabled]="!page_info?.has_next_page"
-          nbButton
-          shape="round"
-          size="small"
-        >
+        <button (click)="getNextEvents()" [disabled]="!page_info?.has_next_page" nbButton shape="round" size="small">
           <nb-icon icon="arrow-right-outline"></nb-icon>
         </button>
       </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="com-px-0 com-mx-6 com-scrollbar-hide">
+    <div *ngIf="isLoadingEvents" class="com-h-[350px]">
+      <app-loading-spinner></app-loading-spinner>
     </div>
     <div class="com-flex com-space-x-4 md:com-space-x-0 md:com-grid md:com-grid-cols-3 md:com-gap-4">
       <commudle-event-card *ngFor="let event of events" [event]="event" [horizontalScroll]="true"></commudle-event-card>

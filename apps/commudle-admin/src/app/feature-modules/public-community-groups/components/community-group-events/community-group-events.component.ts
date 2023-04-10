@@ -12,9 +12,10 @@ import { Subscription } from 'rxjs';
 })
 export class CommunityGroupEventsComponent implements OnInit {
   events: IEvent[] = [];
+  UpcomingEvents: IEvent[] = [];
 
   isLoading = true;
-  limit = 9;
+  limit = 6;
   page_info: IPageInfo;
   community_group_id: number;
 
@@ -27,6 +28,7 @@ export class CommunityGroupEventsComponent implements OnInit {
       this.activatedRoute.parent.params.subscribe((data) => {
         this.community_group_id = data.community_group_id;
         this.getEvents();
+        this.getUpcomingEvents();
       }),
     );
   }
@@ -34,12 +36,22 @@ export class CommunityGroupEventsComponent implements OnInit {
   getEvents() {
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.community_group_id, this.limit, this.page_info?.end_cursor)
+        .pEvents(this.community_group_id, this.limit, this.page_info?.end_cursor, this.page_info?.end_cursor, 'past')
         .subscribe((data) => {
           this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.page_info = data.page_info;
           this.isLoading = false;
         }),
+    );
+  }
+
+  getUpcomingEvents() {
+    this.subscriptions.push(
+      this.communityGroupsService.pEvents(this.community_group_id, this.limit, '', '', 'future').subscribe((data) => {
+        this.UpcomingEvents = this.UpcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page_info = data.page_info;
+        // this.isLoading = false;
+      }),
     );
   }
 }

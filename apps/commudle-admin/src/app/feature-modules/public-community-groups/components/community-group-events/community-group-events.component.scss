@@ -1,3 +1,11 @@
 nb-card {
   @apply com-mx-0 md:com-mx-2;
 }
+
+.single-event {
+  @apply com-grid-cols-1;
+}
+
+.multiple-event {
+  @apply com-grid-cols-1 md:com-grid-cols-2;
+}

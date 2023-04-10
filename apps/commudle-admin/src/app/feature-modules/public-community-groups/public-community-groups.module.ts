@@ -18,6 +18,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
 import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
 import { ChannelCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/channel-card/channel-card.component';
 import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-card/event-card.component';
+import { EventMediumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-medium-card/event-medium-card.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
     CommunitiesCardComponent,
     ChannelCardComponent,
     EventCardComponent,
+    EventMediumCardComponent,
 
     // Nebular
     NbCardModule,

@@ -77,10 +77,13 @@ export class CommunityGroupsService {
     );
   }
 
-  pEvents(communityGroupId, limit, after?, when?): Observable<IPagination<IEvent>> {
+  pEvents(communityGroupId, limit, before?, after?, when?): Observable<IPagination<IEvent>> {
     let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
     if (when) {
       params = params.set('when', when);
+    }
+    if (before) {
+      params = params.set('before', before);
     }
     if (after) {
       params = params.set('after', after);

@@ -20,6 +20,7 @@ export interface IEvent {
   editable: boolean;
   kommunity_slug: string;
   header_image?: IAttachedFile;
+  event_type: string;
   event_locations_count: number;
   event_speakers_count: number;
   event_volunteers_count: number;
