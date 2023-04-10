@@ -1,10 +1,11 @@
-.communities-cards {
+nb-card {
+  @apply com-mx-0 md:com-mx-2;
+}
+
+.communities-cards-list {
   @apply com-flex com-flex-wrap com-gap-4;
 
   @screen lg {
     @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
   }
-}
-nb-card {
-  @apply com-mx-0 md:com-mx-2;
 }

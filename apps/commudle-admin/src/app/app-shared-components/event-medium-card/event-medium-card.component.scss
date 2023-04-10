@@ -5,7 +5,7 @@
     @apply com-flex com-flex-row com-flex-wrap com-justify-between;
 
     a {
-      @apply com-relative com-no-underline com-mb-4 com-w-full;
+      @apply com-relative com-no-underline com-w-full;
 
       &.single-event {
         @apply md:com-w-[1220px];

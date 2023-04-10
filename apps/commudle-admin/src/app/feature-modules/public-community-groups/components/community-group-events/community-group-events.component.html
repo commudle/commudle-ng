@@ -1,17 +1,29 @@
 <nb-card>
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <h3>Upcoming Events</h3>
-    <div class="com-grid com-gap-4" [ngClass]="UpcomingEvents.length === 1 ? 'single-event' : 'multiple-event '">
-      <commudle-event-medium-card *ngFor="let event of UpcomingEvents" [event]="event"></commudle-event-medium-card>
-    </div>
-    <h3>Past Events</h3>
-
-    <div class="com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-4">
-      <div *ngFor="let event of events">
-        <commudle-event-card [event]="event"></commudle-event-card>
+    <!-- upcoming events -->
+    <section>
+      <h3 class="com-mt-0">Upcoming Events</h3>
+      <div
+        class="upcoming-event-cards-list"
+        [ngClass]="UpcomingEvents.length === 1 ? 'single-event' : 'multiple-event '"
+      >
+        <commudle-event-medium-card *ngFor="let event of UpcomingEvents" [event]="event"></commudle-event-medium-card>
       </div>
-    </div>
-    <button (click)="getEvents()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
+      <button (click)="getUpcomingEvents()" *ngIf="upcomingPageInfo?.has_next_page" fullWidth ghost nbButton>
+        Load More Upcoming Events
+      </button>
+    </section>
+
+    <!-- past events -->
+    <section>
+      <h3>Past Events</h3>
+      <div class="past-events-card-list">
+        <commudle-event-card *ngFor="let event of events" [event]="event"></commudle-event-card>
+      </div>
+      <button (click)="getPastEvents()" *ngIf="pastPageInfo?.has_next_page" fullWidth ghost nbButton>
+        Load More Past Events
+      </button>
+    </section>
   </nb-card-body>
 </nb-card>
