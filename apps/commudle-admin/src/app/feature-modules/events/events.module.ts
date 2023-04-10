@@ -66,6 +66,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { TimeBlocksComponent } from './components/event-locations/event-location-tracks/time-blocks/time-blocks.component';
 import { TrackSlotsComponent } from './components/event-locations/event-location-tracks/track-slots/track-slots.component';
 import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
+import { EventLocationTrackComponent } from './components/event-locations/event-location-tracks/event-location-track/event-location-track.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { ExitPassScanComponent } from './components/user-event-registrations/exi
     TimeBlocksComponent,
     TrackSlotsComponent,
     ExitPassScanComponent,
+    EventLocationTrackComponent,
   ],
   imports: [
     CommonModule,

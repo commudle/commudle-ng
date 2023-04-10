@@ -154,6 +154,54 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // showAddSlotForm() {
+  //   this.trackSlotForm.reset();
+
+  //   // @ts-ignore
+  //   this.trackSlotForm.get('track_slot').patchValue({
+  //     event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
+  //     date: this.minSlotDate,
+  //     start_time: dataFromTimeBlocks.sTime,
+  //     end_time: dataFromTimeBlocks.eTime,
+  //   });
+
+  //   this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //     title: 'Add a session',
+  //     context: { operationType: 'create' },
+  //   });
+  // }
+
+  // addSlot() {
+  //   this.windowRef.close();
+  //   const newSlot = this.trackSlotForm.get('track_slot').value;
+  //   const startTime = moment({
+  //     years: newSlot.date.getFullYear(),
+  //     months: newSlot.date.getMonth(),
+  //     date: newSlot.date.getDate(),
+  //   });
+
+  //   delete newSlot['date'];
+  //   // const sTime = newSlot['start_time'].split(':');
+  //   const sTime = newSlot['start_time'];
+  //   newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
+
+  //   // const eTime = newSlot['end_time'].split(':');
+  //   const eTime = newSlot['end_time'];
+  //   newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
+
+  //   if (newSlot['start_time'] >= newSlot['end_time']) {
+  //     this.toastLogService.warningDialog('End time should be greater than Start time!');
+  //     return;
+  //   }
+
+  //   this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
+  //     this.addSession.emit(data);
+  //     this.toastLogService.successDialog('Slot Added!');
+  //     this.trackSlotForm.reset();
+  //     this.changeDetectorRef.markForCheck();
+  //   });
+  // }
+
   // showAddSlotForm(dataFromTimeBlocks) {
   //   console.log(dataFromTimeBlocks);
   //   this.trackSlotForm.reset();
@@ -172,17 +220,31 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
+  // hour, minute
+  showAddSlotForm(eventLocationTracks) {
+    this._ngZone.runOutsideAngular(() => {
+      const sTime = new Date();
+      const eTime = new Date();
+      // sTime.setHours(hour);
+      // sTime.setMinutes(sTime.getMinutes() + 30);
+      // sTime.setMinutes(minute);
+
+      // eTime.setHours(hour);
+      // eTime.setMinutes(minute + 30);
+
+      // this.addSlot.emit({ eventLocationTrack, sTime, eTime });
+    });
+  }
+
   // showAddSlotForm(eventLocationTrack, hour, minute) {
   //   this._ngZone.runOutsideAngular(() => {
   //     const sTime = new Date();
+  //     sTime.setMinutes(sTime.getMinutes() + 30);
   //     const eTime = new Date();
-  //     sTime.setHours(hour);
-  //     sTime.setMinutes(minute);
-
   //     eTime.setHours(hour);
   //     eTime.setMinutes(minute + 30);
 
-  //     this.addSlot.emit({ eventLocationTrack, sTime, eTime });
+  //     this.addSlotForm.emit({ eventLocationTrack, sTime, eTime });
   //   });
   // }
 

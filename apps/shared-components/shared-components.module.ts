@@ -72,8 +72,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
 import { BannerImageComponent } from './banner-image/banner-image.component';
 import { NbToggleModule } from '@commudle/theme';
 import { AlertComponent } from './alert/alert.component';
-import { EventLocationTrackComponent } from './event-location-track/event-location-track.component';
-
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -113,7 +111,6 @@ import { EventLocationTrackComponent } from './event-location-track/event-locati
     LoadingSpinnerComponent,
     BannerImageComponent,
     AlertComponent,
-    EventLocationTrackComponent,
   ],
   imports: [
     CommonModule,

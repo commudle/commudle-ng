@@ -4,6 +4,12 @@
     &nbsp; Add Track
   </button>
   <div class="track-container">
+    <!-- <div *ngFor="let elt of eventLocationTracks; let elti = index">
+      <commudle-event-location-track
+        [eventLocationTracks]="eventLocationTracks"
+        [event]="event"
+      ></commudle-event-location-track>
+    </div>-->
     <nb-accordion *ngFor="let elt of eventLocationTracks; let elti = index" class="com-mb-3 com-shadow-none">
       <nb-accordion-item
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
@@ -20,9 +26,9 @@
             <button (click)="confirmDeleteTrack(elt)" nbButton size="tiny" status="danger">
               <nb-icon icon="close"></nb-icon>
             </button>
-            <!-- <button (click)="showAddSlotForm($event)" nbButton size="tiny" status="primary">
-              <nb-icon icon="close"></nb-icon>
-            </button> -->
+            <!-- <button (click)="showAddSlotForm(elt)" nbButton size="tiny" status="primary">
+              <nb-icon icon="plus"></nb-icon>
+            </button>-->
           </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
@@ -54,9 +60,6 @@
               <button (click)="confirmDeleteSlot(slot); $event.stopPropagation()" nbButton size="tiny" status="danger">
                 <nb-icon icon="close"></nb-icon>
               </button>
-              <!-- <button (click)="addSlot()" nbButton size="tiny" status="primary">
-                <nb-icon icon="plus-circle-outline"></nb-icon>
-              </button> -->
               <div *ngIf="elt.track_slots.length === 0">no slots yet</div>
             </nb-list-item>
           </nb-list>
