@@ -208,13 +208,13 @@ p {
         @apply com-mt-12 com-mx-4 com-flex com-flex-col;
 
         h1 {
-          @apply com-m-0 com-p-0 com-text-4xl;
+          @apply com-mb-4 com-p-0 com-text-4xl com-font-extrabold com-mt-0;
         }
         .subheading {
-          @apply com-mt-6 com-text-2xl;
+          @apply com-mb-5 com-text-lg com-font-normal;
         }
         .button {
-          @apply com-py-2 com-px-6 com-mt-6 com-bg-black com-rounded-3xl com-text-white com-w-fit com-text-base com-border-black;
+          @apply com-py-3 com-px-5 com-m-0 com-bg-black com-rounded-3xl com-text-white com-w-fit com-text-sm com-border-black;
         }
       }
       .image {
