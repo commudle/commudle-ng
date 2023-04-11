@@ -2,6 +2,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { Subscription } from 'rxjs';
+import {
+  faUserGroup,
+  faCircleInfo,
+  faComments,
+  faHashtag,
+  faCalendarWeek,
+  faArrowTrendUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-group-home',
@@ -10,7 +19,15 @@ import { SeoService } from 'apps/shared-services/seo.service';
 })
 export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
-  private subscriptions = [];
+  subscriptions: Subscription[] = [];
+
+  //icons
+  faUserGroup = faUserGroup;
+  faCircleInfo = faCircleInfo;
+  faComments = faComments;
+  faHashtag = faHashtag;
+  faCalendarWeek = faCalendarWeek;
+  faArrowTrendUp = faArrowTrendUp;
 
   constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
@@ -24,9 +41,7 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    for (const sub of this.subscriptions) {
-      sub.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   setMeta(): void {
