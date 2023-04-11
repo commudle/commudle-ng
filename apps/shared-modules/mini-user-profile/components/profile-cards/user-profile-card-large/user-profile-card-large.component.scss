@@ -37,26 +37,25 @@ p {
     }
 
     .username {
-      color: rgba($gunmetal, 0.85);
+      @apply com-text-Quartz com-mt-2px;
       font-size: $fs-h6;
       line-height: 12px;
-      margin-top: $space-4;
       word-break: break-word;
     }
 
     .designation {
+      @apply com-mt-2px;
       color: $black;
       font-size: $fs-h5;
       line-height: 16px;
-      margin-top: $space-4;
       word-break: break-word;
     }
 
     .about {
+      @apply com-mt-2px;
       color: $black;
       font-size: $fs-h6;
       line-height: 16px;
-      margin-top: $space-8;
       word-break: break-word;
     }
 
@@ -71,7 +70,7 @@ p {
 }
 
 .followers {
-  margin: $space-8 0 0 $space-72;
+  margin: 0 0 0 $space-72;
 }
 
 .align-right {

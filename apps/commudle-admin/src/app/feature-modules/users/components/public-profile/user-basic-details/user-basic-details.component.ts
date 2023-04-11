@@ -78,7 +78,9 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     this.tags = [];
 
     // Get already available tags of the user
-    this.user.tags.forEach((tag) => this.tags.push(tag.name));
+    if (this.user) {
+      this.user.tags.forEach((tag) => this.tags.push(tag.name));
+    }
   }
 
   onTagDialogOpen(): void {
