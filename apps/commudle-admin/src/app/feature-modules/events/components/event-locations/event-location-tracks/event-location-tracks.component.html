@@ -26,9 +26,9 @@
             <button (click)="confirmDeleteTrack(elt)" nbButton size="tiny" status="danger">
               <nb-icon icon="close"></nb-icon>
             </button>
-            <!-- <button (click)="showAddSlotForm(elt)" nbButton size="tiny" status="primary">
+            <button (click)="showAddSlotForm()" nbButton size="tiny" status="primary">
               <nb-icon icon="plus"></nb-icon>
-            </button>-->
+            </button>
           </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
@@ -53,6 +53,40 @@
                     <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
                   </div>
                 </div>
+                <div *ngIf="event.editable">
+                  <a
+                    *ngIf="!slot.speaker_resource"
+                    [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
+                    [routerLink]="['/speaker-resource-form']"
+                    class="text-info"
+                    target="_blank"
+                  >
+                    <nb-icon icon="clipboard-outline"></nb-icon>
+                    Add session details
+                  </a>
+                  <a
+                    *ngIf="slot.speaker_resource"
+                    [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
+                    [routerLink]="['/speaker-resource-form']"
+                    class="clickable text-info"
+                    target="_blank"
+                  >
+                    <nb-icon icon="clipboard-outline"></nb-icon>
+                    <span>Edit Session Details/Slides</span>
+                  </a>
+                </div>
+                <p>
+                  <small>
+                    <a
+                      [queryParams]="{ track_slot_id: slot.id }"
+                      [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                      target="_blank"
+                    >
+                      <nb-icon icon="external-link"></nb-icon>
+                      Public Session Page
+                    </a>
+                  </small>
+                </p>
               </div>
               <button (click)="showEditSlotForm(slot); $event.stopPropagation()" nbButton size="tiny" status="info">
                 <nb-icon icon="edit-outline"></nb-icon>

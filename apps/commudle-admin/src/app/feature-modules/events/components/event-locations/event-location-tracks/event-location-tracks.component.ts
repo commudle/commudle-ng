@@ -221,20 +221,49 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   // }
 
   // hour, minute
-  showAddSlotForm(eventLocationTracks) {
+  // showAddSlotForm(eventLocationTracks) {
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const sTime = new Date();
+  //     const eTime = new Date();
+  //     sTime.setHours(hour);
+  //     sTime.setMinutes(sTime.getMinutes() + 30);
+  //     sTime.setMinutes(minute);
+
+  //     eTime.setHours(hour);
+  //     eTime.setMinutes(minute + 30);
+
+  //     this.addSlot.emit({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
+
+  showAddSlotForm() {
+    this.trackSlotForm.reset();
     this._ngZone.runOutsideAngular(() => {
-      const sTime = new Date();
-      const eTime = new Date();
-      // sTime.setHours(hour);
-      // sTime.setMinutes(sTime.getMinutes() + 30);
-      // sTime.setMinutes(minute);
+      const currentTime = new Date();
+      // const indiaTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+      const sTime = new Date(currentTime.getTime() + 30 * 60000);
+      const eTime = new Date(sTime.getTime() + 30 * 60000);
 
-      // eTime.setHours(hour);
-      // eTime.setMinutes(minute + 30);
+      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+        title: 'Add a session',
+        context: { operationType: 'create' },
+      });
 
-      // this.addSlot.emit({ eventLocationTrack, sTime, eTime });
+      // this.addSlot({ eventLocationTrack, sTime, eTime });
     });
   }
+
+  // showAddSlotForm() {
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const currentTime = new Date();
+  //     const indiaTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  //     console.log(indiaTime);
+  //     const sTime = new Date(indiaTime.getTime() + 30 * 60000);
+  //     const eTime = new Date(sTime.getTime() + 30 * 60000);
+
+  //     // this.addSlot({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
 
   // showAddSlotForm(eventLocationTrack, hour, minute) {
   //   this._ngZone.runOutsideAngular(() => {

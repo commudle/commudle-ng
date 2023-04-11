@@ -43,6 +43,9 @@
                 <strong>Address: </strong>
                 <a href="{{ el.location.map_link }}" target="_blank">{{ el.location.address }}</a>
               </p>
+              <small>
+                <a href="{{ el.location.map_link }}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map </a>
+              </small>
             </div>
             <!-- <div> -->
             <app-event-location-tracks
