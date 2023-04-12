@@ -124,7 +124,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     //   });
     // });
     // this.findLocation();
-    // this.minSlotDate = moment(this.event.start_time).toDate();
+    this.minSlotDate = moment(this.event.start_time).toDate();
   }
 
   ngAfterViewInit(): void {
@@ -236,20 +236,26 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-  showAddSlotForm() {
+  showAddSlotForm(startTime, eventId) {
     this.trackSlotForm.reset();
     this._ngZone.runOutsideAngular(() => {
-      const currentTime = new Date();
-      // const indiaTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-      const sTime = new Date(currentTime.getTime() + 30 * 60000);
-      const eTime = new Date(sTime.getTime() + 30 * 60000);
-
+      const time = new Date(startTime);
+      const sTime = time.toLocaleTimeString();
+      const endTime = new Date(time.getTime() + 30 * 60000);
+      const eTime = endTime.toLocaleTimeString();
+      const timePickerStart = new Date();
+      const timePickerEnd = new Date();
+      this.trackSlotForm.get('track_slot').patchValue({
+        event_location_track_id: eventId,
+        date: this.minSlotDate,
+        start_time: timePickerStart,
+        end_time: timePickerEnd,
+      });
       this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
         title: 'Add a session',
         context: { operationType: 'create' },
       });
-
-      // this.addSlot({ eventLocationTrack, sTime, eTime });
+      //   // this.addSlot({ eventLocationTrack, sTime, eTime });
     });
   }
 

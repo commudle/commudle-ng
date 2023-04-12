@@ -64,7 +64,7 @@ export class EventLocationsComponent implements OnInit {
         address: ['', Validators.required],
         map_link: ['', Validators.required],
       }),
-      event_type: [EEventType.OFFLINE_ONLY, Validators.required],
+      event_type: [EEventType.OFFLINE_ONLY],
       embedded_video_stream: this.fb.group({
         source: [''],
         embed_code: [''],

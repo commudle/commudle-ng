@@ -1,15 +1,16 @@
 <div class="event-location-tracks">
-  <button *ngIf="event.editable" (click)="showAddTrackForm()" nbButton size="tiny" status="primary">
+  <button
+    *ngIf="event.editable"
+    (click)="showAddTrackForm()"
+    nbButton
+    size="tiny"
+    status="primary"
+    class="add-track-button"
+  >
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp; Add Track
   </button>
   <div class="track-container">
-    <!-- <div *ngFor="let elt of eventLocationTracks; let elti = index">
-      <commudle-event-location-track
-        [eventLocationTracks]="eventLocationTracks"
-        [event]="event"
-      ></commudle-event-location-track>
-    </div>-->
     <nb-accordion *ngFor="let elt of eventLocationTracks; let elti = index" class="com-mb-3 com-shadow-none">
       <nb-accordion-item
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
@@ -23,25 +24,26 @@
             <button (click)="showEditTrackForm(elt)" nbButton size="tiny" status="info">
               <nb-icon icon="edit-outline"></nb-icon>
             </button>
+            &nbsp;
             <button (click)="confirmDeleteTrack(elt)" nbButton size="tiny" status="danger">
               <nb-icon icon="close"></nb-icon>
             </button>
-            <button (click)="showAddSlotForm()" nbButton size="tiny" status="primary">
+            &nbsp;
+            <button (click)="showAddSlotForm(event.start_time, event.id)" nbButton size="tiny" status="primary">
               <nb-icon icon="plus"></nb-icon>
             </button>
           </div>
         </nb-accordion-item-header>
-        <nb-accordion-item-body class="com-rounded-b-2xl">
-          <nb-list *ngIf="trackSlotVisibility[elt.id]">
-            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
-              <!-- *ngFor="let slot of sortedTrackSlots[elt.id] elt.track_slots; let tsi = index" -->
+        <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0">
+          <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
+            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index" class="com-p-0">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
                 <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
               </div>
               <div class="session-details">
                 <div class="session-title">
-                  <div *ngIf="slot.tags_list">
+                  <div *ngIf="slot.tags_list" class="tag-badge">
                     <app-badge
                       *ngFor="let tag of slot.tags_list.split(',')"
                       [fontSize]="'small'"
@@ -53,12 +55,12 @@
                     <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
                   </div>
                 </div>
-                <div *ngIf="event.editable">
+                <div *ngIf="event.editable" class="links">
                   <a
                     *ngIf="!slot.speaker_resource"
                     [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
                     [routerLink]="['/speaker-resource-form']"
-                    class="text-info"
+                    class="add-session"
                     target="_blank"
                   >
                     <nb-icon icon="clipboard-outline"></nb-icon>
@@ -68,14 +70,14 @@
                     *ngIf="slot.speaker_resource"
                     [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
                     [routerLink]="['/speaker-resource-form']"
-                    class="clickable text-info"
+                    class="edit-session"
                     target="_blank"
                   >
                     <nb-icon icon="clipboard-outline"></nb-icon>
                     <span>Edit Session Details/Slides</span>
                   </a>
                 </div>
-                <p>
+                <p class="public-session">
                   <small>
                     <a
                       [queryParams]="{ track_slot_id: slot.id }"
@@ -88,12 +90,18 @@
                   </small>
                 </p>
               </div>
-              <button (click)="showEditSlotForm(slot); $event.stopPropagation()" nbButton size="tiny" status="info">
-                <nb-icon icon="edit-outline"></nb-icon>
-              </button>
-              <button (click)="confirmDeleteSlot(slot); $event.stopPropagation()" nbButton size="tiny" status="danger">
-                <nb-icon icon="close"></nb-icon>
-              </button>
+              <nb-icon
+                icon="edit-outline"
+                (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                class="edit-outline"
+              ></nb-icon>
+              &nbsp;
+              <nb-icon
+                icon="close-circle-outline"
+                (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
+                status="danger"
+                class="close-circle-outline"
+              ></nb-icon>
               <div *ngIf="elt.track_slots.length === 0">no slots yet</div>
             </nb-list-item>
           </nb-list>
@@ -102,7 +110,6 @@
     </nb-accordion>
   </div>
 </div>
-<!-- </div> -->
 
 <ng-template #eventLocationTrackFormTemplate let-data>
   <form
@@ -122,9 +129,8 @@
             eventLocationTrackForm['controls'].event_location_track['controls'].name.invalid &&
             eventLocationTrackForm['controls'].event_location_track['controls'].name.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
@@ -198,7 +204,7 @@
     <p>Are you sure you want to delete this track?</p>
   </div>
   <div>
-    <button (click)="deleteTrack(true, data.eventLocationTrackId)" nbButton status="link">Yes</button>
+    <button (click)="deleteTrack(true, data.eventLocationTrackId)" nbButton status="link">Yes</button>&nbsp;
     <button (click)="deleteTrack(false, data.eventLocationTrackId)" nbButton status="link">No</button>
   </div>
 </ng-template>
@@ -211,22 +217,36 @@
   >
     <div formGroupName="track_slot">
       <div>
-        <nb-select formControlName="event_location_track_id" placeholder="Select Track">
+        <nb-select formControlName="event_location_track_id" placeholder="Select Track" fullWidth class="select-track">
           <nb-option-group *ngFor="let location of eventLocations" title="{{ location.id }}">
             <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
               {{ ltrack.name }}
             </nb-option>
           </nb-option-group>
+          <span
+            *ngIf="
+              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
+              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.invalid &&
+              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </nb-select>
       </div>
       <div>
-        <nb-select formControlName="speaker_registration_id" placeholder="Select Speaker (optional)">
+        <nb-select
+          formControlName="speaker_registration_id"
+          placeholder="Select Speaker (optional)"
+          fullWidth
+          class="select-speaker"
+        >
           <nb-option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
             {{ speaker.user.name }}
           </nb-option>
         </nb-select>
       </div>
-      <div>
+      <div class="session-name">
         <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
         <span
           *ngIf="
@@ -234,18 +254,26 @@
             trackSlotForm['controls'].track_slot['controls'].session_title.invalid &&
             trackSlotForm['controls'].track_slot['controls'].session_title.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
-      <div>
+      <div class="date">
         <input [nbDatepicker]="datepicker" formControlName="date" fullWidth nbInput placeholder="Date*" />
+        <span
+          *ngIf="
+            trackSlotForm['controls'].track_slot['controls'].date.touched &&
+            trackSlotForm['controls'].track_slot['controls'].date.invalid &&
+            trackSlotForm['controls'].track_slot['controls'].date.errors.required
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+        </span>
         <nb-datepicker #datepicker></nb-datepicker>
       </div>
 
-      <div>
+      <div class="start-time">
         <input
           [nbTimepicker]="startTimePicker"
           formControlName="start_time"
@@ -261,13 +289,12 @@
             trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
             trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
-      <div>
+      <!-- <div>
         <input
           [nbTimepicker]="endTimePicker"
           formControlName="end_time"
@@ -283,16 +310,26 @@
             trackSlotForm['controls'].track_slot['controls'].end_time.invalid &&
             trackSlotForm['controls'].track_slot['controls'].end_time.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
-      </div>
+      </div> -->
 
       <div>
         <input formControlName="tags_list" fullWidth nbInput placeholder="Tag A, Tag B, ..." type="text" />
       </div>
-      <div
+      <!-- <div>
+        <label fullWidth>
+          Tags*
+          <app-tag
+            (tagAdd)="onTagAdd($event)"
+            (tagDelete)="onTagDelete($event)"
+            [editable]="true"
+            [tags]="tags"
+          ></app-tag>
+        </label>
+      </div> -->
+      <!-- <div
         *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY"
         class="online-event-fields"
         formGroupName="embedded_video_stream"
@@ -344,7 +381,7 @@
             <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
           </label>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="save-button-bottom">
@@ -358,7 +395,7 @@
     <p>Are you sure you want to delete this slot?</p>
   </div>
   <div>
-    <button (click)="deleteSlot(true, data.trackSlot)" nbButton status="link">Yes</button>
+    <button (click)="deleteSlot(true, data.trackSlot)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteSlot(false, data.trackSlot)" nbButton status="link">No</button>
   </div>
 </ng-template>
