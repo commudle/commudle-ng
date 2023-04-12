@@ -13,10 +13,6 @@ export class PublicCommunityGroupsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        // console.log(data);
-      }),
-    );
+    // this.subscriptions.push(this.activatedRoute.parent.params.subscribe((data) => {}));
   }
 }

@@ -1,3 +1,6 @@
 nb-card {
   @apply com-mx-0 md:com-mx-2;
+  nb-card-body {
+    @apply com-min-h-[300px];
+  }
 }

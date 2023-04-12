@@ -45,7 +45,6 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
 
   getCommunities(communityGroupId) {
     this.communityGroupsService.pCommunities(communityGroupId).subscribe((data) => {
-      console.log(data);
       this.communities = data.communities;
       this.isLoading = false;
     });
