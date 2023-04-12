@@ -198,7 +198,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },
   { path: '404', component: Error404PageComponent },
-  { path: '**', redirectTo: '/404' },
+  { path: '**', component: Error404PageComponent },
 ];
 
 @NgModule({
