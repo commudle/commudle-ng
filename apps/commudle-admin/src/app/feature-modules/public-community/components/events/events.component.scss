@@ -118,7 +118,7 @@ nb-card {
         }
 
         .past-events-container {
-          @apply com-flex com-flex-row com-flex-wrap com-mx-4 md:com-mx-6 com-justify-between;
+          @apply com-flex com-flex-row com-flex-wrap com-mx-4 md:com-mx-6 com-gap-x-[22px];
           a {
             @apply com-relative com-w-full md:com-w-[390px] com-no-underline com-mb-6;
 
