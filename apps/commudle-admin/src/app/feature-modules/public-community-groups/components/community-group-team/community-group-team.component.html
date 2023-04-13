@@ -1,7 +1,7 @@
 <div class="team">
   <nb-card>
     <nb-card-body>
-      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      <app-skeleton-cards *ngIf="isLoading"></app-skeleton-cards>
       <div class="member" *ngFor="let member of team">
         <app-user-profile-horizontal [user]="member.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>

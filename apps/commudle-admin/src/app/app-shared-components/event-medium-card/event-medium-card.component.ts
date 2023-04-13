@@ -33,7 +33,5 @@ export class EventMediumCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.event);
-  }
+  ngOnInit(): void {}
 }

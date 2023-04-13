@@ -11,10 +11,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-group-events.component.scss'],
 })
 export class CommunityGroupEventsComponent implements OnInit {
-  events: IEvent[] = [];
-  UpcomingEvents: IEvent[] = [];
+  pastEvents: IEvent[] = [];
+  upcomingEvents: IEvent[] = [];
 
-  isLoading = true;
+  isLoadingUpcoming = false;
+  isLoadingPast = false;
+
   limit = 6;
   pastPageInfo: IPageInfo;
   upcomingPageInfo: IPageInfo;
@@ -36,25 +38,28 @@ export class CommunityGroupEventsComponent implements OnInit {
   }
 
   getPastEvents() {
+    this.isLoadingPast = true;
     this.subscriptions.push(
       this.communityGroupsService
         .pEvents(this.community_group_id, this.limit, '', this.pastPageInfo?.end_cursor, 'past')
         .subscribe((data) => {
-          this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          console.log(data);
+          this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.pastPageInfo = data.page_info;
-          this.isLoading = false;
+          this.isLoadingPast = false;
         }),
     );
   }
 
   getUpcomingEvents() {
+    this.isLoadingUpcoming = true;
     this.subscriptions.push(
       this.communityGroupsService
         .pEvents(this.community_group_id, this.limit, '', this.upcomingPageInfo?.end_cursor, 'future')
         .subscribe((data) => {
-          this.UpcomingEvents = this.UpcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.upcomingPageInfo = data.page_info;
-          this.isLoading = false;
+          this.isLoadingUpcoming = false;
         }),
     );
   }
