@@ -32,7 +32,7 @@ import * as moment from 'moment';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   @Input() eventLocations: IEventLocation[] = [];
@@ -59,6 +59,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   EEventType = EEventType;
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
+  tags: string[] = [];
 
   moment = moment;
   minSlotDate;
@@ -105,10 +106,12 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.setTrackVisibility();
+
     const visibility = this.eventLocationTracks.length <= 2;
     for (const event_location_track of this.eventLocationTracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
-      this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+      // this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
     // this._ngZone.runOutsideAngular(() => {
     //   [...Array(24).keys()].forEach((h) => {
@@ -440,6 +443,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       )
       .subscribe((data) => {
         this.addTrack.emit(data);
+        this.setTrackVisibility();
         this.toastLogService.successDialog('New Track Added!');
         this.eventLocationTrackForm.reset();
         this.changeDetectorRef.markForCheck();
@@ -594,6 +598,14 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   }
   // }
 
+  setTrackVisibility() {
+    const visibility = this.eventLocationTracks.length <= 2;
+    for (const event_location_track of this.eventLocationTracks) {
+      this.trackSlotVisibility[event_location_track.id] = visibility;
+      this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+    }
+  }
+
   changeTrackSlotVisibility(visibility, id) {
     this.trackSlotVisibility[id] = visibility;
   }
@@ -603,5 +615,15 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       // @ts-ignore
       return new moment(slot.start_time);
     });
+  }
+
+  addTag(tag: string): void {
+    if (!this.tags.includes(tag)) {
+      this.tags.push(tag);
+    }
+  }
+
+  removeTag(tag: string): void {
+    this.tags = this.tags.filter((value) => value !== tag);
   }
 }

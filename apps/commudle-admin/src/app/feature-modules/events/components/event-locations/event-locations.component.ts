@@ -135,6 +135,9 @@ export class EventLocationsComponent implements OnInit {
   showAddEventLocationForm() {
     this.eventLocationForm.reset();
     this.selectedEventType = EEventType.OFFLINE_ONLY;
+    this.eventLocationForm.patchValue({
+      event_type: this.selectedEventType,
+    });
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: 'Add Location',
       context: { operationType: 'create' },

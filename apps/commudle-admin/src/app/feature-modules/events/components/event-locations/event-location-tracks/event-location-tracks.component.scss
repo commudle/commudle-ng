@@ -69,7 +69,7 @@
               }
 
               .tag-badge {
-                @apply com-mt-3;
+                @apply com-mt-1 com-mb-0 com-p-0;
               }
 
               .session-speaker {
@@ -78,11 +78,15 @@
             }
 
             .links {
-              @apply com-mt-1;
+              @apply com-flex com-flex-row;
 
-              .add-session,
-              .edit-session {
-                @apply com-text-sm;
+              .session-links {
+                @apply com-mt-1 com-mr-7;
+
+                .add-session,
+                .edit-session {
+                  @apply com-text-sm;
+                }
               }
             }
 

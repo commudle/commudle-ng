@@ -88,17 +88,16 @@
     class="event-location-form"
   >
     <!-- <nb-radio-group
-        (valueChange)="toggleEventTypeValidations($event)"
-        class="options"
-        formControlName="event_type"
-        name="event-type"
-      >
-        <nb-radio [value]="EEventType.OFFLINE_ONLY"> Offline Event </nb-radio>
-        <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE">
-          Offline + Live Stream
-        </nb-radio>
-        <nb-radio [value]="EEventType.ONLINE_ONLY"> Live Stream Only </nb-radio>
-      </nb-radio-group> -->
+      (valueChange)="toggleEventTypeValidations($event)"
+      class="options"
+      formControlName="event_type"
+      name="event-type"
+    >
+      <nb-radio [value]="EEventType.OFFLINE_ONLY"> Offline Event </nb-radio>
+      <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio>
+      <nb-radio [value]="EEventType.ONLINE_ONLY"> Live Stream Only </nb-radio>
+    </nb-radio-group> -->
+    <!-- eventLocationForm[controls] -->
     <div class="offline-event-fields" formGroupName="location">
       <div>
         <label fullWidth>
