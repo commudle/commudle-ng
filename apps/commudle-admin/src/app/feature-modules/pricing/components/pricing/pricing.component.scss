@@ -199,10 +199,10 @@ p {
   }
 
   .section {
-    @apply com-px-6 com-my-12 com-mx-72px;
+    @apply com-px-6 md:com-my-12 md:com-mx-72px com-mx-auto;
 
     div {
-      @apply com-flex com-flex-row com-justify-between com-m-0 com-p-0 com-gap-x-72;
+      @apply com-flex md:com-flex-row com-justify-between com-m-0 com-p-0 com-flex-col-reverse com-gap-x-72;
 
       .content {
         @apply com-mt-12 com-mx-4 com-flex com-flex-col;
