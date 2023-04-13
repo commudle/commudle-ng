@@ -200,6 +200,7 @@ export class EventLocationsComponent implements OnInit {
     if (deleteConf) {
       this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe((data) => {
         const locationIndex = this.eventLocations.findIndex((k) => data.id);
+        // const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
         this.eventLocations.splice(locationIndex, 1);
         this.toastLogService.successDialog('Deleted');
         this.changeDetectorRef.markForCheck();

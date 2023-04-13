@@ -59,7 +59,8 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   EEventType = EEventType;
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
-  tags: string[] = [];
+  // track_slots: ITrackSlot[];
+  // tags: string[] = [];
 
   moment = moment;
   minSlotDate;
@@ -239,27 +240,50 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-  showAddSlotForm(startTime, eventId) {
+  // showAddSlotForm(startTime, eventId) {
+  //   this.trackSlotForm.reset();
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const time = new Date(startTime);
+  //     const sTime = time.toLocaleTimeString();
+  //     const endTime = new Date(time.getTime() + 30 * 60000);
+  //     const eTime = endTime.toLocaleTimeString();
+  //     const timePickerStart = new Date();
+  //     const timePickerEnd = new Date();
+  //     this.trackSlotForm.get('track_slot').patchValue({
+  //       event_location_track_id: eventId,
+  //       date: this.minSlotDate,
+  //       start_time: timePickerStart,
+  //       end_time: timePickerEnd,
+  //     });
+  //     this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //       title: 'Add a session',
+  //       context: { operationType: 'create' },
+  //     });
+  //     //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
+
+  showAddSlotForm() {
     this.trackSlotForm.reset();
     this._ngZone.runOutsideAngular(() => {
-      const time = new Date(startTime);
-      const sTime = time.toLocaleTimeString();
-      const endTime = new Date(time.getTime() + 30 * 60000);
-      const eTime = endTime.toLocaleTimeString();
-      const timePickerStart = new Date();
-      const timePickerEnd = new Date();
-      this.trackSlotForm.get('track_slot').patchValue({
-        event_location_track_id: eventId,
-        date: this.minSlotDate,
-        start_time: timePickerStart,
-        end_time: timePickerEnd,
-      });
-      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-        title: 'Add a session',
-        context: { operationType: 'create' },
-      });
-      //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+      // const time = new Date(startTime);
+      // const sTime = time.toLocaleTimeString();
+      // const endTime = new Date(time.getTime() + 30 * 60000);
+      // const eTime = endTime.toLocaleTimeString();
+      // const timePickerStart = new Date();
+      // const timePickerEnd = new Date();
+      // this.trackSlotForm.get('track_slot').patchValue({
+      //   event_location_track_id: eventId,
+      //   date: this.minSlotDate,
+      //   start_time: timePickerStart,
+      //   end_time: timePickerEnd,
     });
+    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+      title: 'Add a session',
+      context: { operationType: 'create' },
+    });
+    //   //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+    // });
   }
 
   // showAddSlotForm() {
@@ -617,13 +641,13 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addTag(tag: string): void {
-    if (!this.tags.includes(tag)) {
-      this.tags.push(tag);
-    }
-  }
+  // addTag(tag: string): void {
+  //   if (!this.tags.includes(tag)) {
+  //     this.tags.push(tag);
+  //   }
+  // }
 
-  removeTag(tag: string): void {
-    this.tags = this.tags.filter((value) => value !== tag);
-  }
+  // removeTag(tag: string): void {
+  //   this.tags = this.tags.filter((value) => value !== tag);
+  // }
 }

@@ -29,12 +29,8 @@
               <nb-icon icon="close"></nb-icon>
             </button>
             &nbsp;
-            <button
-              (click)="showAddSlotForm(event.start_time, event.id); $event.stopPropagation()"
-              nbButton
-              size="tiny"
-              status="primary"
-            >
+            <!-- event.start_time, event.id -->
+            <button (click)="showAddSlotForm(); $event.stopPropagation()" nbButton size="tiny" status="primary">
               <nb-icon icon="plus"></nb-icon>
             </button>
           </div>
@@ -72,7 +68,7 @@
                       target="_blank"
                     >
                       <nb-icon icon="clipboard-outline"></nb-icon>
-                      Add session details
+                      Add session slides
                     </a>
                     <a
                       *ngIf="slot.speaker_resource"
@@ -292,13 +288,10 @@
           readonly
         />
         <nb-timepicker #startTimePicker></nb-timepicker>
-        <span
-          *ngIf="
-            trackSlotForm['controls'].track_slot['controls'].start_time.touched &&
-            trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
-            trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
-          "
-        >
+        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.touched }}</h1> -->
+        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.invalid }}</h1> -->
+        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.errors.required }}</h1> -->
+        <span *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched">
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
@@ -327,12 +320,14 @@
       <!-- <div>
         <input formControlName="tags_list" fullWidth nbInput placeholder="Tag A, Tag B, ..." type="text" />
       </div> -->
-      <div class="field">
+      <!-- <div class="field">
         <label>
           Tags*
-          <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
+          <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true"></app-tag>
+          track_slots.tags_list 
+          [tags]="eventLocationTracks.track_slots.tags_list"
         </label>
-      </div>
+      </div> -->
       <!-- <div>
         <label fullWidth>
           Tags*
@@ -340,7 +335,7 @@
             (tagAdd)="onTagAdd($event)"
             (tagDelete)="onTagDelete($event)"
             [editable]="true"
-            [tags]="tags"
+            [tags]="tag"
           ></app-tag>
         </label>
       </div> -->
