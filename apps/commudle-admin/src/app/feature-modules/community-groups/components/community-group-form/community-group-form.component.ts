@@ -41,6 +41,7 @@ export class CommunityGroupFormComponent implements OnInit {
       logo: [''],
       mini_description: ['', [Validators.required, Validators.maxLength(160)]],
       description: ['', Validators.required],
+      theme_color: [''],
       website: [''],
       facebook: [''],
       twitter: [''],
@@ -50,7 +51,7 @@ export class CommunityGroupFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((data) => {
+    this.activatedRoute.parent.params.subscribe((data) => {
       if (data.community_group_id) {
         this.getCommunityGroup(data.community_group_id);
       }
@@ -64,6 +65,7 @@ export class CommunityGroupFormComponent implements OnInit {
         name: this.communityGroup.name,
         description: this.communityGroup.description,
         mini_description: this.communityGroup.mini_description,
+        theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : '#166534',
         website: this.communityGroup.website,
         facebook: this.communityGroup.facebook,
         twitter: this.communityGroup.twitter,

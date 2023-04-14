@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   team: IUserRolesUser[] = [];
 
   userRolesUserForm;
+  sidebarExpanded = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,

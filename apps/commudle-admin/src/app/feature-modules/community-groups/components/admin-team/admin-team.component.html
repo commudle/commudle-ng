@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-body>
+    <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
+    <div class="form">
+      <form (ngSubmit)="inviteCommunityAdmin()" [formGroup]="userRolesUserForm">
+        <p>Add a Teammate</p>
+        <input fieldSize="small" formControlName="email" nbInput placeholder="Enter Email" class="com-mr-4" />
+        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="small" status="primary" type="submit">
+          Send Invitation
+        </button>
+      </form>
+    </div>
+    <app-loading-spinner *ngIf="isLoading" class="com-w-1/2"></app-loading-spinner>
+    <div class="member" *ngFor="let member of team; let i = index">
+      <app-user-profile-horizontal [user]="member.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+      <div class="actions">
+        <a
+          (click)="resendInvitationMail(member)"
+          *ngIf="member.status === EUserRolesUserStatus.INVITED"
+          class="clickable"
+        >
+          Resend Invite
+        </a>
+        <br />
+        <a (click)="remove(i)" class="clickable"> Remove </a>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

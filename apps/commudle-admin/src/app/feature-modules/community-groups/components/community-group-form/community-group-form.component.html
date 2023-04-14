@@ -27,6 +27,18 @@
                   </label>
                 </div>
 
+                <div>
+                  <label>Theme Color</label>
+                  <input
+                    type="color"
+                    formControlName="theme_color"
+                    value="#e66465"
+                    nbInput
+                    fullWidth
+                    class="com-w-1/2 com-h-9 !com-p-0"
+                  />
+                </div>
+
                 <div class="logo">
                   <div *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)" class="uploaded-logo">
                     <img

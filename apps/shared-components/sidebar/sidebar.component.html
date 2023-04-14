@@ -1,0 +1,97 @@
+<div class="sidebar" [ngClass]="{ expanded: isExpanded }">
+  <div class="header">
+    <h1 class="title">Commudle</h1>
+    <div class="toggle" (click)="handleSidebarToggle()">
+      <nb-icon [icon]="isExpanded ? 'arrow-left' : 'arrow-right'" class="com-cursor-pointer"></nb-icon>
+    </div>
+  </div>
+  <div class="content">
+    <div class="link">
+      <div
+        class="content"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['community']"
+        [routerLinkActive]="'active'"
+      >
+        <div class="icon">
+          <nb-icon icon="people"></nb-icon>
+        </div>
+        <div class="title">Communities</div>
+      </div>
+    </div>
+    <!-- <div class="link with-children">
+      <div class="content" [routerLink]="['/configuration']" [routerLinkActive]="'active'">
+        <div class="icon">
+         <nb-icon icon="star"></nb-icon>
+        </div>
+        <div class="title">Configuration</div>
+      </div>
+      <div class="children">
+        <div class="link">
+          <div
+            class="content"
+            [routerLink]="['/configuration']"
+            [queryParams]="{ child: '1' }"
+            [routerLinkActive]="'active'"
+          >
+            <div class="icon">
+               <nb-icon icon="star"></nb-icon>
+            </div>
+            <div class="title">child 1</div>
+          </div>
+        </div>
+        <div class="link">
+          <div
+            class="content"
+            [routerLink]="['/configuration']"
+            [queryParams]="{ child: '2' }"
+            [routerLinkActive]="'active'"
+          >
+            <div class="icon">
+             <nb-icon icon="star"></nb-icon>
+            </div>
+            <div class="title">child 2</div>
+          </div>
+        </div>
+        <div class="link">
+          <div
+            class="content"
+            [routerLink]="['/configuration']"
+            [queryParams]="{ child: '3' }"
+            [routerLinkActive]="'active'"
+          >
+            <div class="icon">
+             <nb-icon icon="star"></nb-icon>
+            </div>
+            <div class="title">child 3</div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="link">
+      <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
+        <div class="icon">
+          <nb-icon icon="star"></nb-icon>
+        </div>
+        <div class="title">Admin Team</div>
+      </div>
+    </div>
+    <div class="link">
+      <div class="content" [routerLink]="['edit']" [routerLinkActive]="'active'">
+        <div class="icon">
+          <nb-icon icon="edit"></nb-icon>
+        </div>
+        <div class="title">Edit Details</div>
+      </div>
+    </div>
+    <div class="link">
+      <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
+        <div class="icon">
+          <nb-icon icon="star"></nb-icon>
+        </div>
+        <div class="title">All Members</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>

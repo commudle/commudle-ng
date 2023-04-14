@@ -1,0 +1,147 @@
+// .chevron::before {
+//   border-style: solid;
+//   border-width: 0.15em 0.15em 0 0;
+//   content: "";
+//   display: inline-block;
+//   height: 0.35em;
+//   left: 0.15em;
+//   position: relative;
+//   top: 0.3em;
+//   vertical-align: top;
+//   width: 0.35em;
+// }
+.sidebar {
+  transition: 0.3s;
+  @apply com-fixed com-left-0 com-top-16 com-h-full com-w-16 com-z-50;
+
+  &.expanded {
+    @apply com-w-40;
+
+    .header {
+      h1 {
+        @apply com-flex com-ml-0;
+      }
+      .toggle-icon {
+        @apply com-ml-0;
+        // &::before {
+        //   transform: rotate(-135deg);
+        // }
+      }
+    }
+    .content {
+      .link {
+        .content {
+          .title {
+            max-width: 100px;
+          }
+          .icon {
+            margin-right: 3px;
+          }
+        }
+        .children {
+          .content {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  @apply com-bg-white com-text-black;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    @apply com-bg-white com-text-black;
+
+    h1 {
+      font-size: 20px;
+      color: #6d6e7e;
+      margin: 0;
+      flex: 1;
+      transition: 0.3s;
+
+      @apply com-hidden;
+    }
+
+    .chevron {
+      color: #6d6e7e;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-left: -25px;
+
+      padding: 10px;
+      min-width: 20px;
+      height: 20px;
+      display: block;
+      text-align: center;
+
+      &::before {
+        transition: 0.3s;
+        transform: rotate(45deg);
+      }
+
+      &:hover {
+        @apply com-text-primary-500;
+      }
+    }
+  }
+
+  .content {
+    .link {
+      .children {
+        .content {
+          @apply com-bg-white com-text-black;
+          // padding-left: 30px;
+          padding-left: 10px;
+
+          &.active {
+            background: #191a27;
+          }
+        }
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        &:hover {
+          @apply com-text-primary-500;
+          .title {
+            @apply com-text-primary-500;
+          }
+        }
+
+        &.active {
+          @apply com-text-primary-500 com-border-0 com-border-b-2 com-border-solid com-border-primary-500;
+          .title {
+            @apply com-text-primary-500;
+          }
+        }
+
+        .icon {
+          flex: 0 0 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 0px;
+        }
+        .title {
+          flex: 1;
+          // display: none;
+          color: #6d6e7e;
+          transition: 0.3s;
+          max-width: 0px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}

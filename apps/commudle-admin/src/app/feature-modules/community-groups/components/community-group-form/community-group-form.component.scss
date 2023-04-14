@@ -33,10 +33,10 @@
         }
 
         .uploaded-logo {
-          @apply com-items-center com-flex com-justify-center com-overflow-hidden;
+          @apply com-mx-auto com-items-center com-flex com-justify-center com-overflow-hidden com-w-44 com-h-44;
 
           img {
-            @apply com-max-w-full;
+            @apply com-w-full;
           }
         }
 
