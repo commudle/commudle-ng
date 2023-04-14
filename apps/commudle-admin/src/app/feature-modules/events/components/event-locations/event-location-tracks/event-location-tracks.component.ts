@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NbWindowService } from '@commudle/theme';
+import { NbTagComponent, NbTagInputAddEvent, NbWindowService } from '@commudle/theme';
 import { faClock, faInfo, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { EventLocationTracksService } from 'apps/commudle-admin/src/app/services/event-location-tracks.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
@@ -60,7 +60,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   // track_slots: ITrackSlot[];
-  // tags: string[] = [];
+  tags: string[] = [];
 
   moment = moment;
   minSlotDate;
@@ -158,7 +158,91 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // showAddSlotForm(eventLocationTrack) {
+  //   this.trackSlotForm.reset();
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const currentTime = new Date();
+  //     const indiaTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  //     const sTime = new Date(indiaTime.getTime() + 30 * 60000);
+  //     const eTime = new Date(sTime.getTime() + 30 * 60000);
+  //     this.trackSlotForm.get('track_slot').patchValue({
+  //       event_location_track_id: eventLocationTrack.id,
+  //       date: this.minSlotDate,
+  //       start_time: sTime,
+  //       end_time: eTime,
+  //     });
+  //     this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //       title: 'Add a session',
+  //       context: { operationType: 'create' },
+  //     });
+  //   });
+  // }
+
+  // showAddSlotForm(eventLocationTrack, startTime) {
+  //   this.trackSlotForm.reset();
+  //   this._ngZone.runOutsideAngular(() => {
+  //     const time = new Date(startTime);
+  //     const sTime = time.toLocaleTimeString();
+  //     const endTime = new Date(time.getTime() + 30 * 60000);
+  //     const eTime = endTime.toLocaleTimeString();
+  //     const timePickerStart = new Date();
+  //     const timePickerEnd = new Date();
+  //     this.trackSlotForm.get('track_slot').patchValue({
+  //       event_location_track_id: eventLocationTrack.id,
+  //       date: this.minSlotDate,
+  //       start_time: time,
+  //       end_time: timePickerEnd,
+  //     });
+  //     this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //       title: 'Add a session',
+  //       context: { operationType: 'create' },
+  //     });
+  //     //   //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
+
+  showAddSlotForm(eventLocationTrack, startTime) {
+    this.trackSlotForm.reset();
+    this._ngZone.runOutsideAngular(() => {
+      const time = new Date(startTime);
+      // const sTime = time.toLocaleTimeString();
+      const endTime = new Date(time.getTime() + 30 * 60000);
+      // const eTime = endTime.toLocaleTimeString();
+      // const timePickerStart = new Date();
+      // const timePickerEnd = new Date();
+      this.trackSlotForm.get('track_slot').patchValue({
+        event_location_track_id: eventLocationTrack.id,
+        date: this.minSlotDate,
+        start_time: time,
+        end_time: endTime,
+      });
+      this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+        title: 'Add a session',
+        context: { operationType: 'create' },
+      });
+      //   //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+    });
+  }
+
   // showAddSlotForm() {
+  //   this.trackSlotForm.reset();
+
+  //   // @ts-ignore
+  //   this.trackSlotForm.get('track_slot').patchValue({
+  //     event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
+  //     date: this.minSlotDate,
+  //     start_time: dataFromTimeBlocks.sTime,
+  //     end_time: dataFromTimeBlocks.eTime,
+  //   });
+
+  //   this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //     title: 'Add a session',
+  //     context: { operationType: 'create' },
+  //   });
+  // }
+
+  // showAddSlotForm(dataFromTimeBlocks) {
+  //   console.log(dataFromTimeBlocks);
   //   this.trackSlotForm.reset();
 
   //   // @ts-ignore
@@ -206,24 +290,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-  // showAddSlotForm(dataFromTimeBlocks) {
-  //   console.log(dataFromTimeBlocks);
-  //   this.trackSlotForm.reset();
-
-  //   // @ts-ignore
-  //   this.trackSlotForm.get('track_slot').patchValue({
-  //     event_location_track_id: dataFromTimeBlocks.eventLocationTrack.id,
-  //     date: this.minSlotDate,
-  //     start_time: dataFromTimeBlocks.sTime,
-  //     end_time: dataFromTimeBlocks.eTime,
-  //   });
-
-  //   this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-  //     title: 'Add a session',
-  //     context: { operationType: 'create' },
-  //   });
-  // }
-
   // hour, minute
   // showAddSlotForm(eventLocationTracks) {
   //   this._ngZone.runOutsideAngular(() => {
@@ -240,7 +306,31 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-  // showAddSlotForm(startTime, eventId) {
+  // startTime, eventId
+  // showAddSlotForm() {
+  //   this.trackSlotForm.reset();
+  //   this._ngZone.runOutsideAngular(() => {
+  // const time = new Date(startTime);
+  // const sTime = time.toLocaleTimeString();
+  // const endTime = new Date(time.getTime() + 30 * 60000);
+  // const eTime = endTime.toLocaleTimeString();
+  // const timePickerStart = new Date();
+  // const timePickerEnd = new Date();
+  // this.trackSlotForm.get('track_slot').patchValue({
+  //   event_location_track_id: eventId,
+  //   date: this.minSlotDate,
+  //   start_time: timePickerStart,
+  //   end_time: timePickerEnd,
+  //     // });
+  //     this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
+  //       title: 'Add a session',
+  //       context: { operationType: 'create' },
+  //     });
+  //     //   // this.addSlot({ eventLocationTrack, sTime, eTime });
+  //   });
+  // }
+
+  // showAddSlotForm() {
   //   this.trackSlotForm.reset();
   //   this._ngZone.runOutsideAngular(() => {
   //     const time = new Date(startTime);
@@ -262,29 +352,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   //     //   // this.addSlot({ eventLocationTrack, sTime, eTime });
   //   });
   // }
-
-  showAddSlotForm() {
-    this.trackSlotForm.reset();
-    this._ngZone.runOutsideAngular(() => {
-      // const time = new Date(startTime);
-      // const sTime = time.toLocaleTimeString();
-      // const endTime = new Date(time.getTime() + 30 * 60000);
-      // const eTime = endTime.toLocaleTimeString();
-      // const timePickerStart = new Date();
-      // const timePickerEnd = new Date();
-      // this.trackSlotForm.get('track_slot').patchValue({
-      //   event_location_track_id: eventId,
-      //   date: this.minSlotDate,
-      //   start_time: timePickerStart,
-      //   end_time: timePickerEnd,
-    });
-    this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
-      title: 'Add a session',
-      context: { operationType: 'create' },
-    });
-    //   //   // this.addSlot({ eventLocationTrack, sTime, eTime });
-    // });
-  }
 
   // showAddSlotForm() {
   //   this._ngZone.runOutsideAngular(() => {
@@ -486,7 +553,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         embedded_video_stream: eventLocationTrack.embedded_video_stream,
       });
     }
-
+    // console.log(eventLocationTrack.id);
     this.windowRef = this.windowService.open(this.eventLocationTrackFormTemplate, {
       title: `Edit ${eventLocationTrack.name}`,
       context: { operationType: 'edit', eventLocationTrackId: eventLocationTrack.id },
@@ -649,5 +716,25 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   // removeTag(tag: string): void {
   //   this.tags = this.tags.filter((value) => value !== tag);
+  // }
+
+  // onTagRemove(tagToRemove: NbTagComponent): void {
+  //   this.tags = this.tags.filter((tag) => tag !== tagToRemove.text);
+  // }
+
+  // restrictComma(event) {
+  //   if (event.code === 'Comma') {
+  //     event.preventDefault();
+  //   }
+  // }
+
+  // onTagAdd({ value, input }: NbTagInputAddEvent): void {
+  //   const finalValue = value.trim();
+  //   const isDuplicateTag = this.tags.indexOf(finalValue) !== -1;
+
+  //   if (finalValue && !isDuplicateTag) {
+  //     this.tags.push(value);
+  //   }
+  //   input.nativeElement.value = '';
   // }
 }

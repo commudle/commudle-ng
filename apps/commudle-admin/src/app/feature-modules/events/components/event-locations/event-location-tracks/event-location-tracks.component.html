@@ -26,11 +26,17 @@
             </button>
             &nbsp;
             <button (click)="confirmDeleteTrack(elt); $event.stopPropagation()" nbButton size="tiny" status="danger">
+              <!-- <p>{{ elt.id }}</p> -->
               <nb-icon icon="close"></nb-icon>
             </button>
             &nbsp;
             <!-- event.start_time, event.id -->
-            <button (click)="showAddSlotForm(); $event.stopPropagation()" nbButton size="tiny" status="primary">
+            <button
+              (click)="showAddSlotForm(event.id, event.start_time); $event.stopPropagation()"
+              nbButton
+              size="tiny"
+              status="primary"
+            >
               <nb-icon icon="plus"></nb-icon>
             </button>
           </div>
@@ -288,15 +294,17 @@
           readonly
         />
         <nb-timepicker #startTimePicker></nb-timepicker>
-        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.touched }}</h1> -->
-        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.invalid }}</h1> -->
-        <!-- <h1>{{ trackSlotForm['controls'].track_slot['controls'].start_time.errors.required }}</h1> -->
-        <span *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched">
+        <span
+          *ngIf="
+            trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
+            trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
+          "
+        >
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
-      <!-- <div>
+      <div class="end-time">
         <input
           [nbTimepicker]="endTimePicker"
           formControlName="end_time"
@@ -306,27 +314,37 @@
           readonly
         />
         <nb-timepicker #endTimePicker></nb-timepicker>
-        <span
-          *ngIf="
-            trackSlotForm['controls'].track_slot['controls'].end_time.touched &&
-            trackSlotForm['controls'].track_slot['controls'].end_time.invalid &&
-            trackSlotForm['controls'].track_slot['controls'].end_time.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div> -->
+      </div>
 
       <!-- <div>
-        <input formControlName="tags_list" fullWidth nbInput placeholder="Tag A, Tag B, ..." type="text" />
+        <label>
+          Tags
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>-->
+      <!-- <input
+       (keypress)="restrictComma($event)"
+        (tagAdd)="onTagAdd($event)"
+        [separatorKeys]="[13, 188]" -->
+      <!-- formControlName="tags"
+        fullWidth
+        nbTagInput
+        placeholder="Type a tag and press enter or comma"
+        type="text" -->
+      <!-- /> -->
+      <!--</nb-tag-list>
+        </label>
       </div> -->
+
+      <div>
+        <input formControlName="tags_list" fullWidth nbInput placeholder="Tag A, Tag B, ..." type="text" />
+      </div>
       <!-- <div class="field">
         <label>
           Tags*
-          <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true"></app-tag>
-          track_slots.tags_list 
-          [tags]="eventLocationTracks.track_slots.tags_list"
-        </label>
+          <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags="tag"></app-tag> -->
+      <!-- track_slots.tags_list  -->
+      <!-- [tags]="eventLocationTracks.track_slots.tags_list" -->
+      <!-- </label>
       </div> -->
       <!-- <div>
         <label fullWidth>
@@ -335,7 +353,7 @@
             (tagAdd)="onTagAdd($event)"
             (tagDelete)="onTagDelete($event)"
             [editable]="true"
-            [tags]="tag"
+            [tags]="tags"
           ></app-tag>
         </label>
       </div> -->

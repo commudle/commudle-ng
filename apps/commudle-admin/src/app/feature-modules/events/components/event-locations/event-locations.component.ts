@@ -172,6 +172,7 @@ export class EventLocationsComponent implements OnInit {
         }
         break;
     }
+    // console.log(eventLocation.location.id);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
