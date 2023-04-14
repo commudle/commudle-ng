@@ -6,52 +6,55 @@ a {
 p {
   @apply com-m-0;
 }
+:host {
+  @apply com-w-full;
+}
 
-.community-list-card-container {
-  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative com-w-260px;
+.community-card-container {
+  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative;
 
   @screen lg {
     width: inherit;
   }
 
-  .community-list-card-prefix {
+  .community-card-prefix {
     @apply com-items-center;
 
-    .community-list-card-logo {
+    .community-card-logo {
       @apply com-h-12 com-w-12 com-border-[0.5px] com-border-solid com-border-Silver-Sand com-rounded-full com-object-contain com-object-center;
     }
 
-    .community-list-card-details {
+    .community-card-details {
       @apply com-ml-2;
 
-      .community-list-card-name {
+      .community-card-name {
         @apply com-m-0 com-text-gunmetal com-text-sm com-font-semibold com-leading-4;
       }
 
-      .community-list-card-members {
+      .community-card-members {
         @apply com-text-Sonic-Silver com-text-xs com-italic;
       }
     }
   }
 }
 
-.community-list-card-tags {
+.community-card-tags {
   @apply com-flex com-flex-wrap com-gap-2 com-mt-4;
 
-  .community-list-card-tag {
+  .community-card-tag {
     @apply com-bg-Azureish-White com-rounded-md com-text-gunmetal com-text-xs com-py-1 com-px-3 com-leading-3;
   }
 }
 
-.community-list-card-about {
+.community-card-about {
   @apply com-text-gunmetal/80 com-text-xs com-mt-4;
 }
 
-.community-list-card-suffix {
-  .community-list-card-member-avatars {
+.community-card-suffix {
+  .community-card-member-avatars {
     @apply com-inline-flex com-flex-row-reverse com-h-5 com-mr-9 com-w-8 com-bottom-5 com-absolute;
 
-    .community-list-card-member-avatar {
+    .community-card-member-avatar {
       @apply com-border com-border-solid com-border-white com-rounded-[50px] com-overflow-hidden com-relative com-w-5;
 
       &:not(:last-child) {

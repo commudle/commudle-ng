@@ -62,7 +62,6 @@ import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
 import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
-import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
@@ -105,6 +104,7 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
+import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -117,7 +117,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CommunityComponent,
     CommunitiesAboutComponent,
     CommunitiesListComponent,
-    CommunitiesListCardComponent,
     CommunitiesPostsComponent,
     CommunitiesFeaturedComponent,
     HomeComponent,
@@ -228,6 +227,9 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+
+    //standalone component
+    CommunitiesCardComponent,
   ],
   providers: [
     AppInitService,

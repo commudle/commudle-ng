@@ -1,0 +1,30 @@
+<div *ngIf="community" class="community-card-container" [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
+  <a [routerLink]="['/communities', community.slug]" class="community-card-prefix d-flex">
+    <img
+      alt="{{ community.name }}"
+      class="community-card-logo"
+      src="{{ community.logo_path }}"
+      title="{{ community.name }}"
+    />
+    <div class="community-card-details">
+      <h5 class="community-card-name com-line-clamp-2">{{ community.name }}</h5>
+      <p class="community-card-members">{{ community.member_count }} Members</p>
+    </div>
+  </a>
+  <a [routerLink]="['/communities', community.slug]" class="community-card-tags">
+    <div *ngFor="let tag of community.tags | slice : 0 : 5" class="community-card-tag">{{ tag.name }}</div>
+  </a>
+  <div *ngIf="community.mini_description" class="community-card-about com-line-clamp-3">
+    {{ community.mini_description }}
+  </div>
+  <div class="community-card-suffix d-flex align-items-center">
+    <a [routerLink]="['/communities', community.slug, 'members']" class="community-card-member-avatars">
+      <span *ngFor="let member of members" class="community-card-member-avatar">
+        <img alt="{{ member.name }}" src="{{ member.photo.i32 }}" title="{{ member.name }}" />
+      </span>
+    </a>
+    <div class="community-join-btn">
+      <app-membership-toggle [community]="community"></app-membership-toggle>
+    </div>
+  </div>
+</div>

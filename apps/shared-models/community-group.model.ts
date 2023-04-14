@@ -13,5 +13,8 @@ export interface ICommunityGroup {
   logo: IAttachedFile;
   mini_description: string;
   theme_color: string;
+  member_count?: number;
+  kommunities_count?: number;
+  community_channels_count?: number;
   community_count_limit?: number;
 }

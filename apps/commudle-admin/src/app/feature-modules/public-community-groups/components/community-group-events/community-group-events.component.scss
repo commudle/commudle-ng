@@ -1,0 +1,19 @@
+nb-card {
+  @apply com-mx-0 md:com-mx-2;
+}
+
+.upcoming-event-cards-list {
+  @apply com-grid com-gap-4;
+
+  &.single-event {
+    @apply com-grid-cols-1;
+  }
+
+  &.multiple-event {
+    @apply com-grid-cols-1 md:com-grid-cols-2;
+  }
+}
+
+.past-events-card-list {
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-4;
+}

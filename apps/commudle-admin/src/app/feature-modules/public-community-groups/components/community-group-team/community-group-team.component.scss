@@ -1,5 +1,6 @@
-.team {
-  .member {
-    @apply com-border com-border-solid com-border-gray-300;
-  }
+.member:not(:last-child) {
+  @apply com-border-0 com-border-b-2 com-border-solid com-border-gray-200;
+}
+nb-card {
+  @apply com-mx-0 md:com-mx-2;
 }
