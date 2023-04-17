@@ -39,8 +39,6 @@ export class EventLocationsComponent implements OnInit {
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   activeTabIndex = -1;
-  // deleteTab = -1;
-  // tabActive = true;
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
@@ -197,7 +195,6 @@ export class EventLocationsComponent implements OnInit {
   }
 
   confirmDeleteEventLocation(eventLocation) {
-    // this.tabActive = false;
     this.windowRef = this.windowService.open(this.deleteEventLocationTemplate, {
       title: `Delete this location?`,
       context: { eventLocation },
@@ -212,26 +209,10 @@ export class EventLocationsComponent implements OnInit {
       });
     }
     const locationIndex = this.eventLocations.findIndex((k) => k.id === eventLocation.id);
-    // this.activeTabIndex = locationIndex;
     this.eventLocations.splice(locationIndex, 1);
     this.windowRef.close();
-    this.ActivateTabAdd();
+    this.activateTabAdd();
   }
-
-  // deleteEventLocation(deleteConf, eventLocation) {
-  //   if (deleteConf) {
-  //     this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe((data) => {
-  //       const locationIndex = this.eventLocations.findIndex((k) => data.id);
-  //       // const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
-  //       this.eventLocations.splice(locationIndex, 1);
-  //       this.toastLogService.successDialog('Deleted');
-  //       this.changeDetectorRef.markForCheck();
-  //     });
-  //   }
-  //   this.windowRef.close();
-  // }
-
-  // from the event emitter of child component
 
   addTrack(newTrack, locationIndex) {
     this.eventLocations[locationIndex].event_location_tracks.push(newTrack);
@@ -303,11 +284,7 @@ export class EventLocationsComponent implements OnInit {
       : '';
   }
 
-  // ActivateTabAdd() {
-  //   this.setActiveAdd = true;
-  // }
-
-  ActivateTabAdd() {
+  activateTabAdd() {
     this.tabsetEl.selectTab(this.addTabEl);
   }
 }
