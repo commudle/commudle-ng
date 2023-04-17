@@ -7,7 +7,6 @@ import { CommunityChannelsListComponent } from './components/community-channels-
 import { EventsComponent } from './components/events/events.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { MembersComponent } from './components/members/members.component';
-import { SpeakersComponent } from './components/speakers/speakers.component';
 
 const routes = [
   {
@@ -36,10 +35,6 @@ const routes = [
       {
         path: 'public-channels',
         component: CommunityChannelsListComponent,
-      },
-      {
-        path: 'speakers',
-        component: SpeakersComponent,
       },
       {
         path: 'notifications',
