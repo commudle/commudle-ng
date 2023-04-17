@@ -26,11 +26,9 @@
             </button>
             &nbsp;
             <button (click)="confirmDeleteTrack(elt); $event.stopPropagation()" nbButton size="tiny" status="danger">
-              <!-- <p>{{ elt.id }}</p> -->
               <nb-icon icon="close"></nb-icon>
             </button>
             &nbsp;
-            <!-- event.start_time, event.id -->
             <button
               (click)="showAddSlotForm(event.id, event.start_time); $event.stopPropagation()"
               nbButton
@@ -45,7 +43,7 @@
           <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
             <!-- elt.track_slots
             sortedTrackSlots[elt.id] -->
-            <nb-list-item *ngFor="let slot of elt.track_slots; let tsi = index" class="com-p-0">
+            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index" class="com-p-0">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
                 <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
@@ -113,9 +111,9 @@
                 status="danger"
                 class="close-circle-outline"
               ></nb-icon>
-              <div *ngIf="elt.track_slots.length === 0">no slots yet</div>
             </nb-list-item>
           </nb-list>
+          <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Slots Yet</div>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
@@ -228,6 +226,7 @@
   >
     <div formGroupName="track_slot">
       <div>
+        <!-- [(selected)]="selectedTrack" -->
         <nb-select formControlName="event_location_track_id" placeholder="Select Track" fullWidth class="select-track">
           <nb-option-group *ngFor="let location of eventLocations" title="{{ location.id }}">
             <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
@@ -318,9 +317,9 @@
 
       <!-- <div>
         <label>
-          Tags
-          <nb-tag-list (tagRemove)="onTagRemove($event)">
-            <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>-->
+          Tags-->
+      <!-- <nb-tag-list (tagRemove)="onTagRemove($event)">
+        <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag> -->
       <!-- <input
        (keypress)="restrictComma($event)"
         (tagAdd)="onTagAdd($event)"
@@ -331,13 +330,28 @@
         placeholder="Type a tag and press enter or comma"
         type="text" -->
       <!-- /> -->
-      <!--</nb-tag-list>
-        </label>
-      </div> -->
+      <!-- </nb-tag-list> -->
+      <!-- </label> -->
+      <!-- </div> -->
 
-      <div>
+      <!-- (tagRemove)="onTagRemove($event) -->
+      <nb-tag-list (tagRemove)="onTagRemove($event)">
+        <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
+        <input
+          (tagAdd)="onTagAdd($event)"
+          [separatorKeys]="[13, 188]"
+          (keypress)="restrictComma($event)"
+          fullWidth
+          nbTagInput
+          placeholder="Enter Tag (Press ',' to enter new tag)"
+          type="text"
+          formControlName="tags_list"
+        />
+      </nb-tag-list>
+
+      <!-- <div>
         <input formControlName="tags_list" fullWidth nbInput placeholder="Tag A, Tag B, ..." type="text" />
-      </div>
+      </div> -->
       <!-- <div class="field">
         <label>
           Tags*

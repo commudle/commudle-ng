@@ -106,6 +106,10 @@
       .close-circle-outline {
         @apply com-cursor-pointer;
       }
+
+      .no-slots-yet {
+        @apply com-text-xl com-font-medium;
+      }
     }
   }
 }

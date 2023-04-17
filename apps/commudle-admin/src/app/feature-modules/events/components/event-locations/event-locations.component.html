@@ -15,7 +15,8 @@
   <nb-card class="event-locations-list">
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="event-location">
-      <nb-tabset *ngIf="eventLocations">
+      <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
+        <!-- active="{{ setActiveAdd }}" -->
         <nb-tab
           *ngFor="let el of eventLocations; let i = index"
           badgePosition="top right"
@@ -24,6 +25,10 @@
           tabIcon="{{ getTabIcon(el) }}"
           tabTitle="{{ getLocationName(el) }}"
           class="tab"
+          [active]="i === activeTabIndex"
+          id="addTab"
+          name="addTab"
+          #addTab
         >
           <div class="event-location-tracks">
             <div *ngIf="el.location" class="map-location">
@@ -35,7 +40,7 @@
                 &nbsp;
                 <fa-icon
                   *ngIf="event.editable"
-                  (click)="showEditEventLocationForm(el); $event.stopPropagation()"
+                  (click)="showEditEventLocationForm(el)"
                   [icon]="faPen"
                   class="edit-location-icon"
                 >
@@ -43,7 +48,7 @@
                 &nbsp;
                 <fa-icon
                   *ngIf="event.editable"
-                  (click)="confirmDeleteEventLocation(el); $event.stopPropagation()"
+                  (click)="confirmDeleteEventLocation(el)"
                   [icon]="faTrash"
                   class="delete-location-icon"
                 ></fa-icon>
@@ -80,8 +85,6 @@
 </div>
 
 <ng-template #eventLocationFormTemplate *ngIf="event.editable" let-data>
-  <!-- <p>{{ data.eventLocations }}</p> -->
-  <!-- <p>{{ data.eventLocation.id }}</p> -->
   <form
     (ngSubmit)="data.operationType === 'create' ? addEventLocation() : editEventLocation(data.eventLocation)"
     [formGroup]="eventLocationForm"
@@ -97,7 +100,6 @@
       <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio>
       <nb-radio [value]="EEventType.ONLINE_ONLY"> Live Stream Only </nb-radio>
     </nb-radio-group> -->
-    <!-- eventLocationForm[controls] -->
     <div class="offline-event-fields" formGroupName="location">
       <div>
         <label fullWidth>
@@ -271,7 +273,6 @@
     <p class="text-dander">Are you sure you want to delete this location and the associated tracks/slots?</p>
   </div>
   <div>
-    <!-- <p>{{ data.eventLocation.id }}</p> -->
     <button (click)="deleteEventLocation(true, data.eventLocation)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteEventLocation(false, data.eventLocation)" nbButton status="link">No</button>
   </div>

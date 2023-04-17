@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NbWindowService } from '@commudle/theme';
+import { NbTabComponent, NbTabsetComponent, NbWindowService } from '@commudle/theme';
 import { faLink, faMapPin, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
@@ -38,6 +38,9 @@ export class EventLocationsComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
+  activeTabIndex = -1;
+  // deleteTab = -1;
+  // tabActive = true;
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
@@ -48,6 +51,9 @@ export class EventLocationsComponent implements OnInit {
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
+
+  @ViewChild('tabset') tabsetEl: NbTabsetComponent;
+  @ViewChild('addTab') addTabEl: NbTabComponent;
 
   constructor(
     private eventLocationsService: EventLocationsService,
@@ -172,7 +178,6 @@ export class EventLocationsComponent implements OnInit {
         }
         break;
     }
-    // console.log(eventLocation.location.id);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -183,6 +188,7 @@ export class EventLocationsComponent implements OnInit {
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
       const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
+      this.activeTabIndex = locationIndex;
       this.eventLocations[locationIndex] = data;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
@@ -191,6 +197,7 @@ export class EventLocationsComponent implements OnInit {
   }
 
   confirmDeleteEventLocation(eventLocation) {
+    // this.tabActive = false;
     this.windowRef = this.windowService.open(this.deleteEventLocationTemplate, {
       title: `Delete this location?`,
       context: { eventLocation },
@@ -199,16 +206,30 @@ export class EventLocationsComponent implements OnInit {
 
   deleteEventLocation(deleteConf, eventLocation) {
     if (deleteConf) {
-      this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe((data) => {
-        const locationIndex = this.eventLocations.findIndex((k) => data.id);
-        // const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
-        this.eventLocations.splice(locationIndex, 1);
+      this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe(() => {
         this.toastLogService.successDialog('Deleted');
         this.changeDetectorRef.markForCheck();
       });
     }
+    const locationIndex = this.eventLocations.findIndex((k) => k.id === eventLocation.id);
+    // this.activeTabIndex = locationIndex;
+    this.eventLocations.splice(locationIndex, 1);
     this.windowRef.close();
+    this.ActivateTabAdd();
   }
+
+  // deleteEventLocation(deleteConf, eventLocation) {
+  //   if (deleteConf) {
+  //     this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe((data) => {
+  //       const locationIndex = this.eventLocations.findIndex((k) => data.id);
+  //       // const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
+  //       this.eventLocations.splice(locationIndex, 1);
+  //       this.toastLogService.successDialog('Deleted');
+  //       this.changeDetectorRef.markForCheck();
+  //     });
+  //   }
+  //   this.windowRef.close();
+  // }
 
   // from the event emitter of child component
 
@@ -280,5 +301,13 @@ export class EventLocationsComponent implements OnInit {
       : eventLocation.location
       ? eventLocation.location.name
       : '';
+  }
+
+  // ActivateTabAdd() {
+  //   this.setActiveAdd = true;
+  // }
+
+  ActivateTabAdd() {
+    this.tabsetEl.selectTab(this.addTabEl);
   }
 }
