@@ -188,12 +188,23 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   addSlot() {
     this.windowRef.close();
     const newSlot = this.trackSlotForm.get('track_slot').value;
-    this.tags.toString();
+    // const tagsAsString = this.tags.map((tag) => `"${tag}"`).join(' ');
+    // const tagsList = this.tags.map((tag) => `"${tag}"`).join(' ');
+    // let tagsAsString: string = '"' + tags.join('" "') + '"';
+    // newSlot.tags_list = tagsList;
     const startTime = moment({
       years: newSlot.date.getFullYear(),
       months: newSlot.date.getMonth(),
       date: newSlot.date.getDate(),
     });
+    // const tagsAsString = this.tags.map(tag => `"${tag}"`).join(' '); // This will convert the tags array into a string with each tag enclosed within double quotes
+
+    // newSlot.tags_list = tagsAsString;
+
+    //   const tagsArray = this.trackSlotForm.get('track_slot.tags_list').value;
+    //   const tagsString = '"' + tagsArray.join('" "') + '"';
+    //   this.tags = tagsArray;
+    // }
 
     delete newSlot['date'];
     // const sTime = newSlot['start_time'].split(':');
