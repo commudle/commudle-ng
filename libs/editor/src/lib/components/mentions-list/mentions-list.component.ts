@@ -28,7 +28,7 @@ export class MentionsListComponent extends AngularNodeViewComponent {
     const item: MentionResult = this.props['items'][index];
 
     if (item) {
-      this.props['command']({ id: item.id, label: item.name, parent: item.parent });
+      this.props['command']({ id: item.id, label: item.name, model: item.model });
     }
   }
 
@@ -45,6 +45,15 @@ export class MentionsListComponent extends AngularNodeViewComponent {
         return true;
       default:
         return false;
+    }
+  }
+
+  getPicture(item: MentionResult) {
+    switch (item.model) {
+      case 'community':
+        return 'logo_image' in item ? item.logo_image?.i64 : '';
+      case 'user':
+        return 'photo' in item ? item.photo?.i32 : '';
     }
   }
 }

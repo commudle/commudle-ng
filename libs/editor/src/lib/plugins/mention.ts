@@ -14,7 +14,6 @@ export function CustomMention(injector: Injector) {
       class: 'mention',
     },
     suggestion: {
-      // @ts-ignore
       items: ({ query }) => {
         return mentionService
           .getMentions(query)
@@ -31,7 +30,6 @@ export function CustomMention(injector: Injector) {
 
             renderer.updateProps({ props });
 
-            // @ts-ignore
             popup = tippy('body', {
               getReferenceClientRect: props.clientRect,
               appendTo: () => document.body,

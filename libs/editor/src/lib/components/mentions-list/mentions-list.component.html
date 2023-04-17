@@ -1,10 +1,10 @@
-<div class="items">
-  <button
+<nb-list class="items">
+  <nb-list-item
     (click)="selectItem(i)"
     *ngFor="let item of props['items']; index as i"
     [ngClass]="{ 'is-selected': i === selectedIndex }"
     class="item"
   >
-    {{ item.name }}
-  </button>
-</div>
+    <nb-user [name]="item.name" [picture]="getPicture(item)" [title]="item.model"></nb-user>
+  </nb-list-item>
+</nb-list>

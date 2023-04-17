@@ -1,9 +1,8 @@
 import {
-  AfterContentChecked,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
@@ -12,7 +11,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomMention } from '@commudle/editor';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
+import { Editor } from '@tiptap/core';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
 import { UserMessagesService } from 'apps/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'apps/shared-components/services/websockets/discussion-chat.channel';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
@@ -28,7 +32,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
 })
-export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked {
+export class MessagesComponent implements OnInit, OnDestroy {
   @Input() discussion: IDiscussion;
   @Output() newMessage: EventEmitter<any> = new EventEmitter<any>();
 
@@ -48,6 +52,8 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
 
   messageForm;
 
+  editor: Editor;
+
   @ViewChild('messageInput') messageInputRef: ElementRef<HTMLInputElement>;
 
   subscriptions: Subscription[] = [];
@@ -58,11 +64,15 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     private libToastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
     private fb: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef,
     private router: Router,
+    private injector: Injector,
   ) {
     this.messageForm = this.fb.group({
-      content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
+      content: [``, [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
+    });
+
+    this.editor = new Editor({
+      extensions: [Document, Text, Paragraph, CustomMention(injector)],
     });
   }
 
@@ -77,10 +87,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
   ngOnDestroy(): void {
     this.discussionChatChannel.unsubscribe();
     this.subscriptions.forEach((value) => value.unsubscribe());
-  }
-
-  ngAfterContentChecked(): void {
-    this.changeDetectorRef.detectChanges();
+    this.editor.destroy();
   }
 
   receiveData(): void {

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NbListModule, NbUserModule } from '@commudle/theme';
 import { MentionsListComponent } from './components/mentions-list/mentions-list.component';
 import { MentionsNodeComponent } from './components/mentions-node/mentions-node.component';
 import { BubbleMenuDirective } from './directives/bubble-menu.directive';
@@ -9,7 +10,7 @@ import { FloatingMenuDirective } from './directives/floating-menu.directive';
 import { NodeViewContentDirective } from './directives/node-view-content.directive';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, NbListModule, NbUserModule],
   declarations: [
     EditorDirective,
     FloatingMenuDirective,

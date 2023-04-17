@@ -1,3 +1,8 @@
 :host {
   display: inline-block;
 }
+
+.mention {
+  @apply com-px-1.5 com-py-1 com-bg-slate-200 com-text-slate-800 com-cursor-pointer com-rounded-full;
+  @apply hover:com-bg-slate-300;
+}

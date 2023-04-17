@@ -23,6 +23,12 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>;
   contentDOMElement!: HTMLElement | null;
 
+  // TODO: Find a fix for this
+  constructor(component, props, options) {
+    super(component, props, options);
+    this.mount();
+  }
+
   override get dom() {
     return this.renderer.dom;
   }

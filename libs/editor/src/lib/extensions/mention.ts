@@ -68,7 +68,7 @@ export const Mention = (injector: Injector): Node => {
     atom: true,
 
     addAttributes: function () {
-      const params = ['id', 'label', 'parent'];
+      const params = ['id', 'label', 'model'];
 
       return params.reduce((acc: any, param) => {
         acc[param] = {
@@ -87,11 +87,22 @@ export const Mention = (injector: Injector): Node => {
     },
 
     parseHTML() {
-      return [{ tag: 'mention-node' }];
+      return [{ tag: 'mention' }];
     },
 
-    renderHTML({ HTMLAttributes }) {
-      return ['mention-node', mergeAttributes(HTMLAttributes)];
+    renderHTML({ node, HTMLAttributes }) {
+      return [
+        'mention',
+        mergeAttributes(
+          {
+            'data-type': this.name,
+            'data-model': node.attrs['model'],
+          },
+          this.options.HTMLAttributes,
+          HTMLAttributes,
+        ),
+        this.options.renderLabel({ options: this.options, node }),
+      ];
     },
 
     addNodeView() {
