@@ -4,25 +4,23 @@
       <div *ngIf="this.community" class="details">
         <div class="community">
           <div class="logo">
-            <img alt="{{ community.name }}" src="{{community.logo_path}}" title="{{ community.name }}">
+            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
           </div>
           <div>
             <p>{{ community.name }}</p>
           </div>
         </div>
         <div class="event">
-          <h5>{{speakerResource.event.name}}</h5>
+          <h5>{{ speakerResource.event.name }}</h5>
         </div>
         <div>
           <p>
             Hi
-            <strong>{{ speakerResource.user.name }}</strong>,
-            we think that the content shared by you is something that people will benefit from even after the event.
+            <strong>{{ speakerResource.user.name }}</strong
+            >, we think that the content shared by you is something that people will benefit from even after the event.
             Please fill this short form!
           </p>
-          <p>
-            Also, please do update your profile on <a [routerLink]="['/my-profile/edit']">THIS LINK</a>
-          </p>
+          <p>Also, please do update your profile on <a [routerLink]="['/my-profile']">THIS LINK</a></p>
         </div>
       </div>
     </nb-card-body>
@@ -35,11 +33,16 @@
           <div>
             <label>
               Title*
-              <input formControlName="title" fullWidth nbInput type="text">
+              <input formControlName="title" fullWidth nbInput type="text" />
             </label>
             <span
-              *ngIf="speakerResourceForm['controls'].title.touched && speakerResourceForm['controls'].title.invalid && speakerResourceForm['controls'].title.errors.required"
-              class="validation-error-text">
+              *ngIf="
+                speakerResourceForm['controls'].title.touched &&
+                speakerResourceForm['controls'].title.invalid &&
+                speakerResourceForm['controls'].title.errors.required
+              "
+              class="validation-error-text"
+            >
               Required Field
             </span>
           </div>
@@ -49,30 +52,43 @@
               <span (click)="openGoogleSlidesEmbedStepsWindow()" class="open-window-link">
                 Steps to embed Google Slides
               </span>
-              <br>
+              <br />
               <small>These will be shared after the event with everyone!</small>
-              <input formControlName="embedded_content" fullWidth nbInput placeholder="Paste the embed code here"
-                     type="text">
+              <input
+                formControlName="embedded_content"
+                fullWidth
+                nbInput
+                placeholder="Paste the embed code here"
+                type="text"
+              />
             </label>
           </div>
           <div *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode" class="embedded-slides"></div>
           <div>
             <label>
               Session Details*
-              <textarea formControlName="session_details_links" fullWidth nbInput placeholder="My session is about..."
-                        type="text"></textarea>
+              <textarea
+                formControlName="session_details_links"
+                fullWidth
+                nbInput
+                placeholder="My session is about..."
+                type="text"
+              ></textarea>
             </label>
             <span
-              *ngIf="speakerResourceForm['controls'].session_details_links.touched && speakerResourceForm['controls'].session_details_links.invalid && speakerResourceForm['controls'].session_details_links.errors.required"
-              class="validation-error-text">
+              *ngIf="
+                speakerResourceForm['controls'].session_details_links.touched &&
+                speakerResourceForm['controls'].session_details_links.invalid &&
+                speakerResourceForm['controls'].session_details_links.errors.required
+              "
+              class="validation-error-text"
+            >
               Required Field
             </span>
           </div>
 
           <div>
-            <button [disabled]="!speakerResourceForm.valid" fullWidth nbButton status="info" type="submit">
-              Save
-            </button>
+            <button [disabled]="!speakerResourceForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
           </div>
         </form>
       </div>
@@ -93,15 +109,15 @@
             <strong>(Default)</strong>.
           </strong>
         </li>
-        <li>
-          Click Publish
-        </li>
+        <li>Click Publish</li>
         <li>
           Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
           <small>
             <code>
               <div>
-                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
+                <div>
+                  &lt;iframe
+                  src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
                   frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
                   webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
                 </div>

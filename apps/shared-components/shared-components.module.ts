@@ -72,7 +72,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
 import { BannerImageComponent } from './banner-image/banner-image.component';
 import { NbToggleModule } from '@commudle/theme';
 import { AlertComponent } from './alert/alert.component';
-
 @NgModule({
   declarations: [
     WorkInProgressComponent,

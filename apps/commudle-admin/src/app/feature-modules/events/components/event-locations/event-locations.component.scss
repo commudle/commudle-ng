@@ -1,18 +1,42 @@
-
-
-.event-locations-list{
+.event-locations-list {
+  @apply com-mx-0 com-my-5 com-py-2;
   display: flex;
   flex-direction: column;
 
   .event-location {
+    nb-tabset {
+      overflow-x: auto;
+      nb-tab {
+        @apply com-m-0 com-p-3;
 
-    nb-card-header{
+        p {
+          @apply com-m-0 com-p-0;
+        }
+
+        .address {
+          @apply com-mb-2;
+
+          .edit-location-icon {
+            @apply com-mx-2 com-cursor-pointer;
+          }
+          .delete-location-icon {
+            @apply com-cursor-pointer;
+          }
+        }
+
+        .link-to-map {
+          @apply com-mb-4;
+        }
+      }
+    }
+
+    nb-card-header {
       display: flex;
       justify-content: flex-start;
 
       .event-location-details {
         margin-left: 1rem;
-        p{
+        p {
           margin: 0;
           word-wrap: break-word;
         }
@@ -21,9 +45,9 @@
   }
 }
 
-
-.online-event-fields, .offline-event-fields {
-  >div {
+.online-event-fields,
+.offline-event-fields {
+  > div {
     margin-top: 1rem;
   }
 }
@@ -32,13 +56,11 @@
   margin-top: 1rem;
 }
 
-
 .help-text-button {
   p {
-    margin: 0 0 0.5rem
+    margin: 0 0 0.5rem;
   }
 }
-
 
 .embedded-video-popover {
   min-width: 150px;

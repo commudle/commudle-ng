@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NbWindowService } from '@commudle/theme';
+import { NbTabComponent, NbTabsetComponent, NbWindowService } from '@commudle/theme';
 import { faLink, faMapPin, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
@@ -38,6 +38,7 @@ export class EventLocationsComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
+  activeTabIndex = -1;
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
@@ -48,6 +49,9 @@ export class EventLocationsComponent implements OnInit {
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
+
+  @ViewChild('tabset') tabsetEl: NbTabsetComponent;
+  @ViewChild('addTab') addTabEl: NbTabComponent;
 
   constructor(
     private eventLocationsService: EventLocationsService,
@@ -64,7 +68,7 @@ export class EventLocationsComponent implements OnInit {
         address: ['', Validators.required],
         map_link: ['', Validators.required],
       }),
-      event_type: [EEventType.OFFLINE_ONLY, Validators.required],
+      event_type: [EEventType.OFFLINE_ONLY],
       embedded_video_stream: this.fb.group({
         source: [''],
         embed_code: [''],
@@ -135,6 +139,9 @@ export class EventLocationsComponent implements OnInit {
   showAddEventLocationForm() {
     this.eventLocationForm.reset();
     this.selectedEventType = EEventType.OFFLINE_ONLY;
+    this.eventLocationForm.patchValue({
+      event_type: this.selectedEventType,
+    });
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: 'Add Location',
       context: { operationType: 'create' },
@@ -179,6 +186,7 @@ export class EventLocationsComponent implements OnInit {
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
       const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
+      this.activeTabIndex = locationIndex;
       this.eventLocations[locationIndex] = data;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
@@ -195,17 +203,16 @@ export class EventLocationsComponent implements OnInit {
 
   deleteEventLocation(deleteConf, eventLocation) {
     if (deleteConf) {
-      this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe((data) => {
-        const locationIndex = this.eventLocations.findIndex((k) => data.id);
-        this.eventLocations.splice(locationIndex, 1);
+      this.eventLocationsService.deleteEventLocation(eventLocation.id).subscribe(() => {
         this.toastLogService.successDialog('Deleted');
         this.changeDetectorRef.markForCheck();
       });
     }
+    const locationIndex = this.eventLocations.findIndex((k) => k.id === eventLocation.id);
+    this.eventLocations.splice(locationIndex, 1);
     this.windowRef.close();
+    this.activateTabAdd();
   }
-
-  // from the event emitter of child component
 
   addTrack(newTrack, locationIndex) {
     this.eventLocations[locationIndex].event_location_tracks.push(newTrack);
@@ -263,5 +270,21 @@ export class EventLocationsComponent implements OnInit {
 
   openHelpTextWindow() {
     this.windowService.open(this.helpText, { title: 'How to Add Agenda!' });
+  }
+
+  getTabIcon(eventLocation: IEventLocation) {
+    return eventLocation.embedded_video_stream ? 'video' : 'pin';
+  }
+
+  getLocationName(eventLocation: IEventLocation) {
+    return eventLocation.embedded_video_stream
+      ? 'Video Stream'
+      : eventLocation.location
+      ? eventLocation.location.name
+      : '';
+  }
+
+  activateTabAdd() {
+    this.tabsetEl.selectTab(this.addTabEl);
   }
 }
