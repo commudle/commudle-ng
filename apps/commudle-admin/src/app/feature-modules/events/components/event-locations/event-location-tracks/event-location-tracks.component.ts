@@ -129,7 +129,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showAddSlotForm(eventLocationTrack, startTime) {
+  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack) {
     this.trackSlotForm.reset();
     for (const event_location_track of this.eventLocationTracks) {
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
@@ -138,7 +138,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       const time = new Date(startTime);
       const endTime = new Date(time.getTime() + 30 * 60000);
       this.trackSlotForm.get('track_slot').patchValue({
-        event_location_track_id: eventLocationTrack.id,
+        event_location_track_id: eventLocTrack.id,
         date: this.minSlotDate,
         start_time: time,
         end_time: endTime,
