@@ -50,7 +50,7 @@
                 <div class="session-title">
                   <div *ngIf="slot.tags_list" class="tag-badge">
                     <app-badge
-                      *ngFor="let tag of slot.tags_list.split(',')"
+                      *ngFor="let tag of slot.tags_list.split('')"
                       [fontSize]="'small'"
                       [text]="tag"
                     ></app-badge>
@@ -320,7 +320,7 @@
           (keypress)="restrictComma($event)"
           fullWidth
           nbTagInput
-          placeholder="Enter Tag (Press , to enter new tag)"
+          placeholder="Enter Tag"
           type="text"
           formControlName="tags_list"
         />
