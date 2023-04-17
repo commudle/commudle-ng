@@ -4,26 +4,29 @@
   flex-direction: column;
 
   .event-location {
-    nb-tab {
-      @apply com-m-0 com-p-3;
+    nb-tabset {
+      overflow-x: auto;
+      nb-tab {
+        @apply com-m-0 com-p-3;
 
-      p {
-        @apply com-m-0 com-p-0;
-      }
-
-      .address {
-        @apply com-mb-2;
-
-        .edit-location-icon {
-          @apply com-mx-2 com-cursor-pointer;
+        p {
+          @apply com-m-0 com-p-0;
         }
-        .delete-location-icon {
-          @apply com-cursor-pointer;
-        }
-      }
 
-      .link-to-map {
-        @apply com-mb-4;
+        .address {
+          @apply com-mb-2;
+
+          .edit-location-icon {
+            @apply com-mx-2 com-cursor-pointer;
+          }
+          .delete-location-icon {
+            @apply com-cursor-pointer;
+          }
+        }
+
+        .link-to-map {
+          @apply com-mb-4;
+        }
       }
     }
 
