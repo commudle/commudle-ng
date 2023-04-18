@@ -137,6 +137,8 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     this._ngZone.runOutsideAngular(() => {
       const time = new Date(startTime);
       const endTime = new Date(time.getTime() + 30 * 60000);
+
+      this.tags = [];
       this.trackSlotForm.get('track_slot').patchValue({
         event_location_track_id: eventLocTrack.id,
         date: this.minSlotDate,
@@ -206,6 +208,8 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     eTimeNew.setMinutes(eTimeMinute);
 
     const trackDate = moment(trackSlot.start_time).toDate();
+    const tags = trackSlot.tags_list ? trackSlot.tags_list.split(' ') : [];
+    this.tags = tags;
 
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: trackSlot.event_location_track_id,
@@ -216,7 +220,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       // @ts-ignore
       end_time: eTimeNew,
       session_title: trackSlot.session_title,
-      tags_list: trackSlot.tags_list,
+      // tags_list: trackSlot.tags_list,
       speaker_registration_id: trackSlot.speaker_registration_id,
     });
 
