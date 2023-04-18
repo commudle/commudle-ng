@@ -271,8 +271,14 @@
         </span>
       </div>
 
-      <div class="date">
-        <input formControlName="date" fullWidth nbInput placeholder="Date*" />
+      <!-- <div class="date">
+        <input
+          fullWidth
+          nbInput
+          placeholder="Date*"
+          value="{{ trackSlotForm['controls'].track_slot['controls'].date.value | date : 'fullDate' }}"
+          disabled
+        />
         <span
           *ngIf="
             trackSlotForm['controls'].track_slot['controls'].date.touched &&
@@ -282,8 +288,7 @@
         >
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
-        <!-- <nb-datepicker #datepicker></nb-datepicker> -->
-      </div>
+      </div> -->
 
       <div class="start-time">
         <input
