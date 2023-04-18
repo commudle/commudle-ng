@@ -216,7 +216,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
       // @ts-ignore
       end_time: eTimeNew,
       session_title: trackSlot.session_title,
-      tags_list: trackSlot.tags_list,
+      // tags_list: trackSlot.tags_list,
       speaker_registration_id: trackSlot.speaker_registration_id,
     });
 

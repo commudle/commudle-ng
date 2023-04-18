@@ -16,19 +16,11 @@
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
         (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
       >
-        <nb-accordion-item-header class="com-justify-between">
+        <nb-accordion-item-header>
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
-          <div *ngIf="event.editable" class="com-mr-8">
-            <button (click)="showEditTrackForm(elt); $event.stopPropagation()" nbButton size="tiny" status="info">
-              <nb-icon icon="edit-outline"></nb-icon>
-            </button>
-            &nbsp;
-            <button (click)="confirmDeleteTrack(elt); $event.stopPropagation()" nbButton size="tiny" status="danger">
-              <nb-icon icon="close"></nb-icon>
-            </button>
-            &nbsp;
+          <div *ngIf="event.editable" class="actions">
             <button
               (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
               nbButton
@@ -36,12 +28,21 @@
               status="primary"
             >
               <nb-icon icon="plus"></nb-icon>
+              Add Speaker Slot
+            </button>
+            &nbsp;
+            <button (click)="showEditTrackForm(elt); $event.stopPropagation()" nbButton size="tiny" status="info">
+              <nb-icon icon="edit-outline"></nb-icon>
+            </button>
+            &nbsp;
+            <button (click)="confirmDeleteTrack(elt); $event.stopPropagation()" nbButton size="tiny" status="danger">
+              <nb-icon icon="trash-outline"></nb-icon>
             </button>
           </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0">
           <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
-            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index" class="com-p-0">
+            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
                 <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
@@ -50,7 +51,7 @@
                 <div class="session-title">
                   <div *ngIf="slot.tags_list" class="tag-badge">
                     <app-badge
-                      *ngFor="let tag of slot.tags_list.split('')"
+                      *ngFor="let tag of slot.tags_list.split(' ')"
                       [fontSize]="'small'"
                       [text]="tag"
                     ></app-badge>
@@ -97,21 +98,25 @@
                   </p>
                 </div>
               </div>
-              <nb-icon
-                icon="edit-outline"
-                (click)="showEditSlotForm(slot); $event.stopPropagation()"
-                class="edit-outline"
-              ></nb-icon>
+              <div *ngIf="event.editable">
+                <nb-icon
+                  icon="edit-outline"
+                  (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                  class="edit-outline"
+                ></nb-icon>
+              </div>
               &nbsp;
-              <nb-icon
-                icon="close-circle-outline"
-                (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
-                status="danger"
-                class="close-circle-outline"
-              ></nb-icon>
+              <div *ngIf="event.editable">
+                <nb-icon
+                  icon="trash-outline"
+                  (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
+                  status="danger"
+                  class="close-circle-outline"
+                ></nb-icon>
+              </div>
             </nb-list-item>
           </nb-list>
-          <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Slots Yet</div>
+          <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Speaker Slots Added</div>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
@@ -267,7 +272,7 @@
       </div>
 
       <div class="date">
-        <input [nbDatepicker]="datepicker" formControlName="date" fullWidth nbInput placeholder="Date*" />
+        <input formControlName="date" fullWidth nbInput placeholder="Date*" />
         <span
           *ngIf="
             trackSlotForm['controls'].track_slot['controls'].date.touched &&
@@ -277,7 +282,7 @@
         >
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
-        <nb-datepicker #datepicker></nb-datepicker>
+        <!-- <nb-datepicker #datepicker></nb-datepicker> -->
       </div>
 
       <div class="start-time">
@@ -320,7 +325,7 @@
           (keypress)="restrictComma($event)"
           fullWidth
           nbTagInput
-          placeholder="Enter Tag"
+          placeholder="Type a tag name and press comma ',' to add the tag"
           type="text"
           formControlName="tags_list"
         />
