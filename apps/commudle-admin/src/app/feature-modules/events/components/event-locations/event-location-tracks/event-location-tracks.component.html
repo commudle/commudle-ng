@@ -40,7 +40,7 @@
             </button>
           </div>
         </nb-accordion-item-header>
-        <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0">
+        <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
           <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
             <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
               <div class="session-time">
@@ -70,8 +70,8 @@
                       class="add-session"
                       target="_blank"
                     >
-                      <nb-icon icon="clipboard-outline"></nb-icon>
                       Add session slides
+                      <nb-icon icon="clipboard-outline"></nb-icon>
                     </a>
                     <a
                       *ngIf="slot.speaker_resource"
@@ -80,8 +80,8 @@
                       class="edit-session"
                       target="_blank"
                     >
-                      <nb-icon icon="clipboard-outline"></nb-icon>
                       <span>Edit Session Details/Slides</span>
+                      <nb-icon icon="clipboard-outline"></nb-icon>
                     </a>
                   </div>
                   <p class="public-session">
@@ -91,8 +91,8 @@
                         [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
                         target="_blank"
                       >
-                        <nb-icon icon="external-link"></nb-icon>
                         Public Session Page
+                        <nb-icon icon="external-link"></nb-icon>
                       </a>
                     </small>
                   </p>

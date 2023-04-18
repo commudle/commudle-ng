@@ -12,9 +12,9 @@
       &nbsp; Add
     </button>
   </div>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div *ngIf="eventLocations">
     <nb-card *ngIf="eventLocations.length > 0" class="event-locations-list">
-      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div class="event-location">
         <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
           <nb-tab
