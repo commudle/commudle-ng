@@ -208,7 +208,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     eTimeNew.setMinutes(eTimeMinute);
 
     const trackDate = moment(trackSlot.start_time).toDate();
-    const tags = trackSlot.tags_list.split(' ');
+    const tags = trackSlot.tags_list ? trackSlot.tags_list.split(' ') : [];
     this.tags = tags;
 
     this.trackSlotForm.get('track_slot').patchValue({
