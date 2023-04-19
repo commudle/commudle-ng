@@ -1,54 +1,70 @@
-.form-description {
-  p {
-    @apply com-pt-4 com-px-3 com-pb-78px com-text-base com-font-normal com-leading-5;
-    white-space: pre-wrap;
-    color: grey;
-  }
-}
-.question {
-  margin-bottom: 1.5rem;
-  .description {
-    white-space: pre-wrap;
-  }
-  .answer {
-    padding: 0;
-
-    .checkboxes {
-      @apply com-gap-3;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-    }
-  }
-  .detail {
-    display: flex;
-
-    .index {
-      @apply com-mt-0 com-mb-2 com-text-base com-font-medium com-text-Yankees-Blue com-pr-1;
-    }
-
-    p {
-      @apply com-mt-0 com-mb-2;
-      .title {
-        @apply com-text-base com-font-medium com-text-Yankees-Blue;
+.data-form {
+  max-width: 920px;
+  margin: 0 auto;
+  nb-card {
+    @apply com-mb-3;
+    .form-description {
+      @apply com-mb-3 com-mt-0 com-mx-0;
+      p {
+        @apply com-py-4 com-px-3 com-text-base com-font-normal com-leading-5 com-m-0;
+        white-space: pre-wrap;
+        color: grey;
       }
     }
-    .required-question {
-      color: red;
+  }
+  .question {
+    @apply com-m-0;
+
+    nb-card {
+      @apply com-mx-2 com-p-4 com-mb-2 com-mt-0;
+      .description {
+        white-space: pre-wrap;
+      }
+      .answer {
+        padding: 0;
+
+        .checkboxes {
+          @apply com-gap-3;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+        }
+      }
+      .detail {
+        display: flex;
+
+        .index {
+          @apply com-mt-0 com-mb-2 com-text-base com-font-medium com-text-Yankees-Blue com-pr-1;
+        }
+
+        p {
+          @apply com-mt-0 com-mb-2;
+          .title {
+            @apply com-text-base com-font-medium com-text-Yankees-Blue;
+          }
+        }
+        .required-question {
+          color: red;
+        }
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        nb-option: {
+          padding: 0;
+          margin-right: 1rem;
+        }
+      }
     }
   }
 
-  .options {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    nb-option: {
-      padding: 0;
-      margin-right: 1rem;
+  .submit-button {
+    @apply com-p-0 com-mx-2 com-mt-4;
+
+    button {
+      @apply com-px-0;
     }
   }
-}
-
-.submit-button {
-  margin-top: 1rem;
 }
