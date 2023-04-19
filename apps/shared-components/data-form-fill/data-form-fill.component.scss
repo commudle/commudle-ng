@@ -1,8 +1,7 @@
 .form-description {
   p {
+    @apply com-pt-4 com-px-3 com-pb-78px com-text-base com-font-normal com-leading-5;
     white-space: pre-wrap;
-    padding: 0.5rem;
-    font-size: 1.2rem;
     color: grey;
   }
 }
