@@ -9,17 +9,18 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomMention } from '@commudle/editor';
+import { length, required, whitespace } from '@commudle/shared-validators';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import { Editor } from '@tiptap/core';
+import { CharacterCount } from '@tiptap/extension-character-count';
 import { Document } from '@tiptap/extension-document';
 import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { UserMessagesService } from 'apps/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'apps/shared-components/services/websockets/discussion-chat.channel';
-import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
@@ -67,13 +68,18 @@ export class MessagesComponent implements OnInit, OnDestroy {
     private router: Router,
     private injector: Injector,
   ) {
-    this.messageForm = this.fb.group({
-      content: [``, [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
+    this.editor = new Editor({
+      extensions: [Document, Text, Paragraph, CharacterCount, CustomMention(injector)],
     });
 
-    this.editor = new Editor({
-      extensions: [Document, Text, Paragraph, CustomMention(injector)],
-    });
+    this.messageForm = this.fb.group(
+      {
+        content: [''],
+      },
+      {
+        validators: [required(this.editor), length(this.editor, 1, 200), whitespace(this.editor)],
+      },
+    );
   }
 
   ngOnInit(): void {

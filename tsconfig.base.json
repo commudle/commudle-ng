@@ -19,7 +19,8 @@
       "@commudle/editor": ["libs/editor/src/index.ts"],
       "@commudle/ngx-datatable": ["libs/ngx-datatable/src/index.ts"],
       "@commudle/shared-models": ["libs/shared/models/src/index.ts"],
-      "@commudle/shared-services": ["libs/shared/services/src/index.ts"]
+      "@commudle/shared-services": ["libs/shared/services/src/index.ts"],
+      "@commudle/shared-validators": ["libs/shared/validators/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

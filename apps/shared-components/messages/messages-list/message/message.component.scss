@@ -45,9 +45,18 @@ p {
         }
       }
 
-      .content {
-        margin: $space-4 0;
-        word-break: break-word;
+      tiptap-editor {
+        @apply com-block com-bg-white com-w-full com-outline-none;
+
+        ::ng-deep {
+          div.ProseMirror {
+            @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-my-2 com-h-full;
+
+            p {
+              @apply com-mt-0 com-mb-0.5;
+            }
+          }
+        }
       }
     }
   }

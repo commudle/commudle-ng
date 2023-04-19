@@ -68,7 +68,7 @@ export const Mention = (injector: Injector): Node => {
     atom: true,
 
     addAttributes: function () {
-      const params = ['id', 'label', 'model'];
+      const params = ['id', 'label', 'model', 'slug1'];
 
       return params.reduce((acc: any, param) => {
         acc[param] = {
@@ -97,6 +97,7 @@ export const Mention = (injector: Injector): Node => {
           {
             'data-type': this.name,
             'data-model': node.attrs['model'],
+            'data-slug1': node.attrs['slug1'],
           },
           this.options.HTMLAttributes,
           HTMLAttributes,

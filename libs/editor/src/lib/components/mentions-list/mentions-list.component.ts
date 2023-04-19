@@ -28,7 +28,24 @@ export class MentionsListComponent extends AngularNodeViewComponent {
     const item: MentionResult = this.props['items'][index];
 
     if (item) {
-      this.props['command']({ id: item.id, label: item.name, model: item.model });
+      switch (item.model) {
+        case 'community':
+          this.props['command']({
+            id: item.id,
+            label: item.name,
+            model: item.model,
+            slug1: 'slug' in item ? item.slug : '',
+          });
+          break;
+        case 'user':
+          this.props['command']({
+            id: item.id,
+            label: item.name,
+            model: item.model,
+            slug1: 'username' in item ? item.username : '',
+          });
+          break;
+      }
     }
   }
 

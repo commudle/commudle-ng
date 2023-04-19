@@ -14,6 +14,8 @@
   }
 
   .send-message {
+    @apply com-overflow-auto;
+
     emoji-mart {
       bottom: 40px;
       display: none;

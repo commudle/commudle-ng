@@ -20,7 +20,7 @@
         />
         <p class="time">{{ moment(message.created_at).fromNow() }}</p>
       </div>
-      <p [innerHTML]="message.content | linky : { sanitizeHtml: true }" class="content"></p>
+      <tiptap-editor [editor]="valueEditor"></tiptap-editor>
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">

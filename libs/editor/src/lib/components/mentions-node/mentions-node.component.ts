@@ -18,10 +18,10 @@ export class MentionsNodeComponent extends AngularNodeViewComponent implements O
     const model: MentionModel = this.node.attrs.model;
     switch (model) {
       case 'community':
-        this.openInNewTab(`/communities/${this.node.attrs.slug}`);
+        this.openInNewTab(`/communities/${this.node.attrs.slug1}`);
         break;
       case 'user':
-        this.openInNewTab(`/users/${this.node.attrs.username}`);
+        this.openInNewTab(`/users/${this.node.attrs.slug1}`);
         break;
     }
   }
