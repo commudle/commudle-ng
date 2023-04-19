@@ -51,6 +51,10 @@
     .question-container {
       @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
 
+      .asterik {
+        @apply com-text-red-500;
+      }
+
       textarea {
         @apply com-mb-0 com-mt-1;
         background-color: white;

@@ -52,7 +52,8 @@
               <nb-card-body>
                 <div class="custom-question-container">
                   <label>
-                    Question {{ i + 1 }} *
+                    Question {{ i + 1 }}
+                    <span *ngIf="question.get('required').value" class="asterik">*</span>
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -71,7 +72,8 @@
                   <div>
                     <div class="question-container">
                       <label>
-                        Question {{ i + 1 }} *
+                        Question {{ i + 1 }}
+                        <span *ngIf="question.get('required').value" class="asterik">*</span>
                         <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
                       </label>
                       <span
@@ -190,7 +192,9 @@
                       <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
-                    <nb-toggle size="tiny" labelPosition="right" class="toggle"><span>Required</span></nb-toggle>
+                    <nb-toggle size="tiny" labelPosition="right" class="toggle" formControlName="required"
+                      ><span>Required</span></nb-toggle
+                    >
                   </div>
                   <button
                     nbButton

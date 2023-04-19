@@ -72,7 +72,8 @@
               <nb-card-body>
                 <div class="custom-question-container">
                   <label>
-                    Question {{ i + 1 }} *
+                    Question {{ i + 1 }}
+                    <span *ngIf="question.get('required').value" class="asterik">*</span>
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -91,7 +92,8 @@
                   <div class="question-container">
                     <div>
                       <label>
-                        Question {{ i + 1 }} *
+                        Question {{ i + 1 }}
+                        <span *ngIf="question.get('required').value" class="asterik">*</span>
                         <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                       </label>
                       <span
