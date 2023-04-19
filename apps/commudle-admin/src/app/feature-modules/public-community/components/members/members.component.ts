@@ -71,8 +71,6 @@ export class MembersComponent implements OnInit, OnDestroy {
           this.page += 1;
           this.total = data.total;
           this.isLoadingMembers = false;
-          console.log(this.total, 'total');
-          console.log(this.members.length, 'memebers.length');
           if (this.members.length >= this.total) {
             this.canLoadMore = false;
           }
