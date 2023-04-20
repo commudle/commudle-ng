@@ -71,8 +71,7 @@
 
 .dfeg-create-form {
   > div {
-    display: flex;
-    flex-direction: column;
+    @apply com-flex com-flex-col com-items-start;
     > div {
       margin: 0.5rem;
     }
