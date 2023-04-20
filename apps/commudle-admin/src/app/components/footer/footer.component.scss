@@ -38,7 +38,7 @@ footer {
     @apply com-flex com-justify-center;
 
     ul {
-      @apply com-flex com-list-none com-space-x-4 com-text-gray-500 com-items-center;
+      @apply com-flex com-list-none com-space-x-10 com-text-gray-500 com-items-center;
 
       li {
         a {
@@ -46,7 +46,7 @@ footer {
         }
 
         img {
-          @apply com-text-2xl;
+          @apply com-h-8;
         }
       }
     }
