@@ -13,9 +13,8 @@
           <div class="detail">
             <span class="index">{{ i + 1 }}.</span>
             <p>
-              <span [innerHTML]="question.title | linky : { sanitizeHtml: true }" class="title">
-                <span *ngIf="question.required" class="required-question">*</span>
-              </span>
+              <span [innerHTML]="question.title | linky : { sanitizeHtml: true }" class="title"></span>
+              <span *ngIf="question.required" class="required-question">*</span>
               <br />
               <small
                 *ngIf="question.description"

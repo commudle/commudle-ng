@@ -6,9 +6,8 @@
     .form-description {
       @apply com-mb-3 com-mt-0 com-mx-0;
       p {
-        @apply com-py-4 com-px-3 com-text-base com-font-normal com-leading-5 com-m-0;
+        @apply com-py-4 com-px-3 com-text-base com-font-normal com-leading-5 com-m-0 com-text-gray-500;
         white-space: pre-wrap;
-        color: grey;
       }
     }
   }
@@ -44,7 +43,7 @@
           }
         }
         .required-question {
-          color: red;
+          @apply com-text-red-500 com-ml-2px;
         }
       }
 
