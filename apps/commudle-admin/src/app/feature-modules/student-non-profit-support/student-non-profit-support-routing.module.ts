@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '/student-non-profit-community-support',
+    path: '',
     component: StudentNonProfitCommunitySupportComponent,
   },
 ];
@@ -13,6 +13,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class StudentNonProfitSupportRoutingModule {}
