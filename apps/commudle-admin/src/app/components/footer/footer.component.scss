@@ -33,4 +33,22 @@ footer {
     @apply com-mt-12 com-border-t com-border-gray-200 com-pt-8;
     border-top-style: solid;
   }
+
+  .links {
+    @apply com-flex com-justify-center;
+
+    ul {
+      @apply com-flex com-list-none com-space-x-4 com-text-gray-500 com-items-center;
+
+      li {
+        a {
+          @apply com-text-gray-500;
+        }
+
+        img {
+          @apply com-text-2xl;
+        }
+      }
+    }
+  }
 }
