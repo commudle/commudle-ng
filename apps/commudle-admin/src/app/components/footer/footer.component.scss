@@ -34,19 +34,27 @@ footer {
     border-top-style: solid;
   }
 
-  .links {
-    @apply com-flex com-justify-center;
+  .show-footer {
+    @apply com-mx-16;
 
-    ul {
-      @apply com-flex com-list-none com-space-x-10 com-text-gray-500 com-items-center;
+    hr {
+      @apply com-text-gray-500;
+    }
 
-      li {
-        a {
-          @apply com-text-gray-500;
-        }
+    .links {
+      @apply com-flex com-justify-center com-pt-8 com-pb-2;
 
-        img {
-          @apply com-h-8;
+      ul {
+        @apply com-flex com-list-none com-space-x-10 com-text-gray-500 com-items-center;
+
+        li {
+          a {
+            @apply com-text-gray-500;
+          }
+
+          img {
+            @apply com-h-8;
+          }
         }
       }
     }
