@@ -1,6 +1,16 @@
 <div class="commudle-editor">
   <commudle-editor-menu *ngIf="showMenu && editable" [editor]="editor"></commudle-editor-menu>
   <tiptap [editor]="editor" [ngClass]="{ editable: editable }"></tiptap>
+  <!-- TODO: Replace emoji mart with inbuilt emoji picker -->
+  <button (click)="toggleEmojiPicker()" *ngIf="editable" class="emoji-button" ghost nbButton>
+    <nb-icon icon="smiling-face-outline"></nb-icon>
+  </button>
+  <emoji-mart
+    (emojiSelect)="onEmojiSelect($event)"
+    *ngIf="showEmojiPicker$ | async"
+    set="twitter"
+    title="Select an emoji!"
+  ></emoji-mart>
   <button (click)="onClick()" *ngIf="editable" [disabled]="!isValid" class="submit-button" ghost nbButton>
     <nb-icon icon="paper-plane"></nb-icon>
   </button>

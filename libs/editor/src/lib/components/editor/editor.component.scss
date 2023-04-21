@@ -5,7 +5,7 @@
 }
 
 .commudle-editor {
-  @apply com-flex;
+  @apply com-flex com-relative;
 
   commudle-editor-menu {
   }
@@ -60,6 +60,13 @@
         background-color: darken($light-purple, 8%);
       }
     }
+  }
+
+  .emoji-button {
+  }
+
+  emoji-mart {
+    @apply com-absolute com-bottom-10 com-right-0;
   }
 
   .submit-button {
