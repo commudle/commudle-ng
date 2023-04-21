@@ -33,19 +33,19 @@
       //    @apply com-p-2.5;
       //  }
       //}
-      tiptap-editor {
-        @apply com-block com-bg-white com-border com-border-gray-300 com-border-solid com-rounded com-w-full com-outline-none com-max-h-24 com-overflow-y-auto;
-
-        ::ng-deep {
-          div.ProseMirror {
-            @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-p-2 com-h-full;
-
-            p {
-              @apply com-mt-0 com-mb-0.5;
-            }
-          }
-        }
-      }
+      //tiptap-editor {
+      //  @apply com-block com-bg-white com-border com-border-gray-300 com-border-solid com-rounded com-w-full com-outline-none com-max-h-24 com-overflow-y-auto;
+      //
+      //  ::ng-deep {
+      //    div.ProseMirror {
+      //      @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-p-2 com-h-full;
+      //
+      //      p {
+      //        @apply com-mt-0 com-mb-0.5;
+      //      }
+      //    }
+      //  }
+      //}
     }
   }
 }

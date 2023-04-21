@@ -26,7 +26,7 @@ import * as moment from 'moment';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
 })
-export class MessageComponent implements OnInit, OnDestroy {
+export class MessageComponent implements OnInit {
   @Input() canReply: boolean;
   @Input() message: IUserMessage;
   @Input() currentUser: ICurrentUser;
@@ -46,28 +46,15 @@ export class MessageComponent implements OnInit, OnDestroy {
 
   @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
 
-  valueEditor: Editor;
-
   faGrin = faGrin;
 
   constructor(private fb: FormBuilder, private injector: Injector) {
     this.replyForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });
-
-    this.valueEditor = new Editor({
-      extensions: [Document, Text, Paragraph, CustomMention(injector)],
-      editable: false,
-    });
   }
 
-  ngOnInit(): void {
-    this.valueEditor.commands.setContent(this.message.content);
-  }
-
-  ngOnDestroy(): void {
-    this.valueEditor.destroy();
-  }
+  ngOnInit(): void {}
 
   emitReply(): void {
     if (this.replyForm.valid) {

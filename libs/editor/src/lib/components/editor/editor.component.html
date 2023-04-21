@@ -1,0 +1,7 @@
+<div class="commudle-editor">
+  <commudle-editor-menu *ngIf="showMenu && editable" [editor]="editor"></commudle-editor-menu>
+  <tiptap [editor]="editor" [ngClass]="{ editable: editable }"></tiptap>
+  <button (click)="onClick()" *ngIf="editable" [disabled]="!isValid" class="submit-button" ghost nbButton>
+    <nb-icon icon="paper-plane"></nb-icon>
+  </button>
+</div>

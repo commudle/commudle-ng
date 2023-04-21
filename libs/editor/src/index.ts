@@ -4,6 +4,10 @@ export * from './lib/directives/bubble-menu.directive';
 export * from './lib/directives/draggable.directive';
 export * from './lib/directives/node-view-content.directive';
 
+export * from './lib/models/editor-validator.model';
+
 export * from './lib/plugins/mention';
 
 export * from './lib/editor.module';
+
+export * from './lib/components/editor/editor.component';

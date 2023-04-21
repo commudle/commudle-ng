@@ -1,24 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomMention } from '@commudle/editor';
-import { length, required, whitespace } from '@commudle/shared-validators';
-import { faGrin } from '@fortawesome/free-regular-svg-icons';
-import { Editor } from '@tiptap/core';
-import { CharacterCount } from '@tiptap/extension-character-count';
-import { Document } from '@tiptap/extension-document';
-import { Paragraph } from '@tiptap/extension-paragraph';
-import { Text } from '@tiptap/extension-text';
+import { IEditorValidator } from '@commudle/editor';
 import { UserMessagesService } from 'apps/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'apps/shared-components/services/websockets/discussion-chat.channel';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -47,15 +30,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   count = 10;
   isLoadingMessages = true;
   showMessagesLoader = true;
-  showEmojiPicker = false;
+  isBlocked = false;
 
-  faGrin = faGrin;
-
-  messageForm;
-
-  editor: Editor;
-
-  @ViewChild('messageInput') messageInputRef: ElementRef<HTMLInputElement>;
+  validators: IEditorValidator = {
+    required: true,
+    minLength: 1,
+    maxLength: 200,
+    noWhitespace: true,
+  };
 
   subscriptions: Subscription[] = [];
 
@@ -66,21 +48,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     private userMessagesService: UserMessagesService,
     private fb: FormBuilder,
     private router: Router,
-    private injector: Injector,
-  ) {
-    this.editor = new Editor({
-      extensions: [Document, Text, Paragraph, CharacterCount, CustomMention(injector)],
-    });
-
-    this.messageForm = this.fb.group(
-      {
-        content: [''],
-      },
-      {
-        validators: [required(this.editor), length(this.editor, 1, 200), whitespace(this.editor)],
-      },
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.libAuthwatchService.currentUser$.subscribe((value) => (this.currentUser = value)));
@@ -93,7 +61,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.discussionChatChannel.unsubscribe();
     this.subscriptions.forEach((value) => value.unsubscribe());
-    this.editor.destroy();
   }
 
   receiveData(): void {
@@ -103,9 +70,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
           switch (value.action) {
             case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS:
               this.permittedActions = value.permitted_actions;
-              if (this.permittedActions.includes(this.discussionChatChannel.ACTIONS.BLOCKED)) {
-                this.messageForm.disable();
-              }
+              this.isBlocked = this.permittedActions.includes(this.discussionChatChannel.ACTIONS.BLOCKED);
               break;
             case this.discussionChatChannel.ACTIONS.ADD:
               this.messages.push(value.user_message);
@@ -167,14 +132,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendMessage(): void {
-    if (this.messageForm.valid) {
-      const messageContent = this.messageForm.value;
-      this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.ADD, { user_message: messageContent });
-      this.messageForm.reset();
-      this.messageForm.updateValueAndValidity();
-      this.showEmojiPicker = false;
-    }
+  sendMessage(content: string): void {
+    this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.ADD, { user_message: { content } });
   }
 
   sendReply(value): void {
@@ -195,13 +154,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       ? this.discussionChatChannel.ACTIONS.DELETE_SELF
       : this.discussionChatChannel.ACTIONS.DELETE_ANY;
     this.discussionChatChannel.sendData(action, { user_message_id: messageId });
-  }
-
-  addEmoji(event): void {
-    this.messageForm.patchValue({
-      content: (this.messageForm.get('content').value || '').concat(event.emoji.native),
-    });
-    this.messageInputRef.nativeElement.focus();
   }
 
   login() {

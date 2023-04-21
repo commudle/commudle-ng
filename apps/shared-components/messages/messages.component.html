@@ -17,69 +17,19 @@
     </div>
   </ng-template>
 
-  <div *ngIf="currentUser; else noUser" class="send-message">
-    <emoji-mart
-      (emojiSelect)="addEmoji($event)"
-      [ngClass]="{ active: showEmojiPicker }"
-      [style]="{ width: '100%' }"
-      set="twitter"
-      title="Select an emoji"
-    ></emoji-mart>
-    <form
-      (submit)="sendMessage()"
-      *ngIf="permittedActions.includes(allActions.ADD) || permittedActions.includes(allActions.BLOCKED)"
-      [formGroup]="messageForm"
-      class="message-form"
-    >
-      <!--      <nb-form-field>-->
-      <!--        <button-->
-      <!--          (click)="showEmojiPicker = !showEmojiPicker"-->
-      <!--          [disabled]="permittedActions.includes(allActions.BLOCKED)"-->
-      <!--          class="emoji-picker"-->
-      <!--          ghost-->
-      <!--          nbButton-->
-      <!--          nbPrefix-->
-      <!--          type="button"-->
-      <!--        >-->
-      <!--          <fa-icon [icon]="faGrin"></fa-icon>-->
-      <!--        </button>-->
-      <!--        <input-->
-      <!--          #messageInput-->
-      <!--          [placeholder]="permittedActions.includes(allActions.BLOCKED) ? 'You are blocked' : 'Add a Comment'"-->
-      <!--          appMention-->
-      <!--          formControlName="content"-->
-      <!--          fullWidth-->
-      <!--          maxlength="200"-->
-      <!--          minlength="1"-->
-      <!--          nbInput-->
-      <!--          type="text"-->
-      <!--        />-->
-      <!--        <button-->
-      <!--          [disabled]="!messageForm.valid || permittedActions.includes(allActions.BLOCKED)"-->
-      <!--          ghost-->
-      <!--          nbButton-->
-      <!--          nbSuffix-->
-      <!--        >-->
-      <!--          <nb-icon icon="paper-plane"></nb-icon>-->
-      <!--        </button>-->
-      <!--      </nb-form-field>-->
-      <div class="com-flex">
-        <tiptap-editor [editor]="editor" formControlName="content"></tiptap-editor>
-        <button
-          [disabled]="!messageForm.valid || permittedActions.includes(allActions.BLOCKED)"
-          ghost
-          nbButton
-          type="submit"
-        >
-          <nb-icon icon="paper-plane"></nb-icon>
-        </button>
-      </div>
-    </form>
-  </div>
+  <commudle-editor
+    (contentChange)="sendMessage($event)"
+    *ngIf="currentUser; else noUser"
+    [validators]="validators"
+  ></commudle-editor>
   <ng-template #noUser>
-    <button (click)="login()" fullWidth nbButton status="info">
+    <button (click)="login()" *ngIf="!isBlocked" fullWidth nbButton status="info">
       <nb-icon icon="person-outline"></nb-icon>
       Login to comment
     </button>
+
+    <div *ngIf="isBlocked" class="blocked">
+      <p>You have been blocked from this discussion</p>
+    </div>
   </ng-template>
 </div>

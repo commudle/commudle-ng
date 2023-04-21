@@ -20,7 +20,7 @@
         />
         <p class="time">{{ moment(message.created_at).fromNow() }}</p>
       </div>
-      <tiptap-editor [editor]="valueEditor"></tiptap-editor>
+      <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
