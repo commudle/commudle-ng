@@ -5,7 +5,7 @@
 
   .event-location {
     nb-tabset {
-      overflow-x: auto;
+      @apply com-overflow-x-auto;
       nb-tab {
         @apply com-m-0 com-p-3;
 
