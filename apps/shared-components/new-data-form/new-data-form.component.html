@@ -131,9 +131,7 @@
                       </nb-form-field>
                       <span
                         *ngIf="
-                          question.get('question_type_id').touched &&
-                          question.get('question_type_id').invalid &&
-                          question.get('question_type_id').errors.required
+                          question.get('question_type_id').invalid && question.get('question_type_id').errors.required
                         "
                       >
                         <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
