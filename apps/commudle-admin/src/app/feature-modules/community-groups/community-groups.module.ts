@@ -1,6 +1,14 @@
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbCardModule, NbButtonModule, NbInputModule, NbIconModule, NbTabsetModule } from '@commudle/theme';
+import {
+  NbCardModule,
+  NbButtonModule,
+  NbInputModule,
+  NbIconModule,
+  NbTagModule,
+  NbRouteTabsetModule,
+  NbFormFieldModule,
+} from '@commudle/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommunityGroupsRoutingModule } from './community-groups-routing.module';
@@ -12,6 +20,11 @@ import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.compone
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { AdminTeamComponent } from './components/admin-team/admin-team.component';
 import { MembersListComponent } from './components/members-list/members-list.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
+import { EventsComponent } from './components/communities/events/events.component';
+import { ChannelsComponent } from './components/communities/channels/channels.component';
+import { CommunityComponent } from './components/communities/community/community.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +33,9 @@ import { MembersListComponent } from './components/members-list/members-list.com
     CommunitiesComponent,
     AdminTeamComponent,
     MembersListComponent,
+    EventsComponent,
+    ChannelsComponent,
+    CommunityComponent,
   ],
   imports: [
     CommonModule,
@@ -29,16 +45,20 @@ import { MembersListComponent } from './components/members-list/members-list.com
     EditorModule,
     SharedComponentsModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     //standalone components
     SidebarComponent,
+    SkeletonCardsComponent,
 
     // Nebular
     NbCardModule,
     NbInputModule,
     NbButtonModule,
     NbIconModule,
-    NbTabsetModule,
+    NbTagModule,
+    NbRouteTabsetModule,
+    NbFormFieldModule,
   ],
 })
 export class CommunityGroupsModule {}

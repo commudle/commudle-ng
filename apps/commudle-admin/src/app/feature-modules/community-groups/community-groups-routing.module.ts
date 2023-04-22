@@ -7,6 +7,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CommunitiesComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/communities.component';
 import { AdminTeamComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/admin-team/admin-team.component';
 import { MembersListComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/members-list/members-list.component';
+import { ChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/channels/channels.component';
+import { EventsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/events/events.component';
+import { CommunityComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/community/community.component';
 
 const routes = [
   {
@@ -14,7 +17,7 @@ const routes = [
     component: CommunityGroupFormComponent,
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+      expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
     },
   },
   {
@@ -22,23 +25,33 @@ const routes = [
     canActivate: [AuthGuard],
     component: DashboardComponent,
     data: {
-      expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+      expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
     },
     children: [
       {
-        path: 'community',
+        path: '',
         component: CommunitiesComponent,
-        canActivate: [AuthGuard],
-        data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
-        },
+        children: [
+          {
+            path: '',
+            component: CommunityComponent,
+          },
+          {
+            path: 'events',
+            component: EventsComponent,
+          },
+          {
+            path: 'channels',
+            component: ChannelsComponent,
+          },
+        ],
       },
       {
         path: 'admin-team',
         component: AdminTeamComponent,
         canActivate: [AuthGuard],
         data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
         },
       },
       {
@@ -46,7 +59,7 @@ const routes = [
         component: CommunityGroupFormComponent,
         canActivate: [AuthGuard],
         data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
         },
       },
       {
@@ -54,14 +67,9 @@ const routes = [
         component: MembersListComponent,
         canActivate: [AuthGuard],
         data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
         },
       },
-
-      // {
-      //   path: ':community_group_id',
-      //   component: DashboardComponent,
-      // },
     ],
   },
 ];

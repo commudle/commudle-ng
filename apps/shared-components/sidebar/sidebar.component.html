@@ -10,7 +10,7 @@
       <div
         class="content"
         [routerLinkActiveOptions]="{ exact: true }"
-        [routerLink]="['community']"
+        [routerLink]="['./']"
         [routerLinkActive]="'active'"
       >
         <div class="icon">
@@ -19,55 +19,6 @@
         <div class="title">Communities</div>
       </div>
     </div>
-    <!-- <div class="link with-children">
-      <div class="content" [routerLink]="['/configuration']" [routerLinkActive]="'active'">
-        <div class="icon">
-         <nb-icon icon="star"></nb-icon>
-        </div>
-        <div class="title">Configuration</div>
-      </div>
-      <div class="children">
-        <div class="link">
-          <div
-            class="content"
-            [routerLink]="['/configuration']"
-            [queryParams]="{ child: '1' }"
-            [routerLinkActive]="'active'"
-          >
-            <div class="icon">
-               <nb-icon icon="star"></nb-icon>
-            </div>
-            <div class="title">child 1</div>
-          </div>
-        </div>
-        <div class="link">
-          <div
-            class="content"
-            [routerLink]="['/configuration']"
-            [queryParams]="{ child: '2' }"
-            [routerLinkActive]="'active'"
-          >
-            <div class="icon">
-             <nb-icon icon="star"></nb-icon>
-            </div>
-            <div class="title">child 2</div>
-          </div>
-        </div>
-        <div class="link">
-          <div
-            class="content"
-            [routerLink]="['/configuration']"
-            [queryParams]="{ child: '3' }"
-            [routerLinkActive]="'active'"
-          >
-            <div class="icon">
-             <nb-icon icon="star"></nb-icon>
-            </div>
-            <div class="title">child 3</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="link">
       <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
         <div class="icon">

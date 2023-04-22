@@ -1,1 +1,132 @@
-<p>members-list works!</p>
+<nb-card>
+  <nb-card-body>
+    <div class="community-members">
+      <form [formGroup]="searchForm">
+        <div class="name-filter">
+          <nb-form-field>
+            <nb-icon icon="search" nbPrefix></nb-icon>
+            <input
+              fieldSize="small"
+              formControlName="name"
+              fullWidth
+              nbInput
+              placeholder="Search by Name, Tagline or About Me..."
+              type="text"
+            />
+          </nb-form-field>
+        </div>
+      </form>
+      <br />
+      <div>
+        <nb-tag-list>
+          <nb-tag
+            appearance="outline"
+            [text]="options[0]"
+            status="primary"
+            [removable]="speaker ? 'true' : 'false'"
+            [ngClass]="{ activeTag: speaker }"
+            (click)="filterByTags(options[0])"
+          ></nb-tag>
+          <nb-tag
+            appearance="outline"
+            [text]="options[1]"
+            status="primary"
+            [removable]="contentCreator ? 'true' : 'false'"
+            [ngClass]="{ activeTag: contentCreator }"
+            (click)="filterByTags(options[1])"
+          ></nb-tag>
+          <nb-tag
+            appearance="outline"
+            [text]="options[2]"
+            status="primary"
+            [removable]="employer ? 'true' : 'false'"
+            [ngClass]="{ activeTag: employer }"
+            (click)="filterByTags(options[2])"
+          ></nb-tag>
+          <nb-tag
+            appearance="outline"
+            [text]="options[3]"
+            status="primary"
+            [removable]="employee ? 'true' : 'false'"
+            [ngClass]="{ activeTag: employee }"
+            (click)="filterByTags(options[3])"
+          ></nb-tag>
+        </nb-tag-list>
+      </div>
+
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+      <div class="com-my-4" style="overflow-x: auto">
+        <table *ngIf="!isLoading && members.length > 0">
+          <thead>
+            <tr class="heading">
+              <th class="com-w-[350px]">Users</th>
+              <th class="com-w-[200px]">Skills Tag</th>
+              <!-- <th class="com-w-[300px]">Activity Stats</th> -->
+              <th class="com-w-[300px]">Speaker At</th>
+              <th class="com-w-[200px]">Content Creator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let member of members">
+              <td class="member" valign="top">
+                <div class="com-flex com-flex-row com-gap-4 com-justify-between">
+                  <app-user-profile-card-large
+                    [showAbout]="true"
+                    [showSocialLinks]="true"
+                    [user]="member"
+                  ></app-user-profile-card-large>
+                </div>
+              </td>
+              <td valign="top">
+                <nb-tag-list>
+                  <nb-tag
+                    *ngFor="let tag of member.tags"
+                    [text]="tag.name"
+                    appearance="outline"
+                    status="info"
+                    size="tiny"
+                  ></nb-tag>
+                </nb-tag-list>
+              </td>
+              <!-- activity stats -->
+              <!-- <td  valign="top"></td> -->
+              <td valign="top">
+                <ul *ngFor="let event of member.speaker_events">
+                  <li>
+                    <a [href]="'communities/' + event.kommunity_id + '/events/' + event.id" target="_blank">
+                      {{ event.name }}
+                    </a>
+                    @
+                    <a [href]="'communities/' + event.kommunity_id" target="_blank">
+                      {{ event.kommunity.name }}
+                    </a>
+                  </li>
+                </ul>
+              </td>
+              <td valign="top">
+                <div>
+                  <p *ngIf="member.community_builds_count > 0">Builds: {{ member.community_builds_count }}</p>
+                  <p *ngIf="member.labs_count > 0">Labs: {{ member.labs_count }}</p>
+                  <p *ngIf="member.social_resources_count > 0">Social Resource: {{ member.social_resources_count }}</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h6 *ngIf="!isLoading && members.length === 0">No Record Found</h6>
+      </div>
+
+      <app-pagination
+        (goTo)="page = $event; getMembers()"
+        (next)="page = $event; getMembers()"
+        (previous)="page = $event; getMembers()"
+        *ngIf="total > 0 && !isLoading"
+        [count]="count"
+        [current]="page"
+        [total]="total"
+      ></app-pagination>
+    </div>
+  </nb-card-body>
+</nb-card>

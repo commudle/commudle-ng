@@ -1,0 +1,25 @@
+<div class="com-my-4" style="overflow-x: auto">
+  <table>
+    <thead>
+      <tr class="heading">
+        <th class="com-w-72">Basic Details</th>
+        <th>Members</th>
+        <th>Messages Count</th>
+        <th>Messages In Last 30 Days</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels">
+        <td valign="top">
+          <a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" target="_blank">
+            {{ channel.name }}
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </td>
+        <td valign="top">{{ channel.member_count }}</td>
+        <td valign="top">{{ channel.messages_count }}</td>
+        <td valign="top">{{ channel.messages_count_in_three_months }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

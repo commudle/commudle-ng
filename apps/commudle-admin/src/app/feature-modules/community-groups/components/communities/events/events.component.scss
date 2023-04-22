@@ -1,0 +1,16 @@
+table {
+  @apply com-border-collapse com-w-auto;
+  td,
+  th {
+    @apply com-border com-border-solid com-border-gray-200 com-p-4;
+    a {
+      @apply com-no-underline;
+    }
+    .actions {
+      @apply com-m-1;
+    }
+  }
+  th {
+    @apply com-font-extrabold com-text-lg;
+  }
+}

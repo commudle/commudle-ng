@@ -16,6 +16,8 @@ export class CommunityGroupFormComponent implements OnInit {
   uploadedLogoImageFile: File;
 
   communityGroupForm;
+  colorPicker;
+  themeColor = '#166534';
 
   tinyMCE = {
     height: 300,
@@ -58,6 +60,11 @@ export class CommunityGroupFormComponent implements OnInit {
     });
   }
 
+  updateThemeColor(event) {
+    this.communityGroup.theme_color = event.target.value;
+    this.themeColor = event.target.value;
+  }
+
   getCommunityGroup(communityGroupId) {
     this.communityGroupsService.show(communityGroupId).subscribe((data) => {
       this.communityGroup = data;
@@ -65,7 +72,7 @@ export class CommunityGroupFormComponent implements OnInit {
         name: this.communityGroup.name,
         description: this.communityGroup.description,
         mini_description: this.communityGroup.mini_description,
-        theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : '#166534',
+        theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : this.themeColor,
         website: this.communityGroup.website,
         facebook: this.communityGroup.facebook,
         twitter: this.communityGroup.twitter,

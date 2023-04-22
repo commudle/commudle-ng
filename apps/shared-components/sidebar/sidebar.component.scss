@@ -33,6 +33,7 @@
         .content {
           .title {
             max-width: 100px;
+            @apply com-flex;
           }
           .icon {
             margin-right: 3px;
@@ -140,6 +141,7 @@
           transition: 0.3s;
           max-width: 0px;
           overflow: hidden;
+          @apply com-hidden;
         }
       }
     }

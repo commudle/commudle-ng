@@ -14,13 +14,13 @@
       }
 
       .logo {
-        @apply com-my-6;
+        @apply com-my-6 com-py-4;
 
         label {
           @apply com-py-152px com-px-0;
 
           > span {
-            @apply com-items-center com-text-gray-500 com-flex com-flex-col com-text-2xl com-font-light com-h-full com-justify-center;
+            @apply com-items-center com-text-white com-flex com-flex-col com-text-2xl com-font-light com-h-full com-justify-center;
 
             nb-icon {
               @apply com-text-6xl com-mb-2;
@@ -33,7 +33,7 @@
         }
 
         .uploaded-logo {
-          @apply com-mx-auto com-items-center com-flex com-justify-center com-overflow-hidden com-w-44 com-h-44;
+          @apply com-ml-8 com-p-1 com-items-center com-flex com-justify-center com-overflow-hidden com-w-44 com-h-44 com-bg-white com-rounded-md;
 
           img {
             @apply com-w-full;
@@ -41,7 +41,7 @@
         }
 
         .delete-logo-button {
-          @apply com-text-center;
+          @apply com-ml-10 com-mt-2;
         }
       }
     }

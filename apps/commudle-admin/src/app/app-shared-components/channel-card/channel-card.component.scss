@@ -28,7 +28,7 @@ nb-card {
           @apply com-m-0;
         }
         .name {
-          @apply com-font-bold com-text-xl com-leading-5 com-my-1;
+          @apply com-font-bold com-text-xl com-leading-5 com-my-1 com-line-clamp-1;
         }
         .members-count {
           @apply com-font-normal com-text-sm com-text-gray-400 com-my-1;

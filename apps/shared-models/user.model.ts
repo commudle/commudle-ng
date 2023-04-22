@@ -32,7 +32,7 @@ export interface IUser {
   is_employee: boolean;
   is_employer: boolean;
   profile_completed: boolean;
-  speaker_events?: [];
+  speaker_events?: any;
   community_builds_count?: number;
   social_resources_count?: number;
   labs_count?: number;
