@@ -1,6 +1,4 @@
 .event-location-tracks {
-  // max-width: 1500px;
-
   .add-track-button {
     @apply com-text-sm com-mb-2;
   }
@@ -17,10 +15,7 @@
     }
 
     nb-accordion-item-header {
-      @apply com-py-1 com-px-2 com-overflow-x-auto com-justify-between;
-      background-color: #ffaa00;
-      @apply com-border-0 com-rounded-md;
-
+      @apply com-py-1 com-px-2 com-overflow-x-auto com-justify-between com-border-0 com-rounded-md com-bg-Chrome-Yellow;
       .track-name {
         @apply com-text-lg com-mr-2 com-my-0 com-ml-0;
         display: inline-block;
