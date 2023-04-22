@@ -35,10 +35,10 @@ footer {
   }
 
   .show-footer {
-    @apply com-mx-16;
+    @apply com-mx-16 com-mt-16 com-mb-0;
 
     hr {
-      @apply com-text-gray-500;
+      @apply com-border-gray-300 com-border-solid com-border-[0.5px];
     }
 
     .links {
