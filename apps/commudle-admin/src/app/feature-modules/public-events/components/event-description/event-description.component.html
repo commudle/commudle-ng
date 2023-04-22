@@ -12,6 +12,6 @@
     ></app-share-button>
   </nb-card-header>
   <nb-card-body>
-    <div [innerHTML]="event.description"></div>
+    <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
   </nb-card-body>
 </nb-card>
