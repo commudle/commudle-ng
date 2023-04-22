@@ -35,17 +35,17 @@ footer {
   }
 
   .show-footer {
-    @apply com-mx-16 com-mt-16 com-mb-0;
+    @apply md:com-mx-86px com-mx-4 com-mt-16 com-mb-0;
 
     hr {
-      @apply com-border-gray-300 com-border-solid com-border-[0.5px];
+      @apply com-border-gray-300 com-border-solid com-border-[0.5px] com-max-w-[1280px];
     }
 
     .links {
       @apply com-flex com-justify-center com-pt-8 com-pb-2;
 
       ul {
-        @apply com-flex com-list-none com-space-x-10 com-text-gray-500 com-items-center;
+        @apply com-flex com-list-none md:com-space-x-10 com-text-gray-500 com-items-center com-flex-wrap com-justify-center com-space-x-4;
 
         li {
           a {
