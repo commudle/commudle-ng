@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-body>
+    <!-- upcoming events -->
+    <app-loading-spinner *ngIf="isLoadingUpcoming"></app-loading-spinner>
+    <section *ngIf="upcomingEvents.length > 0">
+      <h3 class="com-mt-0">Upcoming Events</h3>
+      <div
+        class="upcoming-event-cards-list"
+        [ngClass]="upcomingEvents.length === 1 ? 'single-event' : 'multiple-event '"
+      >
+        <commudle-event-medium-card *ngFor="let event of upcomingEvents" [event]="event"></commudle-event-medium-card>
+      </div>
+      <button (click)="getUpcomingEvents()" *ngIf="upcomingPageInfo?.has_next_page" fullWidth ghost nbButton>
+        Load More Upcoming Events
+      </button>
+    </section>
+
+    <!-- past events -->
+    <section>
+      <h3>Past Events</h3>
+      <app-loading-spinner *ngIf="isLoadingPast"></app-loading-spinner>
+      <div class="past-events-card-list">
+        <commudle-event-card *ngFor="let event of pastEvents" [event]="event"></commudle-event-card>
+      </div>
+      <button (click)="getPastEvents()" *ngIf="pastPageInfo?.has_next_page" fullWidth ghost nbButton>
+        Load More Past Events
+      </button>
+    </section>
+  </nb-card-body>
+</nb-card>

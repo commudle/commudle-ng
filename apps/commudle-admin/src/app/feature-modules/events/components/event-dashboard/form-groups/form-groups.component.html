@@ -115,17 +115,16 @@
         <div>
           <label fullWidth>
             Name*
+            <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
             <span
               *ngIf="
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched &&
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid &&
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required
               "
-              class="validation-error-text"
             >
-              Required Field
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
             </span>
-            <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
           </label>
         </div>
 
@@ -144,6 +143,15 @@
                 {{ rt.name }}
               </nb-option>
             </nb-select>
+            <span
+              *ngIf="
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('registration_type_id').touched &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('registration_type_id').invalid &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('registration_type_id').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Please select form type'"></commudle-alert>
+            </span>
           </label>
         </div>
 
@@ -156,6 +164,15 @@
                 {{ df.name }}
               </nb-option>
             </nb-select>
+            <span
+              *ngIf="
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').touched &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').invalid &&
+                eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Please select a form'"></commudle-alert>
+            </span>
           </label>
           <span>
             <nb-icon

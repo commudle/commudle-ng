@@ -50,7 +50,7 @@ export class CommunityEditDetailsComponent implements OnInit {
       community: this.fb.group<unknown>({
         id: [''],
         name: ['', Validators.required],
-        about: [''],
+        about: ['', Validators.required],
         mini_description: ['', Validators.required],
         contact_email: ['', Validators.required],
         facebook: [''],

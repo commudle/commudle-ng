@@ -1,0 +1,41 @@
+.communities-cards {
+  @apply com-flex com-flex-nowrap com-gap-4 com-overflow-auto;
+
+  @screen lg {
+    @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
+  }
+}
+
+nb-card {
+  @apply com-mx-0 md:com-mx-2;
+}
+
+nb-card {
+  .header {
+    @apply com-flex com-space-x-4 com-items-center com-overflow-auto;
+    .icon {
+      @apply com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4;
+      fa-icon {
+        @apply com-text-green-600;
+      }
+    }
+
+    .navigation-button {
+      @apply com-flex com-justify-end md:com-mr-2 com-mb-2 com-p-1;
+    }
+  }
+  .card-body {
+    @apply com-px-0 com-mx-6;
+  }
+}
+.event-card-header {
+  @apply com-flex com-justify-between com-items-center;
+}
+
+.event-card-list {
+  @apply com-flex com-space-x-4 md:com-space-x-0 md:com-grid md:com-grid-cols-3 md:com-gap-4;
+}
+
+.channels-cards-list {
+  @apply com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0;
+}

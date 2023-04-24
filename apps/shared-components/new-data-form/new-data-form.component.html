@@ -5,7 +5,8 @@
         <nb-card-body class="card-body">
           <div role="group">
             <label fullWidth>
-              Name*
+              Name
+              <span class="required-question">*</span>
               <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
             </label>
             <span
@@ -52,7 +53,8 @@
               <nb-card-body>
                 <div class="custom-question-container">
                   <label>
-                    Question {{ i + 1 }} *
+                    Question {{ i + 1 }}
+                    <span *ngIf="question.get('required').value" class="required-question">*</span>
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -71,7 +73,8 @@
                   <div>
                     <div class="question-container">
                       <label>
-                        Question {{ i + 1 }} *
+                        Question {{ i + 1 }}
+                        <span *ngIf="question.get('required').value" class="required-question">*</span>
                         <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
                       </label>
                       <span
@@ -126,6 +129,13 @@
                           </nb-option>
                         </nb-select>
                       </nb-form-field>
+                      <span
+                        *ngIf="
+                          question.get('question_type_id').invalid && question.get('question_type_id').errors.required
+                        "
+                      >
+                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      </span>
                     </div>
 
                     <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
@@ -190,7 +200,9 @@
                       <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
-                    <nb-toggle size="tiny" labelPosition="right" class="toggle"><span>Required</span></nb-toggle>
+                    <nb-toggle size="tiny" labelPosition="right" class="toggle" formControlName="required"
+                      ><span>Required</span></nb-toggle
+                    >
                   </div>
                   <button
                     nbButton

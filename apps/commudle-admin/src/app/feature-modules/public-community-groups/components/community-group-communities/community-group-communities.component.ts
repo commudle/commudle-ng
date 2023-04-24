@@ -15,6 +15,8 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   communities: ICommunity[] = [];
   communityGroup: ICommunityGroup;
 
+  isLoading = true;
+
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -25,14 +27,9 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        this.getCommunities(data.community_group_id);
-      }),
-    );
-
-    this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
+        this.getCommunities(data.community_group.slug);
         this.seoService.setTags(
           this.communityGroup.name,
           this.communityGroup.mini_description,
@@ -49,6 +46,7 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   getCommunities(communityGroupId) {
     this.communityGroupsService.pCommunities(communityGroupId).subscribe((data) => {
       this.communities = data.communities;
+      this.isLoading = false;
     });
   }
 }
