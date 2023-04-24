@@ -96,6 +96,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       event.previousIndex,
       event.currentIndex,
     );
+    moveItemInArray(this.questionDescription, event.previousIndex, event.currentIndex);
   }
 
   initQuestion(): FormGroup {

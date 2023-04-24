@@ -68,6 +68,7 @@ export class NewDataFormComponent implements OnInit {
       event.previousIndex,
       event.currentIndex,
     );
+    moveItemInArray(this.questionDescription, event.previousIndex, event.currentIndex);
   }
 
   defaultQuestionRequiredValue() {
