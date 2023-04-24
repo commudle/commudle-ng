@@ -9,7 +9,6 @@ import { ICommunityGroups } from 'apps/shared-models/community-groups.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IEvent } from 'apps/shared-models/event.model';
-import { IUser } from 'apps/shared-models/user.model';
 import { IUsers } from 'apps/shared-models/users.model';
 
 @Injectable({

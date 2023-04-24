@@ -16,7 +16,6 @@ export class CommunityGroupFormComponent implements OnInit {
   uploadedLogoImageFile: File;
 
   communityGroupForm;
-  colorPicker;
   themeColor = '#166534';
 
   tinyMCE = {
@@ -68,7 +67,10 @@ export class CommunityGroupFormComponent implements OnInit {
   getCommunityGroup(communityGroupId) {
     this.communityGroupsService.show(communityGroupId).subscribe((data) => {
       this.communityGroup = data;
-      this.themeColor = data.theme_color;
+      if (this.communityGroup.theme_color) {
+        this.themeColor = this.communityGroup.theme_color;
+      }
+
       this.communityGroupForm.patchValue({
         name: this.communityGroup.name,
         description: this.communityGroup.description,
