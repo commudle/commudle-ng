@@ -1,48 +1,9 @@
 <div class="sidebar" [ngClass]="{ expanded: isExpanded }">
   <div class="header">
-    <h1 class="title">Commudle</h1>
+    <h1 class="title">{{ heading }}</h1>
     <div class="toggle" (click)="handleSidebarToggle()">
-      <nb-icon [icon]="isExpanded ? 'arrow-left' : 'arrow-right'" class="com-cursor-pointer"></nb-icon>
+      <fa-icon [icon]="isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
     </div>
   </div>
-  <div class="content">
-    <div class="link">
-      <div
-        class="content"
-        [routerLinkActiveOptions]="{ exact: true }"
-        [routerLink]="['./']"
-        [routerLinkActive]="'active'"
-      >
-        <div class="icon">
-          <nb-icon icon="people"></nb-icon>
-        </div>
-        <div class="title">Communities</div>
-      </div>
-    </div>
-    <div class="link">
-      <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
-        <div class="icon">
-          <nb-icon icon="star"></nb-icon>
-        </div>
-        <div class="title">Admin Team</div>
-      </div>
-    </div>
-    <div class="link">
-      <div class="content" [routerLink]="['edit']" [routerLinkActive]="'active'">
-        <div class="icon">
-          <nb-icon icon="edit"></nb-icon>
-        </div>
-        <div class="title">Edit Details</div>
-      </div>
-    </div>
-    <div class="link">
-      <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
-        <div class="icon">
-          <nb-icon icon="star"></nb-icon>
-        </div>
-        <div class="title">All Members</div>
-      </div>
-    </div>
-  </div>
-  <div class="footer"></div>
+  <ng-content></ng-content>
 </div>

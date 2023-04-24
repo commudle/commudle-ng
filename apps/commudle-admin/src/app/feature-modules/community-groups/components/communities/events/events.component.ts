@@ -10,6 +10,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 })
 export class EventsComponent implements OnInit {
   events: IEvent[] = [];
+  isLoading = true;
 
   constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
 
@@ -22,6 +23,7 @@ export class EventsComponent implements OnInit {
   getEvents(slug) {
     this.communityGroupsService.events(slug).subscribe((data) => {
       this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.isLoading = false;
     });
   }
 }

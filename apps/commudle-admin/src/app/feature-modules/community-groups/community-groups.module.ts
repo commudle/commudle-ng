@@ -25,6 +25,7 @@ import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/min
 import { EventsComponent } from './components/communities/events/events.component';
 import { ChannelsComponent } from './components/communities/channels/channels.component';
 import { CommunityComponent } from './components/communities/community/community.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,9 @@ import { CommunityComponent } from './components/communities/community/community
     //standalone components
     SidebarComponent,
     SkeletonCardsComponent,
+
+    //font-awesome
+    FontAwesomeModule,
 
     // Nebular
     NbCardModule,

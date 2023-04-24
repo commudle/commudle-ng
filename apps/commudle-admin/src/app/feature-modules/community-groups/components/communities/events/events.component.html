@@ -1,10 +1,14 @@
-<div class="com-my-4" style="overflow-x: auto">
+<div *ngIf="isLoading" class="com-mt-3">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
   <table>
     <thead>
       <tr class="heading">
         <th class="com-w-[350px]">Basic Details</th>
         <th class="com-w-[150px]">Registrations</th>
         <th class="com-w-[150px]">Attendees</th>
+        <th class="com-w-[150px]">Status</th>
         <th class="com-w-[320px]">Links</th>
       </tr>
     </thead>
@@ -18,6 +22,7 @@
         </td>
         <td valign="top">{{ event.registrations_count }}</td>
         <td valign="top">{{ event.attended_members_count }}</td>
+        <td valign="top">{{ event.event_status.name }}</td>
         <td valign="top">
           <a
             [routerLink]="['/admin', 'communities', event.kommunity_id, 'event-dashboard', event.slug]"

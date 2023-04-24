@@ -10,6 +10,7 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 })
 export class ChannelsComponent implements OnInit {
   channels: ICommunityChannel[] = [];
+  isLoading = true;
 
   constructor(private communityGroupsService: CommunityGroupsService, private activatedRoute: ActivatedRoute) {}
 
@@ -22,6 +23,7 @@ export class ChannelsComponent implements OnInit {
   getChannels(slug) {
     this.communityGroupsService.communityChannels(slug).subscribe((data) => {
       this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.isLoading = false;
     });
   }
 }

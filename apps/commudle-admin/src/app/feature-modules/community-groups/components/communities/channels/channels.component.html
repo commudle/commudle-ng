@@ -1,4 +1,7 @@
-<div class="com-my-4" style="overflow-x: auto">
+<div *ngIf="isLoading" class="com-mt-3">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
   <table>
     <thead>
       <tr class="heading">

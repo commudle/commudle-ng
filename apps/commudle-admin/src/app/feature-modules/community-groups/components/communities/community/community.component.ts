@@ -12,6 +12,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class CommunityComponent implements OnInit {
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
+  isLoading = true;
 
   constructor(private communityGroupsService: CommunityGroupsService, private activatedRoute: ActivatedRoute) {}
 
@@ -27,6 +28,7 @@ export class CommunityComponent implements OnInit {
   getCommunities() {
     this.communityGroupsService.communities(this.communityGroup.slug).subscribe((data) => {
       this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.isLoading = false;
     });
   }
 }

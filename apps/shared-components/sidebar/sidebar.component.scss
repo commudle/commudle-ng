@@ -1,18 +1,14 @@
-// .chevron::before {
-//   border-style: solid;
-//   border-width: 0.15em 0.15em 0 0;
-//   content: "";
-//   display: inline-block;
-//   height: 0.35em;
-//   left: 0.15em;
-//   position: relative;
-//   top: 0.3em;
-//   vertical-align: top;
-//   width: 0.35em;
-// }
+.header {
+  @apply com-h-16;
+}
+.toggle {
+  fa-icon {
+    @apply com-text-xl;
+  }
+}
 .sidebar {
   transition: 0.3s;
-  @apply com-fixed com-left-0 com-top-16 com-h-full com-w-16 com-z-50;
+  @apply com-fixed com-left-0 com-top-16 com-h-full com-w-16 com-z-50 com-shadow-Card;
 
   &.expanded {
     @apply com-w-40;
@@ -21,7 +17,7 @@
       h1 {
         @apply com-flex com-ml-0;
       }
-      .toggle-icon {
+      .toggle {
         @apply com-ml-0;
         // &::before {
         //   transform: rotate(-135deg);

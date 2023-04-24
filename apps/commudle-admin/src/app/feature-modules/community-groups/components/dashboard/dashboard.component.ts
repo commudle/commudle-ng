@@ -4,6 +4,7 @@ import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/com
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { faUsers, faBuilding, faCalendar, faCaretLeft, faBars, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   subscriptions = [];
 
   sidebarExpanded = false;
+
+  //font-awesome
+  faCalendar = faCalendar;
+  faUsers = faUsers;
+  faPenToSquare = faPenToSquare;
+  faBuilding = faBuilding;
 
   constructor(
     private activatedRoute: ActivatedRoute,

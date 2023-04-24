@@ -106,6 +106,8 @@ export class MembersListComponent implements OnInit {
     if (event === this.options[3]) {
       this.employee = !this.employee;
     }
+
+    this.page = 1;
     this.getMembers();
   }
 }

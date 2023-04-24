@@ -1,68 +1,75 @@
-.community-group-dashboard {
-  > nb-card {
-    > nb-card-header {
-      @apply com-flex com-items-center;
-      .logo {
-        @apply com-w-28;
-        img {
-          @apply com-w-full;
+.expanded {
+  .content {
+    .link {
+      .content {
+        .title {
+          max-width: 100px;
+          @apply com-flex;
+        }
+        .icon {
+          margin-right: 3px;
         }
       }
-
-      h1 {
-        @apply com-my-0 com-mx-2 com-font-light;
-        small {
-          @apply com-text-base;
-        }
-      }
-    }
-
-    nb-card-body {
-      @apply md:com-py-4 md:com-px-0;
-    }
-
-    nb-tabset {
-      ::ng-deep {
-        ul.tabset {
-          @apply com-overflow-x-auto com-p-5px #{!important};
+      .children {
+        .content {
+          padding-left: 30px;
         }
       }
     }
+  }
+}
+.content {
+  .link {
+    .children {
+      .content {
+        @apply com-bg-white com-text-black;
+        // padding-left: 30px;
+        padding-left: 10px;
 
-    .chapters {
-      @apply com-flex com-justify-start com-flex-wrap com-flex-col com-mt-4;
-      @apply md:com-flex-row;
-
-      .community-chapter {
-        @apply com-p-2 com-h-36  com-w-full com-border com-border-solid com-border-gray-500 com-rounded-md com-m-2 com-flex com-flex-col com-justify-between;
-        @apply md:com-w-[30%];
-
-        h3,
-        p {
-          @apply com-m-0;
-        }
-
-        .links {
-          a {
-            @apply com-block com-no-underline;
-          }
+        &.active {
+          background: #191a27;
         }
       }
     }
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
 
-    .team-invitation-form {
-      form {
-        p {
-          @apply com-mt-0;
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      &:hover {
+        @apply com-text-primary-500;
+        .title {
+          @apply com-text-primary-500;
         }
-        @apply com-w-fit com-border com-border-solid com-border-gray-300 com-rounded-md com-p-2;
       }
-    }
 
-    .team {
-      .member {
-        @apply com-p-2 com-flex com-justify-between com-flex-col com-flex-wrap com-border com-border-solid com-border-gray-200 com-my-2 com-mx-0 com-w-800px com-items-center;
-        @apply md:com-flex-row;
+      &.active {
+        @apply com-text-primary-500 com-border-0 com-border-b-2 com-border-solid com-border-primary-500;
+        .title {
+          @apply com-text-primary-500;
+        }
+      }
+
+      .icon {
+        flex: 0 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0px;
+        @apply com-text-base;
+      }
+      .title {
+        flex: 1;
+        color: #6d6e7e;
+        transition: 0.3s;
+        max-width: 0px;
+        overflow: hidden;
+        @apply com-hidden;
       }
     }
   }
