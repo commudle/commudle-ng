@@ -1,5 +1,5 @@
 .card {
-  @apply com-fixed com-bottom-[70px] com-right-2 sm:com-bottom-2 com-left-2 sm:com-left-auto com-max-w-xl com-bg-[#FED335] com-rounded-3xl com-z-50 com-text-justify;
+  @apply com-fixed com-bottom-[70px] com-right-2 sm:com-bottom-2 com-left-2 sm:com-left-auto com-max-w-xl com-rounded-3xl com-z-50 com-text-justify com-bg-black;
 
   .content {
     @apply com-flex com-flex-wrap com-items-center com-mx-2;
@@ -8,11 +8,23 @@
       @apply com-w-full com-px-4 com-mb-0;
 
       .heading {
-        @apply com-my-2 com-font-extrabold com-text-3xl com-leading-loose;
+        @apply com-my-2 com-font-extrabold com-text-3xl com-leading-loose com-text-white;
       }
 
       .paragraph {
-        @apply com-text-sm com-leading-6;
+        @apply com-text-sm com-leading-6 com-text-white com-mb-2;
+      }
+    }
+
+    .preference-buttons {
+      @apply com-flex com-justify-center com-mb-4 com-mt-0 com-flex-wrap;
+
+      .buttons {
+        @apply com-flex com-items-center com-ml-4 com-rounded-md com-py-1 com-px-2 com-mt-2;
+
+        .checkbox {
+          @apply com-w-5 com-h-5 com-mr-2;
+        }
       }
     }
 
@@ -20,7 +32,7 @@
       @apply com-w-max com-items-center com-px-4 com-pb-4;
 
       .button {
-        @apply com-max-w-max com-py-3 com-px-10 com-w-full com-text-xl com-leading-7 com-text-white com-font-medium com-tracking-tighter com-text-center com-bg-blue-500 hover:com-bg-blue-600 focus:com-ring-2 focus:com-ring-blue-500 focus:com-ring-opacity-50 com-rounded-xl;
+        @apply com-max-w-max com-w-full com-text-xl com-leading-7 com-text-white com-font-medium com-tracking-tighter com-text-center com-bg-blue-500 hover:com-bg-blue-600 focus:com-ring-2 focus:com-ring-blue-500 focus:com-ring-opacity-50 com-rounded-xl;
       }
     }
   }

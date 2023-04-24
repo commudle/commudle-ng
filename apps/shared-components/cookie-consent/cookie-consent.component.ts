@@ -12,6 +12,10 @@ import { SeoService } from 'apps/shared-services/seo.service';
 export class CookieConsentComponent implements OnInit {
   cookieConstent = false;
   isBrowser;
+  showPreferncesButton = false;
+  allowNecessary = true;
+  allowAnalytics = true;
+  allowMarketing = true;
 
   constructor(
     private cookieConsentService: CookieConsentService,
@@ -33,9 +37,32 @@ export class CookieConsentComponent implements OnInit {
     }
   }
 
+  acceptManagedCookies() {
+    const options = {
+      necessary: 'true',
+      analytics: this.allowAnalytics ? 'true' : 'false',
+      marketing: this.allowMarketing ? 'true' : 'false',
+    };
+    const cookieValue = JSON.stringify(options);
+    this.cookieConsentService.acceptedCookieConsent(cookieValue);
+    this.cookieConstent = false;
+  }
+
   acceptCookieConsent() {
     this.cookieConsentService.acceptCookieConsent();
     this.cookieConstent = false;
+  }
+
+  Consent() {
+    this.showPreferncesButton = true;
+  }
+
+  analytics() {
+    this.allowAnalytics = !this.allowAnalytics;
+  }
+
+  marketing() {
+    this.allowMarketing = !this.allowMarketing;
   }
 
   // disagreeCookieConsent() {
@@ -43,3 +70,34 @@ export class CookieConsentComponent implements OnInit {
   //   window.location.href = 'about:blank';
   // }
 }
+
+// Consent() {
+//   const managePreferencesBtn = document.getElementById('managePreferences') as HTMLButtonElement;
+//   const preferenceButtonsDiv = document.getElementById('preferenceButtons') as HTMLDivElement;
+//   managePreferencesBtn.addEventListener('click', () => {
+//     preferenceButtonsDiv.style.display = 'block';
+//   });
+// }
+
+// acceptNecessary() {
+//   sessionStorage.setItem('cookieConsentSelectedOption', 'necessary');
+//   this.allowNecessary = true;
+//   this.allowAnalytics = false;
+//   this.allowMarketing = false;
+// }
+
+// acceptAnalytics() {
+//   // this.allowAnalytics = !this.allowAnalytics;
+//   // sessionStorage.setItem('allowAnalytics', this.allowAnalytics ? 'true' : 'false');
+//   sessionStorage.setItem('cookieConsentSelectedOption', 'analytics');
+//   this.allowNecessary = false;
+//   this.allowAnalytics = true;
+//   this.allowMarketing = false;
+// }
+
+// acceptMarketing() {
+//   sessionStorage.setItem('cookieConsentSelectedOption', 'marketing');
+//   this.allowNecessary = false;
+//   this.allowAnalytics = false;
+//   this.allowMarketing = true;
+// }
