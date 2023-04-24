@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-admin-team',
   templateUrl: './admin-team.component.html',
   styleUrls: ['./admin-team.component.scss'],
 })
-export class AdminTeamComponent implements OnInit {
+export class AdminTeamComponent implements OnInit, OnDestroy {
   team: IUserRolesUser[] = [];
+  subscriptions: Subscription[] = [];
   EUserRolesUserStatus = EUserRolesUserStatus;
   userRolesUserForm;
   communityGroupSlug: string;
@@ -33,20 +35,28 @@ export class AdminTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.parent.params.subscribe((data) => {
-      this.getTeam(data.community_group_id);
-      this.communityGroupSlug = data.community_group_id;
-    });
+    this.subscriptions.push(
+      this.activatedRoute.parent.params.subscribe((data) => {
+        this.getTeam(data.community_group_id);
+        this.communityGroupSlug = data.community_group_id;
+      }),
+    );
     this.userRolesUserForm.patchValue({
       parent_id: this.communityGroupSlug,
     });
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   getTeam(id) {
-    this.userRolesUsersService.getCommunityGroupLeaders(id).subscribe((data) => {
-      this.team = data.user_roles_users;
-      this.isLoading = false;
-    });
+    this.subscriptions.push(
+      this.userRolesUsersService.getCommunityGroupLeaders(id).subscribe((data) => {
+        this.team = data.user_roles_users;
+        this.isLoading = false;
+      }),
+    );
   }
 
   resendInvitationMail(userRolesUser) {

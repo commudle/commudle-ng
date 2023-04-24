@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { IUser } from 'apps/shared-models/user.model';
-import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'commudle-members-list',
   templateUrl: './members-list.component.html',
   styleUrls: ['./members-list.component.scss'],
 })
-export class MembersListComponent implements OnInit {
+export class MembersListComponent implements OnInit, OnDestroy {
+  communityGroupId;
+  members: IUser[] = [];
+  subscriptions: Subscription[] = [];
   searchForm;
   options;
   query = '';
@@ -22,8 +26,6 @@ export class MembersListComponent implements OnInit {
   page = 1;
   count = 10;
   total = 0;
-  communityGroupId;
-  members: IUser[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -37,32 +39,40 @@ export class MembersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.parent.params.subscribe((data) => {
-      this.communityGroupId = data.community_group_id;
-      this.getMembers();
-      this.search();
-    });
+    this.subscriptions.push(
+      this.activatedRoute.parent.params.subscribe((data) => {
+        this.communityGroupId = data.community_group_id;
+        this.getMembers();
+        this.search();
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getMembers() {
     this.isLoading = true;
-    this.communityGroupsService
-      .members(
-        this.query,
-        this.communityGroupId,
-        this.count,
-        this.page,
-        this.employer,
-        this.employee,
-        this.contentCreator,
-        this.speaker,
-      )
-      .subscribe((data) => {
-        this.isLoading = false;
-        this.members = data.users;
-        this.page = +data.page;
-        this.total = data.total;
-      });
+    this.subscriptions.push(
+      this.communityGroupsService
+        .members(
+          this.query,
+          this.communityGroupId,
+          this.count,
+          this.page,
+          this.employer,
+          this.employee,
+          this.contentCreator,
+          this.speaker,
+        )
+        .subscribe((data) => {
+          this.isLoading = false;
+          this.members = data.users;
+          this.page = +data.page;
+          this.total = data.total;
+        }),
+    );
   }
 
   search() {

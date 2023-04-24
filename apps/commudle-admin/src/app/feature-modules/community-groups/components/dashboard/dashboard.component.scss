@@ -3,8 +3,7 @@
     .link {
       .content {
         .title {
-          max-width: 100px;
-          @apply com-flex;
+          @apply com-flex com-max-w-[100px];
         }
         .icon {
           margin-right: 3px;

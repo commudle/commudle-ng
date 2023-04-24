@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUsers, faBuilding, faCalendar, faCaretLeft, faBars, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-sidebar',
@@ -17,15 +17,13 @@ export class SidebarComponent implements OnInit {
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //font-awesome icons
-  faUsers = faUsers;
-  faBuilding = faBuilding;
-  faCalendar = faCalendar;
   faCaretLeft = faCaretLeft;
   faBars = faBars;
-  faPenToSquare = faPenToSquare;
   constructor() {}
 
   ngOnInit(): void {}
 
-  handleSidebarToggle = () => this.toggleSidebar.emit(!this.isExpanded);
+  handleSidebarToggle() {
+    this.toggleSidebar.emit(!this.isExpanded);
+  }
 }
