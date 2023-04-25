@@ -64,9 +64,9 @@ hr {
       .subheading {
         @apply com-text-2xl com-my-0;
       }
-      // .button {
-      //   @apply com-py-3 com-px-5 com-m-0 com-rounded-3xl com-text-white com-w-fit com-text-sm com-bg-primary-500 com-mt-12 com-mb-0;
-      // }
+      .button {
+        @apply com-w-fit com-mt-12 com-mb-0;
+      }
     }
   }
 }
