@@ -2,11 +2,6 @@
   <div class="content">
     <div class="top-section">
       <h3 class="heading">Cookies</h3>
-      <!-- <p class="paragraph">
-        We use cookies and other tracking technologies to improve your browsing experience on our website, to show you
-        personalized content and targeted ads, to analyze our website traffic, and to understand where our visitors are
-        coming from. By browsing our website, you consent to our use of cookies and other tracking technologies.
-      </p> -->
       <p class="paragraph">
         This website uses cookies to improve your online experience. By continuing to use this website, you agree to our
         use of cookies. If you would like to, you can change your cookie settings at any time. Our
@@ -14,30 +9,25 @@
         provides more information about what cookies we use.
       </p>
     </div>
-    <!-- [(ngModel)]="allowNecessary" -->
     <form [formGroup]="preferencesForm">
       <div id="preferenceButtons" *ngIf="showPreferncesButton" class="preference-buttons">
-        <div [ngClass]="{ active: allowNecessary }" class="preferences">
-          <input type="checkbox" [disabled]="true" class="checkbox" formControlName="necessary" />
+        <div class="preferences">
+          <input type="checkbox" class="checkbox" formControlName="necessary" />
           <label>Necessary</label>
         </div>
         &nbsp;
-        <!-- (click)="analytics()" -->
-        <!-- [(ngModel)]="allowAnalytics" *ngIf="allowAnalytics" -->
-        <div [ngClass]="{ active: allowAnalytics }" class="preferences">
+        <div class="preferences">
           <input type="checkbox" class="checkbox" formControlName="analytics" />
           <label>Analytics</label>
         </div>
         &nbsp;
-        <!-- (click)="marketing()"  [(ngModel)]="allowMarketing" *ngIf="allowMarketing"  -->
-        <div [ngClass]="{ active: allowMarketing }" class="preferences">
+        <div class="preferences">
           <input type="checkbox" class="checkbox" formControlName="marketing" />
           <label>Marketing</label>
         </div>
       </div>
     </form>
     <div class="bottom-section">
-      <!-- (click)="acceptCookieConsent()" -->
       <button (click)="acceptManagedCookies()" class="button" nbButton status="primary" size="tiny">Accept All</button>
       &nbsp;
       <button
@@ -62,7 +52,6 @@
       >
         Accept Selected
       </button>
-      <!-- style="display: none" -->
     </div>
 
     <!-- <button nbButton status="basic" ghost (click)="disagreeCookieConsent()">Disagree</button> -->
