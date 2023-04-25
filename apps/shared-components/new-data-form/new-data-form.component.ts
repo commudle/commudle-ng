@@ -212,11 +212,11 @@ export class NewDataFormComponent implements OnInit {
   }
 
   saveDataForm() {
-    if (this.createDataForm.valid) {
-      this.newDataForm.emit(this.createDataForm.get('data_form').value);
-    } else {
+    if (this.createDataForm.invalid) {
       this.createDataForm.markAllAsTouched();
+      return;
     }
+    this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
 
   toggleDescriptionField(index: number): void {
