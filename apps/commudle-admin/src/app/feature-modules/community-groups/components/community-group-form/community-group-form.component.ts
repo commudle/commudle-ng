@@ -16,6 +16,7 @@ export class CommunityGroupFormComponent implements OnInit {
   uploadedLogoImageFile: File;
 
   communityGroupForm;
+  themeColor = '#166534';
 
   tinyMCE = {
     height: 300,
@@ -41,6 +42,7 @@ export class CommunityGroupFormComponent implements OnInit {
       logo: [''],
       mini_description: ['', [Validators.required, Validators.maxLength(160)]],
       description: ['', Validators.required],
+      theme_color: [''],
       website: [''],
       facebook: [''],
       twitter: [''],
@@ -50,20 +52,30 @@ export class CommunityGroupFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((data) => {
+    this.activatedRoute.parent.params.subscribe((data) => {
       if (data.community_group_id) {
         this.getCommunityGroup(data.community_group_id);
       }
     });
   }
 
+  updateThemeColor(event) {
+    this.communityGroup.theme_color = event.target.value;
+    this.themeColor = event.target.value;
+  }
+
   getCommunityGroup(communityGroupId) {
     this.communityGroupsService.show(communityGroupId).subscribe((data) => {
       this.communityGroup = data;
+      if (this.communityGroup.theme_color) {
+        this.themeColor = this.communityGroup.theme_color;
+      }
+
       this.communityGroupForm.patchValue({
         name: this.communityGroup.name,
         description: this.communityGroup.description,
         mini_description: this.communityGroup.mini_description,
+        theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : this.themeColor,
         website: this.communityGroup.website,
         facebook: this.communityGroup.facebook,
         twitter: this.communityGroup.twitter,

@@ -25,6 +25,8 @@ export interface IEvent {
   event_speakers_count: number;
   event_volunteers_count: number;
   interested_members_count: number;
+  registrations_count?: number;
+  attended_members_count?: number;
 }
 
 export interface IEventSearch extends IEvent {

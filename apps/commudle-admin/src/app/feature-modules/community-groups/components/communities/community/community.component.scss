@@ -1,0 +1,37 @@
+table {
+  @apply com-border-collapse com-w-auto;
+  td,
+  th {
+    @apply com-border com-border-solid com-border-gray-200 com-p-4;
+    a {
+      @apply com-no-underline;
+    }
+    .actions {
+      @apply com-m-1;
+    }
+  }
+  th {
+    @apply com-font-extrabold com-text-lg;
+  }
+
+  .heading {
+    .name {
+      @apply com-w-48;
+    }
+    .upcoming-events {
+      @apply com-w-72;
+    }
+    .members-count {
+      @apply com-w-40;
+    }
+    .events-count {
+      @apply com-w-40;
+    }
+    .channels-count {
+      @apply com-w-40;
+    }
+    .links {
+      @apply com-w-60;
+    }
+  }
+}

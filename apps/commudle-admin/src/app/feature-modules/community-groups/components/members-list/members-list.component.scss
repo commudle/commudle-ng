@@ -1,0 +1,36 @@
+.community-members {
+  @apply com-px-6 com-pt-6;
+
+  .activeTag {
+    @apply com-bg-primary-500 com-text-white;
+  }
+
+  .member {
+    .context-menu {
+      @apply com-invisible;
+    }
+
+    &:hover {
+      .context-menu {
+        @apply com-visible;
+      }
+    }
+    .user-communities-role {
+      @apply com-text-black com-bg-Chrome-Yellow com-flex com-items-center com-w-min com-p-0 com-px-2 com-font-medium com-rounded-xl com-mt-0;
+      nb-icon {
+        @apply com-text-white com-mr-1;
+      }
+    }
+  }
+}
+
+table {
+  @apply com-border-collapse com-w-auto;
+  td,
+  th {
+    @apply com-border com-border-solid com-border-gray-200 com-p-4;
+  }
+  th {
+    @apply com-font-extrabold com-text-lg;
+  }
+}

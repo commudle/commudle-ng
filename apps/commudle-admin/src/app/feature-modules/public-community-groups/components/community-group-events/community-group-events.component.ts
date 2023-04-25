@@ -43,7 +43,6 @@ export class CommunityGroupEventsComponent implements OnInit {
       this.communityGroupsService
         .pEvents(this.community_group_id, this.limit, '', this.pastPageInfo?.end_cursor, 'past')
         .subscribe((data) => {
-          console.log(data);
           this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.pastPageInfo = data.page_info;
           this.isLoadingPast = false;
