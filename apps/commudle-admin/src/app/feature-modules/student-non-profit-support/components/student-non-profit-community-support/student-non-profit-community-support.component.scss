@@ -11,13 +11,13 @@ hr {
       @apply com-mx-4 com-flex com-flex-col com-my-0;
 
       h1 {
-        @apply com-mb-0 com-p-0 com-font-extrabold md:com-mt-16;
+        @apply com-mb-0 com-p-0 md:com-mt-16;
       }
       .subheading {
-        @apply com-mt-8 com-text-2xl com-font-normal com-mb-0;
+        @apply com-mt-8 com-text-2xl com-mb-0;
       }
       .sub-heading {
-        @apply com-mt-8 com-mb-0 com-text-xl;
+        @apply com-mt-8 com-mb-0 com-text-base com-text-gray-500;
       }
     }
     .image {
@@ -32,16 +32,16 @@ hr {
   .content {
     @apply com-max-w-3xl com-mx-4;
 
-    h1 {
-      @apply com-mb-0 com-p-0 com-font-extrabold md:com-mt-12;
+    h2 {
+      @apply com-mb-0 com-p-0 md:com-mt-12;
     }
     div {
       p {
-        @apply com-mt-8 com-text-xl;
+        @apply com-mt-8 com-text-base;
       }
       ul {
         li {
-          @apply com-mt-4 com-text-xl;
+          @apply com-mt-4 com-text-base;
         }
       }
     }
@@ -62,11 +62,11 @@ hr {
       @apply com-mx-4 com-flex com-flex-col com-my-0;
 
       .subheading {
-        @apply com-text-2xl com-font-normal com-my-0;
+        @apply com-text-2xl com-my-0;
       }
-      .button {
-        @apply com-py-3 com-px-5 com-m-0 com-rounded-3xl com-text-white com-w-fit com-text-sm com-bg-primary-500 com-mt-12 com-mb-0;
-      }
+      // .button {
+      //   @apply com-py-3 com-px-5 com-m-0 com-rounded-3xl com-text-white com-w-fit com-text-sm com-bg-primary-500 com-mt-12 com-mb-0;
+      // }
     }
   }
 }
@@ -77,13 +77,13 @@ hr {
   .content {
     @apply com-max-w-3xl com-mx-4;
 
-    h1 {
-      @apply com-mb-0 com-p-0 com-font-extrabold md:com-mt-12;
+    h2 {
+      @apply com-mb-0 com-p-0 md:com-mt-12;
     }
 
     ol {
       li {
-        @apply com-mt-8 com-text-xl;
+        @apply com-mt-8 com-text-base;
       }
     }
   }
@@ -94,7 +94,7 @@ hr {
   @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
 
   .heading {
-    @apply com-my-0 com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
+    @apply com-my-0 com-text-3xl com-tracking-tight com-text-white;
     @apply sm:com-text-4xl;
   }
 
@@ -103,7 +103,7 @@ hr {
     @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
 
     .question {
-      @apply com-font-semibold com-text-white com-text-base;
+      @apply com-text-white com-text-base;
     }
 
     .answer {
