@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'apps/commudle-admin/src/app/services/cookie-consent.service';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cookie-consent',
@@ -17,12 +18,21 @@ export class CookieConsentComponent implements OnInit {
   allowAnalytics = true;
   allowMarketing = true;
 
+  preferencesForm;
+  isDisable: boolean = true;
+
   constructor(
     private cookieConsentService: CookieConsentService,
     private isBrowserService: IsBrowserService,
     private seoService: SeoService,
+    private fb: FormBuilder,
   ) {
     this.isBrowser = this.isBrowserService.isBrowser();
+    this.preferencesForm = this.fb.group({
+      necessary: [true],
+      analytics: [true],
+      marketing: [true],
+    });
   }
 
   ngOnInit() {
@@ -37,33 +47,65 @@ export class CookieConsentComponent implements OnInit {
     }
   }
 
+  // acceptManagedCookies() {
+  //   const options = {
+  //     necessary: 'true',
+  //     analytics: this.allowAnalytics ? 'true' : 'false',
+  //     marketing: this.allowMarketing ? 'true' : 'false',
+  //   };
+  //   const cookieValue = JSON.stringify(options);
+  //   this.cookieConsentService.acceptedCookieConsent(cookieValue);
+  //   this.cookieConstent = false;
+  // }
+
+  // acceptManagedCookies(type) {
+  //     const options = {
+  //       necessary: 'true',
+  //       analytics: this.preferencesForm.value.analytics ? 'true' : 'false',
+  //       marketing: this.preferencesForm.value.marketing ? 'true' : 'false',
+  //     };
+  //   // const cookieValue = JSON.stringify(options);
+  //   this.cookieConsentService.acceptedCookieConsent(options);
+  //   this.cookieConstent = false;
+  // }
+
+  // acceptManagedCookies() {
+  //   const options = {
+  //     necessary: 'true',
+  //     analytics: this.preferencesForm.value.analytics ? 'true' : 'false',
+  //     marketing: this.preferencesForm.value.marketing ? 'true' : 'false',
+  //     acceptAll: this.preferencesForm.value.marketing && this.preferencesForm.value.analytics ? 'true' : 'false',
+  //   };
+  //   // const cookieValue = JSON.stringify(options);
+  //   this.cookieConsentService.acceptedCookieConsent(options);
+  //   this.cookieConstent = false;
+  // }
+
   acceptManagedCookies() {
-    const options = {
-      necessary: 'true',
-      analytics: this.allowAnalytics ? 'true' : 'false',
-      marketing: this.allowMarketing ? 'true' : 'false',
-    };
-    const cookieValue = JSON.stringify(options);
-    this.cookieConsentService.acceptedCookieConsent(cookieValue);
+    const analytics = this.preferencesForm.value.analytics ? 'true' : 'false';
+    const marketing = this.preferencesForm.value.marketing ? 'true' : 'false';
+    const acceptAll = this.preferencesForm.value.marketing && this.preferencesForm.value.analytics ? 'true' : 'false';
+
+    this.cookieConsentService.acceptedCookieConsent(analytics, marketing, acceptAll);
     this.cookieConstent = false;
   }
 
-  acceptCookieConsent() {
-    this.cookieConsentService.acceptCookieConsent();
-    this.cookieConstent = false;
-  }
+  // acceptCookieConsent() {
+  //   this.cookieConsentService.acceptCookieConsent();
+  //   this.cookieConstent = false;
+  // }
 
   Consent() {
     this.showPreferncesButton = true;
   }
 
-  analytics() {
-    this.allowAnalytics = !this.allowAnalytics;
-  }
+  // analytics() {
+  //   this.allowAnalytics = !this.allowAnalytics;
+  // }
 
-  marketing() {
-    this.allowMarketing = !this.allowMarketing;
-  }
+  // marketing() {
+  //   this.allowMarketing = !this.allowMarketing;
+  // }
 
   // disagreeCookieConsent() {
   //   this.cookieService.deleteAll();

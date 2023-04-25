@@ -9,29 +9,36 @@
       </p> -->
       <p class="paragraph">
         This website uses cookies to improve your online experience. By continuing to use this website, you agree to our
-        use of cookies. If you would like to, you can change your cookie settings at any time. Our <a>Privacy Notice</a>
+        use of cookies. If you would like to, you can change your cookie settings at any time. Our
+        <a href="/policies/privacy-policy" target="_blank">Privacy Notice</a>
         provides more information about what cookies we use.
       </p>
     </div>
     <!-- [(ngModel)]="allowNecessary" -->
-    <div id="preferenceButtons" *ngIf="showPreferncesButton" class="preference-buttons">
-      <button [ngClass]="{ active: allowNecessary }" class="buttons">
-        <input type="checkbox" [disabled]="true" checked class="checkbox" />
-        <label>Necessary</label>
-      </button>
-      &nbsp;
-      <button (click)="analytics()" [ngClass]="{ active: allowAnalytics }" class="buttons">
-        <input type="checkbox" *ngIf="allowAnalytics" [(ngModel)]="allowAnalytics" class="checkbox" />
-        <label>Analytics</label>
-      </button>
-      &nbsp;
-      <button (click)="marketing()" [ngClass]="{ active: allowMarketing }" class="buttons">
-        <input type="checkbox" *ngIf="allowMarketing" [(ngModel)]="allowMarketing" class="checkbox" />
-        <label>Marketing</label>
-      </button>
-    </div>
+    <form [formGroup]="preferencesForm">
+      <div id="preferenceButtons" *ngIf="showPreferncesButton" class="preference-buttons">
+        <div [ngClass]="{ active: allowNecessary }" class="preferences">
+          <input type="checkbox" [disabled]="true" class="checkbox" formControlName="necessary" />
+          <label>Necessary</label>
+        </div>
+        &nbsp;
+        <!-- (click)="analytics()" -->
+        <!-- [(ngModel)]="allowAnalytics" *ngIf="allowAnalytics" -->
+        <div [ngClass]="{ active: allowAnalytics }" class="preferences">
+          <input type="checkbox" class="checkbox" formControlName="analytics" />
+          <label>Analytics</label>
+        </div>
+        &nbsp;
+        <!-- (click)="marketing()"  [(ngModel)]="allowMarketing" *ngIf="allowMarketing"  -->
+        <div [ngClass]="{ active: allowMarketing }" class="preferences">
+          <input type="checkbox" class="checkbox" formControlName="marketing" />
+          <label>Marketing</label>
+        </div>
+      </div>
+    </form>
     <div class="bottom-section">
-      <button (click)="acceptCookieConsent()" class="button" nbButton status="primary" size="tiny">Accept</button>
+      <!-- (click)="acceptCookieConsent()" -->
+      <button (click)="acceptManagedCookies()" class="button" nbButton status="primary" size="tiny">Accept All</button>
       &nbsp;
       <button
         *ngIf="!showPreferncesButton"

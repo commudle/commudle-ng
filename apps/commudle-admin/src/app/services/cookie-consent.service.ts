@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { GoogleTagManagerService } from './google-tag-manager.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,23 +9,65 @@ import { CookieService } from 'ngx-cookie-service';
 export class CookieConsentService {
   private cookieConsentKey = 'cookie-consent';
   private acceptConsentValue = 'true';
-  private acceptedSelected = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private cookieService: CookieService) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private cookieService: CookieService,
+    private gtm: GoogleTagManagerService,
+  ) {}
 
-  acceptCookieConsent() {
+  // acceptCookieConsent() {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 60, '/');
+  //   }
+  // }
+
+  // acceptedCookieConsent(cookieValue) {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.cookieService.set('com_cookiepref_analytics', cookieValue, 60, '/');
+  //     this.cookieService.set('com_cookiepref_marketing', cookieValue, 60, '/');
+  //     this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 60, '/');
+  //     // sessionStorage.setItem('cookie-options', cookieValue);
+  //     this.acceptedSelected = true;
+  //   }
+  // }
+
+  acceptedCookieConsent(analytics, marketing, acceptAll) {
     if (isPlatformBrowser(this.platformId)) {
-      this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 60, '/');
+      // const options = JSON.parse(cookieValue);
+      this.cookieService.set('com_cookiepref_analytics', analytics, 60, '/');
+      this.cookieService.set('com_cookiepref_marketing', marketing, 60, '/');
+      this.cookieService.set(this.cookieConsentKey, acceptAll, 60, '/');
+      this.gtm.dataLayerPushEvent('consent', {
+        analytics: analytics,
+        marketing: marketing,
+        acceptAll: acceptAll,
+      });
+      console.log(window.dataLayer);
+      // sessionStorage.setItem('cookie-options', cookieValue);
     }
   }
 
-  acceptedCookieConsent(cookieValue) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.cookieService.set(this.cookieConsentKey, cookieValue, 60, '/');
-      sessionStorage.setItem('cookie-options', cookieValue);
-      this.acceptedSelected = true;
-    }
-  }
+  // acceptedCookieConsent(options) {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     // const options = JSON.parse(cookieValue);
+  //     this.cookieService.set('com_cookiepref_analytics', options.analytics, 60, '/');
+  //     this.cookieService.set('com_cookiepref_marketing', options.marketing, 60, '/');
+  //     this.cookieService.set(this.cookieConsentKey, options.acceptAll, 60, '/');
+  //     this.gtm.dataLayerPushEvent('consent', { cookiepref: options, acceptAll: this.acceptConsentValue });
+  //     console.log(window.dataLayer);
+  //     // sessionStorage.setItem('cookie-options', cookieValue);
+  //     this.acceptedSelected = true;
+  //   }
+  // }
+
+  // acceptedCookieConsent(cookieValue) {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.cookieService.set(this.cookieConsentKey, cookieValue, 60, '/');
+  //     sessionStorage.setItem('cookie-options', cookieValue);
+  //     this.acceptedSelected = true;
+  //   }
+  // }
 
   isCookieConsentAccepted(): boolean {
     const consentValue = isPlatformBrowser(this.platformId) ? this.cookieService.get(this.cookieConsentKey) : 'false';
