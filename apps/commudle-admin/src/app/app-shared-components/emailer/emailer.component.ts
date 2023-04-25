@@ -26,6 +26,7 @@ export class EmailerComponent implements OnInit {
   eventDataFormEntityGroupId: number;
   mailType: string;
   recipientEmail: string;
+  recipientUsername: string;
 
   prefillCompleted = false;
 
@@ -221,6 +222,7 @@ export class EmailerComponent implements OnInit {
       registration_selection_type: [''],
       resend: [false],
       recipient_email: [''],
+      recipient_username: [''],
       subject: ['', Validators.required],
       body: [''],
     });
@@ -238,6 +240,10 @@ export class EmailerComponent implements OnInit {
 
       if (this.recipientEmail) {
         this.prefillForm('recipient_email');
+      }
+
+      if (this.recipientUsername) {
+        this.prefillForm('recipient_username');
       }
     });
   }
@@ -405,6 +411,13 @@ export class EmailerComponent implements OnInit {
           if (this.recipientEmail) {
             this.eMailForm.patchValue({
               recipient_email: this.recipientEmail,
+            });
+          }
+          break;
+        case 'recipient_username':
+          if (this.recipientUsername) {
+            this.eMailForm.patchValue({
+              recipient_username: this.recipientUsername,
             });
           }
           break;
