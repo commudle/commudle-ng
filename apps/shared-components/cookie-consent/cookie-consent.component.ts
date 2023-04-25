@@ -55,6 +55,10 @@ export class CookieConsentComponent implements OnInit {
     this.cookieConstent = false;
   }
 
+  // disagreeCookieConsent() {
+  //   this.cookieService.deleteAll();
+  //   window.location.href = 'about:blank';
+  // }
   Consent() {
     this.showPreferncesButton = true;
   }
