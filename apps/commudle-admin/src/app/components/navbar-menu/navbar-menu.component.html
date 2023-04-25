@@ -48,47 +48,16 @@
     </a>
   </nb-action>
   <nb-action *ngIf="!currentUser">
-    <div class="user-context-menu clickable" [nbContextMenu]="contextMenuItems"></div>
-    <fa-icon [icon]="faEllipsisV"></fa-icon>
-    <span>More</span>
+    <a
+      class="user-context-menu clickable"
+      (click)="showContextMenu = !showContextMenu"
+      [nbContextMenu]="contextMenuItems"
+    >
+      <fa-icon [icon]="faEllipsisV"></fa-icon>
+      <span>More</span>
+    </a>
   </nb-action>
 </nb-actions>
-<!-- <ng-container *ngIf="showContextMenu">
-    <nb-context-menu [items]="contextMenuItems" (click)="closeContextMenu()"></nb-context-menu>
-    [nbContextMenu]="contextMenuItems" [nbContextMenuTag]="'community-channel-member-menu-'.concat(userRolesUser.user.username)"></div>
-  </ng-container> -->
-
-<!-- <nb-action *ngIf="!currentUser">
-    <a routerLink="/jobs" routerLinkActive="active">
-      <fa-icon [icon]="faBriefcase"></fa-icon>
-      <span>Jobs</span>
-    </a>
-  </nb-action>
-  <nb-action *ngIf="!currentUser">
-    <a routerLink="/pricing" routerLinkActive="active">
-      <fa-icon [icon]="faStar"></fa-icon>
-      <span>Pricing</span>
-    </a>
-  </nb-action>
-  <nb-action *ngIf="!currentUser">
-    <a routerLink="/blogs" routerLinkActive="active">
-      <fa-icon [icon]="faStar"></fa-icon>
-      <span>Blogs</span>
-    </a>
-  </nb-action>
-  <nb-action *ngIf="!currentUser">
-    <a routerLink="/documentation" routerLinkActive="active">
-      <fa-icon [icon]="faFileText"></fa-icon>
-      <span>Documentation</span>
-    </a>
-  </nb-action>
-  <nb-action *ngIf="!currentUser">
-    <a routerLink="/newsletters" routerLinkActive="active">
-      <fa-icon [icon]="faStar"></fa-icon>
-      <span>Newsletters</span>
-    </a>
-  </nb-action>
-</nb-actions> -->
 
 <ng-template #notificationPopover>
   <app-notifications-popover (closePopover)="closePopover()"></app-notifications-popover>

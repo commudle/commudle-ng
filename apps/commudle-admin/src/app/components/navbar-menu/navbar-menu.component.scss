@@ -9,7 +9,7 @@ a {
 }
 
 nb-actions {
-  @apply com-h-full com-flex com-gap-x-11 com-justify-evenly;
+  @apply com-h-full com-flex com-gap-x-11 com-justify-evenly com-ml-24;
 
   nb-action {
     @apply com-px-0 com-py-4 md:com-p-0 com-border-none;

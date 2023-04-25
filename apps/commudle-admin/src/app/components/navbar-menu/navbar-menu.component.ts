@@ -40,14 +40,15 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   notificationIconHighlight = false;
 
   contextMenuItems = [
-    { title: 'Jobs', link: '/jobs' },
-    { title: 'Pricing', link: '/pricing' },
-    { title: 'Blogs', link: '/blogs' },
-    { title: 'Documentation', link: '/documentation' },
-    { title: 'Newsletters', link: '/newsletters' },
+    { title: 'Jobs', link: '/jobs', icon: 'briefcase-outline' },
+    { title: 'Pricing', link: '/pricing', icon: 'star-outline' },
+    { title: 'Blogs', link: '/blogs', icon: 'file-text-outline' },
+    { title: 'Documentation', link: 'https://documentation.commudle.com/', icon: 'file-text' },
+    { title: 'Newsletters', link: '/newsletters', icon: 'email-outline' },
   ];
 
   subscriptions: Subscription[] = [];
+  showContextMenu = false;
 
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
@@ -82,29 +83,4 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   closePopover() {
     this.popovers.find((popover) => popover.context === 'notificationsPopover').hide();
   }
-
-  // handleContextMenu(): void {
-  //   this.menuService
-  //     .onItemClick()
-  //     .pipe(
-  //       filter(({ tag }) => tag === 'community-member-context-menu'),
-  //       map(({ item: title }) => title),
-  //     )
-  //     .subscribe((menuItem) => {
-  //       switch (menuItem.title) {
-  //         case 'Unblock':
-  //           this.openDialog(this.unblockUserDialog, this.activeContextMenuUser);
-  //           break;
-  //       }
-  //     });
-  // }
-
-  // openContextMenu(event) {
-  //   event.preventDefault();
-  //   this.showContextMenu = true;
-  // }
-
-  // closeContextMenu() {
-  //   this.showContextMenu = false;
-  // }
 }
