@@ -1,16 +1,17 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import {
   faBell,
-  // faBriefcase,
+  faBriefcase,
   faFlask,
-  // faInfo,
+  faInfo,
   faLightbulb,
-  // faStar,
+  faStar,
   faUser,
   faUserFriends,
-  // faFileText,
+  faFileText,
+  faEllipsisV,
 } from '@fortawesome/free-solid-svg-icons';
-import { NbPopoverDirective } from '@commudle/theme';
+import { NbMenuService, NbPopoverDirective } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -29,19 +30,32 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faUserFriends = faUserFriends;
   faBell = faBell;
   faUser = faUser;
-  // faInfo = faInfo;
-  // faBriefcase = faBriefcase;
-  // faStar = faStar;
-  // faFileText = faFileText;
+  faInfo = faInfo;
+  faBriefcase = faBriefcase;
+  faStar = faStar;
+  faFileText = faFileText;
+  faEllipsisV = faEllipsisV;
 
   notificationCount = 0;
   notificationIconHighlight = false;
+
+  contextMenuItems = [
+    { title: 'Jobs', link: '/jobs' },
+    { title: 'Pricing', link: '/pricing' },
+    { title: 'Blogs', link: '/blogs' },
+    { title: 'Documentation', link: '/documentation' },
+    { title: 'Newsletters', link: '/newsletters' },
+  ];
 
   subscriptions: Subscription[] = [];
 
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
-  constructor(private authwatchService: LibAuthwatchService, private notificationsStore: NotificationsStore) {}
+  constructor(
+    private authwatchService: LibAuthwatchService,
+    private notificationsStore: NotificationsStore,
+    private menuService: NbMenuService,
+  ) {}
 
   ngOnInit(): void {
     this.authwatchService.currentUser$.subscribe((currentUser) => {
@@ -68,4 +82,29 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   closePopover() {
     this.popovers.find((popover) => popover.context === 'notificationsPopover').hide();
   }
+
+  // handleContextMenu(): void {
+  //   this.menuService
+  //     .onItemClick()
+  //     .pipe(
+  //       filter(({ tag }) => tag === 'community-member-context-menu'),
+  //       map(({ item: title }) => title),
+  //     )
+  //     .subscribe((menuItem) => {
+  //       switch (menuItem.title) {
+  //         case 'Unblock':
+  //           this.openDialog(this.unblockUserDialog, this.activeContextMenuUser);
+  //           break;
+  //       }
+  //     });
+  // }
+
+  // openContextMenu(event) {
+  //   event.preventDefault();
+  //   this.showContextMenu = true;
+  // }
+
+  // closeContextMenu() {
+  //   this.showContextMenu = false;
+  // }
 }
