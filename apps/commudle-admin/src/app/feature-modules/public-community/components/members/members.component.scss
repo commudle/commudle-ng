@@ -1,15 +1,43 @@
-.community-members {
-  @apply com-mt-8 com-mx-0 com-mb-4;
+nb-card {
+  @apply com-mt-10 com-p-0 com-mx-0;
 
   nb-card-body {
-    @apply com-p-10;
+    @apply com-m-5 com-p-0;
 
-    .header-text {
-      @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-semibold com-text-gunmetal;
+    .speakers-container {
+      @apply com-mt-3 com-mb-0 com-p-0;
+
+      .header-text {
+        @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
+      }
+
+      .loader {
+        @apply com-flex com-justify-center com-items-center;
+      }
+
+      .speakers-list {
+        @apply com-flex com-overflow-x-auto com-scrollbar-hide com-gap-4;
+      }
     }
 
-    .load-more {
-      @apply com-text-center com-mt-8;
+    .members-container {
+      @apply com-mt-10 com-mb-5 com-p-0;
+
+      .members {
+        @apply com-mt-0 com-mx-0 com-mb-4;
+
+        .header-text {
+          @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-7 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
+        }
+
+        .members-list {
+          @apply com-grid com-gap-y-6 com-gap-x-20 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3;
+        }
+
+        .load-more {
+          @apply com-text-center com-mt-8;
+        }
+      }
     }
   }
 }

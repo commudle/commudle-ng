@@ -1,4 +1,5 @@
 .event-details-container {
+  @apply com-mx-0 md:com-mx-2 com-my-4;
   .image-container {
     @apply com-mx-0 md:com-mx-2 com-my-4 com-p-0;
     .event-header-delete {

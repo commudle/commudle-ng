@@ -25,6 +25,9 @@
   <loc>https://json.commudle.com/sitemaps/sitemap_public_page.xml</loc>
 </sitemap>
 <sitemap>
-  <loc>https://json.commudle.com/sitemaps/sitemap_users.xml</loc>
+  <loc>https://json.commudle.com/sitemaps/sitemap_users_1.xml</loc>
+</sitemap>
+<sitemap>
+  <loc>https://json.commudle.com/sitemaps/sitemap_users_2.xml</loc>
 </sitemap>
 </sitemapindex>

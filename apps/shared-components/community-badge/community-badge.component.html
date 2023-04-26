@@ -3,7 +3,7 @@
     <div class="logo">
       <img
         alt="{{ community.name }}"
-        src="{{ community.logo_path || community.logo_image?.url }}"
+        src="{{ community.logo_path || community.logo_image?.url || community.logo_image_path?.url }}"
         title="{{ community.name }}"
       />
     </div>

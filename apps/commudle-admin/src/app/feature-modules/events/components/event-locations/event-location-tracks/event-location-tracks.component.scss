@@ -1,136 +1,133 @@
 .event-location-tracks {
-  width: 95%;
-}
-.tracks-container {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 25rem;
-  // width: ;
-  max-height: 350px;
-  overflow-y: scroll;
-  overflow-x: scroll;
-
-  .track.empty {
-    width: 6.5rem;
-    position: sticky;
-    left: 0;
-    background-color: white;
-    z-index: 1;
-    .track-name.empty {
-      width: 5rem;
-      height: 2.5rem;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      p {
-        margin-bottom: 0.3rem;
-      }
-    }
-    .time-cell {
-      width: 5rem;
-      display: flex;
-      align-items: flex-start;
-      height: 12rem;
-      border: 1px solid white;
-      background-color: white;
-      .time-display {
-        margin: 0;
-        font-size: 0.8rem;
-      }
-    }
+  .add-track-button {
+    @apply com-text-sm com-mb-2;
   }
 
-  .track {
-    position: relative;
-    width: 20rem;
-    max-width: 80%;
-    .track-name {
-      width: 20rem;
-      max-width: 100%;
-      height: 2.5rem;
-      position: sticky;
-      padding: 0.5rem;
-      background-color: #e6e6e6;
-      top: 0;
+  .track-container {
+    nb-action {
       display: flex;
-      justify-content: space-between;
-      p {
-        margin: 0;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 50%;
-        font-size: 0.8rem;
-      }
-      button: {
-        margin-right: 0.5rem;
+      flex-wrap: wrap;
+
+      nb-icon {
+        font-size: 1.3rem;
+        @apply com-text-white;
       }
     }
 
-    .time-cell.fill {
-      width: 20rem;
-      max-width: 100%;
-      height: 12rem;
-      border: 1px solid lightgrey;
-      border-radius: 5px;
-      // margin: 1px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .filler-text {
-        color: #3365ff;
+    nb-accordion-item-header {
+      @apply com-py-1 com-px-2 com-overflow-x-auto com-justify-between com-border-0 com-rounded-md com-bg-Chrome-Yellow;
+      .track-name {
+        @apply com-text-lg com-mr-2 com-my-0 com-ml-0;
+        display: inline-block;
       }
-      &:hover {
-        background: #a2b9ff;
-        .filler-text {
-          color: white;
+
+      .actions {
+        @apply com-mr-8 com-flex com-flex-row;
+      }
+    }
+
+    nb-accordion-item-body {
+      @apply com-p-0;
+      nb-list {
+        @apply com-m-0 com-p-0;
+        nb-list-item {
+          display: flex;
+          @apply com-border-t-0 com-py-2 com-items-stretch;
+
+          .session-time {
+            @apply com-pr-2 com-flex com-justify-center com-flex-col;
+            width: 60px;
+            border-right: 3px solid lightgrey;
+
+            p {
+              margin: 0;
+              text-align: right;
+            }
+
+            p:nth-of-type(1) {
+              font-size: 1.2rem;
+            }
+
+            p:nth-of-type(2) {
+              margin-top: 0.2rem;
+              font-size: 0.9rem;
+            }
+          }
+
+          .session-details {
+            width: 90%;
+            padding-left: 0.5rem;
+
+            .session-title {
+              p:nth-of-type(1) {
+                @apply com-text-base;
+                @apply com-mt-1 com-mb-0;
+                font-weight: normal;
+              }
+
+              .tag-badge {
+                @apply com-mt-0 com-mb-0 com-p-0 com-flex com-space-x-1;
+              }
+
+              .session-speaker {
+                @apply com-mt-1;
+                width: fit-content;
+              }
+            }
+
+            .links {
+              @apply com-flex com-flex-row;
+
+              .session-links {
+                @apply com-mt-1 com-mr-7;
+
+                .add-session,
+                .edit-session {
+                  @apply com-text-xs com-flex com-items-center;
+
+                  nb-icon {
+                    @apply com-text-xs com-ml-1;
+                  }
+                }
+              }
+            }
+
+            .public-session {
+              @apply com-mt-1;
+              a {
+                @apply com-text-xs com-flex com-items-center;
+
+                nb-icon {
+                  @apply com-text-xs com-ml-1;
+                }
+              }
+            }
+          }
         }
       }
-      .time-display {
-        margin: 0;
+      .edit-outline {
+        @apply com-mx-4 com-cursor-pointer com-text-2xl md:com-text-xl;
       }
-    }
-    .time-cell.fill {
-      .filler-text {
-        margin: 0;
-        text-align: center;
+
+      .close-circle-outline {
+        @apply com-cursor-pointer com-text-2xl md:com-text-xl;
+      }
+
+      .no-slots-yet {
+        @apply com-text-xl com-font-medium;
       }
     }
   }
 }
-
-.track-slot {
-  overflow-y: auto;
-  position: absolute;
-  width: 90%;
-  z-index: 1;
-  background-color: white;
-  box-shadow: -1px 5px 7px 4px lightgrey;
-  border-radius: 5px;
-  padding: 0.2rem;
-  @apply com-text-sm;
-  @apply hover:com-z-10;
-
-  .slot-time {
-    @apply com-text-xs;
-  }
-
-  .actions {
-    display: flex;
-    @apply com-mt-3 com-mb-2;
-    nb-icon {
-      @apply com-mr-3;
-    }
-  }
-
-  p {
-    @apply com-m-0;
-  }
+.save-button-bottom {
+  @apply com-mt-6;
 }
 
-.track-slot-form {
-  > div > div {
-    margin-bottom: 0.8rem;
-  }
+.session-name,
+.date,
+.start-time,
+.end-time,
+.select-track,
+.select-speaker {
+  @apply com-mb-4;
 }

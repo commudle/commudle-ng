@@ -3,6 +3,9 @@
     max-width: 920px;
     margin: 0 auto;
 
+    .required-question {
+      @apply com-text-red-500 com-ml-2px;
+    }
     .submit-button {
       @apply com-mx-2;
     }

@@ -33,4 +33,30 @@ footer {
     @apply com-mt-12 com-border-t com-border-gray-200 com-pt-8;
     border-top-style: solid;
   }
+
+  .show-footer {
+    @apply md:com-mx-86px com-mx-4 com-mt-16 com-mb-0;
+
+    hr {
+      @apply com-border-gray-300 com-border-solid com-border-[0.5px] com-max-w-[1280px];
+    }
+
+    .links {
+      @apply com-flex com-justify-center com-pt-8 com-pb-2;
+
+      ul {
+        @apply com-flex com-list-none md:com-space-x-10 com-text-gray-500 com-items-center com-flex-wrap com-justify-center com-space-x-4;
+
+        li {
+          a {
+            @apply com-text-gray-500;
+          }
+
+          img {
+            @apply com-h-8;
+          }
+        }
+      }
+    }
+  }
 }

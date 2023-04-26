@@ -49,6 +49,7 @@ import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { TeamComponent } from './components/team/team.component';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
 import { LinkyModule } from 'ngx-linky';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 
 @NgModule({
   declarations: [
@@ -84,11 +85,13 @@ import { LinkyModule } from 'ngx-linky';
     SharedPipesModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
-    SkeletonScreensModule,
     LinkyModule,
 
     // external
     FontAwesomeModule,
+
+    //standalone component
+    SkeletonCardsComponent,
 
     // Nebular
     NbCardModule,

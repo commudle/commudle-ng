@@ -8,6 +8,15 @@
             Name*
             <input formControlName="name" fullWidth nbInput type="text" />
           </label>
+          <span
+            *ngIf="
+              communityForm.get('community').get('name').touched &&
+              communityForm.get('community').get('name').invalid &&
+              communityForm.get('community').get('name').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -17,6 +26,9 @@
             Logo*
             <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
           </label>
+          <span *ngIf="!uploadedLogo">
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -64,6 +76,15 @@
             Email*
             <input formControlName="contact_email" fullWidth nbInput type="text" />
           </label>
+          <span
+            *ngIf="
+              communityForm.get('community').get('contact_email').touched &&
+              communityForm.get('community').get('contact_email').invalid &&
+              communityForm.get('community').get('contact_email').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -73,6 +94,15 @@
             Location*
             <input formControlName="location" fullWidth nbInput type="text" />
           </label>
+          <span
+            *ngIf="
+              communityForm.get('community').get('location').touched &&
+              communityForm.get('community').get('location').invalid &&
+              communityForm.get('community').get('location').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -88,6 +118,15 @@
       <div class="about" role="group">
         <label>
           About*
+          <span
+            *ngIf="
+              communityForm.get('community').get('about').touched &&
+              communityForm.get('community').get('about').invalid &&
+              communityForm.get('community').get('about').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
           <editor [init]="tinyMCE" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" formControlName="about">
           </editor>
         </label>
@@ -99,6 +138,15 @@
             Mini Description*
             <input formControlName="mini_description" fullWidth nbInput type="text" />
           </label>
+          <span
+            *ngIf="
+              communityForm.get('community').get('mini_description').touched &&
+              communityForm.get('community').get('mini_description').invalid &&
+              communityForm.get('community').get('mini_description').errors.required
+            "
+          >
+            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+          </span>
         </div>
       </div>
 
@@ -150,6 +198,9 @@
               [minimumTags]="minimumTags"
             ></app-tag>
           </label>
+          <span *ngIf="tags.length < 5">
+            <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags need to be added'"></commudle-alert>
+          </span>
         </div>
       </div>
     </div>
