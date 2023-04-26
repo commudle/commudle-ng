@@ -8,6 +8,7 @@ import { UserExtraDetailsComponent } from './components/public-profile/user-extr
 import { UserResumePreviewComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-preview/user-resume-preview.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
+import { CookiePreferencesComponent } from './components/public-profile/user-basic-details/cookie-preferences/cookie-preferences.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
           {
             path: 'email-preferences',
             component: EmailPreferencesComponent,
+          },
+          {
+            path: 'cookie-preferences',
+            component: CookiePreferencesComponent,
           },
         ],
       },
