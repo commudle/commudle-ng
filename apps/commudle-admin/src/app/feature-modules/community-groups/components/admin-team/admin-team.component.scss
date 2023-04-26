@@ -1,0 +1,14 @@
+.form {
+  @apply com-mb-3;
+}
+
+.member {
+  @apply com-flex com-items-center com-justify-between com-w-1/2;
+}
+
+.member:not(:last-child) {
+  @apply com-border-0 com-border-b-2 com-border-solid com-border-gray-200;
+}
+.actions {
+  @apply com-w-28;
+}

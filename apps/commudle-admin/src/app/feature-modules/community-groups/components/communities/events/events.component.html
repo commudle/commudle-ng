@@ -1,0 +1,67 @@
+<div *ngIf="isLoading" class="com-mt-3">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
+  <table>
+    <thead>
+      <tr class="heading">
+        <th class="com-w-[350px]">Basic Details</th>
+        <th class="com-w-[150px]">Registrations</th>
+        <th class="com-w-[150px]">Attendees</th>
+        <th class="com-w-[150px]">Status</th>
+        <th class="com-w-[320px]">Links</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td valign="top">
+          <a [routerLink]="['/communities', event.kommunity_id, 'events', event.slug]" target="_blank">
+            {{ event.name }}
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </td>
+        <td valign="top">{{ event.registrations_count }}</td>
+        <td valign="top">{{ event.attended_members_count }}</td>
+        <td valign="top">{{ event.event_status.name }}</td>
+        <td valign="top">
+          <a
+            [routerLink]="['/admin', 'communities', event.kommunity_id, 'event-dashboard', event.slug]"
+            nbButton
+            hero
+            status="info"
+            size="tiny"
+            target="_blank"
+            class="actions"
+          >
+            Dashboard
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+          <a
+            [routerLink]="['/communities', event.kommunity_id, 'events', event.slug]"
+            nbButton
+            hero
+            status="info"
+            size="tiny"
+            target="_blank"
+            class="actions"
+          >
+            Public Page
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+          <a
+            [routerLink]="['/admin', 'communities', event.kommunity_id, 'event-dashboard', event.slug, 'stats']"
+            nbButton
+            hero
+            status="success"
+            size="tiny"
+            target="_blank"
+            class="actions"
+          >
+            Stats
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
