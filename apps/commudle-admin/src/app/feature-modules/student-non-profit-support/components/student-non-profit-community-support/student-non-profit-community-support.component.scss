@@ -40,7 +40,7 @@ hr {
       p {
         @apply com-mt-8 com-text-base com-text-gray-500;
       }
-      ul {
+      ol {
         li {
           @apply com-mt-4 com-text-base com-text-gray-500;
         }
@@ -86,6 +86,10 @@ hr {
       li {
         @apply com-mt-8 com-text-base com-text-gray-500;
       }
+    }
+
+    p {
+      @apply com-mt-8 com-text-base com-text-gray-500;
     }
   }
 }
