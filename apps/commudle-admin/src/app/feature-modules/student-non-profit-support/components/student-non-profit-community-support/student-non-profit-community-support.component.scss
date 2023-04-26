@@ -2,11 +2,11 @@ hr {
   @apply com-m-0 com-border-gray-300 com-border-solid com-border-[0.5px];
 }
 
-.section-one {
+.student-no-profit {
   @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
 
   div {
-    @apply com-flex md:com-flex-row com-justify-between com-m-0 com-p-0 com-flex-col-reverse com-gap-x-36;
+    @apply com-flex md:com-flex-row com-justify-between com-m-0 com-p-0 com-flex-col-reverse com-gap-x-28;
 
     .content {
       @apply com-mx-4 com-flex com-flex-col com-my-0;
@@ -22,12 +22,12 @@ hr {
       }
     }
     .image {
-      @apply com-ml-4 com-my-0 com-p-0 com-mr-40 com-mt-12;
+      @apply com-ml-4 com-my-0 com-p-0 com-mr-16 com-mt-12;
     }
   }
 }
 
-.section-two {
+.who-can-avail-this {
   @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
 
   .content {
@@ -49,11 +49,11 @@ hr {
   }
 }
 
-.section-three {
+.start-community {
   @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
 
   div {
-    @apply com-flex md:com-flex-row com-justify-between com-mt-12 com-mb-0 com-p-0 com-flex-col com-gap-x-52;
+    @apply com-flex md:com-flex-row com-mt-12 com-mb-0 com-p-0 com-flex-col com-gap-x-28;
 
     .image {
       @apply com-mx-4 com-my-0 com-p-0;
@@ -65,14 +65,18 @@ hr {
       .subheading {
         @apply com-text-2xl com-my-0;
       }
-      .button {
-        @apply com-w-fit com-mt-12 com-mb-0;
+
+      a {
+        @apply com-no-underline;
+        .button {
+          @apply com-w-fit com-mt-12 com-mb-0;
+        }
       }
     }
   }
 }
 
-.section-four {
+.application-process {
   @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px com-bg-gray-100;
 
   .content {
