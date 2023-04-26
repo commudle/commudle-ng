@@ -1,0 +1,13 @@
+<div class="cookie-preference-container">
+  <button
+    nbButton
+    status="primary"
+    size="large"
+    shape="round"
+    (click)="showPopup = true"
+    class="cookie-preference-button"
+  >
+    Set Cookie Preferences
+  </button>
+</div>
+<app-cookie-consent [showPopup]="showPopup"></app-cookie-consent>
