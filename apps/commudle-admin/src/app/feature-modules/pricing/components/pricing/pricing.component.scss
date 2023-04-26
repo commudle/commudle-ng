@@ -218,7 +218,7 @@ p {
         }
       }
       .image {
-        @apply com-m-0 com-p-0 com-w-[550px] com-h-[400px];
+        @apply com-m-0 com-p-0 md:com-w-[550px] md:com-h-[400px] com-w-full com-h-full;
       }
     }
   }
