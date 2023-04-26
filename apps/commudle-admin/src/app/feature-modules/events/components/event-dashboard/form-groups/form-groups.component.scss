@@ -71,8 +71,7 @@
 
 .dfeg-create-form {
   > div {
-    display: flex;
-    flex-direction: column;
+    @apply com-flex com-flex-col com-items-start;
     > div {
       margin: 0.5rem;
     }
@@ -82,7 +81,7 @@
   .data-form-type-select {
     margin: 0.5rem;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .save-button-bottom {

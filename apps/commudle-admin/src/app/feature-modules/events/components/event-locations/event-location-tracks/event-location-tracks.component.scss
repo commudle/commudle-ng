@@ -1,6 +1,4 @@
 .event-location-tracks {
-  max-width: 1500px;
-
   .add-track-button {
     @apply com-text-sm com-mb-2;
   }
@@ -17,14 +15,14 @@
     }
 
     nb-accordion-item-header {
-      @apply com-py-1 com-px-2;
-      background-color: #ffaa00;
-      @apply com-border-0 com-rounded-md;
-
+      @apply com-py-1 com-px-2 com-overflow-x-auto com-justify-between com-border-0 com-rounded-md com-bg-Chrome-Yellow;
       .track-name {
-        @apply com-text-lg;
+        @apply com-text-lg com-mr-2 com-my-0 com-ml-0;
         display: inline-block;
-        margin: 0;
+      }
+
+      .actions {
+        @apply com-mr-8 com-flex com-flex-row;
       }
     }
 
@@ -34,10 +32,10 @@
         @apply com-m-0 com-p-0;
         nb-list-item {
           display: flex;
-          @apply com-border-t-0 com-p-0;
+          @apply com-border-t-0 com-py-2 com-items-stretch;
 
           .session-time {
-            @apply com-pr-2;
+            @apply com-pr-2 com-flex com-justify-center com-flex-col;
             width: 60px;
             border-right: 3px solid lightgrey;
 
@@ -62,17 +60,18 @@
 
             .session-title {
               p:nth-of-type(1) {
-                @apply com-text-lg;
+                @apply com-text-base;
                 @apply com-mt-1 com-mb-0;
                 font-weight: normal;
               }
 
               .tag-badge {
-                @apply com-mt-1 com-mb-0 com-p-0;
+                @apply com-mt-0 com-mb-0 com-p-0 com-flex com-space-x-1;
               }
 
               .session-speaker {
                 @apply com-mt-1;
+                width: fit-content;
               }
             }
 
@@ -84,7 +83,11 @@
 
                 .add-session,
                 .edit-session {
-                  @apply com-text-sm;
+                  @apply com-text-xs com-flex com-items-center;
+
+                  nb-icon {
+                    @apply com-text-xs com-ml-1;
+                  }
                 }
               }
             }
@@ -92,18 +95,22 @@
             .public-session {
               @apply com-mt-1;
               a {
-                @apply com-text-sm;
+                @apply com-text-xs com-flex com-items-center;
+
+                nb-icon {
+                  @apply com-text-xs com-ml-1;
+                }
               }
             }
           }
         }
       }
       .edit-outline {
-        @apply com-mx-4 com-cursor-pointer;
+        @apply com-mx-4 com-cursor-pointer com-text-2xl md:com-text-xl;
       }
 
       .close-circle-outline {
-        @apply com-cursor-pointer;
+        @apply com-cursor-pointer com-text-2xl md:com-text-xl;
       }
 
       .no-slots-yet {

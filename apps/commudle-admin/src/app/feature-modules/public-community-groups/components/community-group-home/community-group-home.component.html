@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <div class="community-group" *ngIf="communityGroup">
-        <section class="top">
+        <section class="top" [style.background]="communityGroup.theme_color">
           <div class="basic-details">
             <div class="logo">
               <img

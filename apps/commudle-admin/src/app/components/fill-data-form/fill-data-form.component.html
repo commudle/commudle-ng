@@ -9,7 +9,7 @@
         </div>
 
         <div *ngIf="!formClosed">
-          <nb-card>
+          <nb-card class="header">
             <nb-card-body>
               <p *ngIf="community" class="community">
                 <app-community-badge [community]="community"></app-community-badge>
@@ -19,8 +19,8 @@
                   <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
                 </div>
                 <p class="event-name">{{ event.name }}</p>
-                <p class="form-name">{{ dataFormEntity.name }}</p>
               </div>
+              <p class="form-name">{{ dataFormEntity.name }}</p>
             </nb-card-body>
           </nb-card>
 
@@ -33,19 +33,17 @@
             </nb-card-body>
           </nb-card>
 
-          <nb-card>
-            <nb-card-body class="data-form-fill-body">
-              <app-data-form-fill
-                (formSubmitted)="submitForm($event)"
-                [dataFormId]="dataFormEntity.data_form_id"
-                [existingResponses]="selectedFormResponse"
-              >
-              </app-data-form-fill>
-              <p *ngIf="dataFormEntity.multi_response" class="text-info">
-                <i>* You can submit multiple responses for this form!</i>
-              </p>
-            </nb-card-body>
-          </nb-card>
+          <div class="data-form-fill-body">
+            <app-data-form-fill
+              (formSubmitted)="submitForm($event)"
+              [dataFormId]="dataFormEntity.data_form_id"
+              [existingResponses]="selectedFormResponse"
+            >
+            </app-data-form-fill>
+            <p *ngIf="dataFormEntity.multi_response" class="text-info">
+              <i>* You can submit multiple responses for this form!</i>
+            </p>
+          </div>
         </div>
       </div>
     </div>
