@@ -14,9 +14,6 @@ export class CookieConsentComponent implements OnInit {
   cookieConstent = false;
   isBrowser;
   showPreferncesButton = false;
-  allowNecessary = true;
-  allowAnalytics = true;
-  allowMarketing = true;
 
   preferencesForm;
   isDisable: boolean = true;
@@ -59,6 +56,7 @@ export class CookieConsentComponent implements OnInit {
   //   this.cookieService.deleteAll();
   //   window.location.href = 'about:blank';
   // }
+
   Consent() {
     this.showPreferncesButton = true;
   }
