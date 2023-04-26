@@ -73,9 +73,10 @@ export class SeoService {
   }
 
   noIndex(value: boolean) {
+    const host = window.location.hostname;
     if (value) {
       this.setTag('robots', 'noindex');
-    } else {
+    } else if (!['test'].includes(host)) {
       this.removeTag('robots');
     }
   }
