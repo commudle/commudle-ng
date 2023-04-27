@@ -30,20 +30,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.seoService.noIndex(true);
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        this.communityGroupsService.show(data.community_group_id).subscribe((data) => {
-          this.communityGroup = data;
-
-          this.seoService.setTitle(`Dashboard | ${this.communityGroup.name}`);
-        });
+      this.activatedRoute.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
+        this.setMeta();
       }),
     );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.seoService.noIndex(false);
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Dashboard - Admin - ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
   }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,15 +18,18 @@ export class CommunityComponent implements OnInit, OnDestroy {
 
   isLoading = true;
 
-  constructor(private communityGroupsService: CommunityGroupsService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private communityGroupsService: CommunityGroupsService,
+    private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.communityGroupsService.show(data.community_group_id).subscribe((data) => {
-          this.communityGroup = data;
-          this.getCommunities();
-        });
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
+        this.getCommunities();
+        this.setMeta();
       }),
     );
   }
@@ -39,6 +43,14 @@ export class CommunityComponent implements OnInit, OnDestroy {
         this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.isLoading = false;
       }),
+    );
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Communities - Admin - ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
     );
   }
 }
