@@ -19,12 +19,14 @@ export class MembersComponent implements OnInit, OnDestroy {
   page = 1;
   count = 9;
   canLoadMore = true;
+  total;
 
   subscriptions: Subscription[] = [];
 
   speakers: IUser[] = [];
   isLoadingSpeakers = true;
-  isLoadingMembers = true;
+  isLoadingMembers = false;
+  showSpinner = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -60,18 +62,19 @@ export class MembersComponent implements OnInit, OnDestroy {
   }
 
   getMembers(): void {
-    if (this.canLoadMore) {
-      this.canLoadMore = false;
+    if (!this.isLoadingMembers && (!this.total || this.members.length < this.total)) {
+      this.isLoadingMembers = true;
+      this.showSpinner = true;
       this.subscriptions.push(
         this.userRolesUsersService.pGetCommunityMembers(this.community.id, this.page, this.count).subscribe((data) => {
           this.members = [...this.members, ...data.users];
+          this.page += 1;
+          this.total = data.total;
           this.isLoadingMembers = false;
-          if (this.members.length >= data.total) {
+          if (this.members.length >= this.total) {
             this.canLoadMore = false;
-          } else {
-            this.page += 1;
-            this.canLoadMore = true;
           }
+          this.showSpinner = false;
         }),
       );
     }

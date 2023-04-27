@@ -3,6 +3,10 @@
     margin-top: 1rem;
   }
 
+  .required-question {
+    @apply com-text-red-500 com-ml-2px;
+  }
+
   div.data-form-container {
     max-width: 920px;
     margin: 0 auto;
@@ -50,6 +54,10 @@
 
     .question-container {
       @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+      .required-question {
+        @apply com-text-red-500 com-ml-2px;
+      }
 
       textarea {
         @apply com-mb-0 com-mt-1;

@@ -94,6 +94,9 @@ export const API_ROUTES = {
     SHOW: 'api/v2/community_groups/show',
     COMMUNITIES: 'api/v2/community_groups/communities',
     MANAGING_COMMUNITY_GROUPS: 'api/v2/community_groups/get_managing_community_groups',
+    EVENTS: 'api/v2/community_groups/events',
+    COMMUNITY_CHANNELS: 'api/v2/community_groups/community_channels',
+    MEMEBRS_DETAILS: 'api/v2/community_groups/members_details',
     PUBLIC: {
       SHOW: 'api/v2/community_groups/public',
       COMMUNITIES: 'api/v2/community_groups/public/communities',
