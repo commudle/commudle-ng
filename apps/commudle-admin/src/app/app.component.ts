@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private profileStatusBarService: ProfileStatusBarService,
     private isBrowserService: IsBrowserService,
     private seoService: SeoService,
-    private router: Router,
+    private router: Router
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
