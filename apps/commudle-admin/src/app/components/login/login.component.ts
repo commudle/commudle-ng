@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  consentValue = false;
+
   private authService: AuthService;
 
   constructor(
@@ -99,7 +101,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
-        () => {
+        (response) => {
+          if (!this.consentValue) {
+            this.openDialog();
+          }
           this.isEmailSent = true;
           this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
         },

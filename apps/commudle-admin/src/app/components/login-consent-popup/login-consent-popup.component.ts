@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@commudle/theme';
 
 @Component({
@@ -7,8 +7,15 @@ import { NbDialogService, NbDialogRef } from '@commudle/theme';
   styleUrls: ['./login-consent-popup.component.scss'],
 })
 export class LoginConsentPopupComponent implements OnInit {
-  dialogRef: NbDialogRef<any>;
-  constructor() {}
+  @Output() consentValueChanged = new EventEmitter<boolean>();
+  consentValue = true;
+
+  constructor(private dialogRef: NbDialogRef<LoginConsentPopupComponent>) {}
 
   ngOnInit(): void {}
+
+  submitConsent() {
+    this.consentValueChanged.emit(this.consentValue);
+    this.dialogRef.close();
+  }
 }

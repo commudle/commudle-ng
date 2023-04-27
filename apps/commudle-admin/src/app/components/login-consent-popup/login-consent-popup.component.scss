@@ -1,0 +1,8 @@
+.dialog-box {
+  @apply com-bg-white com-p-4 com-rounded-lg;
+
+  .consent-1,
+  .consent-2 {
+    @apply com-mb-2;
+  }
+}
