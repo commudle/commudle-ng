@@ -1,7 +1,6 @@
 import { Injector, Type } from '@angular/core';
-// TODO: Remove after angular 15 upgrade
-import type { DecorationWithType } from '@tiptap/core';
 import {
+  DecorationWithType,
   Editor,
   NodeView,
   NodeViewProps,
@@ -9,13 +8,21 @@ import {
   NodeViewRendererOptions,
   NodeViewRendererProps,
 } from '@tiptap/core';
-import type { Node as ProseMirrorNode } from 'prosemirror-model';
-import type { Decoration } from 'prosemirror-view';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
+import type { Decoration } from '@tiptap/pm/view';
 import { AngularNodeViewComponent } from '../components/node-view.component';
 import { AngularRenderer } from './AngularRenderer';
 
+interface RendererUpdateProps {
+  oldNode: ProseMirrorNode;
+  oldDecorations: Decoration[];
+  newNode: ProseMirrorNode;
+  newDecorations: Decoration[];
+  updateProps: () => void;
+}
+
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
-  update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null;
+  update?: ((props: RendererUpdateProps) => boolean) | null;
   injector: Injector;
 }
 
@@ -38,7 +45,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       return null;
     }
 
-    this.maybeMoveContentDOM();
     return this.contentDOMElement;
   }
 
@@ -78,11 +84,29 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       // The content won't be rendered if `editable` is set to `false`
       this.renderer.detectChanges();
     }
+
+    this.appendContendDom();
   }
 
   update(node: ProseMirrorNode, decorations: DecorationWithType[]): boolean {
+    const updateProps = () => {
+      this.renderer.updateProps({ node, decorations });
+    };
+
     if (this.options.update) {
-      return this.options.update(node, decorations);
+      const oldNode = this.node;
+      const oldDecorations = this.decorations;
+
+      this.node = node;
+      this.decorations = decorations;
+
+      return this.options.update({
+        oldNode,
+        oldDecorations,
+        newNode: node,
+        newDecorations: decorations,
+        updateProps: () => updateProps(),
+      });
     }
 
     if (node.type !== this.node.type) {
@@ -95,8 +119,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 
     this.node = node;
     this.decorations = decorations;
-    this.renderer.updateProps({ node, decorations });
-    this.maybeMoveContentDOM();
+    updateProps();
 
     return true;
   }
@@ -113,7 +136,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     this.renderer.destroy();
   }
 
-  private maybeMoveContentDOM(): void {
+  private appendContendDom(): void {
     const contentElement = this.dom.querySelector('[data-node-view-content]');
 
     if (this.contentDOMElement && contentElement && !contentElement.contains(this.contentDOMElement)) {

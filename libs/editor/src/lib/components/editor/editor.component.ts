@@ -94,6 +94,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       extensions: [...this.coreExtensions, ...this.extensions],
       editable: this.editable,
       content: this.content,
+      // TODO: maybe below can be a plugin?
       editorProps: {
         handleDOMEvents: {
           keydown: (view, event) => {
