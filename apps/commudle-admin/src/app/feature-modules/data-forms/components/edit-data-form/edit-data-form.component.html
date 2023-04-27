@@ -281,15 +281,7 @@
       </div>
 
       <div class="submit-button">
-        <button
-          [disabled]="!editDataForm.valid"
-          type="submit"
-          status="primary"
-          nbButton
-          fullWidth
-          size="medium"
-          (click)="updateDataForm()"
-        >
+        <button type="submit" status="primary" nbButton fullWidth size="medium" (click)="updateDataForm()">
           {{ submitButtonText() }}
         </button>
       </div>
