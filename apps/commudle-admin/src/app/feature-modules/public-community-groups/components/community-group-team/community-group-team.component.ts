@@ -40,7 +40,7 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
 
   setMeta() {
     this.seoService.setTags(
-      `Admin Team | Admin | ${this.communityGroup.name}`,
+      `Admin Team | ${this.communityGroup.name}`,
       this.communityGroup.mini_description,
       this.communityGroup.logo.i350,
     );

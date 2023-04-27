@@ -70,7 +70,7 @@ export class CommunityGroupEventsComponent implements OnInit {
 
   setMeta() {
     this.seoService.setTags(
-      `Events | Admin | ${this.communityGroup.name}`,
+      `Events | ${this.communityGroup.name}`,
       this.communityGroup.mini_description,
       this.communityGroup.logo.i350,
     );

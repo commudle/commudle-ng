@@ -55,7 +55,7 @@ export class CommunityGroupChannelsComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.seoService.setTags(
-      `Channels | Admin | ${this.communityGroup.name}`,
+      `Channels | ${this.communityGroup.name}`,
       this.communityGroup.mini_description,
       this.communityGroup.logo.i350,
     );
