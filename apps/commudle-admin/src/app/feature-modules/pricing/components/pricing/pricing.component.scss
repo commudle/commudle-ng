@@ -35,12 +35,11 @@ p {
 
   .pricing-cards {
     @apply com-relative com-mt-8 com-max-w-2xl com-mx-auto com-px-4 com-pb-8;
-    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
+    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0 lg:com-flex lg:com-justify-center;
 
     .pricing-card-light {
-      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
-      @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
-
+      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-r-lg com-rounded-l-lg;
+      @apply lg:com-px-8 lg:com-pt-12 lg:com-my-4 lg:com-rounded-l-none;
       .name {
         @apply com-text-white com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
@@ -80,7 +79,6 @@ p {
     .pricing-card-dark {
       @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
       @apply lg:com-px-8 lg:com-pt-12;
-
       .name {
         @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
@@ -156,7 +154,7 @@ p {
     }
 
     .pricing-feature-table {
-      @apply com-relative com-w-full com-my-1;
+      @apply com-relative com-w-3/4 com-my-1;
 
       .heading {
         @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-base com-font-medium com-text-gray-600;
@@ -194,6 +192,43 @@ p {
             }
           }
         }
+      }
+    }
+  }
+
+  .avenues {
+    @apply md:com-mx-20 com-m-0 com-px-8 com-mb-16;
+    .heading {
+      @apply com-mt-10 com-text-base com-font-bold com-text-gray-900;
+    }
+    .sub-heading {
+      p {
+        @apply com-text-base com-text-gray-600;
+      }
+    }
+  }
+
+  .non-profit {
+    @apply com-px-6 md:com-my-12 md:com-mx-72px com-mx-auto;
+
+    div {
+      @apply com-flex md:com-flex-row com-m-0 com-p-0 com-flex-col-reverse com-gap-x-28;
+
+      .content {
+        @apply com-mt-12 com-mx-4 com-flex com-flex-col;
+
+        h1 {
+          @apply com-mb-4 com-p-0 com-font-extrabold com-mt-0;
+        }
+        .subheading {
+          @apply com-mb-5 com-text-lg com-font-normal;
+        }
+        .button {
+          @apply com-py-3 com-px-5 com-m-0 com-bg-black com-rounded-3xl com-text-white com-w-fit com-text-sm com-border-black;
+        }
+      }
+      .image {
+        @apply com-m-0 com-p-0 md:com-w-[550px] md:com-h-[400px] com-w-full com-h-full;
       }
     }
   }
