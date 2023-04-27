@@ -45,10 +45,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnInit(): void {
-    const host = window.location.hostname;
-    if (['test'].includes(host)) {
-      this.seoService.noIndex(true);
-    }
     this.seoService.setCanonical();
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;

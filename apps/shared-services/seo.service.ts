@@ -20,8 +20,9 @@ export class SeoService {
   ) {
     // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
     const url = new URL(window.location.href);
+    const host = window.location.hostname;
     this.isBotLegacy = url.searchParams.get('bot') === 'true';
-    if (this.isBotLegacy) {
+    if (this.isBotLegacy || ['test.commudle.com'].includes(host)) {
       this.noIndex(true);
     }
     // TODO: don't remove above code since we need to no-index the existing bot pages
@@ -76,7 +77,7 @@ export class SeoService {
     const host = window.location.hostname;
     if (value) {
       this.setTag('robots', 'noindex');
-    } else if (!['test'].includes(host)) {
+    } else if (!['test.commudle.com'].includes(host)) {
       this.removeTag('robots');
     }
   }
