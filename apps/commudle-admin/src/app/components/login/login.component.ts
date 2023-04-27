@@ -10,7 +10,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-
+import { NbDialogService, NbDialogRef } from '@commudle/theme';
+import { LoginConsentPopupComponent } from '../login-consent-popup/login-consent-popup.component';
 @Component({
   selector: 'commudle-login',
   templateUrl: './login.component.html',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isEmailSent = false;
   isLoading = false;
+  dialogRef: NbDialogRef<any>;
 
   subscriptions: Subscription[] = [];
 
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private nbToastrService: NbToastrService,
     private injector: Injector,
     private gtm: GoogleTagManagerService,
+    private dialogService: NbDialogService,
   ) {
     this.subscriptions.push(
       this.libAuthWatchService.currentUserVerified$.subscribe((value: boolean) => {
@@ -115,5 +118,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         () => (this.isLoading = false),
       ),
     );
+  }
+
+  openDialog() {
+    this.dialogRef = this.dialogService.open(LoginConsentPopupComponent);
   }
 }
