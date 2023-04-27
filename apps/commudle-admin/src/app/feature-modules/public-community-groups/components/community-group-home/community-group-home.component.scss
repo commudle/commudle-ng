@@ -10,11 +10,11 @@
       .logo {
         @apply com-my-auto com-mx-0 com-w-44 com-h-44 md:com-w-56 com-flex com-justify-center md:com-h-56 com-bg-white com-rounded-md;
         img {
-          @apply com-w-40 md:com-w-52 com-object-contain;
+          @apply com-w-40 md:com-w-52 com-p-1 com-object-contain;
         }
       }
       .details {
-        @apply com-text-white md:com-ml-8 com-text-center md:com-text-left;
+        @apply com-text-white md:com-ml-8 com-text-center md:com-text-left com-w-full;
         h1,
         p {
           @apply com-text-white com-leading-3;
@@ -30,7 +30,7 @@
         }
       }
       .count-details {
-        @apply com-mt-14;
+        @apply com-mt-14 com-flex com-justify-between com-flex-col md:com-flex-row com-space-y-4;
       }
     }
   }

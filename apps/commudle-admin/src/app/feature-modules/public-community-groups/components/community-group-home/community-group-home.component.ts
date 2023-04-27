@@ -10,6 +10,8 @@ import {
   faHashtag,
   faCalendarWeek,
   faArrowTrendUp,
+  faBuilding,
+  faPencil,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -28,6 +30,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   faHashtag = faHashtag;
   faCalendarWeek = faCalendarWeek;
   faArrowTrendUp = faArrowTrendUp;
+  faBuilding = faBuilding;
+  faPencil = faPencil;
 
   constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
@@ -47,8 +51,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   setMeta(): void {
     this.seoService.setTags(
       this.communityGroup.name,
-      this.communityGroup.description.replace(/<[^>]*>/g, ''),
-      this.communityGroup.logo.url,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
     );
   }
 }
