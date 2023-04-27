@@ -9,7 +9,6 @@ const routes: Routes = [
     component: StudentNonProfitCommunitySupportComponent,
   },
 ];
-// /student-non-profit-community-support
 
 @NgModule({
   declarations: [],
