@@ -20,8 +20,9 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Placeholder } from '@tiptap/extension-placeholder';
 import { Text } from '@tiptap/extension-text';
 import { BehaviorSubject } from 'rxjs';
+import { KeyboardHandler } from '../../extensions/keyboard-handler';
+import { CustomMention } from '../../extensions/mention';
 import { IEditorValidator } from '../../models/editor-validator.model';
-import { CustomMention } from '../../plugins/mention';
 
 @Component({
   selector: 'commudle-editor',
@@ -81,6 +82,7 @@ export class EditorComponent implements OnInit, OnDestroy {
         Gapcursor,
         History,
         Link,
+        KeyboardHandler,
         CustomMention(this.injector),
       ],
       viewer: [Document, Text, Paragraph, Link, CustomMention(this.injector)],
@@ -92,6 +94,16 @@ export class EditorComponent implements OnInit, OnDestroy {
       extensions: [...this.coreExtensions, ...this.extensions],
       editable: this.editable,
       content: this.content,
+      editorProps: {
+        handleDOMEvents: {
+          keydown: (view, event) => {
+            if (event.key === 'Enter' && !event.shiftKey) {
+              this.onClick();
+            }
+            return false;
+          },
+        },
+      },
     });
   }
 
@@ -113,9 +125,11 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   onClick(): void {
-    this.contentChange.emit(this.editor.getHTML());
-    if (this.clearOnSubmit) {
-      this.editor.commands.setContent('', true);
+    if (this.isValid) {
+      this.contentChange.emit(this.editor.getHTML());
+      if (this.clearOnSubmit) {
+        this.editor.commands.clearContent(true);
+      }
     }
   }
 

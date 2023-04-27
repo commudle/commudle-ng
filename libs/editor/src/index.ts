@@ -6,7 +6,7 @@ export * from './lib/directives/node-view-content.directive';
 
 export * from './lib/models/editor-validator.model';
 
-export * from './lib/plugins/mention';
+export * from './lib/extensions/mention';
 
 export * from './lib/editor.module';
 

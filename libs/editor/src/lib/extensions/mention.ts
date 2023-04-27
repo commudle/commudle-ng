@@ -3,7 +3,12 @@ import { mergeAttributes, Node } from '@tiptap/core';
 import { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { PluginKey } from '@tiptap/pm/state';
 import { Suggestion, SuggestionOptions } from '@tiptap/suggestion';
+import { map } from 'rxjs';
+import tippy from 'tippy.js';
+import { MentionsListComponent } from '../components/mentions-list/mentions-list.component';
 import { MentionsNodeComponent } from '../components/mentions-node/mentions-node.component';
+import { MentionsService } from '../services/mentions.service';
+import { AngularRenderer } from '../utils/AngularRenderer';
 import { AngularNodeViewRenderer } from '../utils/NodeViewRenderer';
 
 export type MentionOptions = {
@@ -12,9 +17,9 @@ export type MentionOptions = {
   suggestion: Omit<SuggestionOptions, 'editor'>;
 };
 
-export const MentionPluginKey = new PluginKey('mention');
+const MentionPluginKey = new PluginKey('mention');
 
-export const Mention = (injector: Injector): Node => {
+const Mention = (injector: Injector): Node => {
   return Node.create<MentionOptions>({
     name: 'mention',
 
@@ -151,3 +156,55 @@ export const Mention = (injector: Injector): Node => {
     },
   });
 };
+
+export function CustomMention(injector: Injector) {
+  const mentionService = injector.get(MentionsService);
+
+  return Mention(injector).configure({
+    HTMLAttributes: {
+      class: 'mention',
+    },
+    suggestion: {
+      items: ({ query }) => {
+        return mentionService
+          .getMentions(query)
+          .pipe(map((res) => res.results))
+          .toPromise();
+      },
+      render: () => {
+        let renderer: AngularRenderer<MentionsListComponent, MentionsListComponent>;
+        let popup: any;
+
+        return {
+          onStart: (props) => {
+            renderer = new AngularRenderer(MentionsListComponent, injector, props);
+
+            renderer.updateProps({ props });
+
+            popup = tippy('body', {
+              getReferenceClientRect: props.clientRect,
+              appendTo: () => document.body,
+              content: renderer.dom,
+              showOnCreate: true,
+              interactive: true,
+              trigger: 'manual',
+              placement: 'bottom-start',
+            });
+          },
+          onUpdate(props) {
+            renderer.updateProps({ props });
+
+            popup[0].setProps({ getReferenceClientRect: props.clientRect });
+          },
+          onKeyDown(props): any {
+            renderer.instance.onKeyDown(props);
+          },
+          onExit() {
+            popup[0].destroy();
+            renderer.destroy();
+          },
+        };
+      },
+    },
+  });
+}

@@ -1,21 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CustomMention } from '@commudle/editor';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
-import { Editor } from '@tiptap/core';
-import { Document } from '@tiptap/extension-document';
-import { Paragraph } from '@tiptap/extension-paragraph';
-import { Text } from '@tiptap/extension-text';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
