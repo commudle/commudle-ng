@@ -10,6 +10,8 @@ import {
   faHashtag,
   faCalendarWeek,
   faArrowTrendUp,
+  faBuilding,
+  faPencil,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -28,6 +30,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   faHashtag = faHashtag;
   faCalendarWeek = faCalendarWeek;
   faArrowTrendUp = faArrowTrendUp;
+  faBuilding = faBuilding;
+  faPencil = faPencil;
 
   constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
