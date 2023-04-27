@@ -198,6 +198,18 @@ p {
     }
   }
 
+  .avenues {
+    @apply md:com-mx-20 com-m-0 com-px-8 com-mb-16;
+    .heading {
+      @apply com-mt-10 com-text-base com-font-bold com-text-gray-900;
+    }
+    .sub-heading {
+      p {
+        @apply com-text-base com-text-gray-600;
+      }
+    }
+  }
+
   .non-profit {
     @apply com-px-6 md:com-my-12 md:com-mx-72px com-mx-auto;
 
