@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
@@ -23,13 +22,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   faPenToSquare = faPenToSquare;
   faBuilding = faBuilding;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private communityGroupsService: CommunityGroupsService,
-    private seoService: SeoService,
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
   ngOnInit() {
+    this.seoService.noIndex(true);
     this.subscriptions.push(
       this.activatedRoute.data.subscribe((data) => {
         this.communityGroup = data.community_group;
