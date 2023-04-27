@@ -26,13 +26,17 @@ export class CommunityGroupAboutComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
-        this.seoService.setTags(
-          `About | ${this.communityGroup.name}`,
-          this.communityGroup.mini_description,
-          this.communityGroup.logo.i350,
-        );
         this.description = this.sanitizer.bypassSecurityTrustHtml(this.communityGroup.description);
+        this.setMeta();
       }),
+    );
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      `About | Admin | ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
     );
   }
 

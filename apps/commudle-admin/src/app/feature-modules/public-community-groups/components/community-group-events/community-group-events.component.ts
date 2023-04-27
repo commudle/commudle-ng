@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,28 +13,31 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-group-events.component.scss'],
 })
 export class CommunityGroupEventsComponent implements OnInit {
+  communityGroup: ICommunityGroup;
   pastEvents: IEvent[] = [];
   upcomingEvents: IEvent[] = [];
+  subscriptions: Subscription[] = [];
 
-  isLoadingUpcoming = false;
-  isLoadingPast = false;
-
-  limit = 6;
   pastPageInfo: IPageInfo;
   upcomingPageInfo: IPageInfo;
 
-  community_group_id: number;
+  limit = 6;
+  isLoadingUpcoming = false;
+  isLoadingPast = false;
 
-  subscriptions: Subscription[] = [];
-
-  constructor(private activatedRoute: ActivatedRoute, private communityGroupsService: CommunityGroupsService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private communityGroupsService: CommunityGroupsService,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.community_group_id = data.community_group_id;
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
         this.getPastEvents();
         this.getUpcomingEvents();
+        this.setMeta();
       }),
     );
   }
@@ -41,9 +46,8 @@ export class CommunityGroupEventsComponent implements OnInit {
     this.isLoadingPast = true;
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.community_group_id, this.limit, '', this.pastPageInfo?.end_cursor, 'past')
+        .pEvents(this.communityGroup.slug, this.limit, '', this.pastPageInfo?.end_cursor, 'past')
         .subscribe((data) => {
-          console.log(data);
           this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.pastPageInfo = data.page_info;
           this.isLoadingPast = false;
@@ -55,12 +59,20 @@ export class CommunityGroupEventsComponent implements OnInit {
     this.isLoadingUpcoming = true;
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.community_group_id, this.limit, '', this.upcomingPageInfo?.end_cursor, 'future')
+        .pEvents(this.communityGroup.slug, this.limit, '', this.upcomingPageInfo?.end_cursor, 'future')
         .subscribe((data) => {
           this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.upcomingPageInfo = data.page_info;
           this.isLoadingUpcoming = false;
         }),
+    );
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Events | Admin | ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
     );
   }
 }

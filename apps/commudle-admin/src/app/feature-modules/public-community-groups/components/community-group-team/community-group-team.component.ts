@@ -12,12 +12,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-group-team.component.scss'],
 })
 export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
-  team: IUserRolesUser[] = [];
   communityGroup: ICommunityGroup;
+  team: IUserRolesUser[] = [];
+  subscriptions: Subscription[] = [];
 
   isLoading = true;
-
-  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,12 +28,8 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
-        this.getTeam(data.community_group.slug);
-        this.seoService.setTags(
-          `Team | ${this.communityGroup.name}`,
-          this.communityGroup.mini_description,
-          this.communityGroup.logo.i350,
-        );
+        this.getTeam();
+        this.setMeta();
       }),
     );
   }
@@ -43,10 +38,20 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  getTeam(communityGroupId) {
-    this.userRolesUserService.pGetCommunityGroupLeaders(communityGroupId).subscribe((data) => {
-      this.team = data.user_roles_users;
-      this.isLoading = false;
-    });
+  setMeta() {
+    this.seoService.setTags(
+      `Admin Team | Admin | ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
+  }
+
+  getTeam() {
+    this.subscriptions.push(
+      this.userRolesUserService.pGetCommunityGroupLeaders(this.communityGroup.slug).subscribe((data) => {
+        this.team = data.user_roles_users;
+        this.isLoading = false;
+      }),
+    );
   }
 }

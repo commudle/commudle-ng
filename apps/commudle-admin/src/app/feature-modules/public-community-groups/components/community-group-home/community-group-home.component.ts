@@ -47,8 +47,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   setMeta(): void {
     this.seoService.setTags(
       this.communityGroup.name,
-      this.communityGroup.description.replace(/<[^>]*>/g, ''),
-      this.communityGroup.logo.url,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
     );
   }
 }

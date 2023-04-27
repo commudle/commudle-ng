@@ -12,12 +12,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-group-communities.component.scss'],
 })
 export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
-  communities: ICommunity[] = [];
   communityGroup: ICommunityGroup;
+  communities: ICommunity[] = [];
+  subscriptions: Subscription[] = [];
 
   isLoading = true;
-
-  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,12 +28,8 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
-        this.getCommunities(data.community_group.slug);
-        this.seoService.setTags(
-          this.communityGroup.name,
-          this.communityGroup.mini_description,
-          this.communityGroup.logo.i350,
-        );
+        this.getCommunities();
+        this.setMeta();
       }),
     );
   }
@@ -43,10 +38,20 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  getCommunities(communityGroupId) {
-    this.communityGroupsService.pCommunities(communityGroupId).subscribe((data) => {
-      this.communities = data.communities;
-      this.isLoading = false;
-    });
+  getCommunities() {
+    this.subscriptions.push(
+      this.communityGroupsService.pCommunities(this.communityGroup.slug).subscribe((data) => {
+        this.communities = data.communities;
+        this.isLoading = false;
+      }),
+    );
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Communities | Admin | ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
   }
 }
