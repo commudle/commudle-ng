@@ -35,12 +35,11 @@ p {
 
   .pricing-cards {
     @apply com-relative com-mt-8 com-max-w-2xl com-mx-auto com-px-4 com-pb-8;
-    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
+    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0 lg:com-flex lg:com-justify-center;
 
     .pricing-card-light {
-      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
-      @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
-
+      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-r-lg com-rounded-l-lg;
+      @apply lg:com-px-8 lg:com-pt-12 lg:com-my-4 lg:com-rounded-l-none;
       .name {
         @apply com-text-white com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
@@ -80,7 +79,6 @@ p {
     .pricing-card-dark {
       @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
       @apply lg:com-px-8 lg:com-pt-12;
-
       .name {
         @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
