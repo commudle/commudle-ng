@@ -36,13 +36,13 @@ export class CookieConsentComponent implements OnInit {
 
   ngOnInit() {
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
-      setTimeout(() => {
-        if (this.seoService.isBot) {
-          this.cookieConstent = false;
-        } else {
-          this.cookieConstent = true;
-        }
-      }, 3000);
+      // setTimeout(() => {
+      if (this.seoService.isBot) {
+        this.cookieConstent = false;
+      } else {
+        this.cookieConstent = true;
+      }
+      // }, 3000);
     }
   }
 
