@@ -12,15 +12,25 @@ export class MentionsListComponent extends AngularNodeViewComponent {
 
   selectedIndex = 0;
 
+  scrollIntoView() {
+    document.getElementById(`mention-${this.selectedIndex}`)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+  }
+
   upHandler() {
     this.selectedIndex = (this.selectedIndex + this.props['items'].length - 1) % this.props['items'].length;
+    this.scrollIntoView();
   }
 
   downHandler() {
     this.selectedIndex = (this.selectedIndex + 1) % this.props['items'].length;
+    this.scrollIntoView();
   }
 
-  enterHandler() {
+  tabHandler() {
     this.selectItem(this.selectedIndex);
   }
 
@@ -57,8 +67,8 @@ export class MentionsListComponent extends AngularNodeViewComponent {
       case 'ArrowDown':
         this.downHandler();
         return true;
-      case 'Enter':
-        this.enterHandler();
+      case 'Tab':
+        this.tabHandler();
         return true;
       default:
         return false;

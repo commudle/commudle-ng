@@ -4,7 +4,12 @@
     *ngFor="let item of props['items']; index as i"
     [ngClass]="{ 'is-selected': i === selectedIndex }"
     class="item"
+    id="mention-{{ i }}"
   >
-    <nb-user [name]="item.name" [picture]="getPicture(item)" [title]="item.model"></nb-user>
+    <img [alt]="item.name" [src]="getPicture(item)" [title]="item.name" class="photo" />
+    <div class="details">
+      <p class="name">{{ item.name }}</p>
+      <p *ngIf="item.model !== 'user'" class="model">{{ item.model }}</p>
+    </div>
   </nb-list-item>
 </nb-list>

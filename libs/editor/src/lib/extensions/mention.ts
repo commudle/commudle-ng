@@ -30,8 +30,9 @@ const Mention = (injector: Injector): Node => {
           return `${options.suggestion.char}${node.attrs['label'] ?? node.attrs['id']}`;
         },
         suggestion: {
-          char: '@',
           pluginKey: MentionPluginKey,
+          char: '@',
+          allowSpaces: true,
           command: ({ editor, range, props }) => {
             // increase range.to by one when the next node is of type "text"
             // and starts with a space character
@@ -188,7 +189,7 @@ export function CustomMention(injector: Injector) {
               showOnCreate: true,
               interactive: true,
               trigger: 'manual',
-              placement: 'bottom-start',
+              placement: 'top-start',
             });
           },
           onUpdate(props) {

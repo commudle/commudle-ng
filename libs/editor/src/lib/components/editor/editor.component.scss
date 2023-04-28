@@ -5,7 +5,7 @@
 }
 
 .commudle-editor {
-  @apply com-flex com-relative;
+  @apply com-flex com-relative com-items-end;
 
   commudle-editor-menu {
   }
