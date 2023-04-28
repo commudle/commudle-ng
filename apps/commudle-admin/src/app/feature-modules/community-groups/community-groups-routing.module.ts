@@ -10,6 +10,7 @@ import { MembersListComponent } from 'apps/commudle-admin/src/app/feature-module
 import { ChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/channels/channels.component';
 import { EventsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/events/events.component';
 import { CommunityComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/community/community.component';
+import { CommunityGroupDetailsResolver } from 'apps/commudle-admin/src/app/feature-modules/community-groups/Resolver/community-group-details.resolver';
 
 const routes = [
   {
@@ -23,10 +24,13 @@ const routes = [
   {
     path: ':community_group_id',
     canActivate: [AuthGuard],
-    component: DashboardComponent,
     data: {
       expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
     },
+    resolve: {
+      community_group: CommunityGroupDetailsResolver,
+    },
+    component: DashboardComponent,
     children: [
       {
         path: '',

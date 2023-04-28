@@ -4,6 +4,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'app-community-group-form',
@@ -36,11 +37,12 @@ export class CommunityGroupFormComponent implements OnInit {
     private communityGroupsService: CommunityGroupsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private seoService: SeoService,
   ) {
     this.communityGroupForm = this.fb.group({
       name: ['', Validators.required],
       logo: [''],
-      mini_description: ['', [Validators.required, Validators.maxLength(160)]],
+      mini_description: ['', [Validators.required, Validators.maxLength(200)]],
       description: ['', Validators.required],
       theme_color: [''],
       website: [''],
@@ -52,10 +54,12 @@ export class CommunityGroupFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.parent.params.subscribe((data) => {
-      if (data.community_group_id) {
-        this.getCommunityGroup(data.community_group_id);
+    this.activatedRoute.parent.data.subscribe((data) => {
+      if (data.community_group) {
+        this.communityGroup = data.community_group;
+        this.patchFormGroupDetails();
       }
+      this.setMeta();
     });
   }
 
@@ -64,24 +68,21 @@ export class CommunityGroupFormComponent implements OnInit {
     this.themeColor = event.target.value;
   }
 
-  getCommunityGroup(communityGroupId) {
-    this.communityGroupsService.show(communityGroupId).subscribe((data) => {
-      this.communityGroup = data;
-      if (this.communityGroup.theme_color) {
-        this.themeColor = this.communityGroup.theme_color;
-      }
+  patchFormGroupDetails() {
+    if (this.communityGroup.theme_color) {
+      this.themeColor = this.communityGroup.theme_color;
+    }
 
-      this.communityGroupForm.patchValue({
-        name: this.communityGroup.name,
-        description: this.communityGroup.description,
-        mini_description: this.communityGroup.mini_description,
-        theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : this.themeColor,
-        website: this.communityGroup.website,
-        facebook: this.communityGroup.facebook,
-        twitter: this.communityGroup.twitter,
-        github: this.communityGroup.github,
-        linkedin: this.communityGroup.linkedin,
-      });
+    this.communityGroupForm.patchValue({
+      name: this.communityGroup.name,
+      description: this.communityGroup.description,
+      mini_description: this.communityGroup.mini_description,
+      theme_color: this.communityGroup.theme_color ? this.communityGroup.theme_color : this.themeColor,
+      website: this.communityGroup.website,
+      facebook: this.communityGroup.facebook,
+      twitter: this.communityGroup.twitter,
+      github: this.communityGroup.github,
+      linkedin: this.communityGroup.linkedin,
     });
   }
 
@@ -137,5 +138,13 @@ export class CommunityGroupFormComponent implements OnInit {
   redirect() {
     this.toastLogService.successDialog('Saved!');
     this.router.navigate(['/admin/orgs', this.communityGroup.slug]);
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      this.communityGroup ? `Edit - Admin - ${this.communityGroup.name}` : 'New Community Group',
+      this.communityGroup ? this.communityGroup.mini_description : '',
+      this.communityGroup ? this.communityGroup.logo.i350 : '',
+    );
   }
 }
