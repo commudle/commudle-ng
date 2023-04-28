@@ -1,0 +1,122 @@
+hr {
+  @apply com-m-0 com-border-gray-300 com-border-solid com-border-[0.5px];
+}
+
+.student-no-profit {
+  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
+
+  div {
+    @apply com-flex md:com-flex-row com-justify-between com-m-0 com-p-0 com-flex-col-reverse com-gap-x-28;
+
+    .content {
+      @apply com-mx-4 com-flex com-flex-col com-my-0;
+
+      h1 {
+        @apply com-mb-0 com-p-0 md:com-mt-16;
+      }
+      .subheading {
+        @apply com-mt-8 com-text-2xl com-mb-0;
+      }
+      .sub-heading {
+        @apply com-mt-8 com-mb-0 com-text-base com-text-gray-500;
+      }
+    }
+    .image {
+      @apply com-ml-4 com-my-0 com-p-0 com-mr-16 com-mt-12;
+    }
+  }
+}
+
+.who-can-avail-this {
+  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
+
+  .content {
+    @apply com-max-w-3xl com-mx-4;
+
+    h2 {
+      @apply com-mb-0 com-p-0 md:com-mt-12;
+    }
+    div {
+      p {
+        @apply com-mt-8 com-text-base com-text-gray-500;
+      }
+      ol {
+        li {
+          @apply com-mt-4 com-text-base com-text-gray-500;
+        }
+      }
+    }
+  }
+}
+
+.start-community {
+  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
+
+  div {
+    @apply com-flex md:com-flex-row com-mt-12 com-mb-0 com-p-0 com-flex-col com-gap-x-28;
+
+    .image {
+      @apply com-mx-4 com-my-0 com-p-0;
+    }
+
+    .content {
+      @apply com-flex com-flex-col;
+
+      .subheading {
+        @apply com-text-2xl com-my-0;
+      }
+
+      a {
+        @apply com-no-underline;
+        .button {
+          @apply com-w-fit com-mt-12 com-mb-0;
+        }
+      }
+    }
+  }
+}
+
+.application-process {
+  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px com-bg-gray-100;
+
+  .content {
+    @apply com-max-w-3xl com-mx-4;
+
+    h2 {
+      @apply com-my-0 com-pt-12 com-p-0;
+    }
+
+    ol {
+      li {
+        @apply com-mt-8 com-text-base com-text-gray-500;
+      }
+    }
+
+    p {
+      @apply com-mt-8 com-text-base com-text-gray-500;
+    }
+  }
+}
+
+.faq {
+  @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;
+  @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
+
+  .heading {
+    @apply com-my-0 com-text-3xl com-tracking-tight com-text-white;
+    @apply sm:com-text-4xl;
+  }
+
+  .questions {
+    @apply com-space-y-10;
+    @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
+
+    .question {
+      @apply com-text-white com-text-base;
+    }
+
+    .answer {
+      @apply com-mt-3 com-ml-0 com-text-gray-400 com-text-base;
+    }
+  }
+}
