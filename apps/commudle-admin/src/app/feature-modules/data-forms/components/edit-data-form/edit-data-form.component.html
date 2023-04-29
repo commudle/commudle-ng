@@ -24,7 +24,8 @@
           <div role="group">
             <div>
               <label fullWidth>
-                Name*
+                Name
+                <span class="required-question">*</span>
                 <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
               </label>
               <span
@@ -72,7 +73,8 @@
               <nb-card-body>
                 <div class="custom-question-container">
                   <label>
-                    Question {{ i + 1 }} *
+                    Question {{ i + 1 }}
+                    <span *ngIf="question.get('required').value" class="required-question">*</span>
                     <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                   </label>
                 </div>
@@ -91,7 +93,8 @@
                   <div class="question-container">
                     <div>
                       <label>
-                        Question {{ i + 1 }} *
+                        Question {{ i + 1 }}
+                        <span *ngIf="question.get('required').value" class="required-question">*</span>
                         <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
                       </label>
                       <span
@@ -147,6 +150,13 @@
                           </nb-option>
                         </nb-select>
                       </nb-form-field>
+                      <span
+                        *ngIf="
+                          question.get('question_type_id').invalid && question.get('question_type_id').errors.required
+                        "
+                      >
+                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      </span>
                     </div>
 
                     <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
@@ -271,15 +281,7 @@
       </div>
 
       <div class="submit-button">
-        <button
-          [disabled]="!editDataForm.valid"
-          type="submit"
-          status="primary"
-          nbButton
-          fullWidth
-          size="medium"
-          (click)="updateDataForm()"
-        >
+        <button type="submit" status="primary" nbButton fullWidth size="medium" (click)="updateDataForm()">
           {{ submitButtonText() }}
         </button>
       </div>

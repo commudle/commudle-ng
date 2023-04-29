@@ -1,7 +1,7 @@
 .home-component {
   .banner {
     .banner-image {
-      @apply com-w-full com-min-h-[320px] com-object-contain md:com-w-[1262px];
+      @apply com-w-full md:com-min-h-[320px] com-object-contain md:com-w-[1262px];
     }
 
     .edit-button {
@@ -96,7 +96,7 @@
   }
 
   .menu-items {
-    @apply com-ml-2;
+    @apply com-ml-2 com-overflow-y-scroll md:com-overflow-y-hidden;
     a {
       @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 

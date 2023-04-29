@@ -14,4 +14,6 @@ export interface ICommunityChannel {
   logo: IAttachedFile;
   my_roles: any[];
   member_count: number;
+  messages_count?: number;
+  messages_count_in_three_months?: number;
 }

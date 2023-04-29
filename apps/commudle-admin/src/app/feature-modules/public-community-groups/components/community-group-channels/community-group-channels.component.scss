@@ -1,0 +1,7 @@
+nb-card {
+  @apply com-mx-0 md:com-mx-2;
+
+  .channels-cards-list {
+    @apply com-flex com-flex-wrap com-justify-between com-w-full;
+  }
+}

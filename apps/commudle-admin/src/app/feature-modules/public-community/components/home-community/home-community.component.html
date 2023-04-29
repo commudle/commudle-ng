@@ -2,8 +2,8 @@
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
-        <nb-card class="!com-my-0 !com-mx-0 md:!com-mx-2">
-          <nb-card-body class="!com-p-0">
+        <nb-card class="!com-m-0 md:!com-mx-2">
+          <nb-card-body class="!com-p-0 com-overflow-hidden">
             <div class="banner">
               <img
                 *ngIf="community.banner_image"
@@ -147,10 +147,10 @@
                   <nb-icon icon="award" status="info"></nb-icon>
                   <span>Sessions by Experts</span>
                 </a> -->
-                <a [routerLink]="['speakers']" class="d-flex" routerLinkActive="active">
+                <!-- <a [routerLink]="['speakers']" class="d-flex" routerLinkActive="active">
                   <nb-icon icon="mic" status="success"></nb-icon>
                   <span class="title">Speakers</span>
-                </a>
+                </a> -->
                 <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
                   <nb-icon icon="people" status="success"></nb-icon>
                   <span class="title">Members</span>

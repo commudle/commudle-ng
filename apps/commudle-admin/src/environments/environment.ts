@@ -21,6 +21,7 @@ export const environment = {
   // auth_cookie_name: 'dev_commudle_user_auth',
   // zoom_call_server_url: 'https://zoomt.commudle.com',
   // vapid_public_key: 'BB5xVItCcvm8oybyS98PqOf7lEFlr4P0JEYnZuLHpQxUtht9pIO4ebaVye6a2iNnM7fG67zlCLEgqVJxm7j3LyA=',
+  // google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
 
   session_cookie_name: 'cmdle_sess',
 

@@ -1,7 +1,13 @@
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ICommunity } from 'apps/shared-models/community.model';
-import { NbComponentShape, NbComponentSize, NbDialogService, NbComponentStatus } from '@commudle/theme';
+import {
+  NbComponentShape,
+  NbComponentSize,
+  NbDialogService,
+  NbComponentStatus,
+  NbButtonAppearance,
+} from '@commudle/theme';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -22,6 +28,7 @@ export class MembershipToggleComponent implements OnInit {
   @Input() shapes: NbComponentShape = 'rectangle';
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
+  @Input() appearance: NbButtonAppearance = 'filled';
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,

@@ -110,6 +110,10 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   }
 
   submitForm() {
+    if (this.dataFormEntityResponseForm.invalid) {
+      this.dataFormEntityResponseForm.markAllAsTouched();
+      return;
+    }
     this.formSubmitted.emit(this.dataFormEntityResponseForm.value);
   }
 }
