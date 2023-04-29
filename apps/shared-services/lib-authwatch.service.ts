@@ -71,10 +71,12 @@ export class LibAuthwatchService {
     );
   }
 
-  signIn(agent: string, token?: string) {
+  signIn(agent: string, consent_privacy_tnc: boolean, consent_marketing: boolean, token?: string) {
     return this.http.post(this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AND_LOGIN), {
       agent: agent,
       details: { token },
+      consent_privacy_tnc: consent_privacy_tnc,
+      consent_marketing: consent_marketing,
     });
   }
 

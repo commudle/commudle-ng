@@ -1,20 +1,25 @@
 <div class="dialog-box">
-  <nb-card>
-    <nb-card-header>Consent</nb-card-header>
-    <nb-card-body>
-      <div class="consent-1">
-        <label>
-          <input type="checkbox" checked disabled />
-          I have read, understood and agree to Commudle's Privacy Policy and Terms & Conditions.
-        </label>
-      </div>
-      <div class="consent-2">
-        <label>
-          <input type="checkbox" checked [(ngModel)]="consentValue" />
-          I agree to receive product and marketing updates from Commudle
-        </label>
-      </div>
-      <button nbButton status="primary" size="medium" (click)="submitConsent()">Submit</button>
-    </nb-card-body>
-  </nb-card>
+  <h2>Consent</h2>
+  <div class="consent-1">
+    <label>
+      <input type="checkbox" checked disabled [(ngModel)]="consent_privacy_tnc" />
+      I have read, understood and agree to Commudle's Privacy Policy and Terms & Conditions.
+    </label>
+  </div>
+  <div class="consent-2">
+    <label>
+      <input type="checkbox" checked [(ngModel)]="consent_marketing" />
+      I agree to receive product and marketing updates from Commudle.
+    </label>
+  </div>
+  <button
+    nbButton
+    status="primary"
+    size="medium"
+    (click)="submitConsent()"
+    [disabled]="!consent_privacy_tnc"
+    class="submit-button"
+  >
+    Submit
+  </button>
 </div>

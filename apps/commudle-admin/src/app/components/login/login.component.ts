@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  consentValue = false;
+  consent_privacy_tnc = false;
+  consent_marketing = false;
 
   private authService: AuthService;
 
@@ -55,9 +56,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.authService.authState.subscribe((user) => {
           if (user) {
-            this.libAuthWatchService.signIn(user.provider.toLowerCase(), user.idToken).subscribe((data: any) => {
-              this.setCookie(data.auth_token, 'google');
-            });
+            this.libAuthWatchService
+              .signIn(user.provider.toLowerCase(), this.consent_privacy_tnc, this.consent_marketing, user.idToken)
+              .subscribe((data: any) => {
+                if (!(data.consent || this.consent_privacy_tnc)) {
+                  this.openDialog('google');
+                } else {
+                  this.setCookie(data.auth_token, 'google');
+                }
+              });
           }
         }),
       );
@@ -66,6 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      consent_privacy_tnc: [''],
+      consent_marketing: [''],
     });
   }
 
@@ -102,11 +111,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
-          if (!this.consentValue) {
-            this.openDialog();
+          if (!(response.consent || this.consent_privacy_tnc)) {
+            this.openDialog('code');
+          } else {
+            this.isEmailSent = true;
+            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
           }
-          this.isEmailSent = true;
-          this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
         },
         () => this.nbToastrService.danger('Error in generating code, try again in a few minutes!', 'Error'),
         () => (this.isLoading = false),
@@ -125,7 +135,41 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  openDialog() {
-    this.dialogRef = this.dialogService.open(LoginConsentPopupComponent);
+  openDialog(loginType) {
+    const dialogRef = this.dialogService.open(LoginConsentPopupComponent, {
+      hasBackdrop: true,
+      closeOnBackdropClick: false,
+    });
+    dialogRef.componentRef.instance.consentValueChangedOutput.subscribe((consent: any) => {
+      this.consent_privacy_tnc = consent.consent_privacy_tnc;
+      this.consent_marketing = consent.consent_marketing;
+      this.loginForm.controls['consent_privacy_tnc'].setValue(consent.consent_privacy_tnc);
+      this.loginForm.controls['consent_marketing'].setValue(consent.consent_marketing);
+      if (loginType === 'code') {
+        this.sendVerificationEmail();
+      } else if (loginType === 'google' && this.consent_privacy_tnc) {
+        this.loginWithGoogle();
+      }
+
+      dialogRef.close();
+    });
+  }
+
+  loginWithGoogle() {
+    this.subscriptions.push(
+      this.authService.authState.subscribe((user) => {
+        if (user) {
+          this.libAuthWatchService
+            .signIn(user.provider.toLowerCase(), this.consent_privacy_tnc, this.consent_marketing, user.idToken)
+            .subscribe((data: any) => {
+              if (!(data.consent || this.consent_privacy_tnc)) {
+                this.openDialog('google');
+              } else {
+                this.setCookie(data.auth_token, 'google');
+              }
+            });
+        }
+      }),
+    );
   }
 }

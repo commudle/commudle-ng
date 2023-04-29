@@ -7,15 +7,21 @@ import { NbDialogService, NbDialogRef } from '@commudle/theme';
   styleUrls: ['./login-consent-popup.component.scss'],
 })
 export class LoginConsentPopupComponent implements OnInit {
-  @Output() consentValueChanged = new EventEmitter<boolean>();
-  consentValue = true;
+  @Output() consentValueChangedOutput = new EventEmitter<object>();
+
+  consent_marketing = true;
+  consent_privacy_tnc = true;
 
   constructor(private dialogRef: NbDialogRef<LoginConsentPopupComponent>) {}
 
   ngOnInit(): void {}
 
   submitConsent() {
-    this.consentValueChanged.emit(this.consentValue);
+    const consent = {
+      consent_privacy_tnc: this.consent_privacy_tnc,
+      consent_marketing: this.consent_marketing,
+    };
+    this.consentValueChangedOutput.emit(consent);
     this.dialogRef.close();
   }
 }
