@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@commudle/theme';
+import { faUserShield } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-login-consent-popup',
@@ -11,6 +12,7 @@ export class LoginConsentPopupComponent implements OnInit {
 
   consent_marketing = true;
   consent_privacy_tnc = true;
+  faUserShield = faUserShield;
 
   constructor(private dialogRef: NbDialogRef<LoginConsentPopupComponent>) {}
 

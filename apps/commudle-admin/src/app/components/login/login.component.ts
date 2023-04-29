@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   consent_privacy_tnc = false;
   consent_marketing = false;
+  userFromGoogle;
 
   private authService: AuthService;
 
@@ -55,17 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.subscriptions.push(
         this.authService.authState.subscribe((user) => {
-          if (user) {
-            this.libAuthWatchService
-              .signIn(user.provider.toLowerCase(), this.consent_privacy_tnc, this.consent_marketing, user.idToken)
-              .subscribe((data: any) => {
-                if (!(data.consent || this.consent_privacy_tnc)) {
-                  this.openDialog('google');
-                } else {
-                  this.setCookie(data.auth_token, 'google');
-                }
-              });
-          }
+          this.userFromGoogle = user;
+          this.loginWithGoogle();
         }),
       );
     }
@@ -156,20 +148,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   loginWithGoogle() {
-    this.subscriptions.push(
-      this.authService.authState.subscribe((user) => {
-        if (user) {
-          this.libAuthWatchService
-            .signIn(user.provider.toLowerCase(), this.consent_privacy_tnc, this.consent_marketing, user.idToken)
-            .subscribe((data: any) => {
-              if (!(data.consent || this.consent_privacy_tnc)) {
-                this.openDialog('google');
-              } else {
-                this.setCookie(data.auth_token, 'google');
-              }
-            });
-        }
-      }),
-    );
+    if (this.userFromGoogle) {
+      this.libAuthWatchService
+        .signIn(
+          this.userFromGoogle.provider.toLowerCase(),
+          this.loginForm.controls['consent_privacy_tnc'].value,
+          this.consent_marketing,
+          this.userFromGoogle.idToken,
+        )
+        .subscribe((data: any) => {
+          console.log(data.auth_token);
+          if (data.auth_token === null || data.auth_token === '' || data.auth_token === undefined) {
+            this.openDialog('google');
+          } else {
+            this.setCookie(data.auth_token, 'google');
+          }
+        });
+    }
   }
 }
