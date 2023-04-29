@@ -1,5 +1,3 @@
-export interface IEventStatus {
-  id: number;
-  name: string;
-  description: string;
-}
+import { IEventStatus } from '@commudle/shared-models';
+
+export { IEventStatus };

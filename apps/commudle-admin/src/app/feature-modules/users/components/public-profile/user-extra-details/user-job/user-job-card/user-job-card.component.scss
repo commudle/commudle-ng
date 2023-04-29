@@ -22,14 +22,18 @@ p {
       @apply com-text-sm;
     }
 
+    .company {
+      @apply com-text-sm com-text-primary-500 com-mr-3;
+    }
+
     .actions {
       nb-action {
         @apply com-px-2.5;
       }
     }
 
-    .company {
-      @apply com-text-sm com-text-primary-500 com-mr-3;
+    .icons {
+      @apply com-px-2;
     }
   }
 }

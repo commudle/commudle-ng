@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { InViewportModule } from '@commudle/in-viewport';
+import { EditorModule } from '@commudle/editor';
 import { NgxDatatableModule } from '@commudle/ngx-datatable';
 import {
   NbAccordionModule,
@@ -14,6 +15,7 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
+  NbContextMenuModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
@@ -22,6 +24,7 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbTagModule,
+  NbToggleModule,
   NbTooltipModule,
   NbWindowModule,
 } from '@commudle/theme';
@@ -33,7 +36,9 @@ import { MentionModule } from 'apps/shared-modules/mention/mention.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { LinkyModule } from 'ngx-linky';
+import { AlertComponent } from './alert/alert.component';
 import { BadgeComponent } from './badge/badge.component';
+import { BannerImageComponent } from './banner-image/banner-image.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
 import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
@@ -106,6 +111,9 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
+    AlertComponent,
+    MessagesComponent,
   ],
   imports: [
     CommonModule,
@@ -122,6 +130,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     MentionModule,
     MiniUserProfileModule,
     InViewportModule,
+    EditorModule,
 
     // Nebular
     NbButtonModule,
@@ -142,6 +151,8 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NbActionsModule,
     NbFormFieldModule,
     FontAwesomeModule,
+    NbToggleModule,
+    NbContextMenuModule,
 
     //cdk
     DragDropModule,
@@ -171,6 +182,9 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     ShareButtonComponent,
     PaginationComponent,
     LoadingSpinnerComponent,
+    BannerImageComponent,
+    AlertComponent,
+    MessagesComponent,
   ],
 })
 export class SharedComponentsModule {}

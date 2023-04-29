@@ -46,7 +46,11 @@ export class LibAuthwatchService {
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
     if (!this.cookieService.check(environment.session_cookie_name)) {
-      this.cookieService.set(environment.session_cookie_name, uuidv4(), 30, environment.base_url);
+      this.cookieService.set(environment.session_cookie_name, uuidv4(), {
+        ...(environment.production && { domain: '.commudle.com' }),
+        expires: 30,
+        path: '/',
+      });
     }
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION), {}).pipe(
       tap((data) => {
@@ -61,6 +65,7 @@ export class LibAuthwatchService {
           });
         } else {
           this.currentUserVerified.next(false);
+          this.cookieService.delete(environment.auth_cookie_name, '/', environment.production ? '.commudle.com' : '');
         }
       }),
     );

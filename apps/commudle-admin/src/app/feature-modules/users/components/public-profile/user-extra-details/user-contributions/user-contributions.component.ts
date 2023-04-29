@@ -7,6 +7,7 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { Subscription } from 'rxjs';
+import { faLightbulb, faCalendar, faUsers, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-contributions',
@@ -25,6 +26,10 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
 
   viewMoreCommunitiesSection = true;
   footerCommunitiesCardText: string;
+  faLightbulb = faLightbulb;
+  faCalendar = faCalendar;
+  faUsers = faUsers;
+  faBookOpen = faBookOpen;
 
   constructor(private appUsersService: AppUsersService, public userProfileMenuService: UserProfileMenuService) {}
 

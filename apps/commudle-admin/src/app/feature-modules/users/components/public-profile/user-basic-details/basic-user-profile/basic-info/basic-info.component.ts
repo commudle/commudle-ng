@@ -13,6 +13,7 @@ import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 })
 export class BasicInfoComponent implements OnInit {
   @Output() basicInfoFormValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() userData: EventEmitter<ICurrentUser> = new EventEmitter<ICurrentUser>();
 
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
@@ -43,6 +44,7 @@ export class BasicInfoComponent implements OnInit {
         this.currentUser = currentUser;
         this.basicInfoForm.patchValue(this.currentUser);
         this.basicInfoFormValidity.emit(this.basicInfoForm.valid); //initial validity
+        this.userData.emit(this.currentUser); //initial validity
         this.uploadedProfilePicture = this.currentUser.avatar;
         this.userProfileManagerService.userProfileForm.patchValue(this.basicInfoForm.value);
       }
@@ -50,6 +52,7 @@ export class BasicInfoComponent implements OnInit {
 
     this.basicInfoForm.valueChanges.subscribe((value) => {
       this.userProfileManagerService.userProfileForm.patchValue(value);
+      this.userData.emit(value);
       this.basicInfoFormValidity.emit(this.basicInfoForm.valid); // whenever form value changes check validity
     });
   }

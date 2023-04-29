@@ -1,66 +1,91 @@
 <div>
-  <div *ngIf="volunteers.length > 0">
-    <div class="volunteers">
-      <div *ngFor="let org of volunteers; let i = index" class="user-profile">
-        <div class="user-details com-w-3/4">
-          <app-user-profile-horizontal [socialMediaLinks]="true" [user]="org.user"></app-user-profile-horizontal>
-        </div>
-        <div class="actions">
-          <a (click)="resendInvitationMail(org)" *ngIf="org.status === EUserRolesUserStatus.INVITED" class="clickable">
-            <small>Resend Invite</small>
-          </a>
-          <br />
-          <a (click)="remove(org, i)" class="clickable">
-            <small>Remove</small>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="event.editable">
-    <h6>Add a Volunteer</h6>
+  <div *ngIf="event.editable" class="com-mb-6">
+    <h6>Add a Teammate</h6>
     <p>
-      <small> *Volunteers can only access the attendance page (which is applicable only for offline events) </small>
+      <small> *Team can only access the attendance page (which is applicable only for offline events) </small>
     </p>
     <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
       <div>
-        <label fullWidth>
+        <label>
           Email*
-          <input
-            fieldSize="tiny"
-            formControlName="email"
-            fullWidth
-            nbInput
-            placeholder="Google/Gmail Email"
-            type="email"
-          />
+          <br />
+          <input fieldSize="small" formControlName="email" nbInput placeholder="Google/Gmail Email" type="email" />
         </label>
+        <br />
         <span
           *ngIf="
             userRolesUserForm['controls'].email.touched &&
             userRolesUserForm['controls'].email.invalid &&
             userRolesUserForm['controls'].email.errors.required
           "
-          class="validation-error-text"
         >
-          Required Field
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
 
+      <div class="designation">
+        <label>
+          Designation*
+          <br />
+          <input
+            fieldSize="small"
+            formControlName="role_designation"
+            nbInput
+            placeholder="Role Designation"
+            type="text"
+            [nbAutocomplete]="autoComplete"
+          />
+        </label>
+        <br />
+        <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+      <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">
+        <nb-option *ngFor="let roleDesignation of roleDesignations | async" [value]="roleDesignation">{{
+          roleDesignation
+        }}</nb-option>
+      </nb-autocomplete>
+
       <div class="save-button-bottom">
-        <button
-          [disabled]="!userRolesUserForm.valid"
-          fullWidth
-          nbButton
-          outline
-          size="tiny"
-          status="primary"
-          type="submit"
-        >
+        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
           Save
         </button>
       </div>
     </form>
+  </div>
+  <div *ngIf="volunteers.length > 0">
+    <div class="volunteers">
+      <table>
+        <tr>
+          <th>Users</th>
+          <th>Designation</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let org of volunteers; let i = index">
+          <td>
+            <app-user-profile-card-medium [user]="org.user"></app-user-profile-card-medium>
+          </td>
+          <td>
+            {{ org.role_designation }}
+          </td>
+          <td>
+            <div class="actions">
+              <a
+                (click)="resendInvitationMail(org)"
+                *ngIf="org.status === EUserRolesUserStatus.INVITED"
+                class="clickable"
+              >
+                <small>Resend Invite</small>
+              </a>
+              <br />
+              <a (click)="remove(org, i)" class="clickable">
+                <small>Remove</small>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

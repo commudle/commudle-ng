@@ -1,4 +1,3 @@
-import { ICommunity } from './community.model';
 import { IDataFormEntity } from './data_form_entity.model';
 
 export interface IAdminSurvey {
@@ -10,8 +9,7 @@ export interface IAdminSurvey {
   data_form_entity: IDataFormEntity;
 }
 
-
 export enum EAdminSurveyStatus {
   open = 'open',
-  closed = 'closed'
+  closed = 'closed',
 }

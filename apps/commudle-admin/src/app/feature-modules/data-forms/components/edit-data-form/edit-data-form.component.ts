@@ -10,6 +10,8 @@ import { IQuestionType } from 'apps/shared-models/question_type.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { NbMenuService } from '@commudle/theme';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-data-form',
@@ -22,7 +24,15 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   dataForm: IDataForm;
   questionTypes: IQuestionType[];
 
+  questionContextMenuIndex = -1;
+
   editDataForm: FormGroup;
+
+  questionDescription = [];
+  menuItem = [
+    { title: 'Add Question Below', icon: 'plus-circle-outline' },
+    { title: 'Delete Question', icon: 'trash-outline' },
+  ];
 
   @ViewChild('cdkDrag') cdkDrag: any;
 
@@ -33,6 +43,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     private seoService: SeoService,
+    private NbmenuService: NbMenuService,
   ) {}
 
   get questions() {
@@ -47,6 +58,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seoService.noIndex(true);
+    this.questionDescription[0] = false;
+    this.handleContextMenu();
 
     // get the question types
     this.activatedRoute.data.subscribe((data) => {
@@ -107,6 +120,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   addQuestionButtonClick(index: number) {
     (this.editDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
+    this.questionDescription[index] = false;
   }
 
   addQuestionChoiceButtonClick(questionIndex: number) {
@@ -117,6 +131,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   removeQuestionButtonClick(questionIndex: number) {
     (this.editDataForm.get('data_form').get('questions') as FormArray).removeAt(questionIndex);
+    this.questionDescription.splice(questionIndex, questionIndex + 1);
   }
 
   removeQuestionChoiceButtonClick(questionIndex: number, choiceIndex: number) {
@@ -127,7 +142,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   questionTypeChange(questionType, questionIndex: number) {
     if (![4, 5].includes(questionType)) {
-      let choiceCount = (<FormArray>(
+      const choiceCount = (<FormArray>(
         (<FormArray>this.editDataForm.get('data_form').get('questions')).controls[questionIndex].get('question_choices')
       )).length;
       for (let i = 0; i < choiceCount; i++) {
@@ -213,5 +228,32 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.router.navigate(['/forms', data.id, 'edit']);
       this.toastLogService.successDialog('Form Cloned!');
     });
+  }
+
+  toggleDescriptionField(index: number): void {
+    this.questionDescription[index] = !this.questionDescription[index];
+  }
+
+  setContextIndex(index: number) {
+    this.questionContextMenuIndex = index;
+  }
+
+  handleContextMenu(): void {
+    this.NbmenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === `data-form-question-context-menu-${this.questionContextMenuIndex}`),
+        map(({ item: title }) => title),
+      )
+      .subscribe((menu) => {
+        switch (menu.title) {
+          case 'Add Question Below':
+            this.addQuestionButtonClick(this.questionContextMenuIndex + 1);
+            break;
+
+          case 'Delete Question':
+            this.removeQuestionButtonClick(this.questionContextMenuIndex);
+            break;
+        }
+      });
   }
 }

@@ -1,0 +1,6 @@
+<div *ngIf="headerImagePath" class="image-container">
+  <div class="background" [ngStyle]="{ 'background-image': 'url(' + headerImagePath + ')' }"></div>
+  <div class="image-section">
+    <img alt="{{ name }}" src="{{ headerImagePath }}" title="{{ name }}" />
+  </div>
+</div>

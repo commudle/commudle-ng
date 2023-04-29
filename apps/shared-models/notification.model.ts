@@ -22,6 +22,9 @@ export interface INotification {
   notification_message: INotificationMessage[];
   notification_message_type: ENotificationMessageTypes;
   created_at: string;
+  filter_object_id: number;
+  entity_id: number;
+  entity_type: ENotificationEntityTypes;
 }
 
 export interface INotificationMessage {

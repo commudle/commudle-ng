@@ -4,7 +4,7 @@ p {
 
 nb-card {
   @apply hover:com-shadow-Card com-mx-0 com-my-4;
-  nb-card-body {
+  .nb-body {
     @apply com-flex com-flex-col md:com-flex-row;
     .apply-button {
       @apply md:com-hidden;
@@ -19,6 +19,22 @@ nb-card {
           }
         }
       }
+
+      .icons {
+        @apply com-rounded-lg com-inline-flex com-ring-4 com-ring-white com-justify-center com-w-4;
+      }
+    }
+  }
+
+  nb-card-footer {
+    @apply com-px-0 com-overflow-auto;
+
+    nb-actions {
+      @apply com-justify-start md:com-justify-center;
+
+      nb-action {
+        @apply com-px-[1px] md:com-px-[10px];
+      }
     }
   }
 
@@ -31,4 +47,20 @@ nb-card {
 
 .statusClosed {
   @apply com-bg-gray-100 hover:com-shadow-none;
+}
+
+.confirmation-dialogue-box {
+  @apply com-flex com-flex-col com-max-w-[350px];
+}
+
+.confirmation-dialogue-footer {
+  @apply com-flex com-items-center com-justify-between;
+
+  .option-no {
+    @apply com-mr-4;
+  }
+
+  .option-yes {
+    @apply com-ml-4;
+  }
 }

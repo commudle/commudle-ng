@@ -1,5 +1,3 @@
-export interface ILabStep {
-  id: number;
-  name: string;
-  description: string;
-}
+import { ILabStep } from '@commudle/shared-models';
+
+export { ILabStep };

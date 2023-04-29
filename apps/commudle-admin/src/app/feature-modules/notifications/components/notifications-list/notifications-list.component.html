@@ -12,37 +12,42 @@
       <div class="com-h-10 com-w-10">
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
-          src="{{ notification.sender.photo.i64 }}"
           alt="{{ notification.sender.name }}"
           class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+          src="{{ notification.sender.photo.i64 }}"
         />
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.KOMMUNITY"
-          src="{{ notification.sender.logo_image.i64 }}"
           alt="{{ notification.sender.name }}"
           class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+          src="{{ notification.sender.logo_image.i64 }}"
         />
       </div>
       <div class="com-ml-2">
-        <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+        <div class="com-flex com-justify-between com-items-center com-h-[20px] com-my-[5px]">
+          <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+          <div>
+            <button
+              (click)="changeStatus(ENotificationStatuses.READ, notification)"
+              *ngIf="notification.status === ENotificationStatuses.UNREAD"
+              class="mark-as-read"
+              nbButton
+              nbTooltip="Mark as read"
+              size="small"
+            >
+              <nb-icon icon="checkmark-outline" size="tiny"></nb-icon>
+            </button>
+          </div>
+        </div>
         <app-notifications-list-item
-          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
-          [notificationMessage]="notification.notification_message"
+          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
+          [notificationMessage]="notification.notification_message"
+          [notification]="notification"
         ></app-notifications-list-item>
       </div>
     </div>
-    <button
-      (click)="changeStatus(ENotificationStatuses.READ, notification)"
-      *ngIf="notification.status === ENotificationStatuses.UNREAD"
-      class="mark-as-read"
-      nbButton
-      nbTooltip="Mark as read"
-      size="small"
-    >
-      <nb-icon icon="checkmark-outline"></nb-icon>
-    </button>
   </nb-list-item>
 </nb-list>
 

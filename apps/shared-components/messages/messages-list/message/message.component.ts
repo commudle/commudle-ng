@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
@@ -36,7 +36,11 @@ export class MessageComponent implements OnInit {
 
   faGrin = faGrin;
 
-  constructor(private fb: FormBuilder, private userMessageReceiptHandlerService: UserMessageReceiptHandlerService) {
+  constructor(
+    private fb: FormBuilder,
+    private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
+    private injector: Injector,
+  ) {
     this.replyForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });

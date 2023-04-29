@@ -1,7 +1,15 @@
 .event-details-container {
-  nb-card-body {
+  .image-container {
+    @apply com-mx-0 md:com-mx-2 com-my-4 com-p-0;
     .event-header-delete {
       @apply com-block com-mx-auto com-mt-2;
+    }
+    .event-details {
+      @apply com-px-6 com-py-4;
+    }
+
+    .no-image-path {
+      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md com-mt-6;
     }
   }
 }

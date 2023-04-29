@@ -3,22 +3,39 @@
     max-width: 920px;
     margin: 0 auto;
 
-    .validation-error-text {
-      color: red; /* red */
+    .submit-button {
+      @apply com-mx-2;
     }
 
-    input {
-      background-color: white;
+    .card-body {
+      @apply com-px-4 com-py-5;
+
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+
+      .description {
+        @apply com-mt-4;
+        label {
+          @apply com-mt-4;
+          textarea {
+            @apply com-mt-4 com-mb-0;
+            background-color: white;
+          }
+        }
+      }
     }
 
-    textarea {
-      background-color: white;
+    label {
+      @apply com-text-base com-font-medium com-text-Charcoal;
     }
 
     .data-form-question-choices-container {
       margin-bottom: 0;
+
       .add-question-button {
-        @apply com-m-2;
+        @apply com-mt-2 com-mb-12 com-mx-2;
       }
     }
 
@@ -31,31 +48,52 @@
     }
 
     .question-container {
-      display: flex;
-      flex-direction: column;
+      @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+      label {
+        @apply com-text-xl com-font-semibold;
+      }
+
+      input {
+        @apply com-mt-4 com-mb-0;
+        background-color: white;
+      }
+
+      textarea {
+        @apply com-mt-1 com-mb-0;
+        background-color: white;
+      }
+
+      .add-description-button {
+        @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
+        width: max-content;
+
+        nb-icon {
+          @apply com-mr-1;
+        }
+      }
+
+      .description-textbox {
+        @apply com-m-0;
+      }
 
       .question-settings {
-        margin: 1rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
 
-        nb-select {
-          background-color: white;
-        }
-
-        label,
-        nb-checkbox {
+        label {
+          @apply com-flex com-flex-col com-font-semibold com-text-xl com-mb-4;
           margin-right: 1.5rem;
         }
       }
 
       .choices-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin: 1rem;
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+        .choice-container {
+          nb-icon {
+            @apply com-text-base;
+          }
+        }
       }
     }
   }
@@ -68,10 +106,52 @@
       }
     }
     .question-form-footer {
-      @apply com-flex md:com-items-center com-flex-col-reverse md:com-flex-row;
+      @apply com-flex com-space-x-2 com-items-center com-mt-12 com-align-middle md:com-flex-row sm:com-flex-col com-justify-between;
 
-      button {
-        @apply com-justify-start com-pl-0 md:com-pl-4;
+      .add-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      .toggle {
+        @apply md:com-border-l com-border-Bright-Gray com-border-solid md:com-pl-3 com-border-y-0 com-border-r-0 com-text-primary-500
+        com-text-sm com-font-medium com-border-0 com-pl-0;
+        span {
+          @apply com-text-primary-500;
+        }
+      }
+
+      .delete-question-footer {
+        @apply com-text-sm com-font-medium;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      .context-menu {
+        @apply md:com-hidden com-flex com-justify-end;
+
+        .context-button {
+          @apply com-flex com-justify-between;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .toggle {
+          @apply com-block;
+        }
+
+        .footer-icons {
+          @apply com-hidden;
+        }
+
+        .context-menu {
+          @apply com-flex;
+        }
       }
     }
   }

@@ -1,3 +1,8 @@
+.unread-notifications,
+.all-notifications {
+  @apply com-mx-3 com-mt-[-56px];
+}
+
 .notification-list {
   nb-list-item {
     @apply com-justify-between;

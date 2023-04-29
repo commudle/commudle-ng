@@ -1,4 +1,6 @@
 .data {
+  @apply com-border-collapse com-w-full;
+
   tr:nth-child(odd) {
     @apply com-bg-gray-100;
   }

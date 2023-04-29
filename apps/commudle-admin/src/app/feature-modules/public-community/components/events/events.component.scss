@@ -1,125 +1,180 @@
 nb-card {
-  @apply com-mt-8 com-mx-0 com-mb-4;
+  @apply com-mx-0 com-my-4;
 
   nb-card-body {
-    @apply com-p-0;
-  }
-}
+    @apply com-p-0 com-overflow-hidden;
 
-.events {
-  @apply com-bg-white com-rounded-xl com-gap-8 com-p-8;
+    .events {
+      @apply com-bg-white com-rounded-xl;
 
-  a {
-    text-decoration: none;
-    @apply com-relative;
-  }
+      .heading {
+        @apply com-font-bold com-text-2xl com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
+        @apply md:com-font-medium md:com-text-start md:com-my-8 com-ml-6;
+      }
 
-  nb-card {
-    @apply com-border com-border-solid com-border-Silver-Sand com-m-0 com-overflow-hidden;
-  }
+      .upcoming-events-section {
+        @apply com-my-0;
 
-  .event-clickable {
-    @apply com-w-full;
+        .upcoming-events-container {
+          @apply com-flex com-flex-row com-flex-wrap com-mx-4 md:com-mx-6 com-justify-between;
 
-    .event {
-      @apply com-w-318px hover:com-shadow-Card;
-      @apply md:com-w-full;
+          a {
+            @apply com-relative com-no-underline com-mb-4;
 
-      nb-card-body {
-        @apply com-flex-col;
-        @apply md:com-flex-row;
-
-        .header-image {
-          @apply com-m-0 com-w-full com-overflow-hidden com-min-w-[220px] com-h-32;
-          @apply md:com-mr-6 md:com-w-220px;
-
-          img {
-            @apply com-w-full com-h-full com-object-cover com-object-left-top;
-          }
-
-          nb-icon {
-            @apply com-text-3xl;
-          }
-        }
-
-        .details {
-          @apply com-p-10px;
-          @apply md:com-p-0;
-          h5 {
-            @apply com-items-start com-text-gunmetal com-text-lg com-font-semibold com-leading-21px com-mt-6 com-mx-0 com-mb-2;
-
-            nb-icon {
-              @apply com-mr-2 com-min-w-[16px];
+            &.upcoming-single-event {
+              @apply com-flex-col com-w-full md:com-w-[1220px];
             }
-          }
 
-          .timings {
-            p {
-              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
+            &.upcoming-multiple-events {
+              @apply com-flex-row com-w-full md:com-w-[600px];
+            }
 
-              nb-icon {
-                &.time {
-                  @apply com-mr-2;
+            .upcoming-events {
+              @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-lg  com-flex com-flex-row com-flex-wrap com-m-0;
+
+              .upcoming-events-body {
+                app-badge {
+                  @apply com-absolute com-top-0;
+                }
+
+                nb-card-body {
+                  nb-icon {
+                    @apply com-text-5xl;
+                  }
+                }
+
+                .no-image-header {
+                  @apply com-flex com-items-center com-text-center;
+                  aspect-ratio: 16/6;
+
+                  nb-icon {
+                    @apply com-m-auto com-text-5xl;
+                  }
+                }
+
+                .upcoming-details {
+                  @apply com-p-4 com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray;
+
+                  .upcoming-details-container {
+                    @apply com-h-[116px];
+
+                    .details {
+                      @apply md:com-flex md:com-flex-row md:com-justify-between md:com-items-start;
+
+                      .event-name {
+                        @apply com-text-xl com-leading-6 com-mt-0 com-font-semibold com-mb-0 com-text-Dark-Jungle-Green com-line-clamp-2;
+                        @apply md:com-leading-8 md:com-mt-4;
+
+                        .collaboration {
+                          @apply com-text-xs com-font-normal;
+                        }
+                      }
+
+                      .event_type_button {
+                        @apply com-mt-3 com-bg-white com-rounded-lg com-border-Light-Silver com-border com-text-Vampire-Black com-text-sm com-font-normal;
+                        @apply md:com-mt-4 md:com-mb-0 md:com-ml-4;
+
+                        fa-icon {
+                          @apply com-mr-1 com-text-red-500;
+                        }
+                      }
+
+                      .event-timing {
+                        @apply com-text-sm com-mt-1 com-font-normal com-text-Auro-Metal-Saurus com-mb-0 com-p-0;
+                        @apply md:com-mt-2;
+                      }
+                    }
+                  }
+
+                  .interested-members {
+                    @apply com-text-xs com-mt-5 com-font-normal com-text-Auro-Metal-Saurus com-items-center;
+                    @apply md:com-text-sm md:com-m-0 md:com-flex md:com-justify-between md:com-mt-6;
+
+                    div {
+                      @apply com-flex com-items-center;
+                      nb-icon {
+                        @apply com-mr-2 com-text-Dark-Jungle-Green;
+                        @apply md:com-mr-6px com-text-base;
+                      }
+                    }
+                  }
+
+                  .register-button {
+                    @apply com-mt-8 md:com-mt-0;
+                  }
                 }
               }
-            }
-          }
-
-          .past-timings {
-            p {
-              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
-
-              nb-icon {
-                @apply com-text-sm com-leading-4;
-
-                &.time {
-                  @apply com-mr-2;
-                }
-              }
-            }
-          }
-
-          .event-name {
-            .collaboration {
-              @apply com-text-sm;
             }
           }
         }
       }
-    }
 
-    .event.upcoming {
-      @apply com-mt-0 com-mb-4 com-mx-0;
+      .past-events {
+        @apply com-flex com-flex-col com-mx-auto com-my-0;
 
-      nb-card-body {
-        @apply com-pt-0 com-pb-6 com-px-0 com-flex-col com-text-center;
-
-        .header-image {
-          @apply com-w-full com-h-full com-mt-0 com-mb-6 com-mx-0;
-
-          img {
-            @apply com-w-full;
-          }
-
-          nb-icon {
-            @apply com-text-5xl;
-          }
+        .heading {
+          @apply com-font-semibold com-text-2xl com-text-center com-leading-4 com-mt-10 com-mb-8 com-text-black;
+          @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-6;
         }
 
-        .details {
-          h5 {
-            @apply com-leading-8 #{!important};
-            @apply com-text-center com-items-center com-flex-col com-text-3xl com-font-normal com-mt-0 com-mx-0 com-mb-2;
-          }
+        .past-events-container {
+          @apply com-flex com-flex-row com-flex-wrap com-mx-4 md:com-mx-6 com-justify-between;
+          a {
+            @apply com-relative com-w-full md:com-w-[390px] com-no-underline com-mb-6;
 
-          .timings {
-            @apply com-text-center;
-
-            p {
-              @apply com-text-gray-500 com-text-lg;
+            .past-container {
+              @apply com-border com-border-solid com-border-Bright-Gray com-overflow-hidden hover:com-shadow-Card com-rounded-xl com-my-0;
 
               nb-icon {
-                @apply com-text-lg;
+                @apply com-text-5xl;
+              }
+
+              .no-image-header {
+                @apply com-h-[148px] com-flex com-items-center com-text-center;
+
+                nb-icon {
+                  @apply com-m-auto;
+                }
+              }
+
+              .past-details {
+                @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-overflow-hidden com-mb-4;
+
+                .past-details-container {
+                  @apply com-h-[124px] com-mb-30px;
+
+                  .detailss {
+                    @apply com-flex com-justify-between;
+
+                    .completed {
+                      @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
+                      nb-icon {
+                        @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
+                      }
+                    }
+
+                    .interested-members {
+                      @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                      @apply md:com-flex md:com-justify-between;
+                    }
+                  }
+
+                  .event-name {
+                    @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
+
+                    .collaboration {
+                      @apply com-text-sm com-font-normal;
+                    }
+                  }
+
+                  .event-timings {
+                    @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
+                  }
+                }
+
+                .view-details {
+                  @apply com-font-medium com-text-base com-text-Charcoal com-mx-4 com-mt-0 com-pt-0;
+                }
               }
             }
           }

@@ -1,16 +1,18 @@
 <div [ngClass]="{ 'com-flex': alignFollowToRight }">
-  <a (click)="profileClicked()" [routerLink]="['/users', user.username]">
+  <a (click)="profileClicked()" [routerLink]="['/users', user.username]" target="_blank">
     <div class="user-profile-large d-flex align-items-start">
-      <img
-        [activateMiniProfileDirective]="activateMiniProfileDirective"
-        [alt]="user.name"
-        [ngClass]="{ 'com-self-start': showAbout && user.about_me }"
-        [src]="user.photo?.i64"
-        [title]="user.name"
-        [username]="user.username"
-        appMiniUserProfile
-        class="avatar"
-      />
+      <div>
+        <img
+          [activateMiniProfileDirective]="activateMiniProfileDirective"
+          [alt]="user.name"
+          [ngClass]="{ 'com-self-start': showAbout && user.about_me }"
+          [src]="user.photo?.i64"
+          [title]="user.name"
+          [username]="user.username"
+          appMiniUserProfile
+          class="avatar"
+        />
+      </div>
       <div class="details">
         <div class="name d-flex align-items-center">
           <p
@@ -47,7 +49,7 @@
             <nb-icon icon="message-circle-outline" status="basic"></nb-icon>
           </a>
         </div>
-        <p *ngIf="showAbout && user.about_me" class="about com-line-clamp-4">{{ user.about_me }}</p>
+        <p *ngIf="showAbout && user.about_me" class="about com-line-clamp-3">{{ user.about_me }}</p>
       </div>
     </div>
   </a>

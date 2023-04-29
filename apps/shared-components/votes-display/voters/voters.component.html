@@ -1,17 +1,14 @@
 <div>
-
   <nb-list>
-    <nb-list-item *ngFor="let voter of voters">
-      <app-user-profile-horizontal [user]="voter" [socialMediaLinks]="false"></app-user-profile-horizontal>
+    <nb-list-item *ngFor="let voter of voters" class="com-p-0 com-m-0">
+      <app-user-profile-mini [size]="'small'" [user]="voter" [designation]="true"></app-user-profile-mini>
     </nb-list-item>
   </nb-list>
 
   <div class="load-more-button" *ngIf="total && voters.length < total">
     <button nbButton size="tiny" status="primary" outline (click)="openWindow()">Load More...</button>
   </div>
-
 </div>
-
 
 <ng-template #votersList let-data>
   <nb-list>

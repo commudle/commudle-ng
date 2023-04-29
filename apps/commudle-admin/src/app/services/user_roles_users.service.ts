@@ -29,6 +29,14 @@ export class UserRolesUsersService {
     );
   }
 
+  autocompleteRoleDesignation(query: string, community_id: number): Observable<any> {
+    const params = new HttpParams().set('query', query).set('community_id', community_id);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ROLE_DESIGNATIONS),
+      { params },
+    );
+  }
+
   getCommunityGroupLeaders(communityGroupId): Observable<IUserRolesUsers> {
     const params = new HttpParams().set('community_group_id', communityGroupId);
     return this.http.get<IUserRolesUsers>(
@@ -37,12 +45,26 @@ export class UserRolesUsersService {
     );
   }
 
-  getCommunityMembers(query, communityId, count, page): Observable<IUserRolesUsers> {
-    const params = new HttpParams()
+  getCommunityMembers(
+    query,
+    communityId,
+    count,
+    page,
+    employer?,
+    employee?,
+    contentCreator?,
+    speaker?,
+  ): Observable<IUserRolesUsers> {
+    let params = new HttpParams();
+    params = params
       .set('community_id', communityId)
       .set('query', query)
       .set('count', count)
-      .set('page', page);
+      .set('page', page)
+      .set('employer', employer)
+      .set('employee', employee)
+      .set('content_creator', contentCreator)
+      .set('speaker', speaker);
     return this.http.get<IUserRolesUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS),
       { params },

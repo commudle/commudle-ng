@@ -9,8 +9,17 @@ import { EJobLocationType, EJobStatus, EJobCategory, IJob } from 'apps/shared-mo
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBuilding,
+  faIdCard,
+  faClock,
+  faSuitcase,
+  faLocationDot,
+  faMoneyBills,
+} from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { SeoService } from 'apps/shared-services/seo.service';
+
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
@@ -30,6 +39,12 @@ export class JobComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   faBuilding = faBuilding;
+  faIdCard = faIdCard;
+  faClock = faClock;
+  faSuitcase = faSuitcase;
+  faLocationDot = faLocationDot;
+  faMoneyBills = faMoneyBills;
+  faCalendar = faCalendar;
 
   constructor(
     private authWatchService: LibAuthwatchService,
