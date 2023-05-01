@@ -444,6 +444,7 @@ export const API_ROUTES = {
     MINI_PROFILE: 'api/v2/users/profile',
     TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
     TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
+    UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
   },
 
   SPEAKER_RESOURCES: {

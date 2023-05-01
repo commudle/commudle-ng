@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
-          if (!(response.consent || this.consent_privacy_tnc)) {
+          if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
             this.openDialog('code');
           } else {
             this.isEmailSent = true;
@@ -157,7 +157,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.userFromGoogle.idToken,
         )
         .subscribe((data: any) => {
-          console.log(data.auth_token);
           if (data.auth_token === null || data.auth_token === '' || data.auth_token === undefined) {
             this.openDialog('google');
           } else {

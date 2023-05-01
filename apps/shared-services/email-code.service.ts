@@ -14,11 +14,12 @@ export class EmailCodeService {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.EMAIL_CODE_AUTH.CREATE), { email });
   }
 
-  loginUser(formData: { email: string; code: string }): Observable<any> {
+  loginUser(formData: {
+    email: string;
+    code: string;
+    consent_privacy_tnc: boolean;
+    consent_marketing: boolean;
+  }): Observable<any> {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.EMAIL_CODE_AUTH.VERIFY), formData);
   }
-
-  // loginUser(formData): Observable<any> {
-  //   return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.EMAIL_CODE_AUTH.VERIFY), formData);
-  // }
 }
