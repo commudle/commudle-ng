@@ -46,10 +46,14 @@ nb-actions {
   }
 
   .items {
-    @apply com-bg-white com-shadow-md com-rounded-md com-absolute com-right-0 com-z-50;
+    // z-index: 9999;
+    // @apply com-bg-white com-shadow-md com-rounded-md md:com-absolute md:com-right-0 com-w-44;
+    // @apply md:com-top-12 sm:com-bottom-full sm:com-right-auto sm:com-left-0 com-top-[-216px] sm:com-relative;
+    // // right-0 w-48
+    // md:top-12  sm:bottom-full sm:right-auto sm:left-0"
 
     ul {
-      @apply com-list-none com-m-1 com-p-0;
+      @apply com-list-none com-p-2 com-bg-white com-rounded-md;
 
       li {
         @apply com-my-2;
