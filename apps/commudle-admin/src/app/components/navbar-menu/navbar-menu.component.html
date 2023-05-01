@@ -47,15 +47,25 @@
       <span>Profile</span>
     </a>
   </nb-action>
-  <nb-action *ngIf="!currentUser">
-    <a
-      class="user-context-menu clickable"
-      (click)="showContextMenu = !showContextMenu"
-      [nbContextMenu]="contextMenuItems"
-    >
+  <nb-action *ngIf="!currentUser" class="more">
+    <a (click)="showContextMenu = !showContextMenu">
       <fa-icon [icon]="faEllipsisV"></fa-icon>
       <span>More</span>
     </a>
+    <div *ngIf="showContextMenu" class="items">
+      <ul>
+        <li *ngFor="let item of contextMenuItems">
+          <a *ngIf="item.link && !item.externalLink" [routerLink]="item.link">
+            <nb-icon [icon]="item.icon"></nb-icon>&nbsp;
+            <span>{{ item.title }}</span>
+          </a>
+          <a *ngIf="item.externalLink" [href]="item.link" target="_blank">
+            <nb-icon [icon]="item.icon"></nb-icon>&nbsp;
+            <span>{{ item.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </nb-action>
 </nb-actions>
 

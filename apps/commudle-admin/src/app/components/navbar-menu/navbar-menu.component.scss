@@ -39,3 +39,25 @@ nb-actions {
     }
   }
 }
+
+.more {
+  a {
+    @apply com-flex com-items-center;
+  }
+
+  .items {
+    @apply com-bg-white com-shadow-md com-rounded-md com-absolute com-right-0 com-z-50;
+
+    ul {
+      @apply com-list-none com-m-1 com-p-0;
+
+      li {
+        @apply com-my-2;
+
+        a {
+          @apply com-flex com-flex-row com-border-none com-items-center com-px-4 hover:com-bg-gray-100 com-rounded-lg com-text-sm com-text-gray-300;
+        }
+      }
+    }
+  }
+}
