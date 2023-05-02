@@ -46,10 +46,13 @@ nb-actions {
   }
 
   .items {
-    // z-index: 9999;
-    // @apply com-bg-white com-shadow-md com-rounded-md md:com-absolute md:com-right-0 com-w-44;
-    // @apply md:com-top-12 sm:com-bottom-full sm:com-right-auto sm:com-left-0 com-top-[-216px] sm:com-relative;
-    // // right-0 w-48
+    z-index: 9999;
+    @apply com-bg-white com-shadow-md com-rounded-md com-w-44;
+    @apply md:com-absolute md:com-right-0 md:com-top-[42px];
+    // @apply com-absolute com-top-[-15px] com-bottom-16 com-left-[-166px] com-right-0;
+    // @apply sm:com-bottom-full sm:com-right-auto sm:com-left-0 sm:com-absolute sm:com-top-0;
+    // @apply com-top-[-216px] sm:com-relative;
+    // right-0 w-48
     // md:top-12  sm:bottom-full sm:right-auto sm:left-0"
 
     ul {

@@ -57,6 +57,7 @@
         <li *ngFor="let item of contextMenuItems">
           <a *ngIf="item.link && !item.externalLink" [routerLink]="item.link">
             <nb-icon [icon]="item.icon"></nb-icon>&nbsp;
+            <!-- <i class="fa-{{ item.icon }}"></i>&nbsp; -->
             <span>{{ item.title }}</span>
           </a>
           <a *ngIf="item.externalLink" [href]="item.link" target="_blank">
