@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-student-non-profit-community-support',
@@ -7,6 +8,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
   styleUrls: ['./student-non-profit-community-support.component.scss'],
 })
 export class StudentNonProfitCommunitySupportComponent implements OnInit {
+  faStar = faStar;
   constructor(private seoService: SeoService) {}
 
   ngOnInit(): void {

@@ -11,14 +11,14 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./cookie-consent.component.scss'],
 })
 export class CookieConsentComponent implements OnInit {
-  cookieConstent = false;
-  isBrowser;
-  showPreferncesButton = false;
-
-  preferencesForm;
-  isDisable: boolean = true;
-
   @Input() showPopup = false;
+  @Input() reloadApp = false;
+
+  cookieConstent = false;
+  showPreferncesButton = false;
+  isDisable: boolean = true;
+  isBrowser;
+  preferencesForm;
 
   constructor(
     private cookieConsentService: CookieConsentService,
@@ -44,6 +44,18 @@ export class CookieConsentComponent implements OnInit {
       }
       // }, 3000);
     }
+    if (this.reloadApp) {
+      const cookiePref_analytics =
+        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') === 'granted' ? true : false;
+
+      const cookiePref_marketing =
+        this.cookieConsentService.getCookieByName('com_cookiepref_marketing') === 'granted' ? true : false;
+
+      this.preferencesForm.patchValue({
+        analytics: cookiePref_analytics,
+        marketing: cookiePref_marketing,
+      });
+    }
   }
 
   acceptManagedCookies() {
@@ -52,6 +64,10 @@ export class CookieConsentComponent implements OnInit {
       this.preferencesForm.value.marketing,
     );
     this.cookieConstent = false;
+    this.showPopup = false;
+    if (this.reloadApp) {
+      window.location.reload();
+    }
   }
 
   // disagreeCookieConsent() {
