@@ -1,4 +1,3 @@
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { CookieConsentService } from 'apps/commudle-admin/src/app/services/cookie-consent.service';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';

@@ -74,7 +74,7 @@
                     text="{{ communityGroup.community_channels_count }} Channels"
                   ></nb-tag>
                 </nb-tag-list>
-                <div>
+                <div *ngIf="isOrganizer">
                   <a
                     nbButton
                     status="danger"
