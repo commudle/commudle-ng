@@ -96,7 +96,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       event.previousIndex,
       event.currentIndex,
     );
-    // moveItemInArray(this.questionDescription, event.previousIndex, event.currentIndex);
   }
 
   initQuestion(): FormGroup {
@@ -185,6 +184,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
         disabled: [q.disabled],
         has_responses: q.has_responses,
         question_choices: this.fb.array([this.initQuestionChoice()]),
+        show_description: [q.description ? true : false],
       });
       (exisingQuestionForm as FormGroup).setControl('question_choices', this.setQuestionChoices(q.question_choices));
       formArray.push(exisingQuestionForm);
