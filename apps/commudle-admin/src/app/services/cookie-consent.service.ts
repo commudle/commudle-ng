@@ -25,6 +25,10 @@ export class CookieConsentService {
     }
   }
 
+  getCookieByName(cookieName) {
+    return this.cookieService.get(cookieName);
+  }
+
   isCookieConsentAccepted(): boolean {
     const consentValue = isPlatformBrowser(this.platformId) ? this.cookieService.get(this.cookieConsentKey) : 'false';
     return consentValue === this.acceptConsentValue;

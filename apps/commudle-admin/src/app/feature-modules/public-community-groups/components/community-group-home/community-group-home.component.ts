@@ -13,6 +13,7 @@ import {
   faBuilding,
   faPencil,
 } from '@fortawesome/free-solid-svg-icons';
+import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 
 @Component({
   selector: 'app-community-group-home',
@@ -22,6 +23,7 @@ import {
 export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   subscriptions: Subscription[] = [];
+  isOrganizer = false;
 
   //icons
   faUserGroup = faUserGroup;
@@ -33,19 +35,34 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   faBuilding = faBuilding;
   faPencil = faPencil;
 
-  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
+    private communityGroupsService: CommunityGroupsService,
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
       this.activatedRoute.data.subscribe((data) => {
         this.communityGroup = data.community_group;
         this.setMeta();
+        this.checkOrganizer();
       }),
     );
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  checkOrganizer() {
+    this.subscriptions.push(
+      this.communityGroupsService.userManagedCommunityGroups$.subscribe((data: ICommunityGroup[]) => {
+        if (data.find((communityGroupData) => communityGroupData.slug === this.communityGroup.slug) !== undefined) {
+          this.isOrganizer = true;
+        }
+      }),
+    );
   }
 
   setMeta(): void {

@@ -1,4 +1,3 @@
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { CookieConsentService } from 'apps/commudle-admin/src/app/services/cookie-consent.service';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';
@@ -11,14 +10,14 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./cookie-consent.component.scss'],
 })
 export class CookieConsentComponent implements OnInit {
-  cookieConstent = false;
-  isBrowser;
-  showPreferncesButton = false;
-
-  preferencesForm;
-  isDisable: boolean = true;
-
   @Input() showPopup = false;
+  @Input() reloadApp = false;
+
+  cookieConstent = false;
+  showPreferncesButton = false;
+  isDisable: boolean = true;
+  isBrowser;
+  preferencesForm;
 
   constructor(
     private cookieConsentService: CookieConsentService,
@@ -35,6 +34,15 @@ export class CookieConsentComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (
+      !(
+        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') ||
+        this.cookieConsentService.getCookieByName('com_cookiepref_marketing')
+      ) &&
+      !this.seoService.isBot
+    ) {
+      this.cookieConstent = true;
+    }
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       // setTimeout(() => {
       if (this.seoService.isBot) {
@@ -44,20 +52,46 @@ export class CookieConsentComponent implements OnInit {
       }
       // }, 3000);
     }
+    this.patchCookiesValues();
   }
 
-  acceptManagedCookies() {
+  acceptManagedCookies(acceptAll?) {
+    if (acceptAll) {
+      this.preferencesForm.patchValue({
+        analytics: true,
+        marketing: true,
+      });
+    }
     this.cookieConsentService.acceptedCookieConsent(
       this.preferencesForm.value.analytics,
       this.preferencesForm.value.marketing,
     );
     this.cookieConstent = false;
+    this.showPopup = false;
+    if (this.reloadApp) {
+      window.location.reload();
+    }
   }
 
   // disagreeCookieConsent() {
   //   this.cookieService.deleteAll();
   //   window.location.href = 'about:blank';
   // }
+
+  patchCookiesValues() {
+    if (this.reloadApp) {
+      const cookiePref_analytics =
+        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') === 'granted' ? true : false;
+
+      const cookiePref_marketing =
+        this.cookieConsentService.getCookieByName('com_cookiepref_marketing') === 'granted' ? true : false;
+
+      this.preferencesForm.patchValue({
+        analytics: cookiePref_analytics,
+        marketing: cookiePref_marketing,
+      });
+    }
+  }
 
   Consent() {
     this.showPreferncesButton = true;
