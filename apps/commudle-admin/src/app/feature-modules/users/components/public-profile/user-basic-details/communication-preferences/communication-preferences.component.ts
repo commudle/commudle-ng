@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UserProfileManagerService } from '../../../../services/user-profile-manager.service';
+import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbDialogService, NbDialogRef } from '@commudle/theme';
 import { LoginConsentPopupComponent } from 'apps/commudle-admin/src/app/components/login-consent-popup/login-consent-popup.component';
@@ -10,7 +10,7 @@ import { LoginConsentPopupComponent } from 'apps/commudle-admin/src/app/componen
   templateUrl: './communication-preferences.component.html',
   styleUrls: ['./communication-preferences.component.scss'],
 })
-export class CommunicationPreferencesComponent implements OnInit {
+export class CommunicationPreferencesComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   showPopup = false;
 
