@@ -11,11 +11,14 @@ declare global {
   providedIn: 'root',
 })
 export class GoogleTagManagerService {
-  constructor(private seoService: SeoService) {}
+  host: string;
+  constructor(private seoService: SeoService) {
+    this.host = window.location.hostname;
+  }
 
   dataLayerPushEvent(event: string, data: any) {
     data.event = event;
-    if (!this.seoService.isBot) {
+    if (!this.seoService.isBot && !['localhost'].includes(this.host)) {
       window.dataLayer.push(data);
     }
   }

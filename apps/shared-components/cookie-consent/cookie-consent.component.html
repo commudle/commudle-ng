@@ -28,7 +28,9 @@
       </div>
     </form>
     <div class="bottom-section">
-      <button (click)="acceptManagedCookies()" class="button" nbButton status="primary" size="small">Accept All</button>
+      <button (click)="acceptManagedCookies('AcceptAll')" class="button" nbButton status="primary" size="small">
+        Accept All
+      </button>
       &nbsp;
       <button
         *ngIf="!showPreferncesButton"

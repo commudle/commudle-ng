@@ -34,6 +34,15 @@ export class CookieConsentComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (
+      !(
+        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') ||
+        this.cookieConsentService.getCookieByName('com_cookiepref_marketing')
+      ) &&
+      !this.seoService.isBot
+    ) {
+      this.cookieConstent = true;
+    }
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       // setTimeout(() => {
       if (this.seoService.isBot) {
@@ -43,21 +52,16 @@ export class CookieConsentComponent implements OnInit {
       }
       // }, 3000);
     }
-    if (this.reloadApp) {
-      const cookiePref_analytics =
-        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') === 'granted' ? true : false;
-
-      const cookiePref_marketing =
-        this.cookieConsentService.getCookieByName('com_cookiepref_marketing') === 'granted' ? true : false;
-
-      this.preferencesForm.patchValue({
-        analytics: cookiePref_analytics,
-        marketing: cookiePref_marketing,
-      });
-    }
+    this.patchCookiesValues();
   }
 
-  acceptManagedCookies() {
+  acceptManagedCookies(acceptAll?) {
+    if (acceptAll) {
+      this.preferencesForm.patchValue({
+        analytics: true,
+        marketing: true,
+      });
+    }
     this.cookieConsentService.acceptedCookieConsent(
       this.preferencesForm.value.analytics,
       this.preferencesForm.value.marketing,
@@ -73,6 +77,21 @@ export class CookieConsentComponent implements OnInit {
   //   this.cookieService.deleteAll();
   //   window.location.href = 'about:blank';
   // }
+
+  patchCookiesValues() {
+    if (this.reloadApp) {
+      const cookiePref_analytics =
+        this.cookieConsentService.getCookieByName('com_cookiepref_analytics') === 'granted' ? true : false;
+
+      const cookiePref_marketing =
+        this.cookieConsentService.getCookieByName('com_cookiepref_marketing') === 'granted' ? true : false;
+
+      this.preferencesForm.patchValue({
+        analytics: cookiePref_analytics,
+        marketing: cookiePref_marketing,
+      });
+    }
+  }
 
   Consent() {
     this.showPreferncesButton = true;
