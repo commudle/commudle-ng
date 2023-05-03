@@ -41,17 +41,20 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   notificationIconHighlight = false;
 
   contextMenuItems = [
-    { title: 'Jobs', link: '/jobs', icon: 'briefcase-outline' },
-    { title: 'Pricing', link: '/pricing', icon: 'star-outline' },
-    { title: 'Blogs', link: '/blogs', icon: 'file-text-outline' },
+    // { title: 'Jobs', link: '/jobs', icon: 'faInfoCircle' },
+    // { title: 'Jobs', link: '/jobs', icon: 'fa fa-info-circle' },
+    // { title: 'Jobs', link: '/jobs', icon: 'this.faInfoCircle' },
+    { title: 'Labs', link: '/labs', icon: 'star' },
+    { title: 'Jobs', link: '/jobs', icon: 'briefcase' },
+    { title: 'Newsletters', link: '/newsletters', icon: 'email' },
+    { title: 'Blogs', link: '/blogs', icon: 'file-text' },
     {
       title: 'Documentation',
-      link: 'https://documentation.commudle.com/',
+      url: 'https://documentation.commudle.com/',
       icon: 'file-text',
       externalLink: true,
       target: '_blank',
     },
-    { title: 'Newsletters', link: '/newsletters', icon: 'email-outline' },
   ];
 
   subscriptions: Subscription[] = [];

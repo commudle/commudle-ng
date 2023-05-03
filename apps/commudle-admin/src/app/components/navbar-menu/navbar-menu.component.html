@@ -11,7 +11,7 @@
       <span>Communities</span>
     </a>
   </nb-action>
-  <nb-action>
+  <nb-action *ngIf="currentUser">
     <a routerLink="labs" routerLinkActive="active">
       <fa-icon [icon]="faFlask"></fa-icon>
       <span>Labs</span>
@@ -21,6 +21,12 @@
     <a routerLink="builds" routerLinkActive="active">
       <nb-icon icon="bulb"></nb-icon>
       <span>Builds</span>
+    </a>
+  </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="pricing" routerLinkActive="active">
+      <nb-icon icon="star"></nb-icon>
+      <span>Pricing</span>
     </a>
   </nb-action>
   <nb-action (click)="this.notificationCount = 0" *ngIf="currentUser">
@@ -41,32 +47,17 @@
       <span>Notifications</span>
     </a>
   </nb-action>
-  <nb-action *ngIf="!currentUser">
+  <!-- <nb-action *ngIf="!currentUser">
     <a routerLink="/my-profile" routerLinkActive="active">
       <fa-icon [icon]="faUser"></fa-icon>
       <span>Profile</span>
     </a>
-  </nb-action>
-  <nb-action *ngIf="!currentUser" class="more">
-    <a (click)="showContextMenu = !showContextMenu">
+  </nb-action> -->
+  <nb-action *ngIf="!currentUser">
+    <a (click)="showContextMenu = !showContextMenu" [nbContextMenu]="contextMenuItems">
       <fa-icon [icon]="faEllipsisV"></fa-icon>
       <span>More</span>
     </a>
-    <div *ngIf="showContextMenu" class="items">
-      <ul>
-        <li *ngFor="let item of contextMenuItems">
-          <a *ngIf="item.link && !item.externalLink" [routerLink]="item.link">
-            <nb-icon [icon]="item.icon"></nb-icon>&nbsp;
-            <!-- <i class="fa-{{ item.icon }}"></i>&nbsp; -->
-            <span>{{ item.title }}</span>
-          </a>
-          <a *ngIf="item.externalLink" [href]="item.link" target="_blank">
-            <nb-icon [icon]="item.icon"></nb-icon>&nbsp;
-            <span>{{ item.title }}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
   </nb-action>
 </nb-actions>
 
