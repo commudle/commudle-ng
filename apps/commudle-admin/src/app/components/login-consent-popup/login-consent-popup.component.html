@@ -8,8 +8,8 @@
   </div>
   <div class="consent-2">
     <label>
-      <input type="checkbox" checked [(ngModel)]="consent_marketing" />
-      I agree to receive product and marketing updates from Commudle.
+      <input [checked]="consent_marketing" type="checkbox" [(ngModel)]="consent_marketing" />
+      <span> I agree to receive product and marketing updates from Commudle.</span>
     </label>
   </div>
   <button

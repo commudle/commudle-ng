@@ -6,7 +6,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 import { ICurrentUser } from '../shared-models/current_user.model';
 import { API_ROUTES } from './api-routes.constants';
@@ -44,7 +44,7 @@ export class LibAuthwatchService {
   }
 
   // check if user is already signed in
-  checkAlreadySignedIn(): Observable<boolean> {
+  checkAlreadySignedIn(): Observable<any> {
     if (!this.cookieService.check(environment.session_cookie_name)) {
       this.cookieService.set(environment.session_cookie_name, uuidv4(), {
         ...(environment.production && { domain: '.commudle.com' }),
@@ -94,5 +94,17 @@ export class LibAuthwatchService {
 
   logInUser() {
     this.router.navigate(['/login'], { queryParams: { redirect: this.router.url } });
+  }
+
+  getUserData(): Observable<{ consent_privacy_tnc: boolean; consent_marketing: boolean }> {
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION), {}).pipe(
+      map((data) => {
+        if (data.user) {
+          const consent_privacy_tnc = data.user.consent_privacy_tnc;
+          const consent_marketing = data.user.consent_marketing;
+          return { consent_privacy_tnc, consent_marketing };
+        }
+      }),
+    );
   }
 }
