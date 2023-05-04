@@ -10,7 +10,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-
+import { NbDialogService, NbDialogRef } from '@commudle/theme';
+import { LoginConsentPopupComponent } from '../login-consent-popup/login-consent-popup.component';
 @Component({
   selector: 'commudle-login',
   templateUrl: './login.component.html',
@@ -20,8 +21,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isEmailSent = false;
   isLoading = false;
+  dialogRef: NbDialogRef<any>;
 
   subscriptions: Subscription[] = [];
+
+  consent_privacy_tnc = false;
+  consent_marketing = false;
+  userFromGoogle;
 
   private authService: AuthService;
 
@@ -35,6 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private nbToastrService: NbToastrService,
     private injector: Injector,
     private gtm: GoogleTagManagerService,
+    private dialogService: NbDialogService,
   ) {
     this.subscriptions.push(
       this.libAuthWatchService.currentUserVerified$.subscribe((value: boolean) => {
@@ -49,11 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.subscriptions.push(
         this.authService.authState.subscribe((user) => {
-          if (user) {
-            this.libAuthWatchService.signIn(user.provider.toLowerCase(), user.idToken).subscribe((data: any) => {
-              this.setCookie(data.auth_token, 'google');
-            });
-          }
+          this.userFromGoogle = user;
+          this.loginWithGoogle();
         }),
       );
     }
@@ -61,6 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      consent_privacy_tnc: [''],
+      consent_marketing: [''],
     });
   }
 
@@ -96,9 +102,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
-        () => {
-          this.isEmailSent = true;
-          this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
+        (response) => {
+          if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
+            this.openDialog('code');
+          } else {
+            this.isEmailSent = true;
+            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
+          }
         },
         () => this.nbToastrService.danger('Error in generating code, try again in a few minutes!', 'Error'),
         () => (this.isLoading = false),
@@ -115,5 +125,44 @@ export class LoginComponent implements OnInit, OnDestroy {
         () => (this.isLoading = false),
       ),
     );
+  }
+
+  openDialog(loginType) {
+    const dialogRef = this.dialogService.open(LoginConsentPopupComponent, {
+      hasBackdrop: true,
+      closeOnBackdropClick: false,
+    });
+    dialogRef.componentRef.instance.consentValueChangedOutput.subscribe((consent: any) => {
+      this.consent_privacy_tnc = consent.consent_privacy_tnc;
+      this.consent_marketing = consent.consent_marketing;
+      this.loginForm.controls['consent_privacy_tnc'].setValue(consent.consent_privacy_tnc);
+      this.loginForm.controls['consent_marketing'].setValue(consent.consent_marketing);
+      if (loginType === 'code') {
+        this.sendVerificationEmail();
+      } else if (loginType === 'google' && this.consent_privacy_tnc) {
+        this.loginWithGoogle();
+      }
+
+      dialogRef.close();
+    });
+  }
+
+  loginWithGoogle() {
+    if (this.userFromGoogle) {
+      this.libAuthWatchService
+        .signIn(
+          this.userFromGoogle.provider.toLowerCase(),
+          this.loginForm.controls['consent_privacy_tnc'].value,
+          this.consent_marketing,
+          this.userFromGoogle.idToken,
+        )
+        .subscribe((data: any) => {
+          if (data.auth_token === null || data.auth_token === '' || data.auth_token === undefined) {
+            this.openDialog('google');
+          } else {
+            this.setCookie(data.auth_token, 'google');
+          }
+        });
+    }
   }
 }

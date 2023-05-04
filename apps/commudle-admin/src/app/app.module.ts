@@ -105,6 +105,7 @@ import { UserChatsModule } from './feature-modules/user-chats/user-chats.module'
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
 import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
+import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -147,6 +148,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     FooterComponent,
     PushNotificationComponent,
     LoginComponent,
+    LoginConsentPopupComponent,
   ],
   imports: [
     BrowserModule,
