@@ -104,10 +104,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
           if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
+            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
             this.openDialog('code');
           } else {
             this.isEmailSent = true;
-            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
           }
         },
         () => this.nbToastrService.danger('Error in generating code, try again in a few minutes!', 'Error'),
@@ -137,10 +137,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.consent_marketing = consent.consent_marketing;
       this.loginForm.controls['consent_privacy_tnc'].setValue(consent.consent_privacy_tnc);
       this.loginForm.controls['consent_marketing'].setValue(consent.consent_marketing);
-      if (loginType === 'code') {
-        this.sendVerificationEmail();
-      } else if (loginType === 'google' && this.consent_privacy_tnc) {
+      if (loginType === 'google' && this.consent_privacy_tnc) {
         this.loginWithGoogle();
+      } else if (loginType === 'code' && this.consent_privacy_tnc) {
+        this.isEmailSent = true;
       }
 
       dialogRef.close();
