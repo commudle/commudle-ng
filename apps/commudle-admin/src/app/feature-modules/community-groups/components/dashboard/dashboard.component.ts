@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
@@ -23,27 +22,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
   faPenToSquare = faPenToSquare;
   faBuilding = faBuilding;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private communityGroupsService: CommunityGroupsService,
-    private seoService: SeoService,
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
   ngOnInit() {
     this.seoService.noIndex(true);
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        this.communityGroupsService.show(data.community_group_id).subscribe((data) => {
-          this.communityGroup = data;
-
-          this.seoService.setTitle(`Dashboard | ${this.communityGroup.name}`);
-        });
+      this.activatedRoute.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
+        this.setMeta();
       }),
     );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.seoService.noIndex(false);
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Dashboard - Admin - ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
   }
 }

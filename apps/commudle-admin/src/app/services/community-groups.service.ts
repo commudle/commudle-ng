@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
@@ -15,6 +15,8 @@ import { IUsers } from 'apps/shared-models/users.model';
   providedIn: 'root',
 })
 export class CommunityGroupsService {
+  private userManagedCommunityGroups = new BehaviorSubject<ICommunityGroup[]>([]);
+  public userManagedCommunityGroups$: Observable<ICommunityGroup[]> = this.userManagedCommunityGroups.asObservable();
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   create(communityGroupData): Observable<ICommunityGroup> {
@@ -39,9 +41,16 @@ export class CommunityGroupsService {
   }
 
   getManagingCommunityGroups(): Observable<ICommunityGroups> {
-    return this.http.get<ICommunityGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.MANAGING_COMMUNITY_GROUPS),
-    );
+    return this.http
+      .get<ICommunityGroups>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.MANAGING_COMMUNITY_GROUPS))
+      .pipe(
+        tap((data: ICommunityGroups) => {
+          this.userManagedCommunityGroups.next([
+            ...this.userManagedCommunityGroups.getValue(),
+            ...data.community_groups,
+          ]);
+        }),
+      );
   }
 
   communities(communityGroupId): Observable<IPagination<ICommunities>> {

@@ -212,6 +212,10 @@ export class NewDataFormComponent implements OnInit {
   }
 
   saveDataForm() {
+    if (this.createDataForm.invalid) {
+      this.createDataForm.markAllAsTouched();
+      return;
+    }
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
   }
 

@@ -32,6 +32,13 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent,
   },
+  {
+    path: 'student-non-profit-community-support',
+    loadChildren: () =>
+      import('./feature-modules/student-non-profit-support/student-non-profit-support.module').then(
+        (m) => m.StudentNonProfitSupportModule,
+      ),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,

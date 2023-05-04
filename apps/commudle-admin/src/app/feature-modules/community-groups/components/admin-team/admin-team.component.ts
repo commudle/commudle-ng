@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,9 +17,10 @@ import { Subscription } from 'rxjs';
 export class AdminTeamComponent implements OnInit, OnDestroy {
   team: IUserRolesUser[] = [];
   subscriptions: Subscription[] = [];
+  communityGroup: ICommunityGroup;
+
   EUserRolesUserStatus = EUserRolesUserStatus;
   userRolesUserForm;
-  communityGroupSlug: string;
   isLoading = true;
 
   constructor(
@@ -25,6 +28,7 @@ export class AdminTeamComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
+    private seoService: SeoService,
   ) {
     this.userRolesUserForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,13 +40,14 @@ export class AdminTeamComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.getTeam(data.community_group_id);
-        this.communityGroupSlug = data.community_group_id;
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
+        this.getTeam();
+        this.setMeta();
       }),
     );
     this.userRolesUserForm.patchValue({
-      parent_id: this.communityGroupSlug,
+      parent_id: this.communityGroup.slug,
     });
   }
 
@@ -50,9 +55,9 @@ export class AdminTeamComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getTeam(id) {
+  getTeam() {
     this.subscriptions.push(
-      this.userRolesUsersService.getCommunityGroupLeaders(id).subscribe((data) => {
+      this.userRolesUsersService.getCommunityGroupLeaders(this.communityGroup.slug).subscribe((data) => {
         this.team = data.user_roles_users;
         this.isLoading = false;
       }),
@@ -80,5 +85,13 @@ export class AdminTeamComponent implements OnInit, OnDestroy {
       // this.userRolesUserForm.reset();
       this.userRolesUserForm.controls['email'].reset();
     });
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Admin Team - Admin - ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
   }
 }

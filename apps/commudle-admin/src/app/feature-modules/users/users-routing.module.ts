@@ -9,6 +9,7 @@ import { UserResumePreviewComponent } from './components/public-profile/user-ext
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { CommunicationPreferencesComponent } from './components/public-profile/user-basic-details/communication-preferences/communication-preferences.component';
+import { CookiePreferencesComponent } from './components/public-profile/user-basic-details/cookie-preferences/cookie-preferences.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,11 @@ const routes: Routes = [
           {
             path: 'communication-preferences',
             component: CommunicationPreferencesComponent,
-          },
+           },
+           {
+            path: 'cookie-preferences',
+            component: CookiePreferencesComponent,
+           },
         ],
       },
       {

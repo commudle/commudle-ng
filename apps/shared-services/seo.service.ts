@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class SeoService {
   public isBot: boolean;
   private isBotLegacy: boolean;
+  private host: string;
 
   constructor(
     private meta: Meta,
@@ -20,8 +21,9 @@ export class SeoService {
   ) {
     // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
     const url = new URL(window.location.href);
+    this.host = window.location.hostname;
     this.isBotLegacy = url.searchParams.get('bot') === 'true';
-    if (this.isBotLegacy) {
+    if (this.isBotLegacy || ['test.commudle.com'].includes(this.host)) {
       this.noIndex(true);
     }
     // TODO: don't remove above code since we need to no-index the existing bot pages
@@ -75,7 +77,7 @@ export class SeoService {
   noIndex(value: boolean) {
     if (value) {
       this.setTag('robots', 'noindex');
-    } else {
+    } else if (!['test.commudle.com'].includes(this.host)) {
       this.removeTag('robots');
     }
   }

@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { IUser } from 'apps/shared-models/user.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 
@@ -12,9 +14,10 @@ import { debounceTime, switchMap } from 'rxjs/operators';
   styleUrls: ['./members-list.component.scss'],
 })
 export class MembersListComponent implements OnInit, OnDestroy {
-  communityGroupId;
   members: IUser[] = [];
   subscriptions: Subscription[] = [];
+  communityGroup: ICommunityGroup;
+
   searchForm;
   options;
   query = '';
@@ -31,6 +34,7 @@ export class MembersListComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private communityGroupsService: CommunityGroupsService,
     private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -40,9 +44,10 @@ export class MembersListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.communityGroupId = data.community_group_id;
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.communityGroup = data.community_group;
         this.getMembers();
+        this.setMeta();
         this.search();
       }),
     );
@@ -58,7 +63,7 @@ export class MembersListComponent implements OnInit, OnDestroy {
       this.communityGroupsService
         .members(
           this.query,
-          this.communityGroupId,
+          this.communityGroup.slug,
           this.count,
           this.page,
           this.employer,
@@ -85,7 +90,7 @@ export class MembersListComponent implements OnInit, OnDestroy {
           this.query = this.searchForm.get('name').value;
           return this.communityGroupsService.members(
             this.query,
-            this.communityGroupId,
+            this.communityGroup.slug,
             this.count,
             this.page,
             this.employer,
@@ -119,5 +124,13 @@ export class MembersListComponent implements OnInit, OnDestroy {
 
     this.page = 1;
     this.getMembers();
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Members - Admin - ${this.communityGroup.name}`,
+      this.communityGroup.mini_description,
+      this.communityGroup.logo.i350,
+    );
   }
 }

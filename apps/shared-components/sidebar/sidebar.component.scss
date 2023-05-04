@@ -15,7 +15,7 @@
 
     .header {
       h1 {
-        @apply com-flex com-ml-0;
+        @apply com-flex com-ml-0 com-cursor-pointer;
       }
       .toggle {
         @apply com-ml-0;
