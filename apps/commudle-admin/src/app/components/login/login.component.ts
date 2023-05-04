@@ -104,12 +104,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
           if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
-            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
             this.openDialog('code');
           } else {
             this.isEmailSent = true;
-            this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
           }
+          this.nbToastrService.success(`Verification code sent to ${this.loginForm.value.email}`, 'Success');
         },
         () => this.nbToastrService.danger('Error in generating code, try again in a few minutes!', 'Error'),
         () => (this.isLoading = false),
