@@ -7,6 +7,12 @@
       <div *ngIf="isFollowing">
         <commudle-user-follow-consent [username]="username"></commudle-user-follow-consent>
       </div>
+      <div *ngIf="joinCommunity">
+        <commudle-join-community-consent [communitySlug]="communitySlug"></commudle-join-community-consent>
+      </div>
+      <!-- <div *ngIf="onjoinChannel">
+        <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
+      </div> -->
     </nb-card-body>
     <nb-card-footer>
       <button nbButton status="success">Accept</button>&nbsp; <button nbButton status="danger">Reject</button>&nbsp;

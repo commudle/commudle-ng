@@ -30,6 +30,7 @@ export class MembershipToggleComponent implements OnInit {
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
   @Input() appearance: NbButtonAppearance = 'filled';
+  joinCommunity = false;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -68,7 +69,14 @@ export class MembershipToggleComponent implements OnInit {
   }
 
   onJoinCommunityClick() {
-    this.dialogService.open(UserConsentsComponent, {});
+    this.joinCommunity = true;
+    this.dialogService.open(UserConsentsComponent, {
+      context: {
+        joinCommunity: this.joinCommunity,
+        communitySlug: this.community.slug,
+      },
+    });
+    this.gtmDatalayerPush('join-community-click');
   }
 
   gtmDatalayerPush(event: string) {
