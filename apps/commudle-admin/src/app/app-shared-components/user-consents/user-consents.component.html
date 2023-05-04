@@ -1,3 +1,15 @@
 <div class="user-consents-container">
-  <button nbButton status="success">Accept</button>&nbsp; <button nbButton status="danger">Reject</button>&nbsp;
+  <nb-card>
+    <nb-card-header>
+      <h2>Consents</h2>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="isFollowing">
+        <commudle-user-follow-consent [username]="username"></commudle-user-follow-consent>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success">Accept</button>&nbsp; <button nbButton status="danger">Reject</button>&nbsp;
+    </nb-card-footer>
+  </nb-card>
 </div>
