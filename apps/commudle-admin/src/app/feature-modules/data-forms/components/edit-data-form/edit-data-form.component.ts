@@ -233,8 +233,6 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   }
 
   toggleDescriptionField(index: number): void {
-    // this.questionDescription[index] = !this.questionDescription[index];
-    // const questionFormGroup = this.editDataForm.get('data_form.questions') as FormArray;
     const questionFormGroup = this.editDataForm.get('data_form').get('questions') as FormArray;
     const question = questionFormGroup.at(index);
     const show_description = question?.get('show_description')?.value;
