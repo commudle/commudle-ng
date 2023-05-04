@@ -33,8 +33,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
 import { PublicCommunityNotificationsComponent } from './components/public-community-notifications/public-community-notifications.component';
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UserConsentsComponent } from '../../app-shared-components/user-consents/user-consents.component';
-
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 @NgModule({
   declarations: [
     HomeCommunityComponent,
