@@ -103,6 +103,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
+          this.gtm.dataLayerPushEvent('user', { com_new_user: response.new_user });
           if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
             this.openDialog('code');
           } else {
