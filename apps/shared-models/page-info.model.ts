@@ -1,6 +1,3 @@
-export interface IPageInfo {
-  has_previous_page: boolean;
-  has_next_page: boolean;
-  start_cursor: string;
-  end_cursor: string;
-}
+import { IPageInfo } from '@commudle/shared-models';
+
+export { IPageInfo };

@@ -1,5 +1,6 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { CableService } from '@commudle/shared-services';
 import { NbSidebarService, NbSidebarState } from '@commudle/theme';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -7,8 +8,6 @@ import { ActionCableConnectionSocket } from 'apps/shared-services/action-cable-c
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { NotificationsService } from 'apps/shared-services/notifications/notifications.service';
-import { PioneerAnalyticsService } from 'apps/shared-services/pioneer-analytics.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
@@ -32,12 +31,13 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private sidebarService: NbSidebarService,
     private cookieConsentService: CookieConsentService,
     private cdr: ChangeDetectorRef,
-    private notificationsService: NotificationsService,
-    private pioneerAnalyticsService: PioneerAnalyticsService,
+    // private notificationsService: NotificationsService,
+    // private pioneerAnalyticsService: PioneerAnalyticsService,
     private profileStatusBarService: ProfileStatusBarService,
     private isBrowserService: IsBrowserService,
     private seoService: SeoService,
-    private router: Router
+    private router: Router,
+    private cableService: CableService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -50,8 +50,11 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       this.currentUser = currentUser;
 
       if (this.isBrowser) {
+        this.cableService.createCable(
+          environment.anycable_url + '?user_auth_token=' + this.authWatchService.getAuthCookie(),
+        );
         this.actionCableConnectionSocket.connectToServer();
-        this.notificationsService.subscribeToNotifications();
+        // this.notificationsService.subscribeToNotifications();
 
         if (this.currentUser) {
           // this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
@@ -71,7 +74,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.notificationsService.unsubscribeFromNotifications();
+    // this.notificationsService.unsubscribeFromNotifications();
   }
 
   closeSidebar(): void {

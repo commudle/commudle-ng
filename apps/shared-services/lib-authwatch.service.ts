@@ -43,6 +43,10 @@ export class LibAuthwatchService {
     return this.appToken;
   }
 
+  getCurrentUser(): ICurrentUser {
+    return this.currentUser.getValue();
+  }
+
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
     if (!this.cookieService.check(environment.session_cookie_name)) {

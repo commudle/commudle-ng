@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+.vote-container {
+  @apply com-flex com-gap-1 com-items-center;
+}

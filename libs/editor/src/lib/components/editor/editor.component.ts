@@ -78,7 +78,8 @@ export class EditorComponent implements OnInit, OnDestroy {
         Text,
         Paragraph,
         Placeholder.configure({ placeholder: this.placeholder }),
-        CharacterCount,
+        // added .configure() because tiptap creates a global instance for each extension
+        CharacterCount.configure(),
         Gapcursor,
         History,
         Link,
