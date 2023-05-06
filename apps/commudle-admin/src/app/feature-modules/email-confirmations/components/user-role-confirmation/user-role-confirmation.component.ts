@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -19,11 +21,13 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   event: IEvent;
   communityGroup: ICommunityGroup;
   EUserRoles = EUserRoles;
+  acceptRole = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit() {
@@ -43,6 +47,19 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       this.community = data.community;
       this.event = data.event;
       this.communityGroup = data.community_group;
+
+      this.onAcceptRoleButton();
+    });
+  }
+
+  onAcceptRoleButton() {
+    this.acceptRole = true;
+    this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        acceptRole: this.acceptRole,
+        volunteerCommunityName: this.community.name,
+        volunteerEventName: this.event.name,
+      },
     });
   }
 }
