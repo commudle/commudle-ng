@@ -11,9 +11,9 @@ import {
   Output,
   PLATFORM_ID,
 } from '@angular/core';
-import { InViewportService } from 'libs/in-viewport/src/lib/services';
-import { Config } from 'libs/in-viewport/src/lib/values';
 import { filter, takeUntil } from 'rxjs/operators';
+import { InViewportService } from '../services';
+import { Config } from '../values';
 import { DestroyableDirective } from './destroyable.directive';
 
 export const InViewportMetadata = Symbol('InViewportMetadata');

@@ -6,4 +6,5 @@ export * from './lib/discussion.service';
 export * from './lib/google-tag-manager.service';
 export * from './lib/seo.service';
 export * from './lib/toastr.service';
+export * from './lib/user-message-receipt.service';
 export * from './lib/vote.service';

@@ -12,7 +12,13 @@
       />
       <span class="time">{{ moment(message.created_at).fromNow() }}</span>
     </div>
-    <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
+    <commudle-editor
+      (inViewportAction)="markAsRead(message?.id, $event)"
+      [content]="message.content"
+      [editable]="false"
+      [inViewportOptions]="{ threshold: [0] }"
+      inViewport
+    ></commudle-editor>
     <div *ngIf="authService.currentUser$ | async" class="suffix">
       <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
       <ng-container *ngIf="canReply && (discussionHandlerService.permittedActions$ | async)?.includes('reply')">

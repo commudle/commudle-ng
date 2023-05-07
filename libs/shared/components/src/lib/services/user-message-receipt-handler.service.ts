@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { UserMessageReceiptService } from 'apps/shared-services/user-message-receipt.service';
-import { interval, Subscription } from 'rxjs';
+import { UserMessageReceiptService } from '@commudle/shared-services';
+import { Subscription, interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -22,7 +22,7 @@
 
   <commudle-editor
     (contentChange)="discussionHandlerService.sendMessage($event)"
-    *ngIf="authService.currentUser$ | async; else notLoggedIn"
+    *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn"
     [validators]="validators"
   ></commudle-editor>
   <ng-template #notLoggedIn>

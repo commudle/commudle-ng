@@ -1,4 +1,4 @@
-import { InViewportDirection } from 'libs/in-viewport/src/lib/enums';
+import { InViewportDirection } from '../enums';
 
 export class InvalidDirectionException extends TypeError {
   constructor() {

@@ -5,6 +5,7 @@ import { AuthService } from '@commudle/shared-services';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { DiscussionHandlerService } from '../../../services/discussion-handler.service';
+import { UserMessageReceiptHandlerService } from '../../../services/user-message-receipt-handler.service';
 
 @Component({
   selector: 'commudle-message',
@@ -26,11 +27,21 @@ export class MessageComponent implements OnInit {
 
   protected readonly moment = moment;
 
-  constructor(public authService: AuthService, public discussionHandlerService: DiscussionHandlerService) {}
+  constructor(
+    public authService: AuthService,
+    public discussionHandlerService: DiscussionHandlerService,
+    private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
+  ) {}
 
   ngOnInit(): void {}
 
   toggleReply() {
     this.showReply$.next(!this.showReply$.value);
+  }
+
+  markAsRead(messageId: number, { visible }: { visible: boolean }): void {
+    if (messageId && visible) {
+      this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
+    }
   }
 }

@@ -5,7 +5,7 @@ import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
-import { UserMessageReceiptHandlerService } from 'apps/shared-services/user-message-receipt-handler.service';
+// import { UserMessageReceiptHandlerService } from '@commudle/shared-services';
 import * as moment from 'moment';
 
 @Component({
@@ -38,7 +38,7 @@ export class MessageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
+    // private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private injector: Injector,
   ) {
     this.replyForm = this.fb.group({
@@ -74,8 +74,8 @@ export class MessageComponent implements OnInit {
   }
 
   markAsRead(messageId: number, { visible }: { visible: boolean }): void {
-    if (messageId && visible) {
-      this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
-    }
+    // if (messageId && visible) {
+    //   this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
+    // }
   }
 }
