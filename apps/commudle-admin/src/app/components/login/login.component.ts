@@ -158,6 +158,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.userFromGoogle.idToken,
         )
         .subscribe((data: any) => {
+          if (data.new_user !== undefined) {
+            this.gtm.dataLayerPushEvent('user', { com_new_user: data.new_user });
+          }
           if (data.auth_token === null || data.auth_token === '' || data.auth_token === undefined) {
             this.openDialog('google');
           } else {
