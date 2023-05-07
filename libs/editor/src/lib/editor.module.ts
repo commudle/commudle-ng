@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NbButtonModule, NbIconModule, NbListModule, NbUserModule } from '@commudle/theme';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { popperVariation, provideTippyConfig, TippyDirective, tooltipVariation } from '@ngneat/helipopper';
 import { EditorMenuComponent } from './components/editor/editor-menu/editor-menu.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { MentionsListComponent } from './components/mentions-list/mentions-list.component';
@@ -13,7 +14,7 @@ import { FloatingMenuDirective } from './directives/floating-menu.directive';
 import { NodeViewContentDirective } from './directives/node-view-content.directive';
 
 @NgModule({
-  imports: [CommonModule, NbListModule, NbUserModule, NbButtonModule, NbIconModule, PickerModule],
+  imports: [CommonModule, NbListModule, NbUserModule, NbButtonModule, NbIconModule, PickerModule, TippyDirective],
   declarations: [
     EditorDirective,
     FloatingMenuDirective,
@@ -32,6 +33,15 @@ import { NodeViewContentDirective } from './directives/node-view-content.directi
     DraggableDirective,
     NodeViewContentDirective,
     EditorComponent,
+  ],
+  providers: [
+    provideTippyConfig({
+      defaultVariation: 'tooltip',
+      variations: {
+        tooltip: tooltipVariation,
+        popper: popperVariation,
+      },
+    }),
   ],
 })
 export class EditorModule {}

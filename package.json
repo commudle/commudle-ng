@@ -34,6 +34,8 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@ngneat/helipopper": "^7.1.1",
+    "@ngneat/overview": "^4.1.0",
     "@nrwl/angular": "15.1.1",
     "@sanity/block-content-to-html": "^2.0.0",
     "@sanity/client": "^3.4.1",

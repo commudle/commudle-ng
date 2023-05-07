@@ -19,7 +19,6 @@ import { Link } from '@tiptap/extension-link';
 import { Paragraph } from '@tiptap/extension-paragraph';
 import { Placeholder } from '@tiptap/extension-placeholder';
 import { Text } from '@tiptap/extension-text';
-import { BehaviorSubject } from 'rxjs';
 import { KeyboardHandler } from '../../extensions/keyboard-handler';
 import { CustomMention } from '../../extensions/mention';
 import { IEditorValidator } from '../../models/editor-validator.model';
@@ -46,7 +45,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   editor: Editor;
   extensionsCollection: { [key: string]: Extensions };
   isValid: boolean;
-  showEmojiPicker$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 
@@ -135,12 +133,8 @@ export class EditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleEmojiPicker(): void {
-    this.showEmojiPicker$.next(!this.showEmojiPicker$.getValue());
-  }
-
   onEmojiSelect(event): void {
     this.editor.chain().focus().insertContent(event.emoji.native).run();
-    this.showEmojiPicker$.next(false);
+    // this.showEmojiPicker$.next(false);
   }
 }

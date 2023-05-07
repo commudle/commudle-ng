@@ -5,6 +5,8 @@
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0",
     "@angular/forms": "^14.2.0",
+    "@ngneat/helipopper": "^7.1.1",
+    "@ngneat/overview": "^4.1.0",
     "@tiptap/core": "^2.0.3",
     "@tiptap/extension-bubble-menu": "^2.0.3",
     "@tiptap/extension-character-count": "^2.0.3",

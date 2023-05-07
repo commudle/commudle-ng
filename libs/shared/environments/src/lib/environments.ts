@@ -49,7 +49,7 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
   },
   production: {
-    production: false,
+    production: true,
     session_cookie_name: 'cmdle_sess',
     app_url: 'https://www.commudle.com',
     base_url: 'https://json.commudle.com',
