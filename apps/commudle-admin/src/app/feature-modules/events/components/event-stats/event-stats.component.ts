@@ -33,6 +33,9 @@ export class EventStatsComponent implements OnInit {
 
   entryPassesChart;
   attendeesChart;
+  speaker;
+  members;
+  selectedItemNgModel;
 
   constructor(
     private statsEventsService: StatsEventsService,
@@ -45,15 +48,15 @@ export class EventStatsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.event = data.event;
-
       this.community = data.community;
       this.seoService.setTitle(`${this.event.name} Stats | ${this.community.name}`);
-
       this.getUniqueVisitors();
       this.getRegistrations();
       this.getAttendees();
       this.getDiscussions();
       this.getPolls();
+      this.getSpeakers('confirmed');
+      this.getMemberStats();
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -62,7 +65,7 @@ export class EventStatsComponent implements OnInit {
     this.statsEventsService.uniqueVisitors(this.event.slug).subscribe((data) => {
       this.uniqueVisitors = data.total_unique_visitors;
       return new Chart(`${this.event.id}-event-visitors`, {
-        type: 'line',
+        type: 'bar',
         data: {
           datasets: [
             {
@@ -79,9 +82,9 @@ export class EventStatsComponent implements OnInit {
             xAxes: [
               {
                 type: 'time',
-                distribution: 'series',
+                distribution: 'linear',
                 time: {
-                  unit: 'day',
+                  unit: 'month',
                 },
                 scaleLabel: {
                   display: true,
@@ -100,8 +103,8 @@ export class EventStatsComponent implements OnInit {
           },
         },
       });
-      this.changeDetectorRef.markForCheck();
     });
+    this.changeDetectorRef.markForCheck();
   }
 
   getRegistrations() {
@@ -140,14 +143,15 @@ export class EventStatsComponent implements OnInit {
               data: [
                 this.attendees.entry_passes.male,
                 this.attendees.entry_passes.female,
-                this.attendees.entry_passes.NA + this.attendees.entry_passes.prefer_not_to_answer,
+                this.attendees.entry_passes.prefer_not_to_answer,
+                this.attendees.entry_passes.NA,
               ],
-              backgroundColor: ['blue', '#ff43bc', 'purple'],
+              backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
             },
           ],
 
           // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: ['Male', 'Female', 'NA'],
+          labels: ['Male', 'Female', 'Prefer Not To Answer', 'NA'],
         },
         options: {
           responsive: true,
@@ -162,17 +166,16 @@ export class EventStatsComponent implements OnInit {
               data: [
                 this.attendees.invited_attendees.male + this.attendees.uninvited_attendees.male,
                 this.attendees.invited_attendees.female + this.attendees.uninvited_attendees.female,
-                this.attendees.invited_attendees.NA +
-                  this.attendees.invited_attendees.prefer_not_to_answer +
-                  this.attendees.uninvited_attendees.NA +
+                this.attendees.invited_attendees.prefer_not_to_answer +
                   this.attendees.uninvited_attendees.prefer_not_to_answer,
+                this.attendees.invited_attendees.NA + this.attendees.uninvited_attendees.NA,
               ],
-              backgroundColor: ['blue', '#ff43bc', 'purple'],
+              backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
             },
           ],
 
           // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: ['Male', 'Female', 'NA'],
+          labels: ['Male', 'Female', 'Prefer Not To Answer', 'NA'],
         },
         options: {
           responsive: true,
@@ -215,5 +218,56 @@ export class EventStatsComponent implements OnInit {
 
   openPollWindow(poll: IPoll) {
     this.windowService.open(PollResultComponent, { title: 'Poll', context: { pollId: poll.id } });
+  }
+
+  getSpeakers(registration_status) {
+    this.statsEventsService.speakers(this.event.slug, registration_status).subscribe((data) => {
+      this.speaker = data.chart_data;
+      return new Chart('speaker', {
+        type: 'pie',
+        data: {
+          datasets: [
+            {
+              data: [this.speaker.male, this.speaker.female, this.speaker.prefer_not_to_answer, this.speaker.NA],
+              backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
+            },
+          ],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: ['Male', 'Female', 'Prefer Not To Answer', 'NA'],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+    });
+  }
+
+  getMemberStats() {
+    this.statsEventsService.memberStats(this.event.id).subscribe((data) => {
+      this.members = data.chart_data;
+      return new Chart('member', {
+        type: 'pie',
+        data: {
+          datasets: [
+            {
+              data: [
+                this.members.diversity.male,
+                this.members.diversity.female,
+                this.members.diversity.prefer_not_to_answer,
+                this.members.diversity.NA,
+              ],
+              backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
+            },
+          ],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: ['Male', 'Female', 'Prefer Not To Answer', 'NA'],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+    });
   }
 }

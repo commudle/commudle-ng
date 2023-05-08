@@ -9,7 +9,7 @@
     <div *ngFor="let eu of eventUpdates" class="event-update">
       <p class="details">
         <nb-icon icon="star" status="warning"></nb-icon>
-        {{ eu.details }}
+        <span [innerHTML]="eu.details | linky : { sanitizeHtml: true }"></span>
       </p>
       <p class="time">
         <small>{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</small>

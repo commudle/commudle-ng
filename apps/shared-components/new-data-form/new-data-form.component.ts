@@ -4,6 +4,8 @@ import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/fo
 import { IQuestionType } from 'apps/shared-models/question_type.model';
 import { QuestionTypesService } from 'apps/shared-components/services/question-types.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { NbMenuService } from '@commudle/theme';
+import { filter, map } from 'rxjs/operators';
 
 enum EFormPurposes {
   DATA_FORM = 'data_form',
@@ -30,9 +32,20 @@ export class NewDataFormComponent implements OnInit {
   showNameField = true;
   showQuestionRequiredField = true;
   showQuestionDisabledField = true;
-  showQuestionDescriptionField = true;
+  showQuestionDescriptionField = false;
+
+  questionContextMenuIndex = -1;
 
   totalQuestions = 0;
+  questionDescription = [];
+
+  menuItem = [
+    {
+      title: 'Add Question Below',
+      icon: 'plus-circle-outline',
+    },
+    { title: 'Delete Question', icon: 'trash-outline' },
+  ];
 
   // define the form
   createDataForm: FormGroup;
@@ -81,7 +94,6 @@ export class NewDataFormComponent implements OnInit {
         this.showNameField = true;
         this.showQuestionRequiredField = true;
         this.showQuestionDisabledField = true;
-        this.showQuestionDescriptionField = true;
         break;
       }
     }
@@ -98,6 +110,7 @@ export class NewDataFormComponent implements OnInit {
   addQuestionButtonClick(index: number) {
     (this.createDataForm.get('data_form').get('questions') as FormArray).insert(index, this.initQuestion());
     this.updateQuestionsCount();
+    this.questionDescription[index] = false;
   }
 
   updateQuestionsCount() {
@@ -115,6 +128,7 @@ export class NewDataFormComponent implements OnInit {
   removeQuestionButtonClick(questionIndex: number) {
     (this.createDataForm.get('data_form').get('questions') as FormArray).removeAt(questionIndex);
     this.updateQuestionsCount();
+    this.questionDescription.splice(questionIndex, questionIndex + 1);
   }
 
   removeQuestionChoiceButtonClick(questionIndex: number, choiceIndex: number) {
@@ -156,9 +170,15 @@ export class NewDataFormComponent implements OnInit {
     return this.createDataForm.valid ? 'Save' : 'Form Is Incomplete';
   }
 
-  constructor(private fb: FormBuilder, private questionTypesService: QuestionTypesService) {}
+  constructor(
+    private fb: FormBuilder,
+    private questionTypesService: QuestionTypesService,
+    private NbmenuService: NbMenuService,
+  ) {}
 
   ngOnInit() {
+    this.questionDescription[0] = false;
+
     // get the question types
     this.questionTypesService.getQuestionTypes().subscribe((data) => {
       this.questionTypes = data.question_types;
@@ -187,9 +207,42 @@ export class NewDataFormComponent implements OnInit {
         this.addQuestionButtonClick(i);
       }
     }
+
+    this.handleContextMenu();
   }
 
   saveDataForm() {
+    if (this.createDataForm.invalid) {
+      this.createDataForm.markAllAsTouched();
+      return;
+    }
     this.newDataForm.emit(this.createDataForm.get('data_form').value);
+  }
+
+  toggleDescriptionField(index: number): void {
+    this.questionDescription[index] = !this.questionDescription[index];
+  }
+
+  setContextIndex(index: number) {
+    this.questionContextMenuIndex = index;
+  }
+
+  handleContextMenu(): void {
+    this.NbmenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === `data-form-question-context-menu-${this.questionContextMenuIndex}`),
+        map(({ item: title }) => title),
+      )
+      .subscribe((menu) => {
+        switch (menu.title) {
+          case 'Add Question Below':
+            this.addQuestionButtonClick(this.questionContextMenuIndex + 1);
+            break;
+
+          case 'Delete Question':
+            this.removeQuestionButtonClick(this.questionContextMenuIndex);
+            break;
+        }
+      });
   }
 }

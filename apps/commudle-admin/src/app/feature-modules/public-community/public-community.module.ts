@@ -17,7 +17,7 @@ import {
   NbTabsetModule,
   NbTooltipModule,
 } from '@commudle/theme';
-import { SharedComponentsModule } from "apps/shared-components/shared-components.module";
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { LinkyModule } from 'ngx-linky';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -29,10 +29,10 @@ import { HomeCommunityComponent } from './components/home-community/home-communi
 import { MembersComponent } from './components/members/members.component';
 import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
 import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
-import { SpeakersComponent } from './components/speakers/speakers.component';
 import { PublicCommunityRoutingModule } from './public-community-routing.module';
 import { PublicCommunityNotificationsComponent } from './components/public-community-notifications/public-community-notifications.component';
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,6 @@ import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules
     // EventResourcesComponent,
     MembershipToggleComponent,
     CommunityChannelsListComponent,
-    SpeakersComponent,
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
   ],
@@ -59,6 +58,7 @@ import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules
     MiniUserProfileModule,
     NotificationsModule,
     SharedComponentsModule,
+    FontAwesomeModule,
 
     // Nebular
     NbCardModule,

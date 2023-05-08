@@ -1,0 +1,98 @@
+<div *ngIf="communityGroup" class="com-mt-4">
+  <button
+    nbButton
+    status="primary"
+    [routerLink]="['/admin/communities/new']"
+    [queryParams]="{ community_group_id: communityGroup.slug }"
+    target="_blank"
+    [disabled]="communityGroup.community_count_limit <= communities.length"
+  >
+    <nb-icon icon="plus"></nb-icon>
+    New Community
+  </button>
+</div>
+<div class="com-h-20" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
+  <table>
+    <thead>
+      <tr class="heading">
+        <th class="name">Name</th>
+        <th class="upcoming-events">Upcoming Events</th>
+        <th class="members-count">Members Count</th>
+        <th class="events-count">Events Count</th>
+        <th class="channels-count">Channels Count</th>
+        <th class="links">Links</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let community of communities">
+        <td valign="top">
+          <a [routerLink]="['/communities', community.slug]" target="_blank">
+            {{ community.name }}
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </td>
+        <td valign="top">
+          <div *ngFor="let event of community.upcoming_events">
+            <a [routerLink]="['/communities', community.slug, 'events', event.id]" target="_blank">
+              {{ event.name }}
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+          </div>
+          <div *ngIf="community.upcoming_events.length === 0">No Upcoming Events</div>
+        </td>
+        <td valign="top">
+          {{ community.member_count }}
+        </td>
+        <td valign="top">
+          {{ community.completed_events_count }}
+        </td>
+        <td valign="top">
+          {{ community.community_channels_count }}
+        </td>
+        <td valign="top">
+          <div class="">
+            <a
+              [routerLink]="['/admin', 'communities', community.id]"
+              nbButton
+              hero
+              status="info"
+              size="tiny"
+              target="_blank"
+              class="actions"
+            >
+              Dashboard
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            <a
+              [routerLink]="['/communities', community.id]"
+              nbButton
+              hero
+              status="info"
+              size="tiny"
+              target="_blank"
+              class="actions"
+            >
+              Public Page
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            <a
+              [routerLink]="['/admin', 'communities', community.id, 'stats']"
+              nbButton
+              hero
+              status="success"
+              size="tiny"
+              target="_blank"
+              class="actions"
+            >
+              Stats
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

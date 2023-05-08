@@ -11,10 +11,14 @@ import {
   NbSelectModule,
   NbCheckboxModule,
   NbIconModule,
+  NbToggleModule,
+  NbContextMenuModule,
+  NbFormFieldModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [EditDataFormComponent, CreateDataFormComponent],
@@ -23,6 +27,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DataFormsRoutingModule,
     ReactiveFormsModule,
     SharedComponentsModule,
+    NbToggleModule,
+    SharedPipesModule,
+    NbFormFieldModule,
 
     // External
     FontAwesomeModule,
@@ -34,6 +41,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NbSelectModule,
     NbCheckboxModule,
     NbIconModule,
+    NbContextMenuModule,
 
     //cdk module
     DragDropModule,

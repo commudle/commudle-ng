@@ -30,6 +30,7 @@
                 title="Expert Tick"
               />
             </p>
+            <p *ngIf="speaker.username" class="username">@{{ speaker.username }}</p>
             <p *ngIf="speaker.designation" class="designation com-line-clamp-2">{{ speaker.designation }}</p>
           </div>
         </a>

@@ -2,12 +2,10 @@
   <div class="container">
     <app-community-badge [background]="'bg-white'" [community]="community"></app-community-badge>
 
-    <h2 *ngIf="!event.header_image_path" class="fs-h2">{{ event.name }}</h2>
-    <div *ngIf="event.header_image_path" class="event-image-container">
-      <div class="event-background" [ngStyle]="{ 'background-image': 'url(' + event.header_image_path + ')' }"></div>
-      <img alt="{{ event.name }}" class="event-image" src="{{ event.header_image_path }}" title="{{ event.name }}" />
+    <h2 *ngIf="!event.header_image_path" class="fs-h2 com-ml-4">{{ event.name }}</h2>
+    <div class="com-m-2">
+      <commudle-banner-image [headerImagePath]="event.header_image_path" [name]="event.name"></commudle-banner-image>
     </div>
-
     <nb-card class="home-event-menu">
       <nb-card-body>
         <nb-actions>
@@ -45,7 +43,7 @@
           </nb-action>
           <nb-action (click)="scroll(volunteersSectionRef)" *ngIf="event.event_volunteers_count > 0" class="clickable">
             <nb-icon icon="headphones-outline" status="basic"></nb-icon>
-            <span>Volunteers</span>
+            <span>Team</span>
           </nb-action>
         </nb-actions>
       </nb-card-body>

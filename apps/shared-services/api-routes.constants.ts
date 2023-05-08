@@ -94,9 +94,15 @@ export const API_ROUTES = {
     SHOW: 'api/v2/community_groups/show',
     COMMUNITIES: 'api/v2/community_groups/communities',
     MANAGING_COMMUNITY_GROUPS: 'api/v2/community_groups/get_managing_community_groups',
+    EVENTS: 'api/v2/community_groups/events',
+    COMMUNITY_CHANNELS: 'api/v2/community_groups/community_channels',
+    MEMEBRS_DETAILS: 'api/v2/community_groups/members_details',
     PUBLIC: {
       SHOW: 'api/v2/community_groups/public',
       COMMUNITIES: 'api/v2/community_groups/public/communities',
+      EVENTS: 'api/v2/community_groups/public/events',
+      COMMUNITY_CHANNELS: 'api/v2/community_groups/public/community_channels',
+      ACTIVE_COMMUNITIES_AND_CHANNELS: 'api/v2/community_groups/public/active_communities_and_channels',
     },
   },
 
@@ -367,12 +373,13 @@ export const API_ROUTES = {
   USER_ROLES_USERS: {
     GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
     GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/get_admin_community_group_users',
-    COMMUNITY_MEMBERS: 'api/v2/user_roles_users/community_members',
+    COMMUNITY_MEMBERS: 'api/v2/user_roles_users/community_members_details',
     CREATE: 'api/v2/user_roles_users/',
     DELETE: 'api/v2/user_roles_users/',
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
+    ROLE_DESIGNATIONS: 'api/v2/user_roles_users/role_designations',
 
     COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
     REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
@@ -437,6 +444,7 @@ export const API_ROUTES = {
     MINI_PROFILE: 'api/v2/users/profile',
     TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
     TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
+    UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
   },
 
   SPEAKER_RESOURCES: {
@@ -559,12 +567,19 @@ export const API_ROUTES = {
       ATTENDEES: 'api/v2/stats/events/attendees',
       DISCUSSIONS: 'api/v2/stats/events/discussions',
       POLLS: 'api/v2/stats/events/polls',
+      SPEAKERS: 'api/v2/stats/events/speakers',
+      MEMBER_STATS: 'api/v2/stats/events/member_stats',
     },
     COMMUNITIES: {
       MEMBERS_DISTRIBUTION: 'api/v2/stats/communities/members_distribution',
       MEMBERS_TIMELINE: 'api/v2/stats/communities/members_timeline',
       EVENTS_TIMELINE: 'api/v2/stats/communities/events_timeline',
       EMAILS: 'api/v2/stats/communities/emails',
+      POPULAR_PROFILE_SKILL_TAGS: 'api/v2/stats/communities/popular_profile_skill_tags',
+      MEMBERS_WORK_EXPERIENCE_DISTRIBUTION: 'api/v2/stats/communities/members_work_experience_distribution',
+      SPEAKERS_DISTRIBUTION: 'api/v2/stats/communities/speakers_distribution',
+      MEMBERS_CONTENT_CREATORS: 'api/v2/stats/communities/members_content_creators',
+      EVENT_ATTENDANCE_STATS: 'api/v2/stats/communities/event_attendance_stats',
     },
     LABS: {
       USER_ENGAGEMENT: 'api/v2/stats/labs/user_engagement',

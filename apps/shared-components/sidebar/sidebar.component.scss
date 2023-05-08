@@ -1,0 +1,33 @@
+.header {
+  @apply com-h-12;
+}
+.toggle {
+  fa-icon {
+    @apply com-text-xl;
+  }
+}
+.sidebar {
+  transition: 0.3s;
+  @apply com-fixed com-left-0 com-top-16 com-pt-2 com-h-full com-w-16 com-z-50 com-shadow-Card com-bg-white com-text-black;
+
+  &.expanded {
+    @apply com-w-40;
+
+    .header {
+      h1 {
+        @apply com-flex com-ml-0 com-cursor-pointer;
+      }
+      .toggle {
+        @apply com-ml-0;
+      }
+    }
+  }
+
+  .header {
+    @apply com-bg-white com-text-black com-flex com-items-center com-justify-center com-p-2;
+
+    h1 {
+      @apply com-hidden com-text-xl com-m-0 com-flex-1;
+    }
+  }
+}

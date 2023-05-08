@@ -1,0 +1,52 @@
+<div class="events-section">
+  <div class="events-container">
+    <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" [ngClass]="width">
+      <div>
+        <nb-card class="events">
+          <nb-card-body class="events-body">
+            <div *ngIf="event.header_image_path">
+              <commudle-banner-image
+                [headerImagePath]="event.header_image_path"
+                [name]="event.name"
+              ></commudle-banner-image>
+              <app-badge
+                *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
+                [color]="'rgb(255 45 45)'"
+                [text]="'Live'"
+              ></app-badge>
+            </div>
+            <div *ngIf="!event.header_image_path" class="no-image-header">
+              <nb-icon icon="link" status="primary"></nb-icon>
+            </div>
+            <div class="details-section">
+              <div class="details-container">
+                <div class="details">
+                  <div>
+                    <p class="event-name">
+                      {{ event.name }}
+                    </p>
+                    <p class="event-timing">
+                      {{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards
+                    </p>
+                  </div>
+                  <button nbButton size="small" class="event_type_button">
+                    <fa-icon [icon]="faMapPin"></fa-icon>
+                    {{ event.event_type }} Event
+                  </button>
+                </div>
+              </div>
+
+              <div class="interested-members">
+                <div>
+                  <fa-icon [icon]="faUserGroup"></fa-icon>
+                  <span>{{ event.interested_members_count }} Interested Members</span>
+                </div>
+                <button nbButton status="primary" shape="semi-round" class="register-button" outline>Register</button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </a>
+  </div>
+</div>

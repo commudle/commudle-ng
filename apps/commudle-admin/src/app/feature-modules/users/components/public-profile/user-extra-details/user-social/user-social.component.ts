@@ -13,6 +13,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { faFileText } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-social',
@@ -34,6 +35,7 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
   socialLink = '';
   socialLinkChanged: Subject<string> = new Subject<string>();
   socialLinkChangedSubscription: Subscription;
+  faFileText = faFileText;
 
   linkPreview: ILinkPreview;
   socialResourcesForm;

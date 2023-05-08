@@ -16,7 +16,7 @@
       }
 
       .action {
-        @apply com-justify-self-end;
+        @apply md:com-justify-self-end com-justify-self-center;
       }
     }
   }

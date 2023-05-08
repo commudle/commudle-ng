@@ -6,6 +6,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events',
@@ -17,7 +18,11 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
-  eventLoader = false;
+  isLoading = true;
+
+  upcomingEvents = [];
+  pastEvents = [];
+  faMapPin = faMapPin;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,7 +31,6 @@ export class EventsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.eventLoader = true;
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.getEvents();
@@ -37,7 +41,15 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
       this.events = data.events;
-      this.eventLoader = false;
+
+      this.events.forEach((event) => {
+        if (moment(event.end_time) > moment()) {
+          this.upcomingEvents.push(event);
+        } else {
+          this.pastEvents.push(event);
+        }
+      });
+      this.isLoading = false;
     });
   }
 }

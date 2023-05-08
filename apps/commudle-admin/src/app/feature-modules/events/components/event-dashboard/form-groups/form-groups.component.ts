@@ -63,7 +63,7 @@ export class FormGroupsComponent implements OnInit {
       data_form_entity_group: this.fb.group({
         name: ['', Validators.required],
         registration_type_id: ['', Validators.required],
-        data_form_id: [0, Validators.required],
+        data_form_id: ['', Validators.required],
       }),
     });
   }
@@ -146,6 +146,7 @@ export class FormGroupsComponent implements OnInit {
       context: {
         minQuestionCount: 1,
       },
+      windowClass: 'form-window',
     });
   }
 

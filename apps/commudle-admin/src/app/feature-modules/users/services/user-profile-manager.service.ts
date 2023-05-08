@@ -88,6 +88,13 @@ export class UserProfileManagerService {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_EMPLOYER_ROLE), {});
   }
 
+  updateCommunicationPreferences(formData): Observable<any> {
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_COMMUNICATION_PREFERENCES),
+      formData,
+    );
+  }
+
   getProfile(username) {
     this.usersService.getProfile(username).subscribe((data) => {
       this.user.next(data);

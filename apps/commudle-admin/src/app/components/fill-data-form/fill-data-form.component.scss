@@ -1,28 +1,47 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
-.fill-data-form {
-  .form-name {
-    text-align: center;
-  }
-
-  .community {
-    width: fit-content;
+:host {
+  div.data-form-container {
+    max-width: 920px;
     margin: 0 auto;
-  }
 
-  .event {
-    text-align: center;
-    .header-image {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      min-height: 200px;
-      img {
-        width: 100%;
+    .fill-data-form {
+      .container {
+        .one-column-layout {
+          .header {
+            @apply com-mb-3;
+            .form-name {
+              @apply com-text-2xl com-font-semibold com-my-1 com-text-center;
+            }
+
+            .community {
+              width: fit-content;
+              margin: 0 auto;
+            }
+
+            .event {
+              text-align: center;
+              .header-image {
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto;
+                min-height: 200px;
+                img {
+                  width: 100%;
+                }
+              }
+              .event-name {
+                @apply com-text-Ultramarine-Blue com-m-0 com-text-lg com-font-bold com-my-1;
+              }
+            }
+          }
+
+          .data-form-fill-body {
+            max-width: 920px;
+            margin: 0 auto;
+          }
+        }
       }
-    }
-    h3 {
-      margin: 0;
     }
   }
 }

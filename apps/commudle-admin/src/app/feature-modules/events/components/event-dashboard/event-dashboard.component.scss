@@ -5,8 +5,14 @@ a {
 .base-layout {
   .container {
     .one-column-layout {
+      .event-heading {
+        @apply com-mx-0 md:com-mx-2 com-my-4;
+      }
+      .event-stats {
+        @apply com-m-0 md:com-mx-2 com-my-4;
+      }
       .event-dashboard-menu {
-        @apply com-sticky com-top-14 com-z-10;
+        @apply com-sticky com-top-14 com-z-10 com-m-0 md:com-mx-2 com-my-4;
 
         nb-card-body {
           @apply com-px-0;
@@ -26,6 +32,26 @@ a {
           }
         }
       }
+
+      .event-update,
+      .registrations,
+      .agenda,
+      .collaborations,
+      .volunteers,
+      .sponsors,
+      .updates {
+        @apply com-mx-0 md:com-mx-2 com-my-4;
+      }
     }
+  }
+}
+
+.stats {
+  @apply com-flex com-justify-evenly com-flex-wrap;
+  p {
+    @apply com-text-center com-text-base;
+  }
+  span {
+    @apply com-font-medium;
   }
 }

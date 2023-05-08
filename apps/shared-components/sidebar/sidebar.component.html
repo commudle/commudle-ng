@@ -1,0 +1,9 @@
+<div class="sidebar" [ngClass]="{ expanded: isExpanded }">
+  <div class="header">
+    <h1 class="title" (click)="handleSidebarToggle()">{{ heading }}</h1>
+    <div class="toggle" (click)="handleSidebarToggle()">
+      <fa-icon [icon]="isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>

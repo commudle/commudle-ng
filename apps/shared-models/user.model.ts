@@ -32,8 +32,17 @@ export interface IUser {
   is_employee: boolean;
   is_employer: boolean;
   profile_completed: boolean;
+  speaker_events?: any;
+  community_builds_count?: number;
+  social_resources_count?: number;
+  labs_count?: number;
+  user_roles_users?: UserRolesUsers;
 }
 
 export interface IUserSearch extends IUser {
   type: string;
+}
+
+export interface UserRolesUsers {
+  role_designation: string;
 }

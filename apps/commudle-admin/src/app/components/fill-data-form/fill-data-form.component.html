@@ -1,40 +1,39 @@
-<div *ngIf="dataFormEntity" class="base-layout fill-data-form">
-  <div class="container">
-    <div class="one-column-layout">
-      <div>
-        <nb-card *ngIf="formClosed">
-          <nb-card-body> This form is closed! </nb-card-body>
-        </nb-card>
-      </div>
+<div class="data-form-container">
+  <div *ngIf="dataFormEntity" class="base-layout fill-data-form">
+    <div class="container">
+      <div class="one-column-layout">
+        <div>
+          <nb-card *ngIf="formClosed">
+            <nb-card-body> This form is closed! </nb-card-body>
+          </nb-card>
+        </div>
 
-      <div *ngIf="!formClosed">
-        <nb-card>
-          <nb-card-body>
-            <h1 class="form-name">{{ dataFormEntity.name }}</h1>
-            <p *ngIf="community" class="community">
-              <app-community-badge [community]="community"></app-community-badge>
-            </p>
-            <div *ngIf="event" class="event">
-              <div *ngIf="event.header_image_path" class="header-image">
-                <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
+        <div *ngIf="!formClosed">
+          <nb-card class="header">
+            <nb-card-body>
+              <p *ngIf="community" class="community">
+                <app-community-badge [community]="community"></app-community-badge>
+              </p>
+              <div *ngIf="event" class="event">
+                <div *ngIf="event.header_image_path" class="header-image">
+                  <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
+                </div>
+                <p class="event-name">{{ event.name }}</p>
               </div>
-              <h3>{{ event.name }}</h3>
-            </div>
-          </nb-card-body>
-        </nb-card>
+              <p class="form-name">{{ dataFormEntity.name }}</p>
+            </nb-card-body>
+          </nb-card>
 
-        <nb-card *ngIf="showProfileForm">
-          <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
-          <nb-card-body>
-            <div>
-              <app-basic-user-profile></app-basic-user-profile>
-            </div>
-          </nb-card-body>
-        </nb-card>
+          <nb-card *ngIf="showProfileForm">
+            <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
+            <nb-card-body>
+              <div>
+                <app-basic-user-profile></app-basic-user-profile>
+              </div>
+            </nb-card-body>
+          </nb-card>
 
-        <nb-card>
-          <nb-card-header> Filling this form should be easy! </nb-card-header>
-          <nb-card-body>
+          <div class="data-form-fill-body">
             <app-data-form-fill
               (formSubmitted)="submitForm($event)"
               [dataFormId]="dataFormEntity.data_form_id"
@@ -44,8 +43,8 @@
             <p *ngIf="dataFormEntity.multi_response" class="text-info">
               <i>* You can submit multiple responses for this form!</i>
             </p>
-          </nb-card-body>
-        </nb-card>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,25 @@
+<div class="actions">
+  <a
+    [routerLink]="['/communities/', rowData.kommunity_id, 'events', rowData.slug]"
+    nbButton
+    hero
+    status="info"
+    size="tiny"
+    target="_blank"
+  >
+    Public Page
+  </a>
+
+  <a
+    [routerLink]="['/admin/communities/', rowData.kommunity_id, 'event-dashboard', rowData.slug, 'stats']"
+    nbButton
+    size="tiny"
+    status="success"
+    target="_blank"
+    class="stats"
+  >
+    <nb-icon icon="trending-up-outline"></nb-icon>
+    Stats <sup>New</sup>&nbsp;
+    <nb-icon icon="external-link"></nb-icon>
+  </a>
+</div>

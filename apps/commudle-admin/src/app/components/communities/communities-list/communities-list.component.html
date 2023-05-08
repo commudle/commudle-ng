@@ -30,10 +30,7 @@
       </div>
     </div>
     <div class="communities-list-cards">
-      <app-communities-list-card
-        *ngFor="let community of communities"
-        [community]="community"
-      ></app-communities-list-card>
+      <app-communities-card *ngFor="let community of communities" [community]="community"> </app-communities-card>
     </div>
   </nb-card-body>
 </nb-card>

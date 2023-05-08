@@ -133,6 +133,7 @@
         position: relative;
         text-align: center;
         width: 330px;
+        @apply com-mb-4;
 
         p {
           font-size: 1.2rem;
@@ -145,6 +146,33 @@
 
         span {
           font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  nb-card.stat-card.event-members {
+    nb-card-header {
+      h3 {
+        @apply com-m-0 com-font-light;
+      }
+    }
+
+    nb-card-body {
+      @apply com-flex com-flex-wrap com-justify-evenly;
+
+      .chart-container {
+        @apply com-py-4 com-px-0 com-relative com-text-center com-w-80;
+
+        p {
+          @apply com-text-xl com-m-0;
+        }
+      }
+
+      .members {
+        @apply com-flex com-flex-wrap com-justify-around com-items-center;
+        p {
+          @apply com-text-xl com-m-0 com-text-center;
         }
       }
     }

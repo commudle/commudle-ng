@@ -15,72 +15,134 @@
       </nb-form-field>
     </div>
   </form>
-
-  <div class="pages">
-    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
-      <nb-icon icon="arrow-ios-back"></nb-icon>
-    </p>
-    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
-      <p
-        (click)="getPageData(p)"
-        *ngIf="p > 0 && count * p < total"
-        [ngClass]="{ 'selected-page': this.page === p }"
-        class="clickable"
-      >
-        {{ p }}
-      </p>
-    </div>
-
-    <p (click)="getPageData(page + 1)" *ngIf="count * page < total" class="clickable">
-      <nb-icon icon="arrow-ios-forward"></nb-icon>
-    </p>
+  <br />
+  <div>
+    <nb-tag-list>
+      <nb-tag
+        appearance="outline"
+        [text]="options[0]"
+        status="primary"
+        [removable]="speaker ? 'true' : 'false'"
+        [ngClass]="{ activeTag: speaker }"
+        (click)="filterByTags(options[0])"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        [text]="options[1]"
+        status="primary"
+        [removable]="contentCreator ? 'true' : 'false'"
+        [ngClass]="{ activeTag: contentCreator }"
+        (click)="filterByTags(options[1])"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        [text]="options[2]"
+        status="primary"
+        [removable]="employer ? 'true' : 'false'"
+        [ngClass]="{ activeTag: employer }"
+        (click)="filterByTags(options[2])"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        [text]="options[3]"
+        status="primary"
+        [removable]="employee ? 'true' : 'false'"
+        [ngClass]="{ activeTag: employee }"
+        (click)="filterByTags(options[3])"
+      ></nb-tag>
+    </nb-tag-list>
   </div>
-  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
-    <div *ngFor="let userRole of userRolesUsers" class="member">
-      <app-badge
-        *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
-        [color]="'blue'"
-        [fontSize]="'small'"
-        [text]="'Organizer'"
-      ></app-badge>
-      <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
-        <app-user-profile-card-large
-          [showAbout]="true"
-          [showSocialLinks]="true"
-          [user]="userRole.user"
-        ></app-user-profile-card-large>
-        <button
-          (click)="activeContextMenuUser = userRole.user"
-          [nbContextMenu]="contextMenuItems"
-          class="context-menu"
-          ghost
-          nbButton
-          nbContextMenuTag="community-member-context-menu"
-        >
-          <nb-icon icon="more-vertical"></nb-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="total > 25 && !isLoading" class="pages">
-    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
-      <nb-icon icon="arrow-ios-back"></nb-icon>
-    </p>
-    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
-      <p
-        (click)="getPageData(p)"
-        *ngIf="p > 0 && count * p < total"
-        [ngClass]="{ 'selected-page': this.page === p }"
-        class="clickable"
-      >
-        {{ p }}
-      </p>
-    </div>
 
-    <p (click)="getPageData(page + 1)" class="clickable">
-      <nb-icon icon="arrow-ios-forward"></nb-icon>
-    </p>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+  <div class="com-my-4" style="overflow-x: auto">
+    <table *ngIf="!isLoading">
+      <thead>
+        <tr class="heading">
+          <th>Users</th>
+          <th>Skills Tag</th>
+          <th>Activity Stats</th>
+          <th>Speaker At</th>
+          <th>Content Creator</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userRole of userRolesUsers">
+          <td class="member com-w-[350px]" valign="top">
+            <p class="user-communities-role" *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER">
+              <nb-icon icon="star"></nb-icon>
+              <span>
+                {{ userRole.user_role.name | titlecase }}
+              </span>
+            </p>
+            <div class="com-flex com-flex-row com-gap-4 com-justify-between">
+              <app-user-profile-card-large
+                [showAbout]="true"
+                [showSocialLinks]="true"
+                [user]="userRole.user"
+              ></app-user-profile-card-large>
+              <button
+                (click)="activeContextMenuUser = userRole.user"
+                [nbContextMenu]="contextMenuItems"
+                class="context-menu com-h-2"
+                ghost
+                nbButton
+                nbContextMenuTag="community-member-context-menu"
+              >
+                <nb-icon icon="more-vertical"></nb-icon>
+              </button>
+            </div>
+          </td>
+          <td class="com-w-[200px]" valign="top">
+            <nb-tag-list>
+              <nb-tag
+                *ngFor="let tag of userRole.user.tags"
+                [text]="tag.name"
+                appearance="outline"
+                status="info"
+                size="tiny"
+              ></nb-tag>
+            </nb-tag-list>
+          </td>
+          <td class="com-w-[300px]" valign="top">
+            <app-user-engagement-data [user]="userRole.user" [communityId]="communityId"></app-user-engagement-data>
+          </td>
+          <td class="com-w-[300px]" valign="top">
+            <ul *ngFor="let item of userRole.user.speaker_events">
+              <li>
+                <a [href]="'communities/' + item.kommunity_id + '/events/' + item.id" target="_blank">
+                  {{ item.name }}
+                </a>
+                @
+                <a [href]="'communities/' + item.kommunity_id" target="_blank">
+                  {{ item.kommunity.name }}
+                </a>
+              </li>
+            </ul>
+          </td>
+          <td class="com-w-[200px]" valign="top">
+            <div>
+              <p *ngIf="userRole.user.community_builds_count > 0">Builds: {{ userRole.user.community_builds_count }}</p>
+              <p *ngIf="userRole.user.labs_count > 0">Labs: {{ userRole.user.labs_count }}</p>
+              <p *ngIf="userRole.user.social_resources_count > 0">
+                Social Resource: {{ userRole.user.social_resources_count }}
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <app-pagination
+    (goTo)="page = $event; getMembers()"
+    (next)="page = $event; getMembers()"
+    (previous)="page = $event; getMembers()"
+    *ngIf="total > 0"
+    [count]="count"
+    [current]="page"
+    [total]="total"
+  ></app-pagination>
 </div>
 
 <ng-template #removeUserDialog let-data let-ref="dialogRef">

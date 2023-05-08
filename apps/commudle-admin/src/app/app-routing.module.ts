@@ -32,6 +32,13 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent,
   },
+  {
+    path: 'student-non-profit-community-support',
+    loadChildren: () =>
+      import('./feature-modules/student-non-profit-support/student-non-profit-support.module').then(
+        (m) => m.StudentNonProfitSupportModule,
+      ),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,
@@ -198,7 +205,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },
   { path: '404', component: Error404PageComponent },
-  { path: '**', redirectTo: '/404' },
+  { path: '**', component: Error404PageComponent },
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserResume } from 'apps/shared-models/user_resume.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-resume',
@@ -29,6 +30,8 @@ export class UserResumeComponent implements OnInit, OnChanges, OnDestroy {
 
   isEditing = false;
   dialogRef: NbDialogRef<any>;
+
+  faClipboard = faClipboard;
 
   @ViewChild('userResumeDialog', { static: true }) userResumeDialog: TemplateRef<any>;
 

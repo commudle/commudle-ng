@@ -1,5 +1,6 @@
 .community-emails {
   nb-card {
+    @apply com-mx-0 md:com-mx-2 com-my-4;
     height: 450px;
 
     nb-card-header {

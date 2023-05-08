@@ -20,6 +20,7 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-job',
@@ -57,7 +58,10 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  faBriefcase = faBriefcase;
+
   @ViewChild('jobDialog', { static: true }) jobDialog: TemplateRef<any>;
+  @ViewChild('deleteJobDialog', { static: true }) deleteJobDialog: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -117,6 +121,7 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+
   openJobDialogBox() {
     setTimeout(() => {
       this.onOpenDialog(this.jobDialog); //

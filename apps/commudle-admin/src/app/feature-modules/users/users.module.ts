@@ -60,6 +60,9 @@ import { UserWorkHistoryComponent } from './components/public-profile/user-extra
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { UsersRoutingModule } from './users-routing.module';
+import { JobsModule } from '../jobs/jobs.module';
+import { CommunicationPreferencesComponent } from './components/public-profile/user-basic-details/communication-preferences/communication-preferences.component';
+import { CookiePreferencesComponent } from './components/public-profile/user-basic-details/cookie-preferences/cookie-preferences.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +98,8 @@ import { UsersRoutingModule } from './users-routing.module';
     UserResumePreviewComponent,
     UserJobComponent,
     UserJobCardComponent,
+    CommunicationPreferencesComponent,
+    CookiePreferencesComponent,
   ],
   imports: [
     CommonModule,
@@ -107,6 +112,7 @@ import { UsersRoutingModule } from './users-routing.module';
     SharedDirectivesModule,
     MiniUserProfileModule,
     SharedComponentsModule,
+    JobsModule,
 
     // Nebular
     NbCardModule,

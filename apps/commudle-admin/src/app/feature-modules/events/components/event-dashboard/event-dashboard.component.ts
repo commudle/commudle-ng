@@ -12,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService, NbWindowService, NbDialogRef } from '@commudle/theme';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
+import { StatsEventsService } from 'apps/commudle-admin/src/app/services/stats/stats-events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -39,6 +40,9 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   attendedMemberEmailerDialog: NbDialogRef<any>;
 
   isLoading = false;
+  statsMembersCount;
+  statsSpeakersCount;
+  statsAttendancesCount;
 
   @ViewChild('statusSection') statusSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('detailsSection') detailsSectionRef: ElementRef<HTMLDivElement>;
@@ -60,6 +64,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private windowService: NbWindowService,
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
+    private statsEventsService: StatsEventsService,
   ) {
     this.eventHeaderImageForm = this.fb.group({
       header_image: ['', Validators.required],
@@ -74,6 +79,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.community = value.community;
       this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
+    this.getStats();
   }
 
   ngOnDestroy() {
@@ -151,6 +157,18 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       } else {
         this.toastLogService.warningDialog('Something Wrong');
       }
+    });
+  }
+
+  getStats() {
+    this.statsEventsService.memberStats(this.event.slug).subscribe((data) => {
+      this.statsMembersCount = data.chart_data;
+    });
+    this.statsEventsService.speakers(this.event.slug, 'confirmed').subscribe((data) => {
+      this.statsSpeakersCount = data.chart_data;
+    });
+    this.statsEventsService.attendees(this.event.slug).subscribe((data) => {
+      this.statsAttendancesCount = data.chart_data;
     });
   }
 }
