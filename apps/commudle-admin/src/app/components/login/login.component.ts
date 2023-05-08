@@ -103,6 +103,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.emailCodeService.sendVerificationEmail(this.loginForm.value.email).subscribe(
         (response) => {
+          if (response.new_user) {
+            this.gtm.dataLayerPushEvent('new_user', { com_new_user: response.new_user });
+          }
           if (!(response.consent || this.loginForm.value.consent_privacy_tnc)) {
             this.openDialog('code');
           } else {
@@ -157,6 +160,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.userFromGoogle.idToken,
         )
         .subscribe((data: any) => {
+          if (data.new_user) {
+            this.gtm.dataLayerPushEvent('new_user', { com_new_user: data.new_user });
+          }
           if (data.auth_token === null || data.auth_token === '' || data.auth_token === undefined) {
             this.openDialog('google');
           } else {
