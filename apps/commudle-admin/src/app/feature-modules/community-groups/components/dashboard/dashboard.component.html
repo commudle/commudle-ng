@@ -22,6 +22,14 @@
               </div>
             </div>
             <div class="link">
+              <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
+                <div class="icon">
+                  <fa-icon [icon]="faUsers"></fa-icon>
+                </div>
+                <div class="title">All Members</div>
+              </div>
+            </div>
+            <div class="link">
               <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
                 <div class="icon">
                   <fa-icon [icon]="faBuilding"></fa-icon>
@@ -35,14 +43,6 @@
                   <fa-icon [icon]="faPenToSquare"></fa-icon>
                 </div>
                 <div class="title">Edit Details</div>
-              </div>
-            </div>
-            <div class="link">
-              <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
-                <div class="icon">
-                  <fa-icon [icon]="faUsers"></fa-icon>
-                </div>
-                <div class="title">All Members</div>
               </div>
             </div>
           </div>
