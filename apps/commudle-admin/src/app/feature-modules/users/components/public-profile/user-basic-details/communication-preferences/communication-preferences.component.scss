@@ -1,5 +1,5 @@
 .communication-preference-container {
-  @apply com-h-[620px];
+  @apply com-h-[80vh] md:com-h-[620px] com-overflow-y-hidden;
 
   .communication-preference-button {
     @apply com-my-8 com-mx-8;
