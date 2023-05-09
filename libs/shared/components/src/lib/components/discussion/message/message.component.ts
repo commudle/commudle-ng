@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { IUserMessage } from '@commudle/shared-models';
 import { AuthService } from '@commudle/shared-services';
@@ -12,7 +12,7 @@ import { UserMessageReceiptHandlerService } from '../../../services/user-message
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, AfterViewInit {
   @Input() message!: IUserMessage;
   @Input() canReply = true;
 
@@ -25,6 +25,8 @@ export class MessageComponent implements OnInit {
 
   showReply$ = new BehaviorSubject<boolean>(false);
 
+  @ViewChild('messageRef') messageRef!: ElementRef<HTMLDivElement>;
+
   protected readonly moment = moment;
 
   constructor(
@@ -35,6 +37,10 @@ export class MessageComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngAfterViewInit(): void {
+    this.scrollToMessage();
+  }
+
   toggleReply() {
     this.showReply$.next(!this.showReply$.value);
   }
@@ -42,6 +48,12 @@ export class MessageComponent implements OnInit {
   markAsRead(messageId: number, { visible }: { visible: boolean }): void {
     if (messageId && visible) {
       this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
+    }
+  }
+
+  scrollToMessage() {
+    if (this.discussionHandlerService.lastReadMessageId === this.message.id) {
+      this.messageRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }
 }

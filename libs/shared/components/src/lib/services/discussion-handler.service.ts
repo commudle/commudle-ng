@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { ChatChannel } from '@commudle/shared-channels';
 import { IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
 import { CableService, DiscussionService, ToastrService } from '@commudle/shared-services';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DiscussionHandlerService {
   chatChannel!: ChatChannel;
+  lastReadMessageId!: number;
 
   private messages = new BehaviorSubject<IUserMessage[]>([]);
   messages$ = this.messages.asObservable();
@@ -33,11 +34,11 @@ export class DiscussionHandlerService {
     private toastrService: ToastrService,
   ) {}
 
-  init(discussionId: number, discussionParent: 'builds' | '') {
+  init(discussionId: number, discussionParent: 'builds' | '', fromLastRead: boolean) {
     this._discussionId = discussionId;
     this._discussionParent = discussionParent;
 
-    this.getMessages();
+    this.getMessages(fromLastRead);
 
     this.chatChannel = new ChatChannel({ room: this._discussionId });
     this.cableService.subscribe(this.chatChannel);
@@ -85,10 +86,13 @@ export class DiscussionHandlerService {
     this.chatChannel.flag(messageId);
   }
 
-  getMessages() {
-    this._getMessages().subscribe((data) => {
+  getMessages(fromLastRead: boolean) {
+    this._getMessages(fromLastRead).subscribe((data) => {
       this.messages.next(data.page.map((page) => page.data));
       this.pageInfo.next(data.page_info);
+      if (fromLastRead) {
+        this.lastReadMessageId = this.messages.value[this.messages.value.length - 1].id;
+      }
     });
   }
 
@@ -196,10 +200,10 @@ export class DiscussionHandlerService {
     );
   }
 
-  private _getMessages() {
+  private _getMessages(fromLastRead = false) {
     switch (this._discussionParent) {
       case 'builds':
-        return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 });
+        return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);
       default:
         return from([]);
     }

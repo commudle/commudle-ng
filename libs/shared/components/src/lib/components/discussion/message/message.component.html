@@ -1,64 +1,82 @@
-<div class="message-container">
-  <img [alt]="message.user.name" [src]="message.user.photo.i32" [title]="message.user.name" class="avatar" />
-  <div class="message">
-    <div class="prefix">
-      <a [routerLink]="['/users', message.user.username]" class="name">{{ message.user.name }}</a>
-      <img
-        *ngIf="message.user.is_expert"
-        alt="Expert Tick"
-        class="expert-icon"
-        src="/assets/images/Expert-Tick.svg"
-        title="Expert Tick"
-      />
-      <span class="time">{{ moment(message.created_at).fromNow() }}</span>
+<div #messageRef>
+  <div *ngIf="discussionHandlerService.lastReadMessageId === message.id" class="last-read">
+    <div class="com-absolute com-inset-0 com-flex com-items-center">
+      <div class="com-w-full com-border-solid com-border-b com-border-t-0 com-border-gray-200"></div>
     </div>
-    <commudle-editor
-      (inViewportAction)="markAsRead(message?.id, $event)"
-      [content]="message.content"
-      [editable]="false"
-      [inViewportOptions]="{ threshold: [0] }"
-      inViewport
-    ></commudle-editor>
-    <div *ngIf="authService.currentUser$ | async" class="suffix">
-      <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
-      <ng-container *ngIf="canReply && (discussionHandlerService.permittedActions$ | async)?.includes('reply')">
-        <nb-icon (click)="toggleReply()" icon="undo-outline" nbTooltip="Reply to this message" status="basic"></nb-icon>
-      </ng-container>
-      <ng-container
-        *ngIf="
-          ((discussionHandlerService.permittedActions$ | async)?.includes('delete_self') &&
-            message.user.id === (authService.currentUser$ | async)?.id) ||
-          (discussionHandlerService.permittedActions$ | async)?.includes('delete_any')
-        "
-      >
-        <nb-icon
-          (click)="discussionHandlerService.sendDelete(message.id, message.user.id === authService.getCurrentUser().id)"
-          icon="trash-outline"
-          nbTooltip="Delete this message"
-          status="basic"
-        ></nb-icon>
-      </ng-container>
-      <div class="flag">
-        <nb-icon
-          (click)="discussionHandlerService.sendFlag(message.id)"
-          icon="flag-outline"
-          nbTooltip="Report this message (3 reports deletes it)"
-          status="basic"
-        ></nb-icon>
-        <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
+    <div class="com-relative com-flex com-justify-center">
+      <span class="com-bg-white com-px-4 com-text-sm com-text-gray-400">You left off here</span>
+    </div>
+  </div>
+
+  <div class="message-container">
+    <img [alt]="message.user.name" [src]="message.user.photo.i32" [title]="message.user.name" class="avatar" />
+    <div class="message">
+      <div class="prefix">
+        <a [routerLink]="['/users', message.user.username]" class="name">{{ message.user.name }}</a>
+        <img
+          *ngIf="message.user.is_expert"
+          alt="Expert Tick"
+          class="expert-icon"
+          src="/assets/images/Expert-Tick.svg"
+          title="Expert Tick"
+        />
+        <span class="time">{{ moment(message.created_at).fromNow() }}</span>
       </div>
-    </div>
-    <div *ngIf="canReply" class="replies">
-      <commudle-message
-        *ngFor="let reply of message.user_messages"
-        [canReply]="false"
-        [message]="reply"
-      ></commudle-message>
       <commudle-editor
-        (contentChange)="discussionHandlerService.sendReply(message.id, $event)"
-        *ngIf="(authService.currentUser$ | async) && (showReply$ | async)"
-        [validators]="validators"
+        (inViewportAction)="markAsRead(message?.id, $event)"
+        [content]="message.content"
+        [editable]="false"
+        [inViewportOptions]="{ threshold: [0] }"
+        inViewport
       ></commudle-editor>
+      <div *ngIf="authService.currentUser$ | async" class="suffix">
+        <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
+        <ng-container *ngIf="canReply && (discussionHandlerService.permittedActions$ | async)?.includes('reply')">
+          <nb-icon
+            (click)="toggleReply()"
+            icon="undo-outline"
+            nbTooltip="Reply to this message"
+            status="basic"
+          ></nb-icon>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            ((discussionHandlerService.permittedActions$ | async)?.includes('delete_self') &&
+              message.user.id === (authService.currentUser$ | async)?.id) ||
+            (discussionHandlerService.permittedActions$ | async)?.includes('delete_any')
+          "
+        >
+          <nb-icon
+            (click)="
+              discussionHandlerService.sendDelete(message.id, message.user.id === authService.getCurrentUser().id)
+            "
+            icon="trash-outline"
+            nbTooltip="Delete this message"
+            status="basic"
+          ></nb-icon>
+        </ng-container>
+        <div class="flag">
+          <nb-icon
+            (click)="discussionHandlerService.sendFlag(message.id)"
+            icon="flag-outline"
+            nbTooltip="Report this message (3 reports deletes it)"
+            status="basic"
+          ></nb-icon>
+          <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
+        </div>
+      </div>
+      <div *ngIf="canReply" class="replies">
+        <commudle-message
+          *ngFor="let reply of message.user_messages"
+          [canReply]="false"
+          [message]="reply"
+        ></commudle-message>
+        <commudle-editor
+          (contentChange)="discussionHandlerService.sendReply(message.id, $event)"
+          *ngIf="(authService.currentUser$ | async) && (showReply$ | async)"
+          [validators]="validators"
+        ></commudle-editor>
+      </div>
     </div>
   </div>
 </div>

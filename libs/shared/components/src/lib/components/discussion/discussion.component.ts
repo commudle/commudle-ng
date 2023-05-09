@@ -12,6 +12,7 @@ import { DiscussionHandlerService } from '../../services/discussion-handler.serv
 export class DiscussionComponent implements OnInit {
   @Input() discussionId!: number;
   @Input() discussionParent: 'builds' | '' = '';
+  @Input() fromLastRead = true;
 
   validators: IEditorValidator = {
     required: true,
@@ -23,6 +24,6 @@ export class DiscussionComponent implements OnInit {
   constructor(public discussionHandlerService: DiscussionHandlerService, public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.discussionHandlerService.init(this.discussionId, this.discussionParent);
+    this.discussionHandlerService.init(this.discussionId, this.discussionParent, this.fromLastRead);
   }
 }
