@@ -34,8 +34,10 @@
         <ng-container *ngIf="canReply && (discussionHandlerService.permittedActions$ | async)?.includes('reply')">
           <nb-icon
             (click)="toggleReply()"
+            class="clickable"
             icon="undo-outline"
             nbTooltip="Reply to this message"
+            nbTooltipStatus="primary"
             status="basic"
           ></nb-icon>
         </ng-container>
@@ -50,16 +52,20 @@
             (click)="
               discussionHandlerService.sendDelete(message.id, message.user.id === authService.getCurrentUser().id)
             "
+            class="clickable"
             icon="trash-outline"
             nbTooltip="Delete this message"
+            nbTooltipStatus="danger"
             status="basic"
           ></nb-icon>
         </ng-container>
         <div class="flag">
           <nb-icon
             (click)="discussionHandlerService.sendFlag(message.id)"
+            class="clickable"
             icon="flag-outline"
             nbTooltip="Report this message (3 reports deletes it)"
+            nbTooltipStatus="warning"
             status="basic"
           ></nb-icon>
           <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>

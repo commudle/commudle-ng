@@ -1,5 +1,6 @@
 <div class="discussion-container">
   <div
+    #messagesListRef
     (scrolled)="discussionHandlerService.getMessagesBefore()"
     (scrolledUp)="discussionHandlerService.getMessagesAfter()"
     *ngIf="(discussionHandlerService.messages$ | async)?.length; else noMessages"

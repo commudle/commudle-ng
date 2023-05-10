@@ -90,8 +90,12 @@ export class DiscussionHandlerService {
     this._getMessages(fromLastRead).subscribe((data) => {
       this.messages.next(data.page.map((page) => page.data));
       this.pageInfo.next(data.page_info);
-      if (fromLastRead) {
-        this.lastReadMessageId = this.messages.value[this.messages.value.length - 1].id;
+      if (fromLastRead && !this.lastReadMessageId) {
+        if (this.messages.value.map((message) => message.read).includes(false)) {
+          this.lastReadMessageId = this.messages.value[this.messages.value.length - 1].id;
+        } else {
+          this.lastReadMessageId = 0;
+        }
       }
     });
   }
@@ -147,7 +151,7 @@ export class DiscussionHandlerService {
         case 'flag':
           if (data.parent_type === 'Discussion') {
             const messages = this.messages.value.map((message) => {
-              if (message.id === data.parent_id) {
+              if (message.id === data.user_message_id) {
                 message.flags_count += data.flag;
               }
               return message;

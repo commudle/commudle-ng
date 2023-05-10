@@ -46,13 +46,13 @@ export class MessageComponent implements OnInit, AfterViewInit {
   }
 
   markAsRead(messageId: number, { visible }: { visible: boolean }): void {
-    if (messageId && visible) {
+    if (messageId && visible && this.authService.getCurrentUser()?.id) {
       this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
     }
   }
 
   scrollToMessage() {
-    if (this.discussionHandlerService.lastReadMessageId === this.message.id) {
+    if (this.discussionHandlerService.lastReadMessageId === this.message.id && this.authService.getCurrentUser()?.id) {
       this.messageRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }
