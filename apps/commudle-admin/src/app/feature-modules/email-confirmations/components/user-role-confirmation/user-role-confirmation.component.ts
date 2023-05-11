@@ -31,7 +31,8 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((data) => this.activateRole(data.token));
+    this.onAcceptRoleButton();
+    // this.activatedRoute.queryParams.subscribe((data) => this.activateRole(data.token));
 
     this.seoService.setTitle('Confirm Role');
     this.seoService.noIndex(true);
@@ -47,8 +48,6 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       this.community = data.community;
       this.event = data.event;
       this.communityGroup = data.community_group;
-
-      this.onAcceptRoleButton();
     });
   }
 
@@ -56,9 +55,10 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     this.acceptRole = true;
     this.nbDialogService.open(UserConsentsComponent, {
       context: {
+        component: 'community-organizer',
         acceptRole: this.acceptRole,
-        volunteerCommunityName: this.community.name,
-        volunteerEventName: this.event.name,
+        // volunteerCommunityName: this.community.name,
+        // volunteerEventName: this.event.name,
       },
     });
   }
