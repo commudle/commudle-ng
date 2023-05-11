@@ -23,6 +23,9 @@ export interface ICurrentUser {
   user_roles: string[];
   has_community_builds: boolean;
   profile_completed: boolean;
+  has_social_resources: boolean;
+  work_experience_months: number;
+  is_community_leader: boolean;
   has_labs: boolean;
   username: string;
   location: string;
