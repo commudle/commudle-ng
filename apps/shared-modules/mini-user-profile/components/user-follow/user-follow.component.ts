@@ -35,6 +35,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   user: IUser;
   currentUser: ICurrentUser;
   isFollowing = false;
+  Following = false;
 
   subscriptions: Subscription[] = [];
 
@@ -97,12 +98,20 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   // }
 
   onFollowClick() {
-    this.isFollowing = true;
-    this.nbDialogService.open(UserConsentsComponent, {
+    this.Following = true;
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        isFollowing: this.isFollowing,
+        Following: this.Following,
         username: this.user.name,
       },
+    });
+
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.isFollowing = true;
+        this.toggleFollow();
+      }
     });
     this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.user.id });
   }

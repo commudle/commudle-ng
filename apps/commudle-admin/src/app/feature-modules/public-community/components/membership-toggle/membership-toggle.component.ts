@@ -70,11 +70,18 @@ export class MembershipToggleComponent implements OnInit {
 
   onJoinCommunityClick() {
     this.joinCommunity = true;
-    this.dialogService.open(UserConsentsComponent, {
+    const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
         joinCommunity: this.joinCommunity,
         communitySlug: this.community.slug,
       },
+    });
+
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.toggleMembership();
+      }
     });
     this.gtmDatalayerPush('join-community-click');
   }
