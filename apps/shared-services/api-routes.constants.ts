@@ -94,6 +94,9 @@ export const API_ROUTES = {
     SHOW: 'api/v2/community_groups/show',
     COMMUNITIES: 'api/v2/community_groups/communities',
     MANAGING_COMMUNITY_GROUPS: 'api/v2/community_groups/get_managing_community_groups',
+    EVENTS: 'api/v2/community_groups/events',
+    COMMUNITY_CHANNELS: 'api/v2/community_groups/community_channels',
+    MEMEBRS_DETAILS: 'api/v2/community_groups/members_details',
     PUBLIC: {
       SHOW: 'api/v2/community_groups/public',
       COMMUNITIES: 'api/v2/community_groups/public/communities',
@@ -441,6 +444,7 @@ export const API_ROUTES = {
     MINI_PROFILE: 'api/v2/users/profile',
     TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
     TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
+    UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
   },
 
   SPEAKER_RESOURCES: {

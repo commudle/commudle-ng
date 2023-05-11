@@ -26,8 +26,18 @@
                     <input formControlName="name" fullWidth nbInput type="text" />
                   </label>
                 </div>
+                <label class="clickable">
+                  <span> <a nbButton status="primary" outline>Change Theme Color</a> </span>
+                  <input
+                    id="colorPicker"
+                    type="color"
+                    formControlName="theme_color"
+                    class="com-h-0 !com-w-0 !com-p-0 -com-z-10 com-relative"
+                    (input)="updateThemeColor($event)"
+                  />
+                </label>
 
-                <div class="logo">
+                <div id="logo" class="logo" [style.backgroundColor]="themeColor">
                   <div *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)" class="uploaded-logo">
                     <img
                       alt="Profile Picture"
@@ -40,7 +50,6 @@
                       (click)="removeLogo()"
                       *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)"
                       nbButton
-                      outline
                       size="tiny"
                       status="danger"
                     >

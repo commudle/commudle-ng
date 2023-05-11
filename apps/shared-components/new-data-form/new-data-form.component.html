@@ -240,15 +240,7 @@
       </div>
 
       <div class="submit-button">
-        <button
-          [disabled]="!createDataForm.valid"
-          type="submit"
-          status="primary"
-          nbButton
-          fullWidth
-          size="medium"
-          (click)="saveDataForm()"
-        >
+        <button type="submit" status="primary" nbButton fullWidth size="medium" (click)="saveDataForm()">
           {{ submitButtonText() }}
         </button>
       </div>

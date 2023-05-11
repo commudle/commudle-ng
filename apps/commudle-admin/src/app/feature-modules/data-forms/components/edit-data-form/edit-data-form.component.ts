@@ -206,6 +206,10 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   }
 
   updateDataForm() {
+    if (this.editDataForm.invalid) {
+      this.editDataForm.markAllAsTouched();
+      return;
+    }
     this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm) => {
       this.dataForm = dataForm;
       this.fillExistingDataForm();
