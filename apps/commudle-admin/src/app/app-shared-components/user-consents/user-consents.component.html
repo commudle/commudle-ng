@@ -12,9 +12,13 @@
       </div>
       <div *ngIf="acceptRole">
         <commudle-accept-event-volunteer-consent
+          *ngIf="component === 'volunteer'"
           [volunteerCommunityName]="volunteerCommunityName"
           [volunteerEventName]="volunteerEventName"
         ></commudle-accept-event-volunteer-consent>
+        <commudle-accept-community-organizer-consent
+          *ngIf="component === 'community-organizer'"
+        ></commudle-accept-community-organizer-consent>
       </div>
       <!-- <div *ngIf="onjoinChannel">
         <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
