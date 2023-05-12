@@ -5,14 +5,10 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
   template: `
     <ul class="pager">
       <li [class.disabled]="!canPrevious()">
-        <a role="button" aria-label="go to first page" href="javascript:void(0)" (click)="selectPage(1)">
-          <i class="{{ pagerPreviousIcon }}"></i>
-        </a>
+        <a role="button" aria-label="go to first page" href="javascript:void(0)" (click)="selectPage(1)">&lt;&lt; </a>
       </li>
       <li [class.disabled]="!canPrevious()">
-        <a role="button" aria-label="go to previous page" href="javascript:void(0)" (click)="prevPage()">
-          <i class="{{ pagerLeftArrowIcon }}"></i>
-        </a>
+        <a role="button" aria-label="go to previous page" href="javascript:void(0)" (click)="prevPage()">&lt; </a>
       </li>
       <li
         role="button"
@@ -26,21 +22,19 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
         </a>
       </li>
       <li [class.disabled]="!canNext()">
-        <a role="button" aria-label="go to next page" href="javascript:void(0)" (click)="nextPage()">
-          <i class="{{ pagerRightArrowIcon }}"></i>
-        </a>
+        <a role="button" aria-label="go to next page" href="javascript:void(0)" (click)="nextPage()"> &gt; </a>
       </li>
       <li [class.disabled]="!canNext()">
         <a role="button" aria-label="go to last page" href="javascript:void(0)" (click)="selectPage(totalPages)">
-          <i class="{{ pagerNextIcon }}"></i>
+          &gt;&gt;
         </a>
       </li>
     </ul>
   `,
   host: {
-    class: 'datatable-pager'
+    class: 'datatable-pager',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataTablePagerComponent {
   @Input() pagerLeftArrowIcon: string;
@@ -85,9 +79,9 @@ export class DataTablePagerComponent {
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  _count: number = 0;
-  _page: number = 1;
-  _size: number = 0;
+  _count = 0;
+  _page = 1;
+  _size = 0;
   pages: any;
 
   canPrevious(): boolean {
@@ -111,7 +105,7 @@ export class DataTablePagerComponent {
       this.page = page;
 
       this.change.emit({
-        page
+        page,
       });
     }
   }
@@ -141,7 +135,7 @@ export class DataTablePagerComponent {
     for (let num = startPage; num <= endPage; num++) {
       pages.push({
         number: num,
-        text: <string>(<any>num)
+        text: <string>(<any>num),
       });
     }
 
