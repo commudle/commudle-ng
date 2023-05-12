@@ -59,6 +59,7 @@ export class NewDataFormComponent implements OnInit {
       disabled: [false],
       has_responses: [false],
       question_choices: this.fb.array([]),
+      show_description: [false],
     });
   }
   //drag and drop function by CDK
@@ -220,7 +221,10 @@ export class NewDataFormComponent implements OnInit {
   }
 
   toggleDescriptionField(index: number): void {
-    this.questionDescription[index] = !this.questionDescription[index];
+    const questionFormGroup = this.createDataForm.get('data_form').get('questions') as FormArray;
+    const question = questionFormGroup.at(index);
+    const show_description = question?.get('show_description')?.value;
+    question.patchValue({ show_description: !show_description });
   }
 
   setContextIndex(index: number) {

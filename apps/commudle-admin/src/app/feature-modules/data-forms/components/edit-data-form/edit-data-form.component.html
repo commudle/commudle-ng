@@ -115,11 +115,13 @@
                         status="primary"
                         class="add-description-button"
                       >
-                        <nb-icon [icon]="questionDescription[i] ? 'close-outline' : 'plus-outline'"></nb-icon>
-                        {{ questionDescription[i] ? 'Remove Description' : 'Add Description' }}
+                        <nb-icon
+                          [icon]="question?.get('show_description')?.value ? 'close-outline' : 'plus-outline'"
+                        ></nb-icon>
+                        {{ question?.get('show_description')?.value ? 'Remove Description' : 'Add Description' }}
                       </button>
 
-                      <div *ngIf="questionDescription[i]" class="description-textbox">
+                      <div *ngIf="question?.get('show_description')?.value" class="description-textbox">
                         <textarea
                           nbInput
                           fullWidth
