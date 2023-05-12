@@ -19,6 +19,12 @@
         <commudle-accept-community-organizer-consent
           *ngIf="component === 'community-organizer'"
         ></commudle-accept-community-organizer-consent>
+        <commudle-accept-community-administrator-consent
+          *ngIf="component === 'community-administrator'"
+        ></commudle-accept-community-administrator-consent>
+      </div>
+      <div *ngIf="joinBuild">
+        <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
       </div>
       <!-- <div *ngIf="onjoinChannel">
         <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>

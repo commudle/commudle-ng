@@ -6,10 +6,14 @@ import { JoinChannelConsentComponent } from 'apps/commudle-admin/src/app/app-sha
 import { JoinCommunityConsentComponent } from 'apps/commudle-admin/src/app/app-shared-components/join-community-consent/join-community-consent.component';
 import { AcceptEventVolunteerConsentComponent } from 'apps/commudle-admin/src/app/app-shared-components/accept-event-volunteer-consent/accept-event-volunteer-consent.component';
 import { AcceptCommunityOrganizerConsentComponent } from '../accept-community-organizer-consent/accept-community-organizer-consent.component';
+import { AcceptCommunityAdministratorConsentComponent } from '../accept-community-administrator-consent/accept-community-administrator-consent.component';
+import { AcceptBuildTeammateConsentComponent } from '../accept-build-teammate-consent/accept-build-teammate-consent.component';
 
 @Component({
   selector: 'commudle-user-consents',
   standalone: true,
+  templateUrl: './user-consents.component.html',
+  styleUrls: ['./user-consents.component.scss'],
   imports: [
     CommonModule,
     NbButtonModule,
@@ -19,9 +23,9 @@ import { AcceptCommunityOrganizerConsentComponent } from '../accept-community-or
     JoinCommunityConsentComponent,
     AcceptEventVolunteerConsentComponent,
     AcceptCommunityOrganizerConsentComponent,
+    AcceptCommunityAdministratorConsentComponent,
+    AcceptBuildTeammateConsentComponent,
   ],
-  templateUrl: './user-consents.component.html',
-  styleUrls: ['./user-consents.component.scss'],
 })
 export class UserConsentsComponent implements OnInit {
   @Input() Following: boolean;
@@ -33,6 +37,8 @@ export class UserConsentsComponent implements OnInit {
   @Input() volunteerCommunityName: string;
   @Input() volunteerEventName: string;
   @Input() component: string;
+  @Input() joinBuild: boolean;
+  @Input() buildName: string;
   @Output() consentOutput = new EventEmitter<string>();
   // @Input() communityName: string;
   constructor() {}
