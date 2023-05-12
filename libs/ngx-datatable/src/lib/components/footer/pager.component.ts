@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
         <a role="button" aria-label="go to first page" href="javascript:void(0)" (click)="selectPage(1)">&lt;&lt; </a>
       </li>
       <li [class.disabled]="!canPrevious()">
-        <a role="button" aria-label="go to previous page" href="javascript:void(0)" (click)="prevPage()">&lt; </a>
+        <a role="button" aria-label="go to previous page" href="javascript:void(0)" (click)="prevPage()">&lt;</a>
       </li>
       <li
         role="button"
@@ -22,7 +22,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
         </a>
       </li>
       <li [class.disabled]="!canNext()">
-        <a role="button" aria-label="go to next page" href="javascript:void(0)" (click)="nextPage()"> &gt; </a>
+        <a role="button" aria-label="go to next page" href="javascript:void(0)" (click)="nextPage()">&gt;</a>
       </li>
       <li [class.disabled]="!canNext()">
         <a role="button" aria-label="go to last page" href="javascript:void(0)" (click)="selectPage(totalPages)">
