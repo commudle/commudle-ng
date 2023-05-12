@@ -88,6 +88,8 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('click-bell-icon', { com_notification_type: this.ENotificationSenderTypes.KOMMUNITY });
+    this.gtm.dataLayerPushEvent('click-notification-bell-icon', {
+      com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
+    });
   }
 }

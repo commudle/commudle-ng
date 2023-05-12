@@ -54,6 +54,8 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('mark-all-as-read', { com_notification_type: this.ENotificationSenderTypes.USER });
+    this.gtm.dataLayerPushEvent('click-notification-mark-all-as-read', {
+      com_notification_type: this.ENotificationSenderTypes.USER,
+    });
   }
 }

@@ -58,6 +58,8 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
   }
 
   gtmService() {
-    this.gtm.dataLayerPushEvent('mark-all-as-read', { com_notification_type: this.ENotificationSenderTypes.KOMMUNITY });
+    this.gtm.dataLayerPushEvent('click-notification-mark-all-as-read', {
+      com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
+    });
   }
 }
