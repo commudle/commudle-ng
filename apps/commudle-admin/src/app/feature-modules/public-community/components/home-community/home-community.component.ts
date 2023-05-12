@@ -9,6 +9,8 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { DOCUMENT } from '@angular/common';
 import { NbDialogService } from '@commudle/theme';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 
 @Component({
   selector: 'app-home-community',
@@ -21,6 +23,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   notificationCount = 0;
   environment = environment;
+  ENotificationSenderTypes = ENotificationSenderTypes;
   uploadedBannerFile: File;
   uploadedBanner: any;
 
@@ -36,6 +39,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     @Inject(DOCUMENT) private document: Document,
     private dialogService: NbDialogService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +107,9 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       this.toastLogService.successDialog('Updated! Reloading the app for changes to apply...');
       this.document.location.reload();
     });
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-bell-icon', { com_notification_type: this.ENotificationSenderTypes.KOMMUNITY });
   }
 }

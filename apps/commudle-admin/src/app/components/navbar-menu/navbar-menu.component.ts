@@ -5,6 +5,8 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -21,13 +23,19 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faUser = faUser;
 
   notificationCount = 0;
+  ENotificationSenderTypes = ENotificationSenderTypes;
+
   notificationIconHighlight = false;
 
   subscriptions: Subscription[] = [];
 
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
-  constructor(private authwatchService: LibAuthwatchService, private notificationsStore: NotificationsStore) {}
+  constructor(
+    private authwatchService: LibAuthwatchService,
+    private notificationsStore: NotificationsStore,
+    private gtm: GoogleTagManagerService,
+  ) {}
 
   ngOnInit(): void {
     this.authwatchService.currentUser$.subscribe((currentUser) => {
@@ -53,5 +61,9 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   closePopover() {
     this.popovers.find((popover) => popover.context === 'notificationsPopover').hide();
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-bell-icon', { com_notification_type: this.ENotificationSenderTypes.USER });
   }
 }
