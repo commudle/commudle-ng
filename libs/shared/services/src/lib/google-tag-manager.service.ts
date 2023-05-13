@@ -16,7 +16,7 @@ export class GoogleTagManagerService {
   dataLayerPushEvent(event: string, data: any) {
     data.event = event;
     if (!this.seoService.isBot) {
-      window.dataLayer.push(data);
+      window?.dataLayer?.push(data);
     }
   }
 }

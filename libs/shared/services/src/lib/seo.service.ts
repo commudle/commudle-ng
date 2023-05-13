@@ -22,7 +22,6 @@ export class SeoService {
     // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
     const url = new URL(window.location.href);
     this.host = window.location.hostname;
-    console.log(this.host);
     this.isBotLegacy = url.searchParams.get('bot') === 'true';
     if (this.isBotLegacy || ['test.commudle.com'].includes(this.host)) {
       this.noIndex(true);

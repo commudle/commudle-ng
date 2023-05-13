@@ -46,6 +46,19 @@ export class DiscussionHandlerService {
     this.handleChatChannel();
   }
 
+  destroy() {
+    this.chatChannel.disconnect();
+    this.messages.next([]);
+    this.permittedActions.next([]);
+    this.pageInfo.next({
+      has_previous_page: false,
+      has_next_page: false,
+      start_cursor: '',
+      end_cursor: '',
+    });
+    this.lastReadMessageId = undefined;
+  }
+
   sendMessage(content: string) {
     if (!this.permittedActions.value.includes('add') || this.permittedActions.value.includes('blocked')) {
       return;

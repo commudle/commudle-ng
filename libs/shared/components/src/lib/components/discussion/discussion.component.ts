@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnDestroy,
   OnInit,
   QueryList,
   ViewChildren,
@@ -18,7 +19,7 @@ import { DiscussionHandlerService } from '../../services/discussion-handler.serv
   styleUrls: ['./discussion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DiscussionComponent implements OnInit, AfterViewInit {
+export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() discussionId!: number;
   @Input() discussionParent: 'builds' | '' = '';
   @Input() fromLastRead = true;
@@ -55,5 +56,9 @@ export class DiscussionComponent implements OnInit, AfterViewInit {
         }
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.discussionHandlerService.destroy();
   }
 }
