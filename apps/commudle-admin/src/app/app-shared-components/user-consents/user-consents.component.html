@@ -28,9 +28,10 @@
       <div *ngIf="joinBuild">
         <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
       </div>
-      <!-- <div *ngIf="onjoinChannel">
+      <commudle-accept-channel-token-consent *ngIf="joinChannelToken"></commudle-accept-channel-token-consent>
+      <div *ngIf="onjoinChannel">
         <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
-      </div> -->
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <button nbButton status="success" (click)="accept()">Accept</button>&nbsp;

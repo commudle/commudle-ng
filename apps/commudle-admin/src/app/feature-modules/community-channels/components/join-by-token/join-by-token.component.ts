@@ -12,7 +12,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 })
 export class JoinByTokenComponent implements OnInit {
   joined = false;
-  acceptRole = false;
+  joinChannelToken = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,10 +34,10 @@ export class JoinByTokenComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.acceptRole = true;
+    this.joinChannelToken = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        acceptRole: this.acceptRole,
+        joinChannelToken: this.joinChannelToken,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
@@ -46,4 +46,3 @@ export class JoinByTokenComponent implements OnInit {
     });
   }
 }
-/Users/aenprr / Documents / Commudle / commudle - ng / apps / commudle - admin / src / app / app - shared - components;

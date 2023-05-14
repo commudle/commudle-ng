@@ -8,6 +8,7 @@ import { AcceptEventVolunteerConsentComponent } from 'apps/commudle-admin/src/ap
 import { AcceptCommunityOrganizerConsentComponent } from '../accept-community-organizer-consent/accept-community-organizer-consent.component';
 import { AcceptCommunityAdministratorConsentComponent } from '../accept-community-administrator-consent/accept-community-administrator-consent.component';
 import { AcceptBuildTeammateConsentComponent } from '../accept-build-teammate-consent/accept-build-teammate-consent.component';
+import { AcceptChannelTokenConsentComponent } from '../accept-channel-token-consent/accept-channel-token-consent.component';
 
 @Component({
   selector: 'commudle-user-consents',
@@ -25,6 +26,7 @@ import { AcceptBuildTeammateConsentComponent } from '../accept-build-teammate-co
     AcceptCommunityOrganizerConsentComponent,
     AcceptCommunityAdministratorConsentComponent,
     AcceptBuildTeammateConsentComponent,
+    AcceptChannelTokenConsentComponent,
   ],
 })
 export class UserConsentsComponent implements OnInit {
@@ -39,9 +41,10 @@ export class UserConsentsComponent implements OnInit {
   @Input() component: string;
   @Input() joinBuild: boolean;
   @Input() buildName: string;
-  @Input() parentName;
+  @Input() parentName: string;
+  @Input() joinChannelToken: boolean;
+  @Input() communityName: string;
   @Output() consentOutput = new EventEmitter<string>();
-  // @Input() communityName: string;
   constructor() {}
 
   ngOnInit(): void {}
