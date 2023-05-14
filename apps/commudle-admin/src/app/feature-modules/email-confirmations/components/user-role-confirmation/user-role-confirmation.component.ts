@@ -22,6 +22,9 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   EUserRoles = EUserRoles;
   acceptRole = false;
+  token;
+  role;
+  parentName;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,10 +32,16 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
   ) {}
-
   ngOnInit() {
-    this.onAcceptRoleButton();
     // this.activatedRoute.queryParams.subscribe((data) => this.activateRole(data.token));
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.token = params.token;
+      this.userRolesUsersService.verifyInvitationToken(this.token).subscribe((data) => {
+        this.role = data.user_roles_user.user_role.name;
+        this.parentName = data.user_roles_user.parent_name;
+        this.onAcceptRoleButton();
+      });
+    });
 
     this.seoService.setTitle('Confirm Role');
     this.seoService.noIndex(true);
@@ -43,6 +52,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   }
 
   activateRole(token) {
+    console.log('called');
     this.userRolesUsersService.confirmCommunityRole(token).subscribe((data) => {
       this.userRolesUser = data.user_roles_user;
       this.community = data.community;
@@ -53,13 +63,18 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
 
   onAcceptRoleButton() {
     this.acceptRole = true;
-    this.nbDialogService.open(UserConsentsComponent, {
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        component: 'community-organizer',
+        component: this.role,
+        parentName: this.parentName,
         acceptRole: this.acceptRole,
         // volunteerCommunityName: this.community.name,
         // volunteerEventName: this.event.name,
       },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      this.activateRole(this.token);
     });
   }
 }

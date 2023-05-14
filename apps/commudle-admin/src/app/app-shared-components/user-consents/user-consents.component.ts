@@ -39,6 +39,7 @@ export class UserConsentsComponent implements OnInit {
   @Input() component: string;
   @Input() joinBuild: boolean;
   @Input() buildName: string;
+  @Input() parentName;
   @Output() consentOutput = new EventEmitter<string>();
   // @Input() communityName: string;
   constructor() {}

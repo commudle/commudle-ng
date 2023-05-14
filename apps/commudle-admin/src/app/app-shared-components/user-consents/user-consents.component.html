@@ -17,10 +17,12 @@
           [volunteerEventName]="volunteerEventName"
         ></commudle-accept-event-volunteer-consent>
         <commudle-accept-community-organizer-consent
-          *ngIf="component === 'community-organizer'"
+          *ngIf="component === 'organizer'"
+          [parentName]="parentName"
         ></commudle-accept-community-organizer-consent>
         <commudle-accept-community-administrator-consent
-          *ngIf="component === 'community-administrator'"
+          *ngIf="component === 'community_administrator'"
+          [parentName]="parentName"
         ></commudle-accept-community-administrator-consent>
       </div>
       <div *ngIf="joinBuild">

@@ -380,6 +380,7 @@ export const API_ROUTES = {
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
     ROLE_DESIGNATIONS: 'api/v2/user_roles_users/role_designations',
+    VERIFY_INVITATION_TOKEN: 'api/v2/user_roles_users/verify_invitation_token',
 
     COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
     REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
