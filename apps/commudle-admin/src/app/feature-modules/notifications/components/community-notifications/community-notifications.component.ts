@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-community-notifications',
@@ -32,7 +33,7 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsStore: NotificationsStore) {}
+  constructor(private notificationsStore: NotificationsStore, private gtm: GoogleTagManagerService) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -45,6 +46,9 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.notificationsStore.changeStatus(status, notification, this.communityId);
+    if (status !== ENotificationStatuses.INTERACTED) {
+      this.gtmService();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -102,5 +106,11 @@ export class CommunityNotificationsComponent implements OnInit, OnDestroy, OnCha
     this.page = 1;
     this.total = 0;
     this.getNotifications();
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-notification-mark-as-read', {
+      com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
+    });
   }
 }

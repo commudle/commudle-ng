@@ -8,6 +8,7 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-notifications-list',
@@ -34,7 +35,11 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationsStore: NotificationsStore, private authWatchService: LibAuthwatchService) {}
+  constructor(
+    private notificationsStore: NotificationsStore,
+    private authWatchService: LibAuthwatchService,
+    private gtm: GoogleTagManagerService,
+  ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
@@ -59,6 +64,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     this.notificationsStore.changeStatus(status, notification);
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
+    } else {
+      this.gtmService();
     }
   }
 
@@ -101,5 +108,12 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
         }
       }),
     );
+  }
+
+  gtmService() {
+    console.log('clicked');
+    this.gtm.dataLayerPushEvent('click-notification-mark-as-read', {
+      com_notification_type: this.ENotificationSenderTypes.USER,
+    });
   }
 }
