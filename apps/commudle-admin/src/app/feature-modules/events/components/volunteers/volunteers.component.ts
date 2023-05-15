@@ -88,6 +88,7 @@ export class VolunteersComponent implements OnInit {
         email: null,
       });
       this.toastLogService.successDialog('Invitation Email Sent!');
+      this.userRolesUserForm.reset();
       this.changeDetectorRef.markForCheck();
     });
   }
