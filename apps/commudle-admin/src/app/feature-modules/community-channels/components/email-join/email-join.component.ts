@@ -8,7 +8,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 @Component({
   selector: 'app-email-join',
   templateUrl: './email-join.component.html',
-  styleUrls: ['./email-join.component.scss']
+  styleUrls: ['./email-join.component.scss'],
 })
 export class EmailJoinComponent implements OnInit {
   verified = false;
@@ -16,12 +16,13 @@ export class EmailJoinComponent implements OnInit {
   communityChannel: ICommunityChannel;
   channelId;
   joinToken;
+  communityName;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private libToasLogService: LibToastLogService
+    private libToasLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {
@@ -55,4 +56,9 @@ export class EmailJoinComponent implements OnInit {
     });
   }
 
+  reject() {
+    const queryParams = { ch: this.channelId, decline: true };
+    this.router.navigate([], { queryParams });
+    this.joinChannel();
+  }
 }

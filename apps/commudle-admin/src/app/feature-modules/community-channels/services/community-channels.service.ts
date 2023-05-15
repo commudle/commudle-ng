@@ -90,11 +90,10 @@ export class CommunityChannelsService {
     return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params);
   }
 
-  joinByToken(token): Observable<boolean> {
-    return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.JOIN_BY_TOKEN),
-      { token },
-    );
+  joinByToken(token): Observable<any> {
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.JOIN_BY_TOKEN), {
+      token,
+    });
   }
 
   membersList(communityChannelId, page, count): Observable<IUserRolesUsers> {
@@ -206,5 +205,12 @@ export class CommunityChannelsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.PINNING_MESSAGES.PINNED_MESSAGES),
       { params },
     );
+  }
+
+  showByToken(token): Observable<any> {
+    const params = new HttpParams().set('token', token);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.SHOW_BY_TOKEN), {
+      params,
+    });
   }
 }

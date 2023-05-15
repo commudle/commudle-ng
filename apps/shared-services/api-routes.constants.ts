@@ -86,6 +86,7 @@ export const API_ROUTES = {
       UNPIN: 'api/v2/community_channels/unpin_message',
       PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages',
     },
+    SHOW_BY_TOKEN: 'api/v2/community_channels/show_by_token',
   },
 
   COMMUNITY_GROUPS: {
@@ -162,6 +163,7 @@ export const API_ROUTES = {
     ATTENDED_MEMBERS: 'api/v2/events/attended_members',
     ATTENDED_MEMBERS_NOTIFICATION: 'api/v2/events/create_attended_members_notification',
     COMMON_EVENTS: 'api/v2/events/common_events',
+    IS_MEMBER_OF_ALL_COLLABORATING_COMMUNITIES: 'api/v2/events/is_member_of_all_collaborating_communities',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',

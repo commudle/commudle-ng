@@ -1,26 +1,28 @@
 <div class="join-by-token page-padding">
   <div class="d-flex justify-content-center align-items-center">
     <nb-card [nbSpinner]="loading">
-      <nb-card-header class="d-flex align-items-center justify-content-space-between">
-        💡 Disclaimer
-      </nb-card-header>
+      <nb-card-header class="d-flex align-items-center justify-content-space-between"> 💡 Disclaimer </nb-card-header>
       <nb-card-body>
-        <p>Once you join this channel</p>
+        <p>
+          When you join this channel, the following information will be shared between you, this channel’s admins and
+          the organizers & administrators of {{ communityChannel.kommunity.name }}
+        </p>
         <ul>
+          <li>You will become a member of {{ communityChannel.kommunity.name }} community, if not already.</li>
           <li>
-            Your profile will be shared with the admins of this channel and the community to which it belongs
+            Channel admins and Organizers & Administrators of {{ communityChannel.kommunity.name }} can access your
+            email address and all the data filled in various forms created by them and filled by you. They can also send
+            you emails, some of which you can unsubscribe.
           </li>
           <li>
-            If you are not a member of the parent community of the channel, you will be added to it automatically. The admins of this channel and it's community will be able to send you emails and notifications about this channel and it's community
-          </li>
-          <li>
-            You will receive emails if someone replies on your thread of messages in this channel.
+            Organizers of {{ communityChannel.kommunity.name }} have the right to permit or revoke your membership of
+            the community at any point of time at their discretion.
           </li>
         </ul>
-
       </nb-card-body>
       <nb-card-footer>
-        <button nbButton status="primary" (click)="joinChannel()">Click here to confirm</button>
+        <button nbButton status="primary" (click)="joinChannel()">Click here to confirm</button>&nbsp;
+        <button nbButton status="danger" (click)="reject()">Reject</button>
       </nb-card-footer>
     </nb-card>
   </div>

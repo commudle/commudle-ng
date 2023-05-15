@@ -9,6 +9,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-role-confirmation',
@@ -27,6 +28,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   parentName;
   communityName;
   eventName;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,11 +55,12 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     this.seoService.noIndex(false);
   }
 
   activateRole(token) {
-    console.log('called');
+    console.log('called function');
     this.userRolesUsersService.confirmCommunityRole(token).subscribe((data) => {
       this.userRolesUser = data.user_roles_user;
       this.community = data.community;
@@ -67,6 +70,9 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   }
 
   onAcceptRoleButton() {
+    if (this.acceptRole) {
+      return;
+    }
     this.acceptRole = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
@@ -80,7 +86,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
       if (result === 'rejected') {
-        const queryParams = { decline: true };
+        const queryParams = { token: this.token, decline: true };
         this.router.navigate([], { queryParams });
       }
       this.activateRole(this.token);

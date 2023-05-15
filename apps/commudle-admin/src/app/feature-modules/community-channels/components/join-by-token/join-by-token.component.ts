@@ -14,7 +14,8 @@ import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user
 export class JoinByTokenComponent implements OnInit {
   joined = false;
   joinChannelToken = false;
-  tokenValue;
+  communityName;
+  channelId;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,13 +26,10 @@ export class JoinByTokenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tokenValue = this.activatedRoute.snapshot.params.token;
-    this.userRolesUsersService.verifyInvitationToken(this.tokenValue).subscribe((data) => {
+    this.communityChannelsService.showByToken(this.activatedRoute.snapshot.params.token).subscribe((data) => {
       console.log(data);
-      // this.role = data.user_roles_user.user_role.name;
-      // this.parentName = data.user_roles_user.parent_name;
-      // this.communityName = data.community.name;
-      // this.eventName = data.event.name;
+      this.communityName = data.kommunity.name;
+      this.channelId = data.id;
       this.onAcceptRoleButton();
     });
     // this.verifyToken();
@@ -39,10 +37,19 @@ export class JoinByTokenComponent implements OnInit {
   }
 
   verifyToken() {
-    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token).subscribe((data) => {
-      this.joined = true;
-      this.router.navigate(['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', data]);
-    });
+    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token).subscribe(
+      (data) => {
+        this.joined = true;
+        this.router.navigate(['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', data]);
+      },
+      () =>
+        this.router.navigate([
+          '/communities',
+          this.activatedRoute.snapshot.params.community_id,
+          'channels',
+          this.channelId,
+        ]),
+    );
   }
 
   onAcceptRoleButton() {
@@ -50,6 +57,7 @@ export class JoinByTokenComponent implements OnInit {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
         joinChannelToken: this.joinChannelToken,
+        communityNameToken: this.communityName,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

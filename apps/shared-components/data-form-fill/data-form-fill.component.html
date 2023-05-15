@@ -6,7 +6,7 @@
       </div>
     </nb-card-body>
   </nb-card>
-  <form (ngSubmit)="submitForm()" [formGroup]="dataFormEntityResponseForm">
+  <form (ngSubmit)="eventId ? onAcceptRoleButton() : submitForm()" [formGroup]="dataFormEntityResponseForm">
     <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <nb-card>
         <nb-card-body class="com-p-0">

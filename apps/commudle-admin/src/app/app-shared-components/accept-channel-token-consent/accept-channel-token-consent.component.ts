@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./accept-channel-token-consent.component.scss'],
 })
 export class AcceptChannelTokenConsentComponent implements OnInit {
+  @Input() communityNameToken;
   constructor() {}
 
   ngOnInit(): void {}
