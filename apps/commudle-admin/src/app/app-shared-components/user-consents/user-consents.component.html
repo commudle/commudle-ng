@@ -12,7 +12,7 @@
       </div>
       <div *ngIf="acceptRole">
         <commudle-accept-event-volunteer-consent
-          *ngIf="component === 'volunteer'"
+          *ngIf="component === 'event_volunteer'"
           [volunteerCommunityName]="volunteerCommunityName"
           [volunteerEventName]="volunteerEventName"
         ></commudle-accept-event-volunteer-consent>
@@ -28,7 +28,9 @@
       <div *ngIf="joinBuild">
         <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
       </div>
-      <commudle-accept-channel-token-consent *ngIf="joinChannelToken"></commudle-accept-channel-token-consent>
+      <div *ngIf="joinChannelToken">
+        <commudle-accept-channel-token-consent></commudle-accept-channel-token-consent>
+      </div>
       <div *ngIf="onjoinChannel">
         <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
       </div>
