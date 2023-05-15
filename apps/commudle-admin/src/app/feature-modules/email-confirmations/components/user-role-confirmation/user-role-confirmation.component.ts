@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
@@ -25,12 +25,15 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   token;
   role;
   parentName;
+  communityName;
+  eventName;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
+    private router: Router,
   ) {}
   ngOnInit() {
     // this.activatedRoute.queryParams.subscribe((data) => this.activateRole(data.token));
@@ -39,6 +42,8 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       this.userRolesUsersService.verifyInvitationToken(this.token).subscribe((data) => {
         this.role = data.user_roles_user.user_role.name;
         this.parentName = data.user_roles_user.parent_name;
+        this.communityName = data.community.name;
+        this.eventName = data.event.name;
         this.onAcceptRoleButton();
       });
     });
@@ -68,12 +73,16 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
         component: this.role,
         parentName: this.parentName,
         acceptRole: this.acceptRole,
-        // volunteerCommunityName: this.community.name,
-        // volunteerEventName: this.event.name,
+        volunteerCommunityName: this.communityName,
+        volunteerEventName: this.eventName,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
+      if (result === 'rejected') {
+        const queryParams = { decline: true };
+        this.router.navigate([], { queryParams });
+      }
       this.activateRole(this.token);
     });
   }
