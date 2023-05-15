@@ -523,6 +523,7 @@ export const API_ROUTES = {
     SPEAKERS: 'api/v2/user_event_registrations/speakers',
     REMOVE_SPEAKER: 'api/v2/user_event_registrations/remove_speaker',
     RESEND_SPEAKER_INVITATION: 'api/v2/user_event_registrations/resend_speaker_invitation',
+    UPDATE_RSVP: 'api/v2/user_event_registrations/update_rsvp',
     PUBLIC: {
       SHOW: 'api/v2/user_event_registrations/public_show',
       TOGGLE: 'api/v2/user_event_registrations/public_toggle',

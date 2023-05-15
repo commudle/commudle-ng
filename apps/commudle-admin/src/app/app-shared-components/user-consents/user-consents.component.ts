@@ -11,6 +11,7 @@ import { AcceptBuildTeammateConsentComponent } from '../accept-build-teammate-co
 import { AcceptChannelTokenConsentComponent } from '../accept-channel-token-consent/accept-channel-token-consent.component';
 import { AcceptEventOneClickRegistrationConsentComponent } from '../accept-event-one-click-registration-consent/accept-event-one-click-registration-consent.component';
 import { AcceptEventFormRegistrationConsentComponent } from '../accept-event-form-registration-consent/accept-event-form-registration-consent.component';
+import { AcceptResumeConsentComponent } from '../accept-resume-consent/accept-resume-consent.component';
 
 @Component({
   selector: 'commudle-user-consents',
@@ -31,6 +32,7 @@ import { AcceptEventFormRegistrationConsentComponent } from '../accept-event-for
     AcceptChannelTokenConsentComponent,
     AcceptEventOneClickRegistrationConsentComponent,
     AcceptEventFormRegistrationConsentComponent,
+    AcceptResumeConsentComponent,
   ],
 })
 export class UserConsentsComponent implements OnInit {
@@ -51,6 +53,7 @@ export class UserConsentsComponent implements OnInit {
   @Input() communityNameToken: string;
   @Input() oneClickRegistration: boolean;
   @Input() oneClickRegistrationForm: boolean;
+  @Input() acceptResumeConsent: boolean;
   @Output() consentOutput = new EventEmitter<string>();
   constructor() {}
 
