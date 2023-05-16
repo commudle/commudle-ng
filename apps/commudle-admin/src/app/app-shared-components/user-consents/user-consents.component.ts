@@ -12,6 +12,7 @@ import { AcceptChannelTokenConsentComponent } from '../accept-channel-token-cons
 import { AcceptEventOneClickRegistrationConsentComponent } from '../accept-event-one-click-registration-consent/accept-event-one-click-registration-consent.component';
 import { AcceptEventFormRegistrationConsentComponent } from '../accept-event-form-registration-consent/accept-event-form-registration-consent.component';
 import { AcceptResumeConsentComponent } from '../accept-resume-consent/accept-resume-consent.component';
+import { AcceptSingleClickRegistrationSpeakerConsentComponent } from '../accept-single-click-registration-speaker-consent/accept-single-click-registration-speaker-consent.component';
 
 @Component({
   selector: 'commudle-user-consents',
@@ -33,6 +34,7 @@ import { AcceptResumeConsentComponent } from '../accept-resume-consent/accept-re
     AcceptEventOneClickRegistrationConsentComponent,
     AcceptEventFormRegistrationConsentComponent,
     AcceptResumeConsentComponent,
+    AcceptSingleClickRegistrationSpeakerConsentComponent,
   ],
 })
 export class UserConsentsComponent implements OnInit {
@@ -54,6 +56,8 @@ export class UserConsentsComponent implements OnInit {
   @Input() oneClickRegistration: boolean;
   @Input() oneClickRegistrationForm: boolean;
   @Input() acceptResumeConsent: boolean;
+  @Input() onacceptRSVP: boolean;
+  @Input() communityNameSpeaker: string;
   @Output() consentOutput = new EventEmitter<string>();
   constructor() {}
 

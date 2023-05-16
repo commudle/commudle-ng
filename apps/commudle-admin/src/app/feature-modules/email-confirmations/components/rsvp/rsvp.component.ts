@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { UserEventRegistrationsService } from 'apps/commudle-admin/src/app/services/user-event-registrations.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
@@ -19,11 +22,16 @@ export class RsvpComponent implements OnInit, OnDestroy {
   community: ICommunity;
   dferg: IDataFormEntityResponseGroup;
   ERegistrationStatuses = ERegistrationStatuses;
+  customReg: boolean;
+  onacceptRSVP = false;
 
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
+    private userEventRegistrationService: UserEventRegistrationsService,
+    private nbDialogService: NbDialogService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -33,9 +41,20 @@ export class RsvpComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe((data) => {
       this.token = data['token'];
       this.rsvpStatus = data['rsvp_status'];
+
+      if (data['custom_reg'] !== undefined) {
+        this.customReg = data['custom_reg'];
+        if (data['rsvp_status'] === '1' && data['custom_reg'] === 'false') {
+          this.onAcceptRoleButton();
+        }
+      }
       this.updateRSVPStatus();
     });
   }
+
+  //  agr 0 toh api call, agar rsvp 1 hai tojh popup , accept ya reject pe api
+  // api  call se pehls ersvp 0 hojaega;
+  // api mein 0 bhejna;
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
@@ -46,6 +65,34 @@ export class RsvpComponent implements OnInit, OnDestroy {
       this.event = data.event;
       this.community = data.community;
       this.dferg = data.data_form_entity_response_group;
+    });
+  }
+
+  updateRSVP(token, rsvpStatus, customReg) {
+    this.userEventRegistrationService.updateRSVP(token, rsvpStatus, customReg).subscribe((data) => {});
+  }
+
+  onAcceptRoleButton() {
+    this.onacceptRSVP = true;
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        onacceptRSVP: this.onacceptRSVP,
+        // communityNameSpeaker: this.communityName,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.rsvpStatus = 1;
+        this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
+        // const queryParams = { rsvp_status: 1 };
+        // this.router.navigate([], { queryParams });
+      } else {
+        this.rsvpStatus = 0;
+        this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
+        // const queryParams = { rsvp_status: 0 };
+        // this.router.navigate([], { queryParams });
+      }
     });
   }
 }

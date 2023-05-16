@@ -43,6 +43,9 @@
         <commudle-accept-event-form-registration-consent></commudle-accept-event-form-registration-consent>
       </div>
       <div *ngIf="acceptResumeConsent"><commudle-accept-resume-consent></commudle-accept-resume-consent></div>
+      <commudle-accept-single-click-registration-speaker-consent
+        *ngIf="onacceptRSVP"
+      ></commudle-accept-single-click-registration-speaker-consent>
     </nb-card-body>
     <nb-card-footer>
       <button nbButton status="success" (click)="accept()">Accept</button>&nbsp;

@@ -35,8 +35,8 @@ export class JoinByTokenComponent implements OnInit {
     // });
   }
 
-  verifyToken() {
-    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token).subscribe(
+  verifyToken(decline?: boolean) {
+    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
       (data) => {
         this.joined = true;
         this.router.navigate(['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', data]);
@@ -64,8 +64,10 @@ export class JoinByTokenComponent implements OnInit {
       if (result === 'rejected') {
         const queryParams = { decline: true };
         this.router.navigate([], { queryParams });
+        this.verifyToken(true);
+      } else {
+        this.verifyToken();
       }
-      this.verifyToken();
     });
   }
 }

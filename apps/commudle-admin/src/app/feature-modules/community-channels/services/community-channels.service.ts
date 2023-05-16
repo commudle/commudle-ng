@@ -90,9 +90,10 @@ export class CommunityChannelsService {
     return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params);
   }
 
-  joinByToken(token): Observable<any> {
+  joinByToken(token, decline): Observable<any> {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.JOIN_BY_TOKEN), {
       token,
+      decline: decline,
     });
   }
 

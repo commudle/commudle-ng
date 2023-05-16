@@ -60,8 +60,8 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
   }
 
-  activateRole(token) {
-    this.userRolesUsersService.confirmCommunityRole(token).subscribe((data) => {
+  activateRole(token, decline?: boolean) {
+    this.userRolesUsersService.confirmCommunityRole(token, decline).subscribe((data) => {
       this.userRolesUser = data.user_roles_user;
       this.community = data.community;
       this.event = data.event;
@@ -88,8 +88,10 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       if (result === 'rejected') {
         const queryParams = { token: this.token, decline: true };
         this.router.navigate([], { queryParams });
+        this.activateRole(this.token, true);
+      } else {
+        this.activateRole(this.token);
       }
-      this.activateRole(this.token);
     });
   }
 }

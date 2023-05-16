@@ -27,18 +27,20 @@ export class TeammateInviteConfirmationComponent implements OnInit {
     // this.verifyInvitation();
   }
 
-  verifyInvitation() {
+  verifyInvitation(decline?: boolean) {
     const params = this.activatedRoute.snapshot.params;
 
-    this.communityBuildsService.confirmTeammateInvite(params.community_build_id, params.token).subscribe((data) => {
-      this.confirmation = data;
-      if (data) {
-        this.toastLogService.successDialog('Thank You for confirming!', 3500);
-        this.router.navigate(['/builds', params.community_build_id]);
-      } else {
-        this.toastLogService.warningDialog('Invalid Link', 3500);
-      }
-    });
+    this.communityBuildsService
+      .confirmTeammateInvite(params.community_build_id, params.token, decline)
+      .subscribe((data) => {
+        this.confirmation = data;
+        if (data) {
+          this.toastLogService.successDialog('Thank You for confirming!', 3500);
+          this.router.navigate(['/builds', params.community_build_id]);
+        } else {
+          this.toastLogService.warningDialog('Invalid Link', 3500);
+        }
+      });
   }
 
   onAcceptBuildButton(buildName) {
@@ -54,8 +56,11 @@ export class TeammateInviteConfirmationComponent implements OnInit {
       if (result === 'rejected') {
         const queryParams = { decline: true };
         this.router.navigate([], { queryParams });
+        this.verifyInvitation(true);
+        return;
+      } else {
+        this.verifyInvitation();
       }
-      this.verifyInvitation();
     });
   }
 }
