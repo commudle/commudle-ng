@@ -62,11 +62,11 @@
         <div class="flag">
           <nb-icon
             (click)="discussionHandlerService.sendFlag(message.id)"
+            [icon]="message.flags_count > 0 ? 'flag' : 'flag-outline'"
+            [status]="message.flags_count > 0 ? 'warning' : 'basic'"
             class="clickable"
-            icon="flag-outline"
             nbTooltip="Report this message (3 reports deletes it)"
             nbTooltipStatus="warning"
-            status="basic"
           ></nb-icon>
           <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
         </div>
