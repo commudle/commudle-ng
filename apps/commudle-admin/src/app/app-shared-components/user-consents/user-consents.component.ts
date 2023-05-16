@@ -60,12 +60,10 @@ export class UserConsentsComponent implements OnInit {
   ngOnInit(): void {}
 
   accept() {
-    console.log('accepted called');
     this.consentOutput.emit('accepted');
   }
 
   reject() {
-    console.log('rejected called');
     this.consentOutput.emit('rejected');
   }
 }

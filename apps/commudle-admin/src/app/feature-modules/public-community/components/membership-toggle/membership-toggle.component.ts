@@ -73,7 +73,7 @@ export class MembershipToggleComponent implements OnInit {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
         joinCommunity: this.joinCommunity,
-        communitySlug: this.community.slug,
+        communitySlug: this.community.name,
       },
     });
 
