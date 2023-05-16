@@ -81,11 +81,14 @@ export class CommunityChannelsService {
     );
   }
 
-  joinChannel(communityChannelId: number, token?: string): Observable<boolean> {
+  joinChannel(communityChannelId: number, token?: string, decline?: boolean): Observable<boolean> {
     const params = {} as any;
     params.community_channel_id = communityChannelId;
     if (token) {
       params.token = token;
+    }
+    if (decline) {
+      params.decline = decline;
     }
     return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params);
   }

@@ -40,9 +40,9 @@ export class EmailJoinComponent implements OnInit {
     });
   }
 
-  joinChannel() {
+  joinChannel(decline?: boolean) {
     this.loading = true;
-    this.communityChannelsService.joinChannel(this.channelId, this.joinToken).subscribe((data) => {
+    this.communityChannelsService.joinChannel(this.channelId, this.joinToken, decline).subscribe((data) => {
       if (data) {
         this.libToasLogService.successDialog('Taking you to the channel!', 2500);
         void this.router.navigate([
@@ -59,6 +59,6 @@ export class EmailJoinComponent implements OnInit {
   reject() {
     const queryParams = { ch: this.channelId, decline: true };
     this.router.navigate([], { queryParams });
-    this.joinChannel();
+    this.joinChannel(true);
   }
 }
