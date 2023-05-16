@@ -4,6 +4,8 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { Subscription } from 'rxjs';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { NbToastrService } from '@commudle/theme';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-public-community-notifications',
@@ -12,17 +14,19 @@ import { NbToastrService } from '@commudle/theme';
 })
 export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy {
   community: ICommunity;
+  notificationCount: number;
 
   trackMarkAllAsRead = false;
+  ENotificationSenderTypes = ENotificationSenderTypes;
 
   subscriptions: Subscription[] = [];
   result;
-  notificationCount: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private nbToastrService: NbToastrService,
     private notificationsStore: NotificationsStore,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -43,12 +47,19 @@ export class PublicCommunityNotificationsComponent implements OnInit, OnDestroy 
         this.nbToastrService.success('All notifications marked as read', 'Success');
         this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
         this.notificationsStore.reduceCommunityUnreadNotificationsCount(this.community.id);
+        this.gtmService();
       }
     });
   }
   notificationsCount(communityId) {
     this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count) => {
       this.notificationCount = count;
+    });
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-notification-mark-all-as-read', {
+      com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
     });
   }
 }

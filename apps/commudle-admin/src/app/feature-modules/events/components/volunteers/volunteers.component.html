@@ -37,8 +37,14 @@
           />
         </label>
         <br />
-        <span *ngIf="userRolesUserForm['controls'].role_designation.touched" class="validation-error-text">
-          Required Field
+        <span
+          *ngIf="
+            userRolesUserForm['controls'].role_designation.touched &&
+            userRolesUserForm['controls'].role_designation.invalid &&
+            userRolesUserForm['controls'].role_designation.errors.required
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
       <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">

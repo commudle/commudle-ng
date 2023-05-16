@@ -28,7 +28,7 @@ hr {
 }
 
 .who-can-avail-this {
-  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
+  @apply com-px-6 com-pb-24 md:com-px-72px;
 
   .content {
     @apply com-max-w-3xl com-mx-4;
@@ -77,7 +77,7 @@ hr {
 }
 
 .application-process {
-  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px com-bg-gray-100;
+  @apply com-px-6 com-pb-24 md:com-px-72px;
 
   .content {
     @apply com-max-w-3xl com-mx-4;
@@ -87,6 +87,7 @@ hr {
     }
 
     ol {
+      @apply com-pl-6;
       li {
         @apply com-mt-8 com-text-base com-text-gray-500;
       }

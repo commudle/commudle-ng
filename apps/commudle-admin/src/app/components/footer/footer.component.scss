@@ -42,7 +42,7 @@ footer {
     }
 
     .links {
-      @apply com-flex com-justify-center com-pt-8 com-pb-2;
+      @apply com-flex com-justify-center com-py-8;
 
       ul {
         @apply com-flex com-list-none md:com-space-x-10 com-text-gray-500 com-items-center com-flex-wrap com-justify-center com-space-x-4;

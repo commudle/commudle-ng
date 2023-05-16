@@ -107,6 +107,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       disabled: [false],
       has_responses: [false],
       question_choices: this.fb.array([]),
+      show_description: [false],
     });
   }
 
@@ -183,6 +184,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
         disabled: [q.disabled],
         has_responses: q.has_responses,
         question_choices: this.fb.array([this.initQuestionChoice()]),
+        show_description: [q.description ? true : false],
       });
       (exisingQuestionForm as FormGroup).setControl('question_choices', this.setQuestionChoices(q.question_choices));
       formArray.push(exisingQuestionForm);
@@ -235,7 +237,10 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   }
 
   toggleDescriptionField(index: number): void {
-    this.questionDescription[index] = !this.questionDescription[index];
+    const questionFormGroup = this.editDataForm.get('data_form').get('questions') as FormArray;
+    const question = questionFormGroup.at(index);
+    const show_description = question?.get('show_description')?.value;
+    question.patchValue({ show_description: !show_description });
   }
 
   setContextIndex(index: number) {

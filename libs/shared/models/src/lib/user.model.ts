@@ -20,7 +20,9 @@ export interface IUser {
   youtube: string;
   gender: string;
   avatar: string;
-  profile_banner_image: IAttachedFile;
+  has_social_resources: boolean;
+  work_experience_months: number;
+  is_community_leader: boolean;
   username: string;
   location: string;
   tags: ITag[];

@@ -2,15 +2,17 @@
 
 .profile-dialog {
   nb-card-header {
+    @apply com-w-[98vw] md:com-w-[700px];
     .navigation-buttons {
       position: relative;
       top: 17px;
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      @apply com-overflow-scroll;
 
       a {
         text-align: center;
-        padding: 0 $space-16 $space-6 $space-16;
+        // padding: 0 $space-16 $space-6 $space-16;
         border: none;
         text-decoration: none;
         color: $gunmetal;
@@ -19,7 +21,6 @@
       .profile-navbar-menu-option {
         font-size: $fs-17;
         font-weight: bold;
-        line-height: 24px;
         cursor: pointer;
       }
 

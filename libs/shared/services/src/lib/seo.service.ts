@@ -9,8 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SeoService {
   public isBot: boolean;
-  private readonly isBotLegacy: boolean;
-  private readonly host: string;
+  private isBotLegacy: boolean;
+  private host: string;
 
   constructor(
     private meta: Meta,

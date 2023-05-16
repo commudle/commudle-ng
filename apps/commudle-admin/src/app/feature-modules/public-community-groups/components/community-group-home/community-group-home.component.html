@@ -74,10 +74,16 @@
                     text="{{ communityGroup.community_channels_count }} Channels"
                   ></nb-tag>
                 </nb-tag-list>
-                <div>
-                  <button nbButton status="danger" shape="semi-round">
+                <div *ngIf="isOrganizer">
+                  <a
+                    nbButton
+                    status="danger"
+                    shape="semi-round"
+                    [routerLink]="['/admin', 'orgs', communityGroup.slug]"
+                    target="_blank"
+                  >
                     <fa-icon [icon]="faPencil" class="com-mr-2"></fa-icon> Go To Admin panel
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

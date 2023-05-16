@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ENotificationEntityTypes } from 'apps/shared-models/enums/notification_entity_types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationParentTypes } from 'apps/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { INotification, INotificationMessage } from 'apps/shared-models/notification.model';
@@ -28,6 +29,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   @Input() notificationMessage: INotificationMessage[] = [];
   @Input() notification: INotification;
   @Input() ENotificationStatusesUnread: boolean;
+  @Input() notificationType;
 
   @Output() notificationClicked: EventEmitter<any> = new EventEmitter();
 
@@ -35,7 +37,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
 
   @Output() markRead: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private gtm: GoogleTagManagerService) {}
 
   ngOnInit(): void {}
 
@@ -125,6 +127,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         break;
     }
 
+    this.gtmService();
     if (
       addQueryParams &&
       this.notification.entity_type == ENotificationEntityTypes.USER_MESSAGE &&
@@ -136,5 +139,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
     }
 
     this.notificationClicked.emit();
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-notification', { com_notification_type: this.notificationType });
   }
 }

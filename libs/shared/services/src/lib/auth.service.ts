@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '@commudle/shared-environments';
 import { IUser } from '@commudle/shared-models';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { API_ROUTES } from './api-routes.constant';
 import { BaseApiService } from './base-api.service';
@@ -64,6 +64,11 @@ export class AuthService {
             com_user_name: data.user.name,
             com_user_id: data.user.id,
             com_user_email: data.user.email,
+            com_has_labs: data.user.has_labs,
+            com_has_community_builds: data.user.has_community_builds,
+            com_has_social_resources: data.user.has_social_resources,
+            com_work_experience_months: data.user.work_experience_months,
+            com_is_community_leader: data.user.is_community_leader,
           });
         } else {
           this.currentUserVerified.next(false);
@@ -73,10 +78,12 @@ export class AuthService {
     );
   }
 
-  signIn(agent: string, token?: string) {
+  signIn(agent: string, consent_privacy_tnc: boolean, consent_marketing: boolean, token?: string) {
     return this.http.post(this.baseApiService.getRoute(API_ROUTES.VERIFY_AND_LOGIN), {
       agent: agent,
       details: { token },
+      consent_privacy_tnc: consent_privacy_tnc,
+      consent_marketing: consent_marketing,
     });
   }
 
@@ -94,5 +101,17 @@ export class AuthService {
 
   logInUser() {
     this.router.navigate(['/login'], { queryParams: { redirect: this.router.url } });
+  }
+
+  getUserData(): Observable<{ consent_privacy_tnc: boolean; consent_marketing: boolean }> {
+    return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION), {}).pipe(
+      map((data) => {
+        if (data.user) {
+          const consent_privacy_tnc = data.user.consent_privacy_tnc;
+          const consent_marketing = data.user.consent_marketing;
+          return { consent_privacy_tnc, consent_marketing };
+        }
+      }),
+    );
   }
 }
