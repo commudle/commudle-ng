@@ -27,7 +27,6 @@ export class JoinByTokenComponent implements OnInit {
 
   ngOnInit(): void {
     this.communityChannelsService.showByToken(this.activatedRoute.snapshot.params.token).subscribe((data) => {
-      console.log(data);
       this.communityName = data.kommunity.name;
       this.channelId = data.id;
       this.onAcceptRoleButton();

@@ -51,10 +51,11 @@ export class TeammateInviteConfirmationComponent implements OnInit {
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
-      console.log(result);
-      if (result === 'accepted') {
-        this.verifyInvitation();
+      if (result === 'rejected') {
+        const queryParams = { decline: true };
+        this.router.navigate([], { queryParams });
       }
+      this.verifyInvitation();
     });
   }
 }
