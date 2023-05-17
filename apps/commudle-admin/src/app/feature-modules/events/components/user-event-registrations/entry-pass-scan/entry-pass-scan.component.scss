@@ -26,6 +26,17 @@ p {
       nb-alert {
         @apply com-p-6 com-absolute com-top-4 com-left-1/2 com--translate-x-1/2 com-w-72;
       }
+
+      zxing-scanner,
+      .no-scanner {
+        @apply com-mx-auto com-max-w-xl com-w-full com-aspect-[9/16];
+
+        ::ng-deep {
+          video {
+            @apply com-aspect-[9/16];
+          }
+        }
+      }
     }
 
     .divider {
@@ -46,73 +57,4 @@ p {
       @apply com-mx-auto com-w-max;
     }
   }
-
-  //nb-card-body {
-  //  .qr-code-scanner {
-  //    align-items: center;
-  //    display: flex;
-  //    flex-direction: column;
-  //    width: inherit;
-  //
-  //    .camera-container {
-  //      display: flex;
-  //      flex-direction: column;
-  //      gap: 15px;
-  //
-  //      zxing-scanner {
-  //        ::ng-deep {
-  //          video {
-  //            height: 300px;
-  //            object-fit: contain;
-  //            width: 300px;
-  //          }
-  //        }
-  //      }
-  //    }
-  //
-  //    .cameras-list {
-  //      margin-top: 20px;
-  //      width: inherit;
-  //
-  //      nb-form-field {
-  //        width: inherit;
-  //      }
-  //    }
-  //
-  //    .divider {
-  //      border-bottom: 1px solid black;
-  //      height: 12px;
-  //      margin: 20px 0;
-  //      max-width: 400px;
-  //      text-align: center;
-  //
-  //      span {
-  //        background-color: white;
-  //        font-size: 18px;
-  //        padding: 0 10px;
-  //      }
-  //    }
-  //
-  //    .entry-pass-form {
-  //      margin-top: 10px;
-  //      width: 300px;
-  //
-  //      form {
-  //        display: flex;
-  //        flex-direction: column;
-  //        gap: 10px;
-  //      }
-  //    }
-  //  }
-  //}
 }
-
-//::ng-deep {
-//  .cdk-overlay-container {
-//    .user-info {
-//      nb-card-header {
-//        display: none !important;
-//      }
-//    }
-//  }
-//}
