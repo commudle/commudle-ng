@@ -11,7 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
@@ -76,6 +76,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private nbDialogService: NbDialogService,
     private activatedRoute: ActivatedRoute,
     private gtm: GoogleTagManagerService,
+    private router: Router,
   ) {
     this.chatMessageForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
@@ -513,6 +514,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       dialogRef.close();
       if (result === 'accepted') {
         this.joinChannel();
+      } else {
+        this.router.navigate([''], { queryParams: { decline: true } });
       }
     });
   }

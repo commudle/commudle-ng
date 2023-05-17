@@ -36,19 +36,17 @@ export class JoinByTokenComponent implements OnInit {
   }
 
   verifyToken(decline?: boolean) {
-    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
-      (data) => {
+    this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe((data) => {
+      if (decline) {
+        this.router.navigate(
+          ['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', this.channelId],
+          { queryParams: { decline: true } },
+        );
+      } else {
         this.joined = true;
         this.router.navigate(['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', data]);
-      },
-      () =>
-        this.router.navigate([
-          '/communities',
-          this.activatedRoute.snapshot.params.community_id,
-          'channels',
-          this.channelId,
-        ]),
-    );
+      }
+    });
   }
 
   onAcceptRoleButton() {
@@ -62,8 +60,6 @@ export class JoinByTokenComponent implements OnInit {
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
       if (result === 'rejected') {
-        const queryParams = { decline: true };
-        this.router.navigate([], { queryParams });
         this.verifyToken(true);
       } else {
         this.verifyToken();

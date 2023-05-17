@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AcceptSingleClickRegistrationSpeakerConsentComponent implements OnInit {
   @Input() communityNameSpeaker;
+  @Input() eventNameSpeaker;
   constructor() {}
 
   ngOnInit(): void {}

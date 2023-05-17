@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { UserEventRegistrationsService } from 'apps/commudle-admin/src/app/services/user-event-registrations.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
@@ -24,6 +26,8 @@ export class RsvpComponent implements OnInit, OnDestroy {
   ERegistrationStatuses = ERegistrationStatuses;
   customReg: boolean;
   onacceptRSVP = false;
+  eventId: string;
+  showConfirmationDialog = false;
 
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
@@ -32,6 +36,8 @@ export class RsvpComponent implements OnInit, OnDestroy {
     private userEventRegistrationService: UserEventRegistrationsService,
     private nbDialogService: NbDialogService,
     private router: Router,
+    private eventsService: EventsService,
+    private communitiesService: CommunitiesService,
   ) {}
 
   ngOnInit() {
@@ -42,12 +48,13 @@ export class RsvpComponent implements OnInit, OnDestroy {
       this.token = data['token'];
       this.rsvpStatus = data['rsvp_status'];
       this.customReg = data['custom_reg'];
+      this.eventId = data['event_id'];
 
       if (data['custom_reg'] !== undefined) {
         if (this.rsvpStatus == 1) {
-          this.onAcceptRoleButton();
+          this.getDetailsFromQueryParams();
         } else {
-          this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
+          this.updateCustomRegRSVP(this.token, this.rsvpStatus, this.customReg);
         }
       } else {
         this.updateRSVPStatus();
@@ -59,6 +66,18 @@ export class RsvpComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
   }
 
+  getDetailsFromQueryParams() {
+    if (this.eventId) {
+      this.eventsService.pGetEvent(this.eventId).subscribe((data) => {
+        this.event = data;
+        this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
+          this.community = data;
+          this.onAcceptRoleButton();
+        });
+      });
+    }
+  }
+
   updateRSVPStatus() {
     this.dataFormEntityResponseGroupsService.updateRSVPStatus(this.token, this.rsvpStatus).subscribe((data) => {
       this.event = data.event;
@@ -67,8 +86,13 @@ export class RsvpComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateRSVP(token, rsvpStatus, customReg) {
-    this.userEventRegistrationService.updateRSVP(token, rsvpStatus, customReg).subscribe((data) => {});
+  updateCustomRegRSVP(token, rsvpStatus, customReg) {
+    this.userEventRegistrationService.updateRSVP(token, rsvpStatus, customReg).subscribe((data) => {
+      this.community = data.community;
+      this.event = data.event;
+      this.dferg = data.user_event_registration;
+      this.showConfirmationDialog = true;
+    });
   }
 
   onAcceptRoleButton() {
@@ -76,17 +100,18 @@ export class RsvpComponent implements OnInit, OnDestroy {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
         onacceptRSVP: this.onacceptRSVP,
-        // communityNameSpeaker: this.communityName,
+        communityNameSpeaker: this.community.name,
+        eventNameSpeaker: this.event.name,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
       if (result === 'accepted') {
         this.rsvpStatus = 1;
-        this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
+        this.updateCustomRegRSVP(this.token, this.rsvpStatus, this.customReg);
       } else {
         this.rsvpStatus = 0;
-        this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
+        this.updateCustomRegRSVP(this.token, this.rsvpStatus, this.customReg);
       }
     });
   }

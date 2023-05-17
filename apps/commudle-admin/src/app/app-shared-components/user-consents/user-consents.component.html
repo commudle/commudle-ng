@@ -48,6 +48,8 @@
       <div *ngIf="acceptResumeConsent"><commudle-accept-resume-consent></commudle-accept-resume-consent></div>
       <commudle-accept-single-click-registration-speaker-consent
         *ngIf="onacceptRSVP"
+        [communityNameSpeaker]="communityNameSpeaker"
+        [eventNameSpeaker]="eventNameSpeaker"
       ></commudle-accept-single-click-registration-speaker-consent>
     </nb-card-body>
     <nb-card-footer>

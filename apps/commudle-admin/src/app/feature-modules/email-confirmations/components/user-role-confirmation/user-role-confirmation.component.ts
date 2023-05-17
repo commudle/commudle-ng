@@ -42,7 +42,6 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.token = params.token;
       this.userRolesUsersService.verifyInvitationToken(this.token).subscribe((data) => {
-        console.log(data);
         this.role = data.user_roles_user.user_role.name;
         this.parentName = data.user_roles_user.parent_name;
         this.communityName = data.community?.name;
