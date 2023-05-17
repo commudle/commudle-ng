@@ -1,7 +1,10 @@
 <div class="user-consents-container">
   <nb-card>
     <nb-card-header>
-      <h2>Consents</h2>
+      <p>
+        <!-- <fa-icon [icon]="faShieldHeart"></fa-icon> -->
+        Your <strong>Privacy</strong>, Our <strong>Priority</strong>
+      </p>
     </nb-card-header>
     <nb-card-body>
       <div *ngIf="Following">
@@ -48,8 +51,8 @@
       ></commudle-accept-single-click-registration-speaker-consent>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton status="success" (click)="accept()">Accept</button>&nbsp;
-      <button nbButton status="danger" (click)="reject()">Reject</button>&nbsp;
+      <button nbButton shape="rectangle" (click)="accept()" class="accept-button">Accept</button>
+      <button nbButton shape="rectangle" (click)="reject()" class="reject-button">Decline</button>
     </nb-card-footer>
   </nb-card>
 </div>

@@ -13,6 +13,8 @@ import { AcceptEventOneClickRegistrationConsentComponent } from '../accept-event
 import { AcceptEventFormRegistrationConsentComponent } from '../accept-event-form-registration-consent/accept-event-form-registration-consent.component';
 import { AcceptResumeConsentComponent } from '../accept-resume-consent/accept-resume-consent.component';
 import { AcceptSingleClickRegistrationSpeakerConsentComponent } from '../accept-single-click-registration-speaker-consent/accept-single-click-registration-speaker-consent.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-user-consents',
@@ -59,6 +61,8 @@ export class UserConsentsComponent implements OnInit {
   @Input() onacceptRSVP: boolean;
   @Input() communityNameSpeaker: string;
   @Output() consentOutput = new EventEmitter<string>();
+
+  faShieldHeart = faShieldHeart;
   constructor() {}
 
   ngOnInit(): void {}
