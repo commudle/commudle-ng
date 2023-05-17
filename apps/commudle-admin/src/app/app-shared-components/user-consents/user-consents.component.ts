@@ -25,6 +25,7 @@ import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
     CommonModule,
     NbButtonModule,
     NbCardModule,
+    FontAwesomeModule,
     UserFollowConsentComponent,
     JoinChannelConsentComponent,
     JoinCommunityConsentComponent,

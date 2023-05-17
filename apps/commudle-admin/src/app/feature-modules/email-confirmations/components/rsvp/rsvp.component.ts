@@ -41,20 +41,19 @@ export class RsvpComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe((data) => {
       this.token = data['token'];
       this.rsvpStatus = data['rsvp_status'];
+      this.customReg = data['custom_reg'];
 
       if (data['custom_reg'] !== undefined) {
-        this.customReg = data['custom_reg'];
-        if (data['rsvp_status'] === '1' && data['custom_reg'] === 'false') {
+        if (this.rsvpStatus == 1) {
           this.onAcceptRoleButton();
+        } else {
+          this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
         }
+      } else {
+        this.updateRSVPStatus();
       }
-      this.updateRSVPStatus();
     });
   }
-
-  //  agr 0 toh api call, agar rsvp 1 hai tojh popup , accept ya reject pe api
-  // api  call se pehls ersvp 0 hojaega;
-  // api mein 0 bhejna;
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
@@ -85,13 +84,9 @@ export class RsvpComponent implements OnInit, OnDestroy {
       if (result === 'accepted') {
         this.rsvpStatus = 1;
         this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
-        // const queryParams = { rsvp_status: 1 };
-        // this.router.navigate([], { queryParams });
       } else {
         this.rsvpStatus = 0;
         this.updateRSVP(this.token, this.rsvpStatus, this.customReg);
-        // const queryParams = { rsvp_status: 0 };
-        // this.router.navigate([], { queryParams });
       }
     });
   }

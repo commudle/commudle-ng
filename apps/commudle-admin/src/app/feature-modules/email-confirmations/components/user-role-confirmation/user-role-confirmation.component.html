@@ -56,14 +56,15 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div *ngIf="!userRolesUser">
+
+  <div *ngIf="roleRejected">
     <nb-card>
       <nb-card-body>
-        <div class="role-status">
-          <nb-icon icon="person-delete" status="danger"></nb-icon>
-          <p>
-            <strong>Thanks for letting us know!</strong>
-          </p>
+        <div class="status">
+          <div class="role-status">
+            <nb-icon icon="person-delete" status="danger"></nb-icon>
+            <p>See you again</p>
+          </div>
         </div>
       </nb-card-body>
     </nb-card>

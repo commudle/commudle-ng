@@ -29,6 +29,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   communityName;
   eventName;
   subscriptions: Subscription[] = [];
+  roleRejected: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +39,6 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {}
   ngOnInit() {
-    // this.activatedRoute.queryParams.subscribe((data) => this.activateRole(data.token));
     this.activatedRoute.queryParams.subscribe((params) => {
       this.token = params.token;
       this.userRolesUsersService.verifyInvitationToken(this.token).subscribe((data) => {
@@ -89,6 +89,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
         const queryParams = { token: this.token, decline: true };
         this.router.navigate([], { queryParams });
         this.activateRole(this.token, true);
+        this.roleRejected = true;
       } else {
         this.activateRole(this.token);
       }
