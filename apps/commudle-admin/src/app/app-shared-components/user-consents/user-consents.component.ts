@@ -62,6 +62,8 @@ export class UserConsentsComponent implements OnInit {
   @Input() onacceptRSVP: boolean;
   @Input() communityNameSpeaker: string;
   @Input() eventNameSpeaker: string;
+  @Input() channelName: string;
+  @Input() channelNameToken: string;
   @Output() consentOutput = new EventEmitter<string>();
 
   faShieldHeart = faShieldHeart;

@@ -35,7 +35,11 @@ export class TeammateInviteConfirmationComponent implements OnInit {
       .subscribe((data) => {
         this.confirmation = data;
         if (data) {
-          this.toastLogService.successDialog('Thank You for confirming!', 3500);
+          if (decline) {
+            this.toastLogService.warningDialog('You have declined the invitation!', 3500);
+          } else {
+            this.toastLogService.successDialog('Thank You for confirming!', 3500);
+          }
           this.router.navigate(['/builds', params.community_build_id]);
         } else {
           this.toastLogService.warningDialog('Invalid Link', 3500);

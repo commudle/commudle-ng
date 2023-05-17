@@ -11,8 +11,9 @@
       >
       <nb-card-body>
         <p>
-          When you join this channel, the following information will be shared between you, this channel’s admins and
-          the organizers & administrators of
+          When you join this channel <strong>{{ communityChannel.name }}</strong
+          >, the following information will be shared between you, this channel’s admins and the organizers &
+          administrators of
           <strong>{{ communityChannel.kommunity.name }}</strong>
         </p>
         <ul>
@@ -21,9 +22,9 @@
             <strong>{{ communityChannel.kommunity.name }}</strong> community, if not already.
           </li>
           <li>
-            Channel admins and Organizers & Administrators of {{ communityChannel.kommunity.name }} can access your
-            email address and all the data filled in various forms created by them and filled by you. They can also send
-            you emails, some of which you can unsubscribe.
+            Channel admins of <strong>{{ communityChannel.name }}</strong> and Organizers & Administrators of
+            {{ communityChannel.kommunity.name }} can access your email address and all the data filled in various forms
+            created by them and filled by you. They can also send you emails, some of which you can unsubscribe.
           </li>
           <li>
             Organizers of <strong> {{ communityChannel.kommunity.name }}</strong> have the right to permit or revoke

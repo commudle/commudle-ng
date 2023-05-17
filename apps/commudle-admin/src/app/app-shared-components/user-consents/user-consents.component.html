@@ -34,10 +34,14 @@
       <div *ngIf="joinChannelToken">
         <commudle-accept-channel-token-consent
           [communityNameToken]="communityNameToken"
+          [channelNameToken]="channelNameToken"
         ></commudle-accept-channel-token-consent>
       </div>
       <div *ngIf="onjoinChannel">
-        <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
+        <commudle-join-channel-consent
+          [communityName]="communityName"
+          [channelName]="channelName"
+        ></commudle-join-channel-consent>
       </div>
       <div *ngIf="oneClickRegistration">
         <commudle-accept-event-one-click-registration-consent></commudle-accept-event-one-click-registration-consent>

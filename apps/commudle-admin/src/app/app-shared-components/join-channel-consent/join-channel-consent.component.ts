@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class JoinChannelConsentComponent implements OnInit {
   @Input() communityName;
+  @Input() channelName;
   constructor() {}
 
   ngOnInit(): void {}
