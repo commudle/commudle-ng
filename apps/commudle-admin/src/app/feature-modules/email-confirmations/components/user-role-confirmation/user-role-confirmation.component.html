@@ -6,7 +6,8 @@
           <div class="role-status">
             <nb-icon icon="person-add" status="success"></nb-icon>
             <p>
-              <strong>{{ userRolesUser.user_role.name | titlecase }}</strong>! Welcome To The Team
+              <strong>{{ userRolesUser.user_role.name | titlecase }}</strong
+              >! Welcome To The Team
             </p>
           </div>
         </div>
@@ -21,25 +22,48 @@
           </div>
           <div *ngIf="community" class="community">
             <div class="logo">
-              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
             </div>
             <p
-              *ngIf="[EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
+              *ngIf="
+                [EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(
+                  userRolesUser.user_role.name
+                )
+              "
+            >
               <a [routerLink]="['/admin/communities', community.slug]">{{ community.name }} (Admin Panel)</a>
             </p>
             <p
-              *ngIf="![EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
+              *ngIf="
+                ![EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(
+                  userRolesUser.user_role.name
+                )
+              "
+            >
               <a [routerLink]="['/communities', community.slug]">{{ community.name }}</a>
             </p>
           </div>
 
           <div *ngIf="communityGroup" class="community">
             <div class="logo">
-              <img alt="{{ communityGroup.name }}" src="{{ communityGroup.logo }}" title="{{ communityGroup.name }}">
+              <img alt="{{ communityGroup.name }}" src="{{ communityGroup.logo }}" title="{{ communityGroup.name }}" />
             </div>
             <p>
               <a [routerLink]="['/admin/orgs', communityGroup.slug]">{{ communityGroup.name }}</a>
             </p>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div *ngIf="roleRejected">
+    <nb-card>
+      <nb-card-body>
+        <div class="status">
+          <div class="role-status">
+            <nb-icon icon="person-delete" status="danger"></nb-icon>
+            <p>See you again</p>
           </div>
         </div>
       </nb-card-body>

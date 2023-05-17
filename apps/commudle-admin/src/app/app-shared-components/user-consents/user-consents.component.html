@@ -1,0 +1,60 @@
+<div class="user-consents-container">
+  <nb-card>
+    <nb-card-header>
+      <p>
+        <fa-icon [icon]="faShieldHeart"></fa-icon>
+        Your <strong>Privacy</strong>, Our <strong>Priority</strong>
+      </p>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="Following">
+        <commudle-user-follow-consent [username]="username"></commudle-user-follow-consent>
+      </div>
+      <div *ngIf="joinCommunity">
+        <commudle-join-community-consent [communitySlug]="communitySlug"></commudle-join-community-consent>
+      </div>
+      <div *ngIf="acceptRole">
+        <commudle-accept-event-volunteer-consent
+          *ngIf="component === 'event_volunteer'"
+          [volunteerCommunityName]="volunteerCommunityName"
+          [volunteerEventName]="volunteerEventName"
+        ></commudle-accept-event-volunteer-consent>
+        <commudle-accept-community-organizer-consent
+          *ngIf="component === 'organizer'"
+          [parentName]="parentName"
+        ></commudle-accept-community-organizer-consent>
+        <commudle-accept-community-administrator-consent
+          *ngIf="component === 'community_administrator'"
+          [parentName]="parentName"
+        ></commudle-accept-community-administrator-consent>
+      </div>
+      <div *ngIf="joinBuild">
+        <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
+      </div>
+      <div *ngIf="joinChannelToken">
+        <commudle-accept-channel-token-consent
+          [communityNameToken]="communityNameToken"
+        ></commudle-accept-channel-token-consent>
+      </div>
+      <div *ngIf="onjoinChannel">
+        <commudle-join-channel-consent [communityName]="communityName"></commudle-join-channel-consent>
+      </div>
+      <div *ngIf="oneClickRegistration">
+        <commudle-accept-event-one-click-registration-consent></commudle-accept-event-one-click-registration-consent>
+      </div>
+      <div *ngIf="oneClickRegistrationForm">
+        <commudle-accept-event-form-registration-consent></commudle-accept-event-form-registration-consent>
+      </div>
+      <div *ngIf="acceptResumeConsent"><commudle-accept-resume-consent></commudle-accept-resume-consent></div>
+      <commudle-accept-single-click-registration-speaker-consent
+        *ngIf="onacceptRSVP"
+        [communityNameSpeaker]="communityNameSpeaker"
+        [eventNameSpeaker]="eventNameSpeaker"
+      ></commudle-accept-single-click-registration-speaker-consent>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton shape="rectangle" (click)="accept()" class="accept-button">Accept</button>
+      <button nbButton shape="rectangle" (click)="reject()" class="reject-button">Decline</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

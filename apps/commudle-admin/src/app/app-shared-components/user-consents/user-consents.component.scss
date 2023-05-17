@@ -1,0 +1,23 @@
+.user-consents-container {
+  @apply com-max-w-[500px];
+
+  nb-card-header {
+    @apply com-py-5 com-px-6;
+    p {
+      @apply com-text-2xl com-font-medium com-px-0 com-my-0;
+    }
+  }
+
+  nb-card-body {
+    @apply com-px-6 com-py-0;
+  }
+
+  nb-card-footer {
+    .accept-button {
+      @apply com-text-white com-text-sm com-bg-Yankees-Blue com-mr-4;
+    }
+    .reject-button {
+      @apply com-text-Yankees-Blue com-text-sm com-border-Yankees-Blue;
+    }
+  }
+}

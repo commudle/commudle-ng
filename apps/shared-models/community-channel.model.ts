@@ -16,4 +16,8 @@ export interface ICommunityChannel {
   member_count: number;
   messages_count?: number;
   messages_count_in_three_months?: number;
+  kommunity?: {
+    id: number;
+    name: string;
+  };
 }

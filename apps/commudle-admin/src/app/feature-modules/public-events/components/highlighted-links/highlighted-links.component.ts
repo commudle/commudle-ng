@@ -6,16 +6,20 @@ import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_en
 import { ERegistationTypes } from 'apps/shared-models/enums/registration_types.enum';
 import { Router } from '@angular/router';
 import { EventSimpleRegistrationsService } from 'apps/commudle-admin/src/app/services/event-simple-registrations.service';
-import { IEventSimpleRegistration, EEventSimpleRegistrationStatuses } from 'apps/shared-models/event_simple_registration.model';
+import {
+  IEventSimpleRegistration,
+  EEventSimpleRegistrationStatuses,
+} from 'apps/shared-models/event_simple_registration.model';
 import { UserEventRegistrationsService } from 'apps/commudle-admin/src/app/services/user-event-registrations.service';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import { IUserEventRegistration } from 'apps/shared-models/user_event_registration.model';
-
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 
 @Component({
   selector: 'app-highlighted-links',
   templateUrl: './highlighted-links.component.html',
-  styleUrls: ['./highlighted-links.component.scss']
+  styleUrls: ['./highlighted-links.component.scss'],
 })
 export class HighlightedLinksComponent implements OnInit {
   ERegistationTypes = ERegistationTypes;
@@ -30,13 +34,15 @@ export class HighlightedLinksComponent implements OnInit {
   eventSimpleRegistration: IEventSimpleRegistration;
   userEventRegistration: IUserEventRegistration;
   currentRoute;
+  oneClickRegistration = false;
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
     private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
     private userEventRegistrationsService: UserEventRegistrationsService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private nbDialogService: NbDialogService,
+  ) {}
 
   ngOnInit() {
     if (!this.event.custom_registration && this.event.editable) {
@@ -46,54 +52,63 @@ export class HighlightedLinksComponent implements OnInit {
       this.getOpenForms();
     }
 
-
     this.currentRoute = encodeURIComponent(this.router.url);
   }
 
   getOpenForms() {
-
     if (this.event.editable) {
-      this.eventDataFormEntityGroupsService.pGetPublicOpenDataForms(this.event.id).subscribe(
-        data => {
-          this.openForms = data.event_data_form_entity_groups;
-          if (this.openForms.length > 0) {
-            this.hasOpenForms.emit(true);
-          }
+      this.eventDataFormEntityGroupsService.pGetPublicOpenDataForms(this.event.id).subscribe((data) => {
+        this.openForms = data.event_data_form_entity_groups;
+        if (this.openForms.length > 0) {
+          this.hasOpenForms.emit(true);
         }
-      );
+      });
     }
   }
 
   getEventSimpleRegistration() {
-    this.eventSimpleRegistrationsService.pGet(this.event.id).subscribe(
-      data => {
-        if (data) {
-          this.eventSimpleRegistration = data;
-          this.hasOpenForms.emit(true);
-        }
+    this.eventSimpleRegistrationsService.pGet(this.event.id).subscribe((data) => {
+      if (data) {
+        this.eventSimpleRegistration = data;
+        this.hasOpenForms.emit(true);
       }
-    );
+    });
   }
 
   toggleUserEventRegistration() {
-    this.userEventRegistrationsService.pToggle(this.eventSimpleRegistration.id).subscribe(
-      data => {
-        this.userEventRegistration = data;
-        if (data.registration_status.name === ERegistrationStatuses.CANCELLED) {
-          this.eventSimpleRegistration.current_user_registered = false;
-        } else {
-          this.eventSimpleRegistration.current_user_registered = true;
-        }
+    this.userEventRegistrationsService.pToggle(this.eventSimpleRegistration.id).subscribe((data) => {
+      this.userEventRegistration = data;
+      if (data.registration_status.name === ERegistrationStatuses.CANCELLED) {
+        this.eventSimpleRegistration.current_user_registered = false;
+      } else {
+        this.eventSimpleRegistration.current_user_registered = true;
       }
-    );
+    });
   }
 
   getUserEventRegistration() {
-    this.userEventRegistrationsService.pShow(this.event.id).subscribe(
-      data => {
-        this.userEventRegistration = data;
-      }
-    );
+    this.userEventRegistrationsService.pShow(this.event.id).subscribe((data) => {
+      this.userEventRegistration = data;
+    });
   }
 
+  onAcceptRoleButton() {
+    this.oneClickRegistration = true;
+    if (this.eventSimpleRegistration.current_user_registered) {
+      this.toggleUserEventRegistration();
+      return;
+    }
+
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        oneClickRegistration: this.oneClickRegistration,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.toggleUserEventRegistration();
+      }
+    });
+  }
 }

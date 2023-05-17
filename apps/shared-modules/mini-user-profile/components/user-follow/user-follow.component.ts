@@ -10,6 +10,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { NbButtonAppearance, NbComponentStatus, NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -34,6 +35,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   user: IUser;
   currentUser: ICurrentUser;
   isFollowing = false;
+  Following = false;
 
   subscriptions: Subscription[] = [];
 
@@ -90,8 +92,27 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
     );
   }
 
-  openDialog(ref: TemplateRef<any>) {
-    this.nbDialogService.open(ref);
+  // openDialog(ref: TemplateRef<any>) {
+  //   this.nbDialogService.open(ref);
+  //   this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.user.id });
+  // }
+
+  onFollowClick() {
+    this.Following = true;
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        Following: this.Following,
+        username: this.user.name,
+      },
+    });
+
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.isFollowing = true;
+        this.toggleFollow();
+      }
+    });
     this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.user.id });
   }
 }

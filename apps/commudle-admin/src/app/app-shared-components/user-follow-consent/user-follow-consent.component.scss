@@ -1,0 +1,10 @@
+p {
+  @apply com-mb-4 com-text-base;
+}
+ul {
+  @apply com-px-4 com-mt-0 com-pb-0 com-mb-4;
+
+  li {
+    @apply com-py-1 com-text-base;
+  }
+}
