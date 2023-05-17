@@ -6,5 +6,35 @@
   nb-card {
     width: 500px;
     max-width: 90vw;
+
+    nb-card-header {
+      @apply com-py-5 com-px-6;
+      p {
+        @apply com-text-2xl com-font-medium com-px-0 com-my-0;
+      }
+    }
+
+    nb-card-body {
+      @apply com-px-6 com-py-0;
+      p {
+        @apply com-mb-4 com-text-base;
+      }
+      ul {
+        @apply com-px-4 com-mt-0 com-pb-0 com-mb-4;
+
+        li {
+          @apply com-py-1 com-text-base;
+        }
+      }
+    }
+  }
+
+  nb-card-footer {
+    .accept-button {
+      @apply com-text-white com-text-sm com-bg-Yankees-Blue com-mr-4;
+    }
+    .reject-button {
+      @apply com-text-Yankees-Blue com-text-sm com-border-Yankees-Blue;
+    }
   }
 }

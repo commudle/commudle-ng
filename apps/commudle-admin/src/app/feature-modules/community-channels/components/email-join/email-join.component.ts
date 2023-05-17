@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-email-join',
@@ -17,6 +18,7 @@ export class EmailJoinComponent implements OnInit {
   channelId;
   joinToken;
   communityName;
+  faShieldHeart = faShieldHeart;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
