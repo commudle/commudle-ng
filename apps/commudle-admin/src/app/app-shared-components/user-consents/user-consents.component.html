@@ -55,6 +55,11 @@
         [communityNameSpeaker]="communityNameSpeaker"
         [eventNameSpeaker]="eventNameSpeaker"
       ></commudle-accept-single-click-registration-speaker-consent>
+      <commudle-accept-join-channel-email-consent
+        *ngIf="joinChannelEmail"
+        [communityNameEmail]="communityNameEmail"
+        [channelNameEmail]="channelNameEmail"
+      ></commudle-accept-join-channel-email-consent>
     </nb-card-body>
     <nb-card-footer>
       <button nbButton shape="rectangle" (click)="accept()" class="accept-button">Accept</button>

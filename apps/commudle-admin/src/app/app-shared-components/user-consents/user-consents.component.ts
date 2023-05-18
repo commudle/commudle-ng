@@ -15,6 +15,7 @@ import { AcceptResumeConsentComponent } from '../accept-resume-consent/accept-re
 import { AcceptSingleClickRegistrationSpeakerConsentComponent } from '../accept-single-click-registration-speaker-consent/accept-single-click-registration-speaker-consent.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
+import { AcceptJoinChannelEmailConsentComponent } from '../accept-join-channel-email-consent/accept-join-channel-email-consent.component';
 
 @Component({
   selector: 'commudle-user-consents',
@@ -38,6 +39,7 @@ import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
     AcceptEventFormRegistrationConsentComponent,
     AcceptResumeConsentComponent,
     AcceptSingleClickRegistrationSpeakerConsentComponent,
+    AcceptJoinChannelEmailConsentComponent,
   ],
 })
 export class UserConsentsComponent implements OnInit {
@@ -64,6 +66,9 @@ export class UserConsentsComponent implements OnInit {
   @Input() eventNameSpeaker: string;
   @Input() channelName: string;
   @Input() channelNameToken: string;
+  @Input() joinChannelEmail: boolean;
+  @Input() communityNameEmail: string;
+  @Input() channelNameEmail: string;
   @Output() consentOutput = new EventEmitter<string>();
 
   faShieldHeart = faShieldHeart;
