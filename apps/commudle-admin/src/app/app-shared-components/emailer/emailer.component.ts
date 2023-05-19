@@ -231,7 +231,7 @@ export class EmailerComponent implements OnInit {
   ngOnInit() {
     this.eventsService.communityEventsForEmail(this.community.id).subscribe((data) => {
       this.events = data.events;
-
+      console.log(this.recipientEmail, this.recipientUsername);
       if (this.event) {
         this.prefillForm('event_id');
       } else {
