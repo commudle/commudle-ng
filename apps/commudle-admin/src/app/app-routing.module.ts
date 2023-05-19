@@ -158,6 +158,13 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
   {
+    path: 'public-home-listing-events',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
+        (m) => m.PublicHomeListEventsModule,
+      ),
+  },
+  {
     path: 'admin',
     children: [
       // {
