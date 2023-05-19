@@ -1,5 +1,5 @@
 .user-consents-container {
-  @apply com-max-w-[500px];
+  @apply com-max-w-[500px] com-h-full;
 
   nb-card-header {
     @apply com-py-5 com-px-6;
@@ -9,7 +9,7 @@
   }
 
   nb-card-body {
-    @apply com-px-6 com-py-0;
+    @apply com-px-6 com-py-0 com-max-h-[65vh];
   }
 
   nb-card-footer {
