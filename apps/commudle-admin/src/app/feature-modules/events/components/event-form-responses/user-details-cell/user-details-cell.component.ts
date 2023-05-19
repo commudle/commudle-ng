@@ -87,7 +87,7 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
       context: {
         community: this.community,
         mailType: EemailTypes.GENERAL_ALL,
-        recipientEmail: this.user.email,
+        recipientUsername: this.user.username,
       },
     });
   }
@@ -100,7 +100,7 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
         event: this.event,
         eventDataFormEntityGroupId: this.eventDataFormEntityGroupId,
         mailType: EemailTypes.RSVP,
-        recipientEmail: this.user.email,
+        recipientUsername: this.user.username,
       },
     });
   }
@@ -113,7 +113,7 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
         event: this.event,
         eventDataFormEntityGroupId: this.eventDataFormEntityGroupId,
         mailType: EemailTypes.ENTRY_PASS,
-        recipientEmail: this.user.email,
+        recipientUsername: this.user.username,
       },
     });
   }
