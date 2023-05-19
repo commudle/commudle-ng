@@ -17,7 +17,7 @@
   }
 
   nb-card-body {
-    @apply com-px-6 com-py-0 com-h-[65vh];
+    @apply com-px-6 com-py-0 com-min-h-[50vh] com-max-h-[50vh];
   }
 
   nb-card-footer {
