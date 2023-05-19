@@ -5,6 +5,7 @@ import { CommunityChannelsService } from '../../services/community-channels.serv
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-join-by-token',
@@ -16,6 +17,7 @@ export class JoinByTokenComponent implements OnInit {
   joinChannelToken = false;
   communityName;
   channelId;
+  channelName: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,12 +25,14 @@ export class JoinByTokenComponent implements OnInit {
     private router: Router,
     private nbDialogService: NbDialogService,
     private userRolesUsersService: UserRolesUsersService,
+    private libToasLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {
     this.communityChannelsService.showByToken(this.activatedRoute.snapshot.params.token).subscribe((data) => {
       this.communityName = data.kommunity.name;
       this.channelId = data.id;
+      this.channelName = data.name;
       this.onAcceptRoleButton();
     });
     // this.verifyToken();
@@ -37,6 +41,7 @@ export class JoinByTokenComponent implements OnInit {
 
   verifyToken(decline?: boolean) {
     this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe((data) => {
+      this.libToasLogService.successDialog('Taking you to the channel!', 2500);
       if (decline) {
         this.router.navigate(
           ['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', this.channelId],
@@ -55,6 +60,7 @@ export class JoinByTokenComponent implements OnInit {
       context: {
         joinChannelToken: this.joinChannelToken,
         communityNameToken: this.communityName,
+        channelNameToken: this.channelName,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

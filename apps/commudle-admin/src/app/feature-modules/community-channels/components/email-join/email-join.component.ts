@@ -5,6 +5,8 @@ import { CommunityChannelsService } from '../../services/community-channels.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 
 @Component({
   selector: 'app-email-join',
@@ -17,13 +19,16 @@ export class EmailJoinComponent implements OnInit {
   channelId;
   joinToken;
   communityName;
+  channelName;
   faShieldHeart = faShieldHeart;
+  joinChannelEmail = false;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private libToasLogService: LibToastLogService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +41,9 @@ export class EmailJoinComponent implements OnInit {
   getChannelInfo() {
     this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
       this.communityChannel = data;
+      this.channelName = data.name;
+      this.communityName = data.kommunity.name;
+      this.onAcceptRoleButton();
     });
   }
 
@@ -57,5 +65,24 @@ export class EmailJoinComponent implements OnInit {
     const queryParams = { ch: this.channelId, decline: true };
     this.router.navigate([], { queryParams });
     this.joinChannel(true);
+  }
+
+  onAcceptRoleButton() {
+    this.joinChannelEmail = true;
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        joinChannelEmail: this.joinChannelEmail,
+        communityNameEmail: this.communityName,
+        channelNameEmail: this.channelName,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'rejected') {
+        this.reject();
+      } else {
+        this.joinChannel();
+      }
+    });
   }
 }
