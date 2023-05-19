@@ -83,6 +83,7 @@ export class RsvpComponent implements OnInit, OnDestroy {
       this.event = data.event;
       this.community = data.community;
       this.dferg = data.data_form_entity_response_group;
+      this.showConfirmationDialog = true;
     });
   }
 
