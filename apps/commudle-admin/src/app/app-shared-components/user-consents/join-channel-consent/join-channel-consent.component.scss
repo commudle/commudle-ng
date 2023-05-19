@@ -1,10 +1,10 @@
 p {
-  @apply com-mb-4 com-text-base;
+  @apply com-mb-4 com-text-sm com-text-black com-font-light;
 }
 ul {
   @apply com-px-4 com-mt-0 com-pb-0 com-mb-4;
 
   li {
-    @apply com-py-1 com-text-base;
+    @apply com-py-1 com-text-sm com-text-black com-font-light;
   }
 }

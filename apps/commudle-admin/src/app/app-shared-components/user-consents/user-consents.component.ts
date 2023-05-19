@@ -72,23 +72,23 @@ export class UserConsentsComponent implements OnInit {
 
   faShieldHeart = faShieldHeart;
 
-  // @ViewChild('homepageAnimation', { static: false }) homepageAnimationContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('consentAnimation', { static: false }) consentAnimationContainer: ElementRef<HTMLDivElement>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // ngAfterViewInit(): void {
-  //   import('lottie-web').then((l) => {
-  //     l.default.loadAnimation({
-  //       container: this.homepageAnimationContainer.nativeElement,
-  //       renderer: 'svg',
-  //       loop: true,
-  //       autoplay: true,
-  //       path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
-  //     });
-  //   });
-  // }
+  ngAfterViewInit(): void {
+    import('lottie-web').then((l) => {
+      l.default.loadAnimation({
+        container: this.consentAnimationContainer.nativeElement,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets4.lottiefiles.com/packages/lf20_iqGCdkx5tG.json',
+      });
+    });
+  }
 
   accept() {
     this.consentOutput.emit('accepted');
