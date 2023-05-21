@@ -42,6 +42,7 @@ export interface IUser {
   user_roles: string[];
   has_community_builds: boolean;
   has_labs: boolean;
+  profile_banner_image: IAttachedFile;
 }
 
 export interface IUserSearch extends IUser {
