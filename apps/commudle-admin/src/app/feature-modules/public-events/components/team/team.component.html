@@ -5,19 +5,18 @@
       Team
     </h6>
   </nb-card-header>
-  <nb-card-body
-    [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }"
-    class="com-flex com-flex-wrap"
-  >
+  <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
-    <div class="volunteers" *ngFor="let user of volunteers">
-      <fieldset class="com-border com-border-solid com-border-gray-300 com-w-[90%] com-rounded-md">
-        <legend class="com-ml-auto com-text-base com-font-medium" *ngIf="user.user_roles_users">
-          {{ user.user_roles_users.role_designation }}
-        </legend>
-        <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
-      </fieldset>
+    <div class="volunteers">
+      <div *ngFor="let user of volunteers">
+        <fieldset>
+          <legend *ngIf="user.user_roles_users">
+            {{ user.user_roles_users.role_designation }}
+          </legend>
+          <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+        </fieldset>
+      </div>
     </div>
   </nb-card-body>
   <nb-card-footer *ngIf="volunteers.length > 10" (click)="viewMore()" class="com-cursor-pointer">

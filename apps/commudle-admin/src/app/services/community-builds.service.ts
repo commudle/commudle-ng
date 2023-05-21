@@ -72,12 +72,13 @@ export class CommunityBuildsService {
     });
   }
 
-  confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
+  confirmTeammateInvite(communityBuildId, token, decline): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE),
       {
         community_build_id: communityBuildId,
         token,
+        decline: decline,
       },
     );
   }

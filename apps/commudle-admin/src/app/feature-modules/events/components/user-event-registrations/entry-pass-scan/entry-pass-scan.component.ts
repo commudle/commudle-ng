@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbCardComponent, NbDialogService, NbToastrService } from '@commudle/theme';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { BarcodeFormat } from '@zxing/library';
 import { EventEntryPassesService } from 'apps/commudle-admin/src/app/services/event-entry-passes.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -19,15 +19,18 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   community: ICommunity;
   entryPass: IEventEntryPass;
 
+  isScannerEnabled = true;
+  isLoadingEntryPass = false;
+  isWindowOpen = false;
+  availableDevices: MediaDeviceInfo[];
+  deviceCurrent: MediaDeviceInfo;
+  deviceSelected: string;
+
+  formatsEnabled: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
+
   hasDevices: boolean;
   hasPermission: boolean;
-  isScannerEnabled: boolean = true;
-  isLoadingEntryPass: boolean = false;
-  selectedDevice: MediaDeviceInfo;
-  availableDevices: MediaDeviceInfo[] = [];
-  isWindowOpen: boolean = false;
 
-  @ViewChild('scannerComponent', { static: false }) scanner: ZXingScannerComponent;
   @ViewChild('entryPassWindow') entryPassWindow: TemplateRef<NbCardComponent>;
   @ViewChild('correctSound') correctSound: ElementRef<HTMLAudioElement>;
   @ViewChild('incorrectSound') incorrectSound: ElementRef<HTMLAudioElement>;
@@ -63,6 +66,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   getEntryPass(entryCode: string): void {
     this.isLoadingEntryPass = true;
+    this.isScannerEnabled = false;
     this.eventEntryPassesService.getEntryPass(this.event.id, entryCode).subscribe(
       (entryPass) => {
         this.entryPass = entryPass;
@@ -75,16 +79,13 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
           );
         }
 
+        this.isLoadingEntryPass = false;
         this.openWindow();
-        // TODO: Switching off the scanner is continuously triggering the onScanSuccess event.
-        // this.scanner.reset();
-        // this.disableScanner();
-      },
-      (error) => {
-        console.error('Error: ', error);
-        this.incorrectSound.nativeElement.play();
       },
       () => {
+        this.incorrectSound.nativeElement.play();
+        this.nbToastrService.danger('Invalid Entry Code', 'Error');
+        this.isScannerEnabled = true;
         this.isLoadingEntryPass = false;
       },
     );
@@ -95,40 +96,43 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
       this.eventEntryPassesService.toggleAttendance(this.entryPass.id).subscribe((value) => {
         if (value) {
           this.nbToastrService.success('Attendance Unmarked', 'Success');
-          this.enableScanner();
         }
       }),
     );
   }
 
-  onScanSuccess(value: string): void {
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.availableDevices = devices;
+    this.hasDevices = Boolean(devices && devices.length);
+  }
+
+  onCodeResult(resultString: string) {
     if (!this.isWindowOpen) {
-      this.getEntryPass(value);
+      this.getEntryPass(resultString);
     }
   }
 
-  onCamerasFound(cameras: MediaDeviceInfo[]): void {
-    this.availableDevices = cameras;
+  onDeviceSelectChange(selected: string) {
+    const selectedStr = selected || '';
+    if (this.deviceSelected === selectedStr) {
+      return;
+    }
+    this.deviceSelected = selectedStr;
+    const device = this.availableDevices.find((x) => x.deviceId === selected);
+    this.deviceCurrent = device || undefined;
   }
 
-  onHasDevices(response: boolean): void {
-    this.hasDevices = response;
+  onDeviceChange(device: MediaDeviceInfo) {
+    const selectedStr = device?.deviceId || '';
+    if (this.deviceSelected === selectedStr) {
+      return;
+    }
+    this.deviceSelected = selectedStr;
+    this.deviceCurrent = device || undefined;
   }
 
-  onPermissionResponse(response: boolean): void {
-    this.hasPermission = response;
-  }
-
-  onSelectedChange(deviceId: string): void {
-    this.selectedDevice = this.availableDevices.find((device) => device.deviceId === deviceId);
-  }
-
-  enableScanner() {
-    this.isScannerEnabled = true;
-  }
-
-  disableScanner() {
-    this.isScannerEnabled = false;
+  onHasPermission(has: boolean) {
+    this.hasPermission = has;
   }
 
   openWindow() {
@@ -140,13 +144,14 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   handleOk() {
-    this.enableScanner();
     this.isWindowOpen = false;
+    this.isScannerEnabled = true;
   }
 
   handleCancel() {
     this.unmarkAttendance();
     this.isWindowOpen = false;
+    this.isScannerEnabled = true;
   }
 
   onSubmit(value: string) {

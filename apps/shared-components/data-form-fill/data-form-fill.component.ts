@@ -4,6 +4,8 @@ import { IDataForm } from 'apps/shared-models/data_form.model';
 import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 import { IQuestion } from 'apps/shared-models/question.model';
 import { SDataFormsService } from '../services/s-data-forms.service';
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 
 @Component({
   selector: 'app-data-form-fill',
@@ -16,9 +18,11 @@ export class DataFormFillComponent implements OnInit, OnChanges {
 
   @Input() existingResponses;
   @Input() dataFormId;
+  @Input() eventId;
   dataForm: IDataForm;
   formCreated = false;
   enabledQuestions: IQuestion[] = [];
+  oneClickRegistrationForm = false;
 
   message =
     'Never enter any personal or sensitive information which can be misused (including but not limited to passwords) in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.';
@@ -27,7 +31,11 @@ export class DataFormFillComponent implements OnInit, OnChanges {
 
   dataFormEntityResponseForm;
 
-  constructor(private dataFormsService: SDataFormsService, private fb: FormBuilder) {}
+  constructor(
+    private dataFormsService: SDataFormsService,
+    private fb: FormBuilder,
+    private nbDialogService: NbDialogService,
+  ) {}
 
   ngOnInit() {
     this.getDataForm();
@@ -115,5 +123,26 @@ export class DataFormFillComponent implements OnInit, OnChanges {
       return;
     }
     this.formSubmitted.emit(this.dataFormEntityResponseForm.value);
+  }
+
+  onAcceptRoleButton() {
+    this.oneClickRegistrationForm = true;
+    this.dataFormsService.isMemberOfAllCollaboratingCommunities(this.eventId).subscribe((data) => {
+      if (data) {
+        this.submitForm();
+        return;
+      }
+      const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+        context: {
+          oneClickRegistrationForm: this.oneClickRegistrationForm,
+        },
+      });
+      dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+        dialogRef.close();
+        if (result === 'accepted') {
+          this.submitForm();
+        }
+      });
+    });
   }
 }

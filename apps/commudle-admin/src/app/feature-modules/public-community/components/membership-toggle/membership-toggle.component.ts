@@ -12,6 +12,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 
 @Component({
   selector: 'app-membership-toggle',
@@ -29,6 +30,7 @@ export class MembershipToggleComponent implements OnInit {
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
   @Input() appearance: NbButtonAppearance = 'filled';
+  joinCommunity = false;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -63,6 +65,24 @@ export class MembershipToggleComponent implements OnInit {
   openDialog(dialog: TemplateRef<any>) {
     this.dialogRef = this.dialogService.open(dialog, { autoFocus: false });
     this.selectExit = null;
+    this.gtmDatalayerPush('join-community-click');
+  }
+
+  onJoinCommunityClick() {
+    this.joinCommunity = true;
+    const dialogRef = this.dialogService.open(UserConsentsComponent, {
+      context: {
+        joinCommunity: this.joinCommunity,
+        communitySlug: this.community.name,
+      },
+    });
+
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.toggleMembership();
+      }
+    });
     this.gtmDatalayerPush('join-community-click');
   }
 

@@ -18,9 +18,9 @@ export class CookieConsentService {
 
   acceptedCookieConsent(analytics, marketing) {
     if (isPlatformBrowser(this.platformId)) {
-      this.cookieService.set('com_cookiepref_analytics', analytics ? 'granted' : 'denied', 60, '/');
-      this.cookieService.set('com_cookiepref_marketing', marketing ? 'granted' : 'denied', 60, '/');
-      this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 60, '/');
+      this.cookieService.set('com_cookiepref_analytics', analytics ? 'granted' : 'denied', 365, '/');
+      this.cookieService.set('com_cookiepref_marketing', marketing ? 'granted' : 'denied', 365, '/');
+      this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 365, '/');
       this.gtm.dataLayerPushEvent('com-cookie-consent', {});
     }
   }
