@@ -68,24 +68,24 @@
           <th>Designation</th>
           <th>Actions</th>
         </tr>
-        <tr *ngFor="let org of volunteers; let i = index">
+        <tr *ngFor="let volunteer of volunteers; let i = index">
           <td>
-            <app-user-profile-card-medium [user]="org.user"></app-user-profile-card-medium>
+            <app-user-profile-card-medium [user]="volunteer.user"></app-user-profile-card-medium>
           </td>
           <td>
-            {{ org.role_designation }}
+            {{ volunteer.role_designation }}
           </td>
           <td>
             <div class="actions">
               <a
-                (click)="resendInvitationMail(org)"
-                *ngIf="org.status === EUserRolesUserStatus.INVITED"
+                (click)="resendInvitationMail(volunteer)"
+                *ngIf="volunteer.status === EUserRolesUserStatus.INVITED"
                 class="clickable"
               >
                 <small>Resend Invite</small>
               </a>
               <br />
-              <a (click)="remove(org, i)" class="clickable">
+              <a (click)="remove(volunteer, i)" class="clickable">
                 <small>Remove</small>
               </a>
             </div>

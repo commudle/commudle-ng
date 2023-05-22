@@ -85,9 +85,8 @@ export class VolunteersComponent implements OnInit {
     this.userRolesUsersService.createUserRolesUser(this.userRolesUserForm.value).subscribe((data) => {
       this.volunteers.push(data);
       this.toastLogService.successDialog('Invitation Email Sent!');
-      this.userRolesUserForm.get('email').setValue(null);
-      this.userRolesUserForm.get('role_designation').setValue('');
-      this.userRolesUserForm.markAsUntouched();
+      this.userRolesUserForm.controls['email'].reset();
+      this.userRolesUserForm.controls['role_designation'].reset();
       this.changeDetectorRef.markForCheck();
     });
   }
