@@ -86,9 +86,12 @@ export class VolunteersComponent implements OnInit {
       this.volunteers.push(data);
       this.userRolesUserForm.patchValue({
         email: null,
+        role_designation: '',
       });
       this.toastLogService.successDialog('Invitation Email Sent!');
-      this.userRolesUserForm.reset();
+
+      this.userRolesUserForm.markAsUntouched();
+      // this.userRolesUserForm.reset();
       this.changeDetectorRef.markForCheck();
     });
   }
