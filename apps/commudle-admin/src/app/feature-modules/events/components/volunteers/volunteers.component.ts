@@ -61,10 +61,6 @@ export class VolunteersComponent implements OnInit {
     });
   }
 
-  // onSelectionChange(value): void {
-  //   this.userRolesUserForm.get('role_designation').setValue(value);
-  // }
-
   resendInvitationMail(userRolesUser) {
     this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe((data) => {
       this.toastLogService.successDialog('Invite sent again!');
