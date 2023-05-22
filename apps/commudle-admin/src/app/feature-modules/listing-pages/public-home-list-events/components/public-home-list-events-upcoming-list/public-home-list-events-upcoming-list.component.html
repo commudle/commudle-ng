@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-body>
+    <div class="upcoming-card">
+      <a [routerLink]="" class="upcoming-card-link">
+        <div class="upcoming-card-image">
+          <!-- <commudle-banner-image
+            *ngIf="event.header_image.url"
+            [headerImagePath]="event.header_image?.url"
+            [name]="event.name"
+          ></commudle-banner-image> -->
+          <img
+            [alt]="event.name"
+            [src]="event.header_image?.url || '/assets/images/commudle-logo192.png'"
+            [title]="event.name"
+            class="image"
+          />
+        </div>
+        <div class="upcoming-card-details">
+          <div class="upcoming-card-info">
+            <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+            <p class="event-title">{{ event.name }}</p>
+            <div class="community-badge">
+              <!-- <app-community-badge [user]="communityName"></app-community-badge> -->
+            </div>
+          </div>
+          <div class="">
+            <button nbButton outline status="info" class="upcoming-card-button">Register</button>
+          </div>
+        </div>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>
