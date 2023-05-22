@@ -47,7 +47,7 @@
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
         </span>
       </div>
-      <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">
+      <nb-autocomplete #autoComplete>
         <nb-option *ngFor="let roleDesignation of roleDesignations | async" [value]="roleDesignation">{{
           roleDesignation
         }}</nb-option>

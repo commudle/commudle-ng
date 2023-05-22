@@ -61,9 +61,9 @@ export class VolunteersComponent implements OnInit {
     });
   }
 
-  onSelectionChange(value): void {
-    this.userRolesUserForm.get('role_designation').setValue(value);
-  }
+  // onSelectionChange(value): void {
+  //   this.userRolesUserForm.get('role_designation').setValue(value);
+  // }
 
   resendInvitationMail(userRolesUser) {
     this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe((data) => {
@@ -84,14 +84,10 @@ export class VolunteersComponent implements OnInit {
   createUserRolesUser() {
     this.userRolesUsersService.createUserRolesUser(this.userRolesUserForm.value).subscribe((data) => {
       this.volunteers.push(data);
-      this.userRolesUserForm.patchValue({
-        email: null,
-        role_designation: '',
-      });
       this.toastLogService.successDialog('Invitation Email Sent!');
-
+      this.userRolesUserForm.get('email').setValue(null);
+      this.userRolesUserForm.get('role_designation').setValue('');
       this.userRolesUserForm.markAsUntouched();
-      // this.userRolesUserForm.reset();
       this.changeDetectorRef.markForCheck();
     });
   }
