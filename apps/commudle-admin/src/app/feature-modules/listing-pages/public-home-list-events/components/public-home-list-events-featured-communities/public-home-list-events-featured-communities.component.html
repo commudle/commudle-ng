@@ -1,0 +1,9 @@
+<nb-card>
+  <nb-card-header> <p class="title">Upcoming</p></nb-card-header>
+  <nb-card-body>
+    <commudle-public-home-list-events-featured-communities-card>
+      *ngFor="let community of featuredCommunities" [community]="community"
+      ></commudle-public-home-list-events-featured-communities-card
+    >
+  </nb-card-body>
+</nb-card>

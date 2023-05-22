@@ -7,13 +7,16 @@ import { PublicHomeListEventsHeaderComponent } from './components/public-home-li
 import { SharedComponentsModule } from '../../../../../../shared-components/shared-components.module';
 import { PublicHomeListEventsUpcomingComponent } from './components/public-home-list-events-upcoming/public-home-list-events-upcoming/public-home-list-events-upcoming.component';
 import { PublicHomeListEventsUpcomingListComponent } from './components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
-
+import { PublicHomeListEventsFeaturedCommunitiesComponent } from './components/public-home-list-events-featured-communities/public-home-list-events-featured-communities.component';
+import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from './components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
     PublicHomeListEventsHeaderComponent,
     PublicHomeListEventsUpcomingComponent,
     PublicHomeListEventsUpcomingListComponent,
+    PublicHomeListEventsFeaturedCommunitiesComponent,
+    PublicHomeListEventsFeaturedCommunitiesCardComponent,
   ],
   imports: [CommonModule, PublicHomeListEventsRoutingModule, NbCardModule, NbButtonModule, SharedComponentsModule],
 })
