@@ -62,9 +62,15 @@
         [communityNameEmail]="communityNameEmail"
         [channelNameEmail]="channelNameEmail"
       ></commudle-accept-join-channel-email-consent>
+      <commudle-accept-deactivate-account-consent
+        *ngSwitchCase="deactivateAccount"
+      ></commudle-accept-deactivate-account-consent>
+      <commudle-accept-delete-account-consent *ngSwitchCase="closeAccount"></commudle-accept-delete-account-consent>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton shape="rectangle" (click)="accept()" class="accept-button">Accept</button>
+      <button nbButton shape="rectangle" (click)="accept()" class="accept-button">
+        {{ buttonText ? buttonText : 'Accept' }}
+      </button>
       <button nbButton shape="rectangle" (click)="reject()" class="reject-button">Decline</button>
     </nb-card-footer>
   </nb-card>
