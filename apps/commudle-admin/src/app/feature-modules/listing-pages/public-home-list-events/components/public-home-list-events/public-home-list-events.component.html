@@ -1,10 +1,13 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout com-bg-white">
   <div class="container">
-    <div class="one-column-layout">
-      <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
-      <commudle-public-home-list-events-header></commudle-public-home-list-events-header>
-      <commudle-public-home-list-events-upcoming></commudle-public-home-list-events-upcoming>
-      <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
+    <div class="two-column-layout mobile-reverse">
+      <div class="main-column">
+        <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
+        <!-- <commudle-public-home-list-events-header></commudle-public-home-list-events-header> -->
+        <commudle-public-home-list-events-upcoming></commudle-public-home-list-events-upcoming>
+        <!-- <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities> -->
+      </div>
+      <div class="right-column"></div>
     </div>
   </div>
 </div>

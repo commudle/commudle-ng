@@ -1,5 +1,7 @@
-nb-card-header {
-  p {
-    @apply com-text-3xl com-font-medium com-m-0 com-text-black;
-  }
+.title {
+  @apply com-text-3xl com-font-medium com-m-0 com-text-black com-mt-8 com-mb-3;
+}
+hr {
+  //  com-border-gray-300 #D9E1EC ;
+  @apply com-border-solid com-mb-6;
 }
