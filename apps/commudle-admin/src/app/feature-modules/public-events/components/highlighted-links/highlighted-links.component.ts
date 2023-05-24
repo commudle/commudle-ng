@@ -34,7 +34,6 @@ export class HighlightedLinksComponent implements OnInit {
   eventSimpleRegistration: IEventSimpleRegistration;
   userEventRegistration: IUserEventRegistration;
   currentRoute;
-  oneClickRegistration = false;
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
@@ -93,7 +92,6 @@ export class HighlightedLinksComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.oneClickRegistration = true;
     if (this.eventSimpleRegistration.current_user_registered) {
       this.toggleUserEventRegistration();
       return;
@@ -101,7 +99,7 @@ export class HighlightedLinksComponent implements OnInit {
 
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        oneClickRegistration: this.oneClickRegistration,
+        consentType: 'one-click-registration',
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

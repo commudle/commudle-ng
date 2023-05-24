@@ -18,6 +18,21 @@ import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 import { AcceptJoinChannelEmailConsentComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/accept-join-channel-email-consent/accept-join-channel-email-consent.component';
 import { AcceptDeactivateAccountConsentComponent } from './accept-deactivate-account-consent/accept-deactivate-account-consent.component';
 import { AcceptDeleteAccountConsentComponent } from './accept-delete-account-consent/accept-delete-account-consent.component';
+
+export enum ConsentType {
+  userFollow = 'user-follow',
+  joinCommunity = 'join-community',
+  joinBuild = 'join-build',
+  joinChannelToken = 'join-channel-by-token',
+  joinChannelButton = 'join-channel-by-button',
+  joinChannelEmail = 'join-channel-by-email',
+  acceptRole = 'accept-role',
+  oneClickRegistration = 'one-click-registration',
+  oneClickRegistrationForm = 'one-click-registration-form',
+  resumeConsent = 'resume-consent',
+  acceptRSVP = 'accept-rsvp-consent',
+  deactivateDeleteAccount = 'deactivate-delete',
+}
 @Component({
   selector: 'commudle-user-consents',
   standalone: true,
@@ -46,30 +61,20 @@ import { AcceptDeleteAccountConsentComponent } from './accept-delete-account-con
   ],
 })
 export class UserConsentsComponent implements OnInit {
-  @Input() Following: boolean;
+  @Input() consentType;
   @Input() username: string;
-  @Input() onjoinChannel: boolean;
-  @Input() joinCommunity: boolean;
   @Input() communitySlug: string;
-  @Input() acceptRole: boolean;
   @Input() volunteerCommunityName: string;
   @Input() volunteerEventName: string;
   @Input() component: string;
-  @Input() joinBuild: boolean;
   @Input() buildName: string;
   @Input() parentName: string;
-  @Input() joinChannelToken: boolean;
   @Input() communityName: string;
   @Input() communityNameToken: string;
-  @Input() oneClickRegistration: boolean;
-  @Input() oneClickRegistrationForm: boolean;
-  @Input() acceptResumeConsent: boolean;
-  @Input() onacceptRSVP: boolean;
   @Input() communityNameSpeaker: string;
   @Input() eventNameSpeaker: string;
   @Input() channelName: string;
   @Input() channelNameToken: string;
-  @Input() joinChannelEmail: boolean;
   @Input() communityNameEmail: string;
   @Input() channelNameEmail: string;
   @Input() deactivateAccount: boolean;
@@ -78,6 +83,7 @@ export class UserConsentsComponent implements OnInit {
   @Output() consentOutput = new EventEmitter<string>();
 
   faShieldHeart = faShieldHeart;
+  ConsentType = ConsentType;
 
   @ViewChild('consentAnimation', { static: false }) consentAnimationContainer: ElementRef<HTMLDivElement>;
 

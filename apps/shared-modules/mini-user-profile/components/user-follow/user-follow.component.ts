@@ -98,10 +98,9 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   // }
 
   onFollowClick() {
-    this.Following = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        Following: this.Following,
+        consentType: 'user-follow',
         username: this.user.name,
       },
     });

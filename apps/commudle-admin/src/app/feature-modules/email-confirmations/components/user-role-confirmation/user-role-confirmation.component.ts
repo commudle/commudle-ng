@@ -77,7 +77,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       context: {
         component: this.role,
         parentName: this.parentName,
-        acceptRole: this.acceptRole,
+        consentType: 'accept-role',
         volunteerCommunityName: this.communityName,
         volunteerEventName: this.eventName,
       },

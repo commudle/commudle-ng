@@ -14,7 +14,6 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class JoinByTokenComponent implements OnInit {
   joined = false;
-  joinChannelToken = false;
   communityName;
   channelId;
   channelName: string;
@@ -55,10 +54,9 @@ export class JoinByTokenComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.joinChannelToken = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        joinChannelToken: this.joinChannelToken,
+        consentType: 'join-channel-by-token',
         communityNameToken: this.communityName,
         channelNameToken: this.channelName,
       },

@@ -25,7 +25,6 @@ export class RsvpComponent implements OnInit, OnDestroy {
   dferg: IDataFormEntityResponseGroup;
   ERegistrationStatuses = ERegistrationStatuses;
   customReg: boolean;
-  onacceptRSVP = false;
   eventId: string;
   showConfirmationDialog = false;
 
@@ -97,10 +96,9 @@ export class RsvpComponent implements OnInit, OnDestroy {
   }
 
   onAcceptRoleButton() {
-    this.onacceptRSVP = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        onacceptRSVP: this.onacceptRSVP,
+        consentType: 'accept-rsvp-consent',
         communityNameSpeaker: this.community.name,
         eventNameSpeaker: this.event.name,
       },

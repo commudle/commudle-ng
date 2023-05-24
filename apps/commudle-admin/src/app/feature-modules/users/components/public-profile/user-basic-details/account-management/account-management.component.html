@@ -5,9 +5,10 @@
     size="large"
     shape="rectangle"
     class="account-management-button"
+    outline
     (click)="accountManagement('deactivate')"
   >
-    Deactivate Account
+    <fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp; Deactivate Profile
   </button>
   <button
     nbButton
@@ -15,8 +16,9 @@
     size="large"
     shape="rectangle"
     class="account-management-button"
+    outline
     (click)="accountManagement('close')"
   >
-    Close Account
+    <fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp; Delete Profile
   </button>
 </div>

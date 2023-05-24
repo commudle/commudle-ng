@@ -46,7 +46,6 @@ export class JobComponent implements OnInit, OnDestroy {
   faLocationDot = faLocationDot;
   faMoneyBills = faMoneyBills;
   faCalendar = faCalendar;
-  acceptResumeConsent = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -124,10 +123,9 @@ export class JobComponent implements OnInit, OnDestroy {
   }
 
   onAcceptRoleButton() {
-    this.acceptResumeConsent = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        acceptResumeConsent: this.acceptResumeConsent,
+        consentType: 'resume-consent',
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

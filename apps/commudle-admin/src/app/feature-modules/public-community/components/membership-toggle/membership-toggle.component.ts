@@ -30,7 +30,6 @@ export class MembershipToggleComponent implements OnInit {
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
   @Input() appearance: NbButtonAppearance = 'filled';
-  joinCommunity = false;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -69,10 +68,9 @@ export class MembershipToggleComponent implements OnInit {
   }
 
   onJoinCommunityClick() {
-    this.joinCommunity = true;
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        joinCommunity: this.joinCommunity,
+        consentType: 'join-community',
         communitySlug: this.community.name,
       },
     });

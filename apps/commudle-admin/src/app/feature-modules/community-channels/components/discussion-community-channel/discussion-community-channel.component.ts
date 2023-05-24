@@ -63,7 +63,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   messageId;
   isInitial;
   highlight = true;
-  onjoinChannel = false;
   communityName;
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
 
@@ -508,10 +507,9 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   onAcceptBuildButton() {
-    this.onjoinChannel = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        onjoinChannel: this.onjoinChannel,
+        consentType: 'join-channel-by-button',
         channelName: this.communityChannel.name,
         communityName: this.communityName,
       },

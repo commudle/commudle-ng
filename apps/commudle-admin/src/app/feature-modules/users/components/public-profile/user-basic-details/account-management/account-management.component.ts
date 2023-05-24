@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-account-management',
   templateUrl: './account-management.component.html',
@@ -12,6 +12,7 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 export class AccountManagementComponent implements OnInit {
   deactivateAccount = false;
   closeAccount = false;
+  faExclamationTriangle = faExclamationTriangle;
 
   constructor(
     private nbDialogService: NbDialogService,
@@ -35,6 +36,7 @@ export class AccountManagementComponent implements OnInit {
     }
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
+        consentType: 'deactivate-delete',
         deactivateAccount: this.deactivateAccount,
         closeAccount: this.closeAccount,
         buttonText: 'Accept and Logout',

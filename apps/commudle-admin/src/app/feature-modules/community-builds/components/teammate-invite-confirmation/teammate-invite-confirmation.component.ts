@@ -12,7 +12,6 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class TeammateInviteConfirmationComponent implements OnInit {
   confirmation: boolean;
-  joinBuild = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -48,10 +47,9 @@ export class TeammateInviteConfirmationComponent implements OnInit {
   }
 
   onAcceptBuildButton(buildName) {
-    this.joinBuild = true;
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        joinBuild: this.joinBuild,
+        consentType: 'join-build',
         buildName: buildName,
       },
     });

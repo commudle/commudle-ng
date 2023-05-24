@@ -21,7 +21,6 @@ export class EmailJoinComponent implements OnInit {
   communityName;
   channelName;
   faShieldHeart = faShieldHeart;
-  joinChannelEmail = false;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -68,10 +67,9 @@ export class EmailJoinComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.joinChannelEmail = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        joinChannelEmail: this.joinChannelEmail,
+        consentType: 'join-channel-by-email',
         communityNameEmail: this.communityName,
         channelNameEmail: this.channelName,
       },
