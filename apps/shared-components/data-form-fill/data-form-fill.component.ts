@@ -133,7 +133,7 @@ export class DataFormFillComponent implements OnInit, OnChanges {
       }
       const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
         context: {
-          consentType: ConsentTypesEnum.oneClickRegistrationForm,
+          consentType: ConsentTypesEnum.OneClickRegistrationForm,
         },
       });
       dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

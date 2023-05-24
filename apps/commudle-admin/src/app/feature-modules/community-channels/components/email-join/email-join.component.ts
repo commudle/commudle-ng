@@ -70,7 +70,7 @@ export class EmailJoinComponent implements OnInit {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.joinChannelEmail,
+        consentType: ConsentTypesEnum.JoinChannelEmail,
         communityNameEmail: this.communityName,
         channelNameEmail: this.channelName,
       },

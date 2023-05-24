@@ -100,7 +100,7 @@ export class HighlightedLinksComponent implements OnInit {
 
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.oneClickRegistration,
+        consentType: ConsentTypesEnum.OneClickRegistration,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

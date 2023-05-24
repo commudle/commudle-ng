@@ -99,7 +99,7 @@ export class RsvpComponent implements OnInit, OnDestroy {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.acceptRSVP,
+        consentType: ConsentTypesEnum.AcceptRSVP,
         communityNameSpeaker: this.community.name,
         eventNameSpeaker: this.event.name,
       },

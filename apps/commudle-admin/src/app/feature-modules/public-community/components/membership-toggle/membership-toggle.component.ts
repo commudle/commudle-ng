@@ -71,7 +71,7 @@ export class MembershipToggleComponent implements OnInit {
   onJoinCommunityClick() {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.joinCommunity,
+        consentType: ConsentTypesEnum.JoinCommunity,
         communitySlug: this.community.name,
       },
     });

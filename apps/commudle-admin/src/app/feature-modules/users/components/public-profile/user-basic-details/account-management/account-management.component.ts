@@ -37,7 +37,7 @@ export class AccountManagementComponent implements OnInit {
     }
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.deactivateDeleteAccount,
+        consentType: ConsentTypesEnum.DeactivateDeleteAccount,
         deactivateAccount: this.deactivateAccount,
         closeAccount: this.closeAccount,
         buttonText: ButtonText.Deactivate,

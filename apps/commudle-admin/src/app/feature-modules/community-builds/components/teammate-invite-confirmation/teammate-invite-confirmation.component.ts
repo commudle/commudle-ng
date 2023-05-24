@@ -50,7 +50,7 @@ export class TeammateInviteConfirmationComponent implements OnInit {
   onAcceptBuildButton(buildName) {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.joinBuild,
+        consentType: ConsentTypesEnum.JoinBuild,
         buildName: buildName,
       },
     });

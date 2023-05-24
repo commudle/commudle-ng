@@ -9,13 +9,13 @@
       </div>
     </nb-card-header>
     <nb-card-body [ngSwitch]="consentType">
-      <div *ngSwitchCase="consentTypesEnum.userFollow">
+      <div *ngSwitchCase="consentTypesEnum.UserFollow">
         <commudle-user-follow-consent [username]="username"></commudle-user-follow-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.joinCommunity">
+      <div *ngSwitchCase="consentTypesEnum.JoinCommunity">
         <commudle-join-community-consent [communitySlug]="communitySlug"></commudle-join-community-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.acceptRole">
+      <div *ngSwitchCase="consentTypesEnum.AcceptRole">
         <commudle-accept-event-volunteer-consent
           *ngIf="component === 'event_volunteer'"
           [volunteerCommunityName]="volunteerCommunityName"
@@ -30,41 +30,41 @@
           [parentName]="parentName"
         ></commudle-accept-community-administrator-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.joinBuild">
+      <div *ngSwitchCase="consentTypesEnum.JoinBuild">
         <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.joinChannelToken">
+      <div *ngSwitchCase="consentTypesEnum.JoinChannelToken">
         <commudle-accept-channel-token-consent
           [communityNameToken]="communityNameToken"
           [channelNameToken]="channelNameToken"
         ></commudle-accept-channel-token-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.joinChannelButton">
+      <div *ngSwitchCase="consentTypesEnum.JoinChannelButton">
         <commudle-join-channel-consent
           [communityName]="communityName"
           [channelName]="channelName"
         ></commudle-join-channel-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.oneClickRegistration">
+      <div *ngSwitchCase="consentTypesEnum.OneClickRegistration">
         <commudle-accept-event-one-click-registration-consent></commudle-accept-event-one-click-registration-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.oneClickRegistrationForm">
+      <div *ngSwitchCase="consentTypesEnum.OneClickRegistrationForm">
         <commudle-accept-event-form-registration-consent></commudle-accept-event-form-registration-consent>
       </div>
-      <div *ngSwitchCase="consentTypesEnum.resumeConsent">
+      <div *ngSwitchCase="consentTypesEnum.ResumeConsent">
         <commudle-accept-resume-consent></commudle-accept-resume-consent>
       </div>
       <commudle-accept-single-click-registration-speaker-consent
-        *ngSwitchCase="consentTypesEnum.acceptRSVP"
+        *ngSwitchCase="consentTypesEnum.AcceptRSVP"
         [communityNameSpeaker]="communityNameSpeaker"
         [eventNameSpeaker]="eventNameSpeaker"
       ></commudle-accept-single-click-registration-speaker-consent>
       <commudle-accept-join-channel-email-consent
-        *ngSwitchCase="consentTypesEnum.joinChannelEmail"
+        *ngSwitchCase="consentTypesEnum.JoinChannelEmail"
         [communityNameEmail]="communityNameEmail"
         [channelNameEmail]="channelNameEmail"
       ></commudle-accept-join-channel-email-consent>
-      <div *ngSwitchCase="consentTypesEnum.deactivateDeleteAccount">
+      <div *ngSwitchCase="consentTypesEnum.DeactivateDeleteAccount">
         <commudle-accept-deactivate-account-consent
           *ngIf="deactivateAccount"
         ></commudle-accept-deactivate-account-consent>

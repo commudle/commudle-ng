@@ -510,7 +510,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   onAcceptBuildButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.joinChannelButton,
+        consentType: ConsentTypesEnum.JoinChannelButton,
         channelName: this.communityChannel.name,
         communityName: this.communityName,
       },

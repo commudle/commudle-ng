@@ -126,7 +126,7 @@ export class JobComponent implements OnInit, OnDestroy {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.resumeConsent,
+        consentType: ConsentTypesEnum.ResumeConsent,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

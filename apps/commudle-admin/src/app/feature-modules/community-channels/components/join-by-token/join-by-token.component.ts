@@ -57,7 +57,7 @@ export class JoinByTokenComponent implements OnInit {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.joinChannelToken,
+        consentType: ConsentTypesEnum.JoinChannelToken,
         communityNameToken: this.communityName,
         channelNameToken: this.channelName,
       },
