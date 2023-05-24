@@ -7,6 +7,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-email-join',
@@ -21,7 +22,6 @@ export class EmailJoinComponent implements OnInit {
   communityName;
   channelName;
   faShieldHeart = faShieldHeart;
-  joinChannelEmail = false;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -68,10 +68,9 @@ export class EmailJoinComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.joinChannelEmail = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        joinChannelEmail: this.joinChannelEmail,
+        consentType: ConsentTypesEnum.JoinChannelEmail,
         communityNameEmail: this.communityName,
         channelNameEmail: this.channelName,
       },

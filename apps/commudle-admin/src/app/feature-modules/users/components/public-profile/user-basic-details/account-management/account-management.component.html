@@ -1,0 +1,24 @@
+<div class="account-management-container">
+  <button
+    nbButton
+    status="danger"
+    size="large"
+    shape="rectangle"
+    class="account-management-button"
+    outline
+    (click)="accountManagement('deactivate')"
+  >
+    <fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp; Deactivate Profile
+  </button>
+  <button
+    nbButton
+    status="danger"
+    size="large"
+    shape="rectangle"
+    class="account-management-button"
+    outline
+    (click)="accountManagement('close')"
+  >
+    <fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp; Delete Profile
+  </button>
+</div>

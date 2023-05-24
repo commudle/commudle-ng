@@ -24,6 +24,11 @@
     .accept-button {
       @apply com-text-white com-text-sm com-bg-Ultramarine-Blue com-mr-4;
     }
+
+    .deactivate-button {
+      @apply com-text-white com-text-sm com-bg-Infra-Red com-mr-4;
+    }
+
     .reject-button {
       @apply com-text-Ultramarine-Blue com-text-sm com-border-Ultramarine-Blue;
     }

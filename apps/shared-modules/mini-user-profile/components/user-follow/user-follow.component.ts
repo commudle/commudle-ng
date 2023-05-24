@@ -14,6 +14,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -29,6 +30,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() showIcon = true;
   @Input() appearance: NbButtonAppearance;
   @Input() status: NbComponentStatus;
+  @Input() disabled = false;
 
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
 
@@ -98,10 +100,9 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   // }
 
   onFollowClick() {
-    this.Following = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        Following: this.Following,
+        consentType: ConsentTypesEnum.UserFollow,
         username: this.user.name,
       },
     });

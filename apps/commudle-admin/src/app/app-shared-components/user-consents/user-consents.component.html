@@ -8,63 +8,73 @@
         <p>Your Privacy, Our Priority</p>
       </div>
     </nb-card-header>
-    <nb-card-body [ngSwitch]="true">
-      <div *ngSwitchCase="Following">
+    <nb-card-body [ngSwitch]="consentType">
+      <div *ngSwitchCase="consentTypesEnum.UserFollow">
         <commudle-user-follow-consent [username]="username"></commudle-user-follow-consent>
       </div>
-      <div *ngSwitchCase="joinCommunity">
+      <div *ngSwitchCase="consentTypesEnum.JoinCommunity">
         <commudle-join-community-consent [communitySlug]="communitySlug"></commudle-join-community-consent>
       </div>
-      <div *ngSwitchCase="acceptRole">
+      <div *ngSwitchCase="consentTypesEnum.AcceptRole">
         <commudle-accept-event-volunteer-consent
-          *ngSwitchCase="component === 'event_volunteer'"
+          *ngIf="component === 'event_volunteer'"
           [volunteerCommunityName]="volunteerCommunityName"
           [volunteerEventName]="volunteerEventName"
         ></commudle-accept-event-volunteer-consent>
         <commudle-accept-community-organizer-consent
-          *ngSwitchCase="component === 'organizer'"
+          *ngIf="component === 'organizer'"
           [parentName]="parentName"
         ></commudle-accept-community-organizer-consent>
         <commudle-accept-community-administrator-consent
-          *ngSwitchCase="component === 'community_administrator'"
+          *ngIf="component === 'community_administrator'"
           [parentName]="parentName"
         ></commudle-accept-community-administrator-consent>
       </div>
-      <div *ngSwitchCase="joinBuild">
+      <div *ngSwitchCase="consentTypesEnum.JoinBuild">
         <commudle-accept-build-teammate-consent [buildName]="buildName"></commudle-accept-build-teammate-consent>
       </div>
-      <div *ngSwitchCase="joinChannelToken">
+      <div *ngSwitchCase="consentTypesEnum.JoinChannelToken">
         <commudle-accept-channel-token-consent
           [communityNameToken]="communityNameToken"
           [channelNameToken]="channelNameToken"
         ></commudle-accept-channel-token-consent>
       </div>
-      <div *ngSwitchCase="onjoinChannel">
+      <div *ngSwitchCase="consentTypesEnum.JoinChannelButton">
         <commudle-join-channel-consent
           [communityName]="communityName"
           [channelName]="channelName"
         ></commudle-join-channel-consent>
       </div>
-      <div *ngSwitchCase="oneClickRegistration">
+      <div *ngSwitchCase="consentTypesEnum.OneClickRegistration">
         <commudle-accept-event-one-click-registration-consent></commudle-accept-event-one-click-registration-consent>
       </div>
-      <div *ngSwitchCase="oneClickRegistrationForm">
+      <div *ngSwitchCase="consentTypesEnum.OneClickRegistrationForm">
         <commudle-accept-event-form-registration-consent></commudle-accept-event-form-registration-consent>
       </div>
-      <div *ngSwitchCase="acceptResumeConsent"><commudle-accept-resume-consent></commudle-accept-resume-consent></div>
+      <div *ngSwitchCase="consentTypesEnum.ResumeConsent">
+        <commudle-accept-resume-consent></commudle-accept-resume-consent>
+      </div>
       <commudle-accept-single-click-registration-speaker-consent
-        *ngSwitchCase="onacceptRSVP"
+        *ngSwitchCase="consentTypesEnum.AcceptRSVP"
         [communityNameSpeaker]="communityNameSpeaker"
         [eventNameSpeaker]="eventNameSpeaker"
       ></commudle-accept-single-click-registration-speaker-consent>
       <commudle-accept-join-channel-email-consent
-        *ngSwitchCase="joinChannelEmail"
+        *ngSwitchCase="consentTypesEnum.JoinChannelEmail"
         [communityNameEmail]="communityNameEmail"
         [channelNameEmail]="channelNameEmail"
       ></commudle-accept-join-channel-email-consent>
+      <div *ngSwitchCase="consentTypesEnum.DeactivateDeleteAccount">
+        <commudle-accept-deactivate-account-consent
+          *ngIf="deactivateAccount"
+        ></commudle-accept-deactivate-account-consent>
+        <commudle-accept-delete-account-consent *ngIf="closeAccount"></commudle-accept-delete-account-consent>
+      </div>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton shape="rectangle" (click)="accept()" class="accept-button">Accept</button>
+      <button nbButton shape="rectangle" (click)="accept()" [ngClass]="buttonStyle">
+        {{ buttonText }}
+      </button>
       <button nbButton shape="rectangle" (click)="reject()" class="reject-button">Decline</button>
     </nb-card-footer>
   </nb-card>
