@@ -20,6 +20,7 @@ import {
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-job',
@@ -125,7 +126,7 @@ export class JobComponent implements OnInit, OnDestroy {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'resume-consent',
+        consentType: ConsentTypesEnum.resumeConsent,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

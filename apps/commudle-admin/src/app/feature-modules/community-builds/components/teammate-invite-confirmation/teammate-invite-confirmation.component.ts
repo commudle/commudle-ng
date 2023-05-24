@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
@@ -49,7 +50,7 @@ export class TeammateInviteConfirmationComponent implements OnInit {
   onAcceptBuildButton(buildName) {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'join-build',
+        consentType: ConsentTypesEnum.joinBuild,
         buildName: buildName,
       },
     });

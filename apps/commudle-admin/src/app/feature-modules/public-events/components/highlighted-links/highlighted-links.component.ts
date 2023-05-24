@@ -15,6 +15,7 @@ import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_sta
 import { IUserEventRegistration } from 'apps/shared-models/user_event_registration.model';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-highlighted-links',
@@ -99,7 +100,7 @@ export class HighlightedLinksComponent implements OnInit {
 
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'one-click-registration',
+        consentType: ConsentTypesEnum.oneClickRegistration,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

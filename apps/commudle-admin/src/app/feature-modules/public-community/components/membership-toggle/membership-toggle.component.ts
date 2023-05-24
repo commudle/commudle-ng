@@ -13,6 +13,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-membership-toggle',
@@ -70,7 +71,7 @@ export class MembershipToggleComponent implements OnInit {
   onJoinCommunityClick() {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'join-community',
+        consentType: ConsentTypesEnum.joinCommunity,
         communitySlug: this.community.name,
       },
     });

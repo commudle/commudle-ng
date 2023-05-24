@@ -4,6 +4,7 @@ import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 @Component({
   selector: 'commudle-account-management',
   templateUrl: './account-management.component.html',
@@ -36,23 +37,26 @@ export class AccountManagementComponent implements OnInit {
     }
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'deactivate-delete',
+        consentType: ConsentTypesEnum.deactivateDeleteAccount,
         deactivateAccount: this.deactivateAccount,
         closeAccount: this.closeAccount,
-        buttonText: 'Accept and Logout',
+        buttonText: ButtonText.Deactivate,
+        buttonStyle: ButtonStyle.Deactivate,
       },
     });
 
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
       if (result === 'accepted' && this.closeAccount === true) {
-        const queryParams = { delete_profile: true };
         this.deactivateProfile(true);
-        this.router.navigate(['/login'], { queryParams });
+        this.router.navigate(['./']).then(() => {
+          window.location.reload();
+        });
       } else if (result === 'accepted' && this.closeAccount === false) {
-        const queryParams = { delete_profile: false };
         this.deactivateProfile();
-        this.router.navigate(['/login'], { queryParams });
+        this.router.navigate(['./']).then(() => {
+          window.location.reload();
+        });
       }
     });
   }

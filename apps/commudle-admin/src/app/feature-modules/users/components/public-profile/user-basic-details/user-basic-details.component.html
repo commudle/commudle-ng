@@ -11,6 +11,7 @@
             *appBreakpoints="'>md'"
             (userFollowed)="updateProfile.emit()"
             [username]="user.username"
+            [disabled]="user.deactivated"
             class="com-ml-6 com-mb-4"
           ></app-user-follow>
         </div>
@@ -19,12 +20,14 @@
             *appBreakpoints="'<=md'"
             (userFollowed)="updateProfile.emit()"
             [username]="user.username"
+            [disabled]="user.deactivated"
           ></app-user-follow>
           <app-share-button
             [content]="environment.app_url + '/users/' + user.username"
             [title]="user.name + ' ' + user.designation"
             [url]="environment.app_url + '/users/' + user.username"
             appearance="outline"
+            [disabled]="user.deactivated"
           ></app-share-button>
           <a
             *ngIf="currentUser?.id === user.id; else message"
@@ -38,7 +41,14 @@
             Edit Profile
           </a>
           <ng-template #message>
-            <button (click)="openChatWithUser()" nbButton shape="semi-round" size="small" status="info">
+            <button
+              [disabled]="user.deactivated"
+              (click)="openChatWithUser()"
+              nbButton
+              shape="semi-round"
+              size="small"
+              status="info"
+            >
               <nb-icon icon="paper-plane"></nb-icon>
               Message
             </button>
@@ -59,10 +69,22 @@
                   title="Expert Tick"
                 />
                 <app-hiring-looking-works-tags
+                  *ngIf="!user.deactivated"
                   [user]="user"
                   [size]="'large'"
                   class="com-block com-h-3 md:com-h-7"
                 ></app-hiring-looking-works-tags>
+                <button
+                  *ngIf="user.deactivated"
+                  nbButton
+                  status="basic"
+                  size="tiny"
+                  shape="rectangle"
+                  class="deactivated-button"
+                  outline
+                >
+                  <fa-icon [icon]="faExclamationTriangle"></fa-icon>&nbsp; Account Deactivated
+                </button>
               </div>
               <p class="username">@{{ user.username }}</p>
             </div>

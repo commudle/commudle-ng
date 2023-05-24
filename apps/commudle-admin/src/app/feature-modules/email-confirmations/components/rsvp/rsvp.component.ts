@@ -8,6 +8,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { UserEventRegistrationsService } from 'apps/commudle-admin/src/app/services/user-event-registrations.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -98,7 +99,7 @@ export class RsvpComponent implements OnInit, OnDestroy {
   onAcceptRoleButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'accept-rsvp-consent',
+        consentType: ConsentTypesEnum.acceptRSVP,
         communityNameSpeaker: this.community.name,
         eventNameSpeaker: this.event.name,
       },

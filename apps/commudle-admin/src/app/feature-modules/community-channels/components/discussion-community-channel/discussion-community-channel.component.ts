@@ -24,6 +24,7 @@ import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validat
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -509,7 +510,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   onAcceptBuildButton() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        consentType: 'join-channel-by-button',
+        consentType: ConsentTypesEnum.joinChannelButton,
         channelName: this.communityChannel.name,
         communityName: this.communityName,
       },

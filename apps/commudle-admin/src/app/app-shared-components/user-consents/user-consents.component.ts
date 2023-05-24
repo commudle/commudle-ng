@@ -18,21 +18,7 @@ import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 import { AcceptJoinChannelEmailConsentComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/accept-join-channel-email-consent/accept-join-channel-email-consent.component';
 import { AcceptDeactivateAccountConsentComponent } from './accept-deactivate-account-consent/accept-deactivate-account-consent.component';
 import { AcceptDeleteAccountConsentComponent } from './accept-delete-account-consent/accept-delete-account-consent.component';
-
-export enum ConsentType {
-  userFollow = 'user-follow',
-  joinCommunity = 'join-community',
-  joinBuild = 'join-build',
-  joinChannelToken = 'join-channel-by-token',
-  joinChannelButton = 'join-channel-by-button',
-  joinChannelEmail = 'join-channel-by-email',
-  acceptRole = 'accept-role',
-  oneClickRegistration = 'one-click-registration',
-  oneClickRegistrationForm = 'one-click-registration-form',
-  resumeConsent = 'resume-consent',
-  acceptRSVP = 'accept-rsvp-consent',
-  deactivateDeleteAccount = 'deactivate-delete',
-}
+import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 @Component({
   selector: 'commudle-user-consents',
   standalone: true,
@@ -79,11 +65,12 @@ export class UserConsentsComponent implements OnInit {
   @Input() channelNameEmail: string;
   @Input() deactivateAccount: boolean;
   @Input() closeAccount: boolean;
-  @Input() buttonText: string;
+  @Input() buttonText = ButtonText.Accept;
+  @Input() buttonStyle = ButtonStyle.Accept;
   @Output() consentOutput = new EventEmitter<string>();
 
   faShieldHeart = faShieldHeart;
-  ConsentType = ConsentType;
+  consentTypesEnum = ConsentTypesEnum;
 
   @ViewChild('consentAnimation', { static: false }) consentAnimationContainer: ElementRef<HTMLDivElement>;
 

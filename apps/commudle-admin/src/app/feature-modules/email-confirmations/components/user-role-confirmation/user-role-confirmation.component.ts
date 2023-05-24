@@ -5,6 +5,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
@@ -77,7 +78,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       context: {
         component: this.role,
         parentName: this.parentName,
-        consentType: 'accept-role',
+        consentType: ConsentTypesEnum.acceptRole,
         volunteerCommunityName: this.communityName,
         volunteerEventName: this.eventName,
       },

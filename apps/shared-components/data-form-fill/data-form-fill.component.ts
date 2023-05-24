@@ -6,6 +6,7 @@ import { IQuestion } from 'apps/shared-models/question.model';
 import { SDataFormsService } from '../services/s-data-forms.service';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-data-form-fill',
@@ -132,7 +133,7 @@ export class DataFormFillComponent implements OnInit, OnChanges {
       }
       const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
         context: {
-          consentType: 'one-click-registration-form',
+          consentType: ConsentTypesEnum.oneClickRegistrationForm,
         },
       });
       dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
