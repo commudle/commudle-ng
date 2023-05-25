@@ -1,7 +1,7 @@
 .title {
-  @apply com-text-3xl com-font-medium com-m-0 com-text-black com-mt-8 com-mb-3;
+  @apply com-text-3xl com-font-medium com-text-black com-mt-8 com-mb-3 com-ml-2 com-mr-0;
 }
 hr {
   //  com-border-gray-300 #D9E1EC ;
-  @apply com-border-solid com-mb-3;
+  @apply com-border-solid com-mb-3 com-ml-2 com-mr-2 com-w-[800px];
 }

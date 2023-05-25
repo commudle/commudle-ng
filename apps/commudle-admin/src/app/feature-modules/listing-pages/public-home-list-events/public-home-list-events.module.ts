@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbCardModule, NbButtonModule } from '@commudle/theme';
+import { NbCardModule, NbButtonModule, NbIconModule } from '@commudle/theme';
 import { PublicHomeListEventsRoutingModule } from './public-home-list-events-routing.module';
 import { PublicHomeListEventsComponent } from './components/public-home-list-events/public-home-list-events.component';
 import { PublicHomeListEventsHeaderComponent } from './components/public-home-list-events-header/public-home-list-events-header.component';
@@ -9,6 +9,8 @@ import { PublicHomeListEventsUpcomingComponent } from './components/public-home-
 import { PublicHomeListEventsUpcomingListComponent } from './components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
 import { PublicHomeListEventsFeaturedCommunitiesComponent } from './components/public-home-list-events-featured-communities/public-home-list-events-featured-communities.component';
 import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from './components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
+import { SharedPipesModule } from '../../../../../../shared-pipes/pipes.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -18,6 +20,15 @@ import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from './componen
     PublicHomeListEventsFeaturedCommunitiesComponent,
     PublicHomeListEventsFeaturedCommunitiesCardComponent,
   ],
-  imports: [CommonModule, PublicHomeListEventsRoutingModule, NbCardModule, NbButtonModule, SharedComponentsModule],
+  imports: [
+    CommonModule,
+    PublicHomeListEventsRoutingModule,
+    NbCardModule,
+    NbButtonModule,
+    SharedComponentsModule,
+    SharedPipesModule,
+    NbIconModule,
+    FontAwesomeModule,
+  ],
 })
 export class PublicHomeListEventsModule {}

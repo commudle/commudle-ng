@@ -1,0 +1,23 @@
+<div>
+  <a [routerLink]="[]" target="_blank">
+    <div class="featured-community">
+      <div class="image">
+        <img
+          [alt]="featuredCommunity.kommunity.name"
+          [src]="featuredCommunity.kommunity.logo_image.url"
+          [title]="featuredCommunity.kommunity.name"
+          class="avatar"
+        />
+      </div>
+      <div class="featured-communities-details">
+        <div class="details">
+          <p class="community-name">{{ featuredCommunity.kommunity.name }}</p>
+          <p class="mini-description">
+            {{ featuredCommunity.reason }}
+          </p>
+        </div>
+        <button nbButton status="info" size="medium" shape="round" class="join-button">Join</button>
+      </div>
+    </div>
+  </a>
+</div>

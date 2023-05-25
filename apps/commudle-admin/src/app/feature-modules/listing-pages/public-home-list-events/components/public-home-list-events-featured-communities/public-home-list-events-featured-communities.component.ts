@@ -18,7 +18,6 @@ export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit 
 
   getFeaturedCommunities(): void {
     this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
-      console.log(value);
       this.featuredCommunities = value.featured_communities;
     });
   }

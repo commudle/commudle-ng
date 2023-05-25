@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card class="com-w-[809px] com-mx-0">
   <nb-card-body>
     <div class="upcoming-card">
       <a [routerLink]="" class="upcoming-card-link">
@@ -24,7 +24,19 @@
             </div>
           </div>
           <div class="">
-            <button nbButton outline status="info" class="upcoming-card-button">Register</button>
+            <div>
+              <nb-icon icon="pin-outline" class="pin-outline"></nb-icon>
+              <span>location</span>
+            </div>
+            <div class="interested-members">
+              <div>
+                <nb-icon icon="people-outline" class="people-outline"></nb-icon>
+                <span>{{ event.interested_members_count }} Interested Members</span>
+              </div>
+              <button nbButton status="info" shape="semi-round" class="register-button" size="small" outline>
+                Register
+              </button>
+            </div>
           </div>
         </div>
       </a>
