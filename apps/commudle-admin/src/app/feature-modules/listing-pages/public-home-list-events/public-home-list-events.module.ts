@@ -11,6 +11,8 @@ import { PublicHomeListEventsFeaturedCommunitiesComponent } from './components/p
 import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from './components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
 import { SharedPipesModule } from '../../../../../../shared-pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PublicHomeListEventsPastComponent } from './components/public-home-list-events-past/public-home-list-events-past.component';
+import { PublicHomeListEventsPastCardComponent } from './components/public-home-list-events-past-card/public-home-list-events-past-card.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -19,6 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PublicHomeListEventsUpcomingListComponent,
     PublicHomeListEventsFeaturedCommunitiesComponent,
     PublicHomeListEventsFeaturedCommunitiesCardComponent,
+    PublicHomeListEventsPastComponent,
+    PublicHomeListEventsPastCardComponent,
   ],
   imports: [
     CommonModule,
