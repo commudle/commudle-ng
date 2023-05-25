@@ -68,7 +68,7 @@ export class AccountManagementComponent implements OnInit {
         this.router.navigate(['./']).then(() => {
           window.location.reload();
         });
-        this.gtm.dataLayerPushEvent('user-account-deactivate', { com_user_id: this.currentUser.id });
+        this.gtm.dataLayerPushEvent('user-account-deactivation', { com_user_id: this.currentUser.id });
       }
     });
   }
