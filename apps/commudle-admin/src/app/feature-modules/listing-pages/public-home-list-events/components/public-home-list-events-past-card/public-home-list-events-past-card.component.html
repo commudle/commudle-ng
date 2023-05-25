@@ -1,0 +1,32 @@
+<div class="past-events-container">
+  <a [routerLink]="[]">
+    <nb-card class="past-container">
+      <nb-card-body>
+        <div *ngIf="pastEvent">
+          <commudle-banner-image [headerImagePath]="pastEvent" [name]="pastEvent"></commudle-banner-image>
+        </div>
+        <div *ngIf="!pastEvent" class="no-image-header">
+          <nb-icon icon="link" status="primary"></nb-icon>
+        </div>
+        <div class="past-details">
+          <div>
+            <div class="details">
+              <div class="completed">
+                Completed
+                <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
+              </div>
+              <div class="interested-members">
+                <span>Attended Members: {{ pastEvent }}</span>
+              </div>
+            </div>
+            <p class="event-name">
+              {{ pastEvent }}
+            </p>
+            <!-- <p class="event-timings">{{ moment(pastEvent.start_time).format('dddd, MMM Do, YYYY') }}</p> -->
+          </div>
+          <a class="view-details">View Details</a>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </a>
+</div>
