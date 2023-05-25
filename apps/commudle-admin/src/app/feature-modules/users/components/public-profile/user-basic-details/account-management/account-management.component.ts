@@ -5,12 +5,16 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 @Component({
   selector: 'commudle-account-management',
   templateUrl: './account-management.component.html',
   styleUrls: ['./account-management.component.scss'],
 })
 export class AccountManagementComponent implements OnInit {
+  currentUser: ICurrentUser;
   deactivateAccount = false;
   closeAccount = false;
   faExclamationTriangle = faExclamationTriangle;
@@ -19,9 +23,15 @@ export class AccountManagementComponent implements OnInit {
     private nbDialogService: NbDialogService,
     private router: Router,
     private appUsersService: AppUsersService,
+    private gtm: GoogleTagManagerService,
+    private authWatchService: LibAuthwatchService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+    });
+  }
 
   deactivateProfile(deleteProfile?: boolean) {
     this.appUsersService.deactivateProfile(deleteProfile).subscribe((data) => {});
@@ -52,11 +62,13 @@ export class AccountManagementComponent implements OnInit {
         this.router.navigate(['./']).then(() => {
           window.location.reload();
         });
+        this.gtm.dataLayerPushEvent('user-account-delete', { com_user_id: this.currentUser.id });
       } else if (result === 'accepted' && this.closeAccount === false) {
         this.deactivateProfile();
         this.router.navigate(['./']).then(() => {
           window.location.reload();
         });
+        this.gtm.dataLayerPushEvent('user-account-deactivate', { com_user_id: this.currentUser.id });
       }
     });
   }
