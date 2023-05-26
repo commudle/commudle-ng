@@ -1,7 +1,7 @@
 <div>
   <a [routerLink]="[]" target="_blank">
     <div class="featured-community">
-      <div class="image">
+      <div *ngIf="featuredCommunity.kommunity.logo_image.url" class="image">
         <img
           [alt]="featuredCommunity.kommunity.name"
           [src]="featuredCommunity.kommunity.logo_image.url"

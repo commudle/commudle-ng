@@ -1,7 +1,11 @@
 .title {
-  @apply com-text-3xl com-font-medium com-text-black com-mt-8 com-mb-3 com-ml-2 com-mr-0;
-}
-hr {
-  //  com-border-gray-300 #D9E1EC ;
-  @apply com-border-solid com-mb-3 com-ml-2 com-mr-2 com-w-[800px];
+  @apply com-text-3xl com-font-bold com-text-Dark-Jungle-Green com-my-8 com-ml-2 com-mr-0;
+
+  button {
+    @apply com-mr-4;
+  }
+
+  fa-icon {
+    @apply com-text-2xl;
+  }
 }

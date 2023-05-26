@@ -1,1 +1,20 @@
-<p>public-home-list-events-header works!</p>
+<nb-card>
+  <nb-card-body>
+    <div
+      *ngIf="listingPageHeader"
+      class="com-flex com-justify-between com-rounded-lg"
+      [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }"
+    >
+      <div class="header-text">
+        <div>
+          <p class="heading">{{ listingPageHeader.title }}</p>
+          <p class="sub-heading">{{ listingPageHeader.sub_title }}</p>
+        </div>
+        <div class="search">SEARCH</div>
+      </div>
+      <div class="header-image">
+        <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

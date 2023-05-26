@@ -1,7 +1,19 @@
-<div class="com-w-[809px] com-mr-0">
-  <p class="title">PAST EVENTS</p>
-  <commudle-public-home-list-events-past-card
-    *ngFor="let pastEvent of pastEvents"
-    [pastEvent]="pastEvent"
-  ></commudle-public-home-list-events-past-card>
+<div>
+  <p class="title">
+    <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarCheck"></fa-icon></button
+    >Past Events
+  </p>
+  <div class="com-grid com-grid-cols-2 com-gap-3">
+    <div class="past-events-card-list">
+      <!-- <commudle-event-card
+        *ngFor="let event of pastEvents"
+        [event]="event"
+        [community]="community"
+      ></commudle-event-card> -->
+    </div>
+    <!-- <commudle-public-home-list-events-past-card
+      *ngFor="let pastEvent of pastEvents"
+      [pastEvent]="pastEvent"
+    ></commudle-public-home-list-events-past-card> -->
+  </div>
 </div>

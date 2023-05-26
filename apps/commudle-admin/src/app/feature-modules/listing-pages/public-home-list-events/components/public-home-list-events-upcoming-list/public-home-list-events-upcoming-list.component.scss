@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-my-0;
+  @apply com-m-0;
   nb-card-body {
     @apply com-p-0;
     .upcoming-card {
@@ -22,38 +22,60 @@ nb-card {
           }
         }
 
+        .no-image-header {
+          // @apply  com-text-center ;
+          @apply com-w-[390px] com-flex com-items-center com-justify-center;
+
+          nb-icon {
+            @apply com-text-5xl;
+          }
+        }
+
         .upcoming-card-details {
           @apply com-p-4;
           flex: 1;
 
           .upcoming-card-info {
+            @apply com-h-[126px]; //122
+
             .event-time {
-              @apply com-text-sm com-font-medium com-mb-3 com-mt-0;
+              @apply com-text-sm com-font-medium com-mb-10px com-mt-0 com-text-Auro-Metal-Saurus;
             }
 
             .event-title {
-              @apply com-text-2xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-2;
-            }
-
-            .upcoming-card-button {
+              @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-10px;
             }
           }
 
-          .interested-members {
-            @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus com-items-center;
-            @apply md:com-m-0 md:com-flex md:com-justify-between;
+          .details {
+            // @apply com-h-[140px];
+            .location {
+              @apply com-flex com-items-center com-mb-2 com-mt-0;
 
-            div {
-              @apply com-flex com-items-center;
               nb-icon {
-                @apply com-mr-2 com-text-Dark-Jungle-Green;
-                @apply md:com-mr-6px com-text-2xl;
+                @apply com-text-2xl com-mr-2 com-text-Dark-Jungle-Green;
+              }
+
+              .location-text {
+                @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
               }
             }
-          }
 
-          .register-button {
-            // @apply com-mt-8 md:com-mt-0;
+            .interested-members {
+              @apply md:com-flex com-items-center com-m-0 md:com-justify-between;
+
+              div {
+                @apply com-flex com-items-center;
+
+                nb-icon {
+                  @apply com-mr-2 com-text-Dark-Jungle-Green com-text-2xl;
+                }
+
+                span {
+                  @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
+                }
+              }
+            }
           }
         }
       }
@@ -61,6 +83,5 @@ nb-card {
   }
 }
 hr {
-  //  com-border-gray-300 #D9E1EC ;
-  @apply com-border-solid com-my-3 com-w-[800px] com-mr-2 com-ml-2;
+  @apply com-border-solid com-my-3 com-mx-2 com-border-Bright-Gray-Light;
 }

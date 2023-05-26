@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { HomeService } from 'apps/commudle-admin/src/app/services/home.service';
+import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import * as moment from 'moment';
 
@@ -10,31 +13,40 @@ import * as moment from 'moment';
 })
 export class PublicHomeListEventsUpcomingComponent implements OnInit {
   events: IEvent[];
+  community: ICommunity;
   upcomingEvents: IEvent[] = [];
-  constructor(private homeService: HomeService) {}
+  faCalendarDays = faCalendarDays;
+  constructor(private homeService: HomeService, private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
     this.getUpcomingEvents();
   }
 
-  // getUpcomingEvents() {
-  //   this.homeService.pUpcomingEvents().subscribe((data) => {
-  //     this.events = data.events;
-  //     console.log(this.events);
-  //     // this.changeDetectorRef.markForCheck();
-  //   });
-  // }
+  getCommunity() {
+    // this.communitiesService.getCommunityDetails(this.upcomingEvents.kommunity_id).subscribe((data) => {
+    //   this.community = data;
+    // });
+  }
 
   getUpcomingEvents() {
     this.homeService.pUpcomingEvents().subscribe((data) => {
-      this.events = data.events;
-      this.events.forEach((event) => {
-        if (moment(event.end_time) > moment()) {
-          this.upcomingEvents.push(event);
-        }
-        console.log(this.events);
-        // this.changeDetectorRef.markForCheck();
-      });
+      this.upcomingEvents = data.events;
+      this.getCommunity();
+      // this.changeDetectorRef.markForCheck();
     });
   }
+
+  // getUpcomingEvents() {
+  //   this.homeService.pUpcomingEvents().subscribe((data) => {
+  //     this.events = data.events;
+  //     console.log(data);
+  //     this.events.forEach((event) => {
+  //       if (moment(event.end_time) > moment()) {
+  //         this.upcomingEvents.push(event);
+  //       }
+  //       console.log(this.events);
+  //       // this.changeDetectorRef.markForCheck();
+  //     });
+  //   });
+  // }
 }

@@ -1,6 +1,8 @@
-<div class="com-w-[809px] com-mr-0">
-  <p class="title">Upcoming</p>
-  <hr />
+<div>
+  <p class="title">
+    <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarDays"></fa-icon></button
+    >Upcoming Events
+  </p>
   <commudle-public-home-list-events-upcoming-list
     *ngFor="let event of upcomingEvents"
     [event]="event"

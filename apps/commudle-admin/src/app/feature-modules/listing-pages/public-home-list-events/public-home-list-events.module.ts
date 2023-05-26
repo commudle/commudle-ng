@@ -13,6 +13,10 @@ import { SharedPipesModule } from '../../../../../../shared-pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicHomeListEventsPastComponent } from './components/public-home-list-events-past/public-home-list-events-past.component';
 import { PublicHomeListEventsPastCardComponent } from './components/public-home-list-events-past-card/public-home-list-events-past-card.component';
+import { PublicHomeListEventsSpeakersComponent } from './components/public-home-list-events-speakers/public-home-list-events-speakers.component';
+import { PublicHomeListEventsSpeakersCardComponent } from './components/public-home-list-events-speakers-card/public-home-list-events-speakers-card.component';
+import { MiniUserProfileModule } from '../../../../../../shared-modules/mini-user-profile/mini-user-profile.module';
+import { EventCardComponent } from '../../../app-shared-components/event-card/event-card.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -23,6 +27,8 @@ import { PublicHomeListEventsPastCardComponent } from './components/public-home-
     PublicHomeListEventsFeaturedCommunitiesCardComponent,
     PublicHomeListEventsPastComponent,
     PublicHomeListEventsPastCardComponent,
+    PublicHomeListEventsSpeakersComponent,
+    PublicHomeListEventsSpeakersCardComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +39,8 @@ import { PublicHomeListEventsPastCardComponent } from './components/public-home-
     SharedPipesModule,
     NbIconModule,
     FontAwesomeModule,
+    MiniUserProfileModule,
+    EventCardComponent,
   ],
 })
 export class PublicHomeListEventsModule {}

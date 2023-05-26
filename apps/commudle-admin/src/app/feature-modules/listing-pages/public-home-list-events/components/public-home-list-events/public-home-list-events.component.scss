@@ -1,7 +1,7 @@
-.main-column {
-  @apply com-w-[850px] com-pr-7;
+.container {
+  @apply com-px-4;
 }
 
-.right-column {
-  @apply com-w-[426px];
+.main-column {
+  @apply com-mr-30px;
 }
