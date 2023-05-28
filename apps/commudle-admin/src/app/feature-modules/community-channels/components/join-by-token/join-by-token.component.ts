@@ -6,6 +6,7 @@ import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-join-by-token',
@@ -14,7 +15,6 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class JoinByTokenComponent implements OnInit {
   joined = false;
-  joinChannelToken = false;
   communityName;
   channelId;
   channelName: string;
@@ -55,10 +55,9 @@ export class JoinByTokenComponent implements OnInit {
   }
 
   onAcceptRoleButton() {
-    this.joinChannelToken = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        joinChannelToken: this.joinChannelToken,
+        consentType: ConsentTypesEnum.JoinChannelToken,
         communityNameToken: this.communityName,
         channelNameToken: this.channelName,
       },

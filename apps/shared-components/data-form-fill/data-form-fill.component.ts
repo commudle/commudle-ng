@@ -6,6 +6,7 @@ import { IQuestion } from 'apps/shared-models/question.model';
 import { SDataFormsService } from '../services/s-data-forms.service';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-data-form-fill',
@@ -22,7 +23,6 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   dataForm: IDataForm;
   formCreated = false;
   enabledQuestions: IQuestion[] = [];
-  oneClickRegistrationForm = false;
 
   message =
     'Never enter any personal or sensitive information which can be misused (including but not limited to passwords) in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.';
@@ -126,7 +126,6 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   }
 
   onAcceptRoleButton() {
-    this.oneClickRegistrationForm = true;
     this.dataFormsService.isMemberOfAllCollaboratingCommunities(this.eventId).subscribe((data) => {
       if (data) {
         this.submitForm();
@@ -134,7 +133,7 @@ export class DataFormFillComponent implements OnInit, OnChanges {
       }
       const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
         context: {
-          oneClickRegistrationForm: this.oneClickRegistrationForm,
+          consentType: ConsentTypesEnum.OneClickRegistrationForm,
         },
       });
       dialogRef.componentRef.instance.consentOutput.subscribe((result) => {

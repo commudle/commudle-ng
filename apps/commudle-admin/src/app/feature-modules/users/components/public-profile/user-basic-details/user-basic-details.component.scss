@@ -20,7 +20,7 @@ p {
       @apply com-w-full com-mt-8;
 
       .name {
-        @apply com-flex com-items-baseline com-gap-1.5;
+        @apply com-flex com-gap-1.5 com-items-center;
 
         .expert-icon {
           @apply com-h-3 com-w-3 md:com-h-6 md:com-w-6;
@@ -28,6 +28,10 @@ p {
 
         h1 {
           @apply com-text-2xl md:com-text-4xl com-font-semibold;
+        }
+
+        .deactivated-button {
+          @apply com-text-sm com-font-semibold com-text-Yankees-Blue com-border-none;
         }
       }
 

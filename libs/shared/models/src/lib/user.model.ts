@@ -43,6 +43,7 @@ export interface IUser {
   has_community_builds: boolean;
   has_labs: boolean;
   profile_banner_image: IAttachedFile;
+  deactivated: boolean;
 }
 
 export interface IUserSearch extends IUser {

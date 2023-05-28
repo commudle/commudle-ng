@@ -61,10 +61,6 @@ export class VolunteersComponent implements OnInit {
     });
   }
 
-  onSelectionChange(value): void {
-    this.userRolesUserForm.get('role_designation').setValue(value);
-  }
-
   resendInvitationMail(userRolesUser) {
     this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe((data) => {
       this.toastLogService.successDialog('Invite sent again!');
@@ -84,11 +80,9 @@ export class VolunteersComponent implements OnInit {
   createUserRolesUser() {
     this.userRolesUsersService.createUserRolesUser(this.userRolesUserForm.value).subscribe((data) => {
       this.volunteers.push(data);
-      this.userRolesUserForm.patchValue({
-        email: null,
-      });
       this.toastLogService.successDialog('Invitation Email Sent!');
-      this.userRolesUserForm.reset();
+      this.userRolesUserForm.controls['email'].reset();
+      this.userRolesUserForm.controls['role_designation'].reset();
       this.changeDetectorRef.markForCheck();
     });
   }
