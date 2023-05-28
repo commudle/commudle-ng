@@ -21,6 +21,7 @@ type Message = {
   action: (typeof ACTIONS)[keyof typeof ACTIONS];
   permitted_actions: (typeof ACTIONS)[keyof typeof ACTIONS][];
   user_message: IUserMessage;
+  cursor: string;
   user_message_id: number;
   parent_id: number;
   parent_type: 'UserMessage' | 'Discussion';

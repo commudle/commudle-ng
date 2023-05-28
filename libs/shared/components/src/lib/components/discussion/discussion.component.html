@@ -1,4 +1,5 @@
 <div class="discussion-container">
+  <!-- TODO: Fix problem with infinite scroll -->
   <div
     #messagesListRef
     (scrolled)="discussionHandlerService.getMessagesBefore()"
@@ -8,13 +9,16 @@
       !(discussionHandlerService.pageInfo$ | async)?.has_next_page &&
       !(discussionHandlerService.pageInfo$ | async)?.has_previous_page
     "
+    [infiniteScrollDistance]="10"
+    [infiniteScrollUpDistance]="-8"
     [scrollWindow]="false"
     class="messages-list"
     commudleInfiniteScroll
   >
     <commudle-message
       *ngFor="let message of discussionHandlerService.messages$ | async"
-      [message]="message"
+      [cursor]="message.cursor"
+      [message]="message.data"
     ></commudle-message>
   </div>
   <ng-template #noMessages>

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { IUserMessage } from '@commudle/shared-models';
-import { AuthService } from '@commudle/shared-services';
+import { AuthService, ShareService } from '@commudle/shared-services';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { DiscussionHandlerService } from '../../../services/discussion-handler.service';
@@ -11,9 +11,11 @@ import { UserMessageReceiptHandlerService } from '../../../services/user-message
   selector: 'commudle-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent implements OnInit, AfterViewInit {
   @Input() message!: IUserMessage;
+  @Input() cursor!: string;
   @Input() canReply = true;
 
   validators: IEditorValidator = {
@@ -33,6 +35,7 @@ export class MessageComponent implements OnInit, AfterViewInit {
     public authService: AuthService,
     public discussionHandlerService: DiscussionHandlerService,
     private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
+    private shareService: ShareService,
   ) {}
 
   ngOnInit(): void {}
@@ -52,8 +55,21 @@ export class MessageComponent implements OnInit, AfterViewInit {
   }
 
   scrollToMessage() {
-    if (this.discussionHandlerService.lastReadMessageId === this.message.id && this.authService.getCurrentUser()?.id) {
+    if (this.authService.getCurrentUser()?.id && this.discussionHandlerService.scrollToMessageId === this.message.id) {
       this.messageRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+  }
+
+  share(): void {
+    const shareLink = `${window.location.pathname}?after=${this.cursor}`;
+
+    this.shareService.shareContent(
+      `Hey, check out this discussion on Commudle: ${shareLink}`,
+      'Hey, check out this discussion on Commudle',
+      this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
+      shareLink,
+      'Copied message link successfully!',
+      'Shared message successfully!',
+    );
   }
 }

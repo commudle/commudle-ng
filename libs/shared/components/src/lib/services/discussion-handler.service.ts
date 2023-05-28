@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChatChannel } from '@commudle/shared-channels';
-import { IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
+import { IPage, IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
 import { CableService, DiscussionService, ToastrService } from '@commudle/shared-services';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 
@@ -9,9 +9,9 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 })
 export class DiscussionHandlerService {
   chatChannel!: ChatChannel;
-  lastReadMessageId!: number;
+  scrollToMessageId!: number;
 
-  private messages = new BehaviorSubject<IUserMessage[]>([]);
+  private messages = new BehaviorSubject<IPage<IUserMessage>[]>([]);
   messages$ = this.messages.asObservable();
 
   private permittedActions = new BehaviorSubject<string[]>([]);
@@ -25,6 +25,9 @@ export class DiscussionHandlerService {
   });
   pageInfo$ = this.pageInfo.asObservable();
 
+  private loading = new BehaviorSubject<boolean>(false);
+  loading$ = this.loading.asObservable();
+
   private _discussionParent: 'builds' | '' = '';
   private _discussionId!: number;
 
@@ -34,11 +37,21 @@ export class DiscussionHandlerService {
     private toastrService: ToastrService,
   ) {}
 
-  init(discussionId: number, discussionParent: 'builds' | '', fromLastRead: boolean) {
+  init(discussionId: number, discussionParent: 'builds' | '', fromLastRead?: boolean, after?: string) {
     this._discussionId = discussionId;
     this._discussionParent = discussionParent;
 
-    this.getMessages(fromLastRead);
+    if (after) {
+      this.pageInfo.next({
+        has_previous_page: false,
+        start_cursor: '',
+        has_next_page: true,
+        end_cursor: after,
+      });
+      this.getMessagesAround();
+    } else {
+      this.getMessages(fromLastRead);
+    }
 
     this.chatChannel = new ChatChannel({ room: this._discussionId });
     this.cableService.subscribe(this.chatChannel);
@@ -56,7 +69,7 @@ export class DiscussionHandlerService {
       start_cursor: '',
       end_cursor: '',
     });
-    this.lastReadMessageId = undefined;
+    this.scrollToMessageId = undefined;
   }
 
   sendMessage(content: string) {
@@ -99,50 +112,14 @@ export class DiscussionHandlerService {
     this.chatChannel.flag(messageId);
   }
 
-  getMessages(fromLastRead: boolean) {
-    this._getMessages(fromLastRead).subscribe((data) => {
-      this.messages.next(data.page.map((page) => page.data));
-      this.pageInfo.next(data.page_info);
-      if (fromLastRead && !this.lastReadMessageId) {
-        if (this.messages.value.map((message) => message.read).includes(false)) {
-          this.lastReadMessageId = this.messages.value[this.messages.value.length - 1].id;
-        } else {
-          this.lastReadMessageId = 0;
-        }
-      }
-    });
-  }
-
-  getMessagesAfter() {
-    this._getMessagesAfter().subscribe((data) => {
-      this.messages.next([...this.messages.value, ...data.page.map((page) => page.data)]);
-      this.pageInfo.next({
-        ...this.pageInfo.value,
-        has_next_page: data.page_info.has_next_page,
-        end_cursor: data.page_info.end_cursor,
-      });
-    });
-  }
-
-  getMessagesBefore() {
-    this._getMessagesBefore().subscribe((data) => {
-      this.messages.next([...data.page.map((page) => page.data), ...this.messages.value]);
-      this.pageInfo.next({
-        ...this.pageInfo.value,
-        has_previous_page: data.page_info.has_previous_page,
-        start_cursor: data.page_info.start_cursor,
-      });
-    });
-  }
-
-  addMessage(message: IUserMessage) {
-    this.messages.next([message, ...this.messages.value]);
+  addMessage(message: IUserMessage, cursor: string) {
+    this.messages.next([{ data: message, cursor }, ...this.messages.value]);
   }
 
   addReply(parent_id: number, reply_message: IUserMessage) {
     const messages = this.messages.value.map((message) => {
-      if (message.id === parent_id) {
-        message.user_messages = [...message.user_messages, reply_message];
+      if (message.data.id === parent_id) {
+        message.data.user_messages = [...message.data.user_messages, reply_message];
       }
       return message;
     });
@@ -156,7 +133,7 @@ export class DiscussionHandlerService {
           this.permittedActions.next(data.permitted_actions);
           break;
         case 'add':
-          this.addMessage(data.user_message);
+          this.addMessage(data.user_message, data.cursor);
           break;
         case 'reply':
           this.addReply(data.parent_id, data.user_message);
@@ -164,16 +141,16 @@ export class DiscussionHandlerService {
         case 'flag':
           if (data.parent_type === 'Discussion') {
             const messages = this.messages.value.map((message) => {
-              if (message.id === data.user_message_id) {
-                message.flags_count += data.flag;
+              if (message.data.id === data.user_message_id) {
+                message.data.flags_count += data.flag;
               }
               return message;
             });
             this.messages.next(messages);
           } else if (data.parent_type === 'UserMessage') {
             const messages = this.messages.value.map((message) => {
-              if (message.id === data.parent_id) {
-                message.user_messages = message.user_messages.map((reply) => {
+              if (message.data.id === data.parent_id) {
+                message.data.user_messages = message.data.user_messages.map((reply) => {
                   if (reply.id === data.user_message_id) {
                     reply.flags_count += data.flag;
                   }
@@ -188,12 +165,14 @@ export class DiscussionHandlerService {
         case 'delete_any':
         case 'delete_self':
           if (data.parent_type === 'Discussion') {
-            const messages = this.messages.value.filter((message) => message.id !== data.user_message_id);
+            const messages = this.messages.value.filter((message) => message.data.id !== data.user_message_id);
             this.messages.next(messages);
           } else if (data.parent_type === 'UserMessage') {
             const messages = this.messages.value.map((message) => {
-              if (message.id === data.parent_id) {
-                message.user_messages = message.user_messages.filter((reply) => reply.id !== data.user_message_id);
+              if (message.data.id === data.parent_id) {
+                message.data.user_messages = message.data.user_messages.filter(
+                  (reply) => reply.id !== data.user_message_id,
+                );
               }
               return message;
             });
@@ -207,17 +186,77 @@ export class DiscussionHandlerService {
     });
   }
 
-  findMessageIndex(messageId: number) {
-    return this.messages.value.findIndex((message) => message.id === messageId);
+  getMessages(fromLastRead?: boolean) {
+    if (!this.loading.value) {
+      this.loading.next(true);
+      this._getMessages(fromLastRead).subscribe((data) => {
+        this.messages.next(data.page);
+        this.pageInfo.next(data.page_info);
+        // TODO: FInd a better way to do this
+        if (fromLastRead && !this.scrollToMessageId) {
+          if (this.messages.value.map((message) => message.data.read).includes(false)) {
+            this.scrollToMessageId = this.messages.value[this.messages.value.length - 1].data.id;
+          } else {
+            this.scrollToMessageId = 0;
+          }
+        }
+        this.loading.next(false);
+      });
+    }
   }
 
-  findReplyIndex(messageId: number, replyId: number) {
-    return this.messages.value[this.findMessageIndex(messageId)].user_messages.findIndex(
-      (reply) => reply.id === replyId,
-    );
+  getMessagesAfter() {
+    if (!this.loading.value) {
+      this.loading.next(true);
+      this._getMessagesAfter().subscribe((data) => {
+        this.messages.next([...this.messages.value, ...data.page]);
+        this.pageInfo.next({
+          ...this.pageInfo.value,
+          has_next_page: data.page_info.has_next_page,
+          end_cursor: data.page_info.end_cursor,
+        });
+        this.loading.next(false);
+      });
+    }
   }
 
-  private _getMessages(fromLastRead = false) {
+  getMessagesBefore() {
+    if (!this.loading.value) {
+      this.loading.next(true);
+      this._getMessagesBefore().subscribe((data) => {
+        this.messages.next([...data.page, ...this.messages.value]);
+        this.pageInfo.next({
+          ...this.pageInfo.value,
+          has_previous_page: data.page_info.has_previous_page,
+          start_cursor: data.page_info.start_cursor,
+        });
+        this.loading.next(false);
+      });
+    }
+  }
+
+  getMessagesAround() {
+    if (!this.loading.value) {
+      this.loading.next(true);
+      // TODO: Make this better
+      this._getMessagesAfter().subscribe((data) => {
+        this.messages.next(data.page);
+        this.pageInfo.next(data.page_info);
+        this._getMessagesBefore().subscribe((value) => {
+          this.messages.next([...value.page, ...this.messages.value]);
+          this.pageInfo.next({
+            ...this.pageInfo.value,
+            has_previous_page: value.page_info.has_previous_page,
+            start_cursor: value.page_info.start_cursor,
+          });
+          this.scrollToMessageId = value.page[value.page.length - 1]?.data?.id || data.page[0]?.data?.id || 0;
+          this.loading.next(false);
+        });
+      });
+    }
+  }
+
+  private _getMessages(fromLastRead?: boolean) {
     switch (this._discussionParent) {
       case 'builds':
         return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);

@@ -1,15 +1,19 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnDestroy,
   OnInit,
   QueryList,
+  ViewChild,
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IEditorValidator } from '@commudle/editor';
+import { InfiniteScrollDirective } from '@commudle/infinite-scroll';
 import { AuthService } from '@commudle/shared-services';
 import { DiscussionHandlerService } from '../../services/discussion-handler.service';
 
@@ -22,7 +26,7 @@ import { DiscussionHandlerService } from '../../services/discussion-handler.serv
 export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() discussionId!: number;
   @Input() discussionParent: 'builds' | '' = '';
-  @Input() fromLastRead = true;
+  @Input() fromLastRead = false;
 
   hasRequestedFirstTime = true;
 
@@ -33,12 +37,23 @@ export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
     noWhitespace: true,
   };
 
+  @ViewChild(InfiniteScrollDirective) infiniteScrollDirective;
   @ViewChildren('messagesListRef', { read: ViewContainerRef }) messagesListRefs: QueryList<HTMLDivElement>;
 
-  constructor(public discussionHandlerService: DiscussionHandlerService, public authService: AuthService) {}
+  constructor(
+    public discussionHandlerService: DiscussionHandlerService,
+    public authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
-    this.discussionHandlerService.init(this.discussionId, this.discussionParent, this.fromLastRead);
+    this.discussionHandlerService.init(
+      this.discussionId,
+      this.discussionParent,
+      this.fromLastRead,
+      this.activatedRoute.snapshot.queryParamMap.get('after'),
+    );
   }
 
   ngAfterViewInit() {
@@ -52,6 +67,7 @@ export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
           if (this.hasRequestedFirstTime) {
             this.discussionHandlerService.getMessagesAfter();
             this.hasRequestedFirstTime = false;
+            this.changeDetectorRef.detectChanges();
           }
         }
       });

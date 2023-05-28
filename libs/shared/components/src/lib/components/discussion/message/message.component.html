@@ -1,10 +1,10 @@
 <div #messageRef>
-  <div *ngIf="discussionHandlerService.lastReadMessageId === message.id" class="last-read">
-    <div class="com-absolute com-inset-0 com-flex com-items-center">
-      <div class="com-w-full com-border-solid com-border-b com-border-t-0 com-border-gray-200"></div>
+  <div *ngIf="discussionHandlerService.scrollToMessageId === message.id" class="last-read">
+    <div class="divider">
+      <div class="line"></div>
     </div>
-    <div class="com-relative com-flex com-justify-center">
-      <span class="com-bg-white com-px-4 com-text-sm com-text-gray-400">You left off here</span>
+    <div class="text">
+      <span class="content">You left off here</span>
     </div>
   </div>
 
@@ -70,12 +70,23 @@
           ></nb-icon>
           <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
         </div>
+        <div class="share">
+          <nb-icon
+            (click)="share()"
+            class="clickable"
+            icon="share-outline"
+            nbTooltip="Share this message"
+            nbTooltipStatus="primary"
+            status="basic"
+          ></nb-icon>
+        </div>
       </div>
       <div *ngIf="canReply" class="replies">
         <commudle-message
           *ngFor="let reply of message.user_messages"
           [canReply]="false"
           [message]="reply"
+          [cursor]="cursor"
         ></commudle-message>
         <commudle-editor
           (contentChange)="discussionHandlerService.sendReply(message.id, $event)"

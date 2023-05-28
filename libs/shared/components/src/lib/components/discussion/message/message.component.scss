@@ -4,6 +4,23 @@
 
 .last-read {
   @apply com-relative com-py-2;
+
+  .divider {
+    @apply com-absolute com-inset-0 com-flex com-items-center;
+
+    .line {
+      @apply com-w-full com-border-solid com-border-gray-200;
+      border-width: 1px;
+    }
+  }
+
+  .text {
+    @apply com-relative com-flex com-justify-center;
+
+    .content {
+      @apply com-bg-white com-px-4 com-text-sm com-text-gray-400;
+    }
+  }
 }
 
 .message-container {
@@ -25,7 +42,7 @@
       }
 
       .expert-icon {
-        @apply com-h-3 com-w-3 com-ml-1;
+        @apply com-h-3 com-w-3 com-mr-1;
       }
 
       .time {

@@ -133,6 +133,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       this.notification.entity_type == ENotificationEntityTypes.USER_MESSAGE &&
       this.notification.entity_id
     ) {
+      // TODO: Change this to use cursor
       this.router.navigate(url, { queryParams: { user_message_id: this.notification.entity_id } });
     } else {
       this.router.navigate(url);
