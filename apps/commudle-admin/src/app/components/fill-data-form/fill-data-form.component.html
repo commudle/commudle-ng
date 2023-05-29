@@ -38,6 +38,7 @@
               (formSubmitted)="submitForm($event)"
               [dataFormId]="dataFormEntity.data_form_id"
               [existingResponses]="selectedFormResponse"
+              [eventId]="event ? event.id : ''"
             >
             </app-data-form-fill>
             <p *ngIf="dataFormEntity.multi_response" class="text-info">

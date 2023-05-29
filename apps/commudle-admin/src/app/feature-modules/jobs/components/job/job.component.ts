@@ -19,6 +19,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-job',
@@ -118,6 +120,20 @@ export class JobComponent implements OnInit, OnDestroy {
     this.route.navigate(['/users/', this.currentUser.username], {
       fragment: 'resume',
       queryParams: { job_id: this.job.id },
+    });
+  }
+
+  onAcceptRoleButton() {
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        consentType: ConsentTypesEnum.ResumeConsent,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'accepted') {
+        this.createJobApplication();
+      }
     });
   }
 }

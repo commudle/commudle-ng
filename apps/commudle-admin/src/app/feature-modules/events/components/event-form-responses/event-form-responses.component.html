@@ -104,6 +104,13 @@
               <!-- responsive row format -->
               <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
                 <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
+                  <div class="com-max-w-fit">
+                    <app-user-engagement-data
+                      *ngIf="row"
+                      [user]="row.user"
+                      [communityId]="community.id"
+                    ></app-user-engagement-data>
+                  </div>
                   <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
                     <div *ngFor="let question of questions">
                       <p>
@@ -125,17 +132,21 @@
               <!-- responsive row format -->
               <ngx-datatable-column [width]="300">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                  <div class="">
-                    <p>Engagement Data with {{ community.name }}</p>
+                  <div class="mobile-hidden">
+                    <div class="">
+                      <p>Engagement Data with {{ community.name }}</p>
+                    </div>
                   </div>
                 </ng-template>
 
                 <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-                  <app-user-engagement-data
-                    *ngIf="row"
-                    [user]="row.user"
-                    [communityId]="community.id"
-                  ></app-user-engagement-data>
+                  <div class="mobile-hidden">
+                    <app-user-engagement-data
+                      *ngIf="row"
+                      [user]="row.user"
+                      [communityId]="community.id"
+                    ></app-user-engagement-data>
+                  </div>
                 </ng-template>
               </ngx-datatable-column>
               <!-- complete table format -->

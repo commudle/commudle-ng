@@ -86,6 +86,7 @@ export const API_ROUTES = {
       UNPIN: 'api/v2/community_channels/unpin_message',
       PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages',
     },
+    SHOW_BY_TOKEN: 'api/v2/community_channels/show_by_token',
   },
 
   COMMUNITY_GROUPS: {
@@ -162,6 +163,7 @@ export const API_ROUTES = {
     ATTENDED_MEMBERS: 'api/v2/events/attended_members',
     ATTENDED_MEMBERS_NOTIFICATION: 'api/v2/events/create_attended_members_notification',
     COMMON_EVENTS: 'api/v2/events/common_events',
+    IS_MEMBER_OF_ALL_COLLABORATING_COMMUNITIES: 'api/v2/events/is_member_of_all_collaborating_communities',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',
@@ -380,6 +382,7 @@ export const API_ROUTES = {
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
     ROLE_DESIGNATIONS: 'api/v2/user_roles_users/role_designations',
+    VERIFY_INVITATION_TOKEN: 'api/v2/user_roles_users/verify_invitation_token',
 
     COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
     REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
@@ -445,6 +448,7 @@ export const API_ROUTES = {
     TOGGLE_EMPLOYER_ROLE: 'api/v2/users/toggle_employer_role',
     TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
     UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
+    DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
   },
 
   SPEAKER_RESOURCES: {
@@ -521,6 +525,7 @@ export const API_ROUTES = {
     SPEAKERS: 'api/v2/user_event_registrations/speakers',
     REMOVE_SPEAKER: 'api/v2/user_event_registrations/remove_speaker',
     RESEND_SPEAKER_INVITATION: 'api/v2/user_event_registrations/resend_speaker_invitation',
+    UPDATE_RSVP: 'api/v2/user_event_registrations/update_rsvp',
     PUBLIC: {
       SHOW: 'api/v2/user_event_registrations/public_show',
       TOGGLE: 'api/v2/user_event_registrations/public_toggle',

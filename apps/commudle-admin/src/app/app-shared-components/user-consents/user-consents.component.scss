@@ -1,0 +1,36 @@
+.user-consents-container {
+  @apply com-max-w-[500px] com-h-full;
+
+  nb-card-header {
+    @apply com-p-0;
+
+    .animation {
+      @apply com-flex com-items-center;
+
+      div {
+        @apply com-w-[75px] com-h-[75px];
+      }
+    }
+    p {
+      @apply com-text-2xl com-px-0 com-my-0;
+    }
+  }
+
+  nb-card-body {
+    @apply com-px-6 com-py-0 com-min-h-[50vh] com-max-h-[50vh];
+  }
+
+  nb-card-footer {
+    .accept-button {
+      @apply com-text-white com-text-sm com-bg-Ultramarine-Blue com-mr-4;
+    }
+
+    .deactivate-button {
+      @apply com-text-white com-text-sm com-bg-Infra-Red com-mr-4;
+    }
+
+    .reject-button {
+      @apply com-text-Ultramarine-Blue com-text-sm com-border-Ultramarine-Blue;
+    }
+  }
+}
