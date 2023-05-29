@@ -1,10 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NbButtonModule, NbCardModule, NbIconModule } from '@commudle/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 @Component({
   selector: 'commudle-public-home-list-events-upcoming-list',
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule, RouterModule, NbButtonModule, NbCardModule, NbIconModule],
   templateUrl: './public-home-list-events-upcoming-list.component.html',
   styleUrls: ['./public-home-list-events-upcoming-list.component.scss'],
 })

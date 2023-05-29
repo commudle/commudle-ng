@@ -6,9 +6,7 @@ import { PublicHomeListEventsComponent } from './components/public-home-list-eve
 import { PublicHomeListEventsHeaderComponent } from './components/public-home-list-events-header/public-home-list-events-header.component';
 import { SharedComponentsModule } from '../../../../../../shared-components/shared-components.module';
 import { PublicHomeListEventsUpcomingComponent } from './components/public-home-list-events-upcoming/public-home-list-events-upcoming/public-home-list-events-upcoming.component';
-import { PublicHomeListEventsUpcomingListComponent } from './components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
 import { PublicHomeListEventsFeaturedCommunitiesComponent } from './components/public-home-list-events-featured-communities/public-home-list-events-featured-communities.component';
-import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from './components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
 import { SharedPipesModule } from '../../../../../../shared-pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicHomeListEventsPastComponent } from './components/public-home-list-events-past/public-home-list-events-past.component';
@@ -18,21 +16,20 @@ import { PublicHomeListEventsSpeakersCardComponent } from './components/public-h
 import { MiniUserProfileModule } from '../../../../../../shared-modules/mini-user-profile/mini-user-profile.module';
 import { EventCardComponent } from '../../../app-shared-components/event-card/event-card.component';
 import { PublicHomeListEventsTechSessionsComponent } from './components/public-home-list-events-tech-sessions/public-home-list-events-tech-sessions.component';
-import { PublicHomeListEventsTechSessionsCardComponent } from './components/public-home-list-events-tech-sessions-card/public-home-list-events-tech-sessions-card.component';
+import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from '../../../app-shared-components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
+import { PublicHomeListEventsTechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-tech-sessions-card/public-home-list-events-tech-sessions-card.component';
+import { PublicHomeListEventsUpcomingListComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
     PublicHomeListEventsHeaderComponent,
     PublicHomeListEventsUpcomingComponent,
-    PublicHomeListEventsUpcomingListComponent,
     PublicHomeListEventsFeaturedCommunitiesComponent,
-    PublicHomeListEventsFeaturedCommunitiesCardComponent,
     PublicHomeListEventsPastComponent,
     PublicHomeListEventsPastCardComponent,
     PublicHomeListEventsSpeakersComponent,
     PublicHomeListEventsSpeakersCardComponent,
     PublicHomeListEventsTechSessionsComponent,
-    PublicHomeListEventsTechSessionsCardComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +42,9 @@ import { PublicHomeListEventsTechSessionsCardComponent } from './components/publ
     FontAwesomeModule,
     MiniUserProfileModule,
     EventCardComponent,
+    PublicHomeListEventsFeaturedCommunitiesCardComponent,
+    PublicHomeListEventsTechSessionsCardComponent,
+    PublicHomeListEventsUpcomingListComponent,
   ],
 })
 export class PublicHomeListEventsModule {}
