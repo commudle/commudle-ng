@@ -19,13 +19,13 @@
   </nb-action>
   <nb-action>
     <a routerLink="builds" routerLinkActive="active">
-      <nb-icon icon="bulb"></nb-icon>
+      <fa-icon [icon]="faLightbulb"></fa-icon>
       <span>Builds</span>
     </a>
   </nb-action>
   <nb-action *ngIf="!currentUser">
     <a routerLink="pricing" routerLinkActive="active">
-      <nb-icon icon="star"></nb-icon>
+      <fa-icon [icon]="faHandHoldingDollar"></fa-icon>
       <span>Pricing</span>
     </a>
   </nb-action>

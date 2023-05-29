@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import {
-  faBell,
+  faInfoCircle,
+  faUserFriends,
   faFlask,
   faLightbulb,
-  faUser,
-  faUserFriends,
+  faBell,
   faEllipsisV,
-  faInfoCircle,
+  faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
 import { NbIconLibraries, NbMenuService, NbPopoverDirective } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
@@ -26,9 +26,9 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faUserFriends = faUserFriends;
   faBell = faBell;
-  faUser = faUser;
   faInfoCircle = faInfoCircle;
   faEllipsisV = faEllipsisV;
+  faHandHoldingDollar = faHandHoldingDollar;
 
   notificationCount = 0;
   notificationIconHighlight = false;
@@ -55,7 +55,6 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
     private authwatchService: LibAuthwatchService,
     private notificationsStore: NotificationsStore,
     private menuService: NbMenuService,
-    private iconLibraries: NbIconLibraries,
   ) {}
 
   ngOnInit(): void {
