@@ -18,18 +18,12 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getSpeakersList();
-    this.getLabs();
   }
 
   getSpeakersList() {
     this.eventsService.getSpeakersList().subscribe((data) => {
-      this.speakers = data;
-      console.log(data, 'speakers');
+      this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       // this.changeDetectorRef.markForCheck();
     });
-  }
-
-  getLabs() {
-    this.homeService.labs().subscribe((data) => (this.labs = data.labs));
   }
 }

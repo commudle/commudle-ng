@@ -1,11 +1,17 @@
-.two-column-layout {
-  @apply com-px-4;
-}
+.container {
+  @apply com-pb-4;
 
-.main-column {
-  @apply com-mr-30px;
-}
+  .two-column-layout {
+    @apply com-px-4;
+  }
 
-.right-column {
-  @apply md:com-ml-30px com-m-0;
+  .main-column {
+    @apply md:com-pr-30px com-p-0 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+  }
+
+  .right-column {
+    @apply md:com-ml-30px com-m-0;
+    position: sticky;
+    top: 0px;
+  }
 }

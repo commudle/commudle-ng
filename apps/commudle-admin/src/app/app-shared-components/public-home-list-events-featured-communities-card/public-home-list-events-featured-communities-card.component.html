@@ -1,13 +1,16 @@
 <div>
   <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" target="_blank">
     <div class="featured-community">
-      <div *ngIf="featuredCommunity.kommunity.logo_image.url" class="image">
+      <div *ngIf="featuredCommunity.kommunity.logo_image?.url" class="image">
         <img
           [alt]="featuredCommunity.kommunity.name"
           [src]="featuredCommunity.kommunity.logo_image.url"
           [title]="featuredCommunity.kommunity.name"
           class="avatar"
         />
+      </div>
+      <div *ngIf="!featuredCommunity.kommunity.logo_image?.url" class="no-image-header">
+        <nb-icon icon="link" status="primary"></nb-icon>
       </div>
       <div class="featured-communities-details">
         <div class="details">
@@ -16,31 +19,14 @@
             {{ featuredCommunity.reason }}
           </p>
         </div>
-        <button
-          *ngIf="!isMember"
-          (click)="onJoinCommunityClick()"
-          nbButton
-          status="info"
-          size="small"
-          shape="semi-round"
-          class="join-button"
-        >
-          <fa-icon [icon]="faPlus"></fa-icon>
-          Join
-        </button>
-        <button
-          *ngIf="isMember"
-          (click)="onJoinCommunityClick()"
-          nbButton
-          outline
-          status="info"
-          size="small"
-          shape="semi-round"
-          class="join-button"
-        >
-          <fa-icon [icon]="faCheck"></fa-icon>
-          Joined
-        </button>
+        <div class="membership-toggle">
+          <app-membership-toggle
+            [community]="featuredCommunity.kommunity"
+            [shapes]="'semi-round'"
+            [size]="'small'"
+            [status]="'primary'"
+          ></app-membership-toggle>
+        </div>
       </div>
     </div>
   </a>

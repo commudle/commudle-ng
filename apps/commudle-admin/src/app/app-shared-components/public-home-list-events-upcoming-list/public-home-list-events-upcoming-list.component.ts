@@ -7,12 +7,21 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { IEvent } from 'apps/shared-models/event.model';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
+import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
 @Component({
   selector: 'commudle-public-home-list-events-upcoming-list',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, RouterModule, NbButtonModule, NbCardModule, NbIconModule],
   templateUrl: './public-home-list-events-upcoming-list.component.html',
   styleUrls: ['./public-home-list-events-upcoming-list.component.scss'],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    RouterModule,
+    NbButtonModule,
+    NbCardModule,
+    NbIconModule,
+    SharedComponentsModule,
+  ],
 })
 export class PublicHomeListEventsUpcomingListComponent implements OnInit {
   @Input() event: IEvent;

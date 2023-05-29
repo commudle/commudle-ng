@@ -21,8 +21,7 @@ nb-card {
         }
 
         .no-image-header {
-          // @apply  com-text-center ;
-          @apply com-w-[390px] com-flex com-items-center com-justify-center;
+          @apply md:com-w-[390px] md:com-h-[230px] com-w-full com-h-[230px] com-flex com-items-center com-justify-center;
 
           nb-icon {
             @apply com-text-5xl;
@@ -44,7 +43,7 @@ nb-card {
               }
 
               .event-title {
-                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1;
+                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-2;
               }
             }
           }

@@ -12,5 +12,7 @@ export class BannerImageComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.headerImagePath, this.name);
+  }
 }

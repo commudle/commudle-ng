@@ -7,22 +7,22 @@
   <!-- *ngFor="let featuredCommunity of featuredCommunities"
   [featuredCommunity]="featuredCommunity" -->
   <!-- <commudle-public-home-list-events-speakers-card></commudle-public-home-list-events-speakers-card> -->
-  <!-- <div *ngFor="let speaker of speakers">
+  <div *ngFor="let speaker of speakers" class="user-profile-card-large">
     <app-user-profile-card-large
       [showFollowButton]="true"
       [alignFollowToRight]="true"
       [showAbout]="true"
       [user]="speaker"
     ></app-user-profile-card-large>
-  </div> -->
+  </div>
   <!--  -->
-  <div *ngFor="let lab of labs" class="user-profile-card-large">
+  <!-- <div *ngFor="let lab of labs" class="user-profile-card-large">
     <app-user-profile-card-large
       [showFollowButton]="true"
       [alignFollowToRight]="true"
       [showAbout]="true"
       [user]="lab.user"
     ></app-user-profile-card-large>
-  </div>
+  </div> -->
   <hr class="bottom-hr" />
 </div>
