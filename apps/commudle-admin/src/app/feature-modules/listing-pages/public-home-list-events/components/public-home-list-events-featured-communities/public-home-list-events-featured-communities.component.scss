@@ -1,8 +1,6 @@
 div {
-  @apply com-ml-30px;
-
   .heading {
-    @apply com-mt-8 com-mb-8 com-mx-0 com-items-center com-flex;
+    @apply md:com-mt-8 com-mt-10 com-mb-6 com-mx-0 com-items-center com-flex;
 
     button {
       @apply com-mr-4;
@@ -19,5 +17,13 @@ div {
         @apply com-text-base com-font-normal com-text-Dark-Jungle-Green;
       }
     }
+  }
+
+  .top-hr {
+    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
+  }
+
+  .bottom-hr {
+    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light;
   }
 }

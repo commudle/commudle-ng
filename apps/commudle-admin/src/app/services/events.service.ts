@@ -153,4 +153,8 @@ export class EventsService {
       event_id,
     });
   }
+
+  getSpeakersList(): Observable<any> {
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST));
+  }
 }

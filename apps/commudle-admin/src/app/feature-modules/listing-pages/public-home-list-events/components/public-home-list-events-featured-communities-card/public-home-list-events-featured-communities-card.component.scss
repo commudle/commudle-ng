@@ -10,7 +10,7 @@ a {
     }
 
     .featured-communities-details {
-      @apply com-flex com-items-start;
+      @apply md:com-flex com-items-start;
 
       .details {
         .community-name {
@@ -18,12 +18,12 @@ a {
         }
 
         .mini-description {
-          @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-mb-11 com-line-clamp-2;
+          @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 md:com-mb-9 com-mb-5 com-line-clamp-2;
         }
       }
 
       .join-button {
-        @apply com-ml-9;
+        @apply md:com-ml-9 md:com-mb-0 com-mb-6 md:com-mr-0 com-mx-4;
       }
     }
   }

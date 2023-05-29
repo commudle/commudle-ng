@@ -1,7 +1,11 @@
-.container {
+.two-column-layout {
   @apply com-px-4;
 }
 
 .main-column {
   @apply com-mr-30px;
+}
+
+.right-column {
+  @apply md:com-ml-30px com-m-0;
 }

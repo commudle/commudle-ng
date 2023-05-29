@@ -3,22 +3,25 @@
     <div class="upcoming-card">
       <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="upcoming-card-link">
         <div *ngIf="event.header_image" class="upcoming-card-image">
-          <commudle-banner-image [headerImagePath]="event.header_image" [name]="event.name"></commudle-banner-image>
-          <!-- <img
+          <!-- <commudle-banner-image [headerImagePath]="event.header_image.url" [name]="event.name"></commudle-banner-image> -->
+          <img
             [alt]="event.name"
             [src]="event.header_image?.url || '/assets/images/commudle-logo192.png'"
             [title]="event.name"
             class="image"
-          /> -->
+          />
         </div>
         <div *ngIf="!event.header_image" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
         <div class="upcoming-card-details">
           <div class="upcoming-card-info">
-            <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
-            <p class="event-title">{{ event.name }}</p>
+            <div>
+              <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+              <p class="event-title">{{ event.name }}</p>
+            </div>
             <div class="community-badge">
+              BADGE
               <!-- <app-community-badge [community]="community"></app-community-badge> -->
             </div>
           </div>

@@ -171,6 +171,7 @@ export const API_ROUTES = {
       UPCOMING: 'api/v2/events/public/upcoming',
       RANDOM_PAST: 'api/v2/events/public/past_random',
       POLLS: 'api/v2/events/public/polls',
+      SPEAKERS_LIST: 'api/v2/events/public/speakers_list',
     },
   },
 

@@ -17,6 +17,8 @@ import { PublicHomeListEventsSpeakersComponent } from './components/public-home-
 import { PublicHomeListEventsSpeakersCardComponent } from './components/public-home-list-events-speakers-card/public-home-list-events-speakers-card.component';
 import { MiniUserProfileModule } from '../../../../../../shared-modules/mini-user-profile/mini-user-profile.module';
 import { EventCardComponent } from '../../../app-shared-components/event-card/event-card.component';
+import { PublicHomeListEventsTechSessionsComponent } from './components/public-home-list-events-tech-sessions/public-home-list-events-tech-sessions.component';
+import { PublicHomeListEventsTechSessionsCardComponent } from './components/public-home-list-events-tech-sessions-card/public-home-list-events-tech-sessions-card.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -29,6 +31,8 @@ import { EventCardComponent } from '../../../app-shared-components/event-card/ev
     PublicHomeListEventsPastCardComponent,
     PublicHomeListEventsSpeakersComponent,
     PublicHomeListEventsSpeakersCardComponent,
+    PublicHomeListEventsTechSessionsComponent,
+    PublicHomeListEventsTechSessionsCardComponent,
   ],
   imports: [
     CommonModule,

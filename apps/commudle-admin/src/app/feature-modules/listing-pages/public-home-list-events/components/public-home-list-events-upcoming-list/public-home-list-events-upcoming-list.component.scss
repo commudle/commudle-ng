@@ -1,19 +1,17 @@
 nb-card {
-  @apply com-m-0;
+  @apply md:com-m-0 com-mb-6 com-mx-0 com-mt-0;
   nb-card-body {
     @apply com-p-0;
     .upcoming-card {
       // @apply com-flex com-items-center;
 
       .upcoming-card-link {
-        @apply com-flex com-w-[100%] com-no-underline;
+        @apply com-flex com-w-[100%] com-no-underline md:com-flex-row com-flex-col;
         // text-decoration: none;
 
         .upcoming-card-image {
-          @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden;
+          @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[390px] md:com-h-[230px] com-w-full com-h-full;
           //   flex: 1;
-          @apply com-w-[390px];
-          @apply com-h-[230px];
 
           .image {
             max-width: 100%;
@@ -38,12 +36,16 @@ nb-card {
           .upcoming-card-info {
             @apply com-h-[126px]; //122
 
-            .event-time {
-              @apply com-text-sm com-font-medium com-mb-10px com-mt-0 com-text-Auro-Metal-Saurus;
-            }
+            div {
+              @apply com-flex md:com-flex-col com-flex-col-reverse;
 
-            .event-title {
-              @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-10px;
+              .event-time {
+                @apply com-text-sm md:com-font-medium com-font-normal md:com-mb-3 com-mb-17px com-mt-0 com-text-Auro-Metal-Saurus;
+              }
+
+              .event-title {
+                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1;
+              }
             }
           }
 
@@ -57,7 +59,7 @@ nb-card {
               }
 
               .location-text {
-                @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
+                @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
               }
             }
 
@@ -65,7 +67,7 @@ nb-card {
               @apply md:com-flex com-items-center com-m-0 md:com-justify-between;
 
               div {
-                @apply com-flex com-items-center;
+                @apply com-flex com-items-center com-mb-8 md:com-mb-0;
 
                 nb-icon {
                   @apply com-mr-2 com-text-Dark-Jungle-Green com-text-2xl;
@@ -83,5 +85,5 @@ nb-card {
   }
 }
 hr {
-  @apply com-border-solid com-my-3 com-mx-2 com-border-Bright-Gray-Light;
+  @apply com-border-solid com-my-6 com-mx-2 com-border-Bright-Gray-Light com-hidden md:com-block;
 }

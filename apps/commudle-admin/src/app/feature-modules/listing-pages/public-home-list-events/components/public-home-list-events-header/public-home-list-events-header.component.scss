@@ -1,20 +1,23 @@
 nb-card {
-  @apply com-mx-0 com-mb-0;
+  @apply md:com-mx-4 com-mb-0 com-p-0 com-border-none com-mx-0;
 
   nb-card-body {
     @apply com-p-0;
 
     div {
+      @apply com-flex md:com-justify-between md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col-reverse;
+
       .header-text {
-        @apply com-flex com-flex-col com-justify-between com-px-6 com-py-8;
+        @apply com-flex com-flex-col com-justify-between md:com-px-6 com-px-4 md:com-py-8 com-py-6;
 
         div {
+          @apply com-flex com-flex-col;
           .heading {
             @apply com-text-4xl com-font-bold com-mt-0 com-mb-4 com-text-white;
           }
 
           .sub-heading {
-            @apply com-text-lg com-font-normal com-m-0 com-text-white com-mr-72px;
+            @apply md:com-text-lg com-text-xl com-font-normal com-m-0 com-text-white md:com-mr-72px com-mx-0 com-mb-8 md:com-mb-0;
           }
         }
       }

@@ -1,4 +1,6 @@
 div {
+  @apply com-mx-0;
+
   .heading {
     @apply md:com-mt-8 com-mt-10 com-mb-6 com-mx-0 com-items-center com-flex;
 
@@ -19,15 +21,7 @@ div {
     }
   }
 
-  .top-hr {
+  hr {
     @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
-  }
-
-  .user-profile-card-large {
-    @apply com-mb-8;
-  }
-
-  .bottom-hr {
-    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light;
   }
 }

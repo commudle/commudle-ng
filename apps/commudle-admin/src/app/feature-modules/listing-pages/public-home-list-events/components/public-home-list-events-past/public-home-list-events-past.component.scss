@@ -1,5 +1,5 @@
 .title {
-  @apply com-text-3xl com-font-bold com-text-Dark-Jungle-Green com-mt-12 com-mb-8 com-ml-2 com-mr-0;
+  @apply com-text-3xl com-font-bold com-text-Dark-Jungle-Green com-mt-10 com-mb-8 com-ml-2 com-mr-0;
 
   button {
     @apply com-mr-4;
@@ -8,4 +8,8 @@
   fa-icon {
     @apply com-text-2xl;
   }
+}
+
+.past-events-card-list {
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-2 md:com-gap-3;
 }
