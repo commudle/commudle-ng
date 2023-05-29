@@ -1,5 +1,5 @@
 <div>
-  <a [routerLink]="[]" target="_blank">
+  <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" target="_blank">
     <div class="featured-community">
       <div *ngIf="featuredCommunity.kommunity.logo_image.url" class="image">
         <img
@@ -16,7 +16,31 @@
             {{ featuredCommunity.reason }}
           </p>
         </div>
-        <button nbButton status="info" size="small" shape="semi-round" class="join-button">Join</button>
+        <button
+          *ngIf="!isMember"
+          (click)="onJoinCommunityClick()"
+          nbButton
+          status="info"
+          size="small"
+          shape="semi-round"
+          class="join-button"
+        >
+          <fa-icon [icon]="faPlus"></fa-icon>
+          Join
+        </button>
+        <button
+          *ngIf="isMember"
+          (click)="onJoinCommunityClick()"
+          nbButton
+          outline
+          status="info"
+          size="small"
+          shape="semi-round"
+          class="join-button"
+        >
+          <fa-icon [icon]="faCheck"></fa-icon>
+          Joined
+        </button>
       </div>
     </div>
   </a>
