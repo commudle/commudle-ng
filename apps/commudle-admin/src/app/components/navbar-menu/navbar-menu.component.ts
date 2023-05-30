@@ -8,11 +8,12 @@ import {
   faEllipsisV,
   faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
-import { NbIconLibraries, NbMenuService, NbPopoverDirective } from '@commudle/theme';
+import { NbMenuService, NbPopoverDirective } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -55,6 +56,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
     private authwatchService: LibAuthwatchService,
     private notificationsStore: NotificationsStore,
     private menuService: NbMenuService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {
