@@ -20,6 +20,10 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'signup',
+    component: LoginComponent,
+  },
+  {
     path: 'notifications',
     loadChildren: () =>
       import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),

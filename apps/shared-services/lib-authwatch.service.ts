@@ -62,6 +62,11 @@ export class LibAuthwatchService {
             com_user_name: data.user.name,
             com_user_id: data.user.id,
             com_user_email: data.user.email,
+            com_has_labs: data.user.has_labs,
+            com_has_community_builds: data.user.has_community_builds,
+            com_has_social_resources: data.user.has_social_resources,
+            com_work_experience_months: data.user.work_experience_months,
+            com_is_community_leader: data.user.is_community_leader,
           });
         } else {
           this.currentUserVerified.next(false);

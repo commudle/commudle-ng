@@ -27,9 +27,9 @@
           <div *ngIf="hasPermission; else noPermission" class="scanner-controls">
             <div *ngIf="hasDevices; else noDevices" class="camera-controls">
               <p>Select a camera:</p>
-              <nb-form-field *ngIf="selectedDevice && availableDevices.length > 0">
+              <nb-form-field *ngIf="deviceSelected && availableDevices.length > 0">
                 <nb-icon icon="camera-outline" nbPrefix></nb-icon>
-                <nb-select (selectedChange)="onSelectedChange($event)" [selected]="selectedDevice.deviceId">
+                <nb-select (selectedChange)="onDeviceSelectChange($event)" [selected]="deviceSelected">
                   <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">
                     {{ device.label }}
                   </nb-option>
@@ -54,19 +54,18 @@
             </nb-alert>
 
             <zxing-scanner
-              #scannerComponent
               (camerasFound)="onCamerasFound($event)"
-              (hasDevices)="onHasDevices($event)"
-              (permissionResponse)="onPermissionResponse($event)"
-              (scanSuccess)="onScanSuccess($event)"
-              [(device)]="selectedDevice"
-              [autofocusEnabled]="true"
-              [delayBetweenScanSuccess]="5000"
-              [enable]="isScannerEnabled"
-              [timeBetweenScans]="5000"
-              [tryHarder]="true"
-              previewFitMode="contain"
+              (deviceChange)="onDeviceChange($event)"
+              (permissionResponse)="onHasPermission($event)"
+              (scanSuccess)="onCodeResult($event)"
+              *ngIf="isScannerEnabled; else scannerDisabled"
+              [device]="deviceCurrent"
+              [formats]="formatsEnabled"
+              previewFitMode="cover"
             ></zxing-scanner>
+            <ng-template #scannerDisabled>
+              <p class="no-scanner">Scanner is disabled.</p>
+            </ng-template>
 
             <audio #correctSound>
               <source

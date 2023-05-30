@@ -29,7 +29,7 @@
       <span>Pricing</span>
     </a>
   </nb-action>
-  <nb-action (click)="this.notificationCount = 0" *ngIf="currentUser">
+  <nb-action (click)="this.notificationCount = 0; gtmService()" *ngIf="currentUser">
     <a *appBreakpoints="'<=md'" [routerLink]="['/notifications']" routerLinkActive="active">
       <nb-badge *ngIf="notificationCount > 0" [text]="notificationCount.toString()" status="danger"></nb-badge>
       <fa-icon [icon]="faBell"></fa-icon>

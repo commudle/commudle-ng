@@ -1,5 +1,5 @@
 <div class="page-padding">
-  <div *ngIf="community">
+  <div *ngIf="community && showConfirmationDialog">
     <nb-card>
       <nb-card-body>
         <div *ngIf="dferg.registration_status.name === ERegistrationStatuses.CONFIRMED" class="status">
@@ -27,7 +27,7 @@
           </div>
           <div class="community">
             <div class="logo">
-              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
             </div>
             <p>
               <a [routerLink]="['/communities', community.slug]">{{ community.name }}</a>

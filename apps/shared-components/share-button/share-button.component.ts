@@ -16,6 +16,7 @@ export class ShareButtonComponent implements OnInit {
 
   // Fallback content
   @Input() content: string = '';
+  @Input() disabled = false;
 
   @Input() showText: boolean = true;
   @Input() round: boolean = false;

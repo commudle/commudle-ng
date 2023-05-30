@@ -110,9 +110,10 @@ export class UserRolesUsersService {
     });
   }
 
-  confirmCommunityRole(token): Observable<any> {
+  confirmCommunityRole(token, decline): Observable<any> {
     return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ACTIVATE_COMMUNITY_ROLE), {
       token,
+      decline: decline,
     });
   }
 
@@ -183,4 +184,16 @@ export class UserRolesUsersService {
       params,
     });
   }
+
+  verifyInvitationToken(token): Observable<any> {
+    const params = new HttpParams().set('token', token);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.VERIFY_INVITATION_TOKEN), {
+      params,
+    });
+  }
+
+  // verifyInvitationToken(token): Observable<any> {
+  //   const url = `${this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.VERIFY_INVITATION_TOKEN)}?token=${token}`;
+  //   return this.http.get<any>(url);
+  // }
 }

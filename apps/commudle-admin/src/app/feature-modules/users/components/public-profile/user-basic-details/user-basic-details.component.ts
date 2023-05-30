@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
@@ -19,6 +20,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
+  faExclamationTriangle = faExclamationTriangle;
 
   // The updated tags
   tagsDialog: string[] = [];
@@ -33,6 +35,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   hiringDialog: NbDialogRef<any>;
   enableHiringDialog: NbDialogRef<any>;
+
+  disabled = false;
 
   @ViewChild('editTags') editTags: TemplateRef<any>;
   @ViewChild('hiringDialogBox') hiringDialogBox: TemplateRef<any>;

@@ -9,6 +9,8 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -21,6 +23,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   isOrganizer = false;
 
   notificationCount = 0;
+  ENotificationSenderTypes = ENotificationSenderTypes;
   faScroll = faScroll;
 
   subscriptions: Subscription[] = [];
@@ -31,6 +34,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private windowService: NbWindowService,
     private seoService: SeoService,
     private notificationsStore: NotificationsStore,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit() {
@@ -45,7 +49,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   setCommunity() {
     this.activatedRoute.params.subscribe(() => {
-      let communityId = this.activatedRoute.snapshot.params['community_id'];
+      const communityId = this.activatedRoute.snapshot.params['community_id'];
       this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
         this.community = data;
         this.seoService.setTitle(`Admin Dashboard | ${this.community.name}`);
@@ -81,5 +85,11 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
         this.notificationCount = count;
       }),
     );
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-notification-bell-icon', {
+      com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
+    });
   }
 }

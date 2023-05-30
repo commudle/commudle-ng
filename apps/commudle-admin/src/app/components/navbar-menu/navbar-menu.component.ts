@@ -13,6 +13,7 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
@@ -32,6 +33,8 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faHandHoldingDollar = faHandHoldingDollar;
 
   notificationCount = 0;
+  ENotificationSenderTypes = ENotificationSenderTypes;
+
   notificationIconHighlight = false;
 
   contextMenuItems = [
@@ -83,5 +86,11 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   closePopover() {
     this.popovers.find((popover) => popover.context === 'notificationsPopover').hide();
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('click-notification-bell-icon', {
+      com_notification_type: this.ENotificationSenderTypes.USER,
+    });
   }
 }
