@@ -3,8 +3,5 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarDays"></fa-icon></button
     >Upcoming Events
   </p>
-  <commudle-public-home-list-events-upcoming-list
-    *ngFor="let event of upcomingEvents"
-    [event]="event"
-  ></commudle-public-home-list-events-upcoming-list>
+  <commudle-events-upcoming-card *ngFor="let event of upcomingEvents" [event]="event"></commudle-events-upcoming-card>
 </div>

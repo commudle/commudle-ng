@@ -10,8 +10,8 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
 import { UserConsentsComponent } from './user-consents/user-consents.component';
 import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
 import { PublicHomeListEventsTechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-tech-sessions-card/public-home-list-events-tech-sessions-card.component';
-import { PublicHomeListEventsUpcomingListComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
 import { MembershipToggleComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/membership-toggle/membership-toggle.component';
+import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/events-upcoming-card/events-upcoming-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent],
@@ -24,7 +24,7 @@ import { MembershipToggleComponent } from 'apps/commudle-admin/src/app/feature-m
     PublicCommunityModule,
     PublicHomeListEventsFeaturedCommunitiesCardComponent,
     PublicHomeListEventsTechSessionsCardComponent,
-    PublicHomeListEventsUpcomingListComponent,
+    EventsUpcomingCardComponent,
 
     // Nebular
     NbRadioModule,

@@ -29,9 +29,11 @@ export class PublicHomeListEventsPastComponent implements OnInit {
     });
   }
 
-  getCommunity() {
-    this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
-      this.community = data;
-    });
-  }
+  // getCommunity() {
+  //   this.communitiesService.pGetCommunityDetails(this.pastEvents.kommunity_id).subscribe((data) => {
+  //     this.community = data;
+  //   });
+  // }
 }
+// this.upcomingEvents.forEach((event) => {
+// });

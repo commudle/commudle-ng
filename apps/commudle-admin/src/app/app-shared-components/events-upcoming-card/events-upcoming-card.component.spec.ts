@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PublicHomeListEventsUpcomingListComponent } from './public-home-list-events-upcoming-list.component';
+import { EventsUpcomingCardComponent } from './events-upcoming-card.component';
 import { PublicHomeListEventsUpcomingComponent } from '../public-home-list-events-upcoming/public-home-list-events-upcoming/public-home-list-events-upcoming.component';
 
 describe('PublicHomeListEventsUpcomingComponent', () => {

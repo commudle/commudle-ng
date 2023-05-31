@@ -10,7 +10,6 @@ import { PublicHomeListEventsFeaturedCommunitiesComponent } from './components/p
 import { SharedPipesModule } from '../../../../../../shared-pipes/pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicHomeListEventsPastComponent } from './components/public-home-list-events-past/public-home-list-events-past.component';
-import { PublicHomeListEventsPastCardComponent } from './components/public-home-list-events-past-card/public-home-list-events-past-card.component';
 import { PublicHomeListEventsSpeakersComponent } from './components/public-home-list-events-speakers/public-home-list-events-speakers.component';
 import { PublicHomeListEventsSpeakersCardComponent } from './components/public-home-list-events-speakers-card/public-home-list-events-speakers-card.component';
 import { MiniUserProfileModule } from '../../../../../../shared-modules/mini-user-profile/mini-user-profile.module';
@@ -18,7 +17,7 @@ import { EventCardComponent } from '../../../app-shared-components/event-card/ev
 import { PublicHomeListEventsTechSessionsComponent } from './components/public-home-list-events-tech-sessions/public-home-list-events-tech-sessions.component';
 import { PublicHomeListEventsFeaturedCommunitiesCardComponent } from '../../../app-shared-components/public-home-list-events-featured-communities-card/public-home-list-events-featured-communities-card.component';
 import { PublicHomeListEventsTechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-tech-sessions-card/public-home-list-events-tech-sessions-card.component';
-import { PublicHomeListEventsUpcomingListComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-home-list-events-upcoming-list/public-home-list-events-upcoming-list.component';
+import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/events-upcoming-card/events-upcoming-card.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -26,7 +25,6 @@ import { PublicHomeListEventsUpcomingListComponent } from 'apps/commudle-admin/s
     PublicHomeListEventsUpcomingComponent,
     PublicHomeListEventsFeaturedCommunitiesComponent,
     PublicHomeListEventsPastComponent,
-    PublicHomeListEventsPastCardComponent,
     PublicHomeListEventsSpeakersComponent,
     PublicHomeListEventsSpeakersCardComponent,
     PublicHomeListEventsTechSessionsComponent,
@@ -44,7 +42,7 @@ import { PublicHomeListEventsUpcomingListComponent } from 'apps/commudle-admin/s
     EventCardComponent,
     PublicHomeListEventsFeaturedCommunitiesCardComponent,
     PublicHomeListEventsTechSessionsCardComponent,
-    PublicHomeListEventsUpcomingListComponent,
+    EventsUpcomingCardComponent,
   ],
 })
 export class PublicHomeListEventsModule {}

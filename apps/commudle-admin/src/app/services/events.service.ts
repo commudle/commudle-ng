@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { IEvents } from 'apps/shared-models/events.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
 import { IPolls } from 'apps/shared-models/polls.model';
 import { IUsers } from 'apps/shared-models/users.model';
 import { IHmsRecording } from 'apps/shared-modules/hms-video/models/hms-recording.model';
@@ -162,8 +163,10 @@ export class EventsService {
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS));
   }
 
-  getEventsList(when): Observable<any> {
+  getEventsList(when): Observable<IPagination<IEvents>> {
     const params = new HttpParams().set('when', when);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), { params });
+    return this.http.get<IPagination<IEvents>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), {
+      params,
+    });
   }
 }
