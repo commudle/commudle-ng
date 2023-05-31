@@ -19,11 +19,11 @@ div {
     }
   }
 
-  .top-hr {
-    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
+  .top-border {
+    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 com-border-b;
   }
 
-  .bottom-hr {
-    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light;
+  .bottom-border {
+    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light com-border-0 com-border-b;
   }
 }

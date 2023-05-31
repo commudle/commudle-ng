@@ -10,7 +10,6 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
 })
 export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit {
   featuredCommunities: IFeaturedCommunity[] = [];
-
   faUsers = faUsers;
 
   constructor(private featuredCommunitiesService: FeaturedCommunitiesService) {}

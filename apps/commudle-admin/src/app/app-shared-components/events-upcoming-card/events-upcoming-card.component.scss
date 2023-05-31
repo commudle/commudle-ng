@@ -78,6 +78,7 @@ nb-card {
     }
   }
 }
-hr {
-  @apply com-border-solid com-my-6 com-mx-2 com-border-Bright-Gray-Light com-hidden md:com-block;
+
+.border {
+  @apply com-border-solid com-border-0 com-border-b com-my-6 com-mx-2 com-border-Bright-Gray-Light com-hidden md:com-block;
 }

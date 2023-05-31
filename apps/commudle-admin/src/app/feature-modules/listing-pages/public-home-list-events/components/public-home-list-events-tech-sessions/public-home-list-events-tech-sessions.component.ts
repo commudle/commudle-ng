@@ -12,26 +12,15 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   techSessions = [];
   faHeadset = faHeadset;
-  community;
-  constructor(private eventsService: EventsService, private communitiesService: CommunitiesService) {}
+  constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
     this.getTechSessions();
   }
 
-  getCommunity() {
-    this.techSessions.forEach((event) => {
-      this.communitiesService.getCommunityDetails(event.kommunity.id).subscribe((data) => {
-        this.community = data;
-      });
-    });
-  }
-
   getTechSessions() {
     this.eventsService.getTechSessions().subscribe((data) => {
       this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      // console.log(this.techSessions, 'tech-sesssionsss');
-      // this.getCommunity();
     });
   }
 }

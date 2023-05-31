@@ -3,10 +3,10 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faUsers"></fa-icon></button>
     <p><span class="title">Featured Communities</span><span class="sub-heading">Communities you can check out</span></p>
   </div>
-  <hr class="top-hr" />
-  <commudle-public-home-list-events-featured-communities-card
+  <div class="top-border"></div>
+  <commudle-featured-communities-card
     *ngFor="let featuredCommunity of featuredCommunities"
     [featuredCommunity]="featuredCommunity"
-  ></commudle-public-home-list-events-featured-communities-card>
-  <hr class="bottom-hr" />
+  ></commudle-featured-communities-card>
+  <div class="bottom-border"></div>
 </div>

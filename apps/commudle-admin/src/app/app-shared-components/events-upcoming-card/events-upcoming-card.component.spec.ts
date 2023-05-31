@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventsUpcomingCardComponent } from './events-upcoming-card.component';
-import { PublicHomeListEventsUpcomingComponent } from '../public-home-list-events-upcoming/public-home-list-events-upcoming/public-home-list-events-upcoming.component';
 
-describe('PublicHomeListEventsUpcomingComponent', () => {
-  let component: PublicHomeListEventsUpcomingComponent;
-  let fixture: ComponentFixture<PublicHomeListEventsUpcomingComponent>;
+describe('EventsUpcomingComponent', () => {
+  let component: EventsUpcomingCardComponent;
+  let fixture: ComponentFixture<EventsUpcomingCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PublicHomeListEventsUpcomingComponent],
+      declarations: [EventsUpcomingCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PublicHomeListEventsUpcomingComponent);
+    fixture = TestBed.createComponent(EventsUpcomingCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,4 +6,10 @@
   <div class="past-events-card-list">
     <commudle-event-card *ngFor="let event of pastEvents" [event]="event" [community]="community"></commudle-event-card>
   </div>
+  <div class="load-more">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+    <button *ngIf="page_info?.has_next_page" (click)="getPastEvents()" nbButton outline size="small" status="info">
+      Load More
+    </button>
+  </div>
 </div>

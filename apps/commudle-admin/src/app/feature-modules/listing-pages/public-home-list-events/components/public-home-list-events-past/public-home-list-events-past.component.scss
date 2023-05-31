@@ -11,5 +11,13 @@
 }
 
 .past-events-card-list {
-  @apply com-grid com-grid-cols-1 md:com-grid-cols-2 md:com-gap-3;
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-2 md:com-gap-7;
+}
+
+.load-more {
+  @apply com-text-center com-mt-8;
+
+  app-loading-spinner {
+    @apply com-mb-6;
+  }
 }

@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 @Component({
-  selector: 'commudle-public-home-list-events-featured-communities-card',
+  selector: 'commudle-featured-communities-card',
   standalone: true,
   imports: [
     CommonModule,
@@ -19,10 +19,10 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
     PublicCommunityModule,
     NbIconModule,
   ],
-  templateUrl: './public-home-list-events-featured-communities-card.component.html',
-  styleUrls: ['./public-home-list-events-featured-communities-card.component.scss'],
+  templateUrl: './featured-communities-card.component.html',
+  styleUrls: ['./featured-communities-card.component.scss'],
 })
-export class PublicHomeListEventsFeaturedCommunitiesCardComponent implements OnInit {
+export class FeaturedCommunitiesCardComponent implements OnInit {
   @Input() featuredCommunity: IFeaturedCommunity;
   faCheck = faCheck;
   faPlus = faPlus;

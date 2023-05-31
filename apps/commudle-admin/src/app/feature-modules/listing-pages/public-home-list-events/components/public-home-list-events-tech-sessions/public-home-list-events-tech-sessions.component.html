@@ -3,13 +3,10 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faHeadset"></fa-icon></button>
     <p><span class="title">Recent Tech Sessions</span><span class="sub-heading">Check out great tech sessions</span></p>
   </div>
-  <hr />
+  <div class="border"></div>
   <div>
     <div *ngFor="let session of techSessions" class="tech-sessions">
-      <commudle-public-home-list-events-tech-sessions-card
-        [community]="community"
-        [session]="session"
-      ></commudle-public-home-list-events-tech-sessions-card>
+      <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
     </div>
   </div>
 </div>

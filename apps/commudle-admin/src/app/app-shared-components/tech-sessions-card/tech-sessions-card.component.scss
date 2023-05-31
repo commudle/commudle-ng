@@ -1,0 +1,34 @@
+nb-card {
+  @apply com-m-0;
+
+  nb-card-body {
+    @apply com-px-5 com-py-6;
+
+    .details {
+      @apply com-no-underline;
+
+      .community-badge {
+        @apply com-mb-3 com-mt-0;
+      }
+
+      .event-title {
+        @apply com-text-base com-font-semibold com-mb-1 com-mt-0 com-text-Yankees-Blue;
+      }
+
+      .event-time {
+        @apply com-text-xs com-font-normal com-mb-6 com-mt-0 com-text-AuroMetalSaurus;
+      }
+    }
+    .content {
+      @apply com-no-underline com-flex com-items-center;
+
+      nb-icon {
+        @apply com-mr-2;
+      }
+
+      .session-link {
+        @apply com-m-0 com-text-base com-font-medium com-text-black com-line-clamp-3;
+      }
+    }
+  }
+}

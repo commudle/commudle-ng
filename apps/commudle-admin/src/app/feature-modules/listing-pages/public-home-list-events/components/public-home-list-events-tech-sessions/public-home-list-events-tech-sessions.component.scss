@@ -21,8 +21,8 @@ div {
     }
   }
 
-  hr {
-    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
+  .border {
+    @apply com-border-0 com-border-b com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
   }
 
   .tech-sessions {

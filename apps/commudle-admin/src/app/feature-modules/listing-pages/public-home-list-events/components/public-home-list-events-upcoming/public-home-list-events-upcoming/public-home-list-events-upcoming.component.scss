@@ -9,3 +9,11 @@
     @apply com-text-2xl;
   }
 }
+
+.load-more {
+  @apply com-text-center com-mt-8;
+
+  app-loading-spinner {
+    @apply com-mb-6;
+  }
+}

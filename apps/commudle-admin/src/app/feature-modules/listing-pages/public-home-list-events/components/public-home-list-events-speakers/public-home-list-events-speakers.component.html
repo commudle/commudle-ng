@@ -3,10 +3,7 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faMicrophone"></fa-icon></button>
     <p><span class="title">Events Speakers</span><span class="sub-heading">Speakers you can follow</span></p>
   </div>
-  <hr class="top-hr" />
-  <!-- *ngFor="let featuredCommunity of featuredCommunities"
-  [featuredCommunity]="featuredCommunity" -->
-  <!-- <commudle-public-home-list-events-speakers-card></commudle-public-home-list-events-speakers-card> -->
+  <div class="top-border"></div>
   <div *ngFor="let speaker of speakers" class="user-profile-card-large">
     <app-user-profile-card-large
       [showFollowButton]="true"
@@ -15,14 +12,5 @@
       [user]="speaker"
     ></app-user-profile-card-large>
   </div>
-  <!--  -->
-  <!-- <div *ngFor="let lab of labs" class="user-profile-card-large">
-    <app-user-profile-card-large
-      [showFollowButton]="true"
-      [alignFollowToRight]="true"
-      [showAbout]="true"
-      [user]="lab.user"
-    ></app-user-profile-card-large>
-  </div> -->
-  <hr class="bottom-hr" />
+  <div class="bottom-border"></div>
 </div>

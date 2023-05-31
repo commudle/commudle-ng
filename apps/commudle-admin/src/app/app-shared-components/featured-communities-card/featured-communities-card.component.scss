@@ -7,7 +7,7 @@ div {
       @apply com-flex com-items-start;
 
       .avatar {
-        @apply com-h-14 com-w-14 com-rounded-none com-object-cover com-object-center com-align-middle com-mr-4;
+        @apply com-h-14 com-w-14 com-rounded-none com-object-contain com-object-center com-align-middle com-mr-4;
       }
 
       .no-image-header {

@@ -5,12 +5,13 @@ import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { IEvents } from 'apps/shared-models/events.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
 import { IPolls } from 'apps/shared-models/polls.model';
+import { ISpeakers } from 'apps/shared-models/stats/speaker.model';
 import { IUsers } from 'apps/shared-models/users.model';
 import { IHmsRecording } from 'apps/shared-modules/hms-video/models/hms-recording.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
-
+import { ISessions } from 'apps/shared-models/sessions.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -155,16 +156,23 @@ export class EventsService {
     });
   }
 
-  getSpeakersList(): Observable<any> {
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST));
+  getSpeakersList(): Observable<IPagination<ISpeakers>> {
+    return this.http.get<IPagination<ISpeakers>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST),
+    );
   }
 
-  getTechSessions(): Observable<any> {
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS));
+  getTechSessions(): Observable<IPagination<ISessions>> {
+    return this.http.get<IPagination<ISessions>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS),
+    );
   }
 
-  getEventsList(when): Observable<IPagination<IEvents>> {
-    const params = new HttpParams().set('when', when);
+  getEventsList(when, after?): Observable<IPagination<IEvents>> {
+    let params = new HttpParams().set('when', when);
+    if (after) {
+      params = params.set('after', after);
+    }
     return this.http.get<IPagination<IEvents>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), {
       params,
     });

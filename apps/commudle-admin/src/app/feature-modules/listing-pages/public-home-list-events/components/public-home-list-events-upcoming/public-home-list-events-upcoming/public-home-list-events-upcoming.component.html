@@ -3,5 +3,13 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarDays"></fa-icon></button
     >Upcoming Events
   </p>
-  <commudle-events-upcoming-card *ngFor="let event of upcomingEvents" [event]="event"></commudle-events-upcoming-card>
+  <div *ngFor="let event of upcomingEvents">
+    <commudle-events-upcoming-card [event]="event"></commudle-events-upcoming-card>
+  </div>
+  <div class="load-more">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+    <button *ngIf="page_info?.has_next_page" (click)="getUpcomingEvents()" nbButton outline size="small" status="info">
+      Load More
+    </button>
+  </div>
 </div>

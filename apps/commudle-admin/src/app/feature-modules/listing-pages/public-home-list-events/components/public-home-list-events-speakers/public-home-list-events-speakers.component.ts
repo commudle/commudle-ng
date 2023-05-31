@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
-import { HomeService } from 'apps/commudle-admin/src/app/services/home.service';
-import { ILab } from 'apps/shared-models/lab.model';
 import { IUser } from 'apps/shared-models/user.model';
 
 @Component({
@@ -13,7 +11,6 @@ import { IUser } from 'apps/shared-models/user.model';
 export class PublicHomeListEventsSpeakersComponent implements OnInit {
   faMicrophone = faMicrophone;
   speakers: IUser[] = [];
-  labs: ILab[] = [];
   constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
@@ -23,7 +20,6 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   getSpeakersList() {
     this.eventsService.getSpeakersList().subscribe((data) => {
       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      console.log(this.speakers, 'speakerss');
     });
   }
 }
