@@ -3,11 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NbButtonModule, NbCardModule, NbIconModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { ICommunity } from 'apps/shared-models/community.model';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 @Component({
   selector: 'commudle-public-home-list-events-upcoming-list',
   standalone: true,
@@ -25,22 +26,18 @@ import { SharedComponentsModule } from '../../../../../shared-components/shared-
 })
 export class PublicHomeListEventsUpcomingListComponent implements OnInit {
   @Input() event: IEvent;
+  community: ICommunity;
   moment = moment;
-  momentTimezone = momentTimezone;
-  community;
 
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    // this.getCommunityDetails();
+    this.getCommunity();
   }
 
-  // getCommunityDetails() {
-  //   if (this.event.kommunity_id) {
-  //     this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
-  //       console.log(data);
-  //       this.community = data;
-  //     });
-  //   }
-  // }
+  getCommunity() {
+    this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
+      this.community = data;
+    });
+  }
 }

@@ -24,4 +24,8 @@ div {
   hr {
     @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
   }
+
+  .tech-sessions {
+    @apply com-mb-4;
+  }
 }

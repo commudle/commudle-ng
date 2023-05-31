@@ -15,5 +15,9 @@ nb-card {
     .event-time {
       @apply com-text-xs com-font-normal com-mb-6 com-mt-0 com-text-AuroMetalSaurus;
     }
+
+    a {
+      @apply com-no-underline;
+    }
   }
 }

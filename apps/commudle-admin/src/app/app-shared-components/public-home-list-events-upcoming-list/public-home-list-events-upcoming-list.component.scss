@@ -3,15 +3,11 @@ nb-card {
   nb-card-body {
     @apply com-p-0;
     .upcoming-card {
-      // @apply com-flex com-items-center;
-
       .upcoming-card-link {
         @apply com-flex com-w-[100%] com-no-underline md:com-flex-row com-flex-col;
-        // text-decoration: none;
 
         .upcoming-card-image {
           @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[390px] md:com-h-[230px] com-w-full com-h-full;
-          //   flex: 1;
 
           .image {
             max-width: 100%;
@@ -33,7 +29,7 @@ nb-card {
           flex: 1;
 
           .upcoming-card-info {
-            @apply com-h-[126px]; //122
+            @apply com-h-[158px];
 
             div {
               @apply com-flex md:com-flex-col com-flex-col-reverse;
@@ -43,13 +39,12 @@ nb-card {
               }
 
               .event-title {
-                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-2;
+                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-1;
               }
             }
           }
 
           .details {
-            // @apply com-h-[140px];
             .location {
               @apply com-flex com-items-center com-mb-2 com-mt-0;
 

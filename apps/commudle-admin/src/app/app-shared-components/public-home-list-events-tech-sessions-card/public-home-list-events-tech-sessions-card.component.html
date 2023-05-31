@@ -1,11 +1,13 @@
 <nb-card>
   <nb-card-body>
     <div class="community-badge">
-      <!-- <app-community-badge></app-community-badge> -->
-      BADGE
+      <!-- <app-community-badge [community]="community"></app-community-badge> -->
     </div>
-    <p class="event-title">NAME</p>
-    <p class="event-time">TIME</p>
-    <!-- {{ moment(event.start_time).format('dddd, MMM Do, YYYY') }} -->
+    <p class="event-title">{{ session.event.name }}</p>
+    <p class="event-time">{{ moment(session.event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+    <a [href]="session.embedded_content">
+      <nb-icon icon="attach-outline"></nb-icon>
+      <p class="session-link">{{ session.title }}</p>
+    </a>
   </nb-card-body>
 </nb-card>

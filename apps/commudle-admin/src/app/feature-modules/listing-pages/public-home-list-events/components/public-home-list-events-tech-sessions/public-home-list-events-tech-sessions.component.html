@@ -5,6 +5,11 @@
   </div>
   <hr />
   <div>
-    <commudle-public-home-list-events-tech-sessions-card></commudle-public-home-list-events-tech-sessions-card>
+    <div *ngFor="let session of techSessions" class="tech-sessions">
+      <commudle-public-home-list-events-tech-sessions-card
+        [community]="community"
+        [session]="session"
+      ></commudle-public-home-list-events-tech-sessions-card>
+    </div>
   </div>
 </div>

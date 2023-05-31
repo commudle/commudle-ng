@@ -14,16 +14,16 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   faMicrophone = faMicrophone;
   speakers: IUser[] = [];
   labs: ILab[] = [];
-  constructor(private eventsService: EventsService, private homeService: HomeService) {}
+  constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
-    // this.getSpeakersList();
+    this.getSpeakersList();
   }
 
   getSpeakersList() {
     this.eventsService.getSpeakersList().subscribe((data) => {
       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      // this.changeDetectorRef.markForCheck();
+      console.log(this.speakers, 'speakerss');
     });
   }
 }

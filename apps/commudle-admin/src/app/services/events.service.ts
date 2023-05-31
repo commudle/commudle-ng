@@ -157,4 +157,13 @@ export class EventsService {
   getSpeakersList(): Observable<any> {
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST));
   }
+
+  getTechSessions(): Observable<any> {
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS));
+  }
+
+  getEventsList(when): Observable<any> {
+    const params = new HttpParams().set('when', when);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), { params });
+  }
 }

@@ -1,16 +1,18 @@
 <div>
   <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" target="_blank">
     <div class="featured-community">
-      <div *ngIf="featuredCommunity.kommunity.logo_image?.url" class="image">
-        <img
-          [alt]="featuredCommunity.kommunity.name"
-          [src]="featuredCommunity.kommunity.logo_image.url"
-          [title]="featuredCommunity.kommunity.name"
-          class="avatar"
-        />
-      </div>
-      <div *ngIf="!featuredCommunity.kommunity.logo_image?.url" class="no-image-header">
-        <nb-icon icon="link" status="primary"></nb-icon>
+      <div>
+        <div *ngIf="featuredCommunity.kommunity.logo_image?.url" class="image">
+          <img
+            [alt]="featuredCommunity.kommunity.name"
+            [src]="featuredCommunity.kommunity.logo_image.url"
+            [title]="featuredCommunity.kommunity.name"
+            class="avatar"
+          />
+        </div>
+        <div *ngIf="!featuredCommunity.kommunity.logo_image?.url" class="no-image-header">
+          <nb-icon icon="link" status="primary"></nb-icon>
+        </div>
       </div>
       <div class="featured-communities-details">
         <div class="details">
@@ -19,15 +21,15 @@
             {{ featuredCommunity.reason }}
           </p>
         </div>
-        <div class="membership-toggle">
-          <app-membership-toggle
-            [community]="featuredCommunity.kommunity"
-            [shapes]="'semi-round'"
-            [size]="'small'"
-            [status]="'primary'"
-          ></app-membership-toggle>
-        </div>
       </div>
     </div>
   </a>
+  <div class="membership-toggle">
+    <app-membership-toggle
+      [community]="featuredCommunity.kommunity"
+      [shapes]="'semi-round'"
+      [size]="'small'"
+      [status]="'primary'"
+    ></app-membership-toggle>
+  </div>
 </div>

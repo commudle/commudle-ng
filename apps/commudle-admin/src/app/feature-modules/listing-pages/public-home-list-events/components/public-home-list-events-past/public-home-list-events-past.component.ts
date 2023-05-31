@@ -5,6 +5,7 @@ import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
+import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 
 @Component({
   selector: 'commudle-public-home-list-events-past',
@@ -13,26 +14,24 @@ import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/com
 })
 export class PublicHomeListEventsPastComponent implements OnInit {
   pastEvents: IEvent[] = [];
-  community: ICommunity[];
+  community;
   faCalendarCheck = faCalendarCheck;
 
-  constructor(private homeService: HomeService, private communitiesService: CommunitiesService) {}
+  constructor(private eventsService: EventsService, private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
     this.getPastEvents();
   }
 
-  getCommunity() {
-    // this.communitiesService.getCommunityDetails(this.pastEvents.kommunity_id).subscribe((data) => {
-    //   this.community = data;
-    // });
+  getPastEvents() {
+    this.eventsService.getEventsList('past').subscribe((data) => {
+      this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+    });
   }
 
-  getPastEvents() {
-    //   this.homeService.pUpcomingEvents().subscribe((data) => {
-    //     this.pastEvents = data.events;
-    //     console.log(this.pastEvents, 'past-events');
-    //     // this.changeDetectorRef.markForCheck();
-    //   });
+  getCommunity() {
+    this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
+      this.community = data;
+    });
   }
 }
