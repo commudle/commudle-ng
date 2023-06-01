@@ -27,6 +27,14 @@ div {
     @apply com-mb-8;
   }
 
+  .load-more {
+    @apply com-text-center com-mt-8;
+
+    app-loading-spinner {
+      @apply com-mb-6;
+    }
+  }
+
   .bottom-border {
     @apply com-border-0 com-border-b com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light;
   }
