@@ -17,6 +17,7 @@ import { PublicHomeListEventsTechSessionsComponent } from './components/public-h
 import { FeaturedCommunitiesCardComponent } from '../../../app-shared-components/featured-communities-card/featured-communities-card.component';
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/events-upcoming-card/events-upcoming-card.component';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -41,6 +42,7 @@ import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-sha
     FeaturedCommunitiesCardComponent,
     TechSessionsCardComponent,
     EventsUpcomingCardComponent,
+    SharedDirectivesModule,
   ],
 })
 export class PublicHomeListEventsModule {}

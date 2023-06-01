@@ -1,5 +1,5 @@
 nb-card {
-  @apply md:com-m-0 com-mb-6 com-mx-0 com-mt-0;
+  @apply md:com-m-0 com-mb-6 com-mx-4 com-mt-0;
   nb-card-body {
     @apply com-p-0;
     .upcoming-card {
@@ -70,6 +70,11 @@ nb-card {
                 span {
                   @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
                 }
+              }
+
+              button {
+                @apply md:com-border com-border-0 com-m-0;
+                // com-bg-transparent md:com-bg-Azure
               }
             }
           }

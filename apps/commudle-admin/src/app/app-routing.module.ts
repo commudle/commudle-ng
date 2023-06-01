@@ -39,6 +39,13 @@ const routes: Routes = [
         (m) => m.StudentNonProfitSupportModule,
       ),
   },
+  {
+    path: 'event',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
+        (m) => m.PublicHomeListEventsModule,
+      ),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,
@@ -156,13 +163,6 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
-  },
-  {
-    path: 'public-home-listing-events',
-    loadChildren: () =>
-      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
-        (m) => m.PublicHomeListEventsModule,
-      ),
   },
   {
     path: 'admin',

@@ -1,15 +1,19 @@
 div {
+  @apply md:com-p-0 com-p-4;
+  .border {
+    @apply com-border-solid com-border-0 com-border-b md:com-my-6 md:com-mx-2 com-border-Bright-Gray-Light com-p-0;
+  }
   .heading {
-    @apply md:com-mt-8 com-mt-10 com-mb-6 com-mx-0 com-items-center com-flex;
+    @apply md:com-mt-8 com-mt-10 com-mb-6 com-mx-0 com-items-center com-flex com-p-0;
 
     button {
-      @apply com-mr-4;
+      @apply com-mr-4 com-p-0;
       fa-icon {
         @apply com-text-2xl;
       }
     }
     p {
-      @apply com-flex com-flex-col;
+      @apply com-flex com-flex-col com-p-0;
       .title {
         @apply com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
       }
@@ -20,10 +24,10 @@ div {
   }
 
   .top-border {
-    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 com-border-b;
+    @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0;
   }
 
   .bottom-border {
-    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light com-border-0 com-border-b;
+    @apply com-border-solid com-mb-0 com-mx-0 com-mt-4 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0;
   }
 }

@@ -1,19 +1,26 @@
-.title {
-  @apply md:com-text-3xl com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-my-8 com-my-6 com-ml-2 com-mr-0;
-
-  button {
-    @apply com-mr-4;
+div {
+  @apply com-m-0 md:com-mb-0 com-mb-2;
+  .border {
+    @apply com-border-solid com-border-0 com-border-b com-mt-5 com-border-Bright-Gray-Light;
   }
 
-  fa-icon {
-    @apply com-text-2xl;
+  .title {
+    @apply md:com-text-3xl com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-my-8 com-my-6 com-ml-4 com-mr-0;
+
+    button {
+      @apply com-mr-4;
+    }
+
+    fa-icon {
+      @apply com-text-2xl;
+    }
   }
-}
 
-.load-more {
-  @apply com-text-center com-mt-8;
+  .load-more {
+    @apply com-text-center com-mt-8;
 
-  app-loading-spinner {
-    @apply com-mb-6;
+    app-loading-spinner {
+      @apply com-mb-6;
+    }
   }
 }
