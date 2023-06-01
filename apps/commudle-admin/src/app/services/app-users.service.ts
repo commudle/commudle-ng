@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 import { IBadges } from 'apps/shared-models/badges.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
+import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { ILabs } from 'apps/shared-models/labs.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
 import { IPost } from 'apps/shared-models/post.model';
 import { IPosts } from 'apps/shared-models/posts.model';
 import { ISocialResources } from 'apps/shared-models/social_resources.model';
@@ -97,6 +99,16 @@ export class AppUsersService {
     return this.http.get<ISpeakerResources>(this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_RESOURCES), {
       params,
     });
+  }
+
+  getSpeakerResources(username): Observable<IPagination<IEventStatus>> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<IPagination<IEventStatus>>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_SESSIONS_DELIVERED),
+      {
+        params,
+      },
+    );
   }
 
   // get list of all the social resources of a user

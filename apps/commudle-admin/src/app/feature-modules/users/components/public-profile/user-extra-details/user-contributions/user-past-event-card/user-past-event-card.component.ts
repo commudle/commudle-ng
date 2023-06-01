@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IEvent } from 'apps/shared-models/event.model';
+import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 
 @Component({
@@ -7,7 +9,8 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
   styleUrls: ['./user-past-event-card.component.scss'],
 })
 export class UserPastEventCardComponent implements OnInit {
-  @Input() pastEvent: ISpeakerResource;
+  @Input() pastEvent: IEvent;
+  event_status: IEventStatus;
 
   constructor() {}
 
