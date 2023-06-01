@@ -1,8 +1,6 @@
 .event-data-form-groups-list {
   nb-list-item {
-    align-self: center;
-    border-bottom: none;
-    width: 100%;
+    @apply com-px-0 com-py-4 com-self-center com-border-b-0 com-w-full;
     @media screen and (min-width: 640px) {
       align-self: flex-start;
     }
@@ -75,6 +73,9 @@
     > div {
       margin: 0.5rem;
     }
+    .name {
+      @apply com-m-0;
+    }
   }
 
   .data-form-select,
@@ -85,7 +86,7 @@
   }
 
   .save-button-bottom {
-    margin-top: 10px;
+    @apply com-mt-4;
   }
 
   @media screen and (min-width: 640px) {

@@ -36,10 +36,7 @@
     }
 
     .new-sponsor-button {
-      height: 80px;
-      width: 250px;
-      padding: 5px;
-      margin: 0.5rem;
+      @apply com-mr-2 com-my-2 com-ml-0 com-p-5px com-w-[250px] com-h-[80px];
 
       border: 1px dashed grey;
       display: flex;
@@ -68,7 +65,7 @@ nb-tabset.new-event-sponsor-options {
         position: relative;
         padding: 150px 0;
 
-        >span {
+        > span {
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -81,7 +78,7 @@ nb-tabset.new-event-sponsor-options {
 
           nb-icon {
             font-size: 4rem;
-            margin-bottom: 0.5rem
+            margin-bottom: 0.5rem;
           }
         }
 
@@ -142,5 +139,3 @@ nb-tabset.new-event-sponsor-options {
     }
   }
 }
-
-
