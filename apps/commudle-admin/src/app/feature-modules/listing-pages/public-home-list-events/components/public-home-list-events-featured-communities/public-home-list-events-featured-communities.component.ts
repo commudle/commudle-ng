@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FeaturedCommunitiesService } from 'apps/commudle-admin/src/app/services/featured-communities.service';
 import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
 
@@ -10,7 +9,6 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
 })
 export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit {
   featuredCommunities: IFeaturedCommunity[] = [];
-  faUsers = faUsers;
 
   constructor(private featuredCommunitiesService: FeaturedCommunitiesService) {}
 

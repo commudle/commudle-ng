@@ -9,16 +9,17 @@
   [appearance]="appearance"
 >
   <nb-icon icon="plus"></nb-icon>
-  Join Community
+  Join
 </button>
 
 <nb-select
   (selectedChange)="openDialog(removeMemberDialog)"
   *ngIf="isMember"
   [(ngModel)]="selectExit"
-  placeholder="You're a Member!"
+  placeholder="Joined"
   size="small"
-  status="success"
+  status="info"
+  shape="semi-round"
 >
   <nb-option [value]="'false'">Exit {{ community.name }}</nb-option>
 </nb-select>
