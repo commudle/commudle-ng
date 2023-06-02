@@ -2,11 +2,8 @@
   <nb-card-body>
     <div *ngIf="listingPageHeader" [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }">
       <div class="header-text">
-        <div>
-          <p class="heading">{{ listingPageHeader.heading }}</p>
-          <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
-        </div>
-        <div class="search">SEARCH</div>
+        <p class="heading">{{ listingPageHeader.heading }}</p>
+        <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
       </div>
       <div class="header-image">
         <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />

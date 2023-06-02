@@ -16,24 +16,24 @@
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
         <div class="upcoming-card-details">
-          <div class="upcoming-card-info">
+          <div>
             <div>
               <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
-              <p class="event-title">{{ event.name }}</p>
-            </div>
-            <div *ngIf="community" class="community-badge">
-              <app-community-badge [community]="community"></app-community-badge>
-            </div>
-          </div>
-          <div class="details">
-            <div class="interested-members">
-              <div>
-                <nb-icon icon="people-outline" class="people-outline"></nb-icon>
-                <span>{{ event.interested_members_count }} Interested Members</span>
+              <div class="interested-members" *ngIf="event.interested_members_count > 0">
+                <button nbButton status="basic" shape="round">
+                  <nb-icon icon="people-outline" class="people-outline"></nb-icon>
+                  <span>{{ event.interested_members_count }}</span>
+                </button>
               </div>
-              <button nbButton status="info" shape="rectangle" size="medium" outline>Register</button>
             </div>
+            <p class="event-title">{{ event.name }}</p>
           </div>
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community"></app-community-badge>
+          </div>
+          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
+            Register
+          </button>
         </div>
       </a>
     </div>

@@ -1,11 +1,8 @@
 div {
   @apply com-m-0 md:com-mb-0 com-mb-2;
-  .border {
-    @apply com-border-solid com-border-0 com-border-b com-mt-5 com-border-Bright-Gray-Light;
-  }
 
   .title {
-    @apply md:com-text-3xl com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-my-8 com-my-6 com-ml-4 com-mr-0;
+    @apply md:com-text-3xl com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-mb-8 md:com-mt-12 com-my-6 com-ml-4 com-mr-0 md:com-mx-0;
 
     button {
       @apply com-mr-4;

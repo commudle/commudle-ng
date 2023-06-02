@@ -4,20 +4,14 @@ nb-card {
     @apply com-p-0;
     .upcoming-card {
       .upcoming-card-link {
-        @apply com-flex com-w-[100%] com-no-underline md:com-flex-row com-flex-col;
+        @apply com-flex com-w-full com-no-underline md:com-flex-row com-flex-col;
 
         .upcoming-card-image {
-          @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[390px] md:com-h-[230px] com-w-full com-h-full;
-
-          .image {
-            max-width: 100%;
-            object-fit: contain;
-            max-height: 100%;
-          }
+          @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[388px] md:com-h-[145px] com-w-full com-h-full;
         }
 
         .no-image-header {
-          @apply md:com-w-[390px] md:com-h-[230px] com-w-full com-h-[230px] com-flex com-items-center com-justify-center;
+          @apply md:com-w-[388px] md:com-h-[145px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center;
 
           nb-icon {
             @apply com-text-5xl;
@@ -25,58 +19,39 @@ nb-card {
         }
 
         .upcoming-card-details {
-          @apply com-p-4;
+          @apply com-p-3;
           flex: 1;
-
-          .upcoming-card-info {
-            @apply com-h-[158px];
+          div {
+            @apply com-flex md:com-flex-col com-flex-col-reverse;
 
             div {
-              @apply com-flex md:com-flex-col com-flex-col-reverse;
+              @apply md:com-flex md:com-flex-row md:com-justify-between com-items-center;
+
+              .interested-members {
+                button {
+                  @apply com-py-1 com-px-2;
+                  nb-icon {
+                    @apply com-mr-2 com-text-Dark-Jungle-Green com-text-base com-shrink-0;
+                  }
+
+                  span {
+                    @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
+                  }
+                }
+              }
 
               .event-time {
-                @apply com-text-sm md:com-font-medium com-font-normal md:com-mb-3 com-mb-17px com-mt-0 com-text-Auro-Metal-Saurus;
+                @apply com-text-xs md:com-font-medium com-font-normal md:com-mb-3 com-mb-17px com-mt-0 com-text-Auro-Metal-Saurus;
               }
+            }
 
-              .event-title {
-                @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-1;
-              }
+            .event-title {
+              @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-1;
             }
           }
 
-          .details {
-            .location {
-              @apply com-flex com-items-center com-mb-2 com-mt-0;
-
-              nb-icon {
-                @apply com-text-2xl com-mr-2 com-text-Dark-Jungle-Green;
-              }
-
-              .location-text {
-                @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
-              }
-            }
-
-            .interested-members {
-              @apply md:com-flex com-items-center com-m-0 md:com-justify-between;
-
-              div {
-                @apply com-flex com-items-center com-mb-8 md:com-mb-0;
-
-                nb-icon {
-                  @apply com-mr-2 com-text-Dark-Jungle-Green com-text-2xl;
-                }
-
-                span {
-                  @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
-                }
-              }
-
-              button {
-                @apply md:com-border com-border-0 com-m-0;
-                // com-bg-transparent md:com-bg-Azure
-              }
-            }
+          .register-button {
+            @apply md:com-border com-border-0 com-m-0 com-bg-transparent com-p-2 com-flex com-ml-auto;
           }
         }
       }
