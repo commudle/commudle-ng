@@ -1,22 +1,22 @@
 nb-card {
-  @apply com-m-0;
+  @apply md:com-m-0 com-mt-4 com-ml-4 com-mr-0 com-mb-0;
 
   nb-card-body {
-    @apply com-px-5 com-py-6;
+    @apply com-p-4;
 
     .details {
       @apply com-no-underline;
 
       .community-badge {
-        @apply com-mb-3 com-mt-0;
+        @apply com-mb-2 com-mt-0;
       }
 
       .event-title {
-        @apply com-text-base com-font-semibold com-mb-1 com-mt-0 com-text-Yankees-Blue;
+        @apply com-text-base com-font-semibold com-mb-2 com-mt-0 com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
       }
 
       .event-time {
-        @apply com-text-xs com-font-normal com-mb-6 com-mt-0 com-text-AuroMetalSaurus;
+        @apply com-text-xs com-font-normal com-mb-4 com-mt-0 com-text-AuroMetalSaurus;
       }
     }
     .content {
@@ -27,7 +27,7 @@ nb-card {
       }
 
       .session-link {
-        @apply com-m-0 com-text-base com-font-medium com-text-black com-line-clamp-3;
+        @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-3 com-line-clamp-1;
       }
     }
   }

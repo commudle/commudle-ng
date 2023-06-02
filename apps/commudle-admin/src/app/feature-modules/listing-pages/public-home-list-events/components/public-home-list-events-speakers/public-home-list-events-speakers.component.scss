@@ -1,6 +1,6 @@
 div {
   .heading {
-    @apply md:com-mt-8 com-mt-10 com-mb-6 md:com-mb-4 com-mx-0 com-items-center com-flex;
+    @apply md:com-mt-8 com-mt-20 com-mb-4 com-mx-0 com-items-center com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-slate-400;
 
     p {
       @apply com-flex com-flex-col com-m-0;
@@ -18,7 +18,7 @@ div {
   }
 
   .user-profile-card-large {
-    @apply com-mb-8;
+    @apply md:com-mb-4;
   }
 
   .load-more {

@@ -25,11 +25,13 @@ import * as moment from 'moment';
 })
 export class TechSessionsCardComponent implements OnInit {
   @Input() session;
+  @Input() horizontalScroll = false;
   community: ICommunity;
   moment = moment;
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
+    console.log(this.session);
     this.getCommunity();
   }
 

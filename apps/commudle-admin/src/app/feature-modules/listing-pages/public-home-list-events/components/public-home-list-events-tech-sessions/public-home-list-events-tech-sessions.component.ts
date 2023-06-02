@@ -12,6 +12,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   techSessions = [];
   faHeadset = faHeadset;
+  showSpinner = false;
   constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
@@ -19,8 +20,10 @@ export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   }
 
   getTechSessions() {
+    this.showSpinner = true;
     this.eventsService.getTechSessions().subscribe((data) => {
       this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.showSpinner = false;
     });
   }
 }

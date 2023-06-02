@@ -9,6 +9,7 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
 })
 export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit {
   featuredCommunities: IFeaturedCommunity[] = [];
+  showSpinner = false;
 
   constructor(private featuredCommunitiesService: FeaturedCommunitiesService) {}
 
@@ -17,8 +18,10 @@ export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit 
   }
 
   getFeaturedCommunities(): void {
+    this.showSpinner = true;
     this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
       this.featuredCommunities = value.featured_communities;
+      this.showSpinner = false;
     });
   }
 }

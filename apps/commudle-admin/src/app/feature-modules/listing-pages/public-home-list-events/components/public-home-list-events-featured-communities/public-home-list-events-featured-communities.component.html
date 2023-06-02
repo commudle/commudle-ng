@@ -3,9 +3,16 @@
     <p><span class="title">Featured Communities</span><span class="sub-heading">Communities you can check out</span></p>
   </div>
   <div class="top-border"></div>
-  <commudle-featured-communities-card
-    *ngFor="let featuredCommunity of featuredCommunities"
-    [featuredCommunity]="featuredCommunity"
-  ></commudle-featured-communities-card>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div *ngFor="let featuredCommunity of featuredCommunities">
+    <div class="featured-communities-card">
+      <!-- class="com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-m-0 com-my-4 com-ml-4 com-mr-0 com-p-0 com-w-72" -->
+      <!--   com-p-0 md:com-pt-0 com-pt-4  md:com-w-full -->
+      <commudle-featured-communities-card
+        [featuredCommunity]="featuredCommunity"
+        [horizontalScroll]="true"
+      ></commudle-featured-communities-card>
+    </div>
+  </div>
   <div class="bottom-border"></div>
 </div>

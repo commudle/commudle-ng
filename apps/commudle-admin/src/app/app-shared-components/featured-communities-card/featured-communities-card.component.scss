@@ -1,5 +1,6 @@
 div {
   @apply md:com-flex md:com-justify-between;
+  // com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 md:com-m-0 com-my-4 com-ml-4 com-mr-0 md:com-w-full
   a {
     @apply com-no-underline;
 
@@ -28,13 +29,13 @@ div {
           }
 
           .mini-description {
-            @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 md:com-mb-4 com-mb-5 com-line-clamp-2;
+            @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-mb-4 com-line-clamp-2;
           }
         }
       }
     }
   }
   .membership-toggle {
-    @apply md:com-ml-auto md:com-my-0 md:com-mr-0 com-mb-6 com-mx-4 com-mt-0;
+    @apply md:com-ml-auto md:com-my-0 md:com-mr-0 com-m-0;
   }
 }

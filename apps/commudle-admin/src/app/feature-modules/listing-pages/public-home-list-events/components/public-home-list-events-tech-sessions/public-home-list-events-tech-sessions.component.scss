@@ -2,30 +2,27 @@ div {
   @apply com-mx-0;
 
   .heading {
-    @apply md:com-mt-8 com-mt-10 com-mb-6 com-mx-0 com-items-center com-flex;
+    @apply md:com-mt-8 com-mt-20 com-mb-4 com-mx-0 com-items-center com-flex com-p-4 md:com-p-0 md:com-bg-transparent com-bg-slate-400;
 
-    button {
-      @apply com-mr-4;
-      fa-icon {
-        @apply com-text-2xl;
-      }
-    }
     p {
-      @apply com-flex com-flex-col;
+      @apply com-flex com-flex-col com-m-0;
       .title {
-        @apply com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
       }
       .sub-heading {
-        @apply com-text-base com-font-normal com-text-Dark-Jungle-Green;
+        @apply com-text-sm com-font-normal com-text-gunmetal;
       }
     }
   }
 
   .border {
-    @apply com-border-0 com-border-b com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
+    @apply com-border-0 com-border-b com-border-solid md:com-mb-4 com-mb-0 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
   }
 
-  .tech-sessions {
-    @apply com-mb-4;
+  .session-card {
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto;
+    .tech-sessions {
+      @apply md:com-mb-4 com-m-0;
+    }
   }
 }

@@ -24,6 +24,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
 })
 export class FeaturedCommunitiesCardComponent implements OnInit {
   @Input() featuredCommunity: IFeaturedCommunity;
+  @Input() horizontalScroll = false;
   faCheck = faCheck;
   faPlus = faPlus;
   constructor() {}

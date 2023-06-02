@@ -1,12 +1,12 @@
 <div>
   <div class="heading">
-    <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faHeadset"></fa-icon></button>
     <p><span class="title">Recent Tech Sessions</span><span class="sub-heading">Check out great tech sessions</span></p>
   </div>
   <div class="border"></div>
-  <div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div class="session-card">
     <div *ngFor="let session of techSessions" class="tech-sessions">
-      <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
+      <commudle-tech-sessions-card [session]="session" [horizontalScroll]="true"></commudle-tech-sessions-card>
     </div>
   </div>
 </div>

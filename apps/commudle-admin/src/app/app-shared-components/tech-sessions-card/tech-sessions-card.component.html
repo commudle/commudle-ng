@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
   <nb-card-body>
     <a
       [routerLink]="['/communities', session.event.kommunity.id, 'events', session.event.id]"
@@ -6,12 +6,26 @@
       class="details"
     >
       <div *ngIf="community" class="community-badge">
-        <app-community-badge [community]="community"></app-community-badge>
+        <app-community-badge
+          [community]="community"
+          [padding]="'4px 8px 4px 8px'"
+          [width]="'13px'"
+          [height]="'13px'"
+          [fontSize]="'12px'"
+          [fontWeight]="500"
+        ></app-community-badge>
       </div>
       <p class="event-title">{{ session.event.name }}</p>
       <p class="event-time">{{ moment(session.event.start_time).format('dddd, MMM Do, YYYY') }}</p>
     </a>
-    <a [href]="session.embedded_content" class="content">
+    <a
+      class="content"
+      [routerLink]="
+        session.embedded_content
+          ? ['/speaker-resources', session.event.id]
+          : ['/communities', session.event.kommunity.id, 'events', session.event.id]
+      "
+    >
       <nb-icon icon="attach-outline"></nb-icon>
       <p class="session-link">{{ session.title }}</p>
     </a>
