@@ -4,11 +4,18 @@
 
 .sidebar-common-menu {
   a {
-    text-decoration: none;
+    @apply com-flex com-no-underline;
     color: grey;
+
+    fa-icon {
+      @apply com-h-[20px] com-w-[20px] com-mr-2;
+    }
+
+    span {
+      font-size: 0.9735rem;
+    }
   }
 }
-
 
 .router-link-active {
   color: #3366ff !important;
@@ -22,7 +29,6 @@ a.profile-edit-link {
   .incomplete-badge {
     margin-left: 0.5rem;
   }
-
 }
 
 nb-user {
@@ -38,12 +44,6 @@ nb-user {
   }
 }
 
-
-
-
-
 nb-accordion {
   box-shadow: none;
 }
-
-
