@@ -76,13 +76,11 @@
     .name {
       @apply com-m-0;
     }
-  }
 
-  .data-form-select,
-  .data-form-type-select {
-    margin: 0.5rem;
-    display: flex;
-    align-items: flex-start;
+    .data-form-select,
+    .data-form-type-select {
+      @apply com-mx-0 com-flex com-items-start;
+    }
   }
 
   .save-button-bottom {

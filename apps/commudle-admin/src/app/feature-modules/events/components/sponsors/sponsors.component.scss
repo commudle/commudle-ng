@@ -4,12 +4,12 @@
     flex-wrap: wrap;
     align-items: center;
     .event-sponsor {
+      @apply com-my-2 com-mr-2 com-ml-0 md:com-m-2;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 250px;
-      margin: 0.5rem;
       border: 1px dotted lightgrey;
       border-radius: 5px;
       .logo {
