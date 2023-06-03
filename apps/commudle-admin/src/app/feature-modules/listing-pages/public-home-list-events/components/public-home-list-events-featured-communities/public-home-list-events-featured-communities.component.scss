@@ -18,9 +18,12 @@ div {
     @apply com-border-solid md:com-mb-8 com-mb-0 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0;
   }
 
-  // .featured-communities-card {
-  //   @apply com-p-0 com-m-0 com-flex md:com-flex-col com-flex-row com-overflow-x-auto;
-  // }
+  .featured-communities-card {
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4;
+    div {
+      @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
+    }
+  }
 
   .bottom-border {
     @apply com-border-solid com-mb-0 com-mx-0 com-mt-8 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0 md:com-block com-hidden;

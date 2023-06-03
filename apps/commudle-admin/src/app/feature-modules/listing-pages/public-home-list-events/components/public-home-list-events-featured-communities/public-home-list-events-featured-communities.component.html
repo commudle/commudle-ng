@@ -4,10 +4,8 @@
   </div>
   <div class="top-border"></div>
   <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-  <div *ngFor="let featuredCommunity of featuredCommunities">
-    <div class="featured-communities-card">
-      <!-- class="com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-m-0 com-my-4 com-ml-4 com-mr-0 com-p-0 com-w-72" -->
-      <!--   com-p-0 md:com-pt-0 com-pt-4  md:com-w-full -->
+  <div class="featured-communities-card">
+    <div *ngFor="let featuredCommunity of featuredCommunities">
       <commudle-featured-communities-card
         [featuredCommunity]="featuredCommunity"
         [horizontalScroll]="true"
