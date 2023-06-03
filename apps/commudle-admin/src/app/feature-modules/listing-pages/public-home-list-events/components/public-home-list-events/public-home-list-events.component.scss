@@ -11,7 +11,8 @@
 
   .right-column {
     @apply md:com-ml-11 com-m-0;
+    // @apply com-sticky com-top-20;
     position: sticky;
-    top: 0px;
+    top: 20px;
   }
 }

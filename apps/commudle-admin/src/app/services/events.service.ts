@@ -156,10 +156,13 @@ export class EventsService {
     });
   }
 
-  getSpeakersList(after?): Observable<IPagination<ISpeakers>> {
+  getSpeakersList(after?, limit?): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
     }
     return this.http.get<IPagination<ISpeakers>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST),
