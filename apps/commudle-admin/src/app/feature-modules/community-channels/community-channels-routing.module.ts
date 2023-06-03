@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'apps/shared-services/lib-authwatch.guard';
-import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
@@ -26,11 +25,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: ':community_channel_id/members',
+    component: ChannelMembersComponent,
+    // canActivate: [AuthGuard],
+  },
+  // {
+  //   path: 'channels/:community_channel_id',
+  //   component: CommunityChannelComponent,
+  //   children: [
+  //     {
+  //       path: 'members',
+  //       component: ChannelMembersComponent,
+  //       canActivate: [AuthGuard],
+  //     },
+  //   ],
+  // },
+  {
     path: 'app',
     component: CommunityChannelsDashboardComponent,
-    resolve: {
-      community: CommunityDetailsResolver,
-    },
     children: [
       {
         path: '',
@@ -64,9 +76,6 @@ const routes: Routes = [
       {
         path: ':community_channel_id',
         component: CommunityChannelComponent,
-        resolve: {
-          // community: CommunityChannelResolver
-        },
         children: [
           {
             path: 'members',
@@ -77,11 +86,11 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    redirectTo: 'app',
-    pathMatch: 'prefix',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'app',
+  //   pathMatch: 'prefix',
+  // },
 ];
 
 @NgModule({

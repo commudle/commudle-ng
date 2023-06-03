@@ -41,12 +41,10 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
         this.currentUser = data;
         // find the channel
         if (this.currentUser) {
-          this.subscriptions.push(
-            this.activatedRoute.parent.params.subscribe((data) => {
-              this.channel = this.communityChannelManagerService.findChannel(data.community_channel_id);
-              this.getMembers();
-            }),
+          this.channel = this.communityChannelManagerService.findChannel(
+            this.activatedRoute.snapshot.params.community_channel_id,
           );
+          if (this.channel) this.getMembers();
         }
       }),
     );

@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
@@ -8,7 +8,6 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
 import * as moment from 'moment';
-import { Match } from 'autolinker';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { NbPopoverDirective } from '@commudle/theme';
 import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
@@ -18,9 +17,10 @@ import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-mod
   templateUrl: './community-channel.component.html',
   styleUrls: ['./community-channel.component.scss'],
 })
-export class CommunityChannelComponent implements OnInit, OnDestroy {
+export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() selectedChannelId: number;
+  @Input() selectedChannel: ICommunityChannel;
   subscriptions = [];
-  selectedChannel: ICommunityChannel;
   discussion: IDiscussion;
   initialized = false;
   notFound = false;
@@ -40,7 +40,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
-    private activatedRoute: ActivatedRoute,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
     private communityChannelsService: CommunityChannelsService,
     private communityChannelChannel: CommunityChannelChannel,
@@ -51,7 +50,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe((data) => {
         if (data && !this.initialized) {
-          this.initialize();
+          // this.initialize();
           this.initialized = true;
         } else if (this.initialized && this.selectedChannel) {
           this.communityChannelManagerService.setChannel(
@@ -68,11 +67,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
       }),
     );
 
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe(() => {
-        this.getPinnedMessages();
-      }),
-    );
+    // this.getPinnedMessages();
 
     this.subscriptions.push(
       this.communityChannelManagerService.pinData$.subscribe((data) => {
@@ -109,6 +104,10 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.allActions = this.communityChannelChannel.ACTIONS;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.initialize();
+  }
+
   ngOnDestroy(): void {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
@@ -127,19 +126,21 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   }
 
   getPinnedMessages() {
-    let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+    // this.channelsStore.selectedChannel$.subscribe((channels) => {
     this.subscriptions.push(
-      this.communityChannelsService.getPinnedMessages(channelId).subscribe((response) => {
+      this.communityChannelsService.getPinnedMessages(this.selectedChannelId).subscribe((response) => {
         this.pinnedMessages = response;
         this.pinnedMessages = this.pinnedMessages.filter((item) => item !== null);
         this.latestPinnedMessage = this.pinnedMessages[0];
       }),
     );
+    // });
   }
 
   removePinnedMessage(message: IUserMessage) {
-    let channelId = this.activatedRoute.snapshot.params.community_channel_id;
-    this.subscriptions.push(this.communityChannelsService.unpinMessage(message.id, channelId).subscribe(() => {}));
+    this.subscriptions.push(
+      this.communityChannelsService.unpinMessage(message.id, this.selectedChannelId).subscribe(() => {}),
+    );
   }
 
   scrollToMessage(message: IUserMessage) {
@@ -152,25 +153,21 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   }
 
   closeChannelMembersList() {
-    let currentUrl = this.router.url;
+    const currentUrl = this.router.url;
     if (currentUrl.includes('members')) {
       this.router.navigate([currentUrl.substring(0, currentUrl.lastIndexOf('/'))]);
     }
   }
 
   initialize() {
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        const selectedCh = this.communityChannelManagerService.findChannel(data.community_channel_id);
-        if (selectedCh) {
-          this.notFound = false;
-          this.communityChannelManagerService.setChannel(selectedCh);
-          this.getDiscussion(selectedCh.id);
-        } else {
-          this.notFound = true;
-        }
-      }),
-    );
+    const selectedCh = this.communityChannelManagerService.findChannel(this.selectedChannelId);
+    if (selectedCh) {
+      this.notFound = false;
+      this.communityChannelManagerService.setChannel(selectedCh);
+      this.getDiscussion(selectedCh.id);
+    } else {
+      this.notFound = true;
+    }
   }
 
   getDiscussion(channelId) {

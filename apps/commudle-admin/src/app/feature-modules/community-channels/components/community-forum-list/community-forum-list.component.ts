@@ -9,23 +9,25 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
+import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
 
 @Component({
-  selector: 'app-community-channel-list',
-  templateUrl: './community-channel-list.component.html',
-  styleUrls: ['./community-channel-list.component.scss'],
+  selector: 'app-community-forum-list',
+  templateUrl: './community-forum-list.component.html',
+  styleUrls: ['./community-forum-list.component.scss'],
 })
-export class CommunityChannelListComponent implements OnInit, OnDestroy {
-  @Input() selectedCommunity: ICommunity;
-  @Input() groupedChannels: EGroupedCommunityChannels;
+export class CommunityForumListComponent implements OnInit, OnDestroy {
+  selectedCommunity: ICommunity;
+  communityForums: EGroupedCommunityChannels;
   @Input() showCommunityBadge = false;
   selectedChannel: ICommunityChannel;
   currentUser: ICurrentUser;
@@ -33,12 +35,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   communityRoles = [];
   channelsRoles = {};
   channelNotifications = [];
-  sidebarExpanded = false;
-
-  subscriptions: Subscription[] = [];
   discussionType = DiscussionType;
 
-  @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
+  subscriptions: Subscription[] = [];
+
+  @Output() updateSelectedChannel = new EventEmitter<any>();
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -46,10 +47,31 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     private communityChannelNotifications: CommunityChannelNotificationsChannel,
     private seoService: SeoService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
+    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   ngOnInit() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.communityForums$.subscribe((data) => {
+        this.communityForums = data;
+        // if (data) {
+        //   this.channelsQueried = true;
+        //   if (this.activatedRoute.snapshot.params.community_channel_id) {
+        //     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
+        //     this.showChannelsComponent = true;
+        //   }
+        // }
+      }),
+    );
+    this.subscriptions.push(
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.selectedCommunity = data.community;
+        // this.getChannels();
+        // this.communityChannelManagerService.setCommunityListview(false);
+      }),
+    );
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
@@ -99,16 +121,19 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedCommunityChannel(channel: ICommunityChannel) {
-    this.updateSelectedChannel.emit(channel);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'channels', channel.id]);
+  selectedCommunityChannel(forumName) {
+    this.updateSelectedChannel.emit();
+    this.router.navigate(['communities', this.selectedCommunity.slug, 'channels'], {
+      queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },
+    });
+    this.communityChannelManagerService.setForum(forumName.value);
   }
 
   newChannelDialogBox(groupName?) {
     this.dialogService.open(NewCommunityChannelComponent, {
       context: {
         groupName: groupName,
-        discussionType: this.discussionType.CHANNEL,
+        discussionType: this.discussionType.FORUM,
       },
     });
   }

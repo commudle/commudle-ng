@@ -12,6 +12,7 @@
   }
 
   .channel-group {
+    margin-bottom: 1.5rem;
     .group-name {
       display: flex;
       justify-content: space-between;
@@ -96,5 +97,11 @@
         }
       }
     }
+  }
+}
+
+nb-accordion-item {
+  nb-accordion-item-body .item-body {
+    @apply com-p-0 #{!important};
   }
 }

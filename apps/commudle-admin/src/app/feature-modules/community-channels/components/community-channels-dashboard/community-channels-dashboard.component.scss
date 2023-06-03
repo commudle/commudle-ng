@@ -3,14 +3,15 @@
 .community-channels-dashboard {
   display: flex;
   flex-wrap: nowrap;
-  height: calc(100vh - 56px);
+
   justify-content: center;
-  padding-bottom: $space-72;
-  padding-top: $space-16;
+  // padding-bottom: $space-72;
+  // padding-top: $space-16;
+  @apply com-p-1;
 
   .community-channel-list {
     background: white;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    // border-right: 1px solid rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -26,7 +27,7 @@
     }
 
     .community-channel-list {
-      width: 200px !important;
+      @apply com-w-full;
     }
 
     .community-channel-discussion {
@@ -45,7 +46,7 @@
 
       &.show {
         background-color: #f7f7f7;
-        height: 100vh;
+        // height: 100vh;
         left: 0;
         overflow-y: auto;
         position: absolute;
@@ -60,7 +61,7 @@
 
       &.show {
         background-color: white;
-        height: 100vh;
+        // height: 100vh;
         left: 80px;
         overflow-y: auto;
         position: absolute;
@@ -73,5 +74,15 @@
       flex-grow: 1;
       width: 1000px;
     }
+  }
+}
+
+.icons {
+  @apply com-m-2 com-w-12 com-h-12 com-rounded-lg  com-table;
+  fa-icon {
+    @apply com-text-2xl com-table-cell com-text-center com-align-middle;
+  }
+  &.community &.forum {
+    @apply com-bg-primary-200;
   }
 }

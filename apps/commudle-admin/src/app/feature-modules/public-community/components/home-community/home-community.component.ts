@@ -69,11 +69,13 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   }
 
   getNotificationsCount(id) {
-    this.subscriptions.push(
-      this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
-        this.notificationCount = data;
-      }),
-    );
+    if (this.notificationsStore.communityNotificationsCount$[id] !== undefined) {
+      this.subscriptions.push(
+        this.notificationsStore.communityNotificationsCount$[id].subscribe((data: number) => {
+          this.notificationCount = data;
+        }),
+      );
+    }
   }
 
   openUpdateBannerDialogBox() {

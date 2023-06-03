@@ -1,0 +1,13 @@
+<section>
+  <div>
+    <button nbButton status="warning">New Discussion</button>
+  </div>
+  <div>
+    <p class="topic">Topics</p>
+  </div>
+  <div *ngFor="let forum of selectedForum">
+    <p class="name">{{ forum.name }}</p>
+    <p class="group-name">{{ forum.group_name }}</p>
+    <hr />
+  </div>
+</section>

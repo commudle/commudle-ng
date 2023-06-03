@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -11,10 +11,11 @@ import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feat
   styleUrls: ['./new-community-channel.component.scss'],
 })
 export class NewCommunityChannelComponent implements OnInit, OnDestroy {
+  @Input() groupName: string;
+  @Input() discussionType: string;
   @ViewChild('newCommunityChannelFormTemplate', { static: true }) formTemplate: TemplateRef<any>;
   dialogRef;
   community: ICommunity;
-  groupName;
   subscriptions = [];
 
   constructor(
@@ -32,14 +33,14 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
       }),
     );
 
-    this.subscriptions.push(
-      // get the channel category name (optional)
-      this.activatedRoute.queryParams.subscribe((data) => {
-        if (data.group_name) {
-          this.groupName = data.group_name;
-        }
-      }),
-    );
+    // this.subscriptions.push(
+    //   // get the channel category name (optional)
+    //   this.activatedRoute.queryParams.subscribe((data) => {
+    //     if (data.group_name) {
+    //       this.groupName = data.group_name;
+    //     }
+    //   }),
+    // );
 
     this.openForm();
     this.seoService.noIndex(true);
@@ -48,7 +49,7 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.dialogRef.close();
     this.seoService.noIndex(false);
-    for (let subscription of this.subscriptions) {
+    for (const subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
   }

@@ -1,27 +1,28 @@
 <div class="community-channel-list">
-  <div *ngIf="showCommunityBadge" class="community">
-    <app-community-badge [community]="selectedCommunity"></app-community-badge>
-  </div>
-  <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
+  <p class="com-m-0 com-text-2xl">Forums</p>
+  <p>
     <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
       <nb-icon icon="plus"></nb-icon>
-      New Channel
+      New Forum
     </a>
   </p>
 
-  <nb-accordion *ngFor="let chGroup of groupedChannels | keyvalue" class="channel-group com-shadow-none">
+  <nb-accordion class="channel-group com-shadow-none">
     <nb-accordion-item expanded="true">
-      <nb-accordion-item-header class="com-p-0"
-        ><div class="group-name">
-          <p>{{ (chGroup.key | uppercase) || 'GENERAL' }}</p>
-          <p>
+      <nb-accordion-item-header class="com-p-0">
+        <div class="group-name">
+          <p class="com-m-0">Categories</p>
+          <!-- <p>{{ (chGroup.key | uppercase) || 'GENERAL' }}</p> -->
+          <!--  <p>
             <a (click)="newChannelDialogBox(chGroup.key); $event.stopPropagation()" ghost nbButton size="tiny">
               <nb-icon icon="plus"></nb-icon>
             </a>
-          </p></div
-      ></nb-accordion-item-header>
-      <nb-accordion-item-body
-        ><div class="channels">
+          </p> -->
+        </div>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body *ngFor="let chGroup of communityForums | keyvalue">
+        <p class="com-m-0" (click)="selectedCommunityChannel(chGroup)">{{ chGroup.key || 'GENERAL' }}</p>
+        <!-- <div class="channels">
           <ul>
             <li *ngFor="let channel of chGroup.value">
               <div class="details">
@@ -70,7 +71,6 @@
                   "
                   (click)="inviteDialogBox(channel.id)"
                 >
-                  <!-- [routerLink]="[{ outlets: { p: ['settings', channel.id, 'invite'] } }]" -->
                   <nb-icon icon="person-add"></nb-icon>
                 </a>
                 <a
@@ -83,8 +83,9 @@
                 </a>
               </p>
             </li>
-          </ul></div
-      ></nb-accordion-item-body>
+          </ul>
+        </div> -->
+      </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>
 </div>

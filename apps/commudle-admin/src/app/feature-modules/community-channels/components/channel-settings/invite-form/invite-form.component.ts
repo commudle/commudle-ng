@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
@@ -15,6 +15,7 @@ import { CommunityChannelsService } from '../../../services/community-channels.s
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit, OnDestroy {
+  @Input() channelId: string;
   communityChannel: ICommunityChannel;
   joinToken: string;
   subscriptions = [];
@@ -42,12 +43,8 @@ export class InviteFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.appURL = environment.app_url;
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.communityChannel = this.communityChannelManagerService.findChannel(data.community_channel_id);
-        this.getJoinToken();
-      }),
-    );
+    this.communityChannel = this.communityChannelManagerService.findChannel(this.channelId);
+    this.getJoinToken();
 
     this.subscriptions.push(
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatchStringValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
+import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 @Component({
   selector: 'app-archive-channel',
@@ -10,7 +11,8 @@ import { CommunityChannelManagerService } from '../../../services/community-chan
   styleUrls: ['./archive-channel.component.scss'],
 })
 export class ArchiveChannelComponent implements OnInit {
-  communityChannelId;
+  @Input() communityChannelId;
+  discussionType = DiscussionType;
 
   deleteForm;
 
@@ -25,14 +27,10 @@ export class ArchiveChannelComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.parent.params.subscribe((data) => {
-      this.communityChannelId = data.community_channel_id;
-    });
-  }
+  ngOnInit(): void {}
 
   submitForm() {
-    this.communityChannelManagerService.deleteChannel(this.communityChannelId);
-    this.router.navigate([{ outlets: { p: null } }], { relativeTo: this.activatedRoute.parent.parent });
+    this.communityChannelManagerService.deleteChannel(this.communityChannelId, this.discussionType.CHANNEL);
+    this.router.navigate([this.activatedRoute.parent.parent]);
   }
 }

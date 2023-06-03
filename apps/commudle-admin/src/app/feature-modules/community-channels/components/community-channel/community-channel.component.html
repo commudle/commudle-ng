@@ -2,7 +2,10 @@
   <nb-card>
     <nb-card-header>{{ selectedChannel.name }}</nb-card-header>
     <nb-card-body>
-      <div [innerHTML]="selectedChannel.description | linky: { sanitizeHtml: true }" class="complete-description"></div>
+      <div
+        [innerHTML]="selectedChannel.description | linky : { sanitizeHtml: true }"
+        class="complete-description"
+      ></div>
     </nb-card-body>
   </nb-card>
 </ng-template>
@@ -13,7 +16,7 @@
       <div *ngIf="selectedChannel">
         <p>
           <nb-icon [nbPopoverTrigger]="'hover'" [nbPopover]="channelDescription" icon="info-outline"></nb-icon>
-          <span [innerHTML]="selectedChannel.description | linky: { sanitizeHtml: true } | truncatetext: 100"></span>
+          <span [innerHTML]="selectedChannel.description | linky : { sanitizeHtml: true } | truncatetext : 100"></span>
         </p>
       </div>
     </div>

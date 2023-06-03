@@ -18,6 +18,8 @@ import {
   NbPopoverModule,
   NbSpinnerModule,
   NbTooltipModule,
+  NbAccordionModule,
+  NbTabsetModule,
 } from '@commudle/theme';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -43,6 +45,9 @@ import { SendMessageFormComponent } from './components/discussion-community-chan
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
+import { CommunityForumListComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/community-forum-list/community-forum-list.component';
+import { CommunityForumComponent } from './components/community-forum/community-forum.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +69,8 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
     ArchiveChannelComponent,
     EmailJoinComponent,
     CommunityChannelsDashboardChannelListComponent,
+    CommunityForumListComponent,
+    CommunityForumComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +87,9 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
     //External
     FontAwesomeModule,
 
+    //standalone modules
+    SidebarComponent,
+
     // nebular
     NbInputModule,
     NbButtonModule,
@@ -95,6 +105,8 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
     NbBadgeModule,
     NbSpinnerModule,
     NbPopoverModule,
+    NbAccordionModule,
+    NbTabsetModule,
   ],
   exports: [CommunityChannelsDashboardComponent],
 })

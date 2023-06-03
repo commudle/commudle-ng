@@ -34,6 +34,8 @@ import { PublicCommunityNotificationsComponent } from './components/public-commu
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+
 @NgModule({
   declarations: [
     HomeCommunityComponent,
@@ -60,6 +62,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
     SharedComponentsModule,
     FontAwesomeModule,
     UserConsentsComponent,
+    CommunityChannelsModule,
 
     // Nebular
     NbCardModule,

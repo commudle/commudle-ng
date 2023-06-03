@@ -6,21 +6,21 @@ import { CommunityChannelManagerService } from '../../../services/community-chan
 @Component({
   selector: 'app-edit-channel',
   templateUrl: './edit-channel.component.html',
-  styleUrls: ['./edit-channel.component.scss']
+  styleUrls: ['./edit-channel.component.scss'],
 })
 export class EditChannelComponent implements OnInit, OnDestroy {
+  @Input() channelId: string;
   subscriptions = [];
   channel: ICommunityChannel;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.getChannel();
   }
-
 
   ngOnDestroy() {
     for (const subs of this.subscriptions) {
@@ -29,13 +29,6 @@ export class EditChannelComponent implements OnInit, OnDestroy {
   }
 
   getChannel() {
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe(
-        data => {
-          this.channel = this.communityChannelManagerService.findChannel(data.community_channel_id);
-        }
-      )
-    )
+    this.channel = this.communityChannelManagerService.findChannel(this.channelId);
   }
-
 }

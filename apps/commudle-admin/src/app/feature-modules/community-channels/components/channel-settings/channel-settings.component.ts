@@ -1,5 +1,5 @@
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -12,6 +12,8 @@ import { SeoService } from 'apps/shared-services/seo.service';
   styleUrls: ['./channel-settings.component.scss'],
 })
 export class ChannelSettingsComponent implements OnInit, OnDestroy {
+  @Input() channelId;
+  @Input() invite = false;
   @ViewChild('settingsTemplate', { static: true }) settingsTemplate: TemplateRef<any>;
   subscriptions = [];
   channel: ICommunityChannel;
@@ -31,11 +33,8 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seoService.noIndex(true);
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        this.setChannel(data.community_channel_id);
-      }),
-    );
+    this.setChannel(this.channelId);
+    this.subscriptions.push(this.activatedRoute.params.subscribe((data) => {}));
 
     this.subscriptions.push(
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
@@ -48,9 +47,6 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.dialogRef.close();
     this.seoService.noIndex(false);
-    for (let subscription of this.subscriptions) {
-      subscription.unsubscribe();
-    }
   }
 
   // function to find and set the correct selected channel

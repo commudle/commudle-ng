@@ -1,12 +1,13 @@
 <ng-template #newCommunityChannelFormTemplate>
   <nb-card>
     <nb-card-header>
-      <span >New Channel for {{community.name}}</span>
+      <span>New Channel for {{ community.name }}</span>
     </nb-card-header>
     <nb-card-body>
       <app-community-channel-form
-      [presetGroupName]="groupName"
-      (saved)="closeForm()"
+        [presetGroupName]="groupName"
+        [discussionType]="discussionType"
+        (saved)="closeForm()"
       ></app-community-channel-form>
     </nb-card-body>
   </nb-card>

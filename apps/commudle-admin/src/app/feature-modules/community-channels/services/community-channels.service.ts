@@ -12,6 +12,7 @@ import { IUsers } from 'apps/shared-models/users.model';
 import { ICommunities } from 'apps/shared-models/communities.model';
 import { IUserMessages } from 'apps/shared-models/user_messages.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
 
 @Injectable({
   providedIn: 'root',
@@ -46,17 +47,20 @@ export class CommunityChannelsService {
     );
   }
 
-  delete(communityChannelId): Observable<boolean> {
-    const params = new HttpParams().set('community_channel_id', communityChannelId);
+  delete(communityChannelId, displayType): Observable<boolean> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId).set('display_type', displayType);
 
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE), { params });
   }
 
-  index(communityId): Observable<ICommunityChannels> {
-    const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<ICommunityChannels>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX), {
-      params,
-    });
+  index(communityId, displayType): Observable<IPagination<ICommunityChannels>> {
+    const params = new HttpParams().set('community_id', communityId).set('display_type', displayType);
+    return this.http.get<IPagination<ICommunityChannels>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX),
+      {
+        params,
+      },
+    );
   }
 
   getJoinToken(communityChannelId): Observable<string> {

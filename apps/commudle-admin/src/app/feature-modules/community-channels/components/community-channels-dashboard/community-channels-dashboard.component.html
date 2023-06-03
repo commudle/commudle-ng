@@ -1,12 +1,52 @@
-<div class="community-channels-dashboard page-padding">
-  <div [ngClass]="{'show': showCommunityList}" class="community-list">
+<div class="community-channels-dashboard page-padding com-h-95vh">
+  <div class="community-list" *ngIf="showCommunityList">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
-  <div [ngClass]="{'show': showCommunityList}" class="community-channel-list">
-    <app-community-channel-list></app-community-channel-list>
+  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-16': !sidebarExpanded }">
+    <commudle-sidebar [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded">
+      <div class="com-flex">
+        <div class="left-section">
+          <!-- <div class="icons com-bg-gray-200">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </div>
+        <div class="icons com-bg-gray-200">
+          <fa-icon [icon]="faUser" class="com-mx-auto"></fa-icon>
+        </div> -->
+          <div class="icons !com-bg-primary-200" (click)="openChannel()">
+            <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-primary-500"></fa-icon>
+          </div>
+          <div class="icons !com-bg-primary-200" (click)="openForum()">
+            <fa-icon [icon]="faMessage" class="com-mx-auto com-text-primary-500"></fa-icon>
+          </div>
+        </div>
+        <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
+          <app-community-channel-list
+            *ngIf="!showForumData"
+            [groupedChannels]="communityChannels"
+            [selectedCommunity]="selectedCommunity"
+            (updateSelectedChannel)="checkSelectedChannel($event)"
+          ></app-community-channel-list>
+
+          <app-community-forum-list
+            *ngIf="showForumData"
+            (updateSelectedChannel)="checkSelectedChannel()"
+          ></app-community-forum-list>
+        </div>
+      </div>
+    </commudle-sidebar>
   </div>
+
   <div class="community-channel-discussion">
+    <div *ngIf="!showChannelsComponent && !showForumData">
+      <app-community-channels-dashboard-channel-list></app-community-channels-dashboard-channel-list>
+    </div>
+
+    <app-community-channel
+      *ngIf="showChannelsComponent"
+      [selectedChannelId]="selectedChannelId"
+    ></app-community-channel>
+
+    <commudle-community-forum *ngIf="showForumsComponent"></commudle-community-forum>
     <router-outlet></router-outlet>
-    <router-outlet *ngIf="channelsQueried" name="p"></router-outlet>
   </div>
 </div>
