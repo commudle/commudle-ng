@@ -54,6 +54,6 @@
     </div>
   </a>
   <div *ngIf="showFollowButton" [ngClass]="{ 'align-right': alignFollowToRight }" class="followers">
-    <app-user-follow [username]="user.username" class="follow-btn"></app-user-follow>
+    <app-user-follow [username]="user.username" [isMobileWidthFull]="true" Fullclass="follow-btn"></app-user-follow>
   </div>
 </div>

@@ -9,6 +9,10 @@
     &.fixed-width {
       width: 74px;
     }
+
+    .full-width {
+      @apply com-bg-red-500 com-w-full;
+    }
   }
 }
 
