@@ -31,7 +31,6 @@ export class TechSessionsCardComponent implements OnInit {
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.session);
     this.getCommunity();
   }
 

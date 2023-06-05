@@ -29,7 +29,7 @@ div {
           }
 
           .mini-description {
-            @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-mb-4 com-line-clamp-2;
+            @apply com-text-sm com-font-normal com-text-gunmetal com-mt-0 md:com-mb-0 com-mb-4 com-line-clamp-2;
           }
         }
       }

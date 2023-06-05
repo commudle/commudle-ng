@@ -5,7 +5,7 @@
     //TODO use aspect ratio in tailwind
 
     .background {
-      @apply com-mx-auto lg:com-w-full com-w-[calc(100%-30px)];
+      @apply com-mx-auto lg:com-w-full md:com-w-[calc(100%-30px)] com-w-full;
       @apply com-z-0 com-blur-sm com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
 

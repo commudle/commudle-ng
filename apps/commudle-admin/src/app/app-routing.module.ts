@@ -25,6 +25,13 @@ const routes: Routes = [
       import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
+    path: 'events',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
+        (m) => m.PublicHomeListEventsModule,
+      ),
+  },
+  {
     path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },
@@ -37,13 +44,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./feature-modules/student-non-profit-support/student-non-profit-support.module').then(
         (m) => m.StudentNonProfitSupportModule,
-      ),
-  },
-  {
-    path: 'event',
-    loadChildren: () =>
-      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
-        (m) => m.PublicHomeListEventsModule,
       ),
   },
   // {

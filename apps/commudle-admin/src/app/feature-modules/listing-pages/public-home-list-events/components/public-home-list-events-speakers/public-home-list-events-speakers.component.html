@@ -3,13 +3,16 @@
     <p><span class="title">Events Speakers</span><span class="sub-heading">Speakers you can follow</span></p>
   </div>
   <div class="top-border"></div>
-  <div *ngFor="let speaker of speakers" class="user-profile-card-large">
-    <app-user-profile-card-large
-      [showFollowButton]="true"
-      [alignFollowToRight]="true"
-      [showAbout]="true"
-      [user]="speaker"
-    ></app-user-profile-card-large>
+  <div class="user-profile-card-large">
+    <div *ngFor="let speaker of speakers">
+      <app-user-profile-card-large
+        [showFollowButton]="true"
+        [alignFollowToRight]="true"
+        [showAbout]="true"
+        [user]="speaker"
+        [horizontalScroll]="true"
+      ></app-user-profile-card-large>
+    </div>
   </div>
   <div class="load-more">
     <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>

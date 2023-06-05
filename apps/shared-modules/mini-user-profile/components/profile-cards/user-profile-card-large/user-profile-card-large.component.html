@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'com-flex': alignFollowToRight }">
+<div [ngClass]="{ 'com-flex': alignFollowToRight, 'com-w-72': horizontalScroll, 'com-w-full': !horizontalScroll }">
   <a (click)="profileClicked()" [routerLink]="['/users', user.username]" target="_blank">
     <div class="user-profile-large d-flex align-items-start">
       <div>
