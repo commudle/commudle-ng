@@ -40,10 +40,10 @@ p {
   }
 
   .helper {
-    @apply com-p-2 com-text-center;
+    @apply com-p-2 com-text-center com-hidden md:com-block com-bg-primary-400;
 
     .text {
-      @apply com-text-xs com-text-slate-500;
+      @apply com-text-xs com-text-white;
 
       .key {
         @apply com-font-bold;
