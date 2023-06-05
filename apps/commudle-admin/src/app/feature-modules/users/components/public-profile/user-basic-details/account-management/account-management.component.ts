@@ -5,6 +5,8 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+
 @Component({
   selector: 'commudle-account-management',
   templateUrl: './account-management.component.html',
@@ -19,6 +21,7 @@ export class AccountManagementComponent implements OnInit {
     private nbDialogService: NbDialogService,
     private router: Router,
     private appUsersService: AppUsersService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit(): void {}
@@ -49,11 +52,13 @@ export class AccountManagementComponent implements OnInit {
       dialogRef.close();
       if (result === 'accepted' && this.closeAccount === true) {
         this.deactivateProfile(true);
+        this.gtm.dataLayerPushEvent('user-account-delete', {});
         this.router.navigate(['./']).then(() => {
           window.location.reload();
         });
       } else if (result === 'accepted' && this.closeAccount === false) {
         this.deactivateProfile();
+        this.gtm.dataLayerPushEvent('user-account-deactivate', {});
         this.router.navigate(['./']).then(() => {
           window.location.reload();
         });

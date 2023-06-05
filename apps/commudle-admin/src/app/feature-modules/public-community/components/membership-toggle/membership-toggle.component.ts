@@ -58,7 +58,6 @@ export class MembershipToggleComponent implements OnInit {
         this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
         this.gtmDatalayerPush('join-community-confirm');
       }
-      this.dialogRef.close();
     });
   }
 

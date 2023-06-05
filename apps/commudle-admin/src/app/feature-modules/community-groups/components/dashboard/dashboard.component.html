@@ -5,6 +5,7 @@
         [isExpanded]="sidebarExpanded"
         (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
         [heading]="communityGroup.name"
+        [expandedWidth]="'large'"
       >
         <div [ngClass]="{ expanded: sidebarExpanded }">
           <div class="content">

@@ -300,10 +300,10 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
   gtmService() {
     this.gtm.dataLayerPushEvent('submit-lab', {
-      com_name: this.lab.name,
-      com_section_count: this.lab.lab_steps.length,
-      com_tags: this.tags.toString(),
-      com_submit_type: this.lab.publish_status,
+      com_lab_name: this.lab.name,
+      com_lab_section_count: this.lab.lab_steps.length,
+      com_lab_tags: this.tags.toString(),
+      com_lab_submit_type: this.lab.publish_status,
     });
   }
 }
