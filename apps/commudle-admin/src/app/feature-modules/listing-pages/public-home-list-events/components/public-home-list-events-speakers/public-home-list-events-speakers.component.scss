@@ -1,6 +1,6 @@
 div {
   .heading {
-    @apply md:com-mt-8 com-mt-20 com-mb-4 com-mx-0 com-items-center com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+    @apply com-mt-8 com-mb-4 com-mx-0 com-items-center com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
     p {
       @apply com-flex com-flex-col com-m-0;
@@ -19,7 +19,7 @@ div {
 
   .user-profile-card-large {
     @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0;
-    div {
+    .user-profile-card-large-card {
       @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
     }
   }

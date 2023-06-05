@@ -7,6 +7,7 @@
   [status]="status"
   [size]="size"
   [appearance]="appearance"
+  [ngClass]="{ fullWidth: isMobileWidthFull }"
 >
   <nb-icon icon="plus"></nb-icon>
   Join
@@ -20,6 +21,7 @@
   size="small"
   status="info"
   shape="semi-round"
+  [ngClass]="{ fullWidth: isMobileWidthFull }"
 >
   <nb-option [value]="'false'">Exit {{ community.name }}</nb-option>
 </nb-select>

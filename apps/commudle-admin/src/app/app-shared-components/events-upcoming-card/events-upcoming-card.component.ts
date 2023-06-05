@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 @Component({
   selector: 'commudle-events-upcoming-card',
   standalone: true,
@@ -21,6 +22,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
     NbCardModule,
     NbIconModule,
     SharedComponentsModule,
+    SharedDirectivesModule,
   ],
 })
 export class EventsUpcomingCardComponent implements OnInit {

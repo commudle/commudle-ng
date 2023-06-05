@@ -9,11 +9,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class CommunityBadgeComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() background: string;
-  @Input() padding: string;
-  @Input() width: string;
-  @Input() height: string;
-  @Input() fontSize: string;
-  @Input() fontWeight: number;
+  @Input() size: 'small' | 'medium' = 'medium';
 
   constructor() {}
 

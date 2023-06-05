@@ -1,6 +1,12 @@
-<div class="community-badge {{ background }}" [style.padding]="padding ? padding : null">
+<div
+  class="community-badge {{ background }}"
+  [ngClass]="{
+    small: size === 'small',
+    medium: size === 'medium'
+  }"
+>
   <a [routerLink]="['/communities', community.slug]">
-    <div class="logo" [style.height]="height ? height : null" [style.width]="width ? width : null">
+    <div class="logo">
       <img
         alt="{{ community.name }}"
         src="{{ community.logo_path || community.logo_image?.url || community.logo_image_path?.url }}"
@@ -8,11 +14,7 @@
       />
     </div>
     <div>
-      <p
-        class="name"
-        [style.font-size]="fontSize ? fontSize : null"
-        [style.font-weight]="fontWeight ? fontWeight : null"
-      >
+      <p class="name">
         {{ community.name }}
       </p>
     </div>

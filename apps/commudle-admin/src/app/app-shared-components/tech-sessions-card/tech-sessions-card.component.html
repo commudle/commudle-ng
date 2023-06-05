@@ -6,14 +6,7 @@
       class="details"
     >
       <div *ngIf="community" class="community-badge">
-        <app-community-badge
-          [community]="community"
-          [padding]="'4px 8px 4px 8px'"
-          [width]="'13px'"
-          [height]="'13px'"
-          [fontSize]="'12px'"
-          [fontWeight]="500"
-        ></app-community-badge>
+        <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
       </div>
       <p class="event-title">{{ session.event.name }}</p>
       <p class="event-time">{{ moment(session.event.start_time).format('dddd, MMM Do, YYYY') }}</p>
@@ -22,7 +15,7 @@
       class="content"
       [routerLink]="
         session.embedded_content
-          ? ['/speaker-resources', session.event.id]
+          ? ['/speaker-resources', session.id]
           : ['/communities', session.event.kommunity.id, 'events', session.event.id]
       "
     >

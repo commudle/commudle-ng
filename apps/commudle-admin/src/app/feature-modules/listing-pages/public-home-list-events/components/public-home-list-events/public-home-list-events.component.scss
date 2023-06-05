@@ -1,5 +1,5 @@
 .container {
-  @apply com-pb-4 com-overflow-hidden;
+  @apply com-pb-4;
 
   .two-column-layout {
     @apply com-px-4;
@@ -11,8 +11,9 @@
 
   .right-column {
     @apply md:com-ml-11 com-m-0;
-    // @apply com-sticky com-top-20;
-    position: sticky;
-    top: 20px;
+
+    .right-column-desktop {
+      @apply md:com-sticky md:com-top-24;
+    }
   }
 }
