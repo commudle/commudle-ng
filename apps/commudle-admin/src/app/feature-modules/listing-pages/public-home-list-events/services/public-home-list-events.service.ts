@@ -6,4 +6,3 @@ import { Injectable } from '@angular/core';
 export class PublicHomeListEventsService {
   constructor() {}
 }
-// this.channelUsers = this.channelUsers.concat(data.user_roles_users);
