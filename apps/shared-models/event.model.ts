@@ -27,6 +27,9 @@ export interface IEvent {
   interested_members_count: number;
   registrations_count?: number;
   attended_members_count?: number;
+  kommunity?: {
+    id: string;
+  };
 }
 
 export interface IEventSearch extends IEvent {
