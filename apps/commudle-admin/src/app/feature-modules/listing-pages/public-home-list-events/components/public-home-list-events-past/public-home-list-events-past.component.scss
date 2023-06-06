@@ -1,0 +1,27 @@
+.title {
+  @apply com-text-3xl com-font-bold com-text-Dark-Jungle-Green md:com-mt-10 md:com-mb-8 md:com-mx-0 com-mx-4 com-mt-8 com-mb-6;
+
+  button {
+    @apply com-mr-4;
+  }
+
+  fa-icon {
+    @apply com-text-2xl;
+  }
+}
+
+.top-border {
+  @apply com-border-solid com-mb-6 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 md:com-border-b-0 com-border-b com-p-0;
+}
+
+.past-events-card-list {
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-2 com-gap-7 md:com-m-0 com-mx-4 com-my-0;
+}
+
+.load-more {
+  @apply com-text-center com-mt-8;
+
+  app-loading-spinner {
+    @apply com-mb-6;
+  }
+}

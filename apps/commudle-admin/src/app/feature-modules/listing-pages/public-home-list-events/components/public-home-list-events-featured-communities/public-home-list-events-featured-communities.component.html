@@ -1,0 +1,23 @@
+<div>
+  <div class="heading">
+    <p><span class="title">Featured Communities</span><span class="sub-heading">Join the most active groups</span></p>
+  </div>
+  <div class="top-border"></div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div class="featured-communities">
+    <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
+      <div *appBreakpoints="'>lg'">
+        <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+        ></commudle-featured-communities-card>
+      </div>
+      <div *appBreakpoints="'<=lg'">
+        <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+          [horizontalScroll]="true"
+        ></commudle-featured-communities-card>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-border"></div>
+</div>

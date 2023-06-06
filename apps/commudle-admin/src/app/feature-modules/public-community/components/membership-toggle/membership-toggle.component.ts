@@ -31,6 +31,9 @@ export class MembershipToggleComponent implements OnInit {
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
   @Input() appearance: NbButtonAppearance = 'filled';
+  @Input() isMobileWidthFull = false;
+
+  joinCommunity = false;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,

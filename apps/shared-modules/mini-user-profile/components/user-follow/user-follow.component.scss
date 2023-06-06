@@ -9,6 +9,10 @@
     &.fixed-width {
       width: 74px;
     }
+
+    &.width-full {
+      @apply com-w-full;
+    }
   }
 }
 

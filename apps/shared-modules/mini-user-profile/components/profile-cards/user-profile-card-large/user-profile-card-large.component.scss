@@ -23,8 +23,9 @@ p {
 
     .name {
       p {
+        @apply com-font-medium;
         color: $black;
-        font-size: $fs-18;
+        font-size: 16px;
         line-height: 21px;
         word-break: break-word;
       }
