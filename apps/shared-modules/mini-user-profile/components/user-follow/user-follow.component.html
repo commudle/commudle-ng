@@ -8,6 +8,7 @@
     nbButton
     shape="semi-round"
     size="small"
+    [disabled]="disabled"
   >
     <nb-icon *ngIf="showIcon" [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
     {{ isFollowing ? 'Following' : 'Follow' }}

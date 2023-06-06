@@ -1,11 +1,17 @@
 <nb-actions size="medium">
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="/about" routerLinkActive="active">
+      <fa-icon [icon]="faInfoCircle"></fa-icon>
+      <span>About</span>
+    </a>
+  </nb-action>
   <nb-action>
     <a routerLink="communities" routerLinkActive="active">
       <fa-icon [icon]="faUserFriends"></fa-icon>
       <span>Communities</span>
     </a>
   </nb-action>
-  <nb-action>
+  <nb-action *ngIf="currentUser">
     <a routerLink="labs" routerLinkActive="active">
       <fa-icon [icon]="faFlask"></fa-icon>
       <span>Labs</span>
@@ -13,10 +19,17 @@
   </nb-action>
   <nb-action>
     <a routerLink="builds" routerLinkActive="active">
-      <nb-icon icon="bulb"></nb-icon>
+      <fa-icon [icon]="faLightbulb"></fa-icon>
       <span>Builds</span>
     </a>
   </nb-action>
+  <nb-action *ngIf="!currentUser">
+    <a routerLink="pricing" routerLinkActive="active">
+      <fa-icon [icon]="faHandHoldingDollar"></fa-icon>
+      <span>Pricing</span>
+    </a>
+  </nb-action>
+
   <nb-action (click)="this.notificationCount = 0; gtmService()" *ngIf="currentUser">
     <a *appBreakpoints="'<=md'" [routerLink]="['/notifications']" routerLinkActive="active">
       <nb-badge *ngIf="notificationCount > 0" [text]="notificationCount.toString()" status="danger"></nb-badge>
@@ -35,10 +48,16 @@
       <span>Notifications</span>
     </a>
   </nb-action>
-  <nb-action *ngIf="!currentUser">
+  <!-- <nb-action *ngIf="!currentUser">
     <a routerLink="/my-profile" routerLinkActive="active">
       <fa-icon [icon]="faUser"></fa-icon>
       <span>Profile</span>
+    </a>
+  </nb-action> -->
+  <nb-action *ngIf="!currentUser">
+    <a (click)="showContextMenu = !showContextMenu" [nbContextMenu]="contextMenuItems">
+      <fa-icon [icon]="faEllipsisV"></fa-icon>
+      <span>More</span>
     </a>
   </nb-action>
 </nb-actions>

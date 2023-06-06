@@ -37,6 +37,7 @@ export interface IUser {
   social_resources_count?: number;
   labs_count?: number;
   user_roles_users?: UserRolesUsers;
+  deactivated: boolean;
 }
 
 export interface IUserSearch extends IUser {

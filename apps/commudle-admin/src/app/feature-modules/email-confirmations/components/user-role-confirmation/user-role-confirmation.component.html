@@ -62,8 +62,16 @@
       <nb-card-body>
         <div class="status">
           <div class="role-status">
-            <nb-icon icon="person-delete" status="danger"></nb-icon>
-            <p>See you again</p>
+            <nb-icon icon="person-delete" status="danger"></nb-icon>&nbsp;
+            <h3>You have declined the invitation</h3>
+            <p class="com-mt-0">If you did this by mistake, please contact the person who sent you the invite</p>
+            <ul>
+              <li><a [routerLink]="['/']">Home Page</a></li>
+              <li><a [routerLink]="['/about']">About</a></li>
+              <li><a [routerLink]="['/jobs']">Jobs</a></li>
+              <li><a [routerLink]="['/communities']">Communities</a></li>
+            </ul>
+            <a></a>
           </div>
         </div>
       </nb-card-body>

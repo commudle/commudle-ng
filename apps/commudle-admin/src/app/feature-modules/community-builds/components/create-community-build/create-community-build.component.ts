@@ -316,11 +316,11 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
 
   gtmService() {
     this.gtm.dataLayerPushEvent('submit-build', {
-      com_name: this.cBuild.name,
-      com_category: this.cBuild.build_type,
-      com_id: this.cBuild.id,
-      com_tags: this.tags.toString(),
-      com_submit_type: this.cBuild.publish_status,
+      com_build_name: this.cBuild.name,
+      com_build_category: this.cBuild.build_type,
+      com_build_id: this.cBuild.id,
+      com_build_tags: this.tags.toString(),
+      com_build_submit_type: this.cBuild.publish_status,
     });
   }
 }

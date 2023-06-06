@@ -65,7 +65,7 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="toggleMembership()" ghost nbButton status="link">Yes, I will leave</button>
+      <button (click)="toggleMembership(); dialogRef.close()" ghost nbButton status="link">Yes, I will leave</button>
       <button (click)="dialogRef.close()" ghost nbButton status="link">No, I'm staying</button>
     </nb-card-footer>
   </nb-card>

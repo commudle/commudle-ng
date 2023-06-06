@@ -22,8 +22,10 @@ export class LoginConsentPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.libAuthWatchService.getUserData().subscribe((data) => {
-      this.consent_marketing = data.consent_marketing;
-      this.consent_privacy_tnc = data.consent_privacy_tnc;
+      if (data) {
+        this.consent_marketing = data.consent_marketing;
+        this.consent_privacy_tnc = data.consent_privacy_tnc;
+      }
     });
   }
 
