@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { faLightbulb, faCalendar, faUsers, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { IEvent } from 'apps/shared-models/event.model';
+import { IEvents } from 'apps/shared-models/events.model';
 
 @Component({
   selector: 'app-user-contributions',
@@ -22,7 +23,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];
   builds: ICommunityBuild[] = [];
-  attendedEvents = [];
+  attendedEvents: IEvent[] = [];
   // pastEvents: ISpeakerResource[] = [];
   pastEvents: IEvent[] = [];
 
@@ -112,9 +113,8 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   getAttendedEvents(): void {
     this.subscriptions.push(
       this.appUsersService.getAttendedEvents(this.user.id).subscribe((value) => {
-        console.log(value);
-        // this.attendedEvents = this.attendedEvents.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
-        // this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
+        this.attendedEvents = value.events;
+        this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
       }),
     );
   }

@@ -4,6 +4,7 @@ import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 import { IBadges } from 'apps/shared-models/badges.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
 import { IEventStatus } from 'apps/shared-models/event_status.model';
+import { IEvents } from 'apps/shared-models/events.model';
 import { ILabs } from 'apps/shared-models/labs.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
 import { IPost } from 'apps/shared-models/post.model';
@@ -111,9 +112,9 @@ export class AppUsersService {
     );
   }
 
-  getAttendedEvents(id: number): Observable<IPagination<any>> {
+  getAttendedEvents(id: number): Observable<IEvents> {
     const params = new HttpParams().set('user_id', id);
-    return this.http.get<IPagination<any>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.EVENTS_ATTENDED), {
+    return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.USERS.EVENTS_ATTENDED), {
       params,
     });
   }

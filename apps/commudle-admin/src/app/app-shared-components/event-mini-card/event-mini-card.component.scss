@@ -1,3 +1,34 @@
-.event-time {
-  @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal md:com-mb-3 com-mb-1 com-mt-0 com-text-Auro-Metal-Saurus;
+p,
+h4 {
+  margin: 0;
+}
+
+.user-attended-event-card {
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
+
+  nb-card-body {
+    @apply com-p-0 com-flex;
+
+    .icon {
+      @apply com-p-7 com-flex-shrink-0;
+      //   @apply com-bg-blue-500 com-flex com-flex-col com-justify-center com-items-center com-w-14 com-text-xs com-text-blue-100 ;
+      //   @apply rounded-tl-lg rounded-bl-lg rounded-tr-md rounded-br-md;
+
+      fa-icon {
+        @apply com-text-Azure com-text-xl;
+      }
+    }
+
+    .content {
+      @apply com-m-0 com-py-2 com-px-3;
+
+      .title {
+        @apply com-text-sm com-font-semibold com-line-clamp-1;
+      }
+
+      .event-time {
+        @apply com-text-[10px] com-font-normal com-mb-1 com-mt-0 com-text-Auro-Metal-Saurus;
+      }
+    }
+  }
 }

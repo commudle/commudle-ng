@@ -1,30 +1,15 @@
 <nb-card [routerLink]="['/speaker-resources']" class="user-attended-event-card">
   <nb-card-body>
-    <p class="icon">
-      <button nbButton status="info" size="small" shape="semi-round">
-        <fa-icon [icon]="faCalendarCheck"></fa-icon>
-      </button>
-    </p>
+    <button nbButton size="small" shape="semi-round" class="icon">
+      <fa-icon [icon]="faCalendarCheck"></fa-icon>
+    </button>
     <div class="content">
       <h4 class="title">{{ attendedEvent.name }}</h4>
       <p class="event-time">{{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}</p>
-      <!-- <div *ngIf="community" class="community-badge">
-        <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
-      </div> -->
+      <div *ngIf="community" class="community-badge">
+        <!-- <app-community-badge [community]="community"></app-community-badge> -->
+        <!-- [size]="'small'" -->
+      </div>
     </div>
   </nb-card-body>
 </nb-card>
-
-<!-- <nb-card [routerLink]="['/speaker-resources', pastEvent.event_status.id]" class="user-past-event-card">
-    <nb-card-body>
-      <p class="date">
-        <span class="date-month">{{ pastEvent.start_time | date : 'MMM' }}</span>
-        <span class="date-day">{{ pastEvent.start_time | date : 'dd' }}</span>
-        <span class="date-year">{{ pastEvent.start_time | date : 'yyyy' }}</span>
-      </p>
-      <div class="content">
-        <h4 class="title">{{ pastEvent.name }}</h4>
-        <p class="description">{{ pastEvent.event_status.description }}</p>
-      </div>
-    </nb-card-body>
-  </nb-card> -->
