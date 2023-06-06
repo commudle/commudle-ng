@@ -22,6 +22,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];
   builds: ICommunityBuild[] = [];
+  attendedEvents = [];
   // pastEvents: ISpeakerResource[] = [];
   pastEvents: IEvent[] = [];
 
@@ -43,6 +44,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
       this.getCommunities();
       this.getLabs();
       this.getBuilds();
+      this.getAttendedEvents();
     }
   }
 
@@ -105,5 +107,15 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
     } else {
       this.footerCommunitiesCardText = `View More (${this.communities.length - 6})`;
     }
+  }
+
+  getAttendedEvents(): void {
+    this.subscriptions.push(
+      this.appUsersService.getAttendedEvents(this.user.id).subscribe((value) => {
+        console.log(value);
+        // this.attendedEvents = this.attendedEvents.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
+        // this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
+      }),
+    );
   }
 }

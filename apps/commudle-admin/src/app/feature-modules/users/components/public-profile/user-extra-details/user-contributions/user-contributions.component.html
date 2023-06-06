@@ -24,6 +24,22 @@
   </nb-card-body>
 </nb-card>
 
+<nb-card *ngIf="attendedEvents?.length > 0" id="attended-events">
+  <nb-card-header>
+    <fa-icon [icon]="faUsers" class="com-text-Chrome-Yellow"></fa-icon>
+    Attended Events
+    <span *ngIf="attendedEvents.length > 4">({{ attendedEvents.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="grid">
+      <commudle-event-mini-card
+        *ngFor="let attendedEvent of attendedEvents"
+        [attendedEvent]="attendedEvent"
+      ></commudle-event-mini-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
 <nb-card *ngIf="communities?.length > 0" id="communities">
   <nb-card-header>
     <fa-icon [icon]="faUsers" class="com-text-Chrome-Yellow"></fa-icon>

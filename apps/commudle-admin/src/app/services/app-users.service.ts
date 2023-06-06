@@ -111,6 +111,13 @@ export class AppUsersService {
     );
   }
 
+  getAttendedEvents(id: number): Observable<IPagination<any>> {
+    const params = new HttpParams().set('user_id', id);
+    return this.http.get<IPagination<any>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.EVENTS_ATTENDED), {
+      params,
+    });
+  }
+
   // get list of all the social resources of a user
   socialResources(username): Observable<ISocialResources> {
     const params = new HttpParams().set('username', username);
