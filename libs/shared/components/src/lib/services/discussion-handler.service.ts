@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ChatChannel } from '@commudle/shared-channels';
 import { IPage, IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
 import { CableService, DiscussionService, ToastrService } from '@commudle/shared-services';
-import { BehaviorSubject, from, Observable } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,10 @@ export class DiscussionHandlerService {
   });
   pageInfo$ = this.pageInfo.asObservable();
 
-  private loading = new BehaviorSubject<boolean>(false);
-  loading$ = this.loading.asObservable();
+  private prevLoading = new BehaviorSubject<boolean>(false);
+  prevLoading$ = this.prevLoading.asObservable();
+  private nextLoading = new BehaviorSubject<boolean>(false);
+  nextLoading$ = this.nextLoading.asObservable();
 
   private _discussionParent: 'builds' | '' = '';
   private _discussionId!: number;
@@ -187,73 +189,65 @@ export class DiscussionHandlerService {
   }
 
   getMessages(fromLastRead?: boolean) {
-    if (!this.loading.value) {
-      this.loading.next(true);
-      this._getMessages(fromLastRead).subscribe((data) => {
-        this.messages.next(data.page);
-        this.pageInfo.next(data.page_info);
-        // TODO: FInd a better way to do this
-        if (fromLastRead && !this.scrollToMessageId) {
-          if (this.messages.value.map((message) => message.data.read).includes(false)) {
-            this.scrollToMessageId = this.messages.value[this.messages.value.length - 1].data.id;
-          } else {
-            this.scrollToMessageId = 0;
-          }
+    this.prevLoading.next(true);
+    this._getMessages(fromLastRead).subscribe((data) => {
+      this.messages.next(data.page);
+      this.pageInfo.next(data.page_info);
+      // TODO: FInd a better way to do this
+      if (fromLastRead && !this.scrollToMessageId) {
+        if (this.messages.value.map((message) => message.data.read).includes(false)) {
+          this.scrollToMessageId = this.messages.value[this.messages.value.length - 1].data.id;
+        } else {
+          this.scrollToMessageId = 0;
         }
-        this.loading.next(false);
-      });
-    }
+      }
+      this.prevLoading.next(false);
+    });
   }
 
   getMessagesAfter() {
-    if (!this.loading.value) {
-      this.loading.next(true);
-      this._getMessagesAfter().subscribe((data) => {
-        this.messages.next([...this.messages.value, ...data.page]);
-        this.pageInfo.next({
-          ...this.pageInfo.value,
-          has_next_page: data.page_info.has_next_page,
-          end_cursor: data.page_info.end_cursor,
-        });
-        this.loading.next(false);
+    this.prevLoading.next(true);
+    this._getMessagesAfter().subscribe((data) => {
+      this.messages.next([...this.messages.value, ...data.page]);
+      this.pageInfo.next({
+        ...this.pageInfo.value,
+        has_next_page: data.page_info.has_next_page,
+        end_cursor: data.page_info.end_cursor,
       });
-    }
+      this.prevLoading.next(false);
+    });
   }
 
   getMessagesBefore() {
-    if (!this.loading.value) {
-      this.loading.next(true);
-      this._getMessagesBefore().subscribe((data) => {
-        this.messages.next([...data.page, ...this.messages.value]);
-        this.pageInfo.next({
-          ...this.pageInfo.value,
-          has_previous_page: data.page_info.has_previous_page,
-          start_cursor: data.page_info.start_cursor,
-        });
-        this.loading.next(false);
+    this.nextLoading.next(true);
+    this._getMessagesBefore().subscribe((data) => {
+      this.messages.next([...data.page, ...this.messages.value]);
+      this.pageInfo.next({
+        ...this.pageInfo.value,
+        has_previous_page: data.page_info.has_previous_page,
+        start_cursor: data.page_info.start_cursor,
       });
-    }
+      this.nextLoading.next(false);
+    });
   }
 
   getMessagesAround() {
-    if (!this.loading.value) {
-      this.loading.next(true);
-      // TODO: Make this better
-      this._getMessagesAfter().subscribe((data) => {
-        this.messages.next(data.page);
-        this.pageInfo.next(data.page_info);
-        this._getMessagesBefore().subscribe((value) => {
-          this.messages.next([...value.page, ...this.messages.value]);
-          this.pageInfo.next({
-            ...this.pageInfo.value,
-            has_previous_page: value.page_info.has_previous_page,
-            start_cursor: value.page_info.start_cursor,
-          });
-          this.scrollToMessageId = value.page[value.page.length - 1]?.data?.id || data.page[0]?.data?.id || 0;
-          this.loading.next(false);
+    this.prevLoading.next(true);
+    // TODO: Make this better
+    this._getMessagesAfter().subscribe((data) => {
+      this.messages.next(data.page);
+      this.pageInfo.next(data.page_info);
+      this._getMessagesBefore().subscribe((value) => {
+        this.messages.next([...value.page, ...this.messages.value]);
+        this.pageInfo.next({
+          ...this.pageInfo.value,
+          has_previous_page: value.page_info.has_previous_page,
+          start_cursor: value.page_info.start_cursor,
         });
+        this.scrollToMessageId = value.page[value.page.length - 1]?.data?.id || data.page[0]?.data?.id || 0;
+        this.prevLoading.next(false);
       });
-    }
+    });
   }
 
   private _getMessages(fromLastRead?: boolean) {
@@ -261,7 +255,10 @@ export class DiscussionHandlerService {
       case 'builds':
         return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);
       default:
-        return from([]);
+        return of({
+          page: [],
+          page_info: { has_next_page: false, has_previous_page: false, start_cursor: '', end_cursor: '' },
+        });
     }
   }
 
@@ -274,11 +271,17 @@ export class DiscussionHandlerService {
             before: this.pageInfo.value.start_cursor,
           });
         default:
-          return from([]);
+          return of({
+            page: [],
+            page_info: { has_next_page: false, has_previous_page: false, start_cursor: '', end_cursor: '' },
+          });
       }
     }
 
-    return from([]);
+    return of({
+      page: [],
+      page_info: { has_next_page: false, has_previous_page: false, start_cursor: '', end_cursor: '' },
+    });
   }
 
   private _getMessagesAfter(): Observable<IPagination<IUserMessage>> {
@@ -290,10 +293,16 @@ export class DiscussionHandlerService {
             after: this.pageInfo.value.end_cursor,
           });
         default:
-          return from([]);
+          return of({
+            page: [],
+            page_info: { has_next_page: false, has_previous_page: false, start_cursor: '', end_cursor: '' },
+          });
       }
     }
 
-    return from([]);
+    return of({
+      page: [],
+      page_info: { has_next_page: false, has_previous_page: false, start_cursor: '', end_cursor: '' },
+    });
   }
 }

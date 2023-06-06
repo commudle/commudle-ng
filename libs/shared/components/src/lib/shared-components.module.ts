@@ -7,6 +7,8 @@ import { InfiniteScrollModule } from '@commudle/infinite-scroll';
 import { NbButtonModule, NbIconModule, NbTooltipModule } from '@commudle/theme';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { MessageComponent } from './components/discussion/message/message.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { UserComponent } from './components/user/user.component';
 import { VoteComponent } from './components/vote/vote.component';
 
 @NgModule({
@@ -20,8 +22,15 @@ import { VoteComponent } from './components/vote/vote.component';
     NbButtonModule,
     InViewportDirective,
   ],
-  declarations: [DiscussionComponent, MessageComponent, VoteComponent],
-  exports: [DiscussionComponent, VoteComponent],
+  declarations: [
+    DiscussionComponent,
+    MessageComponent,
+    SpinnerComponent,
+    VoteComponent,
+    UserComponent,
+    SpinnerComponent,
+  ],
+  exports: [DiscussionComponent, SpinnerComponent, VoteComponent, UserComponent],
   providers: [InViewportDirective],
 })
 export class SharedComponentsModule {}

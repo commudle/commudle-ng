@@ -64,7 +64,7 @@ export class MessageComponent implements OnInit, AfterViewInit {
     const shareLink = `${window.location.pathname}?after=${this.cursor}`;
 
     this.shareService.shareContent(
-      `Hey, check out this discussion on Commudle: ${shareLink}`,
+      shareLink,
       'Hey, check out this discussion on Commudle',
       this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
       shareLink,

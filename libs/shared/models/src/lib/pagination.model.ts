@@ -1,7 +1,7 @@
 export interface IPagination<T> {
   page: IPage<T>[];
   page_info: IPageInfo;
-  total: number;
+  total?: number;
 }
 
 export interface IPage<T> {
