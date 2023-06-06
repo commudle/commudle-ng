@@ -41,7 +41,7 @@
             <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
           </div>
           <div *ngIf="community" class="community-badge">
-            <app-community-badge [community]="community"></app-community-badge>
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
           </div>
           <div class="interested-members" *ngIf="event.interested_members_count > 0">
             <nb-icon icon="people-outline" class="people-outline"></nb-icon>
