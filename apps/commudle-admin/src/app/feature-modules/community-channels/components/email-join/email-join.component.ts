@@ -5,6 +5,9 @@ import { CommunityChannelsService } from '../../services/community-channels.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
+import { NbDialogService } from '@commudle/theme';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 
 @Component({
   selector: 'app-email-join',
@@ -17,6 +20,7 @@ export class EmailJoinComponent implements OnInit {
   channelId;
   joinToken;
   communityName;
+  channelName;
   faShieldHeart = faShieldHeart;
 
   constructor(
@@ -24,6 +28,7 @@ export class EmailJoinComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private libToasLogService: LibToastLogService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +41,9 @@ export class EmailJoinComponent implements OnInit {
   getChannelInfo() {
     this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
       this.communityChannel = data;
+      this.channelName = data.name;
+      this.communityName = data.kommunity.name;
+      this.onAcceptRoleButton();
     });
   }
 
@@ -57,5 +65,23 @@ export class EmailJoinComponent implements OnInit {
     const queryParams = { ch: this.channelId, decline: true };
     this.router.navigate([], { queryParams });
     this.joinChannel(true);
+  }
+
+  onAcceptRoleButton() {
+    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+      context: {
+        consentType: ConsentTypesEnum.JoinChannelEmail,
+        communityNameEmail: this.communityName,
+        channelNameEmail: this.channelName,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'rejected') {
+        this.reject();
+      } else {
+        this.joinChannel();
+      }
+    });
   }
 }

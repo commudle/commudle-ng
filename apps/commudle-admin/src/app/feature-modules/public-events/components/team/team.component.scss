@@ -1,15 +1,11 @@
 .volunteers {
-  display: flex;
-  flex-direction: column;
-  @apply com-w-1/2 com-mt-3;
+  @apply com-grid com-grid-cols-1 com-gap-4 md:com-grid-cols-2;
+  fieldset {
+    @apply com-border com-border-solid com-border-gray-300 com-rounded-md;
 
-  app-user-profile-card-large {
-    margin: 0.5rem 0;
-  }
-
-  @media screen and (min-width: 800px) {
-    flex-direction: row;
-    flex-wrap: wrap;
+    legend {
+      @apply com-ml-auto com-text-base com-font-medium;
+    }
   }
 }
 

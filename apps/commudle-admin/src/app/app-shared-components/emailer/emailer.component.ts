@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -11,13 +11,14 @@ import { EmailsService } from '../../services/emails.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { EventSimpleRegistrationsService } from '../../services/event-simple-registrations.service';
 import { IEventSimpleRegistration } from 'apps/shared-models/event_simple_registration.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-emailer',
   templateUrl: './emailer.component.html',
   styleUrls: ['./emailer.component.scss'],
 })
-export class EmailerComponent implements OnInit {
+export class EmailerComponent implements OnInit, OnDestroy {
   EemailTypes = EemailTypes;
 
   // external properties received via windowRef
@@ -26,6 +27,7 @@ export class EmailerComponent implements OnInit {
   eventDataFormEntityGroupId: number;
   mailType: string;
   recipientEmail: string;
+  recipientUsername: string;
 
   prefillCompleted = false;
 
@@ -40,6 +42,8 @@ export class EmailerComponent implements OnInit {
   eventDataFormEntityGroups: IEventDataFormEntityGroup[] = [];
 
   eMailForm;
+
+  subscriptions: Subscription[] = [];
 
   tinyMCE = {
     height: 200,
@@ -221,6 +225,7 @@ export class EmailerComponent implements OnInit {
       registration_selection_type: [''],
       resend: [false],
       recipient_email: [''],
+      recipient_username: [''],
       subject: ['', Validators.required],
       body: [''],
     });
@@ -229,7 +234,6 @@ export class EmailerComponent implements OnInit {
   ngOnInit() {
     this.eventsService.communityEventsForEmail(this.community.id).subscribe((data) => {
       this.events = data.events;
-
       if (this.event) {
         this.prefillForm('event_id');
       } else {
@@ -239,7 +243,15 @@ export class EmailerComponent implements OnInit {
       if (this.recipientEmail) {
         this.prefillForm('recipient_email');
       }
+
+      if (this.recipientUsername) {
+        this.prefillForm('recipient_username');
+      }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getEventDataFormEntityGroups(eventId) {
@@ -325,6 +337,10 @@ export class EmailerComponent implements OnInit {
       this.eMailForm.controls['body'].clearValidators();
     }
     this.setEmailSubject($event);
+
+    if (this.prefillCompleted) {
+      this.recipientUsername = '';
+    }
   }
 
   setEmailSubject(emailType) {
@@ -405,6 +421,13 @@ export class EmailerComponent implements OnInit {
           if (this.recipientEmail) {
             this.eMailForm.patchValue({
               recipient_email: this.recipientEmail,
+            });
+          }
+          break;
+        case 'recipient_username':
+          if (this.recipientUsername) {
+            this.eMailForm.patchValue({
+              recipient_username: this.recipientUsername,
             });
           }
           break;

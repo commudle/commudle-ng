@@ -1,12 +1,20 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { NbPopoverDirective } from '@commudle/theme';
+import {
+  faInfoCircle,
+  faUserFriends,
+  faFlask,
+  faLightbulb,
+  faBell,
+  faEllipsisV,
+  faHandHoldingDollar,
+} from '@fortawesome/free-solid-svg-icons';
+import { NbMenuService, NbPopoverDirective } from '@commudle/theme';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
-import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -20,20 +28,37 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faUserFriends = faUserFriends;
   faBell = faBell;
-  faUser = faUser;
+  faInfoCircle = faInfoCircle;
+  faEllipsisV = faEllipsisV;
+  faHandHoldingDollar = faHandHoldingDollar;
 
   notificationCount = 0;
   ENotificationSenderTypes = ENotificationSenderTypes;
 
   notificationIconHighlight = false;
 
+  contextMenuItems = [
+    { title: 'Labs', link: '/labs' },
+    { title: 'Jobs', link: '/jobs' },
+    { title: 'Newsletters', link: '/newsletters' },
+    { title: 'Blogs', link: '/blogs' },
+    {
+      title: 'Documentation',
+      url: 'https://documentation.commudle.com/',
+      externalLink: true,
+      target: '_blank',
+    },
+  ];
+
   subscriptions: Subscription[] = [];
+  showContextMenu = false;
 
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   constructor(
     private authwatchService: LibAuthwatchService,
     private notificationsStore: NotificationsStore,
+    private menuService: NbMenuService,
     private gtm: GoogleTagManagerService,
   ) {}
 

@@ -17,12 +17,14 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -62,7 +64,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   messageId;
   isInitial;
   highlight = true;
-  onjoinChannel = false;
+  communityName;
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
 
   constructor(
@@ -77,13 +79,16 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private activatedRoute: ActivatedRoute,
     private gtm: GoogleTagManagerService,
     private router: Router,
+    private communitiesService: CommunitiesService,
   ) {
     this.chatMessageForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getDetailsFromQueryParams();
+  }
 
   ngOnChanges() {
     this.communityChannelChannel.unsubscribe();
@@ -503,11 +508,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   onAcceptBuildButton() {
-    this.onjoinChannel = true;
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
-        onjoinChannel: this.onjoinChannel,
-        communityName: this.communityChannel.name,
+        consentType: ConsentTypesEnum.JoinChannelButton,
+        channelName: this.communityChannel.name,
+        communityName: this.communityName,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
@@ -517,6 +522,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       } else {
         this.router.navigate([''], { queryParams: { decline: true } });
       }
+    });
+  }
+
+  getDetailsFromQueryParams() {
+    this.communitiesService.pGetCommunityDetails(this.communityChannel.kommunity_id).subscribe((data) => {
+      this.communityName = data.name;
     });
   }
 }

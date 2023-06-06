@@ -8,14 +8,29 @@
 }
 .sidebar {
   transition: 0.3s;
-  @apply com-fixed com-left-0 com-top-16 com-pt-2 com-h-full com-w-16 com-z-50 com-shadow-Card com-bg-white com-text-black;
+  @apply com-fixed com-top-16 com-pt-2 com-h-full com-w-16 com-z-50 com-shadow-md com-bg-white com-text-black;
+
+  &.left {
+    @apply com-left-0;
+  }
+  &.right {
+    @apply com-right-0;
+  }
 
   &.expanded {
-    @apply com-w-40;
+    &.small {
+      @apply com-w-40;
+    }
+    &.medium {
+      @apply com-w-48;
+    }
+    &.large {
+      @apply com-w-52;
+    }
 
     .header {
       h1 {
-        @apply com-flex com-ml-0 com-cursor-pointer;
+        @apply com-flex com-ml-0 com-cursor-pointer com-justify-center;
       }
       .toggle {
         @apply com-ml-0;

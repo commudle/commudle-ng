@@ -148,4 +148,10 @@ export class AppUsersService {
   getUserEmailSubscriptions(): Observable<any> {
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.EMAIL_UNSUBSCRIBE_GROUPS));
   }
+
+  deactivateProfile(deleteProfile: boolean): Observable<any> {
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.DEACTIVATE_PROFILE), {
+      delete_profile: deleteProfile,
+    });
+  }
 }

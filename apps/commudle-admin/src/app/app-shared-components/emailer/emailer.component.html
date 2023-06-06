@@ -73,7 +73,12 @@
       "
     >
       <div>
-        <label>
+        <p *ngIf="recipientUsername">
+          To
+          <br />
+          <b>Selected Username</b>: <u>{{ recipientUsername }}</u>
+        </p>
+        <label *ngIf="!recipientUsername">
           To
           <input
             type="text"

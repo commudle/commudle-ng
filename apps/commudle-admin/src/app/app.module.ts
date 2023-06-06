@@ -262,7 +262,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     {
       provide: 'AuthServiceConfig',
       useValue: {
-        autoLogin: true,
+        autoLogin: false,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,

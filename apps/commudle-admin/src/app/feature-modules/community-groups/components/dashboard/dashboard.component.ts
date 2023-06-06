@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   subscriptions: Subscription[] = [];
 
-  sidebarExpanded = false;
+  sidebarExpanded = true;
 
   //font-awesome
   faCalendar = faCalendar;
