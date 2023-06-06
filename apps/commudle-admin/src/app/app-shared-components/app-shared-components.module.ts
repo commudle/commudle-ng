@@ -9,7 +9,7 @@ import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/spea
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
-import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/events-upcoming-card/events-upcoming-card.component';
+import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent],
@@ -21,7 +21,7 @@ import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-sha
     RouterModule,
     PublicCommunityModule,
     TechSessionsCardComponent,
-    EventsUpcomingCardComponent,
+    EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,
 
     // Nebular

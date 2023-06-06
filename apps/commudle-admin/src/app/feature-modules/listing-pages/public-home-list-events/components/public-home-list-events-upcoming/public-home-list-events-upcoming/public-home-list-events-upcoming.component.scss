@@ -13,6 +13,10 @@ div {
     }
   }
 
+  .border {
+    @apply com-border-solid com-border-0 com-border-b com-my-6 com-mx-2 com-border-Bright-Gray-Light com-hidden md:com-block;
+  }
+
   .load-more {
     @apply com-text-center md:com-mt-8 com-m-0;
 

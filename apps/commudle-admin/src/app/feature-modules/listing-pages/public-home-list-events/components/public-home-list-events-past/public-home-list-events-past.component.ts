@@ -14,7 +14,7 @@ export class PublicHomeListEventsPastComponent implements OnInit {
   faCalendarCheck = faCalendarCheck;
 
   page_info: IPageInfo;
-  total;
+  total: number;
   isLoadingUpcoming = false;
   showSpinner = false;
 

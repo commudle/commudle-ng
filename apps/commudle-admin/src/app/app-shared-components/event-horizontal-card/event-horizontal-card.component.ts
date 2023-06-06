@@ -10,10 +10,10 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 @Component({
-  selector: 'commudle-events-upcoming-card',
+  selector: 'commudle-event-horizontal-card',
   standalone: true,
-  templateUrl: './events-upcoming-card.component.html',
-  styleUrls: ['./events-upcoming-card.component.scss'],
+  templateUrl: './event-horizontal-card.component.html',
+  styleUrls: ['./event-horizontal-card.component.scss'],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -25,7 +25,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     SharedDirectivesModule,
   ],
 })
-export class EventsUpcomingCardComponent implements OnInit {
+export class EventHorizontalCardComponent implements OnInit {
   @Input() event: IEvent;
   community: ICommunity;
   moment = moment;

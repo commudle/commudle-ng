@@ -16,7 +16,7 @@ import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
 import { PublicHomeListEventsTechSessionsComponent } from './components/public-home-list-events-tech-sessions/public-home-list-events-tech-sessions.component';
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
-import { EventsUpcomingCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/events-upcoming-card/events-upcoming-card.component';
+import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     EventCardComponent,
     FeaturedCommunitiesCardComponent,
     TechSessionsCardComponent,
-    EventsUpcomingCardComponent,
+    EventHorizontalCardComponent,
     SharedDirectivesModule,
   ],
 })

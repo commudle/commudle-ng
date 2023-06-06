@@ -4,7 +4,8 @@
     >Upcoming Events
   </p>
   <div *ngFor="let event of upcomingEvents">
-    <commudle-events-upcoming-card [event]="event"></commudle-events-upcoming-card>
+    <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+    <div class="border"></div>
   </div>
   <div class="load-more">
     <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>

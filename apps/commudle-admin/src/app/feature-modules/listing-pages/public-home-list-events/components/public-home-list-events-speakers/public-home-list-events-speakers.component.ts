@@ -14,7 +14,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   speakers: IUser[] = [];
 
   page_info: IPageInfo;
-  total;
+  total: number;
   isLoadingSpeakers = false;
   showSpinner = false;
   limit = 4;

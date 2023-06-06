@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventsUpcomingCardComponent } from './events-upcoming-card.component';
+import { EventHorizontalCardComponent } from './event-horizontal-card.component';
 
 describe('EventsUpcomingComponent', () => {
-  let component: EventsUpcomingCardComponent;
-  let fixture: ComponentFixture<EventsUpcomingCardComponent>;
+  let component: EventHorizontalCardComponent;
+  let fixture: ComponentFixture<EventHorizontalCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EventsUpcomingCardComponent],
+      declarations: [EventHorizontalCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EventsUpcomingCardComponent);
+    fixture = TestBed.createComponent(EventHorizontalCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -16,7 +16,7 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
   faCalendarDays = faCalendarDays;
 
   page_info: IPageInfo;
-  total;
+  total: number;
 
   isLoadingUpcoming = false;
   showSpinner = false;
