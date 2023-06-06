@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedComponentsModule } from '@commudle/shared-components';
 import {
   NbButtonModule,
   NbCardModule,
@@ -12,9 +12,10 @@ import {
   NbPopoverModule,
   NbSelectModule,
 } from '@commudle/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
-import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SharedComponentsModule as OldSharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -47,7 +48,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     FormsModule,
     ReactiveFormsModule,
     YouTubePlayerModule,
-    SharedComponentsModule,
+    OldSharedComponentsModule,
     EditorModule,
     SharedPipesModule,
     SharedDirectivesModule,
@@ -55,6 +56,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
+    SharedComponentsModule,
 
     // Nebular
     NbCardModule,

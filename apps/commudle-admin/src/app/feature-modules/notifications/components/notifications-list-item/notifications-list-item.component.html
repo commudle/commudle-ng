@@ -1,9 +1,9 @@
-<p #notification>
+<p #notificationRef>
   <ng-container *ngFor="let message of notificationMessage" [ngSwitch]="message.type">
     <a (click)="redirectTo(message)" *ngSwitchCase="'link'" class="com-cursor-pointer">{{ message.value }}</a>
     <span *ngSwitchCase="'text'"> {{ message.value }} </span>
-    <a *ngSwitchCase="'href'" href="{{ message.href }}" class="com-cursor-pointer" target="_blank">{{
-      message.value
-    }}</a>
+    <a *ngSwitchCase="'href'" class="com-cursor-pointer" href="{{ message.href }}" target="_blank">
+      {{ message.value }}
+    </a>
   </ng-container>
 </p>

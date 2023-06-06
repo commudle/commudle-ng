@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+p {
+  @apply com-m-0;
+}
+
+.mentions-list-container {
+  @apply com-rounded com-bg-white;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+  .items {
+    @apply com-max-h-64 com-w-56;
+
+    .item {
+      @apply com-p-2 com-border-0 com-cursor-pointer com-gap-2;
+
+      &.is-selected,
+      &:hover {
+        @apply com-bg-slate-100;
+      }
+
+      .photo {
+        @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0;
+      }
+
+      .details {
+        @apply com-w-full;
+
+        .name {
+          @apply com-text-sm com-text-slate-900;
+        }
+
+        .model {
+          @apply com-text-xs com-text-slate-500;
+        }
+      }
+    }
+  }
+
+  .helper {
+    @apply com-p-2 com-text-center;
+
+    .text {
+      @apply com-text-xs com-text-slate-500;
+
+      .key {
+        @apply com-font-bold;
+      }
+    }
+  }
+}

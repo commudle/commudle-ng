@@ -12,15 +12,15 @@
       <div class="com-h-10 com-w-10">
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
-          src="{{ notification.sender.photo.i64 }}"
           alt="{{ notification.sender.name }}"
           class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+          src="{{ notification.sender.photo.i64 }}"
         />
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.KOMMUNITY"
-          src="{{ notification.sender.logo_image.i64 }}"
           alt="{{ notification.sender.name }}"
           class="com-h-10 com-w-10 com-object-contain com-rounded-full com-border com-border-solid com-border-gray-200"
+          src="{{ notification.sender.logo_image.i64 }}"
         />
       </div>
       <div class="com-ml-2">
@@ -40,11 +40,12 @@
           </div>
         </div>
         <app-notifications-list-item
-          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
-          [notificationType]="ENotificationSenderTypes.USER"
-          [notificationMessage]="notification.notification_message"
+          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
+          [notificationMessage]="notification.notification_message"
+          [notificationType]="ENotificationSenderTypes.USER"
+          [notification]="notification"
         ></app-notifications-list-item>
       </div>
     </div>

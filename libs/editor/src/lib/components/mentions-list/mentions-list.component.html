@@ -1,0 +1,20 @@
+<div class="mentions-list-container" *ngIf="props['items'].length !== 0">
+  <nb-list class="items">
+    <nb-list-item
+      (click)="selectItem(i)"
+      *ngFor="let item of props['items']; index as i"
+      [ngClass]="{ 'is-selected': i === selectedIndex }"
+      class="item"
+      id="mention-{{ i }}"
+    >
+      <img [alt]="item.name" [src]="getPicture(item)" [title]="item.name" class="photo" />
+      <div class="details">
+        <p class="name">{{ item.name }}</p>
+        <p *ngIf="item.model !== 'user'" class="model">{{ item.model }}</p>
+      </div>
+    </nb-list-item>
+  </nb-list>
+  <div class="helper">
+    <p class="text">Press <span class="key">Tab</span> to autocomplete</p>
+  </div>
+</div>

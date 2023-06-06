@@ -146,6 +146,7 @@ module.exports = {
     },
   },
   plugins: [
+    // TODO: remove after upgrading tailwind v3.3
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),

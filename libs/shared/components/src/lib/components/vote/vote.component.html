@@ -1,0 +1,11 @@
+<div class="vote-container">
+  <nb-icon
+    (click)="toggleVote()"
+    [icon]="(vote$ | async)?.voted ? 'heart' : 'heart-outline'"
+    [nbTooltipStatus]="(vote$ | async)?.voted ? 'basic' : 'danger'"
+    [nbTooltip]="(vote$ | async)?.voted ? 'Unvote' : 'Vote'"
+    [status]="(vote$ | async)?.voted ? 'danger' : 'basic'"
+  >
+  </nb-icon>
+  <span *ngIf="(vote$ | async)?.total">{{ (vote$ | async)?.total }}</span>
+</div>
