@@ -3,9 +3,8 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarDays"></fa-icon></button
     >Upcoming Events
   </h2>
-  <div *ngFor="let event of upcomingEvents">
+  <div *ngFor="let event of upcomingEvents" class="event-horizontal-card">
     <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
-    <div class="border"></div>
   </div>
   <div class="load-more">
     <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
