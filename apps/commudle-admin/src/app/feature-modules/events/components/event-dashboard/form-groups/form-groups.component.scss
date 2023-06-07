@@ -67,6 +67,25 @@
   }
 }
 
+.create-form {
+  @apply com-flex md:com-flex-row com-flex-col-reverse md:com-justify-between md:com-items-center;
+  .text {
+    .attach-form-text {
+      @apply com-m-0 com-mb-2px com-text-sm com-font-semibold;
+    }
+    .sub-text {
+      @apply com-m-0 com-mb-4 com-text-xs com-font-normal;
+    }
+  }
+  .create-form-button {
+    .create-button {
+      @apply com-mt-2 com-mb-8 md:com-m-0 com-mx-0;
+    }
+    .view-form-button {
+      @apply com-cursor-pointer com-ml-2;
+    }
+  }
+}
 .dfeg-create-form {
   > div {
     @apply com-flex com-flex-col com-items-start;
@@ -74,17 +93,30 @@
       margin: 0.5rem;
     }
     .name {
-      @apply com-m-0;
+      @apply com-m-0 com-mb-4 md:com-mb-0 com-w-full md:com-w-[27%];
+      input {
+        @apply com-m-0 com-mt-1;
+      }
     }
 
     .data-form-select,
     .data-form-type-select {
-      @apply com-mx-0 com-flex com-items-start;
+      @apply com-mx-0 com-flex  com-items-end com-mb-4 md:com-my-0 com-w-full md:com-w-[27%];
+
+      label {
+        @apply com-w-full;
+      }
+      nb-select {
+        @apply com-m-0 com-mt-1 com-w-full;
+      }
+      nb-icon {
+        @apply com-cursor-pointer com-mb-2 com-ml-2;
+      }
     }
   }
 
   .save-button-bottom {
-    @apply com-mt-4;
+    @apply md:com-mt-6 com-m-0 com-mt-4;
   }
 
   @media screen and (min-width: 640px) {
@@ -94,7 +126,7 @@
       justify-content: space-between;
       > div {
         margin: 0 0.25rem;
-        width: 30%;
+        width: 27%;
 
         label {
           width: 100%;
