@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { PoliciesComponent } from 'apps/commudle-admin/src/app/feature-modules/policies/policies/policies.component';
 
 const routes = [
   {
-    path: 'privacy-policy',
-    component: PrivacyPolicyComponent,
-  },
-  {
-    path: 'terms-and-conditions',
-    component: TermsAndConditionsComponent,
+    path: ':policy_slug',
+    component: PoliciesComponent,
   },
 ];
 
