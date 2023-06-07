@@ -4,6 +4,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { ISessions } from 'apps/shared-models/sessions.model';
 
 @Component({
   selector: 'commudle-public-home-list-events-tech-sessions',
@@ -11,7 +12,7 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
   styleUrls: ['./public-home-list-events-tech-sessions.component.scss'],
 })
 export class PublicHomeListEventsTechSessionsComponent implements OnInit {
-  techSessions = [];
+  techSessions: ISessions[] = [];
   faHeadset = faHeadset;
   showSpinner = false;
   page_info: IPageInfo;
