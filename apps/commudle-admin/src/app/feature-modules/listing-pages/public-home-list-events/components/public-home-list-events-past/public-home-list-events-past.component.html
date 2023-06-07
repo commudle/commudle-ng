@@ -3,7 +3,6 @@
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarCheck"></fa-icon></button
     >Past Events
   </h2>
-  <div class="top-border"></div>
   <div class="past-events-card-list">
     <commudle-event-card *ngFor="let event of pastEvents" [event]="event"></commudle-event-card>
   </div>

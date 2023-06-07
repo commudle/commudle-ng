@@ -1,28 +1,20 @@
 div {
   @apply com-p-0 com-m-0 com-mt-2 md:com-mt-0;
   .heading {
-    @apply md:com-mt-12 md:com-mb-4 com-my-0 com-mx-0 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+    @apply md:com-mt-12 md:com-mb-8 com-my-0 com-mx-0 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b;
 
     .title {
       @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
     }
     .sub-heading {
-      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0 md:com-mb-4 com-mb-0;
     }
-  }
-
-  .top-border {
-    @apply com-border-solid md:com-mb-8 com-mb-0 com-mx-0 com-mt-0 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0;
   }
 
   .featured-communities {
-    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-4 md:com-mt-0;
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-4 md:com-mt-0 com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b md:com-pb-8 com-p-0 md:com-block;
     .featured-communities-card {
       @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
     }
-  }
-
-  .bottom-border {
-    @apply com-border-solid com-mb-0 com-mx-0 com-mt-8 com-border-Bright-Gray-Light com-border-0 com-border-b com-p-0 md:com-block com-hidden;
   }
 }

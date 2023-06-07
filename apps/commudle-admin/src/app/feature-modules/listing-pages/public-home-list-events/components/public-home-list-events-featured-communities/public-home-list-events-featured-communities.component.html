@@ -3,7 +3,6 @@
     <h3 class="title">Featured Communities</h3>
     <h4 class="sub-heading">Join the most active groups</h4>
   </div>
-  <div class="top-border"></div>
   <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
   <div class="featured-communities">
     <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
@@ -20,5 +19,4 @@
       </div>
     </div>
   </div>
-  <div class="bottom-border"></div>
 </div>
