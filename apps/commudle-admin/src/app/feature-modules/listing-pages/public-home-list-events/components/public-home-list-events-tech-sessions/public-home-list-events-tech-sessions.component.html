@@ -1,19 +1,31 @@
 <div>
   <div class="heading">
-    <p>
-      <span class="title">Latest Tech Talks</span><span class="sub-heading">All the knowledge from event sessions</span>
-    </p>
+    <h3 class="title">Latest Tech Talks</h3>
+    <h4 class="sub-heading">All the knowledge from event sessions</h4>
   </div>
   <div class="border"></div>
-  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-  <div *appBreakpoints="'>lg'" class="session-card-desktop">
-    <div *ngFor="let session of techSessions" class="tech-sessions">
-      <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
+  <div class="tech-sessions">
+    <div *ngFor="let session of techSessions" class="tech-sessions-card">
+      <div *appBreakpoints="'>lg'">
+        <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
+      </div>
+      <div *appBreakpoints="'<=lg'">
+        <commudle-tech-sessions-card [session]="session" [horizontalScroll]="true"></commudle-tech-sessions-card>
+      </div>
     </div>
-  </div>
-  <div *appBreakpoints="'<=lg'" class="session-card-mobile">
-    <div *ngFor="let session of techSessions" class="tech-sessions">
-      <commudle-tech-sessions-card [session]="session" [horizontalScroll]="true"></commudle-tech-sessions-card>
+    <div class="load-more">
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+      <button
+        *ngIf="page_info?.has_next_page"
+        [disabled]="showSpinner"
+        (click)="getTechSessions()"
+        nbButton
+        outline
+        size="tiny"
+        status="basic"
+      >
+        View More
+      </button>
     </div>
   </div>
 </div>

@@ -1,15 +1,23 @@
 <div>
-  <p class="title">
+  <h2 class="title">
     <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarCheck"></fa-icon></button
     >Past Events
-  </p>
+  </h2>
   <div class="top-border"></div>
   <div class="past-events-card-list">
     <commudle-event-card *ngFor="let event of pastEvents" [event]="event"></commudle-event-card>
   </div>
   <div class="load-more">
     <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-    <button *ngIf="page_info?.has_next_page" (click)="getPastEvents()" nbButton outline size="small" status="info">
+    <button
+      *ngIf="page_info?.has_next_page"
+      [disabled]="showSpinner"
+      (click)="getPastEvents()"
+      nbButton
+      outline
+      size="small"
+      status="info"
+    >
       Load More
     </button>
   </div>

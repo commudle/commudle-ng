@@ -1,15 +1,12 @@
 div {
   .heading {
-    @apply com-mt-8 com-mb-4 com-mx-0 com-items-center com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+    @apply com-mt-8 com-mb-4 com-mx-0 com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col;
 
-    p {
-      @apply com-flex com-flex-col com-m-0;
-      .title {
-        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
-      }
-      .sub-heading {
-        @apply com-text-sm com-font-normal com-text-gunmetal;
-      }
+    .title {
+      @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+    }
+    .sub-heading {
+      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
     }
   }
 

@@ -11,7 +11,7 @@ nb-card {
         @apply com-flex com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6;
 
         .heading {
-          @apply com-text-4xl com-font-bold com-mt-0 com-mb-4 com-text-white;
+          @apply md:com-text-4xl com-text-[32px] com-font-bold com-mt-0 com-mb-4 com-text-white;
         }
 
         .sub-heading {

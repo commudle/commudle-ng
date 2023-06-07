@@ -1,26 +1,25 @@
 <nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
   <nb-card-body>
-    <a
-      [routerLink]="['/communities', session.event.kommunity.id, 'events', session.event.id]"
-      target="_blank"
-      class="details"
-    >
+    <div class="details">
       <div *ngIf="community" class="community-badge">
         <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
       </div>
-      <p class="event-title">{{ session.event.name }}</p>
+      <a
+        [routerLink]="
+          session.embedded_content
+            ? ['/speaker-resources', session.id]
+            : ['/communities', session.event.kommunity.id, 'events', session.event.id]
+        "
+      >
+        <div class="content">
+          <nb-icon [icon]="session.embedded_content ? 'attach-outline' : 'calendar-outline'"></nb-icon>
+          <p class="session-link">{{ session.title }}</p>
+        </div>
+      </a>
+    </div>
+    <a [routerLink]="['/communities', session.event.kommunity.id, 'events', session.event.id]" target="_blank">
       <p class="event-time">{{ moment(session.event.start_time).format('dddd, MMM Do, YYYY') }}</p>
-    </a>
-    <a
-      class="content"
-      [routerLink]="
-        session.embedded_content
-          ? ['/speaker-resources', session.id]
-          : ['/communities', session.event.kommunity.id, 'events', session.event.id]
-      "
-    >
-      <nb-icon icon="attach-outline"></nb-icon>
-      <p class="session-link">{{ session.title }}</p>
+      <p class="event-title">{{ session.event.name }}</p>
     </a>
   </nb-card-body>
 </nb-card>

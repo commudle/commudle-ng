@@ -3,14 +3,11 @@ div {
   .heading {
     @apply md:com-mt-12 md:com-mb-4 com-my-0 com-mx-0 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
-    p {
-      @apply com-flex com-flex-col com-p-0 com-m-0;
-      .title {
-        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
-      }
-      .sub-heading {
-        @apply com-text-sm com-font-normal com-text-gunmetal;
-      }
+    .title {
+      @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
+    }
+    .sub-heading {
+      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
     }
   }
 

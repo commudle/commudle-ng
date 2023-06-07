@@ -2,33 +2,32 @@ div {
   @apply com-mx-0;
 
   .heading {
-    @apply md:com-mt-8 com-mt-8 com-mb-4 com-mx-0 com-items-center com-flex com-p-4 md:com-p-0 md:com-bg-transparent com-bg-Anti-Flash-White;
+    @apply md:com-mt-8 com-mt-8 com-mb-4 com-mx-0 com-flex com-flex-col com-p-4 md:com-p-0 md:com-bg-transparent com-bg-Anti-Flash-White;
 
-    p {
-      @apply com-flex com-flex-col com-m-0;
-      .title {
-        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
-      }
-      .sub-heading {
-        @apply com-text-sm com-font-normal com-text-gunmetal;
-      }
+    .title {
+      @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+    }
+    .sub-heading {
+      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
     }
   }
 
   .border {
-    @apply com-border-0 com-border-b com-border-solid md:com-mb-4 com-mb-0 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
+    @apply com-border-0 md:com-border-b com-border-solid md:com-mb-4 com-mb-0 com-mx-0 com-mt-0 com-border-Bright-Gray-Light;
   }
 
-  .session-card-desktop {
-    @apply com-overflow-x-auto;
-    .tech-sessions {
+  .tech-sessions {
+    @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
+    .tech-sessions-card {
       @apply md:com-mb-4 com-m-0;
     }
-  }
-  .session-card-mobile {
-    @apply com-flex com-flex-nowrap com-overflow-x-auto;
-    .tech-sessions {
-      @apply md:com-mb-4 com-m-0;
+
+    .load-more {
+      @apply com-text-center md:com-mt-6 com-mt-0;
+
+      app-loading-spinner {
+        @apply com-mb-6;
+      }
     }
   }
 }

@@ -1,5 +1,9 @@
+a {
+  @apply com-no-underline;
+}
+
 nb-card {
-  @apply md:com-m-0 com-mt-4 com-ml-4 com-mr-0 com-mb-0;
+  @apply com-m-0;
 
   nb-card-body {
     @apply com-p-4;
@@ -11,24 +15,25 @@ nb-card {
         @apply com-mb-2 com-mt-0;
       }
 
-      .event-title {
-        @apply com-text-base com-font-semibold com-mb-2 com-mt-0 com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
-      }
+      .content {
+        @apply com-no-underline com-flex com-items-start com-mb-2;
 
-      .event-time {
-        @apply com-text-xs com-font-normal com-mb-4 com-mt-0 com-text-AuroMetalSaurus;
+        nb-icon {
+          @apply com-mr-2 com-text-gray-500 com-mt-1 com-text-base com-flex-shrink-0;
+        }
+
+        .session-link {
+          @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-3 com-line-clamp-1;
+        }
       }
     }
-    .content {
-      @apply com-no-underline com-flex com-items-start;
 
-      nb-icon {
-        @apply com-mr-2 com-text-gray-500 com-mt-1 com-text-base com-flex-shrink-0;
-      }
+    .event-time {
+      @apply com-text-xs com-font-normal com-mb-4 com-mt-0 com-text-AuroMetalSaurus;
+    }
 
-      .session-link {
-        @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-3 com-line-clamp-1;
-      }
+    .event-title {
+      @apply com-text-base com-font-semibold com-m-0 com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
     }
   }
 }
