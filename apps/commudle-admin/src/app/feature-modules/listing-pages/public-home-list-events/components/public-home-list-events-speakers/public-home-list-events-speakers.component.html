@@ -1,11 +1,10 @@
 <div>
   <div class="heading">
-    <p>
-      <span class="title">Speakers to Follow</span><span class="sub-heading">Network with speakers from events</span>
-    </p>
+    <h3 class="title">Speakers to Follow</h3>
+    <h4 class="sub-heading">Network with speakers from events</h4>
   </div>
-  <div class="top-border"></div>
   <div class="user-profile-card-large">
+    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
     <div class="user-profile-card-large-card" *ngFor="let speaker of speakers">
       <div *appBreakpoints="'>lg'">
         <app-user-profile-card-large
@@ -13,6 +12,7 @@
           [alignFollowToRight]="true"
           [showAbout]="true"
           [user]="speaker"
+          [showSpeakersCount]="true"
         ></app-user-profile-card-large>
       </div>
       <div *appBreakpoints="'<=lg'">
@@ -23,16 +23,24 @@
           [user]="speaker"
           [horizontalScroll]="true"
           [isMobileWidthFull]="true"
+          [showSpeakersCount]="true"
         ></app-user-profile-card-large>
       </div>
     </div>
 
     <div class="load-more">
       <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-      <button *ngIf="page_info?.has_next_page" (click)="getSpeakersList()" nbButton outline size="tiny" status="basic">
+      <button
+        *ngIf="page_info?.has_next_page"
+        [disabled]="showSpinner"
+        (click)="getSpeakersList(); showSpinner = true"
+        nbButton
+        outline
+        size="tiny"
+        status="basic"
+      >
         View More
       </button>
     </div>
   </div>
-  <div class="bottom-border"></div>
 </div>

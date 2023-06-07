@@ -1,16 +1,24 @@
 <nb-card>
   <nb-card-body>
     <div class="upcoming-card">
-      <a
-        [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
-        target="_blank"
-        class="upcoming-card-link"
-      >
-        <div *ngIf="event.header_image_path" class="upcoming-card-image">
-          <commudle-banner-image
-            [headerImagePath]="event.header_image_path"
-            [name]="event.name"
-          ></commudle-banner-image>
+      <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="upcoming-card-link">
+        <div *ngIf="event.header_image_path">
+          <div *appBreakpoints="'>lg'" class="upcoming-card-image">
+            <commudle-banner-image
+              [headerImagePath]="event.header_image_path"
+              [name]="event.name"
+              [topRightCurve]="false"
+              [bottomRightCurve]="false"
+            ></commudle-banner-image>
+          </div>
+          <div *appBreakpoints="'<=lg'" class="upcoming-card-image">
+            <commudle-banner-image
+              [headerImagePath]="event.header_image_path"
+              [name]="event.name"
+              [bottomRightCurve]="false"
+              [bottomLeftCurve]="false"
+            ></commudle-banner-image>
+          </div>
         </div>
         <div *ngIf="!event.header_image_path" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>

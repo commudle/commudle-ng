@@ -60,6 +60,10 @@ p {
       word-break: break-word;
     }
 
+    .speaker-count {
+      @apply com-bg-Bright-Gray com-text-gunmetal com-mt-1;
+    }
+
     .social {
       a {
         nb-icon {

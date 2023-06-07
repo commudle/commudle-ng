@@ -18,6 +18,7 @@ import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/ap
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -43,6 +44,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
     SharedDirectivesModule,
+    SkeletonCardsComponent,
   ],
 })
 export class PublicHomeListEventsModule {}
