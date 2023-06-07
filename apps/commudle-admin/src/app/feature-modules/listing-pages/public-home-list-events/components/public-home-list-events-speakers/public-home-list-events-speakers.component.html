@@ -5,7 +5,7 @@
   </div>
   <div class="top-border"></div>
   <div class="user-profile-card-large">
-    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonCard"></app-skeleton-cards>
+    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
     <div class="user-profile-card-large-card" *ngFor="let speaker of speakers">
       <div *appBreakpoints="'>lg'">
         <app-user-profile-card-large

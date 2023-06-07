@@ -17,7 +17,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   total: number;
   isLoadingSpeakers = false;
   showSpinner = false;
-  showSkeletonCard = false;
+  showSkeletonLoading = false;
   limit = 4;
 
   constructor(private eventsService: EventsService) {}
@@ -27,7 +27,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   }
 
   getSpeakersList() {
-    this.showSkeletonCard = true;
+    this.showSkeletonLoading = true;
     this.isLoadingSpeakers = true;
     this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit).subscribe((data) => {
       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
@@ -35,7 +35,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
       this.page_info = data.page_info;
       this.isLoadingSpeakers = false;
       this.showSpinner = false;
-      this.showSkeletonCard = false;
+      this.showSkeletonLoading = false;
     });
   }
 }
