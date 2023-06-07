@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PoliciesComponent } from 'apps/commudle-admin/src/app/feature-modules/policies/policies/policies.component';
+import { PoliciesComponent } from 'apps/commudle-admin/src/app/feature-modules/policies/component/policies/policies.component';
 
 const routes = [
   {
