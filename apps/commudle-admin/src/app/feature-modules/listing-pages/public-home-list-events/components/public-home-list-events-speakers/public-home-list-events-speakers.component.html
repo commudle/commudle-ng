@@ -3,7 +3,6 @@
     <h3 class="title">Speakers to Follow</h3>
     <h4 class="sub-heading">Network with speakers from events</h4>
   </div>
-  <div class="top-border"></div>
   <div class="user-profile-card-large">
     <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
     <div class="user-profile-card-large-card" *ngFor="let speaker of speakers">
@@ -42,5 +41,4 @@
       </button>
     </div>
   </div>
-  <div class="bottom-border"></div>
 </div>
