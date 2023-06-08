@@ -10,9 +10,7 @@ h4 {
     @apply com-p-0 com-flex;
 
     .icon {
-      @apply com-p-7 com-flex-shrink-0;
-      //   @apply com-bg-blue-500 com-flex com-flex-col com-justify-center com-items-center com-w-14 com-text-xs com-text-blue-100 ;
-      //   @apply rounded-tl-lg rounded-bl-lg rounded-tr-md rounded-br-md;
+      @apply com-p-7 com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none;
 
       fa-icon {
         @apply com-text-Azure com-text-xl;
@@ -27,7 +25,7 @@ h4 {
       }
 
       .event-time {
-        @apply com-text-[10px] com-font-normal com-mb-1 com-mt-0 com-text-Auro-Metal-Saurus;
+        @apply com-text-10px com-font-normal com-mb-2 com-mt-0 com-text-Auro-Metal-Saurus;
       }
     }
   }

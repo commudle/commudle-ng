@@ -1,5 +1,5 @@
-<nb-card [routerLink]="['/speaker-resources']" class="user-attended-event-card">
-  <nb-card-body>
+<nb-card [routerLink]="['/speaker-resources', attendedEvent.id]" class="user-attended-event-card">
+  <nb-card-body class="custom-scrollbar">
     <button nbButton size="small" shape="semi-round" class="icon">
       <fa-icon [icon]="faCalendarCheck"></fa-icon>
     </button>
