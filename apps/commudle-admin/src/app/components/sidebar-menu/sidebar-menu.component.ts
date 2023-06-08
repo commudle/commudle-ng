@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { faFlask, faNewspaper, faHouse, faSuitcase } from '@fortawesome/free-solid-svg-icons';
+import { faFlask, faNewspaper, faHouse, faSuitcase, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@commudle/theme';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
@@ -24,6 +24,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   faHouse = faHouse;
   faFlask = faFlask;
   faNewspaper = faNewspaper;
+  faLightbulb = faLightbulb;
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
   managedCommunityGroups: ICommunityGroup[] = [];
