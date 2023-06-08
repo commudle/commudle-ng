@@ -31,8 +31,6 @@ export class EventMiniCardComponent implements OnInit {
   getCommunity() {
     this.communitiesService.pGetCommunityDetails(this.attendedEvent.kommunity_id).subscribe((data) => {
       this.community = data;
-      console.log(data);
     });
   }
 }
-// pastEvent.event_status.id

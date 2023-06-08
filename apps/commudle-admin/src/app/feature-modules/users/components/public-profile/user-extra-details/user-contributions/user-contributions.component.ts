@@ -8,9 +8,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { Subscription } from 'rxjs';
 import { faLightbulb, faCalendar, faUsers, faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { IEvent } from 'apps/shared-models/event.model';
-import { IEvents } from 'apps/shared-models/events.model';
 
 @Component({
   selector: 'app-user-contributions',
@@ -24,7 +22,6 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   communities: IUserRolesUser[] = [];
   builds: ICommunityBuild[] = [];
   attendedEvents: IEvent[] = [];
-  // pastEvents: ISpeakerResource[] = [];
   pastEvents: IEvent[] = [];
 
   subscriptions: Subscription[] = [];
@@ -53,20 +50,10 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  // getPastEvents(): void {
-  //   this.subscriptions.push(
-  //     this.appUsersService.speakerResources(this.user.username).subscribe((value) => {
-  //       this.pastEvents = value.speaker_resources;
-  //       this.userProfileMenuService.addMenuItem('talksAtEvents', this.pastEvents.length > 0);
-  //     }),
-  //   );
-  // }
-
   getPastEvents(): void {
     this.subscriptions.push(
       this.appUsersService.getSpeakerResources(this.user.username).subscribe((value) => {
         this.pastEvents = this.pastEvents.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
-        // this.pastEvents = value.speaker_resources;
         this.userProfileMenuService.addMenuItem('talksAtEvents', this.pastEvents.length > 0);
       }),
     );
