@@ -3,7 +3,7 @@ a {
 }
 
 nb-card {
-  @apply com-m-0;
+  @apply com-m-0 md:com-min-h-[172px] com-h-full;
 
   nb-card-body {
     @apply com-p-4;
@@ -12,7 +12,7 @@ nb-card {
       @apply com-no-underline;
 
       .community-badge {
-        @apply com-mb-2 com-mt-0;
+        @apply com-mb-2 com-mt-0 com-h-[28px];
       }
 
       .content {
@@ -23,7 +23,7 @@ nb-card {
         }
 
         .session-link {
-          @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-3 com-line-clamp-1;
+          @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
         }
       }
     }
