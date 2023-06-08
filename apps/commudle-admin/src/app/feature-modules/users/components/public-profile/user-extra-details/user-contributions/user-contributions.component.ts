@@ -104,7 +104,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
       this.appUsersService.getAttendedEvents(this.user.id).subscribe((value) => {
         this.attendedEvents = value.events;
         this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
-        this.footerEventsCardText = `View More (${this.attendedEvents.length - 6})`;
+        this.footerEventsCardText = `View More`;
       }),
     );
   }
@@ -114,7 +114,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
     if (!this.viewMoreEventsSection) {
       this.footerEventsCardText = `View Less`;
     } else {
-      this.footerEventsCardText = `View More (${this.attendedEvents.length - 6})`;
+      this.footerEventsCardText = `View More`;
     }
   }
 }
