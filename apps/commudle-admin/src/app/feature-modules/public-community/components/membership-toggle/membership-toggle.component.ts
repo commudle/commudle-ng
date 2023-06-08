@@ -31,6 +31,9 @@ export class MembershipToggleComponent implements OnInit {
   @Input() status: NbComponentStatus = 'basic';
   @Input() size: NbComponentSize = 'small';
   @Input() appearance: NbButtonAppearance = 'filled';
+  @Input() isMobileWidthFull = false;
+
+  joinCommunity = false;
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -58,7 +61,6 @@ export class MembershipToggleComponent implements OnInit {
         this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
         this.gtmDatalayerPush('join-community-confirm');
       }
-      this.dialogRef.close();
     });
   }
 

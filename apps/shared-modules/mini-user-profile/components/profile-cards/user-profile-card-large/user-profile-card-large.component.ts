@@ -17,6 +17,9 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() showAbout = false;
   @Input() showSocialLinks = false;
   @Input() activateMiniProfileDirective = true;
+  @Input() horizontalScroll = false;
+  @Input() isMobileWidthFull = false;
+  @Input() showSpeakersCount = false;
   @Output() componentClicked = new EventEmitter();
 
   constructor(private userChatsService: UserChatsService) {}

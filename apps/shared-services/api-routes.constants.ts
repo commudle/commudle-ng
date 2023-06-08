@@ -165,12 +165,15 @@ export const API_ROUTES = {
     COMMON_EVENTS: 'api/v2/events/common_events',
     IS_MEMBER_OF_ALL_COLLABORATING_COMMUNITIES: 'api/v2/events/is_member_of_all_collaborating_communities',
     PUBLIC: {
+      EVENTS_LIST: 'api/v2/events/public',
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',
       INDEX_BY_COMMUNITY: 'api/v2/events/public/index_by_community',
       UPCOMING: 'api/v2/events/public/upcoming',
       RANDOM_PAST: 'api/v2/events/public/past_random',
       POLLS: 'api/v2/events/public/polls',
+      SPEAKERS_LIST: 'api/v2/events/public/speakers_list',
+      TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
     },
   },
 

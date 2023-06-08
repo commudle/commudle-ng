@@ -23,8 +23,9 @@ p {
 
     .name {
       p {
+        @apply com-font-medium;
         color: $black;
-        font-size: $fs-18;
+        font-size: 16px;
         line-height: 21px;
         word-break: break-word;
       }
@@ -57,6 +58,10 @@ p {
       font-size: $fs-h6;
       line-height: 16px;
       word-break: break-word;
+    }
+
+    .speaker-count {
+      @apply com-bg-Bright-Gray com-text-gunmetal com-mt-1;
     }
 
     .social {

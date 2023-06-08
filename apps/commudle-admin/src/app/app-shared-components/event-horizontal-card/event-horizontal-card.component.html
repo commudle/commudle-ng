@@ -1,0 +1,67 @@
+<nb-card>
+  <nb-card-body>
+    <div class="upcoming-card">
+      <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="upcoming-card-link">
+        <div *ngIf="event.header_image_path">
+          <div *appBreakpoints="'>lg'" class="upcoming-card-image">
+            <commudle-banner-image
+              [headerImagePath]="event.header_image_path"
+              [name]="event.name"
+              [topRightCurve]="false"
+              [bottomRightCurve]="false"
+            ></commudle-banner-image>
+          </div>
+          <div *appBreakpoints="'<=lg'" class="upcoming-card-image">
+            <commudle-banner-image
+              [headerImagePath]="event.header_image_path"
+              [name]="event.name"
+              [bottomRightCurve]="false"
+              [bottomLeftCurve]="false"
+            ></commudle-banner-image>
+          </div>
+        </div>
+        <div *ngIf="!event.header_image_path" class="no-image-header">
+          <nb-icon icon="link" status="primary"></nb-icon>
+        </div>
+        <div *appBreakpoints="'>lg'" class="upcoming-card-details-desktop">
+          <div>
+            <div>
+              <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+              <div class="interested-members" *ngIf="event.interested_members_count > 0">
+                <button nbButton status="basic" shape="round">
+                  <nb-icon icon="people-outline" class="people-outline"></nb-icon>
+                  <span>{{ event.interested_members_count }}</span>
+                </button>
+              </div>
+            </div>
+            <p class="event-title">{{ event.name }}</p>
+          </div>
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div>
+          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
+            Register
+          </button>
+        </div>
+        <div *appBreakpoints="'<=lg'" class="upcoming-card-details-mobile">
+          <div>
+            <p class="event-title">{{ event.name }}</p>
+            <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+          </div>
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div>
+
+          <div class="interested-members" *ngIf="event.interested_members_count > 0">
+            <nb-icon icon="people-outline" class="people-outline"></nb-icon>
+            <span>{{ event.interested_members_count }} Interested Members</span>
+          </div>
+
+          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
+            Register
+          </button>
+        </div>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>

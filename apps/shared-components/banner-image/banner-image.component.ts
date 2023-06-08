@@ -9,6 +9,10 @@ import { IEvent } from 'apps/shared-models/event.model';
 export class BannerImageComponent implements OnInit {
   @Input() headerImagePath;
   @Input() name;
+  @Input() topRightCurve = true;
+  @Input() bottomRightCurve = true;
+  @Input() bottomLeftCurve = true;
+  @Input() topLeftCurve = true;
 
   constructor() {}
 

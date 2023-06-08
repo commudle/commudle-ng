@@ -1,0 +1,13 @@
+<nb-card class="md:com-w-[1248px] md:com-h-[298px] com-w-ful com-h-full">
+  <nb-card-body>
+    <div *ngIf="listingPageHeader" [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }">
+      <div class="header-text">
+        <h1 class="heading">{{ listingPageHeader.heading }}</h1>
+        <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
+      </div>
+      <div class="header-image">
+        <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

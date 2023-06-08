@@ -9,6 +9,8 @@
           <commudle-banner-image
             [headerImagePath]="event.header_image_path"
             [name]="event.name"
+            [bottomRightCurve]="false"
+            [bottomLeftCurve]="false"
           ></commudle-banner-image>
         </div>
         <div *ngIf="!event.header_image_path" class="without-header-image">
@@ -21,7 +23,7 @@
                 Completed
                 <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
               </div>
-              <div class="interested-members">
+              <div *ngIf="event.interested_members_count > 0" class="interested-members">
                 <span>Interested Members: {{ event.interested_members_count }}</span>
               </div>
             </div>

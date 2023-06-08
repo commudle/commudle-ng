@@ -38,6 +38,7 @@ export interface IUser {
   labs_count?: number;
   user_roles_users?: UserRolesUsers;
   deactivated: boolean;
+  speaker_events_count: number;
 }
 
 export interface IUserSearch extends IUser {

@@ -6,7 +6,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { faMapPin } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faCalendarDays, faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events',
@@ -23,6 +23,8 @@ export class EventsComponent implements OnInit {
   upcomingEvents = [];
   pastEvents = [];
   faMapPin = faMapPin;
+  faCalendarDays = faCalendarDays;
+  faCalendarCheck = faCalendarCheck;
 
   constructor(
     private activatedRoute: ActivatedRoute,

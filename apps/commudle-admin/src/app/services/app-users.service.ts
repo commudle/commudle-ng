@@ -171,7 +171,7 @@ export class AppUsersService {
 
   deactivateProfile(deleteProfile: boolean): Observable<any> {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.DEACTIVATE_PROFILE), {
-      delete_Profile: deleteProfile,
+      delete_profile: deleteProfile,
     });
   }
 }

@@ -29,6 +29,13 @@ const routes: Routes = [
       import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
+    path: 'events',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-events/public-home-list-events.module').then(
+        (m) => m.PublicHomeListEventsModule,
+      ),
+  },
+  {
     path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },

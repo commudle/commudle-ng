@@ -1,0 +1,23 @@
+<div *ngIf="upcomingEvents.length > 0">
+  <h2 class="title">
+    <button nbButton status="basic" size="small" shape="semi-round"><fa-icon [icon]="faCalendarDays"></fa-icon></button
+    >Upcoming Events
+  </h2>
+  <div *ngFor="let event of upcomingEvents" class="event-horizontal-card">
+    <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+  </div>
+  <div class="load-more">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+    <button
+      *ngIf="page_info?.has_next_page"
+      [disabled]="showSpinner"
+      (click)="getUpcomingEvents()"
+      nbButton
+      outline
+      size="small"
+      status="info"
+    >
+      Load More
+    </button>
+  </div>
+</div>

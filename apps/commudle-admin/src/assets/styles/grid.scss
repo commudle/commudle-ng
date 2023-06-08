@@ -83,6 +83,17 @@ HTML Emmet's
       }
     }
 
+    &.medium {
+      .left-column,
+      .right-column {
+        @apply com-col-span-8;
+      }
+
+      .main-column {
+        @apply com-col-span-16;
+      }
+    }
+
     &.wide {
       .left-column,
       .right-column {

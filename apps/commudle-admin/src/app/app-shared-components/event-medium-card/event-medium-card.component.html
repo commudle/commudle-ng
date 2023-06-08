@@ -8,6 +8,8 @@
               <commudle-banner-image
                 [headerImagePath]="event.header_image_path"
                 [name]="event.name"
+                [bottomRightCurve]="false"
+                [bottomLeftCurve]="false"
               ></commudle-banner-image>
               <app-badge
                 *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
