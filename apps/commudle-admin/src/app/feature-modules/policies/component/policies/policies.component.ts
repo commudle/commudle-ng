@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { LibErrorHandlerService } from 'apps/lib-error-handler/src/lib/lib-error-handler.service';
 import { IPrivacy } from 'apps/shared-models/privacy.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -12,14 +13,14 @@ import { SeoService } from 'apps/shared-services/seo.service';
 })
 export class PoliciesComponent implements OnInit, OnDestroy {
   privacyPolicy: IPrivacy;
-  content;
+  content: string;
 
   constructor(
     private seoService: SeoService,
     private footerService: FooterService,
     private cmsService: CmsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private errorHandler: LibErrorHandlerService,
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class PoliciesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.footerService.changeFooterStatus(false);
   }
+
   getPolicyData() {
     this.cmsService.getDataBySlug(this.activatedRoute.snapshot.params.policy_slug).subscribe((value: IPrivacy) => {
       if (value) {
@@ -37,7 +39,7 @@ export class PoliciesComponent implements OnInit, OnDestroy {
         this.seoService.setTitle(this.privacyPolicy.title);
         this.content = this.cmsService.getHtmlFromBlock(this.privacyPolicy);
       } else {
-        this.router.navigate(['./404']);
+        this.errorHandler.handleError(404, 'Page Not Found');
       }
     });
   }
