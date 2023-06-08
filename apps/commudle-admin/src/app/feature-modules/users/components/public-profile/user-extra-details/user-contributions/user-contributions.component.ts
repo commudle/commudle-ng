@@ -26,8 +26,10 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  viewMoreEventsSection = true;
   viewMoreCommunitiesSection = true;
   footerCommunitiesCardText: string;
+  footerEventsCardText: string;
   faLightbulb = faLightbulb;
   faCalendar = faCalendar;
   faUsers = faUsers;
@@ -102,7 +104,17 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
       this.appUsersService.getAttendedEvents(this.user.id).subscribe((value) => {
         this.attendedEvents = value.events;
         this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
+        this.footerEventsCardText = `View More (${this.attendedEvents.length - 6})`;
       }),
     );
+  }
+
+  viewMoreAttendedEvents() {
+    this.viewMoreEventsSection = !this.viewMoreEventsSection;
+    if (!this.viewMoreEventsSection) {
+      this.footerEventsCardText = `View Less`;
+    } else {
+      this.footerEventsCardText = `View More (${this.attendedEvents.length - 6})`;
+    }
   }
 }
