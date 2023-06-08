@@ -1,8 +1,10 @@
 <nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
   <nb-card-body>
     <div class="details">
-      <div *ngIf="community" class="community-badge">
-        <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+      <div class="community-badge">
+        <div *ngIf="community">
+          <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+        </div>
       </div>
       <a
         [routerLink]="

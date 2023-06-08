@@ -12,7 +12,7 @@ nb-card {
       @apply com-no-underline;
 
       .community-badge {
-        @apply com-mb-2 com-mt-0 com-h-[28px];
+        @apply com-mb-2 com-mt-0 com-min-h-[28px];
       }
 
       .content {
