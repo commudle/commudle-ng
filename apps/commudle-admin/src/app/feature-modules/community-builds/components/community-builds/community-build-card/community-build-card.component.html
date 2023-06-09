@@ -6,7 +6,7 @@
     class="community-build-card-image"
   />
   <div class="community-build-card-details">
-    <div class="community-build-card-prefix">
+    <!-- <div class="community-build-card-prefix">
       <app-badge
         [color]="CBuildTypeDisplay[communityBuild.build_type].color"
         [fontSize]="'small'"
@@ -14,24 +14,35 @@
         [text]="communityBuild.build_type | titlecase"
       ></app-badge>
       <p class="fs-p4">{{ communityBuild.created_at | date }}</p>
-    </div>
+    </div> -->
     <div class="community-build-card-content">
-      <h5 class="community-build-card-title fs-h5">{{ communityBuild.name }}</h5>
-      <p class="community-build-card-description fs-p2">{{ getDescription() }}</p>
+      <h5 class="community-build-card-title">{{ communityBuild.name }}</h5>
+      <div class="community-build-card-description-votes">
+        <p class="description">{{ getDescription() }}</p>
+        <div class="votes">
+          <app-votes-display
+            [icon]="'star'"
+            [votableId]="communityBuild.id"
+            [votableType]="'CommunityBuild'"
+            [border]="true"
+          ></app-votes-display>
+        </div>
+      </div>
     </div>
     <div class="community-build-card-suffix">
       <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
-      <div class="community-build-card-interactions">
+      <!-- <app-user-profile-card-small [user]="communityBuild.user"></app-user-profile-card-small> -->
+      <!-- <div class="community-build-card-interactions">
         <app-votes-display
           [icon]="'star'"
           [votableId]="communityBuild.id"
           [votableType]="'CommunityBuild'"
-        ></app-votes-display>
-        <div class="community-build-card-comments">
+        ></app-votes-display> -->
+      <!-- <div class="community-build-card-comments">
           <p class="fs-p3">{{ communityBuild.chat_messages_count || 0 }}</p>
           <nb-icon icon="message-circle-outline"></nb-icon>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </a>

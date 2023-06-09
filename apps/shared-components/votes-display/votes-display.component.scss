@@ -1,6 +1,10 @@
 .votes {
   width: max-content;
 
+  &.border {
+    @apply com-border com-border-solid;
+  }
+
   div {
     font-size: 0.875rem;
     margin: 0;
@@ -39,4 +43,7 @@
       }
     }
   }
+}
+
+.clickable.votes.border {
 }

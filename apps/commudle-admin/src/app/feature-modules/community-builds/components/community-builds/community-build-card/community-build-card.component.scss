@@ -3,32 +3,31 @@ p {
 }
 
 .community-build-card {
-  @apply com-p-4 com-flex com-flex-col com-border-[0.5px] com-border-solid com-border-[#c4c4c4] md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
+  @apply com-flex com-flex-col md:com-flex-row com-no-underline com-overflow-hidden;
 
   .community-build-card-image {
-    @apply com-w-full com-h-40 com-object-cover;
-
-    @screen md {
-      @apply com-w-40 com-min-w-[10rem];
-    }
+    @apply com-w-full com-h-40 com-object-cover md:com-w-[135px] md:com-h-[90px];
   }
 
   .community-build-card-details {
-    @apply com-pt-4 com-w-full;
-
-    @screen md {
-      @apply com-pl-4 com-pt-0;
-    }
+    @apply com-pt-4 com-w-full md:com-pl-4 md:com-pt-0;
 
     .community-build-card-prefix {
       @apply com-flex com-justify-between com-items-center;
     }
 
     .community-build-card-content {
-      .community-build-card-title,
-      .community-build-card-description {
-        @apply com-my-2;
-        @apply com-line-clamp-2;
+      .community-build-card-title {
+        @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mb-2;
+      }
+      .community-build-card-description-votes {
+        @apply com-flex;
+        .description {
+          @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 com-line-clamp-1;
+        }
+        .votes {
+          @apply com-ml-12;
+        }
       }
     }
 

@@ -1,4 +1,4 @@
-<div class="clickable votes size-{{ size }}">
+<div class="clickable votes size-{{ size }}" [ngClass]="{ border: border }">
   <div [ngSwitch]="icon">
     <p
       *ngIf="totalVotes > 0"

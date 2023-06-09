@@ -29,6 +29,7 @@ import { CreateCommunityBuildComponent } from './components/create-community-bui
 import { BuildListItemComponent } from './components/my-community-builds/build-list-item/build-list-item.component';
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
+    PublicHomeListEventsModule,
 
     // Nebular
     NbCardModule,
