@@ -3,7 +3,7 @@ hr {
 }
 
 .student-no-profit {
-  @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
+  @apply com-px-6 md:com-mx-auto com-pb-24 md:com-px-72px;
 
   div {
     @apply com-flex md:com-flex-row com-justify-between com-m-0 com-p-0 com-flex-col-reverse com-gap-x-28;
@@ -22,7 +22,7 @@ hr {
       }
     }
     .image {
-      @apply com-ml-4 com-my-0 com-p-0 com-mr-16 com-mt-12;
+      @apply md:com-ml-4 com-my-0 com-p-0 md:com-mr-16 md:com-mt-12 com-mx-0;
     }
   }
 }
@@ -53,10 +53,13 @@ hr {
   @apply com-px-6 com-mx-auto com-pb-24 md:com-px-72px;
 
   div {
-    @apply com-flex md:com-flex-row com-mt-12 com-mb-0 com-p-0 com-flex-col com-gap-x-28;
+    @apply com-flex md:com-flex-row com-mt-12 com-mb-0 com-p-0 com-flex-col md:com-gap-x-28 com-overflow-x-hidden;
 
     .image {
-      @apply com-mx-4 com-my-0 com-p-0;
+      @apply md:com-mx-4 com-my-0 com-p-0 com-mx-0 com-w-full;
+      img {
+        @apply com-w-full;
+      }
     }
 
     .content {

@@ -111,7 +111,6 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   gtmService() {
-    console.log('clicked');
     this.gtm.dataLayerPushEvent('click-notification-mark-as-read', {
       com_notification_type: this.ENotificationSenderTypes.USER,
     });

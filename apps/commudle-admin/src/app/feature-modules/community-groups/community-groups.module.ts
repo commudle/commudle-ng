@@ -8,6 +8,7 @@ import {
   NbTagModule,
   NbRouteTabsetModule,
   NbFormFieldModule,
+  NbToggleModule,
 } from '@commudle/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -63,6 +64,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NbTagModule,
     NbRouteTabsetModule,
     NbFormFieldModule,
+    NbToggleModule,
   ],
 })
 export class CommunityGroupsModule {}

@@ -28,6 +28,7 @@ export const API_ROUTES = {
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
+    TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
   },
 
   // community_builds
@@ -434,6 +435,7 @@ export const API_ROUTES = {
     COMMUNITY_BUILDS: 'api/v2/users/community_builds',
     BADGES: 'api/v2/users/badges',
     SPEAKER_RESOURCES: 'api/v2/users/speaker_resources',
+    SPEAKER_SESSIONS_DELIVERED: 'api/v2/users/speaker_sessions_delivered',
     SOCIAL_RESOURCES: 'api/v2/users/social_resources',
     TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
     CHECK_FOLLOWEE: 'api/v2/users/check_followee',
@@ -452,6 +454,7 @@ export const API_ROUTES = {
     TOGGLE_EMPLOYEE_ROLE: 'api/v2/users/toggle_employee_role',
     UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
     DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
+    EVENTS_ATTENDED: 'api/v2/users/events_attended',
   },
 
   SPEAKER_RESOURCES: {

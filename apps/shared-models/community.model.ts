@@ -25,6 +25,7 @@ export interface ICommunity {
   community_channels_count?: number;
   completed_events_count?: number;
   upcoming_events?: IUpcomingEvents[];
+  emails_visible?: boolean;
 }
 
 export interface ICommunitySearch extends ICommunity {
