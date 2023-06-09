@@ -36,11 +36,19 @@ export class PoliciesComponent implements OnInit, OnDestroy {
     this.cmsService.getDataBySlug(this.activatedRoute.snapshot.params.policy_slug).subscribe((value: IPrivacy) => {
       if (value) {
         this.privacyPolicy = value;
-        this.seoService.setTitle(this.privacyPolicy.title);
+        this.setMeta();
         this.content = this.cmsService.getHtmlFromBlock(this.privacyPolicy);
       } else {
         this.errorHandler.handleError(404, 'Page Not Found');
       }
     });
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      this.privacyPolicy.title,
+      this.privacyPolicy.meta_description,
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
