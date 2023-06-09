@@ -71,9 +71,20 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     );
   }
 
+  // setMeta() {
+  //   this.seoService.setTags(
+  //     `${this.speakerResource.title} by ${this.speakerResource.user.name}`,
+  //     `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`,
+  //     this.speakerResource.user.avatar,
+  //   );
+  // }
+
   setMeta() {
+    const description = this.speakerResource.title
+      ? `${this.speakerResource.title} by ${this.speakerResource.user.name}`
+      : `${this.speakerResource.user.name}`;
     this.seoService.setTags(
-      `${this.speakerResource.title} by ${this.speakerResource.user.name}`,
+      description,
       `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`,
       this.speakerResource.user.avatar,
     );
