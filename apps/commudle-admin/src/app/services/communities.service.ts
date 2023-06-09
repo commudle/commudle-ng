@@ -93,4 +93,10 @@ export class CommunitiesService {
     const params = new HttpParams().set('community_id', String(communityId));
     return this.http.get<ICommunity>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC_DETAILS), { params });
   }
+
+  toggleEmailVisibility(communityId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.TOGGLE_EMAIL_VISIBILITY), {
+      community_id: communityId,
+    });
+  }
 }
