@@ -25,7 +25,8 @@ export type MenuItemNames =
   | 'jobs'
   | 'resume'
   | 'workHistory'
-  | 'content';
+  | 'content'
+  | 'attendedEvents';
 // | 'feed';
 
 export type UserProfileMenuItems = Record<
@@ -64,6 +65,13 @@ export class UserProfileMenuService {
       icon: faCalendar,
       active_color: 'com-text-Azure',
       link: 'talks-at-events',
+      active: false,
+    },
+    attendedEvents: {
+      name: 'Attended Events',
+      icon: faUsers,
+      active_color: 'com-text-Chrome-Yellow',
+      link: 'attended-events',
       active: false,
     },
     communities: {

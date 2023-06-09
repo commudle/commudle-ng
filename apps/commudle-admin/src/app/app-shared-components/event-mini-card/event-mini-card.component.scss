@@ -1,0 +1,32 @@
+p,
+h4 {
+  margin: 0;
+}
+
+.user-attended-event-card {
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
+
+  nb-card-body {
+    @apply com-p-0 com-flex;
+
+    .icon {
+      @apply com-p-7 com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none;
+
+      fa-icon {
+        @apply com-text-Azure com-text-xl;
+      }
+    }
+
+    .content {
+      @apply com-m-0 com-py-2 com-px-3;
+
+      .title {
+        @apply com-text-sm com-font-semibold com-line-clamp-1;
+      }
+
+      .event-time {
+        @apply com-text-10px com-font-normal com-mb-2 com-mt-0 com-text-Auro-Metal-Saurus;
+      }
+    }
+  }
+}

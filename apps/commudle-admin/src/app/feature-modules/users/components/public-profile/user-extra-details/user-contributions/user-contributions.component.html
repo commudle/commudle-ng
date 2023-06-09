@@ -24,6 +24,29 @@
   </nb-card-body>
 </nb-card>
 
+<nb-card *ngIf="attendedEvents?.length > 0" id="attended-events">
+  <nb-card-header>
+    <fa-icon [icon]="faUsers" class="com-text-Chrome-Yellow"></fa-icon>
+    Attended Events
+    <span *ngIf="attendedEvents.length > 4">({{ attendedEvents.length }})</span>
+  </nb-card-header>
+  <nb-card-body [ngClass]="{ 'view-more-events': viewMoreEventsSection, 'view-less': !viewMoreEventsSection }">
+    <div class="grid">
+      <commudle-event-mini-card
+        *ngFor="let attendedEvent of attendedEvents"
+        [attendedEvent]="attendedEvent"
+      ></commudle-event-mini-card>
+    </div>
+  </nb-card-body>
+  <nb-card-footer *ngIf="attendedEvents.length > 6" (click)="viewMoreAttendedEvents()" class="com-cursor-pointer">
+    <div>
+      {{ footerEventsCardText }}
+      <nb-icon *ngIf="viewMoreEventsSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreEventsSection" icon="arrow-ios-upward-outline"></nb-icon>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
 <nb-card *ngIf="communities?.length > 0" id="communities">
   <nb-card-header>
     <fa-icon [icon]="faUsers" class="com-text-Chrome-Yellow"></fa-icon>
