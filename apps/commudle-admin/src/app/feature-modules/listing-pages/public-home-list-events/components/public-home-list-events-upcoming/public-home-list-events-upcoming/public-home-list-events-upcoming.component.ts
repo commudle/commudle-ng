@@ -48,7 +48,7 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
         '@type': 'Event',
         name: event.name,
         description: event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-        image: event.header_image_path ? event.header_image_path : this.community.logo_path,
+        image: event.header_image_path ? event.header_image_path : event.kommunity.logo_image_path.url,
         startDate: event.start_time,
         endDate: event.end_time,
         eventStatus: 'https://schema.org/EventScheduled',

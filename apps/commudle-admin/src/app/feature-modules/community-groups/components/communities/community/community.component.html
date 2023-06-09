@@ -95,7 +95,13 @@
         </td>
         <td valign="top">
           <div class="">
-            <nb-toggle (click)="toggleEmailVisibility(community.id)" status="basic" labelPosition="right"> </nb-toggle>
+            <nb-toggle
+              (click)="toggleEmailVisibility(community.id)"
+              status="basic"
+              [(checked)]="community.emails_visible"
+              labelPosition="right"
+            >
+            </nb-toggle>
           </div>
         </td>
       </tr>
