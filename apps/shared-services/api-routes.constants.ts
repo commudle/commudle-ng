@@ -28,6 +28,7 @@ export const API_ROUTES = {
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
+    TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
   },
 
   // community_builds

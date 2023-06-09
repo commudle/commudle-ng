@@ -4,7 +4,8 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
-
+import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { SeoService } from 'apps/shared-services/seo.service';
 @Component({
   selector: 'commudle-public-home-list-events-upcoming',
   templateUrl: './public-home-list-events-upcoming.component.html',
@@ -14,14 +15,14 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
   community: ICommunity;
   upcomingEvents: IEvent[] = [];
   faCalendarDays = faCalendarDays;
-
+  eventForSchema = [];
   page_info: IPageInfo;
   total: number;
 
   isLoadingUpcoming = false;
   showSpinner = false;
 
-  constructor(private eventsService: EventsService) {}
+  constructor(private eventsService: EventsService, private seoService: SeoService) {}
 
   ngOnInit(): void {
     this.getUpcomingEvents();
@@ -36,6 +37,35 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
       this.page_info = data.page_info;
       this.isLoadingUpcoming = false;
       this.showSpinner = false;
+      this.setSchema();
     });
+  }
+
+  setSchema() {
+    for (const event of this.upcomingEvents) {
+      this.eventForSchema.push({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: event.name,
+        description: event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+        image: event.header_image_path ? event.header_image_path : event.kommunity.logo_image_path.url,
+        startDate: event.start_time,
+        endDate: event.end_time,
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        organizer: {
+          '@type': 'Organization',
+          name: event.kommunity.name,
+          url: environment.app_url + '/communities/' + event.kommunity.slug,
+        },
+        offers: {
+          '@type': 'Offer',
+          name: event.name,
+          url: environment.app_url + '/communities/' + event.kommunity.slug + '/events/' + event.slug,
+        },
+      });
+    }
+
+    this.seoService.setSchema(this.eventForSchema);
   }
 }

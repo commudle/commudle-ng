@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -22,6 +23,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
     private communityGroupsService: CommunityGroupsService,
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
+    private communitiesService: CommunitiesService,
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class CommunityComponent implements OnInit, OnDestroy {
       this.communityGroup.mini_description,
       this.communityGroup.logo.i350,
     );
+  }
+
+  toggleEmailVisibility(communityId) {
+    this.communitiesService.toggleEmailVisibility(communityId).subscribe();
   }
 }

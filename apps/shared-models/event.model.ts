@@ -1,3 +1,4 @@
+import { ICommunity } from 'apps/shared-models/community.model';
 import { IAttachedFile } from './attached-file.model';
 import { IEventStatus } from './event_status.model';
 
@@ -27,9 +28,7 @@ export interface IEvent {
   interested_members_count: number;
   registrations_count?: number;
   attended_members_count?: number;
-  kommunity?: {
-    id: string;
-  };
+  kommunity?: ICommunity;
 }
 
 export interface IEventSearch extends IEvent {

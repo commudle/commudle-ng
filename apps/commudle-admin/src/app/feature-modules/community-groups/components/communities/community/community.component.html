@@ -24,6 +24,7 @@
         <th class="events-count">Events Count</th>
         <th class="channels-count">Channels Count</th>
         <th class="links">Links</th>
+        <th class="toggle">Email Visibility</th>
       </tr>
     </thead>
     <tbody>
@@ -92,7 +93,20 @@
             </a>
           </div>
         </td>
+        <td valign="top">
+          <div class="">
+            <nb-toggle
+              (click)="toggleEmailVisibility(community.id)"
+              status="basic"
+              [(checked)]="community.emails_visible"
+              labelPosition="right"
+            >
+            </nb-toggle>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<!-- [(checked)]="true" -->

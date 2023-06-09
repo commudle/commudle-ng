@@ -3,7 +3,7 @@
     <h3 class="title">Speakers to Follow</h3>
     <h4 class="sub-heading">Network with speakers from events</h4>
   </div>
-  <div class="user-profile-card-large">
+  <div class="user-profile-card-large custom-scrollbar">
     <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
     <div class="user-profile-card-large-card" *ngFor="let speaker of speakers">
       <div *appBreakpoints="'>lg'">
