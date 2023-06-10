@@ -38,8 +38,15 @@
       ></commudle-event-mini-card>
     </div>
   </nb-card-body>
-  <nb-card-footer *ngIf="attendedEvents.length > 6" (click)="viewMoreAttendedEvents()" class="com-cursor-pointer">
-    <div>
+  <nb-card-footer *appBreakpoints="'>lg'" (click)="viewMoreAttendedEvents()" class="com-cursor-pointer">
+    <div *ngIf="attendedEvents.length > 6">
+      {{ footerEventsCardText }}
+      <nb-icon *ngIf="viewMoreEventsSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreEventsSection" icon="arrow-ios-upward-outline"></nb-icon>
+    </div>
+  </nb-card-footer>
+  <nb-card-footer *appBreakpoints="'<=lg'" (click)="viewMoreAttendedEvents()" class="com-cursor-pointer">
+    <div *ngIf="attendedEvents.length > 2">
       {{ footerEventsCardText }}
       <nb-icon *ngIf="viewMoreEventsSection" icon="arrow-ios-downward-outline"></nb-icon>
       <nb-icon *ngIf="!viewMoreEventsSection" icon="arrow-ios-upward-outline"></nb-icon>
