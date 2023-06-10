@@ -17,7 +17,7 @@
     .details {
       nb-card-body {
         .title {
-          @apply com-mb-6 com-font-medium com-text-[28px];
+          @apply com-mb-6 com-font-medium com-text-[28px] com-leading-7;
         }
 
         .date {
