@@ -7,7 +7,9 @@
     </p>
     <div class="content">
       <h4 class="title">{{ pastEvent.name }}</h4>
-      <p class="description">{{ pastEvent.event_status.description }}</p>
+      <div *ngIf="community" class="community-badge">
+        <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>
