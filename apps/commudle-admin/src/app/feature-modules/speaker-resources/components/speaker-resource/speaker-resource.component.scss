@@ -17,12 +17,7 @@
     .details {
       nb-card-body {
         .title {
-          font-size: $fs-h1;
-          font-weight: $fw-500;
-        }
-
-        .event {
-          margin-top: $space-24;
+          @apply com-mb-6 com-font-medium com-text-[28px];
         }
 
         .date {
