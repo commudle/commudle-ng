@@ -12,6 +12,7 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 })
 export class UserPastEventCardComponent implements OnInit {
   @Input() pastEvent: IEvent;
+  speaker_resource: ISpeakerResource;
   event_status: IEventStatus;
   community: ICommunity;
 
