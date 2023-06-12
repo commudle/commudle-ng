@@ -68,6 +68,13 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "commudle-admin:build",
+        "host": "localhost",
+        "ssl": true,
+        "sslKey": "certs/local-key.pem",
+        "sslCert": "certs/local-cert.pem"
+      },
       "configurations": {
         "production": {
           "browserTarget": "commudle-admin:build:production"

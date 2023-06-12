@@ -7,6 +7,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { CommunityEventsListActionsComponent } from './community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './community-events-list-date/community-events-list-date.component';
 import { CommunityEventsListPublicPageComponent } from './community-events-list-public-page/community-events-list-public-page.component';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-community-events-list',
@@ -14,6 +15,8 @@ import { CommunityEventsListPublicPageComponent } from './community-events-list-
   styleUrls: ['./community-events-list.component.scss'],
 })
 export class CommunityEventsListComponent implements OnInit {
+  url: SafeResourceUrl;
+  // url = 'https://documentation.commudle.com/';
   faPlusSquare = faPlusSquare;
   communityId;
   events: IEvent[];
@@ -58,7 +61,12 @@ export class CommunityEventsListComponent implements OnInit {
     },
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private eventsService: EventsService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private eventsService: EventsService,
+    public sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -71,5 +79,17 @@ export class CommunityEventsListComponent implements OnInit {
     this.eventsService.communityEventsForEmail(this.communityId).subscribe((data) => {
       this.events = data.events;
     });
+  }
+
+  onLoad() {
+    console.log('loaded successfully');
+  }
+
+  onError() {
+    console.log('Error');
+  }
+
+  urlSafe() {
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://documentation.commudle.com/');
   }
 }

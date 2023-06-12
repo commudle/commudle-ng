@@ -11,7 +11,10 @@
       &nbsp; Create New Event
     </a>
   </div>
-
+  <!-- <iframe src="https://documentation.commudle.com/" (load)="onLoad()" (error)="onError()"></iframe> -->
+  <iframe width="100%" height="1000px" frameBorder="0" [src]="url"></iframe>
+  <button (click)="urlSafe()">click</button>
+  <!-- <iframe width="100%" height="100%" frameBorder="0" [src]="url" (load)="onLoad()" (error)="onError()"></iframe> -->
   <div>
     <angular2-smart-table [settings]="tableSettings" [source]="events"></angular2-smart-table>
   </div>
