@@ -16,7 +16,10 @@
       <p class="fs-p4">{{ communityBuild.created_at | date }}</p>
     </div> -->
     <div class="community-build-card-content">
-      <h5 class="community-build-card-title">{{ communityBuild.name }}</h5>
+      <div class="community-build-card-title-time">
+        <h5 class="title">{{ communityBuild.name }}</h5>
+        <p class="time">{{ moment(communityBuild.created_at).format('dddd, MMM Do, YYYY') }}</p>
+      </div>
       <div class="community-build-card-description-votes">
         <p class="description">{{ getDescription() }}</p>
         <div class="votes">

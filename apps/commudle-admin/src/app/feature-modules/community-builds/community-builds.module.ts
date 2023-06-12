@@ -30,6 +30,8 @@ import { BuildListItemComponent } from './components/my-community-builds/build-l
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { FeaturedProjectsComponent } from './components/community-builds/featured-projects/featured-projects.component';
+import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
     BuildListItemComponent,
     TeammateInviteConfirmationComponent,
     CommunityBuildCardComponent,
+    FeaturedProjectsComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +60,6 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
     RecommendationsModule,
     MiniUserProfileModule,
     PublicHomeListEventsModule,
-
     // Nebular
     NbCardModule,
     NbSelectModule,
@@ -66,9 +68,9 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
-
     //FontAwesomeModule
     FontAwesomeModule,
+    FeaturedProjectsCardComponent,
   ],
 })
 export class CommunityBuildsModule {}

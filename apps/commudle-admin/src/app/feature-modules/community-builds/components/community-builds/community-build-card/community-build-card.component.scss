@@ -17,8 +17,15 @@ p {
     }
 
     .community-build-card-content {
-      .community-build-card-title {
-        @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mb-2;
+      .community-build-card-title-time {
+        @apply com-flex md:com-flex-row com-items-center com-mb-2;
+        .title {
+          @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4;
+        }
+
+        .time {
+          @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus;
+        }
       }
       .community-build-card-description-votes {
         @apply com-flex;

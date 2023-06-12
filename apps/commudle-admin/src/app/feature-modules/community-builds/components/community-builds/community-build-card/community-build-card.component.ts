@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CBuildTypeDisplay, ICommunityBuild } from 'apps/shared-models/community-build.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-community-build-card',
@@ -8,6 +9,7 @@ import { CBuildTypeDisplay, ICommunityBuild } from 'apps/shared-models/community
 })
 export class CommunityBuildCardComponent implements OnInit {
   @Input() communityBuild: ICommunityBuild;
+  moment = moment;
 
   CBuildTypeDisplay = CBuildTypeDisplay;
 

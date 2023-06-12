@@ -53,6 +53,8 @@ module.exports = {
         AuroMetalSaurus: '#667085',
         Lavender: '#E6F1FF',
         Quartz: '#4B4B5C',
+        'Chocolate-Traditional': '#7D4402',
+        Seashell: '#FFF6EB',
       },
 
       lineClamp: {
