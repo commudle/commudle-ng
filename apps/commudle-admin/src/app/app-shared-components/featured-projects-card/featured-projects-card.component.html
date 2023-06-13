@@ -16,5 +16,10 @@
         ></app-votes-display>
       </div>
     </div>
+    <div class="featured-projects-tags com-flex">
+      <div *ngFor="let tag of communityBuild.tags" class="tag">
+        <button nbButton shape="round" size="tiny">{{ tag }}</button>
+      </div>
+    </div>
   </nb-card-body>
 </nb-card>

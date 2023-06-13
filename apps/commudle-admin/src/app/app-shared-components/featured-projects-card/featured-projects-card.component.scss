@@ -1,5 +1,7 @@
 nb-card {
+  @apply com-m-0;
   nb-card-body {
+    @apply com-p-4;
     .featured-projects-card {
       @apply com-flex com-items-center;
       .details {
@@ -11,12 +13,21 @@ nb-card {
         }
 
         .time {
-          @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus;
+          @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal com-m-0 md:com-mb-6 com-text-Auro-Metal-Saurus;
         }
       }
 
       .votes {
-        @apply com-ml-auto;
+        @apply com-ml-auto com-border com-border-solid com-px-[18px] com-py-3 com-rounded-lg;
+      }
+    }
+
+    .featured-projects-tags {
+      @apply com-flex com-flex-wrap;
+      .tag {
+        button {
+          @apply com-text-Ruddy-Brown com-bg-Linen com-mr-10px;
+        }
       }
     }
   }
