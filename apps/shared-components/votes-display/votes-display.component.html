@@ -1,5 +1,5 @@
-<div class="clickable votes size-{{ size }}" [ngClass]="{ border: border }">
-  <div [ngSwitch]="icon">
+<div class="clickable votes size-{{ size }}">
+  <div [ngSwitch]="icon" [ngClass]="{ 'votes-direction-vertical': votesDirectionVertical }">
     <p
       *ngIf="totalVotes > 0"
       [nbPopoverContext]="{ votableId: votableId, votableType: votableType }"

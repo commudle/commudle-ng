@@ -32,6 +32,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { FeaturedProjectsComponent } from './components/community-builds/featured-projects/featured-projects.component';
 import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
+import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FeaturedProjectsCardComponent } from '../../app-shared-components/featu
     TeammateInviteConfirmationComponent,
     CommunityBuildCardComponent,
     FeaturedProjectsComponent,
+    BuildsHeaderComponent,
   ],
   imports: [
     CommonModule,
