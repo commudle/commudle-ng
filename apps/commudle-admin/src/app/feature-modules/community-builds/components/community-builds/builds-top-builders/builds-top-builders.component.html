@@ -1,0 +1,30 @@
+<div>
+  <div class="heading">
+    <button nbButton status="basic" class="image">
+      <img
+        alt="Top Builders"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGNxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c32f54e069ae256b46224c8d591a14e100abcc9d/b3d37220175f46299a2639f1bf15ded2.png"
+        title="Top Builders"
+      />
+    </button>
+    <div class="text">
+      <h3 class="title">TOP BUILDERS</h3>
+      <h4 class="sub-heading">Top Builders you can check out</h4>
+    </div>
+  </div>
+  <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
+  <div class="top-builders custom-scrollbar">
+    <!-- *ngFor="let communityBuild of communityBuilds" -->
+    <div class="top-builders-card">
+      <div *appBreakpoints="'>lg'">
+        <commudle-top-builders-card></commudle-top-builders-card>
+      </div>
+      <!-- <div *appBreakpoints="'<=lg'">
+          <commudle-featured-communities-card
+            [featuredCommunity]="featuredCommunity"
+            [horizontalScroll]="true"
+          ></commudle-featured-communities-card>
+        </div> -->
+    </div>
+  </div>
+</div>

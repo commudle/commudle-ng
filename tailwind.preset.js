@@ -55,6 +55,8 @@ module.exports = {
         Quartz: '#4B4B5C',
         'Chocolate-Traditional': '#7D4402',
         Seashell: '#FFF6EB',
+        'Ruddy-Brown': '#C05324',
+        Linen: '#FCEDE7',
       },
 
       lineClamp: {

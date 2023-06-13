@@ -1,20 +1,29 @@
 <div>
   <div class="heading">
-    <h3 class="title">Featured Communities</h3>
-    <h4 class="sub-heading">Join the most active groups</h4>
+    <button nbButton status="basic" class="image">
+      <img
+        alt="Featured Projects"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGtxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--281b13ba73667dc6d98c85fa396713292c954732/acfc24b007f742e181c004f11d4128f7.png"
+        title="Featured Projects"
+      />
+    </button>
+    <div class="text">
+      <h3 class="title">FEATURED PROJECTS</h3>
+      <h4 class="sub-heading">Check out our featured projects</h4>
+    </div>
   </div>
   <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
-  <!-- <div class="featured-projects custom-scrollbar"> -->
-  <div class="featured-projects-card" *ngFor="let communityBuilds of communityBuild">
-    <div *appBreakpoints="'>lg'">
-      <commudle-featured-projects-card [communityBuild]="communityBuild"></commudle-featured-projects-card>
-    </div>
-    <!-- <div *appBreakpoints="'<=lg'">
+  <div class="featured-projects custom-scrollbar">
+    <div class="featured-projects-card" *ngFor="let communityBuild of communityBuilds">
+      <div *appBreakpoints="'>lg'">
+        <commudle-featured-projects-card [communityBuild]="communityBuild"></commudle-featured-projects-card>
+      </div>
+      <!-- <div *appBreakpoints="'<=lg'">
         <commudle-featured-communities-card
           [featuredCommunity]="featuredCommunity"
           [horizontalScroll]="true"
         ></commudle-featured-communities-card>
       </div> -->
+    </div>
   </div>
-  <!-- </div> -->
 </div>

@@ -18,7 +18,7 @@ p {
       @apply com-pt-4 com-w-full md:com-pl-4 md:com-pr-[74px] md:com-pt-0;
 
       .community-build-card-title-time {
-        @apply com-flex md:com-flex-row com-items-center com-mb-2;
+        @apply com-flex md:com-flex-row com-items-center com-mb-2 md:com-justify-between;
         .title {
           @apply com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4;
         }

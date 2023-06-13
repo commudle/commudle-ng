@@ -57,8 +57,9 @@
               Publish Your Build
             </a>
           </div>
-          <div *ngFor="let communityBuild of communityBuilds">
-            <commudle-featured-projects-card [communityBuild]="communityBuild"></commudle-featured-projects-card>
+          <div>
+            <commudle-featured-projects></commudle-featured-projects>
+            <commudle-builds-top-builders></commudle-builds-top-builders>
           </div>
           <!-- <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots> -->
           <!-- <app-recommended-builds></app-recommended-builds> -->

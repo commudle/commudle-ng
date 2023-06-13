@@ -33,6 +33,8 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
 import { FeaturedProjectsComponent } from './components/community-builds/featured-projects/featured-projects.component';
 import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
 import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
+import { BuildsTopBuildersComponent } from './components/community-builds/builds-top-builders/builds-top-builders.component';
+import { TopBuildersCardComponent } from '../../app-shared-components/top-builders-card/top-builders-card.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modul
     CommunityBuildCardComponent,
     FeaturedProjectsComponent,
     BuildsHeaderComponent,
+    BuildsTopBuildersComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +76,7 @@ import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modul
     //FontAwesomeModule
     FontAwesomeModule,
     FeaturedProjectsCardComponent,
+    TopBuildersCardComponent,
   ],
 })
 export class CommunityBuildsModule {}

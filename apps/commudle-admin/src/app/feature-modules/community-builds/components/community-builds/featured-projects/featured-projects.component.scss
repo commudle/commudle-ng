@@ -1,20 +1,27 @@
 div {
   @apply com-p-0 com-m-0;
   .heading {
-    @apply md:com-mt-12 md:com-mb-8 com-my-0 com-mx-0 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b;
+    @apply com-flex com-items-center md:com-pt-8 md:com-pb-5 com-m-0 md:com-px-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-t;
 
-    .title {
-      @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
+    .image {
+      @apply com-p-10px com-m-0 com-mr-3 com-rounded-xl;
     }
-    .sub-heading {
-      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0 md:com-mb-4 com-mb-0;
+
+    .text {
+      .title {
+        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
+      }
+      .sub-heading {
+        @apply com-text-sm com-font-normal com-text-gunmetal com-m-0 md:com-mb-4 com-mb-0;
+      }
     }
   }
 
   .featured-projects {
-    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-4 md:com-mt-0 com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b md:com-pb-8 com-p-0 md:com-block;
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-x-5 com-mt-4 com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b com-p-0 md:com-pb-8;
     .featured-projects-card {
-      @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
+      @apply com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 md:com-w-[367px];
     }
+    //  md:com-h-[161px]
   }
 }
