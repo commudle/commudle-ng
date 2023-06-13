@@ -6,7 +6,7 @@
     margin: 0;
 
     &.votes-direction-vertical {
-      // @apply com-flex com-flex-col com-items-center;
+      @apply com-flex com-flex-col-reverse com-items-center;
     }
 
     .count {
