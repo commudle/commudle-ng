@@ -20,7 +20,7 @@ p {
       .community-build-card-title-time {
         @apply com-flex md:com-flex-row com-items-center com-mb-2;
         .title {
-          @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4;
+          @apply com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4;
         }
 
         .time {
@@ -33,7 +33,7 @@ p {
           @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 com-line-clamp-1;
         }
         .votes {
-          @apply com-ml-12;
+          @apply com-ml-[68px] com-border com-border-solid;
         }
       }
     }

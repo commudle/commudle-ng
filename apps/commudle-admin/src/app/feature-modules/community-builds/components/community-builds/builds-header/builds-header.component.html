@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-body>
+    <div *ngIf="buildsPageHeader" [ngStyle]="{ 'background-color': buildsPageHeader.background_color.hex }">
+      <div class="header-text">
+        <h1 class="title">{{ buildsPageHeader.title }}</h1>
+        <p class="heading">{{ buildsPageHeader.heading }}</p>
+        <p class="sub-heading">{{ buildsPageHeader.sub_heading }}</p>
+      </div>
+      <div class="header-image">
+        <img [src]="imageUrl(buildsPageHeader?.header_image).url()" class="com-w-full" />
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
