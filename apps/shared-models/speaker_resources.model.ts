@@ -1,5 +1,3 @@
-import { ISpeakerResource } from './speaker_resource.model';
+import { ISpeakerResources } from '@commudle/shared-models';
 
-export interface ISpeakerResources {
-  speaker_resources: ISpeakerResource[];
-}
+export { ISpeakerResources };
