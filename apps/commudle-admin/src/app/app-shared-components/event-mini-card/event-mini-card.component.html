@@ -1,0 +1,19 @@
+<nb-card class="user-attended-event-card">
+  <nb-card-body class="custom-scrollbar">
+    <a
+      [routerLink]="['/communities', attendedEvent.kommunity_id, 'events', attendedEvent.slug]"
+      [title]="attendedEvent.name"
+    >
+      <button nbButton size="small" shape="semi-round" class="icon">
+        <fa-icon [icon]="faCalendarCheck"></fa-icon>
+      </button>
+      <div class="content">
+        <h4 class="title">{{ attendedEvent.name }}</h4>
+        <p class="event-time">{{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}</p>
+        <div *ngIf="community" class="community-badge">
+          <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+        </div>
+      </div>
+    </a>
+  </nb-card-body>
+</nb-card>

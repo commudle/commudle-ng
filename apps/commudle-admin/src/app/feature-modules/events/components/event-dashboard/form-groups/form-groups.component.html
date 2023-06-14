@@ -99,23 +99,29 @@
   </div>
 
   <div *ngIf="event.editable">
-    <p>
-      Attach a Form
-      <small
-        >You can add more forms if you want members to fill more information for this event, by filling the form
-        below</small
-      >
-    </p>
+    <div class="create-form">
+      <div class="text">
+        <p class="attach-form-text">Attach a Form</p>
+        <p class="sub-text">
+          You can add more forms if you want members to fill more information for this event, by filling the form below
+        </p>
+      </div>
+      <div class="create-form-button">
+        <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
+          <nb-icon icon="plus-outline"></nb-icon>Create New Form
+        </button>
+      </div>
+    </div>
     <form
       (ngSubmit)="createEventDataFormEntityGroup()"
       [formGroup]="eventDataFormEntityGroupForm"
       class="dfeg-create-form"
     >
       <div formGroupName="data_form_entity_group">
-        <div>
+        <div class="name">
           <label fullWidth>
             Name*
-            <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
+            <input fieldSize="small" formControlName="name" placeholder="Form Name" fullWidth nbInput type="text" />
             <span
               *ngIf="
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched &&
@@ -130,15 +136,9 @@
 
         <div class="data-form-type-select">
           <label>
-            Form Type
+            Select Type*
             <br />
-            <nb-select
-              formControlName="registration_type_id"
-              hero
-              placeholder="Form Type*"
-              size="tiny"
-              status="primary"
-            >
+            <nb-select formControlName="registration_type_id" placeholder="Form Type" size="small" status="primary">
               <nb-option *ngFor="let rt of registrationTypes" [value]="rt.id">
                 {{ rt.name }}
               </nb-option>
@@ -157,9 +157,9 @@
 
         <div class="data-form-select">
           <label>
-            Select Form
+            Select Form*
             <br />
-            <nb-select formControlName="data_form_id" placeholder="Which Form? *" size="tiny" status="primary">
+            <nb-select formControlName="data_form_id" placeholder="Which Form?" size="small" status="primary">
               <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
                 {{ df.name }}
               </nb-option>
@@ -174,15 +174,6 @@
               <commudle-alert [error]="true" [errorMessage]="'Please select a form'"></commudle-alert>
             </span>
           </label>
-          <span>
-            <nb-icon
-              (click)="openNewFormWindow()"
-              class="clickable"
-              icon="plus-circle"
-              nbTooltip="Add New Form"
-              status="success"
-            ></nb-icon>
-          </span>
           <a
             *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
             [routerLink]="[
@@ -192,7 +183,7 @@
             ]"
             target="_blank"
           >
-            <nb-icon class="clickable" icon="eye" nbTooltip="View Form" status="info"></nb-icon>
+            <nb-icon icon="eye" nbTooltip="View Form" status="info"></nb-icon>
           </a>
         </div>
       </div>
@@ -203,7 +194,7 @@
           fullWidth
           nbButton
           outline
-          size="tiny"
+          size="small"
           status="primary"
           type="submit"
         >

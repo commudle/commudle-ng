@@ -1,4 +1,13 @@
-<div *ngIf="headerImagePath" class="image-container">
+<div
+  *ngIf="headerImagePath"
+  class="image-container"
+  [ngClass]="{
+    'top-right-curve': topRightCurve,
+    'bottom-right-curve': bottomRightCurve,
+    'bottom-left-curve': bottomLeftCurve,
+    'top-left-curve': topLeftCurve
+  }"
+>
   <div class="background" [ngStyle]="{ 'background-image': 'url(\'' + headerImagePath + '\')' }"></div>
   <div class="image-section">
     <img alt="{{ name }}" src="{{ headerImagePath }}" title="{{ name }}" />

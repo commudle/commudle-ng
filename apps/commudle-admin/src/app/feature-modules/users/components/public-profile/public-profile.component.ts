@@ -88,7 +88,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     if (this.user.designation) {
       title = title.concat(` - ${this.user.designation.substring(0, 60)}`);
     }
-    this.seoService.setTags(title, this.user.about_me, this.user.avatar);
+    const about_me = this.user.about_me ? this.user.about_me : `''`;
+    this.seoService.setTags(title, about_me, this.user.avatar);
   }
 
   originalOrder = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {

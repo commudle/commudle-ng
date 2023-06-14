@@ -1,16 +1,32 @@
-.image-container {
-  @apply com-relative com-overflow-hidden com-aspect-[16/6];
-  //TODO use aspect ratio in tailwind
+:host {
+  @apply com-w-full;
+  .image-container {
+    @apply com-relative com-overflow-hidden com-aspect-[16/6] com-w-full;
+    //TODO use aspect ratio in tailwind
 
-  .background {
-    @apply com-mx-auto lg:com-w-full com-w-[calc(100%-30px)];
-    @apply com-z-0 com-blur-sm com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
-  }
+    &.top-right-curve {
+      @apply com-rounded-tr-lg;
+    }
+    &.bottom-right-curve {
+      @apply com-rounded-br-lg;
+    }
+    &.bottom-left-curve {
+      @apply com-rounded-bl-lg;
+    }
+    &.top-left-curve {
+      @apply com-rounded-tl-lg;
+    }
 
-  .image-section {
-    @apply com-flex com-justify-center;
-    img {
-      @apply com-h-full com-absolute com-top-0;
+    .background {
+      @apply com-mx-auto lg:com-w-full md:com-w-[calc(100%-30px)] com-w-full;
+      @apply com-z-0 com-blur-sm com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
+    }
+
+    .image-section {
+      @apply com-flex com-justify-center;
+      img {
+        @apply com-h-full com-absolute com-top-0;
+      }
     }
   }
 }

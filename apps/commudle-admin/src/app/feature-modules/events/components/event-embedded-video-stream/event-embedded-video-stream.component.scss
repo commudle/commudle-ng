@@ -13,9 +13,8 @@
   }
 
   .preview {
-    height: 550px;
+    @apply com-mb-4 com-h-[550px] com-overflow-auto;
     order: 1;
-    overflow: auto;
   }
 
   nb-option.selected {

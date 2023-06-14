@@ -13,6 +13,9 @@ import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class SidebarComponent implements OnInit {
   @Input() isExpanded: boolean = false;
+  @Input() showExpandedButton: boolean = true;
+  @Input() position: 'left' | 'right' = 'left';
+  @Input() expandedWidth: 'small' | 'medium' | 'large';
   @Input() heading: string;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
 

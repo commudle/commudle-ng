@@ -8,10 +8,17 @@ nb-card {
       @apply com-bg-white com-rounded-xl;
 
       .heading {
-        @apply com-font-bold com-text-2xl com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-black;
-        @apply md:com-font-medium md:com-text-start md:com-my-8 com-ml-6;
-      }
+        @apply com-font-bold com-text-2xl com-mt-9 com-mb-6 com-text-center com-leading-4 com-text-Dark-Jungle-Green;
+        @apply md:com-text-3xl md:com-text-start md:com-my-8 com-ml-6;
 
+        button {
+          @apply com-mr-4;
+        }
+
+        fa-icon {
+          @apply com-text-2xl;
+        }
+      }
       .upcoming-events-section {
         @apply com-my-0;
 
@@ -113,8 +120,16 @@ nb-card {
         @apply com-flex com-flex-col com-mx-auto com-my-0;
 
         .heading {
-          @apply com-font-semibold com-text-2xl com-text-center com-leading-4 com-mt-10 com-mb-8 com-text-black;
-          @apply md:com-font-medium md:com-text-2xl md:com-text-start md:com-ml-6;
+          @apply com-font-semibold com-text-base com-text-center com-leading-4 com-mt-10 com-mb-8 com-text-Dark-Jungle-Green;
+          @apply md:com-font-bold md:com-text-3xl md:com-text-start md:com-ml-6;
+
+          button {
+            @apply com-mr-4;
+          }
+
+          fa-icon {
+            @apply com-text-2xl;
+          }
         }
 
         .past-events-container {

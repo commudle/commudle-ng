@@ -2,6 +2,10 @@
   nb-icon {
     color: red;
     font-size: 1rem;
-    margin-right: 0.5rem
+    margin-right: 0.5rem;
   }
+}
+
+.update-input {
+  @apply com-mb-4;
 }
