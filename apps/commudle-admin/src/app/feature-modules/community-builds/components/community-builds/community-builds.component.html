@@ -33,21 +33,45 @@
           </nb-card-body>
         </nb-card> -->
           <div class="builds">
-            <h5 class="heading">Get inspired from these builds</h5>
-            <div
-              (scrolled)="getCommunityBuilds()"
-              [infiniteScrollDisabled]="!(canLoadMore && total)"
-              appInfiniteScroll
-              *ngFor="let communityBuild of communityBuilds"
-              class="builds-card"
-            >
+            <div class="heading-filter">
+              <h5 class="heading">Get inspired from these builds</h5>
+              <div class="filters">
+                <button
+                  nbButton
+                  status="basic"
+                  class="all-filter-button"
+                  shape="round"
+                  size="small"
+                  (click)="getCommunityBuilds(true)"
+                >
+                  All
+                </button>
+                <!-- (selectedChange)="getSpeakers($event)" -->
+                <nb-select
+                  placeholder="Most Popular"
+                  size="small"
+                  shape="round"
+                  status="basic"
+                  class="most-popular-filter"
+                  [(ngModel)]="timePeriod"
+                  (selectedChange)="filter()"
+                >
+                  <nb-option value="month"> Highest upvoted this month</nb-option>
+                  <nb-option value="year">Highest upvoted this year</nb-option>
+                  <nb-option value="all-time">Highest upvoted all time</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <!-- [infiniteScrollDisabled]="!(canLoadMore && total)" -->
+            <!-- (scrolled)="getCommunityBuilds()" -->
+            <div appInfiniteScroll *ngFor="let communityBuild of communityBuilds" class="builds-card">
               <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
             </div>
-            <div *ngIf="isLoading" class="loading-spinner">
+            <!-- <div *ngIf="isLoading" class="loading-spinner">
               <div class="spinner">
                 <div *ngFor="let _ of [].constructor(5)"></div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="right-column">
@@ -64,58 +88,6 @@
           <!-- <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots> -->
           <!-- <app-recommended-builds></app-recommended-builds> -->
         </div>
-      </div>
-
-      <div *appBreakpoints="'<=lg'" class="one-column-layout">
-        <nb-card class="community-builds-header">
-          <nb-card-body>
-            <h1 class="fs-h1 community-builds-title">
-              <nb-icon icon="bulb-outline" status="warning"></nb-icon>
-              Builds
-            </h1>
-            <h4 class="fs-h4 community-builds-subtitle">
-              From coding a small, simple and useful
-              <strong>Project</strong>
-              to
-              <strong>Slides</strong>
-              which you used for a talk,
-              <br />
-              share something which is your Build! The best ones get featured.
-            </h4>
-            <a
-              [routerLink]="['/builds/create']"
-              class="community-build-create-btn"
-              nbButton
-              size="small"
-              status="primary"
-            >
-              <nb-icon icon="plus-circle-outline"></nb-icon>
-              Share Your Build
-            </a>
-          </nb-card-body>
-        </nb-card>
-        <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots>
-        <app-recommended-builds></app-recommended-builds>
-        <nb-card>
-          <nb-card-body>
-            <div
-              (scrolled)="getCommunityBuilds()"
-              [infiniteScrollDisabled]="!(canLoadMore && total)"
-              appInfiniteScroll
-              class="com-flex com-flex-col com-gap-4"
-            >
-              <app-community-build-card
-                *ngFor="let communityBuild of communityBuilds"
-                [communityBuild]="communityBuild"
-              ></app-community-build-card>
-            </div>
-            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-              <div class="spinner">
-                <div *ngFor="let _ of [].constructor(5)"></div>
-              </div>
-            </div>
-          </nb-card-body>
-        </nb-card>
       </div>
     </div>
   </div>

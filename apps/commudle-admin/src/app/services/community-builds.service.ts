@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
@@ -97,11 +98,31 @@ export class CommunityBuildsService {
     });
   }
 
-  pGetAll(page, count): Observable<ICommunityBuilds> {
-    const params = new HttpParams().set('page', page).set('count', count);
-    return this.http.get<ICommunityBuilds>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX), {
-      params,
-    });
+  pGetAll(
+    order_by?: string,
+    month?: boolean,
+    year?: boolean,
+    allTime?: boolean,
+  ): Observable<IPagination<ICommunityBuild>> {
+    let params = new HttpParams();
+    if (month) {
+      params = params.set('month', month);
+    }
+    if (year) {
+      params = params.set('year', year);
+    }
+    if (allTime) {
+      params = params.set('all-time', allTime);
+    }
+    if (order_by) {
+      params = params.set('order_by', order_by);
+    }
+    return this.http.get<IPagination<ICommunityBuild>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX),
+      {
+        params,
+      },
+    );
   }
 
   pShow(communityBuildId): Observable<ICommunityBuild> {

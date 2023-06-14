@@ -18,21 +18,21 @@ export class FeaturedProjectsComponent implements OnInit {
   constructor(private communityBuildsService: CommunityBuildsService) {}
 
   ngOnInit(): void {
-    this.getCommunityBuilds();
+    // this.getCommunityBuilds();
   }
 
-  getCommunityBuilds() {
-    if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
-      this.isLoading = true;
-      this.communityBuildsService.pGetAll(this.page, this.count).subscribe((data: ICommunityBuilds) => {
-        this.communityBuilds = this.communityBuilds.concat(data.community_builds);
-        this.page += 1;
-        this.total = data.total;
-        this.isLoading = false;
-        if (this.communityBuilds.length >= this.total) {
-          this.canLoadMore = false;
-        }
-      });
-    }
-  }
+  // getCommunityBuilds() {
+  //   if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
+  //     this.isLoading = true;
+  //     this.communityBuildsService.pGetAll().subscribe((data: ICommunityBuilds) => {
+  //       this.communityBuilds = this.communityBuilds.concat(data.community_builds);
+  //       this.page += 1;
+  //       this.total = data.total;
+  //       this.isLoading = false;
+  //       if (this.communityBuilds.length >= this.total) {
+  //         this.canLoadMore = false;
+  //       }
+  //     });
+  //   }
+  // }
 }
