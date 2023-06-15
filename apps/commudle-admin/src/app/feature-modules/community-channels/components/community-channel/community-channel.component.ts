@@ -173,6 +173,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   getDiscussion(channelId) {
     this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe((data) => {
       this.discussion = data;
+      console.log(this.discussion);
       this.communityChannelManagerService.setCommunityListview(false);
     });
   }

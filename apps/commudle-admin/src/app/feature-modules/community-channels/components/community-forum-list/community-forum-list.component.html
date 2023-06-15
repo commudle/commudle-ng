@@ -21,7 +21,9 @@
         </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body *ngFor="let chGroup of communityForums | keyvalue">
-        <p class="com-m-0" (click)="selectedCommunityChannel(chGroup)">{{ chGroup.key || 'GENERAL' }}</p>
+        <div>
+          <p class="com-m-0" (click)="selectedCommunityChannel(chGroup)">{{ chGroup.key || 'GENERAL' }}</p>
+        </div>
         <!-- <div class="channels">
           <ul>
             <li *ngFor="let channel of chGroup.value">

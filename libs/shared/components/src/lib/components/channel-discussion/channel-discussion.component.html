@@ -1,0 +1,39 @@
+<div class="discussion-container">
+  <!-- TODO: Fix problem with infinite scroll -->
+  <div
+    #messagesListRef
+    (scrolled)="communityChannelHandlerService.getMessagesBefore()"
+    (scrolledUp)="communityChannelHandlerService.getMessagesAfter()"
+    *ngIf="(communityChannelHandlerService.messages$ | async)?.length; else noMessages"
+    [infiniteScrollDisabled]="
+      !(communityChannelHandlerService.pageInfo$ | async)?.has_next_page &&
+      !(communityChannelHandlerService.pageInfo$ | async)?.has_previous_page
+    "
+    [infiniteScrollDistance]="10"
+    [infiniteScrollUpDistance]="-8"
+    [scrollWindow]="false"
+    class="messages-list"
+    commudleInfiniteScroll
+  >
+    <commudle-message
+      *ngFor="let message of communityChannelHandlerService.messages$ | async"
+      [cursor]="message.cursor"
+      [message]="message.data"
+    ></commudle-message>
+  </div>
+  <ng-template #noMessages>
+    <div class="no-messages">Start a new conversation!</div>
+  </ng-template>
+
+  <commudle-editor
+    (contentChange)="communityChannelHandlerService.sendMessage($event)"
+    *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn"
+    [validators]="validators"
+  ></commudle-editor>
+  <ng-template #notLoggedIn>
+    <a [routerLink]="['/login']" nbButton status="primary">
+      <nb-icon icon="log-in-outline"></nb-icon>
+      Login to join the discussion
+    </a>
+  </ng-template>
+</div>

@@ -15,15 +15,15 @@ import { ActivatedRoute } from '@angular/router';
 import { IEditorValidator } from '@commudle/editor';
 import { InfiniteScrollDirective } from '@commudle/infinite-scroll';
 import { AuthService } from '@commudle/shared-services';
-import { DiscussionHandlerService } from '../../services/discussion-handler.service';
+import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/services/community-channel-handler.service';
 
 @Component({
-  selector: 'commudle-discussion',
-  templateUrl: './discussion.component.html',
-  styleUrls: ['./discussion.component.scss'],
+  selector: 'commudle-channel-discussion',
+  templateUrl: './channel-discussion.component.html',
+  styleUrls: ['./channel-discussion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() discussionId!: number;
   @Input() discussionParent = '';
   @Input() fromLastRead = false;
@@ -41,14 +41,14 @@ export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('messagesListRef', { read: ViewContainerRef }) messagesListRefs: QueryList<HTMLDivElement>;
 
   constructor(
-    public discussionHandlerService: DiscussionHandlerService,
+    public communityChannelHandlerService: CommunityChannelHandlerService,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
-    this.discussionHandlerService.init(
+    this.communityChannelHandlerService.init(
       this.discussionId,
       this.discussionParent,
       this.fromLastRead,
@@ -59,13 +59,13 @@ export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // TODO: Find a better way to do this
     this.messagesListRefs.changes.subscribe((value) => {
-      this.discussionHandlerService.pageInfo$.subscribe((pageInfo) => {
+      this.communityChannelHandlerService.pageInfo$.subscribe((pageInfo) => {
         if (
           value.last.element.nativeElement.scrollHeight <= value.last.element.nativeElement.clientHeight &&
           pageInfo.has_next_page
         ) {
           if (this.hasRequestedFirstTime) {
-            this.discussionHandlerService.getMessagesAfter();
+            this.communityChannelHandlerService.getMessagesAfter();
             this.hasRequestedFirstTime = false;
             this.changeDetectorRef.detectChanges();
           }
@@ -75,6 +75,6 @@ export class DiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.discussionHandlerService.destroy();
+    this.communityChannelHandlerService.destroy();
   }
 }

@@ -17,3 +17,15 @@ section {
 .group-name {
   @apply com-text-gray-500 com-text-sm com-m-0;
 }
+
+.forum-list {
+  @apply com-pt-5 com-pb-1;
+}
+
+// .forum-list:not(:last-child) {
+//   @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
+// }
+
+td {
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200  com-pt-5 com-pb-1;
+}

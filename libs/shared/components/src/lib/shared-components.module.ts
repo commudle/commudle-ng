@@ -8,6 +8,7 @@ import { NbButtonModule, NbIconModule, NbTooltipModule } from '@commudle/theme';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { MessageComponent } from './components/discussion/message/message.component';
 import { VoteComponent } from './components/vote/vote.component';
+import { ChannelDiscussionComponent } from './components/channel-discussion/channel-discussion.component';
 
 @NgModule({
   imports: [
@@ -20,8 +21,8 @@ import { VoteComponent } from './components/vote/vote.component';
     NbButtonModule,
     InViewportDirective,
   ],
-  declarations: [DiscussionComponent, MessageComponent, VoteComponent],
-  exports: [DiscussionComponent, VoteComponent],
+  declarations: [DiscussionComponent, MessageComponent, VoteComponent, ChannelDiscussionComponent],
+  exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent],
   providers: [InViewportDirective],
 })
 export class SharedComponentsModule {}

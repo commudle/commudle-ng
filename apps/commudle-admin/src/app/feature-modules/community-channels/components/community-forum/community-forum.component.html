@@ -1,13 +1,46 @@
-<section>
+<!-- <section>
   <div>
     <button nbButton status="warning">New Discussion</button>
   </div>
   <div>
     <p class="topic">Topics</p>
   </div>
-  <div *ngFor="let forum of selectedForum">
+  <div *ngFor="let forum of selectedForum" class="forum-list">
     <p class="name">{{ forum.name }}</p>
     <p class="group-name">{{ forum.group_name }}</p>
-    <hr />
   </div>
+   <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
+      <nb-icon icon="plus"></nb-icon>
+      New Forum
+    </a>
+</section> -->
+
+<section>
+  <div>
+    <button
+      (click)="newChannelDialogBox(selectedForum[0].group_name); $event.stopPropagation()"
+      nbButton
+      status="warning"
+      size="small"
+    >
+      <nb-icon icon="plus"></nb-icon> New Discussion
+    </button>
+  </div>
+  <table style="width: 100%">
+    <tr>
+      <th><p class="topic">Topics</p></th>
+      <!-- <th>Replies</th>
+      <th>Activity</th> -->
+    </tr>
+    <tr *ngFor="let forum of selectedForum" class="forum-list">
+      <td (click)="openChat(forum.id)">
+        <p class="name">{{ forum.name }}</p>
+        <p class="group-name">{{ forum.group_name }}</p>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section *ngIf="showDiscussion">
+  <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
 </section>

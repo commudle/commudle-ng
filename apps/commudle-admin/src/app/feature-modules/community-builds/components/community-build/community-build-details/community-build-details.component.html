@@ -80,6 +80,7 @@
 <nb-card *ngIf="discussionChat" class="community-build-discussion">
   <nb-card-header>Discussion</nb-card-header>
   <nb-card-body>
+    <h1>{{ discussionChat.id }}</h1>
     <commudle-discussion [discussionId]="discussionChat.id" discussionParent="builds"></commudle-discussion>
   </nb-card-body>
 </nb-card>

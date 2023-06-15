@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ChatChannel } from '@commudle/shared-channels';
+import { CommunityChannelChatChannel } from '@commudle/shared-channels';
 import { IPage, IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
 import { CableService, DiscussionService, ToastrService } from '@commudle/shared-services';
 import { BehaviorSubject, from, Observable } from 'rxjs';
@@ -7,8 +7,8 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class DiscussionHandlerService {
-  chatChannel!: ChatChannel;
+export class CommunityChannelHandlerService {
+  CommunityChannelChatChannel!: CommunityChannelChatChannel;
   scrollToMessageId!: number;
 
   private messages = new BehaviorSubject<IPage<IUserMessage>[]>([]);
@@ -53,14 +53,14 @@ export class DiscussionHandlerService {
       this.getMessages(fromLastRead);
     }
 
-    this.chatChannel = new ChatChannel({ room: this._discussionId });
-    this.cableService.subscribe(this.chatChannel);
+    this.CommunityChannelChatChannel = new CommunityChannelChatChannel({ room: this._discussionId });
+    this.cableService.subscribe(this.CommunityChannelChatChannel);
 
     this.handleChatChannel();
   }
 
   destroy() {
-    this.chatChannel.disconnect();
+    this.CommunityChannelChatChannel.disconnect();
     this.messages.next([]);
     this.permittedActions.next([]);
     this.pageInfo.next({
@@ -73,11 +73,13 @@ export class DiscussionHandlerService {
   }
 
   sendMessage(content: string) {
+    console.log(content);
     if (!this.permittedActions.value.includes('add') || this.permittedActions.value.includes('blocked')) {
       return;
     }
 
-    this.chatChannel.add(content);
+    this.CommunityChannelChatChannel.add(content);
+    console.log(this.CommunityChannelChatChannel);
   }
 
   sendReply(parentId: number, content: string) {
@@ -85,7 +87,7 @@ export class DiscussionHandlerService {
       return;
     }
 
-    this.chatChannel.reply(parentId, content);
+    this.CommunityChannelChatChannel.reply(parentId, content);
   }
 
   sendDelete(messageId: number, isSelfMessage: boolean) {
@@ -98,9 +100,9 @@ export class DiscussionHandlerService {
     }
 
     if (isSelfMessage) {
-      this.chatChannel.deleteSelf(messageId);
+      this.CommunityChannelChatChannel.deleteSelf(messageId);
     } else {
-      this.chatChannel.deleteAny(messageId);
+      this.CommunityChannelChatChannel.deleteAny(messageId);
     }
   }
 
@@ -109,7 +111,7 @@ export class DiscussionHandlerService {
       return;
     }
 
-    this.chatChannel.flag(messageId);
+    this.CommunityChannelChatChannel.flag(messageId);
   }
 
   addMessage(message: IUserMessage, cursor: string) {
@@ -127,7 +129,7 @@ export class DiscussionHandlerService {
   }
 
   handleChatChannel() {
-    this.chatChannel.on('message', (data) => {
+    this.CommunityChannelChatChannel.on('message', (data) => {
       switch (data.action) {
         case 'set_permissions':
           this.permittedActions.next(data.permitted_actions);
@@ -203,6 +205,7 @@ export class DiscussionHandlerService {
         this.loading.next(false);
       });
     }
+    console.log(this.messages.value);
   }
 
   getMessagesAfter() {

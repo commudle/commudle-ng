@@ -1,4 +1,4 @@
-<ng-template #channelDescription>
+<!-- <ng-template #channelDescription>
   <nb-card>
     <nb-card-header>{{ selectedChannel.name }}</nb-card-header>
     <nb-card-body>
@@ -125,4 +125,7 @@
       </nb-list>
     </nb-card-body>
   </nb-card>
-</ng-template>
+</ng-template> -->
+<div *ngIf="discussion">
+  <commudle-channel-discussion [discussionId]="discussion.id"></commudle-channel-discussion>
+</div>

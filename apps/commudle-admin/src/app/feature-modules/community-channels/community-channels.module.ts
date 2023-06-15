@@ -22,7 +22,7 @@ import {
   NbTabsetModule,
 } from '@commudle/theme';
 import { LinkyModule } from 'ngx-linky';
-import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SharedComponentsModule as OldSharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { MentionModule } from 'apps/shared-modules/mention/mention.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
@@ -48,6 +48,8 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
 import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
 import { CommunityForumListComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/community-forum-list/community-forum-list.component';
 import { CommunityForumComponent } from './components/community-forum/community-forum.component';
+import { CommunityChannelsDashboardForumListComponent } from './components/community-channels-dashboard-forum-list/community-channels-dashboard-forum-list.component';
+import { SharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
   declarations: [
@@ -71,18 +73,20 @@ import { CommunityForumComponent } from './components/community-forum/community-
     CommunityChannelsDashboardChannelListComponent,
     CommunityForumListComponent,
     CommunityForumComponent,
+    CommunityChannelsDashboardForumListComponent,
   ],
   imports: [
     CommonModule,
     CommunityChannelsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedComponentsModule,
+    OldSharedComponentsModule,
     PickerModule,
     SharedPipesModule,
     SharedDirectivesModule,
     LinkyModule,
     MentionModule,
+    SharedComponentsModule, //new
 
     //External
     FontAwesomeModule,

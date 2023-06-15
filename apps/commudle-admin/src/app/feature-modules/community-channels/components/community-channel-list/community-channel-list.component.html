@@ -2,12 +2,18 @@
   <div *ngIf="showCommunityBadge" class="community">
     <app-community-badge [community]="selectedCommunity"></app-community-badge>
   </div>
-  <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
+  <!-- <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
     <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
       <nb-icon icon="plus"></nb-icon>
       New Channel
     </a>
-  </p>
+  </p> -->
+  <div class="com-flex com-justify-between">
+    <p class="com-font-bold com-text-2xl com-m-0">Channels</p>
+    <button (click)="newChannelDialogBox()" outline nbButton size="tiny" status="base" class="com-h-min">
+      <nb-icon icon="plus"></nb-icon>
+    </button>
+  </div>
 
   <nb-accordion *ngFor="let chGroup of groupedChannels | keyvalue" class="channel-group com-shadow-none">
     <nb-accordion-item expanded="true">

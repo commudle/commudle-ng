@@ -1,0 +1,11 @@
+.container {
+  height: 194px;
+  width: 343px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  @apply com-flex com-justify-between com-flex-col;
+}
+
+.group-name {
+  @apply com-flex com-items-center com-h-16 com-justify-center;
+}
