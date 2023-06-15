@@ -114,7 +114,7 @@ export class CommunityBuildsService {
     if (allTime) {
       params = params.set('all-time', allTime);
     }
-    if (order_by) {
+    if (order_by === 'votes_count') {
       params = params.set('order_by', order_by);
     }
     return this.http.get<IPagination<ICommunityBuild>>(

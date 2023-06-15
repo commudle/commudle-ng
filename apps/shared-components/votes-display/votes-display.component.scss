@@ -43,6 +43,18 @@
       }
     }
   }
+
+  &.size-mini {
+    div {
+      p {
+        @apply com-text-xs com-font-medium;
+      }
+
+      nb-icon {
+        @apply com-text-sm;
+      }
+    }
+  }
 }
 
 .clickable.votes.border {

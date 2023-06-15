@@ -19,7 +19,6 @@ export class ExploreExpertsComponent implements OnInit {
   getExperts() {
     this.homeService.experts().subscribe((value) => {
       this.experts = value;
-      console.log(this.experts);
     });
   }
 }

@@ -1,114 +1,20 @@
+.publish-build-button {
+  @apply md:com-mx-0 com-mx-4 md:com-my-8 com-mt-4 com-mb-6 md:com-w-[367px];
+  .button {
+    @apply com-w-full com-text-Chocolate-Traditional com-bg-Seashell com-border-Chocolate-Traditional com-rounded-lg;
+  }
+}
+
 .community-builds-container {
   @apply com-mb-8;
   .container {
     .main-column {
       @apply com-p-0 md:com-pr-10;
       @apply com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
-      // .builds {
-      //   @apply com-my-8 com-mx-0;
-      //   .heading-filter {
-      //     @apply com-flex com-justify-between;
-      //     .heading {
-      //       @apply com-mb-6px com-mt-0 com-mx-0 com-text-2xl com-font-normal com-text-black;
-      //     }
-
-      //     .filters {
-      //       @apply com-flex com-items-center;
-      //       .all-filter-button {
-      //         @apply com-mr-3 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-border com-border-solid;
-      //       }
-      //       .most-popular-filter {
-      //         @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green;
-      //       }
-      //     }
-      //   }
-      //   .builds-card {
-      //     @apply com-flex com-flex-col com-border-solid com-border-0 com-border-b md:com-py-9 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray-Light;
-      //   }
-      // }
     }
 
     .right-column {
       @apply com-m-0 com-ml-9;
-      .publish-build-button {
-        @apply com-mx-0 com-my-8;
-        .button {
-          @apply com-w-full com-text-Chocolate-Traditional com-bg-Seashell com-border-Chocolate-Traditional com-rounded-lg;
-        }
-      }
     }
   }
 }
-// nb-card {
-//   @apply com-mb-4;
-
-//   nb-card-body {
-//     @apply com-p-5;
-
-//     .loading-spinner {
-//       @apply com-my-4 com-text-center;
-//       .spinner {
-//         height: 40px;
-
-//         & > div {
-//           animation: stretch-delay 1.2s infinite ease-in-out;
-//           @apply com-inline-block com-h-full com-mx-0 com-my-[1px] com-w-1 com-bg-[#5c6972];
-
-//           &:nth-child(2) {
-//             animation-delay: -1.1s;
-//           }
-
-//           &:nth-child(3) {
-//             animation-delay: -1s;
-//           }
-
-//           &:nth-child(4) {
-//             animation-delay: -0.9s;
-//           }
-
-//           &:nth-child(5) {
-//             animation-delay: -0.8s;
-//           }
-//         }
-
-//         @keyframes stretch-delay {
-//           0%,
-//           40%,
-//           100% {
-//             transform: scaleY(0.4);
-//           }
-//           20% {
-//             transform: scaleY(1);
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-//     .community-builds-header {
-//       nb-card-body {
-//         .community-builds-title {
-//           @apply com-text-3xl md:com-text-4xl;
-//           nb-icon {
-//             @apply com-text-3xl md:com-text-4xl;
-//           }
-//         }
-//         .community-builds-subtitle {
-//           @apply com-text-xl com-font-normal;
-//         }
-//         .community-build-create-btn {
-//           @apply com-text-sm;
-//         }
-//       }
-//     }
-
-//     app-pa-slots {
-//       &::ng-deep {
-//         .page-ads-container {
-//           @apply com-mx-auto com-h-[2654px] com-w-[2654px];
-//         }
-//       }
-//     }
-//   }
-// }

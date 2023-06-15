@@ -12,6 +12,8 @@ export class TagComponent implements OnInit, OnDestroy {
   @Input() editable: boolean;
   @Input() inputDisabled: boolean;
   @Input() minimumTags: number = 5;
+  @Input() customStyle: boolean = false;
+  @Input() size: 'medium' | 'small' | 'tiny' | 'large' = 'medium';
 
   @Output() tagAdd: EventEmitter<string> = new EventEmitter<string>();
   @Output() tagDelete: EventEmitter<string> = new EventEmitter<string>();

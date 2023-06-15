@@ -11,15 +11,15 @@ nb-card {
         @apply com-flex com-flex-col md:com-pl-24 md:com-pr-0 com-px-4 md:com-pt-10 md:com-pb-8 com-py-6 md:com-w-[737px] md:com-min-h-[386px] com-w-full com-h-full;
 
         .title {
-          @apply md:com-text-5xl com-text-[32px] com-font-bold com-mt-0 com-mb-4 md:com-mb-8 com-text-Yankees-Blue;
+          @apply md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-8 com-text-Yankees-Blue;
         }
 
         .heading {
-          @apply md:com-text-2xl com-text-xl com-font-normal com-m-0 com-mx-0 md:com-mb-11 com-mb-0 com-text-Yankees-Blue;
+          @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-11 com-mb-8 com-text-Yankees-Blue;
         }
 
         .sub-heading {
-          @apply com-text-xl com-font-bold com-m-0 com-mx-0 md:com-mb-4 com-mb-0 com-text-Chocolate-Traditional;
+          @apply md:com-text-xl com-text-base com-font-bold com-m-0 com-mx-0 md:com-mb-4 com-mb-0 com-text-Chocolate-Traditional;
         }
       }
     }

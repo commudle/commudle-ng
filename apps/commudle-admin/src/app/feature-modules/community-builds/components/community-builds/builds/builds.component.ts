@@ -14,11 +14,12 @@ export class BuildsComponent implements OnInit {
   month = false;
   year = false;
   allTime = false;
+  order_by: string;
 
   constructor(private communityBuildsService: CommunityBuildsService) {}
 
   ngOnInit(): void {
-    this.getCommunityBuilds();
+    this.getCommunityBuilds(true);
   }
 
   filter() {
@@ -26,16 +27,19 @@ export class BuildsComponent implements OnInit {
       this.month = true;
       this.year = false;
       this.allTime = false;
+      this.order_by = 'votes_count';
     }
     if (this.timePeriod === 'year') {
       this.month = false;
       this.year = true;
       this.allTime = false;
+      this.order_by = 'votes_count';
     }
     if (this.timePeriod === 'all-time') {
       this.month = false;
       this.year = false;
       this.allTime = true;
+      this.order_by = 'votes_count';
     }
     this.getCommunityBuilds();
   }
@@ -45,10 +49,11 @@ export class BuildsComponent implements OnInit {
       this.month = false;
       this.year = false;
       this.allTime = false;
+      this.order_by = '';
     }
     this.communityBuilds = [];
     this.communityBuildsService
-      .pGetAll('votes_count', this.month, this.year, this.allTime)
+      .pGetAll(this.order_by, this.month, this.year, this.allTime)
       .subscribe((data: IPagination<ICommunityBuild>) => {
         this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       });

@@ -15,7 +15,6 @@
       <p class="description">{{ getDescription() }}</p>
       <div class="app-user-profile-card">
         <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
-        <!-- <app-user-profile-card-small [user]="communityBuild.user"></app-user-profile-card-small> -->
       </div>
     </div>
     <div class="votes">
@@ -24,6 +23,7 @@
         [votableId]="communityBuild.id"
         [votableType]="'CommunityBuild'"
         [votesDirectionVertical]="true"
+        size="mini"
       ></app-votes-display>
     </div>
   </div>

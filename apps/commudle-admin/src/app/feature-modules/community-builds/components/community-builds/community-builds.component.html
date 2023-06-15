@@ -51,7 +51,7 @@
           <div class="publish-build-button">
             <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
               <nb-icon icon="plus"></nb-icon>
-              Publish Your Build
+              Publish New Build
             </a>
           </div>
           <div>
@@ -59,14 +59,15 @@
             <commudle-builds-top-builders></commudle-builds-top-builders>
             <commudle-explore-experts></commudle-explore-experts>
           </div>
-          <!-- <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots> -->
-          <!-- <app-recommended-builds></app-recommended-builds> -->
         </div>
       </div>
       <div *appBreakpoints="'<=lg'" class="one-column-layout">
-        <!-- <div *ngFor="let communityBuild of communityBuilds" class="builds-card">
-          <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
-        </div> -->
+        <div class="publish-build-button">
+          <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+            <nb-icon icon="plus"></nb-icon>
+            Publish New Build
+          </a>
+        </div>
         <commudle-builds></commudle-builds>
         <commudle-featured-projects></commudle-featured-projects>
         <commudle-builds-top-builders></commudle-builds-top-builders>

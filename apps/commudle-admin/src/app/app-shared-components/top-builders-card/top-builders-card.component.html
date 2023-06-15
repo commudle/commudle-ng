@@ -10,18 +10,16 @@
           {{ topBuilder.community_builds_count }}.{{ topBuilder.total_builds_votes }}
         </div>
         <div *ngIf="displayDesignation" class="designation">{{ topBuilder.designation }}</div>
-        <div *ngIf="displayCommunityCount" class="community-count">{{ topBuilder.designation }}</div>
+        <div *ngIf="displayCommunityCount" class="community-count">
+          {{ topBuilder.community_builds_count }}.{{ topBuilder.total_builds_votes }}
+        </div>
         <p *ngIf="displayViewProfile" class="view-profile">
           View Profile<nb-icon icon="arrow-forward-outline"></nb-icon>
         </p>
-        <!-- <div *ngIf="showFollowButton"><app-user-follow></app-user-follow></div> -->
+        <div *ngIf="showFollowButton">
+          <app-user-follow [username]="topBuilder.username" [isMobileWidthFull]="true"></app-user-follow>
+        </div>
       </div>
     </a>
   </nb-card-body>
 </nb-card>
-<!-- @Input() username: string;
-@Input() showIcon = true;
-@Input() appearance: NbButtonAppearance;
-@Input() status: NbComponentStatus;
-@Input() isMobileWidthFull = false;
-@Input() disabled = false; -->
