@@ -11,6 +11,7 @@ import {
   NbInputModule,
   NbPopoverModule,
   NbSelectModule,
+  NbTagModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
@@ -35,6 +36,8 @@ import { FeaturedProjectsCardComponent } from '../../app-shared-components/featu
 import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
 import { BuildsTopBuildersComponent } from './components/community-builds/builds-top-builders/builds-top-builders.component';
 import { TopBuildersCardComponent } from '../../app-shared-components/top-builders-card/top-builders-card.component';
+import { ExploreExpertsComponent } from './components/community-builds/explore-experts/explore-experts.component';
+import { BuildsComponent } from './components/community-builds/builds/builds.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { TopBuildersCardComponent } from '../../app-shared-components/top-builde
     FeaturedProjectsComponent,
     BuildsHeaderComponent,
     BuildsTopBuildersComponent,
+    ExploreExpertsComponent,
+    BuildsComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +78,7 @@ import { TopBuildersCardComponent } from '../../app-shared-components/top-builde
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
+    NbTagModule,
     //FontAwesomeModule
     FontAwesomeModule,
     FeaturedProjectsCardComponent,

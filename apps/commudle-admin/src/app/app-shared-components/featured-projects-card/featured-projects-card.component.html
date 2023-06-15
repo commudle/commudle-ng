@@ -3,23 +3,23 @@
     <div class="featured-projects-card">
       <div class="details">
         <div class="user-profile-card">
-          <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
+          <app-user-profile-card-medium *ngIf="featuredProject.user"></app-user-profile-card-medium>
         </div>
-        <h5 class="title">{{ communityBuild.name }}</h5>
-        <p class="time">{{ moment(communityBuild.created_at).format('dddd, MMM Do, YYYY') }}</p>
+        <!-- <h5 class="title">{{ communityBuild.name }}</h5>
+        <p class="time">{{ moment(communityBuild.created_at).format('dddd, MMM Do, YYYY') }}</p> -->
       </div>
       <div class="votes">
-        <app-votes-display
+        <!-- <app-votes-display
           [icon]="'star'"
           [votableId]="communityBuild.id"
           [votableType]="'CommunityBuild'"
-        ></app-votes-display>
+        ></app-votes-display> -->
       </div>
     </div>
     <div class="featured-projects-tags com-flex">
-      <div *ngFor="let tag of communityBuild.tags" class="tag">
+      <!-- <div *ngFor="let tag of communityBuild.tags" class="tag">
         <button nbButton shape="round" size="tiny">{{ tag }}</button>
-      </div>
+      </div> -->
     </div>
   </nb-card-body>
 </nb-card>

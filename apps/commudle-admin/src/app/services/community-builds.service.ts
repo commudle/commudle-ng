@@ -131,4 +131,30 @@ export class CommunityBuildsService {
       params,
     });
   }
+
+  pGetFeaturedProjects(entity_type): Observable<IPagination<ICommunityBuild>> {
+    const params = new HttpParams().set('entity_type', entity_type);
+    return this.http.get<IPagination<ICommunityBuild>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.FEATURED_ITEMS),
+      {
+        params,
+      },
+    );
+  }
+
+  pGetTopBuilders(count: number, page: number, month?: boolean, year?: boolean, allTime?: boolean): Observable<any> {
+    let params = new HttpParams().set('count', count).set('page', page);
+    if (month) {
+      params = params.set('month', month);
+    }
+    if (year) {
+      params = params.set('year', year);
+    }
+    if (allTime) {
+      params = params.set('all-time', allTime);
+    }
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.TOP_BUILDERS), {
+      params,
+    });
+  }
 }

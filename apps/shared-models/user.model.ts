@@ -39,6 +39,7 @@ export interface IUser {
   user_roles_users?: UserRolesUsers;
   deactivated: boolean;
   speaker_events_count: number;
+  total_builds_votes: number;
 }
 
 export interface IUserSearch extends IUser {

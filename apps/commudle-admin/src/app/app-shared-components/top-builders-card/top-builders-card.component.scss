@@ -1,4 +1,5 @@
 nb-card {
+  @apply com-m-0;
   nb-card-body {
     @apply com-p-4;
 
@@ -14,15 +15,23 @@ nb-card {
 
       .text {
         .name {
-          @apply com-text-lg com-font-medium com-text-black com-m-0 com-mb-2 com-line-clamp-1;
+          @apply com-text-lg com-font-medium com-text-black com-m-0 com-line-clamp-1;
         }
 
         .votes {
-          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-text-Quartz;
+          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-2 com-text-Quartz;
+        }
+
+        .designation {
+          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-1 com-text-Quartz;
+        }
+
+        .community-count {
+          @apply com-text-xs com-font-medium com-m-0 com-text-Quartz;
         }
 
         .view-profile {
-          @apply com-flex com-items-center com-text-Dark-Jungle-Green;
+          @apply com-flex com-items-center com-text-Dark-Jungle-Green com-m-0;
 
           nb-icon {
             @apply com-m-0 com-ml-1;

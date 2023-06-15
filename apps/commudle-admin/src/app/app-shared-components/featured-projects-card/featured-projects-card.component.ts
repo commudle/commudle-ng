@@ -13,7 +13,7 @@ import { SharedComponentsModule } from '../../../../../shared-components/shared-
   imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule],
 })
 export class FeaturedProjectsCardComponent implements OnInit {
-  @Input() communityBuild;
+  @Input() featuredProject;
   moment = moment;
   constructor() {}
 
