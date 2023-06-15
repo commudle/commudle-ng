@@ -5,7 +5,7 @@ nb-card {
     @apply com-p-0;
 
     div {
-      @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col-reverse md:com-justify-between;
+      @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between;
 
       .header-text {
         @apply com-flex com-flex-col md:com-pl-24 md:com-pr-0 com-px-4 md:com-pt-10 md:com-pb-8 com-py-6 md:com-w-[737px] md:com-min-h-[386px] com-w-full com-h-full;

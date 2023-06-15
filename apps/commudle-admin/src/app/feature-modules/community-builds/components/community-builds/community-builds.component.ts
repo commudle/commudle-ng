@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
-import { ICommunityBuild } from 'apps/shared-models/community-build.model';
-import { IPagination } from 'apps/shared-models/pagination.model';
+// import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
+// import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
@@ -10,18 +9,18 @@ import { SeoService } from 'apps/shared-services/seo.service';
   styleUrls: ['./community-builds.component.scss'],
 })
 export class CommunityBuildsComponent implements OnInit {
-  communityBuilds: ICommunityBuild[] = [];
+  // communityBuilds: ICommunityBuild[] = [];
   // page = 1;
   // count = 10;
   // total: number;
   // isLoading = false;
   // canLoadMore = true;
-  timePeriod: string;
-  month = false;
-  year = false;
-  allTime = false;
+  // timePeriod: string;
+  // month = false;
+  // year = false;
+  // allTime = false;
 
-  constructor(private communityBuildsService: CommunityBuildsService, private seoService: SeoService) {}
+  constructor(private seoService: SeoService) {}
 
   ngOnInit() {
     this.seoService.setTags(
@@ -29,22 +28,27 @@ export class CommunityBuildsComponent implements OnInit {
       'Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
-    this.getCommunityBuilds();
+    // this.getCommunityBuilds();
   }
 
-  filter() {
-    console.log('called');
-    if (this.timePeriod === 'month') {
-      this.month = true;
-    }
-    if (this.timePeriod === 'year') {
-      this.year = true;
-    }
-    if (this.timePeriod === 'all-time') {
-      this.allTime = true;
-    }
-    this.getCommunityBuilds();
-  }
+  // filter() {
+  //   if (this.timePeriod === 'month') {
+  //     this.month = true;
+  //     this.year = false;
+  //     this.allTime = false;
+  //   }
+  //   if (this.timePeriod === 'year') {
+  //     this.month = false;
+  //     this.year = true;
+  //     this.allTime = false;
+  //   }
+  //   if (this.timePeriod === 'all-time') {
+  //     this.month = false;
+  //     this.year = false;
+  //     this.allTime = true;
+  //   }
+  //   this.getCommunityBuilds();
+  // }
 
   // getCommunityBuilds() {
   //   if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
@@ -63,17 +67,17 @@ export class CommunityBuildsComponent implements OnInit {
   //   }
   // }
 
-  getCommunityBuilds(isAllFilterSelected?) {
-    if (isAllFilterSelected) {
-      this.month = false;
-      this.year = false;
-      this.allTime = false;
-    }
-    this.communityBuilds = [];
-    this.communityBuildsService
-      .pGetAll('votes_count', this.month, this.year, this.allTime)
-      .subscribe((data: IPagination<ICommunityBuild>) => {
-        this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      });
-  }
+  // getCommunityBuilds(isAllFilterSelected?) {
+  //   if (isAllFilterSelected) {
+  //     this.month = false;
+  //     this.year = false;
+  //     this.allTime = false;
+  //   }
+  //   this.communityBuilds = [];
+  //   this.communityBuildsService
+  //     .pGetAll('votes_count', this.month, this.year, this.allTime)
+  //     .subscribe((data: IPagination<ICommunityBuild>) => {
+  //       this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+  //     });
+  // }
 }

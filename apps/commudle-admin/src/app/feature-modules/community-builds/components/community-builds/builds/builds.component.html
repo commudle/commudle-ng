@@ -1,0 +1,40 @@
+<div class="builds">
+  <div class="heading-filter">
+    <h5 class="heading">Get inspired from these builds</h5>
+    <div class="filters">
+      <button
+        nbButton
+        status="basic"
+        class="all-filter-button"
+        shape="round"
+        size="small"
+        (click)="getCommunityBuilds(true)"
+      >
+        All
+      </button>
+      <nb-select
+        placeholder="Most Popular"
+        size="small"
+        shape="round"
+        status="basic"
+        class="most-popular-filter"
+        [(ngModel)]="timePeriod"
+        (selectedChange)="filter()"
+      >
+        <nb-option value="month"> Highest upvoted this month</nb-option>
+        <nb-option value="year">Highest upvoted this year</nb-option>
+        <nb-option value="all-time">Highest upvoted all time</nb-option>
+      </nb-select>
+    </div>
+  </div>
+  <!-- [infiniteScrollDisabled]="!(canLoadMore && total)" -->
+  <!-- (scrolled)="getCommunityBuilds()" -->
+  <div appInfiniteScroll *ngFor="let communityBuild of communityBuilds" class="builds-card">
+    <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
+  </div>
+  <!-- <div *ngIf="isLoading" class="loading-spinner">
+      <div class="spinner">
+        <div *ngFor="let _ of [].constructor(5)"></div>
+      </div>
+    </div> -->
+</div>

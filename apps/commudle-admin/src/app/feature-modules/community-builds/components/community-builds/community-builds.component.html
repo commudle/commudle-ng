@@ -5,34 +5,8 @@
       <!-- <div class="one-column-layout"></div> -->
       <div *appBreakpoints="'>lg'" class="two-column-layout medium">
         <div class="main-column">
-          <!-- <nb-card class="community-builds-header">
-          <nb-card-body>
-            <h1 class="community-builds-title">
-              <nb-icon icon="bulb-outline" status="warning"></nb-icon>
-              Builds
-            </h1>
-            <h4 class="community-builds-subtitle">
-              Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software
-              developers. Share a project to get recognition & inspire others.
-            </h4>
-            <h4 class="community-builds-subtitle">
-              Share those side
-              <strong>Projects</strong>
-              which you coded and inspire thousands of software developers. The best ones get featured.
-            </h4>
-            <a
-              [routerLink]="['/builds/create']"
-              class="community-build-create-btn"
-              nbButton
-              size="small"
-              status="primary"
-            >
-              <nb-icon icon="plus"></nb-icon>
-              Share Your Build
-            </a>
-          </nb-card-body>
-        </nb-card> -->
-          <div class="builds">
+          <commudle-builds></commudle-builds>
+          <!-- <div class="builds">
             <div class="heading-filter">
               <h5 class="heading">Get inspired from these builds</h5>
               <div class="filters">
@@ -46,7 +20,6 @@
                 >
                   All
                 </button>
-                <!-- (selectedChange)="getSpeakers($event)" -->
                 <nb-select
                   placeholder="Most Popular"
                   size="small"
@@ -62,17 +35,17 @@
                 </nb-select>
               </div>
             </div>
-            <!-- [infiniteScrollDisabled]="!(canLoadMore && total)" -->
-            <!-- (scrolled)="getCommunityBuilds()" -->
-            <div appInfiniteScroll *ngFor="let communityBuild of communityBuilds" class="builds-card">
+            [infiniteScrollDisabled]="!(canLoadMore && total)" -->
+          <!-- (scrolled)="getCommunityBuilds()" -->
+          <!-- <div appInfiniteScroll *ngFor="let communityBuild of communityBuilds" class="builds-card">
               <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
-            </div>
-            <!-- <div *ngIf="isLoading" class="loading-spinner">
+            </div> -->
+          <!-- <div *ngIf="isLoading" class="loading-spinner">
               <div class="spinner">
                 <div *ngFor="let _ of [].constructor(5)"></div>
               </div>
-            </div> -->
-          </div>
+            </div> 
+          </div> -->
         </div>
         <div class="right-column">
           <div class="publish-build-button">
@@ -84,10 +57,20 @@
           <div>
             <commudle-featured-projects></commudle-featured-projects>
             <commudle-builds-top-builders></commudle-builds-top-builders>
+            <commudle-explore-experts></commudle-explore-experts>
           </div>
           <!-- <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots> -->
           <!-- <app-recommended-builds></app-recommended-builds> -->
         </div>
+      </div>
+      <div *appBreakpoints="'<=lg'" class="one-column-layout">
+        <!-- <div *ngFor="let communityBuild of communityBuilds" class="builds-card">
+          <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
+        </div> -->
+        <commudle-builds></commudle-builds>
+        <commudle-featured-projects></commudle-featured-projects>
+        <commudle-builds-top-builders></commudle-builds-top-builders>
+        <commudle-explore-experts></commudle-explore-experts>
       </div>
     </div>
   </div>

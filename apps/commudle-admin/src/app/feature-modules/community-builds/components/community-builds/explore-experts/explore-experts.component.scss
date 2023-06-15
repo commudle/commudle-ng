@@ -17,18 +17,10 @@ div {
     }
   }
 
-  .tags {
-    @apply com-m-0 com-mb-4 md:com-mt-0 com-mt-2;
-    .activeTag {
-      @apply com-bg-primary-500 com-text-white;
-    }
-  }
-
-  .top-builders {
+  .top-experts {
     @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-x-5 com-mt-4 com-p-0 md:com-pb-8 com-border-0 com-border-b com-border-solid com-border-Bright-Gray-Light;
-    .top-builders-card {
-      @apply com-m-0 com-p-0 md:com-w-[367px] com-h-[132px];
+    .top-expert-card {
+      @apply com-m-0 com-p-0 md:com-w-[367px] md:com-h-[192px];
     }
-    // com-w-[313px] com-h-[132px]
   }
 }

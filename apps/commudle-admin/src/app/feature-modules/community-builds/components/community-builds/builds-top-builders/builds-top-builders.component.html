@@ -12,12 +12,43 @@
       <h4 class="sub-heading">Top Builders you can check out</h4>
     </div>
   </div>
+  <div class="tags">
+    <nb-tag-list>
+      <nb-tag
+        appearance="outline"
+        [text]="options[0]"
+        status="basic"
+        [removable]="month ? 'true' : 'false'"
+        [ngClass]="{ activeTag: month }"
+        (click)="filterByTags(options[0])"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        [text]="options[1]"
+        status="basic"
+        [removable]="year ? 'true' : 'false'"
+        [ngClass]="{ activeTag: year }"
+        (click)="filterByTags(options[1])"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        [text]="options[2]"
+        status="basic"
+        [removable]="allTime ? 'true' : 'false'"
+        [ngClass]="{ activeTag: allTime }"
+        (click)="filterByTags(options[2])"
+      ></nb-tag>
+    </nb-tag-list>
+  </div>
   <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
   <div class="top-builders custom-scrollbar">
-    <!-- *ngFor="let communityBuild of communityBuilds" -->
-    <div class="top-builders-card">
-      <div *appBreakpoints="'>lg'">
-        <commudle-top-builders-card></commudle-top-builders-card>
+    <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
+      <div>
+        <commudle-top-builders-card
+          [topBuilder]="topBuilder"
+          [displayVotes]="true"
+          [displayViewProfile]="true"
+        ></commudle-top-builders-card>
       </div>
       <!-- <div *appBreakpoints="'<=lg'">
           <commudle-featured-communities-card

@@ -14,9 +14,9 @@
   </div>
   <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
   <div class="featured-projects custom-scrollbar">
-    <div class="featured-projects-card" *ngFor="let communityBuild of communityBuilds">
+    <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
       <div *appBreakpoints="'>lg'">
-        <commudle-featured-projects-card [communityBuild]="communityBuild"></commudle-featured-projects-card>
+        <!-- <commudle-featured-projects-card [featuredProject]="featuredProject"></commudle-featured-projects-card> -->
       </div>
       <!-- <div *appBreakpoints="'<=lg'">
         <commudle-featured-communities-card

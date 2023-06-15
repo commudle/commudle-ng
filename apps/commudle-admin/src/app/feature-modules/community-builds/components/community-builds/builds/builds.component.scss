@@ -1,0 +1,22 @@
+.builds {
+  @apply md:com-my-8 com-mx-0 com-my-3 com-p-0 md:com-px-0 com-px-4;
+  .heading-filter {
+    @apply com-flex com-justify-between md:com-mb-0 com-mb-4 com-m-0;
+    .heading {
+      @apply com-mb-1 com-mt-0 com-mx-0 com-text-2xl com-font-normal com-text-black com-hidden md:com-block;
+    }
+
+    .filters {
+      @apply com-flex com-items-center;
+      .all-filter-button {
+        @apply com-mr-3 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-border com-border-solid;
+      }
+      .most-popular-filter {
+        @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green;
+      }
+    }
+  }
+  .builds-card {
+    @apply com-flex com-flex-col com-border-solid com-border-0 com-border-b md:com-py-9 com-py-6 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray-Light;
+  }
+}

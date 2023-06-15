@@ -9,30 +9,17 @@ import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
   styleUrls: ['./featured-projects.component.scss'],
 })
 export class FeaturedProjectsComponent implements OnInit {
-  communityBuilds: ICommunityBuild[] = [];
-  page = 1;
-  count = 10;
-  total: number;
-  isLoading = false;
-  canLoadMore = true;
+  featuredProjects: ICommunityBuild[] = [];
+
   constructor(private communityBuildsService: CommunityBuildsService) {}
 
   ngOnInit(): void {
-    // this.getCommunityBuilds();
+    this.getFeaturedProjects();
   }
 
-  // getCommunityBuilds() {
-  //   if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
-  //     this.isLoading = true;
-  //     this.communityBuildsService.pGetAll().subscribe((data: ICommunityBuilds) => {
-  //       this.communityBuilds = this.communityBuilds.concat(data.community_builds);
-  //       this.page += 1;
-  //       this.total = data.total;
-  //       this.isLoading = false;
-  //       if (this.communityBuilds.length >= this.total) {
-  //         this.canLoadMore = false;
-  //       }
-  //     });
-  //   }
-  // }
+  getFeaturedProjects() {
+    this.communityBuildsService.pGetFeaturedProjects('CommunityBuild').subscribe((data) => {
+      this.featuredProjects = this.featuredProjects.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+    });
+  }
 }
