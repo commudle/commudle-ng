@@ -18,8 +18,35 @@ nb-card {
           @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-11 com-mb-8 com-text-Yankees-Blue;
         }
 
-        .sub-heading {
-          @apply md:com-text-xl com-text-base com-font-bold com-m-0 com-mx-0 md:com-mb-4 com-mb-0 com-text-Chocolate-Traditional;
+        // .sub-heading {
+        //   @apply md:com-text-xl com-text-base com-font-bold com-m-0 com-mx-0 md:com-mb-4 com-mb-0 com-text-Chocolate-Traditional;
+        // }
+        .content {
+          ::ng-deep {
+            p {
+              @apply com-text-xl com-font-semibold;
+              // font-size: 20px;
+              // color: initial;
+            }
+
+            span {
+              // @apply !important com-text-Chocolate-Traditional;
+            }
+            a {
+              color: blue !important;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              color: unset !important;
+            }
+            img {
+              @apply com-max-w-full;
+            }
+          }
         }
       }
     }

@@ -3,7 +3,7 @@
     <div class="community-build-card-image">
       <img
         [alt]="communityBuild.name"
-        [src]="communityBuild.images[0]?.url || '/assets/images/commudle-logo192.png'"
+        [src]="communityBuild.images[0]?.url ? communityBuild.images[0]?.url : staticAssets.community_build_empty_state"
         [title]="communityBuild.name"
       />
     </div>

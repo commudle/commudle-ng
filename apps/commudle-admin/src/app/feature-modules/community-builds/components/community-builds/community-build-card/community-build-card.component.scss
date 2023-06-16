@@ -8,10 +8,10 @@ p {
   .details {
     @apply com-flex com-items-center;
     .community-build-card-image {
-      @apply md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px];
+      @apply md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
 
       img {
-        @apply com-w-[102px] com-h-[68px] com-object-cover md:com-w-[135px] md:com-h-[90px];
+        @apply com-w-full com-h-auto com-object-cover com-rounded;
       }
     }
 

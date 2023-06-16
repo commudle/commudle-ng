@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CBuildTypeDisplay, ICommunityBuild } from 'apps/shared-models/community-build.model';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import * as moment from 'moment';
 
 @Component({
@@ -9,6 +10,7 @@ import * as moment from 'moment';
 })
 export class CommunityBuildCardComponent implements OnInit {
   @Input() communityBuild: ICommunityBuild;
+  staticAssets = staticAssets;
   moment = moment;
 
   CBuildTypeDisplay = CBuildTypeDisplay;

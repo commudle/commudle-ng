@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
-import { ICommunityBuild } from 'apps/shared-models/community-build.model';
-import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-featured-projects',
@@ -11,6 +10,7 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 })
 export class FeaturedProjectsComponent implements OnInit {
   featuredProjects: IFeaturedItems[] = [];
+  staticAssets = staticAssets;
 
   constructor(private communityBuildsService: CommunityBuildsService) {}
 

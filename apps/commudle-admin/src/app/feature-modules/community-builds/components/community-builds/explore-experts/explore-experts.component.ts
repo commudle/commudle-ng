@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'apps/commudle-admin/src/app/services/home.service';
 import { IUser } from 'apps/shared-models/user.model';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-explore-experts',
@@ -9,6 +10,7 @@ import { IUser } from 'apps/shared-models/user.model';
 })
 export class ExploreExpertsComponent implements OnInit {
   experts: IUser[] = [];
+  staticAssets = staticAssets;
 
   constructor(private homeService: HomeService) {}
 

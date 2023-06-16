@@ -4,7 +4,7 @@
       <div class="header-text">
         <h1 class="title">{{ buildsPageHeader.title }}</h1>
         <p class="heading">{{ buildsPageHeader.heading }}</p>
-        <div [innerHTML]="richText"></div>
+        <div [innerHTML]="richText" class="content"></div>
       </div>
       <div class="header-image">
         <img [src]="imageUrl(buildsPageHeader?.header_image).url()" class="com-w-full" />

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
 import { IUser } from 'apps/shared-models/user.model';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-builds-top-builders',
@@ -19,6 +20,8 @@ export class BuildsTopBuildersComponent implements OnInit {
   year = false;
   allTime = false;
   options;
+  staticAssets = staticAssets;
+
   constructor(private communityBuildsService: CommunityBuildsService) {
     this.options = ['This Month', 'This Year', 'All Time'];
   }
