@@ -7,10 +7,10 @@ nb-card {
     a {
       @apply com-no-underline com-flex md:com-flex-row;
       .image {
-        @apply com-w-[100px] com-h-[100px] com-mr-4;
+        @apply com-w-[100px] com-h-[100px] com-mr-4 com-rounded-2xl;
 
         img {
-          @apply com-w-full com-h-full com-rounded-2xl;
+          @apply com-w-auto com-h-full;
         }
       }
 
@@ -24,7 +24,7 @@ nb-card {
         }
 
         .designation {
-          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-1 com-text-Dark-Jungle-Green com-line-clamp-2 com-h-[40px];
+          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-1 com-text-Dark-Jungle-Green com-line-clamp-1;
         }
 
         .community-count {

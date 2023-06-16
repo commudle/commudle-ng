@@ -1,12 +1,12 @@
 <a [routerLink]="[communityBuild.slug]" class="community-build-card">
-  <div class="community-build-card-image">
-    <img
-      [alt]="communityBuild.name"
-      [src]="communityBuild.images[0]?.url || '/assets/images/commudle-logo192.png'"
-      [title]="communityBuild.name"
-    />
-  </div>
   <div class="details">
+    <div class="community-build-card-image">
+      <img
+        [alt]="communityBuild.name"
+        [src]="communityBuild.images[0]?.url || '/assets/images/commudle-logo192.png'"
+        [title]="communityBuild.name"
+      />
+    </div>
     <div class="community-build-card-details">
       <div class="community-build-card-title-time">
         <h5 class="title">{{ communityBuild.name }}</h5>
@@ -17,14 +17,14 @@
         <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
       </div>
     </div>
-    <div class="votes">
-      <app-votes-display
-        [icon]="'star'"
-        [votableId]="communityBuild.id"
-        [votableType]="'CommunityBuild'"
-        [votesDirectionVertical]="true"
-        size="mini"
-      ></app-votes-display>
-    </div>
+  </div>
+  <div class="votes">
+    <app-votes-display
+      [icon]="'star'"
+      [votableId]="communityBuild.id"
+      [votableType]="'CommunityBuild'"
+      [votesDirectionVertical]="true"
+      size="mini"
+    ></app-votes-display>
   </div>
 </a>

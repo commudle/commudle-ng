@@ -21,7 +21,9 @@
             topBuilder.total_builds_votes !== 1 && topBuilder.total_builds_votes > 0 ? 's' : ''
           }}
         </div>
-        <div *ngIf="displayDesignation" class="designation">{{ topBuilder.designation }}</div>
+        <div *ngIf="displayDesignation" class="designation" [title]="topBuilder.designation">
+          {{ topBuilder.designation }}
+        </div>
         <div *ngIf="displayCommunityCount" class="community-count">
           {{ topBuilder.published_community_builds_count }} Build{{
             topBuilder.published_community_builds_count !== 1 && topBuilder.published_community_builds_count > 0

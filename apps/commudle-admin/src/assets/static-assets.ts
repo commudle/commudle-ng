@@ -28,4 +28,7 @@ export const staticAssets = {
 
   looking_for_work:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg',
+
+  community_build_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKzBxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e5e8758fa8ec29c35266d3a555b2c2945c2a34b2/Build%20Empty%20State.png',
 };

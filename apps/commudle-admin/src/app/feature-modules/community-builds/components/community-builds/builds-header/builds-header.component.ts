@@ -9,6 +9,8 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 })
 export class BuildsHeaderComponent implements OnInit {
   buildsPageHeader: IListingPageHeader;
+  richText: string;
+
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class BuildsHeaderComponent implements OnInit {
   getHeaderText() {
     this.cmsService.getDataBySlug('builds').subscribe((data) => {
       this.buildsPageHeader = data;
+      this.richText = this.cmsService.getHtmlFromBlock(data);
     });
   }
 }
