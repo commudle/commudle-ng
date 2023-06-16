@@ -5,13 +5,14 @@ import { MiniUserProfileModule } from '../../../../../shared-modules/mini-user-p
 import * as moment from 'moment';
 import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'commudle-featured-projects-card',
   standalone: true,
   templateUrl: './featured-projects-card.component.html',
   styleUrls: ['./featured-projects-card.component.scss'],
-  imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule],
+  imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule, RouterModule],
 })
 export class FeaturedProjectsCardComponent implements OnInit {
   @Input() featuredProject: IFeaturedItems;

@@ -1,25 +1,27 @@
 <nb-card>
   <nb-card-body>
-    <div class="featured-projects-card">
-      <div class="details">
-        <div class="user-profile-card">
-          <app-user-profile-card-medium [user]="featuredProject.community_build.user"> </app-user-profile-card-medium>
+    <a [routerLink]="[featuredProject.community_build.slug]">
+      <div class="featured-projects-card">
+        <div class="details">
+          <div class="user-profile-card">
+            <app-user-profile-card-medium [user]="featuredProject.community_build.user"> </app-user-profile-card-medium>
+          </div>
+          <h5 class="title">{{ featuredProject.community_build.name }}</h5>
+          <p class="time">{{ moment(featuredProject.community_build.created_at).format('dddd, MMM Do, YYYY') }}</p>
         </div>
-        <h5 class="title">{{ featuredProject.community_build.name }}</h5>
-        <p class="time">{{ moment(featuredProject.community_build.created_at).format('dddd, MMM Do, YYYY') }}</p>
+        <div class="votes">
+          <app-votes-display
+            [icon]="'star'"
+            [votableId]="featuredProject.community_build.id"
+            [votableType]="'CommunityBuild'"
+            [votesDirectionVertical]="true"
+            size="mini"
+          ></app-votes-display>
+        </div>
       </div>
-      <div class="votes">
-        <app-votes-display
-          [icon]="'star'"
-          [votableId]="featuredProject.community_build.id"
-          [votableType]="'CommunityBuild'"
-          [votesDirectionVertical]="true"
-          size="mini"
-        ></app-votes-display>
+      <div>
+        <app-tag [tags]="featuredProject.community_build.tags" [customStyle]="true" [size]="'tiny'"></app-tag>
       </div>
-    </div>
-    <div>
-      <app-tag [tags]="featuredProject.community_build.tags" [customStyle]="true" [size]="'tiny'"></app-tag>
-    </div>
+    </a>
   </nb-card-body>
 </nb-card>

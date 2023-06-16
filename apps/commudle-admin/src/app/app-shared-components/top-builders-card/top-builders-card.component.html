@@ -37,9 +37,9 @@
         <p *ngIf="displayViewProfile" class="view-profile">
           View Profile<nb-icon icon="arrow-forward-outline"></nb-icon>
         </p>
-        <div *ngIf="showFollowButton">
-          <app-user-follow [username]="topBuilder.username" [isMobileWidthFull]="true"></app-user-follow>
-        </div>
+      </div>
+      <div *ngIf="showFollowButton">
+        <app-user-follow [username]="topBuilder.username" [isMobileWidthFull]="true"></app-user-follow>
       </div>
     </a>
   </nb-card-body>

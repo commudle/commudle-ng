@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
 
 @Component({
   selector: 'commudle-builds-top-builders',
@@ -13,14 +14,18 @@ export class BuildsTopBuildersComponent implements OnInit {
   page = 1;
   count = 10;
   total: number;
-  isLoading = false;
-  canLoadMore = true;
+  // isLoading = false;
+  // canLoadMore = true;
   timePeriod: string;
-  month = false;
+  month = true;
   year = false;
   allTime = false;
   options;
   staticAssets = staticAssets;
+  showSpinner = false;
+  page_info: IPageInfo;
+  isLoading = false;
+  limit = 5;
 
   constructor(private communityBuildsService: CommunityBuildsService) {
     this.options = ['This Month', 'This Year', 'All Time'];
@@ -38,12 +43,12 @@ export class BuildsTopBuildersComponent implements OnInit {
   //       .subscribe((data) => {
   //         this.topBuilders = data;
   //         console.log(this.topBuilders);
-  //         //       this.page += 1;
-  //         //       this.total = data.total;
-  //         //       this.isLoading = false;
-  //         //       if (this.topBuilders.length >= this.total) {
-  //         //         this.canLoadMore = false;
-  //         //       }
+  //       this.page += 1;
+  //       this.total = data.total;
+  //       this.isLoading = false;
+  //       if (this.topBuilders.length >= this.total) {
+  //         this.canLoadMore = false;
+  //       }
   //       });
   //   }
   // }
@@ -71,6 +76,7 @@ export class BuildsTopBuildersComponent implements OnInit {
 
   getCommunityBuilds() {
     this.isLoading = true;
+    // this.showSpinner = true;
     this.communityBuildsService
       .pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime)
       .subscribe((data) => {
@@ -81,3 +87,15 @@ export class BuildsTopBuildersComponent implements OnInit {
       });
   }
 }
+
+// getTechSessions() {
+//   this.isLoadingTechSessions = true;
+//   this.showSpinner = true;
+//   this.eventsService.getTechSessions(this.page_info?.end_cursor, this.limit).subscribe((data) => {
+//     this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+//     this.total = data.total;
+//     this.page_info = data.page_info;
+//     this.isLoadingTechSessions = false;
+//     this.showSpinner = false;
+//   });
+// }

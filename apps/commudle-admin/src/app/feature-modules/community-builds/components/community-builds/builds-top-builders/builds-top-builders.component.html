@@ -64,5 +64,20 @@
         ></commudle-top-builders-card>
       </div>
     </div>
+    <!-- <div class="load-more">
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+      <button
+        *ngIf="page_info?.has_next_page"
+        [disabled]="showSpinner"
+        (click)="getTechSessions()"
+        nbButton
+        outline
+        size="tiny"
+        status="basic"
+      >
+        View More
+      </button>
+    </div>
+  </div> -->
   </div>
 </div>
