@@ -19,6 +19,11 @@ export class TopBuildersCardComponent implements OnInit {
   @Input() displayCommunityCount = false;
   @Input() displayViewProfile = false;
   @Input() showFollowButton = false;
+  @Input() cardHeight: string;
+  @Input() cardWidth: string;
+  @Input() imageHeight: string;
+  @Input() imageWidth: string;
+
   constructor() {}
 
   ngOnInit(): void {}

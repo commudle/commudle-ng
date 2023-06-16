@@ -14,11 +14,30 @@
   </div>
   <div class="top-experts custom-scrollbar">
     <div class="top-expert-card" *ngFor="let topBuilder of experts">
-      <commudle-top-builders-card
-        [topBuilder]="topBuilder"
-        [displayDesignation]="true"
-        [showFollowButton]="true"
-      ></commudle-top-builders-card>
+      <div *appBreakpoints="'>lg'">
+        <commudle-top-builders-card
+          [topBuilder]="topBuilder"
+          [displayDesignation]="true"
+          [displayCommunityCount]="true"
+          [showFollowButton]="true"
+          [cardWidth]="'367px'"
+          [cardHeight]="'192px'"
+          [imageHeight]="'100px'"
+          [imageWidth]="'100px'"
+        ></commudle-top-builders-card>
+      </div>
+      <div *appBreakpoints="'<=lg'">
+        <commudle-top-builders-card
+          [topBuilder]="topBuilder"
+          [displayDesignation]="true"
+          [displayCommunityCount]="true"
+          [showFollowButton]="true"
+          [cardWidth]="'331px'"
+          [cardHeight]="'182px'"
+          [imageHeight]="'80px'"
+          [imageWidth]="'80px'"
+        ></commudle-top-builders-card>
+      </div>
     </div>
   </div>
 </div>
