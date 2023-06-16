@@ -23,6 +23,7 @@ export class TopBuildersCardComponent implements OnInit {
   @Input() cardWidth: string;
   @Input() imageHeight: string;
   @Input() imageWidth: string;
+  @Input() fontSize: string;
 
   constructor() {}
 

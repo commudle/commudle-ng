@@ -19,20 +19,17 @@ p {
       @apply com-w-full md:com-pl-4 com-pl-2 md:com-pr-[74px] com-pt-0;
 
       .community-build-card-title-time {
-        @apply md:com-flex com-block md:com-flex-row com-flex-col com-items-center com-mb-2;
+        @apply md:com-flex com-block md:com-flex-row com-flex-col com-items-center md:com-mb-2 com-mb-1;
         .title {
-          @apply md:com-text-lg com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4 com-line-clamp-1;
+          @apply md:com-text-lg com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4 com-line-clamp-1 com-mb-1 md:com-mb-0;
         }
 
         .time {
-          @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
+          @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
         }
       }
       .description {
-        @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 com-line-clamp-1;
-      }
-
-      .app-user-profile-card {
+        @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 md:com-line-clamp-1 com-hidden md:com-flex;
       }
     }
   }

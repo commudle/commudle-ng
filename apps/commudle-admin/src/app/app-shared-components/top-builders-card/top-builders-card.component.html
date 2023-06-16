@@ -10,7 +10,7 @@
         />
       </div>
       <div class="text">
-        <p class="name">{{ topBuilder.name }}</p>
+        <p class="name" [ngStyle]="{ 'font-size': fontSize }">{{ topBuilder.name }}</p>
         <div *ngIf="displayVotes" class="votes">
           {{ topBuilder.published_community_builds_count }} Build{{
             topBuilder.published_community_builds_count !== 1 && topBuilder.published_community_builds_count > 0

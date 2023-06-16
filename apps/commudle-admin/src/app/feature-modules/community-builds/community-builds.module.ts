@@ -38,6 +38,7 @@ import { BuildsTopBuildersComponent } from './components/community-builds/builds
 import { TopBuildersCardComponent } from '../../app-shared-components/top-builders-card/top-builders-card.component';
 import { ExploreExpertsComponent } from './components/community-builds/explore-experts/explore-experts.component';
 import { BuildsComponent } from './components/community-builds/builds/builds.component';
+import { SkeletonCardsComponent } from '../skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { BuildsComponent } from './components/community-builds/builds/builds.com
     FontAwesomeModule,
     FeaturedProjectsCardComponent,
     TopBuildersCardComponent,
+    SkeletonCardsComponent,
   ],
 })
 export class CommunityBuildsModule {}

@@ -13,8 +13,11 @@
         <p class="time">{{ moment(communityBuild.created_at).format('MMM Do, YYYY') }}</p>
       </div>
       <p class="description">{{ getDescription() }}</p>
-      <div class="app-user-profile-card">
+      <div *appBreakpoints="'>lg'" class="app-user-profile-card">
         <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
+      </div>
+      <div *appBreakpoints="'<=lg'" class="app-user-profile-card">
+        <app-user-profile-card-small [user]="communityBuild.user"></app-user-profile-card-small>
       </div>
     </div>
   </div>

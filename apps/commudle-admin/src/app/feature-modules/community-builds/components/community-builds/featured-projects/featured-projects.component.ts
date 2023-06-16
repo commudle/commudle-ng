@@ -11,6 +11,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 export class FeaturedProjectsComponent implements OnInit {
   featuredProjects: IFeaturedItems[] = [];
   staticAssets = staticAssets;
+  showSpinner = false;
 
   constructor(private communityBuildsService: CommunityBuildsService) {}
 
@@ -19,8 +20,10 @@ export class FeaturedProjectsComponent implements OnInit {
   }
 
   getFeaturedProjects() {
+    // this.showSpinner = true;
     this.communityBuildsService.pGetFeaturedProjects('CommunityBuild').subscribe((data) => {
       this.featuredProjects = this.featuredProjects.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      // this.showSpinner = false;
     });
   }
 }
