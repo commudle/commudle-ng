@@ -49,12 +49,10 @@
                   communityBuildForm.get('build_type').invalid &&
                   communityBuildForm.get('build_type').errors.required
                 "
-                class="validation-error-text"
               >
-                Required Field
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
-
             <div class="field">
               <label>
                 Title of your build*
@@ -73,9 +71,8 @@
                   communityBuildForm.get('name').invalid &&
                   communityBuildForm.get('name').errors.required
                 "
-                class="validation-error-text"
               >
-                Required Field
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
             <div *ngIf="teammates.length > 0" class="field">
@@ -121,9 +118,8 @@
                     emailList.controls[i].get('value').invalid &&
                     emailList.controls[i].get('value').errors.required
                   "
-                  class="validation-error-text"
                 >
-                  Required Field
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </div>
               <button (click)="addTeammate()" class="add-button" nbButton status="primary">
@@ -245,6 +241,9 @@
                   [tags]="tags"
                 ></app-tag>
               </label>
+              <span *ngIf="tags.length < 5">
+                <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags need to be added'"></commudle-alert>
+              </span>
             </div>
 
             <div>
