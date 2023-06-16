@@ -40,6 +40,8 @@ export interface IUser {
   deactivated: boolean;
   speaker_events_count: number;
   total_builds_votes: number;
+  published_community_builds_count: number;
+  communities_count: number;
 }
 
 export interface IUserSearch extends IUser {
