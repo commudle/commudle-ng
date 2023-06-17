@@ -8,6 +8,8 @@ const sanityClient = require('@sanity/client');
 const blocksToHtml = require('@sanity/block-content-to-html');
 const builder = require('@sanity/image-url');
 
+const h = blocksToHtml.h;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -43,10 +45,19 @@ export class CmsService {
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
+    let serializers = {
+      types: {
+        block: (props: any) => {
+          return h('span', { style: { color: props.node.markDefs[0].hex } }, props.children);
+        },
+      },
+    };
+
     return blocksToHtml({
       blocks: value[field],
       projectId: this.projectId,
       dataset: this.dataset,
+      serializers: serializers,
     });
   }
 
