@@ -8,7 +8,12 @@
       <h4 class="sub-heading">Check out our featured projects</h4>
     </div>
   </div>
-  <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
+  <app-skeleton-cards
+    [cards]="5"
+    [ImageShapeSquare]="false"
+    [ImageShapeCircle]="false"
+    *ngIf="showSpinner"
+  ></app-skeleton-cards>
   <div class="featured-projects custom-scrollbar">
     <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
       <commudle-featured-projects-card [featuredProject]="featuredProject"></commudle-featured-projects-card>

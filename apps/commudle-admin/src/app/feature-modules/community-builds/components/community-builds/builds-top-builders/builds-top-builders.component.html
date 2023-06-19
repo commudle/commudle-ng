@@ -36,48 +36,54 @@
       ></nb-tag>
     </nb-tag-list>
   </div>
-  <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
+  <app-skeleton-cards
+    [cards]="4"
+    [ImageShapeSquare]="true"
+    [ImageShapeCircle]="false"
+    *ngIf="showSkeletonCard"
+  ></app-skeleton-cards>
   <div class="top-builders custom-scrollbar">
     <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
       <div *appBreakpoints="'>lg'">
         <commudle-top-builders-card
           [topBuilder]="topBuilder"
           [displayVotes]="true"
-          [displayViewProfile]="true"
+          [allignFollowButtonToRight]="true"
+          [displayDesignation]="true"
           [cardWidth]="'367px'"
           [cardHeight]="'134px'"
           [imageHeight]="'100px'"
           [imageWidth]="'100px'"
-          [fontSize]="'18px'"
+          [fontSize]="'12px'"
         ></commudle-top-builders-card>
       </div>
       <div *appBreakpoints="'<=lg'">
         <commudle-top-builders-card
           [topBuilder]="topBuilder"
           [displayVotes]="true"
-          [displayViewProfile]="true"
+          [allignFollowButtonToRight]="true"
+          [displayDesignation]="true"
           [cardWidth]="'313px'"
           [cardHeight]="'132px'"
           [imageHeight]="'100px'"
           [imageWidth]="'100px'"
-          [fontSize]="'18px'"
+          [fontSize]="'12px'"
         ></commudle-top-builders-card>
       </div>
     </div>
-    <!-- <div class="load-more">
-      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+    <div class="load-more">
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <button
-        *ngIf="page_info?.has_next_page"
-        [disabled]="showSpinner"
-        (click)="getTechSessions()"
+        *ngIf="canLoadMore && total"
+        (click)="getCommunityBuilds()"
         nbButton
         outline
-        size="tiny"
-        status="basic"
+        size="small"
+        status="info"
+        [disabled]="!canLoadMore || isLoading"
       >
-        View More
+        Load More
       </button>
     </div>
-  </div> -->
   </div>
 </div>

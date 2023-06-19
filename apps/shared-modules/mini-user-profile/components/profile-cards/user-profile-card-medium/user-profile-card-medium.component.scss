@@ -16,7 +16,7 @@ p {
   background-color: $white;
 
   .avatar {
-    @apply com-h-8 com-w-8;
+    @apply com-h-7 com-w-7;
     @apply com-rounded-full com-object-cover com-object-center;
     @apply com-mr-2;
   }
@@ -25,9 +25,7 @@ p {
     color: $black;
 
     .name {
-      font-size: $fs-h6;
-      line-height: 14px;
-      @apply com-text-black;
+      @apply com-text-xs com-font-medium com-text-Dark-Jungle-Green;
 
       img {
         height: 10px;
@@ -37,9 +35,7 @@ p {
     }
 
     .designation {
-      font-size: $fs-h7;
-      font-weight: $fw-600;
-      line-height: 12px;
+      @apply com-text-10px com-font-normal com-text-Auro-Metal-Saurus;
     }
   }
 }

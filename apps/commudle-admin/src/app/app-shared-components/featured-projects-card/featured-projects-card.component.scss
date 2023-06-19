@@ -1,7 +1,7 @@
 nb-card {
-  @apply com-m-0 md:com-w-[367px] com-w-[303px];
+  @apply com-m-0 md:com-w-[367px] com-w-[303px] md:com-max-h-[213px] com-h-[227px];
   nb-card-body {
-    @apply com-p-4;
+    @apply com-p-4 com-overflow-hidden;
 
     a {
       @apply com-no-underline;
@@ -16,7 +16,7 @@ nb-card {
           }
 
           .time {
-            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 md:com-mb-6 com-text-Auro-Metal-Saurus;
+            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 md:com-mb-6 com-mb-4 com-text-Auro-Metal-Saurus;
           }
         }
 

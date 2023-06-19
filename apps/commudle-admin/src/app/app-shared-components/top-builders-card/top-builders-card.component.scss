@@ -5,37 +5,30 @@ nb-card {
     @apply com-p-4;
 
     a {
-      @apply com-no-underline com-flex md:com-flex-row;
-      .image {
-        @apply com-w-[100px] com-h-[100px] com-mr-4 com-rounded-2xl;
+      @apply com-no-underline com-flex com-flex-col;
 
-        img {
-          @apply com-w-auto com-h-full;
-        }
-      }
+      .content {
+        @apply com-flex com-flex-row;
+        .image {
+          @apply com-w-[100px] com-h-[100px] com-mr-4;
 
-      .text {
-        .name {
-          @apply com-text-base com-font-medium com-text-black com-m-0 com-line-clamp-1;
+          img {
+            @apply com-w-full com-h-auto com-rounded-lg;
+          }
         }
 
-        .votes {
-          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-2 com-text-Quartz;
-        }
+        .text {
+          @apply com-flex com-flex-col;
+          .name {
+            @apply com-text-base com-font-medium com-text-black com-m-0 com-line-clamp-1;
+          }
 
-        .designation {
-          @apply com-text-sm com-font-normal com-m-0 com-mb-3 com-mt-1 com-text-Dark-Jungle-Green com-line-clamp-1;
-        }
+          .votes {
+            @apply com-text-xs com-font-normal com-m-0 com-mb-1 com-mt-2px com-text-Quartz;
+          }
 
-        .community-count {
-          @apply com-text-xs com-font-medium com-m-0 com-text-Quartz md:com-mb-6 com-mb-4;
-        }
-
-        .view-profile {
-          @apply com-flex com-items-center com-text-Dark-Jungle-Green com-m-0 com-text-sm com-font-medium;
-
-          nb-icon {
-            @apply com-m-0 com-ml-1;
+          .designation {
+            @apply com-font-normal com-m-0 com-mb-3 com-mt-1 com-text-Dark-Jungle-Green com-line-clamp-1;
           }
         }
       }

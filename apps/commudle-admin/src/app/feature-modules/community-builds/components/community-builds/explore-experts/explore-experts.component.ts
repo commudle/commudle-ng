@@ -10,6 +10,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 })
 export class ExploreExpertsComponent implements OnInit {
   experts: IUser[] = [];
+  showSpinner = true;
   staticAssets = staticAssets;
 
   constructor(private homeService: HomeService) {}
@@ -21,6 +22,7 @@ export class ExploreExpertsComponent implements OnInit {
   getExperts() {
     this.homeService.experts().subscribe((value) => {
       this.experts = value;
+      this.showSpinner = false;
     });
   }
 }

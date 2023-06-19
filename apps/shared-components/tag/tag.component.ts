@@ -31,7 +31,7 @@ export class TagComponent implements OnInit, OnDestroy {
   }
 
   getTags() {
-    return this.tags.filter(Boolean);
+    return this.tags.filter(Boolean).slice(0, 5);
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {

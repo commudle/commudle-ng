@@ -5,35 +5,41 @@ p {
 .community-build-card {
   @apply com-flex com-flex-row com-no-underline com-overflow-hidden com-items-center com-justify-between;
 
-  .details {
-    @apply com-flex com-items-center;
-    .community-build-card-image {
-      @apply md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
+  a {
+    @apply com-no-underline;
+    .details {
+      @apply com-flex;
+      .community-build-card-image {
+        @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
 
-      img {
-        @apply com-w-full com-h-full com-object-contain com-rounded;
+        // .upcoming-card-image {
+        //   @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[388px] md:com-h-[145px] com-w-full com-h-full;
+        // }
+        // img {
+        //   @apply com-w-full com-h-full com-object-contain com-rounded;
+        // }
       }
-    }
 
-    .community-build-card-details {
-      @apply com-w-full md:com-pl-4 com-pl-2 md:com-pr-[74px] com-pt-0;
+      .community-build-card-details {
+        @apply com-w-full md:com-pl-4 com-pl-2 md:com-pr-[74px] com-pt-0;
 
-      .community-build-card-title-time {
-        @apply md:com-flex com-block md:com-flex-row com-flex-col com-items-center md:com-mb-2 com-mb-1;
-        .title {
-          @apply md:com-text-lg com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4 com-line-clamp-1 com-mb-1 md:com-mb-0;
+        .community-build-card-title-time {
+          @apply md:com-flex com-block md:com-flex-row com-flex-col com-items-center md:com-mb-2 com-mb-1;
+          .title {
+            @apply md:com-text-lg com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4 com-line-clamp-1 com-mb-1 md:com-mb-0;
+          }
+
+          .time {
+            @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
+          }
         }
-
-        .time {
-          @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
+        .description {
+          @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 md:com-line-clamp-1 com-hidden md:com-flex;
         }
-      }
-      .description {
-        @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 md:com-line-clamp-1 com-hidden md:com-flex;
       }
     }
   }
-  .votes {
-    @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] com-py-3 md:com-rounded-lg com-rounded-none;
-  }
+}
+.votes {
+  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] com-py-3 md:com-rounded-lg com-rounded-none;
 }

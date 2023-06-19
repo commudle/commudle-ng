@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
-import { IPageInfo } from 'apps/shared-models/page-info.model';
 
 @Component({
   selector: 'commudle-builds-top-builders',
@@ -12,20 +11,17 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
 export class BuildsTopBuildersComponent implements OnInit {
   topBuilders: IUser[] = [];
   page = 1;
-  count = 10;
+  count = 2;
   total: number;
-  // isLoading = false;
-  // canLoadMore = true;
+  isLoading = false;
+  canLoadMore = true;
   timePeriod: string;
   month = true;
   year = false;
   allTime = false;
   options;
   staticAssets = staticAssets;
-  showSpinner = false;
-  page_info: IPageInfo;
-  isLoading = false;
-  limit = 5;
+  showSkeletonCard = true;
 
   constructor(private communityBuildsService: CommunityBuildsService) {
     this.options = ['This Month', 'This Year', 'All Time'];
@@ -35,23 +31,24 @@ export class BuildsTopBuildersComponent implements OnInit {
     this.getCommunityBuilds();
   }
 
-  // getCommunityBuilds() {
-  //   if (!this.isLoading && (!this.total || this.topBuilders.length < this.total)) {
-  //     this.isLoading = true;
-  //     this.communityBuildsService
-  //       .pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime)
-  //       .subscribe((data) => {
-  //         this.topBuilders = data;
-  //         console.log(this.topBuilders);
-  //       this.page += 1;
-  //       this.total = data.total;
-  //       this.isLoading = false;
-  //       if (this.topBuilders.length >= this.total) {
-  //         this.canLoadMore = false;
-  //       }
-  //       });
-  //   }
-  // }
+  getCommunityBuilds() {
+    if (!this.isLoading && (!this.total || this.topBuilders.length < this.total)) {
+      this.isLoading = true;
+      this.showSkeletonCard = true;
+      this.communityBuildsService
+        .pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime)
+        .subscribe((data) => {
+          this.topBuilders = this.topBuilders.concat(data.users);
+          this.page += 1;
+          this.total = data.total;
+          this.showSkeletonCard = false;
+          this.isLoading = false;
+          if (this.topBuilders.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        });
+    }
+  }
 
   filterByTags(event) {
     if (event === this.options[0]) {
@@ -69,33 +66,8 @@ export class BuildsTopBuildersComponent implements OnInit {
       this.year = false;
       this.allTime = !this.allTime;
     }
-    this.total = 0;
     this.page = 1;
+    this.topBuilders = [];
     this.getCommunityBuilds();
   }
-
-  getCommunityBuilds() {
-    this.isLoading = true;
-    // this.showSpinner = true;
-    this.communityBuildsService
-      .pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime)
-      .subscribe((data) => {
-        this.isLoading = false;
-        this.topBuilders = data.users;
-        this.page = +data.page;
-        this.total = data.total;
-      });
-  }
 }
-
-// getTechSessions() {
-//   this.isLoadingTechSessions = true;
-//   this.showSpinner = true;
-//   this.eventsService.getTechSessions(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-//     this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-//     this.total = data.total;
-//     this.page_info = data.page_info;
-//     this.isLoadingTechSessions = false;
-//     this.showSpinner = false;
-//   });
-// }

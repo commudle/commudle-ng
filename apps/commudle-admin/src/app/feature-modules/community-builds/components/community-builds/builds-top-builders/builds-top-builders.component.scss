@@ -18,16 +18,24 @@ div {
   }
 
   .tags {
-    @apply com-m-0 com-mb-4 md:com-mt-0 com-mt-2;
+    @apply com-m-0 com-mb-4 md:com-mt-0 com-mt-2 com-ml-4 md:com-ml-0;
     .activeTag {
       @apply com-bg-primary-500 com-text-white;
     }
   }
 
   .top-builders {
-    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-[60px] md:com-m-0 com-gap-4 md:com-gap-y-5 com-mt-4 com-p-0 md:com-pb-8 com-border-0 md:com-border-b com-border-b-0 com-border-solid com-border-Bright-Gray-Light;
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-[60px] md:com-m-0 com-gap-4 md:com-gap-y-5 com-mt-4 com-p-0 md:com-pb-8 com-border-0 md:com-border-b com-border-b-0 com-border-solid com-border-Bright-Gray-Light com-items-center md:com-justify-center;
     .top-builders-card {
       @apply com-m-0 com-p-0;
+    }
+
+    .load-more {
+      @apply com-text-center md:com-mt-6 com-mt-0;
+
+      app-loading-spinner {
+        @apply com-mb-6;
+      }
     }
   }
 }

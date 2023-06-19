@@ -1,26 +1,38 @@
-<a [routerLink]="[communityBuild.slug]" class="community-build-card">
-  <div class="details">
-    <div class="community-build-card-image">
-      <img
-        [alt]="communityBuild.name"
-        [src]="communityBuild.images[0]?.url ? communityBuild.images[0]?.url : staticAssets.community_build_empty_state"
-        [title]="communityBuild.name"
-      />
+<div class="community-build-card">
+  <a [routerLink]="[communityBuild.slug]">
+    <div class="details">
+      <!-- <img
+          [alt]="communityBuild.name"
+          [src]="
+            communityBuild.images[0]?.url ? communityBuild.images[0]?.url : staticAssets.community_build_empty_state
+          "
+          [title]="communityBuild.name"
+        /> -->
+      <div class="community-build-card-image">
+        <commudle-banner-image
+          [headerImagePath]="
+            communityBuild.images[0] ? communityBuild.images[0].url : staticAssets.community_build_empty_state
+          "
+          [name]="communityBuild.name"
+          [bottomRightCurve]="false"
+          [bottomLeftCurve]="false"
+        ></commudle-banner-image>
+      </div>
+      <div class="community-build-card-details">
+        <div class="community-build-card-title-time">
+          <h5 class="title">{{ communityBuild.name }}</h5>
+          <p class="time">{{ moment(communityBuild.created_at).format('MMM Do, YYYY') }}</p>
+        </div>
+        <p class="description">{{ getDescription() }}</p>
+        <div *appBreakpoints="'>lg'" class="app-user-profile-card">
+          <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
+        </div>
+        <div *appBreakpoints="'<=lg'" class="app-user-profile-card">
+          <app-user-profile-card-small [user]="communityBuild.user"></app-user-profile-card-small>
+        </div>
+      </div>
     </div>
-    <div class="community-build-card-details">
-      <div class="community-build-card-title-time">
-        <h5 class="title">{{ communityBuild.name }}</h5>
-        <p class="time">{{ moment(communityBuild.created_at).format('MMM Do, YYYY') }}</p>
-      </div>
-      <p class="description">{{ getDescription() }}</p>
-      <div *appBreakpoints="'>lg'" class="app-user-profile-card">
-        <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
-      </div>
-      <div *appBreakpoints="'<=lg'" class="app-user-profile-card">
-        <app-user-profile-card-small [user]="communityBuild.user"></app-user-profile-card-small>
-      </div>
-    </div>
-  </div>
+  </a>
   <div class="votes">
     <app-votes-display
       [icon]="'star'"
@@ -30,4 +42,4 @@
       size="mini"
     ></app-votes-display>
   </div>
-</a>
+</div>

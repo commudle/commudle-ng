@@ -99,12 +99,20 @@ export class CommunityBuildsService {
   }
 
   pGetAll(
+    after?: string,
+    limit?: number,
     order_by?: string,
     month?: boolean,
     year?: boolean,
     allTime?: boolean,
   ): Observable<IPagination<ICommunityBuild>> {
     let params = new HttpParams();
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
     if (month) {
       params = params.set('month', month);
     }
@@ -143,7 +151,7 @@ export class CommunityBuildsService {
   }
 
   pGetTopBuilders(count: number, page: number, month?: boolean, year?: boolean, allTime?: boolean): Observable<any> {
-    let params = new HttpParams().set('count', count).set('page', page);
+    let params = new HttpParams().set('count', String(count)).set('page', String(page));
     if (month) {
       params = params.set('month', month);
     }

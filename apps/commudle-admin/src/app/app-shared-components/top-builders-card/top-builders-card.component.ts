@@ -16,13 +16,12 @@ export class TopBuildersCardComponent implements OnInit {
   @Input() topBuilder: IUser;
   @Input() displayVotes = false;
   @Input() displayDesignation = false;
-  @Input() displayCommunityCount = false;
-  @Input() displayViewProfile = false;
   @Input() showFollowButton = false;
   @Input() cardHeight: string;
   @Input() cardWidth: string;
   @Input() imageHeight: string;
   @Input() imageWidth: string;
+  @Input() allignFollowButtonToRight = false;
   @Input() fontSize: string;
 
   constructor() {}

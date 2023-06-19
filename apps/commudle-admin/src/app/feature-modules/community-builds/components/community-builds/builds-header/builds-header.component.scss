@@ -1,38 +1,32 @@
-nb-card {
-  @apply com-m-0 com-p-0 com-border-none md:com-w-[1440px] md:com-min-h-[386px] com-w-full com-h-full;
+.background {
+  @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
-  nb-card-body {
-    @apply com-p-0;
-
-    div {
-      @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between;
-
+  .base-layout {
+    .content {
+      @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
       .header-text {
-        @apply com-flex com-flex-col md:com-pl-24 md:com-pr-0 com-px-4 md:com-pt-10 md:com-pb-8 com-py-6 md:com-w-[737px] md:com-min-h-[386px] com-w-full com-h-full;
+        @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
         .title {
           @apply md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-8 com-text-Yankees-Blue;
         }
 
         .heading {
-          @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-11 com-mb-8 com-text-Yankees-Blue;
+          @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-Yankees-Blue;
         }
 
-        // .sub-heading {
-        //   @apply md:com-text-xl com-text-base com-font-bold com-m-0 com-mx-0 md:com-mb-4 com-mb-0 com-text-Chocolate-Traditional;
-        // }
         .content {
           ::ng-deep {
             p {
-              @apply com-text-xl com-font-semibold;
+              @apply com-text-xl com-m-0;
             }
           }
         }
       }
-    }
 
-    .header-image {
-      @apply com-flex com-items-center;
+      .header-image {
+        @apply com-flex com-items-center com-m-0;
+      }
     }
   }
 }

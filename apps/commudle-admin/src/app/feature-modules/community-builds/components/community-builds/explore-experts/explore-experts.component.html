@@ -8,30 +8,36 @@
       <h4 class="sub-heading">Top experts you can follow</h4>
     </div>
   </div>
+  <app-skeleton-cards
+    [cards]="4"
+    [ImageShapeSquare]="true"
+    [ImageShapeCircle]="false"
+    *ngIf="showSpinner"
+  ></app-skeleton-cards>
   <div class="top-experts custom-scrollbar">
     <div class="top-expert-card" *ngFor="let topBuilder of experts">
       <div *appBreakpoints="'>lg'">
         <commudle-top-builders-card
           [topBuilder]="topBuilder"
           [displayDesignation]="true"
-          [displayCommunityCount]="true"
           [showFollowButton]="true"
           [cardWidth]="'367px'"
           [cardHeight]="'166px'"
           [imageHeight]="'100px'"
           [imageWidth]="'100px'"
+          [fontSize]="'14px'"
         ></commudle-top-builders-card>
       </div>
       <div *appBreakpoints="'<=lg'">
         <commudle-top-builders-card
           [topBuilder]="topBuilder"
           [displayDesignation]="true"
-          [displayCommunityCount]="true"
           [showFollowButton]="true"
           [cardWidth]="'331px'"
-          [cardHeight]="'182px'"
+          [cardHeight]="'160px'"
           [imageHeight]="'80px'"
           [imageWidth]="'80px'"
+          [fontSize]="'14px'"
         ></commudle-top-builders-card>
       </div>
     </div>
