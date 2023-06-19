@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NbCardModule, NbIconModule } from '@commudle/theme';
 import { RouterModule } from '@angular/router';
 import { IUser } from 'apps/shared-models/user.model';
-import { MiniUserProfileModule } from '../../../../../shared-modules/mini-user-profile/mini-user-profile.module';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @Component({
   selector: 'commudle-top-builders-card',

@@ -68,7 +68,6 @@ export class BuildsComponent implements OnInit {
 
   filter() {
     this.isAllFilterSelected = false;
-    console.log('month');
     if (this.timePeriod === 'month') {
       this.month = true;
       this.year = false;
