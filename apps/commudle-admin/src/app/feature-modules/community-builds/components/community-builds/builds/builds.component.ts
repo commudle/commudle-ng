@@ -19,10 +19,11 @@ export class BuildsComponent implements OnInit {
   order_by: string;
   queryParams = {};
   page_info: IPageInfo;
-  loading = true;
+  loading = false;
   total: number;
   isAllFilterSelected = false;
   limit = 5;
+  skeletonLoaderCard = true;
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
@@ -57,6 +58,7 @@ export class BuildsComponent implements OnInit {
           this.isAllFilterSelected = false;
           this.order_by = 'votes_count';
         }
+        this.communityBuilds = [];
         this.getCommunityBuilds();
       } else {
         this.communityBuilds = [];
@@ -95,9 +97,9 @@ export class BuildsComponent implements OnInit {
         'all-time': true,
       };
     }
+    this.communityBuilds = [];
     this.router.navigate([], { queryParams: this.queryParams });
     this.page_info = null;
-    this.communityBuilds = [];
   }
 
   allFilterSelected() {
@@ -107,9 +109,9 @@ export class BuildsComponent implements OnInit {
     this.allTime = false;
     this.order_by = '';
     this.page_info = null;
+    this.communityBuilds = [];
     this.queryParams = {};
     this.router.navigate([], { queryParams: this.queryParams });
-    this.communityBuilds = [];
   }
 
   getCommunityBuilds() {
@@ -125,6 +127,7 @@ export class BuildsComponent implements OnInit {
         this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.total = data.total;
         this.page_info = data.page_info;
+        this.skeletonLoaderCard = false;
         this.loading = false;
       });
   }

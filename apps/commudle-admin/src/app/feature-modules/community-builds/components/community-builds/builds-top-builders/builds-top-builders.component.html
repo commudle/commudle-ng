@@ -72,10 +72,10 @@
       </div>
     </div>
     <div class="load-more">
-      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
       <button
         *ngIf="canLoadMore && total"
-        (click)="getCommunityBuilds()"
+        (click)="getCommunityBuilds(); showSpinner = true"
         nbButton
         outline
         size="small"

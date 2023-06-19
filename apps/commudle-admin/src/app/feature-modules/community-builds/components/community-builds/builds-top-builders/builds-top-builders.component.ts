@@ -22,6 +22,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   options;
   staticAssets = staticAssets;
   showSkeletonCard = true;
+  showSpinner = false;
 
   constructor(private communityBuildsService: CommunityBuildsService) {
     this.options = ['This Month', 'This Year', 'All Time'];
@@ -34,7 +35,6 @@ export class BuildsTopBuildersComponent implements OnInit {
   getCommunityBuilds() {
     if (!this.isLoading && (!this.total || this.topBuilders.length < this.total)) {
       this.isLoading = true;
-      this.showSkeletonCard = true;
       this.communityBuildsService
         .pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime)
         .subscribe((data) => {
@@ -43,6 +43,7 @@ export class BuildsTopBuildersComponent implements OnInit {
           this.total = data.total;
           this.showSkeletonCard = false;
           this.isLoading = false;
+          this.showSpinner = false;
           if (this.topBuilders.length >= this.total) {
             this.canLoadMore = false;
           }
