@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-m-0;
+  @apply com-m-0 com-overflow-hidden;
 
   nb-card-body {
     @apply com-p-4;
@@ -21,6 +21,10 @@ nb-card {
           @apply com-flex com-flex-col;
           .name {
             @apply com-text-base com-font-medium com-text-black com-m-0 com-line-clamp-1;
+
+            .expert-icon {
+              @apply com-h-4 com-w-4 com-ml-2;
+            }
           }
 
           .votes {

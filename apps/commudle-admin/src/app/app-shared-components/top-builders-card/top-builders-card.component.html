@@ -11,7 +11,15 @@
           />
         </div>
         <div class="text">
-          <p class="name">{{ topBuilder.name }}</p>
+          <p class="name">
+            {{ topBuilder.name }}
+            <img
+              *ngIf="topBuilder.is_expert"
+              alt="Expert Tick"
+              class="expert-icon"
+              src="/assets/images/Expert-Tick.svg"
+            />
+          </p>
           <div
             *ngIf="displayDesignation"
             [ngStyle]="{ 'font-size': fontSize }"
