@@ -8,7 +8,7 @@ nb-card {
       @apply com-no-underline;
 
       .content {
-        @apply com-no-underline com-flex com-items-start com-mb-3;
+        @apply com-no-underline com-flex com-items-start md:com-mb-3 com-mb-2;
 
         nb-icon {
           @apply com-mr-2 com-text-gray-500 com-mt-1 com-text-base com-flex-shrink-0;
@@ -21,14 +21,14 @@ nb-card {
 
       .details {
         .event-title {
-          @apply com-text-sm com-font-normal com-m-0 com-text-Dark-Jungle-Green com-line-clamp-1 com-mb-2;
+          @apply md:com-text-sm com-text-base com-font-normal com-m-0 com-text-Dark-Jungle-Green com-line-clamp-1 com-mb-2;
         }
         .event-time {
           @apply com-text-xs com-font-normal com-mb-3 com-mt-0 com-text-Auro-Metal-Saurus;
         }
       }
       .community-badge {
-        @apply com-mb-2 md:com-m-0 com-min-h-[28px];
+        @apply com-m-0 com-min-h-[28px];
       }
     }
   }

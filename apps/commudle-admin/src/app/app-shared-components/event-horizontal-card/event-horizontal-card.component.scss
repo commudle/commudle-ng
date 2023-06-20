@@ -19,13 +19,13 @@ nb-card {
         }
 
         .upcoming-card-details-desktop {
-          @apply md:com-p-3 md:com-pb-0 com-p-4;
+          @apply md:com-p-3 md:com-pb-0 com-px-4 com-py-5;
           flex: 1;
           div {
-            @apply com-flex md:com-flex-col com-flex-col-reverse;
+            @apply com-flex com-flex-col;
 
             div {
-              @apply md:com-flex md:com-flex-row md:com-justify-between md:com-items-center com-flex-col;
+              @apply com-flex com-flex-row com-justify-between com-items-center;
 
               .interested-members {
                 button {
@@ -41,53 +41,21 @@ nb-card {
               }
 
               .event-time {
-                @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal md:com-mb-3 com-mb-1 com-mt-0 com-text-Auro-Metal-Saurus;
+                @apply com-text-xs com-font-medium md:com-mb-3 com-mb-4 com-mt-0 com-text-Auro-Metal-Saurus;
               }
             }
 
             .event-title {
-              @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-1;
+              @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-3 com-line-clamp-1;
             }
           }
 
           .community-badge {
-            @apply com-m-0 md:com-my-0 com-mt-17px com-mb-7;
+            @apply com-m-0 md:com-my-0 com-mb-6;
           }
 
           .register-button {
-            @apply com-border com-m-0 com-bg-transparent com-py-5px com-flex com-ml-auto com-px-6px;
-          }
-        }
-
-        .upcoming-card-details-mobile {
-          @apply com-p-4;
-          flex: 1;
-          div {
-            .event-time {
-              @apply md:com-text-xs com-text-sm md:com-font-medium com-font-normal md:com-mb-3 com-mb-1 com-mt-0 com-text-Auro-Metal-Saurus;
-            }
-            .event-title {
-              @apply com-text-xl com-font-semibold com-text-Dark-Jungle-Green com-mt-0 md:com-mb-3 com-mb-1 com-line-clamp-1;
-            }
-          }
-
-          .community-badge {
-            @apply com-m-0 md:com-my-0 com-mt-17px com-mb-7;
-          }
-
-          .interested-members {
-            @apply com-flex com-items-center com-mb-7;
-            nb-icon {
-              @apply com-mr-2 com-text-Dark-Jungle-Green com-h-[16px] com-shrink-0;
-            }
-
-            span {
-              @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
-            }
-          }
-
-          .register-button {
-            @apply com-border-0 com-m-0 com-bg-transparent com-py-5px com-px-6px com-mx-0;
+            @apply com-border com-m-0 com-bg-transparent com-py-5px com-flex md:com-ml-auto com-ml-0 com-px-6px;
           }
         }
       }

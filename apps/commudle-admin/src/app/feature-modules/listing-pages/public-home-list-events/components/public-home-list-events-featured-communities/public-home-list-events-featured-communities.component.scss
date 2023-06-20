@@ -6,10 +6,10 @@ nb-card {
       @apply com-m-0 md:com-mb-8 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
       .title {
-        @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
       }
       .sub-heading {
-        @apply com-text-xs com-font-normal com-text-gunmetal com-m-0;
+        @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-m-0;
       }
     }
 

@@ -1,5 +1,5 @@
 .title {
-  @apply md:com-text-2xl com-text-base md:com-font-bold com-font-semibold com-text-Dark-Jungle-Green md:com-mt-10 md:com-mb-[26px] md:com-mx-0 com-mx-4 com-mt-8 com-mb-6 com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b-0 com-border-b com-p-0 md:com-pb-0 com-pb-6;
+  @apply com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-mt-10 md:com-mb-[26px] md:com-mx-0 com-mx-4 com-mt-8 com-mb-6 com-border-solid com-border-Bright-Gray-Light com-border-0 md:com-border-b-0 com-border-b com-p-0 md:com-pb-0 com-pb-6;
 
   button {
     @apply com-mr-4;
@@ -10,7 +10,7 @@
   }
 }
 .past-events-card-list {
-  @apply com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-5 md:com-m-0 com-mx-4 com-my-0;
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-3 md:com-gap-5 com-gap-6 md:com-m-0 com-mx-4 com-my-0;
 }
 
 .load-more {

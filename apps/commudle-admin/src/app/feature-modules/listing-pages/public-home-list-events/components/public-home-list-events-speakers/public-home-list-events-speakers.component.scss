@@ -1,15 +1,15 @@
 nb-card {
-  @apply md:com-bg-Bright-Gray/30 com-m-0 md:com-mb-6 md:com-w-[348px] com-border-none;
+  @apply md:com-bg-Bright-Gray/30 com-m-0 md:com-mb-6 md:com-w-[348px] com-border-none md:com-block;
   nb-card-body {
     @apply md:com-p-4 com-p-0;
     .heading {
-      @apply com-mt-8 md:com-mt-0 com-mb-4 com-mx-0 com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col md:com-mb-7;
+      @apply com-mt-8 md:com-mt-0 com-mb-4 com-mx-0 com-flex md:com-py-0 md:com-px-4 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col md:com-mb-7;
 
       .title {
-        @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
       }
       .sub-heading {
-        @apply com-text-xs com-font-normal com-text-gunmetal com-m-0;
+        @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-m-0;
       }
     }
 
@@ -21,7 +21,7 @@ nb-card {
     }
 
     .load-more {
-      @apply com-text-center md:com-mt-8 com-mt-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray-Light com-p-0 com-pb-0 md:com-pb-6;
+      @apply com-text-center md:com-mt-8 com-mt-0 com-p-0;
 
       app-loading-spinner {
         @apply md:com-mb-6 com-m-0;

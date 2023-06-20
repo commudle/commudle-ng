@@ -24,11 +24,11 @@ div {
         .details {
           @apply com-flex com-flex-col md:com-mr-3;
           .community-name {
-            @apply com-text-sm com-font-semibold com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
+            @apply md:com-text-sm com-text-base com-font-semibold com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
           }
 
           .mini-description {
-            @apply com-text-xs com-font-normal com-text-gunmetal com-mt-0 md:com-mb-0 com-mb-4 com-line-clamp-2 com-h-[32px];
+            @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-mt-0 md:com-mb-0 com-mb-4 com-line-clamp-2 com-h-[38px];
           }
         }
       }

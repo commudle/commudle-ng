@@ -23,8 +23,7 @@ p {
 
     .name {
       p {
-        @apply com-font-medium com-text-sm;
-        color: $black;
+        @apply com-font-medium md:com-text-sm com-text-base com-text-black;
         word-break: break-word;
       }
 
@@ -36,19 +35,17 @@ p {
     }
 
     .username {
-      @apply com-text-sm com-text-Quartz com-mt-2px;
+      @apply md:com-text-sm com-text-xs com-text-Quartz com-mt-2px;
       word-break: break-word;
     }
 
     .designation {
-      @apply com-mt-1 com-text-sm com-text-black;
+      @apply com-mt-1 com-text-sm com-font-normal com-text-black;
       word-break: break-word;
     }
 
     .about {
-      @apply com-mt-1;
-      color: $black;
-      font-size: $fs-h6;
+      @apply com-mt-1 com-text-sm com-font-normal com-text-black;
       word-break: break-word;
     }
 
