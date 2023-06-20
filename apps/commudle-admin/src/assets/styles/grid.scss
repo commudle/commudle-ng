@@ -86,11 +86,11 @@ HTML Emmet's
     &.medium {
       .left-column,
       .right-column {
-        @apply com-col-span-8;
+        @apply com-col-span-7;
       }
 
       .main-column {
-        @apply com-col-span-16;
+        @apply com-col-span-17;
       }
     }
 

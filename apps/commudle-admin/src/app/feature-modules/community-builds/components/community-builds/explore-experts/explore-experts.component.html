@@ -1,45 +1,37 @@
-<div>
-  <div class="heading">
-    <button nbButton status="basic" class="image">
-      <img alt="Experts" src="{{ staticAssets.emojis.shield }}" title="Experts" />
-    </button>
-    <div class="text">
-      <h3 class="title">EXPLORE EXPERTS</h3>
-      <h4 class="sub-heading">Top experts you can follow</h4>
-    </div>
-  </div>
-  <app-skeleton-cards
-    [cards]="4"
-    [ImageShapeSquare]="true"
-    [ImageShapeCircle]="false"
-    *ngIf="showSpinner"
-  ></app-skeleton-cards>
-  <div class="top-experts custom-scrollbar">
-    <div class="top-expert-card" *ngFor="let topBuilder of experts">
-      <div *appBreakpoints="'>lg'">
-        <commudle-top-builders-card
-          [topBuilder]="topBuilder"
-          [displayDesignation]="true"
-          [showFollowButton]="true"
-          [cardWidth]="'367px'"
-          [cardHeight]="'166px'"
-          [imageHeight]="'100px'"
-          [imageWidth]="'100px'"
-          [fontSize]="'14px'"
-        ></commudle-top-builders-card>
-      </div>
-      <div *appBreakpoints="'<=lg'">
-        <commudle-top-builders-card
-          [topBuilder]="topBuilder"
-          [displayDesignation]="true"
-          [showFollowButton]="true"
-          [cardWidth]="'331px'"
-          [cardHeight]="'160px'"
-          [imageHeight]="'80px'"
-          [imageWidth]="'80px'"
-          [fontSize]="'14px'"
-        ></commudle-top-builders-card>
+<nb-card>
+  <nb-card-body>
+    <div class="heading">
+      <button nbButton status="basic" class="image">
+        <img alt="Experts" src="{{ staticAssets.emojis.shield }}" title="Experts" />
+      </button>
+      <div class="text">
+        <h3 class="title">EXPLORE EXPERTS</h3>
+        <h4 class="sub-heading">Top experts you can follow</h4>
       </div>
     </div>
-  </div>
-</div>
+    <app-skeleton-cards
+      [cards]="4"
+      [ImageShapeSquare]="true"
+      [ImageShapeCircle]="false"
+      *ngIf="showSpinner"
+    ></app-skeleton-cards>
+    <div class="top-experts custom-scrollbar">
+      <div class="top-expert-card" *ngFor="let topBuilder of experts">
+        <div *appBreakpoints="'>lg'">
+          <commudle-top-builders-card
+            [topBuilder]="topBuilder"
+            [displayDesignation]="true"
+            [showFollowButton]="true"
+          ></commudle-top-builders-card>
+        </div>
+        <div *appBreakpoints="'<=lg'">
+          <commudle-top-builders-card
+            [topBuilder]="topBuilder"
+            [displayDesignation]="true"
+            [showFollowButton]="true"
+          ></commudle-top-builders-card>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

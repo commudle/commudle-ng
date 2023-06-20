@@ -1,5 +1,5 @@
 .publish-build-button {
-  @apply md:com-mx-0 com-mx-4 md:com-my-8 com-mt-4 com-mb-6 md:com-w-[367px];
+  @apply md:com-mx-0 com-mx-4 md:com-my-8 com-mt-4 com-mb-6 md:com-w-[343px];
   .button {
     @apply com-w-full com-text-Chocolate-Traditional com-bg-Seashell com-border-Chocolate-Traditional com-rounded-lg;
   }
@@ -9,12 +9,12 @@
   @apply com-mb-8;
   .container {
     .main-column {
-      @apply com-p-0 md:com-pr-10;
+      @apply com-p-0 md:com-pr-[30px];
       @apply com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
     }
 
     .right-column {
-      @apply com-m-0 com-ml-9;
+      @apply com-m-0 com-ml-[30px];
     }
   }
 }

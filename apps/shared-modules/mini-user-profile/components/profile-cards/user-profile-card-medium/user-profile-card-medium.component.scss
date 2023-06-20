@@ -16,9 +16,7 @@ p {
   background-color: $white;
 
   .avatar {
-    @apply com-h-7 com-w-7;
-    @apply com-rounded-full com-object-cover com-object-center;
-    @apply com-mr-2;
+    @apply com-h-7 com-w-7 com-rounded-full com-object-cover com-object-center com-mr-1;
   }
 
   .details {

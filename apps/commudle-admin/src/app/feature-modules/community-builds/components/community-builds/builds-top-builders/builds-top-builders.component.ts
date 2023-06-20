@@ -11,7 +11,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 export class BuildsTopBuildersComponent implements OnInit {
   topBuilders: IUser[] = [];
   page = 1;
-  count = 2;
+  count = 5;
   total: number;
   isLoading = false;
   canLoadMore = true;

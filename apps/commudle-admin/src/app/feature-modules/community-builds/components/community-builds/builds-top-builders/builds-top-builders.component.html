@@ -1,89 +1,86 @@
-<div>
-  <div class="heading">
-    <button nbButton status="basic" class="image">
-      <img alt="Top Builders" src="{{ staticAssets.emojis.medal_of_honour }}" title="Top Builders" />
-    </button>
-    <div class="text">
-      <h3 class="title">TOP BUILDERS</h3>
-      <h4 class="sub-heading">Top Builders you can check out</h4>
-    </div>
-  </div>
-  <div class="tags">
-    <nb-tag-list>
-      <nb-tag
-        appearance="outline"
-        [text]="options[0]"
-        status="basic"
-        [removable]="month ? 'true' : 'false'"
-        [ngClass]="{ activeTag: month }"
-        (click)="filterByTags(options[0])"
-      ></nb-tag>
-      <nb-tag
-        appearance="outline"
-        [text]="options[1]"
-        status="basic"
-        [removable]="year ? 'true' : 'false'"
-        [ngClass]="{ activeTag: year }"
-        (click)="filterByTags(options[1])"
-      ></nb-tag>
-      <nb-tag
-        appearance="outline"
-        [text]="options[2]"
-        status="basic"
-        [removable]="allTime ? 'true' : 'false'"
-        [ngClass]="{ activeTag: allTime }"
-        (click)="filterByTags(options[2])"
-      ></nb-tag>
-    </nb-tag-list>
-  </div>
-  <app-skeleton-cards
-    [cards]="4"
-    [ImageShapeSquare]="true"
-    [ImageShapeCircle]="false"
-    *ngIf="showSkeletonCard"
-  ></app-skeleton-cards>
-  <div class="top-builders custom-scrollbar">
-    <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
-      <div *appBreakpoints="'>lg'">
-        <commudle-top-builders-card
-          [topBuilder]="topBuilder"
-          [displayVotes]="true"
-          [allignFollowButtonToRight]="true"
-          [displayDesignation]="true"
-          [cardWidth]="'367px'"
-          [cardHeight]="'134px'"
-          [imageHeight]="'100px'"
-          [imageWidth]="'100px'"
-          [fontSize]="'12px'"
-        ></commudle-top-builders-card>
-      </div>
-      <div *appBreakpoints="'<=lg'">
-        <commudle-top-builders-card
-          [topBuilder]="topBuilder"
-          [displayVotes]="true"
-          [allignFollowButtonToRight]="true"
-          [displayDesignation]="true"
-          [cardWidth]="'313px'"
-          [cardHeight]="'132px'"
-          [imageHeight]="'100px'"
-          [imageWidth]="'100px'"
-          [fontSize]="'12px'"
-        ></commudle-top-builders-card>
-      </div>
-    </div>
-    <div class="load-more">
-      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-      <button
-        *ngIf="canLoadMore && total"
-        (click)="getCommunityBuilds(); showSpinner = true"
-        nbButton
-        outline
-        size="small"
-        status="info"
-        [disabled]="!canLoadMore || isLoading"
-      >
-        Load More
+<nb-card>
+  <nb-card-body>
+    <div class="heading">
+      <button nbButton status="basic" class="image">
+        <img alt="Top Builders" src="{{ staticAssets.emojis.medal_of_honour }}" title="Top Builders" />
       </button>
+      <div class="text">
+        <h3 class="title">TOP BUILDERS</h3>
+        <h4 class="sub-heading">Top Builders you can check out</h4>
+      </div>
     </div>
-  </div>
-</div>
+    <div class="tags">
+      <nb-tag-list>
+        <nb-tag
+          appearance="outline"
+          [text]="options[0]"
+          status="basic"
+          size="small"
+          [removable]="month ? 'true' : 'false'"
+          [ngClass]="{ activeTag: month }"
+          (click)="filterByTags(options[0])"
+        ></nb-tag>
+        <nb-tag
+          appearance="outline"
+          [text]="options[1]"
+          status="basic"
+          size="small"
+          [removable]="year ? 'true' : 'false'"
+          [ngClass]="{ activeTag: year }"
+          (click)="filterByTags(options[1])"
+        ></nb-tag>
+        <nb-tag
+          appearance="outline"
+          [text]="options[2]"
+          status="basic"
+          size="small"
+          [removable]="allTime ? 'true' : 'false'"
+          [ngClass]="{ activeTag: allTime }"
+          (click)="filterByTags(options[2])"
+        ></nb-tag>
+      </nb-tag-list>
+    </div>
+    <app-skeleton-cards
+      [cards]="4"
+      [ImageShapeSquare]="true"
+      [ImageShapeCircle]="false"
+      *ngIf="showSkeletonCard"
+    ></app-skeleton-cards>
+    <div class="top-builders custom-scrollbar">
+      <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
+        <div *appBreakpoints="'>lg'">
+          <commudle-top-builders-card
+            [topBuilder]="topBuilder"
+            [displayVotes]="true"
+            [showFollowButton]="true"
+            [displayDesignation]="true"
+            [maxUserNameLength]="10"
+          ></commudle-top-builders-card>
+        </div>
+        <div *appBreakpoints="'<=lg'">
+          <commudle-top-builders-card
+            [topBuilder]="topBuilder"
+            [displayVotes]="true"
+            [showFollowButton]="true"
+            [displayDesignation]="true"
+            [maxUserNameLength]="10"
+          ></commudle-top-builders-card>
+        </div>
+      </div>
+      <div class="load-more">
+        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+        <button
+          *ngIf="canLoadMore && total"
+          (click)="getCommunityBuilds(); showSpinner = true"
+          nbButton
+          outline
+          size="small"
+          status="info"
+          [disabled]="!canLoadMore || isLoading"
+        >
+          Load More
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
