@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, Inject, ViewChild, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -20,6 +20,7 @@ import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_
 export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
   isOrganizer = false;
+  showMiniHeader = false;
 
   notificationCount = 0;
   environment = environment;
@@ -40,11 +41,18 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private dialogService: NbDialogService,
     private gtm: GoogleTagManagerService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateHeaderVariation();
+      }
+    });
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      this.updateHeaderVariation();
 
       this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '';
       if (this.community.is_visible) {
@@ -103,7 +111,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     formData.append('community[location]', this.community.location);
     formData.append('community[banner_image]', this.uploadedBannerFile);
 
-    this.communitiesService.updateCommunity(formData, this.community.id).subscribe((community) => {
+    this.communitiesService.updateCommunity(formData, this.community.id).subscribe(() => {
       this.toastLogService.successDialog('Updated! Reloading the app for changes to apply...');
       this.document.location.reload();
     });
@@ -113,5 +121,15 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.gtm.dataLayerPushEvent('click-notification-bell-icon', {
       com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
     });
+  }
+
+  updateHeaderVariation() {
+    const url = this.router.url;
+    const value = url.split(this.community.slug)[1];
+    if (value.length !== 0) {
+      this.showMiniHeader = true;
+    } else {
+      this.showMiniHeader = false;
+    }
   }
 }

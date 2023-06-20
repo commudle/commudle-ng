@@ -139,3 +139,29 @@
     rgba(224, 224, 224, 0) 109.06%
   );
 }
+
+.mini-header {
+  @apply com-h-16 com-flex com-items-center com-mx-8 com-justify-between;
+  .community-details {
+    @apply com-flex com-space-x-3;
+    .mini-logo-section {
+      @apply com-w-10 com-h-10 com-rounded-lg com-border com-border-gray-200 com-border-solid;
+      .mini-logo {
+        @apply com-my-0 com-mx-auto com-h-10 com-w-10 com-object-contain com-rounded-lg com-overflow-hidden com-px-1;
+      }
+    }
+
+    .details {
+      .name {
+        @apply com-text-base com-font-semibold com-m-0;
+      }
+      .members-count {
+        @apply com-text-sm com-font-normal com-text-Quartz com-m-0;
+      }
+    }
+  }
+
+  .action-buttons {
+    @apply com-flex com-space-x-6;
+  }
+}

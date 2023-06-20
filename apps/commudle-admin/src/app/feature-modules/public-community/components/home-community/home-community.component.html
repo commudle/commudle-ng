@@ -2,9 +2,9 @@
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
-        <nb-card class="!com-m-0 md:!com-mx-2">
+        <nb-card class="!com-m-0 md:!com-mx-2" [ngClass]="{ '!com-mt-3': showMiniHeader }">
           <nb-card-body class="!com-p-0 com-overflow-hidden">
-            <div class="banner">
+            <div class="banner" *ngIf="!showMiniHeader">
               <img
                 *ngIf="community.banner_image"
                 src="{{ community.banner_image.url }}"
@@ -19,7 +19,7 @@
                 </button>
               </div>
             </div>
-            <div class="page-header d-flex flex-column">
+            <div class="page-header d-flex flex-column" *ngIf="!showMiniHeader">
               <div class="logo-section">
                 <img
                   alt="{{ community.name }}"
@@ -128,6 +128,54 @@
                 </div>
               </div>
             </div>
+            <div class="mini-header" *ngIf="showMiniHeader">
+              <div class="community-details">
+                <div class="mini-logo-section">
+                  <img
+                    alt="{{ community.name }}"
+                    src="{{ community.logo_path }}"
+                    title="{{ community.name }}"
+                    class="mini-logo"
+                  />
+                </div>
+                <div class="details">
+                  <p class="name">{{ community.name }}</p>
+                  <p class="members-count">{{ community.member_count }} Members</p>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <app-membership-toggle
+                  [community]="community"
+                  [shapes]="'semi-round'"
+                  [size]="'small'"
+                  [status]="'info'"
+                ></app-membership-toggle>
+                <div *ngIf="isOrganizer">
+                  <button
+                    nbButton
+                    status="danger"
+                    outline
+                    [routerLink]="['/admin', 'communities', community.slug]"
+                    target="_blank"
+                    shape="semi-round"
+                    class="control-panel"
+                    size="small"
+                  >
+                    <nb-icon icon="edit-outline"></nb-icon>
+                    Admin Panel
+                  </button>
+                </div>
+                <app-share-button
+                  [content]="environment.app_url + '/communities/' + community.slug"
+                  [title]="community.name"
+                  [url]="environment.app_url + '/communities/' + community.slug"
+                  [showText]="true"
+                  [appearance]="'outline'"
+                ></app-share-button>
+              </div>
+            </div>
+          </nb-card-body>
+          <nb-card-footer class="com-pb-0 com-px-0 com-sticky com-top-16 com-z-20">
             <div class="page-menu">
               <div class="menu-items d-flex">
                 <a
@@ -173,7 +221,7 @@
                 </div>
               </div>
             </div>
-          </nb-card-body>
+          </nb-card-footer>
         </nb-card>
         <div class="router-outlet">
           <router-outlet></router-outlet>
