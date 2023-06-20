@@ -14,7 +14,7 @@
   <div class="center-column">
     <nb-card class="details">
       <nb-card-body>
-        <div class="title">{{ speakerResource.title }}</div>
+        <div *ngIf="speakerResource.title" class="title">{{ speakerResource.title }}</div>
         <div class="event">
           At
           <a
@@ -30,7 +30,7 @@
         <div class="content">
           <div
             *ngIf="speakerResource.session_details_links"
-            [innerHTML]="speakerResource.session_details_links | linky: { sanitizeHtml: true }"
+            [innerHTML]="speakerResource.session_details_links | linky : { sanitizeHtml: true }"
           ></div>
           <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
         </div>
