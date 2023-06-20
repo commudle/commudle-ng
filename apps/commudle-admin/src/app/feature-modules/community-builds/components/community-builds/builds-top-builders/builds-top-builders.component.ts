@@ -67,6 +67,7 @@ export class BuildsTopBuildersComponent implements OnInit {
       this.year = false;
       this.allTime = !this.allTime;
     }
+    this.showSkeletonCard = true;
     this.page = 1;
     this.topBuilders = [];
     this.getCommunityBuilds();

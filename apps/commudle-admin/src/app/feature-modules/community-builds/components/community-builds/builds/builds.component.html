@@ -53,6 +53,15 @@
       <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
     </div>
     <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
-    <button (click)="getCommunityBuilds()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>View More</button>
+    <button
+      (click)="getCommunityBuilds()"
+      *ngIf="page_info?.has_next_page"
+      fullWidth
+      ghost
+      nbButton
+      class="view-more-button"
+    >
+      View More
+    </button>
   </div>
 </div>

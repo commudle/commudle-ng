@@ -19,4 +19,8 @@
   .builds-card {
     @apply com-flex com-flex-col com-border-solid com-border-0 com-border-b md:com-py-9 com-py-6 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray-Light;
   }
+
+  .view-more-button {
+    @apply com-m-0 com-mb-8;
+  }
 }
