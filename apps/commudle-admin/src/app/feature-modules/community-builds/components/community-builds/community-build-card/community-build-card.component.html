@@ -1,19 +1,14 @@
 <div class="community-build-card">
   <a [routerLink]="[communityBuild.slug]">
     <div class="details">
-      <!-- <img
-          [alt]="communityBuild.name"
-          [src]="
-            communityBuild.images[0]?.url ? communityBuild.images[0]?.url : staticAssets.community_build_empty_state
-          "
-          [title]="communityBuild.name"
-        /> -->
       <div class="community-build-card-image">
         <commudle-banner-image
           [headerImagePath]="
             communityBuild.images[0] ? communityBuild.images[0].url : staticAssets.community_build_empty_state
           "
           [name]="communityBuild.name"
+          [topRightCurve]="false"
+          [topLeftCurve]="false"
           [bottomRightCurve]="false"
           [bottomLeftCurve]="false"
         ></commudle-banner-image>

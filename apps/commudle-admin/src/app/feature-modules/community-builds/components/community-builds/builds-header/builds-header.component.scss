@@ -20,7 +20,7 @@
           .content {
             ::ng-deep {
               p {
-                @apply com-text-xl com-m-0;
+                @apply md:com-text-xl com-text-base com-m-0;
               }
             }
           }
