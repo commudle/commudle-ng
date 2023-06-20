@@ -1,27 +1,31 @@
-div {
-  .heading {
-    @apply com-mt-8 com-mb-4 com-mx-0 com-flex md:com-p-0 md:com-pb-4 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col com-border-0 com-border-b com-border-solid md:com-mb-7 com-border-Bright-Gray-Light;
+nb-card {
+  @apply md:com-bg-Bright-Gray com-m-0 md:com-mb-6 md:com-w-[348px] com-border-none;
+  nb-card-body {
+    @apply md:com-p-4 com-p-0;
+    .heading {
+      @apply com-mt-8 md:com-mt-0 com-mb-4 com-mx-0 com-flex md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col md:com-mb-7;
 
-    .title {
-      @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+      .title {
+        @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+      }
+      .sub-heading {
+        @apply com-text-xs com-font-normal com-text-gunmetal com-m-0;
+      }
     }
-    .sub-heading {
-      @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+
+    .user-profile-card-large {
+      @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
+      .user-profile-card-large-card {
+        @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-b md:com-border-0 com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 com-h-[171px] md:com-h-auto;
+      }
     }
-  }
 
-  .user-profile-card-large {
-    @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
-    .user-profile-card-large-card {
-      @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 com-h-[171px] md:com-h-auto;
-    }
-  }
+    .load-more {
+      @apply com-text-center md:com-mt-8 com-mt-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray-Light com-p-0 com-pb-0 md:com-pb-6;
 
-  .load-more {
-    @apply com-text-center md:com-mt-8 com-mt-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray-Light com-p-0 com-pb-0 md:com-pb-6;
-
-    app-loading-spinner {
-      @apply md:com-mb-6 com-m-0;
+      app-loading-spinner {
+        @apply md:com-mb-6 com-m-0;
+      }
     }
   }
 }

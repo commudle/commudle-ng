@@ -24,7 +24,7 @@ div {
         .details {
           @apply com-flex com-flex-col md:com-mr-3;
           .community-name {
-            @apply com-text-base com-font-medium com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
+            @apply com-text-sm com-font-semibold com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
           }
 
           .mini-description {

@@ -24,7 +24,14 @@
                 <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
               </div>
               <div *ngIf="event.interested_members_count > 0" class="interested-members">
-                <span>Interested Members: {{ event.interested_members_count }}</span>
+                <app-badge
+                  [text]="event.interested_members_count"
+                  [color]="'#F0F2F8'"
+                  [nbIcon]="'people-outline'"
+                  [fontColor]="'#667085'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'24px'"
+                ></app-badge>
               </div>
             </div>
             <p class="event-name">

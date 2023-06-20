@@ -14,7 +14,7 @@ p {
 
 .user-profile-large {
   .avatar {
-    @apply com-h-14 com-w-14;
+    @apply com-h-[52px] com-w-[52px];
     @apply com-rounded-full com-object-cover com-object-center com-align-middle;
   }
 
@@ -23,10 +23,8 @@ p {
 
     .name {
       p {
-        @apply com-font-medium;
+        @apply com-font-medium com-text-sm;
         color: $black;
-        font-size: 16px;
-        line-height: 21px;
         word-break: break-word;
       }
 
@@ -38,30 +36,24 @@ p {
     }
 
     .username {
-      @apply com-text-Quartz com-mt-2px;
-      font-size: $fs-h6;
-      line-height: 12px;
+      @apply com-text-sm com-text-Quartz com-mt-2px;
       word-break: break-word;
     }
 
     .designation {
-      @apply com-mt-2px;
-      color: $black;
-      font-size: $fs-h5;
-      line-height: 16px;
+      @apply com-mt-1 com-text-sm com-text-black;
       word-break: break-word;
     }
 
     .about {
-      @apply com-mt-2px;
+      @apply com-mt-1;
       color: $black;
       font-size: $fs-h6;
-      line-height: 16px;
       word-break: break-word;
     }
 
     .speaker-count {
-      @apply com-bg-Bright-Gray com-text-gunmetal com-mt-1 md:com-mb-0 com-mb-4 com-mx-0;
+      @apply com-mt-2 md:com-mb-0 com-mb-4 com-mx-0;
     }
 
     .social {
