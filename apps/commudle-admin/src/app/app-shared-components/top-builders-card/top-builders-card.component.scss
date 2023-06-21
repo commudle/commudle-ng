@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-m-0 com-overflow-hidden md:com-h-[182px] com-h-[190px] md:com-w-[318px] com-w-[313px];
+  @apply com-m-0 com-overflow-hidden md:com-h-[196px] com-h-[190px] md:com-w-[318px] com-w-[313px];
 
   nb-card-body {
     @apply com-p-4;
@@ -9,11 +9,12 @@ nb-card {
 
       .content {
         @apply com-flex com-flex-row;
-        .image {
-          @apply com-w-[100px] com-h-[100px] com-mr-3 md:com-mb-0 com-mb-4;
+        .user-profile-image {
+          @apply com-w-[100px] com-h-[100px] com-mr-3 md:com-mb-0 com-mb-4 com-flex-shrink-0 com-overflow-hidden com-bg-Anti-Flash-White;
+          border-radius: 50%;
 
           img {
-            @apply com-w-auto com-h-full com-rounded-full com-object-cover;
+            @apply com-w-full com-h-auto com-object-cover;
           }
         }
 
@@ -31,14 +32,18 @@ nb-card {
             @apply md:com-text-sm com-text-xs com-font-normal com-line-clamp-1 com-text-Quartz com-mt-0 com-mx-0 com-mb-1;
           }
 
-          // .votes {
-          //   @apply com-text-xs com-font-normal com-m-0 com-mb-1 com-mt-2px com-text-Quartz;
-          // }
+          .votes {
+            @apply com-text-sm com-font-normal com-m-0 com-text-Quartz;
+          }
 
           .designation {
-            @apply md:com-text-sm com-text-xs com-font-normal com-mx-0 md:com-mb-7 com-mb-5 com-text-Dark-Jungle-Green com-line-clamp-2 md:com-h-[36px] com-h-[32px];
+            @apply md:com-text-sm com-text-xs com-font-normal com-mx-0 com-mb-1 com-text-Dark-Jungle-Green com-line-clamp-2;
           }
         }
+      }
+
+      .follow-button {
+        @apply com-m-0 md:com-mt-4;
       }
     }
   }

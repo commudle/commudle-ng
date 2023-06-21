@@ -57,6 +57,9 @@ module.exports = {
         Seashell: '#FFF6EB',
         'Ruddy-Brown': '#C05324',
         Linen: '#FCEDE7',
+        'Metallic-Bronze': '#AC7D47',
+        'Tigers-Eye': '#DF913F',
+        'Blanched-Almond': '#FFEECD',
       },
 
       lineClamp: {

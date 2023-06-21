@@ -2,7 +2,7 @@
   <nb-card-body>
     <a [routerLink]="['/users', topBuilder.username]">
       <div class="content">
-        <div class="image">
+        <div class="user-profile-image">
           <img [src]="topBuilder.photo.i96" [alt]="topBuilder.name" [title]="topBuilder.name" />
         </div>
         <div class="text">
@@ -15,11 +15,11 @@
               src="/assets/images/Expert-Tick.svg"
             />
           </p>
-          <p class="username" title="{{ topBuilder.username }}">@{{ topBuilder.username }}</p>
+          <p class="username" title="{{ topBuilder.username }}">@{{ topBuilder.username | truncatetext : 15 }}</p>
           <div *ngIf="displayDesignation" class="designation" [title]="topBuilder.designation">
             {{ topBuilder.designation || '--' }}
           </div>
-          <!-- <div *ngIf="displayVotes" class="votes">
+          <div *ngIf="displayVotes" class="votes">
             <span *ngIf="topBuilder.published_community_builds_count >= 1">
               {{ topBuilder.published_community_builds_count }} Build{{
                 topBuilder.published_community_builds_count !== 1 && topBuilder.published_community_builds_count > 0
@@ -29,11 +29,11 @@
               ·
             </span>
             <span>
-              {{ topBuilder.total_builds_votes }} Upvote{{
+              {{ topBuilder.total_builds_votes }} Star{{
                 topBuilder.total_builds_votes !== 1 && topBuilder.total_builds_votes > 0 ? 's' : ''
               }}
             </span>
-          </div> -->
+          </div>
           <div *ngIf="allignFollowButtonToRight">
             <app-user-follow
               [username]="topBuilder.username | truncatetext : maxUserNameLength"
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="showFollowButton">
+      <div *ngIf="showFollowButton" class="follow-button">
         <app-user-follow [username]="topBuilder.username" [isMobileWidthFull]="true"></app-user-follow>
       </div>
     </a>
