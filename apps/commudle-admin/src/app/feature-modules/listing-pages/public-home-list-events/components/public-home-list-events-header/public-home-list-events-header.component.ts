@@ -9,6 +9,7 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 })
 export class PublicHomeListEventsHeaderComponent implements OnInit {
   listingPageHeader: IListingPageHeader;
+  richText: string;
 
   constructor(private cmsService: CmsService) {}
 
@@ -23,6 +24,7 @@ export class PublicHomeListEventsHeaderComponent implements OnInit {
   getHeaderText() {
     this.cmsService.getDataBySlug('event-listing-page').subscribe((data) => {
       this.listingPageHeader = data;
+      this.richText = this.cmsService.getHtmlFromBlock(data);
     });
   }
 }

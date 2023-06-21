@@ -1,8 +1,8 @@
 .header {
-  @apply md:com-min-h-[317px] com-min-h-[440px];
+  @apply md:com-max-h-[386px] com-max-h-[520px];
 
   .background {
-    @apply com-m-0 com-p-0 md:com-h-[317px] com-w-full com-h-full;
+    @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
     .base-layout {
       .content {
@@ -18,10 +18,20 @@
           .sub-heading {
             @apply md:com-text-lg com-text-base com-font-normal com-m-0 com-text-white md:com-mr-72px com-mx-0;
           }
+
+          .content {
+            @apply com-hidden md:com-flex;
+            ::ng-deep {
+              p {
+                font-size: initial;
+                color: initial;
+              }
+            }
+          }
         }
 
         .header-image {
-          @apply com-flex com-items-center md:com-h-[317px] com-h-[240px] com-overflow-hidden;
+          @apply com-flex md:com-h-[386px] com-h-[300px] com-overflow-hidden;
         }
       }
     }

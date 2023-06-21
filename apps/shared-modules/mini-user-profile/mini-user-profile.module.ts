@@ -10,7 +10,7 @@ import { UserProfileCardSmallComponent } from './components/profile-cards/user-p
 import { UserFollowComponent } from './components/user-follow/user-follow.component';
 import { MiniUserProfileDirective } from './directives/mini-user-profile.directive';
 import { HiringLookingWorksTagsComponent } from './components/hiring-looking-works-tags/hiring-looking-works-tags.component';
-
+// import { SharedComponentsModule } from '../../shared-components/shared-components.module';
 @NgModule({
   declarations: [
     MiniUserProfileDirective,
@@ -25,6 +25,7 @@ import { HiringLookingWorksTagsComponent } from './components/hiring-looking-wor
     CommonModule,
     SharedPipesModule,
     RouterModule,
+    // SharedComponentsModule,
 
     //Nebular
     NbCardModule,

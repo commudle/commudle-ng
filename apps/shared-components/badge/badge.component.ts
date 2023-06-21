@@ -13,7 +13,7 @@ export class BadgeComponent implements OnInit {
   @Input() dotMode;
   @Input() position;
   @Input() fontColor = 'white';
-  @Input() borderRadius = '5px';
+  @Input() borderRadius = '4px';
 
   bg;
 

@@ -9,6 +9,9 @@
         <div class="header-text">
           <h1 class="heading">{{ listingPageHeader.heading }}</h1>
           <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
+          <div class="content">
+            <div [innerHTML]="richText"></div>
+          </div>
         </div>
         <div class="header-image">
           <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />
