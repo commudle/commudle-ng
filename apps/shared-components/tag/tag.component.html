@@ -1,10 +1,12 @@
 <nb-tag-list (tagRemove)="onTagRemove($event)">
   <nb-tag
-    *ngFor="let tag of getTags()"
+    *ngFor="let tag of getTags(maximumTag)"
     [removable]="editable"
     [text]="tag"
-    [ngClass]="{ 'custom-style': customStyle }"
-    [size]="size"
+    [ngClass]="{
+      tiny: size === 'tiny'
+    }"
+    [ngStyle]="{ background: backgroundColor, color: fontColor }"
   ></nb-tag>
   <input
     (tagAdd)="onTagAdd($event)"

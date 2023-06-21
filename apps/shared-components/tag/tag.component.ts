@@ -12,8 +12,10 @@ export class TagComponent implements OnInit, OnDestroy {
   @Input() editable: boolean;
   @Input() inputDisabled: boolean;
   @Input() minimumTags: number = 5;
-  @Input() customStyle: boolean = false;
-  @Input() size: 'medium' | 'small' | 'tiny' | 'large' = 'medium';
+  @Input() backgroundColor: string;
+  @Input() fontColor: string;
+  @Input() maximumTag: number;
+  @Input() size; //It can be tiny;
 
   @Output() tagAdd: EventEmitter<string> = new EventEmitter<string>();
   @Output() tagDelete: EventEmitter<string> = new EventEmitter<string>();
@@ -30,8 +32,14 @@ export class TagComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTags() {
-    return this.tags.filter(Boolean).slice(0, 5);
+  getTags(maximumTag?: number) {
+    const tags = this.tags.filter(Boolean);
+
+    if (maximumTag && maximumTag <= tags.length) {
+      return tags.slice(0, maximumTag);
+    }
+
+    return tags;
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {

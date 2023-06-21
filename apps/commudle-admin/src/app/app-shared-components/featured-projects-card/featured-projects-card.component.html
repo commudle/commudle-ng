@@ -20,7 +20,13 @@
         </div>
       </div>
       <div>
-        <app-tag [tags]="featuredProject.community_build.tags" [customStyle]="true" [size]="'tiny'"></app-tag>
+        <app-tag
+          [tags]="featuredProject.community_build.tags"
+          [backgroundColor]="'#FCEDE7'"
+          [size]="'tiny'"
+          [fontColor]="'#C05324'"
+          [maximumTag]="5"
+        ></app-tag>
       </div>
     </a>
   </nb-card-body>

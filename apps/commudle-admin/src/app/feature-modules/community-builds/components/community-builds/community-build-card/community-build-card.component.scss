@@ -11,13 +11,6 @@ p {
       @apply com-flex;
       .community-build-card-image {
         @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
-
-        // .upcoming-card-image {
-        //   @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[388px] md:com-h-[145px] com-w-full com-h-full;
-        // }
-        // img {
-        //   @apply com-w-full com-h-full com-object-contain com-rounded;
-        // }
       }
 
       .community-build-card-details {
