@@ -27,7 +27,8 @@
           .content {
             ::ng-deep {
               p {
-                @apply md:com-text-xl com-text-base com-m-0;
+                font-size: initial;
+                color: initial;
               }
             }
           }
