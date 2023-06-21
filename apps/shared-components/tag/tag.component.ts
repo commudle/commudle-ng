@@ -32,11 +32,11 @@ export class TagComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTags(maximumTag?: number) {
+  getTags() {
     const tags = this.tags.filter(Boolean);
 
-    if (maximumTag && maximumTag <= tags.length) {
-      return tags.slice(0, maximumTag);
+    if (this.maximumTag && this.maximumTag <= tags.length) {
+      return tags.slice(0, this.maximumTag);
     }
 
     return tags;
