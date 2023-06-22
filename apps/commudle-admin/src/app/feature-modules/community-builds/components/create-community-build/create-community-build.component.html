@@ -148,6 +148,9 @@
                   placeholder="Link to Open Source Code"
                 />
               </label>
+              <span *ngIf="communityBuildForm.get('link').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
+              </span>
             </div>
 
             <div class="field">
@@ -162,7 +165,10 @@
                   placeholder="Link to live project"
                 />
               </label>
-              <span
+              <span *ngIf="communityBuildForm.get('live_app_link').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
+              </span>
+              <!-- <span
                 *ngIf="
                   communityBuildForm.get('link').touched &&
                   communityBuildForm.get('link').invalid &&
@@ -174,7 +180,7 @@
                 class="validation-error-text"
               >
                 live project or link to open source one is required
-              </span>
+              </span> -->
             </div>
 
             <div class="field">
@@ -189,6 +195,9 @@
                   placeholder=" Video Demo (Iframe)"
                 />
               </label>
+              <span *ngIf="communityBuildForm.get('video_iframe').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Invalid embedded link'"></commudle-alert>
+              </span>
             </div>
 
             <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
@@ -198,6 +207,15 @@
             </div>
             <div class="field">
               <label> How is it useful for others?* </label>
+              <span
+                *ngIf="
+                  communityBuildForm.get('description').touched &&
+                  communityBuildForm.get('description').invalid &&
+                  communityBuildForm.get('description').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
               <editor
                 [init]="tinyMCE"
                 apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
