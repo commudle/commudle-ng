@@ -16,7 +16,7 @@
       *ngIf="showSpinner"
     ></app-skeleton-cards>
     <div class="top-experts custom-scrollbar">
-      <div class="top-expert-card" *ngFor="let topBuilder of experts">
+      <div class="top-expert-card" *ngFor="let topBuilder of experts | slice : 0 : 4">
         <div *appBreakpoints="'>lg'">
           <commudle-top-builders-card
             [topBuilder]="topBuilder"

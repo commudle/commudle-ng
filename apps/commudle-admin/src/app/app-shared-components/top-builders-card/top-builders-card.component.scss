@@ -21,7 +21,8 @@ nb-card {
         .text {
           @apply com-flex com-flex-col com-m-0;
           .name {
-            @apply com-flex com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-mb-1 com-flex-row com-items-center;
+            @apply com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-mb-1 com-flex-row com-items-center;
+            @apply com-flex #{!important};
 
             .expert-icon {
               @apply com-h-4 com-w-4 com-m-0 com-ml-2;

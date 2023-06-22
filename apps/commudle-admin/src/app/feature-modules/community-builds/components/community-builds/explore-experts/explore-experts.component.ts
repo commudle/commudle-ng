@@ -13,17 +13,14 @@ export class ExploreExpertsComponent implements OnInit {
   showSpinner = true;
   staticAssets = staticAssets;
 
-  count = 4;
-  // page = 1;
-
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.getExperts(this.count);
+    this.getExperts();
   }
 
-  getExperts(count) {
-    this.homeService.experts(count).subscribe((value) => {
+  getExperts() {
+    this.homeService.experts().subscribe((value) => {
       this.experts = value;
       this.showSpinner = false;
     });
