@@ -76,7 +76,6 @@ import { AlertComponent } from './alert/alert.component';
   declarations: [
     WorkInProgressComponent,
     UserProfileHorizontalComponent,
-    BadgeComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
@@ -111,6 +110,7 @@ import { AlertComponent } from './alert/alert.component';
     LoadingSpinnerComponent,
     BannerImageComponent,
     AlertComponent,
+    BadgeComponent,
   ],
   imports: [
     CommonModule,
@@ -126,6 +126,7 @@ import { AlertComponent } from './alert/alert.component';
     SharedDirectivesModule,
     MentionModule,
     MiniUserProfileModule,
+    // BadgeComponent,
 
     // Nebular
     NbButtonModule,

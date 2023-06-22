@@ -1,7 +1,7 @@
 div {
-  border-radius: 5px;
+  // border-radius: 5px;
   width: fit-content;
-  display: inline-block;
+  // display: inline-block;
   overflow: hidden;
   p {
     color: white;
@@ -21,6 +21,17 @@ div {
         font-size: 10px;
       }
     }
+  }
+
+  &.rectangle {
+    @apply com-rounded;
+  }
+  &.semi-round {
+    @apply com-rounded-xl;
+  }
+
+  &.round {
+    @apply com-rounded-3xl;
   }
 
   &.dotmode {

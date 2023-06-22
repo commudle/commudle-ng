@@ -41,7 +41,7 @@
             [fontSize]="'small'"
             [borderRadius]="'24px'"
           ></app-badge> -->
-          <strong>{{ user.speaker_events_count }}</strong> Talk{{ user.speaker_events_count != 1 ? 's' : '' }} Given
+          <!-- <strong>{{ user.speaker_events_count }}</strong> Talk{{ user.speaker_events_count != 1 ? 's' : '' }} Given -->
         </div>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">
           <a *ngIf="user.linkedin" [href]="user.linkedin | completeurl : 'linkedin'" target="_blank">

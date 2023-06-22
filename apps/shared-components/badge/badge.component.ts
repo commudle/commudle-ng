@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-badge',
+  // standalone: true,
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
 })
@@ -13,7 +14,8 @@ export class BadgeComponent implements OnInit {
   @Input() dotMode;
   @Input() position;
   @Input() fontColor = 'white';
-  @Input() borderRadius = '4px';
+  @Input() borderRadius: 'rectangle' | 'semi-round' | 'round' = 'semi-round';
+  @Input() bgColor: string;
 
   bg;
 
@@ -28,7 +30,9 @@ export class BadgeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.bg = this.backgroundColor();
+    if (this.bgColor === undefined) {
+      this.bg = this.backgroundColor();
+    }
   }
 
   backgroundColor() {

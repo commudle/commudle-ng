@@ -1,10 +1,17 @@
 <div
-  class="{{ position }}"
-  [ngClass]="{ dotmode: dotMode === true }"
-  [ngStyle]="{ 'background-color': bg, 'border-radius': borderRadius }"
+  [ngClass]="{
+    dotmode: dotMode === true,
+    rectangle: borderRadius === 'rectangle',
+    'semi-round': borderRadius === 'semi-round',
+    round: borderRadius === 'round'
+  }"
+  [ngStyle]="{ 'background-color': bg }"
+  class="{{ position }} {{ bgColor }}"
 >
-  <p [ngClass]="{ 'small-text': fontSize == 'small' }" [ngStyle]="{ color: fontColor }">
-    <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
-    {{ text }}
-  </p>
+  <div class="">
+    <p [ngClass]="{ 'small-text': fontSize == 'small' }" [ngStyle]="{ color: fontColor }">
+      <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
+      {{ text }}
+    </p>
+  </div>
 </div>
