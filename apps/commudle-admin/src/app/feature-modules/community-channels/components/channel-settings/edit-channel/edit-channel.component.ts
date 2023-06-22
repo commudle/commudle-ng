@@ -10,6 +10,7 @@ import { CommunityChannelManagerService } from '../../../services/community-chan
 })
 export class EditChannelComponent implements OnInit, OnDestroy {
   @Input() channelId: string;
+  @Input() discussionType;
   subscriptions = [];
   channel: ICommunityChannel;
 

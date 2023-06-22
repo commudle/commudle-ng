@@ -164,7 +164,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     if (selectedCh) {
       this.notFound = false;
       this.communityChannelManagerService.setChannel(selectedCh);
-      this.getDiscussion(selectedCh.id);
+      this.getDiscussion(this.selectedChannelId);
     } else {
       this.notFound = true;
     }
@@ -173,7 +173,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   getDiscussion(channelId) {
     this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe((data) => {
       this.discussion = data;
-      console.log(this.discussion);
       this.communityChannelManagerService.setCommunityListview(false);
     });
   }

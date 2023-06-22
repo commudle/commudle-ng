@@ -73,13 +73,11 @@ export class CommunityChannelHandlerService {
   }
 
   sendMessage(content: string) {
-    console.log(content);
     if (!this.permittedActions.value.includes('add') || this.permittedActions.value.includes('blocked')) {
       return;
     }
 
     this.CommunityChannelChatChannel.add(content);
-    console.log(this.CommunityChannelChatChannel);
   }
 
   sendReply(parentId: number, content: string) {
@@ -90,28 +88,34 @@ export class CommunityChannelHandlerService {
     this.CommunityChannelChatChannel.reply(parentId, content);
   }
 
-  sendDelete(messageId: number, isSelfMessage: boolean) {
-    if (
-      !this.permittedActions.value.includes('delete_any') ||
-      !this.permittedActions.value.includes('delete_self') ||
-      this.permittedActions.value.includes('blocked')
-    ) {
-      return;
-    }
-
-    if (isSelfMessage) {
-      this.CommunityChannelChatChannel.deleteSelf(messageId);
-    } else {
-      this.CommunityChannelChatChannel.deleteAny(messageId);
-    }
-  }
-
   sendFlag(messageId: number) {
     if (!this.permittedActions.value.includes('flag') || this.permittedActions.value.includes('blocked')) {
       return;
     }
 
     this.CommunityChannelChatChannel.flag(messageId);
+  }
+
+  sendDelete(messageId: number, isSelfMessage?: boolean) {
+    if (this.permittedActions.value.includes('blocked')) {
+      return;
+    }
+
+    if (isSelfMessage) {
+      this.CommunityChannelChatChannel.delete(messageId);
+    }
+  }
+
+  pin(messageId: number) {
+    this.CommunityChannelChatChannel.pin(messageId);
+  }
+
+  unPin(messageId: number) {
+    this.CommunityChannelChatChannel.unPin(messageId);
+  }
+
+  edit(messageId: number, update_message) {
+    this.CommunityChannelChatChannel.update(messageId, update_message);
   }
 
   addMessage(message: IUserMessage, cursor: string) {
@@ -149,7 +153,8 @@ export class CommunityChannelHandlerService {
               return message;
             });
             this.messages.next(messages);
-          } else if (data.parent_type === 'UserMessage') {
+            // eslint-disable-next-line no-dupe-else-if
+          } else if (data.parent_type === 'Discussion') {
             const messages = this.messages.value.map((message) => {
               if (message.data.id === data.parent_id) {
                 message.data.user_messages = message.data.user_messages.map((reply) => {
@@ -164,21 +169,24 @@ export class CommunityChannelHandlerService {
             this.messages.next(messages);
           }
           break;
-        case 'delete_any':
-        case 'delete_self':
+        case 'delete':
           if (data.parent_type === 'Discussion') {
             const messages = this.messages.value.filter((message) => message.data.id !== data.user_message_id);
             this.messages.next(messages);
-          } else if (data.parent_type === 'UserMessage') {
-            const messages = this.messages.value.map((message) => {
-              if (message.data.id === data.parent_id) {
-                message.data.user_messages = message.data.user_messages.filter(
-                  (reply) => reply.id !== data.user_message_id,
-                );
+          }
+          break;
+
+        case 'update':
+          if (data.parent_type === 'Discussion') {
+            const messages = this.messages.value.filter((message) => {
+              if (message.data.id === data.user_message.id) {
+                message.data.content = data.user_message.content;
               }
               return message;
             });
+
             this.messages.next(messages);
+            console.log(this.messages$);
           }
           break;
         case 'error':
@@ -189,23 +197,22 @@ export class CommunityChannelHandlerService {
   }
 
   getMessages(fromLastRead?: boolean) {
-    if (!this.loading.value) {
-      this.loading.next(true);
-      this._getMessages(fromLastRead).subscribe((data) => {
-        this.messages.next(data.page);
-        this.pageInfo.next(data.page_info);
-        // TODO: FInd a better way to do this
-        if (fromLastRead && !this.scrollToMessageId) {
-          if (this.messages.value.map((message) => message.data.read).includes(false)) {
-            this.scrollToMessageId = this.messages.value[this.messages.value.length - 1].data.id;
-          } else {
-            this.scrollToMessageId = 0;
-          }
+    // if (!this.loading.value) {
+    this.loading.next(true);
+    this._getMessages(fromLastRead).subscribe((data) => {
+      this.messages.next(data.page);
+      this.pageInfo.next(data.page_info);
+      // TODO: FInd a better way to do this
+      if (fromLastRead && !this.scrollToMessageId) {
+        if (this.messages.value.map((message) => message.data.read).includes(false)) {
+          this.scrollToMessageId = this.messages.value[this.messages.value.length - 1].data.id;
+        } else {
+          this.scrollToMessageId = 0;
         }
-        this.loading.next(false);
-      });
-    }
-    console.log(this.messages.value);
+      }
+      this.loading.next(false);
+    });
+    // }
   }
 
   getMessagesAfter() {
@@ -261,7 +268,7 @@ export class CommunityChannelHandlerService {
 
   private _getMessages(fromLastRead?: boolean) {
     switch (this._discussionParent) {
-      case 'builds':
+      case 'channels':
         return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);
       default:
         return from([]);
@@ -271,7 +278,7 @@ export class CommunityChannelHandlerService {
   private _getMessagesBefore(): Observable<IPagination<IUserMessage>> {
     if (this.pageInfo.value.has_previous_page) {
       switch (this._discussionParent) {
-        case 'builds':
+        case 'channels':
           return this.discussionService.getCommunityBuildMessages(this._discussionId, {
             limit: 10,
             before: this.pageInfo.value.start_cursor,
@@ -287,7 +294,7 @@ export class CommunityChannelHandlerService {
   private _getMessagesAfter(): Observable<IPagination<IUserMessage>> {
     if (this.pageInfo.value.has_next_page) {
       switch (this._discussionParent) {
-        case 'builds':
+        case 'channels':
           return this.discussionService.getCommunityBuildMessages(this._discussionId, {
             limit: 10,
             after: this.pageInfo.value.end_cursor,

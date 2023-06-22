@@ -7,7 +7,6 @@ import { NbRadioModule, NbSelectModule, NbInputModule, NbButtonModule, NbCheckbo
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
-import { UserConsentsComponent } from './user-consents/user-consents.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent],

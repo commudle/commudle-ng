@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.last-read {
+  @apply com-relative com-py-2;
+
+  .divider {
+    @apply com-absolute com-inset-0 com-flex com-items-center;
+
+    .line {
+      @apply com-w-full com-border-solid com-border-gray-200;
+      border-width: 1px;
+    }
+  }
+
+  .text {
+    @apply com-relative com-flex com-justify-center;
+
+    .content {
+      @apply com-bg-white com-px-4 com-text-sm com-text-gray-400;
+    }
+  }
+}
+
+.message-container {
+  @apply com-flex com-p-2 com-gap-3;
+
+  .avatar {
+    @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0;
+  }
+
+  .message {
+    @apply com-w-full;
+
+    .prefix {
+      @apply com-flex com-items-baseline com-gap-1.5;
+
+      .name {
+        text-decoration: none;
+        @apply com-font-medium com-text-sm com-text-slate-900 hover:com-underline;
+      }
+
+      .expert-icon {
+        @apply com-h-3 com-w-3 com-mr-1;
+      }
+
+      .time {
+        @apply com-text-xs com-text-slate-500;
+      }
+      .edited {
+        @apply com-text-Auro-Metal-Saurus com-italic com-text-xs;
+      }
+    }
+
+    .suffix {
+      --icon-font-size: 0.875rem;
+      @apply com-flex com-gap-3.5 com-items-center com-text-slate-500 com-text-xs;
+
+      .reply {
+        @apply com-text-sm com-text-primary-500 com-font-medium;
+      }
+    }
+
+    .replies {
+      @apply com-mt-1.5;
+    }
+  }
+}

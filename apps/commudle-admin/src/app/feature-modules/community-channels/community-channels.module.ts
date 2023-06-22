@@ -112,6 +112,6 @@ import { SharedComponentsModule } from '@commudle/shared-components';
     NbAccordionModule,
     NbTabsetModule,
   ],
-  exports: [CommunityChannelsDashboardComponent],
+  exports: [CommunityChannelsDashboardComponent, SendMessageFormComponent],
 })
 export class CommunityChannelsModule {}

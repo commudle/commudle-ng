@@ -34,8 +34,8 @@
                 <div *ngIf="channel.logo" class="logo">
                   <img alt="{{ channel.name }}" src="{{ channel.logo.url }}" title="{{ channel.name }}" />
                 </div>
-                <p class="name">
-                  <a routerLinkActive="selected-channel" (click)="selectedCommunityChannel(channel)">
+                <p class="name" [ngClass]="{ selectedChannel: selectedChannelId == channel.id }">
+                  <a (click)="selectedCommunityChannel(channel)">
                     <span *ngIf="channel.is_private" class="icon">
                       <nb-icon
                         title="Private Channel"
@@ -54,6 +54,7 @@
                     </span>
                     {{ channel.name }}
                   </a>
+                  <span *ngIf="selectedChannel?.id === channel.id" class="com-bg-red-500 com-h-1 com-w-5"></span>
                   <app-badge
                     *ngIf="
                       channelNotifications.includes(channel.id) &&

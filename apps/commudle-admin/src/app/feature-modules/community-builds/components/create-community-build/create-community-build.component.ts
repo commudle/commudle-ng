@@ -105,6 +105,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   validateLink(): ValidatorFn {
+    console.log('validateLink');
     return (control: AbstractControl): { [key: string]: any } | null => {
       const link: string = control.value;
       if (link) {
@@ -119,6 +120,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   embedded(): ValidatorFn {
+    console.log('embedded');
     return (control: AbstractControl): { [key: string]: any } | null => {
       const link: string = control.value;
       if (link) {

@@ -41,6 +41,14 @@
   </table>
 </section>
 
-<section *ngIf="showDiscussion">
-  <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
-</section>
+<!-- <section *ngIf="showDiscussion">
+  <div class="com-h-10 com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
+    <span class="com-my-auto com-mx-4 com-text-sm"> 📢&nbsp; &nbsp; {{ selectedForum.description }} </span>
+  </div>
+  <div *ngIf="discussion">
+    <commudle-channel-discussion
+      [discussionId]="discussion.id"
+      discussionParent="channels"
+    ></commudle-channel-discussion>
+  </div>
+</section> -->

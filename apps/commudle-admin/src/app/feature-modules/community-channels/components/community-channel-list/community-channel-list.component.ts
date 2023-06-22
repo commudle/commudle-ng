@@ -9,7 +9,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
@@ -28,6 +28,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   @Input() groupedChannels: EGroupedCommunityChannels;
   @Input() showCommunityBadge = false;
   selectedChannel: ICommunityChannel;
+  selectedChannelId: number;
   currentUser: ICurrentUser;
   EUserRoles = EUserRoles;
   communityRoles = [];
@@ -47,9 +48,13 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private router: Router,
     private dialogService: NbDialogService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    if (this.activatedRoute.snapshot.params.community_channel_id) {
+      this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
+    }
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
@@ -71,13 +76,13 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
         this.channelNotifications = data.map((a) => a.id);
         this.markRead();
       }),
-      this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
-        this.selectedChannel = data;
-        if (this.selectedChannel) {
-          // this.setMeta();
-        }
-        this.markRead();
-      }),
+      // this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
+      //   this.selectedChannel = data;
+      //   if (this.selectedChannel) {
+      //     // this.setMeta();
+      //   }
+      //   this.markRead();
+      // }),
     );
   }
 
@@ -100,6 +105,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   selectedCommunityChannel(channel: ICommunityChannel) {
+    this.selectedChannelId = channel.id;
     this.updateSelectedChannel.emit(channel);
     this.router.navigate(['communities', this.selectedCommunity.slug, 'channels', channel.id]);
   }
@@ -126,6 +132,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     this.dialogService.open(ChannelSettingsComponent, {
       context: {
         channelId: channelId,
+        discussionType: this.discussionType.CHANNEL,
       },
     });
   }

@@ -39,7 +39,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  @Output() updateSelectedChannel = new EventEmitter<any>();
+  @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -122,7 +122,11 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   }
 
   selectedCommunityChannel(forumName) {
-    this.updateSelectedChannel.emit();
+    console.log(
+      '🚀 ~ file: community-forum-list.component.ts:125 ~ CommunityForumListComponent ~ selectedCommunityChannel ~ forumName:',
+      forumName,
+    );
+    this.updateSelectedChannel.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },

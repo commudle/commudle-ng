@@ -87,16 +87,17 @@ export class CommunityChannelManagerService {
 
   setCommunity(community: ICommunity) {
     this.selectedChannel.next(null);
-    this.selectedCommunity.next(community);
+    if (this.selectedCommunity.value !== community) {
+      this.selectedCommunity.next(community);
+      if (this.currentUser) {
+        this.usersService.getMyRoles('Kommunity', community.id).subscribe((data) => {
+          this.communityRoles.next(data);
+        });
+      }
 
-    if (this.currentUser) {
-      this.usersService.getMyRoles('Kommunity', community.id).subscribe((data) => {
-        this.communityRoles.next(data);
-      });
+      this.getChannels();
+      this.getForums();
     }
-
-    this.getChannels();
-    this.getForums();
   }
 
   findChannel(channelId): ICommunityChannel {

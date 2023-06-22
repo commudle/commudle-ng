@@ -4,9 +4,11 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
@@ -21,9 +23,9 @@ import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/s
   selector: 'commudle-channel-discussion',
   templateUrl: './channel-discussion.component.html',
   styleUrls: ['./channel-discussion.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() discussionId!: number;
   @Input() discussionParent = '';
   @Input() fromLastRead = false;
@@ -43,11 +45,27 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   constructor(
     public communityChannelHandlerService: CommunityChannelHandlerService,
     public authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute, // private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
+    // console.log(
+    //   '🚀 ~ file: channel-discussion.component.ts:51 ~ ChannelDiscussionComponent ~ discussionId:',
+    //   this.discussionId,
+    // );
+    // this.communityChannelHandlerService.init(
+    //   this.discussionId,
+    //   this.discussionParent,
+    //   this.fromLastRead,
+    //   this.activatedRoute.snapshot.queryParamMap.get('after'),
+    // );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(
+      '🚀 ~ file: channel-discussion.component.ts:51 ~ ChannelDiscussionComponent ~ discussionId:',
+      this.discussionId,
+    );
     this.communityChannelHandlerService.init(
       this.discussionId,
       this.discussionParent,
@@ -67,7 +85,7 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
           if (this.hasRequestedFirstTime) {
             this.communityChannelHandlerService.getMessagesAfter();
             this.hasRequestedFirstTime = false;
-            this.changeDetectorRef.detectChanges();
+            // this.changeDetectorRef.detectChanges();
           }
         }
       });

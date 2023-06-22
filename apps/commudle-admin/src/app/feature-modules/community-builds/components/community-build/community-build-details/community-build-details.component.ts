@@ -63,7 +63,6 @@ export class CommunityBuildDetailsComponent implements OnInit {
   getDiscussionChat() {
     this.discussionsService.pGetOrCreateForCommunityBuildChat(this.cBuild.id).subscribe((data) => {
       this.discussionChat = data;
-      console.log(this.discussionChat);
     });
   }
 }

@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.discussion-container {
+  @apply com-h-full com-grid com-grid-rows-1;
+
+  .messages-list {
+    @apply com-overflow-auto com-flex com-flex-col-reverse com-gap-3;
+  }
+
+  .no-messages {
+    @apply com-flex com-items-center com-justify-center com-text-lg md:com-text-2xl com-text-gray-300;
+  }
+}

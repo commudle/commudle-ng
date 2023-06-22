@@ -10,11 +10,15 @@ const ACTIONS = {
   ADD: 'add',
   REPLY: 'reply',
   VOTE: 'vote',
+  UPDATE: 'update',
   FLAG: 'flag',
-  DELETE_ANY: 'delete_any',
-  DELETE_SELF: 'delete_self',
+  DELETE: 'delete',
+  TOGGLE_BLOCK: 'toggle_block',
   ERROR: 'error',
-  BLOCKED: 'blocked',
+  CHANGE_PERMISSION: 'change_permission',
+  READ_MESSAGE: 'read_message',
+  PIN: 'pin',
+  UNPIN: 'unpin',
 } as const;
 
 type Message = {
@@ -24,7 +28,7 @@ type Message = {
   cursor: string;
   user_message_id: number;
   parent_id: number;
-  parent_type: 'UserMessage' | 'Discussion';
+  parent_type: 'Discussion';
   flag: -1 | 0 | 1;
   message: string;
 };
@@ -60,18 +64,82 @@ export class CommunityChannelChatChannel extends Channel<Params, Message> {
     });
   }
 
-  async deleteSelf(messageId: number) {
+  async delete(messageId: number) {
     return this.perform('receive', {
-      perform: ACTIONS.DELETE_SELF,
+      perform: ACTIONS.DELETE,
       data: {
         user_message_id: messageId,
       },
     });
   }
 
-  async deleteAny(messageId: number) {
+  async vote(messageId: number) {
     return this.perform('receive', {
-      perform: ACTIONS.DELETE_ANY,
+      perform: ACTIONS.VOTE,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async update(messageId: number, content: string) {
+    return this.perform('receive', {
+      perform: ACTIONS.UPDATE,
+      data: {
+        user_message_id: messageId,
+        user_message: { content },
+      },
+    });
+  }
+
+  async block(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.TOGGLE_BLOCK,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async error(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.ERROR,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async ChangePermission(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.CHANGE_PERMISSION,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async ReadMessage(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.READ_MESSAGE,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async pin(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.PIN,
+      data: {
+        user_message_id: messageId,
+      },
+    });
+  }
+
+  async unPin(messageId: number) {
+    return this.perform('receive', {
+      perform: ACTIONS.UNPIN,
       data: {
         user_message_id: messageId,
       },

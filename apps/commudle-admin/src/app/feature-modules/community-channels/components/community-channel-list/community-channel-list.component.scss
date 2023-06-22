@@ -42,8 +42,7 @@
           }
 
           div.details {
-            width: 80%;
-            display: flex;
+            @apply com-w-full com-flex com-items-center;
             .logo {
               width: 35px;
               border-radius: 50%;
@@ -67,19 +66,17 @@
               position: relative;
               a {
                 text-decoration: none;
-                color: black;
-
+                @apply com-text-black;
                 .icon {
                   padding: 0;
                 }
               }
               &:hover {
-                text-decoration: underline;
+                @apply com-text-primary-500;
               }
 
-              .selected-channel {
-                color: #249aff;
-                font-weight: bold;
+              &.selectedChannel {
+                @apply com-text-primary-500 com-font-semibold #{!important};
               }
             }
           }

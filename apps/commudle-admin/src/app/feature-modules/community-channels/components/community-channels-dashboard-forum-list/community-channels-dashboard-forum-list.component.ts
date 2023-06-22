@@ -31,7 +31,6 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
-        console.log(data);
       }),
     );
     this.subscriptions.push(

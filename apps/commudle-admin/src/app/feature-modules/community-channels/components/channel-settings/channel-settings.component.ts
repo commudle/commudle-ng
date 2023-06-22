@@ -14,6 +14,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 export class ChannelSettingsComponent implements OnInit, OnDestroy {
   @Input() channelId;
   @Input() invite = false;
+  @Input() discussionType;
   @ViewChild('settingsTemplate', { static: true }) settingsTemplate: TemplateRef<any>;
   subscriptions = [];
   channel: ICommunityChannel;

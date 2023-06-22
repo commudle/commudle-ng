@@ -13,7 +13,7 @@
     <nb-card-body class="com-p-0">
       <nb-tabset>
         <nb-tab tabTitle="Edit">
-          <app-edit-channel [channelId]="channelId"></app-edit-channel>
+          <app-edit-channel [channelId]="channelId" [discussionType]="discussionType"></app-edit-channel>
         </nb-tab>
         <nb-tab tabTitle="invite" [active]="invite">
           <app-invite-form [channelId]="channelId"></app-invite-form>

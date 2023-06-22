@@ -15,11 +15,11 @@
     class="messages-list"
     commudleInfiniteScroll
   >
-    <commudle-message
+    <commudle-community-channel-message
       *ngFor="let message of communityChannelHandlerService.messages$ | async"
       [cursor]="message.cursor"
       [message]="message.data"
-    ></commudle-message>
+    ></commudle-community-channel-message>
   </div>
   <ng-template #noMessages>
     <div class="no-messages">Start a new conversation!</div>

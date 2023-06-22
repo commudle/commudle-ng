@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -34,6 +34,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
   discussionType = DiscussionType;
 
   discussionTypeParam: string;
+  forumName: string;
   showForumData = false;
 
   subscriptions: Subscription[] = [];
@@ -47,10 +48,19 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
   ) {}
 
   ngOnInit() {
-    // this.checkSelectedChannel();
+    // this.router.events.subscribe((value) => {
+    //   if (value instanceof NavigationEnd) {
+    //     this.checkSelectedChannel();
+    //   }
+    // });
     this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
+    this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
     if (this.discussionTypeParam === this.discussionType.FORUM) {
       this.showForumData = true;
+    }
+    if (this.discussionTypeParam === this.discussionType.FORUM && this.forumName) {
+      this.showChannelsComponent = false;
+      this.showForumsComponent = true;
     }
     this.setMeta();
     this.communityChannelManagerService.setCommunity(this.selectedCommunity);
@@ -66,6 +76,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
           }
           if (this.activatedRoute.snapshot.params.community_channel_id && this.discussionTypeParam) {
             this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
+            console.log(this.activatedRoute.snapshot.params.community_channel_id);
             this.showForumsComponent = true;
           }
         }
@@ -103,26 +114,25 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
   }
 
   checkSelectedChannel(channel?: ICommunityChannel) {
-    if (channel) this.selectedChannelId = channel.id;
     if (channel) {
+      this.selectedChannelId = channel.id;
+      this.showForumsComponent = false;
       this.showChannelsComponent = true;
-    }
-    if (this.discussionType) {
+    } else if (this.discussionTypeParam === this.discussionType.FORUM && this.forumName) {
+      this.showChannelsComponent = false;
       this.showForumsComponent = true;
     }
   }
 
   openForum() {
-    this.router.navigate([], {
+    this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`], {
       queryParams: { 'discussion-type': 'forum' },
     });
     this.showForumData = true;
   }
 
   openChannel() {
-    this.router.navigate([], {
-      queryParams: { 'discussion-type': undefined },
-    });
+    this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
     this.showForumData = false;
   }
 }

@@ -1,4 +1,4 @@
-<div class="community-channels-dashboard page-padding com-h-95vh">
+<div class="community-channels-dashboard page-padding com-h-[700px]">
   <div class="community-list" *ngIf="showCommunityList">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
@@ -46,17 +46,19 @@
     </div>
     <div *ngIf="showForumData && !showForumsComponent && !showForumsComponent">
       <commudle-community-channels-dashboard-forum-list
-        (updateSelectedChannel)="checkSelectedChannel()"
+        (updateSelectedChannel)="checkSelectedChannel($event)"
       ></commudle-community-channels-dashboard-forum-list>
     </div>
-
     <app-community-channel
       *ngIf="showChannelsComponent"
       [selectedChannelId]="selectedChannelId"
     ></app-community-channel>
     <!-- <commudle-channel-discussion *ngIf="showChannelsComponent"  ></commudle-channel-discussion> -->
 
-    <commudle-community-forum *ngIf="showForumsComponent"></commudle-community-forum>
+    <commudle-community-forum
+      *ngIf="showForumsComponent"
+      [selectedCommunity]="selectedCommunity"
+    ></commudle-community-forum>
     <router-outlet></router-outlet>
   </div>
 </div>
