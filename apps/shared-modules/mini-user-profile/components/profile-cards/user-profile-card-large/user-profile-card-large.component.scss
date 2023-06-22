@@ -14,8 +14,7 @@ p {
 
 .user-profile-large {
   .avatar {
-    @apply com-h-14 com-w-14;
-    @apply com-rounded-full com-object-cover com-object-center com-align-middle;
+    @apply com-h-14 com-w-14 com-rounded-full com-object-cover com-object-center com-align-middle;
   }
 
   .details {

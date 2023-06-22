@@ -1,0 +1,67 @@
+<div class="builds">
+  <div class="heading-filter">
+    <h5 class="heading">Get inspired from these builds</h5>
+    <div class="filters">
+      <button
+        nbButton
+        [status]="isAllFilterSelected ? 'primary' : 'basic'"
+        [ngStyle]="{ color: isAllFilterSelected ? 'white' : 'black' }"
+        class="all-filter-button"
+        shape="round"
+        size="tiny"
+        (click)="allFilterSelected()"
+      >
+        All
+      </button>
+      <nb-select
+        placeholder="Most Popular"
+        size="small"
+        shape="round"
+        status="basic"
+        class="most-popular-filter"
+        [(ngModel)]="timePeriod"
+        (selectedChange)="filter()"
+        filled
+        [status]="isAllFilterSelected ? 'basic' : 'primary'"
+        [ngStyle]="{ color: isAllFilterSelected ? 'black' : 'white' }"
+      >
+        <nb-option value="month"> Highest upvoted this month</nb-option>
+        <nb-option value="year">Highest upvoted this year</nb-option>
+        <nb-option value="all-time">Highest upvoted all time</nb-option>
+      </nb-select>
+    </div>
+  </div>
+  <app-skeleton-cards
+    [cards]="10"
+    [ImageShapeSquare]="true"
+    [ImageShapeCircle]="false"
+    *ngIf="skeletonLoaderCard"
+  ></app-skeleton-cards>
+  <div
+    *appBreakpoints="'>lg'"
+    (scrolled)="getCommunityBuilds()"
+    [infiniteScrollDisabled]="communityBuilds.length >= total"
+    appInfiniteScroll
+  >
+    <div *ngFor="let communityBuild of communityBuilds" class="builds-card">
+      <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
+    </div>
+    <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+  </div>
+  <div *appBreakpoints="'<=lg'">
+    <div *ngFor="let communityBuild of communityBuilds" class="builds-card">
+      <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
+    </div>
+    <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+    <button
+      (click)="getCommunityBuilds()"
+      *ngIf="page_info?.has_next_page"
+      fullWidth
+      ghost
+      nbButton
+      class="view-more-button"
+    >
+      View More
+    </button>
+  </div>
+</div>
