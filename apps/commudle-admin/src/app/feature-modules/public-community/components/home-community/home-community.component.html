@@ -2,7 +2,7 @@
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
-        <nb-card class="!com-m-0 md:!com-mx-2" [ngClass]="{ '!com-mt-3': showMiniHeader }">
+        <nb-card class="!com-m-0 md:!com-mx-2" [ngClass]="{ miniHeader: showMiniHeader }">
           <nb-card-body class="!com-p-0 com-overflow-hidden">
             <div class="banner" *ngIf="!showMiniHeader">
               <img
@@ -150,22 +150,25 @@
                   [size]="'small'"
                   [status]="'info'"
                 ></app-membership-toggle>
-                <div *ngIf="isOrganizer">
-                  <button
-                    nbButton
-                    status="danger"
-                    outline
-                    [routerLink]="['/admin', 'communities', community.slug]"
-                    target="_blank"
-                    shape="semi-round"
-                    class="control-panel"
-                    size="small"
-                  >
-                    <nb-icon icon="edit-outline"></nb-icon>
-                    Admin Panel
-                  </button>
+                <div *appBreakpoints="'>md'">
+                  <div *ngIf="isOrganizer">
+                    <button
+                      nbButton
+                      status="danger"
+                      outline
+                      [routerLink]="['/admin', 'communities', community.slug]"
+                      target="_blank"
+                      shape="semi-round"
+                      class="control-panel"
+                      size="small"
+                    >
+                      <nb-icon icon="edit-outline"></nb-icon>
+                      Admin Panel
+                    </button>
+                  </div>
                 </div>
                 <app-share-button
+                  *appBreakpoints="'>md'"
                   [content]="environment.app_url + '/communities/' + community.slug"
                   [title]="community.name"
                   [url]="environment.app_url + '/communities/' + community.slug"
@@ -175,7 +178,7 @@
               </div>
             </div>
           </nb-card-body>
-          <nb-card-footer class="com-pb-0 com-px-0 com-sticky com-top-16 com-z-20">
+          <nb-card-footer class="com-pb-0 com-px-0 com-sticky com-top-16 com-z-20 sticky">
             <div class="page-menu">
               <div class="menu-items d-flex">
                 <a

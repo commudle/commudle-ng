@@ -141,7 +141,7 @@
 }
 
 .mini-header {
-  @apply com-h-16 com-flex com-items-center com-mx-8 com-justify-between;
+  @apply com-h-16 com-flex com-items-center com-mx-6 md:com-mx-8 com-justify-between;
   .community-details {
     @apply com-flex com-space-x-3;
     .mini-logo-section {
@@ -164,4 +164,8 @@
   .action-buttons {
     @apply com-flex com-space-x-6;
   }
+}
+
+.miniHeader {
+  @apply com-mt-3 com-sticky com-top-16 com-z-20 #{!important};
 }
