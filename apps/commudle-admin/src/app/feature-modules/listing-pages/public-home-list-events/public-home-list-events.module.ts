@@ -46,5 +46,6 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     SharedDirectivesModule,
     SkeletonCardsComponent,
   ],
+  exports: [PublicHomeListEventsHeaderComponent],
 })
 export class PublicHomeListEventsModule {}

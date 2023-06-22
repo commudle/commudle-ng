@@ -20,6 +20,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() icon: string;
   @Input() size;
   @Input() canVote: boolean = true;
+  @Input() votesDirectionVertical = false;
 
   @Output() isBlocked: EventEmitter<boolean> = new EventEmitter<boolean>();
 

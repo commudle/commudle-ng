@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
@@ -97,16 +98,70 @@ export class CommunityBuildsService {
     });
   }
 
-  pGetAll(page, count): Observable<ICommunityBuilds> {
-    const params = new HttpParams().set('page', page).set('count', count);
-    return this.http.get<ICommunityBuilds>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX), {
-      params,
-    });
+  pGetAll(
+    after?: string,
+    limit?: number,
+    order_by?: string,
+    month?: boolean,
+    year?: boolean,
+    allTime?: boolean,
+  ): Observable<IPagination<ICommunityBuild>> {
+    let params = new HttpParams();
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (month) {
+      params = params.set('month', month);
+    }
+    if (year) {
+      params = params.set('year', year);
+    }
+    if (allTime) {
+      params = params.set('all-time', allTime);
+    }
+    if (order_by === 'votes_count') {
+      params = params.set('order_by', order_by);
+    }
+    return this.http.get<IPagination<ICommunityBuild>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX),
+      {
+        params,
+      },
+    );
   }
 
   pShow(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
     return this.http.get<ICommunityBuild>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.SHOW), {
+      params,
+    });
+  }
+
+  pGetFeaturedProjects(entity_type): Observable<IPagination<ICommunityBuild>> {
+    const params = new HttpParams().set('entity_type', entity_type);
+    return this.http.get<IPagination<ICommunityBuild>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.FEATURED_ITEMS),
+      {
+        params,
+      },
+    );
+  }
+
+  pGetTopBuilders(count: number, page: number, month?: boolean, year?: boolean, allTime?: boolean): Observable<any> {
+    let params = new HttpParams().set('count', String(count)).set('page', String(page));
+    if (month) {
+      params = params.set('month', month);
+    }
+    if (year) {
+      params = params.set('year', year);
+    }
+    if (allTime) {
+      params = params.set('all-time', allTime);
+    }
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.TOP_BUILDERS), {
       params,
     });
   }

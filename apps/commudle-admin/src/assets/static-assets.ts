@@ -28,4 +28,18 @@ export const staticAssets = {
 
   looking_for_work:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdHJFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3898f78e514311d5174cd50e338c9a1f514060d/looking-for-work.svg',
+
+  community_build_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKzBxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e5e8758fa8ec29c35266d3a555b2c2945c2a34b2/Build%20Empty%20State.png',
+
+  emojis: {
+    stars:
+      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGtxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--281b13ba73667dc6d98c85fa396713292c954732/acfc24b007f742e181c004f11d4128f7.png',
+
+    shield:
+      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGdxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--32a059c060494592838a43c620dc5f95da5ae4d6/sheild-front-color.png',
+
+    medal_of_honour:
+      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGNxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c32f54e069ae256b46224c8d591a14e100abcc9d/b3d37220175f46299a2639f1bf15ded2.png',
+  },
 };

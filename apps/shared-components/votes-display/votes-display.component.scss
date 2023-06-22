@@ -5,6 +5,10 @@
     font-size: 0.875rem;
     margin: 0;
 
+    &.votes-direction-vertical {
+      @apply com-flex com-flex-col-reverse com-items-center;
+    }
+
     .count {
       color: grey;
       display: inline-block;
@@ -39,4 +43,19 @@
       }
     }
   }
+
+  &.size-mini {
+    div {
+      p {
+        @apply com-text-xs com-font-medium;
+      }
+
+      nb-icon {
+        @apply com-text-sm;
+      }
+    }
+  }
+}
+
+.clickable.votes.border {
 }
