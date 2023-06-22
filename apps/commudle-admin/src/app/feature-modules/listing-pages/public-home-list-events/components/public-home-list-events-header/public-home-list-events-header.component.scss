@@ -23,8 +23,8 @@
             @apply com-hidden md:com-flex;
             ::ng-deep {
               p {
+                @apply com-text-white;
                 font-size: initial;
-                color: initial;
               }
             }
           }
