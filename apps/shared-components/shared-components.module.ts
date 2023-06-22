@@ -110,7 +110,6 @@ import { AlertComponent } from './alert/alert.component';
     LoadingSpinnerComponent,
     BannerImageComponent,
     AlertComponent,
-    BadgeComponent,
   ],
   imports: [
     CommonModule,
@@ -126,7 +125,7 @@ import { AlertComponent } from './alert/alert.component';
     SharedDirectivesModule,
     MentionModule,
     MiniUserProfileModule,
-    // BadgeComponent,
+    BadgeComponent,
 
     // Nebular
     NbButtonModule,

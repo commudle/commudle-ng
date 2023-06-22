@@ -26,7 +26,7 @@
               @apply com-flex com-justify-between md:com-h-10;
 
               .completed {
-                @apply com-flex com-items-center com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-mb-0 md:com-my-4 com-my-5 md:com-mx-3 com-mx-4;
+                @apply com-flex com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-mb-0 md:com-my-4 com-my-5 md:com-mx-3 com-mx-4;
                 nb-icon {
                   @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
                 }
@@ -34,7 +34,6 @@
 
               .interested-members {
                 @apply md:com-text-sm com-text-xs com-m-4 md:com-font-light com-font-normal com-text-Auro-Metal-Saurus com-items-center com-mb-0;
-                @apply md:com-flex md:com-justify-between;
               }
             }
 
