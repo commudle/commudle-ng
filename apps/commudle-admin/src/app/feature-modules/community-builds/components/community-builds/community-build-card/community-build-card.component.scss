@@ -3,51 +3,36 @@ p {
 }
 
 .community-build-card {
-  @apply com-p-4 com-flex com-flex-col com-border-[0.5px] com-border-solid com-border-[#c4c4c4] md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
+  @apply com-flex com-flex-row com-no-underline com-overflow-hidden com-items-center com-justify-between;
 
-  .community-build-card-image {
-    @apply com-w-full com-h-40 com-object-cover;
-
-    @screen md {
-      @apply com-w-40 com-min-w-[10rem];
-    }
-  }
-
-  .community-build-card-details {
-    @apply com-pt-4 com-w-full;
-
-    @screen md {
-      @apply com-pl-4 com-pt-0;
-    }
-
-    .community-build-card-prefix {
-      @apply com-flex com-justify-between com-items-center;
-    }
-
-    .community-build-card-content {
-      .community-build-card-title,
-      .community-build-card-description {
-        @apply com-my-2;
-        @apply com-line-clamp-2;
+  a {
+    @apply com-no-underline;
+    .details {
+      @apply com-flex;
+      .community-build-card-image {
+        @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
       }
-    }
 
-    .community-build-card-suffix {
-      @apply com-flex com-justify-between com-items-center;
+      .community-build-card-details {
+        @apply com-w-full md:com-pl-4 com-pl-2 md:com-pr-[74px] com-pt-0;
 
-      .community-build-card-interactions {
-        @apply com-flex com-gap-2 com-items-center;
-
-        .community-build-card-comments {
-          p {
-            @apply com-inline-block com-mr-0.5;
+        .community-build-card-title-time {
+          @apply md:com-flex com-block md:com-flex-row com-flex-col com-items-center md:com-mb-2 com-mb-1;
+          .title {
+            @apply md:com-text-base com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mr-4 com-line-clamp-1 com-mb-1 md:com-mb-0;
           }
 
-          nb-icon {
-            font-size: 1rem;
+          .time {
+            @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
           }
+        }
+        .description {
+          @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 md:com-line-clamp-1 com-hidden md:com-flex;
         }
       }
     }
   }
+}
+.votes {
+  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] com-py-3 md:com-rounded-lg com-rounded-none;
 }

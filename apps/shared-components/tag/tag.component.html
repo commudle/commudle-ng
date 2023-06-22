@@ -1,5 +1,13 @@
 <nb-tag-list (tagRemove)="onTagRemove($event)">
-  <nb-tag *ngFor="let tag of getTags()" [removable]="editable" [text]="tag"></nb-tag>
+  <nb-tag
+    *ngFor="let tag of getTags()"
+    [removable]="editable"
+    [text]="tag"
+    [ngClass]="{
+      tiny: size === 'tiny'
+    }"
+    [ngStyle]="{ background: backgroundColor, color: fontColor }"
+  ></nb-tag>
   <input
     (tagAdd)="onTagAdd($event)"
     *ngIf="editable"

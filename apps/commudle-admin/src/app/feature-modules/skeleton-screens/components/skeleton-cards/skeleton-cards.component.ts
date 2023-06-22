@@ -11,6 +11,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SkeletonCardsComponent implements OnInit {
   @Input() cards = 1;
   @Input() displayFollowButton = false;
+  @Input() ImageShapeCircle = true;
+  @Input() ImageShapeSquare = false;
   cardsArray;
 
   constructor() {}

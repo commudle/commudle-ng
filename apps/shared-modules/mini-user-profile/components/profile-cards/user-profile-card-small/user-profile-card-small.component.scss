@@ -12,10 +12,8 @@ a:active {
   background-color: $white;
 
   .avatar {
+    @apply com-h-6 com-w-6 com-overflow-hidden;
     border-radius: 50%;
-    height: 16px;
-    overflow: hidden;
-    width: 16px;
 
     img {
       width: 100%;
@@ -23,11 +21,7 @@ a:active {
   }
 
   .name {
-    font-size: $fs-h6;
-    line-height: 14px;
-    margin-left: $space-4;
-    padding-top: $space-2;
-    @apply com-text-gray-400;
+    @apply com-text-sm com-font-medium com-text-Auro-Metal-Saurus com-ml-2;
 
     img {
       height: 12px;

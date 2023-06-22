@@ -11,6 +11,7 @@ import {
   NbInputModule,
   NbPopoverModule,
   NbSelectModule,
+  NbTagModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
@@ -29,6 +30,15 @@ import { CreateCommunityBuildComponent } from './components/create-community-bui
 import { BuildListItemComponent } from './components/my-community-builds/build-list-item/build-list-item.component';
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { FeaturedProjectsComponent } from './components/community-builds/featured-projects/featured-projects.component';
+import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects-card/featured-projects-card.component';
+import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
+import { BuildsTopBuildersComponent } from './components/community-builds/builds-top-builders/builds-top-builders.component';
+import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
+import { ExploreExpertsComponent } from './components/community-builds/explore-experts/explore-experts.component';
+import { BuildsComponent } from './components/community-builds/builds/builds.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +50,11 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     BuildListItemComponent,
     TeammateInviteConfirmationComponent,
     CommunityBuildCardComponent,
+    FeaturedProjectsComponent,
+    BuildsHeaderComponent,
+    BuildsTopBuildersComponent,
+    ExploreExpertsComponent,
+    BuildsComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +70,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
-
+    PublicHomeListEventsModule,
     // Nebular
     NbCardModule,
     NbSelectModule,
@@ -64,9 +79,12 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
-
+    NbTagModule,
     //FontAwesomeModule
     FontAwesomeModule,
+    FeaturedProjectsCardComponent,
+    TopBuildersCardComponent,
+    SkeletonCardsComponent,
   ],
 })
 export class CommunityBuildsModule {}

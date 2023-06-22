@@ -13,6 +13,7 @@ export class BannerImageComponent implements OnInit {
   @Input() bottomRightCurve = true;
   @Input() bottomLeftCurve = true;
   @Input() topLeftCurve = true;
+  @Input() aspectRatio = '16/6';
 
   constructor() {}
 
