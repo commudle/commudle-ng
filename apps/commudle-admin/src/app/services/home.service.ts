@@ -29,10 +29,8 @@ export class HomeService {
     return this.http.get<ICommunityBuilds>(this.apiRoutesService.getRoute(API_ROUTES.HOME.COMMUNITY_BUILDS));
   }
 
-  experts(count?): Observable<IUser[]> {
-    console.log(count);
-    const params = new HttpParams().set('count', count);
-    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.HOME.EXPERTS), { params });
+  experts(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.HOME.EXPERTS));
   }
 
   pCommunities(): Observable<ICommunities> {
