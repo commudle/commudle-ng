@@ -17,7 +17,13 @@ nb-card {
       .text {
         @apply com-flex md:com-items-center com-flex-col;
         .title {
-          @apply md:com-text-xl md:com-font-extrabold com-text-base com-font-semibold com-text-Dark-Jungle-Green md:com-text-white com-mb-1 com-mt-0 com-mx-0;
+          @apply com-flex com-flex-row com-items-center;
+          h3 {
+            @apply md:com-text-xl md:com-font-extrabold com-text-base com-font-semibold com-text-Dark-Jungle-Green md:com-text-white com-mb-1 com-mt-0 com-mx-0;
+          }
+          nb-icon {
+            @apply com-text-white com-ml-1 com-mb-2;
+          }
         }
         .sub-heading {
           @apply md:com-text-base md:com-font-medium com-text-sm com-font-normal com-text-gunmetal md:com-text-white com-m-0;

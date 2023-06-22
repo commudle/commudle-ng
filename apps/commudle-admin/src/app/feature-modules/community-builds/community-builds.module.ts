@@ -12,6 +12,7 @@ import {
   NbPopoverModule,
   NbSelectModule,
   NbTagModule,
+  NbTooltipModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
@@ -71,6 +72,10 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     RecommendationsModule,
     MiniUserProfileModule,
     PublicHomeListEventsModule,
+    FeaturedProjectsCardComponent,
+    TopBuildersCardComponent,
+    SkeletonCardsComponent,
+
     // Nebular
     NbCardModule,
     NbSelectModule,
@@ -80,11 +85,10 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     NbPopoverModule,
     NbCheckboxModule,
     NbTagModule,
+    NbTooltipModule,
+
     //FontAwesomeModule
     FontAwesomeModule,
-    FeaturedProjectsCardComponent,
-    TopBuildersCardComponent,
-    SkeletonCardsComponent,
   ],
 })
 export class CommunityBuildsModule {}

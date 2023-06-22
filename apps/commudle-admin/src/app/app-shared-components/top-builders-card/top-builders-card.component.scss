@@ -1,8 +1,8 @@
 nb-card {
-  @apply com-m-0 com-overflow-hidden md:com-h-[196px] com-h-[190px] md:com-w-[318px] com-w-[313px];
+  @apply com-m-0 com-overflow-hidden md:com-max-h-[177px] com-max-h-full md:com-h-auto com-h-[167px] md:com-w-[318px] com-w-[313px];
 
   nb-card-body {
-    @apply com-p-4;
+    @apply com-px-3 com-py-2;
 
     a {
       @apply com-no-underline com-flex com-flex-col;
@@ -21,7 +21,7 @@ nb-card {
         .text {
           @apply com-flex com-flex-col com-m-0;
           .name {
-            @apply com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-mb-1 com-flex com-items-center;
+            @apply com-flex com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-mb-1 com-flex-row com-items-center;
 
             .expert-icon {
               @apply com-h-4 com-w-4 com-m-0 com-ml-2;
