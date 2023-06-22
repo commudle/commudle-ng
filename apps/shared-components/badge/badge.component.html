@@ -1,5 +1,9 @@
-<div class="{{ position }}" [ngClass]="{'dotmode': dotMode === true}" [ngStyle]="{'background-color': bg}">
-  <p [ngClass]="{'small-text': fontSize == 'small'}" >
+<div
+  class="{{ position }}"
+  [ngClass]="{ dotmode: dotMode === true }"
+  [ngStyle]="{ 'background-color': bg, 'border-radius': borderRadius }"
+>
+  <p [ngClass]="{ 'small-text': fontSize == 'small' }" [ngStyle]="{ color: fontColor }">
     <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
     {{ text }}
   </p>

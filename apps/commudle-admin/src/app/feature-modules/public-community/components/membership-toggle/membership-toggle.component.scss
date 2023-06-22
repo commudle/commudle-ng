@@ -5,3 +5,7 @@
 .fullWidth {
   @apply com-w-full;
 }
+
+.join-button {
+  @apply md:com-w-[93px] com-w-full;
+}

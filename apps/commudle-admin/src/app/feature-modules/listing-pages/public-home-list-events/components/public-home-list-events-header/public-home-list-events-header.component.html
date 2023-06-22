@@ -1,13 +1,22 @@
-<nb-card class="md:com-w-[1248px] md:com-min-h-[298px] com-w-ful com-h-full">
-  <nb-card-body>
-    <div *ngIf="listingPageHeader" [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }">
-      <div class="header-text md:com-w-[855px] md:com-h-[298px] com-w-ful com-h-full">
-        <h1 class="heading">{{ listingPageHeader.heading }}</h1>
-        <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
-      </div>
-      <div class="header-image">
-        <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />
+<div class="header">
+  <div
+    *ngIf="listingPageHeader"
+    [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }"
+    class="background"
+  >
+    <div class="base-layout">
+      <div class="content">
+        <div class="header-text">
+          <h1 class="heading">{{ listingPageHeader.heading }}</h1>
+          <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
+          <div class="content">
+            <div [innerHTML]="richText"></div>
+          </div>
+        </div>
+        <div class="header-image">
+          <img [src]="imageUrl(listingPageHeader?.header_image).url()" class="com-w-full" />
+        </div>
       </div>
     </div>
-  </nb-card-body>
-</nb-card>
+  </div>
+</div>

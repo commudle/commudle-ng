@@ -1,7 +1,7 @@
 .event {
   @apply com-flex com-flex-row com-flex-wrap com-justify-between;
   a {
-    @apply com-relative  md:com-w-[394px] com-no-underline;
+    @apply com-relative md:com-w-[272px] com-no-underline;
 
     nb-card {
       @apply com-overflow-hidden hover:com-shadow-Card com-m-0;
@@ -20,13 +20,13 @@
           @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-mb-4;
 
           .event-details {
-            @apply com-mb-7;
+            @apply md:com-mb-6 com-mb-10;
 
             .details {
-              @apply com-flex com-justify-between;
+              @apply com-flex com-justify-between md:com-h-10;
 
               .completed {
-                @apply com-flex com-text-sm com-font-medium com-text-Crayola-Green com-mb-0 com-m-4;
+                @apply com-flex com-items-center com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-mb-0 md:com-my-4 com-my-5 md:com-mx-3 com-mx-4;
                 nb-icon {
                   @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
                 }
@@ -39,7 +39,7 @@
             }
 
             .event-name {
-              @apply com-text-Dark-Jungle-Green com-font-semibold md:com-text-xl com-text-lg com-leading-6 com-mx-4 com-mb-0 com-line-clamp-1 com-mt-3;
+              @apply com-text-Dark-Jungle-Green com-font-semibold md:com-text-base com-text-lg com-leading-6 com-mx-4 com-mb-0 com-line-clamp-1 com-mt-5;
 
               .collaboration {
                 @apply com-text-sm com-font-normal;

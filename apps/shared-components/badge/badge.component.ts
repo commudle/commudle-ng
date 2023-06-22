@@ -12,26 +12,26 @@ export class BadgeComponent implements OnInit {
   @Input() nbIcon;
   @Input() dotMode;
   @Input() position;
+  @Input() fontColor = 'white';
+  @Input() borderRadius = '4px';
 
   bg;
 
   @HostBinding('class')
-  get themeClass(){
+  get themeClass() {
     if (this.position) {
       return this.position;
     }
     return '';
-  };
+  }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.bg = this.backgroundColor();
   }
 
-
   backgroundColor() {
-    return this.color || '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+    return this.color || '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
   }
-
 }

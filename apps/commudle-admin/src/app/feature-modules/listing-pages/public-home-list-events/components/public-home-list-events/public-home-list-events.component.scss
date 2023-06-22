@@ -6,11 +6,11 @@
   }
 
   .main-column {
-    @apply md:com-pr-12 com-p-0 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+    @apply md:com-pr-4 com-p-0 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
   }
 
   .right-column {
-    @apply md:com-ml-11 com-m-0;
+    @apply md:com-ml-4 com-m-0;
 
     .right-column-desktop {
       @apply md:com-sticky md:com-top-24;
