@@ -35,8 +35,7 @@
   }
 
   h6 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    @apply com-mt-4 com-mb-2;
   }
 
   .user-roles-user-form {
@@ -44,11 +43,11 @@
     flex-wrap: wrap;
 
     > div {
-      margin-right: 1rem;
+      @apply com-mr-4;
     }
 
     .save-button-bottom {
-      margin-top: 18px;
+      @apply com-mt-5;
     }
   }
 }
