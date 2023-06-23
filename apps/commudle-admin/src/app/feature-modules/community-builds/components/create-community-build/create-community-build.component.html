@@ -285,7 +285,7 @@
               </button> -->
               <button
                 (click)="submitForm(EPublishStatus.published)"
-                [disabled]="communityBuildForm.invalid"
+                [disabled]="communityBuildForm.invalid || tags.length < 5"
                 nbButton
                 status="primary"
                 type="submit"
