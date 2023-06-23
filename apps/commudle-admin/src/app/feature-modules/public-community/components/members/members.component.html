@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-body>
-    <div class="speakers-container">
+    <div *ngIf="speakers.length > 0" class="speakers-container">
       <p class="header-text">Meet Our Speakers</p>
       <div *ngIf="isLoadingSpeakers" class="com-min-h-[340px] loader">
         <app-loading-spinner></app-loading-spinner>
