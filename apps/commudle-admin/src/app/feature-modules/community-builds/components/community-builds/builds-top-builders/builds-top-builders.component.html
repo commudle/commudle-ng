@@ -73,10 +73,10 @@
           ></commudle-top-builders-card>
         </div>
       </div>
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
       <div class="load-more">
-        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
         <button
-          *ngIf="canLoadMore && total"
+          *ngIf="canLoadMore && total && !showSpinner"
           (click)="getCommunityBuilds(); showSpinner = true"
           nbButton
           outline

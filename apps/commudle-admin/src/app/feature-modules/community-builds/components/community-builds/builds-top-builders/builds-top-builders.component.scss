@@ -49,12 +49,12 @@ nb-card {
         @apply com-m-0 com-p-0;
       }
 
+      app-loading-spinner {
+        @apply com-mb-6;
+      }
+
       .load-more {
         @apply com-text-center md:com-mt-4 com-mt-0 md:com-bg-white com-rounded-md;
-
-        app-loading-spinner {
-          @apply com-mb-6;
-        }
       }
     }
   }
