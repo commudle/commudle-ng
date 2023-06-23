@@ -2,7 +2,7 @@ nb-card {
   @apply com-m-0 com-overflow-hidden md:com-max-h-[177px] com-max-h-full md:com-h-auto com-h-[167px] md:com-w-[318px] com-w-[313px];
 
   nb-card-body {
-    @apply com-px-3 com-py-2;
+    @apply com-px-3 com-py-2 com-overflow-hidden;
 
     a {
       @apply com-no-underline com-flex com-flex-col;
