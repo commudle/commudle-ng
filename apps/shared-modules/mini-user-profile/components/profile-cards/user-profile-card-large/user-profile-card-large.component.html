@@ -35,10 +35,10 @@
         <div *ngIf="showSpeakersCount" class="speaker-count">
           <app-badge
             [text]="user.speaker_events_count + (user.speaker_events_count > 1 ? ' Talks Given' : ' Talk Given')"
-            [color]="'com-text-Bright-Gray'"
+            [fontColor]="'com-text-Auro-Metal-Saurus'"
             [fontSize]="'small'"
             [borderRadius]="'round'"
-            [randomColor]="false"
+            [color]="'com-bg-Bright-Gray/60'"
           ></app-badge>
         </div>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">

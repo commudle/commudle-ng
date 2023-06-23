@@ -12,15 +12,14 @@ import { NbIconModule } from '@commudle/theme';
 export class BadgeComponent implements OnInit {
   @Input() text;
   @Input() fontSize; //can be 'small or regular'
-  @Input() color = 'com-text-white';
+  @Input() color = 'com-bg-Bright-Gray';
+  @Input() fontColor = 'com-text-white';
   @Input() nbIcon;
   @Input() dotMode;
   @Input() position;
-  @Input() borderRadius: 'rectangle' | 'semi-round' | 'round' = 'semi-round';
-  @Input() bgColor: string;
-  @Input() randomColor = true;
+  @Input() borderRadius: 'rectangle' | 'semi-round' | 'round' = 'rectangle';
 
-  bg;
+  // bg;
 
   @HostBinding('class')
   get themeClass() {
@@ -33,12 +32,10 @@ export class BadgeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (this.randomColor) {
-      this.bg = this.backgroundColor();
-    }
+    // this.bg = this.backgroundColor();
   }
 
-  backgroundColor() {
-    return this.color || '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
-  }
+  // backgroundColor() {
+  //   return this.color || '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+  // }
 }

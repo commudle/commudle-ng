@@ -5,11 +5,10 @@
     'semi-round': borderRadius === 'semi-round',
     round: borderRadius === 'round'
   }"
-  [ngStyle]="{ 'background-color': bg }"
-  class="{{ position }} {{ bgColor }}"
+  class="{{ position }} {{ color }}"
 >
   <div>
-    <p [ngClass]="{ 'small-text': fontSize == 'small' }" class="{{ color }}">
+    <p [ngClass]="{ 'small-text': fontSize == 'small' }" class="{{ fontColor }}">
       <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
       {{ text }}
     </p>

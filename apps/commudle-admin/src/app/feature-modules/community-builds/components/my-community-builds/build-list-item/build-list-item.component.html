@@ -3,7 +3,7 @@
     <h5>
       {{ cb.name }}
       <a [routerLink]="['/builds', cb.slug]" class="external-link" target="_blank">
-        <small>{{cb.publish_status}}</small>
+        <small>{{ cb.publish_status }}</small>
         <small *ngIf="[EPublishStatus.draft, EPublishStatus.submitted].includes(cb.publish_status)">Preview</small>
         <nb-icon icon="external-link"></nb-icon>
       </a>
@@ -15,19 +15,19 @@
     </p>
     <div *ngIf="stats" class="stats">
       <p>
-        {{stats.total_visitors}}
+        {{ stats.total_visitors }}
         <small>Total Visits</small>
       </p>
       <p>
-        {{stats.unique_visitors}}
+        {{ stats.unique_visitors }}
         <small>Unique Visitors</small>
       </p>
       <p>
-        {{stats.total_votes}}
+        {{ stats.total_votes }}
         <small>Stars</small>
       </p>
       <p>
-        {{stats.total_comments}}
+        {{ stats.total_comments }}
         <small>Comments</small>
       </p>
     </div>
@@ -46,8 +46,15 @@
     <div>
       <app-votes-display [icon]="'star'" [votableId]="cb.id" [votableType]="'CommunityBuild'"></app-votes-display>
     </div>
+
+    <!-- //TODO redefine tag colors -->
     <div class="tags">
-      <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
+      <app-badge
+        *ngFor="let t of cb.tags"
+        [text]="t"
+        [fontColor]="'com-text-white'"
+        [color]="'com-bg-primary-500'"
+      ></app-badge>
     </div>
   </div>
   <div class="actions">
@@ -68,7 +75,7 @@
 
 <ng-template #imageTemplate let-data>
   <div class="image-window">
-    <img alt="Image" src="{{data.imageUrl}}" title="Image">
+    <img alt="Image" src="{{ data.imageUrl }}" title="Image" />
   </div>
 </ng-template>
 

@@ -58,6 +58,10 @@ module.exports = {
         'Metallic-Bronze': '#AC7D47',
         'Tigers-Eye': '#DF913F',
         'Blanched-Almond': '#FFEECD',
+        'Deep-Carmine-Pink': '#FF3333',
+        'Bleu-De-France': '#2590EB',
+        'Giants-Orange': '#ff5c1e',
+        Blue: '#001FFF',
       },
 
       lineClamp: {

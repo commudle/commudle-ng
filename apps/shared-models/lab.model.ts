@@ -35,10 +35,11 @@ export enum EPublishStatus {
   removed = 'removed',
 }
 
+//TODO redefine tags colors
 export enum EPublishStatusColors {
-  draft = '#ff6a00',
-  submitted = '#0095fe',
-  published = '#23d004',
-  flagged = 'red',
-  removed = 'red',
+  draft = 'com-bg-orange-500',
+  submitted = 'com-bg-primary-500',
+  published = 'com-bg-lime-300',
+  flagged = 'com-bg-red-500',
+  removed = 'com-bg-red-500',
 }

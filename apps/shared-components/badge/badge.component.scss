@@ -10,12 +10,10 @@ div {
     }
 
     &.small-text {
-      font-size: 12px;
-      padding: 0 2px;
-      line-height: 18px;
+      @apply com-py-2px com-px-5px com-text-xs;
 
       nb-icon {
-        font-size: 10px;
+        font-size: 16px;
       }
     }
   }
