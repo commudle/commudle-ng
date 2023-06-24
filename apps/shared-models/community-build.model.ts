@@ -45,32 +45,33 @@ export enum EPublishStatus {
 }
 
 export enum EPublishStatusColors {
-  draft = '#ff6a00',
-  submitted = '#0095fe',
-  published = '#23d004',
-  flagged = 'red',
-  removed = 'red',
+  draft = 'com-bg-orange-500',
+  submitted = 'com-bg-primary-500',
+  published = 'com-bg-lime-300',
+  flagged = 'com-bg-red-500',
+  removed = 'com-bg-red-500',
 }
 
+//TODO redefine colors
 export const CBuildTypeDisplay = {
   project: {
-    color: '#4e74ff',
+    color: 'com-bg-Blueberry',
     icon: 'flash',
   },
   product: {
-    color: '#4e74ff',
+    color: 'com-bg-Blueberry',
     icon: 'flash',
   },
   slides: {
-    color: '#ff8f4e',
+    color: 'com-bg-orange-400',
     icon: 'film',
   },
   course: {
-    color: '#e91e63',
+    color: 'com-bg-red-500',
     icon: 'book-open',
   },
   other: {
-    color: '#3ee044',
+    color: 'com-bg-green-500',
     icon: 'arrow-right',
   },
 };

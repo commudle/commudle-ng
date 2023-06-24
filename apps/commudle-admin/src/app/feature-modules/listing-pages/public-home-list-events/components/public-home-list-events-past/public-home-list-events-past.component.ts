@@ -14,6 +14,7 @@ export class PublicHomeListEventsPastComponent implements OnInit {
   faCalendarCheck = faCalendarCheck;
 
   page_info: IPageInfo;
+  limit = 9;
   total: number;
   isLoadingUpcoming = false;
   showSpinner = false;
@@ -27,7 +28,7 @@ export class PublicHomeListEventsPastComponent implements OnInit {
   getPastEvents() {
     this.isLoadingUpcoming = true;
     this.showSpinner = true;
-    this.eventsService.getEventsList('past', this.page_info?.end_cursor).subscribe((data) => {
+    this.eventsService.getEventsList('past', this.limit, this.page_info?.end_cursor).subscribe((data) => {
       this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
       this.page_info = data.page_info;

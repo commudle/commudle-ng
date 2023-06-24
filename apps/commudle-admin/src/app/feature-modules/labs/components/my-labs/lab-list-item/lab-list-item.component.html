@@ -8,51 +8,50 @@
       </a>
     </h5>
     <p>
-      <small>
-        Created: {{ moment(lab.created_at).fromNow() }}
-      </small>
-      <br/>
+      <small> Created: {{ moment(lab.created_at).fromNow() }} </small>
+      <br />
       <small *ngIf="lab.publish_status === EPublishStatus.published">
         Published: {{ moment(lab.published_at).fromNow() }}
       </small>
     </p>
     <div class="stats" *ngIf="stats">
       <p>
-        {{stats.total_visitors}}
+        {{ stats.total_visitors }}
         <small>Total Visits</small>
       </p>
       <p>
-        {{stats.unique_visitors}}
+        {{ stats.unique_visitors }}
         <small>Unique Visitors</small>
       </p>
       <p>
-        {{stats.total_votes}}
+        {{ stats.total_votes }}
         <small>Stars</small>
       </p>
       <p>
-        {{stats.total_comments}}
+        {{ stats.total_comments }}
         <small>Comments</small>
       </p>
     </div>
   </div>
   <div class="status">
     <p>
-      <app-badge
-      [text]="lab.publish_status | titlecase"
-      [color]="EPublishStatusColors[lab.publish_status]">
-    </app-badge>
+      <app-badge [text]="lab.publish_status | titlecase" [color]="EPublishStatusColors[lab.publish_status]">
+      </app-badge>
     </p>
   </div>
   <div class="stats">
     <div>
-      <app-votes-display
-        [votableType]="'Lab'"
-        [votableId]="lab.id"
-        [icon]="'star'"
-      ></app-votes-display>
+      <app-votes-display [votableType]="'Lab'" [votableId]="lab.id" [icon]="'star'"></app-votes-display>
     </div>
+
+    <!-- //TODO redefine tags colors -->
     <div class="tags">
-      <app-badge *ngFor="let t of lab.tags" [text]="t"></app-badge>
+      <app-badge
+        *ngFor="let t of lab.tags"
+        [text]="t"
+        [fontColor]="'com-text-white'"
+        [color]="'com-bg-primary-400'"
+      ></app-badge>
     </div>
   </div>
   <div class="actions">
@@ -71,10 +70,7 @@
   </div>
 </div>
 
-
-
 <ng-template #confirmDeleteTemplate let-data>
-
   <div>
     <button nbButton size="small" status="basic" (click)="deleteLab()">Yes</button>
     <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>

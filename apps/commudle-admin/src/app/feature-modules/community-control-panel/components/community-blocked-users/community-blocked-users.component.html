@@ -39,7 +39,8 @@
     <div *ngFor="let userRole of userRolesUsers" class="member">
       <app-badge
         *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
-        [color]="'blue'"
+        [color]="'com-bg-primary-500'"
+        [fontColor]="'com-text-white'"
         [fontSize]="'small'"
         [text]="'Organizer'"
       ></app-badge>

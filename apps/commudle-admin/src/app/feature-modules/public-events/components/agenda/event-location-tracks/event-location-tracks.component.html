@@ -29,11 +29,14 @@
               </div>
               <div class="session-details">
                 <div class="session-title">
+                  <!-- //TODO redefine tags colors -->
                   <div *ngIf="slot.tags_list">
                     <app-badge
                       *ngFor="let tag of slot.tags_list.split(',')"
                       [fontSize]="'small'"
                       [text]="tag"
+                      [fontColor]="'com-text-white'"
+                      [color]="'com-bg-primary-500'"
                     ></app-badge>
                   </div>
                   <p>{{ slot.session_title }}</p>

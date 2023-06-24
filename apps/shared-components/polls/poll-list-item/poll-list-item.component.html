@@ -1,8 +1,15 @@
 <div class="poll">
   <div>
+    <!-- //TODO redefine tags colors -->
     <p class="preview-question">
       {{ poll.questions[0].title }}
-      <app-badge *ngIf="poll.status === EPollStatuses.OPEN" [text]="poll.status" [fontSize]="'small'"></app-badge>
+      <app-badge
+        *ngIf="poll.status === EPollStatuses.OPEN"
+        [text]="poll.status"
+        [fontSize]="'small'"
+        [fontColor]="'com-text-white'"
+        [color]="'com-bg-primary-500'"
+      ></app-badge>
       <span class="total-responses" *ngIf="poll.total_responses > 0">
         <nb-icon icon="person-add-outline"></nb-icon> {{ poll.total_responses }}
       </span>
@@ -13,7 +20,8 @@
         nbButton
         size="tiny"
         status="info"
-        (click)="startSelf()">
+        (click)="startSelf()"
+      >
         Submit Response
       </button>
       <button
@@ -21,7 +29,8 @@
         nbButton
         size="tiny"
         status="success"
-        (click)="start()">
+        (click)="start()"
+      >
         Start
       </button>
       <button
@@ -29,7 +38,8 @@
         nbButton
         size="tiny"
         status="danger"
-        (click)="stop()">
+        (click)="stop()"
+      >
         Stop
       </button>
       <button
@@ -38,7 +48,8 @@
         size="tiny"
         status="primary"
         outline
-        (click)="displayResults()">
+        (click)="displayResults()"
+      >
         Results
       </button>
       <button
@@ -48,10 +59,10 @@
         status="danger"
         outline
         nbTooltip="Delete"
-        (click)="delete()">
+        (click)="delete()"
+      >
         <nb-icon icon="trash" status="danger"></nb-icon>
-    </button>
-
+      </button>
     </div>
   </div>
 </div>

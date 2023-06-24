@@ -17,9 +17,10 @@
           ></app-user-profile-mini>
           <app-badge
             *ngIf="currentUser && chatUser.unread_user_ids.includes(currentUser.id)"
-            [color]="'#ff5c1e'"
+            [color]="'com-bg-Giants-Orange'"
             [fontSize]="'small'"
             [text]="'Unread'"
+            [fontColor]="'com-text-white'"
           ></app-badge>
         </nb-list-item>
       </nb-list>
