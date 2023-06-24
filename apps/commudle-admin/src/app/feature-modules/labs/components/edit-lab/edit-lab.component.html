@@ -95,9 +95,8 @@
                         labForm['controls'].name.invalid &&
                         labForm['controls'].name.errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
                   <div>
@@ -107,6 +106,15 @@
                       formControlName="description"
                     >
                     </editor>
+                    <!-- <span
+                      *ngIf="
+                        labForm['controls'].description.touched &&
+                        labForm['controls'].description.invalid &&
+                        labForm['controls'].description.errors.required
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
                   </div>
                 </div>
               </form>
@@ -131,6 +139,25 @@
                       placeholder="Add a Title"
                       type="text"
                     />&nbsp;
+                    <!-- <span *ngIf="labForm.get('lab_steps').get('name').touched">
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
+
+                    <!-- <span
+                      *ngIf="
+                        question.get('name').touched &&
+                        question.get('name').invalid &&
+                        question.get('name').errors.required
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
+                    <!-- 
+                    addStep() { (this.labForm.get('lab_steps') as FormArray).push(this.initStep()); }
+                    addQuestionButtonClick(index: number) { (this.createDataForm.get('data_form').get('questions') as
+                    FormArray).insert(index, this.initQuestion()); this.updateQuestionsCount();
+                    this.questionDescription[index] = false; } -->
+
                     <nb-icon
                       (click)="removeStep(i)"
                       class="clickable"
@@ -146,7 +173,14 @@
                       formControlName="description"
                     >
                     </editor>
-                    <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
+                    <!-- <span
+                      *ngIf="
+                        lStep.get('description').touched &&
+                        lStep.get('description').invalid &&
+                        lStep.get('description').errors.required
+                      "
+                      class="validation-error-text"
+                    >
                       Required Field
                     </span> -->
                   </div>
@@ -170,6 +204,9 @@
           <nb-card-body>
             <div class="tags">
               <p>Tags help you get a better visibility 😃</p>
+              <span *ngIf="tags.length < 5">
+                <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags required'"></commudle-alert>
+              </span>
               <app-tag
                 (tagAdd)="onTagAdd($event)"
                 (tagDelete)="onTagDelete($event)"
