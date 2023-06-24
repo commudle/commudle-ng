@@ -5,8 +5,8 @@
         <img alt="Experts" src="{{ staticAssets.emojis.shield }}" title="Experts" />
       </button>
       <div class="text">
-        <h3 class="title">EXPLORE EXPERTS</h3>
-        <h4 class="sub-heading">Top experts you can follow</h4>
+        <h3 class="title">EXPERTS TO FOLLOW</h3>
+        <h4 class="sub-heading">Grow your network</h4>
       </div>
     </div>
     <app-skeleton-cards
@@ -16,7 +16,7 @@
       *ngIf="showSpinner"
     ></app-skeleton-cards>
     <div class="top-experts custom-scrollbar">
-      <div class="top-expert-card" *ngFor="let topBuilder of experts">
+      <div class="top-expert-card" *ngFor="let topBuilder of experts | slice : 0 : 4">
         <div *appBreakpoints="'>lg'">
           <commudle-top-builders-card
             [topBuilder]="topBuilder"
