@@ -1,19 +1,22 @@
 .community-team {
   @apply com-overflow-hidden;
   padding: 1.5rem;
+
+  .heading {
+    @apply com-m-0;
+  }
+
   .organizers,
   .event_organizers {
     display: flex;
     flex-wrap: wrap;
     .user-profile {
-      padding: 5px;
+      @apply com-px-0 com-py-1 com-mx-0 com-my-2;
       width: 800px;
       max-width: 90vw;
       justify-content: center;
       display: flex;
       flex-direction: column;
-
-      margin: 0.5rem;
 
       .actions {
         @apply com-text-primary-500;
