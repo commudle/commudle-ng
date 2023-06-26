@@ -22,7 +22,7 @@ nb-card {
             @apply md:com-text-xl md:com-font-extrabold com-text-base com-font-semibold com-text-Dark-Jungle-Green md:com-text-white com-mb-1 com-mt-0 com-mx-0;
           }
           nb-icon {
-            @apply com-text-white com-ml-1 com-mb-1 com-text-[12px];
+            @apply md:com-text-white com-ml-1 com-mb-1 com-text-[12px] com-text-black;
           }
         }
         .sub-heading {
