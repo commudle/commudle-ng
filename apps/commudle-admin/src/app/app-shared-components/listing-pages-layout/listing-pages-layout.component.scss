@@ -6,6 +6,6 @@
   }
 
   .right-column {
-    @apply com-m-0 com-ml-[30px];
+    @apply com-m-0 md:com-mb-4 com-mb-0 com-ml-[30px];
   }
 }
