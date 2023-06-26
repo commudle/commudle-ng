@@ -106,7 +106,7 @@
                       formControlName="description"
                     >
                     </editor>
-                    <!-- <span
+                    <span
                       *ngIf="
                         labForm['controls'].description.touched &&
                         labForm['controls'].description.invalid &&
@@ -114,7 +114,7 @@
                       "
                     >
                       <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span> -->
+                    </span>
                   </div>
                 </div>
               </form>
@@ -129,7 +129,7 @@
             <nb-card-body>
               <div>
                 <div [formGroupName]="i" class="lab-step">
-                  <h3 class="steps-counter d-flex justify-content-start align-items-center">
+                  <h3 class="steps-counter d-flex justify-content-start align-items-center com-mb-0">
                     {{ i + 1 }}.&nbsp;
                     <input
                       fieldSize="giant"
@@ -139,25 +139,6 @@
                       placeholder="Add a Title"
                       type="text"
                     />&nbsp;
-                    <!-- <span *ngIf="labForm.get('lab_steps').get('name').touched">
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span> -->
-
-                    <!-- <span
-                      *ngIf="
-                        question.get('name').touched &&
-                        question.get('name').invalid &&
-                        question.get('name').errors.required
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span> -->
-                    <!-- 
-                    addStep() { (this.labForm.get('lab_steps') as FormArray).push(this.initStep()); }
-                    addQuestionButtonClick(index: number) { (this.createDataForm.get('data_form').get('questions') as
-                    FormArray).insert(index, this.initQuestion()); this.updateQuestionsCount();
-                    this.questionDescription[index] = false; } -->
-
                     <nb-icon
                       (click)="removeStep(i)"
                       class="clickable"
@@ -165,23 +146,33 @@
                       status="danger"
                     ></nb-icon>
                   </h3>
+                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').touched }}</h1>
+                  <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').invalid }}</h1>-->
+                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').errors }}</h1> -->
+                  <!-- <span
+                    *ngIf="
+                      labForm.get('lab_steps')['controls'][i].get('name').touched &&
+                      labForm.get('lab_steps')['controls'][i].get('name').errors.required
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span> -->
 
                   <div>
                     <editor
                       [init]="tinyMCE"
                       apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                       formControlName="description"
+                      class="editor"
                     >
                     </editor>
                     <!-- <span
                       *ngIf="
-                        lStep.get('description').touched &&
-                        lStep.get('description').invalid &&
-                        lStep.get('description').errors.required
+                        labForm.get('lab_steps')['controls'][i].get('description').touched &&
+                        labForm.get('lab_steps')['controls'][i].get('description').errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span> -->
                   </div>
                 </div>
