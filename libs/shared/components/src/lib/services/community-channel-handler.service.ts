@@ -186,7 +186,6 @@ export class CommunityChannelHandlerService {
             });
 
             this.messages.next(messages);
-            console.log(this.messages$);
           }
           break;
         case 'error':
