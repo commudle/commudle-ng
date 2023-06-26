@@ -1,0 +1,11 @@
+.container {
+  @apply com-mb-8;
+  .main-column {
+    @apply com-p-0 md:com-pr-[30px];
+    @apply com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+  }
+
+  .right-column {
+    @apply com-m-0 com-ml-[30px];
+  }
+}

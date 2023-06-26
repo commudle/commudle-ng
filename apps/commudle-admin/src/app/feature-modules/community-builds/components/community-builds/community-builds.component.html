@@ -1,39 +1,33 @@
-<div>
-  <commudle-builds-header></commudle-builds-header>
-</div>
-<div class="com-bg-white">
-  <div class="community-builds-container base-layout">
-    <div class="container">
-      <div *appBreakpoints="'>lg'" class="two-column-layout medium">
-        <div class="main-column">
-          <commudle-builds></commudle-builds>
-        </div>
-        <div class="right-column">
-          <div class="publish-build-button">
-            <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
-              <nb-icon icon="plus"></nb-icon>
-              Share your Build
-            </a>
-          </div>
-          <div>
-            <commudle-builds-top-builders></commudle-builds-top-builders>
-            <commudle-featured-projects></commudle-featured-projects>
-            <commudle-explore-experts></commudle-explore-experts>
-          </div>
-        </div>
-      </div>
-      <div *appBreakpoints="'<=lg'" class="one-column-layout">
-        <div class="publish-build-button">
-          <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
-            <nb-icon icon="plus"></nb-icon>
-            Share your Build
-          </a>
-        </div>
-        <commudle-builds></commudle-builds>
-        <commudle-featured-projects></commudle-featured-projects>
-        <commudle-builds-top-builders></commudle-builds-top-builders>
-        <commudle-explore-experts></commudle-explore-experts>
-      </div>
+<commudle-listing-pages-layout>
+  <div header>
+    <commudle-builds-header></commudle-builds-header>
+  </div>
+  <div one-column>
+    <div class="publish-build-button">
+      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+        <nb-icon icon="plus"></nb-icon>
+        Share your Build
+      </a>
+    </div>
+    <commudle-builds></commudle-builds>
+    <commudle-featured-projects></commudle-featured-projects>
+    <commudle-builds-top-builders></commudle-builds-top-builders>
+    <commudle-explore-experts></commudle-explore-experts>
+  </div>
+  <div main-column>
+    <commudle-builds></commudle-builds>
+  </div>
+  <div right-column>
+    <div class="publish-build-button">
+      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+        <nb-icon icon="plus"></nb-icon>
+        Share your Build
+      </a>
+    </div>
+    <div>
+      <commudle-builds-top-builders></commudle-builds-top-builders>
+      <commudle-featured-projects></commudle-featured-projects>
+      <commudle-explore-experts></commudle-explore-experts>
     </div>
   </div>
-</div>
+</commudle-listing-pages-layout>
