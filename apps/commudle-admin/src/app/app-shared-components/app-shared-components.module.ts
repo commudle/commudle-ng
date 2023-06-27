@@ -21,6 +21,8 @@ import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared
     EditorModule,
     RouterModule,
     PublicCommunityModule,
+
+    //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,

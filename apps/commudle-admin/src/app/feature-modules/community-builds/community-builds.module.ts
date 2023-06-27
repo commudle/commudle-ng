@@ -40,6 +40,7 @@ import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared
 import { ExploreExpertsComponent } from './components/community-builds/explore-experts/explore-experts.component';
 import { BuildsComponent } from './components/community-builds/builds/builds.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 
 @NgModule({
   declarations: [
@@ -72,9 +73,12 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     RecommendationsModule,
     MiniUserProfileModule,
     PublicHomeListEventsModule,
+
+    //standalome
     FeaturedProjectsCardComponent,
     TopBuildersCardComponent,
     SkeletonCardsComponent,
+    ListingPagesLayoutComponent,
 
     // Nebular
     NbCardModule,

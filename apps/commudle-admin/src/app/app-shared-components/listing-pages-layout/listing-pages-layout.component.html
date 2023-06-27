@@ -1,0 +1,20 @@
+<div>
+  <ng-content select="[header]"></ng-content>
+</div>
+<div class="com-bg-white">
+  <div class="base-layout">
+    <div class="container">
+      <div *appBreakpoints="'<=lg'" class="one-column-layout">
+        <ng-content select="[one-column]"></ng-content>
+      </div>
+      <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+        <div class="main-column">
+          <ng-content select="[main-column]"></ng-content>
+        </div>
+        <div class="right-column">
+          <ng-content select="[right-column]"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

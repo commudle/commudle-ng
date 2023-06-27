@@ -19,6 +19,7 @@ import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-share
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -45,6 +46,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     EventHorizontalCardComponent,
     SharedDirectivesModule,
     SkeletonCardsComponent,
+    ListingPagesLayoutComponent,
   ],
   exports: [PublicHomeListEventsHeaderComponent],
 })
