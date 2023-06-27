@@ -1,6 +1,6 @@
 <div class="community-team">
   <div *ngIf="organizers.length > 0">
-    <h6>Community Organizers</h6>
+    <h6 class="heading">Community Organizers</h6>
     <div class="organizers">
       <div class="user-profile" *ngFor="let org of organizers; let i = index">
         <div class="user-details">
@@ -54,7 +54,7 @@
             fullWidth
             formControlName="email"
             placeholder="Google/Gmail Email"
-            fieldSize="tiny"
+            fieldSize="small"
           />
         </label>
         <span
@@ -77,7 +77,7 @@
           fullWidth
           outline
           status="link"
-          size="tiny"
+          size="small"
         >
           Save
         </button>

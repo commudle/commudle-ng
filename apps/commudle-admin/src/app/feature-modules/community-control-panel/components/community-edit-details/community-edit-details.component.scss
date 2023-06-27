@@ -48,9 +48,9 @@
 
   .about {
     label {
+      @apply com-mx-0 com-my-4;
       width: 619px;
       max-width: 100%;
-      margin: 1rem 0.3rem;
     }
   }
 
@@ -59,8 +59,8 @@
     flex-direction: row;
     justify-content: flex-start;
     > div {
+      @apply com-mx-0 com-my-[10px];
       width: 100%;
-      margin: 10px;
     }
 
     @media (min-width: 768px) {

@@ -117,10 +117,10 @@
     }
 
     .question-form-footer {
-      @apply com-flex md:com-flex-row com-text-primary-500  com-gap-3 com-mt-12 com-justify-between com-items-end md:com-items-center;
+      @apply com-flex md:com-flex-row com-text-primary-500 com-gap-3 com-mt-12 com-justify-between com-items-end md:com-items-center;
 
       .add-question-footer {
-        @apply com-text-sm com-font-medium;
+        @apply com-text-sm com-font-medium com-pl-0;
 
         nb-icon {
           @apply com-h-5 com-w-5;
@@ -140,7 +140,7 @@
       }
 
       .delete-question-footer {
-        @apply com-text-sm com-font-medium;
+        @apply com-text-sm com-font-medium com-p-0;
 
         nb-icon {
           @apply com-h-5 com-w-5;

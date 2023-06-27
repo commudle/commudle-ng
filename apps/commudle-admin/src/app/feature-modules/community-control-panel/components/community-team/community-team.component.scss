@@ -1,19 +1,22 @@
 .community-team {
   @apply com-overflow-hidden;
   padding: 1.5rem;
+
+  .heading {
+    @apply com-m-0;
+  }
+
   .organizers,
   .event_organizers {
     display: flex;
     flex-wrap: wrap;
     .user-profile {
-      padding: 5px;
+      @apply com-px-0 com-py-1 com-mx-0 com-my-2;
       width: 800px;
       max-width: 90vw;
       justify-content: center;
       display: flex;
       flex-direction: column;
-
-      margin: 0.5rem;
 
       .actions {
         @apply com-text-primary-500;
@@ -35,8 +38,7 @@
   }
 
   h6 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    @apply com-mt-4 com-mb-2;
   }
 
   .user-roles-user-form {
@@ -44,11 +46,11 @@
     flex-wrap: wrap;
 
     > div {
-      margin-right: 1rem;
+      @apply com-mr-4;
     }
 
     .save-button-bottom {
-      margin-top: 18px;
+      @apply com-mt-5;
     }
   }
 }
