@@ -44,14 +44,8 @@
       <app-votes-display [votableType]="'Lab'" [votableId]="lab.id" [icon]="'star'"></app-votes-display>
     </div>
 
-    <!-- //TODO redefine tags colors -->
     <div class="tags">
-      <app-badge
-        *ngFor="let t of lab.tags"
-        [text]="t"
-        [fontColor]="'com-text-white'"
-        [color]="'com-bg-primary-400'"
-      ></app-badge>
+      <app-tag [tags]="lab.tags" size="tiny"></app-tag>
     </div>
   </div>
   <div class="actions">
