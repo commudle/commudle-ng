@@ -11,7 +11,7 @@
   }
 
   tiptap {
-    @apply com-block com-bg-white com-w-full com-outline-none com-py-1.5;
+    @apply com-block com-bg-white com-w-full com-outline-none com-py-1.5 com-min-h-[40px];
 
     ::ng-deep {
       div.ProseMirror {
@@ -19,6 +19,10 @@
 
         p {
           @apply com-mt-0 com-mb-0.5;
+        }
+
+        a {
+          @apply com-text-primary-500;
         }
 
         & p.is-editor-empty:first-child::before {
@@ -63,6 +67,10 @@
   }
 
   .emoji-button {
+    @apply com-mr-2 com-p-0;
+    p {
+      @apply com-text-xl com-m-0 com-p-6px;
+    }
   }
 
   emoji-mart {
@@ -70,5 +78,6 @@
   }
 
   .submit-button {
+    @apply com-ml-2;
   }
 }

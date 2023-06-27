@@ -1,14 +1,10 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   QueryList,
-  SimpleChanges,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
@@ -25,10 +21,11 @@ import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/s
   styleUrls: ['./channel-discussion.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class ChannelDiscussionComponent implements AfterViewInit, OnDestroy, OnChanges {
   @Input() discussionId!: number;
   @Input() discussionParent = '';
   @Input() fromLastRead = false;
+  @Input() discussionType: string;
 
   hasRequestedFirstTime = true;
 
@@ -48,24 +45,7 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
     private activatedRoute: ActivatedRoute, // private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
-    // console.log(
-    //   '🚀 ~ file: channel-discussion.component.ts:51 ~ ChannelDiscussionComponent ~ discussionId:',
-    //   this.discussionId,
-    // );
-    // this.communityChannelHandlerService.init(
-    //   this.discussionId,
-    //   this.discussionParent,
-    //   this.fromLastRead,
-    //   this.activatedRoute.snapshot.queryParamMap.get('after'),
-    // );
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(
-      '🚀 ~ file: channel-discussion.component.ts:51 ~ ChannelDiscussionComponent ~ discussionId:',
-      this.discussionId,
-    );
+  ngOnChanges(): void {
     this.communityChannelHandlerService.init(
       this.discussionId,
       this.discussionParent,

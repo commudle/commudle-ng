@@ -1,4 +1,4 @@
-<div class="community-channels-dashboard page-padding com-h-[700px]">
+<div class="community-channels-dashboard page-padding">
   <div class="community-list" *ngIf="showCommunityList">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
@@ -10,55 +10,71 @@
     >
       <div class="com-flex">
         <div class="left-section">
-          <!-- <div class="icons com-bg-gray-200">
-          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-        </div>
-        <div class="icons com-bg-gray-200">
-          <fa-icon [icon]="faUser" class="com-mx-auto"></fa-icon>
-        </div> -->
-          <div class="icons !com-bg-primary-200" (click)="openChannel()">
+          <div class="icons !com-bg-primary-200" (click)="openChannelOrForums(discussionType.CHANNEL)">
             <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-primary-500"></fa-icon>
           </div>
-          <div class="icons !com-bg-primary-200" (click)="openForum()">
+          <div class="icons !com-bg-primary-200" (click)="openChannelOrForums(discussionType.FORUM)">
             <fa-icon [icon]="faMessage" class="com-mx-auto com-text-primary-500"></fa-icon>
           </div>
         </div>
         <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
-          <app-community-channel-list
-            *ngIf="!showForumData"
-            [groupedChannels]="communityChannels"
-            [selectedCommunity]="selectedCommunity"
-            (updateSelectedChannel)="checkSelectedChannel($event)"
-          ></app-community-channel-list>
+          <!-- channel list -->
+          <div *ngIf="channelsList && !forumsList">
+            <app-community-channel-list
+              [groupedChannels]="communityChannels"
+              [selectedCommunity]="selectedCommunity"
+              (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
+            ></app-community-channel-list>
+          </div>
 
-          <app-community-forum-list
-            *ngIf="showForumData"
-            (updateSelectedChannel)="checkSelectedChannel()"
-          ></app-community-forum-list>
+          <!-- forum list -->
+          <div *ngIf="forumsList && !channelsList">
+            <app-community-forum-list
+              (updateSelectedForum)="updateSelectedChannelOrForum($event)"
+            ></app-community-forum-list>
+          </div>
         </div>
       </div>
     </commudle-sidebar>
   </div>
 
   <div class="community-channel-discussion">
-    <div *ngIf="!showChannelsComponent && !showForumData">
+    <!-- /channel card -->
+    <div *ngIf="channelsCards && !forumsCards">
       <app-community-channels-dashboard-channel-list></app-community-channels-dashboard-channel-list>
     </div>
-    <div *ngIf="showForumData && !showForumsComponent && !showForumsComponent">
+
+    <!-- //form cards (landing page) -->
+    <div *ngIf="forumsCards && !channelsCards">
       <commudle-community-channels-dashboard-forum-list
-        (updateSelectedChannel)="checkSelectedChannel($event)"
+        (updateSelectedForum)="updateSelectedChannelOrForum($event)"
       ></commudle-community-channels-dashboard-forum-list>
     </div>
-    <app-community-channel
-      *ngIf="showChannelsComponent"
-      [selectedChannelId]="selectedChannelId"
-    ></app-community-channel>
-    <!-- <commudle-channel-discussion *ngIf="showChannelsComponent"  ></commudle-channel-discussion> -->
 
+    <!-- //Channel message Component -->
+    <div *ngIf="channelMessage">
+      <app-community-channel [selectedChannelId]="selectedChannelId"></app-community-channel>
+    </div>
+
+    <!-- //Form Name List shows after selecting form group -->
     <commudle-community-forum
-      *ngIf="showForumsComponent"
+      *ngIf="forumsNamesList"
       [selectedCommunity]="selectedCommunity"
+      (updateSelectedForum)="checkSelectedForum($event)"
     ></commudle-community-forum>
-    <router-outlet></router-outlet>
+
+    <!-- //Form message component shows after selecting form name  -->
+    <commudle-community-form-message
+      *ngIf="forumMessage && !forumsNamesList"
+      [forumId]="forumId"
+    ></commudle-community-form-message>
   </div>
 </div>
+
+<!-- <router-outlet></router-outlet> -->
+<!-- <div class="icons com-bg-gray-200">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </div>
+        <div class="icons com-bg-gray-200">
+          <fa-icon [icon]="faUser" class="com-mx-auto"></fa-icon>
+        </div> -->

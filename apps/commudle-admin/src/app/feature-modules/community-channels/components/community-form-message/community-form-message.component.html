@@ -1,10 +1,10 @@
 <div class="com-h-10 com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
-  <span class="com-my-auto com-mx-4 com-text-sm"> {{ selectedChannel?.description }} </span>
+  <!-- <span class="com-my-auto com-mx-4 com-text-sm"> {{ selectedChannel?.description }} </span> -->
 </div>
 <div *ngIf="discussion" class="com-ml-2">
   <commudle-channel-discussion
     [discussionId]="discussion.id"
     discussionParent="channels"
-    discussionType="channel"
+    discussionType="forum"
   ></commudle-channel-discussion>
 </div>

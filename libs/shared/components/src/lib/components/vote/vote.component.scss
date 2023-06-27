@@ -4,4 +4,7 @@
 
 .vote-container {
   @apply com-flex com-gap-1 com-items-center;
+  nb-icon {
+    @apply com-text-xl com-cursor-pointer;
+  }
 }

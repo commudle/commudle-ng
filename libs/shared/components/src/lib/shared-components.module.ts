@@ -10,6 +10,8 @@ import { MessageComponent } from './components/discussion/message/message.compon
 import { VoteComponent } from './components/vote/vote.component';
 import { ChannelDiscussionComponent } from './components/channel-discussion/channel-discussion.component';
 import { CommunityChannelMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-channel-message/community-channel-message.component';
+import { CommunityForumMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-forum-message/community-forum-message.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { CommunityChannelMessageComponent } from 'libs/shared/components/src/lib
     VoteComponent,
     ChannelDiscussionComponent,
     CommunityChannelMessageComponent,
+    CommunityForumMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { CommunityChannelMessageComponent } from 'libs/shared/components/src/lib
     NbButtonModule,
     InViewportDirective,
     NbContextMenuModule,
+    FontAwesomeModule,
   ],
   exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent],
   providers: [InViewportDirective],

@@ -1,10 +1,20 @@
 <div class="commudle-editor">
+  <button *ngIf="editable" [tp]="emojiTemplate" class="emoji-button" nbButton tpVariation="popper">
+    <p>😃</p>
+    <!-- <nb-icon icon="smiling-face-outline"></nb-icon> -->
+  </button>
   <commudle-editor-menu *ngIf="showMenu && editable" [editor]="editor"></commudle-editor-menu>
   <tiptap [editor]="editor" [ngClass]="{ editable: editable }"></tiptap>
-  <button *ngIf="editable" [tp]="emojiTemplate" class="emoji-button" ghost nbButton tpVariation="popper">
-    <nb-icon icon="smiling-face-outline"></nb-icon>
-  </button>
-  <button (click)="onClick()" *ngIf="editable" [disabled]="!isValid" class="submit-button" ghost nbButton>
+
+  <button
+    (click)="onClick()"
+    *ngIf="editable"
+    [disabled]="!isValid"
+    class="submit-button"
+    nbButton
+    [status]="status"
+    [appearance]="appearance"
+  >
     <nb-icon icon="paper-plane"></nb-icon>
   </button>
 </div>

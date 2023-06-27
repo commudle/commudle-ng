@@ -14,20 +14,13 @@ export class EditChannelComponent implements OnInit, OnDestroy {
   subscriptions = [];
   channel: ICommunityChannel;
 
-  constructor(
-    private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+  constructor(private communityChannelManagerService: CommunityChannelManagerService) {}
 
   ngOnInit(): void {
     this.getChannel();
   }
 
-  ngOnDestroy() {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 
   getChannel() {
     this.channel = this.communityChannelManagerService.findChannel(this.channelId);

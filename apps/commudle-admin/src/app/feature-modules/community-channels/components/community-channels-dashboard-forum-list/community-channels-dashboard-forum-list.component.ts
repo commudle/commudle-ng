@@ -19,7 +19,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   communityForums: EGroupedCommunityChannels;
   selectedCommunity: ICommunity;
 
-  @Output() updateSelectedChannel = new EventEmitter<any>();
+  @Output() updateSelectedForum = new EventEmitter<any>();
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -43,7 +43,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   }
 
   selectedCommunityChannel(forumName) {
-    this.updateSelectedChannel.emit();
+    this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },

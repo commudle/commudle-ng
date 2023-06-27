@@ -4,7 +4,7 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { CommunityChannelsService } from '../../services/community-channels.service';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 @Component({
   selector: 'app-community-channel-form',

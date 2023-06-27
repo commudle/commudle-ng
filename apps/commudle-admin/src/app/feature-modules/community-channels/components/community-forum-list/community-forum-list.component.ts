@@ -14,7 +14,7 @@ import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -35,11 +35,11 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   communityRoles = [];
   channelsRoles = {};
   channelNotifications = [];
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
 
   subscriptions: Subscription[] = [];
 
-  @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
+  @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -122,11 +122,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   }
 
   selectedCommunityChannel(forumName) {
-    console.log(
-      '🚀 ~ file: community-forum-list.component.ts:125 ~ CommunityForumListComponent ~ selectedCommunityChannel ~ forumName:',
-      forumName,
-    );
-    this.updateSelectedChannel.emit(forumName.value);
+    this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },
@@ -135,8 +131,10 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     this.communityChannelManagerService.setForum(forumName.value);
   }
 
-  newChannelDialogBox(groupName?) {
+  newForumDialogBox(groupName?) {
     this.dialogService.open(NewCommunityChannelComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,
@@ -146,6 +144,8 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
 
   inviteDialogBox(channelId) {
     this.dialogService.open(ChannelSettingsComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         channelId: channelId,
         invite: true,
@@ -155,6 +155,8 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
 
   editDialogBox(channelId) {
     this.dialogService.open(ChannelSettingsComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         channelId: channelId,
       },

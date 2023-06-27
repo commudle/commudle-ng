@@ -50,6 +50,7 @@ import { CommunityForumListComponent } from 'apps/commudle-admin/src/app/feature
 import { CommunityForumComponent } from './components/community-forum/community-forum.component';
 import { CommunityChannelsDashboardForumListComponent } from './components/community-channels-dashboard-forum-list/community-channels-dashboard-forum-list.component';
 import { SharedComponentsModule } from '@commudle/shared-components';
+import { CommunityFormMessageComponent } from './components/community-form-message/community-form-message.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { SharedComponentsModule } from '@commudle/shared-components';
     CommunityForumListComponent,
     CommunityForumComponent,
     CommunityChannelsDashboardForumListComponent,
+    CommunityFormMessageComponent,
   ],
   imports: [
     CommonModule,

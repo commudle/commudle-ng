@@ -13,3 +13,7 @@
     @apply com-flex com-items-center com-justify-center com-text-lg md:com-text-2xl com-text-gray-300;
   }
 }
+
+commudle-community-forum-message:not(:last-child) {
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
+}

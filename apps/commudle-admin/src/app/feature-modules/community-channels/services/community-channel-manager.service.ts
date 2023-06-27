@@ -9,7 +9,7 @@ import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { BehaviorSubject } from 'rxjs';
 import { CommunityChannelsService } from './community-channels.service';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 export interface IGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -20,7 +20,7 @@ export interface IGroupedCommunityChannels {
 })
 export class CommunityChannelManagerService {
   private currentUser;
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
   channels: ICommunityChannel[] = [];
   forums: ICommunityChannel[] = [];
 

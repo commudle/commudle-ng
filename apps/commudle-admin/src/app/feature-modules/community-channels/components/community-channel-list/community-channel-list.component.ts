@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
@@ -37,7 +37,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   sidebarExpanded = false;
 
   subscriptions: Subscription[] = [];
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
 
   @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
 
@@ -112,6 +112,8 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   newChannelDialogBox(groupName?) {
     this.dialogService.open(NewCommunityChannelComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
@@ -121,6 +123,8 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   inviteDialogBox(channelId) {
     this.dialogService.open(ChannelSettingsComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         channelId: channelId,
         invite: true,
@@ -130,6 +134,8 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   editDialogBox(channelId) {
     this.dialogService.open(ChannelSettingsComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         channelId: channelId,
         discussionType: this.discussionType.CHANNEL,

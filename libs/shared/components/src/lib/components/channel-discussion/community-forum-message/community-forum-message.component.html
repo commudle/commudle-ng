@@ -1,0 +1,107 @@
+<div #messageRef>
+  <div *ngIf="communityChannelHandlerService.scrollToMessageId === message.id" class="last-read">
+    <div class="divider">
+      <div class="line"></div>
+    </div>
+    <div class="text">
+      <span class="content">You left off here</span>
+    </div>
+  </div>
+
+  <div class="message-container">
+    <img [alt]="message.user.name" [src]="message.user.photo.i64" [title]="message.user.name" class="avatar" />
+    <div class="message">
+      <div class="prefix">
+        <div class="com-flex com-items-baseline com-gap-1.5">
+          <div class="com-flex com-flex-col">
+            <a [routerLink]="['/users', message.user.username]" class="name">{{ message.user.name }}</a>
+            <span class="user-name">@{{ message.user.username }}</span>
+          </div>
+          <img
+            *ngIf="message.user.is_expert"
+            alt="Expert Tick"
+            class="expert-icon"
+            src="/assets/images/Expert-Tick.svg"
+            title="Expert Tick"
+          />
+        </div>
+        <span class="time">{{ moment(message.created_at).format('dddd, hh:mm A') }}</span>
+        <!-- <span class="edited" *ngIf="message.edited">(edited)</span> -->
+      </div>
+      <commudle-editor
+        (inViewportAction)="markAsRead(message?.id, $event)"
+        [content]="message.content"
+        [editable]="false"
+        [inViewportOptions]="{ threshold: [0] }"
+        [status]="'primary'"
+        inViewport
+      ></commudle-editor>
+      <div *ngIf="authService.currentUser$ | async" class="suffix">
+        <div>
+          <ng-container *ngIf="message.user_messages.length > 0">
+            <div (click)="toggleShowReply()" class="clickable reply">
+              {{ showReplies ? 'Hide Replies' : 'View Replies' }}({{ message.user_messages.length }})
+            </div>
+          </ng-container>
+        </div>
+        <div class="com-flex com-gap-3 com-items-center">
+          <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
+          <ng-container
+            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
+          >
+            <div class="clickable">
+              <fa-icon (click)="share()" [icon]="faShareFromSquare" class="com-text-xl"></fa-icon>
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
+          >
+            <div (click)="toggleReply(); showReplies = true" class="clickable reply">
+              <fa-icon [icon]="faReply" class="com-text-xl com-text-primary-500"></fa-icon>
+            </div>
+          </ng-container>
+          <div [nbContextMenu]="items" nbContextMenuTag="chat-menu-{{ message.id }}">
+            <nb-icon icon="more-vertical" pack="eva" class="com-text-xl"></nb-icon>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="canReply" class="replies">
+        <div *ngIf="showReplies">
+          <commudle-community-forum-message
+            *ngFor="let reply of message.user_messages"
+            [canReply]="false"
+            [message]="reply"
+            [cursor]="cursor"
+          ></commudle-community-forum-message>
+        </div>
+        <div
+          *ngIf="(authService.currentUser$ | async) && (showReply$ | async)"
+          class="com-border com-border-solid com-border-[#E5E5E5] com-bg-[#EFEFEF] com-rounded-md com-p-1"
+        >
+          <div class="com-h-6 com-w-full">
+            <span class="com-px-2">Replying</span>
+          </div>
+          <commudle-editor
+            (contentChange)="communityChannelHandlerService.sendReply(message.id, $event)"
+            [validators]="validators"
+            [status]="'primary'"
+          ></commudle-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #editMessageTemplate>
+  <div class="edit-message-form">
+    <commudle-editor
+      (inViewportAction)="markAsRead(message?.id, $event)"
+      (contentChange)="communityChannelHandlerService.edit(message.id, $event); editMessageTemplateRef.close()"
+      [content]="message.content"
+      [editable]="true"
+      [inViewportOptions]="{ threshold: [0] }"
+      inViewport
+      [status]="'primary'"
+    ></commudle-editor>
+  </div>
+</ng-template>

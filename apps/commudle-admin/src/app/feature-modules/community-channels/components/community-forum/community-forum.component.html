@@ -1,20 +1,3 @@
-<!-- <section>
-  <div>
-    <button nbButton status="warning">New Discussion</button>
-  </div>
-  <div>
-    <p class="topic">Topics</p>
-  </div>
-  <div *ngFor="let forum of selectedForum" class="forum-list">
-    <p class="name">{{ forum.name }}</p>
-    <p class="group-name">{{ forum.group_name }}</p>
-  </div>
-   <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
-      <nb-icon icon="plus"></nb-icon>
-      New Forum
-    </a>
-</section> -->
-
 <section>
   <div>
     <button
@@ -34,21 +17,11 @@
     </tr>
     <tr *ngFor="let forum of selectedForum" class="forum-list">
       <td (click)="openChat(forum.id)">
-        <p class="name">{{ forum.name }}</p>
-        <p class="group-name">{{ forum.group_name }}</p>
+        <div>
+          <p class="name">{{ forum.name }}</p>
+          <p class="group-name">{{ forum.group_name }}</p>
+        </div>
       </td>
     </tr>
   </table>
 </section>
-
-<!-- <section *ngIf="showDiscussion">
-  <div class="com-h-10 com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
-    <span class="com-my-auto com-mx-4 com-text-sm"> 📢&nbsp; &nbsp; {{ selectedForum.description }} </span>
-  </div>
-  <div *ngIf="discussion">
-    <commudle-channel-discussion
-      [discussionId]="discussion.id"
-      discussionParent="channels"
-    ></commudle-channel-discussion>
-  </div>
-</section> -->

@@ -31,7 +31,6 @@ export class InviteFormComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: object,
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
   ) {

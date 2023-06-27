@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -8,33 +8,47 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
+interface EGroupedCommunityChannels {
+  [groupName: string]: ICommunityChannel[];
+}
 @Component({
   selector: 'app-community-channels-dashboard',
   templateUrl: './community-channels-dashboard.component.html',
   styleUrls: ['./community-channels-dashboard.component.scss'],
 })
-export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, OnChanges {
+export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
+  @Input() communityForums: EGroupedCommunityChannels;
   currentUser: ICurrentUser;
   communityChannels;
-  communityForums;
   channelsQueried = false;
   selectedChannelId: number;
   showChannelsComponent = false;
   showForumsComponent = false;
+  showForumMessages = false;
   sidebarExpanded = true;
+
+  channelsList = true;
+  channelsCards = true;
+  channelMessage = false;
+
+  forumsList = false;
+  forumsCards = false;
+  forumsNamesList = false;
+  forumMessage = false;
 
   faMagnifyingGlass = faMagnifyingGlass;
   faUser = faUser;
   faHashtag = faHashtag;
   faMessage = faMessage;
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
 
   discussionTypeParam: string;
   forumName: string;
+  forumId: string;
   showForumData = false;
 
   subscriptions: Subscription[] = [];
@@ -48,53 +62,54 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
   ) {}
 
   ngOnInit() {
-    // this.router.events.subscribe((value) => {
-    //   if (value instanceof NavigationEnd) {
-    //     this.checkSelectedChannel();
-    //   }
-    // });
-    this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
-    this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
-    if (this.discussionTypeParam === this.discussionType.FORUM) {
-      this.showForumData = true;
-    }
-    if (this.discussionTypeParam === this.discussionType.FORUM && this.forumName) {
-      this.showChannelsComponent = false;
-      this.showForumsComponent = true;
-    }
+    this.getQueryParamsData();
+    this.checkDiscussionType();
+    this.updateSelectedChannelOrForum();
     this.setMeta();
-    this.communityChannelManagerService.setCommunity(this.selectedCommunity);
     this.getCurrentUser();
+
+    if (this.discussionTypeParam === this.discussionType.FORUM && this.forumId) {
+      this.checkSelectedForum(this.forumId);
+    }
+    this.communityChannelManagerService.setCommunity(this.selectedCommunity);
+
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe((data) => {
         this.communityChannels = data;
         if (data) {
           this.channelsQueried = true;
-          if (this.activatedRoute.snapshot.params.community_channel_id) {
-            this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
-            this.showChannelsComponent = true;
-          }
-          if (this.activatedRoute.snapshot.params.community_channel_id && this.discussionTypeParam) {
-            this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
-            console.log(this.activatedRoute.snapshot.params.community_channel_id);
-            this.showForumsComponent = true;
+          if (this.selectedChannelId) {
+            this.channelsCards = false;
+            this.channelMessage = true;
           }
         }
       }),
     );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  checkDiscussionType() {
     if (this.discussionTypeParam === this.discussionType.FORUM) {
-      this.showForumData = true;
+      this.channelsList = false;
+      this.forumsList = true;
+      this.channelsCards = false;
+      this.forumsCards = true;
     } else {
-      this.showForumData = false;
+      this.channelsList = true;
+      this.forumsList = false;
+      this.channelsCards = true;
+      this.forumsCards = false;
     }
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  getQueryParamsData() {
+    this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
+    this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
+    this.forumId = this.activatedRoute.snapshot.queryParamMap.get('discussion-id');
+    this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
   }
 
   getCurrentUser() {
@@ -113,26 +128,47 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy, O
     );
   }
 
-  checkSelectedChannel(channel?: ICommunityChannel) {
-    if (channel) {
+  updateSelectedChannelOrForum(channel?) {
+    if (this.discussionTypeParam !== this.discussionType.FORUM && channel) {
       this.selectedChannelId = channel.id;
-      this.showForumsComponent = false;
-      this.showChannelsComponent = true;
-    } else if (this.discussionTypeParam === this.discussionType.FORUM && this.forumName) {
-      this.showChannelsComponent = false;
-      this.showForumsComponent = true;
+      this.channelsCards = false;
+      this.channelMessage = true;
+    } else if (this.discussionTypeParam === this.discussionType.FORUM && (this.forumName || channel)) {
+      this.communityChannelManagerService.communityForums$.subscribe((data) => {
+        this.communityForums = data;
+        if (this.communityForums) {
+          const selectedForum = Object.keys(this.communityForums)
+            .filter((key) => key === this.forumName)
+            .reduce((obj, key) => {
+              obj[key] = data[key];
+              return data[key];
+            }, {});
+          this.communityChannelManagerService.setForum(selectedForum);
+        }
+      });
+      this.forumsCards = false;
+      this.forumsNamesList = true;
     }
   }
 
-  openForum() {
-    this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`], {
-      queryParams: { 'discussion-type': 'forum' },
-    });
-    this.showForumData = true;
+  openChannelOrForums(discussionType) {
+    this.discussionTypeParam = discussionType;
+    if (discussionType === this.discussionType.CHANNEL) {
+      this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
+    } else if (discussionType === this.discussionType.FORUM) {
+      this.channelsList = false;
+      this.forumsList = true;
+      this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`], {
+        queryParams: { 'discussion-type': 'forum' },
+      });
+    }
+    this.checkDiscussionType();
   }
 
-  openChannel() {
-    this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
-    this.showForumData = false;
+  checkSelectedForum(forumId) {
+    this.forumId = forumId;
+    this.forumsNamesList = false;
+    this.forumsCards = false;
+    this.forumMessage = true;
   }
 }

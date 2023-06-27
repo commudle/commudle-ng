@@ -22,6 +22,7 @@ import { Text } from '@tiptap/extension-text';
 import { KeyboardHandler } from '../../extensions/keyboard-handler';
 import { CustomMention } from '../../extensions/mention';
 import { IEditorValidator } from '../../models/editor-validator.model';
+import { NbButtonAppearance, NbComponentStatus } from '@commudle/theme';
 
 @Component({
   selector: 'commudle-editor',
@@ -37,6 +38,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   @Input() placeholder = 'Type here...';
   @Input() extensions: Extensions = [];
   @Input() validators: IEditorValidator = {};
+  @Input() status: NbComponentStatus = 'basic';
+  @Input() appearance: NbButtonAppearance = 'filled';
 
   @Output() contentChange = new EventEmitter<string>();
 
@@ -116,9 +119,9 @@ export class EditorComponent implements OnInit, OnDestroy {
     if (this.validators.minLength && minLength(this.editor, this.validators.minLength)) {
       this.isValid = false;
     }
-    if (this.validators.maxLength && maxLength(this.editor, this.validators.maxLength)) {
-      this.isValid = false;
-    }
+    // if (this.validators.maxLength && maxLength(this.editor, this.validators.maxLength)) {
+    //   this.isValid = false;
+    // }
     if (this.validators.noWhitespace && noWhitespace(this.editor)) {
       this.isValid = false;
     }

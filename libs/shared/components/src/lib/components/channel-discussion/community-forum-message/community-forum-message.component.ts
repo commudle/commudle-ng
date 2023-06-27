@@ -9,17 +9,21 @@ import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/s
 import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
+import { faReply, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'commudle-community-channel-message',
-  templateUrl: './community-channel-message.component.html',
-  styleUrls: ['./community-channel-message.component.scss'],
+  selector: 'commudle-community-forum-message',
+  templateUrl: './community-forum-message.component.html',
+  styleUrls: ['./community-forum-message.component.scss'],
 })
-export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
+export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   @Input() message!: IUserMessage;
   @Input() cursor!: string;
   @Input() canReply = true;
+  showReplies = false;
   environment = environment;
+  faReply = faReply;
+  faShareFromSquare = faShareFromSquare;
 
   @ViewChild('editMessageTemplate', { static: true }) editMessageTemplate: TemplateRef<any>;
   editMessageTemplateRef: NbWindowRef;
@@ -76,6 +80,10 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     this.showReply$.next(!this.showReply$.value);
   }
 
+  toggleShowReply() {
+    this.showReplies = !this.showReplies;
+  }
+
   markAsRead(messageId: number, { visible }: { visible: boolean }): void {
     if (messageId && visible && this.authService.getCurrentUser()?.id) {
       this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
@@ -92,9 +100,8 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   share(): void {
-    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
+    const shareLink = `localhost:4200/${window.location.pathname}?after=${this.cursor}`;
     this.shareService.shareContent(
-      `${shareLink}`,
       'Hey, check out this discussion on Commudle',
       this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
       shareLink,

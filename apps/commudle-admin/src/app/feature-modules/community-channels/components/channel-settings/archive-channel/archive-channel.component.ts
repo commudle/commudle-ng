@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatchStringValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 @Component({
   selector: 'app-archive-channel',
@@ -12,7 +12,7 @@ import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/comm
 })
 export class ArchiveChannelComponent implements OnInit {
   @Input() communityChannelId;
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
 
   deleteForm;
 

@@ -15,11 +15,20 @@
     class="messages-list"
     commudleInfiniteScroll
   >
-    <commudle-community-channel-message
-      *ngFor="let message of communityChannelHandlerService.messages$ | async"
-      [cursor]="message.cursor"
-      [message]="message.data"
-    ></commudle-community-channel-message>
+    <div *ngIf="discussionType === 'channel'">
+      <commudle-community-channel-message
+        *ngFor="let message of communityChannelHandlerService.messages$ | async"
+        [cursor]="message.cursor"
+        [message]="message.data"
+      ></commudle-community-channel-message>
+    </div>
+    <div *ngIf="discussionType === 'forum'">
+      <commudle-community-forum-message
+        *ngFor="let message of communityChannelHandlerService.messages$ | async"
+        [cursor]="message.cursor"
+        [message]="message.data"
+      ></commudle-community-forum-message>
+    </div>
   </div>
   <ng-template #noMessages>
     <div class="no-messages">Start a new conversation!</div>
@@ -29,6 +38,7 @@
     (contentChange)="communityChannelHandlerService.sendMessage($event)"
     *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn"
     [validators]="validators"
+    [status]="'primary'"
   ></commudle-editor>
   <ng-template #notLoggedIn>
     <a [routerLink]="['/login']" nbButton status="primary">

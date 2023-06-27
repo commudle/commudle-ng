@@ -4,7 +4,7 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { DiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 @Component({
   selector: 'app-community-channels-dashboard-channel-list',
@@ -16,7 +16,7 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   community: ICommunity;
   displayCommunityList = false;
   subscriptions = [];
-  discussionType = DiscussionType;
+  discussionType = EDiscussionType;
 
   constructor(
     private activatedRoute: ActivatedRoute,

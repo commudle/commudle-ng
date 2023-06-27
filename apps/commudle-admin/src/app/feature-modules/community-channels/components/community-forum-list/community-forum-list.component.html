@@ -1,92 +1,22 @@
 <div class="community-channel-list">
-  <p class="com-m-0 com-text-2xl">Forums</p>
-  <p>
-    <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
+  <div class="com-flex com-justify-between">
+    <p class="com-font-bold com-text-2xl com-m-0">Forums</p>
+    <button (click)="newForumDialogBox()" outline nbButton size="tiny" status="base" class="com-h-min">
       <nb-icon icon="plus"></nb-icon>
-      New Forum
-    </a>
-  </p>
+    </button>
+  </div>
 
   <nb-accordion class="channel-group com-shadow-none">
     <nb-accordion-item expanded="true">
       <nb-accordion-item-header class="com-p-0">
         <div class="group-name">
           <p class="com-m-0">Categories</p>
-          <!-- <p>{{ (chGroup.key | uppercase) || 'GENERAL' }}</p> -->
-          <!--  <p>
-            <a (click)="newChannelDialogBox(chGroup.key); $event.stopPropagation()" ghost nbButton size="tiny">
-              <nb-icon icon="plus"></nb-icon>
-            </a>
-          </p> -->
         </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body *ngFor="let chGroup of communityForums | keyvalue">
         <div>
           <p class="com-m-0" (click)="selectedCommunityChannel(chGroup)">{{ chGroup.key || 'GENERAL' }}</p>
         </div>
-        <!-- <div class="channels">
-          <ul>
-            <li *ngFor="let channel of chGroup.value">
-              <div class="details">
-                <div *ngIf="channel.logo" class="logo">
-                  <img alt="{{ channel.name }}" src="{{ channel.logo.url }}" title="{{ channel.name }}" />
-                </div>
-                <p class="name">
-                  <a routerLinkActive="selected-channel" (click)="selectedCommunityChannel(channel)">
-                    <span *ngIf="channel.is_private" class="icon">
-                      <nb-icon
-                        title="Private Channel"
-                        alt="Private Channel"
-                        title="Private Channel"
-                        icon="lock"
-                      ></nb-icon>
-                    </span>
-                    <span *ngIf="channel.is_readonly" class="icon">
-                      <nb-icon
-                        title="Read-only Channel"
-                        alt="Readonly Channel"
-                        title="Readonly Channel"
-                        icon="eye"
-                      ></nb-icon>
-                    </span>
-                    {{ channel.name }}
-                  </a>
-                  <app-badge
-                    *ngIf="
-                      channelNotifications.includes(channel.id) &&
-                      (!selectedChannel || selectedChannel.id !== channel.id)
-                    "
-                    [color]="'red'"
-                    [dotMode]="true"
-                    [position]="'top right'"
-                  ></app-badge>
-                </p>
-              </div>
-              <p *ngIf="currentUser" class="settings">
-                <a
-                  *ngIf="
-                    (!channel.is_private &&
-                      channelsRoles[channel.id] &&
-                      channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
-                    (channelsRoles[channel.id] &&
-                      channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
-                  "
-                  (click)="inviteDialogBox(channel.id)"
-                >
-                  <nb-icon icon="person-add"></nb-icon>
-                </a>
-                <a
-                  *ngIf="
-                    channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
-                  "
-                  (click)="editDialogBox(channel.id)"
-                >
-                  <nb-icon icon="settings"></nb-icon>
-                </a>
-              </p>
-            </li>
-          </ul>
-        </div> -->
       </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>

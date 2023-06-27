@@ -1,5 +1,5 @@
 .header {
-  @apply com-h-12;
+  @apply com-h-12 com-sticky com-top-0 com-z-20;
 }
 .toggle {
   fa-icon {
@@ -8,7 +8,7 @@
 }
 .sidebar {
   transition: 0.3s;
-  @apply com-absolute com-left-0 com-top-0 com-pt-2 com-h-full com-z-50 com-bg-white com-text-black;
+  @apply com-absolute com-left-0 com-top-0 com-pt-0 com-h-full com-z-50 com-bg-white com-text-black com-overflow-auto;
 
   &.left {
     @apply com-left-0;
