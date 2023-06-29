@@ -170,16 +170,15 @@
               </span>
               <span
                 *ngIf="
-                  communityBuildForm.get('link').touched &&
-                  communityBuildForm.get('link').invalid &&
-                  communityBuildForm.get('link').errors.required &&
-                  communityBuildForm.get('live_app_link').touched &&
-                  communityBuildForm.get('live_app_link').invalid &&
-                  communityBuildForm.get('live_app_link').errors.required
+                  linkOrLiveAppLinkValue &&
+                  communityBuildForm.get('link').value.length === 0 &&
+                  communityBuildForm.get('live_app_link').value.length === 0
                 "
-                class="validation-error-text"
               >
-                live project or link to open source one is required
+                <commudle-alert
+                  [error]="true"
+                  [errorMessage]="'Both Link to Open Source Code and Link to live project cant be empty'"
+                ></commudle-alert>
               </span>
             </div>
 
@@ -283,24 +282,13 @@
                 <nb-icon icon="checkmark"></nb-icon>
                 Submit For Approval
               </button> -->
-              <button
-                (click)="submitForm(EPublishStatus.published)"
-                [disabled]="communityBuildForm.invalid || tags.length < 5"
-                nbButton
-                status="primary"
-                type="submit"
-              >
+              <!-- [disabled]="communityBuildForm.invalid || tags.length < 5" -->
+              <button (click)="submitForm(EPublishStatus.published)" nbButton status="primary" type="submit">
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
               </button>
-              <button
-                (click)="submitForm(EPublishStatus.draft)"
-                [disabled]="!communityBuildForm.valid"
-                nbButton
-                outline
-                status="primary"
-                type="submit"
-              >
+              <!-- [disabled]="!communityBuildForm.valid" -->
+              <button (click)="submitForm(EPublishStatus.draft)" nbButton outline status="primary" type="submit">
                 <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
                 Save as Draft
               </button>
