@@ -6,6 +6,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import * as moment from 'moment';
 import { IEvent } from 'apps/shared-models/event.model';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 
 @Component({
   selector: 'commudle-event-card',
@@ -17,9 +18,19 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class EventCardComponent implements OnInit {
   @Input() event: IEvent;
   @Input() horizontalScroll = false;
+  community: ICommunity;
 
   moment = moment;
-  constructor() {}
+  constructor(private communitiesService: CommunitiesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCommunity();
+  }
+
+  getCommunity() {
+    const eventCommunityId = this.event.kommunity ? this.event.kommunity.id : this.event.kommunity_id;
+    this.communitiesService.pGetCommunityDetails(eventCommunityId).subscribe((data) => {
+      this.community = data;
+    });
+  }
 }

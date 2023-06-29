@@ -22,22 +22,22 @@
             @apply md:com-mb-6 com-mb-10;
 
             .details {
-              @apply com-flex com-justify-between md:com-h-10;
+              @apply com-flex com-justify-between md:com-mt-3 com-mb-4 com-mt-4;
 
               .completed {
-                @apply com-flex com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-mb-0 md:com-my-4 com-my-5 md:com-mx-3 com-mx-4;
+                @apply com-flex com-items-center com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-my-0 md:com-mx-3 com-mx-4;
                 nb-icon {
                   @apply com-w-14px com-h-14px com-text-Crayola-Green com-ml-1;
                 }
               }
 
               .interested-members {
-                @apply md:com-text-sm com-text-xs com-m-4 md:com-font-light com-font-normal com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                @apply md:com-text-sm com-text-xs com-mx-4 com-my-0 md:com-font-light com-font-normal com-text-Auro-Metal-Saurus com-items-center;
               }
             }
 
             .event-name {
-              @apply com-text-Dark-Jungle-Green com-font-semibold md:com-text-base com-text-lg com-leading-6 com-mx-4 com-mb-0 com-line-clamp-1 com-mt-5;
+              @apply com-text-Dark-Jungle-Green com-font-semibold md:com-text-base com-text-lg com-leading-6 com-mx-4 com-mb-0 com-line-clamp-1 com-mt-0;
 
               .collaboration {
                 @apply com-text-sm com-font-normal;
@@ -45,7 +45,11 @@
             }
 
             .event-timings {
-              @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-0 com-mt-1;
+              @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mx-4 com-mb-2 com-mt-1;
+            }
+
+            .community-badge {
+              @apply com-mx-4 com-my-0 com-overflow-hidden;
             }
           }
 
