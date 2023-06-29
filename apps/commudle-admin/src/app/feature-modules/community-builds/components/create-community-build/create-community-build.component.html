@@ -258,7 +258,7 @@
                   [tags]="tags"
                 ></app-tag>
               </label>
-              <span *ngIf="tags.length < 5">
+              <span *ngIf="showTagsValidation && tags.length < 5">
                 <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags need to be added'"></commudle-alert>
               </span>
             </div>
@@ -282,12 +282,10 @@
                 <nb-icon icon="checkmark"></nb-icon>
                 Submit For Approval
               </button> -->
-              <!-- [disabled]="communityBuildForm.invalid || tags.length < 5" -->
               <button (click)="submitForm(EPublishStatus.published)" nbButton status="primary" type="submit">
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
               </button>
-              <!-- [disabled]="!communityBuildForm.valid" -->
               <button (click)="submitForm(EPublishStatus.draft)" nbButton outline status="primary" type="submit">
                 <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
                 Save as Draft

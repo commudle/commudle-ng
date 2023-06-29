@@ -249,12 +249,13 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   submitForm(publishStatus: EPublishStatus) {
     if (this.communityBuildForm.invalid) {
       this.communityBuildForm.markAllAsTouched();
-      // return;
     }
 
-    // console.log(this.communityBuildForm.value.link);
+    if (this.tags.length < 5) {
+      this.showTagsValidation = true;
+    }
 
-    if (!this.communityBuildForm.value.link || !this.communityBuildForm.value.live_app_link) {
+    if (!(this.communityBuildForm.value.link || this.communityBuildForm.value.live_app_link)) {
       this.linkOrLiveAppLinkValue = true;
     } else {
       if (!this.cBuild) {
