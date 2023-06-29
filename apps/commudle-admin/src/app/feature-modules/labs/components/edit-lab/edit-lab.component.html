@@ -146,17 +146,18 @@
                       status="danger"
                     ></nb-icon>
                   </h3>
-                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').touched }}</h1>
-                  <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').invalid }}</h1>-->
-                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').errors }}</h1> -->
-                  <!-- <span
+                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').touched }} touched</h1>
+                  <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').invalid }} invalid</h1>-->
+                  <!-- <p (click)="checkValidation()">Validation</p> -->
+                  <!-- <h1>{{ labForm.get('lab_steps')['controls'][i].get('name').errors.required }}</h1> -->
+                  <span
                     *ngIf="
                       labForm.get('lab_steps')['controls'][i].get('name').touched &&
-                      labForm.get('lab_steps')['controls'][i].get('name').errors.required
+                      labForm.get('lab_steps')['controls'][i].get('name').invalid
                     "
                   >
                     <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                  </span> -->
+                  </span>
 
                   <div>
                     <editor
