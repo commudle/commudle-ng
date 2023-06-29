@@ -22,6 +22,8 @@ export class EventMiniCardComponent implements OnInit {
   community: ICommunity;
   faCalendarCheck = faCalendarCheck;
   moment = moment;
+  @Input() iconSize: 'small' | 'medium' = 'small';
+
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {

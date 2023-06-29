@@ -5,7 +5,13 @@
       [title]="attendedEvent.name"
     >
       <button nbButton size="small" shape="semi-round" class="icon">
-        <fa-icon [icon]="faCalendarCheck"></fa-icon>
+        <fa-icon
+          [icon]="faCalendarCheck"
+          [ngClass]="{
+            iconSizeSmall: iconSize === 'small',
+            iconSizeMedium: iconSize === 'medium'
+          }"
+        ></fa-icon>
       </button>
       <div class="content">
         <h4 class="title">{{ attendedEvent.name }}</h4>

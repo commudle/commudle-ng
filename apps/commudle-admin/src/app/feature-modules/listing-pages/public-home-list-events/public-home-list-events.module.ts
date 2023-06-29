@@ -48,6 +48,10 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     SkeletonCardsComponent,
     ListingPagesLayoutComponent,
   ],
-  exports: [PublicHomeListEventsHeaderComponent],
+  exports: [
+    PublicHomeListEventsHeaderComponent,
+    PublicHomeListEventsFeaturedCommunitiesComponent,
+    PublicHomeListEventsTechSessionsComponent,
+  ],
 })
 export class PublicHomeListEventsModule {}
