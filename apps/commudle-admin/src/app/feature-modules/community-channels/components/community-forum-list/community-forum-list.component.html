@@ -1,21 +1,30 @@
 <div class="community-channel-list">
-  <div class="com-flex com-justify-between">
+  <div class="com-flex com-justify-between com-mt-3 com-mx-4">
     <p class="com-font-bold com-text-2xl com-m-0">Forums</p>
-    <button (click)="newForumDialogBox()" outline nbButton size="tiny" status="base" class="com-h-min">
+    <button
+      *ngIf="currentUser && (communityRoles.includes(EUserRoles.ORGANIZER) || isCommunityOrganizer)"
+      (click)="newForumDialogBox()"
+      outline
+      nbButton
+      size="tiny"
+      status="base"
+      class="com-h-min"
+    >
       <nb-icon icon="plus"></nb-icon>
     </button>
   </div>
-
-  <nb-accordion class="channel-group com-shadow-none">
-    <nb-accordion-item expanded="true">
+  <nb-accordion class="forum-group">
+    <nb-accordion-item expanded="true" class="com-bg-[#F9F9F9]">
       <nb-accordion-item-header class="com-p-0">
-        <div class="group-name">
+        <div class="heading">
           <p class="com-m-0">Categories</p>
         </div>
       </nb-accordion-item-header>
-      <nb-accordion-item-body *ngFor="let chGroup of communityForums | keyvalue">
-        <div>
-          <p class="com-m-0" (click)="selectedCommunityChannel(chGroup)">{{ chGroup.key || 'GENERAL' }}</p>
+      <nb-accordion-item-body *ngFor="let frGroup of communityForums | keyvalue" class="group-name">
+        <div [ngClass]="{ selectedForum: frGroup.key === this.selectedForumName }">
+          <p class="com-m-0" (click)="selectedCommunityForum(frGroup)">
+            {{ (frGroup.key | titlecase) || 'GENERAL' }}
+          </p>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>

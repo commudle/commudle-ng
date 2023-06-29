@@ -37,32 +37,32 @@
         inViewport
       ></commudle-editor>
       <div *ngIf="authService.currentUser$ | async" class="suffix">
+        <div class="com-flex com-gap-3 com-items-center">
+          <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
+          <ng-container
+            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
+          >
+            <div class="clickable" nbTooltip="Share">
+              <fa-icon (click)="share()" [icon]="faShareNodes" class="com-text-lg"></fa-icon>
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
+          >
+            <div (click)="toggleReply(); showReplies = true" class="clickable reply" nbTooltip="Reply">
+              <fa-icon [icon]="faReply" class="com-text-lg com-text-primary-500"></fa-icon>
+            </div>
+          </ng-container>
+          <div [nbContextMenu]="items" nbContextMenuTag="chat-menu-{{ message.id }}">
+            <nb-icon icon="more-vertical" pack="eva" class="com-text-lg"></nb-icon>
+          </div>
+        </div>
         <div>
           <ng-container *ngIf="message.user_messages.length > 0">
             <div (click)="toggleShowReply()" class="clickable reply">
               {{ showReplies ? 'Hide Replies' : 'View Replies' }}({{ message.user_messages.length }})
             </div>
           </ng-container>
-        </div>
-        <div class="com-flex com-gap-3 com-items-center">
-          <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
-          <ng-container
-            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
-          >
-            <div class="clickable">
-              <fa-icon (click)="share()" [icon]="faShareFromSquare" class="com-text-xl"></fa-icon>
-            </div>
-          </ng-container>
-          <ng-container
-            *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
-          >
-            <div (click)="toggleReply(); showReplies = true" class="clickable reply">
-              <fa-icon [icon]="faReply" class="com-text-xl com-text-primary-500"></fa-icon>
-            </div>
-          </ng-container>
-          <div [nbContextMenu]="items" nbContextMenuTag="chat-menu-{{ message.id }}">
-            <nb-icon icon="more-vertical" pack="eva" class="com-text-xl"></nb-icon>
-          </div>
         </div>
       </div>
       <div *ngIf="canReply" class="replies">

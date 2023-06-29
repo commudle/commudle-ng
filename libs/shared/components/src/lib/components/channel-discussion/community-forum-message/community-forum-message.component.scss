@@ -38,10 +38,10 @@
 
       .name {
         text-decoration: none;
-        @apply com-font-medium com-text-sm com-text-slate-900 hover:com-underline;
+        @apply com-font-medium com-text-base com-text-black;
       }
       .user-name {
-        @apply com-text-Auro-Metal-Saurus com-text-xs;
+        @apply com-text-Auro-Metal-Saurus com-text-sm;
       }
 
       .expert-icon {
@@ -58,7 +58,7 @@
 
     .suffix {
       --icon-font-size: 0.875rem;
-      @apply com-flex com-items-center com-text-slate-500 com-text-xs com-justify-between;
+      @apply com-flex com-items-center com-text-slate-500 com-text-xs com-gap-4;
 
       .reply {
         @apply com-text-sm;

@@ -9,7 +9,7 @@ import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/s
 import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
-import { faReply, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faShareNodes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-community-forum-message',
@@ -23,7 +23,7 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   showReplies = false;
   environment = environment;
   faReply = faReply;
-  faShareFromSquare = faShareFromSquare;
+  faShareNodes = faShareNodes;
 
   @ViewChild('editMessageTemplate', { static: true }) editMessageTemplate: TemplateRef<any>;
   editMessageTemplateRef: NbWindowRef;

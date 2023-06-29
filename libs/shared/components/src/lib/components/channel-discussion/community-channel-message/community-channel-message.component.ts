@@ -33,7 +33,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
 
   showReply$ = new BehaviorSubject<boolean>(false);
 
-  items = [{ title: 'Edit' }, { title: 'Delete' }, { title: 'Share This Message' }, { title: 'Pin Message' }];
+  contextMenuItems = [];
 
   @ViewChild('messageRef') messageRef!: ElementRef<HTMLDivElement>;
 
@@ -66,6 +66,22 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
           this.communityChannelHandlerService.pin(this.message.id);
         }
       });
+    if (this.authService.getCurrentUser().id === this.message.user.id) {
+      this.contextMenuItems.push({
+        title: 'Edit',
+      });
+    }
+    if (this.authService.getCurrentUser().id === this.message.user.id) {
+      this.contextMenuItems.push({
+        title: 'Delete',
+      });
+      this.contextMenuItems.push({
+        title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
+      });
+    }
+    this.contextMenuItems.push({
+      title: 'Share This Message',
+    });
   }
 
   ngAfterViewInit(): void {

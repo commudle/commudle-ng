@@ -27,6 +27,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   @Input() selectedCommunity: ICommunity;
   @Input() groupedChannels: EGroupedCommunityChannels;
   @Input() showCommunityBadge = false;
+  @Input() isCommunityOrganizer = false;
   selectedChannel: ICommunityChannel;
   selectedChannelId: number;
   currentUser: ICurrentUser;
@@ -66,9 +67,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       //   this.groupedChannels = data;
       // }),
       // TODO lets remove it
-      this.communityChannelManagerService.communityRoles$.subscribe((data) => {
-        this.communityRoles = data;
-      }),
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
         this.channelsRoles = data;
       }),
@@ -133,13 +131,16 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   editDialogBox(channelId) {
-    this.dialogService.open(ChannelSettingsComponent, {
+    const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
       context: {
         channelId: channelId,
         discussionType: this.discussionType.CHANNEL,
       },
+    });
+    dialogRef.componentRef.instance.updateForm.subscribe(() => {
+      dialogRef.close();
     });
   }
 }

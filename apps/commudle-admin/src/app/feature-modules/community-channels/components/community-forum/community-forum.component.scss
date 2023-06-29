@@ -3,23 +3,19 @@ section {
 }
 
 .topic {
-  font-family: Inter;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
+  @apply com-text-Auro-Metal-Saurus com-text-xl com-mb-0;
 }
-.name {
-  @apply com-text-lg com-m-0;
+
+.forum-name {
+  @apply com-text-base com-m-0 com-text-[#344054] com-font-medium;
 }
 
 .group-name {
-  @apply com-text-gray-500 com-text-sm com-m-0;
+  @apply com-text-[#545861] com-text-sm com-m-0 com-pb-1;
 }
 
 .forum-list {
-  @apply com-pt-5 com-pb-1;
+  @apply com-cursor-pointer;
 }
 
 // .forum-list:not(:last-child) {
@@ -27,5 +23,5 @@ section {
 // }
 
 td {
-  @apply com-border-0 com-border-b com-border-solid com-border-gray-200  com-pt-5 com-pb-1;
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200  com-pt-8;
 }

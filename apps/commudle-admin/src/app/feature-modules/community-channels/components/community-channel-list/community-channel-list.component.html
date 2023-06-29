@@ -2,39 +2,44 @@
   <div *ngIf="showCommunityBadge" class="community">
     <app-community-badge [community]="selectedCommunity"></app-community-badge>
   </div>
-  <!-- <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
-    <a (click)="newChannelDialogBox(); $event.stopPropagation()" ghost nbButton size="tiny">
-      <nb-icon icon="plus"></nb-icon>
-      New Channel
-    </a>
-  </p> -->
-  <div class="com-flex com-justify-between">
-    <p class="com-font-bold com-text-2xl com-m-0">Channels</p>
-    <button (click)="newChannelDialogBox()" outline nbButton size="tiny" status="base" class="com-h-min">
+  <div class="com-flex com-justify-between com-mt-3 com-mx-4">
+    <p class="com-font-bold com-text-xl com-m-0">Channels</p>
+    <button
+      *ngIf="currentUser && (communityRoles.includes(EUserRoles.ORGANIZER) || isCommunityOrganizer)"
+      (click)="newChannelDialogBox()"
+      outline
+      nbButton
+      size="tiny"
+      status="base"
+      class="com-h-min"
+    >
       <nb-icon icon="plus"></nb-icon>
     </button>
   </div>
 
-  <nb-accordion *ngFor="let chGroup of groupedChannels | keyvalue" class="channel-group com-shadow-none">
-    <nb-accordion-item expanded="true">
+  <nb-accordion
+    *ngFor="let chGroup of groupedChannels | keyvalue"
+    class="channel-group com-shadow-none com-bg-[#F9F9F9]"
+  >
+    <nb-accordion-item expanded="true" class="com-bg-[#F9F9F9]">
       <nb-accordion-item-header class="com-p-0"
         ><div class="group-name">
-          <p>{{ (chGroup.key | uppercase) || 'GENERAL' }}</p>
-          <p>
-            <a (click)="newChannelDialogBox(chGroup.key); $event.stopPropagation()" ghost nbButton size="tiny">
-              <nb-icon icon="plus"></nb-icon>
-            </a>
-          </p></div
-      ></nb-accordion-item-header>
+          <p>{{ (chGroup.key | titlecase) || 'General' }}</p>
+        </div></nb-accordion-item-header
+      >
       <nb-accordion-item-body
         ><div class="channels">
           <ul>
-            <li *ngFor="let channel of chGroup.value">
+            <li
+              *ngFor="let channel of chGroup.value"
+              class="channel"
+              [ngClass]="{ selectedChannel: selectedChannelId == channel.id }"
+            >
               <div class="details">
                 <div *ngIf="channel.logo" class="logo">
                   <img alt="{{ channel.name }}" src="{{ channel.logo.url }}" title="{{ channel.name }}" />
                 </div>
-                <p class="name" [ngClass]="{ selectedChannel: selectedChannelId == channel.id }">
+                <p class="name">
                   <a (click)="selectedCommunityChannel(channel)">
                     <span *ngIf="channel.is_private" class="icon">
                       <nb-icon
@@ -73,16 +78,17 @@
                       channelsRoles[channel.id] &&
                       channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
                     (channelsRoles[channel.id] &&
-                      channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+                      channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
+                    isCommunityOrganizer
                   "
                   (click)="inviteDialogBox(channel.id)"
                 >
-                  <!-- [routerLink]="[{ outlets: { p: ['settings', channel.id, 'invite'] } }]" -->
                   <nb-icon icon="person-add"></nb-icon>
                 </a>
                 <a
                   *ngIf="
-                    channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+                    channelsRoles[channel.id] &&
+                    (channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
                   "
                   (click)="editDialogBox(channel.id)"
                 >

@@ -48,6 +48,8 @@ export class CommunityForumComponent implements OnInit {
 
   newChannelDialogBox(groupName?) {
     this.dialogService.open(NewCommunityChannelComponent, {
+      closeOnBackdropClick: false,
+      hasBackdrop: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,

@@ -20,7 +20,7 @@
           src="/assets/images/Expert-Tick.svg"
           title="Expert Tick"
         />
-        <span class="time">{{ moment(message.created_at).format('dddd, hh:mm A') }}</span>
+        <span class="time">{{ moment(message.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
         <span class="edited" *ngIf="message.edited">(edited)</span>
       </div>
       <commudle-editor
@@ -33,10 +33,10 @@
       ></commudle-editor>
       <div *ngIf="authService.currentUser$ | async" class="suffix">
         <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
-        <ng-container *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')">
+        <ng-container *ngIf="canReply">
           <div (click)="toggleReply()" class="clickable reply">Reply</div>
         </ng-container>
-        <div [nbContextMenu]="items" nbContextMenuTag="chat-menu-{{ message.id }}">
+        <div [nbContextMenu]="contextMenuItems" nbContextMenuTag="chat-menu-{{ message.id }}">
           <nb-icon icon="more-vertical" pack="eva"></nb-icon>
         </div>
       </div>

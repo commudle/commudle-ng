@@ -15,14 +15,14 @@
     class="messages-list"
     commudleInfiniteScroll
   >
-    <div *ngIf="discussionType === 'channel'">
+    <div *ngIf="discussionType === 'channel'" class="messages">
       <commudle-community-channel-message
         *ngFor="let message of communityChannelHandlerService.messages$ | async"
         [cursor]="message.cursor"
         [message]="message.data"
       ></commudle-community-channel-message>
     </div>
-    <div *ngIf="discussionType === 'forum'">
+    <div *ngIf="discussionType === 'forum'" class="messages">
       <commudle-community-forum-message
         *ngFor="let message of communityChannelHandlerService.messages$ | async"
         [cursor]="message.cursor"

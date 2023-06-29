@@ -1,5 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 
@@ -8,9 +7,11 @@ import { CommunityChannelManagerService } from '../../../services/community-chan
   templateUrl: './edit-channel.component.html',
   styleUrls: ['./edit-channel.component.scss'],
 })
-export class EditChannelComponent implements OnInit, OnDestroy {
+export class EditChannelComponent implements OnInit {
   @Input() channelId: string;
   @Input() discussionType;
+  @Output() updateForm = new EventEmitter<string>();
+
   subscriptions = [];
   channel: ICommunityChannel;
 
@@ -20,9 +21,11 @@ export class EditChannelComponent implements OnInit, OnDestroy {
     this.getChannel();
   }
 
-  ngOnDestroy() {}
-
   getChannel() {
     this.channel = this.communityChannelManagerService.findChannel(this.channelId);
+  }
+
+  formUpdate() {
+    this.updateForm.emit('updated');
   }
 }

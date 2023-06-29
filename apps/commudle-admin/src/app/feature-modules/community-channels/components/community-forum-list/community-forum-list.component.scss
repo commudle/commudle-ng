@@ -1,107 +1,89 @@
 .community-channel-list {
-  padding: 0.5rem;
   width: 100%;
-  height: 100%;
 
-  .community {
-    width: 100%;
-    position: sticky;
-    padding-top: 0.5rem;
-    top: 0.5rem;
-    background-color: white;
-  }
-
-  .channel-group {
-    margin-bottom: 1.5rem;
-    .group-name {
-      display: flex;
-      justify-content: space-between;
+  .forum-group {
+    @apply com-shadow-none;
+    .heading {
+      @apply com-m-0;
       p {
-        font-size: 0.8rem;
-        color: grey;
-        min-width: 10px;
-        margin-bottom: 0;
-        word-break: break-all;
+        @apply com-text-xl com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
       }
     }
 
-    .channels {
-      ul {
-        list-style: none;
-        padding-left: 0.5rem;
-        margin: 0.5rem 0;
-        li {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          flex-wrap: nowrap;
-          margin-bottom: 1rem;
+    // .channels {
+    //   @apply com-bg-[#F9F9F9];
+    //   ul {
+    //     list-style: none;
+    //     @apply com-p-0;
+    //     li {
+    //       @apply com-px-0 com-py-2 com-flex com-justify-between com-flex-nowrap com-items-center com-gap-2;
 
-          nb-icon {
-            font-size: 0.8rem;
-            color: grey;
-          }
+    //       .details {
+    //         @apply com-w-full com-flex com-items-center com-gap-3;
+    //         .logo {
+    //           @apply com-w-8 com-h-8 com-bg-white com-rounded-[50%] com-overflow-hidden;
+    //           img {
+    //             @apply com-w-full;
+    //           }
+    //         }
 
-          div.details {
-            width: 80%;
-            display: flex;
-            .logo {
-              width: 35px;
-              border-radius: 50%;
-              overflow: hidden;
-              margin-right: 0.2rem;
-              text-align: center;
-              img {
-                width: 100%;
-              }
+    //         .name {
+    //           @apply com-text-base  com-text-red-500 com-p-0 com-m-0 com-cursor-pointer;
+    //           a {
+    //             text-decoration: none;
+    //             @apply com-text-[#475166] hover:com-text-primary-500;
+    //             .icon {
+    //               padding: 0;
+    //             }
+    //           }
 
-              nb-icon {
-                font-size: 1.2rem;
-                color: #4e74ff;
-              }
-            }
+    //           &.selectedChannel {
+    //             a {
+    //               @apply com-text-primary-500 com-font-semibold com-underline;
+    //             }
+    //           }
+    //         }
+    //       }
 
-            .name {
-              width: 80%;
-              margin: 0;
-              font-size: 12px;
-              position: relative;
-              a {
-                text-decoration: none;
-                color: black;
+    //       .settings {
+    //         display: flex;
+    //         align-items: baseline;
+    //         width: 25%;
+    //         margin: 0;
 
-                .icon {
-                  padding: 0;
-                }
-              }
-              &:hover {
-                text-decoration: underline;
-              }
+    //         a {
+    //           padding: 0 3px;
+    //           @apply com-cursor-pointer;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    .group-name {
+      div {
+        @apply com-cursor-pointer hover:com-bg-[#EEE]/40;
+        p {
+          @apply com-mx-6 com-py-2 com-text-lg com-text-[#475166];
+        }
 
-              .selected-channel {
-                color: #249aff;
-                font-weight: bold;
-              }
-            }
-          }
-
-          .settings {
-            display: flex;
-            align-items: baseline;
-            width: 25%;
-            margin: 0;
-            a {
-              padding: 0 3px;
-            }
-          }
+        &.selectedForum {
+          @apply com-bg-[#EEE];
         }
       }
     }
   }
 }
 
-nb-accordion-item {
-  nb-accordion-item-body .item-body {
-    @apply com-p-0 #{!important};
+nb-accordion {
+  &::ng-deep {
+    nb-accordion-item {
+      nb-accordion-item-body {
+        .ng-trigger-accordionItemBody {
+          .item-body {
+            @apply com-p-0;
+          }
+        }
+      }
+    }
   }
 }

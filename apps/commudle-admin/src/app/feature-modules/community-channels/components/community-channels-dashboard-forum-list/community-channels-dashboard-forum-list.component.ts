@@ -4,6 +4,7 @@ import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feat
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { Subscription } from 'rxjs';
+import { RandomColorsService } from 'apps/shared-services/random-colors.service';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -18,6 +19,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   subscriptions: Subscription[] = [];
   communityForums: EGroupedCommunityChannels;
   selectedCommunity: ICommunity;
+  randomColor = [];
 
   @Output() updateSelectedForum = new EventEmitter<any>();
 
@@ -25,12 +27,16 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     private communityChannelManagerService: CommunityChannelManagerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private RandomColorsService: RandomColorsService,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
+        if (this.communityForums) {
+          this.randomColor = this.RandomColorsService.generateArray(Object.keys(this.communityForums).length);
+        }
       }),
     );
     this.subscriptions.push(

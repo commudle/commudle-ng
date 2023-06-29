@@ -18,8 +18,8 @@
     <tr *ngFor="let forum of selectedForum" class="forum-list">
       <td (click)="openChat(forum.id)">
         <div>
-          <p class="name">{{ forum.name }}</p>
-          <p class="group-name">{{ forum.group_name }}</p>
+          <p class="forum-name">{{ forum.name | titlecase }}</p>
+          <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
         </div>
       </td>
     </tr>

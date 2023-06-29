@@ -81,7 +81,7 @@ export class CommunityChannelHandlerService {
   }
 
   sendReply(parentId: number, content: string) {
-    if (!this.permittedActions.value.includes('reply') || this.permittedActions.value.includes('blocked')) {
+    if (this.permittedActions.value.includes('blocked')) {
       return;
     }
 

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -50,6 +51,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   forumName: string;
   forumId: string;
   showForumData = false;
+  isCommunityOrganizer = false;
 
   subscriptions: Subscription[] = [];
 
@@ -59,6 +61,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
     private router: Router,
+    private communitiesService: CommunitiesService,
   ) {}
 
   ngOnInit() {
@@ -67,6 +70,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
+    this.checkCommunityOrganizer();
 
     if (this.discussionTypeParam === this.discussionType.FORUM && this.forumId) {
       this.checkSelectedForum(this.forumId);
@@ -89,6 +93,16 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  checkCommunityOrganizer() {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === this.selectedCommunity.slug) !== undefined) {
+          this.isCommunityOrganizer = true;
+        }
+      }),
+    );
   }
 
   checkDiscussionType() {
@@ -154,9 +168,14 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   openChannelOrForums(discussionType) {
     this.discussionTypeParam = discussionType;
     if (discussionType === this.discussionType.CHANNEL) {
+      this.forumsNamesList = false;
+      this.forumMessage = false;
+      this.forumsList = false;
       this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
     } else if (discussionType === this.discussionType.FORUM) {
       this.channelsList = false;
+      this.forumsNamesList = false;
+      this.forumMessage = false;
       this.forumsList = true;
       this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`], {
         queryParams: { 'discussion-type': 'forum' },

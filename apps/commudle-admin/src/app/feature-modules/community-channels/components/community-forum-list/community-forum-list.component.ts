@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -26,9 +26,12 @@ interface EGroupedCommunityChannels {
   styleUrls: ['./community-forum-list.component.scss'],
 })
 export class CommunityForumListComponent implements OnInit, OnDestroy {
+  @Input() showCommunityBadge = false;
+  @Input() isCommunityOrganizer = false;
+  @Input() selectedForumName: string;
+
   selectedCommunity: ICommunity;
   communityForums: EGroupedCommunityChannels;
-  @Input() showCommunityBadge = false;
   selectedChannel: ICommunityChannel;
   currentUser: ICurrentUser;
   EUserRoles = EUserRoles;
@@ -121,7 +124,8 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedCommunityChannel(forumName) {
+  selectedCommunityForum(forumName) {
+    this.selectedForumName = forumName.key;
     this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,

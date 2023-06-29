@@ -8,13 +8,13 @@
       (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
       [expandedWidth]="'extra-large'"
     >
-      <div class="com-flex">
+      <div class="com-flex com-h-full">
         <div class="left-section">
-          <div class="icons !com-bg-primary-200" (click)="openChannelOrForums(discussionType.CHANNEL)">
-            <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-primary-500"></fa-icon>
+          <div class="icons !com-bg-[#EFF9FF]" (click)="openChannelOrForums(discussionType.CHANNEL)">
+            <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
           </div>
-          <div class="icons !com-bg-primary-200" (click)="openChannelOrForums(discussionType.FORUM)">
-            <fa-icon [icon]="faMessage" class="com-mx-auto com-text-primary-500"></fa-icon>
+          <div class="icons !com-bg-[#EFF9FF]" (click)="openChannelOrForums(discussionType.FORUM)">
+            <fa-icon [icon]="faMessage" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
           </div>
         </div>
         <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
@@ -24,12 +24,15 @@
               [groupedChannels]="communityChannels"
               [selectedCommunity]="selectedCommunity"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
+              [isCommunityOrganizer]="isCommunityOrganizer"
             ></app-community-channel-list>
           </div>
 
           <!-- forum list -->
           <div *ngIf="forumsList && !channelsList">
             <app-community-forum-list
+              [isCommunityOrganizer]="isCommunityOrganizer"
+              [selectedForumName]="forumName"
               (updateSelectedForum)="updateSelectedChannelOrForum($event)"
             ></app-community-forum-list>
           </div>
@@ -70,11 +73,3 @@
     ></commudle-community-form-message>
   </div>
 </div>
-
-<!-- <router-outlet></router-outlet> -->
-<!-- <div class="icons com-bg-gray-200">
-          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-        </div>
-        <div class="icons com-bg-gray-200">
-          <fa-icon [icon]="faUser" class="com-mx-auto"></fa-icon>
-        </div> -->

@@ -1,9 +1,12 @@
-<div class="com-grid com-grid-cols-2 com-gap-5 com-mt-8">
+<div class="forums-cards">
   <div class="container" *ngFor="let chGroup of communityForums | keyvalue" (click)="selectedCommunityChannel(chGroup)">
-    <div></div>
-    <div>
-      <hr />
-      <div class="group-name">{{ (chGroup.key | titlecase) || 'General' }}</div>
+    <div class="header com-bg-gradient-to-b com-from-[#ac94d1] com-to-white"></div>
+    <div class="image">
+      <img [src]="selectedCommunity.logo_image_path?.i64" alt="" />
+    </div>
+    <div class="details">
+      <div class="discussion-name">{{ chGroup.value[0].name | titlecase }}</div>
+      <div class="discussion-category">{{ (chGroup.key | titlecase) || 'General' }}</div>
     </div>
   </div>
 </div>

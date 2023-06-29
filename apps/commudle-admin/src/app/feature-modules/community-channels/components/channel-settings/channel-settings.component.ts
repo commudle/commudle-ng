@@ -1,5 +1,5 @@
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
-import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -15,6 +15,8 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   @Input() channelId;
   @Input() invite = false;
   @Input() discussionType;
+  @Output() updateForm = new EventEmitter<string>();
+
   @ViewChild('settingsTemplate', { static: true }) settingsTemplate: TemplateRef<any>;
   subscriptions = [];
   channel: ICommunityChannel;
@@ -70,5 +72,9 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  updateChannelForm(event) {
+    this.updateForm.emit(event);
   }
 }
