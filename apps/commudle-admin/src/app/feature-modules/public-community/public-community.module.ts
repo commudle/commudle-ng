@@ -46,7 +46,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
   ],
-  exports: [MembershipToggleComponent],
+  exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,

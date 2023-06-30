@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IUser} from 'apps/shared-models/user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { IUser } from 'apps/shared-models/user.model';
 
 @Component({
   selector: 'app-speaker-card',
@@ -7,13 +7,12 @@ import {IUser} from 'apps/shared-models/user.model';
   styleUrls: ['./speaker-card.component.scss'],
 })
 export class SpeakerCardComponent implements OnInit {
-
   @Input() speaker: IUser;
+  @Input() maxUserNameLength = 20;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
+    console.log(this.speaker);
   }
-
 }

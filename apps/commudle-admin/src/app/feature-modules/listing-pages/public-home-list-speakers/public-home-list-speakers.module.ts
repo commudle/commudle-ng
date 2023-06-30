@@ -10,9 +10,16 @@ import { PublicHomeListSpeakersUpcomingComponent } from './components/public-hom
 import { NbCardModule } from '@commudle/theme';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { PublicHomeListSpeakersProfileComponent } from './components/public-home-list-speakers-profile/public-home-list-speakers-profile.component';
+import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 
 @NgModule({
-  declarations: [PublicHomeListSpeakersComponent, SpeakersHeaderComponent, PublicHomeListSpeakersUpcomingComponent],
+  declarations: [
+    PublicHomeListSpeakersComponent,
+    SpeakersHeaderComponent,
+    PublicHomeListSpeakersUpcomingComponent,
+    PublicHomeListSpeakersProfileComponent,
+  ],
   imports: [
     CommonModule,
     PublicHomeListSpeakersRoutingModule,
@@ -20,6 +27,7 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
     EventMiniCardComponent,
     SkeletonCardsComponent,
     PublicHomeListEventsModule,
+    PublicCommunityModule,
 
     //Nebular
     NbCardModule,

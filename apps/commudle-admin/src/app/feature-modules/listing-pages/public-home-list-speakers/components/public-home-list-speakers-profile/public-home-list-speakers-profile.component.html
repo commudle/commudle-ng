@@ -1,0 +1,5 @@
+<div class="speakers">
+  <div *ngFor="let speaker of speakers" class="speakers-card">
+    <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
+  </div>
+</div>

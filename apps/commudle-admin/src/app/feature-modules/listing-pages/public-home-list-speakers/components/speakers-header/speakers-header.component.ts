@@ -8,22 +8,22 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
   styleUrls: ['./speakers-header.component.scss'],
 })
 export class SpeakersHeaderComponent implements OnInit {
-  buildsPageHeader: IListingPageHeader;
+  speakersPageHeader: IListingPageHeader;
   richText: string;
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
-    // this.getHeaderText();
+    this.getHeaderText();
   }
 
-  // imageUrl(source: any) {
-  //   return this.cmsService.getImageUrl(source);
-  // }
+  imageUrl(source: any) {
+    return this.cmsService.getImageUrl(source);
+  }
 
-  // getHeaderText() {
-  //   this.cmsService.getDataBySlug('speakers').subscribe((data) => {
-  //     this.buildsPageHeader = data;
-  //     this.richText = this.cmsService.getHtmlFromBlock(data);
-  //   });
-  // }
+  getHeaderText() {
+    this.cmsService.getDataBySlug('speakers').subscribe((data) => {
+      this.speakersPageHeader = data;
+      this.richText = this.cmsService.getHtmlFromBlock(data);
+    });
+  }
 }
