@@ -63,6 +63,7 @@
     <commudle-community-forum
       *ngIf="forumsNamesList"
       [selectedCommunity]="selectedCommunity"
+      [isCommunityOrganizer]="isCommunityOrganizer"
       (updateSelectedForum)="checkSelectedForum($event)"
     ></commudle-community-forum>
 

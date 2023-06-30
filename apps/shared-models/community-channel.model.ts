@@ -15,6 +15,7 @@ export interface ICommunityChannel {
   my_roles: any[];
   member_count: number;
   messages_count?: number;
+  display_type: string;
   messages_count_in_three_months?: number;
   kommunity?: {
     id: number;

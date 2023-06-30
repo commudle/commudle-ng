@@ -1,6 +1,7 @@
 <section>
   <div>
     <button
+      *ngIf="currentUser && isCommunityOrganizer"
       (click)="newChannelDialogBox(selectedForum[0].group_name); $event.stopPropagation()"
       nbButton
       status="warning"
@@ -19,8 +20,25 @@
       <td (click)="openChat(forum.id)">
         <div>
           <p class="forum-name">{{ forum.name | titlecase }}</p>
+          <p class="group-name">{{ forum.display_type }}</p>
           <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
         </div>
+      </td>
+      <td>
+        <span *ngIf="forum.is_readonly" class="icon">
+          <nb-icon title="Read-only Channel" alt="Readonly Channel" title="Readonly Channel" icon="eye"></nb-icon>
+        </span>
+      </td>
+      <td>
+        <a
+          *ngIf="
+            channelsRoles[forum.id] &&
+            (channelsRoles[forum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
+          "
+          (click)="editDialogBox(forum.id)"
+        >
+          <nb-icon icon="settings"></nb-icon>
+        </a>
       </td>
     </tr>
   </table>

@@ -148,7 +148,7 @@ export class CommunityChannelManagerService {
     this.communityChannelsService
       .index(this.selectedCommunity.value.slug, this.discussionType.FORUM)
       .subscribe((data) => {
-        this.forums = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.forums = this.forums.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.getAllForumRoles(this.forums);
         this.communityForums.next(_.groupBy(this.forums, (ch) => ch.group_name));
       });

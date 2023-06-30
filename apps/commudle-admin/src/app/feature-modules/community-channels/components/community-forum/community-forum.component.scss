@@ -18,10 +18,14 @@ section {
   @apply com-cursor-pointer;
 }
 
-// .forum-list:not(:last-child) {
-//   @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
-// }
-
 td {
-  @apply com-border-0 com-border-b com-border-solid com-border-gray-200  com-pt-8;
+  @apply com-pt-8;
+}
+
+table {
+  @apply com-border-collapse;
+}
+
+.forum-list:not(:last-child) {
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
 }

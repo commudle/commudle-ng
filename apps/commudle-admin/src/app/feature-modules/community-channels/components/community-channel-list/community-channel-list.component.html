@@ -36,8 +36,12 @@
               [ngClass]="{ selectedChannel: selectedChannelId == channel.id }"
             >
               <div class="details">
-                <div *ngIf="channel.logo" class="logo">
-                  <img alt="{{ channel.name }}" src="{{ channel.logo.url }}" title="{{ channel.name }}" />
+                <div class="logo">
+                  <img
+                    alt="{{ channel.name }}"
+                    src="{{ channel.logo ? channel.logo.url : '/assets/icons/default-channel-logo.svg' }}"
+                    title="{{ channel.name }}"
+                  />
                 </div>
                 <p class="name">
                   <a (click)="selectedCommunityChannel(channel)">

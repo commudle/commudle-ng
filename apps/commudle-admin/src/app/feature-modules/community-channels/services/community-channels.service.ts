@@ -54,7 +54,7 @@ export class CommunityChannelsService {
   }
 
   index(communityId, displayType): Observable<IPagination<ICommunityChannels>> {
-    const params = new HttpParams().set('community_id', communityId).set('display_type', displayType);
+    const params = new HttpParams().set('community_id', communityId).set('display_type', displayType).set('limit', 50);
     return this.http.get<IPagination<ICommunityChannels>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX),
       {
