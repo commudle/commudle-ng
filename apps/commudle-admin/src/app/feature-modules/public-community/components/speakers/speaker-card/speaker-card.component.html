@@ -28,9 +28,9 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <!-- <div class="hiring-looking-works-tags">
-              <app-hiring-looking-works-tags [user]="speaker.user  18 = height"></app-hiring-looking-works-tags> -->
-            <!-- </div> -->
+            <div class="hiring-looking-works-tags">
+              <!-- <app-hiring-looking-works-tags [user]="speaker.user"></app-hiring-looking-works-tags> -->
+            </div>
             <div class="heading">
               <p class="user-name">
                 {{ speaker.name }}
@@ -58,16 +58,19 @@
         <!-- <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex flex-wrap">
           <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{ tag.name }}</div>
         </div> -->
-        <!-- <div *ngIf="speaker.tags.length > 0 class="tags">
-          <app-tag
+        <div class="tags">
+          <!-- <app-tag
+            *ngIf="speaker.tags.length > 0"
             [tags]="speaker.tags"
             [backgroundColor]="'#0095ff'"
             [size]="'tiny'"
             [fontColor]="'#101828'"
-            [maximumTag]="3"
-          ></app-tag>
-        </div> -->
-        <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>
+            [maximumTag]="3" -->
+          <!-- ></app-tag> -->
+        </div>
+        <div class="user-follow-button">
+          <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>
+        </div>
       </div>
     </div>
   </nb-card-body>

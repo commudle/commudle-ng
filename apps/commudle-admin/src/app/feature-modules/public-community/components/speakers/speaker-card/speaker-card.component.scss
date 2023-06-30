@@ -52,7 +52,7 @@ nb-card {
           }
 
           .hiring-looking-works-tags {
-            @apply com-mb-7px;
+            @apply com-mb-7px com-h-[18px];
           }
 
           .heading {
@@ -91,6 +91,10 @@ nb-card {
 
         .tags {
           @apply com-overflow-hidden com-h-6 com-gap-3 com-m-0 com-p-0;
+        }
+
+        .user-follow-button {
+          @apply com-mt-6;
         }
       }
     }
