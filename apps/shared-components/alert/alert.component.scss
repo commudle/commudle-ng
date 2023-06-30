@@ -1,11 +1,11 @@
 .error-text {
   @apply com-text-sm com-flex com-items-center com-font-normal com-align-middle com-text-red-500;
   span {
-    @apply com-flex com-items-center;
+    @apply com-flex com-items-start;
   }
 
   .info-icon {
-    @apply com-text-sm com-mr-1;
+    @apply com-text-sm com-mr-1 com-mt-[3px];
   }
 }
 
