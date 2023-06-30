@@ -1,13 +1,22 @@
-<nb-card [routerLink]="['/speaker-resources', pastEvent.id]" class="user-past-event-card">
+<nb-card
+  [routerLink]="
+    pastEvent.speaker_resource
+      ? ['/speaker-resources', pastEvent.speaker_resource.id]
+      : ['/communities', pastEvent.kommunity_id, 'events', pastEvent.slug]
+  "
+  class="user-past-event-card"
+>
   <nb-card-body>
     <p class="date">
-      <span class="date-month">{{ pastEvent.event.start_time | date: 'MMM' }}</span>
-      <span class="date-day">{{ pastEvent.event.start_time | date: 'dd' }}</span>
-      <span class="date-year">{{ pastEvent.event.start_time | date: 'yyyy' }}</span>
+      <span class="date-month">{{ pastEvent.start_time | date : 'MMM' }}</span>
+      <span class="date-day">{{ pastEvent.start_time | date : 'dd' }}</span>
+      <span class="date-year">{{ pastEvent.start_time | date : 'yyyy' }}</span>
     </p>
     <div class="content">
-      <h4 class="title">{{ pastEvent.event.name }}</h4>
-      <p class="description">{{ pastEvent.title }}</p>
+      <h4 class="title">{{ pastEvent.name }}</h4>
+      <div *ngIf="community" class="community-badge">
+        <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>

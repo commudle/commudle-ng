@@ -20,7 +20,7 @@
           @apply com-border-t com-border-x-0 com-border-b-0 com-border-solid com-border-Bright-Gray com-text-3xl com-font-normal com-mb-4;
 
           .event-details {
-            @apply com-h-[124px] com-mb-7;
+            @apply com-mb-7;
 
             .details {
               @apply com-flex com-justify-between;
@@ -33,13 +33,13 @@
               }
 
               .interested-members {
-                @apply com-text-sm com-m-4 com-font-light com-text-Auro-Metal-Saurus com-items-center com-mb-0;
+                @apply md:com-text-sm com-text-xs com-m-4 md:com-font-light com-font-normal com-text-Auro-Metal-Saurus com-items-center com-mb-0;
                 @apply md:com-flex md:com-justify-between;
               }
             }
 
             .event-name {
-              @apply com-text-Dark-Jungle-Green com-font-semibold com-text-xl com-leading-6 com-mx-4 com-mb-0 com-line-clamp-2 com-mt-4;
+              @apply com-text-Dark-Jungle-Green com-font-semibold md:com-text-xl com-text-lg com-leading-6 com-mx-4 com-mb-0 com-line-clamp-1 com-mt-3;
 
               .collaboration {
                 @apply com-text-sm com-font-normal;

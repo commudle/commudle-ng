@@ -1,3 +1,7 @@
 .community-events-list {
-  padding: 1.5rem;
+  @apply md:com-px-0 com-py-6 com-px-6;
+
+  .page-actions {
+    @apply com-p-0 com-pb-4;
+  }
 }

@@ -8,6 +8,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { Subscription } from 'rxjs';
 import { faLightbulb, faCalendar, faUsers, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { IEvent } from 'apps/shared-models/event.model';
 
 @Component({
   selector: 'app-user-contributions',
@@ -20,12 +21,15 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];
   builds: ICommunityBuild[] = [];
-  pastEvents: ISpeakerResource[] = [];
+  attendedEvents: IEvent[] = [];
+  pastEvents: IEvent[] = [];
 
   subscriptions: Subscription[] = [];
 
+  viewMoreEventsSection = true;
   viewMoreCommunitiesSection = true;
   footerCommunitiesCardText: string;
+  footerEventsCardText: string;
   faLightbulb = faLightbulb;
   faCalendar = faCalendar;
   faUsers = faUsers;
@@ -35,10 +39,12 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.user) {
+      this.pastEvents = [];
       this.getPastEvents();
       this.getCommunities();
       this.getLabs();
       this.getBuilds();
+      this.getAttendedEvents();
     }
   }
 
@@ -48,8 +54,8 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
 
   getPastEvents(): void {
     this.subscriptions.push(
-      this.appUsersService.speakerResources(this.user.username).subscribe((value) => {
-        this.pastEvents = value.speaker_resources;
+      this.appUsersService.getSpeakerResources(this.user.username).subscribe((value) => {
+        this.pastEvents = this.pastEvents.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
         this.userProfileMenuService.addMenuItem('talksAtEvents', this.pastEvents.length > 0);
       }),
     );
@@ -90,6 +96,25 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
       this.footerCommunitiesCardText = `View Less`;
     } else {
       this.footerCommunitiesCardText = `View More (${this.communities.length - 6})`;
+    }
+  }
+
+  getAttendedEvents(): void {
+    this.subscriptions.push(
+      this.appUsersService.getAttendedEvents(this.user.id).subscribe((value) => {
+        this.attendedEvents = value.events;
+        this.userProfileMenuService.addMenuItem('attendedEvents', this.attendedEvents.length > 0);
+        this.footerEventsCardText = `View More`;
+      }),
+    );
+  }
+
+  viewMoreAttendedEvents() {
+    this.viewMoreEventsSection = !this.viewMoreEventsSection;
+    if (!this.viewMoreEventsSection) {
+      this.footerEventsCardText = `View Less`;
+    } else {
+      this.footerEventsCardText = `View More`;
     }
   }
 }

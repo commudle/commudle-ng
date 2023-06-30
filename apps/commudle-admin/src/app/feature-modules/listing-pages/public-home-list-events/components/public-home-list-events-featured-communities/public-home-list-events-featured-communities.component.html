@@ -1,0 +1,22 @@
+<div>
+  <div class="heading">
+    <h3 class="title">Featured Communities</h3>
+    <h4 class="sub-heading">Join the most active groups</h4>
+  </div>
+  <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+  <div class="featured-communities custom-scrollbar">
+    <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
+      <div *appBreakpoints="'>lg'">
+        <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+        ></commudle-featured-communities-card>
+      </div>
+      <div *appBreakpoints="'<=lg'">
+        <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+          [horizontalScroll]="true"
+        ></commudle-featured-communities-card>
+      </div>
+    </div>
+  </div>
+</div>

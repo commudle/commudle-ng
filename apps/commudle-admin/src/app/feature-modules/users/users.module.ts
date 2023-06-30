@@ -64,6 +64,7 @@ import { JobsModule } from '../jobs/jobs.module';
 import { CommunicationPreferencesComponent } from './components/public-profile/user-basic-details/communication-preferences/communication-preferences.component';
 import { CookiePreferencesComponent } from './components/public-profile/user-basic-details/cookie-preferences/cookie-preferences.component';
 import { AccountManagementComponent } from './components/public-profile/user-basic-details/account-management/account-management.component';
+import { EventMiniCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-mini-card/event-mini-card.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { AccountManagementComponent } from './components/public-profile/user-bas
     MiniUserProfileModule,
     SharedComponentsModule,
     JobsModule,
+    EventMiniCardComponent,
 
     // Nebular
     NbCardModule,

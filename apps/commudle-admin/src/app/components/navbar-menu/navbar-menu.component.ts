@@ -48,6 +48,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
       externalLink: true,
       target: '_blank',
     },
+    { title: 'Events', link: '/events' },
   ];
 
   subscriptions: Subscription[] = [];

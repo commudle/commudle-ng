@@ -21,3 +21,7 @@ nb-card {
 .view-less {
   @apply com-max-h-max;
 }
+
+.view-more-events {
+  @apply com-max-h-[244px] com-overflow-y-hidden;
+}

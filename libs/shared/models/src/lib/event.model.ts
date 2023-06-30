@@ -1,5 +1,7 @@
 import { IAttachedFile } from './attached-file.model';
 import { IEventStatus } from './event-status.model';
+import { ICommunity } from './community.model';
+import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 
 export interface IEvent {
   id: number;
@@ -27,6 +29,8 @@ export interface IEvent {
   interested_members_count: number;
   registrations_count?: number;
   attended_members_count?: number;
+  kommunity?: ICommunity;
+  speaker_resource?: ISpeakerResource;
 }
 
 export interface IEventSearch extends IEvent {

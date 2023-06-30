@@ -4,7 +4,12 @@
 
     <h2 *ngIf="!event.header_image_path" class="fs-h2 com-ml-4">{{ event.name }}</h2>
     <div class="com-m-2">
-      <commudle-banner-image [headerImagePath]="event.header_image_path" [name]="event.name"></commudle-banner-image>
+      <commudle-banner-image
+        [headerImagePath]="event.header_image_path"
+        [name]="event.name"
+        [bottomRightCurve]="false"
+        [bottomLeftCurve]="false"
+      ></commudle-banner-image>
     </div>
     <nb-card class="home-event-menu">
       <nb-card-body>

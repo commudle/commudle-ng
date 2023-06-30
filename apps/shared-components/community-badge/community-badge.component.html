@@ -1,4 +1,10 @@
-<div class="community-badge {{ background }}">
+<div
+  class="community-badge {{ background }}"
+  [ngClass]="{
+    small: size === 'small',
+    medium: size === 'medium'
+  }"
+>
   <a [routerLink]="['/communities', community.slug]">
     <div class="logo">
       <img
@@ -7,8 +13,10 @@
         title="{{ community.name }}"
       />
     </div>
-    <div class="name">
-      <p>{{ community.name }}</p>
+    <div>
+      <p class="name">
+        {{ community.name }}
+      </p>
     </div>
   </a>
 </div>

@@ -1,0 +1,39 @@
+a {
+  @apply com-no-underline;
+}
+
+nb-card {
+  @apply com-m-0 md:com-min-h-[172px] com-h-full;
+
+  nb-card-body {
+    @apply com-p-4;
+
+    .details {
+      @apply com-no-underline;
+
+      .community-badge {
+        @apply com-mb-2 com-mt-0 com-min-h-[28px];
+      }
+
+      .content {
+        @apply com-no-underline com-flex com-items-start com-mb-2;
+
+        nb-icon {
+          @apply com-mr-2 com-text-gray-500 com-mt-1 com-text-base com-flex-shrink-0;
+        }
+
+        .session-link {
+          @apply com-m-0 com-text-sm com-font-normal com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
+        }
+      }
+    }
+
+    .event-time {
+      @apply com-text-xs com-font-normal com-mb-4 com-mt-0 com-text-Auro-Metal-Saurus;
+    }
+
+    .event-title {
+      @apply com-text-base com-font-semibold com-m-0 com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1;
+    }
+  }
+}

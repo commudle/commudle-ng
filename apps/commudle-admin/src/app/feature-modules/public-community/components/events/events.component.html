@@ -5,7 +5,11 @@
     </div>
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
-        <p class="heading">Upcoming Events</p>
+        <p class="heading">
+          <button nbButton status="basic" size="small" shape="semi-round">
+            <fa-icon [icon]="faCalendarDays"></fa-icon></button
+          >Upcoming Events
+        </p>
         <div class="upcoming-events-container">
           <a
             *ngFor="let event of upcomingEvents"
@@ -22,6 +26,8 @@
                     <commudle-banner-image
                       [headerImagePath]="event.header_image_path"
                       [name]="event.name"
+                      [bottomRightCurve]="false"
+                      [bottomLeftCurve]="false"
                     ></commudle-banner-image>
                     <app-badge
                       *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"
@@ -71,7 +77,11 @@
       </section>
 
       <section *ngIf="pastEvents.length >= 1" class="past-events">
-        <h3 class="heading">Past Events</h3>
+        <h3 class="heading">
+          <button nbButton status="basic" size="small" shape="semi-round">
+            <fa-icon [icon]="faCalendarCheck"></fa-icon></button
+          >Past Events
+        </h3>
         <div class="past-events-container">
           <a
             *ngFor="let event of pastEvents"
@@ -83,6 +93,8 @@
                   <commudle-banner-image
                     [headerImagePath]="event.header_image_path"
                     [name]="event.name"
+                    [bottomRightCurve]="false"
+                    [bottomLeftCurve]="false"
                   ></commudle-banner-image>
                 </div>
                 <div *ngIf="!event.header_image_path" class="no-image-header">

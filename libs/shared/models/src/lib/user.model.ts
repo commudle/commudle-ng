@@ -44,6 +44,7 @@ export interface IUser {
   has_labs: boolean;
   profile_banner_image: IAttachedFile;
   deactivated: boolean;
+  speaker_events_count: number;
 }
 
 export interface IUserSearch extends IUser {
