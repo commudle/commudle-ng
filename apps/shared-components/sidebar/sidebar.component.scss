@@ -8,7 +8,7 @@
 }
 .sidebar {
   transition: 0.3s;
-  @apply com-absolute com-left-0 com-top-0 com-pt-0 com-h-full com-z-50 com-bg-white com-text-black com-overflow-hidden;
+  @apply com-absolute com-left-0 com-top-0 com-pt-0 com-h-full com-z-20 com-bg-white com-text-black com-overflow-hidden;
 
   &.left {
     @apply com-left-0;
