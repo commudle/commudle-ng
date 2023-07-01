@@ -480,6 +480,7 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT: 'api/v2/discussions/public_get_or_create_for_feed_item_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT:
       'api/v2/discussions/public_get_or_create_for_community_channel_chat',
+    PUBLIC_COMMUNITY_BUILD_MESSAGES: 'api/v2/discussions/public_community_build_messages',
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
       UPDATE_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/update_attachment_message',
@@ -547,6 +548,10 @@ export const API_ROUTES = {
     PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES: 'api/v2/user_messages/public_community_channel_discussion_messages',
   },
 
+  USER_MESSAGE_RECEIPTS: {
+    CREATE: 'api/v2/user_message_receipts',
+  },
+
   USER_OBJECT_VISITS: {
     CREATE: 'api/v2/user_object_visits',
     MARK_END_TIME: 'api/v2/user_object_visits/mark_end_time',
@@ -606,6 +611,7 @@ export const API_ROUTES = {
   },
 
   MENTIONS: {
+    INDEX: 'api/v2/mentions',
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities',
   },
