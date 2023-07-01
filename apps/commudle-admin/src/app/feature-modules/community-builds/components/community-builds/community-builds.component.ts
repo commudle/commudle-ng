@@ -12,9 +12,6 @@ export class CommunityBuildsComponent implements OnInit {
 
   ngOnInit() {
     this.isMobileView = window.innerWidth <= 640;
-    window.addEventListener('resize', () => {
-      this.isMobileView = window.innerWidth <= 640;
-    });
     this.seoService.setTags(
       'Builds - Projects & Side Hustle Sharing Platform for Developers ',
       'Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.',

@@ -11,9 +11,6 @@ export class PublicHomeListEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
-    window.addEventListener('resize', () => {
-      this.isMobileView = window.innerWidth <= 640;
-    });
     this.seoService.setTags(
       'Events - Online, Offline & Hybrid Events by Dev Communities',
       'Register and attend tech events on web development, devops, design, machine learning, AI, app development and more by developer communities. Find and network with tech experts.',
