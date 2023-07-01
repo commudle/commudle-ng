@@ -54,6 +54,8 @@
                       *ngFor="let tag of slot.tags_list.split(' ')"
                       [fontSize]="'small'"
                       [text]="tag"
+                      [color]="'com-bg-primary-400'"
+                      [fontColor]="'com-text-white'"
                     ></app-badge>
                   </div>
                   <p>{{ slot.session_title }}</p>

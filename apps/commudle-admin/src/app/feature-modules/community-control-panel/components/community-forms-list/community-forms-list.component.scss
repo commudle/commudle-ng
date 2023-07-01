@@ -1,10 +1,9 @@
 :host {
   .page-actions {
-    margin: 0.5rem auto;
+    @apply com-mt-2 com-mb-4 com-mx-auto;
   }
 }
 
-
 .forms-list {
-  padding: 1.5rem;
+  @apply md:com-px-0 com-py-6 com-px-4;
 }

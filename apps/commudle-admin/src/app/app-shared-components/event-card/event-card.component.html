@@ -24,7 +24,14 @@
                 <nb-icon icon="checkmark-circle-2" nbTooltip="Completed" status="success" class="com-m-auto"></nb-icon>
               </div>
               <div *ngIf="event.interested_members_count > 0" class="interested-members">
-                <span>Interested Members: {{ event.interested_members_count }}</span>
+                <app-badge
+                  [text]="event.interested_members_count"
+                  [fontColor]="'com-text-Auro-Metal-Saurus'"
+                  [nbIcon]="'people-outline'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'round'"
+                  [color]="'com-bg-Bright-Gray-Light'"
+                ></app-badge>
               </div>
             </div>
             <p class="event-name">
@@ -32,6 +39,11 @@
               <!-- <span *ngIf="event.kommunity_id !== community.id" class="collaboration">(Collaboration)</span> -->
             </p>
             <p class="event-timings">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+            <div class="community-badge">
+              <div *ngIf="community">
+                <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+              </div>
+            </div>
           </div>
           <a class="view-details">View Details</a>
         </div>

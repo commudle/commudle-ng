@@ -32,11 +32,15 @@
         <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>
-        <button *ngIf="showSpeakersCount" nbButton status="basic" shape="round" size="small" class="speaker-count">
-          <span>
-            <strong>{{ user.speaker_events_count }}</strong> Talk{{ user.speaker_events_count != 1 ? 's' : '' }} Given
-          </span>
-        </button>
+        <div *ngIf="showSpeakersCount" class="speaker-count">
+          <app-badge
+            [text]="user.speaker_events_count + (user.speaker_events_count > 1 ? ' Talks Given' : ' Talk Given')"
+            [fontColor]="'com-text-Auro-Metal-Saurus'"
+            [fontSize]="'small'"
+            [borderRadius]="'round'"
+            [color]="'com-bg-Bright-Gray/60'"
+          ></app-badge>
+        </div>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">
           <a *ngIf="user.linkedin" [href]="user.linkedin | completeurl : 'linkedin'" target="_blank">
             <nb-icon icon="linkedin" status="primary"></nb-icon>

@@ -53,6 +53,15 @@ module.exports = {
         AuroMetalSaurus: '#667085',
         Lavender: '#E6F1FF',
         Quartz: '#4B4B5C',
+        'Chocolate-Traditional': '#7D4402',
+        Seashell: '#FFF6EB',
+        'Metallic-Bronze': '#AC7D47',
+        'Tigers-Eye': '#DF913F',
+        'Blanched-Almond': '#FFEECD',
+        'Deep-Carmine-Pink': '#FF3333',
+        'Bleu-De-France': '#2590EB',
+        'Giants-Orange': '#ff5c1e',
+        Blue: '#001FFF',
       },
 
       lineClamp: {
@@ -63,6 +72,7 @@ module.exports = {
       },
       gridColumn: {
         'span-16': 'span 16 / span 16',
+        'span-17': 'span 17 / span 17',
         'span-18': 'span 18 / span 18',
         'span-19': 'span 19 / span 19',
         'span-20': 'span 20 / span 20',

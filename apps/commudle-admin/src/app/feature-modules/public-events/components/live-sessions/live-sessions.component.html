@@ -20,7 +20,13 @@
           target="_blank"
         >
           <div *ngIf="session.tags_list">
-            <app-badge *ngFor="let tag of session.tags_list.split(',')" [fontSize]="'small'" [text]="tag"></app-badge>
+            <app-badge
+              *ngFor="let tag of session.tags_list.split(',')"
+              [fontSize]="'small'"
+              [text]="tag"
+              [fontColor]="'com-text-white'"
+              [color]="'com-bg-primary-500'"
+            ></app-badge>
           </div>
           <h6 class="title">
             {{ session.session_title }}

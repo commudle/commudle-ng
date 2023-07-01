@@ -77,7 +77,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
   declarations: [
     WorkInProgressComponent,
     UserProfileHorizontalComponent,
-    BadgeComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
@@ -130,6 +129,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     MiniUserProfileModule,
     InViewportModule,
     EditorModule,
+    BadgeComponent,
 
     // Nebular
     NbButtonModule,

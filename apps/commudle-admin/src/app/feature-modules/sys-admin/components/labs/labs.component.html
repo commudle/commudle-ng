@@ -31,7 +31,12 @@
                     <app-votes-display [icon]="'star'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
                   </div>
                   <div class="tags">
-                    <app-badge *ngFor="let t of lab.tags" [text]="t"></app-badge>
+                    <app-badge
+                      *ngFor="let t of lab.tags"
+                      [text]="t"
+                      [fontColor]="'com-text-white'"
+                      [color]="'com-bg-primary-500'"
+                    ></app-badge>
                   </div>
                 </div>
                 <div class="actions">

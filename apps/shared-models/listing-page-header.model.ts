@@ -7,4 +7,5 @@ export interface IListingPageHeader {
   heading: string;
   sub_heading: string;
   slug: { current: string };
+  content: [];
 }

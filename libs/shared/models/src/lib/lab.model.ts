@@ -38,11 +38,11 @@ enum EPublishStatus {
 export { EPublishStatus as ELabPublishStatus };
 
 enum EPublishStatusColors {
-  draft = '#ff6a00',
-  submitted = '#0095fe',
-  published = '#23d004',
-  flagged = 'red',
-  removed = 'red',
+  draft = 'com-bg-orange-500', //#f97316
+  submitted = 'com-bg-primary-500', //#3366ff
+  published = 'com-bg-lime-300', //#84cc16
+  flagged = 'com-bg-red-500', //#ef4444
+  removed = 'com-bg-red-500', //#ef4444
 }
 
 export { EPublishStatusColors as ELabPublishStatusColors };

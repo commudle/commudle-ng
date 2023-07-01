@@ -23,15 +23,19 @@
         <div *ngIf="!event.header_image_path" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
-        <div *appBreakpoints="'>lg'" class="upcoming-card-details-desktop">
+        <div class="upcoming-card-details-desktop">
           <div>
             <div>
               <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
               <div class="interested-members" *ngIf="event.interested_members_count > 0">
-                <button nbButton status="basic" shape="round">
-                  <nb-icon icon="people-outline" class="people-outline"></nb-icon>
-                  <span>{{ event.interested_members_count }}</span>
-                </button>
+                <app-badge
+                  [text]="event.interested_members_count"
+                  [fontColor]="'com-text-Auro-Metal-Saurus'"
+                  [nbIcon]="'people-outline'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'round'"
+                  [color]="'com-bg-Bright-Gray-Light'"
+                ></app-badge>
               </div>
             </div>
             <p class="event-title">{{ event.name }}</p>
@@ -39,24 +43,6 @@
           <div *ngIf="community" class="community-badge">
             <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
           </div>
-          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
-            Register
-          </button>
-        </div>
-        <div *appBreakpoints="'<=lg'" class="upcoming-card-details-mobile">
-          <div>
-            <p class="event-title">{{ event.name }}</p>
-            <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
-          </div>
-          <div *ngIf="community" class="community-badge">
-            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
-          </div>
-
-          <div class="interested-members" *ngIf="event.interested_members_count > 0">
-            <nb-icon icon="people-outline" class="people-outline"></nb-icon>
-            <span>{{ event.interested_members_count }} Interested Members</span>
-          </div>
-
           <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
             Register
           </button>

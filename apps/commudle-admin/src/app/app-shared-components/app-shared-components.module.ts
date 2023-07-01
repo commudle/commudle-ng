@@ -10,6 +10,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
+import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent],
@@ -20,9 +21,12 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
     EditorModule,
     RouterModule,
     PublicCommunityModule,
+
+    //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,
+    TopBuildersCardComponent,
 
     // Nebular
     NbRadioModule,

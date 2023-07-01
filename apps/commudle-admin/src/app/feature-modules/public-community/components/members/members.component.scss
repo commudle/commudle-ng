@@ -1,11 +1,11 @@
 nb-card {
-  @apply com-mt-10 com-p-0 com-mx-0;
+  @apply com-mt-4 com-p-0 com-mx-0;
 
   nb-card-body {
     @apply com-m-5 com-p-0;
 
     .speakers-container {
-      @apply com-mt-3 com-mb-0 com-p-0;
+      @apply com-mt-3 com-mb-5 com-p-0;
 
       .header-text {
         @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
@@ -21,7 +21,7 @@ nb-card {
     }
 
     .members-container {
-      @apply com-mt-10 com-mb-5 com-p-0;
+      @apply com-mt-0 com-mb-5 com-p-0;
 
       .members {
         @apply com-mt-0 com-mx-0 com-mb-4;

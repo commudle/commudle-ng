@@ -1,7 +1,7 @@
 :host {
   @apply com-w-full;
   .image-container {
-    @apply com-relative com-overflow-hidden com-aspect-[16/6] com-w-full;
+    @apply com-relative com-overflow-hidden com-w-full;
     //TODO use aspect ratio in tailwind
 
     &.top-right-curve {

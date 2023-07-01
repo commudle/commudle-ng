@@ -44,9 +44,12 @@ export const API_ROUTES = {
     RESEND_TEAMMATE_INVITE: 'api/v2/community_builds/resend_teammate_invite',
     REMOVE_TEAMMATE: 'api/v2/community_builds/remove_teammate',
     PUBLIC: {
-      INDEX: 'api/v2/community_builds/public',
+      // INDEX: 'api/v2/community_builds/public', //DEPRECATED
+      INDEX: 'api/v2/community_builds/public/index',
+      FEATURED_ITEMS: 'api/v2/featured_items/public',
       SHOW: 'api/v2/community_builds/public/show',
       TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
+      TOP_BUILDERS: 'api/v2/community_builds/public/top_builders',
     },
   },
 

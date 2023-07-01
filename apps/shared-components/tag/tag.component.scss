@@ -1,3 +1,7 @@
 nb-tag {
   @apply com-normal-case;
 }
+
+nb-tag.tiny {
+  @apply com-text-xs com-font-medium com-mr-10px;
+}

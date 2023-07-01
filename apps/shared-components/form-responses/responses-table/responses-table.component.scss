@@ -1,7 +1,5 @@
 :host {
-
   .data-table-container {
-
     @media screen and (max-width: 800px) {
       .desktop-hidden {
         display: initial;
@@ -10,7 +8,7 @@
         display: none;
       }
 
-      .view-mobile-response{
+      .view-mobile-response {
         margin-top: 0.5rem;
         display: block;
       }
@@ -24,19 +22,19 @@
       }
     }
 
-
-    .ngx-datatable{
+    .ngx-datatable {
+      @apply com-shadow-xl;
       height: 70vh;
 
       .header-column-template {
         p {
           margin: 0;
         }
-        >.name-filter {
+        > .name-filter {
           margin-top: 5px;
         }
 
-        >.registration-status-filter{
+        > .registration-status-filter {
           display: flex;
           flex-wrap: nowrap;
           div {
@@ -46,18 +44,15 @@
           }
           p {
             font-size: 12px;
-            margin: 0
+            margin: 0;
           }
         }
       }
       .row-header {
         white-space: normal;
-
       }
 
-
-
-      .row-header.question{
+      .row-header.question {
         white-space: normal;
         .small-text {
           font-size: 10px;
@@ -65,25 +60,23 @@
         overflow-y: visible;
       }
 
-      .row-cell.question{
+      .row-cell.question {
         white-space: normal;
-        p{
+        p {
           font-size: 14px;
         }
       }
     }
   }
-
 }
 
 .group-actions {
   display: flex;
   flex-wrap: wrap;
-  button{
+  button {
     margin: 0.5rem;
   }
 }
-
 
 .question-responses {
   white-space: pre-wrap;
