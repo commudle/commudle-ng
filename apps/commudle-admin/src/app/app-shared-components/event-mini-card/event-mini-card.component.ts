@@ -19,6 +19,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 })
 export class EventMiniCardComponent implements OnInit {
   @Input() attendedEvent: IEvent;
+  @Input() cardType: string;
   community: ICommunity;
   faCalendarCheck = faCalendarCheck;
   moment = moment;

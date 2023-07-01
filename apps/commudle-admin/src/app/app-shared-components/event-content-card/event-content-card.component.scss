@@ -1,0 +1,22 @@
+nb-card {
+  @apply com-m-0 md:com-max-h-[144px] com-h-full;
+
+  nb-card-body {
+    @apply com-p-3;
+
+    a {
+      @apply com-no-underline;
+
+      .tags-and-logo {
+        @apply com-flex com-items-center md:com-mb-4 com-mb-2 com-max-h-5 com-overflow-hidden;
+      }
+
+      .title {
+        @apply md:com-text-sm com-text-base com-font-normal md:com-font-bold com-m-0 com-text-Dark-Jungle-Green com-line-clamp-2 com-mb-3 md:com-max-h-10;
+      }
+      .description {
+        @apply md:com-text-xs com-text-sm com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-3 md:com-max-h-12;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-body>
+    <div class="heading">
+      <h3 class="title">Content you can explore</h3>
+      <h4 class="sub-heading">This is content published by users</h4>
+    </div>
+    <div class="content custom-scrollbar">
+      <commudle-event-content-card></commudle-event-content-card>
+      <!-- <div *ngFor="let  of " class="content-card"> -->
+      <!-- <div>
+        <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
+      </div> -->
+      <!-- <div *appBreakpoints="'<=lg'">
+          <commudle-tech-sessions-card [session]="session" [horizontalScroll]="true"></commudle-tech-sessions-card>
+        </div> -->
+      <!-- </div> -->
+      <!-- <div class="load-more">
+        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+        <button
+          *ngIf="page_info?.has_next_page"
+          [disabled]="showSpinner"
+          (click)="getTechSessions()"
+          nbButton
+          outline
+          size="tiny"
+          status="basic"
+        >
+          View More
+        </button>
+      </div> -->
+    </div>
+  </nb-card-body>
+</nb-card>

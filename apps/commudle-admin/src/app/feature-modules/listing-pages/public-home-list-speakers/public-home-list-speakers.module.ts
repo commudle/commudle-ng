@@ -12,6 +12,8 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersProfileComponent } from './components/public-home-list-speakers-profile/public-home-list-speakers-profile.component';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
+import { PublicHomeListSpeakersContentComponent } from './components/public-home-list-speakers-content/public-home-list-speakers-content.component';
+import { EventContentCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-content-card/event-content-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
     SpeakersHeaderComponent,
     PublicHomeListSpeakersUpcomingComponent,
     PublicHomeListSpeakersProfileComponent,
+    PublicHomeListSpeakersContentComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,9 @@ import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modul
     SkeletonCardsComponent,
     PublicHomeListEventsModule,
     PublicCommunityModule,
+
+    //Standalone
+    EventContentCardComponent,
 
     //Nebular
     NbCardModule,

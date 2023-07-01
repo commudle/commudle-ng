@@ -8,7 +8,11 @@
     <div class="upcoming-events custom-scrollbar">
       <div class="upcoming-events-card" *ngFor="let upcomingEvent of upcomingEvents">
         <!-- <div *appBreakpoints="'>lg'"> -->
-        <commudle-event-mini-card [attendedEvent]="upcomingEvent" [iconSize]="'medium'"></commudle-event-mini-card>
+        <commudle-event-mini-card
+          [attendedEvent]="upcomingEvent"
+          [iconSize]="'medium'"
+          [cardType]="'upcomingEvents'"
+        ></commudle-event-mini-card>
         <!-- </div> -->
         <!-- <div *appBreakpoints="'<=lg'">
           <commudle-featured-communities-card

@@ -13,7 +13,8 @@ h4 {
       .icon {
         @apply com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none com-w-[75px];
 
-        fa-icon {
+        fa-icon,
+        nb-icon {
           @apply com-text-Azure;
         }
       }
@@ -33,11 +34,13 @@ h4 {
   }
 }
 
-fa-icon.iconSizeSmall {
+fa-icon.iconSizeSmall,
+nb-icon.iconSizeSmall {
   @apply com-text-xl;
   // @apply com-h-6  com-w-6;
 }
 
-fa-icon.iconSizeMedium {
+fa-icon.iconSizeMedium,
+nb-icon.iconSizeMedium {
   @apply com-text-[32px];
 }

@@ -4,7 +4,7 @@
       [routerLink]="['/communities', attendedEvent.kommunity_id, 'events', attendedEvent.slug]"
       [title]="attendedEvent.name"
     >
-      <button nbButton size="small" shape="semi-round" class="icon">
+      <button *ngIf="cardType === 'attendedEventCard'" nbButton size="small" shape="semi-round" class="icon">
         <fa-icon
           [icon]="faCalendarCheck"
           [ngClass]="{
@@ -12,6 +12,15 @@
             iconSizeMedium: iconSize === 'medium'
           }"
         ></fa-icon>
+      </button>
+      <button *ngIf="cardType === 'upcomingEvents'" nbButton size="small" shape="semi-round" class="icon com-bg-Azure">
+        <nb-icon
+          icon="calendar"
+          [ngClass]="{
+            iconSizeSmall: iconSize === 'small',
+            iconSizeMedium: iconSize === 'medium'
+          }"
+        ></nb-icon>
       </button>
       <div class="content">
         <h4 class="title">{{ attendedEvent.name }}</h4>
