@@ -14,6 +14,10 @@ import { PublicHomeListSpeakersProfileComponent } from './components/public-home
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { PublicHomeListSpeakersContentComponent } from './components/public-home-list-speakers-content/public-home-list-speakers-content.component';
 import { EventContentCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-content-card/event-content-card.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +35,13 @@ import { EventContentCardComponent } from 'apps/commudle-admin/src/app/app-share
     SkeletonCardsComponent,
     PublicHomeListEventsModule,
     PublicCommunityModule,
+    InfiniteScrollModule,
+    SharedComponentsModule,
+    SharedDirectivesModule,
 
     //Standalone
     EventContentCardComponent,
+    SkeletonVerticalCardsComponent,
 
     //Nebular
     NbCardModule,

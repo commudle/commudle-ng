@@ -11,7 +11,7 @@ h4 {
     a {
       @apply com-p-0 com-flex com-no-underline;
       .icon {
-        @apply com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none com-w-[75px];
+        @apply com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none com-w-[75px] com-bg-Azure/10;
 
         fa-icon,
         nb-icon {
@@ -34,13 +34,18 @@ h4 {
   }
 }
 
-fa-icon.iconSizeSmall,
-nb-icon.iconSizeSmall {
+fa-icon.iconSizeSmall {
   @apply com-text-xl;
-  // @apply com-h-6  com-w-6;
 }
 
-fa-icon.iconSizeMedium,
+nb-icon.iconSizeSmall {
+  @apply com-h-6 com-w-6;
+}
+
 nb-icon.iconSizeMedium {
+  @apply com-h-8 com-w-8;
+}
+
+fa-icon.iconSizeMedium {
   @apply com-text-[32px];
 }

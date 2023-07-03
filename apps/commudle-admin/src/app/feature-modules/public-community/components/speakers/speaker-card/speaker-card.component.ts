@@ -12,7 +12,5 @@ export class SpeakerCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.speaker);
-  }
+  ngOnInit(): void {}
 }

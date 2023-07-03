@@ -11,7 +11,8 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   // page_info: IPageInfo;
   // total: number;
   // isLoadingTechSessions = false;
-  // limit = 5;
+  // showSkeletonCard = true;
+  // limit = 3;
   // constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   //     this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
   //     this.total = data.total;
   //     this.page_info = data.page_info;
+  // this.showSkeletonCard = false;
   //     this.isLoadingTechSessions = false;
   //     this.showSpinner = false;
   //   });

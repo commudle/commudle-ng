@@ -4,7 +4,12 @@
       <h3 class="title">Upcoming Events</h3>
       <h4 class="sub-heading">Check out amazing events lined up</h4>
     </div>
-    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <app-skeleton-cards
+      *ngIf="showSpinner"
+      [cards]="4"
+      [ImageShapeSquare]="true"
+      [ImageShapeCircle]="false"
+    ></app-skeleton-cards>
     <div class="upcoming-events custom-scrollbar">
       <div class="upcoming-events-card" *ngFor="let upcomingEvent of upcomingEvents">
         <!-- <div *appBreakpoints="'>lg'"> -->
