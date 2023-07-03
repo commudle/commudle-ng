@@ -7,7 +7,7 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
 import { SpeakersHeaderComponent } from './components/speakers-header/speakers-header.component';
 import { EventMiniCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-mini-card/event-mini-card.component';
 import { PublicHomeListSpeakersUpcomingComponent } from './components/public-home-list-speakers-upcoming/public-home-list-speakers-upcoming.component';
-import { NbCardModule } from '@commudle/theme';
+import { NbButtonModule, NbCardModule } from '@commudle/theme';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersProfileComponent } from './components/public-home-list-speakers-profile/public-home-list-speakers-profile.component';
@@ -45,6 +45,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
 
     //Nebular
     NbCardModule,
+    NbButtonModule,
   ],
 })
 export class PublicHomeListSpeakersModule {}

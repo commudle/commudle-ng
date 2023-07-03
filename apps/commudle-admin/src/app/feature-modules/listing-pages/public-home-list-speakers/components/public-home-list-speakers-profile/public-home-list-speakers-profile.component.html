@@ -1,6 +1,6 @@
-<div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+<!-- <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
   <commudle-skeleton-vertical-cards [cards]="5"></commudle-skeleton-vertical-cards>
-</div>
+</div> -->
 <div
   *appBreakpoints="'>lg'"
   (scrolled)="getSpeakersList()"
@@ -14,4 +14,20 @@
   <div *ngIf="loading" class="loading-spinner">
     <app-loading-spinner></app-loading-spinner>
   </div>
+</div>
+<div *appBreakpoints="'<=lg'" class="speakers">
+  <div *ngFor="let speaker of speakers" class="speakers-card">
+    <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
+  </div>
+  <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+  <button
+    (click)="getSpeakersList()"
+    *ngIf="page_info?.has_next_page"
+    fullWidth
+    ghost
+    nbButton
+    class="view-more-button"
+  >
+    View More
+  </button>
 </div>

@@ -16,7 +16,8 @@
             <img alt="{{ speaker.name }}" src="{{ speaker.photo.i96 }}" title="{{ speaker.name }}" />
           </a>
         </div>
-        <div class="talks-count">
+        <div class="talks-leader">
+          <button nbButton status="warning" shape="round" size="tiny" outline>Leader</button>
           <app-badge
             [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
             [fontColor]="'com-text-gunmetal'"
@@ -29,22 +30,19 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <div class="hiring-looking-works-tags">
-              <!-- <app-hiring-looking-works-tags [user]="speaker.user"></app-hiring-looking-works-tags> -->
-            </div>
-            <div class="heading">
-              <p class="user-name">
-                {{ speaker.name }}
-                <img
-                  *ngIf="speaker.is_expert"
-                  alt="Expert Tick"
-                  class="expert-icon"
-                  src="/assets/images/Expert-Tick.svg"
-                  title="Expert Tick"
-                />
-              </p>
-              <!-- <button nbButton status="warning" outline>Leader</button> -->
-            </div>
+            <!-- <div class="hiring-looking-works-tags"> -->
+            <!-- <app-hiring-looking-works-tags [user]="speaker.user"></app-hiring-looking-works-tags> -->
+            <!-- </div> -->
+            <p class="user-name">
+              {{ speaker.name }}
+              <img
+                *ngIf="speaker.is_expert"
+                alt="Expert Tick"
+                class="expert-icon"
+                src="/assets/images/Expert-Tick.svg"
+                title="Expert Tick"
+              />
+            </p>
             <p *ngIf="speaker.username" class="username">@{{ speaker.username | truncatetext : maxUserNameLength }}</p>
             <p class="designation">
               {{ speaker.designation || '--' }}

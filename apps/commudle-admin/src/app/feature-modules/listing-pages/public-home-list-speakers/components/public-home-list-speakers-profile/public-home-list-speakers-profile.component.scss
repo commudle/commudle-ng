@@ -3,9 +3,13 @@
 }
 
 .speakers {
-  @apply com-flex com-flex-col com-justify-center com-flex-wrap md:com-gap-x-6 md:com-gap-y-10 md:com-flex-row md:com-mt-10 com-m-0;
+  @apply com-flex com-flex-col com-justify-center com-flex-wrap md:com-gap-x-6 com-gap-y-6 md:com-gap-y-10 md:com-flex-row md:com-mt-10 com-mt-8 com-m-0 com-mx-4 md:com-mx-0;
 
   .loading-spinner {
     @apply com-my-4;
+  }
+
+  .view-more-button {
+    @apply com-m-0 com-mb-8;
   }
 }

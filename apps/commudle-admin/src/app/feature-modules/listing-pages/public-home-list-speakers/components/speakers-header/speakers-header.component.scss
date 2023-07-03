@@ -1,22 +1,23 @@
 .header {
-  @apply md:com-max-h-[386px] com-max-h-[682px];
+  @apply md:com-max-h-[386px] com-max-h-[497px];
   .background {
     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
     .base-layout {
       .content {
-        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
+        @apply com-flex com-items-center md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-mb-4 md:com-mb-0;
         .header-text {
-          @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[38px] com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
+          @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[38px] com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
           .heading {
-            @apply com-flex md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-4 com-text-Bittersweet;
+            @apply com-flex md:com-text-5xl com-text-[32px] com-font-bold com-mt-0 com-mb-4 md:com-mb-4 com-text-Bittersweet;
           }
           .sub-heading {
-            @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-16 com-mb-8 com-text-white;
+            @apply md:com-text-2xl com-text-lg com-font-normal com-m-0 com-mx-0 md:com-mb-16 com-mb-0 com-text-white;
           }
 
           .content {
+            @apply com-hidden md:com-flex;
             ::ng-deep {
               p {
                 @apply com-text-white com-m-0;
@@ -27,7 +28,7 @@
         }
 
         .header-image {
-          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
+          @apply com-flex com-items-center com-m-0 com-h-[250px] md:com-h-auto com-w-[250px] md:com-w-auto;
         }
       }
     }
