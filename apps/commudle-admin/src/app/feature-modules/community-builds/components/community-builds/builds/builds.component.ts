@@ -98,8 +98,8 @@ export class BuildsComponent implements OnInit {
       };
     }
     this.communityBuilds = [];
-    this.router.navigate([], { queryParams: this.queryParams });
     this.page_info = null;
+    this.router.navigate([], { queryParams: this.queryParams });
   }
 
   allFilterSelected() {
@@ -108,15 +108,15 @@ export class BuildsComponent implements OnInit {
     this.year = false;
     this.allTime = false;
     this.order_by = '';
-    this.page_info = null;
+    this.timePeriod = null;
     this.communityBuilds = [];
     this.queryParams = {};
+    this.page_info = null;
     this.router.navigate([], { queryParams: this.queryParams });
   }
 
   getCommunityBuilds() {
     this.loading = true;
-
     if (!this.page_info?.end_cursor) {
       this.communityBuilds = [];
     }
@@ -125,6 +125,7 @@ export class BuildsComponent implements OnInit {
       .pGetAll(this.page_info?.end_cursor, this.limit, this.order_by, this.month, this.year, this.allTime)
       .subscribe((data: IPagination<ICommunityBuild>) => {
         this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        console.log(this.communityBuilds);
         this.total = data.total;
         this.page_info = data.page_info;
         this.skeletonLoaderCard = false;
