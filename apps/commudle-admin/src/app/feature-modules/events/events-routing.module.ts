@@ -67,6 +67,42 @@ const routes = [
             path: 'scan-exit-pass',
             component: ExitPassScanComponent,
           },
+          {
+            path: 'status',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'registrations',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'details',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'updates',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'agenda',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'collaborations',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'team',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'sponsors',
+            component: EventDashboardComponent,
+          },
+          {
+            path: 'emails',
+            component: EventDashboardComponent,
+          },
         ],
       },
     ],
