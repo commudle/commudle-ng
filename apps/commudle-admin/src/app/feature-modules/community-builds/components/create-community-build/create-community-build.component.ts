@@ -39,6 +39,8 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
+  linkOrLiveAppLinkValue = false;
+  showTagsValidation = false;
 
   paramsTags = [];
   faEdit = faEdit;
@@ -245,10 +247,22 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   submitForm(publishStatus: EPublishStatus) {
-    if (!this.cBuild) {
-      this.createCommunityBuild(publishStatus);
+    if (this.communityBuildForm.invalid) {
+      this.communityBuildForm.markAllAsTouched();
+    }
+
+    if (this.tags.length < 5) {
+      this.showTagsValidation = true;
+    }
+
+    if (!(this.communityBuildForm.value.link || this.communityBuildForm.value.live_app_link)) {
+      this.linkOrLiveAppLinkValue = true;
     } else {
-      this.updateCommunityBuild(publishStatus);
+      if (!this.cBuild) {
+        this.createCommunityBuild(publishStatus);
+      } else {
+        this.updateCommunityBuild(publishStatus);
+      }
     }
   }
 
