@@ -129,12 +129,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
     (this.labForm.get('lab_steps') as FormArray).push(this.initStep());
   }
 
-  // checkValidation() {
-  //   console.log(this.labForm);
-  //   console.log(this.labForm['controls']);
-  //   console.log(this.labForm.get('lab_steps')['controls'][0].get('name'));
-  // }
-
   removeStep(stepIndex: number) {
     (this.labForm.get('lab_steps') as FormArray).removeAt(stepIndex);
   }
