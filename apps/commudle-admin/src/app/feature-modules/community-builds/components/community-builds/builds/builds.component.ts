@@ -24,6 +24,7 @@ export class BuildsComponent implements OnInit {
   isAllFilterSelected = false;
   limit = 5;
   skeletonLoaderCard = true;
+  loadingCommunityBuilds = false;
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
@@ -116,6 +117,10 @@ export class BuildsComponent implements OnInit {
   }
 
   getCommunityBuilds() {
+    if (this.loadingCommunityBuilds) {
+      return;
+    }
+    this.loadingCommunityBuilds = true;
     this.loading = true;
     if (!this.page_info?.end_cursor) {
       this.communityBuilds = [];
@@ -131,6 +136,7 @@ export class BuildsComponent implements OnInit {
         this.communityBuilds = this.communityBuilds.concat(uniqueData);
         this.total = data.total;
         this.page_info = data.page_info;
+        this.loadingCommunityBuilds = false;
         this.skeletonLoaderCard = false;
         this.loading = false;
       });
