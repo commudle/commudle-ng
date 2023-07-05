@@ -4,7 +4,7 @@ h4 {
 }
 
 .user-attended-event-card {
-  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer md:com-w-auto com-w-[324px];
 
   nb-card-body {
     @apply com-p-0;

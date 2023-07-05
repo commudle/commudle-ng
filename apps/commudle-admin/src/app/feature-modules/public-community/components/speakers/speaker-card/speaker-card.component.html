@@ -10,6 +10,7 @@
             src="{{ speaker.profile_banner_image.i350 }}"
             title="{{ speaker.name }} Profile Banner"
           />
+          <button nbButton status="warning" shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button>
         </div>
         <div class="user-image">
           <a [routerLink]="['/users', speaker.username]" class="clickable">

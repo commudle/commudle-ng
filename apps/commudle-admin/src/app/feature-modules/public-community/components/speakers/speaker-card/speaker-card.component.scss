@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden md:com-w-[276px] md:com-h-[400px] com-w-auto com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
+  @apply com-overflow-hidden md:com-w-[276px] md:com-h-[400px] com-w-auto com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
   //388
 
   nb-card-body {
@@ -13,6 +13,10 @@ nb-card {
 
         img {
           @apply com-h-full com-object-cover com-w-full;
+        }
+
+        .upcoming-events {
+          @apply com-absolute com-right-3 com-top-3;
         }
       }
 
@@ -70,7 +74,7 @@ nb-card {
           }
 
           .username {
-            @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-2px;
+            @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-1;
           }
 
           .designation {

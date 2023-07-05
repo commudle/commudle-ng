@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-home-list-speakers.component.scss'],
 })
 export class PublicHomeListSpeakersComponent implements OnInit {
+  isMobileView: boolean;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 640;
+  }
 }
