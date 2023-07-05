@@ -129,11 +129,7 @@ export class BuildsComponent implements OnInit {
     this.communityBuildsService
       .pGetAll(this.page_info?.end_cursor, this.limit, this.order_by, this.month, this.year, this.allTime)
       .subscribe((data: IPagination<ICommunityBuild>) => {
-        const newData = data.page.reduce((acc, value) => [...acc, value.data], []);
-        const uniqueData = newData.filter(
-          (item) => !this.communityBuilds.some((existingItem) => existingItem.id === item.id),
-        );
-        this.communityBuilds = this.communityBuilds.concat(uniqueData);
+        this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.total = data.total;
         this.page_info = data.page_info;
         this.loadingCommunityBuilds = false;
