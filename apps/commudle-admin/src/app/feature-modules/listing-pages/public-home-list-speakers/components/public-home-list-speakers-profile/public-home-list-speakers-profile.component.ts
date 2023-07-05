@@ -12,7 +12,6 @@ import { IUser } from 'apps/shared-models/user.model';
 })
 export class PublicHomeListSpeakersProfileComponent implements OnInit {
   speakers: IUser[] = [];
-  // speakers: any[] = [];
   page_info: IPageInfo;
   loading = false;
   total: number;
