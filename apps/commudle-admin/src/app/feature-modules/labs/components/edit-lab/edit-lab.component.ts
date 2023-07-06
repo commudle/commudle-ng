@@ -243,6 +243,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   updateLab(publishStatus, forceSubmit: boolean = false) {
     if (this.tags.length < 5) {
       this.showTagsValidation = true;
+      return;
     }
     if (this.labForm.invalid) {
       this.labForm.markAllAsTouched();
