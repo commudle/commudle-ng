@@ -9,7 +9,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbWindowService, NbDialogRef } from '@commudle/theme';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { StatsEventsService } from 'apps/commudle-admin/src/app/services/stats/stats-events.service';
@@ -65,6 +65,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
     private statsEventsService: StatsEventsService,
+    private router: Router,
   ) {
     this.eventHeaderImageForm = this.fb.group({
       header_image: ['', Validators.required],
@@ -123,8 +124,9 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  scroll(element: ElementRef<HTMLDivElement>) {
+  scroll(element: ElementRef<HTMLDivElement>, sectionName: string) {
     element.nativeElement.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'nearest' });
+    this.router.navigate([], { fragment: sectionName });
   }
 
   deleteEventHeader() {
