@@ -50,7 +50,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   @ViewChild('registrationsSection') registrationsSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('agendaSection') agendaSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('collaborationsSection') collaborationsSectionRef: ElementRef<HTMLDivElement>;
-  @ViewChild('volunteersSection') volunteersSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('teamSection') teamSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('sponsorsSection') sponsorsSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('emailsSection') emailsSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('eventGuideSection') eventGuideSectionRef: TemplateRef<any>;
@@ -76,7 +76,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(true);
     this.activatedRoute.fragment.subscribe((fragment) => {
       if (fragment) {
-        const sectionElement = this.getSectionElement(fragment);
+        const sectionElement = this[fragment + 'SectionRef'];
         if (sectionElement) {
           this.scroll(sectionElement, fragment);
         }
@@ -93,31 +93,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
-  }
-
-  getSectionElement(fragment: string): ElementRef<HTMLDivElement> | null {
-    switch (fragment) {
-      case 'status':
-        return this.statusSectionRef;
-      case 'details':
-        return this.detailsSectionRef;
-      case 'updates':
-        return this.updatesSectionRef;
-      case 'registrations':
-        return this.registrationsSectionRef;
-      case 'agenda':
-        return this.agendaSectionRef;
-      case 'collaborations':
-        return this.collaborationsSectionRef;
-      case 'team':
-        return this.volunteersSectionRef;
-      case 'sponsors':
-        return this.sponsorsSectionRef;
-      case 'emails':
-        return this.emailsSectionRef;
-      default:
-        return null;
-    }
   }
 
   updateRegistrationType(value) {
