@@ -240,34 +240,59 @@ export class EditLabComponent implements OnInit, OnDestroy {
     });
   }
 
+  // updateLab(publishStatus, forceSubmit: boolean = false) {
+  //   if (this.tags.length < 5) {
+  //     this.showTagsValidation = true;
+  //     return;
+  //   }
+  //   if (this.labForm.invalid) {
+  //     this.labForm.markAllAsTouched();
+  //     return;
+  //   } else {
+  //     if (this.lab.publish_status !== EPublishStatus.published) {
+  //       this.labForm.patchValue({
+  //         publish_status: publishStatus,
+  //       });
+  //     }
+  //     if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
+  //       this.submitDialogRef = this.dialogService.open(this.submitDialog);
+  //     } else {
+  //       this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe((data) => {
+  //         if (data) {
+  //           this.lab = data;
+  //           this.submitTags();
+  //           this.onSubmitDialogClose();
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
+
   updateLab(publishStatus, forceSubmit: boolean = false) {
-    if (this.tags.length < 5) {
+    if (this.tags.length < 5 || this.labForm.invalid) {
       this.showTagsValidation = true;
-      return;
-    }
-    if (this.labForm.invalid) {
       this.labForm.markAllAsTouched();
       return;
+    }
+
+    if (this.lab.publish_status !== EPublishStatus.published) {
+      this.labForm.patchValue({
+        publish_status: publishStatus,
+      });
+    }
+
+    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
+      this.submitDialogRef = this.dialogService.open(this.submitDialog);
     } else {
-      if (this.lab.publish_status !== EPublishStatus.published) {
-        this.labForm.patchValue({
-          publish_status: publishStatus,
-        });
-      }
-      if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
-        this.submitDialogRef = this.dialogService.open(this.submitDialog);
-      } else {
-        this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe((data) => {
-          if (data) {
-            this.lab = data;
-            this.submitTags();
-            this.onSubmitDialogClose();
-          }
-        });
-      }
+      this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe((data) => {
+        if (data) {
+          this.lab = data;
+          this.submitTags();
+          this.onSubmitDialogClose();
+        }
+      });
     }
   }
-
   // auto save every 10 seconds
   autoSaveLab() {
     this.autoSaving = true;
