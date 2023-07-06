@@ -74,6 +74,14 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seoService.noIndex(true);
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const sectionElement = this.getSectionElement(fragment);
+        if (sectionElement) {
+          this.scroll(sectionElement, fragment);
+        }
+      }
+    });
 
     this.activatedRoute.data.subscribe((value) => {
       this.event = value.event;
@@ -85,6 +93,31 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
+  }
+
+  getSectionElement(fragment: string): ElementRef<HTMLDivElement> | null {
+    switch (fragment) {
+      case 'status':
+        return this.statusSectionRef;
+      case 'details':
+        return this.detailsSectionRef;
+      case 'updates':
+        return this.updatesSectionRef;
+      case 'registrations':
+        return this.registrationsSectionRef;
+      case 'agenda':
+        return this.agendaSectionRef;
+      case 'collaborations':
+        return this.collaborationsSectionRef;
+      case 'team':
+        return this.volunteersSectionRef;
+      case 'sponsors':
+        return this.sponsorsSectionRef;
+      case 'emails':
+        return this.emailsSectionRef;
+      default:
+        return null;
+    }
   }
 
   updateRegistrationType(value) {
@@ -126,7 +159,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   scroll(element: ElementRef<HTMLDivElement>, sectionName: string) {
     element.nativeElement.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'nearest' });
-    this.router.navigate([], { fragment: sectionName });
+    this.router.navigate([], { fragment: sectionName, replaceUrl: true });
   }
 
   deleteEventHeader() {
