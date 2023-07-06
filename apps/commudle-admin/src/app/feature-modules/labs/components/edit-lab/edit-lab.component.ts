@@ -241,12 +241,12 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   updateLab(publishStatus, forceSubmit: boolean = false) {
-    if (this.labForm.invalid) {
-      this.labForm.markAllAsTouched();
-    }
-
     if (this.tags.length < 5) {
       this.showTagsValidation = true;
+    }
+    if (this.labForm.invalid) {
+      this.labForm.markAllAsTouched();
+      return;
     } else {
       if (this.lab.publish_status !== EPublishStatus.published) {
         this.labForm.patchValue({
