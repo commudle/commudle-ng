@@ -1,3 +1,35 @@
+<div class="search-filters">
+  <div class="search">SEARCH</div>
+  <div class="filters">
+    <!-- <button
+    nbButton
+    [status]="isAllFilterSelected ? 'primary' : 'basic'"
+    [ngStyle]="{ color: isAllFilterSelected ? 'white' : 'black' }"
+    class="all-filter-button"
+    shape="round"
+    size="tiny"
+    (click)="allFilterSelected()"
+  >
+    All
+  </button> -->
+    <!-- [status]="isAllFilterSelected ? 'basic' : 'primary'" -->
+    <!-- [ngStyle]="{ color: isAllFilterSelected ? 'black' : 'white' }" -->
+    <nb-select
+      placeholder="Most Popular"
+      size="small"
+      shape="round"
+      status="basic"
+      class="most-popular-filter"
+      [(ngModel)]="timePeriod"
+      (selectedChange)="filter()"
+      filled
+    >
+      <nb-option value="monthly"> Highest upvoted this month</nb-option>
+      <nb-option value="yearly">Highest upvoted this year</nb-option>
+      <!-- <nb-option value="all-time">Highest upvoted all time</nb-option> -->
+    </nb-select>
+  </div>
+</div>
 <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
   <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
 </div>

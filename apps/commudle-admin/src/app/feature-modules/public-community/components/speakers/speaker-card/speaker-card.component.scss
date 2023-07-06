@@ -16,7 +16,7 @@ nb-card {
         }
 
         .upcoming-events {
-          @apply com-absolute com-right-3 com-top-3;
+          @apply com-absolute com-right-3 com-top-3 com-bg-American-Orange com-text-white com-border-0;
         }
       }
 
@@ -44,7 +44,7 @@ nb-card {
         @apply com-flex com-absolute com-right-3 com-top-20 com-mt-3 md:com-mb-0 com-mx-0;
 
         button {
-          @apply com-mr-2;
+          @apply com-mr-2 com-text-American-Orange com-border-American-Orange com-bg-white;
         }
       }
       // com-h-169px
@@ -91,7 +91,7 @@ nb-card {
             }
 
             .location {
-              @apply com-text-sm com-font-normal com-text-Azure;
+              @apply com-flex com-items-center com-text-sm com-font-normal com-text-Azure;
             }
           }
         }

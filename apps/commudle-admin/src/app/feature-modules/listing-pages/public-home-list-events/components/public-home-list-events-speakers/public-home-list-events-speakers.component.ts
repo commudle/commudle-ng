@@ -27,14 +27,14 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   }
 
   getSpeakersList() {
-    this.isLoadingSpeakers = true;
-    this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-      this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.page_info = data.page_info;
-      this.isLoadingSpeakers = false;
-      this.showSpinner = false;
-      this.showSkeletonLoading = false;
-    });
+    // this.isLoadingSpeakers = true;
+    // this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit).subscribe((data) => {
+    //   this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+    //   this.total = data.total;
+    //   this.page_info = data.page_info;
+    //   this.isLoadingSpeakers = false;
+    //   this.showSpinner = false;
+    //   this.showSkeletonLoading = false;
+    // });
   }
 }

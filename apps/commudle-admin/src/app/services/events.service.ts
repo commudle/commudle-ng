@@ -156,19 +156,19 @@ export class EventsService {
     });
   }
 
-  getSpeakersList(after?, limit?): Observable<IPagination<ISpeakers>> {
-    let params = new HttpParams();
-    if (after) {
-      params = params.set('after', after);
-    }
-    if (limit) {
-      params = params.set('limit', limit);
-    }
-    return this.http.get<IPagination<ISpeakers>>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST),
-      { params },
-    );
-  }
+  // getSpeakersList(after?, limit?): Observable<IPagination<ISpeakers>> {
+  //   let params = new HttpParams();
+  //   if (after) {
+  //     params = params.set('after', after);
+  //   }
+  //   if (limit) {
+  //     params = params.set('limit', limit);
+  //   }
+  //   return this.http.get<IPagination<ISpeakers>>(
+  //     this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST),
+  //     { params },
+  //   );
+  // }
 
   getTechSessions(after?, limit?): Observable<IPagination<ISessions>> {
     let params = new HttpParams();

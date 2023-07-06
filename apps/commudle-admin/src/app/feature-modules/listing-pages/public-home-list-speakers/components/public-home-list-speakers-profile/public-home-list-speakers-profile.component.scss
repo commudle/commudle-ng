@@ -1,3 +1,15 @@
+.search-filters {
+  @apply com-flex com-justify-between com-items-center com-mt-5 com-m-0;
+  .filters {
+    @apply com-flex com-items-center;
+    .all-filter-button {
+      @apply com-mr-3 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-border com-border-solid;
+    }
+    .most-popular-filter {
+      @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green com-w-[225px];
+    }
+  }
+}
 .skeleton-vertical-cards {
   @apply com-mt-10;
 }

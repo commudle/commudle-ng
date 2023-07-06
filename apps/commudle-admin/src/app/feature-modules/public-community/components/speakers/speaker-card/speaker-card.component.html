@@ -10,7 +10,7 @@
             src="{{ speaker.profile_banner_image.i350 }}"
             title="{{ speaker.name }} Profile Banner"
           />
-          <button nbButton status="warning" shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button>
+          <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button>
         </div>
         <div class="user-image">
           <a [routerLink]="['/users', speaker.username]" class="clickable">
@@ -18,7 +18,7 @@
           </a>
         </div>
         <div class="talks-leader">
-          <button nbButton status="warning" shape="round" size="tiny" outline>Leader</button>
+          <button *ngIf="speaker.is_community_leader" nbButton shape="round" size="tiny" outline>Leader</button>
           <app-badge
             [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
             [fontColor]="'com-text-gunmetal'"
@@ -31,9 +31,9 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <!-- <div class="hiring-looking-works-tags"> -->
-            <!-- <app-hiring-looking-works-tags [user]="speaker.user"></app-hiring-looking-works-tags> -->
-            <!-- </div> -->
+            <!-- <div class="hiring-looking-works-tags">
+              <app-hiring-looking-works-tags [user]="speaker"></app-hiring-looking-works-tags>
+            </div> -->
             <p class="user-name">
               {{ speaker.name }}
               <img
@@ -52,6 +52,10 @@
               <p *ngIf="speaker.followers_count > 0" class="followers-count">
                 <span>{{ speaker.followers_count }}</span> Follower{{ speaker.followers_count > 1 ? 's' : '' }}
               </p>
+              <div *ngIf="speaker.location" class="location">
+                <nb-icon icon="pin-outline"></nb-icon>
+                <p>{{ speaker.location }}</p>
+              </div>
             </div>
           </div>
         </a>
@@ -65,8 +69,8 @@
             [backgroundColor]="'#0095ff'"
             [size]="'tiny'"
             [fontColor]="'#101828'"
-            [maximumTag]="3" -->
-          <!-- ></app-tag> -->
+            [maximumTag]="3"
+          ></app-tag> -->
         </div>
         <div class="user-follow-button">
           <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>

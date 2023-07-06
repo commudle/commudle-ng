@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICommunities } from 'apps/shared-models/communities.model';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { IPagination } from 'apps/shared-models/pagination.model';
+import { ISpeakers } from 'apps/shared-models/stats/speaker.model';
 import { IUsers } from 'apps/shared-models/users.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
@@ -98,5 +100,25 @@ export class CommunitiesService {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.TOGGLE_EMAIL_VISIBILITY), {
       community_id: communityId,
     });
+  }
+
+  getSpeakersList(after?: string, limit?: number, month?: boolean, year?: boolean): Observable<IPagination<ISpeakers>> {
+    let params = new HttpParams();
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (month) {
+      params = params.set('monthly', month);
+    }
+    if (year) {
+      params = params.set('yearly', year);
+    }
+    return this.http.get<IPagination<ISpeakers>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.SPEAKERS),
+      { params },
+    );
   }
 }

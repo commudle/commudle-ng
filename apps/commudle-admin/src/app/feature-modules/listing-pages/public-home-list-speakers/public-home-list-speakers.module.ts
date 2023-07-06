@@ -7,7 +7,7 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
 import { SpeakersHeaderComponent } from './components/speakers-header/speakers-header.component';
 import { EventMiniCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-mini-card/event-mini-card.component';
 import { PublicHomeListSpeakersUpcomingComponent } from './components/public-home-list-speakers-upcoming/public-home-list-speakers-upcoming.component';
-import { NbButtonModule, NbCardModule } from '@commudle/theme';
+import { NbButtonModule, NbCardModule, NbSelectModule } from '@commudle/theme';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersProfileComponent } from './components/public-home-list-speakers-profile/public-home-list-speakers-profile.component';
@@ -18,6 +18,7 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     InfiniteScrollModule,
     SharedComponentsModule,
     SharedDirectivesModule,
+    FormsModule,
 
     //Standalone
     EventContentCardComponent,
@@ -46,6 +48,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     //Nebular
     NbCardModule,
     NbButtonModule,
+    NbSelectModule,
   ],
 })
 export class PublicHomeListSpeakersModule {}
