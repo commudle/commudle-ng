@@ -8,6 +8,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements AfterViewChecked {
+  showMiniFooter = true;
   showFooter = false;
   staticAssets = staticAssets;
 
@@ -15,6 +16,7 @@ export class FooterComponent implements AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.footerService.footerStatus$.subscribe((value) => (this.showFooter = value));
+    this.footerService.miniFooterStatus$.subscribe((value) => (this.showMiniFooter = value));
     this.cdr.detectChanges();
   }
 }
