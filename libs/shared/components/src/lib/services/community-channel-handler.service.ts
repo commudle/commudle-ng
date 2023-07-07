@@ -73,9 +73,14 @@ export class CommunityChannelHandlerService {
   }
 
   sendMessage(content: string) {
-    if (!this.permittedActions.value.includes('add') || this.permittedActions.value.includes('blocked')) {
-      return;
-    }
+    console.log(
+      '🚀 ~ file: community-channel-handler.service.ts:76 ~ CommunityChannelHandlerService ~ sendMessage ~ content:',
+      content,
+    );
+
+    // if (!this.permittedActions.value.includes('add') || this.permittedActions.value.includes('blocked')) {
+    //   return;
+    // }
 
     this.CommunityChannelChatChannel.add(content);
   }

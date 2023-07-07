@@ -21,7 +21,7 @@
     }
 
     .channels {
-      @apply com-bg-[#F9F9F9];
+      @apply com-bg-[#F9F9F9] com-cursor-pointer;
       ul {
         list-style: none;
         @apply com-p-0 com-my-0;
@@ -33,6 +33,12 @@
               @apply com-w-8 com-h-8 com-bg-white com-rounded-[50%] com-overflow-hidden;
               img {
                 @apply com-w-full;
+              }
+            }
+            .without-logo {
+              @apply com-w-8 com-h-8 com-bg-[#0095FF1A]  com-rounded-3xl;
+              img {
+                @apply com-w-full com-p-6px;
               }
             }
 

@@ -130,7 +130,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },
-      queryParamsHandling: 'merge', // remove to replace all query params by provided
+      // queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
     this.communityChannelManagerService.setForum(forumName.value);
   }

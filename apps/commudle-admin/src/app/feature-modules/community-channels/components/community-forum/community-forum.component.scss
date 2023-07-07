@@ -1,5 +1,5 @@
 section {
-  @apply com-p-6;
+  @apply com-p-5;
 }
 
 .topic {
@@ -16,10 +16,23 @@ section {
 
 .forum-list {
   @apply com-cursor-pointer;
+  .badge {
+    @apply com-bg-Bright-Gray com-rounded-2xl;
+    span {
+      @apply com-p-2;
+      fa-icon {
+        @apply com-mr-1;
+      }
+    }
+  }
+}
+
+.replies {
+  @apply com-text-lg com-text-Auro-Metal-Saurus com-text-center;
 }
 
 td {
-  @apply com-pt-8;
+  @apply com-py-3 com-px-2;
 }
 
 table {
@@ -28,4 +41,22 @@ table {
 
 .forum-list:not(:last-child) {
   @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
+}
+
+.forum-list:not(:first-child):hover {
+  @apply hover:com-bg-Bright-Gray/30;
+  .icons {
+    @apply com-flex com-justify-around;
+  }
+}
+
+.icons {
+  @apply com-hidden com-w-28 -com-mt-8 com-p-1 com-bg-white com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-z-10;
+  // border-radius: 4px;
+  // border: 1px solid #e4e9f2;
+  // background: #fff;
+}
+
+.pointer {
+  @apply com-cursor-pointer;
 }

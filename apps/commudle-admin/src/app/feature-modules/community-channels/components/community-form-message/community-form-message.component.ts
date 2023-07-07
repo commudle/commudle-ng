@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'commudle-community-form-message',
@@ -17,9 +18,13 @@ export class CommunityFormMessageComponent implements OnInit {
   forum: ICommunityChannel;
   faArrowLeftLong = faArrowLeftLong;
 
+  @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
+
   constructor(
     private discussionsService: DiscussionsService,
     private communityChannelsService: CommunityChannelsService,
+    private router: Router,
+    private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -30,12 +35,14 @@ export class CommunityFormMessageComponent implements OnInit {
       this.discussion = data;
     });
   }
+
+  selectedCommunityForum() {
+    // this.selectedForumName = forumName.key;
+    this.updateSelectedForum.emit(this.forum);
+    this.router.navigate([], {
+      queryParams: { 'discussion-type': 'forum', 'forum-name': this.forum.group_name },
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    });
+    // this.communityChannelManagerService.setForum(this.forum);
+  }
 }
-
-// export class CommunityChannelsService {
-//   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
-
-//   getChannelInfo(id): Observable<ICommunityChannel> {
-//     const params = new HttpParams().set('community_channel_id', id);
-//     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.SHOW), { params });
-//   }

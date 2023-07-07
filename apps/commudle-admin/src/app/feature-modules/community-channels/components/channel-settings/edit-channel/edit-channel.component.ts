@@ -9,6 +9,7 @@ import { CommunityChannelManagerService } from '../../../services/community-chan
 })
 export class EditChannelComponent implements OnInit {
   @Input() channelId: string;
+  @Input() forum: ICommunityChannel;
   @Input() discussionType;
   @Output() updateForm = new EventEmitter<string>();
 
@@ -18,11 +19,23 @@ export class EditChannelComponent implements OnInit {
   constructor(private communityChannelManagerService: CommunityChannelManagerService) {}
 
   ngOnInit(): void {
+    console.log(
+      '🚀 ~ file: edit-channel.component.ts:27 ~ EditChannelComponent ~ getChannel ~ channelId:',
+      this.channelId,
+    );
     this.getChannel();
   }
 
   getChannel() {
-    this.channel = this.communityChannelManagerService.findChannel(this.channelId);
+    if (this.channelId) {
+      this.channel = this.communityChannelManagerService.findChannel(this.channelId);
+    } else {
+      this.channel = this.forum;
+    }
+    console.log(
+      '🚀 ~ file: edit-channel.component.ts:30 ~ EditChannelComponent ~ getChannel ~ this.channel:',
+      this.channel,
+    );
   }
 
   formUpdate() {

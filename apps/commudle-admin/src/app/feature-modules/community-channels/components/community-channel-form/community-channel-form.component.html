@@ -1,6 +1,6 @@
 <div>
   <form (ngSubmit)="submitForm()" [formGroup]="communityChannelForm" class="community-channel-form">
-    <div class="logo field">
+    <div class="logo field" *ngIf="discussionType === EDiscussionType.CHANNEL">
       <div *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)" class="uploaded-logo">
         <img alt="Profile Picture" src="{{ uploadedLogoImage || existingChannel.logo.url }}" title="Profile Picture" />
       </div>
@@ -43,7 +43,7 @@
 
     <div class="field">
       <label fullWidth>
-        Name*
+        <span>{{ discussionType === EDiscussionType.CHANNEL ? 'Name*' : 'Topic*' }}</span>
         <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
       </label>
     </div>
@@ -66,7 +66,7 @@
 
     <div class="field">
       <label fullWidth>
-        Group Name (optional)
+        <span>{{ discussionType === EDiscussionType.CHANNEL ? ' Group Name (optional)' : 'Category Name*' }}</span>
         <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
       </label>
     </div>

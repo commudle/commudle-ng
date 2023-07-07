@@ -15,6 +15,7 @@ export class CommunityChannelFormComponent implements OnInit {
   @Input() existingChannel: ICommunityChannel;
   @Input() presetGroupName;
   @Input() discussionType: string;
+  EDiscussionType = EDiscussionType;
 
   @Output() saved = new EventEmitter();
 
@@ -36,7 +37,7 @@ export class CommunityChannelFormComponent implements OnInit {
       logo: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      group_name: [''],
+      group_name: ['', this.discussionType === 'forum' ? Validators.required : ''],
       is_private: [false, Validators.required],
       is_readonly: [false, Validators.required],
       display_type: [''],

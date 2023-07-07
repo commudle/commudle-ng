@@ -16,6 +16,7 @@ import { CommunityChannelsService } from '../../../services/community-channels.s
 })
 export class InviteFormComponent implements OnInit, OnDestroy {
   @Input() channelId: string;
+  @Input() forum: ICommunityChannel;
   communityChannel: ICommunityChannel;
   joinToken: string;
   subscriptions = [];
@@ -42,7 +43,12 @@ export class InviteFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.appURL = environment.app_url;
-    this.communityChannel = this.communityChannelManagerService.findChannel(this.channelId);
+    if (this.channelId) {
+      this.communityChannel = this.communityChannelManagerService.findChannel(this.channelId);
+    } else {
+      this.communityChannel = this.forum;
+    }
+
     this.getJoinToken();
 
     this.subscriptions.push(

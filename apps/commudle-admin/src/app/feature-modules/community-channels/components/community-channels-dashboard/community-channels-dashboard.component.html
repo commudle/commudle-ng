@@ -71,6 +71,7 @@
     <commudle-community-form-message
       *ngIf="forumMessage && !forumsNamesList"
       [forumId]="forumId"
+      (updateSelectedForum)="updateSelectedChannelOrForum($event)"
     ></commudle-community-form-message>
   </div>
 </div>

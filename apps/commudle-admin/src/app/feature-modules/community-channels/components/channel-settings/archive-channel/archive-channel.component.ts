@@ -11,7 +11,8 @@ import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/com
   styleUrls: ['./archive-channel.component.scss'],
 })
 export class ArchiveChannelComponent implements OnInit {
-  @Input() communityChannelId;
+  @Input() channelId;
+
   discussionType = EDiscussionType;
 
   deleteForm;
@@ -30,7 +31,7 @@ export class ArchiveChannelComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
-    this.communityChannelManagerService.deleteChannel(this.communityChannelId, this.discussionType.CHANNEL);
+    this.communityChannelManagerService.deleteChannel(this.channelId, this.discussionType.CHANNEL);
     this.router.navigate([this.activatedRoute.parent.parent]);
   }
 }

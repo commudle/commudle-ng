@@ -6,64 +6,15 @@
     .heading {
       @apply com-m-0;
       p {
-        @apply com-text-xl com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
+        @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
       }
     }
 
-    // .channels {
-    //   @apply com-bg-[#F9F9F9];
-    //   ul {
-    //     list-style: none;
-    //     @apply com-p-0;
-    //     li {
-    //       @apply com-px-0 com-py-2 com-flex com-justify-between com-flex-nowrap com-items-center com-gap-2;
-
-    //       .details {
-    //         @apply com-w-full com-flex com-items-center com-gap-3;
-    //         .logo {
-    //           @apply com-w-8 com-h-8 com-bg-white com-rounded-[50%] com-overflow-hidden;
-    //           img {
-    //             @apply com-w-full;
-    //           }
-    //         }
-
-    //         .name {
-    //           @apply com-text-base  com-text-red-500 com-p-0 com-m-0 com-cursor-pointer;
-    //           a {
-    //             text-decoration: none;
-    //             @apply com-text-[#475166] hover:com-text-primary-500;
-    //             .icon {
-    //               padding: 0;
-    //             }
-    //           }
-
-    //           &.selectedChannel {
-    //             a {
-    //               @apply com-text-primary-500 com-font-semibold com-underline;
-    //             }
-    //           }
-    //         }
-    //       }
-
-    //       .settings {
-    //         display: flex;
-    //         align-items: baseline;
-    //         width: 25%;
-    //         margin: 0;
-
-    //         a {
-    //           padding: 0 3px;
-    //           @apply com-cursor-pointer;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
     .group-name {
       div {
         @apply com-cursor-pointer hover:com-bg-[#EEE]/40;
         p {
-          @apply com-mx-6 com-py-2 com-text-lg com-text-[#475166];
+          @apply com-mx-6 com-py-2 com-text-base com-text-[#475166];
         }
 
         &.selectedForum {

@@ -13,33 +13,71 @@
   <table style="width: 100%">
     <tr>
       <th><p class="topic">Topics</p></th>
-      <!-- <th>Replies</th>
-      <th>Activity</th> -->
+      <!-- <th>Replies</th> -->
+      <!-- <th>Activity</th> -->
     </tr>
     <tr *ngFor="let forum of selectedForum" class="forum-list">
-      <td (click)="openChat(forum.id)">
+      <td (click)="openChat(forum.id)" class="com-w-4/5">
         <div>
           <p class="forum-name">{{ forum.name | titlecase }}</p>
-          <p class="group-name">{{ forum.display_type }}</p>
-          <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
+          <div class="com-flex com-space-x-2">
+            <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
+            <div class="readonly badge" *ngIf="forum.is_readonly">
+              <span> <fa-icon [icon]="faEye"></fa-icon>Read Only </span>
+            </div>
+            <div class="private badge" *ngIf="forum.is_private">
+              <span> <fa-icon [icon]="faLock"></fa-icon>Private </span>
+            </div>
+          </div>
         </div>
       </td>
       <td>
-        <span *ngIf="forum.is_readonly" class="icon">
-          <nb-icon title="Read-only Channel" alt="Readonly Channel" title="Readonly Channel" icon="eye"></nb-icon>
-        </span>
+        <!-- <div class="icons">
+          <fa-icon [icon]="faPen"></fa-icon>
+          <fa-icon [icon]="faTrash"></fa-icon>
+          <fa-icon [icon]="faUserPlus"></fa-icon>
+          <fa-icon [icon]="faThumbTack"></fa-icon>
+        </div>
+        <div><p class="replies">29</p></div> -->
       </td>
-      <td>
-        <a
-          *ngIf="
-            channelsRoles[forum.id] &&
-            (channelsRoles[forum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
-          "
-          (click)="editDialogBox(forum.id)"
-        >
-          <nb-icon icon="settings"></nb-icon>
-        </a>
+      <td class="com-w-1/5">
+        <div class="icons">
+          <div class="edit pointer" (click)="openEditDialogeBox(forum)">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </div>
+          <div class="delete pointer" (click)="openDeleteDialogeBox(forum.id)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </div>
+          <div class="invite pointer" (click)="openInviteDialogeBox(forum)">
+            <fa-icon [icon]="faUserPlus"></fa-icon>
+          </div>
+          <div class="pin pointer" (click)="pin()">
+            <fa-icon [icon]="faThumbTack"></fa-icon>
+          </div>
+        </div>
+        <p class="replies">29</p>
       </td>
     </tr>
   </table>
+
+  <!-- <div *ngFor="let forum of selectedForum" class="com-flex com-items-center com-justify-between">
+    <div>
+      <div>
+        <p class="forum-name">{{ forum.name | titlecase }}</p>
+        <div class="com-flex com-space-x-2">
+          <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
+          <div class="readonly badge" *ngIf="forum.is_readonly">
+            <span> <fa-icon [icon]="faEye"></fa-icon>Read Only </span>
+          </div>
+          <div class="private badge" *ngIf="forum.is_private">
+            <span> <fa-icon [icon]="faLock"></fa-icon>Private </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="com-flex com-justify-between com-w-1/5">
+      <div><p>29</p></div>
+      <div><p>5 D</p></div>
+    </div>
+  </div> -->
 </section>
