@@ -43,6 +43,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   statsMembersCount;
   statsSpeakersCount;
   statsAttendancesCount;
+  selectedTab: string;
 
   @ViewChild('statusSection') statusSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('detailsSection') detailsSectionRef: ElementRef<HTMLDivElement>;
@@ -76,6 +77,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(true);
     this.activatedRoute.fragment.subscribe((fragment) => {
       if (fragment) {
+        this.selectedTab = fragment;
         const sectionElement = this[fragment + 'SectionRef'];
         if (sectionElement) {
           this.scroll(sectionElement, fragment);

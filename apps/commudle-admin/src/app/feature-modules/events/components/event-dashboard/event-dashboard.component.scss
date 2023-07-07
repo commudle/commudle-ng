@@ -15,11 +15,11 @@ a {
         @apply com-sticky com-top-14 com-z-10 com-m-0 md:com-mx-2 com-my-4;
 
         nb-card-body {
-          @apply com-px-0;
+          @apply com-px-0 com-pb-0;
 
           nb-actions {
             nb-action {
-              @apply com-px-3;
+              @apply com-px-3 com-pb-4 com-h-auto;
 
               nb-icon {
                 @apply com-text-xl;
@@ -53,5 +53,12 @@ a {
   }
   span {
     @apply com-font-medium;
+  }
+}
+
+.active {
+  @apply com-text-primary-500 com-border-b-4 com-border-0 com-border-solid;
+  nb-icon {
+    @apply com-text-primary-500;
   }
 }

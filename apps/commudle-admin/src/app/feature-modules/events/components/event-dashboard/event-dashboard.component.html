@@ -101,43 +101,76 @@
       <nb-card class="event-dashboard-menu">
         <nb-card-body>
           <nb-actions>
-            <nb-action (click)="scroll(statusSectionRef, 'status')" class="clickable">
+            <nb-action
+              (click)="scroll(statusSectionRef, 'status')"
+              [ngClass]="{ active: selectedTab === 'status' }"
+              class="clickable"
+            >
               <nb-icon icon="clipboard-outline"></nb-icon>
               <span>Status</span>
             </nb-action>
-            <nb-action (click)="scroll(detailsSectionRef, 'details')" class="clickable">
+            <nb-action
+              (click)="scroll(detailsSectionRef, 'details')"
+              [ngClass]="{ active: selectedTab === 'details' }"
+              class="clickable"
+            >
               <nb-icon icon="info-outline"></nb-icon>
               <span>Details</span>
             </nb-action>
             <nb-action
               (click)="scroll(updatesSectionRef, 'updates')"
+              [ngClass]="{ active: selectedTab === 'updates' }"
               *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
               class="clickable"
             >
               <nb-icon icon="star-outline"></nb-icon>
               <span>Updates</span>
             </nb-action>
-            <nb-action (click)="scroll(registrationsSectionRef, 'registrations')" class="clickable">
+            <nb-action
+              (click)="scroll(registrationsSectionRef, 'registrations')"
+              [ngClass]="{ active: selectedTab === 'registrations' }"
+              class="clickable"
+            >
               <nb-icon icon="edit-2-outline"></nb-icon>
               <span>Registrations</span>
             </nb-action>
-            <nb-action (click)="scroll(agendaSectionRef, 'agenda')" class="clickable">
+            <nb-action
+              (click)="scroll(agendaSectionRef, 'agenda')"
+              [ngClass]="{ active: selectedTab === 'agenda' }"
+              class="clickable"
+            >
               <nb-icon icon="calendar-outline"></nb-icon>
               <span>Agenda</span>
             </nb-action>
-            <nb-action (click)="scroll(collaborationsSectionRef, 'collaborations')" class="clickable">
+            <nb-action
+              (click)="scroll(collaborationsSectionRef, 'collaborations')"
+              [ngClass]="{ active: selectedTab === 'collaborations' }"
+              class="clickable"
+            >
               <nb-icon icon="pricetags-outline"></nb-icon>
               <span>Collaborations</span>
             </nb-action>
-            <nb-action (click)="scroll(teamSectionRef, 'team')" class="clickable">
+            <nb-action
+              (click)="scroll(teamSectionRef, 'team')"
+              [ngClass]="{ active: selectedTab === 'team' }"
+              class="clickable"
+            >
               <nb-icon icon="headphones-outline"></nb-icon>
               <span>Team</span>
             </nb-action>
-            <nb-action (click)="scroll(sponsorsSectionRef, 'sponsors')" class="clickable">
+            <nb-action
+              (click)="scroll(sponsorsSectionRef, 'sponsors')"
+              [ngClass]="{ active: selectedTab === 'sponsors' }"
+              class="clickable"
+            >
               <nb-icon icon="briefcase-outline"></nb-icon>
               <span>Sponsors</span>
             </nb-action>
-            <nb-action (click)="scroll(emailsSectionRef, 'emails')" class="clickable">
+            <nb-action
+              (click)="scroll(emailsSectionRef, 'emails')"
+              [ngClass]="{ active: selectedTab === 'emails' }"
+              class="clickable"
+            >
               <nb-icon icon="email-outline"></nb-icon>
               <span>Emails</span>
             </nb-action>
