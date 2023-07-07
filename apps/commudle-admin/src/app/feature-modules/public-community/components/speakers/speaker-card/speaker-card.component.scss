@@ -9,7 +9,7 @@ nb-card {
       @apply com-overflow-hidden;
 
       .banner {
-        @apply com-h-20 com-overflow-hidden com-w-full com-bg-Azureish-White;
+        @apply com-h-[92px] com-overflow-hidden com-w-full com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -29,7 +29,7 @@ nb-card {
       }
 
       .user-image {
-        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-20 com-ml-10px com-mt-39px com-overflow-hidden com-w-20 com-bg-Azureish-White;
+        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-20 com-ml-10px com-mt-[52px] com-overflow-hidden com-w-20 com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -41,7 +41,7 @@ nb-card {
       // }
 
       .talks-leader {
-        @apply com-flex com-absolute com-right-3 com-top-20 com-mt-3 md:com-mb-0 com-mx-0;
+        @apply com-flex com-absolute com-right-3 com-top-[92px] com-mt-3 md:com-mb-0 com-mx-0;
 
         button {
           @apply com-mr-2 com-text-American-Orange com-border-American-Orange com-bg-white;
@@ -49,14 +49,14 @@ nb-card {
       }
       // com-h-169px
       .user-details {
-        @apply md:com-mx-3 md:com-mt-4 md:com-mb-3 com-m-4;
+        @apply md:com-mx-3 md:com-mt-3 md:com-mb-3 com-m-4;
 
         a {
           text-decoration: none;
         }
 
         .text-details {
-          @apply com-h-[164px];
+          @apply com-h-[152px];
           p {
             @apply com-m-0;
           }

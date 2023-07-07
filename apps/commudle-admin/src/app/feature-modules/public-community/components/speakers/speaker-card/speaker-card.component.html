@@ -32,7 +32,7 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <div class="hiring-looking-works-tags">
+            <div *ngIf="speaker.hiring || speaker.looking_for_work" class="hiring-looking-works-tags">
               <app-hiring-looking-works-tags [user]="speaker"></app-hiring-looking-works-tags>
             </div>
             <p class="user-name">
