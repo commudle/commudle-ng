@@ -102,7 +102,14 @@ export class CommunitiesService {
     });
   }
 
-  getSpeakersList(after?: string, limit?: number, month?: boolean, year?: boolean): Observable<IPagination<ISpeakers>> {
+  getSpeakersList(
+    after?: string,
+    limit?: number,
+    month?: boolean,
+    year?: boolean,
+    employer?: boolean,
+    employee?: boolean,
+  ): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
@@ -115,6 +122,12 @@ export class CommunitiesService {
     }
     if (year) {
       params = params.set('yearly', year);
+    }
+    if (employer) {
+      params = params.set('employer', employer);
+    }
+    if (employee) {
+      params = params.set('employee', employee);
     }
     return this.http.get<IPagination<ISpeakers>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.SPEAKERS),

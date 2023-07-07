@@ -22,6 +22,9 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   year = false;
   allTime = false;
   queryParams = {};
+  employment: string;
+  employer = false;
+  employee = false;
   // isAllFilterSelected = false;
   // limit = 5;
 
@@ -34,22 +37,41 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (Object.keys(params).length > 0) {
-        if (params['monthly']) {
-          this.timePeriod = 'monthly';
-          this.month = true;
-          this.year = false;
+        if (params['monthly'] || params['yearly']) {
+          if (params['monthly']) {
+            this.timePeriod = 'monthly';
+            this.month = true;
+            this.year = false;
+          }
+          if (params['yearly']) {
+            this.timePeriod = 'yearly';
+            this.month = false;
+            this.year = true;
+          }
         }
-        if (params['yearly']) {
-          this.timePeriod = 'yearly';
-          this.month = false;
-          this.year = true;
+        if (params['employer'] || params['employee']) {
+          if (params['employer']) {
+            this.employment = 'employer';
+            this.employer = true;
+            this.employee = false;
+            this.queryParams = {
+              employer: true,
+            };
+          }
+          if (params['employee']) {
+            this.employment = 'employee';
+            this.employer = false;
+            this.employee = true;
+            this.queryParams = {
+              employee: true,
+            };
+          }
         }
-        this.speakers = [];
-        this.getSpeakersList();
-      } else {
         this.speakers = [];
         this.getSpeakersList();
       }
+      this.speakers = [];
+      this.getSpeakersList();
     });
   }
 
@@ -64,25 +86,48 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   //   });
   // }
 
-  filter() {
-    // this.isAllFilterSelected = false;
+  filterByTime() {
     if (this.timePeriod === 'monthly') {
       this.month = true;
       this.year = false;
       this.queryParams = {
-        month: true,
+        ...this.queryParams,
+        monthly: true,
       };
     }
     if (this.timePeriod === 'yearly') {
       this.month = false;
       this.year = true;
       this.queryParams = {
-        year: true,
+        ...this.queryParams,
+        yearly: true,
       };
     }
     this.speakers = [];
-    this.router.navigate([], { queryParams: this.queryParams });
     this.page_info = null;
+    this.router.navigate([], { queryParams: this.queryParams });
+  }
+
+  filterByEmployment() {
+    if (this.employment === 'employer') {
+      this.employer = true;
+      this.employee = false;
+      this.queryParams = {
+        ...this.queryParams,
+        employer: true,
+      };
+    }
+    if (this.employment === 'employee') {
+      this.employer = false;
+      this.employee = true;
+      this.queryParams = {
+        ...this.queryParams,
+        employee: true,
+      };
+    }
+    this.speakers = [];
+    this.page_info = null;
+    this.router.navigate([], { queryParams: this.queryParams });
   }
 
   getSpeakersList() {
@@ -93,7 +138,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     }
 
     this.communitiesService
-      .getSpeakersList(this.page_info?.end_cursor, this.limit, this.month, this.year)
+      .getSpeakersList(this.page_info?.end_cursor, this.limit, this.month, this.year, this.employer, this.employee)
       .subscribe((data) => {
         this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         console.log(this.speakers);

@@ -2,8 +2,8 @@
   @apply com-flex com-justify-between com-items-center com-mt-5 com-m-0;
   .filters {
     @apply com-flex com-items-center;
-    .all-filter-button {
-      @apply com-mr-3 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-border com-border-solid;
+    .employment-filter {
+      @apply com-mr-3 com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green com-w-[156px];
     }
     .most-popular-filter {
       @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green com-w-[225px];
@@ -15,7 +15,7 @@
 }
 
 .speakers {
-  @apply com-flex com-flex-col com-justify-center com-flex-wrap md:com-gap-x-6 com-gap-y-6 md:com-gap-y-10 md:com-flex-row md:com-mt-10 com-mt-8 com-m-0 com-mx-4 md:com-mx-0;
+  @apply com-flex com-flex-col com-flex-wrap md:com-gap-x-6 com-gap-y-6 md:com-gap-y-10 md:com-flex-row md:com-mt-10 com-mt-8 com-m-0 com-mx-4 md:com-mx-0;
 }
 
 .view-more-button {

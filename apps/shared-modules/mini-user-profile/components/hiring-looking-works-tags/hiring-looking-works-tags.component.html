@@ -1,6 +1,6 @@
 <div *ngIf="user">
   <div
-    *ngIf="user.is_employee && user.is_employer"
+    *ngIf="(user.is_employee && user.is_employer) || (user.looking_for_work && user.hiring)"
     class="tag"
     [ngClass]="{ large: size === 'large', medium: size === 'medium', small: size === 'small' }"
   >
@@ -10,13 +10,13 @@
     </div>
   </div>
   <div
-    *ngIf="!(user.is_employee && user.is_employer)"
+    *ngIf="!(user.is_employee && user.is_employer) && !(user.looking_for_work && user.hiring)"
     [ngClass]="{ large: size === 'large', medium: size === 'medium', small: size === 'small' }"
   >
-    <div *ngIf="user.is_employee">
+    <div *ngIf="user.is_employee || user.looking_for_work">
       <p class="work tags">LOOKING FOR WORK</p>
     </div>
-    <div *ngIf="user.is_employer">
+    <div *ngIf="user.is_employer || user.hiring">
       <p class="hiring tags">HIRING</p>
     </div>
   </div>

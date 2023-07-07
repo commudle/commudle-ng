@@ -20,6 +20,7 @@
         <div class="talks-leader">
           <button *ngIf="speaker.is_community_leader" nbButton shape="round" size="tiny" outline>Leader</button>
           <app-badge
+            *ngIf="speaker.speaker_events_count > 0"
             [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
             [fontColor]="'com-text-gunmetal'"
             [fontSize]="'small'"
@@ -31,9 +32,9 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <!-- <div class="hiring-looking-works-tags">
+            <div class="hiring-looking-works-tags">
               <app-hiring-looking-works-tags [user]="speaker"></app-hiring-looking-works-tags>
-            </div> -->
+            </div>
             <p class="user-name">
               {{ speaker.name }}
               <img

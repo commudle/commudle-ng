@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-overflow-hidden md:com-w-[276px] md:com-h-[400px] com-w-auto com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
+  @apply com-overflow-hidden md:com-w-[276px] md:com-h-[408px] com-w-auto com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
   //388
 
   nb-card-body {
@@ -84,7 +84,7 @@ nb-card {
           .count-and-location {
             @apply com-flex com-items-center com-m-0 com-h-[18px];
             .followers-count {
-              @apply com-text-sm com-font-medium com-text-Auro-Metal-Saurus;
+              @apply com-text-sm com-font-medium com-text-Auro-Metal-Saurus com-m-0 com-mr-2;
               span {
                 @apply com-text-black;
               }
