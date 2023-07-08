@@ -28,7 +28,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   employer = false;
   employee = false;
   searchForm;
-  // query = '';
+  query = '';
   isLoadingSearch = false;
 
   page = 1;
@@ -49,7 +49,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.search();
+    this.search();
     this.activatedRoute.queryParams.subscribe((params) => {
       if (Object.keys(params).length > 0) {
         if (params['monthly'] || params['yearly']) {
@@ -149,24 +149,31 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     this.router.navigate([], { queryParams: this.queryParams });
   }
 
-  // search() {
-  //   this.searchForm.valueChanges
-  //     .pipe(
-  //       debounceTime(800),
-  //       switchMap(() => {
-  //         this.page = 1;
-  //         this.isLoadingSearch = true;
-  //         this.query = this.searchForm.get('name').value;
-  //         return this.communitiesService.getSpeakersList(this.query);
-  //       }),
-  //     )
-  //     .subscribe((data) => {
-  //       this.isLoadingSearch = false;
-  //       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-  //       this.page = +data.page;
-  //       this.totalSearch = data.total;
-  //     });
-  // }
+  search() {
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(800),
+        switchMap(() => {
+          this.speakers = [];
+          this.query = this.searchForm.get('name').value;
+          return this.communitiesService.getSpeakersList(
+            this.query,
+            this.page_info?.end_cursor,
+            this.limit,
+            this.month,
+            this.year,
+            this.employer,
+            this.employee,
+          );
+        }),
+      )
+      .subscribe((data) => {
+        this.isLoadingSearch = false;
+        this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page = +data.page;
+        this.totalSearch = data.total;
+      });
+  }
 
   getSpeakersList() {
     if (this.loading) {
@@ -179,10 +186,17 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     }
 
     this.communitiesService
-      .getSpeakersList(this.page_info?.end_cursor, this.limit, this.month, this.year, this.employer, this.employee)
+      .getSpeakersList(
+        this.query,
+        this.page_info?.end_cursor,
+        this.limit,
+        this.month,
+        this.year,
+        this.employer,
+        this.employee,
+      )
       .subscribe((data) => {
         this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        console.log(this.speakers);
         this.total = data.total;
         this.page_info = data.page_info;
         this.skeletonLoaderCard = false;

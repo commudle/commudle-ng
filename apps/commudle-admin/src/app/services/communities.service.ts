@@ -103,6 +103,7 @@ export class CommunitiesService {
   }
 
   getSpeakersList(
+    query?: string,
     after?: string,
     limit?: number,
     month?: boolean,
@@ -111,6 +112,9 @@ export class CommunitiesService {
     employee?: boolean,
   ): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
+    if (query) {
+      params = params.set('q', query);
+    }
     if (after) {
       params = params.set('after', after);
     }
