@@ -69,7 +69,7 @@
 }
 
 .icons {
-  @apply com-m-2 com-w-12 com-h-12 com-rounded-lg  com-table;
+  @apply com-m-2 com-w-12 com-h-12 com-rounded-lg  com-table com-cursor-pointer;
   fa-icon {
     @apply com-text-2xl com-table-cell com-text-center com-align-middle;
   }

@@ -63,7 +63,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
     private router: Router,
-    private activatedRouter: ActivatedRoute,
     private communitiesService: CommunitiesService,
   ) {}
 
@@ -123,7 +122,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getQueryParamsData() {
-    this.discussionTypeForum = this.activatedRouter.snapshot.routeConfig.path.includes('forums');
+    this.discussionTypeForum = this.activatedRoute.snapshot.routeConfig.path.includes('forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
   }
