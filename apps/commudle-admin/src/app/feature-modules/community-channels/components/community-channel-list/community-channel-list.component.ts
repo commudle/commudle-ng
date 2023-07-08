@@ -55,7 +55,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.activatedRoute.snapshot.params.community_channel_id) {
       this.selectedChannelId = Number(this.activatedRoute.snapshot.params.community_channel_id);
-      console.log(typeof this.selectedChannelId);
     }
 
     this.subscriptions.push(

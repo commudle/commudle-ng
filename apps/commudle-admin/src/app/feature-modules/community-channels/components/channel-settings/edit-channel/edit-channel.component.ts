@@ -19,10 +19,6 @@ export class EditChannelComponent implements OnInit {
   constructor(private communityChannelManagerService: CommunityChannelManagerService) {}
 
   ngOnInit(): void {
-    console.log(
-      '🚀 ~ file: edit-channel.component.ts:27 ~ EditChannelComponent ~ getChannel ~ channelId:',
-      this.channelId,
-    );
     this.getChannel();
   }
 
@@ -32,10 +28,6 @@ export class EditChannelComponent implements OnInit {
     } else {
       this.channel = this.forum;
     }
-    console.log(
-      '🚀 ~ file: edit-channel.component.ts:30 ~ EditChannelComponent ~ getChannel ~ this.channel:',
-      this.channel,
-    );
   }
 
   formUpdate() {
