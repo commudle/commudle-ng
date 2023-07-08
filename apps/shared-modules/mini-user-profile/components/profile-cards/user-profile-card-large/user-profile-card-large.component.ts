@@ -20,6 +20,7 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() horizontalScroll = false;
   @Input() isMobileWidthFull = false;
   @Input() showSpeakersCount = false;
+  @Input() showHiringLookingTags = true;
   @Output() componentClicked = new EventEmitter();
 
   constructor(private userChatsService: UserChatsService) {}

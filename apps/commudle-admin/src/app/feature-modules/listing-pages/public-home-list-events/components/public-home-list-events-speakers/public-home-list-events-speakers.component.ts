@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
-import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 
@@ -19,22 +19,26 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   showSpinner = false;
   showSkeletonLoading = true;
   limit = 4;
+  mini = true;
 
-  constructor(private eventsService: EventsService) {}
+  constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
     this.getSpeakersList();
   }
 
   getSpeakersList() {
-    // this.isLoadingSpeakers = true;
-    // this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-    //   this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-    //   this.total = data.total;
-    //   this.page_info = data.page_info;
-    //   this.isLoadingSpeakers = false;
-    //   this.showSpinner = false;
-    //   this.showSkeletonLoading = false;
-    // });
+    if (this.isLoadingSpeakers) {
+      return;
+    }
+    this.isLoadingSpeakers = true;
+    this.communitiesService.getSpeakersList(this.mini, this.page_info?.end_cursor, this.limit).subscribe((data) => {
+      this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.total = data.total;
+      this.page_info = data.page_info;
+      this.isLoadingSpeakers = false;
+      this.showSpinner = false;
+      this.showSkeletonLoading = false;
+    });
   }
 }

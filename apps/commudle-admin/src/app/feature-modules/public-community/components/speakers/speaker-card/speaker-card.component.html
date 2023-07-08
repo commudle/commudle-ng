@@ -10,7 +10,7 @@
             src="{{ speaker.profile_banner_image.i350 }}"
             title="{{ speaker.name }} Profile Banner"
           />
-          <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button>
+          <!-- <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button> -->
         </div>
         <div class="user-image">
           <a [routerLink]="['/users', speaker.username]" class="clickable">
@@ -60,14 +60,11 @@
             </div>
           </div>
         </a>
-        <!-- <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex flex-wrap">
-          <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{ tag.name }}</div>
-        </div> -->
         <div class="tags">
           <!-- <app-tag
             *ngIf="speaker.tags.length > 0"
-            [tags]="speaker.tags"
-            [backgroundColor]="'#0095ff'"
+            [tags]="getTagNames()"
+            [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
             [size]="'tiny'"
             [fontColor]="'#101828'"
             [maximumTag]="3"

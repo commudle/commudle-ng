@@ -9,8 +9,16 @@ import { IUser } from 'apps/shared-models/user.model';
 export class SpeakerCardComponent implements OnInit {
   @Input() speaker: IUser;
   @Input() maxUserNameLength = 20;
+  tags: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  getTagNames() {
+    for (const tag of this.speaker.tags) {
+      this.tags.push(tag.name);
+    }
+    return this.tags;
+  }
 }

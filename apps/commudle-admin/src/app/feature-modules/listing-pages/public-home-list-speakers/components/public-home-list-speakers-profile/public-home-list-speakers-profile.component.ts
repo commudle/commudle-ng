@@ -157,9 +157,10 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
           this.speakers = [];
           this.query = this.searchForm.get('name').value;
           return this.communitiesService.getSpeakersList(
-            this.query,
+            false,
             this.page_info?.end_cursor,
             this.limit,
+            this.query,
             this.month,
             this.year,
             this.employer,
@@ -187,9 +188,10 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
 
     this.communitiesService
       .getSpeakersList(
-        this.query,
+        false,
         this.page_info?.end_cursor,
         this.limit,
+        this.query,
         this.month,
         this.year,
         this.employer,

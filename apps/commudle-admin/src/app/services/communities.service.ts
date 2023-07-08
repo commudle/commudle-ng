@@ -103,15 +103,19 @@ export class CommunitiesService {
   }
 
   getSpeakersList(
-    query?: string,
+    mini?: boolean,
     after?: string,
     limit?: number,
+    query?: string,
     month?: boolean,
     year?: boolean,
     employer?: boolean,
     employee?: boolean,
   ): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
+    if (mini) {
+      params = params.set('mini', mini);
+    }
     if (query) {
       params = params.set('q', query);
     }
