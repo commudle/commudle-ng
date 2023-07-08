@@ -49,7 +49,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   discussionTypeParam: string;
   forumName: string;
-  forumId: string;
   showForumData = false;
   isCommunityOrganizer = false;
 
@@ -72,8 +71,8 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.getCurrentUser();
     this.checkCommunityOrganizer();
 
-    if (this.discussionTypeParam === this.discussionType.FORUM && this.forumId) {
-      this.checkSelectedForum(this.forumId);
+    if (this.discussionTypeParam === this.discussionType.FORUM && this.selectedChannelId) {
+      this.checkSelectedForum();
     }
     this.communityChannelManagerService.setCommunity(this.selectedCommunity);
 
@@ -122,7 +121,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   getQueryParamsData() {
     this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
-    this.forumId = this.activatedRoute.snapshot.queryParamMap.get('discussion-id');
     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
   }
 
@@ -184,8 +182,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.checkDiscussionType();
   }
 
-  checkSelectedForum(forumId) {
-    this.forumId = forumId;
+  checkSelectedForum() {
     this.forumsNamesList = false;
     this.forumsCards = false;
     this.forumMessage = true;

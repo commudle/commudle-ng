@@ -1,5 +1,5 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -24,7 +24,6 @@ export class CommunityFormMessageComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private communityChannelsService: CommunityChannelsService,
     private router: Router,
-    private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -37,12 +36,10 @@ export class CommunityFormMessageComponent implements OnInit {
   }
 
   selectedCommunityForum() {
-    // this.selectedForumName = forumName.key;
     this.updateSelectedForum.emit(this.forum);
-    this.router.navigate([], {
+    this.router.navigate(['communities', this.forum.kommunity.id, 'channels'], {
       queryParams: { 'discussion-type': 'forum', 'forum-name': this.forum.group_name },
       queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
-    // this.communityChannelManagerService.setForum(this.forum);
   }
 }

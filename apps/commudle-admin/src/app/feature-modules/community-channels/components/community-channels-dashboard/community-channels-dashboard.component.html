@@ -55,7 +55,7 @@
     </div>
 
     <!-- //Channel message Component -->
-    <div *ngIf="channelMessage">
+    <div *ngIf="channelMessage && !forumMessage">
       <app-community-channel [selectedChannelId]="selectedChannelId"></app-community-channel>
     </div>
 
@@ -64,13 +64,13 @@
       *ngIf="forumsNamesList"
       [selectedCommunity]="selectedCommunity"
       [isCommunityOrganizer]="isCommunityOrganizer"
-      (updateSelectedForum)="checkSelectedForum($event)"
+      (updateSelectedForum)="checkSelectedForum()"
     ></commudle-community-forum>
 
     <!-- //Form message component shows after selecting form name  -->
     <commudle-community-form-message
       *ngIf="forumMessage && !forumsNamesList"
-      [forumId]="forumId"
+      [forumId]="selectedChannelId"
       (updateSelectedForum)="updateSelectedChannelOrForum($event)"
     ></commudle-community-form-message>
   </div>
