@@ -21,6 +21,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import { IUser } from 'apps/shared-models/user.model';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-session-page-video',
@@ -57,9 +58,14 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
 
   @ViewChildren('interactionWindow') interactionWindows: QueryList<ElementRef>;
 
-  constructor(@Inject(DOCUMENT) private document: any, private cdr: ChangeDetectorRef) {}
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private cdr: ChangeDetectorRef,
+    private footerService: FooterService,
+  ) {}
 
   ngOnInit(): void {
+    this.footerService.changeMiniFooterStatus(false);
     document.onfullscreenchange = () => (this.isFullScreen = this.document.fullscreenElement);
   }
 
@@ -74,6 +80,10 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
       this.toggleInteractionWindow(0);
       this.cdr.detectChanges();
     }
+  }
+
+  ngOnDestroy() {
+    this.footerService.changeMiniFooterStatus(true);
   }
 
   toggleFullScreen(): void {

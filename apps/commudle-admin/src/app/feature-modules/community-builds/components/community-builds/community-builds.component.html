@@ -2,7 +2,7 @@
   <div header>
     <commudle-builds-header></commudle-builds-header>
   </div>
-  <div one-column>
+  <div one-column *ngIf="isMobileView">
     <div class="publish-build-button">
       <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
         <nb-icon icon="plus"></nb-icon>
@@ -14,7 +14,7 @@
     <commudle-builds-top-builders></commudle-builds-top-builders>
     <commudle-explore-experts></commudle-explore-experts>
   </div>
-  <div main-column>
+  <div main-column *ngIf="!isMobileView">
     <commudle-builds></commudle-builds>
   </div>
   <div right-column>

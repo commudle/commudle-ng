@@ -2,14 +2,14 @@
   <div header>
     <commudle-public-home-list-events-header></commudle-public-home-list-events-header>
   </div>
-  <div one-column>
+  <div one-column *ngIf="isMobileView">
     <commudle-public-home-list-events-upcoming></commudle-public-home-list-events-upcoming>
     <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
     <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
     <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
     <commudle-public-home-list-events-past></commudle-public-home-list-events-past>
   </div>
-  <div main-column>
+  <div main-column *ngIf="!isMobileView">
     <commudle-public-home-list-events-upcoming></commudle-public-home-list-events-upcoming>
     <commudle-public-home-list-events-past></commudle-public-home-list-events-past>
   </div>

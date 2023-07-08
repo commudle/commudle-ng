@@ -49,12 +49,10 @@
                   communityBuildForm.get('build_type').invalid &&
                   communityBuildForm.get('build_type').errors.required
                 "
-                class="validation-error-text"
               >
-                Required Field
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
-
             <div class="field">
               <label>
                 Title of your build*
@@ -73,9 +71,8 @@
                   communityBuildForm.get('name').invalid &&
                   communityBuildForm.get('name').errors.required
                 "
-                class="validation-error-text"
               >
-                Required Field
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
             <div *ngIf="teammates.length > 0" class="field">
@@ -121,9 +118,8 @@
                     emailList.controls[i].get('value').invalid &&
                     emailList.controls[i].get('value').errors.required
                   "
-                  class="validation-error-text"
                 >
-                  Required Field
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </div>
               <button (click)="addTeammate()" class="add-button" nbButton status="primary">
@@ -152,6 +148,9 @@
                   placeholder="Link to Open Source Code"
                 />
               </label>
+              <span *ngIf="communityBuildForm.get('link').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
+              </span>
             </div>
 
             <div class="field">
@@ -166,18 +165,20 @@
                   placeholder="Link to live project"
                 />
               </label>
+              <span *ngIf="communityBuildForm.get('live_app_link').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
+              </span>
               <span
                 *ngIf="
-                  communityBuildForm.get('link').touched &&
-                  communityBuildForm.get('link').invalid &&
-                  communityBuildForm.get('link').errors.required &&
-                  communityBuildForm.get('live-project').touched &&
-                  communityBuildForm.get('live-project').invalid &&
-                  communityBuildForm.get('live-project').errors.required
+                  linkOrLiveAppLinkValue &&
+                  communityBuildForm.get('link').value.length === 0 &&
+                  communityBuildForm.get('live_app_link').value.length === 0
                 "
-                class="validation-error-text"
               >
-                live project or link to open source one is required
+                <commudle-alert
+                  [error]="true"
+                  [errorMessage]="'Both Open Source Code and Live Project cannot be empty'"
+                ></commudle-alert>
               </span>
             </div>
 
@@ -193,6 +194,9 @@
                   placeholder=" Video Demo (Iframe)"
                 />
               </label>
+              <span *ngIf="communityBuildForm.get('video_iframe').invalid">
+                <commudle-alert [error]="true" [errorMessage]="'Please add correct iframe'"></commudle-alert>
+              </span>
             </div>
 
             <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
@@ -202,6 +206,15 @@
             </div>
             <div class="field">
               <label> How is it useful for others?* </label>
+              <span
+                *ngIf="
+                  communityBuildForm.get('description').touched &&
+                  communityBuildForm.get('description').invalid &&
+                  communityBuildForm.get('description').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
               <editor
                 [init]="tinyMCE"
                 apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
@@ -245,6 +258,9 @@
                   [tags]="tags"
                 ></app-tag>
               </label>
+              <span *ngIf="showTagsValidation && tags.length < 5">
+                <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags need to be added'"></commudle-alert>
+              </span>
             </div>
 
             <div>
@@ -266,24 +282,11 @@
                 <nb-icon icon="checkmark"></nb-icon>
                 Submit For Approval
               </button> -->
-              <button
-                (click)="submitForm(EPublishStatus.published)"
-                [disabled]="communityBuildForm.invalid"
-                nbButton
-                status="primary"
-                type="submit"
-              >
+              <button (click)="submitForm(EPublishStatus.published)" nbButton status="primary" type="submit">
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
               </button>
-              <button
-                (click)="submitForm(EPublishStatus.draft)"
-                [disabled]="!communityBuildForm.valid"
-                nbButton
-                outline
-                status="primary"
-                type="submit"
-              >
+              <button (click)="submitForm(EPublishStatus.draft)" nbButton outline status="primary" type="submit">
                 <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
                 Save as Draft
               </button>

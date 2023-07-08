@@ -26,6 +26,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   uploadedHeaderImageFile: File;
   imagesList = [];
   tags: string[] = [];
+  showTagsValidation = false;
   headerImageForm;
   labForm: FormGroup;
   faEdit = faEdit;
@@ -240,21 +241,30 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   updateLab(publishStatus, forceSubmit: boolean = false) {
-    if (this.lab.publish_status !== EPublishStatus.published) {
-      this.labForm.patchValue({
-        publish_status: publishStatus,
-      });
+    if (this.tags.length < 5) {
+      this.showTagsValidation = true;
+      return;
     }
-    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
-      this.submitDialogRef = this.dialogService.open(this.submitDialog);
+    if (this.labForm.invalid) {
+      this.labForm.markAllAsTouched();
+      return;
     } else {
-      this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe((data) => {
-        if (data) {
-          this.lab = data;
-          this.submitTags();
-          this.onSubmitDialogClose();
-        }
-      });
+      if (this.lab.publish_status !== EPublishStatus.published) {
+        this.labForm.patchValue({
+          publish_status: publishStatus,
+        });
+      }
+      if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
+        this.submitDialogRef = this.dialogService.open(this.submitDialog);
+      } else {
+        this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe((data) => {
+          if (data) {
+            this.lab = data;
+            this.submitTags();
+            this.onSubmitDialogClose();
+          }
+        });
+      }
     }
   }
 

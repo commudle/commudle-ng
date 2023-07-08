@@ -12,4 +12,9 @@
       }
     }
   }
+  nb-layout-header {
+    nav {
+      @apply com-shadow-none com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+    }
+  }
 }
