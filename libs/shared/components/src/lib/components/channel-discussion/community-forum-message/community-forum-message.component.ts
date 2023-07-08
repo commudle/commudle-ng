@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { IUserMessage } from '@commudle/shared-models';
@@ -10,7 +11,6 @@ import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
 import { faReply, faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'commudle-community-forum-message',
@@ -51,7 +51,6 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
     private shareService: ShareService,
     private nbWindowService: NbWindowService,
     private nbMenuService: NbMenuService,
-    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -102,19 +101,14 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   }
 
   share(): void {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      const discussionType = params['discussion-type'];
-      const forumName = params['forum-name'];
-      const discussionId = params['discussion-id'];
-      const shareLink = `localhost:4200/${window.location.pathname}?after=${this.cursor}&discussion-type=${discussionType}&forum-name=${forumName}&discussion-id=${discussionId}`;
-      this.shareService.shareContent(
-        shareLink,
-        'Hey, check out this discussion on Commudle',
-        this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
-        'Copied message link successfully!',
-        'Shared message successfully!',
-      );
-    });
+    const shareLink = `localhost:4200/${window.location.pathname}?after=${this.cursor}`;
+    this.shareService.shareContent(
+      shareLink,
+      'Hey, check out this discussion on Commudle',
+      this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
+      'Copied message link successfully!',
+      'Shared message successfully!',
+    );
   }
 
   openEditForm(): void {

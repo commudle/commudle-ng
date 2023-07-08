@@ -19,7 +19,7 @@
         </div>
         <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
           <!-- channel list -->
-          <div *ngIf="channelsList && !forumsList">
+          <div *ngIf="channelsList && !forumsList && !discussionTypeForum">
             <app-community-channel-list
               [groupedChannels]="communityChannels"
               [selectedCommunity]="selectedCommunity"
@@ -29,7 +29,7 @@
           </div>
 
           <!-- forum list -->
-          <div *ngIf="forumsList && !channelsList">
+          <div *ngIf="forumsList && !channelsList && discussionTypeForum">
             <app-community-forum-list
               [isCommunityOrganizer]="isCommunityOrganizer"
               [selectedForumName]="forumName"
@@ -70,7 +70,6 @@
     <!-- //Form message component shows after selecting form name  -->
     <commudle-community-form-message
       *ngIf="forumMessage && !forumsNamesList"
-      [forumId]="selectedChannelId"
       (updateSelectedForum)="updateSelectedChannelOrForum($event)"
     ></commudle-community-form-message>
   </div>

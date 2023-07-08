@@ -42,8 +42,6 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.selectedCommunity = data.community;
-        // this.getChannels();
-        // this.communityChannelManagerService.setCommunityListview(false);
       }),
     );
   }
@@ -52,7 +50,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },
+      queryParams: { 'forum-name': forumName ? forumName.key : 'general' },
       queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
     this.communityChannelManagerService.setForum(forumName.value);

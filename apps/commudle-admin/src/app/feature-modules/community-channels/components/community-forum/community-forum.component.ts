@@ -61,9 +61,7 @@ export class CommunityForumComponent implements OnInit {
 
   openChat(forumId) {
     this.updateSelectedForum.emit(forumId);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'channels', forumId], {
-      queryParamsHandling: 'merge',
-    });
+    this.router.navigate(['communities', this.selectedCommunity.slug, 'forums', forumId]);
   }
 
   newChannelDialogBox(groupName?) {

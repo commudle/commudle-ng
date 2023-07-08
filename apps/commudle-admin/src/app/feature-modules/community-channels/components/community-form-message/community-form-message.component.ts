@@ -5,7 +5,7 @@ import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discuss
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'commudle-community-form-message',
@@ -24,9 +24,13 @@ export class CommunityFormMessageComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private communityChannelsService: CommunityChannelsService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    if (this.activatedRoute.snapshot.params.community_channel_id) {
+      this.forumId = this.activatedRoute.snapshot.params.community_channel_id;
+    }
     this.communityChannelsService.getChannelInfo(this.forumId).subscribe((data) => {
       this.forum = data;
     });
@@ -37,9 +41,8 @@ export class CommunityFormMessageComponent implements OnInit {
 
   selectedCommunityForum() {
     this.updateSelectedForum.emit(this.forum);
-    this.router.navigate(['communities', this.forum.kommunity.id, 'channels'], {
-      queryParams: { 'discussion-type': 'forum', 'forum-name': this.forum.group_name },
-      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    this.router.navigate(['communities', this.forum.kommunity.id, 'forums'], {
+      queryParams: { 'forum-name': this.forum.group_name },
     });
   }
 }

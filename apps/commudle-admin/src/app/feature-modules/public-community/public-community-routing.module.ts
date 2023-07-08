@@ -43,6 +43,14 @@ const routes = [
         component: CommunityChannelsListComponent,
       },
       {
+        path: 'forums',
+        component: CommunityChannelsListComponent,
+      },
+      {
+        path: 'forums/:community_channel_id',
+        component: CommunityChannelsListComponent,
+      },
+      {
         path: 'notifications',
         component: PublicCommunityNotificationsComponent,
       },

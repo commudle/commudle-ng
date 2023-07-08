@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -21,6 +22,7 @@ interface EGroupedCommunityChannels {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-community-forum-list',
   templateUrl: './community-forum-list.component.html',
   styleUrls: ['./community-forum-list.component.scss'],
@@ -129,8 +131,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: { 'discussion-type': 'forum', 'forum-name': forumName ? forumName.key : 'general' },
-      // queryParamsHandling: 'merge', // remove to replace all query params by provided
+      queryParams: { 'forum-name': forumName ? forumName.key : 'general' },
     });
     this.communityChannelManagerService.setForum(forumName.value);
   }

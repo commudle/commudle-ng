@@ -1,5 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+/* eslint-disable @angular-eslint/component-selector */
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -47,12 +49,13 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   faMessage = faMessage;
   discussionType = EDiscussionType;
 
-  discussionTypeParam: string;
+  discussionTypeForum = false;
   forumName: string;
   showForumData = false;
   isCommunityOrganizer = false;
 
   subscriptions: Subscription[] = [];
+  currentRoute: string;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -60,6 +63,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
     private router: Router,
+    private activatedRouter: ActivatedRoute,
     private communitiesService: CommunitiesService,
   ) {}
 
@@ -71,7 +75,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.getCurrentUser();
     this.checkCommunityOrganizer();
 
-    if (this.discussionTypeParam === this.discussionType.FORUM && this.selectedChannelId) {
+    if (this.discussionTypeForum && this.selectedChannelId) {
       this.checkSelectedForum();
     }
     this.communityChannelManagerService.setCommunity(this.selectedCommunity);
@@ -105,7 +109,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   checkDiscussionType() {
-    if (this.discussionTypeParam === this.discussionType.FORUM) {
+    if (this.discussionTypeForum) {
       this.channelsList = false;
       this.forumsList = true;
       this.channelsCards = false;
@@ -119,7 +123,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getQueryParamsData() {
-    this.discussionTypeParam = this.activatedRoute.snapshot.queryParamMap.get('discussion-type');
+    this.discussionTypeForum = this.activatedRouter.snapshot.routeConfig.path.includes('forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
   }
@@ -141,11 +145,11 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   updateSelectedChannelOrForum(channel?) {
-    if (this.discussionTypeParam !== this.discussionType.FORUM && channel) {
+    if (!this.discussionTypeForum && channel) {
       this.selectedChannelId = channel.id;
       this.channelsCards = false;
       this.channelMessage = true;
-    } else if (this.discussionTypeParam === this.discussionType.FORUM && (this.forumName || channel)) {
+    } else if (this.discussionTypeForum && (this.forumName || channel)) {
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
         if (this.communityForums) {
@@ -164,7 +168,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   openChannelOrForums(discussionType) {
-    this.discussionTypeParam = discussionType;
+    // this.discussionTypeParam = discussionType;
     if (discussionType === this.discussionType.CHANNEL) {
       this.forumsNamesList = false;
       this.forumMessage = false;
@@ -175,9 +179,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
       this.forumsNamesList = false;
       this.forumMessage = false;
       this.forumsList = true;
-      this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`], {
-        queryParams: { 'discussion-type': 'forum' },
-      });
+      this.router.navigate([`communities/${this.selectedCommunity.slug}/forums`]);
     }
     this.checkDiscussionType();
   }
