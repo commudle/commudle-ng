@@ -1,34 +1,33 @@
-<nb-card>
+<nb-card [ngClass]="{ fullWidth: isMobileWidthFull }">
   <nb-card-body>
     <div class="user-card d-flex flex-column justify-content-space-around">
-      <div class="banner-image">
-        <!-- <app-user-cover-photo [user]="speaker"></app-user-cover-photo> -->
+      <a [routerLink]="['/users', speaker.username]" class="clickable">
         <div class="banner">
-          <img
-            *ngIf="speaker.profile_banner_image"
-            alt="{{ speaker.name }} Profile Banner"
-            src="{{ speaker.profile_banner_image.i350 }}"
-            title="{{ speaker.name }} Profile Banner"
-          />
-          <!-- <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button> -->
-        </div>
-        <div class="user-image">
-          <a [routerLink]="['/users', speaker.username]" class="clickable">
+          <div class="banner-image">
+            <img
+              alt="{{ speaker.name }} Profile Banner"
+              src="{{ speaker.profile_banner_image?.i906 || '/assets/images/User-Profile-Cover-Default.png' }}"
+              title="{{ speaker.name }} Profile Banner"
+            />
+            <!-- <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button> -->
+          </div>
+
+          <div class="user-image">
             <img alt="{{ speaker.name }}" src="{{ speaker.photo.i96 }}" title="{{ speaker.name }}" />
-          </a>
+          </div>
+          <div class="talks-leader">
+            <button *ngIf="speaker.is_community_leader" nbButton shape="round" size="tiny" outline>Leader</button>
+            <app-badge
+              *ngIf="speaker.speaker_events_count > 0"
+              [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
+              [fontColor]="'com-text-gunmetal'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray/60'"
+            ></app-badge>
+          </div>
         </div>
-        <div class="talks-leader">
-          <button *ngIf="speaker.is_community_leader" nbButton shape="round" size="tiny" outline>Leader</button>
-          <app-badge
-            *ngIf="speaker.speaker_events_count > 0"
-            [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
-            [fontColor]="'com-text-gunmetal'"
-            [fontSize]="'small'"
-            [borderRadius]="'round'"
-            [color]="'com-bg-Bright-Gray/60'"
-          ></app-badge>
-        </div>
-      </div>
+      </a>
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
@@ -61,14 +60,14 @@
           </div>
         </a>
         <div class="tags">
-          <!-- <app-tag
+          <app-tag
             *ngIf="speaker.tags.length > 0"
             [tags]="getTagNames()"
             [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
             [size]="'tiny'"
             [fontColor]="'#101828'"
             [maximumTag]="3"
-          ></app-tag> -->
+          ></app-tag>
         </div>
         <div class="user-follow-button">
           <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>

@@ -64,7 +64,7 @@
 <div *appBreakpoints="'<=lg'">
   <div class="speakers">
     <div *ngFor="let speaker of speakers.slice(0, 3)" class="speakers-card">
-      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
+      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25" [isMobileWidthFull]="true"></app-speaker-card>
     </div>
   </div>
   <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
@@ -73,7 +73,7 @@
   <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
   <div class="speakers">
     <div *ngFor="let speaker of speakers.slice(3)" class="speakers-card">
-      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
+      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25" [isMobileWidthFull]="true"></app-speaker-card>
     </div>
   </div>
   <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>

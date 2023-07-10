@@ -5,22 +5,24 @@
       <h4 class="sub-heading">This is content published by users</h4>
     </div>
     <div class="content custom-scrollbar">
-      <!-- <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards> -->
-      <commudle-event-content-card></commudle-event-content-card>
-      <!-- <div *ngFor="let  of " class="content-card"> -->
-      <!-- <div>
-        <commudle-tech-sessions-card [session]="session"></commudle-tech-sessions-card>
-      </div> -->
-      <!-- <div *appBreakpoints="'<=lg'">
-          <commudle-tech-sessions-card [session]="session" [horizontalScroll]="true"></commudle-tech-sessions-card>
-        </div> -->
-      <!-- </div> -->
-      <!-- <div class="load-more">
+      <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards>
+      <div *ngFor="let speakersContent of speakersContents" class="content-card">
+        <div *appBreakpoints="'>lg'">
+          <commudle-event-content-card [speakersContent]="speakersContent"></commudle-event-content-card>
+        </div>
+        <div *appBreakpoints="'<=lg'">
+          <commudle-event-content-card
+            [speakersContent]="speakersContent"
+            [horizontalScroll]="true"
+          ></commudle-event-content-card>
+        </div>
+      </div>
+      <div class="load-more">
         <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
         <button
           *ngIf="page_info?.has_next_page"
           [disabled]="showSpinner"
-          (click)="getTechSessions()"
+          (click)="getContent()"
           nbButton
           outline
           size="tiny"
@@ -28,7 +30,7 @@
         >
           View More
         </button>
-      </div> -->
+      </div>
     </div>
   </nb-card-body>
 </nb-card>

@@ -1,6 +1,8 @@
 nb-card {
-  @apply com-overflow-hidden com-w-[276px] md:com-h-[408px] com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
-  //388
+  @apply com-overflow-hidden com-w-[276px] md:com-h-[403px] com-h-auto com-transition-all com-duration-500 com-cursor-pointer hover:com-shadow-Card com-m-0;
+  &.fullWidth {
+    @apply com-w-full;
+  }
 
   nb-card-body {
     @apply com-p-0 com-m-0;
@@ -8,11 +10,11 @@ nb-card {
     .user-card {
       @apply com-overflow-hidden;
 
-      .banner {
-        @apply com-h-[92px] com-overflow-hidden com-w-full com-bg-Azureish-White;
+      .banner-image {
+        @apply com-h-[92px] com-overflow-hidden com-w-full;
 
         img {
-          @apply com-h-full com-object-cover com-w-full;
+          @apply com-h-full com-object-cover com-object-center com-w-full;
         }
 
         .upcoming-events {
@@ -20,7 +22,7 @@ nb-card {
         }
       }
 
-      .banner-image {
+      .banner {
         @apply com-grid;
 
         div {
@@ -36,10 +38,6 @@ nb-card {
         }
       }
 
-      // app-user-follow {
-      //   @apply com-absolute com-right-4 com-top-24;
-      // }
-
       .talks-leader {
         @apply com-flex com-absolute com-right-3 com-top-[92px] com-mt-3 md:com-mb-0 com-mx-0;
 
@@ -47,16 +45,15 @@ nb-card {
           @apply com-mr-2 com-text-American-Orange com-border-American-Orange com-bg-white;
         }
       }
-      // com-h-169px
       .user-details {
         @apply md:com-mx-3 md:com-mt-3 md:com-mb-3 com-m-4;
 
         a {
+          @apply com-h-[157px];
           text-decoration: none;
         }
 
         .text-details {
-          @apply com-h-[152px];
           p {
             @apply com-m-0;
           }

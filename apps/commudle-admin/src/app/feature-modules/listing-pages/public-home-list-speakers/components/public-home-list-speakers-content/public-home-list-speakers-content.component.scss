@@ -2,7 +2,7 @@ nb-card {
   @apply com-mx-0 md:com-bg-Bright-Gray/30 com-border-none com-m-0 md:com-mt-6 md:com-mb-4 com-mb-16;
 
   nb-card-body {
-    @apply com-p-0 md:com-px-3 md:com-pt-4;
+    @apply com-p-0 md:com-px-3 md:com-py-4;
     .heading {
       @apply md:com-mt-0 md:com-mb-6 com-mt-10 com-mb-4 com-mx-0 com-flex com-flex-col com-p-4 md:com-p-0 md:com-bg-transparent com-bg-Anti-Flash-White;
 
@@ -15,7 +15,7 @@ nb-card {
     }
 
     .content {
-      @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
+      @apply com-flex com-flex-row md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
       .content-card {
         @apply md:com-mb-4 com-m-0;
       }

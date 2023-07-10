@@ -528,6 +528,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/social_resources',
     UPDATE_DISPLAY_ORDER: 'api/v2/social_resources/update_display_order',
     DESTROY: 'api/v2/social_resources',
+    CONTENT: 'api/v2/social_resources/public',
   },
 
   USER_EVENT_REGISTRATIONS: {

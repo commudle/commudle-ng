@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-// import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
@@ -15,6 +14,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   speakers: IUser[] = [];
   page_info: IPageInfo;
   loading = false;
+  loadingSpeakers = false;
   total: number;
   limit = 6;
   skeletonLoaderCard = true;
@@ -22,7 +22,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   month = false;
   year = false;
   allTime = false;
-  // queryParams = {};
   queryParams: { [key: string]: any } = {};
   employment: string;
   employer = false;
@@ -30,12 +29,9 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   searchForm;
   query = '';
   isLoadingSearch = false;
-
   page = 1;
   count = 10;
   totalSearch = 0;
-  // isAllFilterSelected = false;
-  // limit = 5;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -83,17 +79,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
       this.getSpeakersList();
     });
   }
-
-  // getSpeakersList() {
-  //   this.loading = true;
-  //   this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-  //     this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-  //     this.total = data.total;
-  //     this.page_info = data.page_info;
-  //     this.skeletonLoaderCard = false;
-  //     this.loading = false;
-  //   });
-  // }
 
   filterByTime() {
     if (this.timePeriod === 'monthly') {
@@ -169,19 +154,18 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
         }),
       )
       .subscribe((data) => {
-        this.isLoadingSearch = false;
-        this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.speakers = data.page.reduce((acc, value) => [...acc, ...value.data], []);
         this.page = +data.page;
         this.totalSearch = data.total;
       });
   }
 
   getSpeakersList() {
-    if (this.loading) {
+    this.loading = true;
+    if (this.loadingSpeakers) {
       return;
     }
-    this.loading = true;
-
+    this.loadingSpeakers = true;
     if (!this.page_info?.end_cursor) {
       this.speakers = [];
     }
@@ -202,6 +186,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
         this.total = data.total;
         this.page_info = data.page_info;
         this.skeletonLoaderCard = false;
+        this.loadingSpeakers = false;
         this.loading = false;
       });
   }
