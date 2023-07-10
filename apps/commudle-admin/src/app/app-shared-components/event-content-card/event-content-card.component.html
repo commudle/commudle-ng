@@ -3,7 +3,7 @@
     <a [routerLink]="">
       <div class="tags-and-logo">
         <app-tag
-          *ngIf="speakersContent.tags.length > 0"
+          *ngIf="speakersTagsLength > 0"
           [tags]="getTagNames()"
           [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
           [size]="'tiny'"

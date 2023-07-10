@@ -10,16 +10,17 @@ export class SpeakerCardComponent implements OnInit {
   @Input() speaker: IUser;
   @Input() maxUserNameLength = 20;
   @Input() isMobileWidthFull = false;
+  speakersTagsLength: number;
   tags: string[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.speakersTagsLength = Object.keys(this.speaker.tags).length;
+  }
 
   getTagNames() {
-    for (const tag of this.speaker.tags) {
-      this.tags.push(tag.name);
-    }
+    this.tags = Object.values(this.speaker.tags).map((tag) => tag.name);
     return this.tags;
   }
 }

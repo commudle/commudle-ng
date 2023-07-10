@@ -15,16 +15,16 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 export class EventContentCardComponent implements OnInit {
   @Input() speakersContent: ISpeakerResource;
   @Input() horizontalScroll = false;
-  // speakerTags;
+  speakersTagsLength: number;
   tags: string[] = [];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.speakersTagsLength = Object.keys(this.speakersContent.tags).length;
+  }
 
   getTagNames() {
-    for (const tag of this.speakersContent.tags) {
-      this.tags.push(tag.name);
-    }
+    this.tags = Object.values(this.speakersContent.tags).map((tag) => tag.name);
     return this.tags;
   }
 }

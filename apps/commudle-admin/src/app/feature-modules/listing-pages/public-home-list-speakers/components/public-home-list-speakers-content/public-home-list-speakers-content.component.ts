@@ -20,10 +20,10 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   constructor(private socialResourceService: SocialResourceService) {}
 
   ngOnInit(): void {
-    this.getContent();
+    this.getList();
   }
 
-  getContent() {
+  getList() {
     this.isLoadingTechSessions = true;
     this.showSpinner = true;
     this.socialResourceService.getSpeakersContent(this.page_info?.end_cursor, this.limit).subscribe((data) => {

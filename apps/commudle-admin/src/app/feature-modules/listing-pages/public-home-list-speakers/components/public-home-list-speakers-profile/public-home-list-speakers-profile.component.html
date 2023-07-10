@@ -57,10 +57,11 @@
   <div *ngFor="let speaker of speakers" class="speakers-card">
     <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
   </div>
-  <div *ngIf="loading" class="loading-spinner">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
 </div>
+<div *ngIf="loading" class="loading-spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
 <div *appBreakpoints="'<=lg'">
   <div class="speakers">
     <div *ngFor="let speaker of speakers.slice(0, 3)" class="speakers-card">

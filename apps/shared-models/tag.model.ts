@@ -7,5 +7,4 @@ export interface ITag {
   category?: string;
   color?: string;
   picture?: IAttachedFile;
-  length?: number;
 }

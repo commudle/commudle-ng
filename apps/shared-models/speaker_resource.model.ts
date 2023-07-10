@@ -12,7 +12,7 @@ export interface ISpeakerResource {
   created_at: Date;
   user_event_registration_id: number;
   data_form_entity_response_group_id: number;
-  tags?: any;
+  tags?: ITag[];
   favicon?: string;
   description?: string;
 }
