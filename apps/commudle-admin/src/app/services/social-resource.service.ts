@@ -43,7 +43,7 @@ export class SocialResourceService {
       params = params.set('limit', limit);
     }
     return this.http.get<IPagination<ISpeakerResource>>(
-      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.CONTENT),
+      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.PUBLIC.INDEX),
       {
         params,
       },
