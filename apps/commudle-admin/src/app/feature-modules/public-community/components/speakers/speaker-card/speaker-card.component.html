@@ -1,26 +1,40 @@
-<nb-card>
+<nb-card [ngClass]="{ fullWidth: isMobileWidthFull }">
   <nb-card-body>
     <div class="user-card d-flex flex-column justify-content-space-around">
-      <div class="banner-image">
+      <a [routerLink]="['/users', speaker.username]" class="clickable">
         <div class="banner">
-          <img
-            *ngIf="speaker.profile_banner_image"
-            alt="{{ speaker.name }} Profile Banner"
-            src="{{ speaker.profile_banner_image.i350 }}"
-            title="{{ speaker.name }} Profile Banner"
-          />
-        </div>
-        <div class="user-image">
-          <a [routerLink]="['/users', speaker.username]" class="clickable">
+          <div class="banner-image">
+            <img
+              alt="{{ speaker.name }} Profile Banner"
+              src="{{ speaker.profile_banner_image?.i906 || '/assets/images/User-Profile-Cover-Default.png' }}"
+              title="{{ speaker.name }} Profile Banner"
+            />
+            <!-- <button nbButton shape="rectangle" size="tiny" class="upcoming-events">Upcoming Talk</button> -->
+          </div>
+
+          <div class="user-image">
             <img alt="{{ speaker.name }}" src="{{ speaker.photo.i96 }}" title="{{ speaker.name }}" />
-          </a>
+          </div>
+          <div class="talks-leader">
+            <button *ngIf="speaker.is_community_leader" nbButton shape="round" size="tiny" outline>Leader</button>
+            <app-badge
+              *ngIf="speaker.speaker_events_count > 0"
+              [text]="speaker.speaker_events_count + (speaker.speaker_events_count > 1 ? ' Talks' : ' Talk')"
+              [fontColor]="'com-text-gunmetal'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray/60'"
+            ></app-badge>
+          </div>
         </div>
-        <app-user-follow [username]="speaker.username"></app-user-follow>
-      </div>
+      </a>
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <p class="user-name d-flex align-items-center com-line-clamp-1">
+            <div *ngIf="speaker.hiring || speaker.looking_for_work" class="hiring-looking-works-tags">
+              <app-hiring-looking-works-tags [user]="speaker"></app-hiring-looking-works-tags>
+            </div>
+            <p class="user-name">
               {{ speaker.name }}
               <img
                 *ngIf="speaker.is_expert"
@@ -30,12 +44,33 @@
                 title="Expert Tick"
               />
             </p>
-            <p *ngIf="speaker.username" class="username">@{{ speaker.username }}</p>
-            <p *ngIf="speaker.designation" class="designation com-line-clamp-2">{{ speaker.designation }}</p>
+            <p *ngIf="speaker.username" class="username">@{{ speaker.username | truncatetext : maxUserNameLength }}</p>
+            <p class="designation">
+              {{ speaker.designation || '--' }}
+            </p>
+            <div class="count-and-location">
+              <p *ngIf="speaker.followers_count > 0" class="followers-count">
+                <span>{{ speaker.followers_count }}</span> Follower{{ speaker.followers_count > 1 ? 's' : '' }}
+              </p>
+              <div *ngIf="speaker.location" class="location">
+                <nb-icon icon="pin-outline"></nb-icon>
+                <p>{{ speaker.location }}</p>
+              </div>
+            </div>
           </div>
         </a>
-        <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex flex-wrap">
-          <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{ tag.name }}</div>
+        <div class="tags">
+          <app-tag
+            *ngIf="speakersTagsLength > 0"
+            [tags]="getTagNames()"
+            [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+            [size]="'tiny'"
+            [fontColor]="'#101828'"
+            [maximumTag]="3"
+          ></app-tag>
+        </div>
+        <div class="user-follow-button">
+          <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>
         </div>
       </div>
     </div>

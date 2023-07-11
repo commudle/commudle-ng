@@ -1,0 +1,6 @@
+.skeleton-cards {
+  @apply com-flex com-flex-wrap com-gap-6;
+  section {
+    @apply com-animate-pulse com-border-0 com-border-b com-border-solid com-border-gray-300 com-h-44;
+  }
+}

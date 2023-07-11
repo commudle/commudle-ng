@@ -39,9 +39,8 @@
                     labForm['controls'].name.invalid &&
                     labForm['controls'].name.errors.required
                   "
-                  class="validation-error-text"
                 >
-                  Required Field
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </div>
 

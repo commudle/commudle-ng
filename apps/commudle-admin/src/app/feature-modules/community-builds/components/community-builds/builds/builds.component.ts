@@ -24,6 +24,7 @@ export class BuildsComponent implements OnInit {
   isAllFilterSelected = false;
   limit = 5;
   skeletonLoaderCard = true;
+  loadingCommunityBuilds = false;
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
@@ -98,8 +99,8 @@ export class BuildsComponent implements OnInit {
       };
     }
     this.communityBuilds = [];
-    this.router.navigate([], { queryParams: this.queryParams });
     this.page_info = null;
+    this.router.navigate([], { queryParams: this.queryParams });
   }
 
   allFilterSelected() {
@@ -108,15 +109,19 @@ export class BuildsComponent implements OnInit {
     this.year = false;
     this.allTime = false;
     this.order_by = '';
-    this.page_info = null;
+    this.timePeriod = null;
     this.communityBuilds = [];
     this.queryParams = {};
+    this.page_info = null;
     this.router.navigate([], { queryParams: this.queryParams });
   }
 
   getCommunityBuilds() {
+    if (this.loadingCommunityBuilds) {
+      return;
+    }
+    this.loadingCommunityBuilds = true;
     this.loading = true;
-
     if (!this.page_info?.end_cursor) {
       this.communityBuilds = [];
     }
@@ -127,6 +132,7 @@ export class BuildsComponent implements OnInit {
         this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.total = data.total;
         this.page_info = data.page_info;
+        this.loadingCommunityBuilds = false;
         this.skeletonLoaderCard = false;
         this.loading = false;
       });

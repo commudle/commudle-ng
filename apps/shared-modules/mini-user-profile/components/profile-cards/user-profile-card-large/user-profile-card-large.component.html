@@ -28,12 +28,17 @@
         <p class="username com-line-clamp-1 com-w-max com-mt-1" title="{{ user.username }}">
           @{{ user.username | truncatetext : maxUserNameLength }}
         </p>
-        <app-hiring-looking-works-tags [user]="user" [size]="'small'"></app-hiring-looking-works-tags>
+        <app-hiring-looking-works-tags
+          *ngIf="showHiringLookingTags"
+          [user]="user"
+          [size]="'small'"
+        ></app-hiring-looking-works-tags>
         <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSpeakersCount" class="speaker-count">
           <app-badge
+            *ngIf="user.speaker_events_count > 0"
             [text]="user.speaker_events_count + (user.speaker_events_count > 1 ? ' Talks Given' : ' Talk Given')"
             [fontColor]="'com-text-Auro-Metal-Saurus'"
             [fontSize]="'small'"

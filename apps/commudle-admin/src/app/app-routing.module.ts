@@ -36,6 +36,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'speakers',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module').then(
+        (m) => m.PublicHomeListSpeakersModule,
+      ),
+  },
+  {
     path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },

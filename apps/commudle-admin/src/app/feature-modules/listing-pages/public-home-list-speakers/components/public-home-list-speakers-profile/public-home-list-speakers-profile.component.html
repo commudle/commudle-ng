@@ -1,0 +1,91 @@
+<div class="search-filters">
+  <form [formGroup]="searchForm">
+    <div class="search">
+      <nb-form-field>
+        <nb-icon icon="search" nbPrefix></nb-icon>
+        <input
+          [disabled]="isLoadingSearch"
+          fieldSize="small"
+          formControlName="name"
+          fullWidth
+          nbInput
+          placeholder="Search for Speakers, or type specific tags"
+          type="text"
+        />
+      </nb-form-field>
+    </div>
+  </form>
+  <div class="filters">
+    <nb-select
+      placeholder="Employment"
+      size="small"
+      shape="round"
+      status="basic"
+      class="employment-filter"
+      [(ngModel)]="employment"
+      (selectedChange)="filterByEmployment()"
+      filled
+    >
+      <nb-option value="employer">Hiring</nb-option>
+      <nb-option value="employee">Looking for work</nb-option>
+    </nb-select>
+    <nb-select
+      placeholder="Most Popular"
+      size="small"
+      shape="round"
+      status="basic"
+      class="most-popular-filter"
+      [(ngModel)]="timePeriod"
+      (selectedChange)="filterByTime()"
+      filled
+    >
+      <nb-option value="monthly"> Highest upvoted this month</nb-option>
+      <nb-option value="yearly">Highest upvoted this year</nb-option>
+    </nb-select>
+  </div>
+</div>
+<div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+  <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
+</div>
+<div
+  *appBreakpoints="'>lg'"
+  (scrolled)="getSpeakersList()"
+  [infiniteScrollDisabled]="speakers.length >= total"
+  appInfiniteScroll
+  class="speakers"
+>
+  <div *ngFor="let speaker of speakers" class="speakers-card">
+    <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
+  </div>
+</div>
+<div *ngIf="loading" class="loading-spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div *appBreakpoints="'<=lg'">
+  <div class="speakers">
+    <div *ngFor="let speaker of speakers.slice(0, 3)" class="speakers-card">
+      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25" [isMobileWidthFull]="true"></app-speaker-card>
+    </div>
+  </div>
+  <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+  <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
+  <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+  <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+  <div class="speakers">
+    <div *ngFor="let speaker of speakers.slice(3)" class="speakers-card">
+      <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25" [isMobileWidthFull]="true"></app-speaker-card>
+    </div>
+  </div>
+  <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+  <button
+    (click)="getSpeakersList()"
+    *ngIf="page_info?.has_next_page"
+    fullWidth
+    ghost
+    nbButton
+    class="view-more-button"
+  >
+    View More
+  </button>
+</div>

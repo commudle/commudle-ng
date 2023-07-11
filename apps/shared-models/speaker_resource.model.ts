@@ -1,5 +1,6 @@
 import { IUser } from './user.model';
 import { IEvent } from './event.model';
+import { ITag } from 'apps/shared-models/tag.model';
 
 export interface ISpeakerResource {
   id: number;
@@ -11,4 +12,7 @@ export interface ISpeakerResource {
   created_at: Date;
   user_event_registration_id: number;
   data_form_entity_response_group_id: number;
+  tags?: ITag[];
+  favicon?: string;
+  description?: string;
 }

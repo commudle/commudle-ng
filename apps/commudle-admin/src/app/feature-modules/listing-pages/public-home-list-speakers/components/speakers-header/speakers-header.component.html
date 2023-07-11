@@ -1,0 +1,22 @@
+<div class="header">
+  <div
+    *ngIf="speakersPageHeader"
+    [ngStyle]="{ 'background-color': speakersPageHeader.background_color.hex }"
+    class="background"
+  >
+    <div class="base-layout">
+      <div class="content">
+        <div class="header-text">
+          <h1 class="heading">
+            {{ speakersPageHeader.heading }}
+          </h1>
+          <p class="sub-heading">{{ speakersPageHeader.sub_heading }}</p>
+          <div [innerHTML]="richText" class="content"></div>
+        </div>
+        <div class="header-image">
+          <img [src]="imageUrl(speakersPageHeader?.header_image).url()" class="com-w-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import {IAttachedFile} from 'apps/shared-models/attached-file.model';
+import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 
 export interface ITag {
   id: number;
