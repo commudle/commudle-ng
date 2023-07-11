@@ -173,7 +173,7 @@ export class CommunityChannelManagerService {
     if (this.currentUser) {
       const roles = this.allForumRoles.value;
       for (const [i, fr] of forums.entries()) {
-        this.usersService.getMyRoles('CommunityForum', fr.id).subscribe((data) => {
+        this.usersService.getMyRoles('CommunityChannel', fr.id).subscribe((data) => {
           roles[`${fr.id}`] = data;
 
           if (i === forums.length) {
@@ -194,7 +194,7 @@ export class CommunityChannelManagerService {
 
   getForumRoles(forum) {
     const roles = this.allForumRoles.value;
-    this.usersService.getMyRoles('CommunityForum', forum.id).subscribe((data) => {
+    this.usersService.getMyRoles('CommunityChannel', forum.id).subscribe((data) => {
       roles[`${forum.id}`] = data;
       this.allForumRoles.next(roles);
     });

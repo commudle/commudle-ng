@@ -28,7 +28,6 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() canReply = true;
   channelsRoles = {};
   channelOrForumId: number;
-  channelId: number;
 
   environment = environment;
 
@@ -64,7 +63,6 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.channelId = this.activatedRoute.snapshot.params.community_channel_id;
     this.channelOrForumId = this.activatedRoute.snapshot.params.community_channel_id;
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
@@ -161,15 +159,11 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   togglePinStatus() {
-    this.communityChannelsService.pinMessage(this.message.id, this.channelId).subscribe(() => {
+    this.communityChannelsService.pinMessage(this.message.id, this.channelOrForumId).subscribe(() => {
       this.libToastLogService.successDialog('Pinned Message Successfully!');
     });
     this.communityChannelManagerService.pinData$.subscribe((data) => {
       if (data) {
-        console.log(
-          '🚀 ~ file: community-channel-message.component.ts:169 ~ CommunityChannelMessageComponent ~ this.communityChannelManagerService.pinData$.subscribe ~ data:',
-          data,
-        );
         switch (data.action) {
           case 'pin': {
             if (data.user_message.id === this.message.id) {
@@ -197,14 +191,14 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   pinMessage(message: IUserMessage) {
-    this.communityChannelsService.pinMessage(message.id, this.channelId).subscribe(() => {
+    this.communityChannelsService.pinMessage(message.id, this.channelOrForumId).subscribe(() => {
       this.libToastLogService.successDialog('Pinned Message Successfully!');
     });
     this.togglePinStatus();
   }
 
   unpinMessage(message: IUserMessage) {
-    this.communityChannelsService.unpinMessage(message.id, this.channelId).subscribe(() => {
+    this.communityChannelsService.unpinMessage(message.id, this.channelOrForumId).subscribe(() => {
       this.libToastLogService.successDialog('Unpinned Message Successfully!');
     });
     this.togglePinStatus();
@@ -212,7 +206,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
 
   sendMessageByEmail(userMessageId) {
     if (window.confirm(`Are you sure you want to send this to all members on their email?`)) {
-      this.communityChannelsService.sendMessageByEmail(userMessageId, this.channelId).subscribe((data) => {
+      this.communityChannelsService.sendMessageByEmail(userMessageId, this.channelOrForumId).subscribe((data) => {
         if (data) {
           this.libToastLogService.successDialog('Emails are being delivered', 1500);
         }

@@ -11,9 +11,10 @@
     </div>
   </div>
 </div>
-<div *ngIf="discussion" class="com-ml-2">
+<div *ngIf="discussion && forum" class="com-ml-2">
   <commudle-channel-discussion
     [discussionId]="discussion.id"
+    [channelOfForum]="forum"
     discussionParent="channels"
     discussionType="forum"
   ></commudle-channel-discussion>

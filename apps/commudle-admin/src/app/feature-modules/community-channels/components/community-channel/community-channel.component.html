@@ -4,6 +4,7 @@
 <div *ngIf="discussion" class="com-ml-2">
   <commudle-channel-discussion
     [discussionId]="discussion.id"
+    [channelOfForum]="selectedChannel"
     discussionParent="channels"
     discussionType="channel"
   ></commudle-channel-discussion>
