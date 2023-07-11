@@ -87,7 +87,7 @@
     "@nrwl/linter": "15.1.1",
     "@nrwl/node": "15.1.1",
     "@nrwl/workspace": "15.1.1",
-    "@nx-extend/firebase-hosting": "^2.1.5",
+    "@nx-extend/firebase-hosting": "^2.2.3",
     "@schematics/angular": "~14.2.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.2",
