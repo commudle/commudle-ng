@@ -24,7 +24,7 @@ interface EGroupedCommunityChannels {
 export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
-  @Input() communityForums: EGroupedCommunityChannels;
+  communityForums: EGroupedCommunityChannels;
   currentUser: ICurrentUser;
   communityChannels;
   channelsQueried = false;
@@ -169,7 +169,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   openChannelOrForums(discussionType) {
-    // this.discussionTypeParam = discussionType;
     if (discussionType === this.discussionType.CHANNEL) {
       this.forumsNamesList = false;
       this.forumMessage = false;

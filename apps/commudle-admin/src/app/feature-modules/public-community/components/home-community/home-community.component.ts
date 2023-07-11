@@ -128,7 +128,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   updateHeaderVariation() {
     const url = this.router.url;
     const value = url.split(this.community.slug)[1];
-    if (value.length !== 0) {
+    if (value) {
       this.showMiniHeader = true;
     } else {
       this.showMiniHeader = false;

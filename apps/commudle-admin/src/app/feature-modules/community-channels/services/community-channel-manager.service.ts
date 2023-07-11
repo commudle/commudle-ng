@@ -138,6 +138,9 @@ export class CommunityChannelManagerService {
     this.communityChannelsService
       .index(this.selectedCommunity.value.slug, this.discussionType.CHANNEL)
       .subscribe((data) => {
+        if (this.channels.length > 0) {
+          this.channels = [];
+        }
         this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.getAllChannelRoles(this.channels);
         this.communityChannels.next(_.groupBy(this.channels, (ch) => ch.group_name));
@@ -148,6 +151,9 @@ export class CommunityChannelManagerService {
     this.communityChannelsService
       .index(this.selectedCommunity.value.slug, this.discussionType.FORUM)
       .subscribe((data) => {
+        if (this.forums.length > 0) {
+          this.forums = [];
+        }
         this.forums = this.forums.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.getAllForumRoles(this.forums);
         this.communityForums.next(_.groupBy(this.forums, (ch) => ch.group_name));
