@@ -4,17 +4,18 @@ h4 {
 }
 
 .user-attended-event-card {
-  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer md:com-w-auto com-w-[324px];
 
   nb-card-body {
     @apply com-p-0;
     a {
       @apply com-p-0 com-flex com-no-underline;
       .icon {
-        @apply com-p-7 com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none;
+        @apply com-flex-shrink-0 com-rounded-tr-none com-rounded-br-none com-w-[75px] com-h-[94px] com-bg-Azure/10;
 
-        fa-icon {
-          @apply com-text-Azure com-text-xl;
+        fa-icon,
+        nb-icon {
+          @apply com-text-Azure;
         }
       }
 
@@ -31,4 +32,20 @@ h4 {
       }
     }
   }
+}
+
+fa-icon.iconSizeSmall {
+  @apply com-text-xl;
+}
+
+nb-icon.iconSizeSmall {
+  @apply com-h-6 com-w-6;
+}
+
+nb-icon.iconSizeMedium {
+  @apply com-h-8 com-w-8;
+}
+
+fa-icon.iconSizeMedium {
+  @apply com-text-[32px];
 }

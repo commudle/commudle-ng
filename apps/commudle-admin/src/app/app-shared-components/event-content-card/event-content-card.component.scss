@@ -1,0 +1,26 @@
+nb-card {
+  @apply com-m-0 md:com-max-h-[165px] com-h-[144px] com-w-[316px] md:com-w-auto com-max-h-full md:com-h-auto;
+
+  nb-card-body {
+    @apply com-p-3;
+
+    a {
+      @apply com-no-underline;
+
+      .tags-and-logo {
+        @apply com-flex com-justify-between md:com-mb-4 com-mb-2 com-max-h-6 com-overflow-hidden com-flex-nowrap;
+
+        img {
+          @apply com-h-5 com-w-5 com-rounded-full com-object-contain com-object-center com-ml-4;
+        }
+      }
+
+      .title {
+        @apply md:com-text-sm com-text-base com-font-normal md:com-font-bold com-m-0 com-text-Dark-Jungle-Green md:com-line-clamp-2 com-line-clamp-1 com-mb-3 md:com-max-h-10;
+      }
+      .description {
+        @apply md:com-text-xs com-text-sm com-font-normal com-m-0 com-text-Quartz md:com-line-clamp-3 com-line-clamp-2 md:com-max-h-12;
+      }
+    }
+  }
+}

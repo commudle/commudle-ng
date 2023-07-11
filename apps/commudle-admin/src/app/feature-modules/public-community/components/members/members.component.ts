@@ -40,8 +40,8 @@ export class MembersComponent implements OnInit, OnDestroy {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
         if (this.community) {
-          this.getMembers();
           this.getSpeakerDetails();
+          this.getMembers();
           this.seoService.setTitle(` Community Members | ${this.community.name}`);
         }
       }),

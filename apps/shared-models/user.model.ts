@@ -42,6 +42,9 @@ export interface IUser {
   total_builds_votes?: number;
   published_community_builds_count?: number;
   communities_count?: number;
+  is_community_leader?: boolean;
+  looking_for_work?: boolean;
+  hiring?: boolean;
 }
 
 export interface IUserSearch extends IUser {

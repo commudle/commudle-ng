@@ -10,7 +10,7 @@ div {
     }
 
     &.small-text {
-      @apply com-py-2px com-px-5px com-text-xs;
+      @apply com-py-1 com-px-2 com-text-xs;
 
       nb-icon {
         font-size: 16px;

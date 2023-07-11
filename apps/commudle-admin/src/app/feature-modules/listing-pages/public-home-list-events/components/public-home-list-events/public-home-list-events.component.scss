@@ -1,19 +1,7 @@
-.container {
-  @apply com-pb-4;
+.featured-communities {
+  @apply com-m-0 md:com-mt-9 com-mt-0;
+}
 
-  .two-column-layout {
-    @apply com-px-4;
-  }
-
-  .main-column {
-    @apply md:com-pr-4 com-p-0 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
-  }
-
-  .right-column {
-    @apply md:com-ml-4 com-m-0;
-
-    .right-column-desktop {
-      @apply md:com-sticky md:com-top-24;
-    }
-  }
+.right-column {
+  @apply com-sticky com-top-0;
 }
