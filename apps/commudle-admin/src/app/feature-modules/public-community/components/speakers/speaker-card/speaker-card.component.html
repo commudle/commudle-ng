@@ -48,14 +48,14 @@
             <p class="designation">
               {{ speaker.designation || '--' }}
             </p>
-            <div class="count-and-location">
-              <p *ngIf="speaker.followers_count > 0" class="followers-count">
-                <span>{{ speaker.followers_count }}</span> Follower{{ speaker.followers_count > 1 ? 's' : '' }}
-              </p>
-              <div *ngIf="speaker.location" class="location">
-                <nb-icon icon="pin-outline"></nb-icon>
-                <p>{{ speaker.location }}</p>
-              </div>
+          </div>
+          <div class="count-and-location">
+            <p *ngIf="speaker.followers_count > 0" class="followers-count">
+              <span>{{ speaker.followers_count }}</span> Follower{{ speaker.followers_count > 1 ? 's' : '' }}
+            </p>
+            <div *ngIf="speaker.location" class="location" [title]="speaker.location">
+              <nb-icon icon="pin-outline"></nb-icon>
+              <p>{{ speaker.location }}</p>
             </div>
           </div>
         </a>

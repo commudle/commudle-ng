@@ -1,14 +1,28 @@
 <nb-card>
   <nb-card-body>
+    <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+      <commudle-skeleton-vertical-cards [cards]="4"></commudle-skeleton-vertical-cards>
+    </div>
     <div *ngIf="speakers.length > 0" class="speakers-container">
       <p class="header-text">Meet Our Speakers</p>
-      <div *ngIf="isLoadingSpeakers" class="com-min-h-[340px] loader">
-        <app-loading-spinner></app-loading-spinner>
-      </div>
       <div class="speakers-list">
-        <ng-container *ngFor="let speaker of speakers">
-          <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
+        <ng-container *ngFor="let speaker of speakers" class="speakers-card">
+          <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25"></app-speaker-card>
         </ng-container>
+        <div class="load-more">
+          <app-loading-spinner *ngIf="canLoadMoreSpeakers && !skeletonLoaderCard"></app-loading-spinner>
+          <button
+            *ngIf="page_info?.has_next_page"
+            [disabled]="showSpinner"
+            (click)="getSpeakerDetails()"
+            nbButton
+            outline
+            size="tiny"
+            status="basic"
+          >
+            View More
+          </button>
+        </div>
       </div>
     </div>
 

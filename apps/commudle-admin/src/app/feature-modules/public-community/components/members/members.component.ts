@@ -6,6 +6,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
 
 @Component({
   selector: 'app-members',
@@ -16,15 +17,24 @@ export class MembersComponent implements OnInit, OnDestroy {
   community: ICommunity;
   members: IUser[] = [];
 
+  page_info: IPageInfo;
+  mini = false;
+  skeletonLoaderCard = true;
+  canLoadMoreSpeakers = false;
   page = 1;
   count = 9;
   canLoadMore = true;
   total;
+  query = '';
+  month = false;
+  year = false;
+  employer = false;
+  employee = false;
 
   subscriptions: Subscription[] = [];
 
   speakers: IUser[] = [];
-  isLoadingSpeakers = true;
+  isLoadingSpeakers = false;
   isLoadingMembers = false;
   showSpinner = false;
 
@@ -32,7 +42,7 @@ export class MembersComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
-    private communitySpeakerService: CommunitiesService,
+    private communitiesService: CommunitiesService,
   ) {}
 
   ngOnInit(): void {
@@ -52,13 +62,36 @@ export class MembersComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  getSpeakerDetails(): void {
-    this.subscriptions.push(
-      this.communitySpeakerService.speakers(this.community.id).subscribe((data) => {
-        this.speakers = data.users;
+  getSpeakerDetails() {
+    this.canLoadMoreSpeakers = true;
+    if (this.isLoadingSpeakers) {
+      return;
+    }
+    this.isLoadingSpeakers = true;
+    if (!this.page_info?.end_cursor) {
+      this.speakers = [];
+    }
+
+    this.communitiesService
+      .getSpeakersList(
+        this.mini,
+        this.page_info?.end_cursor,
+        this.count,
+        this.query,
+        this.month,
+        this.year,
+        this.employer,
+        this.employee,
+        this.community.id,
+      )
+      .subscribe((data) => {
+        this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.page_info = data.page_info;
+        this.skeletonLoaderCard = false;
         this.isLoadingSpeakers = false;
-      }),
-    );
+        this.canLoadMoreSpeakers = false;
+      });
   }
 
   getMembers(): void {
