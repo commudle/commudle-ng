@@ -15,6 +15,7 @@ import { faEye, faLock, faPen, faTrash, faUserPlus, faThumbTack } from '@fortawe
 import { ArchiveChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/archive-channel/archive-channel.component';
 import { InviteFormComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/invite-form/invite-form.component';
 import { EditChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/edit-channel/edit-channel.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-community-forum',
@@ -37,6 +38,7 @@ export class CommunityForumComponent implements OnInit {
   faTrash = faTrash;
   faUserPlus = faUserPlus;
   faThumbTack = faThumbTack;
+  subscriptions: Subscription[] = [];
 
   @Output() updateSelectedForum = new EventEmitter<number>();
 
@@ -48,15 +50,17 @@ export class CommunityForumComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.communityChannelManagerService.selectedForum$.subscribe((data) => {
-      this.selectedForum = data;
-    });
-    this.authWatchService.currentUser$.subscribe((data) => {
-      this.currentUser = data;
-    });
-    this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
-      this.channelsRoles = data;
-    });
+    this.subscriptions.push(
+      this.communityChannelManagerService.selectedForum$.subscribe((data) => {
+        this.selectedForum = data;
+      }),
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+      }),
+      this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
+        this.channelsRoles = data;
+      }),
+    );
   }
 
   openChat(forumId) {
@@ -75,7 +79,7 @@ export class CommunityForumComponent implements OnInit {
     });
   }
 
-  openDeleteDialogeBox(channelId) {
+  openDeleteDialogBox(channelId) {
     const dialogRef = this.dialogService.open(ArchiveChannelComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
@@ -84,12 +88,12 @@ export class CommunityForumComponent implements OnInit {
         // discussionType: this.discussionType.CHANNEL,
       },
     });
-    // dialogRef.componentRef.instance.updateForm.subscribe(() => {
-    //   dialogRef.close();
-    // });
+    dialogRef.componentRef.instance.updateForm.subscribe(() => {
+      dialogRef.close();
+    });
   }
 
-  openInviteDialogeBox(forum) {
+  openInviteDialogBox(forum) {
     const dialogRef = this.dialogService.open(InviteFormComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
@@ -98,14 +102,12 @@ export class CommunityForumComponent implements OnInit {
         // invite: true,
       },
     });
-    // dialogRef.componentRef.instance.updateForm.subscribe(() => {
-    //   dialogRef.close();
-    // });
+    dialogRef.componentRef.instance.updateForm.subscribe(() => {
+      dialogRef.close();
+    });
   }
 
-  pin() {}
-
-  openEditDialogeBox(forum) {
+  openEditDialogBox(forum) {
     const dialogRef = this.dialogService.open(EditChannelComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
@@ -117,5 +119,9 @@ export class CommunityForumComponent implements OnInit {
     dialogRef.componentRef.instance.updateForm.subscribe(() => {
       dialogRef.close();
     });
+  }
+
+  pin() {
+    // TODO need in future
   }
 }

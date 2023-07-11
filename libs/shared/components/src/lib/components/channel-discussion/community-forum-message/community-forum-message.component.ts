@@ -101,7 +101,8 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   }
 
   share(): void {
-    const shareLink = `localhost:4200/${window.location.pathname}?after=${this.cursor}`;
+    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
+
     this.shareService.shareContent(
       shareLink,
       'Hey, check out this discussion on Commudle',

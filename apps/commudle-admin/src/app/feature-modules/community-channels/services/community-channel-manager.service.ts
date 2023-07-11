@@ -266,7 +266,6 @@ export class CommunityChannelManagerService {
         }
       });
       this.communityChannels.next(groupedChannels);
-      this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
     });
   }
 
@@ -282,7 +281,6 @@ export class CommunityChannelManagerService {
         }
       });
       this.communityForums.next(groupedForums);
-      this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
     });
   }
 

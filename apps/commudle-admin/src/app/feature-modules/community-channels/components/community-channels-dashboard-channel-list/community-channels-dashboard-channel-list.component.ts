@@ -5,6 +5,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-community-channels-dashboard-channel-list',
@@ -15,7 +16,7 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   channels: ICommunityChannel[] = [];
   community: ICommunity;
   displayCommunityList = false;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
 
   constructor(
@@ -35,7 +36,7 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getChannels() {

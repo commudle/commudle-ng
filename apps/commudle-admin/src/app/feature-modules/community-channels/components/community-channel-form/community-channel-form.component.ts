@@ -5,6 +5,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-community-channel-form',
@@ -25,7 +26,7 @@ export class CommunityChannelFormComponent implements OnInit {
   // community channel form
   communityChannelForm;
 
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -84,7 +85,11 @@ export class CommunityChannelFormComponent implements OnInit {
     if (this.existingChannel) {
       this.updateChannel(formData);
     } else {
-      this.communityChannelManagerService.createForum(formData);
+      if (this.discussionType === EDiscussionType.FORUM) {
+        this.communityChannelManagerService.createForum(formData);
+      } else if (this.discussionType === EDiscussionType.CHANNEL) {
+        this.communityChannelManagerService.createChannel(formData);
+      }
     }
 
     this.saved.emit();

@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
@@ -19,10 +20,10 @@ export class EditChannelComponent implements OnInit {
   constructor(private communityChannelManagerService: CommunityChannelManagerService) {}
 
   ngOnInit(): void {
-    this.getChannel();
+    this.getChannelOrForum();
   }
 
-  getChannel() {
+  getChannelOrForum() {
     if (this.channelId) {
       this.channel = this.communityChannelManagerService.findChannel(this.channelId);
     } else {

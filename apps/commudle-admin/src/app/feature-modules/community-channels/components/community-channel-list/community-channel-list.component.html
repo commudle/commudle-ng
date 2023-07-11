@@ -83,6 +83,7 @@
               </div>
               <p *ngIf="currentUser" class="settings">
                 <a
+                  title="Invite"
                   *ngIf="
                     (!channel.is_private &&
                       channelsRoles[channel.id] &&
@@ -96,6 +97,7 @@
                   <nb-icon icon="person-add"></nb-icon>
                 </a>
                 <a
+                  title="Settings"
                   *ngIf="
                     channelsRoles[channel.id] &&
                     (channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)

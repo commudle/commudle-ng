@@ -8,6 +8,7 @@ import { faShieldHeart } from '@fortawesome/free-solid-svg-icons';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-email-join',
@@ -22,6 +23,7 @@ export class EmailJoinComponent implements OnInit {
   communityName;
   channelName;
   faShieldHeart = faShieldHeart;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -39,26 +41,30 @@ export class EmailJoinComponent implements OnInit {
 
   // get channel details
   getChannelInfo() {
-    this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
-      this.communityChannel = data;
-      this.channelName = data.name;
-      this.communityName = data.kommunity.name;
-      this.onAcceptRoleButton();
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
+        this.communityChannel = data;
+        this.channelName = data.name;
+        this.communityName = data.kommunity.name;
+        this.onAcceptRoleButton();
+      }),
+    );
   }
 
   joinChannel(decline?: boolean) {
-    this.communityChannelsService.joinChannel(this.channelId, this.joinToken, decline).subscribe((data) => {
-      if (data) {
-        this.libToasLogService.successDialog('Taking you to the channel!', 2500);
-        void this.router.navigate([
-          '/communities',
-          this.activatedRoute.snapshot.params.community_id,
-          'channels',
-          this.channelId,
-        ]);
-      }
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.joinChannel(this.channelId, this.joinToken, decline).subscribe((data) => {
+        if (data) {
+          this.libToasLogService.successDialog('Taking you to the channel!', 2500);
+          void this.router.navigate([
+            '/communities',
+            this.activatedRoute.snapshot.params.community_id,
+            'channels',
+            this.channelId,
+          ]);
+        }
+      }),
+    );
   }
 
   reject() {

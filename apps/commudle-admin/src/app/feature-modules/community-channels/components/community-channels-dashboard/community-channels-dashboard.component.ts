@@ -123,7 +123,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   getQueryParamsData() {
     this.discussionTypeForum = this.activatedRoute.snapshot.routeConfig.path.includes('forums');
-    this.forumName = this.activatedRoute.snapshot.queryParamMap.get('forum-name');
+    this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
   }
 
@@ -149,18 +149,20 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
       this.channelsCards = false;
       this.channelMessage = true;
     } else if (this.discussionTypeForum && (this.forumName || channel)) {
-      this.communityChannelManagerService.communityForums$.subscribe((data) => {
-        this.communityForums = data;
-        if (this.communityForums) {
-          const selectedForum = Object.keys(this.communityForums)
-            .filter((key) => key === this.forumName)
-            .reduce((obj, key) => {
-              obj[key] = data[key];
-              return data[key];
-            }, {});
-          this.communityChannelManagerService.setForum(selectedForum);
-        }
-      });
+      this.subscriptions.push(
+        this.communityChannelManagerService.communityForums$.subscribe((data) => {
+          this.communityForums = data;
+          if (this.communityForums) {
+            const selectedForum = Object.keys(this.communityForums)
+              .filter((key) => key === this.forumName)
+              .reduce((obj, key) => {
+                obj[key] = data[key];
+                return data[key];
+              }, {});
+            this.communityChannelManagerService.setForum(selectedForum);
+          }
+        }),
+      );
       this.forumsCards = false;
       this.forumsNamesList = true;
     }

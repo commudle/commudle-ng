@@ -1,37 +1,36 @@
-import { Component, Input, OnInit } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatchStringValidator } from 'apps/shared-helper-modules/custom-validators.validator';
-import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 
 @Component({
   selector: 'app-archive-channel',
   templateUrl: './archive-channel.component.html',
   styleUrls: ['./archive-channel.component.scss'],
 })
-export class ArchiveChannelComponent implements OnInit {
+export class ArchiveChannelComponent {
   @Input() channelId;
+  @Output() updateForm = new EventEmitter<string>();
 
   discussionType = EDiscussionType;
 
   deleteForm;
 
-  constructor(
-    private fb: FormBuilder,
-    private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-  ) {
+  constructor(private fb: FormBuilder, private communityChannelManagerService: CommunityChannelManagerService) {
     this.deleteForm = this.fb.group({
       confirmation: ['', [Validators.required, MatchStringValidator('YES')]],
     });
   }
 
-  ngOnInit(): void {}
-
   submitForm() {
     this.communityChannelManagerService.deleteChannel(this.channelId, this.discussionType.CHANNEL);
-    this.router.navigate([this.activatedRoute.parent.parent]);
+    window.location.reload();
+    this.formUpdate();
+  }
+
+  formUpdate() {
+    this.updateForm.emit('updated');
   }
 }

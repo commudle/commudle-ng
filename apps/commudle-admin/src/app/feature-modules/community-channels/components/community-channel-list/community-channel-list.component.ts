@@ -62,13 +62,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
       }),
-      // this.communityChannelManagerService.selectedCommunity$.subscribe((data) => {
-      //   this.selectedCommunity = data;
-      // }),
-      // this.communityChannelManagerService.communityChannels$.subscribe((data) => {
-      //   this.groupedChannels = data;
-      // }),
-      // TODO lets remove it
+
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
         this.channelsRoles = data;
       }),
@@ -76,13 +70,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
         this.channelNotifications = data.map((a) => a.id);
         this.markRead();
       }),
-      // this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
-      //   this.selectedChannel = data;
-      //   if (this.selectedChannel) {
-      //     // this.setMeta();
-      //   }
-      //   this.markRead();
-      // }),
     );
   }
 
@@ -122,13 +109,16 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   inviteDialogBox(channelId) {
-    this.dialogService.open(ChannelSettingsComponent, {
+    const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
       context: {
         channelId: channelId,
         invite: true,
       },
+    });
+    dialogRef.componentRef.instance.updateForm.subscribe(() => {
+      dialogRef.close();
     });
   }
 

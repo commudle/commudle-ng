@@ -1,11 +1,13 @@
-<div class="com-h-24 com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
+<div class="com-h-[60px] com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
   <div *ngIf="forum" class="com-my-auto com-mx-4 com-flex com-gap-3">
-    <div (click)="selectedCommunityForum()">
+    <div (click)="selectedCommunityForum()" class="com-cursor-pointer">
       <fa-icon [icon]="faArrowLeftLong" class="com-text-3xl"></fa-icon>
     </div>
     <div class="">
-      <span class="com-text-2xl com-line-clamp-2 com-text-[#344054]"> {{ forum.name }} </span>
-      <span class="ccom-text-sm com-line-clamp-1 com-text-[#545861]"> {{ forum.group_name | titlecase }} </span>
+      <span class="com-text-2xl com-line-clamp-1 com-text-[#344054]"> {{ forum.name }} </span>
+      <span class="ccom-text-sm com-text-[#545861]">
+        {{ forum.group_name | titlecase }} : {{ forum.description }}
+      </span>
     </div>
   </div>
 </div>

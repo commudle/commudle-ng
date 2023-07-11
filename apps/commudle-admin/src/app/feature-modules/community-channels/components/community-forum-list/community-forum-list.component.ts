@@ -13,8 +13,6 @@ import { Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
-import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
-import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 interface EGroupedCommunityChannels {
@@ -54,40 +52,20 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
-    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   ngOnInit() {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
-        // if (data) {
-        //   this.channelsQueried = true;
-        //   if (this.activatedRoute.snapshot.params.community_channel_id) {
-        //     this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
-        //     this.showChannelsComponent = true;
-        //   }
-        // }
       }),
-    );
-    this.subscriptions.push(
+
       this.activatedRoute.parent.data.subscribe((data) => {
         this.selectedCommunity = data.community;
-        // this.getChannels();
-        // this.communityChannelManagerService.setCommunityListview(false);
       }),
-    );
-    this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
       }),
-      // this.communityChannelManagerService.selectedCommunity$.subscribe((data) => {
-      //   this.selectedCommunity = data;
-      // }),
-      // this.communityChannelManagerService.communityChannels$.subscribe((data) => {
-      //   this.groupedChannels = data;
-      // }),
-      // TODO lets remove it
       this.communityChannelManagerService.communityRoles$.subscribe((data) => {
         this.communityRoles = data;
       }),
@@ -129,9 +107,8 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   selectedCommunityForum(forumName) {
     this.selectedForumName = forumName.key;
     this.updateSelectedForum.emit(forumName.value);
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { 'forum-name': forumName ? forumName.key : 'general' },
+    this.router.navigate(['communities', this.selectedCommunity.slug, 'forums'], {
+      queryParams: { category: forumName ? forumName.key : 'general' },
     });
     this.communityChannelManagerService.setForum(forumName.value);
   }
@@ -143,27 +120,6 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,
-      },
-    });
-  }
-
-  inviteDialogBox(channelId) {
-    this.dialogService.open(ChannelSettingsComponent, {
-      closeOnBackdropClick: false,
-      hasBackdrop: false,
-      context: {
-        channelId: channelId,
-        invite: true,
-      },
-    });
-  }
-
-  editDialogBox(channelId) {
-    this.dialogService.open(ChannelSettingsComponent, {
-      closeOnBackdropClick: false,
-      hasBackdrop: false,
-      context: {
-        channelId: channelId,
       },
     });
   }

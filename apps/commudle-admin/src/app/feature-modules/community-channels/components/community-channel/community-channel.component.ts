@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, Input, OnChanges, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
@@ -11,6 +12,7 @@ import * as moment from 'moment';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { NbPopoverDirective } from '@commudle/theme';
 import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-community-channel',
@@ -20,7 +22,7 @@ import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-mod
 export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   @Input() selectedChannelId: number;
   @Input() selectedChannel: ICommunityChannel;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
   discussion: IDiscussion;
   initialized = false;
   notFound = false;
@@ -104,14 +106,12 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     this.allActions = this.communityChannelChannel.ACTIONS;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.initialize();
   }
 
   ngOnDestroy(): void {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   checkAdmin() {

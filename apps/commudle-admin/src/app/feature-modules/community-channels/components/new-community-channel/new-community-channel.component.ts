@@ -4,6 +4,7 @@ import { NbDialogService } from '@commudle/theme';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-community-channel',
@@ -16,13 +17,11 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
   @ViewChild('newCommunityChannelFormTemplate', { static: true }) formTemplate: TemplateRef<any>;
   dialogRef;
   community: ICommunity;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
 
   constructor(
     private dialogService: NbDialogService,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private seoService: SeoService,
   ) {}
 
@@ -32,16 +31,6 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
         this.community = data;
       }),
     );
-
-    // this.subscriptions.push(
-    //   // get the channel category name (optional)
-    //   this.activatedRoute.queryParams.subscribe((data) => {
-    //     if (data.group_name) {
-    //       this.groupName = data.group_name;
-    //     }
-    //   }),
-    // );
-
     this.openForm();
     this.seoService.noIndex(true);
   }
@@ -49,16 +38,11 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.dialogRef.close();
     this.seoService.noIndex(false);
-    for (const subscription of this.subscriptions) {
-      subscription.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   openForm() {
     this.dialogRef = this.dialogService.open(this.formTemplate);
-    this.dialogRef.onClose.subscribe(() => {
-      this.router.navigate([{ outlets: { p: null } }], { relativeTo: this.activatedRoute.parent });
-    });
   }
 
   closeForm() {

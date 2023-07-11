@@ -4,7 +4,6 @@ import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feat
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { Subscription } from 'rxjs';
-import { RandomColorsService } from 'apps/shared-services/random-colors.service';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -19,27 +18,20 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   subscriptions: Subscription[] = [];
   communityForums: EGroupedCommunityChannels;
   selectedCommunity: ICommunity;
-  randomColor = [];
-
   @Output() updateSelectedForum = new EventEmitter<any>();
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private RandomColorsService: RandomColorsService,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
-        if (this.communityForums) {
-          this.randomColor = this.RandomColorsService.generateArray(Object.keys(this.communityForums).length);
-        }
       }),
-    );
-    this.subscriptions.push(
+
       this.activatedRoute.parent.data.subscribe((data) => {
         this.selectedCommunity = data.community;
       }),
@@ -50,8 +42,8 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.updateSelectedForum.emit(forumName.value);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: { 'forum-name': forumName ? forumName.key : 'general' },
-      queryParamsHandling: 'merge', // remove to replace all query params by provided
+      queryParams: { category: forumName ? forumName.key : 'general' },
+      queryParamsHandling: 'merge',
     });
     this.communityChannelManagerService.setForum(forumName.value);
   }
