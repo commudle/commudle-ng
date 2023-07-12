@@ -1,10 +1,12 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
-import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
+import { SeoService } from 'apps/shared-services/seo.service';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'commudle-public-home-list-speakers-profile',
   templateUrl: './public-home-list-speakers-profile.component.html',
@@ -22,7 +24,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   month = false;
   year = false;
   allTime = false;
-  queryParams: { [key: string]: any } = {};
+  queryParamsString = '';
   employment: string;
   employer = false;
   employee = false;
@@ -38,6 +40,8 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
+    private seoService: SeoService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -45,102 +49,104 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seoService.setTags(
+      'Speakers - Find & Connect With Tech & Design Speakers',
+      'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+
     this.search();
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (Object.keys(params).length > 0) {
-        if (params['monthly'] || params['yearly']) {
-          if (params['monthly']) {
-            this.timePeriod = 'monthly';
-            this.month = true;
-            this.year = false;
-          }
-          if (params['yearly']) {
-            this.timePeriod = 'yearly';
-            this.month = false;
-            this.year = true;
-          }
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.monthly || params.yearly) {
+        if (params.monthly) {
+          this.timePeriod = 'monthly';
+          this.month = true;
+          this.year = false;
         }
-        if (params['employer'] || params['employee']) {
-          if (params['employer']) {
-            this.employment = 'employer';
-            this.employer = true;
-            this.employee = false;
-          }
-          if (params['employee']) {
-            this.employment = 'employee';
-            this.employer = false;
-            this.employee = true;
-          }
+        if (params.yearly) {
+          this.timePeriod = 'yearly';
+          this.month = false;
+          this.year = true;
         }
-        this.speakers = [];
-        this.getSpeakersList();
+      }
+      if (params.employer || params.employee) {
+        if (params.employer) {
+          this.employment = 'employer';
+          this.employer = true;
+          this.employee = false;
+        }
+        if (params.employee) {
+          this.employment = 'employee';
+          this.employer = false;
+          this.employee = true;
+        }
       }
       this.speakers = [];
       this.getSpeakersList();
-    });
+    }
+    this.speakers = [];
+    this.getSpeakersList();
   }
 
   filterByTime() {
     if (this.timePeriod === 'monthly') {
       this.month = true;
       this.year = false;
-      this.queryParams = {
-        monthly: true,
-      };
     }
     if (this.timePeriod === 'yearly') {
       this.month = false;
       this.year = true;
-      this.queryParams = {
-        yearly: true,
-      };
     }
 
     if (this.employment === 'employer') {
-      this.queryParams.employer = true;
+      this.employer = true;
     }
     if (this.employment === 'employee') {
-      this.queryParams.employee = true;
+      this.employee = true;
     }
     this.speakers = [];
     this.page_info = null;
-    this.router.navigate([], { queryParams: this.queryParams });
+    this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
   }
 
   filterByEmployment() {
     if (this.employment === 'employer') {
       this.employer = true;
       this.employee = false;
-      this.queryParams = {
-        employer: true,
-      };
     }
     if (this.employment === 'employee') {
       this.employer = false;
       this.employee = true;
-      this.queryParams = {
-        employee: true,
-      };
     }
 
     if (this.month) {
-      this.queryParams.month = true;
+      this.month = true;
     }
     if (this.year) {
-      this.queryParams.year = true;
+      this.year = true;
     }
     this.speakers = [];
     this.page_info = null;
-    this.router.navigate([], { queryParams: this.queryParams });
+    this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
   }
 
   search() {
+    this.query = '';
     this.searchForm.valueChanges
       .pipe(
         debounceTime(800),
+        distinctUntilChanged(),
         switchMap(() => {
+          if (this.isLoadingSearch) {
+            return;
+          }
           this.speakers = [];
+          this.isLoadingSearch = true;
           this.query = this.searchForm.get('name').value;
+          this.queryParamsString = this.query;
+          this.location.replaceState(location.pathname, this.queryParamsString);
+          this.generateParams(this.month, this.year, this.employee, this.employer, this.queryParamsString);
           return this.communitiesService.getSpeakersList(
             false,
             this.page_info?.end_cursor,
@@ -154,10 +160,35 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
         }),
       )
       .subscribe((data) => {
-        this.speakers = data.page.reduce((acc, value) => [...acc, ...value.data], []);
+        this.speakers = data.page.reduce((acc, value) => [...acc, value.data], []);
         this.page = +data.page;
         this.totalSearch = data.total;
+        this.isLoadingSearch = false;
       });
+  }
+
+  generateParams(monthly, yearly, employee, employer, query) {
+    const queryParams: { [key: string]: any } = {};
+    if (monthly) {
+      queryParams.monthly = true;
+    }
+
+    if (yearly) {
+      queryParams.yearly = true;
+    }
+
+    if (employee) {
+      queryParams.employee = true;
+    }
+
+    if (employer) {
+      queryParams.employer = true;
+    }
+
+    if (query) {
+      queryParams.query = query;
+    }
+    this.router.navigate([], { queryParams: queryParams });
   }
 
   getSpeakersList() {
