@@ -9,8 +9,9 @@
       size="tiny"
       status="base"
       class="com-h-min"
+      nbTooltip="Start a new topic and forum"
     >
-      <nb-icon icon="plus"></nb-icon>
+      New Topic
     </button>
   </div>
   <nb-accordion class="forum-group">
@@ -23,7 +24,7 @@
       <nb-accordion-item-body *ngFor="let frGroup of communityForums | keyvalue" class="group-name">
         <div [ngClass]="{ selectedForum: frGroup.key === this.selectedForumName }">
           <p class="com-m-0" (click)="selectedCommunityForum(frGroup)">
-            {{ (frGroup.key | titlecase) || 'GENERAL' }}
+            {{ (frGroup.key | titlecase) || 'General' }}
           </p>
         </div>
       </nb-accordion-item-body>

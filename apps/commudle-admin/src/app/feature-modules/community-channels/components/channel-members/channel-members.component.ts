@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
@@ -25,6 +25,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   count = 20;
   currentUser: ICurrentUser;
   currentUserIsAdmin = false;
+  @Output() closeMembersList = new EventEmitter<number>();
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -119,6 +120,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.router.navigate(['../']);
+    this.closeMembersList.emit();
   }
 }

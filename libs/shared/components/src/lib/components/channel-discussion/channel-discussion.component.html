@@ -1,5 +1,9 @@
 <div class="discussion-container">
   <!-- TODO: Fix problem with infinite scroll -->
+
+  <div *ngIf="communityChannelHandlerService.loading$ | async" class="com-flex com-items-center com-justify-center">
+    <commudle-loading-spinner></commudle-loading-spinner>
+  </div>
   <div
     #messagesListRef
     (scrolled)="communityChannelHandlerService.getMessagesBefore()"
@@ -38,23 +42,31 @@
   <ng-template #noMessages>
     <div class="no-messages">Start a new conversation!</div>
   </ng-template>
-  <div
-    *ngIf="
-      (channelsRoles[channelOfForum.id] &&
-        (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
-          channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))) ||
-        (forumsRoles[channelOfForum.id] &&
-          (forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
-            forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)));
-      else joinButton
-    "
-  >
-    <commudle-editor
-      (contentChange)="communityChannelHandlerService.sendMessage($event)"
-      *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn"
-      [validators]="validators"
-      [status]="'primary'"
-    ></commudle-editor>
+  <div *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn">
+    <div
+      *ngIf="
+        (channelsRoles[channelOfForum.id] &&
+          (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))) ||
+          (forumsRoles[channelOfForum.id] &&
+            (forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+              forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)));
+        else joinButton
+      "
+    >
+      <commudle-editor
+        (contentChange)="communityChannelHandlerService.sendMessage($event)"
+        *ngIf="
+          !channelOfForum.is_readonly ||
+          (channelsRoles[channelOfForum.id] &&
+            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
+          (forumsRoles[channelOfForum.id] &&
+            forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+        "
+        [validators]="validators"
+        [status]="'primary'"
+      ></commudle-editor>
+    </div>
   </div>
   <ng-template #notLoggedIn>
     <a [routerLink]="['/login']" nbButton status="primary">
@@ -63,7 +75,7 @@
     </a>
   </ng-template>
   <ng-template #joinButton>
-    <a (click)="joinChannelButton()" nbButton status="primary">
+    <a (click)="joinChannelButton()" nbButton status="primary" fullWidth>
       <nb-icon icon="log-in-outline"></nb-icon>
       Join This Channel
     </a>

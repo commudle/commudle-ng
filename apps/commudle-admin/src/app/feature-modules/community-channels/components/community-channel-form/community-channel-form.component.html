@@ -48,6 +48,13 @@
       </label>
     </div>
 
+    <div class="field" *ngIf="discussionType === EDiscussionType.FORUM">
+      <label fullWidth>
+        <span>Category Name*</span>
+        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
+      </label>
+    </div>
+
     <div class="field">
       <label fullWidth>
         Description*
@@ -64,9 +71,9 @@
       </nb-checkbox>
     </div>
 
-    <div class="field">
+    <div class="field" class="field" *ngIf="discussionType === EDiscussionType.CHANNEL">
       <label fullWidth>
-        <span>{{ discussionType === EDiscussionType.CHANNEL ? ' Group Name (optional)' : 'Category Name*' }}</span>
+        <span>Group Name (optional)</span>
         <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
       </label>
     </div>

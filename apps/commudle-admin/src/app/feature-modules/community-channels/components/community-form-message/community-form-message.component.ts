@@ -51,7 +51,7 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
   selectedCommunityForum() {
     this.updateSelectedForum.emit(this.forum);
     this.router.navigate(['communities', this.forum.kommunity.id, 'forums'], {
-      queryParams: { category: this.forum.group_name },
+      queryParams: { category: this.forum.group_name ? this.forum.group_name : 'General' },
     });
   }
 }

@@ -14,6 +14,9 @@ export class CommunityChannelHandlerService {
   private messages = new BehaviorSubject<IPage<IUserMessage>[]>([]);
   messages$ = this.messages.asObservable();
 
+  private isMessageLoading = new BehaviorSubject<boolean>(true);
+  isMessageLoading$ = this.isMessageLoading.asObservable();
+
   private permittedActions = new BehaviorSubject<string[]>([]);
   permittedActions$ = this.permittedActions.asObservable();
 
@@ -201,6 +204,7 @@ export class CommunityChannelHandlerService {
     this._getMessages(fromLastRead).subscribe((data) => {
       this.messages.next(data.page);
       this.pageInfo.next(data.page_info);
+      this.isMessageLoading.next(false);
       // TODO: FInd a better way to do this
       if (fromLastRead && !this.scrollToMessageId) {
         if (this.messages.value.map((message) => message.data.read).includes(false)) {
@@ -246,9 +250,14 @@ export class CommunityChannelHandlerService {
 
   getMessagesAround() {
     if (!this.loading.value) {
-      this.loading.next(true);
+      this.loading.next(false);
       // TODO: Make this better
       this._getMessagesAfter().subscribe((data) => {
+        console.log(
+          '🚀 ~ file: community-channel-handler.service.ts:255 ~ CommunityChannelHandlerService ~ this._getMessagesAfter ~ data:',
+          data,
+        );
+        this.isMessageLoading.next(true);
         this.messages.next(data.page);
         this.pageInfo.next(data.page_info);
         this._getMessagesBefore().subscribe((value) => {

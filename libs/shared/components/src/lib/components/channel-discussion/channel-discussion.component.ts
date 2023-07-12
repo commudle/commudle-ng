@@ -68,6 +68,7 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   ngOnInit(): void {
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
+      console.log(this.channelsRoles[this.channelOfForum.id]);
     });
     this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
       this.forumsRoles = data;

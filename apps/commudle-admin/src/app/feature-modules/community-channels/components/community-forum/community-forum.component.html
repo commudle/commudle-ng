@@ -1,20 +1,18 @@
 <section>
-  <div *ngIf="currentUser && isCommunityOrganizer">
-    <button
-      (click)="newChannelDialogBox(selectedForum[0].group_name); $event.stopPropagation()"
-      nbButton
-      status="warning"
-      size="small"
-    >
-      <nb-icon icon="plus"></nb-icon> New Discussion
-    </button>
+  <div class="com-flex com-gap-2 com-items-center">
+    <div class="topic">Discussions</div>
+    <div *ngIf="currentUser && isCommunityOrganizer">
+      <button
+        (click)="newChannelDialogBox(selectedForum[0].group_name); $event.stopPropagation()"
+        nbButton
+        status="warning"
+        size="small"
+      >
+        <nb-icon icon="plus"></nb-icon>
+      </button>
+    </div>
   </div>
   <table style="width: 100%">
-    <tr>
-      <th><p class="topic">Topics</p></th>
-      <!-- <th>Replies</th> -->
-      <!-- <th>Activity</th> -->
-    </tr>
     <tr *ngFor="let forum of selectedForum" class="forum-list">
       <td (click)="openChat(forum.id)" class="com-w-4/5">
         <div>

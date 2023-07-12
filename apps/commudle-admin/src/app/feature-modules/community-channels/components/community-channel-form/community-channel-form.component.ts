@@ -38,7 +38,7 @@ export class CommunityChannelFormComponent implements OnInit {
       logo: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      group_name: ['', this.discussionType === 'forum' ? Validators.required : ''],
+      group_name: ['General', this.discussionType === 'forum' ? Validators.required : ''],
       is_private: [false, Validators.required],
       is_readonly: [false, Validators.required],
       display_type: [''],

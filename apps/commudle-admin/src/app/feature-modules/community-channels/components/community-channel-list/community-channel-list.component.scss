@@ -26,7 +26,7 @@
         list-style: none;
         @apply com-p-0 com-my-0;
         li {
-          @apply com-px-6 com-py-2 com-flex com-justify-between com-flex-nowrap com-items-center com-gap-2 hover:com-bg-[#EEE]/40;
+          @apply com-px-6 com-py-2 com-flex com-justify-between com-flex-nowrap com-items-center com-gap-2 hover:com-bg-[#EEE]/40 com-relative;
           .details {
             @apply com-w-full com-flex com-items-center com-gap-3;
             .logo {
@@ -64,7 +64,7 @@
               padding: 0 3px;
               @apply com-cursor-pointer;
               nb-icon {
-                @apply com-text-base com-text-[#475166]  hover:com-text-primary-500;
+                @apply com-text-sm com-text-[#475166]/70  hover:com-text-primary-500;
               }
             }
           }

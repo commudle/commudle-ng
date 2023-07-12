@@ -4,17 +4,17 @@
       <div>
         <p class="margin0 fontw-300">
           <nb-icon icon="people" status="basic"></nb-icon>
-          Members ({{allUsers.length}})
+          Members ({{ allUsers.length }})
         </p>
       </div>
-      <span [routerLink]="['../']" class="clickable">
+      <span (click)="close()" class="clickable">
         <small>
           <nb-icon icon="close-circle" status="basic"></nb-icon>
         </small>
       </span>
     </nb-card-header>
     <nb-list>
-      <nb-list-item *ngFor="let u of allUsers; let i=index">
+      <nb-list-item *ngFor="let u of allUsers; let i = index">
         <div>
           <app-member
             (exitChannel)="leaveChannel(i)"

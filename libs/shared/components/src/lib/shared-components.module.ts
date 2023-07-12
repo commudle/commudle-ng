@@ -12,7 +12,7 @@ import { ChannelDiscussionComponent } from './components/channel-discussion/chan
 import { CommunityChannelMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-channel-message/community-channel-message.component';
 import { CommunityForumMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-forum-message/community-forum-message.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 @NgModule({
   declarations: [
     DiscussionComponent,
@@ -21,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ChannelDiscussionComponent,
     CommunityChannelMessageComponent,
     CommunityForumMessageComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,

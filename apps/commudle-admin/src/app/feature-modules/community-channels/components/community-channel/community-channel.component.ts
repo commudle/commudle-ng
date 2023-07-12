@@ -1,18 +1,12 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
-import { Component, Input, OnChanges, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
-import { IUserMessage } from 'apps/shared-models/user_message.model';
-import * as moment from 'moment';
-import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { NbPopoverDirective } from '@commudle/theme';
-import { CommunityChannelChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
 import { Subscription } from 'rxjs';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-channel',
@@ -21,77 +15,36 @@ import { Subscription } from 'rxjs';
 })
 export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   @Input() selectedChannelId: number;
-  @Input() selectedChannel: ICommunityChannel;
+  selectedChannel: ICommunityChannel;
   subscriptions: Subscription[] = [];
   discussion: IDiscussion;
   initialized = false;
   notFound = false;
-  displayCommunityList = false;
-  hasNotifications = false;
-  sidebarOpen = false;
-  faThumbtack = faThumbtack;
-  pinnedMessages: IUserMessage[];
-  latestPinnedMessage: IUserMessage;
-  moment = moment;
-  isAdmin: boolean;
-  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
   channelRoles = {};
-  permittedActions = [];
-  allActions;
+  showMembersList = false;
+  isLoading = true;
+
+  faUsers = faUsers;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
-    private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
-    private communityChannelsService: CommunityChannelsService,
-    private communityChannelChannel: CommunityChannelChannel,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe((data) => {
         if (data && !this.initialized) {
-          // this.initialize();
           this.initialized = true;
         } else if (this.initialized && this.selectedChannel) {
-          this.communityChannelManagerService.setChannel(
-            this.communityChannelManagerService.findChannel(this.selectedChannel.id),
-          );
-          this.getDiscussion(this.selectedChannel.id);
+          this.communityChannelManagerService.findChannel(this.selectedChannel.id),
+            this.getDiscussion(this.selectedChannel.id);
         }
       }),
       this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
         this.selectedChannel = data;
-      }),
-      this.communityChannelNotificationsChannel.hasNotifications$.subscribe((data) => {
-        this.hasNotifications = data;
-      }),
-    );
-
-    // this.getPinnedMessages();
-
-    this.subscriptions.push(
-      this.communityChannelManagerService.pinData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case 'pin': {
-              this.pinnedMessages.unshift(data.user_message);
-              this.latestPinnedMessage = data.user_message;
-              break;
-            }
-            case 'unpin': {
-              const idx = this.pinnedMessages.findIndex((pinnedMessage) => pinnedMessage.id === data.user_message.id);
-              if (idx !== -1) {
-                if (idx === 0) {
-                  this.latestPinnedMessage = null;
-                }
-                this.pinnedMessages.splice(idx, 1);
-              }
-              break;
-            }
-          }
-        }
       }),
     );
 
@@ -100,56 +53,17 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
         this.channelRoles = data;
       }),
     );
-
-    this.checkAdmin();
-
-    this.allActions = this.communityChannelChannel.ACTIONS;
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     this.initialize();
+    const url = this.activatedRoute.snapshot.url.join('/');
+    this.showMembersList = url.endsWith('/members');
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-  }
-
-  checkAdmin() {
-    this.subscriptions.push(
-      this.communityChannelManagerService.userPermissions$.subscribe((permissions: string[]) => {
-        if (permissions.length) {
-          this.isAdmin = permissions.includes('unpin');
-          this.permittedActions = permissions;
-        }
-      }),
-    );
-  }
-
-  getPinnedMessages() {
-    // this.channelsStore.selectedChannel$.subscribe((channels) => {
-    this.subscriptions.push(
-      this.communityChannelsService.getPinnedMessages(this.selectedChannelId).subscribe((response) => {
-        this.pinnedMessages = response;
-        this.pinnedMessages = this.pinnedMessages.filter((item) => item !== null);
-        this.latestPinnedMessage = this.pinnedMessages[0];
-      }),
-    );
-    // });
-  }
-
-  removePinnedMessage(message: IUserMessage) {
-    this.subscriptions.push(
-      this.communityChannelsService.unpinMessage(message.id, this.selectedChannelId).subscribe(() => {}),
-    );
-  }
-
-  scrollToMessage(message: IUserMessage) {
-    this.communityChannelManagerService.setScrollToMessage(message);
-    this.popovers.forEach((popover) => {
-      if (popover.context === 'pinnedMessagesPopover') {
-        popover.hide();
-      }
-    });
   }
 
   closeChannelMembersList() {
@@ -171,14 +85,23 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getDiscussion(channelId) {
-    this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe((data) => {
-      this.discussion = data;
-      this.communityChannelManagerService.setCommunityListview(false);
-    });
+    this.isLoading = true;
+    this.subscriptions.push(
+      this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe((data) => {
+        this.discussion = data;
+        this.isLoading = false;
+        this.communityChannelManagerService.setCommunityListview(false);
+      }),
+    );
   }
 
-  toggleCommunityListDisplay() {
-    this.communityChannelManagerService.setCommunityListview(!this.displayCommunityList);
-    this.displayCommunityList = !this.displayCommunityList;
+  redirectToMembers() {
+    const url = this.activatedRoute.snapshot.url.join('/');
+    const currentUrl = this.router.url;
+    if (url.endsWith('/members')) {
+      this.closeChannelMembersList();
+    } else {
+      this.router.navigate([currentUrl, 'members']);
+    }
   }
 }

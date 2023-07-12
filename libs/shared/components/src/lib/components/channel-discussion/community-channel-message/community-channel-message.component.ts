@@ -88,20 +88,20 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
           this.sendMessageByEmail(this.message.id);
         }
       });
-    if (this.authService.getCurrentUser().id === this.message.user.id) {
+    if (this.authService.getCurrentUser()?.id === this.message.user.id) {
       this.contextMenuItems.push({
         title: 'Edit',
       });
     }
     if (
-      this.authService.getCurrentUser().id === this.message.user.id ||
-      this.channelsRoles[this.channelOrForumId].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+      this.authService.getCurrentUser()?.id === this.message.user.id ||
+      this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
     ) {
       this.contextMenuItems.push({
         title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
       });
     }
-    if (this.channelsRoles[this.channelOrForumId].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
+    if (this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
       this.contextMenuItems.push({
         title: 'Email to all members',
       });

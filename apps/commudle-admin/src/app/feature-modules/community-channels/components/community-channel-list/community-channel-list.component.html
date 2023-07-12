@@ -69,17 +69,10 @@
                     </span>
                     {{ channel.name }}
                   </a>
-                  <span *ngIf="selectedChannel?.id === channel.id" class="com-bg-red-500 com-h-1 com-w-5"></span>
-                  <app-badge
-                    *ngIf="
-                      channelNotifications.includes(channel.id) &&
-                      (!selectedChannel || selectedChannel.id !== channel.id)
-                    "
-                    [color]="'red'"
-                    [dotMode]="true"
-                    [position]="'top right'"
-                  ></app-badge>
                 </p>
+              </div>
+              <div *ngIf="channelNotifications.includes(channel.id) && selectedChannelId !== channel.id">
+                <app-badge [dotMode]="true" [color]="'com-bg-red-500'" [position]="'right center'"></app-badge>
               </div>
               <p *ngIf="currentUser" class="settings">
                 <a

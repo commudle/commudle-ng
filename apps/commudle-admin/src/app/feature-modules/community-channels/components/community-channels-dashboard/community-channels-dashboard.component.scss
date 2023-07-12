@@ -1,7 +1,7 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
 .community-channels-dashboard {
-  @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-1 com-h-[700px] com-w-full;
+  @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-0 com-h-[700px] com-w-full com-rounded-lg;
 
   .community-channel-list {
     @apply com-bg-[#F9F9F9] com-overflow-hidden com-h-full;

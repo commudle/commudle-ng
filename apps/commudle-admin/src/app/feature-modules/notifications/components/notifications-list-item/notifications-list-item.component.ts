@@ -127,7 +127,6 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         break;
       case ENotificationParentTypes.COMMUNITY_CHANNEL:
         addQueryParams = false;
-        console.log(value);
         url = ['/communities', value['kommunity_slug'], 'channels', slug];
         break;
     }
