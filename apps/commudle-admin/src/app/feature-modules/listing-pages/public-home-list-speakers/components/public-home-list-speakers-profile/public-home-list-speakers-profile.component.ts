@@ -142,10 +142,10 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
             return;
           }
           this.speakers = [];
+          this.page_info = null;
           this.isLoadingSearch = true;
           this.query = this.searchForm.get('name').value;
           this.queryParamsString = this.query;
-          this.location.replaceState(location.pathname, this.queryParamsString);
           this.generateParams(this.month, this.year, this.employee, this.employer, this.queryParamsString);
           return this.communitiesService.getSpeakersList(
             false,
@@ -188,7 +188,9 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     if (query) {
       queryParams.query = query;
     }
-    this.router.navigate([], { queryParams: queryParams });
+    const urlSearchParams = new URLSearchParams(queryParams);
+    const queryParamsString = urlSearchParams.toString();
+    this.location.replaceState(location.pathname, queryParamsString);
   }
 
   getSpeakersList() {
