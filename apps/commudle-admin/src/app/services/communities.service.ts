@@ -111,6 +111,7 @@ export class CommunitiesService {
     year?: boolean,
     employer?: boolean,
     employee?: boolean,
+    community_id?: any,
   ): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
     if (mini) {
@@ -136,6 +137,9 @@ export class CommunitiesService {
     }
     if (employee) {
       params = params.set('employee', employee);
+    }
+    if (community_id) {
+      params = params.set('community_id', community_id);
     }
     return this.http.get<IPagination<ISpeakers>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.SPEAKERS),

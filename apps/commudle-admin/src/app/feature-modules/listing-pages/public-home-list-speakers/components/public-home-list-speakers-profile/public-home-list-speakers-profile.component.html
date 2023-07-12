@@ -17,7 +17,7 @@
   </form>
   <div class="filters">
     <nb-select
-      placeholder="Employment"
+      placeholder="Hiring / Looking for work"
       size="small"
       shape="round"
       status="basic"
@@ -30,7 +30,7 @@
       <nb-option value="employee">Looking for work</nb-option>
     </nb-select>
     <nb-select
-      placeholder="Most Popular"
+      placeholder="Sort"
       size="small"
       shape="round"
       status="basic"
@@ -39,8 +39,8 @@
       (selectedChange)="filterByTime()"
       filled
     >
-      <nb-option value="monthly"> Highest upvoted this month</nb-option>
-      <nb-option value="yearly">Highest upvoted this year</nb-option>
+      <nb-option value="monthly"> Speaker this month</nb-option>
+      <nb-option value="yearly">Speaker this year</nb-option>
     </nb-select>
   </div>
 </div>

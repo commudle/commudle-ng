@@ -1,6 +1,6 @@
 <nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
   <nb-card-body>
-    <a [routerLink]="">
+    <a [routerLink]="['/users', speakersContent.user.username]">
       <div class="tags-and-logo">
         <app-tag
           *ngIf="speakersTagsLength > 0"

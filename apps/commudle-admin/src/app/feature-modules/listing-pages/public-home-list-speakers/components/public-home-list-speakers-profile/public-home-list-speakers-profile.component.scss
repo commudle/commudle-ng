@@ -7,7 +7,7 @@
   .filters {
     @apply com-flex md:com-items-center com-flex-col md:com-flex-row;
     .employment-filter {
-      @apply md:com-mr-3 com-mr-0 com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[156px] com-w-full md:com-mb-0 com-mb-3;
+      @apply md:com-mr-3 com-mr-0 com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[212px] com-w-full md:com-mb-0 com-mb-3;
     }
     .most-popular-filter {
       @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[224px] com-w-full;
@@ -19,7 +19,7 @@
 }
 
 .speakers {
-  @apply com-flex com-flex-col com-flex-wrap md:com-gap-x-6 com-gap-y-6 md:com-gap-y-10 md:com-flex-row md:com-my-10 com-mt-8 com-m-0 com-mx-4 md:com-mx-0;
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 md:com-gap-x-6 com-gap-y-6 md:com-gap-y-10 md:com-my-10 com-mt-8 com-m-0 com-mx-4 md:com-mx-0;
 }
 
 .view-more-button {
