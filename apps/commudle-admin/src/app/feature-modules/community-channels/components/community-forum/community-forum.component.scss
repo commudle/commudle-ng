@@ -43,7 +43,7 @@ table {
   @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
 }
 
-.forum-list:not(:first-child):hover {
+.forum-list:hover {
   @apply hover:com-bg-Bright-Gray/30;
   .icons {
     @apply com-flex com-justify-around;

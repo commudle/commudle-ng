@@ -1,6 +1,6 @@
 <section>
   <div class="com-flex com-gap-2 com-items-center">
-    <div class="topic">Discussions</div>
+    <div class="topic" *ngIf="selectedForum">{{ selectedForum[0].group_name | titlecase }}</div>
     <div *ngIf="currentUser && isCommunityOrganizer">
       <button
         (click)="newChannelDialogBox(selectedForum[0].group_name); $event.stopPropagation()"
@@ -18,7 +18,7 @@
         <div>
           <p class="category">{{ forum.name | titlecase }}</p>
           <div class="com-flex com-space-x-2">
-            <p class="group-name">{{ (forum.group_name | titlecase) || 'General' }}</p>
+            <p class="group-name">{{ (forum.description | titlecase) || 'General' }}</p>
             <div class="readonly badge" *ngIf="forum.is_readonly">
               <span> <fa-icon [icon]="faEye"></fa-icon>Read Only </span>
             </div>

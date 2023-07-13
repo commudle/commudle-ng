@@ -1,5 +1,5 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { IUserRolesUser } from './../../../../../../shared-models/user_roles_user.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { ICommunities } from 'apps/shared-models/communities.model';
 import { IUserMessages } from 'apps/shared-models/user_messages.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
+import { IUserRolesUser } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -47,8 +48,8 @@ export class CommunityChannelsService {
     );
   }
 
-  delete(communityChannelId, displayType): Observable<boolean> {
-    const params = new HttpParams().set('community_channel_id', communityChannelId).set('display_type', displayType);
+  delete(communityChannelId, archive): Observable<boolean> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId).set('archive', archive);
 
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE), { params });
   }

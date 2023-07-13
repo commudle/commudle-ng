@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-body>
+    <div class="archive-channel">
+      <!-- <p class="text-basic">
+        A deleted channel can be receovered for upto 5 days by sending an email to more@commudle.com.
+      </p> -->
+      <h6 class="text-danger">Are you sure you want to ARCHIVE this channel?</h6>
+
+      <form [formGroup]="archiveForm" (ngSubmit)="submitForm()">
+        <label>
+          Type <strong>yes</strong> in CAPITALS to confirm
+          <br />
+          <input nbInput formControlName="confirmation" type="text" />
+        </label>
+        <button nbButton [disabled]="!archiveForm.valid" outline status="danger" type="submit" class="com-ml-4">
+          Delete
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

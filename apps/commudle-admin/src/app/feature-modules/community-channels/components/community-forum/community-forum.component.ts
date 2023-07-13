@@ -12,7 +12,7 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { faEye, faLock, faPen, faTrash, faUserPlus, faThumbTack } from '@fortawesome/free-solid-svg-icons';
-import { ArchiveChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/archive-channel/archive-channel.component';
+import { DeleteChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/delete-channel/delete-channel.component';
 import { InviteFormComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/invite-form/invite-form.component';
 import { EditChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/edit-channel/edit-channel.component';
 import { Subscription } from 'rxjs';
@@ -72,6 +72,7 @@ export class CommunityForumComponent implements OnInit {
     this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
+      hasScroll: true,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,
@@ -80,9 +81,10 @@ export class CommunityForumComponent implements OnInit {
   }
 
   openDeleteDialogBox(channelId) {
-    const dialogRef = this.dialogService.open(ArchiveChannelComponent, {
+    const dialogRef = this.dialogService.open(DeleteChannelComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
+      hasScroll: true,
       context: {
         channelId: channelId,
         // discussionType: this.discussionType.CHANNEL,
@@ -97,6 +99,7 @@ export class CommunityForumComponent implements OnInit {
     const dialogRef = this.dialogService.open(InviteFormComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
+      hasScroll: true,
       context: {
         forum: forum,
         // invite: true,
@@ -111,6 +114,7 @@ export class CommunityForumComponent implements OnInit {
     const dialogRef = this.dialogService.open(EditChannelComponent, {
       closeOnBackdropClick: true,
       hasBackdrop: true,
+      hasScroll: true,
       context: {
         forum: forum,
         discussionType: this.discussionType.FORUM,

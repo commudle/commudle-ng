@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
@@ -31,7 +31,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private libAuthWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
   ) {}

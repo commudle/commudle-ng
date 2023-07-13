@@ -23,7 +23,10 @@
           <app-invite-form [channelId]="channelId" (updateForm)="updateChannelForm()"></app-invite-form>
         </nb-tab>
         <nb-tab tabTitle="delete">
-          <app-archive-channel [channelId]="channelId" (updateForm)="updateChannelForm()"></app-archive-channel>
+          <app-delete-channel [channelId]="channelId" (updateForm)="updateChannelForm()"></app-delete-channel>
+        </nb-tab>
+        <nb-tab tabTitle="archive">
+          <commudle-archive [channelId]="channelId" (updateForm)="updateChannelForm()"></commudle-archive>
         </nb-tab>
       </nb-tabset>
     </nb-card-body>

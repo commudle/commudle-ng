@@ -101,6 +101,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
+      hasScroll: true,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
@@ -112,6 +113,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
+      hasScroll: true,
       context: {
         channelId: channelId,
         invite: true,
@@ -126,6 +128,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
+      hasScroll: true,
       context: {
         channelId: channelId,
         discussionType: this.discussionType.CHANNEL,

@@ -1,6 +1,6 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
@@ -29,7 +29,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
   ) {}
 
@@ -66,13 +65,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  closeChannelMembersList() {
-    const currentUrl = this.router.url;
-    if (currentUrl.includes('members')) {
-      this.router.navigate([currentUrl.substring(0, currentUrl.lastIndexOf('/'))]);
-    }
-  }
-
   initialize() {
     const selectedCh = this.communityChannelManagerService.findChannel(this.selectedChannelId);
     if (selectedCh) {
@@ -95,13 +87,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     );
   }
 
-  redirectToMembers() {
-    const url = this.activatedRoute.snapshot.url.join('/');
-    const currentUrl = this.router.url;
-    if (url.endsWith('/members')) {
-      this.closeChannelMembersList();
-    } else {
-      this.router.navigate([currentUrl, 'members']);
-    }
+  toggleMembersList() {
+    this.showMembersList = !this.showMembersList;
   }
 }

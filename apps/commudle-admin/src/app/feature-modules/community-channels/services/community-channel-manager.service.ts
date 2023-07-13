@@ -260,8 +260,8 @@ export class CommunityChannelManagerService {
     this.communityChannels.next(groupedForums);
   }
 
-  deleteChannel(channelId, displayType) {
-    this.communityChannelsService.delete(channelId, displayType).subscribe((data) => {
+  deleteChannel(channelId, archive) {
+    this.communityChannelsService.delete(channelId, archive).subscribe((data) => {
       // get all the channels
       const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
       this.toastLogService.successDialog('Channel was deleted');
@@ -272,21 +272,6 @@ export class CommunityChannelManagerService {
         }
       });
       this.communityChannels.next(groupedChannels);
-    });
-  }
-
-  deleteForum(forumId, displayType) {
-    this.communityChannelsService.delete(forumId, displayType).subscribe((data) => {
-      // get all the channels
-      const groupedForums: IGroupedCommunityChannels = this.communityChannels.value;
-      this.toastLogService.successDialog('Channel was deleted');
-      Object.entries(groupedForums).forEach(([key, values], i) => {
-        const fr = values.findIndex((k) => k.id == forumId);
-        if (fr != -1) {
-          groupedForums[key].splice(fr, 1);
-        }
-      });
-      this.communityForums.next(groupedForums);
     });
   }
 
