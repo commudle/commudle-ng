@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_ROUTES, BaseApiService } from '@commudle/shared-services';
+import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
+import { API_ROUTES } from './api-routes.constant';
 
 @Injectable({
   providedIn: 'root',

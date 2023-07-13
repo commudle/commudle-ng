@@ -13,4 +13,4 @@ export * from './lib/user-message.model';
 export * from './lib/user-role.model';
 export * from './lib/user-roles-user.model';
 export * from './lib/community-channel.model';
-export * from './lib/user_roles.enum';
+export * from './lib/speaker-resource.model';

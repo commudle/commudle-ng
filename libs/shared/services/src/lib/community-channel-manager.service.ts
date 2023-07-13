@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 import { EDiscussionType, ICommunity, ICommunityChannel, IUser, IUserMessage } from '@commudle/shared-models';
-import { ToastrService, AppUsersService, CommunityChannelsService } from '@commudle/shared-services';
+import { CommunityChannelsService } from './community-channels.service';
+import { ToastrService } from './toastr.service';
+import { AppUsersService } from './app-users.service';
 
 export interface IGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];

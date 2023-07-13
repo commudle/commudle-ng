@@ -1,5 +1,3 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -13,7 +11,7 @@ import {
   IUserMessages,
   IUsers,
 } from '@commudle/shared-models';
-import { BaseApiService } from '@commudle/shared-services';
+import { BaseApiService } from './base-api.service';
 import { API_ROUTES } from './api-routes.constant';
 
 @Injectable({

@@ -1,4 +1,3 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import {
   AfterViewInit,
   Component,
@@ -22,9 +21,7 @@ import {
   CommunityChannelManagerService,
 } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
-import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/services/community-channel-handler.service';
-// import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
-// import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { CommunityChannelHandlerService } from '../../services/community-channel-handler.service';
 
 @Component({
   selector: 'commudle-channel-discussion',
@@ -71,10 +68,6 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   ngOnInit(): void {
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
-      console.log(
-        '🚀 ~ file: channel-discussion.component.ts:74 ~ ChannelDiscussionComponent ~ this.communityChannelManagerService.allChannelRoles$.subscribe ~ channelsRoles:',
-        this.channelsRoles,
-      );
     });
     this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
       this.forumsRoles = data;
@@ -112,38 +105,12 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
     this.communityChannelHandlerService.destroy();
   }
 
-  // joinChannelButton() {
-  //   const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
-  //     context: {
-  //       consentType: ConsentTypesEnum.JoinChannelButton,
-  //       channelName: this.channelOfForum.name,
-  //       communityName: this.channelOfForum.kommunity.name,
-  //     },
-  //   });
-  //   dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
-  //     dialogRef.close();
-  //     if (result === 'accepted') {
-  //       this.joinChannel();
-  //     } else {
-  //       this.router.navigate([''], { queryParams: { decline: true } });
-  //     }
-  //   });
-  // }
-
   joinChannel() {
     this.communityChannelsService.joinChannel(this.channelOfForum.id).subscribe((data) => {
       if (data) {
         this.toastLogService.successDialog('Welcome to the channel!');
         location.reload();
-        this.gtmService();
       }
     });
-  }
-
-  gtmService() {
-    // this.gtm.dataLayerPushEvent('join-channel', {
-    //   com_user_id: this.currentUser.id,
-    //   com_channel_id: this.discussion.parent_id,
-    // });
   }
 }
