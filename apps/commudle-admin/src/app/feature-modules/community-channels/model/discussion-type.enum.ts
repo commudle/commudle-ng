@@ -1,4 +1,3 @@
-export enum EDiscussionType {
-  CHANNEL = 'channel',
-  FORUM = 'forum',
-}
+import { EDiscussionType } from '@commudle/shared-models';
+
+export { EDiscussionType };

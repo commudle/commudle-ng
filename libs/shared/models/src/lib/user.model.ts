@@ -59,3 +59,9 @@ export interface IUserSearch extends IUser {
 export interface UserRolesUsers {
   role_designation: string;
 }
+
+export interface IUsers {
+  users: IUser[];
+  page: number;
+  total: number;
+}

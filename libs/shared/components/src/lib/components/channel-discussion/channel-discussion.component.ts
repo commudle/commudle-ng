@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import {
   AfterViewInit,
   Component,
@@ -13,17 +14,18 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEditorValidator } from '@commudle/editor';
 import { InfiniteScrollDirective } from '@commudle/infinite-scroll';
-import { AuthService } from '@commudle/shared-services';
+import { EUserRoles, ICommunityChannel } from '@commudle/shared-models';
+import {
+  AuthService,
+  CommunityChannelsService,
+  ToastrService,
+  CommunityChannelManagerService,
+} from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
-import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
-import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/services/community-channel-handler.service';
-import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
-import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
-import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+// import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+// import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+
 @Component({
   selector: 'commudle-channel-discussion',
   templateUrl: './channel-discussion.component.html',
@@ -58,16 +60,21 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
     public communityChannelHandlerService: CommunityChannelHandlerService,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private communityChannelManagerService: CommunityChannelManagerService, // private changeDetectorRef: ChangeDetectorRef,
+    private communityChannelManagerService: CommunityChannelManagerService,
+    // private changeDetectorRef: ChangeDetectorRef,
     private nbDialogService: NbDialogService,
     private router: Router,
     private communityChannelsService: CommunityChannelsService,
-    private toastLogService: LibToastLogService,
+    private toastLogService: ToastrService,
   ) {}
 
   ngOnInit(): void {
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
+      console.log(
+        '🚀 ~ file: channel-discussion.component.ts:74 ~ ChannelDiscussionComponent ~ this.communityChannelManagerService.allChannelRoles$.subscribe ~ channelsRoles:',
+        this.channelsRoles,
+      );
     });
     this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
       this.forumsRoles = data;
@@ -105,23 +112,23 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
     this.communityChannelHandlerService.destroy();
   }
 
-  joinChannelButton() {
-    const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
-      context: {
-        consentType: ConsentTypesEnum.JoinChannelButton,
-        channelName: this.channelOfForum.name,
-        communityName: this.channelOfForum.kommunity.name,
-      },
-    });
-    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
-      dialogRef.close();
-      if (result === 'accepted') {
-        this.joinChannel();
-      } else {
-        this.router.navigate([''], { queryParams: { decline: true } });
-      }
-    });
-  }
+  // joinChannelButton() {
+  //   const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
+  //     context: {
+  //       consentType: ConsentTypesEnum.JoinChannelButton,
+  //       channelName: this.channelOfForum.name,
+  //       communityName: this.channelOfForum.kommunity.name,
+  //     },
+  //   });
+  //   dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+  //     dialogRef.close();
+  //     if (result === 'accepted') {
+  //       this.joinChannel();
+  //     } else {
+  //       this.router.navigate([''], { queryParams: { decline: true } });
+  //     }
+  //   });
+  // }
 
   joinChannel() {
     this.communityChannelsService.joinChannel(this.channelOfForum.id).subscribe((data) => {
