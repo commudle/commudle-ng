@@ -137,7 +137,13 @@ import { EventMiniCardComponent } from 'apps/commudle-admin/src/app/app-shared-c
     NbToggleModule,
     NbSelectModule,
   ],
-  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
+  exports: [
+    BasicUserProfileComponent,
+    UsernameComponent,
+    BasicInfoComponent,
+    SocialLinksComponent,
+    UserCoverPhotoComponent,
+  ],
   providers: [UserProfileMenuService],
 })
 export class UsersModule {}

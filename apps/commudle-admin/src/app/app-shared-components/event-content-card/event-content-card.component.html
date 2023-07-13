@@ -1,0 +1,23 @@
+<nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
+  <nb-card-body>
+    <a [routerLink]="['/users', speakersContent.user.username]">
+      <div class="tags-and-logo">
+        <app-tag
+          *ngIf="speakersTagsLength > 0"
+          [tags]="getTagNames()"
+          [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+          [size]="'tiny'"
+          [fontColor]="'#101828'"
+          [maximumTag]="3"
+        ></app-tag>
+        <img
+          alt="{{ speakersContent.title }}"
+          src="{{ speakersContent.favicon }}"
+          title="{{ speakersContent.title }}"
+        />
+      </div>
+      <p class="title">{{ speakersContent.title }}</p>
+      <p class="description">{{ speakersContent.description }}</p>
+    </a>
+  </nb-card-body>
+</nb-card>

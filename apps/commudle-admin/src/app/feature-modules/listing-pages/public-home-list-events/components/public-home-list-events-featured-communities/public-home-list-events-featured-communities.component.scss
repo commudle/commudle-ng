@@ -1,7 +1,7 @@
 nb-card {
-  @apply md:com-mt-9 com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none;
+  @apply md:com-mt-0 md:com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none;
   nb-card-body {
-    @apply md:com-p-4 md:com-pb-0 com-p-0;
+    @apply com-p-0 md:com-px-3 md:com-pt-4;
     .heading {
       @apply com-m-0 md:com-mb-8 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
@@ -14,7 +14,7 @@ nb-card {
     }
 
     .featured-communities {
-      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-4 md:com-mt-0 com-p-0 md:com-block;
+      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
       .featured-communities-card {
         @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
       }

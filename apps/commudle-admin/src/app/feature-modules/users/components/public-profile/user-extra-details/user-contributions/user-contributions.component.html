@@ -35,6 +35,7 @@
       <commudle-event-mini-card
         *ngFor="let attendedEvent of attendedEvents"
         [attendedEvent]="attendedEvent"
+        [cardType]="'attendedEventCard'"
       ></commudle-event-mini-card>
     </div>
   </nb-card-body>

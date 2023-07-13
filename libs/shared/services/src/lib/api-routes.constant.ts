@@ -29,6 +29,9 @@ export const API_ROUTES = {
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
     TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
+    PUBLIC: {
+      SPEAKERS: 'api/v2/communities/public/speakers',
+    },
   },
 
   // community_builds
@@ -526,6 +529,9 @@ export const API_ROUTES = {
     CREATE: 'api/v2/social_resources',
     UPDATE_DISPLAY_ORDER: 'api/v2/social_resources/update_display_order',
     DESTROY: 'api/v2/social_resources',
+    PUBLIC: {
+      INDEX: 'api/v2/social_resources/public',
+    },
   },
 
   USER_EVENT_REGISTRATIONS: {

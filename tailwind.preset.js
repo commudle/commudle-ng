@@ -62,6 +62,8 @@ module.exports = {
         'Bleu-De-France': '#2590EB',
         'Giants-Orange': '#ff5c1e',
         Blue: '#001FFF',
+        Bittersweet: '#FF725E',
+        'American-Orange': '#FF8A00',
       },
 
       lineClamp: {

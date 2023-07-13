@@ -4,6 +4,10 @@ nb-card {
   nb-card-body {
     @apply com-m-5 com-p-0;
 
+    .skeleton-vertical-cards {
+      @apply com-mb-20;
+    }
+
     .speakers-container {
       @apply com-mt-3 com-mb-5 com-p-0;
 
@@ -11,12 +15,16 @@ nb-card {
         @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-medium com-text-Dark-Jungle-Green;
       }
 
-      .loader {
-        @apply com-flex com-justify-center com-items-center;
-      }
-
       .speakers-list {
-        @apply com-flex com-overflow-x-auto com-scrollbar-hide com-gap-4;
+        @apply com-flex com-flex-nowrap com-overflow-x-auto com-scrollbar-hide com-gap-4 com-mx-4 com-mb-20 com-items-center;
+
+        .load-more {
+          @apply com-text-center md:com-mt-6 com-mt-0;
+
+          app-loading-spinner {
+            @apply com-mb-6;
+          }
+        }
       }
     }
 

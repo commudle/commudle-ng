@@ -35,6 +35,7 @@ import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
   ],
-  exports: [MembershipToggleComponent],
+  exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,
@@ -79,6 +80,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     NbOptionModule,
     NbDialogModule.forChild(),
     NbSpinnerModule,
+    SkeletonVerticalCardsComponent,
   ],
 })
 export class PublicCommunityModule {}

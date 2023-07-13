@@ -4,6 +4,7 @@
       <h3 class="title">Latest Tech Talks</h3>
       <h4 class="sub-heading">All the knowledge from event sessions</h4>
     </div>
+    <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="4" [ImageShapeCircle]="false"></app-skeleton-cards>
     <div class="tech-sessions custom-scrollbar">
       <div *ngFor="let session of techSessions" class="tech-sessions-card">
         <div *appBreakpoints="'>lg'">
@@ -14,7 +15,7 @@
         </div>
       </div>
       <div class="load-more">
-        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+        <app-loading-spinner *ngIf="showSpinner && !showSkeletonCard"></app-loading-spinner>
         <button
           *ngIf="page_info?.has_next_page"
           [disabled]="showSpinner"

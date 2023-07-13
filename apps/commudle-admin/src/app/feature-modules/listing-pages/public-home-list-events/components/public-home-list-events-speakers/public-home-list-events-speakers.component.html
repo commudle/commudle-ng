@@ -15,6 +15,7 @@
             [user]="speaker"
             [showSpeakersCount]="true"
             [maxUserNameLength]="15"
+            [showHiringLookingTags]="false"
           ></app-user-profile-card-large>
         </div>
         <div *appBreakpoints="'<=lg'">
@@ -27,23 +28,14 @@
             [isMobileWidthFull]="true"
             [showSpeakersCount]="true"
             [maxUserNameLength]="15"
+            [showHiringLookingTags]="false"
           ></app-user-profile-card-large>
         </div>
       </div>
-
       <div class="load-more">
-        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-        <button
-          *ngIf="page_info?.has_next_page"
-          [disabled]="showSpinner"
-          (click)="getSpeakersList(); showSpinner = true"
-          nbButton
-          outline
-          size="tiny"
-          status="basic"
-        >
-          View More
-        </button>
+        <a [routerLink]="['/speakers']">
+          <button *ngIf="page_info?.has_next_page" nbButton outline size="tiny" status="basic">View All</button>
+        </a>
       </div>
     </div>
   </nb-card-body>
