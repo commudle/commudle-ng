@@ -7,6 +7,7 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { ListingPagesFilterTypes } from 'apps/shared-models/enums/listing-pages-filter-types';
 @Component({
   selector: 'commudle-public-home-list-speakers-profile',
   templateUrl: './public-home-list-speakers-profile.component.html',
@@ -23,7 +24,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   timePeriod: string;
   month = false;
   year = false;
-  allTime = false;
   queryParamsString = '';
   employment: string;
   employer = false;
@@ -34,6 +34,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   page = 1;
   count = 10;
   totalSearch = 0;
+  listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -82,50 +83,17 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
           this.employee = true;
         }
       }
-      this.speakers = [];
-      this.getSpeakersList();
     }
     this.speakers = [];
     this.getSpeakersList();
   }
 
-  filterByTime() {
-    if (this.timePeriod === 'monthly') {
-      this.month = true;
-      this.year = false;
-    }
-    if (this.timePeriod === 'yearly') {
-      this.month = false;
-      this.year = true;
-    }
-
-    if (this.employment === 'employer') {
-      this.employer = true;
-    }
-    if (this.employment === 'employee') {
-      this.employee = true;
-    }
-    this.speakers = [];
-    this.page_info = null;
-    this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
-  }
-
-  filterByEmployment() {
-    if (this.employment === 'employer') {
-      this.employer = true;
-      this.employee = false;
-    }
-    if (this.employment === 'employee') {
-      this.employer = false;
-      this.employee = true;
-    }
-
-    if (this.month) {
-      this.month = true;
-    }
-    if (this.year) {
-      this.year = true;
-    }
+  updateFilter() {
+    this.month = this.timePeriod === this.listingPagesFilterTypes.MONTHLY ? true : false;
+    this.year = this.timePeriod === this.listingPagesFilterTypes.YEARLY ? true : false;
+    this.employee = this.employment === this.listingPagesFilterTypes.EMPLOYEE ? true : false;
+    this.employer = this.employment === this.listingPagesFilterTypes.EMPLOYER ? true : false;
+    this.skeletonLoaderCard = true;
     this.speakers = [];
     this.page_info = null;
     this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
@@ -133,41 +101,21 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
 
   search() {
     this.query = '';
-    this.searchForm.valueChanges
-      .pipe(
-        debounceTime(800),
-        distinctUntilChanged(),
-        switchMap(() => {
-          if (this.isLoadingSearch) {
-            return;
-          }
-          this.speakers = [];
-          this.page_info = null;
-          this.isLoadingSearch = true;
-          this.query = this.searchForm.get('name').value;
-          this.queryParamsString = this.query;
-          this.generateParams(this.month, this.year, this.employee, this.employer, this.queryParamsString);
-          return this.communitiesService.getSpeakersList(
-            false,
-            this.page_info?.end_cursor,
-            this.limit,
-            this.query,
-            this.month,
-            this.year,
-            this.employer,
-            this.employee,
-          );
-        }),
-      )
-      .subscribe((data) => {
-        this.speakers = data.page.reduce((acc, value) => [...acc, value.data], []);
-        this.page = +data.page;
-        this.totalSearch = data.total;
-        this.isLoadingSearch = false;
-      });
+    this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
+      if (this.isLoadingSearch) {
+        return;
+      }
+      this.speakers = [];
+      this.page_info = null;
+      this.isLoadingSearch = true;
+      this.query = this.searchForm.get('name').value;
+      this.queryParamsString = this.query;
+      this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
+    });
   }
 
   generateParams(monthly, yearly, employee, employer, query) {
+    this.skeletonLoaderCard = true;
     const queryParams: { [key: string]: any } = {};
     if (monthly) {
       queryParams.monthly = true;
@@ -191,6 +139,20 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
+    this.getSpeakersList();
+  }
+
+  resetFiltersAndSearch() {
+    this.timePeriod = '';
+    this.month = false;
+    this.year = false;
+    this.employment = '';
+    this.employer = false;
+    this.employee = false;
+    this.searchForm.get('name').setValue('');
+    this.query = '';
+    this.speakers = [];
+    this.page_info = null;
   }
 
   getSpeakersList() {
@@ -221,6 +183,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
         this.skeletonLoaderCard = false;
         this.loadingSpeakers = false;
         this.loading = false;
+        this.isLoadingSearch = false;
       });
   }
 }

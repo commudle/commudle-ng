@@ -2,7 +2,7 @@
   @apply com-flex md:com-flex-row com-flex-col com-justify-between md:com-items-center com-mt-5 com-m-0 com-mx-4 md:com-mx-0;
 
   .search {
-    @apply md:com-w-[400px] com-w-auto com-text-Quartz com-rounded-lg md:com-mb-0 com-mb-4;
+    @apply md:com-w-[330px] com-w-auto com-text-Quartz com-rounded-lg md:com-mb-0 com-mb-4;
   }
   .filters {
     @apply com-flex md:com-items-center com-flex-col md:com-flex-row;
@@ -10,8 +10,12 @@
       @apply md:com-mr-3 com-mr-0 com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[212px] com-w-full md:com-mb-0 com-mb-3;
     }
     .most-popular-filter {
-      @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[224px] com-w-full;
+      @apply com-border-none com-text-sm com-font-medium com-text-Dark-Jungle-Green md:com-w-[172px] com-w-full md:com-mb-0 com-mb-3;
     }
+  }
+  .reset {
+    @apply com-text-sm com-font-normal md:com-w-[66px] com-w-full com-text-Auro-Metal-Saurus md:com-mb-0;
+    text-align: left;
   }
 }
 .skeleton-vertical-cards {
