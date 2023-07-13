@@ -34,7 +34,7 @@
     @apply com-w-full;
 
     .prefix {
-      @apply com-flex com-items-baseline com-gap-1.5;
+      @apply com-flex com-items-baseline com-gap-1.5 com-flex-col md:com-flex-row;
 
       .name {
         text-decoration: none;
