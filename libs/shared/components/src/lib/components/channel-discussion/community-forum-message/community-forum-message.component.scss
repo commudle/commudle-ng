@@ -34,8 +34,6 @@
     @apply com-w-full;
 
     .prefix {
-      @apply com-flex  com-justify-between;
-
       .name {
         text-decoration: none;
         @apply com-font-medium com-text-base com-text-black;
