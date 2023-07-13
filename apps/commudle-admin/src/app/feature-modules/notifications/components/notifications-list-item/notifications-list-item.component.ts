@@ -12,7 +12,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ENotificationEntityTypes } from 'apps/shared-models/enums/notification_entity_types.enum';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationParentTypes } from 'apps/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
@@ -132,14 +131,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
     }
 
     this.gtmService();
-    if (
-      addQueryParams &&
-      this.notification.entity_type == ENotificationEntityTypes.USER_MESSAGE &&
-      this.notification.entity_id
-    ) {
-      // TODO: Change this to use cursor
+    if (addQueryParams && value['user_message_cursor']) {
       this.router.navigate(url, {
-        queryParams: { after: value['user_message_cursor'] ? value['user_message_cursor'] : '' },
+        queryParams: { after: value['user_message_cursor'] },
       });
     } else {
       this.router.navigate(url);
