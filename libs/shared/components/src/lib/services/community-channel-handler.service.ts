@@ -253,10 +253,6 @@ export class CommunityChannelHandlerService {
       this.loading.next(false);
       // TODO: Make this better
       this._getMessagesAfter().subscribe((data) => {
-        console.log(
-          '🚀 ~ file: community-channel-handler.service.ts:255 ~ CommunityChannelHandlerService ~ this._getMessagesAfter ~ data:',
-          data,
-        );
         this.isMessageLoading.next(true);
         this.messages.next(data.page);
         this.pageInfo.next(data.page_info);

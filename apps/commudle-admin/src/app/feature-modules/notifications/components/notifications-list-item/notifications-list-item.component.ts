@@ -126,8 +126,8 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         url = ['/jobs', slug];
         break;
       case ENotificationParentTypes.COMMUNITY_CHANNEL:
-        addQueryParams = false;
-        url = ['/communities', value['kommunity_slug'], 'channels', slug];
+        addQueryParams = true;
+        url = ['/communities', value['kommunity_slug'], value['display_type'] + 's', slug];
         break;
     }
 
@@ -138,7 +138,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       this.notification.entity_id
     ) {
       // TODO: Change this to use cursor
-      this.router.navigate(url, { queryParams: { user_message_id: this.notification.entity_id } });
+      this.router.navigate(url, {
+        queryParams: { after: value['user_message_cursor'] ? value['user_message_cursor'] : '' },
+      });
     } else {
       this.router.navigate(url);
     }
