@@ -23,7 +23,7 @@
       status="basic"
       class="employment-filter"
       [(ngModel)]="employment"
-      (selectedChange)="filterByEmployment()"
+      (selectedChange)="updateFilter()"
       filled
     >
       <nb-option value="employer">Hiring</nb-option>
@@ -36,13 +36,14 @@
       status="basic"
       class="most-popular-filter"
       [(ngModel)]="timePeriod"
-      (selectedChange)="filterByTime()"
+      (selectedChange)="updateFilter()"
       filled
     >
       <nb-option value="monthly"> Speaker this month</nb-option>
       <nb-option value="yearly">Speaker this year</nb-option>
     </nb-select>
   </div>
+  <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
 </div>
 <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
   <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
