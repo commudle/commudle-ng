@@ -1,7 +1,3 @@
-import { IPageInfo } from './page-info.model';
+import { IPagination } from '@commudle/shared-models';
 
-export interface IPagination<T> {
-  page: Array<{ cursor: string; data: T[] }>;
-  page_info: IPageInfo;
-  total: number;
-}
+export { IPagination };

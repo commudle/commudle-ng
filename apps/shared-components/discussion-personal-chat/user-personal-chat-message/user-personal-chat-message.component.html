@@ -1,3 +1,4 @@
+app-chats-window
 <div>
   <div class="message">
     <div class="author-image">
@@ -20,7 +21,7 @@
           <div class="date">{{ moment(message.created_at).format("MMM D [']YY") }}</div>
         </div>
       </div>
-      <div [innerHTML]="message.content | linky: { sanitizeHtml: true }" class="content"></div>
+      <div [innerHTML]="message.content | linky : { sanitizeHtml: true }" class="content"></div>
       <div class="details-flag">
         <div (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)" class="clickable">
           <p

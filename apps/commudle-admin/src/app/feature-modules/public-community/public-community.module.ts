@@ -34,6 +34,7 @@ import { PublicCommunityNotificationsComponent } from './components/public-commu
 import { NotificationsModule } from 'apps/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     SharedComponentsModule,
     FontAwesomeModule,
     UserConsentsComponent,
+    CommunityChannelsModule,
 
     // Nebular
     NbCardModule,

@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
@@ -25,12 +25,12 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   count = 20;
   currentUser: ICurrentUser;
   currentUserIsAdmin = false;
+  @Output() closeMembersList = new EventEmitter<number>();
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private libAuthWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
   ) {}
@@ -41,12 +41,10 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
         this.currentUser = data;
         // find the channel
         if (this.currentUser) {
-          this.subscriptions.push(
-            this.activatedRoute.parent.params.subscribe((data) => {
-              this.channel = this.communityChannelManagerService.findChannel(data.community_channel_id);
-              this.getMembers();
-            }),
+          this.channel = this.communityChannelManagerService.findChannel(
+            this.activatedRoute.snapshot.params.community_channel_id,
           );
+          if (this.channel) this.getMembers();
         }
       }),
     );
@@ -121,6 +119,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.router.navigate(['../']);
+    this.closeMembersList.emit();
   }
 }

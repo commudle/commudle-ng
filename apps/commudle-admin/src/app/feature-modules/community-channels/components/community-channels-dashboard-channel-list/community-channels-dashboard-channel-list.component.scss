@@ -1,118 +1,30 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
 nb-card {
-  border: none;
-  height: 100%;
-  margin: 0;
+  @apply com-h-full com-m-0 com-border-none;
 
   nb-card-header {
-    display: flex;
-    justify-content: space-between;
-
-    nb-actions {
-      nb-action {
-        position: relative;
-
-        @media screen and (min-width: 1089px) {
-          &.channel-list-menu-button {
-            display: none;
-          }
-        }
-      }
-    }
+    @apply com-sticky com-top-0 com-z-20 com-bg-white;
   }
 
-  .channels-list-cards {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: repeat(auto-fill, 265px);
-    justify-content: start;
-
-    @media screen and (max-width: $tab-width) {
-      justify-content: center;
-    }
-
+  nb-card-body.channels-list-cards {
+    // .channels-list-cards {
+    @apply com-flex com-flex-wrap com-gap-4 com-p-5;
     a {
-      color: inherit;
-      height: 320px;
-      text-decoration: none;
-
+      @apply com-no-underline;
       .channel-list-card {
-        border: 0.5px solid $silver-sand;
-        border-radius: $border-8;
-        height: 320px;
-        padding: $space-16;
-        position: relative;
-        width: 265px;
-
-        .prefix {
-          .image {
-            border: 0.5px solid $silver-sand;
-            border-radius: 50%;
-            height: 48px;
-            min-width: 48px;
-            overflow: hidden;
-            width: 48px;
-
-            img {
-              height: inherit;
-              object-fit: contain;
-              width: 100%;
-            }
-          }
-
-          .details {
-            margin-left: $space-8;
-
-            .name {
-              color: $gunmetal;
-              font-size: $fs-h5;
-              font-weight: $fw-600;
-              line-height: 14px;
-              margin: 0;
-            }
-
-            .member-count {
-              color: #777777;
-              font-size: $fs-h6;
-              font-style: italic;
-              margin: 0;
-            }
-          }
+        @apply com-border com-rounded-lg com-p-4 com-h-32 com-w-72 com-border-gray-200 com-border-solid hover:com-shadow-Card;
+        p {
+          @apply com-p-0 com-m-0;
         }
-
-        .about {
-          color: rgba($gunmetal, 0.85);
-          font-size: $fs-h6;
-          line-height: 14px;
-          margin-top: $space-10;
-          white-space: pre-wrap;
+        .name {
+          @apply com-text-base com-font-semibold com-line-clamp-2;
         }
-
-        .enter-channel-btn-container {
-          bottom: 10px;
-          position: absolute;
-          width: 88%;
-
-          .enter-channel-btn {
-            background-color: rgba($neon-blue, 0.2);
-            border: none;
-            border-radius: $border-10;
-            color: $neon-blue;
-            font-size: $fs-h6;
-            font-weight: $fw-400;
-            height: 32px;
-            padding: $space-8;
-            text-transform: none;
-
-            &:hover {
-              background-color: rgba($neon-blue, 0.2);
-            }
-
-            nb-icon {
-              margin-right: $space-4;
-            }
-          }
+        .member-count {
+          @apply com-text-sm;
+        }
+        .descriptions {
+          @apply com-mt-4 com-text-sm com-text-Quartz com-line-clamp-2;
         }
       }
     }

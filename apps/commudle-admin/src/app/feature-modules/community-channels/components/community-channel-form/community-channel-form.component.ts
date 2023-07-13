@@ -4,6 +4,8 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { CommunityChannelsService } from '../../services/community-channels.service';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-community-channel-form',
@@ -13,6 +15,8 @@ import { CommunityChannelsService } from '../../services/community-channels.serv
 export class CommunityChannelFormComponent implements OnInit {
   @Input() existingChannel: ICommunityChannel;
   @Input() presetGroupName;
+  @Input() discussionType: string;
+  EDiscussionType = EDiscussionType;
 
   @Output() saved = new EventEmitter();
 
@@ -22,7 +26,7 @@ export class CommunityChannelFormComponent implements OnInit {
   // community channel form
   communityChannelForm;
 
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -34,9 +38,10 @@ export class CommunityChannelFormComponent implements OnInit {
       logo: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      group_name: [''],
+      group_name: ['General', this.discussionType === 'forum' ? Validators.required : ''],
       is_private: [false, Validators.required],
       is_readonly: [false, Validators.required],
+      display_type: [''],
     });
   }
 
@@ -44,6 +49,11 @@ export class CommunityChannelFormComponent implements OnInit {
     if (this.presetGroupName) {
       this.communityChannelForm.patchValue({
         group_name: this.presetGroupName,
+      });
+    }
+    if (this.discussionType) {
+      this.communityChannelForm.patchValue({
+        display_type: this.discussionType,
       });
     }
 
@@ -75,7 +85,11 @@ export class CommunityChannelFormComponent implements OnInit {
     if (this.existingChannel) {
       this.updateChannel(formData);
     } else {
-      this.communityChannelManagerService.createChannel(formData);
+      if (this.discussionType === EDiscussionType.FORUM) {
+        this.communityChannelManagerService.createForum(formData);
+      } else if (this.discussionType === EDiscussionType.CHANNEL) {
+        this.communityChannelManagerService.createChannel(formData);
+      }
     }
 
     this.saved.emit();

@@ -1,10 +1,11 @@
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-channel-settings',
@@ -12,8 +13,13 @@ import { SeoService } from 'apps/shared-services/seo.service';
   styleUrls: ['./channel-settings.component.scss'],
 })
 export class ChannelSettingsComponent implements OnInit, OnDestroy {
+  @Input() channelId;
+  @Input() invite = false;
+  @Input() discussionType;
+  @Output() updateForm = new EventEmitter<string>();
+
   @ViewChild('settingsTemplate', { static: true }) settingsTemplate: TemplateRef<any>;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
   channel: ICommunityChannel;
   dialogRef;
   EUserRoles = EUserRoles;
@@ -22,8 +28,6 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   channelRoles = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private dialogService: NbDialogService,
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
@@ -31,16 +35,11 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seoService.noIndex(true);
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe((data) => {
-        this.setChannel(data.community_channel_id);
-      }),
-    );
+    this.setChannel(this.channelId);
 
     this.subscriptions.push(
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
         this.allChannelsRoles = data;
-        this.setRoles();
       }),
     );
   }
@@ -48,30 +47,24 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.dialogRef.close();
     this.seoService.noIndex(false);
-    for (let subscription of this.subscriptions) {
-      subscription.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   // function to find and set the correct selected channel
   setChannel(channelId) {
     this.openDialog();
     this.channel = this.communityChannelManagerService.findChannel(channelId);
-    this.setRoles();
-  }
-
-  setRoles() {
-    this.channelRoles = this.allChannelsRoles[this.channel.id];
   }
 
   openDialog() {
     this.dialogRef = this.dialogService.open(this.settingsTemplate, { autoFocus: true });
-    this.dialogRef.onClose.subscribe(() => {
-      this.router.navigate([{ outlets: { p: null } }], { relativeTo: this.activatedRoute.parent });
-    });
   }
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  updateChannelForm(event?) {
+    this.updateForm.emit(event);
   }
 }

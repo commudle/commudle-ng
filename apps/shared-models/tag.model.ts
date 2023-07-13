@@ -1,10 +1,3 @@
-import { IAttachedFile } from 'apps/shared-models/attached-file.model';
+import { ITag } from '@commudle/shared-models';
 
-export interface ITag {
-  id: number;
-  name: string;
-  object_count?: number;
-  category?: string;
-  color?: string;
-  picture?: IAttachedFile;
-}
+export { ITag };

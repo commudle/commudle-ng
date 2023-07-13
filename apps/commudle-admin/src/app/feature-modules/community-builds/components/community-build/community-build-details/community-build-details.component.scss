@@ -4,11 +4,10 @@ p {
 
 .community-build-discussion {
   nb-card-body {
-    overflow: initial;
     @apply com-p-0;
 
-    app-messages {
-      @apply com-block com-h-96;
+    commudle-discussion {
+      @apply com-h-96;
     }
   }
 }

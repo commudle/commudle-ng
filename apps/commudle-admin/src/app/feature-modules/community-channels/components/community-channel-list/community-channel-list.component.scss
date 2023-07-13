@@ -1,7 +1,5 @@
 .community-channel-list {
-  padding: 0.5rem;
   width: 100%;
-  height: 100%;
 
   .community {
     width: 100%;
@@ -12,79 +10,48 @@
   }
 
   .channel-group {
-    margin-bottom: 1.5rem;
+    @apply com-bg-[#F9F9F9];
     .group-name {
       display: flex;
       justify-content: space-between;
+      @apply com-m-0;
       p {
-        font-size: 0.8rem;
-        color: grey;
-        min-width: 10px;
-        margin-bottom: 0;
-        word-break: break-all;
+        @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
       }
     }
 
     .channels {
+      @apply com-bg-[#F9F9F9] com-cursor-pointer;
       ul {
         list-style: none;
-        padding-left: 0.5rem;
-        margin: 0.5rem 0;
+        @apply com-p-0 com-my-0;
         li {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          flex-wrap: nowrap;
-          margin-bottom: 1rem;
-
-
-          nb-icon {
-            font-size: 0.8rem;
-            color: grey;
-          }
-
-          div.details {
-            width: 80%;
-            display: flex;
+          @apply com-px-6 com-py-2 com-flex com-justify-between com-flex-nowrap com-items-center com-gap-2 hover:com-bg-[#EEE]/40 com-relative;
+          .details {
+            @apply com-w-full com-flex com-items-center com-gap-3;
             .logo {
-              width: 35px;
-              border-radius: 50%;
-              overflow: hidden;
-              margin-right: 0.2rem;
-              text-align: center;
+              @apply com-w-8 com-h-8 com-bg-white com-rounded-[50%] com-overflow-hidden;
               img {
-                width: 100%;
+                @apply com-w-full;
               }
-
-              nb-icon {
-                font-size: 1.2rem;
-                color: #4e74ff;
+            }
+            .without-logo {
+              @apply com-w-8 com-h-8 com-bg-[#0095FF1A]  com-rounded-3xl;
+              img {
+                @apply com-w-full com-p-6px;
               }
             }
 
             .name {
-              width: 80%;
-              margin: 0;
-              font-size: 12px;
-              position: relative;
+              @apply com-text-sm  com-p-0 com-m-0 com-cursor-pointer;
               a {
                 text-decoration: none;
-                color: black;
-
+                @apply com-text-[#475166];
                 .icon {
                   padding: 0;
                 }
               }
-              &:hover {
-                text-decoration: underline;
-              }
-
-              .selected-channel {
-                color: #249aff;
-                font-weight: bold;
-              }
             }
-
           }
 
           .settings {
@@ -92,13 +59,41 @@
             align-items: baseline;
             width: 25%;
             margin: 0;
+
             a {
               padding: 0 3px;
+              @apply com-cursor-pointer;
+              nb-icon {
+                @apply com-text-sm com-text-[#475166]/70  hover:com-text-primary-500;
+              }
             }
+          }
+          &.selectedChannel {
+            @apply com-bg-[#EEE];
+            // a {
+            //   @apply com-text-primary-500 com-font-semibold com-underline;
+            // }
           }
         }
       }
     }
   }
+}
 
+.channel:not(:last-child) {
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200;
+}
+
+nb-accordion {
+  &::ng-deep {
+    nb-accordion-item {
+      nb-accordion-item-body {
+        .ng-trigger-accordionItemBody {
+          .item-body {
+            @apply com-p-0;
+          }
+        }
+      }
+    }
+  }
 }

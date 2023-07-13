@@ -1,5 +1,5 @@
 .header {
-  @apply com-h-12;
+  @apply com-h-12 com-sticky com-top-0 com-z-20;
 }
 .toggle {
   fa-icon {
@@ -8,8 +8,10 @@
 }
 .sidebar {
   transition: 0.3s;
-  @apply com-fixed com-top-16 com-pt-2 com-h-full com-w-16 com-z-50 com-shadow-md com-bg-white com-text-black;
-
+  @apply com-pt-0 com-h-full com-z-20 com-bg-white com-text-black com-overflow-hidden;
+  &.forWindow {
+    @apply com-fixed;
+  }
   &.left {
     @apply com-left-0;
   }
@@ -27,13 +29,16 @@
     &.large {
       @apply com-w-52;
     }
+    &.extraLarge {
+      @apply com-w-80;
+    }
 
     .header {
       h1 {
         @apply com-flex com-ml-0 com-cursor-pointer com-justify-center;
       }
       .toggle {
-        @apply com-ml-0;
+        @apply com-ml-auto;
       }
     }
   }

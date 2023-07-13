@@ -1,13 +1,13 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 import { CommunityChannelsService } from '../../../services/community-channels.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-invite-form',
@@ -15,9 +15,12 @@ import { CommunityChannelsService } from '../../../services/community-channels.s
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit, OnDestroy {
+  @Input() channelId: string;
+  @Input() forum: ICommunityChannel;
+  @Output() updateForm = new EventEmitter<string>();
   communityChannel: ICommunityChannel;
   joinToken: string;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
   appURL;
   linkCopied = false;
   channelsRoles = {};
@@ -30,7 +33,6 @@ export class InviteFormComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: object,
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
   ) {
@@ -42,12 +44,13 @@ export class InviteFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.appURL = environment.app_url;
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.communityChannel = this.communityChannelManagerService.findChannel(data.community_channel_id);
-        this.getJoinToken();
-      }),
-    );
+    if (this.channelId) {
+      this.communityChannel = this.communityChannelManagerService.findChannel(this.channelId);
+    } else {
+      this.communityChannel = this.forum;
+    }
+
+    this.getJoinToken();
 
     this.subscriptions.push(
       this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
@@ -57,9 +60,7 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   copyJoinLinkToClipboard(elementRef) {
@@ -71,24 +72,35 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   }
 
   getJoinToken() {
-    this.communityChannelsService.getJoinToken(this.communityChannel.id).subscribe((data) => {
-      this.joinToken = data;
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.getJoinToken(this.communityChannel.id).subscribe((data) => {
+        this.joinToken = data;
+      }),
+    );
   }
 
   refreshJoinToken() {
     this.linkCopied = false;
-    this.communityChannelsService.resetJointoken(this.communityChannel.id).subscribe((data) => {
-      this.joinToken = data;
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.resetJointoken(this.communityChannel.id).subscribe((data) => {
+        this.joinToken = data;
+      }),
+    );
   }
 
   sendMemberInvite() {
-    this.communityChannelsService
-      .inviteMembers(this.communityChannel.id, this.memberInviteForm.value)
-      .subscribe((data) => {
-        this.toastLogService.successDialog('Invite sent by email', 3000);
-        this.memberInviteForm.reset();
-      });
+    this.subscriptions.push(
+      this.communityChannelsService
+        .inviteMembers(this.communityChannel.id, this.memberInviteForm.value)
+        .subscribe((data) => {
+          this.toastLogService.successDialog('Invite sent by email', 3000);
+          this.memberInviteForm.reset();
+          this.formUpdate();
+        }),
+    );
+  }
+
+  formUpdate() {
+    this.updateForm.emit('updated');
   }
 }

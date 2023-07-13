@@ -1,0 +1,83 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+:host {
+  display: block;
+}
+
+.commudle-editor {
+  @apply com-flex com-relative com-items-end;
+
+  commudle-editor-menu {
+  }
+
+  tiptap {
+    @apply com-block com-bg-white com-w-full com-outline-none com-py-1.5 com-min-h-[40px];
+
+    ::ng-deep {
+      div.ProseMirror {
+        @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-h-full com-break-all;
+
+        p {
+          @apply com-mt-0 com-mb-0.5;
+        }
+
+        a {
+          @apply com-text-primary-500;
+        }
+
+        & p.is-editor-empty:first-child::before {
+          color: #adb5bd;
+          content: attr(data-placeholder);
+          float: left;
+          height: 0;
+          pointer-events: none;
+        }
+      }
+    }
+
+    &.editable {
+      @apply com-border com-border-gray-300 com-border-solid com-rounded com-max-h-24 com-px-1.5 com-overflow-y-auto;
+
+      ::ng-deep {
+        div.ProseMirror {
+          @apply com-overflow-y-auto;
+        }
+      }
+
+      // Custom scrollbar
+      &::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-clip: content-box;
+        background-color: darken($light-purple, 5%);
+        border: 3px solid transparent;
+        border-radius: $border-10;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: darken($light-purple, 8%);
+      }
+    }
+  }
+
+  .emoji-button {
+    @apply com-mr-2 com-p-0;
+    p {
+      @apply com-text-xl com-m-0 com-p-6px;
+    }
+  }
+
+  emoji-mart {
+    @apply com-absolute com-bottom-10 com-right-0;
+  }
+
+  .submit-button {
+    @apply com-ml-2;
+  }
+}

@@ -4,6 +4,8 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-community-channels-dashboard-channel-list',
@@ -14,7 +16,8 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   channels: ICommunityChannel[] = [];
   community: ICommunity;
   displayCommunityList = false;
-  subscriptions = [];
+  subscriptions: Subscription[] = [];
+  discussionType = EDiscussionType;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,8 +27,8 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe(() => {
-        this.community = this.activatedRoute.snapshot.data.community;
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.community = data.community;
         this.getChannels();
         this.communityChannelManagerService.setCommunityListview(false);
       }),
@@ -33,13 +36,13 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getChannels() {
     this.subscriptions.push(
-      this.communityChannelsService.index(this.community.id).subscribe((data) => {
-        this.channels = data.community_channels;
+      this.communityChannelsService.index(this.community.id, this.discussionType.CHANNEL).subscribe((data) => {
+        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       }),
     );
   }

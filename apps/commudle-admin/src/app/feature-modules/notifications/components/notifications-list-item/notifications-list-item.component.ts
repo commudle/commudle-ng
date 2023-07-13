@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationParentTypes } from 'apps/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
-import { INotificationMessage } from 'apps/shared-models/notification.model';
+import { INotification, INotificationMessage } from 'apps/shared-models/notification.model';
 
 @Component({
   selector: 'app-notifications-list-item',
@@ -26,12 +26,13 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   timeout: any;
   observer: any;
   @Input() notificationMessage: INotificationMessage[] = [];
+  @Input() notification: INotification;
   @Input() ENotificationStatusesUnread: boolean;
   @Input() notificationType;
 
   @Output() notificationClicked: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('notification') notification: ElementRef;
+  @ViewChild('notificationRef') notificationRef: ElementRef;
 
   @Output() markRead: EventEmitter<any> = new EventEmitter<any>();
 
@@ -53,6 +54,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   }
 
   ngAfterViewInit() {
+    // TODO: change to use dedicated library
     if (this.ENotificationStatusesUnread === true) {
       this.observer = new IntersectionObserver(
         (entries) => {
@@ -68,7 +70,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         },
         { threshold: 1 }, // how much % of the element is in view
       );
-      this.observer.observe(this.notification.nativeElement);
+      this.observer.observe(this.notificationRef.nativeElement);
     }
   }
 
@@ -98,29 +100,45 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       notificationMessage.parent_type ||
       notificationMessage.owner_type;
     const slug = value['username'] || value['slug'] || value['id'];
-
+    let addQueryParams = true;
+    let url: any[] = [];
     switch (type) {
       case ENotificationSenderTypes.USER:
-        this.router.navigate(['/users', slug]);
+        url = ['/users', slug];
+        addQueryParams = false;
         break;
       case ENotificationParentTypes.COMMUNITY_BUILD:
-        this.router.navigate(['/builds', slug]);
+        url = ['/builds', slug];
         break;
       case ENotificationParentTypes.LAB:
-        this.router.navigate(['/labs', slug]);
+        url = ['/labs', slug];
         break;
       case ENotificationParentTypes.KOMMUNITY:
-        this.router.navigate(['/communities', slug]);
+        url = ['/communities', slug];
+        addQueryParams = false;
         break;
       case ENotificationParentTypes.EVENT:
-        this.router.navigate(['/event', slug]);
+        url = ['/event', slug];
         break;
       case ENotificationParentTypes.JOB:
-        this.router.navigate(['/jobs', slug]);
+        addQueryParams = false;
+        url = ['/jobs', slug];
+        break;
+      case ENotificationParentTypes.COMMUNITY_CHANNEL:
+        addQueryParams = true;
+        url = ['/communities', value['kommunity_slug'], value['display_type'] + 's', slug];
         break;
     }
 
     this.gtmService();
+    if (addQueryParams && value['user_message_cursor']) {
+      this.router.navigate(url, {
+        queryParams: { after: value['user_message_cursor'] },
+      });
+    } else {
+      this.router.navigate(url);
+    }
+
     this.notificationClicked.emit();
   }
 

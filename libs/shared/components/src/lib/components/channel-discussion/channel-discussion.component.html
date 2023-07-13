@@ -1,0 +1,83 @@
+<div class="discussion-container">
+  <!-- TODO: Fix problem with infinite scroll -->
+
+  <div *ngIf="communityChannelHandlerService.loading$ | async" class="com-flex com-items-center com-justify-center">
+    <commudle-loading-spinner></commudle-loading-spinner>
+  </div>
+  <div
+    #messagesListRef
+    (scrolled)="communityChannelHandlerService.getMessagesBefore()"
+    (scrolledUp)="communityChannelHandlerService.getMessagesAfter()"
+    *ngIf="(communityChannelHandlerService.messages$ | async)?.length; else noMessages"
+    [infiniteScrollDisabled]="
+      !(communityChannelHandlerService.pageInfo$ | async)?.has_next_page &&
+      !(communityChannelHandlerService.pageInfo$ | async)?.has_previous_page
+    "
+    [infiniteScrollDistance]="10"
+    [infiniteScrollUpDistance]="-8"
+    [scrollWindow]="false"
+    class="messages-list"
+    commudleInfiniteScroll
+  >
+    <div *ngIf="discussionType === 'channel'" class="messages">
+      <commudle-community-channel-message
+        *ngFor="let message of communityChannelHandlerService.messages$ | async"
+        [cursor]="message.cursor"
+        [message]="message.data"
+        [canReply]="
+          channelsRoles[channelOfForum.id] &&
+          (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+        "
+      ></commudle-community-channel-message>
+    </div>
+    <div *ngIf="discussionType === 'forum'" class="messages">
+      <commudle-community-forum-message
+        *ngFor="let message of communityChannelHandlerService.messages$ | async"
+        [cursor]="message.cursor"
+        [message]="message.data"
+      ></commudle-community-forum-message>
+    </div>
+  </div>
+  <ng-template #noMessages>
+    <div class="no-messages">Start a new conversation!</div>
+  </ng-template>
+  <div *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn">
+    <div
+      *ngIf="
+        (channelsRoles[channelOfForum.id] &&
+          (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))) ||
+          (forumsRoles[channelOfForum.id] &&
+            (forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+              forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)));
+        else joinButton
+      "
+    >
+      <commudle-editor
+        (contentChange)="communityChannelHandlerService.sendMessage($event)"
+        *ngIf="
+          !channelOfForum.is_readonly ||
+          (channelsRoles[channelOfForum.id] &&
+            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
+          (forumsRoles[channelOfForum.id] &&
+            forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+        "
+        [validators]="validators"
+        [status]="'primary'"
+      ></commudle-editor>
+    </div>
+  </div>
+  <ng-template #notLoggedIn>
+    <a [routerLink]="['/login']" nbButton status="primary">
+      <nb-icon icon="log-in-outline"></nb-icon>
+      Login to join the discussion
+    </a>
+  </ng-template>
+  <ng-template #joinButton>
+    <a (click)="joinChannelButton()" nbButton status="primary" fullWidth>
+      <nb-icon icon="log-in-outline"></nb-icon>
+      Join This Channel
+    </a>
+  </ng-template>
+</div>

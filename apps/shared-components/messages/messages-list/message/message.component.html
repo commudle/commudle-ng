@@ -1,4 +1,10 @@
-<div *ngIf="message" class="message-container">
+<div
+  (inViewportAction)="markAsRead(message?.id, $event)"
+  *ngIf="message"
+  [inViewportOptions]="{ threshold: [0] }"
+  class="message-container"
+  inViewport
+>
   <div class="prefix d-flex align-items-start">
     <img
       alt="{{ message.user.name }}"
@@ -20,7 +26,7 @@
         />
         <p class="time">{{ moment(message.created_at).fromNow() }}</p>
       </div>
-      <p [innerHTML]="message.content | linky : { sanitizeHtml: true }" class="content"></p>
+      <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">

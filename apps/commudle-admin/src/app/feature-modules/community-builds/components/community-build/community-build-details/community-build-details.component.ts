@@ -39,7 +39,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   ngOnInit() {
     this.getDiscussionChat();
     this.teammates = this.cBuild.user_roles_users;
-    if (this.cBuild.video_iframe.startsWith('<iframe') && this.cBuild.video_iframe.endsWith('</iframe>')) {
+    if (this.cBuild.video_iframe?.startsWith('<iframe') && this.cBuild.video_iframe?.endsWith('</iframe>')) {
       this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.video_iframe);
     } else {
       this.embedCode = null;
@@ -61,8 +61,8 @@ export class CommunityBuildDetailsComponent implements OnInit {
   }
 
   getDiscussionChat() {
-    this.discussionsService
-      .pGetOrCreateForCommunityBuildChat(this.cBuild.id)
-      .subscribe((data) => (this.discussionChat = data));
+    this.discussionsService.pGetOrCreateForCommunityBuildChat(this.cBuild.id).subscribe((data) => {
+      this.discussionChat = data;
+    });
   }
 }

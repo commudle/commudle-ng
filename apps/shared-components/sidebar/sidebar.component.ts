@@ -15,8 +15,9 @@ export class SidebarComponent implements OnInit {
   @Input() isExpanded: boolean = false;
   @Input() showExpandedButton: boolean = true;
   @Input() position: 'left' | 'right' = 'left';
-  @Input() expandedWidth: 'small' | 'medium' | 'large';
+  @Input() expandedWidth: 'small' | 'medium' | 'large' | 'extra-large' = 'large';
   @Input() heading: string;
+  @Input() forWindow = true;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //font-awesome icons

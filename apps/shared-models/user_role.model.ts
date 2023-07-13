@@ -1,4 +1,3 @@
-export interface IUserRole {
-  id: number;
-  name: string;
-}
+import { IUserRole } from '@commudle/shared-models';
+
+export { IUserRole };

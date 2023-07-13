@@ -2,14 +2,16 @@
   class="sidebar"
   [ngClass]="{
     expanded: isExpanded,
+    forWindow: forWindow,
     left: position === 'left',
     right: position === 'right',
     small: expandedWidth === 'small',
     medium: expandedWidth === 'medium',
-    large: expandedWidth === 'large'
+    large: expandedWidth === 'large',
+    extraLarge: expandedWidth === 'extra-large'
   }"
 >
-  <div class="header">
+  <div class="header" *ngIf="heading || showExpandedButton">
     <h1 *ngIf="heading" class="title" (click)="handleSidebarToggle()">{{ heading }}</h1>
     <div *ngIf="showExpandedButton" class="toggle" (click)="handleSidebarToggle()">
       <fa-icon [icon]="isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>

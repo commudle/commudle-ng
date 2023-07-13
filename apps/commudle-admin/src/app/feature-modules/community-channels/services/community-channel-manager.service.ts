@@ -9,6 +9,7 @@ import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { BehaviorSubject } from 'rxjs';
 import { CommunityChannelsService } from './community-channels.service';
+import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 
 export interface IGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -19,6 +20,9 @@ export interface IGroupedCommunityChannels {
 })
 export class CommunityChannelManagerService {
   private currentUser;
+  discussionType = EDiscussionType;
+  channels: ICommunityChannel[] = [];
+  forums: ICommunityChannel[] = [];
 
   // community
   private selectedCommunity: BehaviorSubject<ICommunity> = new BehaviorSubject(null);
@@ -32,16 +36,33 @@ export class CommunityChannelManagerService {
   private communityChannels: BehaviorSubject<IGroupedCommunityChannels> = new BehaviorSubject(null);
   public communityChannels$ = this.communityChannels.asObservable();
 
+  // communityForums grouped by their group names
+  private communityForums: BehaviorSubject<IGroupedCommunityChannels> = new BehaviorSubject(null);
+  public communityForums$ = this.communityForums.asObservable();
+
   // get the role for all channels
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private allChannelRoles: BehaviorSubject<{}> = new BehaviorSubject({});
   public allChannelRoles$ = this.allChannelRoles.asObservable();
+
+  // get the role for all channels
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  private allForumRoles: BehaviorSubject<{}> = new BehaviorSubject({});
+  public allForumRoles$ = this.allForumRoles.asObservable();
   // channel
   private selectedChannel: BehaviorSubject<ICommunityChannel> = new BehaviorSubject(null);
   public selectedChannel$ = this.selectedChannel.asObservable();
 
+  private selectedForum: BehaviorSubject<[]> = new BehaviorSubject(null);
+  public selectedForum$ = this.selectedForum.asObservable();
+
   // to toggle the view of channels list and the list of communities in the sidebar
   private showCommunityList: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public showCommunityList$ = this.showCommunityList.asObservable();
+
+  // to toggle the view of channels list and the list of communities in the sidebar
+  private showForumList: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public showForumList$ = this.showForumList.asObservable();
 
   //pin or unpin message
   private pinData: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -66,15 +87,17 @@ export class CommunityChannelManagerService {
 
   setCommunity(community: ICommunity) {
     this.selectedChannel.next(null);
-    this.selectedCommunity.next(community);
+    if (this.selectedCommunity.value !== community) {
+      this.selectedCommunity.next(community);
+      if (this.currentUser) {
+        this.usersService.getMyRoles('Kommunity', community.id).subscribe((data) => {
+          this.communityRoles.next(data);
+        });
+      }
 
-    if (this.currentUser) {
-      this.usersService.getMyRoles('Kommunity', community.id).subscribe((data) => {
-        this.communityRoles.next(data);
-      });
+      this.getChannels();
+      this.getForums();
     }
-
-    this.getChannels();
   }
 
   findChannel(channelId): ICommunityChannel {
@@ -90,15 +113,51 @@ export class CommunityChannelManagerService {
     return chn;
   }
 
+  findForum(forumId): ICommunityChannel {
+    const groupedForums: IGroupedCommunityChannels = this.communityChannels.value;
+    let frs = null;
+    Object.entries(groupedForums).forEach(([key, values]) => {
+      const fr = values.find((k) => k.id == forumId);
+      if (fr && frs == null) {
+        frs = fr;
+      }
+    });
+
+    return frs;
+  }
+
   setChannel(channel: ICommunityChannel) {
     this.selectedChannel.next(channel);
   }
 
+  setForum(forum) {
+    this.selectedForum.next(forum);
+  }
+
   getChannels() {
-    this.communityChannelsService.index(this.selectedCommunity.value.slug).subscribe((data) => {
-      this.getAllChannelRoles(data.community_channels);
-      this.communityChannels.next(_.groupBy(data.community_channels, (ch) => ch.group_name));
-    });
+    this.communityChannelsService
+      .index(this.selectedCommunity.value.slug, this.discussionType.CHANNEL)
+      .subscribe((data) => {
+        if (this.channels.length > 0) {
+          this.channels = [];
+        }
+        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.getAllChannelRoles(this.channels);
+        this.communityChannels.next(_.groupBy(this.channels, (ch) => ch.group_name));
+      });
+  }
+
+  getForums() {
+    this.communityChannelsService
+      .index(this.selectedCommunity.value.slug, this.discussionType.FORUM)
+      .subscribe((data) => {
+        if (this.forums.length > 0) {
+          this.forums = [];
+        }
+        this.forums = this.forums.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.getAllForumRoles(this.forums);
+        this.communityForums.next(_.groupBy(this.forums, (ch) => ch.group_name));
+      });
   }
 
   getAllChannelRoles(channels) {
@@ -116,11 +175,34 @@ export class CommunityChannelManagerService {
     }
   }
 
+  getAllForumRoles(forums) {
+    if (this.currentUser) {
+      const roles = this.allForumRoles.value;
+      for (const [i, fr] of forums.entries()) {
+        this.usersService.getMyRoles('CommunityChannel', fr.id).subscribe((data) => {
+          roles[`${fr.id}`] = data;
+
+          if (i === forums.length) {
+            this.allForumRoles.next(roles);
+          }
+        });
+      }
+    }
+  }
+
   getChannelRoles(channel) {
     const roles = this.allChannelRoles.value;
     this.usersService.getMyRoles('CommunityChannel', channel.id).subscribe((data) => {
       roles[`${channel.id}`] = data;
       this.allChannelRoles.next(roles);
+    });
+  }
+
+  getForumRoles(forum) {
+    const roles = this.allForumRoles.value;
+    this.usersService.getMyRoles('CommunityChannel', forum.id).subscribe((data) => {
+      roles[`${forum.id}`] = data;
+      this.allForumRoles.next(roles);
     });
   }
 
@@ -138,6 +220,20 @@ export class CommunityChannelManagerService {
     });
   }
 
+  createForum(forumData) {
+    this.communityChannelsService.create(this.selectedCommunity.value.slug, forumData).subscribe((data) => {
+      // select this channel
+      // this.selectedForum.next(data);
+
+      // add this channel to the group in the list of channels
+      const allForums = this.communityForums.value;
+      allForums[data.group_name] ? allForums[data.group_name].push(data) : (allForums[data.group_name] = [data]);
+      this.communityForums.next(allForums);
+      this.getForumRoles(data);
+      this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
+    });
+  }
+
   findAndUpdateChannel(channel) {
     // get all the channels
     const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
@@ -151,8 +247,21 @@ export class CommunityChannelManagerService {
     this.communityChannels.next(groupedChannels);
   }
 
-  deleteChannel(channelId) {
-    this.communityChannelsService.delete(channelId).subscribe((data) => {
+  findAndUpdateForum(forum) {
+    // get all the channels
+    const groupedForums: IGroupedCommunityChannels = this.communityForums.value;
+
+    Object.entries(groupedForums).forEach(([key, values], i) => {
+      const fr = values.findIndex((k) => k.id == forum.id);
+      if (fr != -1) {
+        groupedForums[key][fr] = forum;
+      }
+    });
+    this.communityChannels.next(groupedForums);
+  }
+
+  deleteChannel(channelId, archive) {
+    this.communityChannelsService.delete(channelId, archive).subscribe((data) => {
       // get all the channels
       const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
       this.toastLogService.successDialog('Channel was deleted');
@@ -163,7 +272,6 @@ export class CommunityChannelManagerService {
         }
       });
       this.communityChannels.next(groupedChannels);
-      this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
     });
   }
 

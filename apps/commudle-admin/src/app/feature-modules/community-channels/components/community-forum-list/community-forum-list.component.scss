@@ -1,0 +1,40 @@
+.community-channel-list {
+  width: 100%;
+
+  .forum-group {
+    @apply com-shadow-none;
+    .heading {
+      @apply com-m-0;
+      p {
+        @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
+      }
+    }
+
+    .group-name {
+      div {
+        @apply com-cursor-pointer hover:com-bg-[#EEE]/40;
+        p {
+          @apply com-mx-6 com-py-2 com-text-sm com-text-[#475166];
+        }
+
+        &.selectedForum {
+          @apply com-bg-[#EEE];
+        }
+      }
+    }
+  }
+}
+
+nb-accordion {
+  &::ng-deep {
+    nb-accordion-item {
+      nb-accordion-item-body {
+        .ng-trigger-accordionItemBody {
+          .item-body {
+            @apply com-p-0;
+          }
+        }
+      }
+    }
+  }
+}

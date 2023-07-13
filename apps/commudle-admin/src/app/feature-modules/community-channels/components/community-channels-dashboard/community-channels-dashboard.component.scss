@@ -1,23 +1,14 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
 .community-channels-dashboard {
-  display: flex;
-  flex-wrap: nowrap;
-  height: calc(100vh - 56px);
-  justify-content: center;
-  padding-bottom: $space-72;
-  padding-top: $space-16;
+  @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-0 com-h-[700px] com-w-full com-rounded-lg;
 
   .community-channel-list {
-    background: white;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
-    overflow-y: auto;
+    @apply com-bg-[#F9F9F9] com-overflow-hidden com-h-full com-w-full;
   }
 
   .community-channel-discussion {
-    background: white;
-    //overflow: hidden;
+    @apply com-bg-white com-overflow-auto;
   }
 
   @media screen and (min-width: 1080px) {
@@ -26,26 +17,25 @@
     }
 
     .community-channel-list {
-      width: 200px !important;
+      @apply com-w-full;
     }
 
     .community-channel-discussion {
       flex-grow: 1;
       width: 1000px;
+      @apply com-ml-2px  com-border-0 com-border-l com-border-gray-200 com-border-solid;
     }
   }
 
   @media screen and (max-width: 1079px) {
-    padding-bottom: $space-120;
     position: relative;
 
     .community-list {
       overflow: hidden;
-      width: 0;
 
       &.show {
         background-color: #f7f7f7;
-        height: 100vh;
+        // height: 100vh;
         left: 0;
         overflow-y: auto;
         position: absolute;
@@ -56,11 +46,11 @@
 
     .community-channel-list {
       overflow: hidden;
-      width: 0;
+      @apply com-w-full;
 
       &.show {
         background-color: white;
-        height: 100vh;
+        // height: 100vh;
         left: 80px;
         overflow-y: auto;
         position: absolute;
@@ -74,4 +64,22 @@
       width: 1000px;
     }
   }
+}
+
+.icons {
+  @apply com-m-2 com-w-14 com-h-14 com-rounded-lg  com-flex com-flex-col com-cursor-pointer;
+
+  fa-icon {
+    @apply com-text-2xl com-table-cell com-text-center com-align-middle com-mt-1;
+  }
+  .text {
+    @apply com-text-[10px] com-text-center;
+  }
+  &.community &.forum {
+    @apply com-bg-primary-200;
+  }
+}
+
+.active {
+  @apply com-border-[1.5px] com-border-solid com-border-[#0095FF];
 }
