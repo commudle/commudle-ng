@@ -1,5 +1,16 @@
+nb-card {
+  @apply com-h-full com-m-0 com-border-none;
+
+  nb-card-header {
+    @apply com-sticky com-top-0 com-z-20 com-bg-white;
+  }
+  nb-card-body {
+    @apply com-mx-0 com-p-0;
+  }
+}
+
 .forums-cards {
-  @apply com-grid com-grid-cols-3 com-gap-3 com-m-5;
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-3 com-m-5;
   .container {
     @apply com-cursor-pointer hover:com-shadow-Card com-w-72 com-h-44 com-border com-border-solid com-border-[#e4e7eb] com-rounded-lg;
     .header {

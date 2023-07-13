@@ -2,7 +2,7 @@
   <div class="community-list" *ngIf="showCommunityList">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
-  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-16': !sidebarExpanded }">
+  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-[72px]': !sidebarExpanded }">
     <commudle-sidebar
       [isExpanded]="sidebarExpanded"
       (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
@@ -11,11 +11,23 @@
     >
       <div class="com-flex com-h-full">
         <div class="left-section">
-          <div class="icons !com-bg-[#EFF9FF]" (click)="openChannelOrForums(discussionType.CHANNEL)" title="Channels">
+          <div
+            class="icons !com-bg-[#EFF9FF]"
+            (click)="openChannelOrForums(discussionType.CHANNEL)"
+            title="Channels"
+            [ngClass]="{ active: !discussionTypeForum }"
+          >
             <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
+            <span class="text">Channels</span>
           </div>
-          <div class="icons !com-bg-[#EFF9FF]" (click)="openChannelOrForums(discussionType.FORUM)" title="Forums">
+          <div
+            class="icons !com-bg-[#EFF9FF]"
+            (click)="openChannelOrForums(discussionType.FORUM)"
+            title="Forums"
+            [ngClass]="{ active: discussionTypeForum }"
+          >
             <fa-icon [icon]="faMessage" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
+            <span class="text">Forums</span>
           </div>
         </div>
         <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
@@ -49,7 +61,7 @@
     </div>
 
     <!-- //form cards (landing page) -->
-    <div *ngIf="forumsCards && !channelsCards">
+    <div *ngIf="forumsCards && !channelsCards" class="com-h-full">
       <commudle-community-channels-dashboard-forum-list
         (updateSelectedForum)="updateSelectedChannelOrForum($event)"
       ></commudle-community-channels-dashboard-forum-list>
@@ -57,7 +69,7 @@
 
     <!-- //Channel message Component -->
     <div *ngIf="channelMessage && !forumMessage">
-      <app-community-channel [selectedChannelId]="selectedChannelId"></app-community-channel>
+      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
     </div>
 
     <!-- //Form Name List shows after selecting form group -->

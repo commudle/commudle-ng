@@ -28,7 +28,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   communityChannels;
   channelsQueried = false;
-  selectedChannelId: number;
+  selectedChannelOrFormId: number;
   showChannelsComponent = false;
   showForumsComponent = false;
   showForumMessages = false;
@@ -74,7 +74,9 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.getCurrentUser();
     this.checkCommunityOrganizer();
 
-    if (this.discussionTypeForum && this.selectedChannelId) {
+    this.sidebarExpanded = !(window.innerWidth <= 640);
+
+    if (this.discussionTypeForum && this.selectedChannelOrFormId) {
       this.checkSelectedForum();
     }
     this.communityChannelManagerService.setCommunity(this.selectedCommunity);
@@ -84,7 +86,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
         this.communityChannels = data;
         if (data) {
           this.channelsQueried = true;
-          if (this.selectedChannelId) {
+          if (this.selectedChannelOrFormId) {
             this.channelsCards = false;
             this.channelMessage = true;
           }
@@ -122,9 +124,9 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getQueryParamsData() {
-    this.discussionTypeForum = this.activatedRoute.snapshot.routeConfig.path.includes('forums');
+    this.discussionTypeForum = this.activatedRoute.snapshot.url.join('/').includes('forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
-    this.selectedChannelId = this.activatedRoute.snapshot.params.community_channel_id;
+    this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
   }
 
   getCurrentUser() {
@@ -145,7 +147,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   updateSelectedChannelOrForum(channel?) {
     if (!this.discussionTypeForum && channel) {
-      this.selectedChannelId = channel.id;
+      this.selectedChannelOrFormId = channel.id;
       this.channelsCards = false;
       this.channelMessage = true;
     } else if (this.discussionTypeForum && (this.forumName || channel)) {

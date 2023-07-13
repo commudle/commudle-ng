@@ -16,7 +16,7 @@
       justify-content: space-between;
       @apply com-m-0;
       p {
-        @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
+        @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
       }
     }
 
@@ -43,7 +43,7 @@
             }
 
             .name {
-              @apply com-text-base  com-p-0 com-m-0 com-cursor-pointer;
+              @apply com-text-sm  com-p-0 com-m-0 com-cursor-pointer;
               a {
                 text-decoration: none;
                 @apply com-text-[#475166];

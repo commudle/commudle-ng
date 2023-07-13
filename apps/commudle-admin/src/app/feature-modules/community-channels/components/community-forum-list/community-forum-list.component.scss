@@ -6,7 +6,7 @@
     .heading {
       @apply com-m-0;
       p {
-        @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
+        @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mt-6 com-mb-1 com-mx-6;
       }
     }
 
@@ -14,7 +14,7 @@
       div {
         @apply com-cursor-pointer hover:com-bg-[#EEE]/40;
         p {
-          @apply com-mx-6 com-py-2 com-text-base com-text-[#475166];
+          @apply com-mx-6 com-py-2 com-text-sm com-text-[#475166];
         }
 
         &.selectedForum {
