@@ -10,6 +10,17 @@ p {
   @apply com-rounded com-bg-white;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
+  .helper {
+    @apply com-text-center;
+
+    .text {
+      @apply com-text-[10px] com-text-slate-500;
+
+      .key {
+        @apply com-font-bold;
+      }
+    }
+  }
   .items {
     @apply com-max-h-64 com-w-56;
 
@@ -35,18 +46,6 @@ p {
         .model {
           @apply com-text-xs com-text-slate-500;
         }
-      }
-    }
-  }
-
-  .helper {
-    @apply com-p-2 com-text-center;
-
-    .text {
-      @apply com-text-xs com-text-slate-500;
-
-      .key {
-        @apply com-font-bold;
       }
     }
   }

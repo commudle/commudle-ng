@@ -1,4 +1,7 @@
 <div class="mentions-list-container" *ngIf="props['items'].length !== 0">
+  <div class="helper">
+    <p class="text">Press <span class="key">Tab</span> to autocomplete</p>
+  </div>
   <nb-list class="items">
     <nb-list-item
       (click)="selectItem(i)"
@@ -14,7 +17,4 @@
       </div>
     </nb-list-item>
   </nb-list>
-  <div class="helper">
-    <p class="text">Press <span class="key">Tab</span> to autocomplete</p>
-  </div>
 </div>
