@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { API_ROUTES } from './api-routes.constant';
 import { BaseApiService } from './base-api.service';
 import { GoogleTagManagerService } from './google-tag-manager.service';
-
+import { AuthService as authService } from '@commudle/auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -89,7 +89,7 @@ export class AuthService {
 
   // logout
   signOut(): Observable<boolean> {
-    this.injector.get(AuthService).signOut();
+    this.injector.get(authService).signOut();
     this.currentUser.next(null);
     this.currentUserVerified.next(false);
     return this.http.delete<any>(this.baseApiService.getRoute(API_ROUTES.LOGOUT));

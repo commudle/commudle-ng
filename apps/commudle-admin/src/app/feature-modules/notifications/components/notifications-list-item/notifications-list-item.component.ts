@@ -118,7 +118,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         addQueryParams = false;
         break;
       case ENotificationParentTypes.EVENT:
-        url = ['/event', slug];
+        url = ['/communities', value['kommunity_slug'], 'events', slug];
         break;
       case ENotificationParentTypes.JOB:
         addQueryParams = false;
