@@ -198,7 +198,7 @@ export function CustomMention(injector: Injector) {
             popup[0].setProps({ getReferenceClientRect: props.clientRect });
           },
           onKeyDown(props): any {
-            renderer.instance.onKeyDown(props);
+            renderer?.instance.onKeyDown(props);
           },
           onExit() {
             popup[0].destroy();

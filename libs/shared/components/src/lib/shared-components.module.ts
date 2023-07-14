@@ -9,8 +9,8 @@ import { DiscussionComponent } from './components/discussion/discussion.componen
 import { MessageComponent } from './components/discussion/message/message.component';
 import { VoteComponent } from './components/vote/vote.component';
 import { ChannelDiscussionComponent } from './components/channel-discussion/channel-discussion.component';
-import { CommunityChannelMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-channel-message/community-channel-message.component';
-import { CommunityForumMessageComponent } from 'libs/shared/components/src/lib/components/channel-discussion/community-forum-message/community-forum-message.component';
+import { CommunityChannelMessageComponent } from './components/channel-discussion/community-channel-message/community-channel-message.component';
+import { CommunityForumMessageComponent } from './components/channel-discussion/community-forum-message/community-forum-message.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 @NgModule({
@@ -35,7 +35,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     NbContextMenuModule,
     FontAwesomeModule,
   ],
-  exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent],
+  exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent, LoadingSpinnerComponent],
   providers: [InViewportDirective],
 })
 export class SharedComponentsModule {}

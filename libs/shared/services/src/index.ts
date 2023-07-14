@@ -9,3 +9,6 @@ export * from './lib/share.service';
 export * from './lib/toastr.service';
 export * from './lib/user-message-receipt.service';
 export * from './lib/vote.service';
+export * from './lib/community-channels.service';
+export * from './lib/app-users.service';
+export * from './lib/community-channel-manager.service';

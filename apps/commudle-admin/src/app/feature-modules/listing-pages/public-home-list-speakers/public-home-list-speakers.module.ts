@@ -26,6 +26,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmptyStateComponentComponent } from './components/empty-state-component/empty-state-component.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PublicHomeListSpeakersUpcomingComponent,
     PublicHomeListSpeakersProfileComponent,
     PublicHomeListSpeakersContentComponent,
+    EmptyStateComponentComponent,
   ],
   imports: [
     CommonModule,

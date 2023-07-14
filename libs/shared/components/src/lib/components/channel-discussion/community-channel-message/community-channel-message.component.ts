@@ -1,8 +1,14 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
-import { IUserMessage } from '@commudle/shared-models';
-import { AuthService, ShareService } from '@commudle/shared-services';
+import { EUserRoles, IUserMessage } from '@commudle/shared-models';
+import {
+  AuthService,
+  CommunityChannelManagerService,
+  CommunityChannelsService,
+  ShareService,
+  ToastrService,
+} from '@commudle/shared-services';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { UserMessageReceiptHandlerService } from '../../../services/user-message-receipt-handler.service';
@@ -10,12 +16,7 @@ import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/s
 import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
-import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
-
 import { ActivatedRoute } from '@angular/router';
-import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'commudle-community-channel-message',
@@ -59,7 +60,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     private communityChannelManagerService: CommunityChannelManagerService,
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
-    private libToastLogService: LibToastLogService,
+    private libToastLogService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -81,11 +82,11 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
         } else if (event.item.title === 'Share This Message') {
           this.share();
         } else if (event.item.title === 'Pin Message') {
-          this.pinMessage(this.message);
+          // this.pinMessage(this.message);
         } else if (event.item.title === 'Unpin Message') {
-          this.unpinMessage(this.message);
+          // this.unpinMessage(this.message);
         } else if (event.item.title === 'Email to all members') {
-          this.sendMessageByEmail(this.message.id);
+          // this.sendMessageByEmail(this.message.id);
         }
       });
     if (this.authService.getCurrentUser()?.id === this.message.user.id) {
