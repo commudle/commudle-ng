@@ -34,7 +34,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   page = 1;
   count = 10;
   totalSearch = 0;
-  emptyState = false;
   listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
@@ -186,7 +185,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
       .subscribe((data) => {
         this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.total = data.total;
-        this.emptyState = this.total === 0;
         this.page_info = data.page_info;
         this.skeletonLoaderCard = false;
         this.loadingSpeakers = false;

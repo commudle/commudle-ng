@@ -49,10 +49,10 @@
   <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
 </div>
 
-<div *ngIf="this.emptyState">
+<div *ngIf="!loading && speakers.length === 0">
   <commudle-empty-state-component></commudle-empty-state-component>
 </div>
-<div *ngIf="!this.emptyState">
+<div *ngIf="speakers.length > 0">
   <div
     *appBreakpoints="'>lg'"
     (scrolled)="getSpeakersList()"
