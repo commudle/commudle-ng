@@ -52,6 +52,7 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     PublicHomeListEventsHeaderComponent,
     PublicHomeListEventsFeaturedCommunitiesComponent,
     PublicHomeListEventsTechSessionsComponent,
+    PublicHomeListEventsSpeakersComponent,
   ],
 })
 export class PublicHomeListEventsModule {}

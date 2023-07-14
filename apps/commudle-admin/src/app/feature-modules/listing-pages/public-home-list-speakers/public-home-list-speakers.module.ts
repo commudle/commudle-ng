@@ -61,5 +61,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbInputModule,
     NbFormFieldModule,
   ],
+  exports: [PublicHomeListSpeakersContentComponent],
 })
 export class PublicHomeListSpeakersModule {}

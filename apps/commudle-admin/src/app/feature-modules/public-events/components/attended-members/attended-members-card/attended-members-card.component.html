@@ -1,7 +1,9 @@
 <div class="attended-members-card">
-  <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
+  <div class="user-profile-card-large">
+    <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
+  </div>
 
-  <div class="md:com-order-2 md:com-col-span-2">
+  <div>
     <ng-container *ngIf="events.length !== 0">
       <p class="heading">
         Connect with {{ user.name }}, you have attended
