@@ -16,3 +16,9 @@ export interface IUserMessage {
   pinned: boolean;
   read: boolean;
 }
+
+export interface IUserMessages {
+  user_messages: IUserMessage[];
+  count: number;
+  page: number;
+}

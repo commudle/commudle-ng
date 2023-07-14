@@ -117,6 +117,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
+      hasScroll: true,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,

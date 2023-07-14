@@ -36,3 +36,9 @@ interface IUpcomingEvents {
   id: string;
   name: string;
 }
+export interface ICommunities {
+  communities: ICommunity[];
+  page: number;
+  count: number;
+  total: number;
+}

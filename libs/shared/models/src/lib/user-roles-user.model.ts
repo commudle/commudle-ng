@@ -21,3 +21,10 @@ export enum EUserRolesUserStatus {
   REMOVED = 'removed',
   JOINED_BY_TOKEN = 'joined_by_token',
 }
+
+export interface IUserRolesUsers {
+  user_roles_users: IUserRolesUser[];
+  page: number;
+  count: number;
+  total: number;
+}
