@@ -19,7 +19,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   loading = false;
   loadingSpeakers = false;
   total: number;
-  limit = 6;
+  limit = 9;
   skeletonLoaderCard = true;
   timePeriod: string;
   month = false;
@@ -83,9 +83,15 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
           this.employee = true;
         }
       }
+      if (params.query) {
+        this.query = params.query;
+        this.searchForm.get('name').setValue(this.query);
+      }
     }
     this.speakers = [];
-    this.getSpeakersList();
+    if (!params.query) {
+      this.getSpeakersList();
+    }
   }
 
   updateFilter() {

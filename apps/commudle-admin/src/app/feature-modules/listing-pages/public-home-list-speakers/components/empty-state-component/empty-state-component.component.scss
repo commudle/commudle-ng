@@ -1,0 +1,12 @@
+div {
+  @apply com-flex com-flex-col com-items-center com-mx-3 md:com-mx-0 md:com-h-[372px] com-h-[260px];
+  img {
+    @apply md:com-w-[375px] md:com-h-[300px];
+  }
+  .heading {
+    @apply com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0 com-mb-3;
+  }
+  .sub-heading {
+    @apply com-text-lg com-font-normal com-text-Yankees-Blue com-m-0 com-text-center;
+  }
+}
