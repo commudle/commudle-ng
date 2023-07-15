@@ -246,11 +246,11 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   inviteToStage(userId: number): void {
     if (userId) {
       const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => {
-        return peer.customerDescription && JSON.parse(peer.customerDescription)?.id === userId;
+        return peer.metadata && JSON.parse(peer.metadata)?.id === userId;
       });
       if (peers.length > 0) {
-        const roleName: string = peers[0].roleName;
-        const name: string = JSON.parse(peers[0].customerDescription).name;
+        const roleName = peers[0].roleName;
+        const name: string = JSON.parse(peers[0].metadata || '{}')?.name;
         switch (roleName) {
           case EHmsRoles.HOST:
             this.toastLogService.warningDialog(`Cannot invite ${name} to stage, they are the host`);
