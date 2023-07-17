@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-my-6 md:com-mx-4 com-mx-0;
+  @apply com-mx-0;
 }
 
 .event-stats {
@@ -26,7 +26,7 @@ nb-card {
     }
 
     .no-image-path {
-      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md com-h-64;
+      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md;
     }
   }
 }

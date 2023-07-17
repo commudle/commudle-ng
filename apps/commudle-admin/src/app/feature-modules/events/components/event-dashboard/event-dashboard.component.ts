@@ -12,7 +12,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService, NbWindowService, NbDialogRef } from '@commudle/theme';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
-import { StatsEventsService } from 'apps/commudle-admin/src/app/services/stats/stats-events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';

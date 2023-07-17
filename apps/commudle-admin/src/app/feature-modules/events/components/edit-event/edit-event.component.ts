@@ -48,6 +48,7 @@ export class EditEventComponent implements OnInit {
   minimumTags = 3;
 
   faChevronLeft = faChevronLeft;
+  submitIsInProcess = false;
 
   tinyMCE = {
     height: 300,
@@ -89,14 +90,14 @@ export class EditEventComponent implements OnInit {
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.event = data.event;
-      if (this.event.editable) {
-        this.eventForm.get('event').disable();
-      }
       this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}
       `);
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
+      if (this.uneditable) {
+        this.eventForm.get('event').disable();
+      }
 
       // @ts-ignore
       this.eventForm.get('event').patchValue({
@@ -143,6 +144,7 @@ export class EditEventComponent implements OnInit {
   }
 
   updateEvent() {
+    this.submitIsInProcess = true;
     const formValue = this.eventForm.get('event').value;
     delete formValue['start_date'];
     delete formValue['end_date'];
@@ -166,6 +168,7 @@ export class EditEventComponent implements OnInit {
     }
 
     this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
+      this.submitIsInProcess = false;
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });

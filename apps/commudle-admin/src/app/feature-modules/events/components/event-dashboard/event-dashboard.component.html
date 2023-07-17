@@ -45,104 +45,93 @@
           </div>
           <div class="heading">Status</div>
         </div>
-        <div class="action-button public-event-page">
-          <a [routerLink]="['/communities', community.slug, 'events', event.slug]" target="_blank">
-            <div class="icon">
-              <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
-            </div>
-            <div class="heading">Public Event Page</div>
-          </a>
-        </div>
-        <div class="action-button stats">
+        <a
+          [routerLink]="['/communities', community.slug, 'events', event.slug]"
+          target="_blank"
+          class="action-button public-event-page"
+        >
           <div class="icon">
             <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
           </div>
-          <div class="heading">
-            <a [routerLink]="['stats']"> Event Stats </a>
+          <div class="heading">Public Event Page</div>
+        </a>
+        <a [routerLink]="['stats']" [routerLinkActive]="'active'" class="action-button stats">
+          <div class="icon">
+            <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
           </div>
-        </div>
-        <div class="action-button">
+          <div class="heading">Event Stats</div>
+        </a>
+        <a class="action-button">
           <div class="icon">
             <fa-icon [icon]="icons.faUserGroup"></fa-icon>
           </div>
           <div class="heading">View Attended Members</div>
-        </div>
-        <div class="action-button">
+        </a>
+        <a class="action-button">
           <div class="icon">
             <fa-icon [icon]="icons.faShareNodes"></fa-icon>
           </div>
           <div class="heading">Share Event</div>
-        </div>
+        </a>
         <hr />
         <a
           class="action-button"
-          [routerLinkActiveOptions]="{ exact: true }"
           [routerLink]="['./']"
           [routerLinkActive]="'active'"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <!-- <a> -->
           <div class="icon">
             <nb-icon icon="info-outline"></nb-icon>
           </div>
           <div class="heading">Event Details</div>
-          <!-- </a> -->
         </a>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="star-outline"></nb-icon>
-            </div>
-            <div class="heading">Updates</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="calendar-outline"></nb-icon>
-            </div>
-            <div class="heading">Agenda</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="edit-2-outline"></nb-icon>
-            </div>
-            <div class="heading">Registrations</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="pricetags-outline"></nb-icon>
-            </div>
-            <div class="heading">Collaborations</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="headphones-outline"></nb-icon>
-            </div>
-            <div class="heading">Team</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="briefcase-outline"></nb-icon>
-            </div>
-            <div class="heading">Sponsors</div>
-          </a>
-        </div>
-        <div class="action-button">
-          <a [routerLink]="['details']">
-            <div class="icon">
-              <nb-icon icon="email-outline"></nb-icon>
-            </div>
-            <div class="heading">Emails</div>
-          </a>
-        </div>
+        <a
+          *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
+          [routerLink]="['updates']"
+          [routerLinkActive]="'active'"
+          class="action-button"
+        >
+          <div class="icon">
+            <nb-icon icon="star-outline"></nb-icon>
+          </div>
+          <div class="heading">Updates</div>
+        </a>
+        <a [routerLink]="['agenda']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="calendar-outline"></nb-icon>
+          </div>
+          <div class="heading">Agenda</div>
+        </a>
+        <a [routerLink]="['registrations']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="edit-2-outline"></nb-icon>
+          </div>
+          <div class="heading">Registrations</div>
+        </a>
+        <a [routerLink]="['collaborations']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="pricetags-outline"></nb-icon>
+          </div>
+          <div class="heading">Collaborations</div>
+        </a>
+        <a [routerLink]="['team']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="headphones-outline"></nb-icon>
+          </div>
+          <div class="heading">Team</div>
+        </a>
+        <a [routerLink]="['sponsors']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="briefcase-outline"></nb-icon>
+          </div>
+          <div class="heading">Sponsors</div>
+        </a>
+        <a [routerLink]="['emails']" [routerLinkActive]="'active'" class="action-button">
+          <div class="icon">
+            <nb-icon icon="email-outline"></nb-icon>
+          </div>
+          <div class="heading">Emails</div>
+        </a>
       </div>
     </commudle-sidebar>
   </div>
@@ -158,7 +147,9 @@
       [community]="community"
       [event]="event"
     ></app-event-details> -->
-    <router-outlet></router-outlet>
+    <div class="router">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </section>
 
@@ -224,27 +215,6 @@
 
       <div #statusSection>
         <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
-      </div>
-      <div #detailsSection>
-        <app-event-details
-          (deleteHeaderImage)="deleteEventHeader()"
-          (updateHeaderImage)="displaySelectedHeaderImage($event)"
-          [community]="community"
-          [event]="event"
-        ></app-event-details>
-      </div>
-      <div #updatesSection *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
-        <nb-card class="updates">
-          <nb-card-header>
-            <h6>
-              <nb-icon icon="star-outline"></nb-icon>
-              Updates
-            </h6>
-          </nb-card-header>
-          <nb-card-body>
-            <app-event-updates [event]="event"></app-event-updates>
-          </nb-card-body>
-        </nb-card>
       </div>
       <div #registrationsSection>
         <nb-card class="registrations">

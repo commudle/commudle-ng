@@ -114,11 +114,12 @@
         <div class="save-button-bottom">
           <button
             *ngIf="!uneditable"
-            [disabled]="!eventForm.valid || tags.length < 3"
+            [disabled]="!eventForm.valid || tags.length < 3 || submitIsInProcess"
             type="submit"
             nbButton
             fullWidth
             status="info"
+            [nbSpinner]="submitIsInProcess"
           >
             Save
           </button>
