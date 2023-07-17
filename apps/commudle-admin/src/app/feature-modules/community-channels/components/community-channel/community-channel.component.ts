@@ -39,9 +39,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
           this.communityChannelManagerService.findChannel(this.selectedChannel.id), this.getDiscussion();
         }
       }),
-      this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
-        this.selectedChannel = data;
-      }),
     );
 
     this.subscriptions.push(
@@ -54,6 +51,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     this.initialize();
+    this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
+      this.selectedChannel = data;
+    });
   }
 
   ngOnDestroy(): void {

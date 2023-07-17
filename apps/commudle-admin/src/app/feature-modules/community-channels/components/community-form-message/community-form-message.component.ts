@@ -7,6 +7,7 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-community-form-message',
@@ -19,6 +20,8 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
   forum: ICommunityChannel;
   faArrowLeftLong = faArrowLeftLong;
   subscriptions: Subscription[] = [];
+  showMembersList = false;
+  faUsers = faUsers;
 
   @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
 
@@ -53,5 +56,9 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
     this.router.navigate(['communities', this.forum.kommunity.id, 'forums'], {
       queryParams: { category: this.forum.group_name ? this.forum.group_name : 'General' },
     });
+  }
+
+  toggleMembersList() {
+    this.showMembersList = !this.showMembersList;
   }
 }

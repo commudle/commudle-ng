@@ -4,7 +4,7 @@
       <div>
         <p class="margin0 fontw-300">
           <nb-icon icon="people" status="basic"></nb-icon>
-          Members ({{ allUsers.length }})
+          Members ({{ channelUsers.length }})
         </p>
       </div>
       <span (click)="close()" class="clickable">
@@ -13,9 +13,12 @@
         </small>
       </span>
     </nb-card-header>
-    <nb-list>
-      <nb-list-item *ngFor="let u of allUsers; let i = index">
-        <div>
+    <nb-card-body>
+      <div (scrolled)="getMembers()" [infiniteScrollDistance]="3" appInfiniteScroll>
+        <ng-container
+          *ngFor="let u of channelUsers | orderBy : ['user_role.name'] : ['asc']; let i = index"
+          class="com-my-3"
+        >
           <app-member
             (exitChannel)="leaveChannel(i)"
             (makeAdmin)="toggleAdmin(i)"
@@ -24,8 +27,9 @@
             [currentUserIsAdmin]="currentUserIsAdmin"
             [userRolesUser]="u"
           ></app-member>
-        </div>
-      </nb-list-item>
-    </nb-list>
+        </ng-container>
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      </div>
+    </nb-card-body>
   </nb-card>
 </div>
