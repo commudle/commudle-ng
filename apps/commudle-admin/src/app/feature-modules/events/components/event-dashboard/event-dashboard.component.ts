@@ -19,7 +19,9 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
-
+import { Subscription } from 'rxjs';
+import { faUpRightFromSquare, faUserGroup, faShareNodes, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
@@ -40,9 +42,14 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   attendedMemberEmailerDialog: NbDialogRef<any>;
 
   isLoading = false;
-  statsMembersCount;
-  statsSpeakersCount;
-  statsAttendancesCount;
+
+  icons = {
+    faUpRightFromSquare,
+    faClipboard,
+    faUserGroup,
+    faShareNodes,
+    faCircleInfo,
+  };
 
   @ViewChild('statusSection') statusSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('detailsSection') detailsSectionRef: ElementRef<HTMLDivElement>;
@@ -64,7 +71,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private windowService: NbWindowService,
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
-    private statsEventsService: StatsEventsService,
   ) {
     this.eventHeaderImageForm = this.fb.group({
       header_image: ['', Validators.required],
@@ -79,7 +85,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       this.community = value.community;
       this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
-    this.getStats();
   }
 
   ngOnDestroy() {
@@ -98,42 +103,8 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  displaySelectedHeaderImage(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      if (file.size > 2425190) {
-        this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
-        return;
-      }
-      this.uploadedHeaderImageFile = file;
-      const reader = new FileReader();
-      reader.onload = () => (this.uploadedHeaderImage = reader.result);
-
-      reader.readAsDataURL(file);
-      this.updateEventHeader();
-    }
-  }
-
-  updateEventHeader() {
-    const formData: any = new FormData();
-    formData.append('header_image', this.uploadedHeaderImageFile);
-    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe((data) => {
-      this.event = data;
-      this.toastLogService.successDialog('Updated!');
-    });
-  }
-
   scroll(element: ElementRef<HTMLDivElement>) {
     element.nativeElement.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'nearest' });
-  }
-
-  deleteEventHeader() {
-    this.eventsService.deleteHeaderImage(this.event.id).subscribe((data) => {
-      this.uploadedHeaderImage = null;
-      this.uploadedHeaderImageFile = null;
-      this.event = data;
-      this.toastLogService.successDialog('Deleted');
-    });
   }
 
   openGuide() {
@@ -157,18 +128,6 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       } else {
         this.toastLogService.warningDialog('Something Wrong');
       }
-    });
-  }
-
-  getStats() {
-    this.statsEventsService.memberStats(this.event.slug).subscribe((data) => {
-      this.statsMembersCount = data.chart_data;
-    });
-    this.statsEventsService.speakers(this.event.slug, 'confirmed').subscribe((data) => {
-      this.statsSpeakersCount = data.chart_data;
-    });
-    this.statsEventsService.attendees(this.event.slug).subscribe((data) => {
-      this.statsAttendancesCount = data.chart_data;
     });
   }
 }

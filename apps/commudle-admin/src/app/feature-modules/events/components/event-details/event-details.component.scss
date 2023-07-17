@@ -1,16 +1,40 @@
+nb-card {
+  @apply com-my-6 md:com-mx-4 com-mx-0;
+}
+
+.event-stats {
+  @apply com-min-h-[120px];
+  .stats {
+    @apply com-flex com-justify-evenly com-flex-wrap;
+    p {
+      @apply com-text-center com-text-base;
+    }
+    span {
+      @apply com-text-2xl com-font-bold;
+    }
+  }
+}
+
 .event-details-container {
-  @apply com-mx-0 md:com-mx-2 com-my-4;
   .image-container {
-    @apply com-mx-0 md:com-mx-2 com-my-4 com-p-0;
+    @apply com-my-4 com-mx-6 com-p-0;
     .event-header-delete {
-      @apply com-block com-mx-auto com-mt-2;
+      @apply com-block com-mt-2;
     }
     .event-details {
-      @apply com-px-6 com-py-4;
+      @apply com-px-0 com-py-4;
     }
 
     .no-image-path {
-      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md com-mt-6;
+      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md com-h-64;
+    }
+  }
+}
+
+.description {
+  &::ng-deep {
+    a {
+      @apply com-text-primary-500 #{!important};
     }
   }
 }

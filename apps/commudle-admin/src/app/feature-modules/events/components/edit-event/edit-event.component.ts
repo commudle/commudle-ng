@@ -8,7 +8,8 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-
+import { Location } from '@angular/common';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -46,6 +47,8 @@ export class EditEventComponent implements OnInit {
   tags: string[] = [];
   minimumTags = 3;
 
+  faChevronLeft = faChevronLeft;
+
   tinyMCE = {
     height: 300,
     menubar: false,
@@ -66,6 +69,7 @@ export class EditEventComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private router: Router,
     private seoService: SeoService,
+    private location: Location,
   ) {
     this.eventForm = this.fb.group({
       event: this.fb.group({
@@ -82,10 +86,14 @@ export class EditEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data) => {
+    this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.event = data.event;
-      this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}`);
+      if (this.event.editable) {
+        this.eventForm.get('event').disable();
+      }
+      this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}
+      `);
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
@@ -214,5 +222,9 @@ export class EditEventComponent implements OnInit {
 
   onTagDelete(value: string) {
     this.tags = this.tags.filter((tag) => tag !== value);
+  }
+
+  goBackToPrevPage(): void {
+    this.location.back();
   }
 }

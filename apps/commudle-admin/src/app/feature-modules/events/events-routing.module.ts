@@ -12,6 +12,7 @@ import { EntryPassScanComponent } from './components/user-event-registrations/en
 import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
+import { EventDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-details/event-details.component';
 
 const routes = [
   {
@@ -34,11 +35,22 @@ const routes = [
           {
             path: '',
             component: EventDashboardComponent,
+            children: [
+              {
+                path: '',
+                component: EventDetailsComponent,
+              },
+              {
+                path: 'edit',
+                component: EditEventComponent,
+              },
+              {
+                path: 'stats',
+                component: EventStatsComponent,
+              },
+            ],
           },
-          {
-            path: 'edit',
-            component: EditEventComponent,
-          },
+
           {
             path: 'collaborating-communities',
             component: CollaboratingCommunitiesComponent,

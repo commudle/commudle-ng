@@ -1,4 +1,168 @@
-<div class="base-layout com-my-8">
+<!-- <section>
+  <div class="header">
+    <div class="community-details">
+      <div class="community-logo">
+        <img [src]="community.logo_path" alt="" />
+      </div>
+      <div class="community-name">
+        <p>
+          {{ community.name }}
+        </p>
+      </div>
+    </div>
+    <div class="event-details">
+      <h1 class="event-name">{{ event.name }}</h1>
+
+      <p class="text">Welcome to event dashboard, here you can manage your event</p>
+    </div>
+  </div>
+</section> -->
+
+<section class="com-flex">
+  <div class="sidebar">
+    <commudle-sidebar
+      [isExpanded]="true"
+      [expandedWidth]="'extra-large'"
+      [forWindow]="true"
+      [showExpandedButton]="false"
+    >
+      <div class="com-h-28">
+        <div class="community-details">
+          <div class="community-logo">
+            <img [src]="community.logo_path" alt="" />
+          </div>
+          <div class="community-name">
+            <p>
+              {{ community.name }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <div class="action-button">
+          <div class="icon">
+            <nb-icon icon="clipboard-outline"></nb-icon>
+          </div>
+          <div class="heading">Status</div>
+        </div>
+        <div class="action-button public-event-page">
+          <a [routerLink]="['/communities', community.slug, 'events', event.slug]" target="_blank">
+            <div class="icon">
+              <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
+            </div>
+            <div class="heading">Public Event Page</div>
+          </a>
+        </div>
+        <div class="action-button stats">
+          <div class="icon">
+            <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
+          </div>
+          <div class="heading">
+            <a [routerLink]="['stats']"> Event Stats </a>
+          </div>
+        </div>
+        <div class="action-button">
+          <div class="icon">
+            <fa-icon [icon]="icons.faUserGroup"></fa-icon>
+          </div>
+          <div class="heading">View Attended Members</div>
+        </div>
+        <div class="action-button">
+          <div class="icon">
+            <fa-icon [icon]="icons.faShareNodes"></fa-icon>
+          </div>
+          <div class="heading">Share Event</div>
+        </div>
+        <hr />
+        <a
+          class="action-button"
+          [routerLinkActiveOptions]="{ exact: true }"
+          [routerLink]="['./']"
+          [routerLinkActive]="'active'"
+        >
+          <!-- <a> -->
+          <div class="icon">
+            <nb-icon icon="info-outline"></nb-icon>
+          </div>
+          <div class="heading">Event Details</div>
+          <!-- </a> -->
+        </a>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="star-outline"></nb-icon>
+            </div>
+            <div class="heading">Updates</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="calendar-outline"></nb-icon>
+            </div>
+            <div class="heading">Agenda</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="edit-2-outline"></nb-icon>
+            </div>
+            <div class="heading">Registrations</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="pricetags-outline"></nb-icon>
+            </div>
+            <div class="heading">Collaborations</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="headphones-outline"></nb-icon>
+            </div>
+            <div class="heading">Team</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="briefcase-outline"></nb-icon>
+            </div>
+            <div class="heading">Sponsors</div>
+          </a>
+        </div>
+        <div class="action-button">
+          <a [routerLink]="['details']">
+            <div class="icon">
+              <nb-icon icon="email-outline"></nb-icon>
+            </div>
+            <div class="heading">Emails</div>
+          </a>
+        </div>
+      </div>
+    </commudle-sidebar>
+  </div>
+  <div class="right-column">
+    <div class="event-details">
+      <h1 class="event-name">{{ event.name }}</h1>
+
+      <p class="text">Welcome to event dashboard, here you can manage your event</p>
+    </div>
+    <!-- <app-event-details
+      (deleteHeaderImage)="deleteEventHeader()"
+      (updateHeaderImage)="displaySelectedHeaderImage($event)"
+      [community]="community"
+      [event]="event"
+    ></app-event-details> -->
+    <router-outlet></router-outlet>
+  </div>
+</section>
+
+<!-- <div class="base-layout com-my-8">
   <div class="container">
     <div class="one-column-layout">
       <a [routerLink]="['/admin/communities', community.slug]" ghost nbButton size="small">
@@ -6,97 +170,6 @@
         Back
       </a>
 
-      <nb-card class="event-heading">
-        <nb-card-body>
-          <h2 class="fs-h2">{{ event.name }}</h2>
-          <p>Welcome to the dashboard, here you can customize your event!</p>
-          <div class="com-flex com-gap-4">
-            <a
-              [routerLink]="['/communities', community.slug, 'events', event.slug]"
-              nbButton
-              size="small"
-              status="info"
-              target="_blank"
-            >
-              Public Event Page
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-            <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank">
-              <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats<sup>new</sup> &nbsp;
-              <nb-icon icon="external-link"></nb-icon>
-            </a>
-            <button
-              (click)="openAttendedMemberEmailerDialog()"
-              nbButton
-              outline
-              size="small"
-              status="primary"
-              [disabled]="moment(event.start_time) > this.moment()"
-            >
-              Send Attended Member Emailers
-            </button>
-            <button
-              [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
-              nbButton
-              outline
-              size="small"
-              status="primary"
-            >
-              View attended members
-            </button>
-          </div>
-        </nb-card-body>
-      </nb-card>
-
-      <nb-card class="event-stats">
-        <nb-card-body>
-          <div class="stats">
-            <p *ngIf="statsMembersCount">
-              <span>
-                {{ statsMembersCount.members_added }}
-              </span>
-              <br />
-              New Members Added
-            </p>
-            <p *ngIf="statsSpeakersCount">
-              <span>
-                {{
-                  statsSpeakersCount.male +
-                    statsSpeakersCount.female +
-                    statsSpeakersCount.NA +
-                    statsSpeakersCount.prefer_not_to_answer
-                }}
-              </span>
-              <br />
-              Total Speakers
-            </p>
-            <p *ngIf="statsAttendancesCount">
-              <span>
-                {{
-                  statsAttendancesCount.invited_attendees.male +
-                    statsAttendancesCount.uninvited_attendees.male +
-                    statsAttendancesCount.invited_attendees.female +
-                    statsAttendancesCount.uninvited_attendees.female +
-                    statsAttendancesCount.invited_attendees.NA +
-                    statsAttendancesCount.invited_attendees.prefer_not_to_answer +
-                    statsAttendancesCount.uninvited_attendees.NA +
-                    statsAttendancesCount.uninvited_attendees.prefer_not_to_answer
-                }}
-              </span>
-              <br />
-              Total Attendees
-            </p>
-            <p *ngIf="statsAttendancesCount">
-              <span>
-                {{ statsAttendancesCount.entry_passes.total }}
-              </span>
-              <br />
-              Entry Passes Sent
-            </p>
-          </div>
-        </nb-card-body>
-      </nb-card>
 
       <nb-card class="event-dashboard-menu">
         <nb-card-body>
@@ -313,10 +386,6 @@
           </nb-card-body>
         </nb-card>
       </div>
-      <!-- TODO: Enable recordings -->
-      <!--      <div>-->
-      <!--        <app-event-recordings [event]="event"></app-event-recordings>-->
-      <!--      </div>-->
       <div #emailsSection>
         <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>
       </div>
@@ -475,4 +544,4 @@
       <button (click)="ref.close()" ghost nbButton status="danger">No</button>
     </nb-card-footer>
   </nb-card>
-</ng-template>
+</ng-template> -->

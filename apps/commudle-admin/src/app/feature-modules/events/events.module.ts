@@ -66,6 +66,8 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { TimeBlocksComponent } from './components/event-locations/event-location-tracks/time-blocks/time-blocks.component';
 import { TrackSlotsComponent } from './components/event-locations/event-location-tracks/track-slots/track-slots.component';
 import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +118,10 @@ import { ExitPassScanComponent } from './components/user-event-registrations/exi
     NgxDatatableModule,
     LinkyModule,
     ZXingScannerModule,
+
+    //standalone
+    SidebarComponent,
+    BackButtonComponent,
 
     //Nebular
     NbButtonModule,
