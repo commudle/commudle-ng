@@ -162,6 +162,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   }
 
   getSpeakersList() {
+    console.log('called');
     this.loading = true;
     if (this.loadingSpeakers) {
       return;
