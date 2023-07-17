@@ -101,7 +101,14 @@
         </div>
 
         <div class="save-button-bottom">
-          <button [disabled]="!eventForm.valid || tags.length < 3" type="submit" nbButton fullWidth status="info">
+          <button
+            [disabled]="!eventForm.valid || tags.length < 3 || isFormSubmitting"
+            type="submit"
+            nbButton
+            fullWidth
+            status="info"
+            [nbSpinner]="isFormSubmitting"
+          >
             Save
           </button>
         </div>

@@ -52,7 +52,7 @@ export class NewDataFormComponent implements OnInit {
 
   initQuestion(): FormGroup {
     return this.fb.group({
-      question_type_id: ['', Validators.required],
+      question_type_id: [1, Validators.required],
       title: ['', Validators.required],
       description: [''],
       required: [this.defaultQuestionRequiredValue()],
@@ -141,12 +141,26 @@ export class NewDataFormComponent implements OnInit {
   }
 
   questionTypeChange(questionType, questionIndex: number) {
+    console.log(
+      "🚀 ~ file: new-data-form.component.ts:145 ~ NewDataFormComponent ~ questionTypeChange ~   this.createDataForm.get('data_form').get('questions'):",
+      typeof this.createDataForm.get('data_form').get('questions').value[questionIndex].question_type_id,
+    );
+    console.log(
+      '🚀 ~ file: new-data-form.component.ts:144 ~ NewDataFormComponent ~ questionTypeChange ~ questionType, questionIndex: number:',
+      typeof questionType,
+      questionType,
+      questionIndex,
+    );
     if (![4, 5].includes(questionType)) {
       const choiceCount = (
         (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
           'question_choices',
         ) as FormArray
       ).length;
+      console.log(
+        '🚀 ~ file: new-data-form.component.ts:150 ~ NewDataFormComponent ~ questionTypeChange ~ choiceCount:',
+        choiceCount,
+      );
       for (let i = 0; i < choiceCount; i++) {
         (
           (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
