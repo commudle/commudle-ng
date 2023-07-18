@@ -50,7 +50,7 @@ import { CommunityForumListComponent } from 'apps/commudle-admin/src/app/feature
 import { CommunityForumComponent } from './components/community-forum/community-forum.component';
 import { CommunityChannelsDashboardForumListComponent } from './components/community-channels-dashboard-forum-list/community-channels-dashboard-forum-list.component';
 import { SharedComponentsModule } from '@commudle/shared-components';
-import { CommunityFormMessageComponent } from './components/community-form-message/community-form-message.component';
+import { CommunityForumMessageComponent } from './components/community-forum-message/community-forum-message.component';
 import { ArchiveComponent } from './components/channel-settings/archive/archive.component';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
@@ -77,7 +77,7 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
     CommunityForumListComponent,
     CommunityForumComponent,
     CommunityChannelsDashboardForumListComponent,
-    CommunityFormMessageComponent,
+    CommunityForumMessageComponent,
     ArchiveComponent,
   ],
   imports: [

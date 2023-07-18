@@ -54,7 +54,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   setMeta() {
     this.seoService.setTags(
       `Forums - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      `Forum discussions for ${this.selectedCommunity.name}`,
       this.selectedCommunity.logo_path,
     );
   }

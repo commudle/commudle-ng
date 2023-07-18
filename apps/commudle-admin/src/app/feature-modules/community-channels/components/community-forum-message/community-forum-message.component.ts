@@ -13,11 +13,11 @@ import { ICommunity } from '@commudle/shared-models';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'commudle-community-form-message',
-  templateUrl: './community-form-message.component.html',
-  styleUrls: ['./community-form-message.component.scss'],
+  selector: 'commudle-community-forum-message',
+  templateUrl: './community-forum-message.component.html',
+  styleUrls: ['./community-forum-message.component.scss'],
 })
-export class CommunityFormMessageComponent implements OnInit, OnDestroy {
+export class CommunityForumMessageComponent implements OnInit, OnDestroy {
   @Input() forumId;
   @Input() selectedCommunity: ICommunity;
   discussion: IDiscussion;
@@ -69,7 +69,7 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
   setMeta() {
     this.seoService.setTags(
       `${this.forum.name} - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      `Interact with members in forum for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
       this.selectedCommunity.logo_path,
     );
   }

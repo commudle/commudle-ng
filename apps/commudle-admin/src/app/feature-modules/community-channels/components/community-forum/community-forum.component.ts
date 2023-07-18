@@ -134,8 +134,8 @@ export class CommunityForumComponent implements OnInit {
 
   setMeta() {
     this.seoService.setTags(
-      `${this.selectedForum[0].group_name} - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      `${this.selectedForum[0].group_name} - Forums - ${this.selectedCommunity.name}`,
+      `Forums under for ${this.selectedCommunity.name}`,
       this.selectedCommunity.logo_path,
     );
   }
