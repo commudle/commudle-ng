@@ -42,7 +42,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventCommentsComponent } from './components/event-comments/event-comments.component';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
-import { FormGroupsComponent } from './components/event-dashboard/form-groups/form-groups.component';
+import { FormGroupsComponent } from './components/event-registrations/form-groups/form-groups.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
@@ -50,7 +50,7 @@ import { UserDetailsCellComponent } from './components/event-form-responses/user
 import { EventLocationTracksComponent } from './components/event-locations/event-location-tracks/event-location-tracks.component';
 import { EventLocationsComponent } from './components/event-locations/event-locations.component';
 import { EventRecordingsComponent } from './components/event-recordings/event-recordings.component';
-import { EventSimpleRegistrationComponent } from './components/event-simple-registration/event-simple-registration.component';
+import { EventSimpleRegistrationComponent } from './components/event-registrations/event-simple-registration/event-simple-registration.component';
 import { EventSpeakersComponent } from './components/event-speakers/event-speakers.component';
 import { EventStatsComponent } from './components/event-stats/event-stats.component';
 import { EventStatusComponent } from './components/event-status/event-status.component';
@@ -68,6 +68,8 @@ import { TrackSlotsComponent } from './components/event-locations/event-location
 import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
 import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
+import { EventAgendaComponent } from './components/event-agenda/event-agenda.component';
+import { EventRegistrationsComponent } from './components/event-registrations/event-registrations.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +100,8 @@ import { BackButtonComponent } from 'apps/shared-components/back-button/back-but
     TimeBlocksComponent,
     TrackSlotsComponent,
     ExitPassScanComponent,
+    EventAgendaComponent,
+    EventRegistrationsComponent,
   ],
   imports: [
     CommonModule,

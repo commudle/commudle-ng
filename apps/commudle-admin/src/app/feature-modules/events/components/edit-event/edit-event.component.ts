@@ -5,7 +5,6 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { Location } from '@angular/common';
@@ -69,7 +68,6 @@ export class EditEventComponent implements OnInit {
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private seoService: SeoService,
     private location: Location,
   ) {
     this.eventForm = this.fb.group({
@@ -90,8 +88,7 @@ export class EditEventComponent implements OnInit {
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.event = data.event;
-      this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}
-      `);
+      this.event.tags.forEach((value) => this.tags.push(value.name));
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
@@ -167,7 +164,7 @@ export class EditEventComponent implements OnInit {
       });
     }
 
-    this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
+    this.eventsService.updateEvent(formValue, this.event.slug, this.community, this.tags).subscribe((data) => {
       this.submitIsInProcess = false;
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);

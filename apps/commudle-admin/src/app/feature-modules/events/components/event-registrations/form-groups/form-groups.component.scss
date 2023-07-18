@@ -1,9 +1,6 @@
 .event-data-form-groups-list {
   nb-list-item {
     @apply com-px-0 com-py-4 com-self-center com-border-b-0 com-w-full;
-    @media screen and (min-width: 640px) {
-      align-self: flex-start;
-    }
 
     .edfeg-details {
       background: #f4f7ff;

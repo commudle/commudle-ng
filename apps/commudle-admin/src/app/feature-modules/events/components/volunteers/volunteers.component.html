@@ -1,97 +1,111 @@
 <div>
-  <div *ngIf="event.editable" class="com-mb-6">
-    <h6>Add a Teammate</h6>
-    <p>
-      <small> *Team can only access the attendance page (which is applicable only for offline events) </small>
-    </p>
-    <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
-      <div>
-        <label>
-          Email*
-          <br />
-          <input fieldSize="small" formControlName="email" nbInput placeholder="Google/Gmail Email" type="email" />
-        </label>
-        <br />
-        <span
-          *ngIf="
-            userRolesUserForm['controls'].email.touched &&
-            userRolesUserForm['controls'].email.invalid &&
-            userRolesUserForm['controls'].email.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div>
-
-      <div class="designation">
-        <label>
-          Designation*
-          <br />
-          <input
-            fieldSize="small"
-            formControlName="role_designation"
-            nbInput
-            placeholder="Role Designation"
-            type="text"
-            [nbAutocomplete]="autoComplete"
-          />
-        </label>
-        <br />
-        <span
-          *ngIf="
-            userRolesUserForm['controls'].role_designation.touched &&
-            userRolesUserForm['controls'].role_designation.invalid &&
-            userRolesUserForm['controls'].role_designation.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div>
-      <nb-autocomplete #autoComplete>
-        <nb-option *ngFor="let roleDesignation of roleDesignations | async" [value]="roleDesignation">{{
-          roleDesignation
-        }}</nb-option>
-      </nb-autocomplete>
-
-      <div class="save-button-bottom">
-        <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
-          Save
-        </button>
-      </div>
-    </form>
-  </div>
-  <div *ngIf="volunteers.length > 0">
-    <div class="volunteers">
-      <table>
-        <tr>
-          <th>Users</th>
-          <th>Designation</th>
-          <th>Actions</th>
-        </tr>
-        <tr *ngFor="let volunteer of volunteers; let i = index">
-          <td>
-            <app-user-profile-card-medium [user]="volunteer.user"></app-user-profile-card-medium>
-          </td>
-          <td>
-            {{ volunteer.role_designation }}
-          </td>
-          <td>
-            <div class="actions">
-              <a
-                (click)="resendInvitationMail(volunteer)"
-                *ngIf="volunteer.status === EUserRolesUserStatus.INVITED"
-                class="clickable"
-              >
-                <small>Resend Invite</small>
-              </a>
-              <br />
-              <a (click)="remove(volunteer, i)" class="clickable">
-                <small>Remove</small>
-              </a>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  <commudle-back-button text="Back"></commudle-back-button>
 </div>
+
+<nb-card class="volunteers">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="headphones-outline"></nb-icon>
+      Team
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+      <div *ngIf="event.editable" class="com-mb-6">
+        <h6>Add a Teammate</h6>
+        <p>
+          <small> *Team can only access the attendance page (which is applicable only for offline events) </small>
+        </p>
+        <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
+          <div>
+            <label>
+              Email*
+              <br />
+              <input fieldSize="small" formControlName="email" nbInput placeholder="Google/Gmail Email" type="email" />
+            </label>
+            <br />
+            <span
+              *ngIf="
+                userRolesUserForm['controls'].email.touched &&
+                userRolesUserForm['controls'].email.invalid &&
+                userRolesUserForm['controls'].email.errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </div>
+
+          <div class="designation">
+            <label>
+              Designation*
+              <br />
+              <input
+                fieldSize="small"
+                formControlName="role_designation"
+                nbInput
+                placeholder="Role Designation"
+                type="text"
+                [nbAutocomplete]="autoComplete"
+              />
+            </label>
+            <br />
+            <span
+              *ngIf="
+                userRolesUserForm['controls'].role_designation.touched &&
+                userRolesUserForm['controls'].role_designation.invalid &&
+                userRolesUserForm['controls'].role_designation.errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </div>
+          <nb-autocomplete #autoComplete>
+            <nb-option *ngFor="let roleDesignation of roleDesignations | async" [value]="roleDesignation">{{
+              roleDesignation
+            }}</nb-option>
+          </nb-autocomplete>
+
+          <div class="save-button-bottom">
+            <button [disabled]="!userRolesUserForm.valid" nbButton outline size="tiny" status="primary" type="submit">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="volunteers.length > 0">
+        <div class="volunteers">
+          <table>
+            <tr>
+              <th>Users</th>
+              <th>Designation</th>
+              <th>Actions</th>
+            </tr>
+            <tr *ngFor="let volunteer of volunteers; let i = index">
+              <td>
+                <app-user-profile-card-medium [user]="volunteer.user"></app-user-profile-card-medium>
+              </td>
+              <td>
+                {{ volunteer.role_designation }}
+              </td>
+              <td>
+                <div class="actions">
+                  <a
+                    (click)="resendInvitationMail(volunteer)"
+                    *ngIf="volunteer.status === EUserRolesUserStatus.INVITED"
+                    class="clickable"
+                  >
+                    <small>Resend Invite</small>
+                  </a>
+                  <br />
+                  <a (click)="remove(volunteer, i)" class="clickable">
+                    <small>Remove</small>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,58 +1,82 @@
-<div class="sponsors">
-  <div class="event-sponsors">
-    <div (click)="openForm()" *ngIf="event.editable" class="new-sponsor-button clickable">
-      <p>
-        <nb-icon icon="plus"></nb-icon>
-        <br>
-        <span>Add Sponsor</span>
-      </p>
-    </div>
-    <!-- list of sponsors -->
-    <div *ngFor="let eventSponsor of sponsors; let i = index;" class="event-sponsor">
-      <div class="logo">
-        <img alt="{{eventSponsor.sponsor.name}}" src="{{eventSponsor.sponsor.logo.url}}"
-             title="{{eventSponsor.sponsor.name}}">
-      </div>
-      <div class="details">
-        <p>
-          {{eventSponsor.sponsor.name}}
-          <br>
-          <small>
-            <a href="{{eventSponsor.sponsor.link}}" target="_blank">{{eventSponsor.sponsor.link}}</a>
-          </small>
-        </p>
-        <a (click)="removeSponsor(eventSponsor.id, i)" *ngIf="event.editable" class="remove-sponsor-button clickable">
-          <p>
-            <small>
-              <nb-icon icon="close-circle-outline" status="danger"></nb-icon>
-            </small>
-          </p>
-        </a>
-      </div>
-    </div>
-  </div>
+<div>
+  <commudle-back-button text="Back"></commudle-back-button>
 </div>
+
+<nb-card class="sponsors">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="briefcase-outline"></nb-icon>
+      Sponsors
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="sponsors">
+      <div class="event-sponsors">
+        <div (click)="openForm()" *ngIf="event.editable" class="new-sponsor-button clickable">
+          <p>
+            <nb-icon icon="plus"></nb-icon>
+            <br />
+            <span>Add Sponsor</span>
+          </p>
+        </div>
+        <!-- list of sponsors -->
+        <div *ngFor="let eventSponsor of sponsors; let i = index" class="event-sponsor">
+          <div class="logo">
+            <img
+              alt="{{ eventSponsor.sponsor.name }}"
+              src="{{ eventSponsor.sponsor.logo.url }}"
+              title="{{ eventSponsor.sponsor.name }}"
+            />
+          </div>
+          <div class="details">
+            <p>
+              {{ eventSponsor.sponsor.name }}
+              <br />
+              <small>
+                <a href="{{ eventSponsor.sponsor.link }}" target="_blank">{{ eventSponsor.sponsor.link }}</a>
+              </small>
+            </p>
+            <a
+              (click)="removeSponsor(eventSponsor.id, i)"
+              *ngIf="event.editable"
+              class="remove-sponsor-button clickable"
+            >
+              <p>
+                <small>
+                  <nb-icon icon="close-circle-outline" status="danger"></nb-icon>
+                </small>
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
 
 <ng-template #sponsorFormTemplate *ngIf="event.editable">
   <nb-tabset class="new-event-sponsor-options">
     <nb-tab tabTitle="Choose">
       <div class="existing-sponsors">
-        <div (click)="addExistingSponsor(sponsor.id)" *ngFor="let sponsor of existingSponsors"
-             class="sponsor clickable">
+        <div
+          (click)="addExistingSponsor(sponsor.id)"
+          *ngFor="let sponsor of existingSponsors"
+          class="sponsor clickable"
+        >
           <div class="logo">
-            <img alt="{{sponsor.name}}" src="{{sponsor.logo.url}}" title="{{sponsor.name}}">
+            <img alt="{{ sponsor.name }}" src="{{ sponsor.logo.url }}" title="{{ sponsor.name }}" />
           </div>
           <p class="name" nbTooltip="sponsor.link">
-            <small>{{sponsor.name}}</small>
+            <small>{{ sponsor.name }}</small>
           </p>
         </div>
       </div>
     </nb-tab>
-    <nb-tab [active]="existingSponsors.length == 0" tabTitle="Add New">
+    <nb-tab [active]="existingSponsors.length === 0" tabTitle="Add New">
       <form (ngSubmit)="createSponsor()" [formGroup]="sponsorForm">
         <div class="logo field">
           <div *ngIf="uploadedLogoImage" class="uploaded-logo">
-            <img alt="Profile Picture" src="{{uploadedLogoImage}}" title="Profile Picture">
+            <img alt="Profile Picture" src="{{ uploadedLogoImage }}" title="Profile Picture" />
           </div>
 
           <div class="delete-logo-button">
@@ -62,37 +86,39 @@
             </button>
           </div>
 
-          <label [ngClass]="{'hidden': uploadedLogoImage }" class="clickable">
+          <label [ngClass]="{ hidden: uploadedLogoImage }" class="clickable">
             <span>
               <span>
                 <nb-icon icon="image-outline"></nb-icon>
               </span>
-              <span>
-                Click to upload a Logo <small>(200x200)</small>*
-              </span>
+              <span> Click to upload a Logo <small>(200x200)</small>* </span>
             </span>
-            <input (change)="displaySelectedLogo($event)" accept="image/*" formControlName="logo" fullWidth nbInput
-                   type="file">
+            <input
+              (change)="displaySelectedLogo($event)"
+              accept="image/*"
+              formControlName="logo"
+              fullWidth
+              nbInput
+              type="file"
+            />
           </label>
         </div>
 
         <div class="field">
           <label fullWidth>
             Name*
-            <input formControlName="name" fullWidth nbInput type="text">
+            <input formControlName="name" fullWidth nbInput type="text" />
           </label>
         </div>
 
         <div class="field">
           <label fullWidth>
             Link
-            <input formControlName="link" fullWidth nbInput type="text">
+            <input formControlName="link" fullWidth nbInput type="text" />
           </label>
         </div>
 
-        <button [disabled]="!sponsorForm.valid" nbButton status="primary" type="submit">
-          Submit
-        </button>
+        <button [disabled]="!sponsorForm.valid" nbButton status="primary" type="submit">Submit</button>
       </form>
     </nb-tab>
   </nb-tabset>

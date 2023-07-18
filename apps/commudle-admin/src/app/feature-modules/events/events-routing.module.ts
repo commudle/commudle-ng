@@ -14,6 +14,10 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-details/event-details.component';
 import { EventUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-updates/event-updates.component';
+import { EventAgendaComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-agenda/event-agenda.component';
+import { EventRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/event-registrations.component';
+import { SponsorsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/sponsors/sponsors.component';
+import { CommunityEmailsListComponent } from 'apps/commudle-admin/src/app/feature-modules/reusable-components/components/community-emails-list/community-emails-list.component';
 
 const routes = [
   {
@@ -46,12 +50,36 @@ const routes = [
                 component: EditEventComponent,
               },
               {
-                path: 'stats',
-                component: EventStatsComponent,
-              },
-              {
                 path: 'updates',
                 component: EventUpdatesComponent,
+              },
+              {
+                path: 'agenda',
+                component: EventAgendaComponent,
+              },
+              {
+                path: 'registrations',
+                component: EventRegistrationsComponent,
+              },
+              {
+                path: 'collaborations',
+                component: CollaboratingCommunitiesComponent,
+              },
+              {
+                path: 'volunteers',
+                component: VolunteersComponent,
+              },
+              {
+                path: 'sponsors',
+                component: SponsorsComponent,
+              },
+              {
+                path: 'emails',
+                component: CommunityEmailsListComponent,
+              },
+              {
+                path: 'form-responses',
+                component: EventFormResponsesComponent,
               },
             ],
           },

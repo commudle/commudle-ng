@@ -123,7 +123,7 @@ export class CreateEventComponent implements OnInit {
       });
     }
 
-    this.eventsService.createEvent(formValue, this.community).subscribe((data) => {
+    this.eventsService.createEvent(formValue, this.community, this.tags).subscribe((data) => {
       this.toastLogService.successDialog('Created!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
-import { StatsEventsService } from 'apps/commudle-admin/src/app/services/stats/stats-events.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -20,16 +19,12 @@ export class EventDetailsComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   moment = moment;
-  statsMembersCount;
-  statsSpeakersCount;
-  statsAttendancesCount;
   isStatsLoading = true;
 
   uploadedHeaderImageFile: File;
   uploadedHeaderImage;
 
   constructor(
-    private statsEventsService: StatsEventsService,
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
@@ -43,23 +38,7 @@ export class EventDetailsComponent implements OnInit {
     this.activatedRoute.parent.data.subscribe((value) => {
       this.event = value.event;
       this.community = value.community;
-      this.getStats();
     });
-  }
-
-  getStats() {
-    this.subscriptions.push(
-      this.statsEventsService.memberStats(this.event.slug).subscribe((data) => {
-        this.statsMembersCount = data.chart_data;
-      }),
-      this.statsEventsService.speakers(this.event.slug, 'confirmed').subscribe((data) => {
-        this.statsSpeakersCount = data.chart_data;
-      }),
-      this.statsEventsService.attendees(this.event.slug).subscribe((data) => {
-        this.statsAttendancesCount = data.chart_data;
-        this.isStatsLoading = false;
-      }),
-    );
   }
 
   deleteEventHeader() {

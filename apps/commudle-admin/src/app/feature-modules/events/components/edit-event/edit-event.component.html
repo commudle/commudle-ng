@@ -5,19 +5,13 @@
 
   <nb-card>
     <nb-card-body>
-      <h3>Edit Event</h3>
-      <p>
-        {{ community.name }}
-      </p>
+      <h3 class="com-mt-0">Edit Event</h3>
+
       <nb-alert status="info" *ngIf="uneditable">
         <p>
           This event is <strong>{{ event.event_status.name | titlecase }}</strong> and cannot be edited
         </p>
       </nb-alert>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-body>
       <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="updateEvent()">
         <div formGroupName="event">
           <div role="group">

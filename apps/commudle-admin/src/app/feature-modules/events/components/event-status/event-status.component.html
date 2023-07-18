@@ -1,17 +1,11 @@
-<nb-card class="event-status">
-  <nb-card-header>
-    <h6>
-      <nb-icon icon="clipboard-outline"></nb-icon>
-      Status
-    </h6>
-  </nb-card-header>
-  <nb-card-body>
-    <nb-button-group (valueChange)="updateStatus($event[0])" *ngIf="event.editable">
-      <button *ngFor="let i of eventStatuses" [pressed]="event.event_status.name === i" [value]="i" nbButtonToggle>
-        {{ i | titlecase }}
-      </button>
-    </nb-button-group>
+<section *ngIf="event.editable">
+  <nb-button-group (valueChange)="updateStatus($event[0])" size="small" filled class="border">
+    <button *ngFor="let i of eventStatuses" [pressed]="event.event_status.name === i" [value]="i" nbButtonToggle>
+      {{ i | titlecase }}
+    </button>
+  </nb-button-group>
+</section>
 
-    <nb-alert *ngIf="!event.editable" status="success">This event is completed!</nb-alert>
-  </nb-card-body>
-</nb-card>
+<section *ngIf="!event.editable">
+  <nb-alert status="success" class="com-mb-0">This event is completed!</nb-alert>
+</section>
