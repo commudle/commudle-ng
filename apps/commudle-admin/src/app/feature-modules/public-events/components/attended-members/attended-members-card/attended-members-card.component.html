@@ -1,9 +1,17 @@
 <div class="attended-members-card">
   <div class="user-profile-card-large">
-    <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
+    <app-user-profile-card-large [user]="user" [alignFollowToRight]="true"></app-user-profile-card-large>
   </div>
 
-  <div>
+  <div class="actions">
+    <app-user-follow [username]="user.username" appearance="outline"></app-user-follow>
+    <button (click)="openChatWithUser()" ghost nbButton shape="semi-round" size="small" status="info">
+      <nb-icon icon="paper-plane"></nb-icon>
+      Message
+    </button>
+  </div>
+
+  <div class="common-events-attended">
     <ng-container *ngIf="events.length !== 0">
       <p class="heading">
         Connect with {{ user.name }}, you have attended
@@ -40,13 +48,5 @@
         </ng-container>
       </button>
     </ng-container>
-  </div>
-
-  <div class="actions">
-    <app-user-follow [username]="user.username" appearance="outline"></app-user-follow>
-    <button (click)="openChatWithUser()" ghost nbButton shape="semi-round" size="small" status="info">
-      <nb-icon icon="paper-plane"></nb-icon>
-      Message
-    </button>
   </div>
 </div>

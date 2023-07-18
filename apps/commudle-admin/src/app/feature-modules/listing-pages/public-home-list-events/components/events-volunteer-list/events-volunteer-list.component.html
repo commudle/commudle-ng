@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-body>
+    <div class="heading">
+      <h3 class="title">List of Volunteers</h3>
+      <h4 class="sub-heading">Team who helped manage this event</h4>
+    </div>
+    <div class="user-profile-card-large">
+      <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
+      <div class="user-profile-card-large-card" *ngFor="let volunteer of volunteers">
+        <div *appBreakpoints="'>lg'">
+          <app-user-profile-card-large
+            [showFollowButton]="true"
+            [alignFollowToRight]="true"
+            [showAbout]="true"
+            [user]="volunteer"
+            [maxUserNameLength]="15"
+            [showHiringLookingTags]="false"
+          ></app-user-profile-card-large>
+        </div>
+        <div *appBreakpoints="'<=lg'">
+          <app-user-profile-card-large
+            [showFollowButton]="true"
+            [alignFollowToRight]="false"
+            [showAbout]="true"
+            [user]="volunteer"
+            [horizontalScroll]="true"
+            [isMobileWidthFull]="true"
+            [maxUserNameLength]="15"
+            [showHiringLookingTags]="false"
+          ></app-user-profile-card-large>
+        </div>
+      </div>
+      <div class="load-more">
+        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+        <button
+          *ngIf="page_info?.has_next_page"
+          [disabled]="showSpinner"
+          (click)="getVolunteersList()"
+          nbButton
+          outline
+          size="tiny"
+          status="basic"
+        >
+          View More
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

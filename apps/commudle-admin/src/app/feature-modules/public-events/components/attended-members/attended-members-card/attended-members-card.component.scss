@@ -3,39 +3,46 @@
 }
 
 .attended-members-card {
-  @apply com-grid com-gap-4 com-grid-cols-1 md:com-grid-cols-4;
+  @apply com-flex md:com-flex-row com-flex-col com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-px-0 md:com-py-2;
 
   .user-profile-card-large {
-    @apply com-w-[250px];
+    @apply com-w-[296px] com-m-0 com-mr-5 com-flex-shrink-0 com-mb-6 md:com-mb-0;
   }
 
-  .heading {
-    @apply com-text-base com-font-medium com-mt-0 com-mb-2;
-  }
+  .common-events-attended {
+    @apply com-m-0;
+    .heading {
+      @apply com-text-sm com-text-Dark-Jungle-Green com-font-medium com-mt-0 com-mb-3 com-border-0 com-border-l com-border-solid com-border-Bright-Gray md:com-pl-5;
 
-  .events-list {
-    @apply com-p-0 com-m-0 com-h-10 com-overflow-hidden;
-
-    &.show-more {
-      @apply com-h-auto;
+      p {
+        @apply com-m-0;
+      }
     }
 
-    li {
-      @apply com-list-none;
+    .events-list {
+      @apply com-p-0 md:com-pl-5 com-m-0 com-overflow-hidden com-h-[78px];
 
-      a {
-        text-decoration: none;
-        @apply com-flex com-items-center com-gap-1;
+      &.show-more {
+        @apply com-h-auto;
       }
 
-      a,
-      nb-icon {
-        @apply com-text-sm;
+      li {
+        @apply com-list-none com-mb-2;
+
+        a {
+          text-decoration: none;
+          @apply com-flex com-items-center com-gap-1;
+        }
+
+        a,
+        nb-icon {
+          @apply com-text-sm;
+        }
       }
     }
   }
 
   .actions {
-    @apply com-flex com-items-start com-gap-4;
+    @apply com-flex com-items-start com-gap-6 com-m-0 com-mr-10 md:com-mb-0 com-mb-6;
   }
 }
