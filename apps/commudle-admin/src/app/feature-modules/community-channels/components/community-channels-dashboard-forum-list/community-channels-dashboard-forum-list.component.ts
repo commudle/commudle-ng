@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SeoService } from '@commudle/shared-services';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -24,6 +25,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     private communityChannelManagerService: CommunityChannelManagerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
 
       this.activatedRoute.parent.data.subscribe((data) => {
         this.selectedCommunity = data.community;
+        this.setMeta();
       }),
     );
   }
@@ -46,5 +49,13 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
     this.communityChannelManagerService.setForum(forumName.value);
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `Forums - ${this.selectedCommunity.name}`,
+      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      this.selectedCommunity.logo_path,
+    );
   }
 }

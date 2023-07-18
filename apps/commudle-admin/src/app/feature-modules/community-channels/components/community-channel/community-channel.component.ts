@@ -6,6 +6,8 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { Subscription } from 'rxjs';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { ICommunity } from '@commudle/shared-models';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-community-channel',
@@ -14,6 +16,7 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 })
 export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   @Input() selectedChannelId: number;
+  @Input() selectedCommunity: ICommunity;
   selectedChannel: ICommunityChannel;
   subscriptions: Subscription[] = [];
   discussion: IDiscussion;
@@ -28,6 +31,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
@@ -53,6 +57,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     this.initialize();
     this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
       this.selectedChannel = data;
+      this.setMeta();
     });
   }
 
@@ -84,5 +89,13 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleMembersList() {
     this.showMembersList = !this.showMembersList;
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
+      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      this.selectedCommunity.logo_path,
+    );
   }
 }
