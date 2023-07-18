@@ -15,10 +15,7 @@
     </nb-card-header>
     <nb-card-body>
       <div (scrolled)="getMembers()" [infiniteScrollDistance]="3" appInfiniteScroll>
-        <ng-container
-          *ngFor="let u of channelUsers | orderBy : ['user_role.name'] : ['asc']; let i = index"
-          class="com-my-3"
-        >
+        <ng-container *ngFor="let u of channelUsers; let i = index" class="com-my-3">
           <app-member
             (exitChannel)="leaveChannel(i)"
             (makeAdmin)="toggleAdmin(i)"
