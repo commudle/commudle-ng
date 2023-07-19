@@ -71,3 +71,12 @@ p {
 .align-right {
   @apply com-flex com-ml-auto com-m-0;
 }
+
+//TODO deprecate ASAP
+app-badge {
+  &::ng-deep {
+    div {
+      @apply com-bg-Bright-Gray/60;
+    }
+  }
+}

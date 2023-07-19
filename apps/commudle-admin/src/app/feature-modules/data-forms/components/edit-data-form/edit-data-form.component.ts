@@ -100,7 +100,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
   initQuestion(): FormGroup {
     return this.fb.group({
-      question_type_id: ['', Validators.required],
+      question_type_id: [1, Validators.required],
       title: ['', Validators.required],
       description: [''],
       required: [false],
@@ -142,7 +142,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   }
 
   questionTypeChange(questionType, questionIndex: number) {
-    if (![4, 5].includes(questionType)) {
+    if (![4, 5].includes(questionType.target.value)) {
       const choiceCount = (<FormArray>(
         (<FormArray>this.editDataForm.get('data_form').get('questions')).controls[questionIndex].get('question_choices')
       )).length;

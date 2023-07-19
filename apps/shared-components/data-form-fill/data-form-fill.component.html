@@ -126,7 +126,17 @@
     </nb-card>
 
     <div class="submit-button">
-      <button fullWidth nbButton size="medium" status="primary" type="submit">Submit</button>
+      <button
+        fullWidth
+        nbButton
+        size="medium"
+        status="primary"
+        type="submit"
+        [disabled]="isFormSubmitting"
+        [nbSpinner]="isFormSubmitting"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>
