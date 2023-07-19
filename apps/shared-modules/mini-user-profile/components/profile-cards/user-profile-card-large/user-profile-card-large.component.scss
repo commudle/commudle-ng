@@ -51,7 +51,7 @@ p {
     }
 
     .speaker-count {
-      @apply com-mt-2 com-mb-2 com-mx-0 md:com-h-auto com-h-6;
+      @apply com-mt-2 md:com-mb-2 com-mb-4 com-mx-0 md:com-h-auto com-h-6;
     }
 
     .social {
@@ -70,4 +70,13 @@ p {
 
 .align-right {
   @apply com-flex com-ml-auto com-m-0;
+}
+
+//TODO deprecate ASAP
+app-badge {
+  &::ng-deep {
+    div {
+      @apply com-bg-Bright-Gray/60;
+    }
+  }
 }

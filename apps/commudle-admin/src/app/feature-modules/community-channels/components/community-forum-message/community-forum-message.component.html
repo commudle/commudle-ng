@@ -1,5 +1,7 @@
-<div class="com-h-[60px] com-flex com-border-0 com-border-b com-border-gray-200 com-border-solid">
-  <div *ngIf="forum" class="com-my-auto com-mx-4 com-flex com-gap-3">
+<div
+  class="com-h-[60px] com-flex com-border-0 com-mx-4 com-border-b com-border-gray-200 com-border-solid com-justify-between com-items-center"
+>
+  <div *ngIf="forum" class="com-my-auto com-flex com-gap-3">
     <div (click)="selectedCommunityForum()" class="com-cursor-pointer">
       <fa-icon [icon]="faArrowLeftLong" class="com-text-3xl"></fa-icon>
     </div>
@@ -10,6 +12,9 @@
       </span>
     </div>
   </div>
+  <div (click)="toggleMembersList()" class="com-cursor-pointer">
+    <fa-icon [icon]="faUsers"></fa-icon>
+  </div>
 </div>
 <div *ngIf="discussion && forum" class="com-ml-2">
   <commudle-channel-discussion
@@ -18,4 +23,8 @@
     discussionParent="channels"
     discussionType="forum"
   ></commudle-channel-discussion>
+</div>
+
+<div class="com-absolute com-bottom-0 com-right-0 com-h-full" *ngIf="showMembersList">
+  <app-channel-members (closeMembersList)="toggleMembersList()" [channelOfForum]="forum"></app-channel-members>
 </div>

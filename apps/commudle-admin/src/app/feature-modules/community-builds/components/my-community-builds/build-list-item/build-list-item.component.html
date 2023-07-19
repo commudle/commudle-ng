@@ -47,14 +47,8 @@
       <app-votes-display [icon]="'star'" [votableId]="cb.id" [votableType]="'CommunityBuild'"></app-votes-display>
     </div>
 
-    <!-- //TODO redefine tag colors -->
     <div class="tags">
-      <app-badge
-        *ngFor="let t of cb.tags"
-        [text]="t"
-        [fontColor]="'com-text-white'"
-        [color]="'com-bg-primary-500'"
-      ></app-badge>
+      <app-tag [tags]="cb.tags" size="tiny"></app-tag>
     </div>
   </div>
   <div class="actions">

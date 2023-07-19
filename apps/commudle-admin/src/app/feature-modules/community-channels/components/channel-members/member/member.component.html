@@ -1,14 +1,14 @@
 <div class="member">
   <div class="user-profile">
     <app-badge
-      *ngIf="userRolesUser.user_role.name == EUserRoles.COMMUNITY_CHANNEL_ADMIN"
+      *ngIf="userRolesUser.user_role.name === EUserRoles.COMMUNITY_CHANNEL_ADMIN"
       [text]="'Admin'"
       [color]="'com-bg-Blueberry'"
       [fontSize]="'small'"
       [fontColor]="'com-text-white'"
     ></app-badge>
     <app-badge
-      *ngIf="userRolesUser.status == EUserRolesUserStatus.INVITED"
+      *ngIf="userRolesUser.status === EUserRolesUserStatus.INVITED"
       [text]="'Invited'"
       [color]="'com-bg-Bright-Gray-Light'"
       [fontColor]="'com-text-Auro-Metal-Saurus'"

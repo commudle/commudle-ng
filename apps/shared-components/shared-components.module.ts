@@ -23,6 +23,7 @@ import {
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTagModule,
   NbToggleModule,
   NbTooltipModule,
@@ -152,6 +153,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     FontAwesomeModule,
     NbToggleModule,
     NbContextMenuModule,
+    NbSpinnerModule,
 
     //cdk
     DragDropModule,

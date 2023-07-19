@@ -159,3 +159,10 @@
     }
   }
 }
+
+.dropdown {
+  @apply com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-rounded-md com-cursor-pointer com-bg-[#eef2f7] hover:com-bg-[#eef2f7]/50 com-my-2;
+  select {
+    @apply com-bg-[#eef2f7] hover:com-bg-[#eef2f7]/50 com-cursor-pointer;
+  }
+}

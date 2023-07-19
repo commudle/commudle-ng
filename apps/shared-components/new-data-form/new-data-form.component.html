@@ -110,27 +110,20 @@
                     </div>
 
                     <div class="question-settings">
-                      <nb-form-field>
-                        <nb-icon
-                          nbPrefix
-                          icon="question-mark-circle-outline"
-                          class="com-flex com-self-center com-mt-2"
-                        ></nb-icon>
-                        <nb-select
-                          (selectedChange)="questionTypeChange($event, i)"
-                          placeholder="Question Type *"
+                      <div class="dropdown">
+                        <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
+
+                        <select
                           formControlName="question_type_id"
-                          required
-                          status="basic"
-                          size="medium"
-                          hero
-                          class="com-mt-5 com-mb-3 com-bg-white com-w-max"
+                          (change)="questionTypeChange($event, i)"
+                          class="com-border-0"
                         >
-                          <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
+                          <option *ngFor="let qt of questionTypes" [ngValue]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
-                          </nb-option>
-                        </nb-select>
-                      </nb-form-field>
+                          </option>
+                        </select>
+                      </div>
+
                       <span
                         *ngIf="
                           question.get('question_type_id').invalid && question.get('question_type_id').errors.required

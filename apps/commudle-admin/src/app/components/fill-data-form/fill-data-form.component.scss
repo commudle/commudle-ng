@@ -20,12 +20,12 @@
             }
 
             .event {
+              @apply com-mt-2;
               text-align: center;
               .header-image {
                 width: 100%;
                 max-width: 800px;
                 margin: 0 auto;
-                min-height: 200px;
                 img {
                   width: 100%;
                 }

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommunityFormMessageComponent } from './community-form-message.component';
+import { CommunityForumMessageComponent } from './community-forum-message.component';
 
 describe('CommunityFormMessageComponent', () => {
-  let component: CommunityFormMessageComponent;
-  let fixture: ComponentFixture<CommunityFormMessageComponent>;
+  let component: CommunityForumMessageComponent;
+  let fixture: ComponentFixture<CommunityForumMessageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CommunityFormMessageComponent],
+      declarations: [CommunityForumMessageComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CommunityFormMessageComponent);
+    fixture = TestBed.createComponent(CommunityForumMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,7 +13,7 @@
           <app-loading-spinner *ngIf="canLoadMoreSpeakers && !skeletonLoaderCard"></app-loading-spinner>
           <button
             *ngIf="page_info?.has_next_page"
-            [disabled]="showSpinner"
+            [disabled]="isLoadingSpeakers"
             (click)="getSpeakerDetails()"
             nbButton
             outline
