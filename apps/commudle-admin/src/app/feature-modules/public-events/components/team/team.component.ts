@@ -28,7 +28,7 @@ export class TeamComponent implements OnInit {
 
   getVolunteers() {
     this.eventsService.pGetEventVolunteers(this.event.id).subscribe((data) => {
-      this.volunteers = data.users;
+      this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.isLoading = false;
     });
   }

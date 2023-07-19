@@ -11,7 +11,6 @@
           <app-user-profile-card-large
             [showFollowButton]="true"
             [alignFollowToRight]="true"
-            [showAbout]="true"
             [user]="volunteer"
             [maxUserNameLength]="15"
             [showHiringLookingTags]="false"
@@ -21,7 +20,6 @@
           <app-user-profile-card-large
             [showFollowButton]="true"
             [alignFollowToRight]="false"
-            [showAbout]="true"
             [user]="volunteer"
             [horizontalScroll]="true"
             [isMobileWidthFull]="true"
@@ -30,20 +28,20 @@
           ></app-user-profile-card-large>
         </div>
       </div>
-      <div class="load-more">
-        <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-        <button
-          *ngIf="page_info?.has_next_page"
-          [disabled]="showSpinner"
-          (click)="getVolunteersList()"
-          nbButton
-          outline
-          size="tiny"
-          status="basic"
-        >
-          View More
-        </button>
-      </div>
+    </div>
+    <div class="load-more">
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+      <button
+        *ngIf="page_info?.has_next_page"
+        [disabled]="showSpinner"
+        (click)="getVolunteersList()"
+        nbButton
+        outline
+        size="tiny"
+        status="basic"
+      >
+        View More
+      </button>
     </div>
   </nb-card-body>
 </nb-card>

@@ -121,9 +121,11 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(eventId): Observable<IUsers> {
+  pGetEventVolunteers(eventId): Observable<IPagination<IUsers>> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), { params });
+    return this.http.get<IPagination<IUsers>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), {
+      params,
+    });
   }
 
   getPolls(eventId: number): Observable<IPolls> {
