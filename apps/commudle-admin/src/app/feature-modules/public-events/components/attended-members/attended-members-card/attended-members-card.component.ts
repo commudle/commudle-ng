@@ -37,7 +37,7 @@ export class AttendedMembersCardComponent implements OnInit {
     this.userChatsService.changeFollowerId(this.user.id);
   }
 
-  CommonEvents() {
+  CommonEventsAttended() {
     this.showCommonEvents = !this.showCommonEvents;
   }
 }

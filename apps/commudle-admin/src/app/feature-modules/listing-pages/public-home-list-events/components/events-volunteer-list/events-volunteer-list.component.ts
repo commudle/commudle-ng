@@ -13,7 +13,7 @@ import { IUser } from 'apps/shared-models/user.model';
 export class EventsVolunteerListComponent implements OnInit {
   @Input() event: IEvent;
   volunteers: IUser[] = [];
-  page_info: IPageInfo;
+  pageInfo: IPageInfo;
   total: number;
   isLoadingVolunteers = false;
   showSpinner = false;
@@ -34,7 +34,7 @@ export class EventsVolunteerListComponent implements OnInit {
     this.isLoadingVolunteers = true;
     this.eventsService.pGetEventVolunteers(this.event.id).subscribe((data) => {
       this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.page_info = data.page_info;
+      this.pageInfo = data.page_info;
       this.isLoadingVolunteers = false;
       this.showSpinner = false;
       this.showSkeletonLoading = false;

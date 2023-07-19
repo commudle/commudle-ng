@@ -13,7 +13,7 @@
 
   <div class="common-events-attended">
     <ng-container *ngIf="events.length !== 0">
-      <button nbButton outline shape="round" status="info" size="small" (click)="CommonEvents()">
+      <button nbButton outline shape="round" status="info" size="small" (click)="CommonEventsAttended()">
         {{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together! View event{{
           events.length > 0 ? 's' : ''
         }}
