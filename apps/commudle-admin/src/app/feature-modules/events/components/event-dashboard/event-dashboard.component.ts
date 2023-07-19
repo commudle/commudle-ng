@@ -7,8 +7,12 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { faUpRightFromSquare, faUserGroup, faShareNodes, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faUpRightFromSquare, faShareNodes, faCircleInfo, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
+import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { environment } from 'apps/commudle-admin/src/environments/environment';
 @Component({
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
@@ -27,7 +31,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
   icons = {
     faUpRightFromSquare,
     faClipboard,
-    faUserGroup,
+    faChartLine,
     faShareNodes,
     faCircleInfo,
   };
@@ -36,6 +40,9 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private seoService: SeoService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
   ) {}
 
   ngOnInit() {
@@ -52,15 +59,22 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     this.seoService.noIndex(false);
   }
 
-  updateRegistrationType(value) {
-    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe((data) => {
-      this.event = data;
-    });
-  }
+  copyTextToClipboard(): void {
+    const content = environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug;
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(content)) {
+        this.libToastLogService.successDialog('Copied the message successfully!');
+        return;
+      }
+    }
 
-  updateAgendaType(value) {
-    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe((data) => {
-      this.event = data;
-    });
+    this.navigatorShareService
+      .share({
+        title: this.community.name,
+        url: content,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared Successfully!');
+      });
   }
 }

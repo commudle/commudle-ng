@@ -1,6 +1,12 @@
 <section *ngIf="event.editable">
   <nb-button-group (valueChange)="updateStatus($event[0])" size="small" filled class="border">
-    <button *ngFor="let i of eventStatuses" [pressed]="event.event_status.name === i" [value]="i" nbButtonToggle>
+    <button
+      *ngFor="let i of eventStatuses"
+      [pressed]="event.event_status.name === i"
+      [value]="i"
+      nbButtonToggle
+      class="!com-px-3"
+    >
       {{ i | titlecase }}
     </button>
   </nb-button-group>

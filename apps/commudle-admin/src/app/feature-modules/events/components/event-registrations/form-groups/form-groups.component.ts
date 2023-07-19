@@ -94,7 +94,7 @@ export class FormGroupsComponent implements OnInit {
 
   // send a request to change the visibility_status
   changeVisibility(newStatus, dataFormEntityId) {
-    this.dataFormEntitiesService.updateVisibilityStatus(newStatus, dataFormEntityId).subscribe(() => {
+    this.dataFormEntitiesService.updateVisibilityStatus(newStatus.target.value, dataFormEntityId).subscribe(() => {
       this.toastLogService.successDialog('Visibility Updated');
       this.changeDetectorRef.markForCheck();
     });

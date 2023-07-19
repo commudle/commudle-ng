@@ -46,6 +46,10 @@ const routes = [
                 component: EventDetailsComponent,
               },
               {
+                path: 'stats',
+                component: EventStatsComponent,
+              },
+              {
                 path: 'edit',
                 component: EditEventComponent,
               },
@@ -95,10 +99,6 @@ const routes = [
           {
             path: 'form-responses',
             component: EventFormResponsesComponent,
-          },
-          {
-            path: 'stats',
-            component: EventStatsComponent,
           },
           {
             path: ':event_simple_registration_id/user-event-registrations',

@@ -31,7 +31,7 @@
       </label>
     </div>
     <div class="event-details">
-      <div class="com-flex com-items-center com-gap-6">
+      <div class="md:com-flex com-items-center com-gap-6">
         <h3 class="com-text-3xl com-my-0">{{ event.name }}</h3>
         <a *ngIf="event.editable" status="primary" outline nbButton routerLink="edit" size="small" status="primary">
           <nb-icon icon="edit-outline"></nb-icon>
@@ -47,8 +47,10 @@
         </span>
       </p>
       <div class="com-flex com-gap-2 com-items-baseline">
-        <nb-icon icon="info-outline"></nb-icon>
-        <div class="md:com-w-630px">
+        <div class="com-text-xl">
+          <nb-icon icon="info-outline"></nb-icon>
+        </div>
+        <div>
           <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
         </div>
       </div>
