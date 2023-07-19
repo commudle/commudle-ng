@@ -5,6 +5,7 @@
 
   nb-card {
     height: 100%;
+    @apply com-m-0;
 
     nb-card-header {
       display: flex;

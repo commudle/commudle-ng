@@ -16,6 +16,7 @@ import { DeleteChannelComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { InviteFormComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/invite-form/invite-form.component';
 import { EditChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/edit-channel/edit-channel.component';
 import { Subscription } from 'rxjs';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-community-forum',
@@ -47,12 +48,14 @@ export class CommunityForumComponent implements OnInit {
     private dialogService: NbDialogService,
     private router: Router,
     private authWatchService: LibAuthwatchService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.communityChannelManagerService.selectedForum$.subscribe((data) => {
         this.selectedForum = data;
+        this.setMeta();
       }),
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
@@ -127,5 +130,13 @@ export class CommunityForumComponent implements OnInit {
 
   pin() {
     // TODO need in future
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `${this.selectedForum[0].group_name} - Forums - ${this.selectedCommunity.name}`,
+      `Forums under for ${this.selectedCommunity.name}`,
+      this.selectedCommunity.logo_path,
+    );
   }
 }

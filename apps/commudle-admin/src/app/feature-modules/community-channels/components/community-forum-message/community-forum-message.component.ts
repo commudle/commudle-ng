@@ -5,28 +5,36 @@ import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discuss
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { SeoService } from '@commudle/shared-services';
+import { ICommunity } from '@commudle/shared-models';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'commudle-community-form-message',
-  templateUrl: './community-form-message.component.html',
-  styleUrls: ['./community-form-message.component.scss'],
+  selector: 'commudle-community-forum-message',
+  templateUrl: './community-forum-message.component.html',
+  styleUrls: ['./community-forum-message.component.scss'],
 })
-export class CommunityFormMessageComponent implements OnInit, OnDestroy {
+export class CommunityForumMessageComponent implements OnInit, OnDestroy {
   @Input() forumId;
+  @Input() selectedCommunity: ICommunity;
   discussion: IDiscussion;
   forum: ICommunityChannel;
   faArrowLeftLong = faArrowLeftLong;
   subscriptions: Subscription[] = [];
+  showMembersList = false;
+  faUsers = faUsers;
 
   @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
 
   constructor(
     private discussionsService: DiscussionsService,
     private communityChannelsService: CommunityChannelsService,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +44,7 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communityChannelsService.getChannelInfo(this.forumId).subscribe((data) => {
         this.forum = data;
+        this.setMeta();
       }),
 
       this.discussionsService.pGetOrCreateForCommunityChannel(this.forumId).subscribe((data) => {
@@ -50,8 +59,18 @@ export class CommunityFormMessageComponent implements OnInit, OnDestroy {
 
   selectedCommunityForum() {
     this.updateSelectedForum.emit(this.forum);
-    this.router.navigate(['communities', this.forum.kommunity.id, 'forums'], {
-      queryParams: { category: this.forum.group_name ? this.forum.group_name : 'General' },
-    });
+    this.location.back();
+  }
+
+  toggleMembersList() {
+    this.showMembersList = !this.showMembersList;
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      `${this.forum.name} - ${this.selectedCommunity.name}`,
+      `Interact with members in forum for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      this.selectedCommunity.logo_path,
+    );
   }
 }
