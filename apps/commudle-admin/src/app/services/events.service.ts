@@ -18,18 +18,20 @@ import { ISessions } from 'apps/shared-models/sessions.model';
 export class EventsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  updateEvent(event, eventId, community): Observable<IEvent> {
+  updateEvent(event, eventId, community, tags): Observable<IEvent> {
     return this.http.put<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE), {
       event,
       community_id: community.id,
       event_id: eventId,
+      tags: tags,
     });
   }
 
-  createEvent(event, community): Observable<IEvent> {
+  createEvent(event, community, tags): Observable<IEvent> {
     return this.http.post<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CREATE), {
       event,
       community_id: community.id,
+      tags: tags,
     });
   }
 

@@ -119,13 +119,7 @@ export class CreateEventComponent implements OnInit {
       }
     }
 
-    if (this.tags.length > 0) {
-      this.tags.forEach((value) => {
-        formValue['tags[]'] = value;
-      });
-    }
-
-    this.eventsService.createEvent(formValue, this.community).subscribe((data) => {
+    this.eventsService.createEvent(formValue, this.community, this.tags).subscribe((data) => {
       this.isFormSubmitting = false;
       this.toastLogService.successDialog('Created!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
