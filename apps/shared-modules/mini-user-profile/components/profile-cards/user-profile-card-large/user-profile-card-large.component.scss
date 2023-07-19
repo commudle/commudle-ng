@@ -22,6 +22,7 @@ p {
     margin-left: $space-16;
 
     .name {
+      @apply com-h-6;
       p {
         @apply com-font-medium md:com-text-sm com-text-base com-text-black;
         word-break: break-word;
@@ -50,7 +51,7 @@ p {
     }
 
     .speaker-count {
-      @apply com-mt-2 md:com-mb-2 com-mb-4 com-mx-0 md:com-h-auto com-h-6;
+      @apply com-mt-2 com-mb-2 com-mx-0 md:com-h-auto com-h-6;
     }
 
     .social {
@@ -64,9 +65,9 @@ p {
 }
 
 .followers {
-  margin: 0 0 0 $space-72;
+  @apply com-mt-4;
 }
 
 .align-right {
-  margin-left: auto;
+  @apply com-flex com-ml-auto com-m-0;
 }

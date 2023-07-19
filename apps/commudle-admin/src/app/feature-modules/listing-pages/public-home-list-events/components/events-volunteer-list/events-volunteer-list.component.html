@@ -29,7 +29,8 @@
         </div>
       </div>
     </div>
-    <div class="load-more">
+
+    <div *ngIf="volunteers.length > 4" class="load-more">
       <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
       <button
         *ngIf="page_info?.has_next_page"

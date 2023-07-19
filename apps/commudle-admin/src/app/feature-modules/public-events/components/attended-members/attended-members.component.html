@@ -22,21 +22,18 @@
             </nb-form-field>
           </div>
         </form>
-
-        <!-- [disabled]="isLoadingSearch" -->
       </div>
       <div *appBreakpoints="'>lg'" class="two-column-layout medium">
         <div class="main-column">
           <div class="filters">
             <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
-              <option value="" disabled selected hidden>Looking for work / Hiring</option>
+              <option value="" disabled selected hidden>Looking For Work / Hiring</option>
               <option value="employee">Looking for work</option>
               <option value="employer">Hiring</option>
             </select>
             <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
           </div>
           <div class="attended-members">
-            <!-- <ng-container *ngIf="!isLoading; else loading"> -->
             <app-skeleton-cards
               [displayFollowButton]="true"
               [cards]="4"
@@ -53,11 +50,6 @@
               [current]="page"
               [total]="total"
             ></app-pagination>
-            <!-- </ng-container> -->
-
-            <!-- <ng-template #loading>
-              <app-loading-spinner></app-loading-spinner>
-            </ng-template> -->
           </div>
         </div>
         <div class="right-column">
@@ -78,7 +70,6 @@
         </div>
         <div class="attended-members">
           <app-skeleton-cards [cards]="4" *ngIf="skeletonLoaderCard"></app-skeleton-cards>
-          <!-- <ng-container *ngIf="!isLoading; else loading"> -->
           <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
 
           <app-pagination
@@ -90,11 +81,6 @@
             [current]="page"
             [total]="total"
           ></app-pagination>
-          <!-- </ng-container> -->
-
-          <!-- <ng-template #loading>
-            <app-loading-spinner></app-loading-spinner>
-          </ng-template> -->
         </div>
         <commudle-events-volunteer-list [event]="event"></commudle-events-volunteer-list>
         <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>

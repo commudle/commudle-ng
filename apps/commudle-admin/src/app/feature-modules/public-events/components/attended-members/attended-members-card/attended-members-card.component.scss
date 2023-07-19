@@ -11,21 +11,12 @@
 
   .common-events-attended {
     @apply com-m-0;
-    .heading {
-      @apply com-text-sm com-text-Dark-Jungle-Green com-font-medium com-mt-0 com-mb-3 com-border-0 com-border-l com-border-solid com-border-Bright-Gray md:com-pl-5;
 
-      p {
-        @apply com-m-0;
-      }
+    button {
+      @apply com-m-0 md:com-mb-1 com-mb-4;
     }
-
     .events-list {
-      @apply com-p-0 md:com-pl-5 com-m-0 com-overflow-hidden com-h-[78px];
-
-      &.show-more {
-        @apply com-h-auto;
-      }
-
+      @apply com-p-0 md:com-pl-5 com-m-0 com-overflow-hidden;
       li {
         @apply com-list-none com-mb-2;
 
@@ -43,6 +34,14 @@
   }
 
   .actions {
-    @apply com-flex com-items-start com-gap-6 com-m-0 com-mr-10 md:com-mb-0 com-mb-6;
+    @apply com-flex com-items-start com-m-0 com-mr-10 md:com-mb-0 com-mb-4 md:com-w-[180px] com-w-full;
+
+    app-user-follow {
+      @apply com-m-0 com-mr-6;
+    }
+
+    button {
+      @apply com-pl-0;
+    }
   }
 }
