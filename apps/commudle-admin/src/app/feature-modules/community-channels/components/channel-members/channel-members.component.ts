@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
@@ -16,21 +16,22 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   styleUrls: ['./channel-members.component.scss'],
 })
 export class ChannelMembersComponent implements OnInit, OnDestroy {
+  @Input() channelOfForum: ICommunityChannel;
   EUserRoles = EUserRoles;
   subscriptions = [];
-  channel: ICommunityChannel;
+  // channel: ICommunityChannel;
   channelUsers: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
   page = 1;
-  count = 20;
+  count = 10;
   currentUser: ICurrentUser;
   currentUserIsAdmin = false;
+  total = 0;
+  isLoading = true;
   @Output() closeMembersList = new EventEmitter<number>();
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
-    private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute,
     private libAuthWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
   ) {}
@@ -39,13 +40,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
-        // find the channel
-        if (this.currentUser) {
-          this.channel = this.communityChannelManagerService.findChannel(
-            this.activatedRoute.snapshot.params.community_channel_id,
-          );
-          if (this.channel) this.getMembers();
-        }
+        this.getMembers();
       }),
     );
   }
@@ -58,18 +53,12 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   // get members
   getMembers() {
-    this.communityChannelsService.membersList(this.channel.id, this.page, this.count).subscribe((data) => {
+    this.isLoading = true;
+    this.communityChannelsService.membersList(this.channelOfForum.id, this.page, this.count).subscribe((data) => {
       this.channelUsers = this.channelUsers.concat(data.user_roles_users);
+      this.total = data.total;
       this.page += 1;
-      if (data.user_roles_users.length == data.count) {
-        this.getMembers();
-      } else if (this.channelUsers.length > 0) {
-        const cUser = this.channelUsers.find((k) => k.user.username === this.currentUser.username);
-        if (cUser) {
-          this.currentUserIsAdmin = cUser.user_role.name === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
-        }
-        this.allUsers = this.channelUsers;
-      }
+      this.isLoading = false;
     });
   }
 
@@ -81,9 +70,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     let isAdmin = false;
     if (this.allUsers[index].user_role.name === 'community_channel_admin') {
       isAdmin = true;
-      alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channel.name}?`;
+      alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOfForum.name}?`;
     } else {
-      alertMessage = `Are you sure you want to add ${username} as admin of ${this.channel.name}?`;
+      alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOfForum.name}?`;
     }
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe((data) => {
@@ -97,8 +86,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   leaveChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
-    if (window.confirm(`Are you sure you want to exit ${this.channel.name}?`)) {
-      this.communityChannelsService.exitChannel(this.channel.id).subscribe((data) => {
+    if (window.confirm(`Are you sure you want to exit ${this.channelOfForum.name}?`)) {
+      this.communityChannelsService.exitChannel(this.channelOfForum.id).subscribe((data) => {
         this.allUsers.splice(index, 1);
         this.toastLogService.successDialog('You have exited this channel');
         window.location.reload();
@@ -109,7 +98,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   removeFromChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
     if (
-      window.confirm(`Are you sure you want to remove ${this.allUsers[index].user.name} from ${this.channel.name}?`)
+      window.confirm(
+        `Are you sure you want to remove ${this.allUsers[index].user.name} from ${this.channelOfForum.name}?`,
+      )
     ) {
       this.communityChannelsService.removeMembership(this.allUsers[index].id).subscribe((data) => {
         this.allUsers.splice(index, 1);

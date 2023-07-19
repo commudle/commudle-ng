@@ -52,7 +52,7 @@ export class NewDataFormComponent implements OnInit {
 
   initQuestion(): FormGroup {
     return this.fb.group({
-      question_type_id: ['', Validators.required],
+      question_type_id: [1, Validators.required],
       title: ['', Validators.required],
       description: [''],
       required: [this.defaultQuestionRequiredValue()],
@@ -141,7 +141,7 @@ export class NewDataFormComponent implements OnInit {
   }
 
   questionTypeChange(questionType, questionIndex: number) {
-    if (![4, 5].includes(questionType)) {
+    if (![4, 5].includes(questionType.target.value)) {
       const choiceCount = (
         (this.createDataForm.get('data_form').get('questions') as FormArray).controls[questionIndex].get(
           'question_choices',

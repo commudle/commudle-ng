@@ -40,6 +40,7 @@ export class CreateEventComponent implements OnInit {
 
   tags: string[] = [];
   minimumTags = 3;
+  isFormSubmitting = false;
 
   tinyMCE = {
     height: 300,
@@ -101,6 +102,7 @@ export class CreateEventComponent implements OnInit {
   }
 
   createEvent() {
+    this.isFormSubmitting = true;
     const formValue = this.eventForm.get('event').value;
     delete formValue['start_date'];
     delete formValue['end_date'];
@@ -118,6 +120,7 @@ export class CreateEventComponent implements OnInit {
     }
 
     this.eventsService.createEvent(formValue, this.community, this.tags).subscribe((data) => {
+      this.isFormSubmitting = false;
       this.toastLogService.successDialog('Created!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });
