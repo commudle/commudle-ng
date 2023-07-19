@@ -1,3 +1,17 @@
+<div *appBreakpoints="'<=md'">
+  <nb-card class="event-status">
+    <nb-card-header>
+      <h6>
+        <nb-icon icon="clipboard-outline"></nb-icon>
+        Status
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
+    </nb-card-body>
+  </nb-card>
+</div>
+
 <nb-card class="event-details-container">
   <nb-card-body class="image-container">
     <ng-container *ngIf="event.header_image_path">

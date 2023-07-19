@@ -85,7 +85,36 @@ a {
     }
 
     .text {
-      @apply com-text-lg com-m-0;
+      @apply com-text-lg com-m-0 com-mb-2 md:com-mb-0;
+    }
+  }
+}
+
+.event-dashboard-menu {
+  @apply com-sticky com-top-16 com-z-10;
+  nb-card {
+    @apply com-mx-0;
+    nb-card-body {
+      @apply com-p-0;
+
+      div {
+        @apply com-flex;
+        .action-button {
+          @apply com-p-2 com-flex com-gap-2 com-items-center  com-text-inherit com-no-underline com-w-max;
+          &.active {
+            @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
+            .heading {
+              @apply com-text-primary-500;
+            }
+          }
+          .icon {
+            @apply com-text-lg com-text-[#8F9BB3];
+          }
+          .heading {
+            @apply com-text-base com-font-medium com-w-max;
+          }
+        }
+      }
     }
   }
 }
@@ -95,28 +124,6 @@ a {
     .one-column-layout {
       .event-heading {
         @apply com-mx-0 md:com-mx-2 com-my-4;
-      }
-
-      .event-dashboard-menu {
-        @apply com-sticky com-top-14 com-z-10 com-m-0 md:com-mx-2 com-my-4;
-
-        nb-card-body {
-          @apply com-px-0;
-
-          nb-actions {
-            nb-action {
-              @apply com-px-3;
-
-              nb-icon {
-                @apply com-text-xl;
-              }
-
-              span {
-                @apply com-text-base com-ml-2 com-font-semibold;
-              }
-            }
-          }
-        }
       }
 
       .event-update,

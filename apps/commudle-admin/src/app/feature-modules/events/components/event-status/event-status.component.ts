@@ -21,6 +21,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class EventStatusComponent implements OnInit {
   @Input() event: IEvent;
+  isMobileView = false;
   @Output() updatedEventStatus: EventEmitter<IEventStatus> = new EventEmitter<IEventStatus>();
 
   eventStatuses: string[] = Object.values(EEventStatuses);
@@ -31,7 +32,9 @@ export class EventStatusComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isMobileView = window.innerWidth <= 640;
+  }
 
   updateStatus(status: string) {
     if (!status || status === this.event.event_status.name) return;
