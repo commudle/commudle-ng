@@ -1,11 +1,13 @@
 <nb-card>
   <nb-card-body>
-    <a [routerLink]="['/users', topBuilder.username]">
-      <div class="content">
+    <div class="content">
+      <a [routerLink]="['/users', topBuilder.username]">
         <div class="user-profile-image">
           <img [src]="topBuilder.photo.i96" [alt]="topBuilder.name" [title]="topBuilder.name" />
         </div>
-        <div class="text">
+      </a>
+      <div class="text">
+        <a [routerLink]="['/users', topBuilder.username]">
           <p class="name">
             {{ topBuilder.name }}
             <img
@@ -34,24 +36,24 @@
               }}
             </span>
           </div>
-          <div *ngIf="allignFollowButtonToRight">
-            <app-user-follow
-              [username]="topBuilder.username | truncatetext : maxUserNameLength"
-              [isMobileWidthFull]="true"
-              [name]="topBuilder.name"
-              [userId]="topBuilder.id"
-            ></app-user-follow>
-          </div>
+        </a>
+        <div *ngIf="allignFollowButtonToRight">
+          <app-user-follow
+            [username]="topBuilder.username | truncatetext : maxUserNameLength"
+            [isMobileWidthFull]="true"
+            [name]="topBuilder.name"
+            [userId]="topBuilder.id"
+          ></app-user-follow>
         </div>
       </div>
-      <div *ngIf="showFollowButton" class="follow-button">
-        <app-user-follow
-          [username]="topBuilder.username"
-          [name]="topBuilder.name"
-          [isMobileWidthFull]="true"
-          [userId]="topBuilder.id"
-        ></app-user-follow>
-      </div>
-    </a>
+    </div>
+    <div *ngIf="showFollowButton" class="follow-button">
+      <app-user-follow
+        [username]="topBuilder.username"
+        [name]="topBuilder.name"
+        [isMobileWidthFull]="true"
+        [userId]="topBuilder.id"
+      ></app-user-follow>
+    </div>
   </nb-card-body>
 </nb-card>
