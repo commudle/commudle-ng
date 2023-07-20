@@ -24,7 +24,12 @@
       @apply com-m-0 md:com-mb-1 com-mb-4;
     }
     .events-list {
-      @apply com-p-0 com-m-0 com-overflow-hidden com-h-[84px];
+      @apply com-p-0 com-m-0 com-overflow-hidden md:com-h-[84px] com-h-auto;
+
+      &.show-more {
+        @apply com-h-auto;
+      }
+
       li {
         @apply com-list-none com-mb-2;
 
