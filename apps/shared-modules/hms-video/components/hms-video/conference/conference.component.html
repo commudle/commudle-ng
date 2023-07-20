@@ -63,6 +63,16 @@
     >
       <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
     </button>
+    <!-- Raise hand -->
+    <button
+      (click)="toggleRaiseHand()"
+      [nbTooltip]="isHandRaised ? 'Lower Hand' : 'Raise Hand'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isHandRaised ? 'success' : ''" icon="corner-right-up-outline"></nb-icon>
+    </button>
     <!-- Settings -->
     <button
       (click)="openSettings()"

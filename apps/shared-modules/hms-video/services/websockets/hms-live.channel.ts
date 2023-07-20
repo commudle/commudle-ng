@@ -15,6 +15,8 @@ export class HmsLiveChannel {
     RECORDING_STOPPED: 'recording_stopped',
     STREAMING_STARTED: 'streaming_started',
     STREAMING_STOPPED: 'streaming_stopped',
+    HAND_RAISED: 'hand_raised',
+    HAND_LOWERED: 'hand_lowered',
     END_STREAM: 'end_stream',
   };
 

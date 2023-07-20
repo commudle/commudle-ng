@@ -6,7 +6,9 @@
 </nb-form-field>
 
 <nb-list class="session-page-viewers">
-  <nb-list-item *ngFor="let user of usersList | searchBy: searchQuery | orderBy: ['name']:['asc']">
+  <nb-list-item
+    *ngFor="let user of usersList | searchBy : searchQuery | orderBy : ['is_raised_hand', 'name'] : ['desc', 'asc']"
+  >
     <app-user-profile-mini
       [designation]="true"
       [showLiveStatus]="true"
@@ -14,8 +16,19 @@
       size="small"
     ></app-user-profile-mini>
     <button
+      *ngIf="user.is_raised_hand"
+      class="hand-raised"
+      ghost
+      nbButton
+      nbTooltip="Hand raised"
+      size="small"
+      status="info"
+    >
+      <fa-icon [icon]="faHand"></fa-icon>
+    </button>
+    <button
       (click)="inviteToStage(user.id)"
-      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser?.id !== user.id"
+      *ngIf="embeddedVideoStream.hms_room_id && isAdmin"
       class="invite-to-stage"
       ghost
       nbButton

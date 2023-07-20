@@ -74,6 +74,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   selectedVideoDeviceId: string;
   isAudioEnabled: boolean;
   isVideoEnabled: boolean;
+  isHandRaised: boolean;
 
   NbTrigger = NbTrigger;
 
@@ -369,6 +370,14 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  toggleRaiseHand(): void {
+    if (this.isHandRaised) {
+      this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_LOWERED, this.currentUser.id, {});
+    } else {
+      this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_RAISED, this.currentUser.id, {});
+    }
+  }
+
   getMeetingUrl(): string {
     // if 'admin/' is present in url then remove it, then remove 'session' and add 'beam' at the end
     let meetingUrl = location.href.replace('admin/', '');
@@ -407,6 +416,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((value: any) => {
         switch (value.action) {
+          // TODO: Use setpermissions for handling this
           case this.hmsLiveChannel.ACTIONS.RECORDING_STARTED:
             this.beamStatus.emit(true);
             this.isRecording = true;
@@ -422,6 +432,18 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
           case this.hmsLiveChannel.ACTIONS.STREAMING_STOPPED:
             this.beamStatus.emit(false);
             this.isStreaming = false;
+            break;
+          case this.hmsLiveChannel.ACTIONS.HAND_RAISED:
+            if (value.user_id === this.currentUser.id) {
+              this.isHandRaised = true;
+            }
+            this.hmsStageService.raiseHand(value.user_id);
+            break;
+          case this.hmsLiveChannel.ACTIONS.HAND_LOWERED:
+            if (value.user_id === this.currentUser.id) {
+              this.isHandRaised = false;
+            }
+            this.hmsStageService.lowerHand(value.user_id);
             break;
           case this.hmsLiveChannel.ACTIONS.END_STREAM:
             this.leaveRoom();

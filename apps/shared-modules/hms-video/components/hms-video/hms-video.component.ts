@@ -9,6 +9,7 @@ import { HmsVideoStateService } from 'apps/shared-modules/hms-video/services/hms
 import { HmsLiveChannel } from 'apps/shared-modules/hms-video/services/websockets/hms-live.channel';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
+import { HmsStageService } from '../../services/hms-stage.service';
 
 @Component({
   selector: 'app-hms-video',
@@ -37,6 +38,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
     private hmsVideoStateService: HmsVideoStateService,
     private hmsApiService: HmsApiService,
     private hmsLiveChannel: HmsLiveChannel,
+    private hmsStageService: HmsStageService,
   ) {}
 
   ngOnInit(): void {
@@ -101,6 +103,10 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
                   this.hmsVideoStateService.setState(EHmsStates.ENDED);
                 } else {
                   this.hmsVideoStateService.setState(EHmsStates.INIT);
+                }
+
+                if (data.raised_hands.length) {
+                  data.raised_hands.forEach((userId: number) => this.hmsStageService.raiseHand(userId));
                 }
 
                 this.isInitialConnection = false;
