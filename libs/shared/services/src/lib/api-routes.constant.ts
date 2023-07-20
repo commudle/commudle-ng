@@ -230,6 +230,16 @@ export const API_ROUTES = {
     },
   },
 
+  FEATURED_ITEMS: {
+    INDEX: 'api/v2/featured_items',
+    CREATE: 'api/v2/featured_items',
+    UPDATE: 'api/v2/featured_items',
+    DELETE: 'api/v2/featured_items',
+    PUBLIC: {
+      SHOW: 'api/v2/featured_items/public',
+    },
+  },
+
   // registration_types
   GET_REGISTRATION_TYPES: 'api/v2/registration_types',
 
