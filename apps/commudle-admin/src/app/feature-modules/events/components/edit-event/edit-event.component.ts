@@ -79,7 +79,6 @@ export class EditEventComponent implements OnInit {
         start_time_pick: [''],
         end_time_pick: [''],
         timezone: ['', Validators.required],
-        tags: [''],
       }),
     });
   }
@@ -89,6 +88,7 @@ export class EditEventComponent implements OnInit {
       this.community = data.community;
       this.event = data.event;
       this.event.tags.forEach((value) => this.tags.push(value.name));
+      this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}`);
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
@@ -158,14 +158,7 @@ export class EditEventComponent implements OnInit {
       }
     }
 
-    if (this.tags.length > 0) {
-      this.tags.forEach((value) => {
-        formValue['tags[]'] = value;
-      });
-    }
-
     this.eventsService.updateEvent(formValue, this.event.slug, this.community, this.tags).subscribe((data) => {
-      this.submitIsInProcess = false;
       this.toastLogService.successDialog('Updated!');
       this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });

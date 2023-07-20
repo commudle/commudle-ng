@@ -5,7 +5,7 @@ nb-card {
   }
 
   nb-card-body {
-    @apply com-p-0 com-m-0;
+    @apply com-p-0 com-m-0 com-overflow-hidden;
 
     .user-card {
       @apply com-overflow-hidden;

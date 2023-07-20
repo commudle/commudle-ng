@@ -1,8 +1,8 @@
 <div
   class="com-h-10 com-flex com-border-0 com-mx-4 com-border-b com-border-gray-200 com-border-solid com-justify-between com-items-center"
 >
-  <span class="com-my-auto com-text-sm"> {{ selectedChannel?.description }} </span>
-  <div (click)="toggleMembersList()" class="com-">
+  <span class="com-my-auto com-text-sm com-line-clamp-2"> {{ selectedChannel?.description }} </span>
+  <div (click)="toggleMembersList()" class="com-cursor-pointer">
     <fa-icon [icon]="faUsers"></fa-icon>
   </div>
 </div>
@@ -19,6 +19,9 @@
   ></commudle-channel-discussion>
 </div>
 
-<div class="com-absolute com-bottom-0 com-right-0 com-h-full com-cursor-pointer" *ngIf="showMembersList">
-  <app-channel-members (closeMembersList)="toggleMembersList()"></app-channel-members>
+<div class="com-absolute com-bottom-0 com-right-0 com-h-full" *ngIf="showMembersList">
+  <app-channel-members
+    (closeMembersList)="toggleMembersList()"
+    [channelOfForum]="selectedChannel"
+  ></app-channel-members>
 </div>

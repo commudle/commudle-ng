@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListingPagesFilterTypes } from 'apps/shared-models/enums/listing-pages-filter-types';
 @Component({
   selector: 'commudle-public-home-list-speakers-profile',
@@ -19,7 +19,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   loading = false;
   loadingSpeakers = false;
   total: number;
-  limit = 6;
+  limit = 9;
   skeletonLoaderCard = true;
   timePeriod: string;
   month = false;
@@ -40,7 +40,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router,
     private location: Location,
     private seoService: SeoService,
   ) {
@@ -83,9 +82,15 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
           this.employee = true;
         }
       }
+      if (params.query) {
+        this.query = params.query;
+        this.searchForm.get('name').setValue(this.query);
+      }
     }
     this.speakers = [];
-    this.getSpeakersList();
+    if (!params.query) {
+      this.getSpeakersList();
+    }
   }
 
   updateFilter() {

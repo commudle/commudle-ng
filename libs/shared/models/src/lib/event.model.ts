@@ -1,7 +1,7 @@
 import { IAttachedFile } from './attached-file.model';
 import { IEventStatus } from './event-status.model';
 import { ICommunity } from './community.model';
-import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
+import { ISpeakerResource } from './speaker-resource.model';
 import { ITag } from './tag.model';
 
 export interface IEvent {
