@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class EventsVolunteerListComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
+  @Input() heading = 'List of Volunteers';
+  @Input() subheading = 'Team who helped manage this event';
   volunteers: IUser[] = [];
   pageInfo: IPageInfo;
   total: number;
@@ -39,7 +41,7 @@ export class EventsVolunteerListComponent implements OnInit, OnDestroy {
     }
     this.isLoadingVolunteers = true;
     this.subscriptions.push(
-      this.eventsService.pGetEventVolunteers(this.event.id).subscribe((data) => {
+      this.eventsService.pGetEventVolunteers(this.event.slug).subscribe((data) => {
         this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.pageInfo = data.page_info;
         this.isLoadingVolunteers = false;

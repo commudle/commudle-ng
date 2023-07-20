@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SocialResourceService } from 'apps/commudle-admin/src/app/services/social-resource.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
@@ -9,6 +9,8 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
   styleUrls: ['./public-home-list-speakers-content.component.scss'],
 })
 export class PublicHomeListSpeakersContentComponent implements OnInit {
+  @Input() heading = 'Content you can explore';
+  @Input() subheading = 'This is content published by users';
   speakersContents: ISpeakerResource[] = [];
   showSpinner = false;
   page_info: IPageInfo;

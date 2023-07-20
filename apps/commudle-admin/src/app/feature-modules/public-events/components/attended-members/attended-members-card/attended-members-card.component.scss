@@ -13,14 +13,18 @@
     @apply com-m-0;
 
     .events-count {
-      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green;
+      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-m-0 com-mb-2;
+    }
+
+    .view-more-button {
+      @apply com-border-0 com-bg-transparent com-p-0;
     }
 
     button {
       @apply com-m-0 md:com-mb-1 com-mb-4;
     }
     .events-list {
-      @apply com-p-0 md:com-pl-5 com-m-0 com-overflow-hidden;
+      @apply com-p-0 com-m-0 com-overflow-hidden com-h-[84px];
       li {
         @apply com-list-none com-mb-2;
 

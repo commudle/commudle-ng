@@ -35,7 +35,7 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   getVolunteers() {
     this.subscriptions.push(
-      this.eventsService.pGetEventVolunteers(this.event.id).subscribe((data) => {
+      this.eventsService.pGetEventVolunteers(this.event.slug).subscribe((data) => {
         this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.isLoading = false;
       }),

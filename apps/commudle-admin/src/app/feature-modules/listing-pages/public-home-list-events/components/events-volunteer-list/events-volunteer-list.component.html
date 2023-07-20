@@ -1,8 +1,8 @@
-<nb-card>
+<nb-card *ngIf="volunteers.length > 0">
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">List of Volunteers</h3>
-      <h4 class="sub-heading">Team who helped manage this event</h4>
+      <h3 class="title">{{ heading }}</h3>
+      <h4 class="sub-heading">{{ subheading }}</h4>
     </div>
     <div class="user-profile-card-large">
       <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>

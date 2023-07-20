@@ -31,6 +31,10 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   total = 0;
   query = '';
   canLoadMore = true;
+  contentHeading = 'Content from attendees';
+  contentSubheading = 'Explore what people at event are publishing';
+  volunteerHeading = 'Event Team';
+  volunteerSubheading = 'People who made it possible';
 
   subscriptions: Subscription[] = [];
 

@@ -53,9 +53,16 @@
           </div>
         </div>
         <div class="right-column">
-          <commudle-events-volunteer-list [event]="event"></commudle-events-volunteer-list>
+          <commudle-events-volunteer-list
+            [event]="event"
+            [heading]="volunteerHeading"
+            [subheading]="volunteerSubheading"
+          ></commudle-events-volunteer-list>
           <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
-          <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+          <commudle-public-home-list-speakers-content
+            [heading]="contentHeading"
+            [subheading]="contentSubheading"
+          ></commudle-public-home-list-speakers-content>
         </div>
       </div>
 
@@ -82,9 +89,16 @@
             [total]="total"
           ></app-pagination>
         </div>
-        <commudle-events-volunteer-list [event]="event"></commudle-events-volunteer-list>
+        <commudle-events-volunteer-list
+          [event]="event"
+          [heading]="volunteerHeading"
+          [subheading]="volunteerSubheading"
+        ></commudle-events-volunteer-list>
         <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
-        <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+        <commudle-public-home-list-speakers-content
+          [heading]="contentHeading"
+          [subheading]="contentSubheading"
+        ></commudle-public-home-list-speakers-content>
       </div>
     </div>
   </div>

@@ -13,28 +13,57 @@
 
   <div class="common-events-attended">
     <ng-container *ngIf="events.length !== 0">
-      <div>
-        <!-- <button nbButton outline shape="round" status="info" size="small" (click)="showCommonEventsAttended()">
-          {{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together! View event{{
-            events.length > 0 ? 's' : ''
-          }}
-        </button> -->
-        <p class="events-count">{{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together!</p>
-        <button nbButton outline shape="round" status="info" size="tiny" (click)="showCommonEventsAttended()">
-          {{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together! View event{{
-            events.length > 0 ? 's' : ''
-          }}
+      <p class="events-count">{{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together!</p>
+      <div *appBreakpoints="'>lg'">
+        <ul #eventsList [ngClass]="{ 'show-more': showMore }" class="events-list">
+          <li *ngFor="let event of events">
+            <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+              <nb-icon icon="calendar-outline"></nb-icon>
+              {{ event.name }}
+            </a>
+          </li>
+        </ul>
+        <button
+          (click)="showMore = !showMore"
+          *ngIf="eventsList.scrollHeight > 43 && events.length > 3"
+          class="mt-1"
+          fullWidth
+          ghost
+          nbButton
+          size="tiny"
+          status="info"
+        >
+          <ng-container *ngIf="!showMore">
+            <nb-icon icon="arrow-ios-downward-outline"></nb-icon>
+            Show more
+          </ng-container>
+          <ng-container *ngIf="showMore">
+            <nb-icon icon="arrow-ios-upward-outline"></nb-icon>
+            Show less
+          </ng-container>
         </button>
       </div>
+      <div *appBreakpoints="'<=lg'">
+        <button
+          nbButton
+          outline
+          status="info"
+          size="small"
+          class="view-more-button"
+          (click)="showCommonEventsAttended()"
+        >
+          View event{{ events.length > 0 ? 's' : '' }}
+        </button>
 
-      <ul *ngIf="showCommonEvents" #eventsList class="events-list">
-        <li *ngFor="let event of events">
-          <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
-            <nb-icon icon="calendar-outline"></nb-icon>
-            {{ event.name }}
-          </a>
-        </li>
-      </ul>
+        <ul *ngIf="showCommonEvents" #eventsList class="events-list">
+          <li *ngFor="let event of events">
+            <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+              <nb-icon icon="calendar-outline"></nb-icon>
+              {{ event.name }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </ng-container>
   </div>
 </div>
