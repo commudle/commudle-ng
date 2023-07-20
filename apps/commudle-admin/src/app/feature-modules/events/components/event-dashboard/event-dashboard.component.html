@@ -19,6 +19,12 @@
         </div>
       </div>
       <div class="action-buttons">
+        <a [routerLink]="['/admin', 'communities', community.slug]" class="action-button">
+          <div class="icon">
+            <fa-icon [icon]="icons.faArrowLeft"></fa-icon>
+          </div>
+          <div class="heading">Back to Admin Panel</div>
+        </a>
         <a
           [routerLink]="['/communities', community.slug, 'events', event.slug]"
           target="_blank"
@@ -52,7 +58,7 @@
           <div class="heading">Share Event</div>
         </a>
         <hr class="com-border-Bright-Gray com-border com-border-solid" />
-        <div class="!com-px-0 com-my-2">
+        <div class="!com-px-0 com-my-3">
           <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
         </div>
         <a
