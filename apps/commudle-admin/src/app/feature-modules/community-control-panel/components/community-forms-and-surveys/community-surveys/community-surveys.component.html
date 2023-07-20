@@ -1,0 +1,54 @@
+<div class="base-layout com-my-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <div class="survey-header com-flex com-justify-between com-items-center com-px-2 com-mb-4">
+        <h4>Admin Surveys</h4>
+        <a
+          [queryParams]="{ parent_type: 'Kommunity', parent_id: newFormParentId }"
+          [routerLink]="['/forms/new']"
+          nbButton
+          status="primary"
+        >
+          <nb-icon icon="plus"></nb-icon>
+          New Survey Form
+        </a>
+      </div>
+      <!-- <nb-card *ngFor="let survey of Surveys; let i = index" class="survey">
+        <nb-card-body>
+          <h5 class="name">
+            {{ survey.name }}
+            <small>
+              <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
+                <nb-icon icon="external-link"></nb-icon>
+                Link to fill
+              </a>
+            </small>
+          </h5>
+          <div class="details">
+            <a [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']" nbButton>
+              <nb-icon icon="edit"></nb-icon>
+              Edit
+            </a>
+            <div class="status">
+              <nb-toggle
+                (checkedChange)="updateStatus($event, i)"
+                [checked]="survey.status === EAdminSurveyStatus.open"
+                labelPosition="end"
+              >
+                Open
+              </nb-toggle>
+            </div>
+            <div class="multiple-responses">
+              <nb-toggle (checkedChange)="toggleMultiResponse(i)" [checked]="survey.multi_response" labelPosition="end">
+                Multiple Responses
+              </nb-toggle>
+            </div>
+            <a (click)="openResponses(survey)" class="clickable total-responses">
+              Responses: {{ survey.total_responses }}
+            </a>
+          </div>
+        </nb-card-body>
+      </nb-card> -->
+    </div>
+  </div>
+</div>

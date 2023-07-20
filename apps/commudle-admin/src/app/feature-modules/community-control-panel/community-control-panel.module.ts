@@ -31,9 +31,9 @@ import { CommunityEditDetailsComponent } from './components/community-edit-detai
 import { CommunityEventsListActionsComponent } from './components/community-events-list/community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './components/community-events-list/community-events-list-date/community-events-list-date.component';
 import { CommunityEventsListComponent } from './components/community-events-list/community-events-list.component';
-import { CommunityFormsListActionsComponent } from './components/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
-import { CommunityFormsListStatsComponent } from './components/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
-import { CommunityFormsListComponent } from './components/community-forms-list/community-forms-list.component';
+import { CommunityFormsListActionsComponent } from './components/community-forms-and-surveys/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
+import { CommunityFormsListStatsComponent } from './components/community-forms-and-surveys/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
+import { CommunityFormsListComponent } from './components/community-forms-and-surveys/community-forms-list/community-forms-list.component';
 import { CommunityMembersListComponent } from './components/community-members-list/community-members-list.component';
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
@@ -44,6 +44,8 @@ import { NbEvaIconsModule } from '@commudle/eva-icons';
 import { CommunityEventsListPublicPageComponent } from './components/community-events-list/community-events-list-public-page/community-events-list-public-page.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events/events.module';
+import { CommunityFormsAndSurveysComponent } from './components/community-forms-and-surveys/community-forms-and-surveys.component';
+import { CommunitySurveysComponent } from './components/community-forms-and-surveys/community-surveys/community-surveys.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events
     CommunityMembersListComponent,
     CommunityAdminNotificationsComponent,
     CommunityEventsListPublicPageComponent,
+    CommunityFormsAndSurveysComponent,
+    CommunitySurveysComponent,
   ],
   imports: [
     CommonModule,

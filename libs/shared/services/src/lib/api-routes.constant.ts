@@ -15,6 +15,12 @@ export const API_ROUTES = {
     TOGGLE_MULTI_RESPONSE: 'api/v2/admin_surveys/toggle_multi_response',
     UPDATE_STATUS: 'api/v2/admin_surveys/update_status',
   },
+  SURVEYS: {
+    INDEX: 'api/v2/surveys',
+    CREATE: 'api/v2/surveys',
+    TOGGLE_MULTI_RESPONSE: 'api/v2/surveys/toggle_multi_response',
+    UPDATE_STATUS: 'api/v2/surveys/update_status',
+  },
 
   // communities
   COMMUNITIES: {

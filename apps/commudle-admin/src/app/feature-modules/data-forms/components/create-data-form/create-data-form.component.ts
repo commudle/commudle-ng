@@ -28,7 +28,15 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.queryParams.subscribe((params) => {
       this.parentType = params['parent_type'];
+      console.log(
+        '🚀 ~ file: create-data-form.component.ts:31 ~ CreateDataFormComponent ~ this.activatedRoute.queryParams.subscribe ~ this.parentType:',
+        this.parentType,
+      );
       this.parentId = params['parent_id'];
+      console.log(
+        '🚀 ~ file: create-data-form.component.ts:33 ~ CreateDataFormComponent ~ this.activatedRoute.queryParams.subscribe ~ this.parentId:',
+        this.parentId,
+      );
     });
   }
 
@@ -37,9 +45,8 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
   }
 
   saveDataForm(data) {
-    this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe(() => {
-      this.toastLogService.successDialog('New Form Created!');
-
+    this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe((data) => {
+      this.toastLogService.successDialog(`New Form Created! for ${this.parentType}`);
       switch (this.parentType) {
         case EDataFormParentTypes.community: {
           this.router.navigate(['/admin/communities', this.parentId, 'forms']);
