@@ -64,7 +64,7 @@
           <div class="icon">
             <nb-icon icon="info-outline"></nb-icon>
           </div>
-          <div class="heading">Event Details</div>
+          <div class="heading">Details</div>
         </a>
         <a
           *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
@@ -156,7 +156,7 @@
     <div *appBreakpoints="'<=md'" class="event-dashboard-menu">
       <nb-card>
         <nb-card-body>
-          <div>
+          <div class="com-scrollbar-hide">
             <a
               class="action-button"
               [routerLink]="['./']"
@@ -166,7 +166,7 @@
               <div class="icon">
                 <nb-icon icon="info-outline"></nb-icon>
               </div>
-              <div class="heading">Event Details</div>
+              <div class="heading">Details</div>
             </a>
             <a
               *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
