@@ -12,6 +12,10 @@
   .common-events-attended {
     @apply com-m-0;
 
+    .events-count {
+      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green;
+    }
+
     button {
       @apply com-m-0 md:com-mb-1 com-mb-4;
     }
