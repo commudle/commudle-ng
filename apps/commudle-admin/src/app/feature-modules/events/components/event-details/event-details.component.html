@@ -1,22 +1,30 @@
+<div *appBreakpoints="'<=md'">
+  <nb-card class="event-status">
+    <nb-card-header>
+      <h6>
+        <nb-icon icon="clipboard-outline"></nb-icon>
+        Status
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
+    </nb-card-body>
+  </nb-card>
+</div>
+
 <nb-card class="event-details-container">
-  <nb-card-header>
-    <h6>
-      <nb-icon icon="info-outline"></nb-icon>
-      Details
-    </h6>
-  </nb-card-header>
   <nb-card-body class="image-container">
     <ng-container *ngIf="event.header_image_path">
       <div>
         <commudle-banner-image [headerImagePath]="event.header_image_path"></commudle-banner-image>
       </div>
       <button
-        (click)="deleteHeaderImage.emit()"
+        (click)="deleteEventHeader()"
         *ngIf="event.editable"
         class="event-header-delete"
         nbButton
         outline
-        size="tiny"
+        size="small"
         status="danger"
       >
         <nb-icon icon="trash-2-outline"></nb-icon>
@@ -24,19 +32,26 @@
       </button>
     </ng-container>
 
-    <label *ngIf="event.editable && !event.header_image_path" class="no-image-path">
-      <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-        />
-      </svg>
-      <span class="com-mt-2 com-text-base">Upload a header image</span>
-      <span class="com-text-base"><small>(1260 x 460)</small></span>
-      <input (change)="updateHeaderImage.emit($event)" accept="image/*" class="com-hidden" type="file" />
-    </label>
-
+    <div class="com-flex com-items-center com-h-64" *ngIf="event.editable && !event.header_image_path">
+      <label class="no-image-path">
+        <svg class="com-w-8 com-h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+          />
+        </svg>
+        <span class="com-mt-2 com-text-base">Upload a header image</span>
+        <span class="com-text-base"><small>(1260 x 460)</small></span>
+        <input (change)="displaySelectedHeaderImage($event)" accept="image/*" class="com-hidden" type="file" />
+      </label>
+    </div>
     <div class="event-details">
-      <h3 class="fs-h3">{{ event.name }}</h3>
+      <div class="md:com-flex com-items-center com-gap-6">
+        <h3 class="com-text-3xl com-my-0">{{ event.name }}</h3>
+        <a *ngIf="event.editable" status="primary" outline nbButton routerLink="edit" size="small" status="primary">
+          <nb-icon icon="edit-outline"></nb-icon>
+          Edit Basic Details
+        </a>
+      </div>
       <p *ngIf="event.start_time">
         <nb-icon icon="clock-outline"></nb-icon>
         <span>
@@ -45,14 +60,14 @@
           {{ moment(event.end_time).format('z') }}
         </span>
       </p>
-      <div class="com-flex com-gap-2">
-        <nb-icon icon="info-outline"></nb-icon>
-        <div [innerHTML]="event.description" class="com-prose"></div>
+      <div class="com-flex com-gap-2 com-items-baseline">
+        <div class="com-text-xl">
+          <nb-icon icon="info-outline"></nb-icon>
+        </div>
+        <div>
+          <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
+        </div>
       </div>
-      <a *ngIf="event.editable" class="com-mt-4" ghost nbButton routerLink="edit" size="small" status="primary">
-        <nb-icon icon="edit-outline"></nb-icon>
-        Edit Basic Details
-      </a>
     </div>
   </nb-card-body>
 </nb-card>

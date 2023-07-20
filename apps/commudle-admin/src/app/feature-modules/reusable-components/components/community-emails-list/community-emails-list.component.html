@@ -1,32 +1,38 @@
+<div>
+  <commudle-back-button text="Back"></commudle-back-button>
+</div>
+
 <div class="community-emails">
   <nb-card>
-    <nb-card-header>
-      List of last 25 emails sent
+    <nb-card-header class="com-flex com-gap-4">
+      <h6 class="com-m-0">List of last 25 emails sent</h6>
       <button class="refresh-button" nbButton status="primary" outline size="tiny" (click)="getEmails()">
         <nb-icon icon="refresh-outline"></nb-icon>
         Refresh
       </button>
     </nb-card-header>
     <nb-card-body>
-
-        <nb-list>
-          <nb-list-item *ngFor="let email of emails">
-            <div class="email">
-              <p class="subject">
-                <nb-icon status="basic" icon="email-outline"></nb-icon>
-                {{ email.subject }}
-                <small>
-                  (by {{email.user.name}})
-                </small>
+      <div class="com-mt-7" *ngIf="isLoading">
+        <app-loading-spinner> </app-loading-spinner>
+      </div>
+      <nb-list>
+        <nb-list-item *ngFor="let email of emails">
+          <div class="email">
+            <p class="subject">
+              <nb-icon status="basic" icon="email-outline"></nb-icon>
+              {{ email.subject }}
+              <small> (by {{ email.user.name }}) </small>
+            </p>
+            <div>
+              <p class="recipient-count">{{ email.emails_count }} Recipients</p>
+              <p class="sent_at">Sent at: {{ moment(email.created_at).format('LT DD-MM-YYYY') }}</p>
+              <p *ngIf="email.message" class="text-info clickable" (click)="openEmailPreview(email)">
+                View Additional Message
               </p>
-              <div>
-                <p class="recipient-count">{{email.emails_count}} Recipients</p>
-                <p class="sent_at">Sent at: {{moment(email.created_at).format('LT DD-MM-YYYY')}}</p>
-                <p *ngIf="email.message" class="text-info clickable" (click)="openEmailPreview(email)">View Additional Message</p>
-              </div>
             </div>
-          </nb-list-item>
-        </nb-list>
+          </div>
+        </nb-list-item>
+      </nb-list>
     </nb-card-body>
   </nb-card>
 </div>

@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ICommunity } from '@commudle/shared-models';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -13,7 +15,8 @@ import { debounceTime, map, Observable, switchMap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VolunteersComponent implements OnInit {
-  @Input() event: IEvent;
+  event: IEvent;
+  community: ICommunity;
   inputValue: string;
 
   EUserRolesUserStatus = EUserRolesUserStatus;
@@ -29,6 +32,7 @@ export class VolunteersComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private changeDetectorRef: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.userRolesUserForm = this.fb.group({
       email: ['', Validators.required],
@@ -40,6 +44,10 @@ export class VolunteersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.parent.data.subscribe((data) => {
+      this.community = data.community;
+      this.event = data.event;
+    });
     this.roleDesignations = this.userRolesUserForm.get('role_designation').valueChanges.pipe(
       debounceTime(500),
       switchMap((values: string) =>
