@@ -44,6 +44,7 @@ import { NbEvaIconsModule } from '@commudle/eva-icons';
 import { CommunityEventsListPublicPageComponent } from './components/community-events-list/community-events-list-public-page/community-events-list-public-page.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events/events.module';
+import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events
     CommunityMembersListComponent,
     CommunityAdminNotificationsComponent,
     CommunityEventsListPublicPageComponent,
+    CommunityPaymentsComponent,
   ],
   imports: [
     CommonModule,

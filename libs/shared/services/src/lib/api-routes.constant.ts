@@ -677,4 +677,9 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/job_applications',
     DESTROY: 'api/v2/job_applications',
   },
+
+  STRIPE_HANDLER: {
+    CREATE: 'api/v2/stripe_connect_accounts',
+    RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
+  },
 };

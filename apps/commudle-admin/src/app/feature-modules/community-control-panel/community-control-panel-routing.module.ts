@@ -12,6 +12,7 @@ import { CommunityFormsListComponent } from './components/community-forms-list/c
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
+import { CommunityPaymentsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-payments/community-payments.component';
 
 const routes = [
   {
@@ -44,6 +45,10 @@ const routes = [
       {
         path: 'edit',
         component: CommunityEditDetailsComponent,
+      },
+      {
+        path: 'payments',
+        component: CommunityPaymentsComponent,
       },
       {
         path: 'members',
