@@ -22,7 +22,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   isLoading = false;
   employee = false;
   employer = false;
-  page_info: IPageInfo;
+  pageInfo: IPageInfo;
   skeletonLoaderCard = true;
   searchForm;
   value = '';
@@ -97,22 +97,24 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
       return;
     }
     this.canLoadMore = false;
-    this.eventsService
-      .getAttendedMembers(this.page, this.count, this.event.id, this.query, this.employer, this.employee)
-      .subscribe((data) => {
-        this.members = data.users;
-        this.total = data.total;
-        this.skeletonLoaderCard = false;
-        this.isLoading = false;
-        this.canLoadMore = true;
-      });
+    this.subscriptions.push(
+      this.eventsService
+        .getAttendedMembers(this.page, this.count, this.event.id, this.query, this.employer, this.employee)
+        .subscribe((data) => {
+          this.members = data.users;
+          this.total = data.total;
+          this.skeletonLoaderCard = false;
+          this.isLoading = false;
+          this.canLoadMore = true;
+        }),
+    );
   }
 
   search(): void {
     this.query = '';
     this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
       this.members = [];
-      this.page_info = null;
+      this.pageInfo = null;
       this.query = this.searchForm.get('name').value;
       this.generateParams(this.employee, this.employer, this.query);
     });
@@ -124,7 +126,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
     this.employer = this.value === 'employer' ? true : false;
     this.skeletonLoaderCard = true;
     this.members = [];
-    this.page_info = null;
+    this.pageInfo = null;
     this.generateParams(this.employee, this.employer, this.query);
   }
 
@@ -136,7 +138,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
     this.value = '';
     this.searchForm.get('name').setValue('');
     this.members = [];
-    this.page_info = null;
+    this.pageInfo = null;
   }
 
   generateParams(employee, employer, query) {
