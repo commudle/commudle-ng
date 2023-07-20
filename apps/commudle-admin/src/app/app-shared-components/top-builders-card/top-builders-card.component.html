@@ -38,12 +38,19 @@
             <app-user-follow
               [username]="topBuilder.username | truncatetext : maxUserNameLength"
               [isMobileWidthFull]="true"
+              [name]="topBuilder.name"
+              [userId]="topBuilder.id"
             ></app-user-follow>
           </div>
         </div>
       </div>
       <div *ngIf="showFollowButton" class="follow-button">
-        <app-user-follow [username]="topBuilder.username" [isMobileWidthFull]="true"></app-user-follow>
+        <app-user-follow
+          [username]="topBuilder.username"
+          [name]="topBuilder.name"
+          [isMobileWidthFull]="true"
+          [userId]="topBuilder.id"
+        ></app-user-follow>
       </div>
     </a>
   </nb-card-body>

@@ -28,7 +28,7 @@
       </div>
     </div>
     <div (click)="closePopup()" class="buttons-container">
-      <app-user-follow [username]="miniUser.username"></app-user-follow>
+      <app-user-follow [username]="miniUser.username" [name]="miniUser.name" [userId]="miniUser.id"></app-user-follow>
       <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="paper-plane"></nb-icon>
         Message
