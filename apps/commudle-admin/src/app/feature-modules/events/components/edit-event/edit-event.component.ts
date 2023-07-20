@@ -88,7 +88,6 @@ export class EditEventComponent implements OnInit {
       this.community = data.community;
       this.event = data.event;
       this.event.tags.forEach((value) => this.tags.push(value.name));
-      this.seoService.setTitle(`Edit ${this.event.name} | ${this.community.name}`);
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
