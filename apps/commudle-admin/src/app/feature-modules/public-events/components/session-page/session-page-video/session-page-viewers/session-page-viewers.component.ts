@@ -84,14 +84,12 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
             }
           }),
           this.hmsStageService.raisedHands$.subscribe((raisedHands: number[]) => {
-            if (raisedHands.length) {
-              this.usersList = this.usersList.map((user) => {
-                if (raisedHands.includes(user.id)) {
-                  return { ...user, is_raised_hand: true };
-                }
-                return { ...user, is_raised_hand: false };
-              });
-            }
+            this.usersList = this.usersList.map((user) => {
+              if (raisedHands.includes(user.id)) {
+                return { ...user, is_raised_hand: true };
+              }
+              return { ...user, is_raised_hand: false };
+            });
           }),
         );
       }

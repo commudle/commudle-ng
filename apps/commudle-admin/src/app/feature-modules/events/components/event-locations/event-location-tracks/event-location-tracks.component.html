@@ -255,7 +255,7 @@
           fullWidth
           class="select-speaker"
         >
-          <nb-option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
+          <nb-option *ngFor="let speaker of eventSpeakers | sortBy : ['user.name'] : ['asc']" [value]="speaker.id">
             {{ speaker.user.name }}
           </nb-option>
         </nb-select>

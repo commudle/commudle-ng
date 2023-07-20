@@ -436,6 +436,8 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
           case this.hmsLiveChannel.ACTIONS.HAND_RAISED:
             if (value.user_id === this.currentUser.id) {
               this.isHandRaised = true;
+            } else {
+              this.toastLogService.notificationDialog(`${value.user_name} raised hand`);
             }
             this.hmsStageService.raiseHand(value.user_id);
             break;
