@@ -27,6 +27,7 @@ import { EventsComponent } from './components/communities/events/events.componen
 import { ChannelsComponent } from './components/communities/channels/channels.component';
 import { CommunityComponent } from './components/communities/community/community.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommunityGroupsSurveysComponent } from './components/community-groups-surveys/community-groups-surveys.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EventsComponent,
     ChannelsComponent,
     CommunityComponent,
+    CommunityGroupsSurveysComponent,
   ],
   imports: [
     CommonModule,
