@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
-import { IAdminSurveys } from 'apps/shared-models/admin-surveys.model';
+import { ISurveys } from 'apps/shared-models/surveys.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,8 @@ import { IAdminSurveys } from 'apps/shared-models/admin-surveys.model';
 export class AdminSurveysService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getAdminSurveys(): Observable<IAdminSurveys> {
-    return this.http.get<IAdminSurveys>(this.apiRoutesService.getRoute(API_ROUTES.ADMIN_SURVEYS.INDEX));
+  getAdminSurveys(): Observable<ISurveys> {
+    return this.http.get<ISurveys>(this.apiRoutesService.getRoute(API_ROUTES.ADMIN_SURVEYS.INDEX));
   }
 
   updateStatus(status, adminSurveyId): Observable<boolean> {

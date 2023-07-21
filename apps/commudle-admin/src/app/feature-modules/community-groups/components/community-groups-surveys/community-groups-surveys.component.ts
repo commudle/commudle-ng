@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'commudle-community-groups-surveys',
@@ -6,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./community-groups-surveys.component.scss'],
 })
 export class CommunityGroupsSurveysComponent implements OnInit {
-  constructor() {}
+  parentId;
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.parent.data.subscribe((data) => {
+      if (data.community_group) {
+        this.parentId = data.community_group.slug;
+      }
+    });
+  }
 }

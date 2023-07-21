@@ -28,6 +28,7 @@ import { ChannelsComponent } from './components/communities/channels/channels.co
 import { CommunityComponent } from './components/communities/community/community.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunityGroupsSurveysComponent } from './components/community-groups-surveys/community-groups-surveys.component';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CommunityGroupsSurveysComponent } from './components/community-groups-s
     SharedComponentsModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    AppSharedComponentsModule,
 
     //standalone components
     SidebarComponent,

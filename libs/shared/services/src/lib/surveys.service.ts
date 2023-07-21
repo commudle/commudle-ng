@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
+import { ISurveys } from 'apps/shared-models/surveys.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,18 @@ import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 export class SurveysService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  createNewSurvey(survey, dataFormId: number, communityId): Observable<any> {
-    const params = new HttpParams().set('community_id', communityId);
+  createNewSurvey(survey, dataFormId: number, parentId, parentType): Observable<any> {
+    let params = new HttpParams();
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
     return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.CREATE),
       {
@@ -22,9 +33,19 @@ export class SurveysService {
     );
   }
 
-  getSurveys(parentId: number): Observable<any> {
-    const params = new HttpParams().set('community_id', parentId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.INDEX), { params });
+  getSurveys(parentId: number, parentType: string): Observable<ISurveys> {
+    let params = new HttpParams();
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.get<ISurveys>(this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.INDEX), { params });
   }
 
   updateStatus(status, surveyId): Observable<boolean> {

@@ -1,11 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { SurveysService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { FormResponsesComponent } from 'apps/shared-components/form-responses/form-responses.component';
-import { IAdminSurvey, EAdminSurveyStatus } from 'apps/shared-models/admin-survey.model';
+import { ISurvey, ESurveyStatus } from 'apps/shared-models/survey.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
@@ -15,16 +14,16 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   styleUrls: ['./surveys.component.scss'],
 })
 export class SurveysComponent implements OnInit {
-  newFormParentId: number;
-  surveys: IAdminSurvey[];
-  EAdminSurveyStatus = EAdminSurveyStatus;
+  @Input() parentId: number;
+  @Input() parentType: 'CommunityGroup' | 'Kommunity';
+  surveys: ISurvey[];
+  ESurveyStatus = ESurveyStatus;
   dataForms: IDataForm[] = [];
   createSurveyForm;
   newDataFormWindowRef;
   isLoading = true;
   @ViewChild('newCommunitySurveyForm') newCommunitySurveyForm: TemplateRef<any>;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private surveysService: SurveysService,
     private toastLogService: LibToastLogService,
     private dialogService: NbDialogService,
@@ -41,19 +40,18 @@ export class SurveysComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newFormParentId = this.activatedRoute.parent.parent.snapshot.params.community_id;
     this.getSurveys();
-    this.getDataForms();
+    // this.getDataForms();
   }
   getSurveys() {
-    this.surveysService.getSurveys(this.newFormParentId).subscribe((data) => {
+    this.surveysService.getSurveys(this.parentId, this.parentType).subscribe((data) => {
       this.surveys = data.surveys;
       this.isLoading = false;
     });
   }
 
   updateStatus(status, index) {
-    status = status ? EAdminSurveyStatus.open : EAdminSurveyStatus.closed;
+    status = status ? ESurveyStatus.open : ESurveyStatus.closed;
     this.surveysService.updateStatus(status, this.surveys[index].id).subscribe((data) => {
       this.surveys[index].status = status;
       this.toastLogService.successDialog(`This form was now ${status}`, 2000);
@@ -72,7 +70,7 @@ export class SurveysComponent implements OnInit {
   }
 
   getDataForms() {
-    this.dataFormsService.getCommunityDataForms(this.newFormParentId).subscribe((data) => {
+    this.dataFormsService.getCommunityDataForms(this.parentId, this.parentType).subscribe((data) => {
       this.dataForms = data.data_forms;
     });
   }
@@ -80,13 +78,15 @@ export class SurveysComponent implements OnInit {
   createNewSurvey() {
     this.isLoading = true;
     const formData = this.createSurveyForm.get('survey').value;
-    this.surveysService.createNewSurvey(formData, formData.data_form_id, this.newFormParentId).subscribe((data) => {
-      this.surveys.unshift(data);
-      this.toastLogService.successDialog('Form Created');
-      this.createSurveyForm.reset();
-      this.createSurveyForm.get('survey').get('data_form_id').setValue('');
-      this.isLoading = false;
-    });
+    this.surveysService
+      .createNewSurvey(formData, formData.data_form_id, this.parentId, this.parentType)
+      .subscribe((data) => {
+        this.surveys.unshift(data);
+        this.toastLogService.successDialog('Form Created');
+        this.createSurveyForm.reset();
+        this.createSurveyForm.get('survey').get('data_form_id').setValue('');
+        this.isLoading = false;
+      });
   }
 
   openNewFormWindow() {
@@ -101,7 +101,7 @@ export class SurveysComponent implements OnInit {
 
   createAndSelectForm(newFormData) {
     this.newDataFormWindowRef.close();
-    this.dataFormsService.createDataForm(newFormData, this.newFormParentId, 'Kommunity').subscribe((dataForm) => {
+    this.dataFormsService.createDataForm(newFormData, this.parentId, this.parentType).subscribe((dataForm) => {
       this.dataForms.unshift(dataForm);
 
       setTimeout(() => {
@@ -110,7 +110,8 @@ export class SurveysComponent implements OnInit {
       this.toastLogService.successDialog('New Form Created & Selected!');
     });
   }
-  openResponses(survey: IAdminSurvey) {
+
+  openResponses(survey: ISurvey) {
     this.windowService.open(FormResponsesComponent, {
       title: `Survey ${survey.name} Responses`,
       context: {

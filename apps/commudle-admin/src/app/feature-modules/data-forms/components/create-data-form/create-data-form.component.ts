@@ -28,15 +28,7 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.queryParams.subscribe((params) => {
       this.parentType = params['parent_type'];
-      console.log(
-        '🚀 ~ file: create-data-form.component.ts:31 ~ CreateDataFormComponent ~ this.activatedRoute.queryParams.subscribe ~ this.parentType:',
-        this.parentType,
-      );
       this.parentId = params['parent_id'];
-      console.log(
-        '🚀 ~ file: create-data-form.component.ts:33 ~ CreateDataFormComponent ~ this.activatedRoute.queryParams.subscribe ~ this.parentId:',
-        this.parentId,
-      );
     });
   }
 
