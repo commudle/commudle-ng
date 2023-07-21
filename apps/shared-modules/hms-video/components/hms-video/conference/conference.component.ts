@@ -117,9 +117,10 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.leaveRoom();
+    this.hmsVideoStateService.setState(EHmsStates.LEFT);
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
-    this.notificationUnsubscription();
+    this.notificationUnsubscription?.();
   }
 
   joinSession(): void {
