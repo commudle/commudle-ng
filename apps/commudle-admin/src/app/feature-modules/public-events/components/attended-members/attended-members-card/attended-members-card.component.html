@@ -4,7 +4,12 @@
   </div>
 
   <div class="actions">
-    <app-user-follow [username]="user.username" appearance="outline"></app-user-follow>
+    <app-user-follow
+      [username]="user.username"
+      [name]="user.name"
+      [userId]="user.id"
+      appearance="outline"
+    ></app-user-follow>
     <button (click)="openChatWithUser()" ghost nbButton shape="semi-round" size="small" status="info">
       <nb-icon icon="paper-plane"></nb-icon>
       Message
