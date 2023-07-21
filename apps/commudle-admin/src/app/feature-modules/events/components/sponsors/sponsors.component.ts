@@ -14,6 +14,7 @@ import { IEventSponsor } from 'apps/shared-models/event_sponsor.model';
 import { ISponsor } from 'apps/shared-models/sponsor.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { EventSponsorsService } from './../../../../services/event-sponsors.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sponsors',
@@ -40,6 +41,7 @@ export class SponsorsComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private eventSponsorsService: EventSponsorsService,
+    private activatedRoute: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.sponsorForm = this.fb.group({
@@ -50,8 +52,11 @@ export class SponsorsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllSponsors();
-    this.getPastSponsors();
+    this.activatedRoute.parent.data.subscribe((data) => {
+      this.event = data.event;
+      this.getAllSponsors();
+      this.getPastSponsors();
+    });
   }
 
   getAllSponsors() {

@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { EventUpdatesService } from 'apps/commudle-admin/src/app/services/event-updates.service';
+import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IEventUpdate } from 'apps/shared-models/event_update.model';
 import * as moment from 'moment';
@@ -12,8 +14,9 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventUpdatesComponent implements OnInit {
-  @Input() event: IEvent;
+  event: IEvent;
   moment = moment;
+  EEventStatuses = EEventStatuses;
 
   eventUpdates: IEventUpdate[] = [];
 
@@ -23,6 +26,7 @@ export class EventUpdatesComponent implements OnInit {
     private eventUpdatesService: EventUpdatesService,
     private fb: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.eventUpdateForm = this.fb.group({
       details: ['', Validators.required],
@@ -30,7 +34,10 @@ export class EventUpdatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEventUpdates();
+    this.activatedRoute.parent.data.subscribe((value) => {
+      this.event = value.event;
+      this.getEventUpdates();
+    });
   }
 
   getEventUpdates() {
