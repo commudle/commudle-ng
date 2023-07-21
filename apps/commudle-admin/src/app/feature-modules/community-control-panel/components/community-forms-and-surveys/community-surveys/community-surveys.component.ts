@@ -21,6 +21,7 @@ export class CommunitySurveysComponent implements OnInit {
   dataForms: IDataForm[] = [];
   createSurveyForm;
   newDataFormWindowRef;
+  isLoading = true;
   @ViewChild('newCommunitySurveyForm') newCommunitySurveyForm: TemplateRef<any>;
 
   constructor(
@@ -49,6 +50,7 @@ export class CommunitySurveysComponent implements OnInit {
   getSurveys() {
     this.surveysService.getSurveys(this.newFormParentId).subscribe((data) => {
       this.surveys = data.surveys;
+      this.isLoading = false;
     });
   }
 
@@ -78,12 +80,14 @@ export class CommunitySurveysComponent implements OnInit {
   }
 
   createNewSurvey() {
+    this.isLoading = true;
     const formData = this.createSurveyForm.get('survey').value;
     this.surveysService.createNewSurvey(formData, formData.data_form_id, this.newFormParentId).subscribe((data) => {
       this.surveys.unshift(data);
       this.toastLogService.successDialog('Form Created');
       this.createSurveyForm.reset();
       this.createSurveyForm.get('survey').get('data_form_id').setValue('');
+      this.isLoading = false;
     });
   }
 
