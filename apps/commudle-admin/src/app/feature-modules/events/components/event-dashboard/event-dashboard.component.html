@@ -57,6 +57,16 @@
           </div>
           <div class="heading">Share Event</div>
         </a>
+        <a
+          [routerLink]="['/admin', 'communities', community.slug, 'event-dashboard', event.slug, 'scan-entry-pass']"
+          target="_blank"
+          class="action-button public-event-page"
+        >
+          <div class="icon">
+            <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
+          </div>
+          <div class="heading">Scan Entry Pass</div>
+        </a>
         <hr class="com-border-Bright-Gray com-border com-border-solid" />
         <div class="!com-px-0 com-my-3">
           <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
