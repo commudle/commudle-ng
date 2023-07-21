@@ -123,9 +123,11 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(eventId): Observable<IUsers> {
+  pGetEventVolunteers(eventId): Observable<IPagination<IUsers>> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), { params });
+    return this.http.get<IPagination<IUsers>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), {
+      params,
+    });
   }
 
   getPolls(eventId: number): Observable<IPolls> {
@@ -138,12 +140,29 @@ export class EventsService {
     return this.http.get<IHmsRecording[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.RECORDINGS), { params });
   }
 
-  getAttendedMembers(query: string, eventId: number, page: number, count: number): Observable<IUsers> {
-    const params = new HttpParams()
-      .set('q', query)
-      .set('event_id', String(eventId))
+  getAttendedMembers(
+    page: number,
+    count: number,
+    eventId: number,
+    query?: string,
+    employer?: boolean,
+    employee?: boolean,
+  ): Observable<IUsers> {
+    let params = new HttpParams()
       .set('page', String(page))
-      .set('count', String(count));
+      .set('count', String(count))
+      .set('event_id', String(eventId));
+
+    if (query) {
+      params = params.set('q', query);
+    }
+
+    if (employer) {
+      params = params.set('employer', employer);
+    }
+    if (employee) {
+      params = params.set('employee', employee);
+    }
     return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.ATTENDED_MEMBERS), { params });
   }
 

@@ -15,6 +15,7 @@ export class AttendedMembersCardComponent implements OnInit {
 
   events: IEvent[] = [];
   showMore = false;
+  showCommonEvents = false;
 
   constructor(
     private eventsService: EventsService,
@@ -34,5 +35,9 @@ export class AttendedMembersCardComponent implements OnInit {
 
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  showCommonEventsAttended() {
+    this.showCommonEvents = !this.showCommonEvents;
   }
 }

@@ -1,24 +1,44 @@
-<div class="base-layout">
-  <div class="container">
-    <div class="one-column-layout">
-      <nb-card class="attended-members">
-        <nb-card-body>
-          <p class="header-text">
-            <nb-icon icon="people"></nb-icon>
-            People at {{ event.name }}
-          </p>
+<div>
+  <div class="base-layout">
+    <div class="container">
+      <div class="one-column">
+        <div class="header-text">
+          <nb-icon icon="people"></nb-icon>
+          <p>People at {{ event.name }}</p>
+        </div>
 
-          <input
-            (ngModelChange)="queryChanged.next($event)"
-            [ngModel]="query"
-            fullWidth
-            nbInput
-            placeholder="Search for people by name..."
-            shape="semi-round"
-            type="text"
-          />
-
-          <ng-container *ngIf="!isLoading; else loading">
+        <form [formGroup]="searchForm">
+          <div class="search">
+            <nb-form-field>
+              <nb-icon icon="search" nbPrefix></nb-icon>
+              <input
+                formControlName="name"
+                fullWidth
+                nbInput
+                placeholder="Search for people by name..."
+                shape="semi-round"
+                type="text"
+              />
+            </nb-form-field>
+          </div>
+        </form>
+      </div>
+      <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+        <div class="main-column">
+          <div class="filters">
+            <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
+              <option value="" disabled selected hidden>Looking For Work / Hiring</option>
+              <option value="employee">Looking for work</option>
+              <option value="employer">Hiring</option>
+            </select>
+            <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
+          </div>
+          <div class="attended-members">
+            <app-skeleton-cards
+              [displayFollowButton]="true"
+              [cards]="4"
+              *ngIf="skeletonLoaderCard"
+            ></app-skeleton-cards>
             <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
 
             <app-pagination
@@ -30,13 +50,56 @@
               [current]="page"
               [total]="total"
             ></app-pagination>
-          </ng-container>
+          </div>
+        </div>
+        <div class="right-column">
+          <commudle-events-volunteer-list
+            [event]="event"
+            [heading]="volunteerHeading"
+            [subheading]="volunteerSubheading"
+          ></commudle-events-volunteer-list>
+          <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+          <commudle-public-home-list-speakers-content
+            [heading]="contentHeading"
+            [subheading]="contentSubheading"
+          ></commudle-public-home-list-speakers-content>
+        </div>
+      </div>
 
-          <ng-template #loading>
-            <app-loading-spinner></app-loading-spinner>
-          </ng-template>
-        </nb-card-body>
-      </nb-card>
+      <div *appBreakpoints="'<=lg'" class="one-column-layout">
+        <div class="filters">
+          <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
+            <option value="" disabled selected hidden>Looking for work / Hiring</option>
+            <option value="employee">Looking for work</option>
+            <option value="employer">Hiring</option>
+          </select>
+          <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
+        </div>
+        <div class="attended-members">
+          <app-skeleton-cards [cards]="4" *ngIf="skeletonLoaderCard"></app-skeleton-cards>
+          <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
+
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+          ></app-pagination>
+        </div>
+        <commudle-events-volunteer-list
+          [event]="event"
+          [heading]="volunteerHeading"
+          [subheading]="volunteerSubheading"
+        ></commudle-events-volunteer-list>
+        <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+        <commudle-public-home-list-speakers-content
+          [heading]="contentHeading"
+          [subheading]="contentSubheading"
+        ></commudle-public-home-list-speakers-content>
+      </div>
     </div>
   </div>
 </div>
