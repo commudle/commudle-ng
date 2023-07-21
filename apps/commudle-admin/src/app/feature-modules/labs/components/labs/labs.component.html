@@ -1,12 +1,46 @@
-<div class="labs-container base-layout com-mb-12">
+<commudle-listing-pages-layout>
+  <div header>
+    <app-labs-header></app-labs-header>
+  </div>
+  <div one-column *ngIf="isMobileView">
+    <!-- <div class="publish-build-button">
+      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+        <nb-icon icon="plus"></nb-icon>
+        Share your Build
+      </a>
+    </div> -->
+    <!-- <commudle-builds></commudle-builds>
+    <commudle-featured-projects></commudle-featured-projects>
+    <commudle-builds-top-builders></commudle-builds-top-builders>
+    <commudle-explore-experts></commudle-explore-experts> -->
+  </div>
+  <div main-column *ngIf="!isMobileView">
+    <!-- <commudle-builds></commudle-builds> -->
+  </div>
+  <div right-column>
+    <!-- <div class="publish-build-button">
+      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+        <nb-icon icon="plus"></nb-icon>
+        Share your Build
+      </a>
+    </div> -->
+    <div>
+      <!-- <commudle-builds-top-builders></commudle-builds-top-builders>
+      <commudle-featured-projects></commudle-featured-projects>
+      <commudle-explore-experts></commudle-explore-experts> -->
+    </div>
+  </div>
+</commudle-listing-pages-layout>
+
+<!-- <div class="labs-container base-layout com-mb-12">
   <div class="container">
-    <div class="one-column-layout">
-      <!-- <app-labs-search (updateTags)="onTagsUpdate($event)" [labSearchParams]="searchedTags"></app-labs-search> -->
-      <app-labs-header [labs]="searchedLabs" [tags]="searchedTags"></app-labs-header>
+    <div class="one-column-layout"> -->
+<!-- <app-labs-search (updateTags)="onTagsUpdate($event)" [labSearchParams]="searchedTags"></app-labs-search> -->
+<!-- <app-labs-header [labs]="searchedLabs" [tags]="searchedTags"></app-labs-header>
 
       <nb-card>
-        <nb-card-body>
-          <!-- <div class="labs-popular-tags d-flex flex-wrap">
+        <nb-card-body> -->
+<!-- <div class="labs-popular-tags d-flex flex-wrap">
             <div
               (click)="onTagAdd(tag.name)"
               *ngFor="let tag of popularTags"
@@ -19,7 +53,7 @@
 
           <hr />-->
 
-          <div
+<!-- <div
             (scrolled)="getLabsByTags()"
             [infiniteScrollDisabled]="searchedLabs.length >= total"
             [infiniteScrollDistance]="3"
@@ -39,4 +73,4 @@
       </nb-card>
     </div>
   </div>
-</div>
+</div> -->

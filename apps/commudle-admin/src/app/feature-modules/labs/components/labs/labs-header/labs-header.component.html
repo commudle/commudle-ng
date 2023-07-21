@@ -1,4 +1,30 @@
-<nb-card class="lab-header-container">
+<!-- <div class="header">
+  <div
+    *ngIf="labsPageHeader"
+    [ngStyle]="{ 'background-color': labsPageHeader.background_color.hex }"
+    class="background"
+  >
+    <div class="base-layout">
+      <div class="content">
+        <div class="header-text">
+          <h1 class="title">
+            <button class="button">
+              <fa-icon [icon]="faFlask"></fa-icon>
+            </button>
+            {{ labsPageHeader.title }}
+          </h1>
+          <p class="heading">{{ labsPageHeader.heading }}</p>
+          <div [innerHTML]="richText" class="content"></div>
+        </div>
+        <div class="header-image">
+          <img [src]="imageUrl(labsPageHeader?.header_image).url()" class="com-w-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <nb-card class="lab-header-container">
   <nb-card-body class="com-flex com-flex-col md:com-flex-row com-justify-between com-min-h-[344px]">
     <div class="lab-header-text">
       <div *ngIf="tags.length === 0" class="lab-content">
@@ -59,4 +85,4 @@
       </div>
     </div>
   </nb-card-body>
-</nb-card>
+</nb-card> -->

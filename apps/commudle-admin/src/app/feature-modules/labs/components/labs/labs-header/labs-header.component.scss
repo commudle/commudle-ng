@@ -1,162 +1,206 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
+// .header {
+//   @apply md:com-max-h-[386px] com-max-h-[682px];
+//   .background {
+//     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
-.lab-header-container {
-  @apply com-mt-12;
+//     .base-layout {
+//       .content {
+//         @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
+//         .header-text {
+//           @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
-  .lab-header-text {
-    @apply com-self-center md:com-mr-24;
+//           .title {
+//             @apply com-flex com-items-center md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-8 com-text-Yankees-Blue;
 
-    p {
-      color: $gunmetal;
-      margin: 0;
-    }
+//             .button {
+//               @apply com-mr-4 md:com-w-[52px] md:com-h-[52px] com-w-11 com-h-11 com-bg-Blanched-Almond com-border-0 com-flex com-items-center com-rounded-md;
 
-    .lab-content {
-      .lab-header-quote {
-        @apply com-text-xl com-pb-3;
-      }
+//               .bulb-icon {
+//                 @apply com-text-Metallic-Bronze md:com-h-10 md:com-w-10 com-h-8 com-w-8;
+//               }
+//             }
+//           }
+//           .heading {
+//             @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-Yankees-Blue;
+//           }
 
-      .lab-header-heading {
-        margin: $space-16 0 $space-12;
-        @apply com-text-4xl;
+//           .content {
+//             ::ng-deep {
+//               p {
+//                 font-size: initial;
+//                 color: initial;
+//               }
+//             }
+//           }
+//         }
 
-        span {
-          color: $neon-blue;
-          font-weight: 600;
-        }
-      }
-    }
+//         .header-image {
+//           @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
+//         }
+//       }
+//     }
+//   }
+// }
 
-    .lab-content-search {
-      .lab-search-tags {
-        color: $neon-blue;
-        font-weight: 600;
-        @apply com-text-4xl com-my-2;
-      }
-    }
-  }
+// @import './apps/commudle-admin/src/assets/styles/variables';
 
-  @media all and (max-width: $tab-width) {
-    .lab-header-text {
-      .lab-content {
-        .lab-header-quote {
-          font-size: 1rem;
-          line-height: 1.25rem;
-        }
+// .lab-header-container {
+//   @apply com-mt-12;
 
-        .lab-header-heading {
-          font-size: 1.5rem;
-          line-height: 1.75rem;
-          margin: $space-12 0 $space-8;
-        }
-      }
-    }
-  }
+//   .lab-header-text {
+//     @apply com-self-center md:com-mr-24;
 
-  .lab-header-banner {
-    max-width: 352px;
-    padding: $space-16;
+//     p {
+//       color: $gunmetal;
+//       margin: 0;
+//     }
 
-    .lab-trending {
-      nb-card {
-        border: 2px solid rgba($gunmetal, 0.14);
-        border-radius: $border-5;
-        margin: 0;
+//     .lab-content {
+//       .lab-header-quote {
+//         @apply com-text-xl com-pb-3;
+//       }
 
-        nb-card-header {
-          border-bottom: none;
-          color: $gunmetal;
-          font-size: 1.1rem;
-          font-weight: 600;
-          padding: $space-8 0;
-          text-align: center;
-        }
+//       .lab-header-heading {
+//         margin: $space-16 0 $space-12;
+//         @apply com-text-4xl;
 
-        nb-card-body {
-          padding: 0 $space-16;
+//         span {
+//           color: $neon-blue;
+//           font-weight: 600;
+//         }
+//       }
+//     }
 
-          nb-list {
-            nb-list-item {
-              border-bottom: 1px solid rgba($gunmetal, 0.22);
-              padding: $space-12 0;
+//     .lab-content-search {
+//       .lab-search-tags {
+//         color: $neon-blue;
+//         font-weight: 600;
+//         @apply com-text-4xl com-my-2;
+//       }
+//     }
+//   }
 
-              &:first-child {
-                border-top: none;
-              }
+//   @media all and (max-width: $tab-width) {
+//     .lab-header-text {
+//       .lab-content {
+//         .lab-header-quote {
+//           font-size: 1rem;
+//           line-height: 1.25rem;
+//         }
 
-              &:last-child {
-                border-bottom: none;
-              }
+//         .lab-header-heading {
+//           font-size: 1.5rem;
+//           line-height: 1.75rem;
+//           margin: $space-12 0 $space-8;
+//         }
+//       }
+//     }
+//   }
 
-              .trending-event-container {
-                display: flex;
-                width: 100%;
+//   .lab-header-banner {
+//     max-width: 352px;
+//     padding: $space-16;
 
-                .event-image {
-                  height: $space-56;
-                  margin: 0 $space-8 0 0;
-                  min-width: $space-56;
+//     .lab-trending {
+//       nb-card {
+//         border: 2px solid rgba($gunmetal, 0.14);
+//         border-radius: $border-5;
+//         margin: 0;
 
-                  img {
-                    height: auto;
-                    width: 100%;
-                  }
-                }
+//         nb-card-header {
+//           border-bottom: none;
+//           color: $gunmetal;
+//           font-size: 1.1rem;
+//           font-weight: 600;
+//           padding: $space-8 0;
+//           text-align: center;
+//         }
 
-                .event-details {
-                  color: $gunmetal;
-                  width: 100%;
+//         nb-card-body {
+//           padding: 0 $space-16;
 
-                  .event-name {
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    margin: 0 0 $space-4;
-                  }
+//           nb-list {
+//             nb-list-item {
+//               border-bottom: 1px solid rgba($gunmetal, 0.22);
+//               padding: $space-12 0;
 
-                  .event-content {
-                    font-size: 0.8rem;
+//               &:first-child {
+//                 border-top: none;
+//               }
 
-                    .event-description {
-                      margin: 0 0 $space-4;
-                    }
+//               &:last-child {
+//                 border-bottom: none;
+//               }
 
-                    .event-suffix {
-                      display: flex;
-                      justify-content: space-between;
+//               .trending-event-container {
+//                 display: flex;
+//                 width: 100%;
 
-                      .event-type {
-                        color: $neon-blue;
-                        text-transform: uppercase;
-                      }
+//                 .event-image {
+//                   height: $space-56;
+//                   margin: 0 $space-8 0 0;
+//                   min-width: $space-56;
 
-                      .event-stats {
-                        color: $cyber-yellow;
+//                   img {
+//                     height: auto;
+//                     width: 100%;
+//                   }
+//                 }
 
-                        nb-icon {
-                          font-size: 0.9rem;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+//                 .event-details {
+//                   color: $gunmetal;
+//                   width: 100%;
 
-    .lab-graphic {
-      img {
-        height: auto;
-        width: 100%;
-      }
-    }
-  }
+//                   .event-name {
+//                     font-size: 0.9rem;
+//                     font-weight: 600;
+//                     margin: 0 0 $space-4;
+//                   }
 
-  @media all and (max-width: $tab-width) {
-    .lab-header-banner {
-      max-width: 320px;
-    }
-  }
-}
+//                   .event-content {
+//                     font-size: 0.8rem;
+
+//                     .event-description {
+//                       margin: 0 0 $space-4;
+//                     }
+
+//                     .event-suffix {
+//                       display: flex;
+//                       justify-content: space-between;
+
+//                       .event-type {
+//                         color: $neon-blue;
+//                         text-transform: uppercase;
+//                       }
+
+//                       .event-stats {
+//                         color: $cyber-yellow;
+
+//                         nb-icon {
+//                           font-size: 0.9rem;
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//     .lab-graphic {
+//       img {
+//         height: auto;
+//         width: 100%;
+//       }
+//     }
+//   }
+
+//   @media all and (max-width: $tab-width) {
+//     .lab-header-banner {
+//       max-width: 320px;
+//     }
+//   }
+// }

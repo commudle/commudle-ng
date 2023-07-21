@@ -41,6 +41,8 @@ import { LabsComponent } from './components/labs/labs.component';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabsRoutingModule } from './labs-routing.module';
+import { ListingPagesLayoutComponent } from '../../app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { SkeletonVerticalCardsComponent } from '../skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,6 @@ import { LabsRoutingModule } from './labs-routing.module';
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
-
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -89,6 +90,8 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbUserModule,
     NbSidebarModule.forRoot(),
     NbContextMenuModule,
+    ListingPagesLayoutComponent,
+    SkeletonVerticalCardsComponent,
   ],
 })
 export class LabsModule {}
