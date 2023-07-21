@@ -17,6 +17,7 @@ import {
   NbTabsetModule,
   NbBadgeModule,
   NbTagModule,
+  NbToggleModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -99,6 +100,7 @@ import { CommunitySurveysComponent } from './components/community-forms-and-surv
     NbEvaIconsModule,
     NbBadgeModule,
     NbTagModule,
+    NbToggleModule,
   ],
 })
 export class CommunityGroupsModule {}

@@ -10,21 +10,33 @@ import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 export class SurveysService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getSurveys(parentType: string, parentId: number): Observable<any> {
-    const params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
+  createNewSurvey(survey, dataFormId: number, communityId): Observable<any> {
+    const params = new HttpParams().set('community_id', communityId);
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.CREATE),
+      {
+        data_form_id: dataFormId,
+        survey,
+      },
+      { params },
+    );
+  }
+
+  getSurveys(parentId: number): Observable<any> {
+    const params = new HttpParams().set('community_id', parentId);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.INDEX), { params });
   }
 
-  updateStatus(status, adminSurveyId): Observable<boolean> {
+  updateStatus(status, surveyId): Observable<boolean> {
     return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.UPDATE_STATUS), {
-      admin_survey_id: adminSurveyId,
+      survey_id: surveyId,
       status,
     });
   }
 
-  toggleMultiResponse(adminSurveyId): Observable<boolean> {
+  toggleMultiResponse(surveyId): Observable<boolean> {
     return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.SURVEYS.TOGGLE_MULTI_RESPONSE), {
-      admin_survey_id: adminSurveyId,
+      survey_id: surveyId,
     });
   }
 }

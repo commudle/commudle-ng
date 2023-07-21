@@ -2,53 +2,129 @@
   <div class="container">
     <div class="one-column-layout">
       <div class="survey-header com-flex com-justify-between com-items-center com-px-2 com-mb-4">
-        <h4>Admin Surveys</h4>
-        <a
-          [queryParams]="{ parent_type: 'Kommunity', parent_id: newFormParentId }"
-          [routerLink]="['/forms/new']"
-          nbButton
-          status="primary"
-        >
-          <nb-icon icon="plus"></nb-icon>
-          New Survey Form
-        </a>
-      </div>
-      <!-- <nb-card *ngFor="let survey of Surveys; let i = index" class="survey">
-        <nb-card-body>
-          <h5 class="name">
-            {{ survey.name }}
-            <small>
-              <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
-                <nb-icon icon="external-link"></nb-icon>
-                Link to fill
-              </a>
-            </small>
-          </h5>
-          <div class="details">
-            <a [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']" nbButton>
-              <nb-icon icon="edit"></nb-icon>
-              Edit
-            </a>
-            <div class="status">
-              <nb-toggle
-                (checkedChange)="updateStatus($event, i)"
-                [checked]="survey.status === EAdminSurveyStatus.open"
-                labelPosition="end"
+        <form (ngSubmit)="createNewSurvey()" [formGroup]="createSurveyForm" class="dfeg-create-form">
+          <div formGroupName="survey" class="com-flex com-gap-4">
+            <div class="name">
+              <label fullWidth>
+                Name*
+                <input fieldSize="small" formControlName="name" placeholder="Form Name" fullWidth nbInput type="text" />
+                <span
+                  *ngIf="
+                    createSurveyForm.controls.survey.get('name').touched &&
+                    createSurveyForm.controls.survey.get('name').invalid &&
+                    createSurveyForm.controls.survey.get('name').errors.required
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
+            </div>
+
+            <div class="data-form-type-select">
+              <label fullWidth> Select Form*</label>
+              <div class="dropdown">
+                <select
+                  formControlName="data_form_id"
+                  class="com-border-0"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]': createSurveyForm.controls.survey.get('data_form_id').value === ''
+                  }"
+                >
+                  <option value="" selected disabled>Select Form</option>
+                  <option *ngFor="let qt of dataForms" [ngValue]="qt.id">
+                    {{ qt.name | titlecase }}
+                  </option>
+                </select>
+              </div>
+              <span
+                *ngIf="
+                  createSurveyForm.controls.survey.get('data_form_id').touched &&
+                  createSurveyForm.controls.survey.get('data_form_id').invalid &&
+                  createSurveyForm.controls.survey.get('data_form_id').errors.required
+                "
               >
-                Open
-              </nb-toggle>
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
             </div>
-            <div class="multiple-responses">
-              <nb-toggle (checkedChange)="toggleMultiResponse(i)" [checked]="survey.multi_response" labelPosition="end">
-                Multiple Responses
-              </nb-toggle>
-            </div>
-            <a (click)="openResponses(survey)" class="clickable total-responses">
-              Responses: {{ survey.total_responses }}
-            </a>
           </div>
-        </nb-card-body>
-      </nb-card> -->
+
+          <div class="save-button-bottom">
+            <button
+              [disabled]="!createSurveyForm.valid"
+              fullWidth
+              nbButton
+              outline
+              size="small"
+              status="primary"
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+        <div class="create-form-button">
+          <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
+            <nb-icon icon="plus-outline"></nb-icon>Create New Form
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <table>
+          <tr *ngFor="let survey of surveys; let i = index">
+            <td>
+              {{ survey.name | titlecase }}
+              <small>
+                <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
+                  <nb-icon icon="external-link" class="com-text-base"></nb-icon>
+                  <span class="com-text-base"> Link to fill </span>
+                </a>
+              </small>
+            </td>
+            <td>
+              <a [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']" nbButton>
+                <nb-icon icon="edit"></nb-icon>
+                Edit
+              </a>
+            </td>
+            <td>
+              <div class="status">
+                <nb-toggle
+                  (checkedChange)="updateStatus($event, i)"
+                  [checked]="survey.status === EAdminSurveyStatus.open"
+                  labelPosition="end"
+                >
+                  Open
+                </nb-toggle>
+              </div>
+            </td>
+            <td>
+              <div class="multiple-responses">
+                <nb-toggle
+                  (checkedChange)="toggleMultiResponse(i)"
+                  [checked]="survey.multi_response"
+                  labelPosition="end"
+                >
+                  Multiple Responses
+                </nb-toggle>
+              </div>
+            </td>
+            <td>
+              <div class="details">
+                <a (click)="openResponses(survey)" class="clickable total-responses">
+                  Responses: {{ survey.total_responses }}
+                </a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
+
+  <ng-template #newCommunitySurveyForm let-data>
+    <div class="new-data-form-template">
+      <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+    </div>
+  </ng-template>
 </div>
