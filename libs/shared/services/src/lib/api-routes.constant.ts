@@ -679,6 +679,7 @@ export const API_ROUTES = {
   },
 
   STRIPE_HANDLER: {
+    INDEX: 'api/v2/stripe_connect_accounts',
     CREATE: 'api/v2/stripe_connect_accounts',
     RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
   },

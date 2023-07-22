@@ -7,4 +7,24 @@
     <p class="com-text-center com-font-bold">Connecting to Stripe Account......</p>
     <app-loading-spinner></app-loading-spinner>
   </div>
+
+  <div *ngFor="let stripeAccount of stripeAccounts"></div>
+  <table>
+    <tr>
+      <th>Active</th>
+      <th>Charges Enabled</th>
+      <th>Payouts Enabled</th>
+    </tr>
+    <tr *ngFor="let stripeAccount of stripeAccounts">
+      <td>
+        <p>{{ stripeAccount.active }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.charges_enabled }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.payouts_enabled }}</p>
+      </td>
+    </tr>
+  </table>
 </section>
