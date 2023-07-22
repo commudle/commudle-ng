@@ -8,6 +8,7 @@ import {
   selectIsLocalAudioEnabled,
   selectIsLocalScreenShared,
   selectIsLocalVideoEnabled,
+  selectIsLocalVideoPluginPresent,
   selectIsSomeoneScreenSharing,
   selectLocalPeer,
   selectPeers,
@@ -25,6 +26,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { HMSVirtualBackgroundPlugin } from '@100mslive/hms-virtual-background';
 import { NbDialogRef, NbDialogService, NbTrigger } from '@commudle/theme';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -75,6 +77,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   isAudioEnabled: boolean;
   isVideoEnabled: boolean;
   isHandRaised: boolean;
+  isBackgroundBlurred: boolean;
 
   NbTrigger = NbTrigger;
 
@@ -376,6 +379,34 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
       this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_LOWERED, this.currentUser.id, {});
     } else {
       this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_RAISED, this.currentUser.id, {});
+    }
+  }
+
+  toggleBackgroundBlur() {
+    const virtualBackground = new HMSVirtualBackgroundPlugin('blur');
+    const pluginSupport = hmsActions.validateVideoPluginSupport(virtualBackground);
+    if (pluginSupport.isSupported) {
+      const isVirtualBackgroundEnabled = hmsStore.getState(
+        selectIsLocalVideoPluginPresent(virtualBackground.getName()),
+      );
+      try {
+        if (!isVirtualBackgroundEnabled) {
+          // Recommended value
+          const pluginFrameRate = 15;
+          // add virtual background
+          hmsActions
+            .addPluginToVideoTrack(virtualBackground, pluginFrameRate)
+            .then(() => (this.isBackgroundBlurred = true));
+        } else {
+          // remove virtual background
+          hmsActions.removePluginFromVideoTrack(virtualBackground).then(() => (this.isBackgroundBlurred = false));
+        }
+      } catch (err) {
+        console.log('virtual background failure - ', isVirtualBackgroundEnabled, err);
+      }
+    } else {
+      const err = pluginSupport.errMsg;
+      console.error(err);
     }
   }
 

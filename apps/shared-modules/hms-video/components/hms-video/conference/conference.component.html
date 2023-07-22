@@ -73,6 +73,17 @@
     >
       <nb-icon [status]="isHandRaised ? 'success' : ''" icon="corner-right-up-outline"></nb-icon>
     </button>
+    <!-- Blur background -->
+    <button
+      (click)="toggleBackgroundBlur()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isBackgroundBlurred ? 'Unblur Background' : 'Blur Background'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isBackgroundBlurred ? 'success' : ''" icon="image-outline"></nb-icon>
+    </button>
     <!-- Settings -->
     <button
       (click)="openSettings()"
