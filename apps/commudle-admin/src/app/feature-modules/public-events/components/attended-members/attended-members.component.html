@@ -40,17 +40,16 @@
               *ngIf="skeletonLoaderCard"
             ></app-skeleton-cards>
             <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
-
-            <app-pagination
-              (goTo)="page = $event; getMembers()"
-              (next)="page = $event; getMembers()"
-              (previous)="page = $event; getMembers()"
-              *ngIf="total > 0"
-              [count]="count"
-              [current]="page"
-              [total]="total"
-            ></app-pagination>
           </div>
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+          ></app-pagination>
         </div>
         <div class="right-column">
           <commudle-events-volunteer-list
@@ -58,8 +57,11 @@
             [heading]="volunteerHeading"
             [subheading]="volunteerSubheading"
           ></commudle-events-volunteer-list>
-          <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+          <commudle-public-home-list-events-speakers
+            [parentType]="'events'"
+          ></commudle-public-home-list-events-speakers>
           <commudle-public-home-list-speakers-content
+            [parentType]="'events'"
             [heading]="contentHeading"
             [subheading]="contentSubheading"
           ></commudle-public-home-list-speakers-content>
@@ -78,24 +80,25 @@
         <div class="attended-members">
           <app-skeleton-cards [cards]="4" *ngIf="skeletonLoaderCard"></app-skeleton-cards>
           <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
-
-          <app-pagination
-            (goTo)="page = $event; getMembers()"
-            (next)="page = $event; getMembers()"
-            (previous)="page = $event; getMembers()"
-            *ngIf="total > 0"
-            [count]="count"
-            [current]="page"
-            [total]="total"
-          ></app-pagination>
         </div>
+        <app-pagination
+          (goTo)="page = $event; getMembers()"
+          (next)="page = $event; getMembers()"
+          (previous)="page = $event; getMembers()"
+          *ngIf="total > 0"
+          [count]="count"
+          [current]="page"
+          [total]="total"
+        ></app-pagination>
+
         <commudle-events-volunteer-list
           [event]="event"
           [heading]="volunteerHeading"
           [subheading]="volunteerSubheading"
         ></commudle-events-volunteer-list>
-        <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+        <commudle-public-home-list-events-speakers [parentType]="'events'"></commudle-public-home-list-events-speakers>
         <commudle-public-home-list-speakers-content
+          [parentType]="'events'"
           [heading]="contentHeading"
           [subheading]="contentSubheading"
         ></commudle-public-home-list-speakers-content>

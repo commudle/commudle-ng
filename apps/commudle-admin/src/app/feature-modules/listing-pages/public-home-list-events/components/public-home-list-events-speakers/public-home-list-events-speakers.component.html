@@ -4,7 +4,7 @@
       <h3 class="title">Speakers to Follow</h3>
       <h4 class="sub-heading">Network with speakers from events</h4>
     </div>
-    <div class="user-profile-card-large custom-scrollbar">
+    <div class="user-profile-card-large">
       <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSkeletonLoading"></app-skeleton-cards>
       <div class="user-profile-card-large-card" *ngFor="let speaker of speakers">
         <div *appBreakpoints="'>lg'">
@@ -33,9 +33,25 @@
         </div>
       </div>
       <div class="load-more">
-        <a [routerLink]="['/speakers']">
+        <a *ngIf="parentType === 'communities'" [routerLink]="['/speakers']">
           <button *ngIf="page_info?.has_next_page" nbButton outline size="tiny" status="basic">View All</button>
         </a>
+        <div *ngIf="parentType === 'events'">
+          <div *ngIf="this.isLoadingSpeakers">
+            <app-loading-spinner class="com-mt-4"></app-loading-spinner>
+          </div>
+          <button
+            *ngIf="page_info?.has_next_page"
+            (click)="getEventsSpeakersList()"
+            fullWidth
+            ghost
+            nbButton
+            size="small"
+            status="basic"
+          >
+            View More
+          </button>
+        </div>
       </div>
     </div>
   </nb-card-body>

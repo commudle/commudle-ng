@@ -20,9 +20,20 @@
       <div class="load-more">
         <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
         <button
-          *ngIf="page_info?.has_next_page"
+          *ngIf="page_info?.has_next_page && parentType === 'communities'"
           [disabled]="showSpinner"
-          (click)="getList()"
+          (click)="getAllCommunitiesContentList()"
+          nbButton
+          outline
+          size="tiny"
+          status="basic"
+        >
+          View More
+        </button>
+        <button
+          *ngIf="page_info?.has_next_page && parentType === 'events'"
+          [disabled]="showSpinner"
+          (click)="getEventsContentList()"
           nbButton
           outline
           size="tiny"

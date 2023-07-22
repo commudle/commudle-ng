@@ -33,7 +33,11 @@
           [user]="user"
           [size]="'small'"
         ></app-hiring-looking-works-tags>
-        <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
+        <p
+          [ngClass]="{ 'com-line-clamp-3': truncateDesignation, 'com-h-[60px]': horizontalScroll }"
+          class="designation"
+          title="{{ user.designation }}"
+        >
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSpeakersCount" class="speaker-count">

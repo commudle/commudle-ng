@@ -77,7 +77,9 @@
     <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
     <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
     <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+    <commudle-public-home-list-speakers-content
+      [parentType]="'communities'"
+    ></commudle-public-home-list-speakers-content>
     <div class="speakers">
       <div *ngFor="let speaker of speakers.slice(3)" class="speakers-card">
         <app-speaker-card [speaker]="speaker" [maxUserNameLength]="25" [isMobileWidthFull]="true"></app-speaker-card>

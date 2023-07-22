@@ -181,6 +181,7 @@ export const API_ROUTES = {
       POLLS: 'api/v2/events/public/polls',
       SPEAKERS_LIST: 'api/v2/events/public/speakers_list',
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
+      SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
     },
   },
 
