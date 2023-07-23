@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
+import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 
 @Component({
   selector: 'commudle-sidebar',
@@ -19,15 +20,32 @@ export class SidebarComponent implements OnInit {
   @Input() heading: string;
   @Input() forWindow = true;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() eventName: string;
+
+  hideFullSidebar = false;
+  expandSidebar = false;
 
   //font-awesome icons
   faCaretLeft = faCaretLeft;
   faBars = faBars;
-  constructor() {}
+  constructor(public sidebarService: SidebarService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.sidebarService.setSidebarEvent$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.setSidebarEvent$[this.eventName].subscribe((data) => {
+        this.expandSidebar = data;
+      });
+    }
+
+    if (this.sidebarService.showFull$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.showFull$[this.eventName].subscribe((data) => {
+        this.hideFullSidebar = data;
+      });
+    }
+  }
 
   handleSidebarToggle() {
+    this.sidebarService.toggleSidebarEvent(this.eventName);
     this.toggleSidebar.emit(!this.isExpanded);
   }
 }
