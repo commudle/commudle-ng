@@ -1,13 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
-import { Subscription } from 'rxjs';
-import { faUpRightFromSquare, faShareNodes, faCircleInfo, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUpRightFromSquare,
+  faShareNodes,
+  faCircleInfo,
+  faChartLine,
+  faArrowLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -17,7 +21,6 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
   styleUrls: ['./event-dashboard.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDashboardComponent implements OnInit, OnDestroy {
   event: IEvent;
@@ -34,11 +37,11 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     faChartLine,
     faShareNodes,
     faCircleInfo,
+    faArrowLeft,
   };
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private eventsService: EventsService,
     private seoService: SeoService,
     private navigatorShareService: NavigatorShareService,
     private libToastLogService: LibToastLogService,

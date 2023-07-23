@@ -19,6 +19,12 @@
         </div>
       </div>
       <div class="action-buttons">
+        <a [routerLink]="['/admin', 'communities', community.slug]" class="action-button">
+          <div class="icon">
+            <fa-icon [icon]="icons.faArrowLeft"></fa-icon>
+          </div>
+          <div class="heading">Back to Admin Panel</div>
+        </a>
         <a
           [routerLink]="['/communities', community.slug, 'events', event.slug]"
           target="_blank"
@@ -51,8 +57,18 @@
           </div>
           <div class="heading">Share Event</div>
         </a>
+        <a
+          [routerLink]="['/admin', 'communities', community.slug, 'event-dashboard', event.slug, 'scan-entry-pass']"
+          target="_blank"
+          class="action-button public-event-page"
+        >
+          <div class="icon">
+            <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon>
+          </div>
+          <div class="heading">Scan Entry Pass</div>
+        </a>
         <hr class="com-border-Bright-Gray com-border com-border-solid" />
-        <div class="!com-px-0 com-my-2">
+        <div class="!com-px-0 com-my-3">
           <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>
         </div>
         <a
@@ -64,7 +80,7 @@
           <div class="icon">
             <nb-icon icon="info-outline"></nb-icon>
           </div>
-          <div class="heading">Event Details</div>
+          <div class="heading">Details</div>
         </a>
         <a
           *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
@@ -156,7 +172,7 @@
     <div *appBreakpoints="'<=md'" class="event-dashboard-menu">
       <nb-card>
         <nb-card-body>
-          <div>
+          <div class="com-scrollbar-hide">
             <a
               class="action-button"
               [routerLink]="['./']"
@@ -166,7 +182,7 @@
               <div class="icon">
                 <nb-icon icon="info-outline"></nb-icon>
               </div>
-              <div class="heading">Event Details</div>
+              <div class="heading">Details</div>
             </a>
             <a
               *ngIf="event.event_status.name !== EEventStatuses.DRAFT"

@@ -4,18 +4,48 @@ p {
   @apply com-m-0;
 }
 
-.attended-members {
-  margin: $space-32 0 $space-16;
+div {
+  @apply com-bg-white;
+  .base-layout {
+    @apply com-bg-white;
 
-  nb-card-body {
-    @apply com-space-y-8;
+    .main-column {
+      @apply com-p-0 md:com-pr-[30px] md:com-mb-8 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+    }
 
-    .header-text {
-      color: $gunmetal;
-      font-size: $fs-26;
-      font-weight: $fw-600;
-      line-height: 30px;
-      max-width: fit-content;
+    .right-column {
+      @apply com-m-0 md:com-mb-4 com-mb-0 com-pl-[30px] com-pt-4;
+    }
+
+    .one-column {
+      @apply com-m-0 md:com-pt-12 com-pt-8 com-mx-4 md:com-mx-0;
+      .header-text {
+        @apply com-flex com-mb-6;
+        p {
+          @apply com-text-2xl com-font-semibold;
+        }
+        nb-icon {
+          @apply md:com-text-2xl com-text-[32px] com-mr-2 md:com-mt-1;
+        }
+      }
+
+      .search {
+        @apply com-m-0 com-rounded-lg;
+      }
+    }
+
+    .filters {
+      @apply com-flex com-justify-between com-mb-8 com-mt-6 md:com-mx-0 com-mx-4;
+      .filter {
+        @apply com-rounded-3xl com-px-3 com-py-2 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-bg-Bright-Gray/60 com-border-0;
+      }
+      .reset {
+        @apply com-text-sm com-font-medium md:com-w-[66px] com-w-max com-text-Dark-Jungle-Green com-m-0;
+      }
+    }
+
+    .attended-members {
+      @apply com-flex com-flex-col md:com-gap-4 com-gap-6 md:com-mx-0 com-mx-4;
     }
   }
 }

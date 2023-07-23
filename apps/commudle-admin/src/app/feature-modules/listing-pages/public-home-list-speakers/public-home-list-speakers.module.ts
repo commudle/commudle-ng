@@ -63,5 +63,6 @@ import { EmptyStateComponentComponent } from './components/empty-state-component
     NbInputModule,
     NbFormFieldModule,
   ],
+  exports: [PublicHomeListSpeakersContentComponent],
 })
 export class PublicHomeListSpeakersModule {}

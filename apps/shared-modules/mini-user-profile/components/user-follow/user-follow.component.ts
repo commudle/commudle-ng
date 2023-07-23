@@ -27,14 +27,14 @@ import { Subscription } from 'rxjs';
 })
 export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() username: string;
+  @Input() name: string;
+  @Input() userId: number;
   @Input() showIcon = true;
   @Input() appearance: NbButtonAppearance;
   @Input() status: NbComponentStatus;
   @Input() isMobileWidthFull = false;
   @Input() disabled = false;
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
-
-  user: IUser;
   currentUser: ICurrentUser;
   isFollowing = false;
   Following = false;
@@ -50,14 +50,6 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
   ) {}
 
   ngOnChanges(): void {
-    // Get user's data
-    this.subscriptions.push(
-      this.appUsersService.getProfile(this.username).subscribe((data) => {
-        this.user = data;
-        this.changeDetectorRef.markForCheck();
-      }),
-    );
-
     // Get logged in user
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
@@ -88,22 +80,17 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         this.userFollowed.emit();
-        this.gtm.dataLayerPushEvent('user-follow-confirm', { com_followee_id: this.user.id });
+        this.gtm.dataLayerPushEvent('user-follow-confirm', { com_followee_id: this.userId });
         this.changeDetectorRef.markForCheck();
       }),
     );
   }
 
-  // openDialog(ref: TemplateRef<any>) {
-  //   this.nbDialogService.open(ref);
-  //   this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.user.id });
-  // }
-
   onFollowClick() {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
         consentType: ConsentTypesEnum.UserFollow,
-        username: this.user.name,
+        username: this.name,
       },
     });
 
@@ -114,6 +101,6 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
         this.toggleFollow();
       }
     });
-    this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.user.id });
+    this.gtm.dataLayerPushEvent('user-follow-initiate', { com_followee_id: this.userId });
   }
 }
