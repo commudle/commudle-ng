@@ -7,9 +7,8 @@ describe('EventSimpleRegistrationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventSimpleRegistrationComponent ]
-    })
-    .compileComponents();
+      declarations: [EventSimpleRegistrationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

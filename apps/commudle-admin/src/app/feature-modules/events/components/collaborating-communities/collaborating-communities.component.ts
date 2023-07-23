@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventCollaborationCommunitiesService } from 'apps/commudle-admin/src/app/services/event-collaboration-communities.service';
@@ -41,10 +42,16 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     private toastLogService: LibToastLogService,
     private communitiesService: CommunitiesService,
     private changeDetectorRef: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.communities = [];
+    this.activatedRoute.parent.data.subscribe((data) => {
+      this.community = data.community;
+      this.event = data.event;
+      this.getCollaborations();
+    });
   }
 
   onSelectionChange($event) {

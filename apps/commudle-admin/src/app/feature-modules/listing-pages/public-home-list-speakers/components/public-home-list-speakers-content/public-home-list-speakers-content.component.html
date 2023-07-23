@@ -1,8 +1,8 @@
 <nb-card>
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">Content you can explore</h3>
-      <h4 class="sub-heading">This is content published by users</h4>
+      <h3 class="title">{{ heading }}</h3>
+      <h4 class="sub-heading">{{ subheading }}</h4>
     </div>
     <div class="content custom-scrollbar">
       <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards>

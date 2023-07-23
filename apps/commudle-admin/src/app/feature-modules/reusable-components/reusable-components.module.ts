@@ -5,29 +5,25 @@ import { CommunityEmailsListComponent } from './components/community-emails-list
 import { LabCardComponent } from './components/lab-card/lab-card.component';
 import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-
-
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
-  declarations: [
-    CommunityEmailsListComponent,
-    LabCardComponent,
-  ],
+  declarations: [CommunityEmailsListComponent, LabCardComponent],
   imports: [
     CommonModule,
     RouterModule,
     SharedComponentsModule,
+
+    // standalone
+    BackButtonComponent,
 
     // Nebular
     NbListModule,
     NbIconModule,
     NbCardModule,
     NbButtonModule,
-    NbAlertModule
+    NbAlertModule,
   ],
-  exports: [
-    CommunityEmailsListComponent,
-    LabCardComponent
-  ]
+  exports: [CommunityEmailsListComponent, LabCardComponent],
 })
-export class ReusableComponentsModule { }
+export class ReusableComponentsModule {}

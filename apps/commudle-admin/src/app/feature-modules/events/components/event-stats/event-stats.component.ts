@@ -46,7 +46,7 @@ export class EventStatsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data) => {
+    this.activatedRoute.parent.data.subscribe((data) => {
       this.event = data.event;
       this.community = data.community;
       this.seoService.setTitle(`${this.event.name} Stats | ${this.community.name}`);

@@ -1,26 +1,24 @@
 <div class="event-edit-form-container">
+  <div class="backButton">
+    <commudle-back-button text="Back"></commudle-back-button>
+  </div>
+
   <nb-card>
     <nb-card-body>
-      <h3>Edit Event</h3>
-      <p>
-        {{ community.name }}
-      </p>
+      <h3 class="com-mt-0">Edit Event</h3>
+
       <nb-alert status="info" *ngIf="uneditable">
         <p>
           This event is <strong>{{ event.event_status.name | titlecase }}</strong> and cannot be edited
         </p>
       </nb-alert>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-body>
       <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="updateEvent()">
         <div formGroupName="event">
           <div role="group">
             <div>
               <label>
                 Name*
-                <input type="text" nbInput fullWidth formControlName="name" />
+                <input type="text" nbInput fullWidth formControlName="name" [disabled]="true" />
               </label>
               <span
                 *ngIf="
@@ -110,11 +108,12 @@
         <div class="save-button-bottom">
           <button
             *ngIf="!uneditable"
-            [disabled]="!eventForm.valid || tags.length < 3"
+            [disabled]="!eventForm.valid || tags.length < 3 || submitIsInProcess"
             type="submit"
             nbButton
             fullWidth
             status="info"
+            [nbSpinner]="submitIsInProcess"
           >
             Save
           </button>

@@ -1,4 +1,7 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
+.collaborations {
+  @apply com-mx-0 com-my-6;
+}
 
 .actions {
   a {

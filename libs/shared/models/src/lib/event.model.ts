@@ -21,10 +21,10 @@ export interface IEvent {
   custom_registration: boolean;
   custom_agenda: boolean;
   editable: boolean;
+  tags: ITag[];
   kommunity_slug: string;
   header_image?: IAttachedFile;
   event_type: string;
-  tags: ITag[];
   event_locations_count: number;
   event_speakers_count: number;
   event_volunteers_count: number;

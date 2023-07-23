@@ -1,0 +1,25 @@
+<nb-card class="registrations">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="edit-2-outline"></nb-icon>
+      Registrations
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="event.editable" class="com-flex com-gap-4">
+      <p>One Click Registration</p>
+      <nb-toggle
+        (checkedChange)="updateRegistrationType($event)"
+        [checked]="event.custom_registration"
+        status="primary"
+      ></nb-toggle>
+      <p>Registration Forms</p>
+    </div>
+    <app-form-groups *ngIf="event.custom_registration" [community]="community" [event]="event"></app-form-groups>
+    <app-event-simple-registration
+      *ngIf="!event.custom_registration"
+      [community]="community"
+      [event]="event"
+    ></app-event-simple-registration>
+  </nb-card-body>
+</nb-card>

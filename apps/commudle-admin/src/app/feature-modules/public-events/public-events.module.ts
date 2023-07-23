@@ -50,6 +50,8 @@ import { TeamComponent } from './components/team/team.component';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
 import { LinkyModule } from 'ngx-linky';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     SharedDirectivesModule,
     MiniUserProfileModule,
     LinkyModule,
+    PublicHomeListEventsModule,
+    PublicHomeListSpeakersModule,
 
     // external
     FontAwesomeModule,

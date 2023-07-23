@@ -20,9 +20,20 @@
               <p>
                 {{ edfeg.name }}
                 <br />
-                <small *ngIf="communityDataForms.length > 0">{{
-                  getAttachedDataFormName(edfeg.data_form_entity.data_form_id)
-                }}</small>
+                <span class="com-text-xs"
+                  >Form type:
+                  <strong>
+                    {{ edfeg.registration_type.name | titlecase }}
+                  </strong>
+                </span>
+                <br />
+                <a
+                  [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']"
+                  target="_blank"
+                  class="com-mt-1 com-no-underline com-text-sm"
+                >
+                  Edit
+                </a>
               </p>
             </div>
           </div>
@@ -31,22 +42,45 @@
             <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
           </div>
           <div class="actions">
-            <div class="visibility">
-              <nb-select
-                (selectedChange)="changeVisibility($event, edfeg.data_form_entity.id)"
-                *ngIf="event.editable"
-                [(selected)]="edfeg.data_form_entity.visibility"
-                size="small"
-              >
-                <nb-option value="{{ visibilityOptions.YET_TO_ANNOUNCE }}">Yet to announce</nb-option>
-                <nb-option value="{{ visibilityOptions.OPEN_BUT_INVISIBLE }}">Open but invisible</nb-option>
-                <nb-option value="{{ visibilityOptions.OPEN }}">Open to all</nb-option>
-                <nb-option value="{{ visibilityOptions.CLOSED }}">Closed to all</nb-option>
-                <nb-option value="{{ visibilityOptions.ON_THE_SPOT_UNINVITED }}">On the spot uninvited</nb-option>
-                <nb-option value="{{ visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED }}"
-                  >Members who have attended
-                </nb-option>
-              </nb-select>
+            <div class="dropdown">
+              <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
+                <option
+                  value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.YET_TO_ANNOUNCE"
+                >
+                  Yet to announce
+                </option>
+                <option
+                  value="{{ visibilityOptions.OPEN_BUT_INVISIBLE }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN_BUT_INVISIBLE"
+                >
+                  Open but invisible
+                </option>
+                <option
+                  value="{{ visibilityOptions.OPEN }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN"
+                >
+                  Open to all
+                </option>
+                <option
+                  value="{{ visibilityOptions.CLOSED }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.CLOSED"
+                >
+                  Closed to all
+                </option>
+                <option
+                  value="{{ visibilityOptions.ON_THE_SPOT_UNINVITED }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.ON_THE_SPOT_UNINVITED"
+                >
+                  On the spot uninvited
+                </option>
+                <option
+                  value="{{ visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED }}"
+                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED"
+                >
+                  Members who have attended
+                </option>
+              </select>
             </div>
             <div>
               <a
@@ -138,11 +172,21 @@
           <label>
             Select Type*
             <br />
-            <nb-select formControlName="registration_type_id" placeholder="Form Type" size="small" status="primary">
-              <nb-option *ngFor="let rt of registrationTypes" [value]="rt.id">
-                {{ rt.name }}
-              </nb-option>
-            </nb-select>
+            <div class="select">
+              <select
+                formControlName="registration_type_id"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]':
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('registration_type_id').value ===
+                    ''
+                }"
+              >
+                <option value="" selected disabled>Form Type</option>
+                <option *ngFor="let rt of registrationTypes" [value]="rt.id">
+                  {{ rt.name | titlecase }}
+                </option>
+              </select>
+            </div>
             <span
               *ngIf="
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('registration_type_id').touched &&
@@ -159,11 +203,20 @@
           <label>
             Select Form*
             <br />
-            <nb-select formControlName="data_form_id" placeholder="Which Form?" size="small" status="primary">
-              <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
-                {{ df.name }}
-              </nb-option>
-            </nb-select>
+            <div class="select">
+              <select
+                formControlName="data_form_id"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]':
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
+                }"
+              >
+                <option disabled selected value="">Which Form?</option>
+                <option *ngFor="let df of communityDataForms" [value]="df.id">
+                  {{ df.name | titlecase }}
+                </option>
+              </select>
+            </div>
             <span
               *ngIf="
                 eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').touched &&

@@ -1,47 +1,58 @@
-<div>
-  <div *ngFor="let eu of eventUpdates; let i = index">
-    <p>
-      <span>
-        {{ eu.details }}
-      </span>
-      <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
-        <nb-icon icon="close"></nb-icon>
-      </span>
+<div *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
+  <nb-card>
+    <nb-card-body class="com-p-6">
+      <h4 class="com-m-0">Event Updates</h4>
+      <p>Give updates about your event and so that there is a constant communication between you and attendees</p>
+    </nb-card-body>
+  </nb-card>
+  <nb-card class="updates">
+    <nb-card-body>
+      <h6 class="com-mt-0 com-mb-2">Updates</h6>
+      <div *ngFor="let eu of eventUpdates; let i = index">
+        <p>
+          <span>
+            {{ eu.details }}
+          </span>
+          <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
+            <nb-icon icon="close"></nb-icon>
+          </span>
 
-      <br />
-      <small>
-        <span>{{ moment(eu.created_at).format('LT DD-MM-YYYY') }} by {{ eu.user.name }}</span>
-      </small>
-    </p>
-  </div>
-  <div *ngIf="event.editable">
-    <form [formGroup]="eventUpdateForm" (ngSubmit)="createEventUpdate()">
-      <div class="update-input">
-        <label>
-          <input
-            type="text"
-            nbInput
-            fullWidth
-            formControlName="details"
-            placeholder="Enter an update to publish"
-            size="small"
-          />
-        </label>
-        <span
-          *ngIf="
-            eventUpdateForm['controls'].details.touched &&
-            eventUpdateForm['controls'].details.invalid &&
-            eventUpdateForm['controls'].details.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
+          <br />
+          <small>
+            <span>{{ moment(eu.created_at).format('LT DD-MM-YYYY') }} by {{ eu.user.name }}</span>
+          </small>
+        </p>
       </div>
-      <div class="save-button">
-        <button [disabled]="!eventUpdateForm.valid" type="submit" nbButton fullWidth status="info" size="small">
-          Add
-        </button>
+      <div *ngIf="event.editable">
+        <form [formGroup]="eventUpdateForm" (ngSubmit)="createEventUpdate()">
+          <div class="update-input">
+            <label>
+              <input
+                type="text"
+                nbInput
+                fullWidth
+                formControlName="details"
+                placeholder="Enter an update to publish"
+                size="small"
+              />
+            </label>
+            <span
+              *ngIf="
+                eventUpdateForm['controls'].details.touched &&
+                eventUpdateForm['controls'].details.invalid &&
+                eventUpdateForm['controls'].details.errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </div>
+          <div class="save-button">
+            <button [disabled]="!eventUpdateForm.valid" type="submit" nbButton fullWidth status="info" size="small">
+              Add
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
+    </nb-card-body>
+  </nb-card>
 </div>
