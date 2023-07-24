@@ -13,11 +13,10 @@ import { IUser } from 'apps/shared-models/user.model';
 })
 export class PublicHomeListEventsSpeakersComponent implements OnInit {
   @Input() parentType: string;
-  @Input() event_id: string;
+  @Input() eventId: string;
   faMicrophone = faMicrophone;
   speakers: IUser[] = [];
-  community_id: string;
-  page_info: IPageInfo;
+  pageInfo: IPageInfo;
   total: number;
   isLoadingSpeakers = false;
   showSpinner = false;
@@ -49,10 +48,10 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
       return;
     }
     this.isLoadingSpeakers = true;
-    this.eventsService.getSpeakersList(this.page_info?.end_cursor, this.limit, this.event_id).subscribe((data) => {
+    this.eventsService.getSpeakersList(this.pageInfo?.end_cursor, this.limit, this.eventId).subscribe((data) => {
       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
-      this.page_info = data.page_info;
+      this.pageInfo = data.page_info;
       this.isLoadingSpeakers = false;
       this.showSpinner = false;
       this.showSkeletonLoading = false;
@@ -64,10 +63,10 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
       return;
     }
     this.isLoadingSpeakers = true;
-    this.communitiesService.getSpeakersList(this.mini, this.page_info?.end_cursor, this.limit).subscribe((data) => {
+    this.communitiesService.getSpeakersList(this.mini, this.pageInfo?.end_cursor, this.limit).subscribe((data) => {
       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
-      this.page_info = data.page_info;
+      this.pageInfo = data.page_info;
       this.isLoadingSpeakers = false;
       this.showSpinner = false;
       this.showSkeletonLoading = false;

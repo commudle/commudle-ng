@@ -14,7 +14,7 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   @Input() parentType: string;
   @Input() heading = 'Content you can explore';
   @Input() subheading = 'This is content published by users';
-  event_id: string;
+  @Input() eventId: string;
   speakersContents: ISpeakerResource[] = [];
   showSpinner = false;
   page_info: IPageInfo;
@@ -30,11 +30,6 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const params = this.activatedRoute.snapshot.params;
-    if (params.event_id) {
-      this.event_id = params.event_id;
-    }
-
     switch (this.parentType) {
       case 'communities': {
         this.getAllCommunitiesContentList();
@@ -63,7 +58,7 @@ export class PublicHomeListSpeakersContentComponent implements OnInit {
   getEventsContentList() {
     this.isLoadingTechSessions = true;
     this.showSpinner = true;
-    this.eventsService.getSocialResources(this.page_info?.end_cursor, this.limit, this.event_id).subscribe((data) => {
+    this.eventsService.getSocialResources(this.page_info?.end_cursor, this.limit, this.eventId).subscribe((data) => {
       this.speakersContents = this.speakersContents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
       this.page_info = data.page_info;

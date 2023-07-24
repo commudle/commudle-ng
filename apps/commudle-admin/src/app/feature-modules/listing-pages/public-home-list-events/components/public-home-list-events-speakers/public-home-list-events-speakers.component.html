@@ -34,14 +34,14 @@
       </div>
       <div class="load-more">
         <a *ngIf="parentType === 'communities'" [routerLink]="['/speakers']">
-          <button *ngIf="page_info?.has_next_page" nbButton outline size="tiny" status="basic">View All</button>
+          <button *ngIf="pageInfo?.has_next_page" nbButton outline size="tiny" status="basic">View All</button>
         </a>
         <div *ngIf="parentType === 'events'">
           <div *ngIf="this.isLoadingSpeakers">
             <app-loading-spinner class="com-mt-4"></app-loading-spinner>
           </div>
           <button
-            *ngIf="page_info?.has_next_page"
+            *ngIf="pageInfo?.has_next_page"
             (click)="getEventsSpeakersList()"
             fullWidth
             ghost

@@ -62,10 +62,11 @@
           ></commudle-events-volunteer-list>
           <commudle-public-home-list-events-speakers
             [parentType]="'events'"
-            [event_id]="event.slug"
+            [eventId]="event.slug"
           ></commudle-public-home-list-events-speakers>
           <commudle-public-home-list-speakers-content
             [parentType]="'events'"
+            [eventId]="event.slug"
             [heading]="contentHeading"
             [subheading]="contentSubheading"
           ></commudle-public-home-list-speakers-content>
@@ -105,12 +106,13 @@
         ></commudle-events-volunteer-list>
         <commudle-public-home-list-events-speakers
           [parentType]="'events'"
-          [event_id]="event.slug"
+          [eventId]="event.slug"
         ></commudle-public-home-list-events-speakers>
         <commudle-public-home-list-speakers-content
           [parentType]="'events'"
           [heading]="contentHeading"
           [subheading]="contentSubheading"
+          [eventId]="event.slug"
         ></commudle-public-home-list-speakers-content>
       </div>
     </div>
