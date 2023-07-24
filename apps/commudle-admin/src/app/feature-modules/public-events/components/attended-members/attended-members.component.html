@@ -27,13 +27,16 @@
         <div class="main-column">
           <div class="filters">
             <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
-              <option value="" disabled selected hidden>Looking For Work / Hiring</option>
-              <option value="employee">Looking for work</option>
-              <option value="employer">Hiring</option>
+              <option value="">Looking for work / Hiring</option>
+              <option value="employee" [selected]="value === 'employee'">Looking for work</option>
+              <option value="employer" [selected]="value === 'employer'">Hiring</option>
             </select>
             <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
           </div>
-          <div class="attended-members">
+          <div *ngIf="!isLoading && members.length === 0">
+            <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
+          </div>
+          <div *ngIf="members.length > 0" class="attended-members">
             <app-skeleton-cards
               [displayFollowButton]="true"
               [cards]="4"
@@ -77,7 +80,10 @@
           </select>
           <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
         </div>
-        <div class="attended-members">
+        <div *ngIf="!isLoading && members.length === 0">
+          <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
+        </div>
+        <div *ngIf="members.length > 0" class="attended-members">
           <app-skeleton-cards [cards]="4" *ngIf="skeletonLoaderCard"></app-skeleton-cards>
           <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
         </div>

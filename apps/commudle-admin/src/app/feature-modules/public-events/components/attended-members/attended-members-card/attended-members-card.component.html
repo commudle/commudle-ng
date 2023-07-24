@@ -13,7 +13,7 @@
 
   <div class="common-events-attended">
     <ng-container *ngIf="events.length !== 0">
-      <p class="events-count">{{ events.length }} event{{ events.length > 0 ? 's' : '' }} attended together!</p>
+      <p class="events-count">{{ events.length }} event{{ events.length > 1 ? 's' : '' }} attended together!</p>
       <div *appBreakpoints="'>lg'">
         <ul #eventsList [ngClass]="{ 'show-more': showMore }" class="events-list">
           <li *ngFor="let event of events">

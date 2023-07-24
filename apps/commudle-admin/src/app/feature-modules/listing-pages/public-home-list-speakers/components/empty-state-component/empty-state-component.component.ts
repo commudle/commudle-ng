@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'commudle-empty-state-component',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./empty-state-component.component.scss'],
 })
 export class EmptyStateComponentComponent implements OnInit {
+  @Input() parentType: string;
   constructor() {}
 
   ngOnInit(): void {}
