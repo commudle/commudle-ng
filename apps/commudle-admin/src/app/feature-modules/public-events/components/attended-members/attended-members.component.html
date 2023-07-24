@@ -33,16 +33,18 @@
             </select>
             <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
           </div>
-          <div *ngIf="!isLoading && members.length === 0">
-            <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
-          </div>
-          <div *ngIf="members.length > 0" class="attended-members">
+          <div class="attended-members">
             <app-skeleton-cards
               [displayFollowButton]="true"
               [cards]="4"
               *ngIf="skeletonLoaderCard"
             ></app-skeleton-cards>
-            <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
+            <div *ngIf="!skeletonLoaderCard && members.length === 0">
+              <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
+            </div>
+            <div *ngIf="members.length > 0">
+              <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
+            </div>
           </div>
           <app-pagination
             (goTo)="page = $event; getMembers()"
@@ -82,7 +84,7 @@
           </select>
           <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
         </div>
-        <div *ngIf="!isLoading && members.length === 0">
+        <div *ngIf="!skeletonLoaderCard && members.length === 0">
           <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
         </div>
         <div *ngIf="members.length > 0" class="attended-members">
