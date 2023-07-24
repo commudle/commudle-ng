@@ -13,9 +13,9 @@ import { IUser } from 'apps/shared-models/user.model';
 })
 export class PublicHomeListEventsSpeakersComponent implements OnInit {
   @Input() parentType: string;
+  @Input() event_id: string;
   faMicrophone = faMicrophone;
   speakers: IUser[] = [];
-  event_id: string;
   community_id: string;
   page_info: IPageInfo;
   total: number;
@@ -32,14 +32,6 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const params = this.activatedRoute.snapshot.params;
-    if (params.event_id) {
-      this.event_id = params.event_id;
-    }
-    if (params.community_id) {
-      this.community_id = params.community_id;
-    }
-
     switch (this.parentType) {
       case 'communities': {
         this.getAllSpeakersList();

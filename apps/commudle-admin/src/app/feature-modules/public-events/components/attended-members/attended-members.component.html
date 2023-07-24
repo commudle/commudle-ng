@@ -62,6 +62,7 @@
           ></commudle-events-volunteer-list>
           <commudle-public-home-list-events-speakers
             [parentType]="'events'"
+            [event_id]="event.slug"
           ></commudle-public-home-list-events-speakers>
           <commudle-public-home-list-speakers-content
             [parentType]="'events'"
@@ -102,7 +103,10 @@
           [heading]="volunteerHeading"
           [subheading]="volunteerSubheading"
         ></commudle-events-volunteer-list>
-        <commudle-public-home-list-events-speakers [parentType]="'events'"></commudle-public-home-list-events-speakers>
+        <commudle-public-home-list-events-speakers
+          [parentType]="'events'"
+          [event_id]="event.slug"
+        ></commudle-public-home-list-events-speakers>
         <commudle-public-home-list-speakers-content
           [parentType]="'events'"
           [heading]="contentHeading"
