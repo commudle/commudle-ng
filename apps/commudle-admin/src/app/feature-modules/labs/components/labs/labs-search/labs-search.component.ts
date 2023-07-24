@@ -2,8 +2,12 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ILab, ITag } from '@commudle/shared-models';
+import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { ILabs } from 'apps/shared-models/labs.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { ITags } from 'apps/shared-models/tags.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -15,11 +19,12 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./labs-search.component.scss'],
 })
 export class LabsSearchComponent implements OnInit, OnDestroy {
-  labs: IUser[] = [];
+  labs: ILab[] = [];
   page_info: IPageInfo;
   loading = false;
   loadingSpeakers = false;
   total: number;
+  // total = -1;
   limit = 9;
   skeletonLoaderCard = true;
   queryParamsString = '';
@@ -29,6 +34,13 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   page = 1;
   count = 10;
   totalSearch = 0;
+
+  popularTags: ITag[] = [];
+  popularLabs: ILab[] = [];
+
+  searchedTags: string[] = [];
+  searchedLabs: ILab[] = [];
+
   // listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
@@ -37,6 +49,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private location: Location,
     private seoService: SeoService,
+    private labsService: LabsService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -53,18 +66,22 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     //   'https://commudle.com/assets/images/commudle-logo192.png',
     // );
 
-    this.search();
-    const params = this.activatedRoute.snapshot.queryParams;
-    if (Object.keys(params).length > 0) {
-      if (params.query) {
-        this.query = params.query;
-        this.searchForm.get('name').setValue(this.query);
-      }
-    }
-    this.labs = [];
-    if (!params.query) {
-      this.getSpeakersList();
-    }
+    this.getLabs();
+    // this.getPopularTags();
+    // this.getLabsByTags();
+    // this.search();
+    // const params = this.activatedRoute.snapshot.queryParams;
+    // if (Object.keys(params).length > 0) {
+    //   if (params.query) {
+    //     this.query = params.query;
+    //     this.searchForm.get('name').setValue(this.query);
+    //   }
+    // }
+    // this.labs = [];
+    // if (!params.query) {
+    //   this.getSpeakersList();
+    // }
+    // this.getLabsByTags();
   }
 
   search() {
@@ -92,7 +109,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
-    this.getSpeakersList();
+    // this.getSpeakersList();
   }
 
   resetFiltersAndSearch() {
@@ -101,8 +118,6 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     this.labs = [];
     this.page_info = null;
   }
-
-  getSpeakersList() {}
 
   // getSpeakersList() {
   //   this.loading = true;
@@ -135,6 +150,52 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   //       this.isLoadingSearch = false;
   //     });
   // }
+
+  // getPopularTags() {
+  //   this.labsService.pTags().subscribe((data: ITags) => (this.popularTags = data.tags.slice(0, 6)));
+  // }
+
+  // onTagAdd(value: string) {
+  //   if (!this.searchedTags.includes(value)) {
+  //     this.searchedTags.push(value);
+  //     this.total = -1;
+  //     this.page = 1;
+  //     this.count = 9;
+  //     this.getLabsByTags(true);
+  //   }
+  // }
+
+  // onTagsUpdate(tags: string[]) {
+  //   this.searchedTags = tags || [];
+  //   this.total = -1;
+  //   this.page = 1;
+  //   this.count = 9;
+  //   this.getLabsByTags(true);
+  // }
+
+  // getLabsByTags(replace: boolean = false): void {
+  //   this.loading = true;
+  //   this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
+  //     this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
+  //     console.log(this.searchedLabs, 'searchedLabs');
+  //     this.total = value.total;
+  //     this.count = value.count;
+  //     this.page++;
+  //     this.loading = false;
+  //   });
+  // }
+
+  getLabs() {
+    this.loading = true;
+    this.labsService.searchLabsByTags(this.page, this.count).subscribe((value: ILabs) => {
+      this.searchedLabs = this.searchedLabs.concat(value.labs);
+      console.log(this.searchedLabs, 'searchedLabs');
+      this.total = value.total;
+      this.count = value.count;
+      this.page++;
+      this.loading = false;
+    });
+  }
 }
 
 // import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';

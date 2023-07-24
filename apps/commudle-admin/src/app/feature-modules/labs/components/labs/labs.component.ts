@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
-// import { ILab } from 'apps/shared-models/lab.model';
-// import { ILabs } from 'apps/shared-models/labs.model';
-// import { ITag } from 'apps/shared-models/tag.model';
-// import { ITags } from 'apps/shared-models/tags.model';
+import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import { ILab } from 'apps/shared-models/lab.model';
+import { ILabs } from 'apps/shared-models/labs.model';
+import { ITag } from 'apps/shared-models/tag.model';
+import { ITags } from 'apps/shared-models/tags.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
@@ -25,9 +25,8 @@ export class LabsComponent implements OnInit {
 
   // isLoading = false;
 
-  constructor(private seoService: SeoService) {}
-
   // constructor(private labsService: LabsService, private seoService: SeoService) {}
+  constructor(private seoService: SeoService) {}
 
   ngOnInit() {
     // this.getPopularTags();

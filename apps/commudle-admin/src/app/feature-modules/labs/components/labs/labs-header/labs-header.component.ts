@@ -26,7 +26,7 @@ export class LabsHeaderComponent implements OnInit {
   }
 
   getHeaderText() {
-    this.cmsService.getDataBySlug('builds').subscribe((data) => {
+    this.cmsService.getDataBySlug('labs').subscribe((data) => {
       this.labsPageHeader = data;
       this.richText = this.cmsService.getHtmlFromBlock(data);
     });

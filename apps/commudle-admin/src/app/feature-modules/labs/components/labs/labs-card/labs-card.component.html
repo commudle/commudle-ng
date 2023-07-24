@@ -1,24 +1,33 @@
 <div class="labs-card-container">
   <a class="labs-card-header clickable" routerLink="{{ lab.slug }}">
-    <img
-      alt="{{ lab.name }}"
-      class="labs-card-header"
-      src="{{ lab.header_image?.i350 || '/assets/images/Lab-Default.png' }}"
-      title="{{ lab.name }}"
-    />
+    <commudle-banner-image
+      [headerImagePath]="lab.header_image ? lab.header_image?.i350 : staticAssets.community_build_empty_state"
+      [name]="lab.name"
+      [topRightCurve]="false"
+      [topLeftCurve]="false"
+      [bottomRightCurve]="false"
+      [bottomLeftCurve]="false"
+      [aspectRatio]="'3/2'"
+    ></commudle-banner-image>
   </a>
-  <div class="labs-card-content d-flex flex-column justify-content-space-between">
+  <div class="labs-card-content">
     <a class="labs-card-content-prefix" routerLink="{{ lab.slug }}">
-      <h4 class="labs-card-title com-line-clamp-2">{{ lab.name }}</h4>
+      <div class="heading">
+        <div class="labs-card-title">
+          <h4 class="title">{{ lab.name }}</h4>
+          <p class="steps"></p>
+        </div>
+        <div class="tags"></div>
+      </div>
       <p class="labs-card-date">Published {{ lab.published_at | date }}</p>
     </a>
 
-    <div class="labs-card-content-suffix d-flex justify-content-space-between">
+    <div class="labs-card-content-suffix">
       <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium>
-      <div class="labs-card-stats d-flex">
-        <div class="labs-card-views d-flex align-items-center">
-          <p>{{ lab.visits }}</p>
-          <nb-icon icon="eye"></nb-icon>
+      <div class="labs-card-stats">
+        <div class="labs-card-views">
+          <!-- <p>{{ lab.visits }}</p>
+          <nb-icon icon="eye"></nb-icon> -->
         </div>
         <div class="labs-card-likes d-flex align-items-center">
           <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>

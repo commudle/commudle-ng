@@ -1,4 +1,4 @@
-<!-- <div class="header">
+<div class="header">
   <div
     *ngIf="labsPageHeader"
     [ngStyle]="{ 'background-color': labsPageHeader.background_color.hex }"
@@ -9,12 +9,13 @@
         <div class="header-text">
           <h1 class="title">
             <button class="button">
-              <fa-icon [icon]="faFlask"></fa-icon>
+              <fa-icon [icon]="faFlask" class="flask-icon"></fa-icon>
             </button>
             {{ labsPageHeader.title }}
           </h1>
           <p class="heading">{{ labsPageHeader.heading }}</p>
           <div [innerHTML]="richText" class="content"></div>
+          <p class="subheading">{{ labsPageHeader.sub_heading }}</p>
         </div>
         <div class="header-image">
           <img [src]="imageUrl(labsPageHeader?.header_image).url()" class="com-w-full" />
@@ -22,7 +23,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- <nb-card class="lab-header-container">
   <nb-card-body class="com-flex com-flex-col md:com-flex-row com-justify-between com-min-h-[344px]">

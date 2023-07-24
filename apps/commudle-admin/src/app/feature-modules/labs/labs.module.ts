@@ -43,6 +43,9 @@ import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabsRoutingModule } from './labs-routing.module';
 import { ListingPagesLayoutComponent } from '../../app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { SkeletonVerticalCardsComponent } from '../skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { SkeletonCardsComponent } from '../skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 
 @NgModule({
   declarations: [
@@ -78,6 +81,10 @@ import { SkeletonVerticalCardsComponent } from '../skeleton-screens/components/s
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
+    PublicHomeListSpeakersModule,
+    CommunityBuildsModule,
+    PublicHomeListSpeakersModule,
+
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -92,6 +99,7 @@ import { SkeletonVerticalCardsComponent } from '../skeleton-screens/components/s
     NbContextMenuModule,
     ListingPagesLayoutComponent,
     SkeletonVerticalCardsComponent,
+    SkeletonCardsComponent,
   ],
 })
 export class LabsModule {}

@@ -116,9 +116,21 @@ export class LabsService {
     return this.http.get<ITags>(this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.TAGS), { params });
   }
 
-  searchLabsByTags(tags: string[], page?: number, count?: number) {
+  // searchLabsByTags(tags: string[], page?: number, count?: number) {
+  //   let params = new HttpParams();
+  //   tags.forEach((tag: string) => (params = params.append('tag_names[]', tag)));
+  //   if (page) {
+  //     params = params.append('page', String(page));
+  //   }
+  //   if (count) {
+  //     params = params.append('count', String(count));
+  //   }
+  //   return this.http.get<ILabs>(this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.LABS_BY_TAGS), { params });
+  // }
+
+  searchLabsByTags(page?: number, count?: number) {
     let params = new HttpParams();
-    tags.forEach((tag: string) => (params = params.append('tag_names[]', tag)));
+    // tags.forEach((tag: string) => (params = params.append('tag_names[]', tag)));
     if (page) {
       params = params.append('page', String(page));
     }

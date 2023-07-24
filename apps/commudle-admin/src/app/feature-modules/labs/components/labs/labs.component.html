@@ -3,31 +3,33 @@
     <app-labs-header></app-labs-header>
   </div>
   <div one-column *ngIf="isMobileView">
-    <!-- <div class="publish-build-button">
-      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+    <div class="publish-lab-button">
+      <a [routerLink]="['/labs/create']" nbButton size="giant" class="button">
         <nb-icon icon="plus"></nb-icon>
-        Share your Build
+        Publish New Lab
       </a>
-    </div> -->
+    </div>
     <!-- <commudle-builds></commudle-builds>
     <commudle-featured-projects></commudle-featured-projects>
     <commudle-builds-top-builders></commudle-builds-top-builders>
     <commudle-explore-experts></commudle-explore-experts> -->
   </div>
   <div main-column *ngIf="!isMobileView">
+    <app-labs-search></app-labs-search>
     <!-- <commudle-builds></commudle-builds> -->
   </div>
   <div right-column>
-    <!-- <div class="publish-build-button">
-      <a [routerLink]="['/builds/create']" nbButton size="giant" class="button">
+    <div class="publish-lab-button">
+      <a [routerLink]="['/labs/create']" nbButton size="giant" class="button">
         <nb-icon icon="plus"></nb-icon>
-        Share your Build
+        Publish New Lab
       </a>
-    </div> -->
+    </div>
     <div>
-      <!-- <commudle-builds-top-builders></commudle-builds-top-builders>
-      <commudle-featured-projects></commudle-featured-projects>
-      <commudle-explore-experts></commudle-explore-experts> -->
+      <commudle-builds-top-builders></commudle-builds-top-builders>
+      <commudle-explore-experts></commudle-explore-experts>
+      <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+      <!-- <commudle-featured-projects></commudle-featured-projects> -->
     </div>
   </div>
 </commudle-listing-pages-layout>
