@@ -131,6 +131,7 @@ export const API_ROUTES = {
   CREATE_DATA_FORM: 'api/v2/data_forms',
   UPDATE_DATA_FORM: 'api/v2/data_forms',
   CLONE_COMMUNITY_DATA_FORM: 'api/v2/data_forms/clone_community_data_form',
+  LIST: 'api/v2/data_forms/list',
 
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',

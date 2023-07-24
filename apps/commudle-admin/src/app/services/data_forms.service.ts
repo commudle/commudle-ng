@@ -12,7 +12,21 @@ import { IDataForms } from 'apps/shared-models/data_forms.model';
 export class DataFormsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getCommunityDataForms(parentId, parentType = 'Kommunity'): Observable<IDataForms> {
+  getCommunityDataForms(parentId): Observable<IDataForms> {
+    const params = new HttpParams().set('community_id', parentId);
+
+    return this.http.get<IDataForms>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DATA_FORMS), {
+      params: params,
+    });
+  }
+
+  getDataFormDetails(dataFormId): Observable<IDataForm> {
+    const params = new HttpParams().set('data_form_id', dataFormId);
+
+    return this.http.get<IDataForm>(this.apiRoutesService.getRoute(API_ROUTES.GET_DATA_FORM), { params: params });
+  }
+
+  getDataFormList(parentId, parentType): Observable<IDataForms> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -25,15 +39,7 @@ export class DataFormsService {
       }
     }
 
-    return this.http.get<IDataForms>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DATA_FORMS), {
-      params: params,
-    });
-  }
-
-  getDataFormDetails(dataFormId): Observable<IDataForm> {
-    const params = new HttpParams().set('data_form_id', dataFormId);
-
-    return this.http.get<IDataForm>(this.apiRoutesService.getRoute(API_ROUTES.GET_DATA_FORM), { params: params });
+    return this.http.get<IDataForms>(this.apiRoutesService.getRoute(API_ROUTES.LIST), { params: params });
   }
 
   updateDataForm(dataForm): Observable<IDataForm> {

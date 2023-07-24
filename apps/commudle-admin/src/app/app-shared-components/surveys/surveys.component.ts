@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SurveysService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
@@ -7,13 +7,14 @@ import { FormResponsesComponent } from 'apps/shared-components/form-responses/fo
 import { ISurvey, ESurveyStatus } from 'apps/shared-models/survey.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-surveys',
   templateUrl: './surveys.component.html',
   styleUrls: ['./surveys.component.scss'],
 })
-export class SurveysComponent implements OnInit {
+export class SurveysComponent implements OnInit, OnDestroy {
   @Input() parentId: number;
   @Input() parentType: 'CommunityGroup' | 'Kommunity';
   surveys: ISurvey[];
@@ -22,7 +23,10 @@ export class SurveysComponent implements OnInit {
   createSurveyForm;
   newDataFormWindowRef;
   isLoading = true;
+  subscriptions: Subscription[] = [];
+
   @ViewChild('newCommunitySurveyForm') newCommunitySurveyForm: TemplateRef<any>;
+
   constructor(
     private surveysService: SurveysService,
     private toastLogService: LibToastLogService,
@@ -41,13 +45,20 @@ export class SurveysComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSurveys();
-    // this.getDataForms();
+    this.getDataForms();
   }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
   getSurveys() {
-    this.surveysService.getSurveys(this.parentId, this.parentType).subscribe((data) => {
-      this.surveys = data.surveys;
-      this.isLoading = false;
-    });
+    this.subscriptions.push(
+      this.surveysService.getSurveys(this.parentId, this.parentType).subscribe((data) => {
+        this.surveys = data.surveys;
+        this.isLoading = false;
+      }),
+    );
   }
 
   updateStatus(status, index) {
@@ -70,23 +81,27 @@ export class SurveysComponent implements OnInit {
   }
 
   getDataForms() {
-    this.dataFormsService.getCommunityDataForms(this.parentId, this.parentType).subscribe((data) => {
-      this.dataForms = data.data_forms;
-    });
+    this.subscriptions.push(
+      this.dataFormsService.getDataFormList(this.parentId, this.parentType).subscribe((data) => {
+        this.dataForms = data.data_forms;
+      }),
+    );
   }
 
   createNewSurvey() {
     this.isLoading = true;
     const formData = this.createSurveyForm.get('survey').value;
-    this.surveysService
-      .createNewSurvey(formData, formData.data_form_id, this.parentId, this.parentType)
-      .subscribe((data) => {
-        this.surveys.unshift(data);
-        this.toastLogService.successDialog('Form Created');
-        this.createSurveyForm.reset();
-        this.createSurveyForm.get('survey').get('data_form_id').setValue('');
-        this.isLoading = false;
-      });
+    this.subscriptions.push(
+      this.surveysService
+        .createNewSurvey(formData, formData.data_form_id, this.parentId, this.parentType)
+        .subscribe((data) => {
+          this.surveys.unshift(data);
+          this.toastLogService.successDialog('Form Created');
+          this.createSurveyForm.reset();
+          this.createSurveyForm.get('survey').get('data_form_id').setValue('');
+          this.isLoading = false;
+        }),
+    );
   }
 
   openNewFormWindow() {
