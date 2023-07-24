@@ -1,5 +1,5 @@
-<section class="com-p-4 com-h-screen">
-  <div class="com-flex com-justify-end">
+<section class="com-p-4">
+  <div class="com-flex com-justify-end com-my-3">
     <button nbButton status="success" (click)="connectStripeAccount()" [disabled]="isLoading">Stripe Connect</button>
   </div>
 
@@ -8,8 +8,7 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <div *ngFor="let stripeAccount of stripeAccounts"></div>
-  <table>
+  <table *ngIf="stripeAccounts" class="com-mt-4">
     <tr>
       <th>Active</th>
       <th>Charges Enabled</th>

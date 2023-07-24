@@ -24,8 +24,8 @@ export class StripeHandlerService {
     });
   }
 
-  retrieveStripeAccount(accountId: string, communityId): Observable<any> {
-    const params = new HttpParams().set('account_id', accountId).set('community_id', communityId);
+  retrieveStripeAccount(uuid: string): Observable<any> {
+    const params = new HttpParams().set('uuid', uuid);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.STRIPE_HANDLER.RETRIEVE_ACCOUNT), {
       params,
     });

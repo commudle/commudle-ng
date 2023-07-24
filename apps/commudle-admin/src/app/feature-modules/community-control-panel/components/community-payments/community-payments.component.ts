@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StripeHandlerService } from '@commudle/shared-services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-community-payments',
@@ -10,8 +11,9 @@ import { StripeHandlerService } from '@commudle/shared-services';
 export class CommunityPaymentsComponent implements OnInit {
   isLoading = false;
   communityId: number;
-  ac;
+  ac: string;
   stripeAccounts = [];
+  subscription: Subscription[] = [];
   constructor(
     private stripeHandlerService: StripeHandlerService,
     private router: Router,
@@ -30,21 +32,32 @@ export class CommunityPaymentsComponent implements OnInit {
   connectStripeAccount() {
     const currentUrl = this.router.url;
     this.isLoading = true;
-    this.stripeHandlerService.connectStripeAccount(currentUrl, this.communityId).subscribe((data) => {
-      this.isLoading = false;
-      window.open(data.url, '_blank');
-    });
+    this.subscription.push(
+      this.stripeHandlerService.connectStripeAccount(currentUrl, this.communityId).subscribe((data) => {
+        this.isLoading = false;
+        window.open(data.url, '_blank');
+      }),
+    );
   }
 
   getStripeAccounts() {
-    this.stripeHandlerService.indexStripeAccount(this.communityId).subscribe((data) => {
-      this.stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-    });
+    this.subscription.push(
+      this.stripeHandlerService.indexStripeAccount(this.communityId).subscribe((data) => {
+        this.stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      }),
+    );
   }
 
-  retrieveStripeAccount(accountId) {
-    this.stripeHandlerService.retrieveStripeAccount(accountId, this.communityId).subscribe((data) => {
-      this.stripeAccounts.unshift(data);
-    });
+  retrieveStripeAccount(uuid) {
+    this.subscription.push(
+      this.stripeHandlerService.retrieveStripeAccount(uuid).subscribe((data) => {
+        for (let i = 0; i < this.stripeAccounts.length; i++) {
+          if (this.stripeAccounts[i].uuid === this.ac) {
+            this.stripeAccounts[i].details = data;
+            break;
+          }
+        }
+      }),
+    );
   }
 }
