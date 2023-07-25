@@ -1,11 +1,11 @@
 .event-details {
-  @apply com-p-6 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  @apply com-p-4 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
   .event-name {
     @apply com-m-0 com-text-3xl;
   }
 
   .text {
-    @apply com-text-lg com-m-0 com-mb-2 md:com-mb-0;
+    @apply com-text-base com-m-0 com-mb-2 md:com-mb-0;
   }
 }
 .header {
