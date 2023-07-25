@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div *ngIf="volunteers.length > 4" class="load-more">
+    <div class="load-more">
       <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
       <button
         *ngIf="pageInfo?.has_next_page"
