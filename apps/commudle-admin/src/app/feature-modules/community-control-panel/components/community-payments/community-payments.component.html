@@ -8,7 +8,9 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <table *ngIf="stripeAccounts" class="com-mt-4">
+  <app-loading-spinner *ngIf="isUpdating"></app-loading-spinner>
+
+  <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Active</th>
       <th>Charges Enabled</th>

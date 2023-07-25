@@ -14,6 +14,7 @@ export class CommunityPaymentsComponent implements OnInit {
   ac: string;
   stripeAccounts = [];
   subscription: Subscription[] = [];
+  isUpdating = false;
   constructor(
     private stripeHandlerService: StripeHandlerService,
     private router: Router,
@@ -49,14 +50,17 @@ export class CommunityPaymentsComponent implements OnInit {
   }
 
   retrieveStripeAccount(uuid) {
+    this.isUpdating = true;
     this.subscription.push(
       this.stripeHandlerService.retrieveStripeAccount(uuid).subscribe((data) => {
         for (let i = 0; i < this.stripeAccounts.length; i++) {
           if (this.stripeAccounts[i].uuid === this.ac) {
+            this.stripeAccounts[i].active = true;
             this.stripeAccounts[i].details = data;
             break;
           }
         }
+        this.isUpdating = false;
       }),
     );
   }
