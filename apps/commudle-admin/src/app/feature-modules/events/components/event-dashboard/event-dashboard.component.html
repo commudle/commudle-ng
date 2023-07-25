@@ -1,9 +1,44 @@
+<section class="event-details">
+  <h1 class="event-name">{{ event.name }}</h1>
+  <p class="text">Welcome to event dashboard, here you can manage your event</p>
+  <div class="com-flex com-gap-4 com-flex-wrap" *appBreakpoints="'<=md'">
+    <div class="com-flex com-justify-between com-w-full">
+      <a
+        [routerLink]="['/communities', community.slug, 'events', event.slug]"
+        nbButton
+        size="small"
+        status="info"
+        target="_blank"
+      >
+        Public Event Page
+        <nb-icon icon="external-link"></nb-icon>
+      </a>
+      <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank" class="com-w-1/2">
+        <nb-icon icon="trending-up-outline"></nb-icon>
+        Stats<sup>new</sup> &nbsp;
+        <nb-icon icon="external-link"></nb-icon>
+      </a>
+    </div>
+    <a
+      [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
+      target="_blank"
+      nbButton
+      outline
+      size="small"
+      status="primary"
+      fullWidth
+    >
+      View attended members
+    </a>
+  </div>
+</section>
+
 <section class="md:com-flex">
   <div class="sidebar" *appBreakpoints="'>md'">
     <commudle-sidebar
       [isExpanded]="true"
       [expandedWidth]="'extra-large'"
-      [forWindow]="true"
+      [forWindow]="false"
       [showExpandedButton]="false"
     >
       <div class="action-buttons">
@@ -133,40 +168,6 @@
   </div>
 
   <div class="right-column">
-    <div class="event-details">
-      <h1 class="event-name">{{ event.name }}</h1>
-      <p class="text">Welcome to event dashboard, here you can manage your event</p>
-      <div class="com-flex com-gap-4 com-flex-wrap" *appBreakpoints="'<=md'">
-        <div class="com-flex com-justify-between com-w-full">
-          <a
-            [routerLink]="['/communities', community.slug, 'events', event.slug]"
-            nbButton
-            size="small"
-            status="info"
-            target="_blank"
-          >
-            Public Event Page
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-          <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank" class="com-w-1/2">
-            <nb-icon icon="trending-up-outline"></nb-icon>
-            Stats<sup>new</sup> &nbsp;
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-        </div>
-        <a
-          [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
-          target="_blank"
-          nbButton
-          outline
-          size="small"
-          status="primary"
-          fullWidth
-        >
-          View attended members
-        </a>
-      </div>
-    </div>
     <div *appBreakpoints="'<=md'" class="event-dashboard-menu">
       <nb-card>
         <nb-card-body>

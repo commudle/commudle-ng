@@ -8,7 +8,7 @@
 }
 .sidebar {
   transition: 0.3s;
-  @apply com-pt-0 com-h-screen com-z-20 com-bg-white com-text-black com-overflow-auto;
+  @apply com-pt-0 com-h-full com-z-20 com-bg-white com-text-black com-overflow-auto;
   &.forWindow {
     @apply com-fixed;
   }
