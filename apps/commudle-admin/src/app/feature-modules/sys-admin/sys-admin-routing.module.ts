@@ -17,6 +17,7 @@ import { CommunityControlsComponent } from './components/community-controls/comm
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminComponent } from './sys-admin.component';
 import { AdminFeaturedComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured.component';
+import { FeaturedCommunityBuildsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/featured-community-builds/featured-community-builds.component';
 
 const routes = [
   {
@@ -84,6 +85,10 @@ const routes = [
           {
             path: '',
             component: AdminFeaturedCommunitiesComponent,
+          },
+          {
+            path: 'featured-builds',
+            component: FeaturedCommunityBuildsComponent,
           },
         ],
       },

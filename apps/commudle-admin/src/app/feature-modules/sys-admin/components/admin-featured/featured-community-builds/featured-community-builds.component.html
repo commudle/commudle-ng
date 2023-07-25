@@ -1,1 +1,12 @@
-<p>featured-community-builds works!</p>
+<div *ngFor="let communityBuild of communityBuilds"></div>
+
+<table>
+  <tr>
+    <th>Build Name</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let communityBuild of communityBuilds">
+    <td>{{ communityBuild.community_build.name }}</td>
+    <td>{{ communityBuild.active }}</td>
+  </tr>
+</table>

@@ -1,3 +1,4 @@
+import { ICommunity } from '@commudle/shared-models';
 import { ICommunityBuild } from './community-build.model';
 import { IEvent } from './event.model';
 

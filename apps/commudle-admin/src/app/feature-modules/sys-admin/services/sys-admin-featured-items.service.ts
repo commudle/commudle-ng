@@ -11,11 +11,8 @@ import { Observable } from 'rxjs';
 export class SysAdminFeaturedItemsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getAllFeaturedItems(entityType?): Observable<any> {
-    let params = new HttpParams();
-    if (entityType) {
-      params = params.append('entity_type', entityType);
-    }
+  getAllFeaturedItems(entityType: string): Observable<any> {
+    const params = new HttpParams().set('entity_type', entityType);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.INDEX), {
       params,
     });
