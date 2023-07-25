@@ -1,0 +1,28 @@
+nb-card {
+  @apply com-mt-6 com-m-0;
+  nb-card-body {
+    .title {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-m-0 com-mb-6;
+
+      .heading {
+        @apply com-text-2xl com-font-semibold com-text-Yankees-Blue com-m-0 com-mb-2;
+      }
+
+      .sub-heading {
+        @apply com-text-base com-font-medium com-text-Quartz com-p-0 com-pb-3 com-m-0;
+      }
+    }
+  }
+}
+
+.main-column {
+  @apply com-flex com-flex-row;
+
+  .user {
+    @apply com-w-[489px] com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-p-4 com-mr-6;
+  }
+
+  .right-column {
+    @apply com-p-0 com-pl-6 com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+  }
+}
