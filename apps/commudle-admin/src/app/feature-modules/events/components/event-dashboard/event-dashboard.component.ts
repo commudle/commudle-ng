@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -12,7 +13,7 @@ import {
   faChartLine,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faClipboard } from '@fortawesome/free-regular-svg-icons';
+import { faClipboard, faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons';
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -38,6 +39,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     faShareNodes,
     faCircleInfo,
     faArrowLeft,
+    faEnvelopeOpen,
   };
 
   constructor(

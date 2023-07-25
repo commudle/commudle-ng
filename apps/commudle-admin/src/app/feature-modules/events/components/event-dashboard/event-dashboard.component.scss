@@ -47,10 +47,30 @@
   }
   .action-buttons {
     @apply com-p-4;
+    .back-admin {
+      .icon {
+        @apply com-text-[#8F9BB3];
+      }
+      .heading {
+        @apply com-text-xs com-text-[#8F9BB3];
+      }
+    }
+    .category {
+      @apply com-bg-[#F3F4F5] com-rounded-lg com-p-3 com-pb-1;
+    }
+    .category-heading {
+      @apply com-text-base com-font-semibold com-mb-2;
+    }
     .action-button {
-      @apply com-p-2 com-flex com-gap-2 com-items-center hover:com-bg-Bright-Gray-Light/70 com-cursor-pointer com-rounded-lg;
+      @apply com-p-2 com-flex com-gap-2 com-items-center com-cursor-pointer com-rounded-lg com-mb-1;
       &.active {
-        @apply com-bg-Bright-Gray-Light;
+        @apply com-bg-[#DAEAF6];
+        .icon {
+          @apply com-text-[#0088E8];
+        }
+        .heading {
+          @apply com-text-[#0088E8];
+        }
       }
       .icon {
         @apply com-text-lg com-text-[#8F9BB3];
@@ -69,6 +89,16 @@
         .icon {
           @apply com-text-Caribbean-Green;
         }
+      }
+    }
+
+    .action-button:hover {
+      @apply hover:com-bg-[#DAEAF6];
+      .icon {
+        @apply com-text-[#0088E8];
+      }
+      .heading {
+        @apply com-text-[#0088E8];
       }
     }
   }
