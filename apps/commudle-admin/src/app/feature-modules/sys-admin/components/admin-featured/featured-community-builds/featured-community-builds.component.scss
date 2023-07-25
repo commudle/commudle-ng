@@ -1,16 +1,12 @@
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 40%;
+  @apply com-border-collapse com-w-full com-my-4;
 }
 
 td,
 th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+th {
+  @apply com-bg-Bright-Gray;
 }

@@ -1,12 +1,62 @@
-<div *ngFor="let communityBuild of communityBuilds"></div>
+<div class="com-my-4">
+  <button status="success" nbButton size="small">
+    <nb-icon icon="plus"></nb-icon>
+    Create
+  </button>
+</div>
 
-<table>
+<div *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<table *ngIf="!isLoading">
   <tr>
-    <th>Build Name</th>
+    <th class="com-w-1/3">Build Name</th>
+    <th>Reasons</th>
     <th>Status</th>
+    <th>Change Status</th>
+    <th>Actions</th>
   </tr>
   <tr *ngFor="let communityBuild of communityBuilds">
     <td>{{ communityBuild.community_build.name }}</td>
+    <td>{{ communityBuild.reason }}</td>
     <td>{{ communityBuild.active }}</td>
+    <td>
+      <nb-toggle
+        status="primary"
+        (click)="updateFeaturedCommunity(communityBuild.id, !communityBuild.active)"
+        [(checked)]="communityBuild.active"
+        labelPosition="right"
+      >
+      </nb-toggle>
+    </td>
+    <td>
+      <div class="actions d-flex">
+        <button
+          (click)="openDialog(deleteFeaturedCommunityDialog, communityBuild.id)"
+          nbButton
+          outline
+          size="tiny"
+          status="danger"
+        >
+          Delete
+        </button>
+      </div>
+    </td>
   </tr>
 </table>
+
+<ng-template #deleteFeaturedCommunityDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
+      Delete a Featured Community Build
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure you want to delete?</nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="deleteFeaturedCommunity(data.id); ref.close()" nbButton status="success">Yes</button>
+      <button (click)="ref.close()" nbButton status="danger">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

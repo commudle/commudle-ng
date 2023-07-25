@@ -1,56 +1,45 @@
-<div class="base-layout com-mb-8">
-  <div class="container">
-    <div class="one-column-layout">
-      <nb-card class="admin-featured-communities">
-        <nb-card-header class="d-flex align-items-center justify-content-space-between">
-          Featured Communities
-          <button (click)="openDialog(createFeaturedCommunityDialog)" ghost nbButton size="small">
-            <nb-icon icon="plus"></nb-icon>
-            Create
-          </button>
-        </nb-card-header>
-        <nb-card-body>
-          <nb-list class="featured-communities-container">
-            <nb-list-item *ngFor="let featuredCommunity of featuredCommunities" class="justify-content-space-between">
-              <div>
-                <app-community-badge [community]="featuredCommunity.kommunity"></app-community-badge>
-                <p>{{ featuredCommunity.reason }}</p>
-              </div>
-              <div class="actions d-flex">
-                <button
-                  (click)="openDialog(updateFeaturedCommunityDialog, featuredCommunity.id, true)"
-                  nbButton
-                  outline
-                  size="tiny"
-                  status="info"
-                >
-                  Edit
-                </button>
-                <button
-                  (click)="openDialog(deleteFeaturedCommunityDialog, featuredCommunity.id)"
-                  nbButton
-                  outline
-                  size="tiny"
-                  status="danger"
-                >
-                  Delete
-                </button>
-              </div>
-            </nb-list-item>
-          </nb-list>
-        </nb-card-body>
-        <button
-          (click)="getFeaturedCommunities()"
-          *ngIf="featuredCommunities.length !== total"
-          fullWidth
-          ghost
-          nbButton
-        >
-          Get more featured communities
-        </button>
-      </nb-card>
+<div class="admin-featured-communities">
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div class="com-my-4">
+      <button (click)="openDialog(createFeaturedCommunityDialog)" status="success" nbButton size="small">
+        <nb-icon icon="plus"></nb-icon>
+        Create
+      </button>
     </div>
   </div>
+  <div>
+    <nb-list class="featured-communities-container">
+      <nb-list-item *ngFor="let featuredCommunity of featuredCommunities" class="justify-content-space-between">
+        <div>
+          <app-community-badge [community]="featuredCommunity.kommunity"></app-community-badge>
+          <p>{{ featuredCommunity.reason }}</p>
+        </div>
+        <div class="actions d-flex">
+          <button
+            (click)="openDialog(updateFeaturedCommunityDialog, featuredCommunity.id, true)"
+            nbButton
+            outline
+            size="tiny"
+            status="info"
+          >
+            Edit
+          </button>
+          <button
+            (click)="openDialog(deleteFeaturedCommunityDialog, featuredCommunity.id)"
+            nbButton
+            outline
+            size="tiny"
+            status="danger"
+          >
+            Delete
+          </button>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </div>
+  <button (click)="getFeaturedCommunities()" *ngIf="featuredCommunities.length !== total" fullWidth ghost nbButton>
+    Get more featured communities
+  </button>
 </div>
 
 <ng-template #createFeaturedCommunityDialog let-ref="dialogRef">

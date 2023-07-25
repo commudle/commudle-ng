@@ -22,14 +22,14 @@ export class SysAdminFeaturedItemsService {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.CREATE), formData);
   }
 
-  updateFeaturedCommunity(featuredItemId: number, formData: any): Observable<any> {
+  updateFeaturedItems(featuredItemId: number, formData: any): Observable<any> {
     const params = new HttpParams().set('featured_item_id', featuredItemId);
     return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.UPDATE), formData, {
       params,
     });
   }
 
-  deleteFeaturedCommunity(featuredItemId: number): Observable<boolean> {
+  deleteFeaturedItems(featuredItemId: number): Observable<boolean> {
     const params = new HttpParams().set('featured_item_id', featuredItemId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.DELETE), {
       params,

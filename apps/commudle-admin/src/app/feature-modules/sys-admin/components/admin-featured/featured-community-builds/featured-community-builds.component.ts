@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NbDialogService } from '@commudle/theme';
 import { SysAdminFeaturedItemsService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-featured-items.service';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'commudle-featured-community-builds',
@@ -9,15 +11,50 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 })
 export class FeaturedCommunityBuildsComponent implements OnInit {
   communityBuilds: IFeaturedItems[] = [];
-  constructor(private featuredService: SysAdminFeaturedItemsService) {}
+  isLoading = false;
+  constructor(
+    private featuredService: SysAdminFeaturedItemsService,
+    private nbDialogService: NbDialogService,
+    private libToastLogService: LibToastLogService,
+  ) {}
 
   ngOnInit(): void {
     this.getFeaturedItems();
   }
 
   getFeaturedItems() {
+    this.isLoading = true;
     this.featuredService.getAllFeaturedItems('CommunityBuild').subscribe((data) => {
       this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.isLoading = false;
+    });
+  }
+
+  openDialog(templateRef: TemplateRef<any>, featuredBuildId: number = null): void {
+    this.nbDialogService.open(templateRef, {
+      closeOnEsc: false,
+      closeOnBackdropClick: false,
+      context: {
+        id: featuredBuildId,
+      },
+    });
+  }
+  updateFeaturedCommunity(featuredBuildId: number, newStatus): void {
+    this.featuredService
+      .updateFeaturedItems(featuredBuildId, { featured_item: { active: newStatus } })
+      .subscribe(() => {
+        this.libToastLogService.successDialog('Updated featured community successfully');
+        this.getFeaturedItems();
+      });
+  }
+
+  deleteFeaturedCommunity(featuredBuildId: number): void {
+    this.featuredService.deleteFeaturedItems(featuredBuildId).subscribe((value) => {
+      if (value) {
+        this.libToastLogService.successDialog('Deleted featured community successfully');
+        this.communityBuilds = [];
+        this.getFeaturedItems();
+      }
     });
   }
 }
