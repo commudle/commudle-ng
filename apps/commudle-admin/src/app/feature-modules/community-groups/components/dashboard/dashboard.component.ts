@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }),
     );
 
-    this.sidebarService.setEvent('communityGroup', true);
+    this.sidebarService.setSidebarVisibility('communityGroup', true);
   }
 
   ngOnDestroy(): void {

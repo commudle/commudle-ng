@@ -31,21 +31,21 @@ export class SidebarComponent implements OnInit {
   constructor(public sidebarService: SidebarService) {}
 
   ngOnInit(): void {
-    if (this.sidebarService.setSidebarEvent$.hasOwnProperty(this.eventName)) {
-      this.sidebarService.setSidebarEvent$[this.eventName].subscribe((data) => {
+    if (this.sidebarService.setSidebar$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.setSidebar$[this.eventName].subscribe((data) => {
         this.expandSidebar = data;
       });
     }
 
-    if (this.sidebarService.showFull$.hasOwnProperty(this.eventName)) {
-      this.sidebarService.showFull$[this.eventName].subscribe((data) => {
+    if (this.sidebarService.hideSidebar$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.hideSidebar$[this.eventName].subscribe((data) => {
         this.hideFullSidebar = data;
       });
     }
   }
 
   handleSidebarToggle() {
-    this.sidebarService.toggleSidebarEvent(this.eventName);
+    this.sidebarService.toggleSidebarVisibility(this.eventName);
     this.toggleSidebar.emit(!this.isExpanded);
   }
 }

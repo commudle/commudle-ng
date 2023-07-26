@@ -5,31 +5,31 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SidebarService {
-  private setSidebarEvent = {};
-  public setSidebarEvent$ = {};
-  private showFull = {};
-  public showFull$ = {};
+  private setSidebar = {};
+  public setSidebar$ = {};
+  private hideSidebar = {};
+  public hideSidebar$ = {};
 
   constructor() {}
 
-  setEvent(eventName: string, value) {
-    this.setSidebarEvent[eventName] = new BehaviorSubject(value);
-    this.setSidebarEvent$[eventName] = this.setSidebarEvent[eventName].asObservable();
-    this.showFull[eventName] = new BehaviorSubject(false);
-    this.showFull$[eventName] = this.showFull[eventName].asObservable();
+  setSidebarVisibility(eventName: string, expanded: boolean) {
+    this.setSidebar[eventName] = new BehaviorSubject(expanded);
+    this.setSidebar$[eventName] = this.setSidebar[eventName].asObservable();
+    this.hideSidebar[eventName] = new BehaviorSubject(false);
+    this.hideSidebar$[eventName] = this.hideSidebar[eventName].asObservable();
   }
 
   getSidebarVisibility(eventName): Observable<boolean> {
-    return this.setSidebarEvent[eventName].asObservable();
+    return this.setSidebar[eventName].asObservable();
   }
 
-  toggleSidebarEvent(eventName) {
-    if (this.setSidebarEvent[eventName]) {
-      this.setSidebarEvent[eventName].next(!this.setSidebarEvent[eventName].getValue());
+  toggleSidebarVisibility(eventName) {
+    if (this.setSidebar[eventName]) {
+      this.setSidebar[eventName].next(!this.setSidebar[eventName].getValue());
     }
   }
 
   setVariant(eventName, data: boolean) {
-    this.showFull[eventName].next(data);
+    this.hideSidebar[eventName].next(data);
   }
 }
