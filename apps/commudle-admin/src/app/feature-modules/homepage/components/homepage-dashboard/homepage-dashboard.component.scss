@@ -6,6 +6,10 @@ nb-card {
 
       .heading {
         @apply com-text-2xl com-font-semibold com-text-Yankees-Blue com-m-0 com-mb-2;
+
+        span {
+          @apply com-ml-2;
+        }
       }
 
       .sub-heading {
@@ -19,10 +23,14 @@ nb-card {
   @apply com-flex com-flex-row;
 
   .user {
-    @apply com-w-[489px] com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-p-4 com-mr-6;
+    @apply com-w-[489px] com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-mr-6;
   }
 
   .right-column {
     @apply com-p-0 com-pl-6 com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+
+    .featured-communities {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4;
+    }
   }
 }
