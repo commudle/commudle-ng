@@ -30,6 +30,7 @@ import { HomepageDashboardComponent } from './components/homepage-dashboard/home
 import { UserprofileDetailsComponent } from './components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
+import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-ev
     PublicCommunityModule,
     SearchModule,
     MiniUserProfileModule,
+    CommunityBuildsModule,
 
     //Nebular
     NbButtonModule,
