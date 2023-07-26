@@ -8,10 +8,12 @@ import { CommunityControlPanelComponent } from './components/community-control-p
 import { CommunityCreateComponent } from './components/community-create/community-create.component';
 import { CommunityEditDetailsComponent } from './components/community-edit-details/community-edit-details.component';
 import { CommunityEventsListComponent } from './components/community-events-list/community-events-list.component';
-import { CommunityFormsListComponent } from './components/community-forms-list/community-forms-list.component';
+import { CommunityFormsListComponent } from './components/community-forms-and-surveys/community-forms-list/community-forms-list.component';
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
+import { CommunityFormsAndSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-forms-and-surveys.component';
+import { CommunitySurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-surveys/community-surveys.component';
 
 const routes = [
   {
@@ -39,7 +41,17 @@ const routes = [
       },
       {
         path: 'forms',
-        component: CommunityFormsListComponent,
+        component: CommunityFormsAndSurveysComponent,
+        children: [
+          {
+            path: '',
+            component: CommunityFormsListComponent,
+          },
+          {
+            path: 'surveys',
+            component: CommunitySurveysComponent,
+          },
+        ],
       },
       {
         path: 'edit',

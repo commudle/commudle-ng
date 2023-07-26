@@ -1,56 +1,49 @@
+.event-details {
+  @apply com-p-4 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  .event-name {
+    @apply com-m-0 com-text-3xl;
+  }
+
+  .text {
+    @apply com-text-base com-m-0 com-mb-2 md:com-mb-0;
+  }
+}
 .header {
   @apply com-bg-white com-h-28 com-border com-border-solid com-border-Bright-Gray com-border-t-0 com-flex;
-  .community-details {
-    @apply com-w-80 com-border-0 com-border-r com-border-solid com-border-Bright-Gray com-h-full com-flex com-justify-center com-items-center com-flex-col;
-    .community-logo {
-      @apply com-w-11 com-h-11;
-      img {
-        @apply com-w-full;
-      }
-    }
-    .community-name {
-      p {
-        @apply com-m-0 com-text-xl com-font-semibold;
-      }
-    }
-  }
-  .event-details {
-    @apply com-p-6;
-    .event-name {
-      @apply com-m-0 com-text-3xl;
-    }
-
-    .text {
-      @apply com-text-lg com-m-0;
-    }
-  }
 }
 
 .sidebar {
-  @apply com-h-full com-w-80;
-  .community-details {
-    @apply com-w-80 com-border-0 com-border-r com-border-b com-border-solid com-border-Bright-Gray com-h-full com-flex com-justify-center com-items-center com-flex-col;
-    .community-logo {
-      @apply com-w-11 com-h-11;
-      img {
-        @apply com-w-full;
-      }
-    }
-    .community-name {
-      p {
-        @apply com-m-0 com-text-xl com-font-semibold;
-      }
-    }
-  }
+  @apply com-w-80 com-sticky com-top-16;
+
   a {
     @apply com-text-inherit com-no-underline;
   }
   .action-buttons {
     @apply com-p-4;
+    .back-admin {
+      .icon {
+        @apply com-text-[#8F9BB3];
+      }
+      .heading {
+        @apply com-text-xs com-text-[#8F9BB3];
+      }
+    }
+    .category {
+      @apply com-bg-[#F3F4F5] com-rounded-lg com-px-3 com-py-1;
+    }
+    .category-heading {
+      @apply com-text-base com-font-semibold com-my-2;
+    }
     .action-button {
-      @apply com-p-2 com-flex com-gap-2 com-items-center hover:com-bg-Bright-Gray-Light/70 com-cursor-pointer com-rounded-lg;
+      @apply com-p-2 com-flex com-gap-2 com-items-center com-cursor-pointer com-rounded-lg com-mb-1;
       &.active {
-        @apply com-bg-Bright-Gray-Light;
+        @apply com-bg-[#DAEAF6];
+        .icon {
+          @apply com-text-[#0088E8];
+        }
+        .heading {
+          @apply com-text-[#0088E8];
+        }
       }
       .icon {
         @apply com-text-lg com-text-[#8F9BB3];
@@ -71,6 +64,16 @@
         }
       }
     }
+
+    .action-button:hover {
+      @apply hover:com-bg-[#DAEAF6];
+      .icon {
+        @apply com-text-[#0088E8];
+      }
+      .heading {
+        @apply com-text-[#0088E8];
+      }
+    }
   }
 }
 a {
@@ -78,16 +81,6 @@ a {
 }
 .right-column {
   @apply com-w-full  md:com-w-[calc(100%-320px)];
-  .event-details {
-    @apply com-p-6 com-bg-white;
-    .event-name {
-      @apply com-m-0 com-text-3xl;
-    }
-
-    .text {
-      @apply com-text-lg com-m-0 com-mb-2 md:com-mb-0;
-    }
-  }
 }
 
 .event-dashboard-menu {
@@ -114,26 +107,6 @@ a {
             @apply com-text-base com-font-medium com-w-max;
           }
         }
-      }
-    }
-  }
-}
-
-.base-layout {
-  .container {
-    .one-column-layout {
-      .event-heading {
-        @apply com-mx-0 md:com-mx-2 com-my-4;
-      }
-
-      .event-update,
-      .registrations,
-      .agenda,
-      .collaborations,
-      .volunteers,
-      .sponsors,
-      .updates {
-        @apply com-mx-0 md:com-mx-2 com-my-4;
       }
     }
   }

@@ -37,9 +37,8 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
   }
 
   saveDataForm(data) {
-    this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe(() => {
-      this.toastLogService.successDialog('New Form Created!');
-
+    this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe((data) => {
+      this.toastLogService.successDialog(`New Form Created! for ${this.parentType}`);
       switch (this.parentType) {
         case EDataFormParentTypes.community: {
           this.router.navigate(['/admin/communities', this.parentId, 'forms']);

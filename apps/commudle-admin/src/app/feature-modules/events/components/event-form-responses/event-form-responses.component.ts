@@ -56,6 +56,9 @@ export class EventFormResponsesComponent implements OnInit {
 
   userRoles = [];
   EUserRoles = EUserRoles;
+  fromRegistrationStatus: string;
+  toRegistrationStatus: string;
+  selectedRegistrationStatus = 0;
 
   //TODO past event stats
   constructor(
@@ -243,24 +246,21 @@ export class EventFormResponsesComponent implements OnInit {
     });
   }
 
-  bulkStatusChangeConfirmation(registrationStatus) {
+  bulkStatusChangeConfirmation() {
     this.windowRef = this.windowService.open(this.confirmStatusChange, {
-      title: `Are you sure?`,
-      context: {
-        registration_status: registrationStatus,
-      },
+      title: `Change Bulk Status?`,
     });
-
     this.windowRef.onClose.subscribe(() => {
       this.bulkStatus = null;
       this.bulkStatusChangeForCanceled = false;
     });
   }
 
-  bulkStatusChange(registrationStatusId) {
+  bulkStatusChange() {
     this.eventDataFormEntityGroupsService
       .changeBulkRegistrationStatus(
-        registrationStatusId,
+        this.fromRegistrationStatus,
+        this.toRegistrationStatus,
         this.eventDataFormEntityGroupId,
         this.bulkStatusChangeForCanceled,
       )
@@ -272,5 +272,19 @@ export class EventFormResponsesComponent implements OnInit {
       });
     this.bulkStatus = null;
     this.windowRef.close();
+  }
+
+  changeFromRegistrationStatus(event) {
+    this.selectedRegistrationStatus = 0;
+    this.fromRegistrationStatus = event.target.value;
+    for (const response of this.rows) {
+      if (response.registration_status.name === this.fromRegistrationStatus) {
+        this.selectedRegistrationStatus++;
+      }
+    }
+  }
+
+  changeToRegistrationStatus(event) {
+    this.toRegistrationStatus = event.target.value;
   }
 }
