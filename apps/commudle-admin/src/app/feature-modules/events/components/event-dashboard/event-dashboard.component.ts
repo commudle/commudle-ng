@@ -1,4 +1,3 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -13,11 +12,15 @@ import {
   faChartLine,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faClipboard, faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons';
+import { faClipboard, faEnvelopeOpen, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { NavigatorShareService } from 'apps/shared-services/navigator-share.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { NbWindowService } from '@commudle/theme';
+import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
+
 @Component({
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
@@ -40,6 +43,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     faCircleInfo,
     faArrowLeft,
     faEnvelopeOpen,
+    faEnvelope,
   };
 
   constructor(
@@ -48,6 +52,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private navigatorShareService: NavigatorShareService,
     private libToastLogService: LibToastLogService,
     private clipboard: Clipboard,
+    private windowService: NbWindowService,
   ) {}
 
   ngOnInit() {
@@ -81,5 +86,17 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       .then(() => {
         this.libToastLogService.successDialog('Shared Successfully!');
       });
+  }
+
+  sendEmails() {
+    this.windowService.open(EmailerComponent, {
+      title: `Send RSVP To All Shortlisted`,
+      context: {
+        community: this.community,
+        event: this.event,
+
+        mailType: EemailTypes.RSVP,
+      },
+    });
   }
 }
