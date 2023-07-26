@@ -1,4 +1,4 @@
-<div [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
+<div [ngClass]="horizontalScroll ? 'scroll-container' : 'container'">
   <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" target="_blank">
     <div class="featured-community">
       <div>
@@ -17,7 +17,7 @@
       <div class="featured-communities-details">
         <div class="details">
           <p class="community-name">{{ featuredCommunity.kommunity.name }}</p>
-          <p class="mini-description">
+          <p class="mini-description" [ngClass]="horizontalScroll ? 'com-h-[38px], com-mb-4' : 'com-h-[34px]'">
             {{ featuredCommunity.reason }}
           </p>
         </div>

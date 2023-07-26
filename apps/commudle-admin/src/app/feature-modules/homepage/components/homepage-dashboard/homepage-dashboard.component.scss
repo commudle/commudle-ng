@@ -19,7 +19,7 @@ nb-card {
   @apply com-flex com-flex-row;
 
   .user {
-    @apply com-w-[489px] com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-p-4 com-mr-6;
+    @apply com-w-[489px] com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-p-4 com-mr-6;
   }
 
   .right-column {
