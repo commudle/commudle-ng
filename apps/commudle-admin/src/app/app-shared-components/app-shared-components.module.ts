@@ -21,6 +21,7 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
 import { SurveysComponent } from './surveys/surveys.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
