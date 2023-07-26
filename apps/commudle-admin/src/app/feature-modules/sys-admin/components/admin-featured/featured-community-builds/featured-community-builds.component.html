@@ -1,5 +1,5 @@
 <div class="com-my-4">
-  <button status="success" nbButton size="small">
+  <button (click)="openDialog(createFeaturedCommunityDialog)" status="success" nbButton size="small">
     <nb-icon icon="plus"></nb-icon>
     Create
   </button>
@@ -16,14 +16,14 @@
     <th>Change Status</th>
     <th>Actions</th>
   </tr>
-  <tr *ngFor="let communityBuild of communityBuilds">
+  <tr *ngFor="let communityBuild of communityBuilds; let i = index">
     <td>{{ communityBuild.community_build.name }}</td>
     <td>{{ communityBuild.reason }}</td>
     <td>{{ communityBuild.active }}</td>
     <td>
       <nb-toggle
         status="primary"
-        (click)="updateFeaturedCommunity(communityBuild.id, !communityBuild.active)"
+        (click)="updateFeaturedCommunity(communityBuild.id, !communityBuild.active, i)"
         [(checked)]="communityBuild.active"
         labelPosition="right"
       >
@@ -32,7 +32,7 @@
     <td>
       <div class="actions d-flex">
         <button
-          (click)="openDialog(deleteFeaturedCommunityDialog, communityBuild.id)"
+          (click)="openDialog(deleteFeaturedCommunityDialog, communityBuild.id, i)"
           nbButton
           outline
           size="tiny"
@@ -45,6 +45,31 @@
   </tr>
 </table>
 
+<ng-template #createFeaturedCommunityDialog let-ref="dialogRef">
+  <nb-card class="create-featured-community-dialog">
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
+      Create a Featured Community Build
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <input
+        [(ngModel)]="communityBuildId"
+        fullWidth
+        nbInput
+        placeholder="Enter the Community Build Id"
+        type="number"
+      />
+      <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
+      <button (click)="createFeaturedItems(); ref.close()" nbButton status="success">Create</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
 <ng-template #deleteFeaturedCommunityDialog let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="d-flex align-items-center justify-content-space-between">
@@ -55,7 +80,7 @@
     </nb-card-header>
     <nb-card-body>Are you sure you want to delete?</nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
-      <button (click)="deleteFeaturedCommunity(data.id); ref.close()" nbButton status="success">Yes</button>
+      <button (click)="deleteFeaturedCommunity(data.id, data.index); ref.close()" nbButton status="success">Yes</button>
       <button (click)="ref.close()" nbButton status="danger">No</button>
     </nb-card-footer>
   </nb-card>

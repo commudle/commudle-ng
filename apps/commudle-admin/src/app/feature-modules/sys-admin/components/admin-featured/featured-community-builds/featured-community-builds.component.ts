@@ -12,6 +12,8 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 export class FeaturedCommunityBuildsComponent implements OnInit {
   communityBuilds: IFeaturedItems[] = [];
   isLoading = false;
+  reason: string;
+  communityBuildId: number;
   constructor(
     private featuredService: SysAdminFeaturedItemsService,
     private nbDialogService: NbDialogService,
@@ -30,31 +32,42 @@ export class FeaturedCommunityBuildsComponent implements OnInit {
     });
   }
 
-  openDialog(templateRef: TemplateRef<any>, featuredBuildId: number = null): void {
+  openDialog(templateRef: TemplateRef<any>, featuredBuildId: number = null, index?): void {
     this.nbDialogService.open(templateRef, {
       closeOnEsc: false,
       closeOnBackdropClick: false,
       context: {
         id: featuredBuildId,
+        index: index,
       },
     });
   }
-  updateFeaturedCommunity(featuredBuildId: number, newStatus): void {
+  updateFeaturedCommunity(featuredBuildId: number, newStatus, index): void {
     this.featuredService
       .updateFeaturedItems(featuredBuildId, { featured_item: { active: newStatus } })
-      .subscribe(() => {
-        this.libToastLogService.successDialog('Updated featured community successfully');
-        this.getFeaturedItems();
+      .subscribe((data) => {
+        if (data) {
+          this.libToastLogService.successDialog('Updated featured community successfully');
+          this.communityBuilds[index] = data;
+        }
       });
   }
 
-  deleteFeaturedCommunity(featuredBuildId: number): void {
+  deleteFeaturedCommunity(featuredBuildId: number, index): void {
     this.featuredService.deleteFeaturedItems(featuredBuildId).subscribe((value) => {
       if (value) {
         this.libToastLogService.successDialog('Deleted featured community successfully');
-        this.communityBuilds = [];
-        this.getFeaturedItems();
+        this.communityBuilds.splice(index, 1);
       }
     });
+  }
+  createFeaturedItems() {
+    this.featuredService
+      .createFeaturedItems({
+        featured_item: { entity_type: 'CommunityBuild', entity_id: this.communityBuildId, reason: this.reason },
+      })
+      .subscribe((data) => {
+        this.communityBuilds.unshift(data);
+      });
   }
 }
