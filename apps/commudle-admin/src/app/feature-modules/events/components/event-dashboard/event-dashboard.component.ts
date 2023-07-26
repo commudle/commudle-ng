@@ -20,6 +20,7 @@ import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { NbWindowService } from '@commudle/theme';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -53,10 +54,12 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private libToastLogService: LibToastLogService,
     private clipboard: Clipboard,
     private windowService: NbWindowService,
+    private footerService: FooterService,
   ) {}
 
   ngOnInit() {
     this.seoService.noIndex(true);
+    this.footerService.changeMiniFooterStatus(false);
 
     this.activatedRoute.data.subscribe((value) => {
       this.event = value.event;
@@ -67,6 +70,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.seoService.noIndex(false);
+    this.footerService.changeMiniFooterStatus(true);
   }
 
   copyTextToClipboard(): void {
