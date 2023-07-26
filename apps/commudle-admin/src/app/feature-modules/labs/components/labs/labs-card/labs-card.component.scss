@@ -60,7 +60,7 @@ a:active {
     }
 
     .labs-card-content-suffix {
-      @apply com-flex com-justify-between;
+      @apply com-flex com-justify-between com-w-[726px];
       .labs-card-stats {
         @apply com-flex com-gap-4 com-ml-auto;
 
