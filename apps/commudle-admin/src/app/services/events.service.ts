@@ -124,8 +124,17 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(eventId): Observable<IPagination<IUsers>> {
-    const params = new HttpParams().set('event_id', eventId);
+  pGetEventVolunteers(after?, limit?, event_id?): Observable<IPagination<IUsers>> {
+    let params = new HttpParams();
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (event_id) {
+      params = params.set('event_id', event_id);
+    }
     return this.http.get<IPagination<IUsers>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), {
       params,
     });

@@ -4,6 +4,7 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faUsers, faBuilding, faCalendar, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   sidebarExpanded = true;
+  showSideBar = false;
 
   //font-awesome
   faCalendar = faCalendar;
@@ -22,7 +24,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   faPenToSquare = faPenToSquare;
   faBuilding = faBuilding;
 
-  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
+    public sidebarService: SidebarService,
+  ) {}
 
   ngOnInit() {
     this.seoService.noIndex(true);
@@ -32,6 +38,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.setMeta();
       }),
     );
+
+    this.sidebarService.setSidebarVisibility('communityGroup', true);
   }
 
   ngOnDestroy(): void {
