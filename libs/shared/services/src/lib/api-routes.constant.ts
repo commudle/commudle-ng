@@ -157,6 +157,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/events',
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
+    CLONE: 'api/v2/events/clone',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
     UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',

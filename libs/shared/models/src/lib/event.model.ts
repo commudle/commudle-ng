@@ -16,6 +16,7 @@ export interface IEvent {
   user: string;
   slug: string;
   event_status: IEventStatus;
+  status: string;
   seats: number;
   timezone: string;
   custom_registration: boolean;

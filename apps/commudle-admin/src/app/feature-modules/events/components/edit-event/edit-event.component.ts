@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -7,15 +7,16 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { NbWindowRef } from '@commudle/theme';
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
   styleUrls: ['./edit-event.component.scss'],
 })
 export class EditEventComponent implements OnInit {
-  event: IEvent;
+  @Input() event: IEvent;
+  @Input() type = 'Save';
   community: ICommunity;
   allTimeZones;
   userTimeZone;
@@ -68,7 +69,7 @@ export class EditEventComponent implements OnInit {
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private location: Location,
+    @Optional() private windowRef: NbWindowRef,
   ) {
     this.eventForm = this.fb.group({
       event: this.fb.group({
@@ -84,13 +85,17 @@ export class EditEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.parent.data.subscribe((data) => {
-      this.community = data.community;
-      this.event = data.event;
-      this.event.tags.forEach((value) => this.tags.push(value.name));
+    if (this.type === 'Save') {
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.community = data.community;
+        this.event = data.event;
+      });
+    }
 
+    if (this.event) {
+      // this.event.tags.forEach((value) => this.tags.push(value.name));
       // event is editable only if it's not canceled or completed)
-      this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
+      this.uneditable = ['completed', 'canceled'].includes(this.event.event_status?.name || this.event.status);
       if (this.uneditable) {
         this.eventForm.get('event').disable();
       }
@@ -116,7 +121,8 @@ export class EditEventComponent implements OnInit {
           end_time_pick: etime,
         });
       }
-    });
+    }
+    // });
 
     this.allTimeZones = momentTimezone.tz.names();
     this.userTimeZone = momentTimezone.tz.guess();
@@ -157,10 +163,17 @@ export class EditEventComponent implements OnInit {
       }
     }
 
-    this.eventsService.updateEvent(formValue, this.event.slug, this.community, this.tags).subscribe((data) => {
-      this.toastLogService.successDialog('Updated!');
-      this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
-    });
+    this.eventsService
+      .updateEvent(formValue, this.event.slug, this.community ? this.community : this.event.kommunity_id, this.tags)
+      .subscribe((data) => {
+        this.toastLogService.successDialog('Updated!');
+        this.router.navigate([
+          '/admin/communities',
+          this.community ? this.community.slug : this.event.kommunity_id,
+          'event-dashboard',
+          data.slug,
+        ]);
+      });
   }
 
   setStartDateTime() {
@@ -216,7 +229,37 @@ export class EditEventComponent implements OnInit {
     this.tags = this.tags.filter((tag) => tag !== value);
   }
 
-  goBackToPrevPage(): void {
-    this.location.back();
+  cloneEvent() {
+    this.submitIsInProcess = true;
+    const formValue = this.eventForm.get('event').value;
+    console.log('🚀 ~ file: edit-event.component.ts:235 ~ cloneEvent ~ formValue:', formValue);
+    delete formValue['start_date'];
+    delete formValue['end_date'];
+    formValue['start_time'] = '';
+    formValue['end_time'] = '';
+
+    if (this.setStartDateTime() && this.setEndDateTime()) {
+      if (this.startTime > this.endTime) {
+        this.toastLogService.warningDialog('End time has to be greater then start time');
+        return;
+      } else {
+        formValue['start_time'] = this.startTime;
+        formValue['end_time'] = this.endTime;
+      }
+    }
+
+    this.eventsService.cloneEvent(formValue, this.event.slug, this.tags).subscribe((data) => {
+      this.submitIsInProcess = false;
+      this.router.navigate([
+        '/admin/communities',
+        this.community ? this.community.slug : this.event.kommunity_id,
+        'event-dashboard',
+        data.slug,
+      ]);
+      this.close();
+    });
+  }
+  close() {
+    this.windowRef.close();
   }
 }
