@@ -1,9 +1,9 @@
 nb-card {
   @apply md:com-bg-Bright-Gray/30 com-m-0 md:com-mb-6 md:com-w-[348px] com-border-none md:com-block;
   nb-card-body {
-    @apply md:com-p-4 com-p-0 com-overflow-hidden;
+    @apply md:com-p-4 md:com-pb-0 com-p-0 com-overflow-hidden;
     .heading {
-      @apply com-mt-8 md:com-mt-0 com-mb-4 com-mx-0 com-flex md:com-py-0 md:com-px-4 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col md:com-mb-7;
+      @apply com-mt-8 md:com-mt-0 com-mb-4 com-mx-0 com-flex md:com-py-0 md:com-px-4 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White com-flex-col;
 
       .title {
         @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
@@ -16,7 +16,7 @@ nb-card {
     .user-profile-card-large {
       @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 md:com-mx-3 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
       .user-profile-card-large-card {
-        @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-b md:com-border-0 com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 com-h-auto;
+        @apply com-m-0 com-border com-border-solid md:com-border-b md:com-border-0 com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 md:com-py-2 com-p-4 md:com-h-auto com-h-[188px];
       }
     }
   }

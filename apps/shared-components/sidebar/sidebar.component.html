@@ -1,8 +1,9 @@
 <div
-  class="sidebar"
+  class="sidebar custom-scrollbar"
   [ngClass]="{
-    expanded: isExpanded,
+    expanded: expandSidebar || isExpanded,
     forWindow: forWindow,
+    hideFullSidebar: hideFullSidebar,
     left: position === 'left',
     right: position === 'right',
     small: expandedWidth === 'small',
@@ -14,7 +15,7 @@
   <div class="header" *ngIf="heading || showExpandedButton">
     <h1 *ngIf="heading" class="title" (click)="handleSidebarToggle()">{{ heading }}</h1>
     <div *ngIf="showExpandedButton" class="toggle" (click)="handleSidebarToggle()">
-      <fa-icon [icon]="isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
+      <fa-icon [icon]="expandSidebar || isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
     </div>
   </div>
   <ng-content></ng-content>
