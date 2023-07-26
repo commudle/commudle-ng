@@ -6,6 +6,7 @@ import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_form
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { CommunityFormsListActionsComponent } from './community-forms-list-actions/community-forms-list-actions.component';
 import { CommunityFormsListStatsComponent } from './community-forms-list-stats/community-forms-list-stats.component';
+import { NbRouteTab } from '@commudle/theme';
 
 @Component({
   selector: 'app-community-forms-list',
@@ -46,10 +47,10 @@ export class CommunityFormsListComponent implements OnInit {
   constructor(private dataFormsService: DataFormsService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      this.newFormParentId = this.activatedRoute.parent.snapshot.params['community_id'];
+    this.newFormParentId = this.activatedRoute.parent.parent.snapshot.params.community_id;
+    if (this.newFormParentId) {
       this.getDataForms();
-    });
+    }
   }
 
   getDataForms() {

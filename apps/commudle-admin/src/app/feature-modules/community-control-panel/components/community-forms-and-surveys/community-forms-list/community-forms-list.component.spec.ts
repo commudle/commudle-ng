@@ -8,9 +8,8 @@ describe('CommunityFormsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommunityFormsListComponent ]
-    })
-    .compileComponents();
+      declarations: [CommunityFormsListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

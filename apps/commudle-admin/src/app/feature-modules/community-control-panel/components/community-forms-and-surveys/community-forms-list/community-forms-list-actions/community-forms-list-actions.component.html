@@ -1,0 +1,7 @@
+<div>
+  <a (click)="openResponses()" nbButton hero status="primary" size="tiny"> All Responses </a>
+</div>
+
+<div>
+  <a [routerLink]="['/forms', rowData.id, 'edit']" nbButton hero status="info" size="tiny"> Edit Form </a>
+</div>

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { faUsers, faBuilding, faCalendar, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faBuilding, faCalendar, faPenToSquare, faPoll } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   faUsers = faUsers;
   faPenToSquare = faPenToSquare;
   faBuilding = faBuilding;
+  faPoll = faPoll;
 
   constructor(
     private activatedRoute: ActivatedRoute,

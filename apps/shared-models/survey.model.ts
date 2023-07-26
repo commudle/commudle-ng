@@ -1,6 +1,6 @@
 import { IDataFormEntity } from './data_form_entity.model';
 
-export interface IAdminSurvey {
+export interface ISurvey {
   id: number;
   name: string;
   status: string;
@@ -9,7 +9,7 @@ export interface IAdminSurvey {
   data_form_entity: IDataFormEntity;
 }
 
-export enum EAdminSurveyStatus {
+export enum ESurveyStatus {
   open = 'open',
   closed = 'closed',
 }
