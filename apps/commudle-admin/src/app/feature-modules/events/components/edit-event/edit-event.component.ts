@@ -90,43 +90,15 @@ export class EditEventComponent implements OnInit {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
         this.event = data.event;
+        this.fetchData();
       });
     }
 
     if (this.eventId) {
       this.eventsService.getEvent(this.eventId).subscribe((data) => {
         this.event = data;
+        this.fetchData();
       });
-    }
-    if (this.event) {
-      this.event.tags.forEach((value) => this.tags.push(value.name));
-      // event is editable only if it's not canceled or completed)
-      this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
-      if (this.uneditable) {
-        this.eventForm.get('event').disable();
-      }
-
-      // @ts-ignore
-      this.eventForm.get('event').patchValue({
-        name: this.event.name,
-        description: this.event.description,
-        timezone: this.event.timezone,
-      });
-
-      if (this.event.start_time) {
-        const sDate = moment(this.event.start_time).toDate();
-        const eDate = moment(this.event.end_time).toDate();
-        const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-        const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-        this.eventForm.get('event').patchValue({
-          // @ts-ignore
-          start_date: sDate,
-          // @ts-ignore
-          end_date: eDate,
-          start_time_pick: stime, //patching start and end time saved to the form
-          end_time_pick: etime,
-        });
-      }
     }
 
     this.allTimeZones = momentTimezone.tz.names();
@@ -148,6 +120,37 @@ export class EditEventComponent implements OnInit {
       form.get('start_time_pick').updateValueAndValidity();
       form.get('end_time_pick').updateValueAndValidity();
     });
+  }
+
+  fetchData() {
+    this.event.tags.forEach((value) => this.tags.push(value.name));
+    // event is editable only if it's not canceled or completed)
+    this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
+    if (this.uneditable) {
+      this.eventForm.get('event').disable();
+    }
+
+    // @ts-ignore
+    this.eventForm.get('event').patchValue({
+      name: this.event.name,
+      description: this.event.description,
+      timezone: this.event.timezone,
+    });
+
+    if (this.event.start_time) {
+      const sDate = moment(this.event.start_time).toDate();
+      const eDate = moment(this.event.end_time).toDate();
+      const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      this.eventForm.get('event').patchValue({
+        // @ts-ignore
+        start_date: sDate,
+        // @ts-ignore
+        end_date: eDate,
+        start_time_pick: stime, //patching start and end time saved to the form
+        end_time_pick: etime,
+      });
+    }
   }
 
   updateEvent() {
