@@ -1,14 +1,14 @@
 .communities-list-container {
-  @apply com-mt-0;
+  @apply com-m-0 md:com-p-0 com-px-4;
 
   // nb-card-body {
   //   @apply com-py-6 com-px-8;
 
   .communities-list-prefix {
-    @apply com-mb-4;
+    @apply md:com-mb-4 md:com-mt-0 com-mt-10;
 
     .communities-list-heading {
-      @apply com-text-gunmetal com-text-2xl com-font-semibold com-leading-30px;
+      @apply com-text-Dark-Jungle-Green com-text-2xl com-font-bold com-leading-30px;
     }
 
     // .communities-list-navigation {
@@ -37,7 +37,7 @@
   }
 
   .communities-list-search {
-    @apply com-mt-11 com-mx-0 com-mb-6 com-gap-y-2 com-gap-x-8;
+    @apply com-flex com-justify-between com-items-center com-mt-6 com-mx-0 md:com-mb-8 com-mb-6 com-gap-y-6 md:com-gap-0;
 
     // .communities-list-search-tags {
     //   @apply com-gap-y-2 com-gap-x-5 com-overflow-auto com-items-center;
@@ -53,33 +53,45 @@
 
     .communities-list-search-bar {
       nb-form-field {
-        &::ng-deep {
-          .nb-form-field-prefix-medium {
-            @apply com-h-6 -com-mr-8 com-w-8;
-          }
+        // &::ng-deep {
+        //   .nb-form-field-prefix-medium {
+        //     @apply com-h-6 -com-mr-8 com-w-8;
+        //   }
 
-          .nb-form-field-suffix-medium {
-            @apply com-h-6 -com-mr-8 com-w-8;
-          }
-        }
+        //   .nb-form-field-suffix-medium {
+        //     @apply com-h-6 -com-mr-8 com-w-8;
+        //   }
+        // }
 
         nb-icon {
           @apply com-h-4 com-w-4 com-text-gunmetal/80;
         }
 
         .communities-list-search-input {
-          @apply com-bg-gray-100 com-border-0 com-rounded-md com-text-xs com-h-6 com-py-2 com-px-8 com-w-140px;
+          @apply com-bg-gray-100 com-border-0 com-rounded-lg com-text-xs com-h-8 com-py-2 com-px-8 com-w-[482px];
         }
+      }
+    }
+
+    .tags {
+      @apply com-m-0 com-mb-4 md:com-mt-0 md:com-mb-6 com-mt-2 com-ml-4 md:com-ml-0;
+
+      nb-tag {
+        @apply md:com-bg-white md:com-text-Dark-Jungle-Green md:com-border-0;
+      }
+
+      .activeTag {
+        @apply com-bg-primary-500 com-text-white;
       }
     }
   }
 
   .communities-list-cards {
-    @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+    @apply com-flex com-flex-wrap md:com-grid md:com-grid-cols-3 md:com-gap-4;
 
-    @screen lg {
-      @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
-    }
+    // @screen lg {
+    //   @apply   com-overflow-x-auto ;
+    // }
   }
   // }
 }

@@ -24,11 +24,60 @@
     <div class="communities-list-search-bar">
       <nb-form-field>
         <nb-icon icon="search" nbPrefix></nb-icon>
-        <input [formControl]="searchField" class="communities-list-search-input" nbInput type="text" />
+        <input
+          [formControl]="searchField"
+          class="communities-list-search-input"
+          nbInput
+          size="tiny"
+          type="text"
+          placeholder="Search for communities, or type tech tags"
+        />
       </nb-form-field>
     </div>
+    <div class="tags">
+      <nb-tag-list>
+        <nb-tag
+          appearance="outline"
+          [text]="options[0]"
+          status="basic"
+          size="small"
+          [removable]="events ? 'true' : 'false'"
+          [ngClass]="{ activeTag: events }"
+          (click)="filterByTags(options[0])"
+        ></nb-tag>
+        <nb-tag
+          appearance="outline"
+          [text]="options[1]"
+          status="basic"
+          size="small"
+          [removable]="members ? 'true' : 'false'"
+          [ngClass]="{ activeTag: members }"
+          (click)="filterByTags(options[1])"
+        ></nb-tag>
+      </nb-tag-list>
+    </div>
   </div>
+  <!-- <app-skeleton-cards
+    [cards]="4"
+    [ImageShapeSquare]="true"
+    [ImageShapeCircle]="false"
+    *ngIf="showSkeletonCard"
+  ></app-skeleton-cards> -->
   <div class="communities-list-cards">
     <app-communities-card *ngFor="let community of communities" [community]="community"> </app-communities-card>
   </div>
+  <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
+  <!-- <div class="load-more">
+    <button
+      *ngIf="canLoadMore && total && !showSpinner"
+      (click)="getCommunityBuilds(); showSpinner = true"
+      nbButton
+      outline
+      size="tiny"
+      status="info"
+      [disabled]="!canLoadMore || isLoading"
+    >
+      Load More
+    </button>
+  </div> -->
 </div>

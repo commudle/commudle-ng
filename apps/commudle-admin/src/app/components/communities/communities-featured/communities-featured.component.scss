@@ -1,72 +1,106 @@
 p {
-  @apply com-m-0 com-text-gunmetal;
+  @apply com-m-0;
+  // com-text-gunmetal
 }
 
 .communities-featured-container {
-  @apply com-mb-8 com-overflow-hidden com-relative;
+  @apply com-mb-10 com-overflow-hidden com-relative com-p-0 com-pt-8 md:com-pt-6 md:com-mx-0 com-mx-4;
 
-  nb-card-body {
-    @apply com-pt-8 com-px-5 com-pb-6;
+  .communities-featured-heading {
+    @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6;
+  }
 
-    .communities-featured-heading {
-      @apply com-text-2xl com-mt-0 com-mx-0 com-mb-11;
-    }
+  .communities-featured-list {
+    @apply com-flex com-flex-wrap md:com-gap-6 com-gap-y-6;
 
-    .communities-featured-list {
-      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+    // @screen lg {
+    //   @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-4;
+    // }
 
-      @screen lg {
-        @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-4;
-      }
+    .featured-community-card {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-w-full com-h-[248px] com-flex-shrink-0 com-overflow-hidden;
 
-      .featured-community-card {
-        @apply com-bg-white com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-min-w-[260px] com-overflow-hidden com-relative;
+      // @screen lg {
+      //   min-width: inherit;
+      // }
 
-        @screen lg {
-          min-width: inherit;
+      // .featured-community-actions {
+      //   @apply com-gap-2 com-absolute com-right-3 com-top-3;
+
+      //   button {
+      //     @apply com-bg-Azureish-White;
+
+      //     nb-icon {
+      //       @apply com-text-Very-Light-Blue;
+      //     }
+      //   }
+
+      //   app-share-button {
+      //     ::ng-deep {
+      //       .share-button-container {
+      //         button {
+      //           @apply com-bg-Azureish-White;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+      a {
+        @apply com-no-underline;
+
+        // .banner-image {
+        //   @apply com-h-[92px] com-overflow-hidden com-w-full;
+
+        //   img {
+        //     @apply com-h-full com-object-cover com-object-center com-w-full;
+        //   }
+
+        //   .upcoming-events {
+        //     @apply com-absolute com-right-3 com-top-3 com-bg-American-Orange com-text-white com-border-0;
+        //   }
+        // }
+
+        .banner {
+          @apply com-grid;
+
+          div {
+            @apply com-col-start-1 com-row-start-1;
+          }
+
+          .banner-image {
+            @apply com-h-[46px] com-overflow-hidden com-w-full;
+
+            img {
+              @apply com-h-full com-object-cover com-object-center com-w-full;
+            }
+          }
+
+          .community-image {
+            @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[23px] com-overflow-hidden com-w-[52px];
+
+            img {
+              @apply com-h-full com-w-full;
+              // com-object-cover
+            }
+          }
         }
+        // .featured-community-image-container {
+        //   @apply com-h-156px com-overflow-hidden com-w-full;
 
-        .featured-community-actions {
-          @apply com-gap-2 com-absolute com-right-3 com-top-3;
+        //   .featured-community-image {
+        //     @apply com-w-full;
+        //   }
+        // }
 
-          button {
-            @apply com-bg-Azureish-White;
+        .featured-community-about {
+          @apply com-p-3;
 
-            nb-icon {
-              @apply com-text-Very-Light-Blue;
-            }
+          .featured-community-name {
+            @apply com-m-0 com-text-base com-font-semibold com-text-Dark-Jungle-Green com-line-clamp-1;
           }
 
-          app-share-button {
-            ::ng-deep {
-              .share-button-container {
-                button {
-                  @apply com-bg-Azureish-White;
-                }
-              }
-            }
-          }
-        }
-        a {
-          text-decoration: none;
-          .featured-community-image-container {
-            @apply com-h-156px com-overflow-hidden com-w-full;
-
-            .featured-community-image {
-              @apply com-w-full;
-            }
-          }
-
-          .featured-community-about {
-            @apply com-p-4;
-
-            .featured-community-name {
-              @apply com-m-0 com-text-sm com-font-semibold com-text-gunmetal;
-            }
-
-            .featured-community-reason {
-              @apply com-mt-2 com-text-sm com-text-gunmetal;
-            }
+          .featured-community-reason {
+            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3;
           }
         }
       }

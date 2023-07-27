@@ -65,12 +65,16 @@ export class CommunitiesService {
     });
   }
 
-  search(query: string, tag: string, page: number, count: number): Observable<ICommunities> {
-    const params = new HttpParams()
-      .set('query', query)
-      .set('tag', tag)
-      .set('page', String(page))
-      .set('count', String(count));
+  // search(query: string, tag: string, page: number, count: number): Observable<ICommunities> {
+  //   const params = new HttpParams()
+  //     .set('query', query)
+  //     .set('tag', tag)
+  //     .set('page', String(page))
+  //     .set('count', String(count));
+  //   return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
+  // }
+  search(query: string, page: number, count: number): Observable<ICommunities> {
+    const params = new HttpParams().set('query', query).set('page', String(page)).set('count', String(count));
     return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
   }
 

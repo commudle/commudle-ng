@@ -20,7 +20,7 @@ export class CommunitiesFeaturedComponent implements OnInit {
 
   getFeaturedCommunities(): void {
     this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
-      this.featuredCommunities = value.featured_communities.slice(0, 4);
+      this.featuredCommunities = value.featured_communities;
     });
   }
 }

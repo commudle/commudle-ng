@@ -3,13 +3,24 @@
     <app-communities-about></app-communities-about>
   </div>
   <div one-column *ngIf="isMobileView">
-    <app-communities-about></app-communities-about>
     <div class="publish-community-button">
       <a [routerLink]="['/pricing']" nbButton size="giant" class="button">
         <nb-icon icon="plus"></nb-icon>
         Start your community
       </a>
     </div>
+    <app-communities-featured></app-communities-featured>
+    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    <div class="speakers">
+      <commudle-public-home-list-events-speakers
+        [parentType]="'communities'"
+      ></commudle-public-home-list-events-speakers>
+    </div>
+    <app-communities-list></app-communities-list>
+    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+    <commudle-public-home-list-speakers-content
+      [parentType]="'communities'"
+    ></commudle-public-home-list-speakers-content>
     <!-- <div class="com-grid com-grid-cols-2">
       <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
       <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
@@ -31,7 +42,11 @@
     </div>
     <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
     <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-events-speakers [parentType]="'communities'"></commudle-public-home-list-events-speakers>
+    <div class="speakers">
+      <commudle-public-home-list-events-speakers
+        [parentType]="'communities'"
+      ></commudle-public-home-list-events-speakers>
+    </div>
     <commudle-public-home-list-speakers-content
       [parentType]="'communities'"
     ></commudle-public-home-list-speakers-content>
