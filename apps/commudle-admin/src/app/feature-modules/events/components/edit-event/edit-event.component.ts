@@ -93,7 +93,7 @@ export class EditEventComponent implements OnInit {
     }
 
     if (this.event) {
-      // this.event.tags.forEach((value) => this.tags.push(value.name));
+      this.event.tags.forEach((value) => this.tags.push(value.name));
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status?.name || this.event.status);
       if (this.uneditable) {
