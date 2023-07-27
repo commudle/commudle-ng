@@ -5,6 +5,7 @@ import {
   NbAutocompleteModule,
   NbButtonModule,
   NbCardModule,
+  NbDialogModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
@@ -39,6 +40,8 @@ import { SysAdminComponent } from './sys-admin.component';
 import { AdminStaticAssetFormComponent } from './components/admin-static-assets/admin-static-asset-form/admin-static-asset-form.component';
 import { AdminFeaturedComponent } from './components/admin-featured/admin-featured.component';
 import { FeaturedCommunityBuildsComponent } from './components/admin-featured/featured-community-builds/featured-community-builds.component';
+import { CreateFeaturedItemComponent } from './components/admin-featured/create-featured-item/create-featured-item.component';
+import { DeleteFeaturedItemComponent } from './components/admin-featured/delete-featured-item/delete-featured-item.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { FeaturedCommunityBuildsComponent } from './components/admin-featured/fe
     AdminStaticAssetFormComponent,
     AdminFeaturedComponent,
     FeaturedCommunityBuildsComponent,
+    CreateFeaturedItemComponent,
+    DeleteFeaturedItemComponent,
   ],
   imports: [
     CommonModule,
@@ -86,6 +91,7 @@ import { FeaturedCommunityBuildsComponent } from './components/admin-featured/fe
     NbInputModule,
     NbTagModule,
     NbRouteTabsetModule,
+    NbDialogModule.forChild(),
   ],
 })
 export class SysAdminModule {}
