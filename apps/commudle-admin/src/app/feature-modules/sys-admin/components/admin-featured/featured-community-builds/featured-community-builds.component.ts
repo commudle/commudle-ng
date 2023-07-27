@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NbDialogService } from '@commudle/theme';
+import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { SysAdminFeaturedItemsService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-featured-items.service';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -13,11 +14,14 @@ export class FeaturedCommunityBuildsComponent implements OnInit {
   communityBuilds: IFeaturedItems[] = [];
   isLoading = false;
   reason: string;
-  communityBuildId: number;
+  searchQuery: string;
+  entityId: number;
+  searchResult = [];
   constructor(
     private featuredService: SysAdminFeaturedItemsService,
     private nbDialogService: NbDialogService,
     private libToastLogService: LibToastLogService,
+    private searchService: SearchService,
   ) {}
 
   ngOnInit(): void {
@@ -64,10 +68,18 @@ export class FeaturedCommunityBuildsComponent implements OnInit {
   createFeaturedItems() {
     this.featuredService
       .createFeaturedItems({
-        featured_item: { entity_type: 'CommunityBuild', entity_id: this.communityBuildId, reason: this.reason },
+        featured_item: { entity_type: 'CommunityBuild', entity_id: this.entityId, reason: this.reason },
       })
       .subscribe((data) => {
         this.communityBuilds.unshift(data);
       });
+  }
+
+  changeInput() {
+    if (this.searchQuery.length >= 3) {
+      this.searchService.getSearchResultsByScope(this.searchQuery, 1, 10, 'CommunityBuild').subscribe((data) => {
+        this.searchResult = data.results;
+      });
+    }
   }
 }

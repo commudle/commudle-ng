@@ -389,6 +389,7 @@ export const API_ROUTES = {
 
   SEARCH: {
     INDEX: 'api/v2/search',
+    SCOPE: 'api/v2/search/scope',
   },
 
   // user_roles_users

@@ -10,3 +10,7 @@ th {
 th {
   @apply com-bg-Bright-Gray;
 }
+
+.search-result {
+  @apply com-cursor-pointer com-bg-Bright-Gray-Light hover:com-bg-Bright-Gray com-p-2 com-mt-1 com-flex com-rounded-lg;
+}
