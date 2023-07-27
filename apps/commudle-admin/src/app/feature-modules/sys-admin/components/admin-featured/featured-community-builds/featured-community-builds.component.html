@@ -76,7 +76,7 @@
     <nb-card-footer class="d-flex justify-content-space-between">
       <button
         (click)="createFeaturedItems(); ref.close()"
-        [disabled]="reason === '' || entityId === undefined"
+        [disabled]="!reason || entityId === undefined"
         nbButton
         status="success"
       >
