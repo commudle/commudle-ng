@@ -19,6 +19,22 @@ export class AdminFeaturedComponent implements OnInit {
       // responsive: true,
       route: ['./featured-builds'],
     },
+    {
+      title: 'Featured Labs',
+      route: ['./featured-labs'],
+    },
+    {
+      title: 'Featured Events',
+      route: ['./featured-events'],
+    },
+    // {
+    //   title: 'Featured Users',
+    //   route: ['./featured-users'],
+    // },
+    // {
+    //   title: 'Featured channels',
+    //   route: ['./featured-channels'],
+    // },
   ];
   constructor() {}
 

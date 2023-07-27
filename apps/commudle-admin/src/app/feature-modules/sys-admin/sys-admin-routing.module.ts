@@ -18,6 +18,10 @@ import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminComponent } from './sys-admin.component';
 import { AdminFeaturedComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured.component';
 import { FeaturedCommunityBuildsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/featured-community-builds/featured-community-builds.component';
+import { AdminFeaturedLabsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-labs/admin-featured-labs.component';
+import { AdminFeaturedEventsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-events/admin-featured-events.component';
+import { AdminFeaturedUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-users/admin-featured-users.component';
+import { AdminFeaturedCommunitiesChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-communities-channels/admin-featured-communities-channels.component';
 
 const routes = [
   {
@@ -90,6 +94,22 @@ const routes = [
             path: 'featured-builds',
             component: FeaturedCommunityBuildsComponent,
           },
+          {
+            path: 'featured-labs',
+            component: AdminFeaturedLabsComponent,
+          },
+          {
+            path: 'featured-events',
+            component: AdminFeaturedEventsComponent,
+          },
+          // {
+          //   path: 'featured-users',
+          //   component: AdminFeaturedUsersComponent,
+          // },
+          // {
+          //   path: 'featured-channels',
+          //   component: AdminFeaturedCommunitiesChannelsComponent,
+          // },
         ],
       },
       {

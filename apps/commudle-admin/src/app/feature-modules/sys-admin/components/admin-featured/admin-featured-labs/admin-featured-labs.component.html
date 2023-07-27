@@ -16,22 +16,22 @@
     <th>Change Status</th>
     <th>Actions</th>
   </tr>
-  <tr *ngFor="let communityBuild of communityBuilds; let i = index">
-    <td>{{ communityBuild.community_build.name }}</td>
-    <td>{{ communityBuild.reason }}</td>
-    <td>{{ communityBuild.active }}</td>
+  <tr *ngFor="let featuredItem of featuredItems; let i = index">
+    <td>{{ featuredItem.lab.name }}</td>
+    <td>{{ featuredItem.reason }}</td>
+    <td>{{ featuredItem.active }}</td>
     <td>
       <nb-toggle
         status="primary"
-        (click)="updateFeaturedCommunity(communityBuild.id, !communityBuild.active, i)"
-        [(checked)]="communityBuild.active"
+        (click)="updateFeaturedCommunity(featuredItem.id, !featuredItem.active, i)"
+        [(checked)]="featuredItem.active"
         labelPosition="right"
       >
       </nb-toggle>
     </td>
     <td>
       <div class="actions d-flex">
-        <button (click)="openDeleteFeaturedDialog(communityBuild.id, i)" nbButton outline size="tiny" status="danger">
+        <button (click)="openDeleteFeaturedDialog(featuredItem.id, i)" nbButton outline size="tiny" status="danger">
           Delete
         </button>
       </div>
@@ -39,6 +39,6 @@
   </tr>
 </table>
 
-<button (click)="getFeaturedItems()" *ngIf="this.pageInfo?.has_next_page" fullWidth ghost nbButton>
+<button (click)="getFeaturedLabs()" *ngIf="this.pageInfo?.has_next_page" fullWidth ghost nbButton>
   Get more featured community Builds
 </button>

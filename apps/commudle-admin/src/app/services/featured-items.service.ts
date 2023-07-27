@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FeaturedCommunitiesService {
+export class FeaturedItemsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getFeaturedItems(entityType): Observable<any> {

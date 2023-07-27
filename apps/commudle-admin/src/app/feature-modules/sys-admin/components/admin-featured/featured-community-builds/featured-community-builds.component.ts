@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { CreateFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/create-featured-item/create-featured-item.component';
 import { DeleteFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/delete-featured-item/delete-featured-item.component';
@@ -13,11 +14,8 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class FeaturedCommunityBuildsComponent implements OnInit {
   communityBuilds: IFeaturedItems[] = [];
-  isLoading = false;
-  reason: string;
-  searchQuery: string;
-  entityId: number;
-  searchResult = [];
+  isLoading = true;
+  pageInfo: IPageInfo;
   constructor(
     private featuredService: SysAdminFeaturedItemsService,
     private nbDialogService: NbDialogService,
@@ -29,9 +27,9 @@ export class FeaturedCommunityBuildsComponent implements OnInit {
   }
 
   getFeaturedItems() {
-    this.isLoading = true;
-    this.featuredService.getAllFeaturedItems('CommunityBuild').subscribe((data) => {
+    this.featuredService.getAllFeaturedItems('CommunityBuild', this.pageInfo?.end_cursor).subscribe((data) => {
       this.communityBuilds = this.communityBuilds.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.pageInfo = data.page_info;
       this.isLoading = false;
     });
   }
@@ -63,6 +61,7 @@ export class FeaturedCommunityBuildsComponent implements OnInit {
         if (value) this.communityBuilds.splice(index, 1);
       });
   }
+
   updateFeaturedCommunity(featuredBuildId: number, newStatus, index): void {
     this.featuredService
       .updateFeaturedItems(featuredBuildId, { featured_item: { active: newStatus } })

@@ -1,26 +1,21 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { CreateFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/create-featured-item/create-featured-item.component';
 import { DeleteFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/delete-featured-item/delete-featured-item.component';
-import { SysAdminFeaturedCommunitiesService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-featured-communities.service';
 import { SysAdminFeaturedItemsService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-featured-items.service';
-import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-import { ICommunity } from 'apps/shared-models/community.model';
-import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
-  selector: 'app-admin-featured-communities',
-  templateUrl: './admin-featured-communities.component.html',
-  styleUrls: ['./admin-featured-communities.component.scss'],
+  selector: 'commudle-admin-featured-labs',
+  templateUrl: './admin-featured-labs.component.html',
+  styleUrls: ['./admin-featured-labs.component.scss'],
 })
-export class AdminFeaturedCommunitiesComponent implements OnInit {
+export class AdminFeaturedLabsComponent implements OnInit {
   featuredItems: IFeaturedItems[] = [];
   pageInfo: IPageInfo;
   isLoading = true;
-
   constructor(
     private nbDialogService: NbDialogService,
     private libToastLogService: LibToastLogService,
@@ -28,11 +23,11 @@ export class AdminFeaturedCommunitiesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getFeaturedCommunities();
+    this.getFeaturedLabs();
   }
 
-  getFeaturedCommunities(): void {
-    this.featuredService.getAllFeaturedItems('Kommunity', this.pageInfo?.end_cursor).subscribe((data) => {
+  getFeaturedLabs(): void {
+    this.featuredService.getAllFeaturedItems('Lab', this.pageInfo?.end_cursor).subscribe((data) => {
       this.featuredItems = this.featuredItems.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.pageInfo = data.page_info;
       this.isLoading = false;
@@ -56,7 +51,7 @@ export class AdminFeaturedCommunitiesComponent implements OnInit {
         closeOnEsc: false,
         closeOnBackdropClick: false,
         context: {
-          entityType: 'Kommunity',
+          entityType: 'Lab',
         },
       })
       .onClose.subscribe((data) => {

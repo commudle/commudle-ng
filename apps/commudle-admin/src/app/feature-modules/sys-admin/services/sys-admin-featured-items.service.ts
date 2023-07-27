@@ -11,8 +11,14 @@ import { Observable } from 'rxjs';
 export class SysAdminFeaturedItemsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getAllFeaturedItems(entityType: string): Observable<any> {
-    const params = new HttpParams().set('entity_type', entityType);
+  getAllFeaturedItems(entityType: string, after, limit?): Observable<any> {
+    let params = new HttpParams().set('entity_type', entityType);
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.INDEX), {
       params,
     });

@@ -42,6 +42,10 @@ import { AdminFeaturedComponent } from './components/admin-featured/admin-featur
 import { FeaturedCommunityBuildsComponent } from './components/admin-featured/featured-community-builds/featured-community-builds.component';
 import { CreateFeaturedItemComponent } from './components/admin-featured/create-featured-item/create-featured-item.component';
 import { DeleteFeaturedItemComponent } from './components/admin-featured/delete-featured-item/delete-featured-item.component';
+import { AdminFeaturedLabsComponent } from './components/admin-featured/admin-featured-labs/admin-featured-labs.component';
+import { AdminFeaturedEventsComponent } from './components/admin-featured/admin-featured-events/admin-featured-events.component';
+import { AdminFeaturedUsersComponent } from './components/admin-featured/admin-featured-users/admin-featured-users.component';
+import { AdminFeaturedCommunitiesChannelsComponent } from './components/admin-featured/admin-featured-communities-channels/admin-featured-communities-channels.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { DeleteFeaturedItemComponent } from './components/admin-featured/delete-
     FeaturedCommunityBuildsComponent,
     CreateFeaturedItemComponent,
     DeleteFeaturedItemComponent,
+    AdminFeaturedLabsComponent,
+    AdminFeaturedEventsComponent,
+    AdminFeaturedUsersComponent,
+    AdminFeaturedCommunitiesChannelsComponent,
   ],
   imports: [
     CommonModule,

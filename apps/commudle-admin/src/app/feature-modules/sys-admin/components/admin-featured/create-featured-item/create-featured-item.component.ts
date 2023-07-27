@@ -9,7 +9,7 @@ import { SysAdminFeaturedItemsService } from 'apps/commudle-admin/src/app/featur
   styleUrls: ['./create-featured-item.component.scss'],
 })
 export class CreateFeaturedItemComponent implements OnInit {
-  @Input() entityType: 'CommunityBuild' | 'Kommunity' | 'Lab';
+  @Input() entityType: 'CommunityBuild' | 'Kommunity' | 'Lab' | 'Event' | 'User' | 'CommunityChannel';
   reason: string;
   searchQuery: string;
   entityId: number;
