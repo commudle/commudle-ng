@@ -232,7 +232,6 @@ export class EditEventComponent implements OnInit {
   cloneEvent() {
     this.submitIsInProcess = true;
     const formValue = this.eventForm.get('event').value;
-    console.log('🚀 ~ file: edit-event.component.ts:235 ~ cloneEvent ~ formValue:', formValue);
     delete formValue['start_date'];
     delete formValue['end_date'];
     formValue['start_time'] = '';
