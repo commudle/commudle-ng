@@ -1,4 +1,29 @@
-<nb-card class="communities-about-container">
+<div class="header">
+  <div
+    *ngIf="communitiesPageHeader"
+    [ngStyle]="{ 'background-color': communitiesPageHeader.background_color.hex }"
+    class="background"
+  >
+    <div class="base-layout">
+      <div class="content">
+        <div class="header-text">
+          <h1 class="title">
+            <button class="button">
+              <nb-icon class="bulb-icon" icon="bulb-outline"></nb-icon></button
+            >{{ communitiesPageHeader.title }}
+          </h1>
+          <p class="heading">{{ communitiesPageHeader.heading }}</p>
+          <div [innerHTML]="richText" class="content"></div>
+        </div>
+        <div class="header-image">
+          <img [src]="imageUrl(communitiesPageHeader?.header_image).url()" class="com-w-full" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <nb-card class="communities-about-container">
   <nb-card-body class="d-flex justify-content-space-between">
     <div class="communities-about-content">
       <h1 class="communities-about-header">Build Your Community or Join One!</h1>
@@ -17,4 +42,4 @@
       <img alt="Communities Home" src="{{ staticAssets.communities_home }}" title="Communities Home" />
     </div>
   </nb-card-body>
-</nb-card>
+</nb-card> -->

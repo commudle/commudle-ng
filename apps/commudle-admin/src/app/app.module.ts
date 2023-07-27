@@ -106,6 +106,9 @@ import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
 import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
 import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -182,6 +185,9 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     RecommendationsModule,
     SearchModule,
     MiniUserProfileModule,
+    ListingPagesLayoutComponent,
+    PublicHomeListSpeakersModule,
+    PublicHomeListEventsModule,
 
     // external service modules
     LibErrorHandlerModule,
