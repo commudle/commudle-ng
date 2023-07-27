@@ -18,7 +18,7 @@ export class CommunityEventsListActionsComponent implements OnInit {
   openCloneEventWindow() {
     this.windowService.open(EditEventComponent, {
       title: `Clone Event:: ${this.rowData.name}`,
-      context: { event: this.rowData, type: 'clone' },
+      context: { eventId: this.rowData.id, type: 'clone' },
     });
   }
 }

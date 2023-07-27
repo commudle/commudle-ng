@@ -110,9 +110,12 @@
         </div>
 
         <div class="save-button-bottom">
+          <span>{{ !eventForm.valid }}</span>
+          <span>{{ tags.length }}</span>
+          <span>{{ submitIsInProcess }}</span>
           <button
             *ngIf="!uneditable"
-            [disabled]="!eventForm.valid || tags.length < 3 || submitIsInProcess"
+            [disabled]="eventForm.valid || tags.length < 3 || submitIsInProcess"
             type="submit"
             nbButton
             fullWidth

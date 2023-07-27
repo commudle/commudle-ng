@@ -33,6 +33,7 @@ export class EventsService {
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CLONE),
       {
         event,
+        tags: tags,
       },
       { params },
     );
