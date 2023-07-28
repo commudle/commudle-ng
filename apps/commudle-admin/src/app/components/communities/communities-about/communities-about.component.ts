@@ -9,7 +9,7 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 })
 export class CommunitiesAboutComponent implements OnInit {
   communitiesPageHeader: IListingPageHeader;
-  richText: string;
+  // richText: string;
   // staticAssets = staticAssets;
   constructor(private cmsService: CmsService) {}
 
@@ -24,8 +24,7 @@ export class CommunitiesAboutComponent implements OnInit {
   getHeaderText() {
     this.cmsService.getDataBySlug('communities').subscribe((data) => {
       this.communitiesPageHeader = data;
-      console.log(this.communitiesPageHeader);
-      this.richText = this.cmsService.getHtmlFromBlock(data);
+      // this.richText = this.cmsService.getHtmlFromBlock(data);
     });
   }
 

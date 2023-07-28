@@ -5,7 +5,7 @@ div {
 .publish-community-button {
   @apply md:com-mx-0 com-mx-4 md:com-my-8 com-mt-8 com-mb-0 md:com-w-[343px];
   .button {
-    @apply com-w-full com-text-Azure com-border-Azure com-rounded-lg;
+    @apply com-w-full com-text-Azure com-border-Azure com-bg-Azure/10 com-rounded-lg;
   }
 }
 

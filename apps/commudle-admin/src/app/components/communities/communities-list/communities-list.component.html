@@ -21,7 +21,7 @@
         {{ searchTag }}
       </div>
     </div> -->
-    <div class="communities-list-search-bar">
+    <!-- <div class="communities-list-search-bar">
       <nb-form-field>
         <nb-icon icon="search" nbPrefix></nb-icon>
         <input
@@ -30,16 +30,35 @@
           nbInput
           size="tiny"
           type="text"
+          fullWidth
           placeholder="Search for communities, or type tech tags"
         />
       </nb-form-field>
+    </div> -->
+
+    <!-- [formControl]="searchField" -->
+    <div class="communities-list-search-bar">
+      <form [formGroup]="searchForm">
+        <nb-form-field>
+          <nb-icon icon="search" nbPrefix></nb-icon>
+          <input
+            formControlName="name"
+            class="communities-list-search-input"
+            nbInput
+            size="tiny"
+            type="text"
+            fullWidth
+            placeholder="Search for communities, or type tech tags"
+          />
+        </nb-form-field>
+      </form>
     </div>
+
     <div class="tags">
       <nb-tag-list>
         <nb-tag
           appearance="outline"
           [text]="options[0]"
-          status="basic"
           size="small"
           [removable]="events ? 'true' : 'false'"
           [ngClass]="{ activeTag: events }"
@@ -48,7 +67,6 @@
         <nb-tag
           appearance="outline"
           [text]="options[1]"
-          status="basic"
           size="small"
           [removable]="members ? 'true' : 'false'"
           [ngClass]="{ activeTag: members }"
@@ -57,16 +75,13 @@
       </nb-tag-list>
     </div>
   </div>
-  <!-- <app-skeleton-cards
-    [cards]="4"
-    [ImageShapeSquare]="true"
-    [ImageShapeCircle]="false"
-    *ngIf="showSkeletonCard"
-  ></app-skeleton-cards> -->
-  <div class="communities-list-cards">
-    <app-communities-card *ngFor="let community of communities" [community]="community"> </app-communities-card>
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <commudle-skeleton-vertical-cards [cards]="6"></commudle-skeleton-vertical-cards>
   </div>
-  <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
+  <div class="communities-list-cards">
+    <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+  </div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
   <!-- <div class="load-more">
     <button
       *ngIf="canLoadMore && total && !showSpinner"

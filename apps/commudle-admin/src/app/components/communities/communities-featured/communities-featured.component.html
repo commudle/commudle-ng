@@ -1,5 +1,8 @@
 <div class="communities-featured-container">
   <h2 class="communities-featured-heading">Featured Communities</h2>
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <commudle-skeleton-vertical-cards [cards]="6"></commudle-skeleton-vertical-cards>
+  </div>
   <div class="communities-featured-list">
     <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
       <!-- <div class="featured-community-actions d-flex">
@@ -46,6 +49,21 @@
         <div class="clickable featured-community-about">
           <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
           <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
+          <div class="members-events">
+            <p class="members">
+              <nb-icon icon="people-outline"></nb-icon>{{ featuredCommunity.kommunity.member_count }}
+            </p>
+            <p class="events-organized"><nb-icon icon="calendar-outline"></nb-icon>count</p>
+          </div>
+          <div class="featured-community-tags">
+            <!-- <app-tag
+              [tags]="getTagNames()"
+              [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+              [size]="'tiny'"
+              [fontColor]="'#101828'"
+              [maximumTag]="5"
+            ></app-tag> -->
+          </div>
         </div>
       </a>
     </div>

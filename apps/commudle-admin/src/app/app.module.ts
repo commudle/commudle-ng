@@ -109,6 +109,7 @@ import { LoginConsentPopupComponent } from './components/login-consent-popup/log
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -188,6 +189,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     ListingPagesLayoutComponent,
     PublicHomeListSpeakersModule,
     PublicHomeListEventsModule,
+    SkeletonVerticalCardsComponent,
 
     // external service modules
     LibErrorHandlerModule,
