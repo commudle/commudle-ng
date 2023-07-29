@@ -26,7 +26,7 @@ nb-card {
     }
 
     .no-image-path {
-      @apply com-mx-auto com-w-64 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md;
+      @apply md:com-w-2/3 com-flex com-flex-col com-items-center com-px-4 com-py-6 com-tracking-wide com-cursor-pointer com-bg-gray-100 com-rounded-md com-transition-shadow hover:com-shadow-md;
     }
   }
 }

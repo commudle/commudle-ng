@@ -13,7 +13,7 @@
 }
 
 .sidebar {
-  @apply com-w-80 com-sticky com-top-16;
+  @apply com-w-80 com-sticky com-top-16 com-h-[calc(100vh-70px)];
 
   a {
     @apply com-text-inherit com-no-underline;
@@ -28,28 +28,23 @@
         @apply com-text-xs com-text-[#8F9BB3];
       }
     }
-    .category {
-      @apply com-bg-[#F3F4F5] com-rounded-lg com-px-3 com-py-1;
-    }
+
     .category-heading {
-      @apply com-text-base com-font-semibold com-my-2;
+      @apply com-text-sm com-font-semibold com-my-2;
+    }
+    .divided-line {
+      @apply com-border com-border-solid com-border-Bright-Gray;
     }
     .action-button {
-      @apply com-p-2 com-flex com-gap-2 com-items-center com-cursor-pointer com-rounded-lg com-mb-1;
+      @apply com-p-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
       &.active {
-        @apply com-bg-[#DAEAF6];
-        .icon {
-          @apply com-text-[#0088E8];
-        }
-        .heading {
-          @apply com-text-[#0088E8];
-        }
+        @apply com-bg-Bright-Gray-Light;
       }
       .icon {
         @apply com-text-lg com-text-[#8F9BB3];
       }
       .heading {
-        @apply com-text-sm com-font-medium;
+        @apply com-text-sm com-font-light;
       }
       &.public-event-page {
         @apply com-text-Azure;
@@ -66,13 +61,7 @@
     }
 
     .action-button:hover {
-      @apply hover:com-bg-[#DAEAF6];
-      .icon {
-        @apply com-text-[#0088E8];
-      }
-      .heading {
-        @apply com-text-[#0088E8];
-      }
+      @apply com-bg-Bright-Gray-Light;
     }
   }
 }
@@ -113,5 +102,5 @@ a {
 }
 
 .router {
-  @apply com-my-6 md:com-mx-4 com-mx-0;
+  @apply com-my-4 md:com-mx-4 com-mx-0;
 }
