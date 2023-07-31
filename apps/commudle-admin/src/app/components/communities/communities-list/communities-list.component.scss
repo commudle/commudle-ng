@@ -52,6 +52,7 @@
     // }
 
     .communities-list-search-bar {
+      @apply md:com-w-[481px] com-w-full;
       nb-form-field {
         // &::ng-deep {
         //   .nb-form-field-prefix-medium {

@@ -19,8 +19,7 @@ p {
     // }
 
     .featured-community-card {
-      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-w-full com-flex-shrink-0 com-overflow-hidden;
-      @apply com-h-[270px];
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-h-[296px] com-w-full com-flex-shrink-0 com-overflow-hidden;
 
       // @screen lg {
       //   min-width: inherit;
@@ -99,7 +98,8 @@ p {
 
         .featured-community-about {
           @apply com-p-3 com-pb-0;
-          @apply com-h-[148px];
+          @apply com-h-[172px];
+          // com-h-[148px]
 
           .featured-community-name {
             @apply com-m-0 com-text-base com-font-semibold com-text-Dark-Jungle-Green com-line-clamp-1;
@@ -126,7 +126,7 @@ p {
           }
 
           .featured-community-tags {
-            @apply com-h-6 com-mt-4;
+            @apply com-h-6 com-mx-0 com-my-4;
           }
         }
       }
