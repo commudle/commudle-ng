@@ -19,7 +19,8 @@ p {
     // }
 
     .featured-community-card {
-      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-w-full com-h-[248px] com-flex-shrink-0 com-overflow-hidden;
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-w-full com-flex-shrink-0 com-overflow-hidden;
+      @apply com-h-[270px];
 
       // @screen lg {
       //   min-width: inherit;
@@ -78,9 +79,12 @@ p {
 
           .community-image {
             @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[23px] com-overflow-hidden com-w-[52px];
+            @apply com-flex;
 
             img {
-              @apply com-h-full com-w-full;
+              // @apply com-h-full com-w-full;
+              @apply com-bg-white;
+              @apply com-h-auto com-w-full com-flex-shrink-0;
               // com-object-cover
             }
           }
@@ -94,7 +98,8 @@ p {
         // }
 
         .featured-community-about {
-          @apply com-p-3;
+          @apply com-p-3 com-pb-0;
+          @apply com-h-[148px];
 
           .featured-community-name {
             @apply com-m-0 com-text-base com-font-semibold com-text-Dark-Jungle-Green com-line-clamp-1;
@@ -124,6 +129,10 @@ p {
             @apply com-h-6 com-mt-4;
           }
         }
+      }
+
+      .community-join-btn {
+        @apply com-px-3 com-pb-4;
       }
     }
   }

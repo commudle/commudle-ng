@@ -14,13 +14,12 @@
           }
 
           .sub-heading {
-            @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-Yankees-Blue;
+            @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-white;
           }
         }
 
-        // com-h-[300px]
         .header-image {
-          @apply com-flex com-items-center com-m-0  md:com-h-auto;
+          @apply com-flex com-items-center com-m-0 md:com-h-auto com-h-[300px];
         }
       }
     }
