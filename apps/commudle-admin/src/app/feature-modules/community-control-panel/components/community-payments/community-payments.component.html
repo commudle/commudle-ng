@@ -13,12 +13,16 @@
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Active</th>
+      <th>Acc no</th>
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
       <td>
         <p>{{ stripeAccount.active }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.id }}</p>
       </td>
       <td>
         <p>{{ stripeAccount.details.charges_enabled }}</p>
