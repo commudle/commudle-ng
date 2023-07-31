@@ -27,9 +27,9 @@
         <div class="main-column">
           <div class="filters">
             <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
-              <option value="" disabled selected hidden>Looking For Work / Hiring</option>
-              <option value="employee">Looking for work</option>
-              <option value="employer">Hiring</option>
+              <option value="">Looking for work / Hiring</option>
+              <option value="employee" [selected]="value === 'employee'">Looking for work</option>
+              <option value="employer" [selected]="value === 'employer'">Hiring</option>
             </select>
             <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
           </div>
@@ -39,18 +39,22 @@
               [cards]="4"
               *ngIf="skeletonLoaderCard"
             ></app-skeleton-cards>
-            <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
-
-            <app-pagination
-              (goTo)="page = $event; getMembers()"
-              (next)="page = $event; getMembers()"
-              (previous)="page = $event; getMembers()"
-              *ngIf="total > 0"
-              [count]="count"
-              [current]="page"
-              [total]="total"
-            ></app-pagination>
+            <div *ngIf="!skeletonLoaderCard && members.length === 0">
+              <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
+            </div>
+            <div *ngIf="members.length > 0">
+              <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
+            </div>
           </div>
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+          ></app-pagination>
         </div>
         <div class="right-column">
           <commudle-events-volunteer-list
@@ -58,8 +62,13 @@
             [heading]="volunteerHeading"
             [subheading]="volunteerSubheading"
           ></commudle-events-volunteer-list>
-          <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+          <commudle-public-home-list-events-speakers
+            [parentType]="'events'"
+            [eventId]="event.slug"
+          ></commudle-public-home-list-events-speakers>
           <commudle-public-home-list-speakers-content
+            [parentType]="'events'"
+            [eventId]="event.slug"
             [heading]="contentHeading"
             [subheading]="contentSubheading"
           ></commudle-public-home-list-speakers-content>
@@ -75,29 +84,37 @@
           </select>
           <button nbButton size="small" shape="round" (click)="resetFiltersAndSearch()" class="reset">Reset</button>
         </div>
-        <div class="attended-members">
+        <div *ngIf="!skeletonLoaderCard && members.length === 0">
+          <commudle-empty-state-component [parentType]="'Members'"></commudle-empty-state-component>
+        </div>
+        <div *ngIf="members.length > 0" class="attended-members">
           <app-skeleton-cards [cards]="4" *ngIf="skeletonLoaderCard"></app-skeleton-cards>
           <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
-
-          <app-pagination
-            (goTo)="page = $event; getMembers()"
-            (next)="page = $event; getMembers()"
-            (previous)="page = $event; getMembers()"
-            *ngIf="total > 0"
-            [count]="count"
-            [current]="page"
-            [total]="total"
-          ></app-pagination>
         </div>
+        <app-pagination
+          (goTo)="page = $event; getMembers()"
+          (next)="page = $event; getMembers()"
+          (previous)="page = $event; getMembers()"
+          *ngIf="total > 0"
+          [count]="count"
+          [current]="page"
+          [total]="total"
+        ></app-pagination>
+
         <commudle-events-volunteer-list
           [event]="event"
           [heading]="volunteerHeading"
           [subheading]="volunteerSubheading"
         ></commudle-events-volunteer-list>
-        <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+        <commudle-public-home-list-events-speakers
+          [parentType]="'events'"
+          [eventId]="event.slug"
+        ></commudle-public-home-list-events-speakers>
         <commudle-public-home-list-speakers-content
+          [parentType]="'events'"
           [heading]="contentHeading"
           [subheading]="contentSubheading"
+          [eventId]="event.slug"
         ></commudle-public-home-list-speakers-content>
       </div>
     </div>

@@ -6,7 +6,7 @@
     <commudle-public-home-list-events-upcoming></commudle-public-home-list-events-upcoming>
     <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
     <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+    <commudle-public-home-list-events-speakers [parentType]="'communities'"></commudle-public-home-list-events-speakers>
     <commudle-public-home-list-events-past></commudle-public-home-list-events-past>
   </div>
   <div main-column *ngIf="!isMobileView">
@@ -17,7 +17,7 @@
     <div class="featured-communities">
       <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
     </div>
-    <commudle-public-home-list-events-speakers></commudle-public-home-list-events-speakers>
+    <commudle-public-home-list-events-speakers [parentType]="'communities'"></commudle-public-home-list-events-speakers>
     <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
   </div>
 </commudle-listing-pages-layout>

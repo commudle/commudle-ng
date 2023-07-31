@@ -47,5 +47,9 @@ div {
     .attended-members {
       @apply com-flex com-flex-col md:com-gap-4 com-gap-6 md:com-mx-0 com-mx-4;
     }
+
+    app-pagination {
+      @apply com-m-0 com-mt-3;
+    }
   }
 }
