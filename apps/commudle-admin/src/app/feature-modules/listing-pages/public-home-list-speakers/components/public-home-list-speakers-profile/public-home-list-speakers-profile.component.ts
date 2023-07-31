@@ -34,6 +34,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   page = 1;
   count = 10;
   totalSearch = 0;
+  seoTitle: string;
   listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
@@ -49,12 +50,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seoService.setTags(
-      'Speakers - Find & Connect With Tech & Design Speakers',
-      'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
-      'https://commudle.com/assets/images/commudle-logo192.png',
-    );
-
     this.search();
     const params = this.activatedRoute.snapshot.queryParams;
     if (Object.keys(params).length > 0) {
@@ -88,9 +83,22 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
       }
     }
     this.speakers = [];
+    this.updateSeoTitle();
     if (!params.query) {
       this.getSpeakersList();
     }
+  }
+
+  updateSeoTitle() {
+    this.seoTitle = this.query
+      ? `Find & Connect With Tech & Design Speakers - ${this.query}`
+      : 'Speakers - Find & Connect With Tech & Design Speakers';
+
+    this.seoService.setTags(
+      this.seoTitle,
+      'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   updateFilter() {
@@ -141,6 +149,8 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     if (query) {
       queryParams.query = query;
     }
+    this.seoTitle = this.query;
+    this.updateSeoTitle();
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
