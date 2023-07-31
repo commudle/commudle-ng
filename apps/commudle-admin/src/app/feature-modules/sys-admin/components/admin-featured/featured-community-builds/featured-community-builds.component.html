@@ -12,14 +12,12 @@
   <tr>
     <th class="com-w-1/3">Build Name</th>
     <th>Reasons</th>
-    <th>Status</th>
-    <th>Change Status</th>
+    <th class="com-w-56">Status</th>
     <th>Actions</th>
   </tr>
   <tr *ngFor="let communityBuild of communityBuilds; let i = index">
     <td>{{ communityBuild.community_build.name }}</td>
     <td>{{ communityBuild.reason }}</td>
-    <td>{{ communityBuild.active }}</td>
     <td>
       <nb-toggle
         status="primary"
@@ -27,6 +25,7 @@
         [(checked)]="communityBuild.active"
         labelPosition="right"
       >
+        {{ communityBuild.active ? 'Activated' : 'Deactivated' }}
       </nb-toggle>
     </td>
     <td>

@@ -10,16 +10,14 @@
 </div>
 <table *ngIf="!isLoading && featuredItems.length >= 1">
   <tr>
-    <th class="com-w-1/3">Build Name</th>
+    <th class="com-w-1/3">Event Name</th>
     <th>Reasons</th>
-    <th>Status</th>
-    <th>Change Status</th>
+    <th class="com-w-56">Status</th>
     <th>Actions</th>
   </tr>
   <tr *ngFor="let featuredItem of featuredItems; let i = index">
     <td>{{ featuredItem.event.name }}</td>
     <td>{{ featuredItem.reason }}</td>
-    <td>{{ featuredItem.active }}</td>
     <td>
       <nb-toggle
         status="primary"
@@ -27,6 +25,7 @@
         [(checked)]="featuredItem.active"
         labelPosition="right"
       >
+        {{ featuredItem.active ? 'Activated' : 'Deactivated' }}
       </nb-toggle>
     </td>
     <td>
