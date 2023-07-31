@@ -11,21 +11,21 @@ export class AdminFeaturedComponent implements OnInit {
     {
       title: 'Featured Communities',
       // icon: 'person',
-      route: './',
+      route: ['./communities'],
     },
     {
       title: 'Featured Builds',
       // icon: 'paper-plane-outline',
       // responsive: true,
-      route: ['./featured-builds'],
+      route: ['./builds'],
     },
     {
       title: 'Featured Labs',
-      route: ['./featured-labs'],
+      route: ['./labs'],
     },
     {
       title: 'Featured Events',
-      route: ['./featured-events'],
+      route: ['./events'],
     },
     // {
     //   title: 'Featured Users',
