@@ -16,6 +16,7 @@ import {
   NbTagModule,
   NbToggleModule,
   NbWindowModule,
+  NbFormFieldModule,
 } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
@@ -100,6 +101,7 @@ import { AdminFeaturedCommunitiesChannelsComponent } from './components/admin-fe
     NbTagModule,
     NbRouteTabsetModule,
     NbDialogModule.forChild(),
+    NbFormFieldModule,
   ],
 })
 export class SysAdminModule {}

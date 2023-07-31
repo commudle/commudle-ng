@@ -7,21 +7,23 @@
   </nb-card-header>
   <nb-card-body>
     <div class="com-flex com-flex-col com-gap-3">
-      <input
-        [(ngModel)]="searchQuery"
-        (input)="changeInput()"
-        fullWidth
-        nbInput
-        placeholder="search for Community Build (type at least 3 words)"
-        type="text"
-      />
-      <div *ngIf="searchResult.length >= 1 && searchQuery.length >= 3" class="com-flex com-flex-wrap com-gap-2">
-        <div *ngFor="let result of searchResult">
-          <div (click)="this.entityId = result.id; searchQuery = result.name" class="search-result">
-            <div>{{ result.name }}</div>
-          </div>
-        </div>
-      </div>
+      <nb-form-field>
+        <input
+          #searchInput
+          [formControl]="inputFormControl"
+          [nbAutocomplete]="autoNgModel"
+          [value]="selectedEntityValue"
+          fullWidth
+          nbInput
+          placeholder="search (type at least 3 words)"
+          type="text"
+        />
+      </nb-form-field>
+      <nb-autocomplete #autoNgModel>
+        <nb-option *ngFor="let result of searchResult" (click)="selected(result.id, result.name)">
+          {{ result.name }}
+        </nb-option>
+      </nb-autocomplete>
       <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
     </div>
   </nb-card-body>
