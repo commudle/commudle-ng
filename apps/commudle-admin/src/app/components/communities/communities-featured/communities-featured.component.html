@@ -20,7 +20,7 @@
           [round]="true"
         ></app-share-button>
       </div> -->
-      <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
+      <a [routerLink]="['/communities', featuredCommunity.community.slug]">
         <!-- <div class="clickable featured-community-image-container">
           <img
             alt="{{ featuredCommunity.kommunity.name }}"
@@ -33,25 +33,25 @@
           <div class="banner-image">
             <!-- featuredCommunity.kommunity.profile_banner_image?.i906 || -->
             <img
-              alt="{{ featuredCommunity.kommunity.name }} Profile Banner"
+              alt="{{ featuredCommunity.community.name }} Profile Banner"
               src="{{ '/assets/images/User-Profile-Cover-Default.png' }}"
-              title="{{ featuredCommunity.kommunity.name }} Profile Banner"
+              title="{{ featuredCommunity.community.name }} Profile Banner"
             />
           </div>
           <div class="community-image">
             <img
-              alt="{{ featuredCommunity.kommunity.name }}"
-              src="{{ featuredCommunity.kommunity.logo_image_path.i64 }}"
-              title="{{ featuredCommunity.kommunity.name }}"
+              alt="{{ featuredCommunity.community.name }}"
+              src="{{ featuredCommunity.community.logo_image_path.i64 }}"
+              title="{{ featuredCommunity.community.name }}"
             />
           </div>
         </div>
         <div class="clickable featured-community-about">
-          <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
+          <h3 class="featured-community-name">{{ featuredCommunity.community.name }}</h3>
           <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
           <div class="members-events">
             <p class="members">
-              <nb-icon icon="people-outline"></nb-icon>{{ featuredCommunity.kommunity.member_count }}
+              <nb-icon icon="people-outline"></nb-icon>{{ featuredCommunity.community.member_count }}
             </p>
             <p class="events-organized"><nb-icon icon="calendar-outline"></nb-icon>count</p>
           </div>
@@ -69,7 +69,7 @@
       </a>
       <div class="community-join-btn">
         <app-membership-toggle
-          [community]="featuredCommunity.kommunity"
+          [community]="featuredCommunity.community"
           [status]="'info'"
           [shapes]="'semi-round'"
           [isMobileWidthFull]="true"
