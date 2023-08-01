@@ -164,6 +164,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/events',
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
+    CLONE: 'api/v2/events/clone',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
     UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
@@ -235,6 +236,16 @@ export const API_ROUTES = {
     DELETE: 'api/v2/featured_communities',
     PUBLIC: {
       SHOW: 'api/v2/featured_communities/public/show',
+    },
+  },
+
+  FEATURED_ITEMS: {
+    INDEX: 'api/v2/featured_items',
+    CREATE: 'api/v2/featured_items',
+    UPDATE: 'api/v2/featured_items',
+    DELETE: 'api/v2/featured_items',
+    PUBLIC: {
+      SHOW: 'api/v2/featured_items/public',
     },
   },
 
@@ -387,6 +398,7 @@ export const API_ROUTES = {
 
   SEARCH: {
     INDEX: 'api/v2/search',
+    SCOPE: 'api/v2/search/scope',
   },
 
   // user_roles_users

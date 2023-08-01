@@ -27,6 +27,17 @@ export class EventsService {
       tags: tags,
     });
   }
+  cloneEvent(event, eventId, tags): Observable<IEvent> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.post<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CLONE),
+      {
+        event,
+        tags: tags,
+      },
+      { params },
+    );
+  }
 
   createEvent(event, community, tags): Observable<IEvent> {
     return this.http.post<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CREATE), {
@@ -124,7 +135,7 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(after?, limit?, event_id?): Observable<IPagination<IUsers>> {
+  pGetEventVolunteers(event_id?, limit?, after?): Observable<IPagination<IUsers>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
