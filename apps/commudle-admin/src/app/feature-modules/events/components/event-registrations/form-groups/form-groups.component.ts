@@ -174,4 +174,10 @@ export class FormGroupsComponent implements OnInit {
       },
     });
   }
+
+  onSwitchToggled(eventDataFormEntityGroupId) {
+    this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
+      this.toastLogService.successDialog('Payment Enabled');
+    });
+  }
 }

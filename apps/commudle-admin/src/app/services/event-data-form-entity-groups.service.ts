@@ -79,7 +79,7 @@ export class EventDataFormEntityGroupsService {
 
   togglePaidTicket(eventDataFormEntityGroupId): Observable<boolean> {
     return this.http.put<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.CHANGE_BULK_REGISTRATION_STATUS),
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.TOGGLE_IS_PAID),
       {
         event_data_form_entity_group_id: eventDataFormEntityGroupId,
       },
