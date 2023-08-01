@@ -2,6 +2,10 @@
   <nb-card>
     <nb-card-header>
       <h3>Edit Form</h3>
+      <commudle-alert
+        [error]="true"
+        errorMessage="Some questions might be uneditable because this form has responses"
+      ></commudle-alert>
 
       <div *ngIf="dataForm && dataForm.parent_type === 'Kommunity'">
         <button
@@ -95,7 +99,15 @@
                       <label>
                         Question {{ i + 1 }}
                         <span *ngIf="question.get('required').value" class="required-question">*</span>
-                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
+                        <input
+                          type="text"
+                          nbInput
+                          fullWidth
+                          formControlName="title"
+                          placeholder="Title*"
+                          required
+                          [readonly]="question.get('has_responses').value"
+                        />
                       </label>
                       <span
                         *ngIf="
@@ -132,13 +144,21 @@
                     </div>
 
                     <div class="question-settings">
-                      <div class="dropdown">
+                      <div
+                        class="dropdown"
+                        [ngClass]="{
+                          '!com-cursor-not-allowed': question.get('has_responses').value
+                        }"
+                      >
                         <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
 
                         <select
                           formControlName="question_type_id"
                           (change)="questionTypeChange($event, i)"
                           class="com-border-0"
+                          [ngClass]="{
+                            disable: question.get('has_responses').value
+                          }"
                         >
                           <option *ngFor="let qt of questionTypes" [ngValue]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
@@ -169,6 +189,7 @@
                               formControlName="title"
                               placeholder="Choice {{ chi + 1 }}"
                               required
+                              [readonly]="choice.value.has_responses"
                             />
                             <span
                               *ngIf="
@@ -233,6 +254,7 @@
                     </div>
                   </div>
                   <button
+                    *ngIf="!question.get('has_responses').value"
                     nbButton
                     size="small"
                     ghost
