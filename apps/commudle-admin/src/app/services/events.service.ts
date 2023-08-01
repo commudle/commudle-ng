@@ -231,11 +231,11 @@ export class EventsService {
 
   getEventsList(when, limit?, after?): Observable<IPagination<IEvents>> {
     let params = new HttpParams().set('when', when);
-    if (after) {
-      params = params.set('after', after);
-    }
     if (limit) {
       params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
     }
     return this.http.get<IPagination<IEvents>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), {
       params,

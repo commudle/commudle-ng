@@ -18,4 +18,10 @@
       ></commudle-event-mini-card>
     </div>
   </div>
+  <div class="load-more" *ngIf="pageInfo?.has_next_page">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+    <button [disabled]="showSpinner" (click)="getUpcomingEvents()" nbButton outline size="small" status="info">
+      Load More
+    </button>
+  </div>
 </div>
