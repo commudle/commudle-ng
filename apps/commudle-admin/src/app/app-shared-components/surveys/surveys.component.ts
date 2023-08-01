@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SurveysService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { FormResponsesComponent } from 'apps/shared-components/form-responses/form-responses.component';
@@ -8,6 +7,7 @@ import { ISurvey, ESurveyStatus } from 'apps/shared-models/survey.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
+import { SurveysService } from 'apps/commudle-admin/src/app/services/surveys.service';
 
 @Component({
   selector: 'commudle-surveys',
