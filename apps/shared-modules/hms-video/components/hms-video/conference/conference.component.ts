@@ -124,6 +124,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
     this.notificationUnsubscription?.();
+    this.hmsLiveChannel.unsubscribe(this.currentUser.id);
   }
 
   joinSession(): void {

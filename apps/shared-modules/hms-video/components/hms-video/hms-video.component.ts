@@ -94,30 +94,30 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
     );
 
     // Check if session has ended
-    this.subscriptions.push(
-      this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((data: any) => {
-        if (data) {
-          switch (data.action) {
-            case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
-              if (this.isInitialConnection) {
-                if (data.room_ended) {
-                  this.hmsVideoStateService.setState(EHmsStates.ENDED);
-                } else {
-                  this.hmsVideoStateService.setState(EHmsStates.INIT);
-                }
-
-                if (data.raised_hands.length) {
-                  data.raised_hands.forEach((userId: number) => this.hmsStageService.raiseHand(userId));
-                }
-
-                this.isInitialConnection = false;
+    this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((data: any) => {
+      if (data) {
+        switch (data.action) {
+          case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
+            if (this.isInitialConnection) {
+              if (data.room_ended) {
+                this.hmsVideoStateService.setState(EHmsStates.ENDED);
+              } else {
+                this.hmsVideoStateService.setState(EHmsStates.INIT);
               }
-              break;
+
+              if (data.raised_hands.length) {
+                data.raised_hands.forEach((userId: number) =>
+                  this.hmsStageService.raiseHand(typeof userId === 'string' ? parseInt(userId) : userId),
+                );
+              }
+
+              this.isInitialConnection = false;
             }
+            break;
           }
         }
-      }),
-    );
+      }
+    });
   }
 
   reload() {

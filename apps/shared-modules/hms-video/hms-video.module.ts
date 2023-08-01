@@ -25,6 +25,7 @@ import { ConferenceComponent } from './components/hms-video/conference/conferenc
 import { HmsVideoComponent } from './components/hms-video/hms-video.component';
 import { LocalPreviewComponent } from './components/hms-video/local-preview/local-preview.component';
 import { SelectRoleComponent } from './components/hms-video/select-role/select-role.component';
+import { HmsStageService } from './services/hms-stage.service';
 
 @NgModule({
   declarations: [
@@ -59,5 +60,6 @@ import { SelectRoleComponent } from './components/hms-video/select-role/select-r
     RouterModule,
   ],
   exports: [HmsVideoComponent],
+  providers: [HmsStageService],
 })
 export class HmsVideoModule {}

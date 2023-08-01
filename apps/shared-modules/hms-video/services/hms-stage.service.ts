@@ -8,7 +8,7 @@ export class HmsStageService {
   stageStatus: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   stageStatus$ = this.stageStatus.asObservable();
 
-  raisedHands: BehaviorSubject<number[]> = new BehaviorSubject<number[]>([]);
+  raisedHands: BehaviorSubject<Set<number>> = new BehaviorSubject<Set<number>>(new Set<number>());
   raisedHands$ = this.raisedHands.asObservable();
 
   constructor() {}
@@ -19,18 +19,21 @@ export class HmsStageService {
 
   raiseHand(userId: number) {
     const raisedHands = this.raisedHands.value;
-    if (raisedHands.indexOf(userId) === -1) {
-      raisedHands.push(userId);
+    if (!raisedHands.has(userId)) {
+      raisedHands.add(userId);
       this.raisedHands.next(raisedHands);
     }
   }
 
   lowerHand(userId: number) {
     const raisedHands = this.raisedHands.value;
-    const index = raisedHands.indexOf(userId);
-    if (index !== -1) {
-      raisedHands.splice(index, 1);
+    if (raisedHands.has(userId)) {
+      raisedHands.delete(userId);
       this.raisedHands.next(raisedHands);
     }
+  }
+
+  isRaisedHand(userId: number) {
+    return this.raisedHands.value.has(userId);
   }
 }

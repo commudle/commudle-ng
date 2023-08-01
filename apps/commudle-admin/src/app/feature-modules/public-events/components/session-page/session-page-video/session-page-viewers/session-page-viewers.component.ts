@@ -83,9 +83,9 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
               this.currentUser = currentUser;
             }
           }),
-          this.hmsStageService.raisedHands$.subscribe((raisedHands: number[]) => {
+          this.hmsStageService.raisedHands$.subscribe((raisedHands: Set<number>) => {
             this.usersList = this.usersList.map((user) => {
-              if (raisedHands.includes(user.id)) {
+              if (raisedHands.has(user.id)) {
                 return { ...user, is_raised_hand: true };
               }
               return { ...user, is_raised_hand: false };
@@ -120,7 +120,10 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
 
   getCurrentUsersList() {
     this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
-      this.usersList = data.users.map((user) => ({ ...user, is_raised_hand: false }));
+      this.usersList = data.users.map((user) => ({
+        ...user,
+        is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+      }));
       this.userCount.emit(this.usersList.length);
     });
   }
@@ -154,7 +157,14 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_ADD: {
-                  this.usersList = _.unionBy(this.usersList, [data.user], 'id');
+                  this.usersList = _.unionBy(
+                    this.usersList.map((user) => ({
+                      ...user,
+                      is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+                    })),
+                    [data.user],
+                    'id',
+                  );
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_REMOVE: {
