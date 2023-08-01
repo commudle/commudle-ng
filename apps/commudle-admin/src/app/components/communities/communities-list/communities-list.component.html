@@ -60,16 +60,16 @@
           appearance="outline"
           [text]="options[0]"
           size="small"
-          [removable]="events ? 'true' : 'false'"
-          [ngClass]="{ activeTag: events }"
+          [removable]="completed_events_count ? 'true' : 'false'"
+          [ngClass]="{ activeTag: completed_events_count }"
           (click)="filterByTags(options[0])"
         ></nb-tag>
         <nb-tag
           appearance="outline"
           [text]="options[1]"
           size="small"
-          [removable]="members ? 'true' : 'false'"
-          [ngClass]="{ activeTag: members }"
+          [removable]="members_count ? 'true' : 'false'"
+          [ngClass]="{ activeTag: members_count }"
           (click)="filterByTags(options[1])"
         ></nb-tag>
       </nb-tag-list>

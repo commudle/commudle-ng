@@ -156,4 +156,28 @@ export class CommunitiesService {
       { params },
     );
   }
+
+  getPopularCommunities(
+    after?: string,
+    limit?: number,
+    query?: string,
+    order_by?: string,
+  ): Observable<IPagination<ICommunity>> {
+    let params = new HttpParams();
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (query) {
+      params = params.set('query', query);
+    }
+    if (order_by) {
+      params = params.set('order_by', order_by);
+    }
+    return this.http.get<IPagination<ICommunity>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.INDEX), {
+      params,
+    });
+  }
 }

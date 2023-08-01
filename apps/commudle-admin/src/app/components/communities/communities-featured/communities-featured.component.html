@@ -30,15 +30,17 @@
           />
         </div> -->
         <div class="banner">
-          <div class="banner-image">
-            <img
-              alt="{{ featuredCommunity.community.name }} Profile Banner"
-              *ngIf="featuredCommunity.community.banner_image"
-              src="{{ featuredCommunity.community.banner_image.i320 }}"
-              title="{{ featuredCommunity.community.name }} Profile Banner"
-            />
-            <div *ngIf="!featuredCommunity.community.banner_image" class="no-banner-image"></div>
+          <div *ngIf="featuredCommunity.community.banner_image" class="banner-image">
+            <commudle-banner-image
+              [headerImagePath]="featuredCommunity.community.banner_image.i320"
+              [name]="featuredCommunity.community.name"
+              [aspectRatio]="'6/1'"
+              [bottomRightCurve]="false"
+              [bottomLeftCurve]="false"
+            ></commudle-banner-image>
           </div>
+          <div *ngIf="!featuredCommunity.community.banner_image" class="no-banner-image"></div>
+
           <div class="community-image">
             <img
               alt="{{ featuredCommunity.community.name }}"

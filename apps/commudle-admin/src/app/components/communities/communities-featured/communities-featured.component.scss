@@ -62,7 +62,8 @@ p {
         // }
 
         .banner {
-          @apply com-grid;
+          @apply com-grid com-relative;
+          @apply com-h-[72px];
 
           div {
             @apply com-col-start-1 com-row-start-1;
@@ -71,18 +72,19 @@ p {
           .banner-image {
             @apply com-h-[46px] com-overflow-hidden com-w-full;
 
-            img {
-              @apply com-h-full com-object-cover com-object-center com-w-full;
-            }
+            // img {
+            //   @apply com-h-full com-object-cover com-object-center com-w-full;
+            // }
+          }
 
-            .no-banner-image {
-              @apply com-h-[46px] com-bg-Anti-Flash-White;
-            }
+          .no-banner-image {
+            @apply com-h-[46px] com-bg-Anti-Flash-White;
           }
 
           .community-image {
-            @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[23px] com-overflow-hidden com-w-[52px];
+            @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[20px] com-overflow-hidden com-w-[52px];
             @apply com-flex;
+            @apply com-absolute com-top-0 com-left-0;
 
             img {
               // @apply com-h-full com-w-full;
@@ -103,6 +105,7 @@ p {
         .featured-community-about {
           @apply com-p-3 com-pb-0;
           @apply com-h-[172px];
+          @apply com-relative;
           // com-h-[148px]
 
           .featured-community-name {

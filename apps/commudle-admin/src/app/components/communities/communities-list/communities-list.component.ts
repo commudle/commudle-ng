@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-communities-list',
@@ -18,25 +21,24 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   page = 1;
   total: number;
   options = [];
-  events = false;
-  members = false;
+  completed_events_count = false;
+  members_count = false;
   subscriptions: Subscription[] = [];
   limit = 6;
   queryParamsString = '';
   searchForm;
+  pageInfo: IPageInfo;
+  order_by: string;
 
-  // tag = '';
-  // searchTags: string[] = [];
   // isLoading = false;
   // canLoadMore = true;
-  // page_info: IPageInfo;
-  // count = 6;
-  // searchField: FormControl = new FormControl();
-  // totalSearch = 0;
-  // listingPagesFilterTypes = ListingPagesFilterTypes;
 
-  constructor(private communitiesService: CommunitiesService, private fb: FormBuilder) {
-    // private activatedRoute: ActivatedRoute, private location: Location,
+  constructor(
+    private communitiesService: CommunitiesService,
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+  ) {
     this.options = ['Most Events', 'Most Members'];
     this.searchForm = this.fb.group({
       name: [''],
@@ -45,29 +47,49 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.search();
-    // this.getSearchTags();
-    this.getSearchResults();
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.members_count) {
+        this.members_count = true;
+        this.completed_events_count = false;
+        this.order_by = 'members_count';
+      }
+      if (params.completed_events_count) {
+        this.members_count = false;
+        this.completed_events_count = true;
+        this.order_by = 'completed_events_count';
+      }
+      if (params.query) {
+        this.query = params.query;
+        this.searchForm.get('name').setValue(this.query);
+      }
+    }
     this.communities = [];
+    if (!params.query) {
+      this.getPopularCommunities();
+    }
+    // this.getPopularCommunities();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  getSearchResults(): void {
+  getPopularCommunities(): void {
+    // console.log(this.query, 'query');
     this.showSpinner = true;
     this.skeletonLoaderCard = true;
-    // if (!this.page_info?.end_cursor) {
-    //   this.speakers = [];
-    // }
+    if (!this.pageInfo?.end_cursor) {
+      this.communities = [];
+    }
     this.subscriptions.push(
       this.communitiesService
-        .search(this.query, this.page, this.limit, this.events, this.members)
-        .subscribe((value) => {
-          this.communities = value.communities;
-          this.page = value.page;
-          this.limit = value.count;
-          this.total = value.total;
+        .getPopularCommunities(this.pageInfo?.end_cursor, this.limit, this.query, this.order_by)
+        .subscribe((data) => {
+          this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.total = data.total;
+          // console.log(this.total, 'total');
+          this.pageInfo = data.page_info;
           this.showSpinner = false;
           this.skeletonLoaderCard = false;
         }),
@@ -79,32 +101,58 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
       this.communities = [];
       this.query = this.searchForm.get('name').value;
-      this.getSearchResults();
+      // this.getPopularCommunities();
       // if (this.isLoadingSearch) {
       //   return;
       // }
-      // this.page_info = null;
+      this.pageInfo = null;
       // this.isLoadingSearch = true;
       // this.queryParamsString = this.query;
-      // this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
+      this.generateParams(this.members_count, this.completed_events_count, this.query);
     });
   }
 
   filterByTags(event) {
     if (event === this.options[0]) {
-      this.events = !this.events;
-      this.members = false;
+      this.completed_events_count = !this.completed_events_count;
+      this.members_count = false;
+      this.order_by = 'completed_events_count';
     }
     if (event === this.options[1]) {
-      this.events = false;
-      this.members = !this.members;
+      this.completed_events_count = false;
+      this.members_count = !this.members_count;
+      this.order_by = 'members_count';
+    }
+    if (!this.completed_events_count && !this.members_count) {
+      console.log('entered');
+      this.order_by = '';
     }
     this.skeletonLoaderCard = true;
     this.communities = [];
-    this.getSearchResults();
-    // this.page_info = null;
+    // this.getPopularCommunities();
+    this.pageInfo = null;
     // this.page = 1;
-    // this.generateParams(this.month, this.year, this.employee, this.employer, this.query);
+    this.generateParams(this.members_count, this.completed_events_count, this.query);
+  }
+
+  generateParams(members_count, completed_events_count, query) {
+    this.skeletonLoaderCard = true;
+    const queryParams: { [key: string]: any } = {};
+    if (members_count) {
+      queryParams.members_count = true;
+    }
+
+    if (completed_events_count) {
+      queryParams.completed_events_count = true;
+    }
+
+    if (query) {
+      queryParams.query = query;
+    }
+    const urlSearchParams = new URLSearchParams(queryParams);
+    const queryParamsString = urlSearchParams.toString();
+    this.location.replaceState(location.pathname, queryParamsString);
+    this.getPopularCommunities();
   }
 }
 
@@ -155,26 +203,6 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 //   this.getSpeakersList();
 // }
 
-// generateParams(monthly, yearly, query) {
-//   this.skeletonLoaderCard = true;
-//   const queryParams: { [key: string]: any } = {};
-//   if (monthly) {
-//     queryParams.monthly = true;
-//   }
-
-//   if (yearly) {
-//     queryParams.yearly = true;
-//   }
-
-//   if (query) {
-//     queryParams.query = query;
-//   }
-//   const urlSearchParams = new URLSearchParams(queryParams);
-//   const queryParamsString = urlSearchParams.toString();
-//   this.location.replaceState(location.pathname, queryParamsString);
-//   this.getSpeakersList();
-// }
-
 // resetFiltersAndSearch() {
 //   this.timePeriod = '';
 //   this.month = false;
@@ -186,4 +214,24 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 //   this.query = '';
 //   this.speakers = [];
 //   this.page_info = null;
+// }
+
+// getSearchResults(): void {
+//   this.showSpinner = true;
+//   this.skeletonLoaderCard = true;
+//   // if (!this.page_info?.end_cursor) {
+//   //   this.speakers = [];
+//   // }
+//   this.subscriptions.push(
+//     this.communitiesService
+//       .search(this.query, this.page, this.limit, this.events, this.members)
+//       .subscribe((value) => {
+//         this.communities = value.communities;
+//         this.page = value.page;
+//         this.limit = value.count;
+//         this.total = value.total;
+//         this.showSpinner = false;
+//         this.skeletonLoaderCard = false;
+//       }),
+//   );
 // }
