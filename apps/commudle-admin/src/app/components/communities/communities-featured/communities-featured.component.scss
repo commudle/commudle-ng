@@ -74,6 +74,10 @@ p {
             img {
               @apply com-h-full com-object-cover com-object-center com-w-full;
             }
+
+            .no-banner-image {
+              @apply com-h-[46px] com-bg-Anti-Flash-White;
+            }
           }
 
           .community-image {
@@ -126,7 +130,7 @@ p {
           }
 
           .featured-community-tags {
-            @apply com-h-6 com-mx-0 com-my-4;
+            @apply com-h-6 com-mx-0 com-my-4 com-overflow-hidden;
           }
         }
       }

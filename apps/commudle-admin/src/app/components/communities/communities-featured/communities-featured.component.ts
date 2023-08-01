@@ -37,13 +37,42 @@ export class CommunitiesFeaturedComponent implements OnInit {
       this.featuredCommunities = this.featuredCommunities.concat(
         data.page.reduce((acc, value) => [...acc, value.data], []),
       );
-      console.log(this.featuredCommunities);
+      // this.getTagNames();
       this.skeletonLoaderCard = false;
     });
   }
 
   // getTagNames() {
-  //   this.tags = Object.values(this.featuredCommunities.tags).map((tag) => tag.name);
-  //   return this.tags;
+  //   this.featuredCommunities.forEach((featuredCommunity) => {
+  //     this.tags = Object.values(featuredCommunity.tags).map((tag) => tag.name);
+  //     // console.log(this.tags);
+  //     return this.tags;
+  //   });
+  // }
+
+  // getTagNames() {
+  //   this.tags = [];
+  //   this.featuredCommunities.map((featuredCommunity) => {
+  //     const tags = featuredCommunity.community.tags.map((tag) => tag.name);
+  //     this.tagName = this.tags.concat(tags);
+  //     // return tags.map((tag) => tag.name);
+  //     // return featuredCommunity.community.tags.map((tag) => tag.name);
+  //   });
+  //   // return tags.flat();
+  // }
+
+  // getTagNames() {
+  //   // Initialize an empty array to store all the tags
+  //   const tags = [];
+
+  //   // Iterate through each featured community
+  //   this.featuredCommunities.forEach((featuredCommunity) => {
+  //     // Get the tags for the current community and add them to the 'tags' array
+  //     const communityTags = featuredCommunity.community.tags.map((tag) => tag.name);
+  //     tags.push(...communityTags);
+  //   });
+
+  //   // Return the accumulated 'tags' array
+  //   return tags;
   // }
 }

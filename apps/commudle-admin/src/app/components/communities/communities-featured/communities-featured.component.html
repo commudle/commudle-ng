@@ -31,17 +31,18 @@
         </div> -->
         <div class="banner">
           <div class="banner-image">
-            <!-- featuredCommunity.kommunity.profile_banner_image?.i906 || -->
             <img
               alt="{{ featuredCommunity.community.name }} Profile Banner"
-              src="{{ '/assets/images/User-Profile-Cover-Default.png' }}"
+              *ngIf="featuredCommunity.community.banner_image"
+              src="{{ featuredCommunity.community.banner_image.i320 }}"
               title="{{ featuredCommunity.community.name }} Profile Banner"
             />
+            <div *ngIf="!featuredCommunity.community.banner_image" class="no-banner-image"></div>
           </div>
           <div class="community-image">
             <img
               alt="{{ featuredCommunity.community.name }}"
-              src="{{ featuredCommunity.community.logo_image_path.i64 }}"
+              src="{{ featuredCommunity.community.logo_image?.i64 }}"
               title="{{ featuredCommunity.community.name }}"
             />
           </div>
@@ -55,16 +56,15 @@
             </p>
             <p class="events-organized"><nb-icon icon="calendar-outline"></nb-icon>count</p>
           </div>
-          <div class="featured-community-tags">
-            <p>tags</p>
-            <!-- <app-tag
+          <!-- <div class="featured-community-tags">
+            <app-tag
               [tags]="getTagNames()"
               [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
               [size]="'tiny'"
               [fontColor]="'#101828'"
               [maximumTag]="5"
-            ></app-tag> -->
-          </div>
+            ></app-tag>
+          </div> -->
         </div>
       </a>
       <div class="community-join-btn">
