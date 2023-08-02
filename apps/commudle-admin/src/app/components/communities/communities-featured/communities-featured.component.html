@@ -56,17 +56,19 @@
             <p class="members">
               <nb-icon icon="people-outline"></nb-icon>{{ featuredCommunity.community.member_count }}
             </p>
-            <p class="events-organized"><nb-icon icon="calendar-outline"></nb-icon>count</p>
+            <p class="events-organized">
+              <nb-icon icon="calendar-outline"></nb-icon>{{ featuredCommunity.community.completed_events_count }}
+            </p>
           </div>
-          <!-- <div class="featured-community-tags">
+          <div class="featured-community-tags">
             <app-tag
-              [tags]="getTagNames()"
+              [tags]="getTagNames(featuredCommunity.community)"
               [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
               [size]="'tiny'"
               [fontColor]="'#101828'"
               [maximumTag]="5"
             ></app-tag>
-          </div> -->
+          </div>
         </div>
       </a>
       <div class="community-join-btn">

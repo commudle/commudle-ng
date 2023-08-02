@@ -41,7 +41,7 @@ p {
 }
 
 .community-card-suffix {
-  @apply com-flex com-flex-col;
+  @apply com-flex com-flex-col com-h-[160px];
 
   .community-card-about {
     @apply com-text-gunmetal com-text-xs com-font-normal com-line-clamp-4 com-h-16 com-mb-4;

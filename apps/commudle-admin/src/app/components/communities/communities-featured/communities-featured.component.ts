@@ -37,18 +37,18 @@ export class CommunitiesFeaturedComponent implements OnInit {
       this.featuredCommunities = this.featuredCommunities.concat(
         data.page.reduce((acc, value) => [...acc, value.data], []),
       );
-      // this.getTagNames();
       this.skeletonLoaderCard = false;
     });
   }
 
-  // getTagNames() {
-  //   this.featuredCommunities.forEach((featuredCommunity) => {
-  //     this.tags = Object.values(featuredCommunity.tags).map((tag) => tag.name);
-  //     // console.log(this.tags);
-  //     return this.tags;
-  //   });
-  // }
+  getTagNames(community) {
+    // this.featuredCommunities.forEach((featuredCommunity) => {
+    // if (community.tags) {
+    this.tags = community.tags.map((tag) => tag.name);
+    // }
+    // });
+    return this.tags;
+  }
 
   // getTagNames() {
   //   this.tags = [];

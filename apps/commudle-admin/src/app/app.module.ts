@@ -110,6 +110,7 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -190,6 +191,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PublicHomeListSpeakersModule,
     PublicHomeListEventsModule,
     SkeletonVerticalCardsComponent,
+    InfiniteScrollModule,
 
     // external service modules
     LibErrorHandlerModule,

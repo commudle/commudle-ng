@@ -7,6 +7,7 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'app-communities-list',
@@ -29,15 +30,16 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   searchForm;
   pageInfo: IPageInfo;
   order_by: string;
-
-  // isLoading = false;
-  // canLoadMore = true;
+  isLoading = false;
+  canLoadMore = true;
+  seoTitle: string;
 
   constructor(
     private communitiesService: CommunitiesService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private location: Location,
+    private seoService: SeoService,
   ) {
     this.options = ['Most Events', 'Most Members'];
     this.searchForm = this.fb.group({
@@ -65,6 +67,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
       }
     }
     this.communities = [];
+    this.updateSeoTitle();
     if (!params.query) {
       this.getPopularCommunities();
     }
@@ -73,6 +76,18 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  updateSeoTitle() {
+    this.seoTitle = this.query
+      ? `${this.query}-Host & Build Your Own Thriving Dev Community`
+      : 'Host & Build Your Own Thriving Dev Community';
+
+    this.seoService.setTags(
+      this.seoTitle,
+      'Commudle is the best platform for dev communities and forums. Connect with more than 40,000 developers & their communities from diverse backgrounds who constantly share & learn and stay up to date. Sign up now!',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   getPopularCommunities(): void {
@@ -149,6 +164,8 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     if (query) {
       queryParams.query = query;
     }
+    this.seoTitle = this.query;
+    this.updateSeoTitle();
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
