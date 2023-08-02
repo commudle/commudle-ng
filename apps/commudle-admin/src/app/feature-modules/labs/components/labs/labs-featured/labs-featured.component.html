@@ -1,0 +1,28 @@
+<nb-card
+  [ngClass]="{
+    'container-scroll': isMobileView || showCardsHorizontal,
+    container: !(isMobileView || showCardsHorizontal)
+  }"
+>
+  <nb-card-body>
+    <div class="heading">
+      <h3 class="title">Explore Labs from folks and learn</h3>
+      <h4 class="sub-heading">Check out labs from community folks</h4>
+    </div>
+    <!-- <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards> -->
+    <div
+      [ngClass]="{
+        'featured-communities-scroll': isMobileView || showCardsHorizontal,
+        'featured-communities': !(isMobileView || showCardsHorizontal)
+      }"
+      class="custom-scrollbar"
+    >
+      <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
+        <!-- <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+          [horizontalScroll]="isMobileView || showCardsHorizontal"
+        ></commudle-featured-communities-card> -->
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
