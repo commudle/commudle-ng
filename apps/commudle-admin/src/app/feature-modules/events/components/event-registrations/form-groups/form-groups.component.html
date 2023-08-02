@@ -210,8 +210,10 @@
                   'com-text-[#8E9BB3]':
                     eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
                 }"
+                (change)="changeDataFormValue($event.target)"
               >
                 <option disabled selected value="">Which Form?</option>
+                <option value="createNewForm" (click)="openNewFormWindow()">Create New Form</option>
                 <option *ngFor="let df of communityDataForms" [value]="df.id">
                   {{ df.name | titlecase }}
                 </option>
@@ -243,7 +245,10 @@
 
       <div class="save-button-bottom">
         <button
-          [disabled]="!eventDataFormEntityGroupForm.valid"
+          [disabled]="
+            !eventDataFormEntityGroupForm.valid ||
+            eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === 'createNewForm'
+          "
           fullWidth
           nbButton
           outline
