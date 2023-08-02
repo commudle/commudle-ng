@@ -703,4 +703,10 @@ export const API_ROUTES = {
     CREATE: 'api/v2/stripe_connect_accounts',
     RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
   },
+
+  DISCOUNT_CODES: {
+    CREATE: 'api/v2/discount_codes', //post
+    UPDATE: 'api/v2/discount_codes', //put
+    INDEX: 'api/v2/discount_codes', //get
+  },
 };

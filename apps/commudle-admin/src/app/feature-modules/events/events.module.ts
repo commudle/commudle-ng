@@ -70,6 +70,7 @@ import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.compone
 import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 import { EventAgendaComponent } from './components/event-agenda/event-agenda.component';
 import { EventRegistrationsComponent } from './components/event-registrations/event-registrations.component';
+import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { EventRegistrationsComponent } from './components/event-registrations/ev
     ExitPassScanComponent,
     EventAgendaComponent,
     EventRegistrationsComponent,
+    DiscountCouponsComponent,
   ],
   imports: [
     CommonModule,
