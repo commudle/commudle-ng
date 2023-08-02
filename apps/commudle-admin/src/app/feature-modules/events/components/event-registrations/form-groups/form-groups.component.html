@@ -38,7 +38,7 @@
             </div>
             <div>
               <label class="switch">
-                <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" />
+                <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
                 <span class="slider round"></span>
               </label>
             </div>
