@@ -135,7 +135,7 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(after?, limit?, event_id?): Observable<IPagination<IUsers>> {
+  pGetEventVolunteers(event_id?, limit?, after?): Observable<IPagination<IUsers>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
