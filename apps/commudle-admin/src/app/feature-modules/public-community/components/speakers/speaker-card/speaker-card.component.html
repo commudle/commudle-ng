@@ -70,7 +70,12 @@
           ></app-tag>
         </div>
         <div class="user-follow-button">
-          <app-user-follow [username]="speaker.username" [isMobileWidthFull]="true"></app-user-follow>
+          <app-user-follow
+            [username]="speaker.username"
+            [name]="speaker.name"
+            [userId]="speaker.id"
+            [isMobileWidthFull]="true"
+          ></app-user-follow>
         </div>
       </div>
     </div>

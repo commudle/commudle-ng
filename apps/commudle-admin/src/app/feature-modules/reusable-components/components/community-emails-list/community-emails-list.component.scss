@@ -1,13 +1,7 @@
 .community-emails {
   nb-card {
-    @apply com-mx-0 md:com-mx-2 com-my-4;
-    height: 450px;
-
-    nb-card-header {
-      background: #ececec;
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
+    @apply com-mx-0  com-my-6;
+    height: 70vh;
 
     nb-list {
       nb-list-item {

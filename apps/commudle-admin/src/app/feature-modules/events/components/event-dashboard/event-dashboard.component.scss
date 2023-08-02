@@ -1,57 +1,106 @@
-a {
-  width: max-content;
+.event-details {
+  @apply com-p-4 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  .event-name {
+    @apply com-m-0 com-text-3xl;
+  }
+
+  .text {
+    @apply com-text-base com-m-0 com-mb-2 md:com-mb-0;
+  }
+}
+.header {
+  @apply com-bg-white com-h-28 com-border com-border-solid com-border-Bright-Gray com-border-t-0 com-flex;
 }
 
-.base-layout {
-  .container {
-    .one-column-layout {
-      .event-heading {
-        @apply com-mx-0 md:com-mx-2 com-my-4;
+.sidebar {
+  @apply com-w-80 com-sticky com-top-16 com-h-[calc(100vh-70px)];
+
+  a {
+    @apply com-text-inherit com-no-underline;
+  }
+  .action-buttons {
+    @apply com-p-4;
+    .back-admin {
+      .icon {
+        @apply com-text-[#8F9BB3];
       }
-      .event-stats {
-        @apply com-m-0 md:com-mx-2 com-my-4;
+      .heading {
+        @apply com-text-xs com-text-[#8F9BB3];
       }
-      .event-dashboard-menu {
-        @apply com-sticky com-top-14 com-z-10 com-m-0 md:com-mx-2 com-my-4;
+    }
 
-        nb-card-body {
-          @apply com-px-0;
-
-          nb-actions {
-            nb-action {
-              @apply com-px-3;
-
-              nb-icon {
-                @apply com-text-xl;
-              }
-
-              span {
-                @apply com-text-base com-ml-2 com-font-semibold;
-              }
-            }
-          }
+    .category-heading {
+      @apply com-text-sm com-font-semibold com-my-2;
+    }
+    .divided-line {
+      @apply com-border com-border-solid com-border-Bright-Gray;
+    }
+    .action-button {
+      @apply com-p-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
+      &.active {
+        @apply com-bg-Bright-Gray-Light;
+      }
+      .icon {
+        @apply com-text-lg com-text-[#8F9BB3];
+      }
+      .heading {
+        @apply com-text-sm com-font-light;
+      }
+      &.public-event-page {
+        @apply com-text-Azure;
+        .icon {
+          @apply com-text-Azure;
         }
       }
+      &.stats {
+        @apply com-text-Caribbean-Green;
+        .icon {
+          @apply com-text-Caribbean-Green;
+        }
+      }
+    }
 
-      .event-update,
-      .registrations,
-      .agenda,
-      .collaborations,
-      .volunteers,
-      .sponsors,
-      .updates {
-        @apply com-mx-0 md:com-mx-2 com-my-4;
+    .action-button:hover {
+      @apply com-bg-Bright-Gray-Light;
+    }
+  }
+}
+a {
+  @apply com-flex com-gap-2 com-items-center;
+}
+.right-column {
+  @apply com-w-full  md:com-w-[calc(100%-320px)];
+}
+
+.event-dashboard-menu {
+  @apply com-sticky com-top-16 com-z-10;
+  nb-card {
+    @apply com-mx-0;
+    nb-card-body {
+      @apply com-p-0;
+
+      div {
+        @apply com-flex;
+        .action-button {
+          @apply com-p-2 com-flex com-gap-2 com-items-center  com-text-inherit com-no-underline com-w-max;
+          &.active {
+            @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
+            .heading {
+              @apply com-text-primary-500;
+            }
+          }
+          .icon {
+            @apply com-text-lg com-text-[#8F9BB3];
+          }
+          .heading {
+            @apply com-text-base com-font-medium com-w-max;
+          }
+        }
       }
     }
   }
 }
 
-.stats {
-  @apply com-flex com-justify-evenly com-flex-wrap;
-  p {
-    @apply com-text-center com-text-base;
-  }
-  span {
-    @apply com-font-medium;
-  }
+.router {
+  @apply com-my-4 md:com-mx-4 com-mx-0;
 }

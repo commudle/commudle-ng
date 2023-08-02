@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header class="d-flex align-items-center justify-content-space-between">
+    Delete a Featured Community Build
+    <button (click)="close()" ghost nbButton size="small">
+      <nb-icon icon="close"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>Are you sure you want to delete?</nb-card-body>
+  <nb-card-footer class="d-flex justify-content-space-between">
+    <button (click)="deleteFeaturedCommunity()" nbButton status="success">Yes</button>
+    <button (click)="close()" nbButton status="danger">No</button>
+  </nb-card-footer>
+</nb-card>

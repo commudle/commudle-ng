@@ -15,6 +15,12 @@ export const API_ROUTES = {
     TOGGLE_MULTI_RESPONSE: 'api/v2/admin_surveys/toggle_multi_response',
     UPDATE_STATUS: 'api/v2/admin_surveys/update_status',
   },
+  SURVEYS: {
+    INDEX: 'api/v2/surveys',
+    CREATE: 'api/v2/surveys',
+    TOGGLE_MULTI_RESPONSE: 'api/v2/surveys/toggle_multi_response',
+    UPDATE_STATUS: 'api/v2/surveys/update_status',
+  },
 
   // communities
   COMMUNITIES: {
@@ -125,6 +131,7 @@ export const API_ROUTES = {
   CREATE_DATA_FORM: 'api/v2/data_forms',
   UPDATE_DATA_FORM: 'api/v2/data_forms',
   CLONE_COMMUNITY_DATA_FORM: 'api/v2/data_forms/clone_community_data_form',
+  LIST: 'api/v2/data_forms/list',
 
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
@@ -157,6 +164,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/events',
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
+    CLONE: 'api/v2/events/clone',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
     UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
@@ -181,6 +189,7 @@ export const API_ROUTES = {
       POLLS: 'api/v2/events/public/polls',
       SPEAKERS_LIST: 'api/v2/events/public/speakers_list',
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
+      SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
     },
   },
 
@@ -193,7 +202,7 @@ export const API_ROUTES = {
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
-
+    TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
@@ -227,6 +236,16 @@ export const API_ROUTES = {
     DELETE: 'api/v2/featured_communities',
     PUBLIC: {
       SHOW: 'api/v2/featured_communities/public/show',
+    },
+  },
+
+  FEATURED_ITEMS: {
+    INDEX: 'api/v2/featured_items',
+    CREATE: 'api/v2/featured_items',
+    UPDATE: 'api/v2/featured_items',
+    DELETE: 'api/v2/featured_items',
+    PUBLIC: {
+      SHOW: 'api/v2/featured_items/public',
     },
   },
 
@@ -379,6 +398,7 @@ export const API_ROUTES = {
 
   SEARCH: {
     INDEX: 'api/v2/search',
+    SCOPE: 'api/v2/search/scope',
   },
 
   // user_roles_users
@@ -676,5 +696,11 @@ export const API_ROUTES = {
     UPDATE_STATUS: 'api/v2/job_applications/update_status',
     UPDATE: 'api/v2/job_applications',
     DESTROY: 'api/v2/job_applications',
+  },
+
+  STRIPE_HANDLER: {
+    INDEX: 'api/v2/stripe_connect_accounts',
+    CREATE: 'api/v2/stripe_connect_accounts',
+    RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
   },
 };

@@ -11,6 +11,7 @@ import { ChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/c
 import { EventsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/events/events.component';
 import { CommunityComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/community/community.component';
 import { CommunityGroupDetailsResolver } from 'apps/commudle-admin/src/app/feature-modules/community-groups/Resolver/community-group-details.resolver';
+import { CommunityGroupsSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-groups-surveys/community-groups-surveys.component';
 
 const routes = [
   {
@@ -69,6 +70,14 @@ const routes = [
       {
         path: 'members',
         component: MembersListComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'surveys',
+        component: CommunityGroupsSurveysComponent,
         canActivate: [AuthGuard],
         data: {
           expectedRoles: [EUserRoles.COMMUNITY_ADMIN],

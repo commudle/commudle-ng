@@ -1,0 +1,35 @@
+<section class="com-p-4">
+  <div class="com-flex com-justify-end com-my-3">
+    <button nbButton status="success" (click)="connectStripeAccount()" [disabled]="isLoading">Stripe Connect</button>
+  </div>
+
+  <div *ngIf="isLoading">
+    <p class="com-text-center com-font-bold">Connecting to Stripe Account......</p>
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <app-loading-spinner *ngIf="isUpdating"></app-loading-spinner>
+
+  <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
+    <tr>
+      <th>Active</th>
+      <th>Acc no</th>
+      <th>Charges Enabled</th>
+      <th>Payouts Enabled</th>
+    </tr>
+    <tr *ngFor="let stripeAccount of stripeAccounts">
+      <td>
+        <p>{{ stripeAccount.active }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.id }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.charges_enabled }}</p>
+      </td>
+      <td>
+        <p>{{ stripeAccount.details.payouts_enabled }}</p>
+      </td>
+    </tr>
+  </table>
+</section>

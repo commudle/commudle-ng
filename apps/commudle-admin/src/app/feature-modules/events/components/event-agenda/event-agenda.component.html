@@ -1,0 +1,66 @@
+<div>
+  <nb-card class="agenda">
+    <nb-card-header>
+      <h6>
+        <nb-icon icon="calendar-outline"></nb-icon>
+        Agenda
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="event.editable" class="com-flex com-gap-4">
+        <p>
+          Simple Hosting
+          <br />
+          (online only)
+        </p>
+        <nb-toggle
+          (checkedChange)="updateAgendaType($event)"
+          [checked]="event.custom_agenda"
+          [disabled]="!event.custom_registration || !event.start_time"
+          status="primary"
+        >
+        </nb-toggle>
+        <p>
+          Custom Schedule
+          <br />
+          (online/offline with Multiple Tracks)
+        </p>
+      </div>
+      <div *ngIf="!event.start_time">
+        <nb-alert accent="info">
+          <a
+            [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']"
+            ghost
+            nbButton
+            status="info"
+          >
+            Click Here to Enable the schedule options by adding date and time to this event.
+          </a>
+        </nb-alert>
+      </div>
+      <div *ngIf="event.start_time">
+        <a
+          *ngIf="!event.custom_agenda"
+          [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+          target="_blank"
+        >
+          Public Session Page
+          <nb-icon icon="external-link"></nb-icon>
+        </a>
+        <p *ngIf="event.custom_registration">
+          <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>
+        </p>
+        <app-event-locations *ngIf="event.custom_agenda" [community]="community" [event]="event"></app-event-locations>
+        <app-event-speakers
+          *ngIf="!event.custom_agenda && !event.custom_registration"
+          [event]="event"
+        ></app-event-speakers>
+        <app-event-embedded-video-stream
+          *ngIf="!event.custom_agenda"
+          [community]="community"
+          [event]="event"
+        ></app-event-embedded-video-stream>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

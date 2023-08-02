@@ -16,12 +16,16 @@ nb-card {
     .user-profile-card-large {
       @apply com-flex md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 md:com-mx-3 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
       .user-profile-card-large-card {
-        @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-b md:com-border-0 com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 com-h-[178px] md:com-h-auto;
+        @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-b md:com-border-0 com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4 com-h-[218px] md:com-h-auto;
       }
     }
 
     .load-more {
-      @apply com-text-center md:com-mt-4 com-mt-0 com-p-0;
+      @apply com-text-center com-m-0 com-p-0;
+    }
+
+    .loading-spinner {
+      @apply com-my-4;
     }
   }
 }

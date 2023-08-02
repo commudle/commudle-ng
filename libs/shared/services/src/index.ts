@@ -12,3 +12,4 @@ export * from './lib/vote.service';
 export * from './lib/community-channels.service';
 export * from './lib/app-users.service';
 export * from './lib/community-channel-manager.service';
+export * from './lib/stripe-handler.service';

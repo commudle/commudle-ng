@@ -4,7 +4,7 @@ import { AdminBadgesAssignComponent } from './components/admin-badges/admin-badg
 import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
 import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
 import { AdminBadgesComponent } from './components/admin-badges/admin-badges.component';
-import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-communities/admin-featured-communities.component';
+import { AdminFeaturedCommunitiesComponent } from './components/admin-featured/admin-featured-communities/admin-featured-communities.component';
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
 import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
 import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
@@ -16,6 +16,12 @@ import { CommunityBuildsComponent } from './components/community-builds/communit
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminComponent } from './sys-admin.component';
+import { AdminFeaturedComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured.component';
+import { FeaturedCommunityBuildsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/featured-community-builds/featured-community-builds.component';
+import { AdminFeaturedLabsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-labs/admin-featured-labs.component';
+import { AdminFeaturedEventsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-events/admin-featured-events.component';
+import { AdminFeaturedUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-users/admin-featured-users.component';
+import { AdminFeaturedCommunitiesChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-communities-channels/admin-featured-communities-channels.component';
 
 const routes = [
   {
@@ -78,7 +84,33 @@ const routes = [
       },
       {
         path: 'featured-communities',
-        component: AdminFeaturedCommunitiesComponent,
+        component: AdminFeaturedComponent,
+        children: [
+          {
+            path: '',
+            component: AdminFeaturedCommunitiesComponent,
+          },
+          {
+            path: 'featured-builds',
+            component: FeaturedCommunityBuildsComponent,
+          },
+          {
+            path: 'featured-labs',
+            component: AdminFeaturedLabsComponent,
+          },
+          {
+            path: 'featured-events',
+            component: AdminFeaturedEventsComponent,
+          },
+          // {
+          //   path: 'featured-users',
+          //   component: AdminFeaturedUsersComponent,
+          // },
+          // {
+          //   path: 'featured-channels',
+          //   component: AdminFeaturedCommunitiesChannelsComponent,
+          // },
+        ],
       },
       {
         path: 'community-builds',

@@ -1,13 +1,9 @@
 <div class="base-layout">
   <div class="container">
     <div class="one-column-layout" *ngIf="communityGroup">
-      <commudle-sidebar
-        [isExpanded]="sidebarExpanded"
-        (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
-        [heading]="communityGroup.name"
-        [expandedWidth]="'large'"
-      >
-        <div [ngClass]="{ expanded: sidebarExpanded }">
+      <div *ngIf="showSideBar"></div>
+      <commudle-sidebar [heading]="communityGroup.name" [expandedWidth]="'large'" [eventName]="'communityGroup'">
+        <div [ngClass]="{ expanded: sidebarService.getSidebarVisibility('communityGroup') | async }">
           <div class="content">
             <div class="link">
               <div
@@ -44,6 +40,14 @@
                   <fa-icon [icon]="faPenToSquare"></fa-icon>
                 </div>
                 <div class="title">Edit Details</div>
+              </div>
+            </div>
+            <div class="link">
+              <div class="content" [routerLink]="['surveys']" [routerLinkActive]="'active'">
+                <div class="icon">
+                  <fa-icon [icon]="faPoll"></fa-icon>
+                </div>
+                <div class="title">Surveys</div>
               </div>
             </div>
           </div>
