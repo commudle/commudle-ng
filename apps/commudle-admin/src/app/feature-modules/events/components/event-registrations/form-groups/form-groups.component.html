@@ -2,135 +2,146 @@
   <div>
     <nb-list *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
-        <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
-          <div class="display-details">
-            <div class="copy-link clickable">
-              <a
-                *ngIf="event.editable"
-                [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
-                class="text-primary"
-                target="_blank"
-              >
-                <nb-icon icon="external-link"></nb-icon>
-                <br />
-                <small>Link to fill</small>
-              </a>
-            </div>
-            <div class="basic-details">
-              <p>
-                {{ edfeg.name }}
-                <br />
-                <span class="com-text-xs"
-                  >Form type:
-                  <strong>
-                    {{ edfeg.registration_type.name | titlecase }}
-                  </strong>
-                </span>
-                <br />
-                <a
-                  [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']"
-                  target="_blank"
-                  class="com-mt-1 com-no-underline com-text-xs"
-                >
-                  {{ edfeg.data_form_entity.name }} Edit
-                </a>
-              </p>
-            </div>
+        <div *ngIf="edfeg.data_form_entity" class="com-bg-[#f4f7ff] com-w-full">
+          <div class="edfeg-details">
             <div>
-              <label class="switch">
-                <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
-                <span class="slider round"></span>
-              </label>
+              <div class="display-details">
+                <div class="copy-link clickable">
+                  <a
+                    *ngIf="event.editable"
+                    [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
+                    class="text-primary"
+                    target="_blank"
+                  >
+                    <nb-icon icon="external-link"></nb-icon>
+                    <br />
+                    <small>Link to fill</small>
+                  </a>
+                </div>
+                <div class="basic-details">
+                  <p>
+                    {{ edfeg.name }}
+                    <br />
+                    <span class="com-text-xs"
+                      >Form type:
+                      <strong>
+                        {{ edfeg.registration_type.name | titlecase }}
+                      </strong>
+                    </span>
+                    <br />
+                    <a
+                      [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']"
+                      target="_blank"
+                      class="com-mt-1 com-no-underline com-text-xs"
+                    >
+                      {{ edfeg.data_form_entity.name }} Edit
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <commudle-payment-settings
+                  [communityId]="community.id"
+                  [edfeg]="edfeg"
+                  [stripeAccounts]="stripeAccounts"
+                ></commudle-payment-settings>
+              </div>
             </div>
-          </div>
 
-          <div class="stats">
-            <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
-          </div>
-          <div class="actions">
-            <div class="dropdown">
-              <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
-                <option
-                  value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.YET_TO_ANNOUNCE"
-                >
-                  Yet to announce
-                </option>
-                <option
-                  value="{{ visibilityOptions.OPEN_BUT_INVISIBLE }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN_BUT_INVISIBLE"
-                >
-                  Open but invisible
-                </option>
-                <option
-                  value="{{ visibilityOptions.OPEN }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN"
-                >
-                  Open to all
-                </option>
-                <option
-                  value="{{ visibilityOptions.CLOSED }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.CLOSED"
-                >
-                  Closed to all
-                </option>
-                <option
-                  value="{{ visibilityOptions.ON_THE_SPOT_UNINVITED }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.ON_THE_SPOT_UNINVITED"
-                >
-                  On the spot uninvited
-                </option>
-                <option
-                  value="{{ visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED }}"
-                  [selected]="edfeg.data_form_entity.visibility === visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED"
-                >
-                  Members who have attended
-                </option>
-              </select>
+            <div class="stats">
+              <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
             </div>
-            <div>
-              <a
-                [queryParams]="{
-                  parent_type: 'EventDataFormEntityGroup',
-                  parent_id: edfeg.id,
-                  data_form_id: edfeg.data_form_entity.data_form_id
-                }"
-                [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
-                nbButton
-                size="tiny"
-                status="info"
+            <div class="actions">
+              <div class="dropdown">
+                <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
+                  <option
+                    value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.YET_TO_ANNOUNCE"
+                  >
+                    Yet to announce
+                  </option>
+                  <option
+                    value="{{ visibilityOptions.OPEN_BUT_INVISIBLE }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN_BUT_INVISIBLE"
+                  >
+                    Open but invisible
+                  </option>
+                  <option
+                    value="{{ visibilityOptions.OPEN }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.OPEN"
+                  >
+                    Open to all
+                  </option>
+                  <option
+                    value="{{ visibilityOptions.CLOSED }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.CLOSED"
+                  >
+                    Closed to all
+                  </option>
+                  <option
+                    value="{{ visibilityOptions.ON_THE_SPOT_UNINVITED }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.ON_THE_SPOT_UNINVITED"
+                  >
+                    On the spot uninvited
+                  </option>
+                  <option
+                    value="{{ visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED }}"
+                    [selected]="edfeg.data_form_entity.visibility === visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED"
+                  >
+                    Members who have attended
+                  </option>
+                </select>
+              </div>
+              <div>
+                <a
+                  [queryParams]="{
+                    parent_type: 'EventDataFormEntityGroup',
+                    parent_id: edfeg.id,
+                    data_form_id: edfeg.data_form_entity.data_form_id
+                  }"
+                  [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
+                  nbButton
+                  size="tiny"
+                  status="info"
+                >
+                  Show Responses
+                </a>
+              </div>
+              <div
+                *ngIf="
+                  [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                  event.editable
+                "
               >
-                Show Responses
-              </a>
-            </div>
-            <div
-              *ngIf="
-                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
-                event.editable
-              "
-            >
-              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
-                Allow RSVP
-              </nb-toggle>
-            </div>
-            <div *ngIf="event.editable">
-              <a (click)="openEmailWindow(edfeg)" nbButton outline size="tiny" status="info">
-                <fa-icon [icon]="faEnvelope"></fa-icon>
-                &nbsp; Send By EMail
-              </a>
-            </div>
-            <div *ngIf="edfeg.responses_count >= 0">
-              <a
-                (click)="deleteEventDataFormEntityGroup(edfeg.id)"
-                *ngIf="edfeg.responses_count === 0"
-                nbButton
-                outline
-                size="tiny"
-                status="danger"
-              >
-                <fa-icon [icon]="faTimesCircle"></fa-icon>
-                &nbsp; Delete
-              </a>
+                <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                  Allow RSVP
+                </nb-toggle>
+              </div>
+              <div *ngIf="event.editable">
+                <a (click)="openEmailWindow(edfeg)" nbButton outline size="tiny" status="info">
+                  <fa-icon [icon]="faEnvelope"></fa-icon>
+                  &nbsp; Send By EMail
+                </a>
+              </div>
+              <div *ngIf="edfeg.responses_count >= 0">
+                <a
+                  (click)="deleteEventDataFormEntityGroup(edfeg.id)"
+                  *ngIf="edfeg.responses_count === 0"
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="danger"
+                >
+                  <fa-icon [icon]="faTimesCircle"></fa-icon>
+                  &nbsp; Delete
+                </a>
+              </div>
             </div>
           </div>
         </div>

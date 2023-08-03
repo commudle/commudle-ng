@@ -14,3 +14,4 @@ export * from './lib/app-users.service';
 export * from './lib/community-channel-manager.service';
 export * from './lib/stripe-handler.service';
 export * from './lib/discount-codes-handler.service';
+export * from './lib/payment-setting.service';

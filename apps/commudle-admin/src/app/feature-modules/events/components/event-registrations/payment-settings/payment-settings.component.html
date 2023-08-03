@@ -1,0 +1,89 @@
+<div *ngIf="edfeg.is_paid" class="com-m-4">
+  <form [formGroup]="paidTicketingForm">
+    <div formGroupName="paid_ticket_setting" class="com-flex com-w-full com-gap-3">
+      <!-- Price* -->
+      <label>
+        Price*
+        <input fieldSize="small" formControlName="price" placeholder="Price" fullWidth nbInput type="number" />
+        <span
+          *ngIf="
+            paidTicketingForm.controls.paid_ticket_setting.get('price').touched &&
+            paidTicketingForm.controls.paid_ticket_setting.get('price').invalid &&
+            paidTicketingForm.controls.paid_ticket_setting.get('price').errors.required
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+        </span>
+      </label>
+
+      <!-- Bank Ac* -->
+      <label>
+        Bank Ac*
+        <br />
+        <div class="select !com-mt-0">
+          <select
+            formControlName="bank_ac_id"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').value === ''
+            }"
+          >
+            <option value="" selected disabled>Select Bank Ac</option>
+            <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
+              {{ rt.details.id | titlecase }}
+            </option>
+          </select>
+        </div>
+        <span
+          *ngIf="
+            paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').touched &&
+            paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').invalid &&
+            paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').errors.required
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Please select form type'"></commudle-alert>
+        </span>
+      </label>
+
+      <!-- Currency* -->
+      <label>
+        Currency*
+        <br />
+        <div class="select !com-mt-0">
+          <select
+            formControlName="currency"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('currency').value === ''
+            }"
+          >
+            <option value="" selected disabled>Currency</option>
+            <option value="inr">INR</option>
+            <option value="dollar">Dollar</option>
+          </select>
+        </div>
+        <span
+          *ngIf="
+            paidTicketingForm.controls.paid_ticket_setting.get('currency').touched &&
+            paidTicketingForm.controls.paid_ticket_setting.get('currency').invalid &&
+            paidTicketingForm.controls.paid_ticket_setting.get('currency').errors.required
+          "
+        >
+          <commudle-alert [error]="true" [errorMessage]="'Please select form type'"></commudle-alert>
+        </span>
+      </label>
+    </div>
+    <div class="save-button-bottom">
+      <button
+        (click)="createPaidTicketing()"
+        [disabled]="!paidTicketingForm.valid"
+        fullWidth
+        nbButton
+        outline
+        size="small"
+        status="primary"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

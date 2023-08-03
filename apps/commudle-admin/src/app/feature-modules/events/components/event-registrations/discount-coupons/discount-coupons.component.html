@@ -16,8 +16,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
-      <form [formGroup]="discountCouponForm" class="com-flex com-flex-col com-space-y-3">
-        <div formGroupName="discount_code">
+      <form [formGroup]="discountCouponForm">
+        <div formGroupName="discount_code" class="com-flex com-flex-col com-gap-3">
           <!-- Name -->
           <label>
             Name*
@@ -28,30 +28,29 @@
           <label class="com-col-span-1">
             Discount type*
             <nb-select formControlName="discount_type" fullWidth>
-              <nb-option value="percent"> Percentage </nb-option>
-              <nb-option value="percent"> Percentage </nb-option>
+              <nb-option value="percent"> Percent </nb-option>
+              <nb-option value="value"> Value </nb-option>
             </nb-select>
           </label>
 
           <!-- Is Limited* -->
           <label class="com-col-span-1">
             Is Limited*
-            <nb-select formControlName="is_limited" fullWidth>
-              <nb-option value="true"> Yes </nb-option>
-              <nb-option value="false"> No </nb-option>
-            </nb-select>
+            <input formControlName="is_limited" type="checkbox" />
+          </label>
+          <!-- Max Limit* -->
+          <label
+            class="com-col-span-1"
+            *ngIf="discountCouponForm.controls.discount_code.get('is_limited').value === true"
+          >
+            Max Limit*
+            <input formControlName="max_limit" nbInput fullWidth type="number" placeholder="Max Limit" />
           </label>
 
           <!-- Discount value* -->
           <label class="com-col-span-1">
             Discount value*
             <input formControlName="discount_value" fullWidth nbInput type="number" placeholder=" Discount value" />
-          </label>
-
-          <!-- Max Limit* -->
-          <label class="com-col-span-1">
-            Max Limit*
-            <input formControlName="max_limit" nbInput fullWidth type="number" placeholder="Max Limit" />
           </label>
 
           <!-- Expires At* -->
@@ -67,12 +66,33 @@
               <option *ngFor="let edfeg of eventDataFormEntityGroups" [value]="edfeg.id">{{ edfeg.name }}</option>
             </select>
           </label> -->
+
+          <!-- Event Data Form Entity Group Ids* -->
+          <div>
+            <label class="com-col-span-1"> Select Form in which you want to apply Coupon* </label>
+            <br />
+            <nb-tag-list>
+              <nb-tag
+                *ngFor="let tree of eventDataFormEntityGroups"
+                [text]="tree.name"
+                [removable]="selectedEventDataFormEntityGroups.includes(tree.id)"
+                (click)="addEventDataForm(tree.id)"
+              ></nb-tag>
+            </nb-tag-list>
+          </div>
         </div>
       </form>
     </nb-card-body>
     <nb-card-footer>
       <div class="com-flex com-justify-between com-mx-4">
-        <button nbButton status="primary" outline (click)="create()">Create</button>
+        <button
+          nbButton
+          status="primary"
+          (click)="create()"
+          [disabled]="!discountCouponForm.valid || selectedEventDataFormEntityGroups.length === 0"
+        >
+          Create
+        </button>
         <button nbButton status="danger" outline (click)="ref.close()">Cancel</button>
       </div>
     </nb-card-footer>

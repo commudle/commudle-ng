@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { StripeHandlerService } from '@commudle/shared-services';
 import { NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -46,6 +47,8 @@ export class FormGroupsComponent implements OnInit {
   visibilityOptions = Visibility;
 
   eventDataFormEntityGroupForm;
+  stripeAccounts = [];
+  showPaidTicketingSetting = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
 
@@ -58,6 +61,7 @@ export class FormGroupsComponent implements OnInit {
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private changeDetectorRef: ChangeDetectorRef,
+    private stripeHandlerService: StripeHandlerService,
   ) {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
@@ -82,6 +86,13 @@ export class FormGroupsComponent implements OnInit {
     });
 
     this.getCommunityDataForms();
+    this.getStripeAccountData();
+  }
+
+  getStripeAccountData() {
+    this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
+      this.stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+    });
   }
 
   // get all the data forms made in this community
@@ -178,6 +189,7 @@ export class FormGroupsComponent implements OnInit {
   onSwitchToggled(eventDataFormEntityGroupId) {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
       this.toastLogService.successDialog('Payment Enabled');
+      this.showPaidTicketingSetting = true;
     });
   }
 }

@@ -705,8 +705,17 @@ export const API_ROUTES = {
   },
 
   DISCOUNT_CODES: {
-    CREATE: 'api/v2/discount_codes', //post
-    UPDATE: 'api/v2/discount_codes', //put
-    INDEX: 'api/v2/discount_codes', //get
+    CREATE: 'api/v2/discount_codes',
+    UPDATE: 'api/v2/discount_codes',
+    INDEX: 'api/v2/discount_codes',
+  },
+
+  PAID_TICKET_SETTINGS: {
+    CREATE: 'api/v2/paid_ticket_settings',
+    UPDATE: 'api/v2/paid_ticket_settings',
+    INDEX: 'api/v2/paid_ticket_settings/details',
+    PUBLIC: {
+      SHOW: 'api/v2/paid_ticket_settings/public/show',
+    },
   },
 };

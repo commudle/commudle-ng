@@ -2,7 +2,7 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { IDiscountCode } from '@commudle/shared-models';
 import { DiscountCodesService } from '@commudle/shared-services';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogService, NbTagComponent } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { Subscription } from 'rxjs';
@@ -18,6 +18,7 @@ export class DiscountCouponsComponent implements OnInit {
   eventDataFormEntityGroups: IEventDataFormEntityGroup[] = [];
   discountCouponForm;
   subscriptions: Subscription[] = [];
+  selectedEventDataFormEntityGroups = [];
   constructor(
     private dialogService: NbDialogService,
     private fb: FormBuilder,
@@ -29,8 +30,8 @@ export class DiscountCouponsComponent implements OnInit {
         code: ['', Validators.required],
         discount_type: ['', Validators.required],
         discount_value: ['', Validators.required],
-        is_limited: ['', Validators.required],
-        max_limit: ['', Validators.required],
+        is_limited: [false, Validators.required],
+        max_limit: [''],
         expires_at: ['', Validators.required],
       }),
     });
@@ -54,7 +55,6 @@ export class DiscountCouponsComponent implements OnInit {
   }
 
   create() {
-    const groupIds = [160];
     const formData: any = new FormData();
     const discountCodeFormData = this.discountCouponForm.get('discount_code').value;
 
@@ -62,10 +62,14 @@ export class DiscountCouponsComponent implements OnInit {
       !(discountCodeFormData[key] == null) ? formData.append(`discount_code[${key}]`, discountCodeFormData[key]) : '',
     );
 
-    groupIds.forEach((value) => formData.append('discount_code[event_data_form_entity_group_ids][]', value));
+    this.selectedEventDataFormEntityGroups.forEach((value) =>
+      formData.append('discount_code[event_data_form_entity_group_ids][]', value),
+    );
 
     this.subscriptions.push(
-      this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {}),
+      this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
+        this.discountCodes.unshift(data);
+      }),
     );
   }
 
@@ -75,5 +79,15 @@ export class DiscountCouponsComponent implements OnInit {
         this.discountCodes = data;
       }),
     );
+  }
+
+  addEventDataForm(id) {
+    const index = this.selectedEventDataFormEntityGroups.indexOf(id);
+
+    if (index === -1) {
+      this.selectedEventDataFormEntityGroups.push(id);
+    } else {
+      this.selectedEventDataFormEntityGroups.splice(index, 1);
+    }
   }
 }

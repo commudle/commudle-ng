@@ -71,6 +71,7 @@ import { BackButtonComponent } from 'apps/shared-components/back-button/back-but
 import { EventAgendaComponent } from './components/event-agenda/event-agenda.component';
 import { EventRegistrationsComponent } from './components/event-registrations/event-registrations.component';
 import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
+import { PaymentSettingsComponent } from './components/event-registrations/payment-settings/payment-settings.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { DiscountCouponsComponent } from './components/event-registrations/disco
     EventAgendaComponent,
     EventRegistrationsComponent,
     DiscountCouponsComponent,
+    PaymentSettingsComponent,
   ],
   imports: [
     CommonModule,

@@ -18,7 +18,7 @@
       }
 
       .display-details {
-        display: flex;
+        @apply com-flex com-gap-3;
         .copy-link {
           padding: 0.25rem;
         }
@@ -35,7 +35,7 @@
         }
 
         @media screen and (min-width: 1000px) {
-          width: 50%;
+          width: 70%;
         }
       }
 
