@@ -43,7 +43,11 @@ export class DiscountCouponsComponent implements OnInit {
   }
 
   open(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog);
+    this.dialogService.open(dialog, {
+      closeOnBackdropClick: false,
+      autoFocus: true,
+      hasScroll: true,
+    });
   }
 
   fetchEventDataFormEntityGroups() {

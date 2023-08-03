@@ -28,7 +28,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   selector: 'app-form-groups',
   templateUrl: './form-groups.component.html',
   styleUrls: ['./form-groups.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormGroupsComponent implements OnInit {
   @Input() event;
@@ -73,10 +73,6 @@ export class FormGroupsComponent implements OnInit {
 
   ngOnInit() {
     // get all the event_data_form_entity_groups for this event
-    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
-      this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
-      this.changeDetectorRef.markForCheck();
-    });
 
     // get all the registration_types
     this.registrationTypesService.getRegistrationTypes().subscribe((data) => {
@@ -86,6 +82,14 @@ export class FormGroupsComponent implements OnInit {
 
     this.getCommunityDataForms();
     this.getStripeAccountData();
+    this.getEventDataFormEntityGroups();
+  }
+
+  getEventDataFormEntityGroups() {
+    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
+      this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   getStripeAccountData() {

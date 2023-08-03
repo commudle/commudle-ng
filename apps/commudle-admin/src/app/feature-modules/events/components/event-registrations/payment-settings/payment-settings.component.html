@@ -1,5 +1,4 @@
 <div>
-  <div>{{ edfeg.is_paid }}</div>
   <div *ngIf="paymentData">
     Price:{{ paymentData.currency === 'inr' ? 'Rs.' : '$' }} {{ paymentData.price }}
     <br />
@@ -14,7 +13,7 @@
   <nb-card>
     <nb-card-header>
       <div class="com-flex com-justify-between">
-        <div>Add Payment Details</div>
+        <div>{{ paymentDetailsExist ? 'Edit' : 'Add' }} Payment Details</div>
         <button (click)="ref.close()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
         </button>
@@ -22,7 +21,7 @@
     </nb-card-header>
     <nb-card-body>
       <form [formGroup]="paidTicketingForm">
-        <div formGroupName="paid_ticket_setting" class="com-flex com-w-full com-gap-3">
+        <div formGroupName="paid_ticket_setting" class="com-w-full com-gap-3">
           <!-- Price* -->
           <label>
             Price*
@@ -104,7 +103,7 @@
             status="primary"
             type="submit"
           >
-            Save
+            {{ paymentDetailsExist ? 'Update' : 'Save' }}
           </button>
         </div>
       </form>
