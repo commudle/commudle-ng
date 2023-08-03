@@ -72,7 +72,6 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     if (!params.query) {
       this.getPopularCommunities();
     }
-    // this.getPopularCommunities();
   }
 
   ngOnDestroy(): void {
@@ -92,7 +91,6 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   }
 
   getPopularCommunities(): void {
-    // console.log(this.query, 'query');
     this.showSpinner = true;
     this.skeletonLoaderCard = true;
     if (!this.pageInfo?.end_cursor) {
@@ -104,7 +102,6 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
         .subscribe((data) => {
           this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.total = data.total;
-          // console.log(this.total, 'total');
           this.pageInfo = data.page_info;
           this.showSpinner = false;
           this.skeletonLoaderCard = false;
@@ -117,13 +114,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
       this.communities = [];
       this.query = this.searchForm.get('name').value;
-      // this.getPopularCommunities();
-      // if (this.isLoadingSearch) {
-      //   return;
-      // }
       this.pageInfo = null;
-      // this.isLoadingSearch = true;
-      // this.queryParamsString = this.query;
       this.generateParams(this.members_count, this.completed_events_count, this.query);
     });
   }
@@ -140,14 +131,11 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
       this.order_by = 'members_count';
     }
     if (!this.completed_events_count && !this.members_count) {
-      console.log('entered');
       this.order_by = '';
     }
     this.skeletonLoaderCard = true;
     this.communities = [];
-    // this.getPopularCommunities();
     this.pageInfo = null;
-    // this.page = 1;
     this.generateParams(this.members_count, this.completed_events_count, this.query);
   }
 
@@ -173,83 +161,3 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.getPopularCommunities();
   }
 }
-
-// changePage(value: number): void {
-//   this.page += value;
-//   if (this.page > Math.ceil(this.total / this.count)) {
-//     this.page = 1;
-//   }
-//   if (this.page < 1) {
-//     this.page = Math.ceil(this.total / this.count);
-//   }
-//   this.getSearchResults();
-// }
-
-// changeTag(value: string): void {
-//   this.tag = value === this.tag ? '' : value;
-//   this.getSearchResults();
-// }
-
-// getSearchTags(): void {
-//   this.subscriptions.push(
-//     this.communitiesService.getPopularTags().subscribe((value) => {
-//       this.searchTags = value;
-//     }),
-//   );
-// }
-
-// getSearchResults(): void {
-//   this.subscriptions.push(
-//     this.communitiesService.search(this.query, this.tag, this.page, this.count).subscribe((value) => {
-//       this.communities = value.communities;
-//       this.page = value.page;
-//       this.count = value.count;
-//       this.total = value.total;
-//     }),
-//   );
-// }
-
-// const params = this.activatedRoute.snapshot.queryParams;
-// if (Object.keys(params).length > 0) {
-//   if (params.query) {
-//     this.query = params.query;
-//     this.searchForm.get('name').setValue(this.query);
-//   }
-// }
-// this.speakers = [];
-// if (!params.query) {
-//   this.getSpeakersList();
-// }
-
-// resetFiltersAndSearch() {
-//   this.timePeriod = '';
-//   this.month = false;
-//   this.year = false;
-//   this.employment = '';
-//   this.employer = false;
-//   this.employee = false;
-//   this.searchForm.get('name').setValue('');
-//   this.query = '';
-//   this.speakers = [];
-//   this.page_info = null;
-// }
-
-// getSearchResults(): void {
-//   this.showSpinner = true;
-//   this.skeletonLoaderCard = true;
-//   // if (!this.page_info?.end_cursor) {
-//   //   this.speakers = [];
-//   // }
-//   this.subscriptions.push(
-//     this.communitiesService
-//       .search(this.query, this.page, this.limit, this.events, this.members)
-//       .subscribe((value) => {
-//         this.communities = value.communities;
-//         this.page = value.page;
-//         this.limit = value.count;
-//         this.total = value.total;
-//         this.showSpinner = false;
-//         this.skeletonLoaderCard = false;
-//       }),
-//   );
-// }

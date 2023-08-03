@@ -65,25 +65,6 @@ export class CommunitiesService {
     });
   }
 
-  // search(query: string, tag: string, page: number, count: number): Observable<ICommunities> {
-  //   const params = new HttpParams()
-  //     .set('query', query)
-  //     .set('tag', tag)
-  //     .set('page', String(page))
-  //     .set('count', String(count));
-  //   return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
-  // }
-  search(query: string, page: number, count: number, events: boolean, members: boolean): Observable<ICommunities> {
-    let params = new HttpParams().set('query', query).set('page', String(page)).set('count', String(count));
-    if (events) {
-      params = params.set('events', events);
-    }
-    if (members) {
-      params = params.set('members', members);
-    }
-    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
-  }
-
   getPopularTags(): Observable<string[]> {
     return this.http.get<string[]>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.POPULAR_TAGS));
   }

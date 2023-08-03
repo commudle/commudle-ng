@@ -12,14 +12,10 @@
         <p class="community-card-members">{{ community.members_count }} Members</p>
       </div>
     </div>
-    <!-- </a> -->
     <div class="community-card-suffix">
       <div *ngIf="community.mini_description" class="community-card-about">
         {{ community.mini_description }}
       </div>
-      <!-- <div class="community-card-tags">
-        <div *ngFor="let tag of community.tags | slice : 0 : 5" class="community-card-tag">{{ tag.name }}</div>
-      </div> -->
       <div class="community-card-tags">
         <app-tag
           [tags]="getTagNames()"
@@ -29,11 +25,6 @@
           [maximumTag]="5"
         ></app-tag>
       </div>
-      <!-- <a [routerLink]="['/communities', community.slug, 'members']" class="community-card-member-avatars">
-      <span *ngFor="let member of members" class="community-card-member-avatar">
-        <img alt="{{ member.name }}" src="{{ member.photo.i32 }}" title="{{ member.name }}" />
-      </span>
-    </a> -->
     </div>
   </a>
   <div class="community-join-btn">
