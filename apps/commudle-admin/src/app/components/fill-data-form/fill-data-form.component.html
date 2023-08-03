@@ -1,54 +1,99 @@
 <div class="data-form-container">
   <div *ngIf="dataFormEntity" class="base-layout fill-data-form">
     <div class="container">
-      <div class="one-column-layout">
-        <div>
-          <nb-card *ngIf="formClosed">
-            <nb-card-body> This form is closed! </nb-card-body>
-          </nb-card>
-        </div>
-
-        <div *ngIf="!formClosed">
-          <nb-card class="header">
-            <nb-card-body>
-              <p *ngIf="community" class="community">
-                <app-community-badge [community]="community"></app-community-badge>
-              </p>
-              <div *ngIf="event" class="event">
-                <div class="header-image">
-                  <commudle-banner-image
-                    *ngIf="event.header_image_path"
-                    [headerImagePath]="event.header_image_path"
-                    [name]="event.name"
-                  ></commudle-banner-image>
-                </div>
-                <p class="event-name">{{ event.name }}</p>
-              </div>
-              <p class="form-name">{{ dataFormEntity.name }}</p>
-            </nb-card-body>
-          </nb-card>
-
-          <nb-card *ngIf="showProfileForm">
-            <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
-            <nb-card-body>
-              <div>
-                <app-basic-user-profile></app-basic-user-profile>
-              </div>
-            </nb-card-body>
-          </nb-card>
-
-          <div class="data-form-fill-body">
-            <app-data-form-fill
-              (formSubmitted)="submitForm($event)"
-              [dataFormId]="dataFormEntity.data_form_id"
-              [existingResponses]="selectedFormResponse"
-              [eventId]="event ? event.id : ''"
-            >
-            </app-data-form-fill>
-            <p *ngIf="dataFormEntity.multi_response" class="text-info">
-              <i>* You can submit multiple responses for this form!</i>
-            </p>
+      <div class="two-column-layout wide">
+        <div class="main-column">
+          <div>
+            <nb-card *ngIf="formClosed">
+              <nb-card-body> This form is closed! </nb-card-body>
+            </nb-card>
           </div>
+
+          <div *ngIf="!formClosed">
+            <nb-card class="header">
+              <nb-card-body>
+                <p *ngIf="community" class="community">
+                  <app-community-badge [community]="community"></app-community-badge>
+                </p>
+                <div *ngIf="event" class="event">
+                  <div class="header-image">
+                    <commudle-banner-image
+                      *ngIf="event.header_image_path"
+                      [headerImagePath]="event.header_image_path"
+                      [name]="event.name"
+                    ></commudle-banner-image>
+                  </div>
+                  <p class="event-name">{{ event.name }}</p>
+                </div>
+                <p class="form-name">{{ dataFormEntity.name }}</p>
+              </nb-card-body>
+            </nb-card>
+
+            <nb-card *ngIf="showProfileForm">
+              <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
+              <nb-card-body>
+                <div>
+                  <app-basic-user-profile></app-basic-user-profile>
+                </div>
+              </nb-card-body>
+            </nb-card>
+
+            <div class="data-form-fill-body">
+              <app-data-form-fill
+                (formSubmitted)="submitForm($event)"
+                [dataFormId]="dataFormEntity.data_form_id"
+                [existingResponses]="selectedFormResponse"
+                [eventId]="event ? event.id : ''"
+              >
+              </app-data-form-fill>
+              <p *ngIf="dataFormEntity.multi_response" class="text-info">
+                <i>* You can submit multiple responses for this form!</i>
+              </p>
+            </div>
+          </div>
+          <div class="com-p-4 com-bg-white">
+            <div class="com-flex com-bg-white com-gap-4">
+              <button nbButton status="primary" (click)="showUserFillForm = !showUserFillForm">Add another user</button>
+              <nb-form-field *ngIf="showUserFillForm" class="com-w-full">
+                <input
+                  #searchInput
+                  [formControl]="inputFormControl"
+                  [nbAutocomplete]="autoNgModel"
+                  fullWidth
+                  nbInput
+                  placeholder="search (type at least 3 words)"
+                  type="text"
+                />
+              </nb-form-field>
+            </div>
+            <div *ngIf="selectedUsers.length >= 1" class="com-grid com-grid-cols-2">
+              <div *ngFor="let user of selectedUsers" class="com-flex com-gap-4 com-p-4 com-bg-white com-items-center">
+                <app-user-profile-card-small [user]="user"></app-user-profile-card-small>
+                <button (click)="removeSelectedUser(user)" nbButton status="danger" size="tiny" outline>Remove</button>
+              </div>
+            </div>
+
+            <nb-autocomplete #autoNgModel>
+              <nb-option *ngFor="let user of searchResult" (click)="selected(user.username)">
+                <app-user-profile-card-small [user]="user" [disableAnchor]="true"></app-user-profile-card-small>
+              </nb-option>
+            </nb-autocomplete>
+          </div>
+        </div>
+        <div class="right-column">
+          <nb-card>
+            <nb-card-body>
+              <form id="payment-form">
+                <div id="payment-element">
+                  <!-- Elements will create form elements here -->
+                </div>
+                <button id="submit">Submit</button>
+                <div id="error-message">
+                  <!-- Display error message to your customers here -->
+                </div>
+              </form>
+            </nb-card-body>
+          </nb-card>
         </div>
       </div>
     </div>

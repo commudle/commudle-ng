@@ -39,6 +39,7 @@ import {
   NbTooltipModule,
   NbUserModule,
   NbWindowModule,
+  NbAutocompleteModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -220,6 +221,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbTagModule,
     NbPopoverModule,
     NbToggleModule,
+    NbAutocompleteModule,
 
     // Other external npm modules
     Angular2SmartTableModule,

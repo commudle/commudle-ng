@@ -3,12 +3,19 @@ import { Injectable } from '@angular/core';
 import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
+declare let Stripe: any;
 
 @Injectable({
   providedIn: 'root',
 })
 export class StripeHandlerService {
-  constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {}
+  public stripe: any;
+
+  constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {
+    this.stripe = Stripe(
+      'pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3',
+    );
+  }
 
   indexStripeAccount(communityId): Observable<any> {
     const params = new HttpParams().set('community_id', communityId);

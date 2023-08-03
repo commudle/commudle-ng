@@ -13,8 +13,13 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription } from 'rxjs';
+import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { StripeHandlerService } from '@commudle/shared-services';
+import { FormControl } from '@angular/forms';
+import { ISearch } from 'apps/shared-models/search.model';
+import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -35,9 +40,15 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   gtmData: any = {};
+  stripeInstance: any; // Use specific types for Stripe and Elements if available
+  elementsInstance: any;
+  inputFormControl: FormControl;
+  selectedUsers = [];
+  showUserFillForm = false;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
+  searchResult = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -51,9 +62,31 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
-  ) {}
+    private stripeHandlerService: StripeHandlerService,
+    private searchService: SearchService,
+    private appUsersService: AppUsersService,
+  ) {
+    this.inputFormControl = new FormControl('');
+  }
 
   ngOnInit() {
+    // const stripe = this.stripeHandlerService.stripe;
+    // const options = {
+    //   clientSecret: '{{CLIENT_SECRET}}',
+    //   layout: {
+    //     type: 'tabs',
+    //     defaultCollapsed: false,
+    //   },
+    //   business: 'Commudle',
+    //   appearance: {
+    //     theme: 'flat',
+    //     variables: { colorPrimaryText: '#262626' },
+    //   },
+    // };
+    // const elements = stripe.elements(options);
+    // const paymentElement = elements.create('payment');
+    // paymentElement.mount('#payment-element');
+
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((params) => {
         this.getDataFormEntity(params.data_form_entity_id);
@@ -76,12 +109,24 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         }
       }),
     );
+    this.observeInput();
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 
     this.dialogRef?.close();
+  }
+
+  observeInput() {
+    this.inputFormControl.valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        switchMap((value: string) => this.searchService.getSearchResultsByScope(value, 1, 20, 'User')),
+      )
+      .subscribe((value: ISearch) => {
+        this.searchResult = value.results;
+      });
   }
 
   getDataFormEntity(dataFormEntityId) {
@@ -168,6 +213,68 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       this.router.navigate(this.redirectRoute);
     } else {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+    }
+  }
+
+  // createToken() {
+  //   const stripe = this.stripeHandlerService.stripe;
+  //   const elements = stripe.elements();
+  //   const style = {
+  //     base: {
+  //       color: '#32325d',
+  //       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+  //       fontSmoothing: 'antialiased',
+  //       fontSize: '16px',
+  //       '::placeholder': {
+  //         color: '#fff00f',
+  //       },
+  //     },
+  //     invalid: {
+  //       color: '#fa755a',
+  //       iconColor: '#fa755a',
+  //     },
+  //   };
+  //   // Create an instance of the card Element.
+  //   const card = elements.create('card', { style: style });
+  //   console.log("🚀 ~ file: fill-data-form.component.ts:198 ~ FillDataFormComponent ~ createToken ~ card:", card)
+  //   // Add an instance of the card Element into the `card-element` <div>.
+  //   card.mount('#card-element');
+
+  //   card.addEventListener('change', (event) => {
+  //     const displayError = document.getElementById('card-errors');
+  //     if (event.error) {
+  //       displayError.textContent = event.error.message;
+  //     } else {
+  //       displayError.textContent = '';
+  //     }
+  //   });
+
+  //   stripe.createToken(card).then((result) => {
+  //     if (result.error) {
+  //       // Inform the user if there was an error
+  //       const errorElement = document.getElementById('card-errors');
+  //       errorElement.textContent = result.error.message;
+  //     } else {
+  //       // Send the token to your server
+  //       // stripeTokenHandler(result.token);
+  //       console.log(result.token);
+  //     }
+  //   });
+  // }
+
+  submit() {}
+  selected(username) {
+    this.subscriptions.push(
+      this.appUsersService.getProfile(username).subscribe((data) => {
+        this.selectedUsers.push(data);
+      }),
+    );
+  }
+
+  removeSelectedUser(selectedUser) {
+    const indexToRemove = this.selectedUsers.findIndex((user) => user.id === selectedUser.id);
+    if (indexToRemove !== -1) {
+      this.selectedUsers.splice(indexToRemove, 1);
     }
   }
 }
