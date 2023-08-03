@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 })
 export class FeaturedProjectsCardComponent implements OnInit {
   @Input() featuredProject: IFeaturedItems;
+  @Input() showTag = true;
   moment = moment;
   constructor() {}
 

@@ -5,10 +5,15 @@
   }"
 >
   <nb-card-body>
+    <!-- <div class="header"> -->
     <div class="heading">
       <h3 class="title">Featured Communities</h3>
       <h4 class="sub-heading">Join the most active groups</h4>
     </div>
+    <!-- <div class="view-all-button">
+        <a [routerLink]="['/communities']">View All</a>
+      </div> -->
+    <!-- </div> -->
     <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
     <div
       [ngClass]="{

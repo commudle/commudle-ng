@@ -40,6 +40,8 @@
   @apply com-m-0  com-border-none;
   nb-card-body {
     @apply com-p-0;
+    // .header {
+    //   @apply com-flex;
     .heading {
       @apply com-m-0 com-p-4 com-bg-Anti-Flash-White;
 
@@ -49,8 +51,12 @@
       .sub-heading {
         @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
       }
-    }
+      // }
 
+      // .view-all-button {
+      //   @apply com-no-underline com-text-base com-font-medium com-text-black com-ml-[400px];
+      // }
+    }
     // .featured-communities {
     //   @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
     //   .featured-communities-card {

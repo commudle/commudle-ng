@@ -19,7 +19,7 @@
           ></app-votes-display>
         </div>
       </div>
-      <div>
+      <div *ngIf="showTag">
         <app-tag
           [tags]="featuredProject.community_build.tags"
           [backgroundColor]="'#FCEDE7'"

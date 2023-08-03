@@ -1,6 +1,7 @@
 nb-card {
   @apply com-mt-6 com-m-0;
   nb-card-body {
+    @apply com-overflow-hidden;
     .title {
       @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-m-0 com-mb-6;
 
@@ -23,14 +24,15 @@ nb-card {
   @apply com-flex com-flex-row;
 
   .user {
-    @apply com-w-[489px] com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-mr-6;
+    @apply com-w-[489px] com-h-max com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-mr-6;
   }
 
   .right-column {
     @apply com-p-0 com-pl-6 com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
 
-    .featured-communities {
-      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4;
+    .featured-communities,
+    .featured-projects {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mb-6;
     }
   }
 }

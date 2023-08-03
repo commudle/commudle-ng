@@ -9,13 +9,17 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   styleUrls: ['./featured-projects.component.scss'],
 })
 export class FeaturedProjectsComponent implements OnInit {
+  @Input() showCardsHorizontal = false;
+  @Input() showTag = true;
   featuredProjects: IFeaturedItems[] = [];
   staticAssets = staticAssets;
   showSpinner = true;
+  isMobileView: boolean;
 
   constructor(private communityBuildsService: CommunityBuildsService) {}
 
   ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 1024;
     this.getFeaturedProjects();
   }
 
