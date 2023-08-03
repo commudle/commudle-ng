@@ -4,7 +4,7 @@
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
         <div *ngIf="edfeg.data_form_entity" class="com-bg-[#f4f7ff] com-w-full">
           <div class="edfeg-details">
-            <div>
+            <div class="com-w-full">
               <div class="display-details">
                 <div class="copy-link clickable">
                   <a
@@ -39,13 +39,12 @@
                   </p>
                 </div>
                 <div>
-                  <label class="switch">
-                    <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
-                    <span class="slider round"></span>
+                  <label>
+                    <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> </nb-toggle>
                   </label>
                 </div>
               </div>
-              <div>
+              <div *ngIf="edfeg.is_paid">
                 <commudle-payment-settings
                   [communityId]="community.id"
                   [edfeg]="edfeg"
@@ -53,7 +52,6 @@
                 ></commudle-payment-settings>
               </div>
             </div>
-
             <div class="stats">
               <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
             </div>

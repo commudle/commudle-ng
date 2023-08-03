@@ -134,10 +134,6 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   fetchPaidTicketingData(edfegId) {
     this.subscriptions.push(
       this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
-        console.log(
-          '🚀 ~ file: fill-data-form.component.ts:137 ~ FillDataFormComponent ~ this.paymentSettingService.indexPaymentSettings ~ data:',
-          data,
-        );
         this.paymentData = data;
       }),
     );

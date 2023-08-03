@@ -48,7 +48,6 @@ export class FormGroupsComponent implements OnInit {
 
   eventDataFormEntityGroupForm;
   stripeAccounts = [];
-  showPaidTicketingSetting = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
 
@@ -186,10 +185,10 @@ export class FormGroupsComponent implements OnInit {
     });
   }
 
-  onSwitchToggled(eventDataFormEntityGroupId) {
+  onSwitchToggled(eventDataFormEntityGroupId, index) {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
+      this.eventDataFormEntityGroups[index].is_paid = data;
       this.toastLogService.successDialog('Payment Enabled');
-      this.showPaidTicketingSetting = true;
     });
   }
 }
