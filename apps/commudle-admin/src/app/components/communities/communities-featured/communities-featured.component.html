@@ -4,42 +4,40 @@
     <commudle-skeleton-vertical-cards [cards]="6"></commudle-skeleton-vertical-cards>
   </div>
   <div class="communities-featured-list">
-    <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
-      <a [routerLink]="['/communities', featuredCommunity.community.slug]">
+    <div *ngFor="let featuredItems of featuredItems" class="featured-community-card">
+      <a [routerLink]="['/communities', featuredItems.community.slug]">
         <div class="banner">
-          <div *ngIf="featuredCommunity.community.banner_image" class="banner-image">
+          <div *ngIf="featuredItems.community.banner_image" class="banner-image">
             <commudle-banner-image
-              [headerImagePath]="featuredCommunity.community.banner_image.i320"
-              [name]="featuredCommunity.community.name"
+              [headerImagePath]="featuredItems.community.banner_image.i320"
+              [name]="featuredItems.community.name"
               [aspectRatio]="'6/1'"
               [bottomRightCurve]="false"
               [bottomLeftCurve]="false"
             ></commudle-banner-image>
           </div>
-          <div *ngIf="!featuredCommunity.community.banner_image" class="no-banner-image"></div>
+          <div *ngIf="!featuredItems.community.banner_image" class="no-banner-image"></div>
 
           <div class="community-image">
             <img
-              alt="{{ featuredCommunity.community.name }}"
-              src="{{ featuredCommunity.community.logo_image?.i64 }}"
-              title="{{ featuredCommunity.community.name }}"
+              alt="{{ featuredItems.community.name }}"
+              src="{{ featuredItems.community.logo_image?.i64 }}"
+              title="{{ featuredItems.community.name }}"
             />
           </div>
         </div>
         <div class="clickable featured-community-about">
-          <h3 class="featured-community-name">{{ featuredCommunity.community.name }}</h3>
-          <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
+          <h3 class="featured-community-name">{{ featuredItems.community.name }}</h3>
+          <p class="featured-community-reason">{{ featuredItems.reason }}</p>
           <div class="members-events">
-            <p class="members">
-              <nb-icon icon="people-outline"></nb-icon>{{ featuredCommunity.community.members_count }}
-            </p>
+            <p class="members"><nb-icon icon="people-outline"></nb-icon>{{ featuredItems.community.members_count }}</p>
             <p class="events-organized">
-              <nb-icon icon="calendar-outline"></nb-icon>{{ featuredCommunity.community.completed_events_count }}
+              <nb-icon icon="calendar-outline"></nb-icon>{{ featuredItems.community.completed_events_count }}
             </p>
           </div>
           <div class="featured-community-tags">
             <app-tag
-              [tags]="getTagNames(featuredCommunity.community)"
+              [tags]="getTagNames(featuredItems.community)"
               [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
               [size]="'tiny'"
               [fontColor]="'#101828'"
@@ -50,7 +48,7 @@
       </a>
       <div class="community-join-btn">
         <app-membership-toggle
-          [community]="featuredCommunity.community"
+          [community]="featuredItems.community"
           [status]="'info'"
           [shapes]="'semi-round'"
           [isMobileWidthFull]="true"

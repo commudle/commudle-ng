@@ -9,7 +9,7 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
   styleUrls: ['./communities-featured.component.scss'],
 })
 export class CommunitiesFeaturedComponent implements OnInit {
-  featuredCommunities: IFeaturedItems[] = [];
+  featuredItems: IFeaturedItems[] = [];
   environment = environment;
   communityTagsLength: number;
   tags: string[] = [];
@@ -23,9 +23,7 @@ export class CommunitiesFeaturedComponent implements OnInit {
 
   getFeaturedCommunities(): void {
     this.featuredItemsService.getFeaturedItems('Kommunity').subscribe((data) => {
-      this.featuredCommunities = this.featuredCommunities.concat(
-        data.page.reduce((acc, value) => [...acc, value.data], []),
-      );
+      this.featuredItems = this.featuredItems.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.skeletonLoaderCard = false;
     });
   }

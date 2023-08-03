@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './empty-state-component.component.html',
   styleUrls: ['./empty-state-component.component.scss'],
 })
-export class EmptyStateComponentComponent implements OnInit {
+export class EmptyStateComponent implements OnInit {
   @Input() parentType: string;
   constructor() {}
 
