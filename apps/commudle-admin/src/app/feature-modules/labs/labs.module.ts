@@ -41,6 +41,8 @@ import { LabsComponent } from './components/labs/labs.component';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabsRoutingModule } from './labs-routing.module';
+// import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/feature-modules/labs/components/labs/labs-featured/labs-featured.component';
+// import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { LabsRoutingModule } from './labs-routing.module';
     LabsHeaderComponent,
     LabsSearchComponent,
     LabsCardComponent,
+    // LabsFeaturedComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +79,7 @@ import { LabsRoutingModule } from './labs-routing.module';
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
+    // FeaturedCommunitiesCardComponent,
 
     // Nebular
     NbCardModule,
@@ -90,5 +94,6 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbSidebarModule.forRoot(),
     NbContextMenuModule,
   ],
+  // exports: [LabsFeaturedComponent],
 })
 export class LabsModule {}

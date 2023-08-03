@@ -33,6 +33,8 @@ import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-ev
 // import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 import { UserProfileComponent } from '../../app-shared-components/user-profile/user-profile.component';
 import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
+import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
+// import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
 
 @NgModule({
   declarations: [
@@ -59,11 +61,10 @@ import { FeaturedProjectsComponent } from '../../app-shared-components/featured-
     PublicCommunityModule,
     SearchModule,
     MiniUserProfileModule,
-    PublicHomeListEventsModule,
     UserProfileComponent,
     FeaturedProjectsComponent,
-
-    // CommunityBuildsModule,
+    PublicHomeListEventsModule,
+    LabsFeaturedComponent,
     //Nebular
     NbButtonModule,
     NbCardModule,

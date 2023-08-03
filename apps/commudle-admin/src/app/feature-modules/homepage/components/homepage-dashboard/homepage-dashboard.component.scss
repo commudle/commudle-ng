@@ -34,5 +34,9 @@ nb-card {
     .featured-projects {
       @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mb-6;
     }
+
+    .labs-featured {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mt-6;
+    }
   }
 }
