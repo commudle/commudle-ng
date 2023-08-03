@@ -18,7 +18,6 @@ export interface ICommunity {
   website: string;
   linkedin: string;
   members_count: number;
-  member_count: number;
   event_count: number;
   location: string;
   tags: ITag[];
