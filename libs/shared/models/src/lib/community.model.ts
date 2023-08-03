@@ -17,6 +17,7 @@ export interface ICommunity {
   twitter: string;
   website: string;
   linkedin: string;
+  members_count: number;
   member_count: number;
   event_count: number;
   location: string;
