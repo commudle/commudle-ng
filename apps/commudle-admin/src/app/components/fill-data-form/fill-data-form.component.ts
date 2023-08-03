@@ -15,7 +15,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
-import { StripeHandlerService } from '@commudle/shared-services';
+import { PaymentSettingService, StripeHandlerService } from '@commudle/shared-services';
 import { FormControl } from '@angular/forms';
 import { ISearch } from 'apps/shared-models/search.model';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
@@ -45,6 +45,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   inputFormControl: FormControl;
   selectedUsers = [];
   showUserFillForm = false;
+  paymentData;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
@@ -65,6 +66,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private stripeHandlerService: StripeHandlerService,
     private searchService: SearchService,
     private appUsersService: AppUsersService,
+    private paymentSettingService: PaymentSettingService,
   ) {
     this.inputFormControl = new FormControl('');
   }
@@ -129,9 +131,22 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       });
   }
 
+  fetchPaidTicketingData(edfegId) {
+    this.subscriptions.push(
+      this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
+        console.log(
+          '🚀 ~ file: fill-data-form.component.ts:137 ~ FillDataFormComponent ~ this.paymentSettingService.indexPaymentSettings ~ data:',
+          data,
+        );
+        this.paymentData = data;
+      }),
+    );
+  }
+
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
       this.dataFormEntity = data;
+      this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
       this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
       this.seoService.setTags(
         `${this.dataFormEntity.name}`,

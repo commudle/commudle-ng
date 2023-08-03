@@ -84,7 +84,13 @@
           <nb-card>
             <nb-card-body>
               <form id="payment-form">
-                <div id="payment-element">
+                <div id="payment-element" *ngIf="paymentData">
+                  price: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }} {{ paymentData.price }}
+                  <br />
+                  Number of Users: {{ selectedUsers.length + 1 }}
+                  <br />
+                  Total: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }}
+                  {{ paymentData.price * (selectedUsers.length + 1) }}
                   <!-- Elements will create form elements here -->
                 </div>
                 <button id="submit">Submit</button>
