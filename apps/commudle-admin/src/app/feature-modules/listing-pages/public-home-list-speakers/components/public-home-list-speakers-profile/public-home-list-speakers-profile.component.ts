@@ -91,7 +91,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
 
   updateSeoTitle() {
     this.seoTitle = this.query
-      ? `Find & Connect With Tech & Design Speakers - ${this.query}`
+      ? `${this.query} - Speakers for your community events`
       : 'Speakers - Find & Connect With Tech & Design Speakers';
 
     this.seoService.setTags(
