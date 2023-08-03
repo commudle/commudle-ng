@@ -96,7 +96,11 @@
   }
   // }
 
-  app-loading-spinner {
-    @apply com-mt-4;
+  .loading-spinner {
+    @apply com-mt-4 com-flex com-justify-center;
+  }
+
+  .load-more {
+    @apply com-flex com-justify-center com-mt-4;
   }
 }

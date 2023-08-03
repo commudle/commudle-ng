@@ -25,7 +25,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   completed_events_count = false;
   members_count = false;
   subscriptions: Subscription[] = [];
-  limit = 6;
+  limit = 0;
   queryParamsString = '';
   searchForm;
   pageInfo: IPageInfo;
@@ -48,6 +48,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.limit = window.innerWidth <= 768 ? 3 : 6;
     this.search();
     const params = this.activatedRoute.snapshot.queryParams;
     if (Object.keys(params).length > 0) {

@@ -79,7 +79,7 @@
     <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
   </div>
   <div *ngIf="!showSpinner && communities.length === 0">
-    <commudle-empty-state-component [parentType]="'Speakers'"></commudle-empty-state-component>
+    <commudle-empty-state-component [parentType]="'Communities'"></commudle-empty-state-component>
   </div>
   <div *ngIf="communities.length > 0">
     <div
@@ -94,20 +94,26 @@
     <div *ngIf="showSpinner" class="loading-spinner">
       <app-loading-spinner></app-loading-spinner>
     </div>
+    <div *appBreakpoints="'<=lg'">
+      <div class="communities-list-cards">
+        <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+      </div>
+      <div *ngIf="showSpinner" class="loading-spinner">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div class="load-more">
+        <button
+          *ngIf="pageInfo?.has_next_page"
+          (click)="getPopularCommunities(); showSpinner = true"
+          nbButton
+          outline
+          size="tiny"
+          status="info"
+          [disabled]="showSpinner || isLoading"
+        >
+          Load More
+        </button>
+      </div>
+    </div>
   </div>
-  <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
-  <!-- <div class="load-more">
-    <button
-      *ngIf="canLoadMore && total && !showSpinner"
-      (click)="getPopularCommunities(); showSpinner = true"
-      nbButton
-      outline
-      size="tiny"
-      status="info"
-      [disabled]="!canLoadMore || isLoading"
-    >
-      Load More
-    </button>
-  </div>
-</div> -->
 </div>
