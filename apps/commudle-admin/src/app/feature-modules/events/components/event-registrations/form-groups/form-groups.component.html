@@ -140,11 +140,11 @@
           You can add more forms if you want members to fill more information for this event, by filling the form below
         </p>
       </div>
-      <div class="create-form-button">
+      <!-- <div class="create-form-button">
         <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
           <nb-icon icon="plus-outline"></nb-icon>Create New Form
         </button>
-      </div>
+      </div> -->
     </div>
     <form
       (ngSubmit)="createEventDataFormEntityGroup()"
@@ -213,7 +213,7 @@
                 (change)="changeDataFormValue($event.target)"
               >
                 <option disabled selected value="">Which Form?</option>
-                <option value="createNewForm" (click)="openNewFormWindow()">Create New Form</option>
+                <option value="createNewForm" (click)="openNewFormWindow()"><strong>+</strong> CREATE NEW FORM</option>
                 <option *ngFor="let df of communityDataForms" [value]="df.id">
                   {{ df.name | titlecase }}
                 </option>
