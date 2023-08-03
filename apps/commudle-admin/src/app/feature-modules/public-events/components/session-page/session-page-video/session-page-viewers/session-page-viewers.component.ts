@@ -2,7 +2,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faChalkboardTeacher, faCommentDots, faHand } from '@fortawesome/free-solid-svg-icons';
-import * as _ from 'lodash';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'apps/commudle-admin/src/app/services/websockets/user-object-visit.channel';
@@ -13,6 +12,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { HmsStageService } from 'apps/shared-modules/hms-video/services/hms-stage.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -83,13 +83,11 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
               this.currentUser = currentUser;
             }
           }),
-          this.hmsStageService.raisedHands$.subscribe((raisedHands: Set<number>) => {
-            this.usersList = this.usersList.map((user) => {
-              if (raisedHands.has(user.id)) {
-                return { ...user, is_raised_hand: true };
-              }
-              return { ...user, is_raised_hand: false };
-            });
+          this.hmsStageService.raisedHands$.subscribe(() => {
+            this.usersList = this.usersList.map((user) => ({
+              ...user,
+              is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+            }));
           }),
         );
       }
@@ -119,13 +117,15 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   getCurrentUsersList() {
-    this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
-      this.usersList = data.users.map((user) => ({
-        ...user,
-        is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
-      }));
-      this.userCount.emit(this.usersList.length);
-    });
+    this.subscriptions.push(
+      this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
+        this.usersList = data.users.map((user) => ({
+          ...user,
+          is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+        }));
+        this.userCount.emit(this.usersList.length);
+      }),
+    );
   }
 
   clientPings() {

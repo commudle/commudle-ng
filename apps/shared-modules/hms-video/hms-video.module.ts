@@ -14,6 +14,7 @@ import {
   NbSpinnerModule,
   NbTooltipModule,
 } from '@commudle/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
@@ -58,6 +59,7 @@ import { HmsStageService } from './services/hms-stage.service';
     NbDialogModule.forChild(),
     NbAlertModule,
     RouterModule,
+    FontAwesomeModule,
   ],
   exports: [HmsVideoComponent],
   providers: [HmsStageService],

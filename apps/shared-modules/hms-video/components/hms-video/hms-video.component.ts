@@ -29,7 +29,6 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   serverClient: IHmsClient;
   selectedRole: EHmsRoles;
 
-  channelSubscription;
   isInitialConnection = true;
   subscriptions: Subscription[] = [];
 
@@ -68,8 +67,6 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe all subscriptions
-    this.channelSubscription?.unsubscribe();
     this.hmsLiveChannel.unsubscribe(this.currentUser.id);
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
@@ -85,7 +82,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
 
   connectToChannel(): void {
     // Subscribe to channel
-    this.channelSubscription = this.hmsLiveChannel.subscribe(
+    this.hmsLiveChannel.subscribe(
       this.embeddedVideoStream.hms_room_id,
       this.currentUser.id,
       this.serverClient.token,
@@ -105,11 +102,9 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
                 this.hmsVideoStateService.setState(EHmsStates.INIT);
               }
 
-              if (data.raised_hands.length) {
-                data.raised_hands.forEach((userId: number) =>
-                  this.hmsStageService.raiseHand(typeof userId === 'string' ? parseInt(userId) : userId),
-                );
-              }
+              Object.entries(data.raised_hands).forEach(([key, value]: any) => {
+                this.hmsStageService.raiseHand({ id: parseInt(key), name: value.name });
+              });
 
               this.isInitialConnection = false;
             }

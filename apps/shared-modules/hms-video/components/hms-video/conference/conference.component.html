@@ -71,7 +71,7 @@
       nbButton
       shape="round"
     >
-      <nb-icon [status]="isHandRaised ? 'success' : ''" icon="corner-right-up-outline"></nb-icon>
+      <fa-icon [icon]="faHand" [ngClass]="{ 'text-success': isHandRaised }"></fa-icon>
     </button>
     <!-- Blur background -->
     <button

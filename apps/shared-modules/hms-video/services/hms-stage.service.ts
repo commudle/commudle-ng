@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+interface IHandRaisedUser {
+  id: number;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -8,8 +13,13 @@ export class HmsStageService {
   stageStatus: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   stageStatus$ = this.stageStatus.asObservable();
 
-  raisedHands: BehaviorSubject<Set<number>> = new BehaviorSubject<Set<number>>(new Set<number>());
+  raisedHands: BehaviorSubject<{ [id: number]: { name: string } }> = new BehaviorSubject<{
+    [id: number]: { name: string };
+  }>({});
   raisedHands$ = this.raisedHands.asObservable();
+
+  latestRaisedHand: BehaviorSubject<IHandRaisedUser> = new BehaviorSubject<IHandRaisedUser>(null);
+  latestRaisedHand$ = this.latestRaisedHand.asObservable();
 
   constructor() {}
 
@@ -17,23 +27,22 @@ export class HmsStageService {
     this.stageStatus.next(userId);
   }
 
-  raiseHand(userId: number) {
+  raiseHand(user: IHandRaisedUser) {
     const raisedHands = this.raisedHands.value;
-    if (!raisedHands.has(userId)) {
-      raisedHands.add(userId);
+    if (!raisedHands[user.id]) {
+      raisedHands[user.id] = { name: user.name };
       this.raisedHands.next(raisedHands);
+      this.latestRaisedHand.next(user);
     }
   }
 
-  lowerHand(userId: number) {
+  lowerHand(user: IHandRaisedUser) {
     const raisedHands = this.raisedHands.value;
-    if (raisedHands.has(userId)) {
-      raisedHands.delete(userId);
-      this.raisedHands.next(raisedHands);
-    }
+    delete raisedHands[user.id];
+    this.raisedHands.next(raisedHands);
   }
 
   isRaisedHand(userId: number) {
-    return this.raisedHands.value.has(userId);
+    return !!this.raisedHands.value[userId];
   }
 }

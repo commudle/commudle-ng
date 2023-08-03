@@ -14,6 +14,7 @@ import {
   selectPeers,
   selectRoleChangeRequest,
 } from '@100mslive/hms-video-store';
+import { HMSVirtualBackgroundPlugin } from '@100mslive/hms-virtual-background';
 import {
   Component,
   ElementRef,
@@ -26,8 +27,8 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { HMSVirtualBackgroundPlugin } from '@100mslive/hms-virtual-background';
 import { NbDialogRef, NbDialogService, NbTrigger } from '@commudle/theme';
+import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IEmbeddedVideoStream } from 'apps/shared-models/embedded_video_stream.model';
@@ -446,47 +447,45 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   receiveChannelData(): void {
-    this.subscriptions.push(
-      this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((value: any) => {
-        switch (value.action) {
-          // TODO: Use setpermissions for handling this
-          case this.hmsLiveChannel.ACTIONS.RECORDING_STARTED:
-            this.beamStatus.emit(true);
-            this.isRecording = true;
-            break;
-          case this.hmsLiveChannel.ACTIONS.RECORDING_STOPPED:
-            this.beamStatus.emit(false);
-            this.isRecording = false;
-            break;
-          case this.hmsLiveChannel.ACTIONS.STREAMING_STARTED:
-            this.beamStatus.emit(true);
-            this.isStreaming = true;
-            break;
-          case this.hmsLiveChannel.ACTIONS.STREAMING_STOPPED:
-            this.beamStatus.emit(false);
-            this.isStreaming = false;
-            break;
-          case this.hmsLiveChannel.ACTIONS.HAND_RAISED:
-            if (value.user_id === this.currentUser.id) {
-              this.isHandRaised = true;
-            } else {
-              this.toastLogService.notificationDialog(`${value.user_name} raised hand`);
-            }
-            this.hmsStageService.raiseHand(value.user_id);
-            break;
-          case this.hmsLiveChannel.ACTIONS.HAND_LOWERED:
-            if (value.user_id === this.currentUser.id) {
-              this.isHandRaised = false;
-            }
-            this.hmsStageService.lowerHand(value.user_id);
-            break;
-          case this.hmsLiveChannel.ACTIONS.END_STREAM:
-            this.leaveRoom();
-            this.hmsVideoStateService.setState(EHmsStates.ENDED);
-            break;
-        }
-      }),
-    );
+    this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((value: any) => {
+      switch (value.action) {
+        // TODO: Use setpermissions for handling this
+        case this.hmsLiveChannel.ACTIONS.RECORDING_STARTED:
+          this.beamStatus.emit(true);
+          this.isRecording = true;
+          break;
+        case this.hmsLiveChannel.ACTIONS.RECORDING_STOPPED:
+          this.beamStatus.emit(false);
+          this.isRecording = false;
+          break;
+        case this.hmsLiveChannel.ACTIONS.STREAMING_STARTED:
+          this.beamStatus.emit(true);
+          this.isStreaming = true;
+          break;
+        case this.hmsLiveChannel.ACTIONS.STREAMING_STOPPED:
+          this.beamStatus.emit(false);
+          this.isStreaming = false;
+          break;
+        case this.hmsLiveChannel.ACTIONS.HAND_RAISED:
+          if (value.user.id === this.currentUser.id) {
+            this.isHandRaised = true;
+          } else {
+            // this.toastLogService.notificationDialog(`${value.user_name} raised hand`);
+          }
+          this.hmsStageService.raiseHand(value.user);
+          break;
+        case this.hmsLiveChannel.ACTIONS.HAND_LOWERED:
+          if (value.user.id === this.currentUser.id) {
+            this.isHandRaised = false;
+          }
+          this.hmsStageService.lowerHand(value.user);
+          break;
+        case this.hmsLiveChannel.ACTIONS.END_STREAM:
+          this.leaveRoom();
+          this.hmsVideoStateService.setState(EHmsStates.ENDED);
+          break;
+      }
+    });
   }
 
   receiveNotifications(): void {
@@ -516,4 +515,6 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+
+  protected readonly faHand = faHand;
 }
