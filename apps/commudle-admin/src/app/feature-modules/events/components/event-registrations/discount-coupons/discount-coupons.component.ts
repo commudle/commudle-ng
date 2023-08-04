@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { IDiscountCode } from '@commudle/shared-models';
 import { DiscountCodesService } from '@commudle/shared-services';
-import { NbDialogService, NbTagComponent } from '@commudle/theme';
+import { NbDialogService } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'commudle-discount-coupons',
@@ -24,6 +25,7 @@ export class DiscountCouponsComponent implements OnInit {
     private fb: FormBuilder,
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
     private discountCodesService: DiscountCodesService,
+    private datePipe: DatePipe,
   ) {
     this.discountCouponForm = this.fb.group({
       discount_code: this.fb.group<unknown>({
@@ -42,11 +44,26 @@ export class DiscountCouponsComponent implements OnInit {
     this.fetchEventDataFormEntityGroups();
   }
 
-  open(dialog: TemplateRef<any>) {
+  open(dialog: TemplateRef<any>, discountCode?) {
+    if (discountCode) {
+      const date = new Date(discountCode.expires_at);
+      for (const code of discountCode.event_data_form_entity_group_ids) {
+        this.addEventDataForm(code);
+      }
+      this.discountCouponForm.get('discount_code').setValue({
+        code: discountCode.code,
+        discount_type: discountCode.discount_type,
+        discount_value: discountCode.discount_value,
+        is_limited: true,
+        max_limit: discountCode.max_limit,
+        expires_at: this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss'),
+      });
+    }
     this.dialogService.open(dialog, {
       closeOnBackdropClick: false,
       autoFocus: true,
       hasScroll: true,
+      context: { type: discountCode ? 'edit' : 'create', id: discountCode?.id },
     });
   }
 
@@ -73,6 +90,28 @@ export class DiscountCouponsComponent implements OnInit {
     this.subscriptions.push(
       this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
         this.discountCodes.unshift(data);
+      }),
+    );
+  }
+
+  update(discountCodeId) {
+    const formData: any = new FormData();
+    const discountCodeFormData = this.discountCouponForm.get('discount_code').value;
+
+    Object.keys(discountCodeFormData).forEach((key) =>
+      !(discountCodeFormData[key] == null) ? formData.append(`discount_code[${key}]`, discountCodeFormData[key]) : '',
+    );
+
+    this.selectedEventDataFormEntityGroups.forEach((value) =>
+      formData.append('discount_code[event_data_form_entity_group_ids][]', value),
+    );
+
+    this.subscriptions.push(
+      this.discountCodesService.updateDiscountCodes(formData, discountCodeId).subscribe((data) => {
+        const indexToUpdate = this.discountCodes.findIndex((code) => code.id === data.id);
+        if (indexToUpdate !== -1) {
+          this.discountCodes[indexToUpdate] = data;
+        }
       }),
     );
   }

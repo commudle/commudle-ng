@@ -25,9 +25,9 @@ export class DiscountCodesService {
     });
   }
 
-  updateDiscountCodes(uuid: string): Observable<any> {
-    const params = new HttpParams().set('uuid', uuid);
-    return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.STRIPE_HANDLER.RETRIEVE_ACCOUNT), {
+  updateDiscountCodes(discount_code: any, discountCodeId): Observable<any> {
+    const params = new HttpParams().set('discount_code_id', discountCodeId);
+    return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.DISCOUNT_CODES.UPDATE), discount_code, {
       params,
     });
   }

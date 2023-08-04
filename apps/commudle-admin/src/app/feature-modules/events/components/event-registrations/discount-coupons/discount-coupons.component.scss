@@ -1,0 +1,9 @@
+table {
+  @apply com-border-collapse com-mt-4;
+}
+td {
+  @apply com-border com-border-solid com-border-gray-200 com-p-3;
+}
+th {
+  @apply com-bg-gray-200  com-p-1 com-px-2 com-border com-border-solid com-border-gray-300;
+}

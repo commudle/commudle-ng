@@ -1,16 +1,39 @@
 <button nbButton status="info" (click)="open(dialog)">Create Discount Coupon</button>
 
-<div *ngFor="let discountCode of discountCodes">
-  <div>{{ discountCode.code }}</div>
+<div>
+  <table>
+    <tr>
+      <th>Code Name</th>
+      <th>Expire At</th>
+      <th>Action</th>
+      <th>Share</th>
+    </tr>
+    <tr *ngFor="let discountCode of discountCodes">
+      <td>{{ discountCode.code }}</td>
+      <td>{{ discountCode.expires_at | date : 'dd-MM-yy hh:mm a' }}</td>
+      <td><button nbButton size="tiny" (click)="open(dialog, discountCode)" outline status="primary">Edit</button></td>
+      <td>
+        <app-share-button
+          [content]="discountCode.code"
+          [title]="discountCode.code"
+          [text]="discountCode.code"
+          [url]="discountCode.code"
+          [showText]="false"
+          [round]="false"
+        ></app-share-button>
+        <!-- <button nbButton size="tiny" outline status="primary"></button> -->
+      </td>
+    </tr>
+  </table>
 </div>
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card class="com-h-[80dvh] com-w-full">
     <nb-card-header>
       <div class="com-flex com-justify-between">
-        <div>Create Discount Coupon</div>
+        <div>{{ data.type | titlecase }} Discount Coupon</div>
 
-        <button (click)="ref.close()" ghost nbButton shape="round" size="small">
+        <button (click)="ref.close(); discountCouponForm.reset()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
         </button>
       </div>
@@ -60,14 +83,6 @@
           </label>
 
           <!-- Event Data Form Entity Group Ids* -->
-          <!-- <label class="com-col-span-1">
-            Event Data Form Entity Group Ids*
-            <select formControlName="event_data_form_entity_group_ids" fullWidth>
-              <option *ngFor="let edfeg of eventDataFormEntityGroups" [value]="edfeg.id">{{ edfeg.name }}</option>
-            </select>
-          </label> -->
-
-          <!-- Event Data Form Entity Group Ids* -->
           <div>
             <label class="com-col-span-1"> Select Form in which you want to apply Coupon* </label>
             <br />
@@ -88,12 +103,12 @@
         <button
           nbButton
           status="primary"
-          (click)="create()"
+          (click)="data.type === 'edit' ? update(data.id) : create(); ref.close()"
           [disabled]="!discountCouponForm.valid || selectedEventDataFormEntityGroups.length === 0"
         >
-          Create
+          {{ data.type === 'edit' ? 'Update' : data.type }}
         </button>
-        <button nbButton status="danger" outline (click)="ref.close()">Cancel</button>
+        <button nbButton status="danger" outline (click)="ref.close(); discountCouponForm.reset()">Cancel</button>
       </div>
     </nb-card-footer>
   </nb-card>
