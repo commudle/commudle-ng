@@ -255,16 +255,21 @@ export class EditEventComponent implements OnInit {
       }
     }
 
-    this.eventsService.cloneEvent(formValue, this.event.slug, this.tags).subscribe((data) => {
-      this.submitIsInProcess = false;
-      this.router.navigate([
-        '/admin/communities',
-        this.community ? this.community.slug : this.event.kommunity_id,
-        'event-dashboard',
-        data.slug,
-      ]);
-      this.close();
-    });
+    this.eventsService.cloneEvent(formValue, this.event.slug, this.tags).subscribe(
+      (data) => {
+        this.submitIsInProcess = false;
+        this.router.navigate([
+          '/admin/communities',
+          this.community ? this.community.slug : this.event.kommunity_id,
+          'event-dashboard',
+        ]);
+        this.close();
+      },
+      (error) => {
+        this.submitIsInProcess = false;
+        this.close();
+      },
+    );
   }
   close() {
     this.windowRef.close();
