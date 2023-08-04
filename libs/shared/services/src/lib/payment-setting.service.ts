@@ -28,4 +28,15 @@ export class PaymentSettingService {
       },
     );
   }
+
+  updateTicketDetails(paid_ticket_setting: any, paidTicketSettingId): Observable<any> {
+    const params = new HttpParams().set('paid_ticket_setting_id', paidTicketSettingId);
+    return this.http.put<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.PAID_TICKET_SETTINGS.UPDATE),
+      paid_ticket_setting,
+      {
+        params,
+      },
+    );
+  }
 }

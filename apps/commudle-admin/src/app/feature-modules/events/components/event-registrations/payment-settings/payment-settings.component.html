@@ -1,6 +1,6 @@
 <div>
   <div *ngIf="paymentData">
-    Price:{{ paymentData.currency === 'inr' ? 'Rs.' : '$' }} {{ paymentData.price }}
+    Price: {{ paymentData.currency === 'inr' ? 'Rs.' : '$' }} {{ paymentData.price }}
     <br />
     Account No: {{ paymentData.bank_ac_id }}
   </div>
@@ -94,7 +94,7 @@
         </div>
         <div class="save-button-bottom">
           <button
-            (click)="createPaidTicketing()"
+            (click)="paymentDetailsExist ? updateTicketDetails() : createPaidTicketing()"
             [disabled]="!paidTicketingForm.valid"
             fullWidth
             nbButton

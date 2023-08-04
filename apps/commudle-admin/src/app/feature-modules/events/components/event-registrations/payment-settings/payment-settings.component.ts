@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PaymentSettingService } from '@commudle/shared-services';
-import { NbDialogService } from '@commudle/theme';
+import { PaymentSettingService, ToastrService } from '@commudle/shared-services';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,10 +17,12 @@ export class PaymentSettingsComponent implements OnInit {
   paymentData;
   subscriptions: Subscription[] = [];
   paymentDetailsExist = false;
+  dialogRef: NbDialogRef<any>;
   constructor(
     private paymentSettingService: PaymentSettingService,
     private fb: FormBuilder,
     private dialogService: NbDialogService,
+    private toastrService: ToastrService,
   ) {
     this.paidTicketingForm = this.fb.group({
       paid_ticket_setting: this.fb.group({
@@ -37,7 +39,7 @@ export class PaymentSettingsComponent implements OnInit {
   }
 
   open(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog);
+    this.dialogRef = this.dialogService.open(dialog);
   }
 
   fetchPaidTicketingData() {
@@ -60,12 +62,34 @@ export class PaymentSettingsComponent implements OnInit {
 
   createPaidTicketing() {
     this.paymentSettingService.createPaymentSettings(this.paidTicketingForm.value, this.edfeg.id).subscribe((data) => {
+      this.toastrService.successDialog('Payment details has been updated');
       this.paidTicketingForm.get('paid_ticket_setting').setValue({
         bank_ac_type: 'stripe',
         bank_ac_id: data.bank_ac_id,
         price: data.price,
         currency: data.currency,
       });
+      this.close();
     });
+  }
+
+  updateTicketDetails() {
+    this.paymentSettingService
+      .updateTicketDetails(this.paidTicketingForm.value, this.paymentData.id)
+      .subscribe((data) => {
+        this.paymentData = data;
+        this.toastrService.successDialog('Payment details has been updated');
+        this.paidTicketingForm.get('paid_ticket_setting').setValue({
+          bank_ac_type: 'stripe',
+          bank_ac_id: data.bank_ac_id,
+          price: data.price,
+          currency: data.currency,
+        });
+        this.close();
+      });
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }
