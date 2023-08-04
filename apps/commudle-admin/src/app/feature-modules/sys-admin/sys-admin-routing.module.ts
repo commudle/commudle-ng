@@ -83,23 +83,23 @@ const routes = [
         component: AdminSurveysComponent,
       },
       {
-        path: 'featured-communities',
+        path: 'featured',
         component: AdminFeaturedComponent,
         children: [
           {
-            path: '',
+            path: 'communities',
             component: AdminFeaturedCommunitiesComponent,
           },
           {
-            path: 'featured-builds',
+            path: 'builds',
             component: FeaturedCommunityBuildsComponent,
           },
           {
-            path: 'featured-labs',
+            path: 'labs',
             component: AdminFeaturedLabsComponent,
           },
           {
-            path: 'featured-events',
+            path: 'events',
             component: AdminFeaturedEventsComponent,
           },
           // {

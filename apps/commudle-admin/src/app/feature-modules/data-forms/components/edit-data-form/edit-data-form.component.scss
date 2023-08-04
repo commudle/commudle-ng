@@ -177,8 +177,11 @@
 }
 
 .dropdown {
-  @apply com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] hover:com-bg-[#eef2f7]/50 com-my-2;
+  @apply com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-2;
   select {
     @apply com-bg-[#eef2f7] hover:com-bg-[#eef2f7]/50 com-cursor-pointer;
+  }
+  .disable {
+    @apply com-pointer-events-none com-cursor-none;
   }
 }
