@@ -79,9 +79,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   }
 
   updateSeoTitle() {
-    this.seoTitle = this.query
-      ? `${this.query}-Host & Build Your Own Thriving Dev Community`
-      : 'Host & Build Your Own Thriving Dev Community';
+    this.seoTitle = this.query ? `${this.query} - Developer Community` : 'Developer Community';
 
     this.seoService.setTags(
       this.seoTitle,
