@@ -63,6 +63,7 @@ export class PaymentSettingsComponent implements OnInit {
   createPaidTicketing() {
     this.paymentSettingService.createPaymentSettings(this.paidTicketingForm.value, this.edfeg.id).subscribe((data) => {
       this.toastrService.successDialog('Payment details has been updated');
+      this.paymentData = data;
       this.paidTicketingForm.get('paid_ticket_setting').setValue({
         bank_ac_type: 'stripe',
         bank_ac_id: data.bank_ac_id,

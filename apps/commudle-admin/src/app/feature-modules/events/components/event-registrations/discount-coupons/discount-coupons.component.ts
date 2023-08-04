@@ -27,16 +27,27 @@ export class DiscountCouponsComponent implements OnInit {
     private discountCodesService: DiscountCodesService,
     private datePipe: DatePipe,
   ) {
-    this.discountCouponForm = this.fb.group({
-      discount_code: this.fb.group<unknown>({
-        code: ['', Validators.required],
-        discount_type: ['', Validators.required],
-        discount_value: ['', Validators.required],
-        is_limited: [false, Validators.required],
-        max_limit: [''],
-        expires_at: ['', Validators.required],
-      }),
-    });
+    this.discountCouponForm = this.fb.group(
+      {
+        discount_code: this.fb.group<unknown>({
+          code: ['', Validators.required],
+          discount_type: ['', Validators.required],
+          discount_value: ['', Validators.required],
+          is_limited: [false, Validators.required],
+          max_limit: [''],
+          expires_at: ['', Validators.required],
+        }),
+      },
+      {
+        validators: [
+          // if is_limited is true, then max_limit is required
+          (fb) =>
+            fb.get('discount_code').get('is_limited').value === true && !fb.get('discount_code').get('max_limit').value
+              ? { max_limit: true }
+              : null,
+        ],
+      },
+    );
   }
 
   ngOnInit(): void {

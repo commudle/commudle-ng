@@ -91,10 +91,11 @@ export class FormGroupsComponent implements OnInit {
       this.changeDetectorRef.markForCheck();
     });
   }
-
+  //get stripe account information
   getStripeAccountData() {
     this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
-      this.stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      const stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.active === true);
     });
   }
 
