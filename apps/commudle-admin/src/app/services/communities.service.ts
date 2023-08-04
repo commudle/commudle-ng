@@ -65,15 +65,6 @@ export class CommunitiesService {
     });
   }
 
-  search(query: string, tag: string, page: number, count: number): Observable<ICommunities> {
-    const params = new HttpParams()
-      .set('query', query)
-      .set('tag', tag)
-      .set('page', String(page))
-      .set('count', String(count));
-    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
-  }
-
   getPopularTags(): Observable<string[]> {
     return this.http.get<string[]>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.POPULAR_TAGS));
   }
@@ -145,5 +136,29 @@ export class CommunitiesService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.SPEAKERS),
       { params },
     );
+  }
+
+  getPopularCommunities(
+    after?: string,
+    limit?: number,
+    query?: string,
+    order_by?: string,
+  ): Observable<IPagination<ICommunity>> {
+    let params = new HttpParams();
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (query) {
+      params = params.set('query', query);
+    }
+    if (order_by) {
+      params = params.set('order_by', order_by);
+    }
+    return this.http.get<IPagination<ICommunity>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC.INDEX), {
+      params,
+    });
   }
 }

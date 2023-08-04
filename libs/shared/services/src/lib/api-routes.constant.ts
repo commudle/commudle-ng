@@ -29,13 +29,14 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
-    SEARCH: 'api/v2/communities/search',
+    // SEARCH: 'api/v2/communities/search',    //DEPRECATED
     SPEAKERS: 'api/v2/communities/speakers',
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
     TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
     PUBLIC: {
+      INDEX: 'api/v2/communities/public',
       SPEAKERS: 'api/v2/communities/public/speakers',
     },
   },
