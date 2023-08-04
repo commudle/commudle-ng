@@ -158,6 +158,7 @@ export class FormGroupsComponent implements OnInit {
 
       setTimeout(() => {
         this.eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').setValue(dataForm.id);
+        this.eventDataFormEntityGroupForm.updateValueAndValidity();
       }, 0);
       this.toastLogService.successDialog('New Form Created & Selected!');
     });
@@ -173,5 +174,11 @@ export class FormGroupsComponent implements OnInit {
         mailType: EemailTypes.SEND_LINK,
       },
     });
+  }
+
+  changeDataFormValue(event) {
+    if (event.value === 'createNewForm') {
+      this.openNewFormWindow();
+    }
   }
 }

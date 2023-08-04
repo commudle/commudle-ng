@@ -1,0 +1,43 @@
+<div class="com-my-4">
+  <button (click)="openCreateFeaturedDialog()" status="success" nbButton size="small">
+    <nb-icon icon="plus"></nb-icon>
+    Create
+  </button>
+</div>
+
+<div *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<table *ngIf="!isLoading">
+  <tr>
+    <th class="com-w-1/3">Build Name</th>
+    <th>Reasons</th>
+    <th class="com-w-56">Status</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let communityBuild of communityBuilds; let i = index">
+    <td>{{ communityBuild.community_build.name }}</td>
+    <td>{{ communityBuild.reason }}</td>
+    <td>
+      <nb-toggle
+        status="primary"
+        (click)="updateFeaturedCommunity(communityBuild.id, !communityBuild.active, i)"
+        [(checked)]="communityBuild.active"
+        labelPosition="right"
+      >
+        {{ communityBuild.active ? 'Activated' : 'Deactivated' }}
+      </nb-toggle>
+    </td>
+    <td>
+      <div class="actions d-flex">
+        <button (click)="openDeleteFeaturedDialog(communityBuild.id, i)" nbButton outline size="tiny" status="danger">
+          Delete
+        </button>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<button (click)="getFeaturedItems()" *ngIf="this.pageInfo?.has_next_page" fullWidth ghost nbButton>
+  Get more featured community Builds
+</button>

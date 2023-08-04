@@ -247,22 +247,21 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   submitForm(publishStatus: EPublishStatus) {
-    if (this.communityBuildForm.invalid) {
+    if (
+      this.communityBuildForm.invalid ||
+      this.tags.length < 5 ||
+      !(this.communityBuildForm.value.link || this.communityBuildForm.value.live_app_link)
+    ) {
       this.communityBuildForm.markAllAsTouched();
-    }
-
-    if (this.tags.length < 5) {
-      this.showTagsValidation = true;
-    }
-
-    if (!(this.communityBuildForm.value.link || this.communityBuildForm.value.live_app_link)) {
       this.linkOrLiveAppLinkValue = true;
+      this.showTagsValidation = true;
+      return;
+    }
+
+    if (!this.cBuild) {
+      this.createCommunityBuild(publishStatus);
     } else {
-      if (!this.cBuild) {
-        this.createCommunityBuild(publishStatus);
-      } else {
-        this.updateCommunityBuild(publishStatus);
-      }
+      this.updateCommunityBuild(publishStatus);
     }
   }
 

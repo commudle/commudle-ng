@@ -1,74 +1,82 @@
 p {
-  @apply com-m-0 com-text-gunmetal;
+  @apply com-m-0;
 }
 
 .communities-featured-container {
-  @apply com-mb-8 com-overflow-hidden com-relative;
+  @apply com-mb-10 com-overflow-hidden com-relative com-p-0 com-pt-8 md:com-mx-0 com-mx-4;
 
-  nb-card-body {
-    @apply com-pt-8 com-px-5 com-pb-6;
+  .communities-featured-heading {
+    @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6;
+  }
 
-    .communities-featured-heading {
-      @apply com-text-2xl com-mt-0 com-mx-0 com-mb-11;
-    }
+  .communities-featured-list {
+    @apply com-grid md:com-grid-cols-3 com-grid-cols-1 md:com-gap-6 com-gap-y-6 com-gap-x-0;
 
-    .communities-featured-list {
-      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+    .featured-community-card {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg md:com-w-[276px] com-h-[296px] com-w-full com-flex-shrink-0 com-overflow-hidden;
 
-      @screen lg {
-        @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-4;
-      }
+      a {
+        @apply com-no-underline;
 
-      .featured-community-card {
-        @apply com-bg-white com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-min-w-[260px] com-overflow-hidden com-relative;
+        .banner {
+          @apply com-grid com-relative com-h-[72px];
 
-        @screen lg {
-          min-width: inherit;
-        }
-
-        .featured-community-actions {
-          @apply com-gap-2 com-absolute com-right-3 com-top-3;
-
-          button {
-            @apply com-bg-Azureish-White;
-
-            nb-icon {
-              @apply com-text-Very-Light-Blue;
-            }
+          div {
+            @apply com-col-start-1 com-row-start-1;
           }
 
-          app-share-button {
-            ::ng-deep {
-              .share-button-container {
-                button {
-                  @apply com-bg-Azureish-White;
-                }
+          .banner-image {
+            @apply com-h-[46px] com-overflow-hidden com-w-full;
+          }
+
+          .no-banner-image {
+            @apply com-h-[46px] com-bg-Anti-Flash-White;
+          }
+
+          .community-image {
+            @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[20px] com-overflow-hidden com-w-[52px] com-flex com-absolute com-top-0 com-left-0;
+
+            img {
+              @apply com-bg-white com-h-auto com-w-full com-flex-shrink-0;
+            }
+          }
+        }
+
+        .featured-community-about {
+          @apply com-p-3 com-pb-0 com-h-[179px] com-relative;
+
+          .featured-community-name {
+            @apply com-m-0 com-text-base com-font-semibold com-text-Dark-Jungle-Green com-line-clamp-1;
+          }
+
+          .featured-community-reason {
+            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3;
+          }
+
+          .members-events {
+            @apply com-flex com-flex-row com-items-center com-mt-3 com-gap-x-3;
+
+            .members,
+            .events-organized {
+              @apply com-flex com-items-center;
+              nb-icon {
+                @apply com-h-4 com-w-4 com-mr-1 com-flex-shrink-0;
+              }
+
+              p {
+                @apply com-text-xs com-font-medium com-text-Dark-Jungle-Green com-m-0;
               }
             }
           }
-        }
-        a {
-          text-decoration: none;
-          .featured-community-image-container {
-            @apply com-h-156px com-overflow-hidden com-w-full;
 
-            .featured-community-image {
-              @apply com-w-full;
-            }
-          }
-
-          .featured-community-about {
-            @apply com-p-4;
-
-            .featured-community-name {
-              @apply com-m-0 com-text-sm com-font-semibold com-text-gunmetal;
-            }
-
-            .featured-community-reason {
-              @apply com-mt-2 com-text-sm com-text-gunmetal;
-            }
+          .featured-community-tags {
+            @apply com-h-6 com-mx-0 com-my-4 com-overflow-hidden;
           }
         }
+      }
+
+      .community-join-btn {
+        @apply com-px-3 com-pb-3;
       }
     }
   }

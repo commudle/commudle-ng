@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
+import { FeaturedItemsService } from 'apps/commudle-admin/src/app/services/featured-items.service';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { CommonModule } from '@angular/common';
@@ -23,7 +23,7 @@ export class FeaturedProjectsComponent implements OnInit {
   showSpinner = true;
   isMobileView: boolean;
 
-  constructor(private communityBuildsService: CommunityBuildsService) {}
+  constructor(private featuredItemsService: FeaturedItemsService) {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 1024;
@@ -31,7 +31,7 @@ export class FeaturedProjectsComponent implements OnInit {
   }
 
   getFeaturedProjects() {
-    this.communityBuildsService.pGetFeaturedProjects('CommunityBuild').subscribe((data) => {
+    this.featuredItemsService.getFeaturedItems('CommunityBuild').subscribe((data) => {
       this.featuredProjects = this.featuredProjects.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.showSpinner = false;
     });

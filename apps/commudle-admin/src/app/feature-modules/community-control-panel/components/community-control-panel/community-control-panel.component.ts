@@ -71,7 +71,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   sendEmails() {
     this.windowService.open(EmailerComponent, {
-      title: `Send Email to All ${this.community.member_count} Members`,
+      title: `Send Email to All ${this.community.members_count} Members`,
       context: {
         community: this.community,
         mailType: EemailTypes.GENERAL_ALL,
