@@ -17,7 +17,7 @@ p {
     @apply com-flex com-items-center;
 
     .community-card-logo {
-      @apply com-h-[60px] com-w-[60px] com-mb-4;
+      @apply com-h-[60px] com-w-[60px] com-mb-4 com-object-contain com-object-center;
     }
 
     .community-card-details {
