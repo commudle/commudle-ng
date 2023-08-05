@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
@@ -13,13 +14,10 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
-import { PaymentSettingService, StripeHandlerService } from '@commudle/shared-services';
-import { FormControl } from '@angular/forms';
-import { ISearch } from 'apps/shared-models/search.model';
-import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
-import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { PaymentSettingService } from '@commudle/shared-services';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -42,10 +40,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   gtmData: any = {};
   stripeInstance: any; // Use specific types for Stripe and Elements if available
   elementsInstance: any;
-  inputFormControl: FormControl;
   selectedUsers = [];
   showUserFillForm = false;
   paymentData;
+  addUserForm;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
@@ -63,12 +61,14 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
-    private stripeHandlerService: StripeHandlerService,
-    private searchService: SearchService,
-    private appUsersService: AppUsersService,
     private paymentSettingService: PaymentSettingService,
+    private fb: FormBuilder,
   ) {
-    this.inputFormControl = new FormControl('');
+    this.addUserForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      phone_number: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
@@ -111,24 +111,12 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         }
       }),
     );
-    this.observeInput();
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 
     this.dialogRef?.close();
-  }
-
-  observeInput() {
-    this.inputFormControl.valueChanges
-      .pipe(
-        distinctUntilChanged(),
-        switchMap((value: string) => this.searchService.getSearchResultsByScope(value, 1, 20, 'User')),
-      )
-      .subscribe((value: ISearch) => {
-        this.searchResult = value.results;
-      });
   }
 
   fetchPaidTicketingData(edfegId) {
@@ -274,18 +262,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   // }
 
   submit() {}
-  selected(username) {
-    this.subscriptions.push(
-      this.appUsersService.getProfile(username).subscribe((data) => {
-        this.selectedUsers.push(data);
-      }),
-    );
-  }
 
-  removeSelectedUser(selectedUser) {
-    const indexToRemove = this.selectedUsers.findIndex((user) => user.id === selectedUser.id);
-    if (indexToRemove !== -1) {
-      this.selectedUsers.splice(indexToRemove, 1);
-    }
+  saveUserDetails() {
+    this.addUserForm.value;
+    this.selectedUsers.push(this.addUserForm.value);
+    this.addUserForm.reset();
   }
 }
