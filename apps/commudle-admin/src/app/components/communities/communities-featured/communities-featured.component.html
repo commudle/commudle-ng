@@ -1,38 +1,59 @@
-<nb-card class="communities-featured-container">
-  <nb-card-body>
-    <h2 class="communities-featured-heading">Featured Communities</h2>
-    <div class="communities-featured-list">
-      <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
-        <div class="featured-community-actions d-flex">
-          <a [routerLink]="['/communities', featuredCommunity.kommunity.slug, 'members']">
-            <button class="featured-community-members-btn" nbButton shape="round" size="small">
-              <nb-icon icon="people"></nb-icon>
-            </button>
-          </a>
-          <app-share-button
-            [content]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
-            [title]="featuredCommunity.kommunity.name"
-            [text]="featuredCommunity.reason"
-            [url]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
-            [showText]="false"
-            [round]="true"
-          ></app-share-button>
-        </div>
-        <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
-          <div class="clickable featured-community-image-container">
+<div class="communities-featured-container">
+  <h2 class="communities-featured-heading">Featured Communities</h2>
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <commudle-skeleton-vertical-cards [cards]="6"></commudle-skeleton-vertical-cards>
+  </div>
+  <div class="communities-featured-list">
+    <div *ngFor="let featuredItems of featuredItems" class="featured-community-card">
+      <a [routerLink]="['/communities', featuredItems.community.slug]">
+        <div class="banner">
+          <div *ngIf="featuredItems.community.banner_image" class="banner-image">
+            <commudle-banner-image
+              [headerImagePath]="featuredItems.community.banner_image.i320"
+              [name]="featuredItems.community.name"
+              [aspectRatio]="'6/1'"
+              [bottomRightCurve]="false"
+              [bottomLeftCurve]="false"
+            ></commudle-banner-image>
+          </div>
+          <div *ngIf="!featuredItems.community.banner_image" class="no-banner-image"></div>
+
+          <div class="community-image">
             <img
-              alt="{{ featuredCommunity.kommunity.name }}"
-              class="featured-community-image"
-              src="{{ featuredCommunity.kommunity.logo_image?.url }}"
-              title="{{ featuredCommunity.kommunity.name }}"
+              alt="{{ featuredItems.community.name }}"
+              src="{{ featuredItems.community.logo_image?.i64 }}"
+              title="{{ featuredItems.community.name }}"
             />
           </div>
-          <div class="clickable featured-community-about">
-            <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
-            <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
+        </div>
+        <div class="clickable featured-community-about">
+          <h3 class="featured-community-name">{{ featuredItems.community.name }}</h3>
+          <p class="featured-community-reason">{{ featuredItems.reason }}</p>
+          <div class="members-events">
+            <p class="members"><nb-icon icon="people-outline"></nb-icon>{{ featuredItems.community.members_count }}</p>
+            <p class="events-organized">
+              <nb-icon icon="calendar-outline"></nb-icon>{{ featuredItems.community.completed_events_count }}
+            </p>
           </div>
-        </a>
+          <div class="featured-community-tags">
+            <app-tag
+              [tags]="getTagNames(featuredItems.community)"
+              [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+              [size]="'tiny'"
+              [fontColor]="'#101828'"
+              [maximumTag]="5"
+            ></app-tag>
+          </div>
+        </div>
+      </a>
+      <div class="community-join-btn">
+        <app-membership-toggle
+          [community]="featuredItems.community"
+          [status]="'info'"
+          [shapes]="'semi-round'"
+          [isMobileWidthFull]="true"
+        ></app-membership-toggle>
       </div>
     </div>
-  </nb-card-body>
-</nb-card>
+  </div>
+</div>

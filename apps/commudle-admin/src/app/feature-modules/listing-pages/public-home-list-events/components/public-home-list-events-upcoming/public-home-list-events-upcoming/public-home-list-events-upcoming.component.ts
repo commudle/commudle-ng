@@ -18,6 +18,7 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
   eventForSchema = [];
   page_info: IPageInfo;
   total: number;
+  limit = 5;
 
   isLoadingUpcoming = false;
   showSpinner = false;
@@ -31,7 +32,7 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
   getUpcomingEvents() {
     this.isLoadingUpcoming = true;
     this.showSpinner = true;
-    this.eventsService.getEventsList('future', this.page_info?.end_cursor).subscribe((data) => {
+    this.eventsService.getEventsList('future', this.limit, this.page_info?.end_cursor).subscribe((data) => {
       this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
       this.page_info = data.page_info;

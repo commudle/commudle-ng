@@ -178,8 +178,8 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       const exisingQuestionForm = this.fb.group({
         id: q.id,
         question_type_id: [{ value: q.question_type_id, disabled: q.has_responses }],
-        title: [{ value: q.title, disabled: q.has_responses }],
-        description: [{ value: q.description, disabled: q.has_responses }],
+        title: [q.title],
+        description: [q.description],
         required: [q.required],
         disabled: [q.disabled],
         has_responses: q.has_responses,
@@ -198,7 +198,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       formArray.push(
         this.fb.group({
           id: [qc.id],
-          title: [{ value: qc.title, disabled: qc.has_responses }],
+          title: [qc.title],
           has_responses: qc.has_responses,
         }),
       );

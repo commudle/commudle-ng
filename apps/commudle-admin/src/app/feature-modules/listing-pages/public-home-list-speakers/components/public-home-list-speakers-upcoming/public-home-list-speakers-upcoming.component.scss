@@ -18,4 +18,12 @@ div {
       @apply md:com-mb-3 com-m-0 com-p-0 com-rounded-xl com-bg-transparent;
     }
   }
+
+  .load-more {
+    @apply com-text-center md:com-pb-2 com-m-0 com-p-0;
+
+    app-loading-spinner {
+      @apply com-mb-6;
+    }
+  }
 }
