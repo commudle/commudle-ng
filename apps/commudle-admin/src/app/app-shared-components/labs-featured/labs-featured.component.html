@@ -17,7 +17,8 @@
       }"
       class="custom-scrollbar"
     >
-      <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
+      <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
+        <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card>
         <!-- <commudle-featured-communities-card
           [featuredCommunity]="featuredCommunity"
           [horizontalScroll]="isMobileView || showCardsHorizontal"

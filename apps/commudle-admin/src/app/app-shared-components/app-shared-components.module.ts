@@ -22,6 +22,7 @@ import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared
 import { SurveysComponent } from './surveys/surveys.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LabsFeaturedCardComponent } from './labs-featured-card/labs-featured-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
@@ -39,6 +40,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,
     TopBuildersCardComponent,
+    LabsFeaturedCardComponent,
 
     // Nebular
     NbRadioModule,
