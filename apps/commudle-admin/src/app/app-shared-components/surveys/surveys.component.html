@@ -130,27 +130,3 @@
     </nb-card-body>
   </nb-card>
 </ng-template>
-
-<ng-template #editSurveyName let-data>
-  <div class="new-data-form-template">
-    <form (ngSubmit)="updateSurvey()" [formGroup]="createSurveyForm" class="dfeg-create-form">
-      <div formGroupName="survey" class="com-flex com-gap-4">
-        <div class="name">
-          <label fullWidth>
-            Name*
-            <input fieldSize="small" formControlName="name" placeholder="Survey Name" fullWidth nbInput type="text" />
-            <span
-              *ngIf="
-                createSurveyForm.controls.survey.get('name').touched &&
-                createSurveyForm.controls.survey.get('name').invalid &&
-                createSurveyForm.controls.survey.get('name').errors.required
-              "
-            >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-            </span>
-          </label>
-        </div>
-      </div>
-    </form>
-  </div>
-</ng-template>
