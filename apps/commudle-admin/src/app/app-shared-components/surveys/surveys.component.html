@@ -4,7 +4,7 @@
       <div class="name">
         <label fullWidth>
           Name*
-          <input fieldSize="small" formControlName="name" placeholder="Form Name" fullWidth nbInput type="text" />
+          <input fieldSize="small" formControlName="name" placeholder="Survey Name" fullWidth nbInput type="text" />
           <span
             *ngIf="
               createSurveyForm.controls.survey.get('name').touched &&
@@ -26,8 +26,10 @@
             [ngClass]="{
               'com-text-[#8E9BB3]': createSurveyForm.controls.survey.get('data_form_id').value === ''
             }"
+            (change)="optionChanged($event)"
           >
             <option value="" selected disabled>Select Form</option>
+            <option value="createNewForm">+ Create New Form</option>
             <option *ngFor="let qt of dataForms" [ngValue]="qt.id">
               {{ qt.name | titlecase }}
             </option>
@@ -41,6 +43,9 @@
           "
         >
           <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+        </span>
+        <span *ngIf="createSurveyForm.controls.survey.get('data_form_id').value === 'createNewForm'">
+          <commudle-alert [error]="true" [errorMessage]="'Please Select Valid Form'"></commudle-alert>
         </span>
       </div>
     </div>
@@ -59,63 +64,93 @@
       </button>
     </div>
   </form>
-  <div class="create-form-button">
-    <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
-      <nb-icon icon="plus-outline"></nb-icon>Create New Form
-    </button>
-  </div>
 </div>
 
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<div>
-  <table>
-    <tr *ngFor="let survey of surveys; let i = index">
-      <td class="com-w-2/5">
+<table>
+  <tr *ngFor="let survey of surveys; let i = index">
+    <td class="com-w-2/5">
+      <div>
         {{ survey.name | titlecase }}
-        <small>
-          <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
-            <nb-icon icon="external-link" class="com-text-base"></nb-icon>
-            <span class="com-text-base"> Link to fill </span>
-          </a>
-        </small>
-      </td>
-      <td>
-        <a [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']" nbButton>
-          <nb-icon icon="edit"></nb-icon>
-          Edit
-        </a>
-      </td>
-      <td>
-        <div class="status">
-          <nb-toggle
-            (checkedChange)="updateStatus($event, i)"
-            [checked]="survey.status === ESurveyStatus.open"
-            labelPosition="end"
-          >
-            Open
-          </nb-toggle>
-        </div>
-      </td>
-      <td>
-        <div class="multiple-responses">
-          <nb-toggle (checkedChange)="toggleMultiResponse(i)" [checked]="survey.multi_response" labelPosition="end">
-            Multiple Responses
-          </nb-toggle>
-        </div>
-      </td>
-      <td>
-        <div class="details">
-          <a (click)="openResponses(survey)" class="clickable total-responses">
-            Responses: {{ survey.total_responses }}
-          </a>
-        </div>
-      </td>
-    </tr>
-  </table>
+      </div>
 
-  <ng-template #newCommunitySurveyForm let-data>
-    <div class="new-data-form-template">
-      <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
-    </div>
-  </ng-template>
-</div>
+      <small>
+        <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
+          <nb-icon icon="external-link" class="com-text-base"></nb-icon>
+          <span class="com-text-base"> Link to fill </span>
+        </a>
+      </small>
+    </td>
+    <td>
+      <a [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']" nbButton>
+        <nb-icon icon="edit"></nb-icon>
+        Edit
+      </a>
+    </td>
+    <td>
+      <div class="status">
+        <nb-toggle
+          (checkedChange)="updateStatus($event, i)"
+          [checked]="survey.status === ESurveyStatus.open"
+          labelPosition="end"
+        >
+          Open
+        </nb-toggle>
+      </div>
+    </td>
+    <td>
+      <div class="multiple-responses">
+        <nb-toggle (checkedChange)="toggleMultiResponse(i)" [checked]="survey.multi_response" labelPosition="end">
+          Multiple Responses
+        </nb-toggle>
+      </div>
+    </td>
+    <td>
+      <div class="details">
+        <a (click)="openResponses(survey)" class="clickable total-responses">
+          Responses: {{ survey.total_responses }}
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<ng-template #newCommunitySurveyForm let-data let-ref="dialogRef">
+  <nb-card class="com-h-[90dvh] md:com-w-[50dvw]">
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <div>Create New Survey Form</div>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-px-0">
+      <div class="new-data-form-template">
+        <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #editSurveyName let-data>
+  <div class="new-data-form-template">
+    <form (ngSubmit)="updateSurvey()" [formGroup]="createSurveyForm" class="dfeg-create-form">
+      <div formGroupName="survey" class="com-flex com-gap-4">
+        <div class="name">
+          <label fullWidth>
+            Name*
+            <input fieldSize="small" formControlName="name" placeholder="Survey Name" fullWidth nbInput type="text" />
+            <span
+              *ngIf="
+                createSurveyForm.controls.survey.get('name').touched &&
+                createSurveyForm.controls.survey.get('name').invalid &&
+                createSurveyForm.controls.survey.get('name').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

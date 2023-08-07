@@ -258,11 +258,7 @@ export class EditEventComponent implements OnInit {
     this.eventsService.cloneEvent(formValue, this.event.slug, this.tags).subscribe(
       (data) => {
         this.submitIsInProcess = false;
-        this.router.navigate([
-          '/admin/communities',
-          this.community ? this.community.slug : this.event.kommunity_id,
-          'event-dashboard',
-        ]);
+        window.location.reload();
         this.close();
       },
       (error) => {
