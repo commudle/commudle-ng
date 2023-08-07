@@ -7,7 +7,7 @@ h4 {
   @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
 
   nb-card-body {
-    @apply com-p-0 com-flex;
+    @apply com-p-0 com-flex com-overflow-hidden;
 
     .date {
       @apply com-p-2 com-bg-blue-500 com-flex com-flex-col com-justify-center com-items-center com-w-14 com-text-xs com-text-blue-100 com-flex-shrink-0;
