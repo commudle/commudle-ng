@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@commudle/theme';
 import { JobApplicationService } from 'apps/commudle-admin/src/app/feature-modules/jobs/services/job-application.service';
@@ -21,6 +21,7 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { LibErrorHandlerService } from 'apps/lib-error-handler/src/lib/lib-error-handler.service';
 
 @Component({
   selector: 'app-job',
@@ -28,6 +29,7 @@ import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
   styleUrls: ['./job.component.scss'],
 })
 export class JobComponent implements OnInit, OnDestroy {
+  @ViewChild('createJobApplicationDialog') createJobApplicationDialog: TemplateRef<any>;
   currentUser: ICurrentUser;
 
   job: IJob;
@@ -58,6 +60,7 @@ export class JobComponent implements OnInit, OnDestroy {
     private nbToastrService: NbToastrService,
     private seoService: SeoService,
     private route: Router,
+    private errorHandler: LibErrorHandlerService,
   ) {}
 
   ngOnInit(): void {
@@ -93,6 +96,14 @@ export class JobComponent implements OnInit, OnDestroy {
   onDialogOpen(templateRef: TemplateRef<any>): void {
     this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
     this.getResumes();
+  }
+
+  checkCurrentUser() {
+    if (this.currentUser) {
+      this.onDialogOpen(this.createJobApplicationDialog);
+    } else {
+      this.errorHandler.handleError(401, 'Login to apply');
+    }
   }
 
   createJobApplication(): void {

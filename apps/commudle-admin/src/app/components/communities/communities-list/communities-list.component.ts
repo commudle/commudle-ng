@@ -90,7 +90,6 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   getPopularCommunities(): void {
     this.showSpinner = true;
-    this.skeletonLoaderCard = true;
     if (!this.pageInfo?.end_cursor) {
       this.communities = [];
     }

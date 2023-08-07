@@ -42,7 +42,7 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
     this.mainNewslettersService.show(id).subscribe((data) => {
       this.mainNewsletter = data;
       let newsletterContent = data.content.replace(/utm_medium=email/g, 'utm_medium=webapp');
-      newsletterContent = newsletterContent.replace(/utm_source=email/g, 'utm_medium=webapp');
+      newsletterContent = newsletterContent.replace(/utm_source=email/g, 'utm_source=webapp');
       this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(newsletterContent);
       this.setMeta();
     });

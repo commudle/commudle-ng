@@ -11,6 +11,7 @@ import {
   NbCheckboxModule,
   NbToggleModule,
   NbIconModule,
+  NbCardModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
@@ -50,6 +51,7 @@ import { LabsFeaturedCardComponent } from './labs-featured-card/labs-featured-ca
     NbCheckboxModule,
     NbToggleModule,
     NbIconModule,
+    NbCardModule,
   ],
   exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
 })
