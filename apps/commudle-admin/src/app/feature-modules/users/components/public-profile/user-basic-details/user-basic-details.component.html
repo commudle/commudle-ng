@@ -47,7 +47,7 @@
           <ng-template #message>
             <button
               [disabled]="user.deactivated"
-              (click)="openChatWithUser()"
+              (click)="checkCurrentUser()"
               nbButton
               shape="semi-round"
               size="small"
