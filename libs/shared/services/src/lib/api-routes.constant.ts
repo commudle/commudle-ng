@@ -15,6 +15,12 @@ export const API_ROUTES = {
     TOGGLE_MULTI_RESPONSE: 'api/v2/admin_surveys/toggle_multi_response',
     UPDATE_STATUS: 'api/v2/admin_surveys/update_status',
   },
+  SURVEYS: {
+    INDEX: 'api/v2/surveys',
+    CREATE: 'api/v2/surveys',
+    TOGGLE_MULTI_RESPONSE: 'api/v2/surveys/toggle_multi_response',
+    UPDATE_STATUS: 'api/v2/surveys/update_status',
+  },
 
   // communities
   COMMUNITIES: {
@@ -23,13 +29,14 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
-    SEARCH: 'api/v2/communities/search',
+    // SEARCH: 'api/v2/communities/search',    //DEPRECATED
     SPEAKERS: 'api/v2/communities/speakers',
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
     TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
     PUBLIC: {
+      INDEX: 'api/v2/communities/public',
       SPEAKERS: 'api/v2/communities/public/speakers',
     },
   },
@@ -125,6 +132,7 @@ export const API_ROUTES = {
   CREATE_DATA_FORM: 'api/v2/data_forms',
   UPDATE_DATA_FORM: 'api/v2/data_forms',
   CLONE_COMMUNITY_DATA_FORM: 'api/v2/data_forms/clone_community_data_form',
+  LIST: 'api/v2/data_forms/list',
 
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
@@ -157,6 +165,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/events',
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
+    CLONE: 'api/v2/events/clone',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
     UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
@@ -181,6 +190,7 @@ export const API_ROUTES = {
       POLLS: 'api/v2/events/public/polls',
       SPEAKERS_LIST: 'api/v2/events/public/speakers_list',
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
+      SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
     },
   },
 
@@ -227,6 +237,16 @@ export const API_ROUTES = {
     DELETE: 'api/v2/featured_communities',
     PUBLIC: {
       SHOW: 'api/v2/featured_communities/public/show',
+    },
+  },
+
+  FEATURED_ITEMS: {
+    INDEX: 'api/v2/featured_items',
+    CREATE: 'api/v2/featured_items',
+    UPDATE: 'api/v2/featured_items',
+    DELETE: 'api/v2/featured_items',
+    PUBLIC: {
+      SHOW: 'api/v2/featured_items/public',
     },
   },
 
@@ -379,6 +399,7 @@ export const API_ROUTES = {
 
   SEARCH: {
     INDEX: 'api/v2/search',
+    SCOPE: 'api/v2/search/scope',
   },
 
   // user_roles_users

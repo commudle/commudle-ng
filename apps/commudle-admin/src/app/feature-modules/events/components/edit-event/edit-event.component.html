@@ -1,18 +1,22 @@
 <div class="event-edit-form-container">
-  <div class="backButton">
+  <div class="backButton" *ngIf="type === 'save'">
     <commudle-back-button text="Back"></commudle-back-button>
   </div>
 
-  <nb-card>
+  <nb-card class="md:com-min-w-[50vw]">
     <nb-card-body>
       <h3 class="com-mt-0">Edit Event</h3>
 
       <nb-alert status="info" *ngIf="uneditable">
         <p>
-          This event is <strong>{{ event.event_status.name | titlecase }}</strong> and cannot be edited
+          This event is <strong>{{ event.event_status?.name | titlecase }}</strong> and cannot be edited
         </p>
       </nb-alert>
-      <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="updateEvent()">
+      <form
+        class="event-create-form"
+        [formGroup]="eventForm"
+        (ngSubmit)="type === 'Save' ? updateEvent() : cloneEvent()"
+      >
         <div formGroupName="event">
           <div role="group">
             <div>
@@ -108,14 +112,14 @@
         <div class="save-button-bottom">
           <button
             *ngIf="!uneditable"
-            [disabled]="!eventForm.valid || tags.length < 3 || submitIsInProcess"
+            [disabled]="tags.length < 3 || submitIsInProcess"
             type="submit"
             nbButton
             fullWidth
             status="info"
             [nbSpinner]="submitIsInProcess"
           >
-            Save
+            {{ type }}
           </button>
         </div>
       </form>

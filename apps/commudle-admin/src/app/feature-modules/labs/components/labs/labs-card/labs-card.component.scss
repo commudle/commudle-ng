@@ -43,11 +43,12 @@ a:active {
       .heading {
         @apply com-flex com-flex-row com-justify-between com-mb-2;
         .labs-card-title {
-          @apply com-flex;
+          @apply com-flex com-items-center;
           .title {
             @apply com-text-base com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-1 com-mr-2;
           }
           .steps {
+            @apply com-text-xs com-font-medium com-text-Azure;
           }
         }
         .tags {
@@ -72,11 +73,14 @@ a:active {
         // }
 
         .labs-card-views {
-          // @apply com-flex com-items-center;
+          @apply com-flex com-items-center;
           // p,
-          // nb-icon {
-          //   margin-top: 1px;
-          // }
+          nb-icon {
+            @apply com-h-[18px] com-w-[18px] com-mr-2px;
+          }
+          p {
+            @apply com-text-sm com-font-normal com-m-0;
+          }
         }
 
         .labs-card-likes {

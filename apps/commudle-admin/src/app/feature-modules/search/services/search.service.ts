@@ -15,4 +15,13 @@ export class SearchService {
     const params = new HttpParams().set('q', query).set('page', page.toString()).set('count', count.toString());
     return this.http.get<ISearch>(this.apiRoutesService.getRoute(API_ROUTES.SEARCH.INDEX), { params });
   }
+
+  getSearchResultsByScope(query: string, page, count, parentType): Observable<ISearch> {
+    const params = new HttpParams()
+      .set('q', query)
+      .set('page', page)
+      .set('count', count)
+      .set('searchable_type', parentType);
+    return this.http.get<ISearch>(this.apiRoutesService.getRoute(API_ROUTES.SEARCH.SCOPE), { params });
+  }
 }

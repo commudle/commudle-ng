@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -7,14 +7,16 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { NbWindowRef } from '@commudle/theme';
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
   styleUrls: ['./edit-event.component.scss'],
 })
 export class EditEventComponent implements OnInit {
+  @Input() eventId: number;
+  @Input() type = 'Save';
   event: IEvent;
   community: ICommunity;
   allTimeZones;
@@ -68,7 +70,7 @@ export class EditEventComponent implements OnInit {
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private location: Location,
+    @Optional() private windowRef: NbWindowRef,
   ) {
     this.eventForm = this.fb.group({
       event: this.fb.group({
@@ -84,39 +86,20 @@ export class EditEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.parent.data.subscribe((data) => {
-      this.community = data.community;
-      this.event = data.event;
-      this.event.tags.forEach((value) => this.tags.push(value.name));
-
-      // event is editable only if it's not canceled or completed)
-      this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
-      if (this.uneditable) {
-        this.eventForm.get('event').disable();
-      }
-
-      // @ts-ignore
-      this.eventForm.get('event').patchValue({
-        name: this.event.name,
-        description: this.event.description,
-        timezone: this.event.timezone,
+    if (this.type === 'Save') {
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.community = data.community;
+        this.event = data.event;
+        this.fetchData();
       });
+    }
 
-      if (this.event.start_time) {
-        const sDate = moment(this.event.start_time).toDate();
-        const eDate = moment(this.event.end_time).toDate();
-        const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-        const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-        this.eventForm.get('event').patchValue({
-          // @ts-ignore
-          start_date: sDate,
-          // @ts-ignore
-          end_date: eDate,
-          start_time_pick: stime, //patching start and end time saved to the form
-          end_time_pick: etime,
-        });
-      }
-    });
+    if (this.eventId) {
+      this.eventsService.getEvent(this.eventId).subscribe((data) => {
+        this.event = data;
+        this.fetchData();
+      });
+    }
 
     this.allTimeZones = momentTimezone.tz.names();
     this.userTimeZone = momentTimezone.tz.guess();
@@ -139,6 +122,37 @@ export class EditEventComponent implements OnInit {
     });
   }
 
+  fetchData() {
+    this.event.tags.forEach((value) => this.tags.push(value.name));
+    // event is editable only if it's not canceled or completed)
+    this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
+    if (this.uneditable) {
+      this.eventForm.get('event').disable();
+    }
+
+    // @ts-ignore
+    this.eventForm.get('event').patchValue({
+      name: this.event.name,
+      description: this.event.description,
+      timezone: this.event.timezone,
+    });
+
+    if (this.event.start_time) {
+      const sDate = moment(this.event.start_time).toDate();
+      const eDate = moment(this.event.end_time).toDate();
+      const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      this.eventForm.get('event').patchValue({
+        // @ts-ignore
+        start_date: sDate,
+        // @ts-ignore
+        end_date: eDate,
+        start_time_pick: stime, //patching start and end time saved to the form
+        end_time_pick: etime,
+      });
+    }
+  }
+
   updateEvent() {
     this.submitIsInProcess = true;
     const formValue = this.eventForm.get('event').value;
@@ -157,10 +171,17 @@ export class EditEventComponent implements OnInit {
       }
     }
 
-    this.eventsService.updateEvent(formValue, this.event.slug, this.community, this.tags).subscribe((data) => {
-      this.toastLogService.successDialog('Updated!');
-      this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
-    });
+    this.eventsService
+      .updateEvent(formValue, this.event.slug, this.community ? this.community : this.event.kommunity_id, this.tags)
+      .subscribe((data) => {
+        this.toastLogService.successDialog('Updated!');
+        this.router.navigate([
+          '/admin/communities',
+          this.community ? this.community.slug : this.event.kommunity_id,
+          'event-dashboard',
+          data.slug,
+        ]);
+      });
   }
 
   setStartDateTime() {
@@ -216,7 +237,37 @@ export class EditEventComponent implements OnInit {
     this.tags = this.tags.filter((tag) => tag !== value);
   }
 
-  goBackToPrevPage(): void {
-    this.location.back();
+  cloneEvent() {
+    this.submitIsInProcess = true;
+    const formValue = this.eventForm.get('event').value;
+    delete formValue['start_date'];
+    delete formValue['end_date'];
+    formValue['start_time'] = '';
+    formValue['end_time'] = '';
+
+    if (this.setStartDateTime() && this.setEndDateTime()) {
+      if (this.startTime > this.endTime) {
+        this.toastLogService.warningDialog('End time has to be greater then start time');
+        return;
+      } else {
+        formValue['start_time'] = this.startTime;
+        formValue['end_time'] = this.endTime;
+      }
+    }
+
+    this.eventsService.cloneEvent(formValue, this.event.slug, this.tags).subscribe(
+      (data) => {
+        this.submitIsInProcess = false;
+        window.location.reload();
+        this.close();
+      },
+      (error) => {
+        this.submitIsInProcess = false;
+        this.close();
+      },
+    );
+  }
+  close() {
+    this.windowRef.close();
   }
 }

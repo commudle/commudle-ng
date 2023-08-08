@@ -17,8 +17,7 @@ export interface ICommunity {
   twitter: string;
   website: string;
   linkedin: string;
-  member_count: number;
-  event_count: number;
+  members_count: number;
   location: string;
   tags: ITag[];
   is_visible: boolean;

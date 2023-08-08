@@ -33,14 +33,14 @@
           <!--        <p class="featured-community-reason">{{ featuredCommunity.kommunity.mini_description }}</p>-->
           <span class="com-block md:com-hidden com-mt-2 com-text-base">
             <nb-icon icon="people-outline"></nb-icon>
-            {{ featuredCommunity.kommunity.member_count }} members
+            {{ featuredCommunity.kommunity.members_count }} members
           </span>
         </div>
         <div class="featured-community-join-btn">
           <app-membership-toggle [community]="featuredCommunity.kommunity"></app-membership-toggle>
           <span class="com-hidden md:com-block com-text-base">
             <nb-icon icon="people-outline"></nb-icon>
-            {{ featuredCommunity.kommunity.member_count }}
+            {{ featuredCommunity.kommunity.members_count }}
           </span>
         </div>
       </div>

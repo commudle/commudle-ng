@@ -73,7 +73,7 @@
     "ng2-completer": "^9.0.1",
     "ngx-cookie-service": "^14.0.1",
     "ngx-linky": "^4.0.0",
-    "prerender-node": "^3.5.0",
+    "prerender-node": "^3.7.0",
     "prismjs": "^1.29.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

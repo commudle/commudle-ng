@@ -194,6 +194,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
       this.count = value.count;
       this.page++;
       this.loading = false;
+      this.skeletonLoaderCard = false;
     });
   }
 }

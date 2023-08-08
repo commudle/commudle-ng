@@ -15,22 +15,30 @@
       <div class="heading">
         <div class="labs-card-title">
           <h4 class="title">{{ lab.name }}</h4>
-          <p class="steps"></p>
+          <p class="steps">STEPS</p>
         </div>
-        <div class="tags"></div>
+        <!-- <div *ngIf="lab.tags > 0" class="tags">
+          <app-tag
+            [tags]="getTagNames()"
+            [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+            [size]="'tiny'"
+            [fontColor]="'#0095FF'"
+            [maximumTag]="3"
+          ></app-tag>
+        </div> -->
       </div>
-      <p class="labs-card-date">Published {{ lab.published_at | date }}</p>
+      <p class="labs-card-date">{{ lab.published_at | date }}</p>
     </a>
 
     <div class="labs-card-content-suffix">
       <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium>
       <div class="labs-card-stats">
         <div class="labs-card-views">
-          <!-- <p>{{ lab.visits }}</p>
-          <nb-icon icon="eye"></nb-icon> -->
+          <nb-icon icon="eye-outline"></nb-icon>
+          <p>{{ lab.visits }}</p>
         </div>
         <div class="labs-card-likes d-flex align-items-center">
-          <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+          <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
         </div>
       </div>
     </div>
