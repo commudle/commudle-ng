@@ -1,3 +1,6 @@
-<!-- <app-fill-data-form></app-fill-data-form> -->
-
-<commudle-fill-data-form-paid></commudle-fill-data-form-paid>
+<div *ngIf="dataFormEntity?.event_data_form_entity_group.is_paid">
+  <commudle-fill-data-form-paid></commudle-fill-data-form-paid>
+</div>
+<div *ngIf="!dataFormEntity?.event_data_form_entity_group.is_paid">
+  <app-fill-data-form></app-fill-data-form>
+</div>

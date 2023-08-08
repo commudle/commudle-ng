@@ -85,7 +85,9 @@
                         fullWidth
                         nbInput
                         type="email"
+                        [readonly]="i === 0"
                       />
+
                       <span
                         *ngIf="
                           form.get('additional_users').get('email').touched &&

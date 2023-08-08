@@ -49,7 +49,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   stripeInstance: any; // Use specific types for Stripe and Elements if available
   elementsInstance: any;
   selectedUsers = [];
-  showUserFillForm = false;
+  showUserFillForm = true;
   paymentData;
   addUserForm;
   formData = new FormData();
@@ -113,7 +113,19 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
         if (this.currentUser) {
+          this.addNewUser();
           this.gtmData.com_user_id = this.currentUser.id;
+          // this.forms[0].get()
+          this.forms[0].patchValue({
+            additional_users: {
+              name: this.currentUser.name,
+              email: this.currentUser.email,
+              phone_country_code: '91',
+              phone_number: '9501199820',
+            },
+          });
+
+          // this.forms[0].disable();
         }
       }),
     );
