@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
@@ -9,6 +9,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   styleUrls: ['./builds-top-builders.component.scss'],
 })
 export class BuildsTopBuildersComponent implements OnInit {
+  @Input() backgroundColor: string;
   topBuilders: IUser[] = [];
   page = 1;
   count = 5;
