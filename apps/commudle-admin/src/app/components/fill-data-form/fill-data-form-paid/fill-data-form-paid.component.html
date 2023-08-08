@@ -51,81 +51,120 @@
               </p>
             </div>
           </div>
-          <div class="com-p-4 com-bg-white">
-            <div class="com-flex com-bg-white com-gap-4">
-              <button nbButton status="primary" (click)="showUserFillForm = !showUserFillForm">Add another user</button>
-            </div>
-            <form *ngIf="showUserFillForm" [formGroup]="addUserForm">
-              <div>
-                <label>
-                  Name*
-                  <input fieldSize="small" formControlName="name" placeholder="Name" fullWidth nbInput type="text" />
-                  <span
-                    *ngIf="
-                      addUserForm.get('name').touched &&
-                      addUserForm.get('name').invalid &&
-                      addUserForm.get('name').errors.required
-                    "
-                  >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                  </span>
-                </label>
-                <label>
-                  Email Address*
-                  <input
-                    fieldSize="small"
-                    formControlName="email"
-                    placeholder="Email Address"
-                    fullWidth
-                    nbInput
-                    type="email"
-                  />
-                  <span
-                    *ngIf="
-                      addUserForm.get('email').touched &&
-                      addUserForm.get('email').invalid &&
-                      addUserForm.get('email').errors.required
-                    "
-                  >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                  </span>
-                </label>
-                <label>
-                  Number*
-                  <div *ngFor="let countries of countries">+ {{ countries.phone }}</div>
-                  <input
-                    fieldSize="small"
-                    formControlName="phone_number"
-                    placeholder="Mobile Number"
-                    fullWidth
-                    nbInput
-                    type="number"
-                  />
-                  <span
-                    *ngIf="
-                      addUserForm.get('phone_number').touched &&
-                      addUserForm.get('phone_number').invalid &&
-                      addUserForm.get('phone_number').errors.required
-                    "
-                  >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                  </span>
-                </label>
-                <button
-                  (click)="saveUserDetails()"
-                  [disabled]="!addUserForm.valid"
-                  fullWidth
-                  nbButton
-                  outline
-                  size="small"
-                  status="primary"
-                  type="submit"
-                >
-                  Save
+          <nb-card class="com-p-4 com-bg-white header com-mt-4">
+            <nb-card-body class="com-p-0">
+              <div *ngFor="let form of forms; let i = index">
+                <form *ngIf="showUserFillForm" [formGroup]="form">
+                  <div formGroupName="additional_users">
+                    <label>
+                      Name*
+                      <input
+                        fieldSize="small"
+                        formControlName="name"
+                        placeholder="Name"
+                        fullWidth
+                        nbInput
+                        type="text"
+                      />
+                      <span
+                        *ngIf="
+                          form.get('additional_users').get('name').touched &&
+                          form.get('additional_users').get('name').invalid &&
+                          form.get('additional_users').get('name').errors.required
+                        "
+                      >
+                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      </span>
+                    </label>
+                    <label>
+                      Email Address*
+                      <input
+                        fieldSize="small"
+                        formControlName="email"
+                        placeholder="Email Address"
+                        fullWidth
+                        nbInput
+                        type="email"
+                      />
+                      <span
+                        *ngIf="
+                          form.get('additional_users').get('email').touched &&
+                          form.get('additional_users').get('email').invalid &&
+                          form.get('additional_users').get('email').errors.required
+                        "
+                      >
+                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      </span>
+                    </label>
+                    <label>
+                      Number*
+                      <!-- <div *ngFor="let countries of countries">+ {{ countries.phone }}</div> -->
+                      <div class="com-flex com-gap-2">
+                        <select
+                          id="numberCode"
+                          formControlName="phone_country_code"
+                          class="com-w-[120px]"
+                          [ngClass]="{
+                            'com-text-[#8E9BB3]': form.get('additional_users').get('phone_country_code').value === ''
+                          }"
+                        >
+                          <option selected disabled value="">Select Country</option>
+                          <option *ngFor="let code of countries" [value]="code.phone">
+                            +{{ code.phone }} ({{ code.name }})
+                          </option>
+                        </select>
+                        <input
+                          fieldSize="small"
+                          formControlName="phone_number"
+                          placeholder="Mobile Number"
+                          fullWidth
+                          nbInput
+                          type="number"
+                        />
+                      </div>
+                      <span
+                        *ngIf="
+                          form.get('additional_users').get('phone_number').touched &&
+                          form.get('additional_users').get('phone_number').invalid &&
+                          form.get('additional_users').get('phone_number').errors.required
+                        "
+                      >
+                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      </span>
+                    </label>
+                    <button
+                      class="com-mt-4"
+                      (click)="saveUserDetails(i)"
+                      [disabled]="!form.valid"
+                      fullWidth
+                      nbButton
+                      outline
+                      size="small"
+                      status="primary"
+                      type="submit"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- <input type="text" [(ngModel)]="searchTerm" placeholder="Search by code" />
+              <select id="numberCode" formControlName="email">
+                <option *ngFor="let code of filterNumberCodes()" [value]="code.phone">+ {{ code.phone }}</option>
+              </select> -->
+              <div class="com-mt-4">
+                <button nbButton status="primary" (click)="addNewUser(); showUserFillForm = true">
+                  Add another user
                 </button>
               </div>
-            </form>
-          </div>
+            </nb-card-body>
+            <!-- <div class="com-flex com-bg-white com-gap-4">
+              <button nbButton status="primary" (click)="addNewUser(); showUserFillForm = true">
+                Add another user
+              </button>
+            </div> -->
+          </nb-card>
         </div>
         <div class="right-column">
           <nb-card class="com-sticky com-top-20">
@@ -134,10 +173,10 @@
                 <div id="payment-element" *ngIf="paymentData">
                   price: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }} {{ paymentData.price }}
                   <br />
-                  Number of Users: {{ selectedUsers.length + 1 }}
+                  Number of Users: {{ forms.length + 1 }}
                   <br />
                   Total: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }}
-                  {{ paymentData.price * (selectedUsers.length + 1) }}
+                  {{ paymentData.price * (forms.length + 1) }}
                 </div>
                 <button id="submit">Submit</button>
                 <div id="error-message"></div>

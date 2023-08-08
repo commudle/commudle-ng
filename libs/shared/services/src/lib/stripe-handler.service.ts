@@ -12,7 +12,7 @@ export class StripeHandlerService {
 
   constructor(private baseApiService: BaseApiService, private http: HttpClient) {
     this.stripe = Stripe(
-      'pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3',
+      'pk_test_51NIQahSAaAm97WzmtpZtqYAuI1cCfN7LAJPoy8SmBpJqXQ5c7gnmOXXS9VtXa1b6YvCa1Uc9bX3Ra9ZLjm4AQBSs00en3kVojH',
     );
   }
 

@@ -1,0 +1,75 @@
+// @import './apps/commudle-admin/src/assets/styles/variables';
+
+// :host {
+//   div.data-form-container {
+//     max-width: 920px;
+//     margin: 0 auto;
+
+//     .fill-data-form {
+//       .container {
+//         .one-column-layout {
+//           .data-form-fill-body {
+//             max-width: 920px;
+//             margin: 0 auto;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .confirmation-dialog {
+//   nb-card-body {
+//     text-align: center;
+//     .thank-you-icon {
+//       nb-icon {
+//         font-size: 100px;
+//       }
+//     }
+//   }
+
+//   nb-card-footer {
+//     display: flex;
+//     justify-content: space-evenly;
+//     align-items: baseline;
+//     p {
+//       flex-grow: 1;
+//       max-width: 30%;
+//       text-align: center;
+//       a {
+//         text-decoration: none;
+//         img {
+//           width: 50px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.header {
+  @apply com-mx-[28px];
+  .form-name {
+    @apply com-text-2xl com-font-semibold com-my-1 com-text-center;
+  }
+
+  .community {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .event {
+    @apply com-mt-2;
+    text-align: center;
+    .header-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+    .event-name {
+      @apply com-text-Ultramarine-Blue com-m-0 com-text-lg com-font-bold com-my-1;
+    }
+  }
+}

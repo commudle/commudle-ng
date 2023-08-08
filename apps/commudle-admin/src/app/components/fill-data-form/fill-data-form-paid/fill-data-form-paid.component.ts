@@ -16,15 +16,21 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
-import { EventTicketOrderService, PaymentSettingService, countries_details } from '@commudle/shared-services';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  EventTicketOrderService,
+  NumberCodeService,
+  PaymentSettingService,
+  StripeHandlerService,
+  countries_details,
+} from '@commudle/shared-services';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
   styleUrls: ['./fill-data-form-paid.component.scss'],
 })
-export class FillDataFormPaidComponent implements OnInit {
+export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   countries = countries_details;
   dataFormEntity: IDataFormEntity;
   formClosed = false;
@@ -37,6 +43,7 @@ export class FillDataFormPaidComponent implements OnInit {
   dialogRef: NbDialogRef<any>;
 
   existingResponses;
+  createDataForm: FormGroup;
 
   subscriptions: Subscription[] = [];
   gtmData: any = {};
@@ -47,8 +54,13 @@ export class FillDataFormPaidComponent implements OnInit {
   paymentData;
   addUserForm;
   formData = new FormData();
+  forms: FormGroup[] = []; // Store multiple forms
+  totalUsers = 1;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
+  //number codes
+  numberCodes = [];
+  searchTerm = '';
 
   searchResult = [];
   constructor(
@@ -67,32 +79,25 @@ export class FillDataFormPaidComponent implements OnInit {
     private paymentSettingService: PaymentSettingService,
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
+    private stripeHandlerService: StripeHandlerService,
+    //number codes
+    private numberCodeService: NumberCodeService,
   ) {
     this.addUserForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      phone_number: ['', Validators.required],
+      additional_users: this.fb.group({
+        name: ['', Validators.required],
+        email: ['', Validators.required],
+        phone_number: ['', Validators.required],
+      }),
     });
   }
 
   ngOnInit() {
-    // const stripe = this.stripeHandlerService.stripe;
-    // const options = {
-    //   clientSecret: '{{CLIENT_SECRET}}',
-    //   layout: {
-    //     type: 'tabs',
-    //     defaultCollapsed: false,
-    //   },
-    //   business: 'Commudle',
-    //   appearance: {
-    //     theme: 'flat',
-    //     variables: { colorPrimaryText: '#262626' },
-    //   },
-    // };
-    // const elements = stripe.elements(options);
-    // const paymentElement = elements.create('payment');
-    // paymentElement.mount('#payment-element');
-
+    // this.numberCodes = this.numberCodeService.getNumberCodes();
+    // console.log(
+    //   '🚀 ~ file: fill-data-form-paid.component.ts:96 ~ FillDataFormPaidComponent ~ ngOnInit ~ this.numberCodes:',
+    //   this.numberCodes,
+    // );
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((params) => {
         this.getDataFormEntity(params.data_form_entity_id);
@@ -116,6 +121,13 @@ export class FillDataFormPaidComponent implements OnInit {
       }),
     );
   }
+
+  // filterNumberCodes(): any[] {
+  //   // const data = this.numberCodes.filter((code) => code.phone.toString().includes(this.searchTerm));
+  //   // console.log("🚀 ~ file: fill-data-form-paid.component.ts:126 ~ FillDataFormPaidComponent ~ filterNumberCodes ~ data:", data)
+
+  //   // return data;
+  // }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
@@ -265,6 +277,18 @@ export class FillDataFormPaidComponent implements OnInit {
   //   });
   // }
 
+  addNewUser() {
+    const newForm = this.fb.group({
+      additional_users: this.fb.group({
+        name: ['', Validators.required],
+        email: ['', Validators.required],
+        phone_country_code: ['', Validators.required],
+        phone_number: ['', Validators.required],
+      }),
+    });
+    this.forms.push(newForm);
+  }
+
   submit() {
     this.eventTicketOrderService
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
@@ -273,19 +297,38 @@ export class FillDataFormPaidComponent implements OnInit {
           '🚀 ~ file: fill-data-form.component.ts:269 ~ FillDataFormComponent ~ this.eventTicketOrderService.createEventTicketOrder ~ data:',
           data,
         );
+        const stripe = this.stripeHandlerService.stripe;
+        const options = {
+          clientSecret: data.stripe_payment_intent.details.client_secret,
+          layout: {
+            type: 'accordion',
+            defaultCollapsed: false,
+            radios: true,
+            spacedAccordionItems: false,
+          },
+          business: 'Commudle',
+          appearance: {
+            theme: 'stripe',
+            variables: { colorPrimaryText: '#262626' },
+          },
+        };
+        const elements = stripe.elements(options);
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
+        paymentElement.update({ business: { name: 'Stripe Shop' } });
       });
   }
 
-  saveUserDetails() {
-    this.selectedUsers.push(this.addUserForm.value);
+  saveUserDetails(index) {
+    this.totalUsers = this.totalUsers + 1;
+    this.selectedUsers = [];
+    this.selectedUsers.push(this.forms[index].value);
 
-    this.selectedUsers.forEach((user, index) => {
-      this.formData.append(`additional_users[][name]`, user.name);
-      this.formData.append(`additional_users[][email]`, user.email);
+    this.selectedUsers.forEach((user) => {
+      this.formData.append(`additional_users[][name]`, user.additional_users.name);
+      this.formData.append(`additional_users[][email]`, user.additional_users.email);
       this.formData.append(`additional_users[][phone_country_code]`, '+91');
-      this.formData.append(`additional_users[][phone]`, user.phone_number);
+      this.formData.append(`additional_users[][phone]`, user.additional_users.phone_number);
     });
-
-    this.addUserForm.reset();
   }
 }

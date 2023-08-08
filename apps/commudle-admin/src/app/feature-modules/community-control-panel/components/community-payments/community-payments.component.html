@@ -16,6 +16,7 @@
       <th>Acc no</th>
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
+      <th>Bank Details</th>
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
       <td>
@@ -29,6 +30,23 @@
       </td>
       <td>
         <p>{{ stripeAccount.details.payouts_enabled }}</p>
+      </td>
+      <td>
+        <div *ngIf="stripeAccount.details.external_accounts.data.length >= 1">
+          <details *ngFor="let bankDetails of stripeAccount.details.external_accounts.data">
+            <summary>{{ bankDetails.bank_name }}</summary>
+            <p>
+              Account Number: <span>{{ bankDetails.routing_number }}</span>
+              <br />
+              <span>{{ bankDetails.account_holder_name }}</span>
+              <br />
+              <span>{{ bankDetails.currency | uppercase }}</span>
+            </p>
+          </details>
+        </div>
+        <div *ngIf="stripeAccount.details.external_accounts.data.length <= 0">
+          <strong> No Band Details Found </strong>
+        </div>
       </td>
     </tr>
   </table>

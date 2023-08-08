@@ -21,12 +21,7 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((params) => {
         // this.getDataFormEntity(params.data_form_entity_id);
-        this.dataFormEntitiesService.getDataFormEntity(params.data_form_entity_id).subscribe((data) => {
-          console.log(
-            '🚀 ~ file: check-fill-data-form.component.ts:24 ~ CheckFillDataFormComponent ~ this.dataFormEntitiesService.getDataFormEntity ~ data:',
-            data,
-          );
-        });
+        this.dataFormEntitiesService.getDataFormEntity(params.data_form_entity_id).subscribe((data) => {});
       }),
     );
   }
