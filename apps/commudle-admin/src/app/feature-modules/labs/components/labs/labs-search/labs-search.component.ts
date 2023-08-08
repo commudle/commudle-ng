@@ -34,6 +34,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   page = 1;
   count = 10;
   totalSearch = 0;
+  seoTitle: string;
 
   popularTags: ITag[] = [];
   popularLabs: ILab[] = [];
@@ -60,28 +61,42 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.search();
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.query) {
+        this.query = params.query;
+        this.searchForm.get('name').setValue(this.query);
+      }
+    }
+    this.labs = [];
+    this.updateSeoTitle();
+    // if (!params.query) {
+
+    // }
+    this.getLabs();
     // this.seoService.setTags(
     //   'Speakers - Find & Connect With Tech & Design Speakers',
     //   'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
     //   'https://commudle.com/assets/images/commudle-logo192.png',
     // );
-
-    this.getLabs();
     // this.getPopularTags();
     // this.getLabsByTags();
     // this.search();
-    // const params = this.activatedRoute.snapshot.queryParams;
-    // if (Object.keys(params).length > 0) {
-    //   if (params.query) {
-    //     this.query = params.query;
-    //     this.searchForm.get('name').setValue(this.query);
-    //   }
-    // }
-    // this.labs = [];
-    // if (!params.query) {
-    //   this.getSpeakersList();
-    // }
+
     // this.getLabsByTags();
+  }
+
+  updateSeoTitle() {
+    this.seoTitle = this.query
+      ? `${this.query} - Guided Tutorials by Software Developers & Designers`
+      : 'Guided Tutorials by Software Developers & Designers';
+
+    this.seoService.setTags(
+      this.seoTitle,
+      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create  apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   search() {
@@ -109,7 +124,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
-    // this.getSpeakersList();
+    this.getLabs();
   }
 
   resetFiltersAndSearch() {
@@ -185,6 +200,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   //   });
   // }
 
+  // , this.query
   getLabs() {
     this.loading = true;
     this.labsService.searchLabsByTags(this.page, this.count).subscribe((value: ILabs) => {
