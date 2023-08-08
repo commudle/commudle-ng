@@ -1,23 +1,19 @@
 import { EventEmitter } from '@angular/core';
-import { BehaviorSubject, filter, skip, take } from 'rxjs';
+import { BehaviorSubject, skip, take } from 'rxjs';
 import { BaseLoginProvider } from '../entities/base-login-provider';
 import { SocialUser } from '../entities/social-user';
 
 declare let google: any;
 
-export interface GoogleInitOptions {
-  /**
-   * enables the One Tap mechanism, and makes auto-login possible
-   */
-  oneTapEnabled?: boolean;
+export interface YoutubeInitOptions {
   /**
    * list of permission scopes to grant in case we request an access token
    */
   scopes?: string | string[];
   /**
-   * This attribute sets the DOM ID of the container element. If it's not set, the One Tap prompt is displayed in the top-right corner of the window.
+   * UX mode to use for the sign-in flow.
    */
-  prompt_parent_id?: string;
+  ux_mode?: 'popup' | 'redirect';
 
   /**
    * Optional, defaults to 'select_account'.
@@ -34,12 +30,13 @@ export interface GoogleInitOptions {
   prompt?: '' | 'none' | 'consent' | 'select_account';
 }
 
-const defaultInitOptions: GoogleInitOptions = {
-  oneTapEnabled: true,
+const defaultInitOptions: YoutubeInitOptions = {
+  scopes: ['https://www.googleapis.com/auth/youtube'],
+  ux_mode: 'popup',
 };
 
-export class GoogleLoginProvider extends BaseLoginProvider {
-  public static readonly PROVIDER_ID: string = 'GOOGLE';
+export class YoutubeLoginProvider extends BaseLoginProvider {
+  public static readonly PROVIDER_ID: string = 'YOUTUBE';
 
   public override readonly changeUser = new EventEmitter<SocialUser | null>();
 
@@ -50,7 +47,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
   // @ts-ignore
   private _tokenClient: google.accounts.oauth2.TokenClient | undefined;
 
-  constructor(private clientId: string, private readonly initOptions?: GoogleInitOptions) {
+  constructor(private clientId: string, private readonly initOptions?: YoutubeInitOptions) {
     super();
 
     this.initOptions = { ...defaultInitOptions, ...this.initOptions };
@@ -65,20 +62,13 @@ export class GoogleLoginProvider extends BaseLoginProvider {
   initialize(autoLogin?: boolean): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        this.loadScript(GoogleLoginProvider.PROVIDER_ID, 'https://accounts.google.com/gsi/client', () => {
+        this.loadScript(YoutubeLoginProvider.PROVIDER_ID, 'https://accounts.google.com/gsi/client', () => {
           google.accounts.id.initialize({
             client_id: this.clientId,
             auto_select: autoLogin,
             callback: ({ credential }: any) => this._socialUser.next(this.createSocialUser(credential)),
-            prompt_parent_id: this.initOptions?.prompt_parent_id,
-            itp_support: this.initOptions?.oneTapEnabled,
+            ux_mode: this.initOptions?.ux_mode,
           });
-
-          if (this.initOptions?.oneTapEnabled) {
-            this._socialUser
-              .pipe(filter((user) => user === null))
-              .subscribe(() => google.accounts.id.prompt(console.debug));
-          }
 
           if (this.initOptions?.scopes) {
             const scope =
@@ -122,7 +112,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
       if (this._socialUser.value) {
         resolve(this._socialUser.value);
       } else {
-        reject(`No user is currently logged in with ${GoogleLoginProvider.PROVIDER_ID}`);
+        reject(`No user is currently logged in with ${YoutubeLoginProvider.PROVIDER_ID}`);
       }
     });
   }
@@ -169,11 +159,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
   }
 
   signIn(): Promise<SocialUser> {
-    return Promise.reject(
-      'You should not call this method directly for Google, use "<google-signin-button>" wrapper ' +
-        'or generate the button yourself with "google.accounts.id.renderButton()" ' +
-        '(https://developers.google.com/identity/gsi/web/guides/display-button#javascript)',
-    );
+    return Promise.reject('You should not call this method directly for Youtube. Use getAccessToken() instead.');
   }
 
   async signOut(): Promise<void> {

@@ -137,4 +137,9 @@
       fillerText="Auto Preview"
     ></app-video-stream>
   </div>
+  <ng-container
+    *ngIf="evs && currentUser && embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.COMMUDLE"
+  >
+    <commudle-event-streaming [embeddedVideoStream]="evs"></commudle-event-streaming>
+  </ng-container>
 </div>

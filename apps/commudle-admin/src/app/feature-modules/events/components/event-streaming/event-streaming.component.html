@@ -1,0 +1,7 @@
+<ng-container *ngIf="communityAuthToken; else loginButton">
+  <button (click)="logoutFromYoutube()" nbButton>Disconnect from YouTube</button>
+</ng-container>
+
+<ng-template #loginButton>
+  <button (click)="loginToYoutube()" nbButton>Connect to YouTube</button>
+</ng-template>

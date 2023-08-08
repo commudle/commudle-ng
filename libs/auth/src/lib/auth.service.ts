@@ -1,8 +1,9 @@
 import { Inject, Injectable, Injector, NgZone, Type } from '@angular/core';
-import { GoogleLoginProvider } from 'libs/auth/src/lib/providers/google-login-provider';
-import { AsyncSubject, isObservable, Observable, ReplaySubject } from 'rxjs';
+import { AsyncSubject, Observable, ReplaySubject, isObservable } from 'rxjs';
 import { LoginProvider } from './entities/login-provider';
 import { SocialUser } from './entities/social-user';
+import { GoogleLoginProvider } from './providers/google-login-provider';
+import { YoutubeLoginProvider } from './providers/youtube-login-provider';
 
 /**
  * An interface to define the shape of the service configuration options.
@@ -69,7 +70,7 @@ export class AuthService {
       throw AuthService.ERR_NOT_INITIALIZED;
     } else if (!providerObject) {
       throw AuthService.ERR_LOGIN_PROVIDER_NOT_FOUND;
-    } else if (!(providerObject instanceof GoogleLoginProvider)) {
+    } else if (!(providerObject instanceof GoogleLoginProvider || providerObject instanceof YoutubeLoginProvider)) {
       throw AuthService.ERR_NOT_SUPPORTED_FOR_ACCESS_TOKEN;
     }
 
@@ -107,11 +108,11 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       if (!this.initialized) {
         reject(AuthService.ERR_NOT_INITIALIZED);
-      } else if (providerId !== GoogleLoginProvider.PROVIDER_ID) {
+      } else if (providerId !== GoogleLoginProvider.PROVIDER_ID && providerId !== YoutubeLoginProvider.PROVIDER_ID) {
         reject(AuthService.ERR_NOT_SUPPORTED_FOR_REFRESH_TOKEN);
       } else {
         const providerObject = this.providers.get(providerId);
-        if (providerObject instanceof GoogleLoginProvider) {
+        if (providerObject instanceof GoogleLoginProvider || providerObject instanceof YoutubeLoginProvider) {
           providerObject.revokeAccessToken().then(resolve).catch(reject);
         } else {
           reject(AuthService.ERR_LOGIN_PROVIDER_NOT_FOUND);
