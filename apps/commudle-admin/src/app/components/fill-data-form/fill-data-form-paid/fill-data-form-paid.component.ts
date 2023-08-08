@@ -18,7 +18,6 @@ import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import {
   EventTicketOrderService,
-  NumberCodeService,
   PaymentSettingService,
   StripeHandlerService,
   countries_details,
@@ -80,8 +79,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
     private stripeHandlerService: StripeHandlerService,
-    //number codes
-    private numberCodeService: NumberCodeService,
   ) {
     this.addUserForm = this.fb.group({
       additional_users: this.fb.group({
