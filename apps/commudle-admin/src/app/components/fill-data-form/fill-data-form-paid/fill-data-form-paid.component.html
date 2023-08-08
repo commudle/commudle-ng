@@ -1,0 +1,187 @@
+<div class="data-form-container">
+  <div *ngIf="dataFormEntity" class="base-layout fill-data-form">
+    <div class="container">
+      <div class="two-column-layout wide">
+        <div class="main-column">
+          <div>
+            <nb-card *ngIf="formClosed">
+              <nb-card-body> This form is closed! </nb-card-body>
+            </nb-card>
+          </div>
+
+          <div *ngIf="!formClosed">
+            <nb-card class="header">
+              <nb-card-body>
+                <p *ngIf="community" class="community">
+                  <app-community-badge [community]="community"></app-community-badge>
+                </p>
+                <div *ngIf="event" class="event">
+                  <div class="header-image">
+                    <commudle-banner-image
+                      *ngIf="event.header_image_path"
+                      [headerImagePath]="event.header_image_path"
+                      [name]="event.name"
+                    ></commudle-banner-image>
+                  </div>
+                  <p class="event-name">{{ event.name }}</p>
+                </div>
+                <p class="form-name">{{ dataFormEntity.name }}</p>
+              </nb-card-body>
+            </nb-card>
+
+            <nb-card *ngIf="showProfileForm">
+              <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
+              <nb-card-body>
+                <div>
+                  <app-basic-user-profile></app-basic-user-profile>
+                </div>
+              </nb-card-body>
+            </nb-card>
+
+            <div class="data-form-fill-body">
+              <app-data-form-fill
+                (formSubmitted)="submitForm($event)"
+                [dataFormId]="dataFormEntity.data_form_id"
+                [existingResponses]="selectedFormResponse"
+                [eventId]="event ? event.id : ''"
+              >
+              </app-data-form-fill>
+              <p *ngIf="dataFormEntity.multi_response" class="text-info">
+                <i>* You can submit multiple responses for this form!</i>
+              </p>
+            </div>
+          </div>
+          <div class="com-p-4 com-bg-white">
+            <div class="com-flex com-bg-white com-gap-4">
+              <button nbButton status="primary" (click)="showUserFillForm = !showUserFillForm">Add another user</button>
+            </div>
+            <form *ngIf="showUserFillForm" [formGroup]="addUserForm">
+              <div>
+                <label>
+                  Name*
+                  <input fieldSize="small" formControlName="name" placeholder="Name" fullWidth nbInput type="text" />
+                  <span
+                    *ngIf="
+                      addUserForm.get('name').touched &&
+                      addUserForm.get('name').invalid &&
+                      addUserForm.get('name').errors.required
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+                <label>
+                  Email Address*
+                  <input
+                    fieldSize="small"
+                    formControlName="email"
+                    placeholder="Email Address"
+                    fullWidth
+                    nbInput
+                    type="email"
+                  />
+                  <span
+                    *ngIf="
+                      addUserForm.get('email').touched &&
+                      addUserForm.get('email').invalid &&
+                      addUserForm.get('email').errors.required
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+                <label>
+                  Number*
+                  <div *ngFor="let countries of countries">+ {{ countries.phone }}</div>
+                  <input
+                    fieldSize="small"
+                    formControlName="phone_number"
+                    placeholder="Mobile Number"
+                    fullWidth
+                    nbInput
+                    type="number"
+                  />
+                  <span
+                    *ngIf="
+                      addUserForm.get('phone_number').touched &&
+                      addUserForm.get('phone_number').invalid &&
+                      addUserForm.get('phone_number').errors.required
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+                <button
+                  (click)="saveUserDetails()"
+                  [disabled]="!addUserForm.valid"
+                  fullWidth
+                  nbButton
+                  outline
+                  size="small"
+                  status="primary"
+                  type="submit"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="right-column">
+          <nb-card class="com-sticky com-top-20">
+            <nb-card-body>
+              <form id="payment-form" (ngSubmit)="submit()">
+                <div id="payment-element" *ngIf="paymentData">
+                  price: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }} {{ paymentData.price }}
+                  <br />
+                  Number of Users: {{ selectedUsers.length + 1 }}
+                  <br />
+                  Total: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }}
+                  {{ paymentData.price * (selectedUsers.length + 1) }}
+                </div>
+                <button id="submit">Submit</button>
+                <div id="error-message"></div>
+              </form>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #formConfirmationDialog let-data>
+  <nb-card class="confirmation-dialog">
+    <nb-card-body>
+      <div>
+        <p class="thank-you-icon">
+          <nb-icon icon="done-all" status="success"></nb-icon>
+        </p>
+        <p>Thank You {{ currentUser.name }} for filling the form!</p>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <p *ngIf="event">
+        <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
+          <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
+          <br />
+          {{ event.name }}
+        </a>
+      </p>
+      <p *ngIf="community">
+        <a [routerLink]="['/communities', community.slug]">
+          <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
+          <br />
+          {{ community.name }}
+        </a>
+      </p>
+      <p>
+        <a [routerLink]="['/']">
+          <nb-icon icon="home"></nb-icon>
+          <br />
+          Home
+        </a>
+      </p>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

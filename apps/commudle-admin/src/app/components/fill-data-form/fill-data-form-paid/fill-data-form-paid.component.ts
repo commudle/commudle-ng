@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
@@ -15,12 +16,16 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { EventTicketOrderService, PaymentSettingService, countries_details } from '@commudle/shared-services';
+import { FormBuilder, Validators } from '@angular/forms';
+
 @Component({
-  selector: 'app-fill-data-form',
-  templateUrl: './fill-data-form.component.html',
-  styleUrls: ['./fill-data-form.component.scss'],
+  selector: 'commudle-fill-data-form-paid',
+  templateUrl: './fill-data-form-paid.component.html',
+  styleUrls: ['./fill-data-form-paid.component.scss'],
 })
-export class FillDataFormComponent implements OnInit, OnDestroy {
+export class FillDataFormPaidComponent implements OnInit {
+  countries = countries_details;
   dataFormEntity: IDataFormEntity;
   formClosed = false;
   showProfileForm = false;
@@ -35,9 +40,17 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   gtmData: any = {};
+  stripeInstance: any; // Use specific types for Stripe and Elements if available
+  elementsInstance: any;
+  selectedUsers = [];
+  showUserFillForm = false;
+  paymentData;
+  addUserForm;
+  formData = new FormData();
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
+  searchResult = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -51,9 +64,35 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
-  ) {}
+    private paymentSettingService: PaymentSettingService,
+    private fb: FormBuilder,
+    private eventTicketOrderService: EventTicketOrderService,
+  ) {
+    this.addUserForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      phone_number: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
+    // const stripe = this.stripeHandlerService.stripe;
+    // const options = {
+    //   clientSecret: '{{CLIENT_SECRET}}',
+    //   layout: {
+    //     type: 'tabs',
+    //     defaultCollapsed: false,
+    //   },
+    //   business: 'Commudle',
+    //   appearance: {
+    //     theme: 'flat',
+    //     variables: { colorPrimaryText: '#262626' },
+    //   },
+    // };
+    // const elements = stripe.elements(options);
+    // const paymentElement = elements.create('payment');
+    // paymentElement.mount('#payment-element');
+
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((params) => {
         this.getDataFormEntity(params.data_form_entity_id);
@@ -84,9 +123,18 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     this.dialogRef?.close();
   }
 
+  fetchPaidTicketingData(edfegId) {
+    this.subscriptions.push(
+      this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
+        this.paymentData = data;
+      }),
+    );
+  }
+
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
       this.dataFormEntity = data;
+      this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
       this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
       this.seoService.setTags(
         `${this.dataFormEntity.name}`,
@@ -169,5 +217,75 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     } else {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
     }
+  }
+
+  // createToken() {
+  //   const stripe = this.stripeHandlerService.stripe;
+  //   const elements = stripe.elements();
+  //   const style = {
+  //     base: {
+  //       color: '#32325d',
+  //       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+  //       fontSmoothing: 'antialiased',
+  //       fontSize: '16px',
+  //       '::placeholder': {
+  //         color: '#fff00f',
+  //       },
+  //     },
+  //     invalid: {
+  //       color: '#fa755a',
+  //       iconColor: '#fa755a',
+  //     },
+  //   };
+  //   // Create an instance of the card Element.
+  //   const card = elements.create('card', { style: style });
+  //   console.log("🚀 ~ file: fill-data-form.component.ts:198 ~ FillDataFormComponent ~ createToken ~ card:", card)
+  //   // Add an instance of the card Element into the `card-element` <div>.
+  //   card.mount('#card-element');
+
+  //   card.addEventListener('change', (event) => {
+  //     const displayError = document.getElementById('card-errors');
+  //     if (event.error) {
+  //       displayError.textContent = event.error.message;
+  //     } else {
+  //       displayError.textContent = '';
+  //     }
+  //   });
+
+  //   stripe.createToken(card).then((result) => {
+  //     if (result.error) {
+  //       // Inform the user if there was an error
+  //       const errorElement = document.getElementById('card-errors');
+  //       errorElement.textContent = result.error.message;
+  //     } else {
+  //       // Send the token to your server
+  //       // stripeTokenHandler(result.token);
+  //       console.log(result.token);
+  //     }
+  //   });
+  // }
+
+  submit() {
+    this.eventTicketOrderService
+      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
+      .subscribe((data) => {
+        console.log(
+          '🚀 ~ file: fill-data-form.component.ts:269 ~ FillDataFormComponent ~ this.eventTicketOrderService.createEventTicketOrder ~ data:',
+          data,
+        );
+      });
+  }
+
+  saveUserDetails() {
+    this.selectedUsers.push(this.addUserForm.value);
+
+    this.selectedUsers.forEach((user, index) => {
+      this.formData.append(`additional_users[][name]`, user.name);
+      this.formData.append(`additional_users[][email]`, user.email);
+      this.formData.append(`additional_users[][phone_country_code]`, '+91');
+      this.formData.append(`additional_users[][phone]`, user.phone_number);
+    });
+
+    this.addUserForm.reset();
   }
 }

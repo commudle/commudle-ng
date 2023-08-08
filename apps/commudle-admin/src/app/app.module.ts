@@ -112,6 +112,8 @@ import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/featur
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
+import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -155,6 +157,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PushNotificationComponent,
     LoginComponent,
     LoginConsentPopupComponent,
+    FillDataFormPaidComponent,
+    CheckFillDataFormComponent,
   ],
   imports: [
     BrowserModule,

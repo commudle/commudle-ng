@@ -719,4 +719,9 @@ export const API_ROUTES = {
       SHOW: 'api/v2/paid_ticket_settings/public/show',
     },
   },
+
+  EVENT_TICKET_ORDERS: {
+    CREATE: 'api/v2/event_ticket_orders',
+    CHECK: 'api/v2/event_ticket_orders/check_payment',
+  },
 };
