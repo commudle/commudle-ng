@@ -132,6 +132,7 @@ module.exports = {
         '630px': '630px',
         '800px': '800px',
         '95vh': '95vh',
+        '50vw': '50vw',
         '70vw': '70vw',
         '80vw': '80vw',
         '95vw': '95vw',

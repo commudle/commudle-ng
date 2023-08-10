@@ -1,9 +1,20 @@
-table {
-  @apply com-border-collapse com-mt-4;
+.create-button {
+  @apply com-my-6;
 }
-td {
-  @apply com-border com-border-solid com-border-gray-200 com-p-3;
-}
-th {
-  @apply com-bg-gray-200  com-p-1 com-px-2 com-border com-border-solid com-border-gray-300;
+
+.discount-codes {
+  @apply com-grid md:com-grid-cols-3 com-gap-6;
+  table {
+    @apply com-border com-border-solid com-border-Bright-Gray com-rounded-xl com-py-3 com-px-4;
+    .heading {
+      // TODO change hex code to tailwind
+      @apply com-font-medium com-text-sm com-text-[#6b7280];
+    }
+    .action-button {
+      @apply com-text-primary-500 com-text-xs com-cursor-pointer com-font-normal;
+    }
+    .content {
+      @apply com-text-sm com-font-semibold;
+    }
+  }
 }
