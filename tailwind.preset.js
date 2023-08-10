@@ -64,6 +64,7 @@ module.exports = {
         Blue: '#001FFF',
         Bittersweet: '#FF725E',
         'American-Orange': '#FF8A00',
+        'Blue-Lotus': '#635BFF', //used in stripe connect button for now
       },
 
       lineClamp: {
