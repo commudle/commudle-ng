@@ -17,7 +17,7 @@
       <td class="content">{{ discountCode.expires_at | date : 'dd-MM-yy hh:mm a' }}</td>
 
       <td>
-        <div class="action-button">
+        <div class="action-button" (click)="copyTextToClipboard(discountCode.code)">
           <fa-icon [icon]="icons.faCopy"></fa-icon>
           <span> Copy </span>
         </div>

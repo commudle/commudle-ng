@@ -1,13 +1,15 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IDiscountCode } from '@commudle/shared-models';
-import { DiscountCodesService } from '@commudle/shared-services';
+import { DiscountCodesService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { faCopy, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 @Component({
   selector: 'commudle-discount-coupons',
   templateUrl: './discount-coupons.component.html',
@@ -31,6 +33,8 @@ export class DiscountCouponsComponent implements OnInit {
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
     private discountCodesService: DiscountCodesService,
     private datePipe: DatePipe,
+    private clipboard: Clipboard,
+    private toastrService: ToastrService,
   ) {
     this.discountCouponForm = this.fb.group(
       {
@@ -114,6 +118,7 @@ export class DiscountCouponsComponent implements OnInit {
 
     this.subscriptions.push(
       this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
+        this.discountCouponForm.reset();
         this.discountCodes.unshift(data);
       }),
     );
@@ -156,5 +161,10 @@ export class DiscountCouponsComponent implements OnInit {
         this.selectedEventDataFormEntityGroups.splice(index, 1);
       }
     }
+  }
+
+  copyTextToClipboard(code) {
+    this.toastrService.successDialog('Your Code ready to paste');
+    this.clipboard.copy(code);
   }
 }
