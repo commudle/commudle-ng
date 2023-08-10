@@ -50,16 +50,16 @@
           <!-- Discount type* -->
           <label class="com-col-span-1">
             Discount type*
-            <nb-select formControlName="discount_type" fullWidth>
+            <nb-select formControlName="discount_type" fullWidth placeholder="Select Discount Type">
               <nb-option value="percent"> Percent </nb-option>
               <nb-option value="value"> Value </nb-option>
             </nb-select>
           </label>
 
           <!-- Is Limited* -->
-          <label class="com-col-span-1">
-            Is Limited*
+          <label class="com-col-span-1 com-flex com-items-center com-gap-2">
             <input formControlName="is_limited" type="checkbox" />
+            <span class="com-text-primary-500 com-font-medium"> Limited Users </span>
           </label>
           <!-- Max Limit* -->
           <label

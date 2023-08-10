@@ -49,7 +49,7 @@
                 }"
               >
                 <option value="" selected disabled>Select Bank Ac</option>
-                <option *ngFor="let rt of stripeAccounts" [value]="rt.id">
+                <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
                   {{ rt.details.id | titlecase }}
                 </option>
               </select>
