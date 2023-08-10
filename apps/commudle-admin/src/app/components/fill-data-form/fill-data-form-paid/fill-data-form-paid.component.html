@@ -54,7 +54,7 @@
           <nb-card class="com-p-4 com-bg-white header com-mt-4">
             <nb-card-body class="com-p-0">
               <div *ngFor="let form of forms; let i = index">
-                <form *ngIf="showUserFillForm" [formGroup]="form">
+                <form [formGroup]="form">
                   <div formGroupName="additional_users">
                     <label>
                       Name*
@@ -137,7 +137,7 @@
                     <button
                       class="com-mt-4"
                       (click)="saveUserDetails(i)"
-                      [disabled]="!form.valid"
+                      [disabled]="!form.valid || !isFormDirty[i]"
                       fullWidth
                       nbButton
                       outline
@@ -151,37 +151,26 @@
                 </form>
               </div>
 
-              <!-- <input type="text" [(ngModel)]="searchTerm" placeholder="Search by code" />
-              <select id="numberCode" formControlName="email">
-                <option *ngFor="let code of filterNumberCodes()" [value]="code.phone">+ {{ code.phone }}</option>
-              </select> -->
               <div class="com-mt-4">
-                <button nbButton status="primary" (click)="addNewUser(); showUserFillForm = true">
-                  Add another user
-                </button>
+                <button nbButton status="primary" (click)="addNewUser()">Add another user</button>
               </div>
             </nb-card-body>
-            <!-- <div class="com-flex com-bg-white com-gap-4">
-              <button nbButton status="primary" (click)="addNewUser(); showUserFillForm = true">
-                Add another user
-              </button>
-            </div> -->
           </nb-card>
         </div>
         <div class="right-column">
           <nb-card class="com-sticky com-top-20">
             <nb-card-body>
-              <form id="payment-form" (ngSubmit)="submit()">
-                <div id="payment-element" *ngIf="paymentData">
-                  price: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }} {{ paymentData.price }}
+              <form (ngSubmit)="submit()">
+                <div *ngIf="paymentDetails">
+                  price: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }} {{ paymentDetails.price }}
                   <br />
-                  Number of Users: {{ forms.length + 1 }}
+                  Number of Users: {{ forms.length }}
                   <br />
-                  Total: {{ paymentData.currency === 'inr' ? 'Rs' : '$' }}
-                  {{ paymentData.price * (forms.length + 1) }}
+                  Total: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }}
+                  {{ paymentDetails.price * forms.length }}
                 </div>
-                <button id="submit">Submit</button>
-                <div id="error-message"></div>
+                <button>Pay Now</button>
+                <div></div>
               </form>
             </nb-card-body>
           </nb-card>
@@ -190,6 +179,22 @@
     </div>
   </div>
 </div>
+
+<ng-template #paymentDialog let-data>
+  <nb-card class="com-sticky com-top-20">
+    <nb-card-body>
+      <form id="payment-form" (ngSubmit)="pay()">
+        <div id="payment-element">
+          <!-- Elements will create form elements here -->
+        </div>
+        <button id="submit">Submit</button>
+        <div id="error-message">
+          <!-- Display error message to your customers here -->
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
 
 <ng-template #formConfirmationDialog let-data>
   <nb-card class="confirmation-dialog">

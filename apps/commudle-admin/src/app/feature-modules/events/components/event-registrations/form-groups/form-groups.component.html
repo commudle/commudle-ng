@@ -38,7 +38,7 @@
                     </a>
                   </p>
                 </div>
-                <div>
+                <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
                   <label>
                     <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> </nb-toggle>
                   </label>

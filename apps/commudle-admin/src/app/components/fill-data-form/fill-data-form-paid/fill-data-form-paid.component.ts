@@ -30,10 +30,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./fill-data-form-paid.component.scss'],
 })
 export class FillDataFormPaidComponent implements OnInit, OnDestroy {
-  countries = countries_details;
+  countries = countries_details; //list of country code for phone numbers codes
   dataFormEntity: IDataFormEntity;
-  formClosed = false;
-  showProfileForm = false;
+  formClosed = false; //form is closed or open for filling state
+  showProfileForm = false; //if profile was not completed
   redirectRoute: any;
   event: IEvent;
   community: ICommunity;
@@ -42,26 +42,22 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   dialogRef: NbDialogRef<any>;
 
   existingResponses;
-  createDataForm: FormGroup;
 
   subscriptions: Subscription[] = [];
   gtmData: any = {};
-  stripeInstance: any; // Use specific types for Stripe and Elements if available
-  elementsInstance: any;
-  selectedUsers = [];
-  showUserFillForm = true;
-  paymentData;
-  addUserForm;
+  selectedUsers = []; //store additional user information
+  paymentDetails; //store payments details
   formData = new FormData();
-  forms: FormGroup[] = []; // Store multiple forms
-  totalUsers = 1;
+  forms: FormGroup[] = []; // Store multiple additional user forms
+
+  pec;
+  pecs;
+
+  isFormDirty: boolean[] = [];
+  @ViewChild('paymentDialog', { static: true }) paymentDialog: TemplateRef<any>;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
-  //number codes
-  numberCodes = [];
-  searchTerm = '';
 
-  searchResult = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -79,28 +75,32 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
     private stripeHandlerService: StripeHandlerService,
-  ) {
-    this.addUserForm = this.fb.group({
-      additional_users: this.fb.group({
-        name: ['', Validators.required],
-        email: ['', Validators.required],
-        phone_number: ['', Validators.required],
-      }),
-    });
-  }
+  ) {}
 
   ngOnInit() {
-    // this.numberCodes = this.numberCodeService.getNumberCodes();
-    // console.log(
-    //   '🚀 ~ file: fill-data-form-paid.component.ts:96 ~ FillDataFormPaidComponent ~ ngOnInit ~ this.numberCodes:',
-    //   this.numberCodes,
-    // );
+    this.fetchDataFormEntity();
+    this.setRedirect();
+    this.setupCurrentUser();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.dialogRef?.close();
+  }
+
+  setupCurrentUser() {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe((params) => {
-        this.getDataFormEntity(params.data_form_entity_id);
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        if (this.currentUser) {
+          this.createCurrentUserForm();
+          this.gtmData.com_user_id = this.currentUser.id;
+        }
       }),
     );
+  }
 
+  setRedirect() {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((data) => {
         if (data.next) {
@@ -108,76 +108,67 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         }
       }),
     );
+  }
 
+  fetchDataFormEntity() {
     this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.currentUser = data;
-        if (this.currentUser) {
-          this.addNewUser();
-          this.gtmData.com_user_id = this.currentUser.id;
-          // this.forms[0].get()
-          this.forms[0].patchValue({
-            additional_users: {
-              name: this.currentUser.name,
-              email: this.currentUser.email,
-              phone_country_code: '91',
-              phone_number: '9501199820',
-            },
-          });
-
-          // this.forms[0].disable();
-        }
+      this.activatedRoute.params.subscribe((params) => {
+        this.getDataFormEntity(params.data_form_entity_id);
       }),
     );
   }
 
-  // filterNumberCodes(): any[] {
-  //   // const data = this.numberCodes.filter((code) => code.phone.toString().includes(this.searchTerm));
-  //   // console.log("🚀 ~ file: fill-data-form-paid.component.ts:126 ~ FillDataFormPaidComponent ~ filterNumberCodes ~ data:", data)
-
-  //   // return data;
-  // }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-
-    this.dialogRef?.close();
+  createCurrentUserForm() {
+    this.addNewUser();
+    this.forms[0].patchValue({
+      additional_users: {
+        name: this.currentUser.name,
+        email: this.currentUser.email,
+        phone_country_code: '91',
+        phone_number: '9501199820',
+      },
+    });
+    this.saveUserDetails(0);
   }
 
   fetchPaidTicketingData(edfegId) {
     this.subscriptions.push(
       this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
-        this.paymentData = data;
+        this.paymentDetails = data;
       }),
     );
   }
 
   getDataFormEntity(dataFormEntityId) {
-    this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
-      this.dataFormEntity = data;
-      this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
-      this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
-      this.seoService.setTags(
-        `${this.dataFormEntity.name}`,
-        `Fill the form for ${this.dataFormEntity.name}`,
-        'https://commudle.com/assets/images/commudle-logo192.png',
-      );
-      this.formClosed = !this.dataFormEntity.user_can_fill_form;
-      if (!this.formClosed) {
-        this.getExistingResponses();
-        this.getParent();
-      }
-    });
+    this.subscriptions.push(
+      this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
+        this.dataFormEntity = data;
+        this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
+        this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
+        this.seoService.setTags(
+          `${this.dataFormEntity.name}`,
+          `Fill the form for ${this.dataFormEntity.name}`,
+          'https://commudle.com/assets/images/commudle-logo192.png',
+        );
+        this.formClosed = !this.dataFormEntity.user_can_fill_form;
+        if (!this.formClosed) {
+          this.getExistingResponses();
+          this.getParent();
+        }
+      }),
+    );
   }
 
   getExistingResponses() {
-    this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe((data) => {
-      this.existingResponses = data.existing_responses;
+    this.subscriptions.push(
+      this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe((data) => {
+        this.existingResponses = data.existing_responses;
 
-      if (!this.dataFormEntity.multi_response && this.existingResponses.length >= 1) {
-        this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
-      }
-    });
+        if (!this.dataFormEntity.multi_response && this.existingResponses.length >= 1) {
+          this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
+        }
+      }),
+    );
   }
 
   getParent() {
@@ -199,29 +190,33 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   }
 
   getEvent() {
-    this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
-      this.event = data;
-      this.gtmData.com_event_name = this.event.name;
-      this.seoService.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
-      this.getCommunity(this.event.kommunity_id);
+    this.subscriptions.push(
+      this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
+        this.event = data;
+        this.gtmData.com_event_name = this.event.name;
+        this.seoService.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
+        this.getCommunity(this.event.kommunity_id);
 
-      if (this.event.header_image_path) {
-        this.seoService.setTag('og:image', this.event.header_image_path);
-      }
-    });
+        if (this.event.header_image_path) {
+          this.seoService.setTag('og:image', this.event.header_image_path);
+        }
+      }),
+    );
   }
 
   getCommunity(communityId) {
-    this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
-      this.community = data;
+    this.subscriptions.push(
+      this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
+        this.community = data;
 
-      if (!this.event.header_image_path) {
-        this.seoService.setTag('og:image', this.community.logo_path);
-      }
-      // if (!this.redirectRoute) {
-      //   this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
-      // }
-    });
+        if (!this.event.header_image_path) {
+          this.seoService.setTag('og:image', this.community.logo_path);
+        }
+        // if (!this.redirectRoute) {
+        //   this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
+        // }
+      }),
+    );
   }
 
   submitForm($event) {
@@ -240,52 +235,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     }
   }
 
-  // createToken() {
-  //   const stripe = this.stripeHandlerService.stripe;
-  //   const elements = stripe.elements();
-  //   const style = {
-  //     base: {
-  //       color: '#32325d',
-  //       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-  //       fontSmoothing: 'antialiased',
-  //       fontSize: '16px',
-  //       '::placeholder': {
-  //         color: '#fff00f',
-  //       },
-  //     },
-  //     invalid: {
-  //       color: '#fa755a',
-  //       iconColor: '#fa755a',
-  //     },
-  //   };
-  //   // Create an instance of the card Element.
-  //   const card = elements.create('card', { style: style });
-  //   console.log("🚀 ~ file: fill-data-form.component.ts:198 ~ FillDataFormComponent ~ createToken ~ card:", card)
-  //   // Add an instance of the card Element into the `card-element` <div>.
-  //   card.mount('#card-element');
-
-  //   card.addEventListener('change', (event) => {
-  //     const displayError = document.getElementById('card-errors');
-  //     if (event.error) {
-  //       displayError.textContent = event.error.message;
-  //     } else {
-  //       displayError.textContent = '';
-  //     }
-  //   });
-
-  //   stripe.createToken(card).then((result) => {
-  //     if (result.error) {
-  //       // Inform the user if there was an error
-  //       const errorElement = document.getElementById('card-errors');
-  //       errorElement.textContent = result.error.message;
-  //     } else {
-  //       // Send the token to your server
-  //       // stripeTokenHandler(result.token);
-  //       console.log(result.token);
-  //     }
-  //   });
-  // }
-
   addNewUser() {
     const newForm = this.fb.group({
       additional_users: this.fb.group({
@@ -296,40 +245,13 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       }),
     });
     this.forms.push(newForm);
-  }
-
-  submit() {
-    this.eventTicketOrderService
-      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
-      .subscribe((data) => {
-        console.log(
-          '🚀 ~ file: fill-data-form.component.ts:269 ~ FillDataFormComponent ~ this.eventTicketOrderService.createEventTicketOrder ~ data:',
-          data,
-        );
-        const stripe = this.stripeHandlerService.stripe;
-        const options = {
-          clientSecret: data.stripe_payment_intent.details.client_secret,
-          layout: {
-            type: 'accordion',
-            defaultCollapsed: false,
-            radios: true,
-            spacedAccordionItems: false,
-          },
-          business: 'Commudle',
-          appearance: {
-            theme: 'stripe',
-            variables: { colorPrimaryText: '#262626' },
-          },
-        };
-        const elements = stripe.elements(options);
-        const paymentElement = elements.create('payment');
-        paymentElement.mount('#payment-element');
-        paymentElement.update({ business: { name: 'Stripe Shop' } });
-      });
+    this.isFormDirty.push(false);
+    newForm.valueChanges.subscribe(() => {
+      this.isFormDirty[this.forms.indexOf(newForm)] = true;
+    });
   }
 
   saveUserDetails(index) {
-    this.totalUsers = this.totalUsers + 1;
     this.selectedUsers = [];
     this.selectedUsers.push(this.forms[index].value);
 
@@ -338,6 +260,53 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.formData.append(`additional_users[][email]`, user.additional_users.email);
       this.formData.append(`additional_users[][phone_country_code]`, '+91');
       this.formData.append(`additional_users[][phone]`, user.additional_users.phone_number);
+    });
+    this.isFormDirty[index] = false;
+  }
+
+  submit() {
+    this.eventTicketOrderService
+      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
+      .subscribe((data) => {
+        this.pec = data.stripe_payment_intent.details;
+        this.pecs = data.stripe_payment_intent.details.client_secret;
+        this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        const stripe = this.stripeHandlerService.stripe;
+        const options = {
+          clientSecret: this.pecs,
+        };
+        const elements = stripe.elements(options);
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
+      });
+  }
+
+  pay() {
+    const stripe = this.stripeHandlerService.stripe;
+    const options = {
+      clientSecret: this.pecs,
+    };
+    const form = document.getElementById('payment-form');
+    const elements = stripe.elements(options);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: 'www.commudle.com',
+        },
+      });
+
+      if (error) {
+        const messageContainer = document.querySelector('#error-message');
+        messageContainer.textContent = error.message;
+      } else {
+        console.log(
+          '🚀 ~ file: fill-data-form-paid.component.ts:376 ~ FillDataFormPaidComponent ~ form.addEventListener ~ error:',
+        );
+      }
     });
   }
 }

@@ -21,7 +21,7 @@ import { Visibility } from 'apps/shared-models/data_form_entity.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'apps/shared-models/enums/registration_types.enum';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
-import { IRegistrationType } from 'apps/shared-models/registration_type.model';
+import { IRegistrationType, RegistrationTypeNames } from 'apps/shared-models/registration_type.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
@@ -48,6 +48,7 @@ export class FormGroupsComponent implements OnInit {
 
   eventDataFormEntityGroupForm;
   stripeAccounts = [];
+  ERegistrationTypeNames = RegistrationTypeNames;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
 
