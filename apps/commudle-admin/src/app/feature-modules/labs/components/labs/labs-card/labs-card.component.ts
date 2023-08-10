@@ -13,7 +13,5 @@ export class LabsCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.lab);
-  }
+  ngOnInit(): void {}
 }

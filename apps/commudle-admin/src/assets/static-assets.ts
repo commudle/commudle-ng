@@ -42,4 +42,7 @@ export const staticAssets = {
     medal_of_honour:
       'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGNxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c32f54e069ae256b46224c8d591a14e100abcc9d/b3d37220175f46299a2639f1bf15ded2.png',
   },
+
+  community_lab_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeUE0QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--93698b16ab6c8f95a106895116c8f0cf79ba9757/Labs%20Empty%20State.png',
 };

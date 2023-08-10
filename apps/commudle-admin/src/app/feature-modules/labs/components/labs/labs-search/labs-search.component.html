@@ -18,18 +18,18 @@
   <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
     <app-skeleton-cards [cards]="10" [ImageShapeSquare]="true" [ImageShapeCircle]="false"></app-skeleton-cards>
   </div>
-  <div *ngIf="!skeletonLoaderCard && searchedLabs.length === 0">
+  <div *ngIf="!skeletonLoaderCard && labs.length === 0">
     <!-- <commudle-empty-state-component [parentType]="'Labs'"></commudle-empty-state-component> -->
   </div>
-  <div *ngIf="searchedLabs.length > 0">
+  <div *ngIf="labs.length > 0">
     <div
       *appBreakpoints="'>lg'"
       (scrolled)="getLabs()"
-      [infiniteScrollDisabled]="searchedLabs.length >= total"
+      [infiniteScrollDisabled]="labs.length >= total"
       appInfiniteScroll
       class="labs"
     >
-      <div *ngFor="let lab of searchedLabs" class="labs-card">
+      <div *ngFor="let lab of labs" class="labs-card">
         <app-labs-card [lab]="lab"></app-labs-card>
       </div>
     </div>
@@ -39,20 +39,29 @@
 
     <div *appBreakpoints="'<=lg'">
       <div class="labs">
-        <div *ngFor="let lab of labs.slice(0, 5)" class="speakers-card">
-          <!-- <app-speaker-card
-              [speaker]="speaker"
-              [maxUserNameLength]="25"
-              [isMobileWidthFull]="true"
-            ></app-speaker-card> -->
+        <div *ngFor="let lab of labs.slice(0, 5)" class="labs-card">
+          <app-labs-card [lab]="lab"></app-labs-card>
         </div>
       </div>
+      <commudle-builds-top-builders
+        [heading]="'TOP PUBLISHERS'"
+        [subHeading]="'Top publishers for you to check out'"
+        [parentType]="'labs'"
+        [toolTipText]="
+          'People whose labs have the highest upvotes in the selected duration. The number in the profile card displays overall total labs and overall total likes.'
+        "
+      ></commudle-builds-top-builders>
+      <commudle-explore-experts></commudle-explore-experts>
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
       <!-- <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
         <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
         <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-        <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content> -->
-      <div class="speakers">
-        <div *ngFor="let lab of labs.slice(3)" class="speakers-card">
+        <commudle-public-home-list-speakers-content [parentType]="'communities'"></commudle-public-home-list-speakers-content> -->
+      <div class="labs">
+        <div *ngFor="let lab of labs.slice(3)" class="labs-card">
+          <app-labs-card [lab]="lab"></app-labs-card>
           <!-- <app-speaker-card
               [speaker]="speaker"
               [maxUserNameLength]="25"
@@ -61,7 +70,7 @@
         </div>
       </div>
       <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
-      <button (click)="getLabs()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton class="view-more-button">
+      <button (click)="getLabs()" *ngIf="pageInfo?.has_next_page" fullWidth ghost nbButton class="view-more-button">
         View More
       </button>
     </div>

@@ -1,10 +1,10 @@
 <div class="clickable votes size-{{ size }}">
   <div [ngSwitch]="icon" [ngClass]="{ 'votes-direction-vertical': votesDirectionVertical }">
     <p
-      *ngIf="totalVotes > 0"
+      *ngIf="totalVotes > 0 && textAlignment === 'before'"
       [nbPopoverContext]="{ votableId: votableId, votableType: votableType }"
       [nbPopover]="VotersComponent"
-      class="count"
+      class="count com-mr-2px"
       nbPopoverTrigger="hover"
     >
       {{ totalVotes }}
@@ -32,5 +32,14 @@
       >
       </nb-icon>
     </span>
+    <p
+      *ngIf="totalVotes > 0 && textAlignment === 'after'"
+      [nbPopoverContext]="{ votableId: votableId, votableType: votableType }"
+      [nbPopover]="VotersComponent"
+      class="count com-ml-6px"
+      nbPopoverTrigger="hover"
+    >
+      {{ totalVotes }}
+    </p>
   </div>
 </div>

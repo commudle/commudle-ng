@@ -18,9 +18,10 @@ a:active {
   h4 {
     margin: 0;
   }
-
-  .labs-card-header {
-    @apply com-w-[135px] com-h-[90px] com-mr-4;
+  // a {
+  // @apply com-flex com-flex-row;
+  .lab-header-image {
+    @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden com-mr-4 com-rounded-[4px] com-flex-shrink-0;
     // border-bottom: 1px solid $silver-sand;
     // border-top-left-radius: $border-5;
     // border-top-right-radius: $border-5;
@@ -34,36 +35,42 @@ a:active {
   }
 
   .labs-card-content {
-    @apply com-flex com-flex-col com-justify-between;
+    @apply com-flex com-flex-col com-justify-between com-overflow-hidden;
     // background-color: $white;
     // height: 130px;
     // padding: $space-12 $space-16 $space-8;
 
     .labs-card-content-prefix {
       .heading {
-        @apply com-flex com-flex-row com-justify-between com-mb-2;
+        @apply com-flex com-flex-row com-justify-between md:com-mb-2 com-mb-1;
         .labs-card-title {
-          @apply com-flex com-items-center;
+          @apply com-flex com-items-center md:com-mr-10 com-m-0 com-justify-between md:com-justify-normal;
           .title {
-            @apply com-text-base com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-1 com-mr-2;
+            @apply md:com-text-base com-text-sm com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-1 com-mr-2;
           }
           .steps {
-            @apply com-text-xs com-font-medium com-text-Azure;
+            @apply com-flex com-text-xs com-font-medium com-text-Azure;
           }
         }
         .tags {
+          @apply com-overflow-hidden com-ml-auto com-h-6 md:com-flex com-hidden;
+          // &::ng-deep {
+          //   .nb-tag-list-tags-wrapper {
+          //     @apply com-flex com-flex-nowrap;
+          //   }
+          // }
         }
       }
 
       .labs-card-date {
-        @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-mb-2;
+        @apply md:com-text-sm com-text-[10px] com-font-normal com-text-Auro-Metal-Saurus md:com-mb-2 com-mb-1;
       }
     }
 
     .labs-card-content-suffix {
-      @apply com-flex com-justify-between com-w-[726px];
+      @apply com-flex com-justify-between md:com-w-[726px] com-w-auto;
       .labs-card-stats {
-        @apply com-flex com-gap-4 com-ml-auto;
+        @apply com-flex com-gap-4 md:com-ml-auto com-m-0;
 
         // p,
         // nb-icon {
@@ -72,8 +79,9 @@ a:active {
         //   margin-right: $space-4;
         // }
 
-        .labs-card-views {
-          @apply com-flex com-items-center;
+        .labs-card-views,
+        .labs-card-likes {
+          @apply com-flex com-items-center com-text-Auro-Metal-Saurus;
           // p,
           nb-icon {
             @apply com-h-[18px] com-w-[18px] com-mr-2px;
@@ -108,4 +116,5 @@ a:active {
       }
     }
   }
+  // }
 }

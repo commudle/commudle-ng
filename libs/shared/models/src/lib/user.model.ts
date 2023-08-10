@@ -50,6 +50,8 @@ export interface IUser {
   communities_count?: number;
   looking_for_work?: boolean;
   hiring?: boolean;
+  published_labs_count?: number;
+  total_labs_votes?: number;
 }
 
 export interface IUserSearch extends IUser {

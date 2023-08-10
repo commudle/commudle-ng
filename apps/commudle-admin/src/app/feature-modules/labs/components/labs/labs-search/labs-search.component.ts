@@ -1,14 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ILab, ITag } from '@commudle/shared-models';
 import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-import { ILabs } from 'apps/shared-models/labs.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
-import { ITags } from 'apps/shared-models/tags.model';
-import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 // import { ListingPagesFilterTypes } from 'apps/shared-models/enums/listing-pages-filter-types';
@@ -18,11 +15,11 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   templateUrl: './labs-search.component.html',
   styleUrls: ['./labs-search.component.scss'],
 })
-export class LabsSearchComponent implements OnInit, OnDestroy {
+export class LabsSearchComponent implements OnInit {
   labs: ILab[] = [];
-  page_info: IPageInfo;
+  pageInfo: IPageInfo;
   loading = false;
-  loadingSpeakers = false;
+  loadingLabs = false;
   total: number;
   // total = -1;
   limit = 9;
@@ -36,16 +33,15 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
   totalSearch = 0;
   seoTitle: string;
 
-  popularTags: ITag[] = [];
-  popularLabs: ILab[] = [];
+  // popularTags: ITag[] = [];
+  // popularLabs: ILab[] = [];
 
-  searchedTags: string[] = [];
-  searchedLabs: ILab[] = [];
+  // searchedTags: string[] = [];
+  // searchedLabs: ILab[] = [];
 
   // listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
-    private communitiesService: CommunitiesService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private location: Location,
@@ -56,9 +52,9 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
       name: [''],
     });
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngOnDestroy(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
   ngOnInit(): void {
     this.search();
@@ -71,10 +67,10 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     }
     this.labs = [];
     this.updateSeoTitle();
-    // if (!params.query) {
-
-    // }
-    this.getLabs();
+    // this.getLabs();
+    if (!params.query) {
+      this.getLabs();
+    }
     // this.seoService.setTags(
     //   'Speakers - Find & Connect With Tech & Design Speakers',
     //   'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
@@ -106,7 +102,7 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
         return;
       }
       this.labs = [];
-      this.page_info = null;
+      this.pageInfo = null;
       this.isLoadingSearch = true;
       this.query = this.searchForm.get('name').value;
       this.queryParamsString = this.query;
@@ -121,6 +117,8 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     if (query) {
       queryParams.query = query;
     }
+    this.seoTitle = this.query;
+    this.updateSeoTitle();
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);
@@ -131,89 +129,128 @@ export class LabsSearchComponent implements OnInit, OnDestroy {
     this.searchForm.get('name').setValue('');
     this.query = '';
     this.labs = [];
-    this.page_info = null;
+    this.pageInfo = null;
   }
-
-  // getSpeakersList() {
-  //   this.loading = true;
-  //   if (this.loadingSpeakers) {
-  //     return;
-  //   }
-  //   this.loadingSpeakers = true;
-  //   if (!this.page_info?.end_cursor) {
-  //     this.speakers = [];
-  //   }
-
-  //   this.communitiesService
-  //     .getSpeakersList(
-  //       false,
-  //       this.page_info?.end_cursor,
-  //       this.limit,
-  //       this.query,
-  //       this.month,
-  //       this.year,
-  //       this.employer,
-  //       this.employee,
-  //     )
-  //     .subscribe((data) => {
-  //       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-  //       this.total = data.total;
-  //       this.page_info = data.page_info;
-  //       this.skeletonLoaderCard = false;
-  //       this.loadingSpeakers = false;
-  //       this.loading = false;
-  //       this.isLoadingSearch = false;
-  //     });
-  // }
-
-  // getPopularTags() {
-  //   this.labsService.pTags().subscribe((data: ITags) => (this.popularTags = data.tags.slice(0, 6)));
-  // }
-
-  // onTagAdd(value: string) {
-  //   if (!this.searchedTags.includes(value)) {
-  //     this.searchedTags.push(value);
-  //     this.total = -1;
-  //     this.page = 1;
-  //     this.count = 9;
-  //     this.getLabsByTags(true);
-  //   }
-  // }
-
-  // onTagsUpdate(tags: string[]) {
-  //   this.searchedTags = tags || [];
-  //   this.total = -1;
-  //   this.page = 1;
-  //   this.count = 9;
-  //   this.getLabsByTags(true);
-  // }
-
-  // getLabsByTags(replace: boolean = false): void {
-  //   this.loading = true;
-  //   this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
-  //     this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
-  //     console.log(this.searchedLabs, 'searchedLabs');
-  //     this.total = value.total;
-  //     this.count = value.count;
-  //     this.page++;
-  //     this.loading = false;
-  //   });
-  // }
 
   // , this.query
   getLabs() {
     this.loading = true;
-    this.labsService.searchLabsByTags(this.page, this.count).subscribe((value: ILabs) => {
-      this.searchedLabs = this.searchedLabs.concat(value.labs);
-      console.log(this.searchedLabs, 'searchedLabs');
-      this.total = value.total;
-      this.count = value.count;
-      this.page++;
-      this.loading = false;
+    if (this.loadingLabs) {
+      return;
+    }
+    this.loadingLabs = true;
+    if (!this.pageInfo?.end_cursor) {
+      this.labs = [];
+    }
+    this.labsService.pIndex(this.pageInfo?.end_cursor, this.limit, this.query).subscribe((data) => {
+      this.labs = this.labs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.total = data.total;
+      this.pageInfo = data.page_info;
       this.skeletonLoaderCard = false;
+      this.loadingLabs = false;
+      this.loading = false;
+      this.isLoadingSearch = false;
     });
   }
 }
+
+// getSpeakersList() {
+//   this.loading = true;
+//   if (this.loadingSpeakers) {
+//     return;
+//   }
+//   this.loadingSpeakers = true;
+//   if (!this.page_info?.end_cursor) {
+//     this.speakers = [];
+//   }
+
+//   this.communitiesService
+//     .getSpeakersList(
+//       false,
+//       this.page_info?.end_cursor,
+//       this.limit,
+//       this.query,
+//       this.month,
+//       this.year,
+//       this.employer,
+//       this.employee,
+//     )
+//     .subscribe((data) => {
+//       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+//       this.total = data.total;
+//       this.page_info = data.page_info;
+//       this.skeletonLoaderCard = false;
+//       this.loadingSpeakers = false;
+//       this.loading = false;
+//       this.isLoadingSearch = false;
+//     });
+// }
+
+// getPopularTags() {
+//   this.labsService.pTags().subscribe((data: ITags) => (this.popularTags = data.tags.slice(0, 6)));
+// }
+
+// onTagAdd(value: string) {
+//   if (!this.searchedTags.includes(value)) {
+//     this.searchedTags.push(value);
+//     this.total = -1;
+//     this.page = 1;
+//     this.count = 9;
+//     this.getLabsByTags(true);
+//   }
+// }
+
+// onTagsUpdate(tags: string[]) {
+//   this.searchedTags = tags || [];
+//   this.total = -1;
+//   this.page = 1;
+//   this.count = 9;
+//   this.getLabsByTags(true);
+// }
+
+// getLabsByTags(replace: boolean = false): void {
+//   this.loading = true;
+//   this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
+//     this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
+//     console.log(this.searchedLabs, 'searchedLabs');
+//     this.total = value.total;
+//     this.count = value.count;
+//     this.page++;
+//     this.loading = false;
+//   });
+// }
+
+// getSpeakersList() {
+//   this.loading = true;
+//   if (this.loadingSpeakers) {
+//     return;
+//   }
+//   this.loadingSpeakers = true;
+//   if (!this.page_info?.end_cursor) {
+//     this.speakers = [];
+//   }
+
+//   this.communitiesService
+//     .getSpeakersList(
+//       false,
+//       this.page_info?.end_cursor,
+//       this.limit,
+//       this.query,
+//       this.month,
+//       this.year,
+//       this.employer,
+//       this.employee,
+//     )
+//     .subscribe((data) => {
+//       this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+//       this.total = data.total;
+//       this.page_info = data.page_info;
+//       this.skeletonLoaderCard = false;
+//       this.loadingSpeakers = false;
+//       this.loading = false;
+//       this.isLoadingSearch = false;
+//     });
+// }
 
 // import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 // import { NbMenuItem, NbMenuService } from '@commudle/theme';

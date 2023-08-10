@@ -9,6 +9,7 @@
         Publish New Lab
       </a>
     </div>
+    <app-labs-search></app-labs-search>
     <!-- <commudle-builds></commudle-builds>
     <commudle-featured-projects></commudle-featured-projects>
     <commudle-builds-top-builders></commudle-builds-top-builders>
@@ -26,9 +27,19 @@
       </a>
     </div>
     <div>
-      <commudle-builds-top-builders [backgroundColor]="'#334988'"></commudle-builds-top-builders>
+      <commudle-builds-top-builders
+        [backgroundColor]="'#334988'"
+        [heading]="'TOP PUBLISHERS'"
+        [subHeading]="'Top publishers for you to check out'"
+        [parentType]="'labs'"
+        [toolTipText]="
+          'People whose labs have the highest upvotes in the selected duration. The number in the profile card displays overall total labs and overall total likes.'
+        "
+      ></commudle-builds-top-builders>
       <commudle-explore-experts></commudle-explore-experts>
-      <commudle-public-home-list-speakers-content></commudle-public-home-list-speakers-content>
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
       <!-- <commudle-featured-projects></commudle-featured-projects> -->
     </div>
   </div>
