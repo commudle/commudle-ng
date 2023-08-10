@@ -46,6 +46,8 @@ import { SkeletonVerticalCardsComponent } from '../skeleton-screens/components/s
 import { SkeletonCardsComponent } from '../skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+// import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modul
     PublicHomeListSpeakersModule,
     CommunityBuildsModule,
     PublicHomeListSpeakersModule,
+    AppSharedComponentsModule,
 
     // Nebular
     NbCardModule,

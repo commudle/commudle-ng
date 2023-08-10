@@ -19,7 +19,7 @@
     <app-skeleton-cards [cards]="10" [ImageShapeSquare]="true" [ImageShapeCircle]="false"></app-skeleton-cards>
   </div>
   <div *ngIf="!skeletonLoaderCard && labs.length === 0">
-    <!-- <commudle-empty-state-component [parentType]="'Labs'"></commudle-empty-state-component> -->
+    <commudle-empty-state-component [parentType]="'Labs'"></commudle-empty-state-component>
   </div>
   <div *ngIf="labs.length > 0">
     <div
