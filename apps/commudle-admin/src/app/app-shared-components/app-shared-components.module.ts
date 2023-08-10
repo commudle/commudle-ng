@@ -22,9 +22,13 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
 import { SurveysComponent } from './surveys/surveys.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { LabsFeaturedComponent } from './labs-featured/labs-featured.component';
+import { SkeletonCardsComponent } from '../feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { LabsFeaturedCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured-card/labs-featured-card.component';
 
 @NgModule({
-  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
+  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,13 +37,12 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     RouterModule,
     PublicCommunityModule,
     SharedComponentsModule,
-
     //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,
     TopBuildersCardComponent,
-
+    LabsFeaturedCardComponent,
     // Nebular
     NbRadioModule,
     NbSelectModule,
@@ -49,7 +52,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     NbToggleModule,
     NbIconModule,
     NbCardModule,
+    SkeletonCardsComponent,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
 })
 export class AppSharedComponentsModule {}
