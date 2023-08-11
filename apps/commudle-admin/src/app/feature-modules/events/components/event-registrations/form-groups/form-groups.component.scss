@@ -5,7 +5,7 @@
     .edfeg-details {
       // background: #f4f7ff; //TODO define in tailwind
 
-      @apply com-p-4 com-w-full com-bg-[#f4f7ff] com-border-0 com-rounded-xl com-grid com-grid-flow-col com-gap-6;
+      @apply com-p-4 com-w-full com-bg-[#f4f7ff] com-border-0 com-rounded-xl com-grid md:com-grid-flow-col com-gap-6;
       .form-details {
         .edfeg-name {
           @apply com-text-xl com-font-medium;

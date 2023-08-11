@@ -4,7 +4,7 @@
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
         <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
           <!-- form and payments details -->
-          <div class="com-w-96">
+          <div class="com-w-full md:com-w-96">
             <div class="com-flex com-mt-2 com-justify-between">
               <!-- form details -->
               <div class="form-details">
@@ -47,7 +47,7 @@
           </div>
 
           <!-- stats and response -->
-          <div class="com-flex com-flex-col com-gap-8">
+          <div class="com-flex com-flex-row md:com-flex-col md:com-gap-8">
             <div class="stats">
               <p><fa-icon [icon]="faUsers"></fa-icon> {{ edfeg.responses_count }}</p>
             </div>
@@ -65,6 +65,7 @@
               Show Responses
             </a>
           </div>
+
           <!-- change status and rsvp  -->
           <div class="com-flex com-flex-col com-gap-8">
             <div class="dropdown">
