@@ -32,6 +32,9 @@ export const staticAssets = {
   community_build_empty_state:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKzBxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e5e8758fa8ec29c35266d3a555b2c2945c2a34b2/Build%20Empty%20State.png',
 
+  gdpr_compliance:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL0UzQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7aeb8a9428dd04a80f57b579e2344092bf7783c3/GDPR.png',
+
   emojis: {
     stars:
       'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGtxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--281b13ba73667dc6d98c85fa396713292c954732/acfc24b007f742e181c004f11d4128f7.png',
