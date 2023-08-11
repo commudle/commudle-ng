@@ -20,6 +20,11 @@ import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/ap
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
+import { LabsFeaturedCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured-card/labs-featured-card.component';
+import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
+import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
@@ -38,6 +43,8 @@ import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared
     FeaturedCommunitiesCardComponent,
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
+    SkeletonCardsComponent,
+
     // Nebular
     NbRadioModule,
     NbSelectModule,
@@ -47,7 +54,6 @@ import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared
     NbToggleModule,
     NbIconModule,
     NbCardModule,
-    SkeletonCardsComponent,
     NbToggleModule,
     NbIconModule,
     NbCardModule,
