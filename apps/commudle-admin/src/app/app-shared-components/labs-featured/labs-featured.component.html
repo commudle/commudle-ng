@@ -22,55 +22,8 @@
       }"
     >
       <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
-        <!-- <div *appBreakpoints="'>lg'"> -->
         <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card>
-        <!-- </div> -->
-        <!-- <div *appBreakpoints="'<=lg'"> -->
-        <!-- <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card> -->
-        <!-- </div> -->
-        <!-- [horizontalScroll]="isMobileView || showCardsHorizontal" -->
-        <!-- <commudle-featured-communities-card
-          [featuredCommunity]="featuredCommunity"
-          [horizontalScroll]="isMobileView || showCardsHorizontal"
-        ></commudle-featured-communities-card> -->
       </div>
     </div>
   </nb-card-body>
 </nb-card>
-
-<!-- <div class="top-builders custom-scrollbar">
-  <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
-    <div *appBreakpoints="'>lg'">
-      <commudle-top-builders-card
-        [topBuilder]="topBuilder"
-        [displayVotes]="true"
-        [showFollowButton]="true"
-        [displayDesignation]="true"
-        [maxUserNameLength]="10"
-      ></commudle-top-builders-card>
-    </div>
-    <div *appBreakpoints="'<=lg'">
-      <commudle-top-builders-card
-        [topBuilder]="topBuilder"
-        [displayVotes]="true"
-        [showFollowButton]="true"
-        [displayDesignation]="true"
-        [maxUserNameLength]="10"
-      ></commudle-top-builders-card>
-    </div>
-  </div>
-  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-  <div class="load-more">
-    <button
-      *ngIf="canLoadMore && total && !showSpinner"
-      (click)="getCommunityBuilds(); showSpinner = true"
-      nbButton
-      outline
-      size="tiny"
-      status="info"
-      [disabled]="!canLoadMore || isLoading"
-    >
-      Load More
-    </button>
-  </div>
-</div> -->

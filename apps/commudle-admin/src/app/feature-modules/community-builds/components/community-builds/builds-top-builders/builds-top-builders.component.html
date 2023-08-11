@@ -73,8 +73,19 @@
       <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
       <div class="load-more">
         <button
-          *ngIf="canLoadMore && total && !showSpinner"
+          *ngIf="canLoadMore && total && !showSpinner && parentType === 'builds'"
           (click)="getCommunityBuilds(); showSpinner = true"
+          nbButton
+          outline
+          size="tiny"
+          status="info"
+          [disabled]="!canLoadMore || isLoading"
+        >
+          Load More
+        </button>
+        <button
+          *ngIf="canLoadMore && total && !showSpinner && parentType === 'labs'"
+          (click)="getLabs(); showSpinner = true"
           nbButton
           outline
           size="tiny"

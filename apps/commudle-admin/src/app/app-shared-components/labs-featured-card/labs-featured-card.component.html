@@ -7,14 +7,13 @@
             <div class="user-profile-card">
               <app-user-profile-card-small [user]="featuredItem.lab.user"> </app-user-profile-card-small>
             </div>
-            <!-- <p class="steps">
-              <span>{{ featuredItem.lab_steps.length }}</span
-              >&nbsp;<span>STEP{{ featuredItem.lab_steps.length > 1 ? 'S' : '' }}</span>
-            </p> -->
+            <p class="steps">
+              <span>{{ featuredItem.lab.lab_steps_count }}</span
+              >&nbsp;<span>STEP{{ featuredItem.lab.lab_steps_count > 1 ? 'S' : '' }}</span>
+            </p>
           </div>
           <h5 class="title">{{ featuredItem.lab.name }}</h5>
           <p class="time">{{ moment(featuredItem.lab.created_at).format('dddd, MMM Do') }}</p>
-          <!-- <div class="votes-time"> -->
           <div class="votes-tags">
             <div class="tags">
               <app-tag
@@ -35,32 +34,9 @@
                 <fa-icon [icon]="faMessage"></fa-icon>
                 <p>views</p>
               </div> -->
-            <!-- <div class="votes">
-                <fa-icon [icon]="faHeart"></fa-icon>
-                <p>{{ featuredItem.lab.votes_count }}</p>
-              </div> -->
           </div>
-          <!-- </div> -->
         </div>
-        <!-- <div class="votes">
-          <app-votes-display
-            [icon]="'star'"
-            [votableId]="featuredProject.community_build.id"
-            [votableType]="'CommunityBuild'"
-            [votesDirectionVertical]="true"
-            size="mini"
-          ></app-votes-display>
-        </div> -->
       </div>
-      <!-- <div *ngIf="showTag">
-        <app-tag
-          [tags]="featuredProject.community_build.tags"
-          [backgroundColor]="'#FCEDE7'"
-          [size]="'tiny'"
-          [fontColor]="'#C05324'"
-          [maximumTag]="5"
-        ></app-tag>
-      </div> -->
     </a>
   </nb-card-body>
 </nb-card>

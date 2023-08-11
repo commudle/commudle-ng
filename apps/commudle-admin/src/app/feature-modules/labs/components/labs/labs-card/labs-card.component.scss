@@ -18,13 +18,13 @@ a:active {
   }
 
   .labs-card-content {
-    @apply com-flex com-flex-col com-justify-between com-overflow-hidden;
+    @apply com-flex com-flex-col com-justify-between com-overflow-hidden com-w-full;
 
     .labs-card-content-prefix {
       .heading {
         @apply com-flex com-flex-row com-justify-between md:com-mb-2 com-mb-1;
         .labs-card-title {
-          @apply com-flex com-items-center md:com-mr-10 com-m-0 com-justify-between md:com-justify-normal;
+          @apply com-flex com-items-center md:com-mr-10 com-m-0 com-justify-between md:com-justify-normal com-w-full md:com-w-auto;
           .title {
             @apply md:com-text-base com-text-sm com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-1 com-mr-2;
           }
@@ -33,7 +33,12 @@ a:active {
           }
         }
         .tags {
-          @apply com-overflow-hidden com-ml-auto com-h-6 md:com-flex com-hidden;
+          @apply com-ml-auto com-h-6 md:com-flex com-hidden;
+          ::ng-deep {
+            .nb-tag-list-tags-wrapper {
+              @apply com-flex-nowrap;
+            }
+          }
         }
       }
 
@@ -43,7 +48,7 @@ a:active {
     }
 
     .labs-card-content-suffix {
-      @apply com-flex com-justify-between md:com-w-[726px] com-w-auto;
+      @apply com-flex com-justify-between md:com-w-[726px] com-w-full;
       .labs-card-stats {
         @apply com-flex com-gap-4 md:com-ml-auto com-m-0;
 

@@ -9,7 +9,7 @@ nb-card {
         @apply com-flex com-items-center com-justify-between;
         .details {
           .heading {
-            @apply com-flex com-justify-between com-mb-3 com-h-6;
+            @apply com-flex com-justify-between com-mb-3 com-h-6 com-items-center;
             .user-profile-card {
               @apply com-overflow-hidden;
             }
@@ -25,8 +25,6 @@ nb-card {
             @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-mb-6 com-text-Auro-Metal-Saurus;
           }
 
-          //   .votes-time {
-          //     @apply com-flex com-justify-between com-h-[18px] com-overflow-hidden;
           .votes-tags {
             @apply com-flex com-justify-between com-items-center;
 
@@ -43,23 +41,8 @@ nb-card {
             //       @apply com-m-0;
             //     }
             //   }
-
-            // .votes {
-            //   @apply com-flex com-items-center com-ml-4;
-            //   fa-icon {
-            //     @apply com-mr-1 com-h-[18px] com-w-[18px];
-            //   }
-            //   p {
-            //     @apply com-m-0;
-            //   }
-            // }
           }
-          //   }
         }
-
-        // .votes {
-        //   @apply com-ml-auto com-border com-border-solid com-px-[18px] com-py-3 com-rounded-lg com-border-Bright-Gray;
-        // }
       }
     }
   }

@@ -2,10 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FeaturedItemsService } from 'apps/commudle-admin/src/app/services/featured-items.service';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
-// import { CommonModule } from '@angular/common';
-// import { NbCardModule } from '@commudle/theme';
-// import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-// import { SkeletonCardsComponent } from '../../feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 
 @Component({
   selector: 'commudle-labs-featured',

@@ -15,6 +15,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   @Input() subHeading: string;
   @Input() parentType: string;
   @Input() toolTipText: string;
+  @Input() selectedByDefault = 'month'; // month || year || all-time
   topBuilders: IUser[] = [];
   page = 1;
   count = 5;
@@ -22,7 +23,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   isLoading = false;
   canLoadMore = true;
   timePeriod: string;
-  month = true;
+  month = false;
   year = false;
   allTime = false;
   options;
@@ -35,6 +36,9 @@ export class BuildsTopBuildersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.month = this.selectedByDefault === 'month' ? true : false;
+    this.year = this.selectedByDefault === 'year' ? true : false;
+    this.allTime = this.selectedByDefault === 'all-time' ? true : false;
     switch (this.parentType) {
       case 'builds': {
         this.getCommunityBuilds();
@@ -48,6 +52,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   }
 
   getCommunityBuilds() {
+    this.canLoadMore = true;
     if (!this.isLoading && (!this.total || this.topBuilders.length < this.total)) {
       this.isLoading = true;
       this.communityBuildsService
@@ -89,6 +94,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   }
 
   getLabs() {
+    this.canLoadMore = true;
     if (!this.isLoading && (!this.total || this.topBuilders.length < this.total)) {
       this.isLoading = true;
       this.labsService.pGetTopBuilders(this.count, this.page, this.month, this.year, this.allTime).subscribe((data) => {

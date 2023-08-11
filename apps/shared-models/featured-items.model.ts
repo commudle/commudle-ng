@@ -15,5 +15,4 @@ export interface IFeaturedItems {
   user: IUser;
   community_channel: ICommunityChannel;
   tags: ITag[];
-  lab_steps: ILabStep[];
 }

@@ -2,16 +2,6 @@
   @apply com-m-0 com-mb-10 com-border-none;
   nb-card-body {
     @apply com-p-0;
-    // .heading {
-    //   @apply com-m-0 com-p-4 com-bg-Anti-Flash-White;
-
-    //   .title {
-    //     @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
-    //   }
-    //   .sub-heading {
-    //     @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
-    //   }
-    // }
 
     .heading {
       @apply com-flex com-items-center md:com-pt-0 md:com-pb-6 com-m-0 md:com-px-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
@@ -32,9 +22,6 @@
 
     .featured-communities-scroll {
       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
-      // .featured-communities-card {
-      //   @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4;
-      // }
     }
   }
 }
@@ -60,16 +47,6 @@
         }
       }
     }
-    // .heading {
-    //   @apply com-mb-8 com-p-0 com-bg-transparent;
-
-    //   .title {
-    //     @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
-    //   }
-    //   .sub-heading {
-    //     @apply com-text-xs com-font-normal com-text-gunmetal com-m-0;
-    //   }
-    // }
 
     .featured-communities {
       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
