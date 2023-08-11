@@ -300,6 +300,10 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       });
 
       if (error) {
+        console.log(
+          '🚀 ~ file: fill-data-form-paid.component.ts:303 ~ FillDataFormPaidComponent ~ form.addEventListener ~ error:',
+          error,
+        );
         const messageContainer = document.querySelector('#error-message');
         messageContainer.textContent = error.message;
       } else {
@@ -308,5 +312,15 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         );
       }
     });
+
+    setTimeout(() => {
+      stripe.retrievePaymentIntent(this.pecs).then(({ paymentIntent }) => {
+        console.log(
+          '🚀 ~ file: fill-data-form-paid.component.ts:320 ~ FillDataFormPaidComponent ~ stripe.retrievePaymentIntent ~ paymentIntent:',
+          paymentIntent,
+        );
+        const message = document.querySelector('#message');
+      });
+    }, 5000);
   }
 }
