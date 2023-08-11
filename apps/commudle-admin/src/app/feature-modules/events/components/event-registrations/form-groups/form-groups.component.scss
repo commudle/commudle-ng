@@ -14,6 +14,9 @@
           @apply com-no-underline com-text-xs;
         }
       }
+      .payment-details {
+        @apply com-mt-5 md:com-mt-10 com-w-full com-border-0 com-border-b md:com-border-b-0 com-border-solid com-border-[#6B7280] com-pb-3;
+      }
     }
     .link-to-fill {
       @apply com-no-underline com-mt-3 com-flex com-items-center com-gap-1;
@@ -106,9 +109,9 @@
 }
 
 .dropdown {
-  @apply com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-black;
+  @apply com-w-32 md:com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-black;
   select {
-    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer;
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-w-28 md:com-w-max;
   }
 }
 

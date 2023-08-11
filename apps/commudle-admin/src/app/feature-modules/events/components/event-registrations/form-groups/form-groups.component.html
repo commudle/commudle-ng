@@ -26,18 +26,32 @@
             </div>
 
             <!-- link for open form -->
-            <a
-              *ngIf="event.editable"
-              [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
-              class="link-to-fill"
-              target="_blank"
-            >
-              <nb-icon icon="external-link" class="com-text-sm"></nb-icon>
-              <span class="com-text-sm">Link to fill</span>
-            </a>
+            <div class="com-flex com-justify-between md:com-justify-normal">
+              <a
+                *ngIf="event.editable"
+                [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
+                class="link-to-fill"
+                target="_blank"
+              >
+                <nb-icon icon="external-link" class="com-text-sm"></nb-icon>
+                <span class="com-text-sm">Link to fill</span>
+              </a>
+              <div *appBreakpoints="'<=md'">
+                <div
+                  *ngIf="
+                    [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                    event.editable
+                  "
+                >
+                  <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                    Allow RSVP
+                  </nb-toggle>
+                </div>
+              </div>
+            </div>
 
             <!-- payment details -->
-            <div *ngIf="edfeg.is_paid" class="md:com-mt-10">
+            <div *ngIf="edfeg.is_paid" class="payment-details">
               <commudle-payment-settings
                 [communityId]="community.id"
                 [edfeg]="edfeg"
@@ -47,7 +61,9 @@
           </div>
 
           <!-- stats and response -->
-          <div class="com-flex com-flex-row md:com-flex-col md:com-gap-8">
+          <div
+            class="com-flex com-items-center com-flex-row md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal"
+          >
             <div class="stats">
               <p><fa-icon [icon]="faUsers"></fa-icon> {{ edfeg.responses_count }}</p>
             </div>
@@ -67,7 +83,7 @@
           </div>
 
           <!-- change status and rsvp  -->
-          <div class="com-flex com-flex-col com-gap-8">
+          <div class="com-flex com-flex-row md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal">
             <div class="dropdown">
               <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
                 <option
@@ -108,31 +124,45 @@
                 </option>
               </select>
             </div>
-            <div
-              *ngIf="
-                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
-                event.editable
-              "
-            >
-              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
-                Allow RSVP
-              </nb-toggle>
+            <div *appBreakpoints="'>md'">
+              <div
+                *ngIf="
+                  [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                  event.editable
+                "
+              >
+                <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                  Allow RSVP
+                </nb-toggle>
+              </div>
+            </div>
+            <div *appBreakpoints="'<=md'">
+              <div *ngIf="event.editable" class="com-mt-2">
+                <button
+                  (click)="openEmailWindow(edfeg)"
+                  class="com-bg-transparent com-border com-border-solid com-border-black com-rounded-md com-p-2"
+                >
+                  <fa-icon [icon]="faEnvelope"></fa-icon>
+                  Send By EMail
+                </button>
+              </div>
             </div>
           </div>
           <!-- send emails -->
-
-          <div *ngIf="event.editable" class="com-mt-2">
-            <button
-              (click)="openEmailWindow(edfeg)"
-              class="com-bg-transparent com-border com-border-solid com-border-black com-rounded-md com-p-2"
-            >
-              <fa-icon [icon]="faEnvelope"></fa-icon>
-              Send By EMail
-            </button>
+          <div *appBreakpoints="'>md'">
+            <div *ngIf="event.editable" class="com-mt-2">
+              <button
+                (click)="openEmailWindow(edfeg)"
+                class="com-bg-transparent com-border com-border-solid com-border-black com-rounded-md com-p-2"
+              >
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+                Send By EMail
+              </button>
+            </div>
           </div>
 
           <!-- clone and delete -->
-          <div class="com-mt-2 com-flex com-flex-col com-gap-8">
+          <div class="com-mt-2 com-flex md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal">
             <a nbButton outline size="small" status="primary">
               <fa-icon [icon]="faCopy"></fa-icon>
               &nbsp; Clone Form

@@ -18,7 +18,14 @@
     </div>
     <!-- <div>Create Coupon Code</div> -->
   </div>
-  <button *ngIf="!paymentDetailsExist" (click)="open(dialog)" nbButton size="small" status="primary">
+  <button
+    *ngIf="!paymentDetailsExist"
+    (click)="open(dialog)"
+    nbButton
+    size="small"
+    status="primary"
+    class="com-w-full md:com-w-max"
+  >
     Add Payment Details
   </button>
 </div>
