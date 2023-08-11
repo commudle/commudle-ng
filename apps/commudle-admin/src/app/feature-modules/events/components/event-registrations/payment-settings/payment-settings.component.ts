@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PaymentSettingService, ToastrService } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
-
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -17,6 +17,11 @@ export class PaymentSettingsComponent implements OnInit {
   paymentData;
   subscriptions: Subscription[] = [];
   paymentDetailsExist = false;
+
+  icons = {
+    faPenToSquare,
+  };
+
   dialogRef: NbDialogRef<any>;
   constructor(
     private paymentSettingService: PaymentSettingService,

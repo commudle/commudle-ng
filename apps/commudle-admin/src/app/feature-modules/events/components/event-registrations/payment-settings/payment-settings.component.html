@@ -1,11 +1,25 @@
 <div>
   <div *ngIf="paymentData">
-    Price: {{ paymentData.currency === 'inr' ? 'Rs.' : '$' }} {{ paymentData.price }}
-    <br />
-    Account No: {{ paymentData.bank_ac_id }}
+    <table>
+      <tr>
+        <th>Price</th>
+        <th>Account No.</th>
+      </tr>
+      <tr>
+        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price }}</td>
+        <td>{{ paymentData.bank_ac_id }}</td>
+      </tr>
+    </table>
   </div>
-  <button (click)="open(dialog)" nbButton size="tiny" status="info">
-    {{ paymentDetailsExist ? 'Edit' : 'Add' }} payment Details
+  <div *ngIf="paymentDetailsExist" class="edit-buttons">
+    <div (click)="open(dialog)">
+      <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+      Edit Payment Details
+    </div>
+    <!-- <div>Create Coupon Code</div> -->
+  </div>
+  <button *ngIf="!paymentDetailsExist" (click)="open(dialog)" nbButton size="small" status="primary">
+    Add Payment Details
   </button>
 </div>
 

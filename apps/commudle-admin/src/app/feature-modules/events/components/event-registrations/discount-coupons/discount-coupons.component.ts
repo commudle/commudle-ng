@@ -43,7 +43,7 @@ export class DiscountCouponsComponent implements OnInit {
           discount_type: ['', Validators.required],
           discount_value: ['', Validators.required],
           is_limited: [false, Validators.required],
-          max_limit: [''],
+          max_limit: [0],
           expires_at: ['', Validators.required],
         }),
       },

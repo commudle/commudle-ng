@@ -1,3 +1,23 @@
+table {
+  @apply com-w-1/2;
+  td,
+  th {
+    @apply com-p-px com-text-base;
+  }
+  th {
+    @apply com-text-Auro-Metal-Saurus  com-font-medium;
+  }
+  td {
+    @apply com-font-semibold;
+  }
+}
+.edit-buttons {
+  @apply com-flex com-gap-6;
+  div {
+    @apply com-text-primary-500 com-text-sm com-font-semibold com-cursor-pointer;
+  }
+}
+
 .select {
   @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
   select {
