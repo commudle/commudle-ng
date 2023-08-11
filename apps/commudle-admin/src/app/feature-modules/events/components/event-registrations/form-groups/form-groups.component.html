@@ -5,7 +5,7 @@
         <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
           <!-- form and payments details -->
           <div class="com-w-96">
-            <div class="com-flex com-items-center com-justify-between">
+            <div class="com-flex com-mt-2 com-justify-between">
               <!-- form details -->
               <div class="form-details">
                 <span class="edfeg-name"> {{ edfeg.name }}</span>
@@ -20,7 +20,7 @@
                 </a>
               </div>
               <!-- paid button -->
-              <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
+              <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK" class="com-mt-2">
                 <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> Paid </nb-toggle>
               </div>
             </div>
