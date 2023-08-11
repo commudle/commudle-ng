@@ -1,100 +1,129 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { NbMenuItem, NbMenuService } from '@commudle/theme';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ILab } from '@commudle/shared-models';
 import { LabsService } from 'apps/commudle-admin/src/app/feature-modules/labs/services/labs.service';
-import { ITag } from 'apps/shared-models/tag.model';
-import { ITags } from 'apps/shared-models/tags.model';
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { SeoService } from 'apps/shared-services/seo.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-labs-search',
   templateUrl: './labs-search.component.html',
   styleUrls: ['./labs-search.component.scss'],
 })
-export class LabsSearchComponent implements OnInit, OnDestroy {
-  labFilters = [];
+export class LabsSearchComponent implements OnInit {
+  labs: ILab[] = [];
+  pageInfo: IPageInfo;
+  loading = false;
+  loadingLabs = false;
+  total: number;
+  limit = 9;
+  skeletonLoaderCard = true;
+  queryParamsString = '';
+  searchForm;
+  query = '';
+  isLoadingSearch = false;
+  page = 1;
+  count = 10;
+  totalSearch = 0;
+  seoTitle: string;
 
-  tagSearchParam = '';
-  tagSearchResults: ITag[] = [];
-  showTagSearchResults = false;
-
-  @Input() labSearchParams: string[] = [];
-
-  @Output() updateTags: EventEmitter<string[]> = new EventEmitter<string[]>();
-
-  @ViewChild('searchBar') searchBar: ElementRef<HTMLInputElement>;
-
-  subscriptions: Subscription[] = [];
-
-  constructor(private labsService: LabsService, private menuService: NbMenuService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private location: Location,
+    private seoService: SeoService,
+    private labsService: LabsService,
+  ) {
+    this.searchForm = this.fb.group({
+      name: [''],
+    });
+  }
 
   ngOnInit(): void {
-    this.setLabFilters();
+    this.search();
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.query) {
+        this.query = params.query;
+        this.searchForm.get('name').setValue(this.query);
+      }
+    }
+    this.labs = [];
+    this.updateSeoTitle();
+    if (!params.query) {
+      this.getLabs();
+    }
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-  }
+  updateSeoTitle() {
+    this.seoTitle = this.query
+      ? `${this.query} - Guided Tutorials by Software Developers & Designers`
+      : 'Guided Tutorials by Software Developers & Designers';
 
-  setLabFilters() {
-    const filters = ['Popular Labs', 'New Labs', 'Labs By Experts'];
-    filters.forEach((filter: string) => this.labFilters.push({ title: filter }));
-
-    this.handleLabFilters();
-  }
-
-  handleLabFilters() {
-    this.subscriptions.push(
-      this.menuService
-        .onItemClick()
-        .pipe(map(({ item: title }) => title))
-        .subscribe((menuItem: NbMenuItem) => {
-          switch (menuItem.title) {
-            case 'Popular Labs': {
-              break;
-            }
-            case 'New Labs': {
-              break;
-            }
-            case 'Labs By Experts': {
-              break;
-            }
-          }
-        }),
+    this.seoService.setTags(
+      this.seoTitle,
+      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create  apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
 
-  getTagSearchResults() {
-    if (this.tagSearchParam !== '') {
-      this.labsService
-        .searchTags(this.tagSearchParam.split(' '))
-        .subscribe((value: ITags) => (this.tagSearchResults = value.tags));
-    } else {
-      this.tagSearchResults = [];
-    }
+  search() {
+    this.query = '';
+    this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
+      if (this.isLoadingSearch) {
+        return;
+      }
+      this.labs = [];
+      this.pageInfo = null;
+      this.isLoadingSearch = true;
+      this.query = this.searchForm.get('name').value;
+      this.queryParamsString = this.query;
+      this.generateParams(this.query);
+    });
   }
 
-  toggleSearchSuffix(value: boolean) {
-    this.showTagSearchResults = value;
+  generateParams(query) {
+    this.skeletonLoaderCard = true;
+    const queryParams: { [key: string]: any } = {};
+
+    if (query) {
+      queryParams.query = query;
+    }
+    this.seoTitle = this.query;
+    this.updateSeoTitle();
+    const urlSearchParams = new URLSearchParams(queryParams);
+    const queryParamsString = urlSearchParams.toString();
+    this.location.replaceState(location.pathname, queryParamsString);
+    this.getLabs();
   }
 
-  onTagAdd(value: string, clearInput: boolean = true) {
-    if (value !== '' && !this.labSearchParams.includes(value)) {
-      this.labSearchParams.push(value);
-      this.updateTags.emit(this.labSearchParams);
-    }
-    if (clearInput) {
-      this.searchBar.nativeElement.value = '';
-      this.tagSearchParam = '';
-      this.tagSearchResults = [];
-    }
+  resetFiltersAndSearch() {
+    this.searchForm.get('name').setValue('');
+    this.query = '';
+    this.labs = [];
+    this.pageInfo = null;
   }
 
-  onTagDelete(value: string) {
-    // TODO: Not sure how else to stop the div from closing
-    setTimeout(() => (this.showTagSearchResults = true));
-
-    this.labSearchParams = this.labSearchParams.filter((tag: string) => tag !== value);
-    this.updateTags.emit(this.labSearchParams);
+  getLabs() {
+    this.loading = true;
+    if (this.loadingLabs) {
+      return;
+    }
+    this.loadingLabs = true;
+    if (!this.pageInfo?.end_cursor) {
+      this.labs = [];
+    }
+    this.labsService.pIndex(this.pageInfo?.end_cursor, this.limit, this.query).subscribe((data) => {
+      this.labs = this.labs.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.total = data.total;
+      this.pageInfo = data.page_info;
+      this.skeletonLoaderCard = false;
+      this.loadingLabs = false;
+      this.loading = false;
+      this.isLoadingSearch = false;
+    });
   }
 }

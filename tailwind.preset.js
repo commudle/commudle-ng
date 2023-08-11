@@ -64,6 +64,8 @@ module.exports = {
         Blue: '#001FFF',
         Bittersweet: '#FF725E',
         'American-Orange': '#FF8A00',
+        'Catalina-Blue': '#022C7D',
+        'Alice-Blue-Dark': '#EBF5FF',
       },
 
       lineClamp: {

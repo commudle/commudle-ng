@@ -531,6 +531,7 @@ export const API_ROUTES = {
       TAGS: 'api/v2/labs/public/tags',
       INDEX: 'api/v2/labs/public',
       GET_STEPS: 'api/v2/labs/public/steps',
+      TOP_AUTHORS: 'api/v2/labs/public/top_authors',
     },
     ADMIN: {
       INDEX: 'api/v2/labs/admin',
