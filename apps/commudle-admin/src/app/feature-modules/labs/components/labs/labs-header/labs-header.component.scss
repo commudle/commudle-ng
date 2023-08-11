@@ -30,14 +30,8 @@
             @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0  com-text-Catalina-Blue;
           }
 
-          .content {
+          .richText {
             @apply md:com-w-[652px] com-mb-[30px] com-w-auto;
-            ::ng-deep {
-              p {
-                font-size: initial;
-                color: initial;
-              }
-            }
           }
         }
 
@@ -45,6 +39,14 @@
           @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
         }
       }
+    }
+  }
+}
+::ng-deep {
+  .richText {
+    p {
+      @apply md:com-text-2xl com-text-xl com-m-0;
+      color: initial;
     }
   }
 }
