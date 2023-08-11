@@ -1,4 +1,4 @@
-import { ICommunity, ICommunityChannel, ILab, ITag, IUser } from '@commudle/shared-models';
+import { ICommunity, ICommunityChannel, ILab, ILabStep, ITag, IUser } from '@commudle/shared-models';
 import { ICommunityBuild } from './community-build.model';
 import { IEvent } from './event.model';
 
@@ -15,4 +15,5 @@ export interface IFeaturedItems {
   user: IUser;
   community_channel: ICommunityChannel;
   tags: ITag[];
+  lab_steps: ILabStep[];
 }

@@ -6,19 +6,29 @@
 >
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">Explore Labs from folks and learn</h3>
-      <h4 class="sub-heading">Check out labs from community folks</h4>
+      <button nbButton status="basic" class="image">
+        <img alt="Experts" src="{{ staticAssets.emojis.stars }}" title="Experts" />
+      </button>
+      <div class="text">
+        <h3 class="title">Featured Labs</h3>
+        <h4 class="sub-heading">Check out our featured tutorial</h4>
+      </div>
     </div>
-    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
     <div
       [ngClass]="{
-        'featured-communities-scroll': isMobileView || showCardsHorizontal,
+        'featured-communities-scroll custom-scrollbar': isMobileView || showCardsHorizontal,
         'featured-communities': !(isMobileView || showCardsHorizontal)
       }"
-      class="custom-scrollbar"
     >
-      <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
-        <commudle-labs-featured-card></commudle-labs-featured-card>
+      <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
+        <!-- <div *appBreakpoints="'>lg'"> -->
+        <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card>
+        <!-- </div> -->
+        <!-- <div *appBreakpoints="'<=lg'"> -->
+        <!-- <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card> -->
+        <!-- </div> -->
+        <!-- [horizontalScroll]="isMobileView || showCardsHorizontal" -->
         <!-- <commudle-featured-communities-card
           [featuredCommunity]="featuredCommunity"
           [horizontalScroll]="isMobileView || showCardsHorizontal"
@@ -27,3 +37,40 @@
     </div>
   </nb-card-body>
 </nb-card>
+
+<!-- <div class="top-builders custom-scrollbar">
+  <div class="top-builders-card" *ngFor="let topBuilder of topBuilders">
+    <div *appBreakpoints="'>lg'">
+      <commudle-top-builders-card
+        [topBuilder]="topBuilder"
+        [displayVotes]="true"
+        [showFollowButton]="true"
+        [displayDesignation]="true"
+        [maxUserNameLength]="10"
+      ></commudle-top-builders-card>
+    </div>
+    <div *appBreakpoints="'<=lg'">
+      <commudle-top-builders-card
+        [topBuilder]="topBuilder"
+        [displayVotes]="true"
+        [showFollowButton]="true"
+        [displayDesignation]="true"
+        [maxUserNameLength]="10"
+      ></commudle-top-builders-card>
+    </div>
+  </div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div class="load-more">
+    <button
+      *ngIf="canLoadMore && total && !showSpinner"
+      (click)="getCommunityBuilds(); showSpinner = true"
+      nbButton
+      outline
+      size="tiny"
+      status="info"
+      [disabled]="!canLoadMore || isLoading"
+    >
+      Load More
+    </button>
+  </div>
+</div> -->

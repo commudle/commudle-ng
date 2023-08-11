@@ -1,12 +1,12 @@
 .labs {
-  @apply md:com-my-7 com-mx-0 com-mt-3 com-mb-0 com-p-0 md:com-px-0 com-px-4;
+  @apply md:com-my-7 com-mx-0 com-mt-3 com-mb-0 com-p-0;
 
   .search {
-    @apply com-m-0 md:com-mb-6px;
+    @apply com-m-0 md:com-mb-6px md:com-px-0 com-px-4;
   }
 
   .labs-card {
-    @apply com-flex com-flex-col com-border-solid com-border-0 com-border-b md:com-py-9 com-py-6 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray-Light;
+    @apply com-flex com-flex-col com-border-solid com-border-0 com-border-b md:com-py-9 com-py-6 com-p-0 md:com-px-0 com-px-4 com-mx-0 com-border-Bright-Gray-Light;
   }
 
   .view-more-button {

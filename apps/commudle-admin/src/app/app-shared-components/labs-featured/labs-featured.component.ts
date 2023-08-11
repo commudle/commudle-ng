@@ -14,7 +14,8 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 })
 export class LabsFeaturedComponent implements OnInit {
   @Input() showCardsHorizontal = false;
-  featuredCommunities: IFeaturedItems[] = [];
+  staticAssets = staticAssets;
+  featuredItems: IFeaturedItems[] = [];
   showSpinner = false;
   isMobileView: boolean;
 
@@ -26,11 +27,9 @@ export class LabsFeaturedComponent implements OnInit {
   }
 
   getFeaturedCommunities(): void {
-    // this.showSpinner = true;
-    this.featuredItemsService.getFeaturedItems('Labs').subscribe((data) => {
-      this.featuredCommunities = this.featuredCommunities.concat(
-        data.page.reduce((acc, value) => [...acc, value.data], []),
-      );
+    this.showSpinner = true;
+    this.featuredItemsService.getFeaturedItems('Lab').subscribe((data) => {
+      this.featuredItems = this.featuredItems.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.showSpinner = false;
     });
   }
