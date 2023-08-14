@@ -39,10 +39,10 @@ export class EventStreamingComponent implements OnInit {
     );
   }
 
-  createToken(access_token: string) {
+  createToken(authorization_code: string) {
     this.subscriptions.push(
       this.communityAuthTokensService
-        .createToken({ parent_id: this.embeddedVideoStream.id, token_type: 'youtube', access_token })
+        .createToken({ parent_id: this.embeddedVideoStream.id, token_type: 'youtube', authorization_code })
         .subscribe((res) => {
           if (res) {
             this.toastrService.successDialog('Connected to Youtube');
@@ -53,9 +53,9 @@ export class EventStreamingComponent implements OnInit {
   }
 
   loginToYoutube() {
-    this.authService
-      .getAccessToken(YoutubeLoginProvider.PROVIDER_ID)
-      .then((access_token) => this.createToken(access_token));
+    this.authService.getAccessToken(YoutubeLoginProvider.PROVIDER_ID).then((authorization_code) => {
+      this.createToken(authorization_code);
+    });
   }
 
   logoutFromYoutube() {
