@@ -23,7 +23,8 @@ import {
   countries_details,
 } from '@commudle/shared-services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
+import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -50,14 +51,35 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   formData = new FormData();
   forms: FormGroup[] = []; // Store multiple additional user forms
 
-  pec;
-  pecs;
-
   isFormDirty: boolean[] = [];
   @ViewChild('paymentDialog', { static: true }) paymentDialog: TemplateRef<any>;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
+  @ViewChild(StripePaymentElementComponent)
+  paymentElement: StripePaymentElementComponent;
+
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        iconColor: '#666EE8',
+        color: '#31325F',
+        fontWeight: '300',
+        fontFamily: 'Inter',
+        fontSize: '18px',
+        '::placeholder': {
+          color: '#CFD7E0',
+        },
+      },
+    },
+  };
+
+  elementsOptions: StripeElementsOptions = {
+    locale: 'es',
+  };
+
+  // stripeTest: FormGroup;
+  paymentElementForm: FormGroup;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -75,7 +97,21 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
     private stripeHandlerService: StripeHandlerService,
-  ) {}
+    private stripeService: StripeService,
+  ) {
+    // this.stripeTest = this.fb.group({
+    //   name: ['', [Validators.required]],
+    // });
+
+    this.paymentElementForm = this.fb.group({
+      name: ['John doe', [Validators.required]],
+      email: ['support@ngx-stripe.dev', [Validators.required]],
+      address: [''],
+      zipcode: [''],
+      city: [''],
+      amount: [2500, [Validators.required, Validators.pattern(/d+/)]],
+    });
+  }
 
   ngOnInit() {
     this.fetchDataFormEntity();
@@ -88,6 +124,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.dialogRef?.close();
   }
 
+  //fetch current user details
   setupCurrentUser() {
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
@@ -118,6 +155,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  // prefilled form for current user
   createCurrentUserForm() {
     this.addNewUser();
     this.forms[0].patchValue({
@@ -131,14 +169,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.saveUserDetails(0);
   }
 
-  fetchPaidTicketingData(edfegId) {
-    this.subscriptions.push(
-      this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
-        this.paymentDetails = data;
-      }),
-    );
-  }
-
+  // fetch form questions
   getDataFormEntity(dataFormEntityId) {
     this.subscriptions.push(
       this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
@@ -159,6 +190,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  //Fetch ticket Details
+  fetchPaidTicketingData(edfegId) {
+    this.subscriptions.push(
+      this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
+        this.paymentDetails = data;
+      }),
+    );
+  }
+
+  // Fetch preExisting form response
   getExistingResponses() {
     this.subscriptions.push(
       this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe((data) => {
@@ -171,6 +212,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  //get form entityType
   getParent() {
     switch (this.dataFormEntity.redirectable_entity_type) {
       case 'Event':
@@ -189,6 +231,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     }
   }
 
+  //Fetch event details
   getEvent() {
     this.subscriptions.push(
       this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
@@ -204,6 +247,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  //Fetch Community details
   getCommunity(communityId) {
     this.subscriptions.push(
       this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
@@ -219,6 +263,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  //submit user form details
   submitForm($event) {
     this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
       this.toastLogService.successDialog('Saved!');
@@ -235,6 +280,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Generate new additional user form
   addNewUser() {
     const newForm = this.fb.group({
       additional_users: this.fb.group({
@@ -251,6 +297,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     });
   }
 
+  //save additional user details in form for api
   saveUserDetails(index) {
     this.selectedUsers = [];
     this.selectedUsers.push(this.forms[index].value);
@@ -264,63 +311,39 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.isFormDirty[index] = false;
   }
 
+  // Click for open payment box and get ticket order id
   submit() {
     this.eventTicketOrderService
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
       .subscribe((data) => {
-        this.pec = data.stripe_payment_intent.details;
-        this.pecs = data.stripe_payment_intent.details.client_secret;
+        this.elementsOptions.clientSecret =
+          Object.keys(data.stripe_payment_intent.details).length !== 0
+            ? data.stripe_payment_intent.details.client_secret
+            : 'pi_3Nfd2wSAaAm97Wzm0H62pkAC_secret_4BuJhyqMyhM6MrcMnjU6uWzXg';
         this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
-        const stripe = this.stripeHandlerService.stripe;
-        const options = {
-          clientSecret: this.pecs,
-        };
-        const elements = stripe.elements(options);
-        const paymentElement = elements.create('payment');
-        paymentElement.mount('#payment-element');
       });
   }
 
-  pay() {
-    const stripe = this.stripeHandlerService.stripe;
-    const options = {
-      clientSecret: this.pecs,
-    };
-    const form = document.getElementById('payment-form');
-    const elements = stripe.elements(options);
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: 'www.commudle.com',
-        },
+  // for Payment confirm Function
+  payNPM(): void {
+    //  if (this.paymentElementForm.valid) {
+    this.stripeService
+      .confirmPayment({
+        elements: this.paymentElement.elements,
+        redirect: 'if_required',
+      })
+      .subscribe((result) => {
+        console.log('Result', result);
+        if (result.error) {
+          // Show error to your customer (e.g., insufficient funds)
+          alert({ success: false, error: result.error.message });
+        } else {
+          // The payment has been processed!
+          if (result.paymentIntent.status === 'succeeded') {
+            // Show a success message to your customer
+            alert({ success: true });
+          }
+        }
       });
-
-      if (error) {
-        console.log(
-          '🚀 ~ file: fill-data-form-paid.component.ts:303 ~ FillDataFormPaidComponent ~ form.addEventListener ~ error:',
-          error,
-        );
-        const messageContainer = document.querySelector('#error-message');
-        messageContainer.textContent = error.message;
-      } else {
-        console.log(
-          '🚀 ~ file: fill-data-form-paid.component.ts:376 ~ FillDataFormPaidComponent ~ form.addEventListener ~ error:',
-        );
-      }
-    });
-
-    setTimeout(() => {
-      stripe.retrievePaymentIntent(this.pecs).then(({ paymentIntent }) => {
-        console.log(
-          '🚀 ~ file: fill-data-form-paid.component.ts:320 ~ FillDataFormPaidComponent ~ stripe.retrievePaymentIntent ~ paymentIntent:',
-          paymentIntent,
-        );
-        const message = document.querySelector('#message');
-      });
-    }, 5000);
   }
 }

@@ -114,6 +114,7 @@ import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-scree
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
 import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -248,6 +249,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
 
     //standalone component
     CommunitiesCardComponent,
+    NgxStripeModule.forRoot(environment.stripe),
   ],
   providers: [
     AppInitService,

@@ -183,15 +183,12 @@
 <ng-template #paymentDialog let-data>
   <nb-card class="com-sticky com-top-20">
     <nb-card-body>
-      <form id="payment-form" (ngSubmit)="pay()">
-        <div id="payment-element">
-          <!-- Elements will create form elements here -->
-        </div>
-        <button id="submit">Submit</button>
-        <div id="error-message">
-          <!-- Display error message to your customers here -->
-        </div>
-      </form>
+      <div>
+        <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+          <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
+        </ng-container>
+        <button (click)="payNPM()">PAY</button>
+      </div>
     </nb-card-body>
   </nb-card>
 </ng-template>
