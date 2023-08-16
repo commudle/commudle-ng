@@ -65,4 +65,8 @@ export class CommunityBuildDetailsComponent implements OnInit {
       this.discussionChat = data;
     });
   }
+
+  isSingleImage(): boolean {
+    return this.cBuild.images.length === 1;
+  }
 }

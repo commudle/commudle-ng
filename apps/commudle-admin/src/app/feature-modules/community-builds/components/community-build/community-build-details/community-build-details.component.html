@@ -86,13 +86,19 @@
 
 <ng-template #imageTemplate>
   <div class="image-window">
-    <img alt="Image" src="{{ this.currImage.url }}" title="Image" />
+    <div class="banner-image" *ngIf="this.currImage.url">
+      <commudle-banner-image
+        [headerImagePath]="this.currImage.url"
+        [name]="cBuild.name"
+        [aspectRatio]="'180/127'"
+      ></commudle-banner-image>
+    </div>
     <div class="controls">
-      <button (click)="imageNav(-1)" nbButton shape="round" size="small">
+      <button (click)="imageNav(-1)" nbButton shape="round" size="small" [disabled]="isSingleImage()">
         <nb-icon icon="arrow-ios-back-outline"></nb-icon>
         <span>Previous</span>
       </button>
-      <button (click)="imageNav(1)" nbButton shape="round" size="small">
+      <button (click)="imageNav(1)" nbButton shape="round" size="small" [disabled]="isSingleImage()">
         <span>Next</span>
         <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
       </button>

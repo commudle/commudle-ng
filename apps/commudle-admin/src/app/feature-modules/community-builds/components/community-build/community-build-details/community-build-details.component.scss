@@ -65,7 +65,9 @@ p {
 }
 
 .image-window {
-  @apply com-max-w-[100vw] com-overflow-hidden;
+  .banner-image {
+    @apply md:com-w-[900px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
+  }
 
   .controls {
     @apply com-flex com-justify-between com-my-4;
