@@ -6,7 +6,7 @@
         <th>Account No.</th>
       </tr>
       <tr>
-        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price }}</td>
+        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price / 100 }}</td>
         <td>{{ paymentData.bank_ac_id }}</td>
       </tr>
     </table>
@@ -99,7 +99,7 @@
               >
                 <option value="" selected disabled>Currency</option>
                 <option value="inr">INR</option>
-                <option value="dollar">Dollar</option>
+                <option value="usd">USD Dollar</option>
               </select>
             </div>
             <span

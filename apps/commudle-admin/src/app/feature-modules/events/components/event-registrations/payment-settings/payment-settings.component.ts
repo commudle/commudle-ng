@@ -54,45 +54,49 @@ export class PaymentSettingsComponent implements OnInit {
         if (data) {
           this.paymentData = data;
           this.paymentDetailsExist = true;
-          this.paidTicketingForm.get('paid_ticket_setting').setValue({
-            bank_ac_type: 'stripe',
-            bank_ac_id: data.bank_ac_id,
-            price: data.price,
-            currency: data.currency,
-          });
+          this.updatePaidTicketingForm(this.paymentData);
         }
       }),
     );
   }
 
   createPaidTicketing() {
+    this.paidTicketingForm.patchValue({
+      paid_ticket_setting: {
+        price: this.paidTicketingForm.get('paid_ticket_setting.price').value * 100,
+      },
+    });
     this.paymentSettingService.createPaymentSettings(this.paidTicketingForm.value, this.edfeg.id).subscribe((data) => {
       this.toastrService.successDialog('Payment details has been updated');
       this.paymentData = data;
-      this.paidTicketingForm.get('paid_ticket_setting').setValue({
-        bank_ac_type: 'stripe',
-        bank_ac_id: data.bank_ac_id,
-        price: data.price,
-        currency: data.currency,
-      });
+      this.updatePaidTicketingForm(this.paymentData);
       this.close();
     });
   }
 
   updateTicketDetails() {
+    this.paidTicketingForm.patchValue({
+      paid_ticket_setting: {
+        price: this.paidTicketingForm.get('paid_ticket_setting.price').value * 100,
+      },
+    });
     this.paymentSettingService
       .updateTicketDetails(this.paidTicketingForm.value, this.paymentData.id)
       .subscribe((data) => {
         this.paymentData = data;
         this.toastrService.successDialog('Payment details has been updated');
-        this.paidTicketingForm.get('paid_ticket_setting').setValue({
-          bank_ac_type: 'stripe',
-          bank_ac_id: data.bank_ac_id,
-          price: data.price,
-          currency: data.currency,
-        });
+        this.updatePaidTicketingForm(this.paymentData);
         this.close();
       });
+  }
+
+  updatePaidTicketingForm(ticketDetails) {
+    this.paidTicketingForm.get('paid_ticket_setting').setValue({
+      bank_ac_type: 'stripe',
+      bank_ac_id: ticketDetails.bank_ac_id,
+      price: ticketDetails.price / 100,
+      currency: ticketDetails.currency,
+    });
   }
 
   close() {
