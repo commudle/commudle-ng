@@ -223,19 +223,10 @@
               </span>
             </label>
 
-            <!-- State* -->
+            <!-- State -->
             <label>
-              State*
+              State
               <input fieldSize="small" formControlName="state" placeholder="State" fullWidth nbInput type="string" />
-              <span
-                *ngIf="
-                  stripeConnectAccountForm.get('state').touched &&
-                  stripeConnectAccountForm.get('state').invalid &&
-                  stripeConnectAccountForm.get('state').errors.required
-                "
-              >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-              </span>
             </label>
           </div>
 

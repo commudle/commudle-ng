@@ -36,7 +36,7 @@ export class CommunityPaymentsComponent implements OnInit {
       address: ['', Validators.required],
       zip_code: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
+      state: [''],
       country: ['India', Validators.required],
     });
   }
