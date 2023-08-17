@@ -5,7 +5,6 @@
       (click)="openDialogBox(StripeConnectAccount)"
       nbButton
       status="primary"
-      [disabled]="isLoading"
     >
       <span class="com-font-semibold com-text-xs"> Connect to </span>
       <!-- for stripe text on button -->
@@ -49,11 +48,6 @@
         />
       </svg>
     </button>
-  </div>
-
-  <div *ngIf="isLoading">
-    <p class="com-text-center com-font-bold">Connecting to Stripe Account......</p>
-    <app-loading-spinner></app-loading-spinner>
   </div>
 
   <app-loading-spinner *ngIf="isUpdating"></app-loading-spinner>
@@ -111,7 +105,7 @@
       </div>
     </nb-card-header>
     <nb-card-body>
-      <form [formGroup]="stripeConnectAccountForm">
+      <form [formGroup]="stripeConnectAccountForm" *ngIf="!isLoading">
         <div class="com-flex com-flex-col com-gap-3">
           <!-- Name* -->
           <label>
@@ -268,21 +262,25 @@
           </label>
         </div>
       </form>
+      <div *ngIf="isLoading">
+        <p class="com-text-center com-font-bold">Connecting to Stripe Account......</p>
+        <app-loading-spinner></app-loading-spinner>
+      </div>
     </nb-card-body>
 
     <nb-card-footer>
       <div class="save-button-bottom">
         <button
           (click)="connectStripeAccount()"
-          [disabled]="!stripeConnectAccountForm.valid"
+          [disabled]="!stripeConnectAccountForm.valid || isLoading"
           fullWidth
           nbButton
-          outline
           size="small"
           status="primary"
           type="submit"
+          [nbSpinner]="isLoading"
         >
-          Save and Connect
+          Proceed
         </button>
       </div>
     </nb-card-footer>
