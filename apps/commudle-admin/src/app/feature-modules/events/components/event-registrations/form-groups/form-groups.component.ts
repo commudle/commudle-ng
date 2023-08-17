@@ -96,7 +96,7 @@ export class FormGroupsComponent implements OnInit {
   getStripeAccountData() {
     this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
       const stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.active === true);
+      this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.details.charges_enabled === true);
     });
   }
 

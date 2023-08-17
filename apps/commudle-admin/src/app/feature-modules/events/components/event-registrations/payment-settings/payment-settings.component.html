@@ -71,7 +71,8 @@
               >
                 <option value="" selected disabled>Select Bank Ac</option>
                 <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
-                  {{ rt.details.id | titlecase }}
+                  {{ rt.details.external_accounts.data[0].account_holder_name }}
+                  (****{{ rt.details.external_accounts.data[0].last4 }})
                 </option>
               </select>
             </div>

@@ -51,127 +51,136 @@
               </p>
             </div>
           </div>
-          <nb-card class="com-p-4 com-bg-white header com-mt-4">
-            <nb-card-body class="com-p-0">
-              <div *ngFor="let form of forms; let i = index">
-                <form [formGroup]="form">
-                  <div formGroupName="additional_users">
-                    <label>
-                      Name*
-                      <input
-                        fieldSize="small"
-                        formControlName="name"
-                        placeholder="Name"
-                        fullWidth
-                        nbInput
-                        type="text"
-                      />
-                      <span
-                        *ngIf="
-                          form.get('additional_users').get('name').touched &&
-                          form.get('additional_users').get('name').invalid &&
-                          form.get('additional_users').get('name').errors.required
-                        "
-                      >
-                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                      </span>
-                    </label>
-                    <label>
-                      Email Address*
-                      <input
-                        fieldSize="small"
-                        formControlName="email"
-                        placeholder="Email Address"
-                        fullWidth
-                        nbInput
-                        type="email"
-                        [readonly]="i === 0"
-                      />
-
-                      <span
-                        *ngIf="
-                          form.get('additional_users').get('email').touched &&
-                          form.get('additional_users').get('email').invalid &&
-                          form.get('additional_users').get('email').errors.required
-                        "
-                      >
-                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                      </span>
-                    </label>
-                    <label>
-                      Number*
-                      <!-- <div *ngFor="let countries of countries">+ {{ countries.phone }}</div> -->
-                      <div class="com-flex com-gap-2">
-                        <select
-                          id="numberCode"
-                          formControlName="phone_country_code"
-                          class="com-w-[120px]"
-                          [ngClass]="{
-                            'com-text-[#8E9BB3]': form.get('additional_users').get('phone_country_code').value === ''
-                          }"
-                        >
-                          <option selected disabled value="">Select Country</option>
-                          <option *ngFor="let code of countries" [value]="code.phone">
-                            +{{ code.phone }} ({{ code.name }})
-                          </option>
-                        </select>
-                        <input
-                          fieldSize="small"
-                          formControlName="phone_number"
-                          placeholder="Mobile Number"
-                          fullWidth
-                          nbInput
-                          type="number"
-                        />
-                      </div>
-                      <span
-                        *ngIf="
-                          form.get('additional_users').get('phone_number').touched &&
-                          form.get('additional_users').get('phone_number').invalid &&
-                          form.get('additional_users').get('phone_number').errors.required
-                        "
-                      >
-                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                      </span>
-                    </label>
-                    <button
-                      class="com-mt-4"
-                      (click)="saveUserDetails(i)"
-                      [disabled]="!form.valid || !isFormDirty[i]"
-                      fullWidth
-                      nbButton
-                      outline
-                      size="small"
-                      status="primary"
-                      type="submit"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </form>
-              </div>
-
-              <div class="com-mt-4">
-                <button nbButton status="primary" (click)="addNewUser()">Add another user</button>
-              </div>
-            </nb-card-body>
-          </nb-card>
         </div>
-        <div class="right-column">
-          <nb-card class="com-sticky com-top-20">
-            <nb-card-body>
-              <form (ngSubmit)="submit()">
-                <div *ngIf="paymentDetails">
-                  price: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }} {{ paymentDetails.price / 100 }}
-                  <br />
-                  Number of Users: {{ forms.length }}
-                  <br />
-                  Total: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }}
-                  {{ (paymentDetails.price / 100) * forms.length }}
+        <div class="right-column payment-details-section">
+          <nb-card>
+            <nb-card-body *ngIf="paymentDetails">
+              <div class="payment-deatils">
+                <span class="heading">Price</span>
+                <span class="value"
+                  >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ paymentDetails.price / 100 }}</span
+                >
+              </div>
+              <div class="payment-deatils">
+                <span class="heading">Total</span>
+                <span class="value">
+                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                  {{ (paymentDetails.price / 100) * forms.length }}</span
+                >
+              </div>
+              <div class="user-details">
+                <span class="com-text-lg com-font-semibold">YOU</span>
+                <br />
+                <div class="user-detail">
+                  <div *ngFor="let form of forms; let i = index">
+                    <form [formGroup]="form">
+                      <div formGroupName="additional_users">
+                        <!-- name -->
+                        <label>
+                          Name*
+                          <input
+                            fieldSize="small"
+                            formControlName="name"
+                            placeholder="Name"
+                            fullWidth
+                            nbInput
+                            type="text"
+                          />
+                          <span
+                            *ngIf="
+                              form.get('additional_users').get('name').touched &&
+                              form.get('additional_users').get('name').invalid &&
+                              form.get('additional_users').get('name').errors.required
+                            "
+                          >
+                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                          </span>
+                        </label>
+
+                        <!-- email address -->
+                        <label>
+                          Email Address*
+                          <input
+                            fieldSize="small"
+                            formControlName="email"
+                            placeholder="Email Address"
+                            fullWidth
+                            nbInput
+                            type="email"
+                            [readonly]="i === 0"
+                          />
+
+                          <span
+                            *ngIf="
+                              form.get('additional_users').get('email').touched &&
+                              form.get('additional_users').get('email').invalid &&
+                              form.get('additional_users').get('email').errors.required
+                            "
+                          >
+                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                          </span>
+                        </label>
+
+                        <!-- phone number -->
+                        <label>
+                          Number*
+                          <div class="com-flex com-gap-2">
+                            <div class="select">
+                              <select
+                                id="numberCode"
+                                formControlName="phone_country_code"
+                                class="com-w-[120px]"
+                                [ngClass]="{
+                                  'com-text-[#8E9BB3]':
+                                    form.get('additional_users').get('phone_country_code').value === ''
+                                }"
+                              >
+                                <option selected disabled value="">Select Country</option>
+                                <option *ngFor="let code of countries" [value]="code.phone">
+                                  <span> +{{ code.phone }} ({{ code.name }}) </span>
+                                </option>
+                              </select>
+                            </div>
+                            <input
+                              fieldSize="small"
+                              formControlName="phone_number"
+                              placeholder="Mobile Number"
+                              fullWidth
+                              nbInput
+                              type="number"
+                            />
+                          </div>
+                          <span
+                            *ngIf="
+                              form.get('additional_users').get('phone_number').touched &&
+                              form.get('additional_users').get('phone_number').invalid &&
+                              form.get('additional_users').get('phone_number').errors.required
+                            "
+                          >
+                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                          </span>
+                        </label>
+                        <!-- <button
+                        class="com-mt-4"
+                        (click)="saveUserDetails(i)"
+                        [disabled]="!form.valid || !isFormDirty[i]"
+                        fullWidth
+                        nbButton
+                        outline
+                        size="small"
+                        status="primary"
+                        type="submit"
+                      >
+                        Save
+                      </button> -->
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                <button>Pay Now</button>
-                <div></div>
-              </form>
+                <div class="com-mt-4">
+                  <button (click)="addNewUser()" class="add-another-user">+ Add Another Recipient</button>
+                </div>
+              </div>
             </nb-card-body>
           </nb-card>
         </div>
@@ -181,7 +190,7 @@
 </div>
 
 <ng-template #paymentDialog let-data>
-  <nb-card class="com-sticky com-top-20">
+  <nb-card>
     <nb-card-body>
       <div>
         <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">

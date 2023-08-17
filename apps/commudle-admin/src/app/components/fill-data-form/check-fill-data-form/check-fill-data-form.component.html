@@ -1,6 +1,10 @@
-<div *ngIf="dataFormEntity?.event_data_form_entity_group.is_paid">
+<nb-card *ngIf="formClosed">
+  <nb-card-body> This form is closed! </nb-card-body>
+</nb-card>
+
+<div *ngIf="dataFormEntity?.event_data_form_entity_group.is_paid && !formClosed">
   <commudle-fill-data-form-paid></commudle-fill-data-form-paid>
 </div>
-<div *ngIf="!dataFormEntity?.event_data_form_entity_group.is_paid">
+<div *ngIf="!dataFormEntity?.event_data_form_entity_group.is_paid && !formClosed">
   <app-fill-data-form></app-fill-data-form>
 </div>
