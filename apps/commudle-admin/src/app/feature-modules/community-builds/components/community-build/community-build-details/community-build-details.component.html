@@ -101,11 +101,11 @@
         ></commudle-banner-image>
       </div>
       <div class="controls">
-        <button (click)="imageNav(-1)" nbButton shape="round" size="small" [disabled]="isSingleImage()">
+        <button (click)="imageNav(-1)" nbButton shape="round" size="small" [disabled]="singleImage">
           <nb-icon icon="arrow-ios-back-outline"></nb-icon>
           <span>Previous</span>
         </button>
-        <button (click)="imageNav(1)" nbButton shape="round" size="small" [disabled]="isSingleImage()">
+        <button (click)="imageNav(1)" nbButton shape="round" size="small" [disabled]="singleImage">
           <span>Next</span>
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
         </button>

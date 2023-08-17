@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild, HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbDialogService } from '@commudle/theme';
 import * as moment from 'moment';
@@ -23,6 +23,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   hasIframe = false;
   embedCode: any;
   currImage = null;
+  singleImage: boolean;
 
   moment = moment;
 
@@ -44,6 +45,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
     } else {
       this.embedCode = null;
     }
+    this.isSingleImage();
   }
 
   openImage(image) {
@@ -64,7 +66,16 @@ export class CommunityBuildDetailsComponent implements OnInit {
     });
   }
 
-  isSingleImage(): boolean {
-    return this.cBuild.images.length === 1;
+  isSingleImage() {
+    this.singleImage = this.cBuild.images.length === 1;
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event) {
+    if (event.key === 'ArrowLeft') {
+      this.imageNav(-1);
+    } else if (event.key === 'ArrowRight') {
+      this.imageNav(1);
+    }
   }
 }
