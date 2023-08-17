@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService } from '@commudle/theme';
 import * as moment from 'moment';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { CBuildTypeDisplay, EBuildType, ICommunityBuild } from 'apps/shared-models/community-build.model';
@@ -31,7 +31,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 
   constructor(
-    private windowService: NbWindowService,
+    private dialogService: NbDialogService,
     private discussionsService: DiscussionsService,
     private sanitizer: DomSanitizer,
   ) {}
@@ -46,11 +46,9 @@ export class CommunityBuildDetailsComponent implements OnInit {
     }
   }
 
-  openImage(title, image) {
+  openImage(image) {
     this.currImage = image;
-    this.windowService.open(this.imageTemplate, {
-      title,
-    });
+    this.dialogService.open(this.imageTemplate, {});
   }
 
   imageNav(direction) {
