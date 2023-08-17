@@ -62,6 +62,7 @@ export class CommunityPaymentsComponent implements OnInit {
         .connectStripeAccount(this.stripeConnectAccountForm, currentUrl, this.communityId)
         .subscribe((data) => {
           this.isLoading = false;
+          this.stripeConnectAccountForm.reset();
           this.dialogRef.close();
           window.open(data.url, '_blank');
         }),
