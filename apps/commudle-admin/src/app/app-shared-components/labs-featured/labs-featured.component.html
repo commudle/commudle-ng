@@ -1,0 +1,29 @@
+<nb-card
+  [ngClass]="{
+    'container-scroll': isMobileView || showCardsHorizontal,
+    container: !(isMobileView || showCardsHorizontal)
+  }"
+>
+  <nb-card-body>
+    <div class="heading">
+      <button nbButton status="basic" class="image">
+        <img alt="Experts" src="{{ staticAssets.emojis.stars }}" title="Experts" />
+      </button>
+      <div class="text">
+        <h3 class="title">Featured Labs</h3>
+        <h4 class="sub-heading">Check out our featured tutorial</h4>
+      </div>
+    </div>
+    <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <div
+      [ngClass]="{
+        'featured-communities-scroll custom-scrollbar': isMobileView || showCardsHorizontal,
+        'featured-communities': !(isMobileView || showCardsHorizontal)
+      }"
+    >
+      <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
+        <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

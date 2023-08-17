@@ -1,27 +1,56 @@
 <div class="labs-card-container">
-  <a class="labs-card-header clickable" routerLink="{{ lab.slug }}">
-    <img
-      alt="{{ lab.name }}"
-      class="labs-card-header"
-      src="{{ lab.header_image?.i350 || '/assets/images/Lab-Default.png' }}"
-      title="{{ lab.name }}"
-    />
+  <a class="clickable" [routerLink]="['/labs', lab.slug]">
+    <div class="lab-header-image">
+      <commudle-banner-image
+        [headerImagePath]="lab.header_image ? lab.header_image.i160 : staticAssets.community_lab_empty_state"
+        [name]="lab.name"
+        [topRightCurve]="false"
+        [topLeftCurve]="false"
+        [bottomRightCurve]="false"
+        [bottomLeftCurve]="false"
+        [aspectRatio]="'3/2'"
+      ></commudle-banner-image>
+    </div>
   </a>
-  <div class="labs-card-content d-flex flex-column justify-content-space-between">
-    <a class="labs-card-content-prefix" routerLink="{{ lab.slug }}">
-      <h4 class="labs-card-title com-line-clamp-2">{{ lab.name }}</h4>
-      <p class="labs-card-date">Published {{ lab.published_at | date }}</p>
+  <div class="labs-card-content">
+    <a class="clickable" [routerLink]="['/labs', lab.slug]">
+      <div class="labs-card-content-prefix">
+        <div class="heading">
+          <div class="labs-card-title">
+            <h4 class="title">{{ lab.name }}</h4>
+            <p class="steps">
+              <span>{{ lab.lab_steps.length }}</span
+              >&nbsp;<span>STEP{{ lab.lab_steps.length > 1 ? 'S' : '' }}</span>
+            </p>
+          </div>
+          <div *ngIf="lab.tags.length > 0" class="tags">
+            <app-tag
+              [tags]="lab.tags"
+              [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+              [size]="'tiny'"
+              [fontColor]="'#0095FF'"
+              [maximumTag]="2"
+            ></app-tag>
+          </div>
+        </div>
+        <p class="labs-card-date">{{ lab.published_at | date }}</p>
+      </div>
     </a>
 
-    <div class="labs-card-content-suffix d-flex justify-content-space-between">
+    <div class="labs-card-content-suffix">
       <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium>
-      <div class="labs-card-stats d-flex">
-        <div class="labs-card-views d-flex align-items-center">
-          <p>{{ lab.visits }}</p>
-          <nb-icon icon="eye"></nb-icon>
-        </div>
+      <div class="labs-card-stats">
+        <!-- <div class="labs-card-views">
+            <nb-icon icon="eye-outline"></nb-icon>
+            <p>{{ lab.visits }}</p>
+          </div> -->
         <div class="labs-card-likes d-flex align-items-center">
-          <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+          <app-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="lab.id"
+            [votableType]="'Lab'"
+            [textAlignment]="'after'"
+          ></app-votes-display>
         </div>
       </div>
     </div>

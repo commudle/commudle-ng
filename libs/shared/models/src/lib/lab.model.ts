@@ -21,6 +21,7 @@ export interface ILab {
   votes_count?: number;
   total_visitors?: number;
   createdSince?: string;
+  lab_steps_count?: number;
 }
 
 export interface ILabSearch extends ILab {

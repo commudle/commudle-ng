@@ -11,6 +11,7 @@ import {
   NbCheckboxModule,
   NbToggleModule,
   NbIconModule,
+  NbCardModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
@@ -19,11 +20,14 @@ import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/ap
 import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { TopBuildersCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/top-builders-card/top-builders-card.component';
-import { SurveysComponent } from './surveys/surveys.component';
+import { LabsFeaturedCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured-card/labs-featured-card.component';
+import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
+import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 
 @NgModule({
-  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
+  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -38,6 +42,8 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     EventHorizontalCardComponent,
     FeaturedCommunitiesCardComponent,
     TopBuildersCardComponent,
+    LabsFeaturedCardComponent,
+    SkeletonCardsComponent,
 
     // Nebular
     NbRadioModule,
@@ -47,7 +53,11 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     NbCheckboxModule,
     NbToggleModule,
     NbIconModule,
+    NbCardModule,
+    NbToggleModule,
+    NbIconModule,
+    NbCardModule,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent],
+  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
 })
 export class AppSharedComponentsModule {}

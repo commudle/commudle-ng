@@ -1,162 +1,52 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
+.header {
+  @apply md:com-max-h-[386px] com-max-h-[682px];
+  .background {
+    @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
-.lab-header-container {
-  @apply com-mt-12;
+    .base-layout {
+      .content {
+        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-w-auto;
+        .header-text {
+          @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
-  .lab-header-text {
-    @apply com-self-center md:com-mr-24;
+          .heading-text {
+            @apply com-flex com-items-center com-mt-0 com-mb-9 md:com-mb-10;
 
-    p {
-      color: $gunmetal;
-      margin: 0;
-    }
+            .button {
+              @apply com-mr-4 md:com-w-[58px] md:com-h-[58px] com-bg-primary-100 com-w-11 com-h-11 com-border-0 com-flex com-items-center com-justify-center com-rounded-md;
 
-    .lab-content {
-      .lab-header-quote {
-        @apply com-text-xl com-pb-3;
-      }
-
-      .lab-header-heading {
-        margin: $space-16 0 $space-12;
-        @apply com-text-4xl;
-
-        span {
-          color: $neon-blue;
-          font-weight: 600;
-        }
-      }
-    }
-
-    .lab-content-search {
-      .lab-search-tags {
-        color: $neon-blue;
-        font-weight: 600;
-        @apply com-text-4xl com-my-2;
-      }
-    }
-  }
-
-  @media all and (max-width: $tab-width) {
-    .lab-header-text {
-      .lab-content {
-        .lab-header-quote {
-          font-size: 1rem;
-          line-height: 1.25rem;
-        }
-
-        .lab-header-heading {
-          font-size: 1.5rem;
-          line-height: 1.75rem;
-          margin: $space-12 0 $space-8;
-        }
-      }
-    }
-  }
-
-  .lab-header-banner {
-    max-width: 352px;
-    padding: $space-16;
-
-    .lab-trending {
-      nb-card {
-        border: 2px solid rgba($gunmetal, 0.14);
-        border-radius: $border-5;
-        margin: 0;
-
-        nb-card-header {
-          border-bottom: none;
-          color: $gunmetal;
-          font-size: 1.1rem;
-          font-weight: 600;
-          padding: $space-8 0;
-          text-align: center;
-        }
-
-        nb-card-body {
-          padding: 0 $space-16;
-
-          nb-list {
-            nb-list-item {
-              border-bottom: 1px solid rgba($gunmetal, 0.22);
-              padding: $space-12 0;
-
-              &:first-child {
-                border-top: none;
-              }
-
-              &:last-child {
-                border-bottom: none;
-              }
-
-              .trending-event-container {
-                display: flex;
-                width: 100%;
-
-                .event-image {
-                  height: $space-56;
-                  margin: 0 $space-8 0 0;
-                  min-width: $space-56;
-
-                  img {
-                    height: auto;
-                    width: 100%;
-                  }
-                }
-
-                .event-details {
-                  color: $gunmetal;
-                  width: 100%;
-
-                  .event-name {
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    margin: 0 0 $space-4;
-                  }
-
-                  .event-content {
-                    font-size: 0.8rem;
-
-                    .event-description {
-                      margin: 0 0 $space-4;
-                    }
-
-                    .event-suffix {
-                      display: flex;
-                      justify-content: space-between;
-
-                      .event-type {
-                        color: $neon-blue;
-                        text-transform: uppercase;
-                      }
-
-                      .event-stats {
-                        color: $cyber-yellow;
-
-                        nb-icon {
-                          font-size: 0.9rem;
-                        }
-                      }
-                    }
-                  }
-                }
+              .flask-icon {
+                @apply com-text-Catalina-Blue md:com-text-2xl com-text-[32px] com-flex-shrink-0;
               }
             }
+            .title {
+              @apply md:com-text-5xl com-text-4xl com-font-bold com-text-Yankees-Blue com-m-0;
+            }
           }
+          .heading {
+            @apply md:com-text-[28px] com-text-xl md:com-font-bold com-font-medium com-m-0 com-mx-0 md:com-mb-3 com-mb-8 com-text-Catalina-Blue;
+          }
+          .subheading {
+            @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0  com-text-Catalina-Blue;
+          }
+
+          .richText {
+            @apply md:com-w-[652px] com-mb-[30px] com-w-auto;
+          }
+        }
+
+        .header-image {
+          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
         }
       }
     }
-
-    .lab-graphic {
-      img {
-        height: auto;
-        width: 100%;
-      }
-    }
   }
-
-  @media all and (max-width: $tab-width) {
-    .lab-header-banner {
-      max-width: 320px;
+}
+::ng-deep {
+  .richText {
+    p {
+      @apply md:com-text-2xl com-text-xl com-m-0;
+      color: initial;
     }
   }
 }

@@ -1,6 +1,6 @@
 <nb-tag-list (tagRemove)="onTagRemove($event)">
   <nb-tag
-    *ngFor="let tag of getTags()"
+    *ngFor="let tag of getTags() | slice : 0 : maximumTag"
     [removable]="editable"
     [text]="tag"
     [ngClass]="{

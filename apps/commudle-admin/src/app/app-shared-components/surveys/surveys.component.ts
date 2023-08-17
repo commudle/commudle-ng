@@ -21,7 +21,7 @@ export class SurveysComponent implements OnInit, OnDestroy {
   ESurveyStatus = ESurveyStatus;
   dataForms: IDataForm[] = [];
   createSurveyForm;
-  newDataFormWindowRef;
+  newDataDialogBox;
   isLoading = true;
   subscriptions: Subscription[] = [];
 
@@ -104,18 +104,16 @@ export class SurveysComponent implements OnInit, OnDestroy {
     );
   }
 
-  openNewFormWindow() {
-    this.newDataFormWindowRef = this.windowService.open(this.newCommunitySurveyForm, {
-      title: 'Create New Survey Form',
+  openNewFormDialogBox() {
+    this.newDataDialogBox = this.dialogService.open(this.newCommunitySurveyForm, {
       context: {
         minQuestionCount: 1,
       },
-      windowClass: 'form-window',
     });
   }
 
   createAndSelectForm(newFormData) {
-    this.newDataFormWindowRef.close();
+    this.newDataDialogBox.close();
     this.dataFormsService.createDataForm(newFormData, this.parentId, this.parentType).subscribe((dataForm) => {
       this.dataForms.unshift(dataForm);
 
@@ -135,4 +133,11 @@ export class SurveysComponent implements OnInit, OnDestroy {
       windowClass: 'full-screen-width',
     });
   }
+
+  optionChanged(event) {
+    if (event.target.value === 'createNewForm') {
+      this.openNewFormDialogBox();
+    }
+  }
+  updateSurvey() {}
 }

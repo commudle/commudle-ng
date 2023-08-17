@@ -20,7 +20,7 @@ nb-card {
     }
 
     .top-experts {
-      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-[60px] md:com-m-0 com-gap-4 md:com-gap-x-5 com-mt-4 com-p-0 md:com-pb-4;
+      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-10 md:com-m-0 com-gap-4 md:com-gap-x-5 com-mt-4 com-p-0 md:com-pb-4;
       .top-expert-card {
         @apply com-m-0 com-p-0;
       }

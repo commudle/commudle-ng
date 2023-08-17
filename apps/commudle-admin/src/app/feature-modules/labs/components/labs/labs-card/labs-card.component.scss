@@ -1,5 +1,3 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
-
 a,
 a:hover,
 a:focus,
@@ -8,84 +6,61 @@ a:active {
 }
 
 .labs-card-container {
-  border: 1px solid $silver-sand;
-  border-radius: $border-5;
-  height: max-content;
-  overflow: hidden;
+  @apply com-flex com-flex-row;
 
   p,
   h4 {
     margin: 0;
   }
 
-  .labs-card-header {
-    border-bottom: 1px solid $silver-sand;
-    border-top-left-radius: $border-5;
-    border-top-right-radius: $border-5;
-    display: block;
-    height: 134px;
-    overflow: hidden;
-
-    .labs-card-header {
-      @apply com-h-full com-w-full com-object-cover com-object-center com-border-none;
-    }
+  .lab-header-image {
+    @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden com-mr-4 com-rounded-[4px] com-flex-shrink-0;
   }
 
   .labs-card-content {
-    background-color: $white;
-    height: 130px;
-    padding: $space-12 $space-16 $space-8;
+    @apply com-flex com-flex-col com-justify-between com-overflow-hidden com-w-full;
 
     .labs-card-content-prefix {
-      .labs-card-title {
-        @apply com-text-xl com-text-black com-font-normal;
+      .heading {
+        @apply com-flex com-flex-row com-justify-between md:com-mb-2 com-mb-1;
+        .labs-card-title {
+          @apply com-flex com-items-center md:com-mr-10 com-m-0 com-justify-between md:com-justify-normal com-w-full md:com-w-auto;
+          .title {
+            @apply md:com-text-base com-text-sm com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-1 com-mr-2;
+          }
+          .steps {
+            @apply com-flex com-text-xs com-font-medium com-text-Azure;
+          }
+        }
+        .tags {
+          @apply com-ml-auto com-h-6 md:com-flex com-hidden;
+          ::ng-deep {
+            .nb-tag-list-tags-wrapper {
+              @apply com-flex-nowrap;
+            }
+          }
+        }
       }
 
       .labs-card-date {
-        color: rgba($gunmetal, 0.5);
-        @apply com-text-xs com-font-normal com-italic;
+        @apply md:com-text-sm com-text-[10px] com-font-normal com-text-Auro-Metal-Saurus md:com-mb-2 com-mb-1;
       }
     }
 
     .labs-card-content-suffix {
+      @apply com-flex com-justify-between md:com-w-[726px] com-w-full;
       .labs-card-stats {
-        gap: $space-4;
-        margin-left: $space-16;
+        @apply com-flex com-gap-4 md:com-ml-auto com-m-0;
 
-        p,
-        nb-icon {
-          color: $neon-blue;
-          font-size: $fs-card-secondary;
-          margin-right: $space-4;
-        }
-
-        .labs-card-views {
-          p,
-          nb-icon {
-            margin-top: 1px;
-          }
-        }
-
+        .labs-card-views,
         .labs-card-likes {
-          app-votes-display {
-            &::ng-deep {
-              p {
-                font-size: $fs-card-secondary;
+          @apply com-flex com-items-center com-text-Auro-Metal-Saurus;
 
-                span {
-                  color: $neon-blue;
-                  font-size: $fs-card-secondary;
-                }
-              }
-
-              nb-icon {
-                font-size: $fs-card-secondary;
-
-                &:not(.voted-heart) {
-                  color: $neon-blue;
-                }
-              }
-            }
+          nb-icon {
+            @apply com-h-[18px] com-w-[18px] com-mr-2px;
+          }
+          p {
+            @apply com-text-sm com-font-normal com-m-0;
           }
         }
       }
