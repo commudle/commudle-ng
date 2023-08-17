@@ -54,7 +54,7 @@ a:active {
 
         .labs-card-views,
         .labs-card-likes {
-          @apply com-flex com-items-center com-text-Auro-Metal-Saurus;
+          @apply com-flex com-items-center com-text-Auro-Metal-Saurus com-mr-1;
 
           nb-icon {
             @apply com-h-[18px] com-w-[18px] com-mr-2px;
