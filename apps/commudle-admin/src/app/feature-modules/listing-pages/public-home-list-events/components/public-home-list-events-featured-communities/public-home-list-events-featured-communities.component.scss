@@ -3,7 +3,7 @@ nb-card {
   nb-card-body {
     @apply com-p-0 md:com-px-3 md:com-pt-4;
     .heading {
-      @apply com-m-0 md:com-mb-8 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+      @apply com-m-0 md:com-mb-8 md:com-p-0 md:com-mt-0 com-mt-10 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
       .title {
         @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;

@@ -1,9 +1,10 @@
 .header {
-  @apply md:com-max-h-[386px] com-max-h-[682px];
+  @apply md:com-max-h-[386px] com-max-h-full;
   .background {
     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
     .base-layout {
+      @apply com-min-h-full;
       .content {
         @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-w-auto;
         .header-text {
