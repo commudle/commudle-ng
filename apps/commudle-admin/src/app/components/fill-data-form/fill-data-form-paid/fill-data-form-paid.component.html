@@ -162,12 +162,12 @@
             <nb-card-body>
               <form (ngSubmit)="submit()">
                 <div *ngIf="paymentDetails">
-                  price: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }} {{ paymentDetails.price }}
+                  price: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }} {{ paymentDetails.price / 100 }}
                   <br />
                   Number of Users: {{ forms.length }}
                   <br />
                   Total: {{ paymentDetails.currency === 'inr' ? 'Rs' : '$' }}
-                  {{ paymentDetails.price * forms.length }}
+                  {{ (paymentDetails.price / 100) * forms.length }}
                 </div>
                 <button>Pay Now</button>
                 <div></div>
