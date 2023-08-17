@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StripeHandlerService } from '@commudle/shared-services';
+import { StripeHandlerService, countries_details } from '@commudle/shared-services';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,11 +17,29 @@ export class CommunityPaymentsComponent implements OnInit {
   stripeAccounts = [];
   subscription: Subscription[] = [];
   isUpdating = false;
+  stripeConnectAccountForm;
+  dialogRef: NbDialogRef<any>;
+  countries = countries_details;
+
   constructor(
     private stripeHandlerService: StripeHandlerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) {}
+    private fb: FormBuilder,
+    private dialogService: NbDialogService,
+  ) {
+    this.stripeConnectAccountForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      phone_country_code: [91, Validators.required],
+      phone: ['', Validators.required],
+      address: ['', Validators.required],
+      zip_code: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['India', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
@@ -30,14 +50,21 @@ export class CommunityPaymentsComponent implements OnInit {
     }
   }
 
+  openDialogBox(StripeConnectAccount: TemplateRef<any>) {
+    this.dialogRef = this.dialogService.open(StripeConnectAccount);
+  }
+
   connectStripeAccount() {
     const currentUrl = this.router.url;
     this.isLoading = true;
     this.subscription.push(
-      this.stripeHandlerService.connectStripeAccount(currentUrl, this.communityId).subscribe((data) => {
-        this.isLoading = false;
-        window.open(data.url, '_blank');
-      }),
+      this.stripeHandlerService
+        .connectStripeAccount(this.stripeConnectAccountForm, currentUrl, this.communityId)
+        .subscribe((data) => {
+          this.isLoading = false;
+          this.dialogRef.close();
+          window.open(data.url, '_blank');
+        }),
     );
   }
 

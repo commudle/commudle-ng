@@ -23,10 +23,11 @@ export class StripeHandlerService {
     });
   }
 
-  connectStripeAccount(sourceUrl: string, communityId): Observable<any> {
+  connectStripeAccount(stripe_connect_account, sourceUrl: string, communityId): Observable<any> {
     return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.CREATE), {
       source_url: sourceUrl,
       community_id: communityId,
+      stripe_connect_account: stripe_connect_account.value,
     });
   }
 

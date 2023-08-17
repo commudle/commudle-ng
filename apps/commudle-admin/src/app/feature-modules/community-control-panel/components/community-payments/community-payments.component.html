@@ -2,7 +2,7 @@
   <div class="com-my-3">
     <button
       class="!com-bg-Blue-Lotus hover:!com-bg-Blue-Lotus/90"
-      (click)="connectStripeAccount()"
+      (click)="openDialogBox(StripeConnectAccount)"
       nbButton
       status="primary"
       [disabled]="isLoading"
@@ -99,3 +99,187 @@
     </tr>
   </table>
 </section>
+
+<ng-template #StripeConnectAccount let-data let-ref="dialogRef">
+  <nb-card class="com-max-h-[90dvh]">
+    <nb-card-header>
+      <div class="com-flex com-justify-between">
+        <div>Create Stripe Account</div>
+        <button (click)="ref.close()" ghost nbButton shape="round" size="small">
+          <nb-icon icon="close"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="stripeConnectAccountForm">
+        <div class="com-flex com-flex-col com-gap-3">
+          <!-- Name* -->
+          <label>
+            Name*
+            <input fieldSize="small" formControlName="name" placeholder="Name" fullWidth nbInput type="string" />
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('name').touched &&
+                stripeConnectAccountForm.get('name').invalid &&
+                stripeConnectAccountForm.get('name').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- Email* -->
+          <label>
+            Email*
+            <input fieldSize="small" formControlName="email" placeholder="Email" fullWidth nbInput type="email" />
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('email').touched &&
+                stripeConnectAccountForm.get('email').invalid &&
+                stripeConnectAccountForm.get('email').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- Phone* -->
+          <label>
+            Phone*
+            <div class="com-flex com-flex-row com-gap-2 com-h-auto">
+              <div class="select !com-w-20 !com-my-0">
+                <select formControlName="phone_country_code">
+                  <option *ngFor="let country of countries" [value]="country.phone">+{{ country.phone }}</option>
+                </select>
+              </div>
+              <input
+                fieldSize="small"
+                formControlName="phone"
+                placeholder="Phone Number"
+                fullWidth
+                nbInput
+                type="number"
+              />
+            </div>
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('phone').touched &&
+                stripeConnectAccountForm.get('phone').invalid &&
+                stripeConnectAccountForm.get('phone').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- Address* -->
+          <label>
+            Address*
+            <textarea fieldSize="small" formControlName="address" placeholder="Address" fullWidth nbInput type="string">
+            </textarea>
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('address').touched &&
+                stripeConnectAccountForm.get('address').invalid &&
+                stripeConnectAccountForm.get('address').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- Zip Code* -->
+          <label>
+            Zip Code*
+            <input
+              fieldSize="small"
+              formControlName="zip_code"
+              placeholder="Zip Code"
+              fullWidth
+              nbInput
+              type="string"
+            />
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('name').touched &&
+                stripeConnectAccountForm.get('name').invalid &&
+                stripeConnectAccountForm.get('name').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- City* -->
+          <label>
+            City*
+            <input fieldSize="small" formControlName="city" placeholder="City" fullWidth nbInput type="string" />
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('city').touched &&
+                stripeConnectAccountForm.get('city').invalid &&
+                stripeConnectAccountForm.get('city').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- State* -->
+          <label>
+            State*
+            <input fieldSize="small" formControlName="state" placeholder="State" fullWidth nbInput type="string" />
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('state').touched &&
+                stripeConnectAccountForm.get('state').invalid &&
+                stripeConnectAccountForm.get('state').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- Country* -->
+          <label>
+            country*
+            <div class="select !com-mt-0">
+              <select formControlName="country">
+                <option value="" selected disabled>Select Bank Ac</option>
+                <option *ngFor="let country of countries" [value]="country.name">
+                  {{ country.name }}
+                </option>
+              </select>
+            </div>
+            <span
+              *ngIf="
+                stripeConnectAccountForm.get('country').touched &&
+                stripeConnectAccountForm.get('country').invalid &&
+                stripeConnectAccountForm.get('country').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </label>
+        </div>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="save-button-bottom">
+        <button
+          (click)="connectStripeAccount()"
+          [disabled]="!stripeConnectAccountForm.valid"
+          fullWidth
+          nbButton
+          outline
+          size="small"
+          status="primary"
+          type="submit"
+        >
+          Save and Connect
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
