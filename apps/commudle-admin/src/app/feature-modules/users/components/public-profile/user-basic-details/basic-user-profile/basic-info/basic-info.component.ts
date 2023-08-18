@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
+import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -12,6 +13,8 @@ import { faFileImage } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./basic-info.component.scss'],
 })
 export class BasicInfoComponent implements OnInit {
+  @ViewChild('autocompleteInput')
+  autocompleteInput!: ElementRef<HTMLInputElement>;
   @Output() basicInfoFormValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() userData: EventEmitter<ICurrentUser> = new EventEmitter<ICurrentUser>();
 
@@ -28,6 +31,7 @@ export class BasicInfoComponent implements OnInit {
     private authWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
     private userProfileManagerService: UserProfileManagerService,
+    private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
   ) {
     this.basicInfoForm = this.fb.group({
       name: ['', Validators.required],
@@ -57,6 +61,10 @@ export class BasicInfoComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.initAutocomplete();
+  }
+
   displaySelectedProfileImage(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -74,5 +82,9 @@ export class BasicInfoComponent implements OnInit {
       reader.onload = () => (this.uploadedProfilePicture = reader.result);
       reader.readAsDataURL(file);
     }
+  }
+
+  initAutocomplete() {
+    this.googlePlacesAutocompleteService.initAutocomplete(this.autocompleteInput.nativeElement);
   }
 }

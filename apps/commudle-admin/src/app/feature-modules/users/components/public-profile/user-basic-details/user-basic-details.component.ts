@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/lib/lib-error-handler.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -42,6 +43,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @ViewChild('editTags') editTags: TemplateRef<any>;
   @ViewChild('hiringDialogBox') hiringDialogBox: TemplateRef<any>;
   @ViewChild('enableHiring', { static: true }) enableHiring: TemplateRef<any>;
+  @ViewChild('autocompleteInput')
+  autocompleteInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -53,6 +56,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private userProfileManagerService: UserProfileManagerService,
     private errorHandler: LibErrorHandlerService,
+    private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +82,10 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.userProfileManagerService.getProfile(this.user.username);
+  }
+
+  ngAfterViewInit(): void {
+    this.initAutocomplete();
   }
 
   getUserTags() {
@@ -197,5 +205,9 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   redirectTo(fragment) {
     this.router.navigate([], { fragment: fragment });
+  }
+
+  initAutocomplete() {
+    this.googlePlacesAutocompleteService.initAutocomplete(this.autocompleteInput.nativeElement);
   }
 }
