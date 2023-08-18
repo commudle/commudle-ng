@@ -108,7 +108,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchDataFormEntity();
-    this.setRedirect();
+    this.setRedirectPath();
     this.setupCurrentUser();
   }
 
@@ -130,7 +130,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
-  setRedirect() {
+  setRedirectPath() {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((data) => {
         if (data.next) {
@@ -155,8 +155,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       additional_users: {
         name: this.currentUser.name,
         email: this.currentUser.email,
-        phone_country_code: '91',
-        phone_number: '9501199820',
+        phone_country_code: this.currentUser.phone_country_code,
+        phone_number: this.currentUser.phone,
       },
     });
   }
@@ -328,7 +328,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.saveUserDetails();
     this.formData;
     this.eventTicketOrderService
-      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
+      .createEventTicketOrder(
+        this.formData,
+        this.dataFormEntity.entity_id,
+        this.promoCodeDetails.can_be_applied ? this.promoCode : '',
+      )
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
