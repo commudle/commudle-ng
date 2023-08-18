@@ -196,7 +196,7 @@
         <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
           <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
         </ng-container>
-        <button (click)="payNPM()">PAY</button>
+        <button (click)="pay()">PAY</button>
       </div>
     </nb-card-body>
   </nb-card>

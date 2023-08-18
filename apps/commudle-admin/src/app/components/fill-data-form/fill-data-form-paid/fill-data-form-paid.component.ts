@@ -96,22 +96,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     private paymentSettingService: PaymentSettingService,
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
-    private stripeHandlerService: StripeHandlerService,
     private stripeService: StripeService,
-  ) {
-    // this.stripeTest = this.fb.group({
-    //   name: ['', [Validators.required]],
-    // });
-
-    this.paymentElementForm = this.fb.group({
-      name: ['John doe', [Validators.required]],
-      email: ['support@ngx-stripe.dev', [Validators.required]],
-      address: [''],
-      zipcode: [''],
-      city: [''],
-      amount: [2500, [Validators.required, Validators.pattern(/d+/)]],
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.fetchDataFormEntity();
@@ -166,7 +152,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         phone_number: '9501199820',
       },
     });
-    this.saveUserDetails(0);
   }
 
   // fetch form questions
@@ -276,7 +261,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     if (this.redirectRoute) {
       this.router.navigate(this.redirectRoute);
     } else {
-      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      this.createTicketOrder();
     }
   }
 
@@ -291,42 +276,33 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       }),
     });
     this.forms.push(newForm);
-    this.isFormDirty.push(false);
-    newForm.valueChanges.subscribe(() => {
-      this.isFormDirty[this.forms.indexOf(newForm)] = true;
-    });
   }
 
   //save additional user details in form for api
-  saveUserDetails(index) {
-    this.selectedUsers = [];
-    this.selectedUsers.push(this.forms[index].value);
-
-    this.selectedUsers.forEach((user) => {
+  saveUserDetails() {
+    for (const form of this.forms) {
+      const user = form.value;
       this.formData.append(`additional_users[][name]`, user.additional_users.name);
       this.formData.append(`additional_users[][email]`, user.additional_users.email);
       this.formData.append(`additional_users[][phone_country_code]`, '+91');
       this.formData.append(`additional_users[][phone]`, user.additional_users.phone_number);
-    });
-    this.isFormDirty[index] = false;
+    }
   }
 
-  // Click for open payment box and get ticket order id
-  submit() {
+  // click for open payment box and get ticket order id
+  createTicketOrder() {
+    this.saveUserDetails();
+    this.formData;
     this.eventTicketOrderService
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id)
       .subscribe((data) => {
-        this.elementsOptions.clientSecret =
-          Object.keys(data.stripe_payment_intent.details).length !== 0
-            ? data.stripe_payment_intent.details.client_secret
-            : 'pi_3Nfd2wSAaAm97Wzm0H62pkAC_secret_4BuJhyqMyhM6MrcMnjU6uWzXg';
+        this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
   // for Payment confirm Function
-  payNPM(): void {
-    //  if (this.paymentElementForm.valid) {
+  pay() {
     this.stripeService
       .confirmPayment({
         elements: this.paymentElement.elements,
@@ -340,8 +316,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === 'succeeded') {
-            // Show a success message to your customer
-            alert({ success: true });
+            this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }
         }
       });
