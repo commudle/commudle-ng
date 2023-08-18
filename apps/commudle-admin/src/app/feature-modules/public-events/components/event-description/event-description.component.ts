@@ -14,9 +14,21 @@ export class EventDescriptionComponent implements OnInit {
 
   @Input() share?: boolean;
 
+  viewMoreSection = true;
+  footerText = 'View More';
+  maxHeight: number;
   environment = environment;
 
   constructor() {}
 
   ngOnInit() {}
+
+  viewMore() {
+    this.viewMoreSection = !this.viewMoreSection;
+    if (!this.viewMoreSection) {
+      this.footerText = `View Less`;
+    } else {
+      this.footerText = `View More`;
+    }
+  }
 }

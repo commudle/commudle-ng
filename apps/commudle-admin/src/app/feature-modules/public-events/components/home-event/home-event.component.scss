@@ -1,7 +1,23 @@
 .base-layout {
+  @apply com-mt-6 com-mb-8;
   .container {
+    .community-badge {
+      @apply com-mb-2;
+    }
+    .no-header-image {
+      @apply com-bg-white md:com-pl-[42px] md:com-py-[42px] md:com-pr-4 com-p-0 com-rounded-t-[10px] com-border com-border-solid com-border-Bright-Gray com-border-b-0;
+
+      h2 {
+        @apply com-m-0 com-text-Yankees-Blue;
+      }
+    }
+
+    .event-header-image {
+      @apply com-m-0;
+    }
+
     .home-event-menu {
-      @apply com-sticky com-top-14 com-z-10;
+      @apply com-sticky com-top-14 com-z-10 com-m-0 com-mb-4 com-rounded-t-none;
 
       nb-card-body {
         @apply com-px-0;

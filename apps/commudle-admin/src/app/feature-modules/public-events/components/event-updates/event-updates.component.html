@@ -5,7 +5,7 @@
       Updates
     </h6>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
     <div *ngFor="let eu of eventUpdates" class="event-update">
       <p class="details">
         <nb-icon icon="star" status="warning"></nb-icon>
@@ -16,4 +16,11 @@
       </p>
     </div>
   </nb-card-body>
+  <nb-card-footer *ngIf="event.event_speakers_count > 5" (click)="viewMore()" class="com-cursor-pointer">
+    <div>
+      {{ footerText }}
+      <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="!viewMoreSection" icon="arrow-ios-upward-outline"></nb-icon>
+    </div>
+  </nb-card-footer>
 </nb-card>

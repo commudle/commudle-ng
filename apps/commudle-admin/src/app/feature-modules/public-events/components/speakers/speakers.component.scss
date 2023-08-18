@@ -1,28 +1,37 @@
-nb-card-body {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 1.5rem;
+nb-card {
+  @apply com-mx-0 com-mt-0 com-mb-4;
 
-  .speaker {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border-bottom: 1px dotted lightgrey;
-    padding: 0.5rem 0;
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    app-user-profile-card-large {
-      width: 100%;
+  nb-card-header {
+    h6 {
+      @apply com-font-semibold com-m-0;
     }
   }
-}
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1.5rem;
 
-.view-more {
-  @apply com-max-h-[415px] com-overflow-y-hidden;
-}
-.view-less {
-  @apply com-max-h-max;
+    .speaker {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      border-bottom: 1px dotted lightgrey;
+      padding: 0.5rem 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      app-user-profile-card-large {
+        width: 100%;
+      }
+    }
+  }
+
+  .view-more {
+    @apply com-max-h-[415px] com-overflow-y-hidden;
+  }
+  .view-less {
+    @apply com-max-h-max;
+  }
 }

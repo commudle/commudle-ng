@@ -7,7 +7,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-event-updates',
   templateUrl: './event-updates.component.html',
-  styleUrls: ['./event-updates.component.scss']
+  styleUrls: ['./event-updates.component.scss'],
 })
 export class EventUpdatesComponent implements OnInit {
   moment = moment;
@@ -16,25 +16,34 @@ export class EventUpdatesComponent implements OnInit {
   @Input() event: IEvent;
   @Output() hasUpdates = new EventEmitter();
 
+  viewMoreSection = true;
+  footerText = 'View More';
   eventUpdates: IEventUpdate[] = [];
 
-  constructor(
-    private eventUpdatesService: EventUpdatesService
-  ) { }
+  constructor(private eventUpdatesService: EventUpdatesService) {}
 
   ngOnInit() {
     this.getEventUpdates();
   }
 
   getEventUpdates() {
-    this.eventUpdatesService.pGetEventUpdates(this.event.id).subscribe(
-      data => {
-        this.eventUpdates = data.event_updates;
-        if (this.eventUpdates.length > 0) {
-          this.hasUpdates.emit(true);
-        }
+    this.eventUpdatesService.pGetEventUpdates(this.event.id).subscribe((data) => {
+      this.eventUpdates = data.event_updates;
+      if (this.eventUpdates.length > 0) {
+        this.hasUpdates.emit(true);
       }
-    );
+      if (this.eventUpdates.length > 2) {
+        this.footerText = `View More (${this.eventUpdates.length - 2})`;
+      }
+    });
   }
 
+  viewMore() {
+    this.viewMoreSection = !this.viewMoreSection;
+    if (!this.viewMoreSection) {
+      this.footerText = `View Less`;
+    } else {
+      this.footerText = `View More (${this.eventUpdates.length - 2})`;
+    }
+  }
 }

@@ -1,9 +1,29 @@
-.event-update {
-  .details {
-    margin-bottom: 0;
+nb-card {
+  @apply com-m-0 com-mb-4;
+
+  nb-card-header {
+    h6 {
+      @apply com-font-semibold;
+    }
   }
 
-  .time {
-    margin-top: 0;
+  nb-card-body {
+    @apply com-flex com-flex-col com-gap-[14px];
+    .event-update {
+      .details {
+        @apply com-m-0;
+      }
+
+      .time {
+        @apply com-m-0;
+      }
+    }
+  }
+
+  .view-more {
+    @apply com-max-h-[132px] com-overflow-y-hidden;
+  }
+  .view-less {
+    @apply com-max-h-max;
   }
 }

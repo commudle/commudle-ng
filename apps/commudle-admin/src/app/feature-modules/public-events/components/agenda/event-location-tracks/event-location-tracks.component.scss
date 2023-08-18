@@ -1,6 +1,4 @@
 .event-location-tracks {
-  max-width: 719px;
-
   .track-container {
     nb-action {
       display: flex;
@@ -12,24 +10,19 @@
     }
 
     nb-accordion-item-header {
-      padding: 0.5rem;
-      background-color: #ffaa00;
-      @apply com-border-0 com-rounded-xl;
+      @apply com-border-0 com-rounded-[4px] com-p-2 com-bg-Anti-Flash-White;
 
       .track-name {
-        display: inline-block;
-        margin: 0;
-        font-size: 1.1rem;
+        @apply com-text-base com-font-semibold com-m-0;
       }
     }
 
     nb-accordion-item-body {
       padding: 0;
-      @apply com-border com-border-t-0 com-border-solid com-border-gray-100;
 
       nb-list {
         nb-list-item {
-          display: flex;
+          @apply com-flex com-px-0 com-py-4;
 
           .session-time {
             width: 60px;
