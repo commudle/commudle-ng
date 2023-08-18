@@ -30,4 +30,16 @@ export class DiscountCodesService {
       params,
     });
   }
+
+  canBeApplied(code, edfegId, amount, eventId, usersCount): Observable<any> {
+    const params = new HttpParams()
+      .set('code', code)
+      .set('event_data_form_entity_group_id', edfegId)
+      .set('amount', amount)
+      .set('event_id', eventId)
+      .set('users_count', usersCount);
+    return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.DISCOUNT_CODES.CAN_BE_APPLIED), {
+      params,
+    });
+  }
 }

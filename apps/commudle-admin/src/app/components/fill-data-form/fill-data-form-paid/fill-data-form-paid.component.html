@@ -58,15 +58,30 @@
               <div class="payment-deatils">
                 <span class="heading">Price</span>
                 <span class="value"
-                  >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ paymentDetails.price / 100 }}</span
+                  >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                  {{ priceAfterDiscount ? priceAfterDiscount / 100 : paymentDetails.price / 100 }}</span
                 >
               </div>
               <div class="payment-deatils">
                 <span class="heading">Total</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ (paymentDetails.price / 100) * forms.length }}</span
+                  {{
+                    (priceAfterDiscount ? priceAfterDiscount / 100 : paymentDetails.price / 100) * forms.length
+                  }}</span
                 >
+              </div>
+              <div class="payment-deatils">
+                <input nbInput type="text" fieldSize="small" [(ngModel)]="promoCode" placeholder="Enter Promo Code" />
+                <button
+                  nbButton
+                  status="primary"
+                  size="tiny"
+                  outline
+                  (click)="priceAfterDiscount ? removePromoCode() : applyPromo()"
+                >
+                  {{ priceAfterDiscount ? 'Remove' : 'Apply' }}
+                </button>
               </div>
               <div class="user-details">
                 <span class="com-text-lg com-font-semibold">YOU</span>
@@ -160,19 +175,6 @@
                             <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                           </span>
                         </label>
-                        <!-- <button
-                        class="com-mt-4"
-                        (click)="saveUserDetails(i)"
-                        [disabled]="!form.valid || !isFormDirty[i]"
-                        fullWidth
-                        nbButton
-                        outline
-                        size="small"
-                        status="primary"
-                        type="submit"
-                      >
-                        Save
-                      </button> -->
                       </div>
                     </form>
                   </div>

@@ -17,9 +17,9 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import {
+  DiscountCodesService,
   EventTicketOrderService,
   PaymentSettingService,
-  StripeHandlerService,
   countries_details,
 } from '@commudle/shared-services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -80,6 +80,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   // stripeTest: FormGroup;
   paymentElementForm: FormGroup;
+
+  //for promoCode input
+  promoCode = '';
+  priceAfterDiscount: number;
+  promoCodeDetails;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -97,6 +103,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private eventTicketOrderService: EventTicketOrderService,
     private stripeService: StripeService,
+    private discountCodeService: DiscountCodesService,
   ) {}
 
   ngOnInit() {
@@ -276,6 +283,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       }),
     });
     this.forms.push(newForm);
+    if (this.promoCodeDetails) this.applyPromo();
   }
 
   //save additional user details in form for api
@@ -287,6 +295,32 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.formData.append(`additional_users[][phone_country_code]`, '+91');
       this.formData.append(`additional_users[][phone]`, user.additional_users.phone_number);
     }
+  }
+
+  applyPromo() {
+    this.discountCodeService
+      .canBeApplied(
+        this.promoCode,
+        this.dataFormEntity.entity_id,
+        this.paymentDetails.price,
+        this.event.id,
+        this.forms.length,
+      )
+      .subscribe((data) => {
+        this.promoCodeDetails = data;
+        if (data.can_be_applied) {
+          this.toastLogService.successDialog('Your Promo Code Apply Successfully', 1000);
+          this.priceAfterDiscount = this.paymentDetails.price - data.discount_amount * 100;
+        } else {
+          this.toastLogService.warningDialog('Unable To Apply this Promo Code', 1000);
+          this.removePromoCode();
+        }
+      });
+  }
+
+  removePromoCode() {
+    this.promoCode = '';
+    this.priceAfterDiscount = 0;
   }
 
   // click for open payment box and get ticket order id

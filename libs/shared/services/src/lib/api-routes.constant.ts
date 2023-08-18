@@ -710,6 +710,8 @@ export const API_ROUTES = {
     CREATE: 'api/v2/discount_codes',
     UPDATE: 'api/v2/discount_codes',
     INDEX: 'api/v2/discount_codes',
+    DELETE: 'api/v2/discount_codes',
+    CAN_BE_APPLIED: 'api/v2/discount_codes/can_be_applied',
   },
 
   PAID_TICKET_SETTINGS: {
