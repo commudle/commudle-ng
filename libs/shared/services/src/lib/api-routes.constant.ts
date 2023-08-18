@@ -725,6 +725,8 @@ export const API_ROUTES = {
 
   EVENT_TICKET_ORDERS: {
     CREATE: 'api/v2/event_ticket_orders',
+    UPDATE: 'api/v2/event_ticket_orders',
     CHECK: 'api/v2/event_ticket_orders/check_payment',
+    SHOW: 'api/v2/event_ticket_orders/show',
   },
 };

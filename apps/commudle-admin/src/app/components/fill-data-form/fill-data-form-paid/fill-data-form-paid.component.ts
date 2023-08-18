@@ -24,7 +24,7 @@ import {
 } from '@commudle/shared-services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
-import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { StripeElementsOptions } from '@stripe/stripe-js';
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -59,32 +59,17 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   @ViewChild(StripePaymentElementComponent)
   paymentElement: StripePaymentElementComponent;
 
-  cardOptions: StripeCardElementOptions = {
-    style: {
-      base: {
-        iconColor: '#666EE8',
-        color: '#31325F',
-        fontWeight: '300',
-        fontFamily: 'Inter',
-        fontSize: '18px',
-        '::placeholder': {
-          color: '#CFD7E0',
-        },
-      },
-    },
-  };
-
   elementsOptions: StripeElementsOptions = {
     locale: 'es',
   };
 
-  // stripeTest: FormGroup;
-  paymentElementForm: FormGroup;
+  promoCode = ''; //for promoCode input
+  promoCodeApplied = false;
 
-  //for promoCode input
-  promoCode = '';
-  priceAfterDiscount: number;
-  promoCodeDetails;
+  basePrice: number; //actual ticket price
+  totalPrice: number; // total ticket price basePrice * UsersCount - discount price if any
+
+  discountAmount = 0; //discount amount after applied promo code
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -187,6 +172,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
         this.paymentDetails = data;
+        this.basePrice = data.price / 100;
+        this.totalPrice = this.basePrice;
       }),
     );
   }
@@ -283,17 +270,25 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       }),
     });
     this.forms.push(newForm);
-    if (this.promoCodeDetails) this.applyPromo();
+    this.totalPrice = this.basePrice * this.forms.length;
+    if (this.promoCodeApplied) this.applyPromo();
   }
 
   //save additional user details in form for api
   saveUserDetails() {
     for (const form of this.forms) {
       const user = form.value;
-      this.formData.append(`additional_users[][name]`, user.additional_users.name);
-      this.formData.append(`additional_users[][email]`, user.additional_users.email);
-      this.formData.append(`additional_users[][phone_country_code]`, '+91');
-      this.formData.append(`additional_users[][phone]`, user.additional_users.phone_number);
+      this.formData.append(`users[][name]`, user.additional_users.name);
+      this.formData.append(`users[][email]`, user.additional_users.email);
+      this.formData.append(`users[][phone_country_code]`, '+91');
+      this.formData.append(`users[][phone]`, user.additional_users.phone_number);
+    }
+  }
+
+  removeUser(index) {
+    if (index >= 0 && index < this.forms.length) {
+      this.forms.splice(index, 1);
+      this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
     }
   }
 
@@ -307,10 +302,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         this.forms.length,
       )
       .subscribe((data) => {
-        this.promoCodeDetails = data;
         if (data.can_be_applied) {
+          this.discountAmount = data.discount_amount;
+          this.promoCodeApplied = true;
           this.toastLogService.successDialog('Your Promo Code Apply Successfully', 1000);
-          this.priceAfterDiscount = this.paymentDetails.price - data.discount_amount * 100;
+          this.totalPrice = this.basePrice * this.forms.length - data.discount_amount;
         } else {
           this.toastLogService.warningDialog('Unable To Apply this Promo Code', 1000);
           this.removePromoCode();
@@ -320,7 +316,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   removePromoCode() {
     this.promoCode = '';
-    this.priceAfterDiscount = 0;
+    this.promoCodeApplied = false;
+    this.discountAmount = 0;
+    this.totalPrice = this.basePrice * this.forms.length;
   }
 
   // click for open payment box and get ticket order id
@@ -328,11 +326,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.saveUserDetails();
     this.formData;
     this.eventTicketOrderService
-      .createEventTicketOrder(
-        this.formData,
-        this.dataFormEntity.entity_id,
-        this.promoCodeDetails.can_be_applied ? this.promoCode : '',
-      )
+      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });

@@ -19,9 +19,19 @@ export class EventTicketOrderService {
     });
   }
 
-  checkEventTicketOrder(stripe_payment_intent_id): Observable<any> {
-    const params = new HttpParams().set('stripe_payment_intent_id', stripe_payment_intent_id);
-    return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CHECK), {
+  updateEventTicketOrder(additional_users: any, eventTicketOrderId, discount_code?): Observable<any> {
+    let params = new HttpParams().set('event_ticket_order_id', eventTicketOrderId);
+    if (discount_code) {
+      params = params.set('discount_code', discount_code);
+    }
+    return this.http.put<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.UPDATE), additional_users, {
+      params,
+    });
+  }
+
+  showEventTicketOrder(edfegId): Observable<any> {
+    const params = new HttpParams().set('event_data_form_entity_group_id', edfegId);
+    return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.SHOW), {
       params,
     });
   }

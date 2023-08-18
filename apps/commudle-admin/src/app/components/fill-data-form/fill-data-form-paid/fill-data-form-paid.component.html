@@ -56,20 +56,15 @@
           <nb-card>
             <nb-card-body *ngIf="paymentDetails">
               <div class="payment-deatils">
-                <span class="heading">Price</span>
-                <span class="value"
-                  >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ priceAfterDiscount ? priceAfterDiscount / 100 : paymentDetails.price / 100 }}</span
-                >
+                <span class="heading">Price x {{ this.forms.length }}</span>
+                <span class="value">{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }}</span>
               </div>
               <div class="payment-deatils">
                 <span class="heading">Total</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{
-                    (priceAfterDiscount ? priceAfterDiscount / 100 : paymentDetails.price / 100) * forms.length
-                  }}</span
-                >
+                  {{ totalPrice }}
+                </span>
               </div>
               <div class="payment-deatils">
                 <input nbInput type="text" fieldSize="small" [(ngModel)]="promoCode" placeholder="Enter Promo Code" />
@@ -78,9 +73,9 @@
                   status="primary"
                   size="tiny"
                   outline
-                  (click)="priceAfterDiscount ? removePromoCode() : applyPromo()"
+                  (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
                 >
-                  {{ priceAfterDiscount ? 'Remove' : 'Apply' }}
+                  {{ promoCodeApplied ? 'Remove' : 'Apply' }}
                 </button>
               </div>
               <div class="user-details">
@@ -88,6 +83,7 @@
                 <br />
                 <div class="user-detail">
                   <div *ngFor="let form of forms; let i = index">
+                    <div (click)="removeUser(i)" *ngIf="i !== 0">Remove</div>
                     <form [formGroup]="form">
                       <div formGroupName="additional_users">
                         <!-- name -->
