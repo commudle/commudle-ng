@@ -59,11 +59,25 @@
                 <span class="heading">Price x {{ this.forms.length }}</span>
                 <span class="value">{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }}</span>
               </div>
-              <div class="payment-deatils">
+              <div class="payment-deatils" *ngIf="discountAmount > 0">
+                <span class="heading">Discount Amount</span>
+                <span class="value">
+                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                  {{ discountAmount }}
+                </span>
+              </div>
+              <div class="payment-deatils" *ngIf="totalTaxAmount > 0">
                 <span class="heading">Total</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
                   {{ totalPrice }}
+                </span>
+              </div>
+              <div class="payment-deatils">
+                <span class="heading">Total with {{ paymentDetails.tax_name }}</span>
+                <span class="value">
+                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                  {{ totalPrice + totalTaxAmount }}
                 </span>
               </div>
               <div class="payment-deatils">

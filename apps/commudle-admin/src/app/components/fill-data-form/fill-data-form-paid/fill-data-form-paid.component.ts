@@ -70,7 +70,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   totalPrice: number; // total ticket price basePrice * UsersCount - discount price if any
 
   discountAmount = 0; //discount amount after applied promo code
-
+  eventTicketOrders: any;
+  totalTaxAmount = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -115,6 +116,19 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
+  // prefilled form for current user
+  createCurrentUserForm() {
+    this.addNewUser();
+    this.forms[0].patchValue({
+      additional_users: {
+        name: this.currentUser.name,
+        email: this.currentUser.email,
+        phone_country_code: this.currentUser.phone_country_code,
+        phone_number: this.currentUser.phone,
+      },
+    });
+  }
+
   setRedirectPath() {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((data) => {
@@ -133,25 +147,13 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     );
   }
 
-  // prefilled form for current user
-  createCurrentUserForm() {
-    this.addNewUser();
-    this.forms[0].patchValue({
-      additional_users: {
-        name: this.currentUser.name,
-        email: this.currentUser.email,
-        phone_country_code: this.currentUser.phone_country_code,
-        phone_number: this.currentUser.phone,
-      },
-    });
-  }
-
   // fetch form questions
   getDataFormEntity(dataFormEntityId) {
     this.subscriptions.push(
       this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
         this.dataFormEntity = data;
         this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
+        this.checkEventTicketOrder(this.dataFormEntity.entity_id);
         this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
         this.seoService.setTags(
           `${this.dataFormEntity.name}`,
@@ -174,8 +176,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         this.paymentDetails = data;
         this.basePrice = data.price / 100;
         this.totalPrice = this.basePrice;
+        this.calculateTaxAmount();
       }),
     );
+  }
+
+  // check event ticket order
+  checkEventTicketOrder(edfegId) {
+    this.eventTicketOrderService.showEventTicketOrder(edfegId).subscribe((data) => {
+      this.eventTicketOrders = data.event_ticket_orders;
+    });
   }
 
   // Fetch preExisting form response
@@ -251,14 +261,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     });
   }
 
-  redirectTo() {
-    if (this.redirectRoute) {
-      this.router.navigate(this.redirectRoute);
-    } else {
-      this.createTicketOrder();
-    }
-  }
-
   // Generate new additional user form
   addNewUser() {
     const newForm = this.fb.group({
@@ -271,6 +273,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     });
     this.forms.push(newForm);
     this.totalPrice = this.basePrice * this.forms.length;
+    this.calculateTaxAmount();
     if (this.promoCodeApplied) this.applyPromo();
   }
 
@@ -289,6 +292,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     if (index >= 0 && index < this.forms.length) {
       this.forms.splice(index, 1);
       this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
+      this.calculateTaxAmount();
     }
   }
 
@@ -297,7 +301,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       .canBeApplied(
         this.promoCode,
         this.dataFormEntity.entity_id,
-        this.paymentDetails.price,
+        this.paymentDetails.price / 100,
         this.event.id,
         this.forms.length,
       )
@@ -307,6 +311,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
           this.promoCodeApplied = true;
           this.toastLogService.successDialog('Your Promo Code Apply Successfully', 1000);
           this.totalPrice = this.basePrice * this.forms.length - data.discount_amount;
+          this.calculateTaxAmount();
         } else {
           this.toastLogService.warningDialog('Unable To Apply this Promo Code', 1000);
           this.removePromoCode();
@@ -321,12 +326,36 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.totalPrice = this.basePrice * this.forms.length;
   }
 
+  redirectTo() {
+    if (this.redirectRoute) {
+      this.router.navigate(this.redirectRoute);
+    } else {
+      this.saveUserDetails();
+      if (this.eventTicketOrders.length > 0) {
+        this.updateTickerOrder();
+      } else {
+        this.createTicketOrder();
+      }
+    }
+  }
+
   // click for open payment box and get ticket order id
   createTicketOrder() {
-    this.saveUserDetails();
-    this.formData;
     this.eventTicketOrderService
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
+      .subscribe((data) => {
+        this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+        this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+      });
+  }
+
+  updateTickerOrder() {
+    this.eventTicketOrderService
+      .updateEventTicketOrder(
+        this.formData,
+        this.eventTicketOrders[0].uuid,
+        this.promoCodeApplied ? this.promoCode : '',
+      )
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
@@ -352,5 +381,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  calculateTaxAmount() {
+    if (this.paymentDetails?.tax_percentage) {
+      this.totalTaxAmount = (this.totalPrice * this.paymentDetails.tax_percentage) / 100;
+    }
   }
 }

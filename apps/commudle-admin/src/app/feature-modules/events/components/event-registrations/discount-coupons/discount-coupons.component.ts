@@ -149,9 +149,7 @@ export class DiscountCouponsComponent implements OnInit {
   addEventDataForm(event, formType?) {
     if (formType) {
       const id = event;
-      const index = this.selectedEventDataFormEntityGroups.indexOf(id);
       this.selectedEventDataFormEntityGroups.push(id);
-      console.log('called');
     } else {
       const id = event.target.value;
       const index = this.selectedEventDataFormEntityGroups.indexOf(id);
