@@ -41,6 +41,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   selectedFormResponse: any;
   currentUser: ICurrentUser;
   dialogRef: NbDialogRef<any>;
+  paymentDialogRef: NbDialogRef<any>;
 
   existingResponses;
 
@@ -345,7 +346,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-        this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
@@ -358,7 +359,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-        this.dialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
@@ -370,13 +371,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         redirect: 'if_required',
       })
       .subscribe((result) => {
-        console.log('Result', result);
         if (result.error) {
+          console.log(
+            '🚀 ~ file: fill-data-form-paid.component.ts:380 ~ FillDataFormPaidComponent ~ .subscribe ~ result.error:',
+            result.error,
+          );
           // Show error to your customer (e.g., insufficient funds)
-          alert({ success: false, error: result.error.message });
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === 'succeeded') {
+            this.paymentDialogRef.close();
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }
         }
