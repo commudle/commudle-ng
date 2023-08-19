@@ -91,7 +91,7 @@ export class DiscountCouponsComponent implements OnInit {
         code: discountCode.code,
         discount_type: discountCode.discount_type,
         discount_value: discountCode.discount_value,
-        is_limited: true,
+        is_limited: discountCode.is_limited,
         max_limit: discountCode.max_limit,
         expires_at: this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss'),
       });

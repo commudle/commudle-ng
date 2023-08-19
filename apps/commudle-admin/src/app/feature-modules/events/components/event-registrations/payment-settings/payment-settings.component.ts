@@ -79,10 +79,6 @@ export class PaymentSettingsComponent implements OnInit {
       this.paymentSettingService.indexPaymentSettings(this.edfeg.id).subscribe((data) => {
         if (data) {
           this.paymentData = data;
-          const selectedAccount = this.stripeAccounts.find(
-            (stripeAccount) => stripeAccount.uuid === this.paymentData.bank_ac_id,
-          );
-          this.bankAccountNo = selectedAccount.details.external_accounts.data[0].last4;
           this.paymentDetailsExist = true;
           this.updatePaidTicketingForm(this.paymentData);
         }
@@ -125,6 +121,7 @@ export class PaymentSettingsComponent implements OnInit {
     const selectedAccount = this.stripeAccounts.find(
       (stripeAccount) => stripeAccount.uuid === ticketDetails.bank_ac_id,
     );
+    this.bankAccountNo = selectedAccount.details.external_accounts.data[0].last4;
     this.paidTicketingForm.get('paid_ticket_setting').patchValue({
       bank_ac_type: 'stripe',
       bank_ac_id: ticketDetails.bank_ac_id,
