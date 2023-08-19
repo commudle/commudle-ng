@@ -12,7 +12,6 @@
     ></app-share-button>
   </nb-card-header>
   <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
-    <h1>{{ maxHeight }}</h1>
     <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
   </nb-card-body>
   <nb-card-footer (click)="viewMore()" class="com-cursor-pointer">
