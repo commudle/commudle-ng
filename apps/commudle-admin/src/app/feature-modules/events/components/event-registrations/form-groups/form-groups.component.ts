@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ICommunity, IEvent } from '@commudle/shared-models';
 import { StripeHandlerService } from '@commudle/shared-services';
 import { NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -31,8 +32,8 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormGroupsComponent implements OnInit {
-  @Input() event;
-  @Input() community;
+  @Input() event: IEvent;
+  @Input() community: ICommunity;
 
   faCopy = faCopy;
   faEnvelope = faEnvelope;
@@ -73,8 +74,6 @@ export class FormGroupsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get all the event_data_form_entity_groups for this event
-
     // get all the registration_types
     this.registrationTypesService.getRegistrationTypes().subscribe((data) => {
       this.registrationTypes = data.registration_types;

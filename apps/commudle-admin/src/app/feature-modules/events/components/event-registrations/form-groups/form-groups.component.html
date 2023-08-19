@@ -20,7 +20,10 @@
                 </a>
               </div>
               <!-- paid button -->
-              <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK" class="com-mt-2">
+              <div
+                *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK && community.payments_enabled"
+                class="com-mt-2"
+              >
                 <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> Paid </nb-toggle>
               </div>
             </div>
@@ -51,7 +54,7 @@
             </div>
 
             <!-- payment details -->
-            <div *ngIf="edfeg.is_paid" class="payment-details">
+            <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
               <commudle-payment-settings
                 [communityId]="community.id"
                 [edfeg]="edfeg"
