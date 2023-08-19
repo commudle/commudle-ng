@@ -65,11 +65,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   promoCode = ''; //for promoCode input
   promoCodeApplied = false;
+  discountAmount = 0; //discount amount after applied promo code
 
   basePrice: number; //actual ticket price
   totalPrice: number; // total ticket price basePrice * UsersCount - discount price if any
 
-  discountAmount = 0; //discount amount after applied promo code
   eventTicketOrders: any;
   totalTaxAmount = 0;
   constructor(
@@ -309,11 +309,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         if (data.can_be_applied) {
           this.discountAmount = data.discount_amount;
           this.promoCodeApplied = true;
-          this.toastLogService.successDialog('Your Promo Code Apply Successfully', 1000);
+          this.toastLogService.successDialog('Coupon code applied successfully!', 1000);
           this.totalPrice = this.basePrice * this.forms.length - data.discount_amount;
           this.calculateTaxAmount();
         } else {
-          this.toastLogService.warningDialog('Unable To Apply this Promo Code', 1000);
+          this.toastLogService.warningDialog('Unable To Apply this Promo Code', 2000);
           this.removePromoCode();
         }
       });

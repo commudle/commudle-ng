@@ -52,12 +52,23 @@
             </div>
           </div>
         </div>
-        <div class="right-column payment-details-section">
+        <div class="right-column payment-details-section" *ngIf="paymentDetails">
           <nb-card>
-            <nb-card-body *ngIf="paymentDetails">
-              <div class="payment-deatils">
-                <span class="heading">Price x {{ this.forms.length }}</span>
-                <span class="value">{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }}</span>
+            <nb-card-body>
+              <div class="payment-deatils !com-flex-col">
+                <div class="com-flex com-justify-between">
+                  <span class="heading">Price </span>
+                  <span class="value">
+                    <span class="heading com-mr-2">x{{ forms.length }}</span>
+                    <span> {{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }} </span>
+                  </span>
+                </div>
+                <div class="com-flex com-justify-between com-mt-4">
+                  <span class="heading">Price </span>
+                  <span class="value"
+                    >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice * this.forms.length }}</span
+                  >
+                </div>
               </div>
               <div class="payment-deatils" *ngIf="discountAmount > 0">
                 <span class="heading">Discount Amount</span>
@@ -67,30 +78,36 @@
                 </span>
               </div>
               <div class="payment-deatils" *ngIf="totalTaxAmount > 0">
-                <span class="heading">Total</span>
+                <span class="heading">{{ paymentDetails.tax_name }} (Exclusive)</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ totalPrice }}
+                  {{ totalTaxAmount }}
                 </span>
               </div>
+
               <div class="payment-deatils">
-                <span class="heading">Total with {{ paymentDetails.tax_name }}</span>
+                <span class="heading">Total</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
                   {{ totalPrice + totalTaxAmount }}
                 </span>
               </div>
-              <div class="payment-deatils">
-                <input nbInput type="text" fieldSize="small" [(ngModel)]="promoCode" placeholder="Enter Promo Code" />
-                <button
-                  nbButton
-                  status="primary"
-                  size="tiny"
-                  outline
-                  (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
-                >
-                  {{ promoCodeApplied ? 'Remove' : 'Apply' }}
-                </button>
+
+              <div class="discount-code">
+                <span class="heading">Apply Coupon</span>
+                <div class="input">
+                  <input nbInput type="text" fieldSize="small" [(ngModel)]="promoCode" placeholder="Enter Promo Code" />
+                  <button
+                    nbButton
+                    status="primary"
+                    size="tiny"
+                    outline
+                    (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
+                  >
+                    {{ promoCodeApplied ? 'Remove' : 'Apply' }}
+                  </button>
+                </div>
+                <span *ngIf="discountAmount > 0" class="code-success">Coupon code applied successfully!</span>
               </div>
               <div class="user-details">
                 <span class="com-text-lg com-font-semibold">YOU</span>

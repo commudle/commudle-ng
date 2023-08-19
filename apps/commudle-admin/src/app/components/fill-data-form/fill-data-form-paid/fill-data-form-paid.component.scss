@@ -40,6 +40,19 @@
           @apply com-text-gray-500;
         }
       }
+
+      .discount-code {
+        @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-4 com-px-6;
+        .heading {
+          @apply com-my-4 com-text-lg com-font-semibold;
+        }
+        .input {
+          @apply com-mt-4 com-mb-2 com-flex com-gap-3;
+        }
+        .code-success {
+          @apply com-text-Caribbean-Green;
+        }
+      }
       .user-details {
         @apply com-px-6 com-py-4;
         form {
