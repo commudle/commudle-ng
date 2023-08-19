@@ -26,6 +26,34 @@
   }
 }
 
+.confirmation-dialog {
+  nb-card-body {
+    text-align: center;
+    .thank-you-icon {
+      nb-icon {
+        font-size: 100px;
+      }
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    p {
+      flex-grow: 1;
+      max-width: 30%;
+      text-align: center;
+      a {
+        text-decoration: none;
+        img {
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
 .payment-details-section {
   nb-card {
     @apply com-sticky com-top-20;

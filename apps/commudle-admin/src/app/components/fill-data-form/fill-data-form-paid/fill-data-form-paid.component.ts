@@ -372,17 +372,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       })
       .subscribe((result) => {
         if (result.error) {
-          console.log(
-            '🚀 ~ file: fill-data-form-paid.component.ts:380 ~ FillDataFormPaidComponent ~ .subscribe ~ result.error:',
-            result.error,
-          );
-          // Show error to your customer (e.g., insufficient funds)
+          this.toastLogService.notificationDialog(result.error.decline_code);
         } else {
-          // The payment has been processed!
           if (result.paymentIntent.status === 'succeeded') {
             this.paymentDialogRef.close();
+            this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }
+          //TODO handle another edge cases
         }
       });
   }
