@@ -78,7 +78,9 @@
           <details *ngFor="let bankDetails of stripeAccount.details.external_accounts.data">
             <summary>{{ bankDetails.bank_name }}</summary>
             <p>
-              Account Number: <span>{{ bankDetails.routing_number }}</span>
+              <span>****{{ bankDetails.last4 }}</span>
+              <br />
+              <span>{{ bankDetails.routing_number }}</span>
               <br />
               <span>{{ bankDetails.account_holder_name }}</span>
               <br />
