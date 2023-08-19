@@ -135,6 +135,7 @@ export class DiscountCouponsComponent implements OnInit {
     this.subscriptions.push(
       this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
         this.discountCouponForm.reset();
+        this.toastrService.successDialog('Discount Coupon Has Been Created');
         this.discountCodes.unshift(data);
       }),
     );
@@ -144,6 +145,7 @@ export class DiscountCouponsComponent implements OnInit {
     this.subscriptions.push(
       this.discountCodesService.updateDiscountCodes(formData, discountCodeId).subscribe((data) => {
         const indexToUpdate = this.discountCodes.findIndex((code) => code.id === data.id);
+        this.toastrService.successDialog('Discount Coupon Has Been Updated');
         if (indexToUpdate !== -1) {
           this.discountCodes[indexToUpdate] = data;
         }
@@ -167,7 +169,7 @@ export class DiscountCouponsComponent implements OnInit {
   }
 
   copyTextToClipboard(code) {
-    this.toastrService.successDialog('Your Code ready to paste');
+    this.toastrService.successDialog('Your code was ready to paste');
     this.clipboard.copy(code);
   }
 }
