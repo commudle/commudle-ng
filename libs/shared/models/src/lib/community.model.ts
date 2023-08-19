@@ -21,10 +21,11 @@ export interface ICommunity {
   location: string;
   tags: ITag[];
   is_visible: boolean;
+  payments_enabled: boolean;
+  emails_visible: boolean;
   community_channels_count?: number;
   completed_events_count?: number;
   upcoming_events?: IUpcomingEvents[];
-  emails_visible?: boolean;
 }
 
 export interface ICommunitySearch extends ICommunity {

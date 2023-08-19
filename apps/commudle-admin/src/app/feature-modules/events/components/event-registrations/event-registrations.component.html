@@ -15,7 +15,7 @@
       ></nb-toggle>
       <p>Registration Forms</p>
     </div>
-    <div *ngIf="event.custom_registration">
+    <div *ngIf="event.custom_registration && community.payments_enabled">
       <commudle-discount-coupons [event]="event"></commudle-discount-coupons>
     </div>
     <app-form-groups *ngIf="event.custom_registration" [community]="community" [event]="event"></app-form-groups>
