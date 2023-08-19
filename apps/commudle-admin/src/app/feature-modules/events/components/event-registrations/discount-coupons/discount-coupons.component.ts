@@ -90,7 +90,10 @@ export class DiscountCouponsComponent implements OnInit {
       this.discountCouponForm.get('discount_code').setValue({
         code: discountCode.code,
         discount_type: discountCode.discount_type,
-        discount_value: discountCode.discount_value,
+        discount_value:
+          discountCode.discount_type === 'fixed_amount'
+            ? discountCode.discount_value / 100
+            : discountCode.discount_value,
         is_limited: discountCode.is_limited,
         max_limit: discountCode.max_limit,
         expires_at: this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss'),
@@ -104,7 +107,13 @@ export class DiscountCouponsComponent implements OnInit {
     });
   }
 
-  create() {
+  savedDiscountCouponData(discountCodeId?) {
+    if (this.discountCouponForm.controls.discount_code.get('discount_type').value === 'fixed_amount') {
+      const discountValue = this.discountCouponForm.controls.discount_code.get('discount_value').value * 100;
+      this.discountCouponForm.get('discount_code').patchValue({
+        discount_value: discountValue,
+      });
+    }
     const formData: any = new FormData();
     const discountCodeFormData = this.discountCouponForm.get('discount_code').value;
 
@@ -115,7 +124,14 @@ export class DiscountCouponsComponent implements OnInit {
     this.selectedEventDataFormEntityGroups.forEach((value) =>
       formData.append('discount_code[event_data_form_entity_group_ids][]', value),
     );
+    if (discountCodeId) {
+      this.update(discountCodeId, formData);
+    } else {
+      this.create(formData);
+    }
+  }
 
+  create(formData) {
     this.subscriptions.push(
       this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
         this.discountCouponForm.reset();
@@ -124,18 +140,7 @@ export class DiscountCouponsComponent implements OnInit {
     );
   }
 
-  update(discountCodeId) {
-    const formData: any = new FormData();
-    const discountCodeFormData = this.discountCouponForm.get('discount_code').value;
-
-    Object.keys(discountCodeFormData).forEach((key) =>
-      !(discountCodeFormData[key] == null) ? formData.append(`discount_code[${key}]`, discountCodeFormData[key]) : '',
-    );
-
-    this.selectedEventDataFormEntityGroups.forEach((value) =>
-      formData.append('discount_code[event_data_form_entity_group_ids][]', value),
-    );
-
+  update(discountCodeId, formData) {
     this.subscriptions.push(
       this.discountCodesService.updateDiscountCodes(formData, discountCodeId).subscribe((data) => {
         const indexToUpdate = this.discountCodes.findIndex((code) => code.id === data.id);
@@ -144,12 +149,12 @@ export class DiscountCouponsComponent implements OnInit {
         }
       }),
     );
+    this.discountCouponForm.reset();
   }
 
   addEventDataForm(event, formType?) {
     if (formType) {
-      const id = event;
-      this.selectedEventDataFormEntityGroups.push(id);
+      this.selectedEventDataFormEntityGroups.push(event);
     } else {
       const id = event.target.value;
       const index = this.selectedEventDataFormEntityGroups.indexOf(id);

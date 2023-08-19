@@ -110,7 +110,7 @@
         <button
           nbButton
           status="primary"
-          (click)="data.type === 'edit' ? update(data.id) : create(); ref.close()"
+          (click)="data.type === 'edit' ? savedDiscountCouponData(data.id) : savedDiscountCouponData(); ref.close()"
           [disabled]="!discountCouponForm.valid || selectedEventDataFormEntityGroups.length === 0"
         >
           {{ data.type === 'edit' ? 'Update' : data.type }}
