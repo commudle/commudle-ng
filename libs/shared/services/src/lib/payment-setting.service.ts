@@ -17,6 +17,13 @@ export class PaymentSettingService {
     });
   }
 
+  pIndexPaymentSettings(eventDataFormEntityGroupId): Observable<IPaymentDetail> {
+    const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
+    return this.http.get<IPaymentDetail>(this.baseApiService.getRoute(API_ROUTES.PAID_TICKET_SETTINGS.PUBLIC.SHOW), {
+      params,
+    });
+  }
+
   createPaymentSettings(paid_ticket_setting: any, eventDataFormEntityGroupId): Observable<IPaymentDetail> {
     const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
     return this.http.post<IPaymentDetail>(

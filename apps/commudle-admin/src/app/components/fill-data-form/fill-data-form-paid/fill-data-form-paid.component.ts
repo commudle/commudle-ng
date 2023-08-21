@@ -173,7 +173,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   //Fetch ticket Details
   fetchPaidTicketingData(edfegId) {
     this.subscriptions.push(
-      this.paymentSettingService.indexPaymentSettings(edfegId).subscribe((data) => {
+      this.paymentSettingService.pIndexPaymentSettings(edfegId).subscribe((data) => {
         this.paymentDetails = data;
         this.basePrice = data.price / 100;
         this.totalPrice = this.basePrice;
