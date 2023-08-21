@@ -1,8 +1,8 @@
 table {
-  @apply com-w-full md:com-w-1/2;
+  @apply com-w-full md:com-w-max;
   td,
   th {
-    @apply com-p-px com-text-base;
+    @apply com-p-2 com-text-base;
   }
   th {
     @apply com-text-Auro-Metal-Saurus  com-font-medium;
@@ -11,6 +11,11 @@ table {
     @apply com-font-semibold;
   }
 }
+td:not(:first-child),
+th:not(:first-child) {
+  @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+}
+
 .edit-buttons {
   @apply com-flex com-gap-4 com-mt-4;
   div {

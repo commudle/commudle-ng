@@ -4,14 +4,14 @@
       <tr>
         <th>Price</th>
         <th>Account No.</th>
-        <th>Tax Name</th>
-        <th>Tax Percentage</th>
+        <th *ngIf="paymentData.has_taxes">Tax Name</th>
+        <th *ngIf="paymentData.has_taxes">Tax Percentage</th>
       </tr>
       <tr>
         <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price / 100 }}</td>
         <td>***{{ bankAccountNo }}</td>
-        <td>{{ paymentData.tax_name }}</td>
-        <td>{{ paymentData.tax_percentage }}%</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_name }}</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_percentage }}%</td>
       </tr>
     </table>
   </div>
