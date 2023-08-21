@@ -12,9 +12,9 @@ table {
   }
 }
 .edit-buttons {
-  @apply com-flex com-gap-6 com-mt-4;
+  @apply com-flex com-gap-4 com-mt-4;
   div {
-    @apply com-text-primary-500 com-text-sm com-font-semibold com-cursor-pointer;
+    @apply com-text-primary-500 com-text-sm com-font-semibold com-cursor-pointer com-flex com-gap-1;
   }
 }
 

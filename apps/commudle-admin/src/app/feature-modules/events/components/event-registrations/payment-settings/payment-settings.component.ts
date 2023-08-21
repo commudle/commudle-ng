@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PaymentSettingService, ToastrService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
+import { IPaymentDetail } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -15,12 +16,13 @@ export class PaymentSettingsComponent implements OnInit {
   @Input() stripeAccounts;
   countries = countries_details;
   paidTicketingForm;
-  paymentData;
+  paymentData: IPaymentDetail;
   subscriptions: Subscription[] = [];
   paymentDetailsExist = false;
 
   icons = {
     faPenToSquare,
+    faTicket,
   };
 
   dialogRef: NbDialogRef<any>;
@@ -77,7 +79,7 @@ export class PaymentSettingsComponent implements OnInit {
   fetchPaidTicketingData() {
     this.paymentDetailsExist = false;
     this.subscriptions.push(
-      this.paymentSettingService.indexPaymentSettings(this.edfeg.id).subscribe((data) => {
+      this.paymentSettingService.indexPaymentSettings(this.edfeg.id).subscribe((data: IPaymentDetail) => {
         if (data) {
           this.paymentData = data;
           this.paymentDetailsExist = true;
@@ -93,13 +95,15 @@ export class PaymentSettingsComponent implements OnInit {
         price: this.paidTicketingForm.get('paid_ticket_setting.price').value * 100,
       },
     });
-    this.paymentSettingService.createPaymentSettings(this.paidTicketingForm.value, this.edfeg.id).subscribe((data) => {
-      this.toastrService.successDialog('Payment details has been created');
-      this.paymentData = data;
-      this.paymentDetailsExist = true;
-      this.updatePaidTicketingForm(this.paymentData);
-      this.closeDialogBox();
-    });
+    this.paymentSettingService
+      .createPaymentSettings(this.paidTicketingForm.value, this.edfeg.id)
+      .subscribe((data: IPaymentDetail) => {
+        this.toastrService.successDialog('Payment details has been created');
+        this.paymentData = data;
+        this.paymentDetailsExist = true;
+        this.updatePaidTicketingForm(this.paymentData);
+        this.closeDialogBox();
+      });
   }
 
   updateTicketDetails() {
@@ -110,7 +114,7 @@ export class PaymentSettingsComponent implements OnInit {
     });
     this.paymentSettingService
       .updateTicketDetails(this.paidTicketingForm.value, this.paymentData.id)
-      .subscribe((data) => {
+      .subscribe((data: IPaymentDetail) => {
         this.paymentData = data;
         this.toastrService.successDialog('Payment details has been updated');
         this.updatePaidTicketingForm(this.paymentData);
