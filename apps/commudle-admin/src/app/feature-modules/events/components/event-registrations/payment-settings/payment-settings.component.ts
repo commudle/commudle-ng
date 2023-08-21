@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PaymentSettingService, ToastrService } from '@commudle/shared-services';
+import { PaymentSettingService, ToastrService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ export class PaymentSettingsComponent implements OnInit {
   @Input() communityId;
   @Input() edfeg;
   @Input() stripeAccounts;
+  countries = countries_details;
   paidTicketingForm;
   paymentData;
   subscriptions: Subscription[] = [];

@@ -192,14 +192,19 @@
             <!-- country-->
             <label>
               Country*
-              <input
-                fieldSize="small"
-                formControlName="country"
-                placeholder="Select Country"
-                fullWidth
-                nbInput
-                type="string"
-              />
+              <div class="select !com-mt-0">
+                <select
+                  formControlName="country"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('country').value === ''
+                  }"
+                >
+                  <option value="" selected disabled>Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.name">
+                    {{ country.name }}
+                  </option>
+                </select>
+              </div>
               <span
                 *ngIf="
                   paidTicketingForm.controls.paid_ticket_setting.get('country').touched &&
