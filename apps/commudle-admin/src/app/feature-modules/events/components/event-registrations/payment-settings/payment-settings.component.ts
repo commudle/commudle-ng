@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentSettingService, ToastrService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
-import { IPaymentDetail } from '@commudle/shared-models';
+import { IPaymentDetail, IStripeAccount } from '@commudle/shared-models';
+import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -12,10 +13,10 @@ import { IPaymentDetail } from '@commudle/shared-models';
 })
 export class PaymentSettingsComponent implements OnInit {
   @Input() communityId;
-  @Input() edfeg;
-  @Input() stripeAccounts;
+  @Input() edfeg: IEventDataFormEntityGroup;
+  @Input() stripeAccounts: IStripeAccount[];
   countries = countries_details;
-  paidTicketingForm;
+  paidTicketingForm: FormGroup;
   paymentData: IPaymentDetail;
   subscriptions: Subscription[] = [];
   paymentDetailsExist = false;

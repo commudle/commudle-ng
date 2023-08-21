@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { IDiscountCode } from '@commudle/shared-models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IDiscountCode, IEvent } from '@commudle/shared-models';
 import { DiscountCodesService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
@@ -16,10 +16,10 @@ import { Clipboard } from '@angular/cdk/clipboard';
   styleUrls: ['./discount-coupons.component.scss'],
 })
 export class DiscountCouponsComponent implements OnInit {
-  @Input() event;
+  @Input() event: IEvent;
   discountCodes: IDiscountCode[];
   eventDataFormEntityGroups: IEventDataFormEntityGroup[] = [];
-  discountCouponForm;
+  discountCouponForm: FormGroup;
   subscriptions: Subscription[] = [];
   selectedEventDataFormEntityGroups = [];
 
@@ -66,7 +66,7 @@ export class DiscountCouponsComponent implements OnInit {
 
   getDiscountCoupons() {
     this.subscriptions.push(
-      this.discountCodesService.indexDiscountCodes(this.event.id).subscribe((data) => {
+      this.discountCodesService.indexDiscountCodes(this.event.id).subscribe((data: IDiscountCode[]) => {
         this.discountCodes = data;
       }),
     );

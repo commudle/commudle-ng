@@ -7,8 +7,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ICommunity, IEvent } from '@commudle/shared-models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
 import { StripeHandlerService } from '@commudle/shared-services';
 import { NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -47,8 +47,8 @@ export class FormGroupsComponent implements OnInit {
   communityDataForms: IDataForm[] = [];
   visibilityOptions = Visibility;
 
-  eventDataFormEntityGroupForm;
-  stripeAccounts = [];
+  eventDataFormEntityGroupForm: FormGroup;
+  stripeAccounts: IStripeAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;

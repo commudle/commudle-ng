@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IPagination, IStripeAccount } from '@commudle/shared-models';
 import { API_ROUTES, BaseApiService } from '@commudle/shared-services';
 import { Observable } from 'rxjs';
 declare let Stripe: any;
@@ -16,9 +17,9 @@ export class StripeHandlerService {
     );
   }
 
-  indexStripeAccount(communityId): Observable<any> {
+  indexStripeAccount(communityId): Observable<IPagination<IStripeAccount>> {
     const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.INDEX), {
+    return this.http.get<IPagination<IStripeAccount>>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.INDEX), {
       params,
     });
   }
