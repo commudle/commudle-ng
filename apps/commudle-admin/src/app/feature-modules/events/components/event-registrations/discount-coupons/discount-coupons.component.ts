@@ -44,7 +44,7 @@ export class DiscountCouponsComponent implements OnInit {
           discount_value: ['', Validators.required],
           is_limited: [false, Validators.required],
           max_limit: [0],
-          expires_at: ['', Validators.required],
+          expires_at: [''],
         }),
       },
       {
@@ -75,7 +75,9 @@ export class DiscountCouponsComponent implements OnInit {
   fetchEventDataFormEntityGroups() {
     this.subscriptions.push(
       this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
-        this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
+        this.eventDataFormEntityGroups = data.event_data_form_entity_groups.filter(
+          (item) => item.registration_type.id !== 3, //3 is for feedback
+        );
       }),
     );
   }

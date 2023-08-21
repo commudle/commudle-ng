@@ -27,7 +27,7 @@
 </div>
 
 <ng-template #dialog let-data let-ref="dialogRef">
-  <nb-card class="com-max-h-[80dvh] com-w-full md:com-w-50vw">
+  <nb-card class="com-max-h-[80dvh] com-w-full md:com-w-40vw">
     <nb-card-header>
       <div class="com-flex com-justify-between">
         <div>{{ data.type | titlecase }} Discount Coupon</div>
@@ -77,7 +77,7 @@
 
           <!-- Expires At* -->
           <label class="com-col-span-1">
-            Expires At*
+            Expires At
             <input formControlName="expires_at" fullWidth nbInput type="datetime-local" />
           </label>
 
