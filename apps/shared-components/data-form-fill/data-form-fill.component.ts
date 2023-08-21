@@ -20,6 +20,7 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   @Input() existingResponses;
   @Input() dataFormId;
   @Input() eventId;
+  @Input() submitButtonText: string = 'Submit';
   dataForm: IDataForm;
   formCreated = false;
   enabledQuestions: IQuestion[] = [];

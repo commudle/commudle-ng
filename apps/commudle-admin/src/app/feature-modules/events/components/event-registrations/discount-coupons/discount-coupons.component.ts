@@ -169,7 +169,7 @@ export class DiscountCouponsComponent implements OnInit {
   }
 
   copyTextToClipboard(code) {
-    this.toastrService.successDialog('Your code was ready to paste');
     this.clipboard.copy(code);
+    this.toastrService.successDialog('Discount code copied!');
   }
 }

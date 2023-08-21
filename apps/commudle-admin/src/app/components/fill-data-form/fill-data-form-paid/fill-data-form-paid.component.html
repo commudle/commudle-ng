@@ -44,6 +44,7 @@
                 [dataFormId]="dataFormEntity.data_form_id"
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
+                submitButtonText="Submit & Pay"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
@@ -78,7 +79,7 @@
                 </span>
               </div>
               <div class="payment-deatils" *ngIf="totalTaxAmount > 0">
-                <span class="heading">{{ paymentDetails.tax_name }} (Exclusive)</span>
+                <span class="heading">{{ paymentDetails.tax_name }} ({{ paymentDetails.tax_percentage }}%)</span>
                 <span class="value">
                   {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
                   {{ totalTaxAmount }}
@@ -96,7 +97,14 @@
               <div class="discount-code">
                 <span class="heading">Apply Coupon</span>
                 <div class="input">
-                  <input nbInput type="text" fieldSize="small" [(ngModel)]="promoCode" placeholder="Enter Promo Code" />
+                  <input
+                    nbInput
+                    type="text"
+                    fieldSize="small"
+                    [(ngModel)]="promoCode"
+                    [readonly]="promoCodeApplied"
+                    placeholder="Enter Promo Code"
+                  />
                   <button
                     nbButton
                     status="primary"
@@ -127,6 +135,7 @@
                             fullWidth
                             nbInput
                             type="text"
+                            [readonly]="i === 0"
                           />
                           <span
                             *ngIf="
@@ -212,22 +221,34 @@
               </div>
             </nb-card-body>
           </nb-card>
+          <!-- <div class="com-px-2">
+            <button nbButton status="primary" fullWidth (click)="submitForm($event)"> Submit & Pay</button>
+          </div> -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<ng-template #paymentDialog let-data>
+<ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
-    <nb-card-body>
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <span>Complete Payment</span>
       <div>
-        <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
-          <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
-        </ng-container>
-        <button (click)="pay()">PAY</button>
+        <button (click)="ref.close()" ghost nbButton shape="round" size="small">
+          <nb-icon icon="close"></nb-icon>
+        </button>
       </div>
+    </nb-card-header>
+    <nb-card-body class="com-min-h-[250px]">
+      <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+        <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
+      </ng-container>
     </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button nbButton status="primary" (click)="pay()">Pay</button>
+      <button nbButton status="danger" (click)="ref.close()">Cancel</button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>
 
@@ -238,6 +259,7 @@
         <p class="thank-you-icon">
           <nb-icon icon="done-all" status="success"></nb-icon>
         </p>
+        <p>{{ currentUser.name }}, Your payment has been successfully processed</p>
         <p>Thank You {{ currentUser.name }} for filling the form!</p>
       </div>
     </nb-card-body>

@@ -24,7 +24,7 @@ import {
 } from '@commudle/shared-services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
-import { StripeElementsOptions } from '@stripe/stripe-js';
+import { StripeElementsOptions, StripeCardElementOptions } from '@stripe/stripe-js';
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -61,7 +61,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   paymentElement: StripePaymentElementComponent;
 
   elementsOptions: StripeElementsOptions = {
-    locale: 'es',
+    locale: 'auto',
   };
 
   promoCode = ''; //for promoCode input
@@ -308,13 +308,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         if (data.can_be_applied) {
-          this.discountAmount = data.discount_amount;
+          this.discountAmount =
+            data.discount_type === 'fixed_amount' ? data.discount_amount / 100 : data.discount_amount;
           this.promoCodeApplied = true;
           this.toastLogService.successDialog('Coupon code applied successfully!', 1000);
-          this.totalPrice = this.basePrice * this.forms.length - data.discount_amount;
+          this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
           this.calculateTaxAmount();
         } else {
-          this.toastLogService.warningDialog('Unable To Apply this Promo Code', 2000);
+          this.toastLogService.warningDialog('Discount code is invalid');
           this.removePromoCode();
         }
       });
@@ -332,6 +333,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.router.navigate(this.redirectRoute);
     } else {
       this.saveUserDetails();
+      // if()
       if (this.eventTicketOrders.length > 0) {
         this.updateTickerOrder();
       } else {
@@ -372,7 +374,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       })
       .subscribe((result) => {
         if (result.error) {
-          this.toastLogService.notificationDialog(result.error.decline_code);
+          this.toastLogService.warningDialog(result.error.decline_code, 10000);
         } else {
           if (result.paymentIntent.status === 'succeeded') {
             this.paymentDialogRef.close();
