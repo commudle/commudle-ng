@@ -21,7 +21,8 @@ export class CommunityEditDetailsComponent implements OnInit {
   tags: string[] = [];
   minimumTags = 5;
 
-  @ViewChild('autocompleteInput') autocompleteInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('autocompleteInput', { static: true })
+  autocompleteInput: ElementRef;
   @Output() updateCommunity = new EventEmitter();
 
   communityForm;
@@ -70,9 +71,6 @@ export class CommunityEditDetailsComponent implements OnInit {
     this.activatedRoute.parent.params.subscribe((params) => {
       this.getCommunityDetails(params.community_id);
     });
-  }
-
-  ngAfterViewInit(): void {
     this.initAutocomplete();
   }
 
@@ -148,5 +146,12 @@ export class CommunityEditDetailsComponent implements OnInit {
 
   initAutocomplete() {
     this.googlePlacesAutocompleteService.initAutocomplete(this.autocompleteInput.nativeElement);
+    this.googlePlacesAutocompleteService.placeChanged.subscribe((place: google.maps.places.PlaceResult) => {
+      this.onLocationPlaceSelected(place);
+    });
+  }
+
+  onLocationPlaceSelected(place: google.maps.places.PlaceResult) {
+    this.communityForm.get('community').get('location').setValue(place.formatted_address);
   }
 }

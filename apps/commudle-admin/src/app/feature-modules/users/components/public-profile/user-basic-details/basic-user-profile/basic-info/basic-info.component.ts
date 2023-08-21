@@ -13,8 +13,9 @@ import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/ser
   styleUrls: ['./basic-info.component.scss'],
 })
 export class BasicInfoComponent implements OnInit {
-  @ViewChild('autocompleteInput')
-  autocompleteInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('autocompleteInput', { static: true })
+  autocompleteInput: ElementRef;
+
   @Output() basicInfoFormValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() userData: EventEmitter<ICurrentUser> = new EventEmitter<ICurrentUser>();
 
@@ -59,9 +60,7 @@ export class BasicInfoComponent implements OnInit {
       this.userData.emit(value);
       this.basicInfoFormValidity.emit(this.basicInfoForm.valid); // whenever form value changes check validity
     });
-  }
 
-  ngAfterViewInit(): void {
     this.initAutocomplete();
   }
 
@@ -86,5 +85,12 @@ export class BasicInfoComponent implements OnInit {
 
   initAutocomplete() {
     this.googlePlacesAutocompleteService.initAutocomplete(this.autocompleteInput.nativeElement);
+    this.googlePlacesAutocompleteService.placeChanged.subscribe((place: google.maps.places.PlaceResult) => {
+      this.onLocationPlaceSelected(place);
+    });
+  }
+
+  onLocationPlaceSelected(place: google.maps.places.PlaceResult) {
+    this.basicInfoForm.patchValue({ location: place.formatted_address });
   }
 }
