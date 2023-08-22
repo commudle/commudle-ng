@@ -24,7 +24,7 @@ import {
 } from '@commudle/shared-services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
-import { StripeElementsOptions, StripeCardElementOptions } from '@stripe/stripe-js';
+import { StripeElementsOptions } from '@stripe/stripe-js';
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -73,6 +73,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   eventTicketOrders: any;
   totalTaxAmount = 0;
+
+  targetDate: Date;
+  timeRemaining: number;
+  formattedTimeRemaining: string;
+  showTimer = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -185,8 +190,34 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   // check event ticket order
   checkEventTicketOrder(edfegId) {
     this.eventTicketOrderService.showEventTicketOrder(edfegId).subscribe((data) => {
-      this.eventTicketOrders = data.event_ticket_orders;
+      if (data.event_ticket_orders.length > 0) {
+        this.eventTicketOrders = data.event_ticket_orders;
+        if (this.eventTicketOrders[0].discount_code_expires_at) {
+          this.targetDate = new Date(this.eventTicketOrders[0].discount_code_expires_at);
+          if (this.targetDate) {
+            this.updateTimeRemaining();
+            if (this.showTimer) {
+              setInterval(() => {
+                this.updateTimeRemaining();
+              }, 1000);
+            }
+          }
+        }
+      }
     });
+  }
+
+  updateTimeRemaining() {
+    this.showTimer = true;
+    const currentTime = new Date();
+    const timeDiff = this.targetDate.getTime() - currentTime.getTime();
+    this.timeRemaining = timeDiff > 0 ? timeDiff : 0;
+    const minutes = Math.floor(this.timeRemaining / (1000 * 60));
+    const seconds = Math.floor((this.timeRemaining % (1000 * 60)) / 1000);
+    this.formattedTimeRemaining = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    if (this.timeRemaining > 0) {
+      this.showTimer = false;
+    }
   }
 
   // Fetch preExisting form response
@@ -348,6 +379,17 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+        if (data.discount_code_expires_at) {
+          this.targetDate = new Date(data.discount_code_expires_at);
+          if (this.targetDate) {
+            this.updateTimeRemaining();
+            if (this.showTimer) {
+              setInterval(() => {
+                this.updateTimeRemaining();
+              }, 1000);
+            }
+          }
+        }
         this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
@@ -361,6 +403,17 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+        if (data.discount_code_expires_at) {
+          this.targetDate = new Date(data.discount_code_expires_at);
+          if (this.targetDate) {
+            this.updateTimeRemaining();
+            if (this.showTimer) {
+              setInterval(() => {
+                this.updateTimeRemaining();
+              }, 1000);
+            }
+          }
+        }
         this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }

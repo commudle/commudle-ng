@@ -122,7 +122,9 @@
                 <br />
                 <div class="user-detail">
                   <div *ngFor="let form of forms; let i = index">
-                    <div (click)="removeUser(i)" *ngIf="i !== 0">Remove</div>
+                    <div (click)="removeUser(i)" *ngIf="i !== 0" class="com-flex com-cursor-pointer">
+                      <span class="com-text-red-500 com-mx-auto com-mt-2 com-text-base"> Remove </span>
+                    </div>
                     <form [formGroup]="form">
                       <div formGroupName="additional_users">
                         <!-- name -->
@@ -233,7 +235,10 @@
 <ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      <span>Complete Payment</span>
+      <div>
+        <span> Complete Payment</span>
+        <div *ngIf="showTimer">{{ formattedTimeRemaining }}</div>
+      </div>
       <div>
         <button (click)="ref.close()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
