@@ -6,6 +6,8 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
@@ -50,8 +52,10 @@ export class FormGroupsComponent implements OnInit {
   eventDataFormEntityGroupForm: FormGroup;
   stripeAccounts: IStripeAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
+  showDiscountCouponComponent = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
+  @Output() showDiscountCoupons = new EventEmitter<boolean>();
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
@@ -88,6 +92,7 @@ export class FormGroupsComponent implements OnInit {
   getEventDataFormEntityGroups() {
     this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
       this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
+      this.checkDiscountCode();
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -201,6 +206,19 @@ export class FormGroupsComponent implements OnInit {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
       this.eventDataFormEntityGroups[index].is_paid = data;
       this.toastLogService.successDialog('Payment Enabled');
+      this.checkDiscountCode();
     });
+  }
+
+  checkDiscountCode() {
+    for (const entity of this.eventDataFormEntityGroups) {
+      if (entity.is_paid === true) {
+        this.showDiscountCouponComponent = true; // Set showDiscount to true if is_paid is true
+        break; // Exit the loop since we found a true value
+      } else {
+        this.showDiscountCouponComponent = false;
+      }
+    }
+    this.showDiscountCoupons.emit(this.showDiscountCouponComponent);
   }
 }
