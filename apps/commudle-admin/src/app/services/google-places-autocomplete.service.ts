@@ -12,7 +12,6 @@ export class GooglePlacesAutocompleteService {
   constructor() {}
 
   initAutocomplete(inputElement: HTMLInputElement, types: string = '(cities)') {
-    console.log(inputElement, 'service');
     this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
       types: [types],
       componentRestrictions: { country: 'IN' },
