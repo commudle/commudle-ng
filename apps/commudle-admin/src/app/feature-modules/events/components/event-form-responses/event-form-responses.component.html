@@ -213,8 +213,11 @@
               <p
                 [innerHTML]="
                   showFullAnswer
-                    ? getQuestionResponse(row.data_form_entity_response_values, question.id)
-                    : (getQuestionResponse(row.data_form_entity_response_values, question.id) | truncatetext : 100)
+                    ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | linky : { sanitizeHtml: true })
+                    : (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | truncatetext : 100
+                      | linky : { sanitizeHtml: true })
                 "
                 class="question-responses"
               ></p>
