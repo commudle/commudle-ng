@@ -20,7 +20,7 @@
       <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
       Edit Payment Details
     </div>
-    <div><fa-icon [icon]="icons.faTicket"></fa-icon>Create Coupon Code</div>
+    <div (click)="openCreateDiscountDialog()"><fa-icon [icon]="icons.faTicket"></fa-icon>Create Coupon Code</div>
   </div>
   <button
     *ngIf="!paymentDetailsExist"

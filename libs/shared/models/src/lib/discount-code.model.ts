@@ -5,6 +5,7 @@ export interface IDiscountCode {
   code: string;
   discount_type: string;
   discount_value: number;
+  is_limited: boolean;
   event_data_form_entity_group_ids: [];
   expires_at: Date;
   max_limit: number;

@@ -4,8 +4,9 @@ import { PaymentSettingService, ToastrService, countries_details } from '@commud
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
-import { IPaymentDetail, IStripeAccount } from '@commudle/shared-models';
+import { IEvent, IPaymentDetail, IStripeAccount } from '@commudle/shared-models';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
+import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -15,6 +16,7 @@ export class PaymentSettingsComponent implements OnInit {
   @Input() communityId;
   @Input() edfeg: IEventDataFormEntityGroup;
   @Input() stripeAccounts: IStripeAccount[];
+  @Input() event: IEvent;
   countries = countries_details;
   paidTicketingForm: FormGroup;
   paymentData: IPaymentDetail;
@@ -140,6 +142,15 @@ export class PaymentSettingsComponent implements OnInit {
       country: ticketDetails.country,
       seller_name: ticketDetails.seller_name,
       seller_address: ticketDetails.seller_address,
+    });
+  }
+
+  openCreateDiscountDialog() {
+    const dialogRef = this.dialogService.open(DiscountCouponFormComponent, {
+      closeOnBackdropClick: false,
+      autoFocus: true,
+      hasScroll: false,
+      context: { type: 'create', event: this.event },
     });
   }
 
