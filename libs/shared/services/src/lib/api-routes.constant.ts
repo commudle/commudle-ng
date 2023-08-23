@@ -728,5 +728,6 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/event_ticket_orders',
     CHECK: 'api/v2/event_ticket_orders/check_payment',
     SHOW: 'api/v2/event_ticket_orders/show',
+    CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
   },
 };

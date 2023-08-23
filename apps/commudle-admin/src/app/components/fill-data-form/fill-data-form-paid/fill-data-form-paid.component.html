@@ -54,7 +54,21 @@
           </div>
         </div>
         <div class="right-column payment-details-section" *ngIf="paymentDetails">
-          <nb-card>
+          <nb-card *ngIf="ticketPaidAlready">
+            <nb-card-body class="!com-p-4">
+              <div class="com-text-lg com-font-medium">Ticket Already Paid For</div>
+              <div>
+                <div
+                  *ngFor="let user of eventTicketOrders[0].eto_users"
+                  class="com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-p-2"
+                >
+                  <div>{{ user.name | titlecase }}</div>
+                  <div>{{ user.email }}</div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+          <nb-card *ngIf="!ticketPaidAlready">
             <nb-card-body>
               <div class="payment-deatils !com-flex-col">
                 <div class="com-flex com-justify-between">
@@ -235,9 +249,9 @@
 <ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      <div>
+      <div class="com-flex com-gap-3 com-flex-col">
         <span> Complete Payment</span>
-        <div *ngIf="showTimer">{{ formattedTimeRemaining }}</div>
+        <div *ngIf="showTimer" class="com-text-xs com-text-red-500">Time Left: {{ formattedTimeRemaining }}</div>
       </div>
       <div>
         <button (click)="ref.close()" ghost nbButton shape="round" size="small">
@@ -264,7 +278,6 @@
         <p class="thank-you-icon">
           <nb-icon icon="done-all" status="success"></nb-icon>
         </p>
-        <p>{{ currentUser.name }}, Your payment has been successfully processed</p>
         <p>Thank You {{ currentUser.name }} for filling the form!</p>
       </div>
     </nb-card-body>
@@ -291,5 +304,16 @@
         </a>
       </p>
     </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #paymentErrorDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <p class="com-text-base com-font-semibold">{{ data | capitalizeAndRemoveUnderscore }}</p>
+      <button nbButton status="base" (click)="reload(); ref.close()">
+        <fa-icon [icon]="faIcon.faArrowRight"></fa-icon> Refresh
+      </button>
+    </nb-card-body>
   </nb-card>
 </ng-template>

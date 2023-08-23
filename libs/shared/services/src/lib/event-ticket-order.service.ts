@@ -35,4 +35,9 @@ export class EventTicketOrderService {
       params,
     });
   }
+
+  checkPayment(stripePaymentIntentId): Observable<any> {
+    const params = new HttpParams().set('stripe_payment_intent_id', stripePaymentIntentId);
+    return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CHECK_PAYMENT), params);
+  }
 }

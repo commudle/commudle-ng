@@ -25,6 +25,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
 import { StripeElementsOptions } from '@stripe/stripe-js';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -56,6 +57,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   @ViewChild('paymentDialog', { static: true }) paymentDialog: TemplateRef<any>;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
+  @ViewChild('paymentErrorDialog', { static: true }) paymentErrorDialog: TemplateRef<any>;
 
   @ViewChild(StripePaymentElementComponent)
   paymentElement: StripePaymentElementComponent;
@@ -78,6 +80,13 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   timeRemaining: number;
   formattedTimeRemaining: string;
   showTimer = false;
+
+  stripePaymentIntendId: string;
+  ticketPaidAlready = false;
+
+  faIcon = {
+    faArrowRight,
+  };
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -159,7 +168,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
         this.dataFormEntity = data;
         this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
-        this.checkEventTicketOrder(this.dataFormEntity.entity_id);
         this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
         this.seoService.setTags(
           `${this.dataFormEntity.name}`,
@@ -190,8 +198,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   // check event ticket order
   checkEventTicketOrder(edfegId) {
     this.eventTicketOrderService.showEventTicketOrder(edfegId).subscribe((data) => {
+      this.eventTicketOrders = data.event_ticket_orders;
+      this.ticketPaidAlready = this.eventTicketOrders[0].status === 'paid';
+      if (this.eventTicketOrders[0].discount_code.code) {
+        this.promoCode = this.eventTicketOrders[0].discount_code.code;
+        this.applyPromo();
+      }
+
       if (data.event_ticket_orders.length > 0) {
-        this.eventTicketOrders = data.event_ticket_orders;
         if (this.eventTicketOrders[0].discount_code_expires_at) {
           this.targetDate = new Date(this.eventTicketOrders[0].discount_code_expires_at);
           if (this.targetDate) {
@@ -215,7 +229,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     const minutes = Math.floor(this.timeRemaining / (1000 * 60));
     const seconds = Math.floor((this.timeRemaining % (1000 * 60)) / 1000);
     this.formattedTimeRemaining = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    if (this.timeRemaining > 0) {
+    if (this.timeRemaining <= 0) {
       this.showTimer = false;
     }
   }
@@ -257,6 +271,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
         this.event = data;
+        this.checkEventTicketOrder(this.dataFormEntity.entity_id);
         this.gtmData.com_event_name = this.event.name;
         this.seoService.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         this.getCommunity(this.event.kommunity_id);
@@ -364,11 +379,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       this.router.navigate(this.redirectRoute);
     } else {
       this.saveUserDetails();
-      // if()
-      if (this.eventTicketOrders.length > 0) {
-        this.updateTickerOrder();
-      } else {
-        this.createTicketOrder();
+      if (this.ticketPaidAlready) {
+        this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      } else if (!this.ticketPaidAlready) {
+        if (this.eventTicketOrders.length > 0) {
+          this.updateTickerOrder();
+        } else {
+          this.createTicketOrder();
+        }
       }
     }
   }
@@ -379,6 +397,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+        this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -403,6 +422,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+        this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -428,10 +448,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         if (result.error) {
           this.toastLogService.warningDialog(result.error.decline_code, 10000);
+          this.dialogRef = this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+            context: result.error.decline_code,
+          });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
             this.paymentDialogRef.close();
             this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
+
+            this.eventTicketOrderService.checkPayment(this.stripePaymentIntendId).subscribe((data) => {});
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }
           //TODO handle another edge cases
@@ -443,5 +469,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     if (this.paymentDetails?.tax_percentage) {
       this.totalTaxAmount = (this.totalPrice * this.paymentDetails.tax_percentage) / 100;
     }
+  }
+
+  reload() {
+    window.location.reload();
   }
 }
