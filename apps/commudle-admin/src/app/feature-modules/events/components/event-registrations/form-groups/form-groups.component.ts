@@ -195,7 +195,7 @@ export class FormGroupsComponent implements OnInit {
       },
     });
   }
-
+  
   changeDataFormValue(event) {
     if (event.value === 'createNewForm') {
       this.openNewFormWindow();

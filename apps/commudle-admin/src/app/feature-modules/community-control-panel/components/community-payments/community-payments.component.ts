@@ -41,6 +41,7 @@ export class CommunityPaymentsComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
     this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
     this.getStripeAccounts();
@@ -53,6 +54,7 @@ export class CommunityPaymentsComponent implements OnInit {
   openDialogBox(StripeConnectAccount: TemplateRef<any>) {
     this.dialogRef = this.dialogService.open(StripeConnectAccount);
   }
+
 
   connectStripeAccount() {
     const currentUrl = this.router.url;
