@@ -184,6 +184,8 @@ export class EventLocationsComponent implements OnInit {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
     });
+
+    this.initAutocomplete();
   }
 
   editEventLocation(eventLocation) {
