@@ -1,0 +1,31 @@
+table {
+  @apply com-w-full md:com-w-max;
+  td,
+  th {
+    @apply com-p-2 com-text-base;
+  }
+  th {
+    @apply com-text-Auro-Metal-Saurus  com-font-medium;
+  }
+  td {
+    @apply com-font-semibold;
+  }
+}
+td:not(:first-child),
+th:not(:first-child) {
+  @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+}
+
+.edit-buttons {
+  @apply com-flex com-gap-4 com-mt-4;
+  div {
+    @apply com-text-primary-500 com-text-sm com-font-semibold com-cursor-pointer com-flex com-gap-1;
+  }
+}
+
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}

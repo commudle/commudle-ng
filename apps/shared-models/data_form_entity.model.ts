@@ -12,14 +12,16 @@ export interface IDataFormEntity {
   multi_response: boolean;
   redirectable_entity_type: string;
   redirectable_entity_id: number;
+  event_data_form_entity_group: {
+    is_paid: boolean;
+  };
 }
 
-
 export enum Visibility {
-  YET_TO_ANNOUNCE = "yet_to_announce",
-  OPEN_BUT_INVISIBLE = "open_but_invisible",
-  OPEN = "open",
-  MEMBERS_WHO_HAVE_ATTENDED = "members_who_have_attended",
-  CLOSED = "closed",
-  ON_THE_SPOT_UNINVITED = "on_the_spot_uninvited"
+  YET_TO_ANNOUNCE = 'yet_to_announce',
+  OPEN_BUT_INVISIBLE = 'open_but_invisible',
+  OPEN = 'open',
+  MEMBERS_WHO_HAVE_ATTENDED = 'members_who_have_attended',
+  CLOSED = 'closed',
+  ON_THE_SPOT_UNINVITED = 'on_the_spot_uninvited',
 }
