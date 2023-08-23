@@ -11,12 +11,10 @@
         <nb-icon icon="star" status="warning"></nb-icon>
         <span [innerHTML]="eu.details | linky : { sanitizeHtml: true }"></span>
       </p>
-      <p class="time">
-        <small>{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</small>
-      </p>
+      <p class="time">{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</p>
     </div>
   </nb-card-body>
-  <nb-card-footer *ngIf="event.event_speakers_count > 5" (click)="viewMore()" class="com-cursor-pointer">
+  <nb-card-footer *ngIf="eventUpdates.length > 2" (click)="viewMore()" class="com-cursor-pointer">
     <div>
       {{ footerText }}
       <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>

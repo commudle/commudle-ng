@@ -89,8 +89,10 @@
         <div #commentsSection>
           <nb-card *ngIf="discussionChat" class="home-event-discussion">
             <nb-card-header>
-              <nb-icon icon="message-circle-outline" status="info"></nb-icon>
-              Comments
+              <h6>
+                <nb-icon icon="message-circle-outline" status="info"></nb-icon>
+                Comments
+              </h6>
             </nb-card-header>
             <nb-card-body>
               <app-messages [discussion]="discussionChat"></app-messages>

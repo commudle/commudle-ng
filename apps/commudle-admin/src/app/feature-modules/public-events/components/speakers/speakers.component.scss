@@ -12,8 +12,7 @@ nb-card {
     padding: 0.5rem 1.5rem;
 
     .speaker {
-      @apply com-flex com-justify-start com-items-center com-border-0 com-border-b com-border-dotted com-my-10px com-mx-0;
-      border-bottom: lightgrey;
+      @apply com-flex com-justify-start com-items-center com-border-0 com-border-b com-border-Bright-Gray com-border-solid com-py-10px com-m-0 com-px-0;
 
       &:last-child {
         border-bottom: none;
@@ -26,7 +25,7 @@ nb-card {
   }
 
   .view-more {
-    @apply com-max-h-[467px] com-overflow-y-hidden;
+    @apply com-max-h-[460px] com-overflow-y-hidden;
   }
   .view-less {
     @apply com-max-h-max;

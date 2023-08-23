@@ -36,6 +36,12 @@
 
     .two-column-layout {
       .home-event-discussion {
+        @apply com-mx-0;
+        nb-card-header {
+          h6 {
+            @apply com-font-semibold com-m-0;
+          }
+        }
         nb-card-body {
           @apply com-p-0;
           overflow: initial;

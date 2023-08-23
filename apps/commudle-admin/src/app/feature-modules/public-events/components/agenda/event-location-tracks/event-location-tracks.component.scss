@@ -1,4 +1,10 @@
 .event-location-tracks {
+  .map-location {
+    p {
+      @apply com-mt-14px com-mb-6 com-mx-0;
+    }
+  }
+
   .track-container {
     nb-action {
       display: flex;
@@ -22,12 +28,10 @@
 
       nb-list {
         nb-list-item {
-          @apply com-flex com-px-0 com-py-4;
+          @apply com-flex com-px-0 com-py-3 com-border-0 com-border-b com-border-Bright-Gray;
 
           .session-time {
-            width: 60px;
-            padding-right: 1rem;
-            border-right: 3px solid lightgrey;
+            @apply com-border-0 com-border-r com-border-solid com-border-Bright-Gray com-pr-6px com-w-[60px];
 
             p {
               margin: 0;
@@ -35,24 +39,20 @@
             }
 
             p:nth-of-type(1) {
-              font-size: 1.2rem;
+              @apply com-text-lg com-font-normal com-m-0;
             }
 
             p:nth-of-type(2) {
-              margin-top: 0.2rem;
-              font-size: 0.9rem;
+              @apply com-text-sm com-font-normal com-m-0;
             }
           }
 
           .session-details {
-            width: 80%;
-            padding-left: 0.5rem;
+            @apply com-pl-3 com-w-[80%];
 
             .session-title {
               p:nth-of-type(1) {
-                font-size: 1.2rem;
-                font-weight: normal;
-                margin: 0 0 0.3rem;
+                @apply com-text-base com-font-normal com-text-Yankees-Blue com-m-0 com-mb-1;
               }
 
               app-badge {
@@ -63,6 +63,13 @@
           }
         }
       }
+    }
+
+    .view-more {
+      @apply com-text-sm com-font-normal com-text-Yankees-Blue com-mt-2 com-max-h-[647px] com-overflow-y-hidden;
+    }
+    .view-less {
+      @apply com-mb-2 com-max-h-max;
     }
 
     // @media all and (max-width: 767px) {

@@ -8,20 +8,24 @@ nb-card {
   }
 
   nb-card-body {
-    @apply com-flex com-flex-col com-gap-[14px];
+    @apply com-flex com-flex-col com-gap-4;
     .event-update {
       .details {
         @apply com-m-0;
+
+        nb-icon {
+          @apply com-mr-2;
+        }
       }
 
       .time {
-        @apply com-m-0;
+        @apply com-m-0 com-ml-7 com-text-xs com-font-light com-text-Auro-Metal-Saurus;
       }
     }
   }
 
   .view-more {
-    @apply com-max-h-[132px] com-overflow-y-hidden;
+    @apply com-max-h-[126px] com-overflow-y-hidden;
   }
   .view-less {
     @apply com-max-h-max;

@@ -21,7 +21,10 @@
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon
         ></nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
-          <nb-list *ngIf="trackSlotVisibility[elt.id]">
+          <nb-list
+            *ngIf="trackSlotVisibility[elt.id]"
+            [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }"
+          >
             <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
               <div class="session-time">
                 <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
@@ -74,8 +77,17 @@
               </div>
               <div *ngIf="elt.track_slots.length == 0">no slots yet</div>
             </nb-list-item>
-          </nb-list></nb-accordion-item-body
-        >
+          </nb-list>
+          <div
+            *ngIf="totalSlotsCount > 8"
+            (click)="viewMore(); $event.stopPropagation()"
+            class="view-more-section com-cursor-pointer"
+          >
+            {{ footerText }}
+            <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>
+            <nb-icon *ngIf="!viewMoreSection" icon="arrow-ios-upward-outline"></nb-icon>
+          </div>
+        </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
   </div>

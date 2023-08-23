@@ -20,8 +20,10 @@ export class EventLocationTracksComponent implements OnInit {
   @Input() eventLocation: IEventLocation;
   @Output() updateSessionPreference = new EventEmitter();
   sortedTrackSlots = {};
-
   trackSlotVisibility = {};
+  viewMoreSection = true;
+  footerText = 'View More';
+  totalSlotsCount: number;
 
   constructor(private trackSlotsService: TrackSlotsService) {}
 
@@ -30,6 +32,10 @@ export class EventLocationTracksComponent implements OnInit {
     for (const event_location_track of this.eventLocation.event_location_tracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+      this.totalSlotsCount = this.sortTrackSlots(event_location_track.track_slots).length;
+    }
+    if (this.totalSlotsCount > 8) {
+      this.footerText = `View More (${this.totalSlotsCount - 8})`;
     }
   }
 
@@ -52,5 +58,14 @@ export class EventLocationTracksComponent implements OnInit {
 
   changeTrackSlotVisibility(visibility, id) {
     this.trackSlotVisibility[id] = visibility;
+  }
+
+  viewMore() {
+    this.viewMoreSection = !this.viewMoreSection;
+    if (!this.viewMoreSection) {
+      this.footerText = `View Less`;
+    } else {
+      this.footerText = `View More (${this.totalSlotsCount - 8})`;
+    }
   }
 }
