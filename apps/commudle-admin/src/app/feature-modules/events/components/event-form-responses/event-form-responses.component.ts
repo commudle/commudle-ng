@@ -54,6 +54,8 @@ export class EventFormResponsesComponent implements OnInit {
 
   searchForm;
 
+  showFullAnswer = false;
+
   userRoles = [];
   EUserRoles = EUserRoles;
   fromRegistrationStatus: string;

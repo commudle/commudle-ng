@@ -18,6 +18,7 @@ import {
   NbBadgeModule,
   NbTagModule,
   NbToggleModule,
+  NbSpinnerModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -105,6 +106,7 @@ import { CommunityPaymentsComponent } from './components/community-payments/comm
     NbBadgeModule,
     NbTagModule,
     NbToggleModule,
+    NbSpinnerModule,
   ],
 })
 export class CommunityGroupsModule {}

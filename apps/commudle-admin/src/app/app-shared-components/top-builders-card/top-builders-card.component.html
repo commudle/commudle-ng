@@ -30,9 +30,20 @@
               }}
               ·
             </span>
-            <span>
+            <span *ngIf="topBuilder.published_labs_count >= 1">
+              {{ topBuilder.published_labs_count }} Lab{{
+                topBuilder.published_labs_count !== 1 && topBuilder.published_labs_count > 0 ? 's' : ''
+              }}
+              ·
+            </span>
+            <span *ngIf="topBuilder.total_builds_votes >= 1">
               {{ topBuilder.total_builds_votes }} Star{{
                 topBuilder.total_builds_votes !== 1 && topBuilder.total_builds_votes > 0 ? 's' : ''
+              }}
+            </span>
+            <span *ngIf="topBuilder.total_labs_votes >= 1">
+              {{ topBuilder.total_labs_votes }} Like{{
+                topBuilder.total_labs_votes !== 1 && topBuilder.total_labs_votes > 0 ? 's' : ''
               }}
             </span>
           </div>

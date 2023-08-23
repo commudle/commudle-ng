@@ -3,38 +3,64 @@
     <nb-list *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
         <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
-          <div class="display-details">
-            <div class="copy-link clickable">
+          <!-- form and payments details -->
+          <div class="com-w-full md:com-w-96">
+            <div class="com-flex com-mt-2 com-justify-between">
+              <!-- form details -->
+              <div class="form-details">
+                <span class="edfeg-name"> {{ edfeg.name }}</span>
+                <br />
+                <span>
+                  Form type:
+                  {{ edfeg.registration_type.name | titlecase }}
+                </span>
+                <br />
+                <a [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']" target="_blank">
+                  Edit Form Questions
+                </a>
+              </div>
+              <!-- paid button -->
+              <div
+                *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK && community.payments_enabled"
+                class="com-mt-2"
+              >
+                <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> Paid </nb-toggle>
+              </div>
+            </div>
+
+            <!-- link for open form -->
+            <div class="com-flex com-justify-between md:com-justify-normal">
               <a
                 *ngIf="event.editable"
                 [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
-                class="text-primary"
+                class="link-to-fill"
                 target="_blank"
               >
-                <nb-icon icon="external-link"></nb-icon>
-                <br />
-                <small>Link to fill</small>
+                <nb-icon icon="external-link" class="com-text-sm"></nb-icon>
+                <span class="com-text-sm">Link to fill</span>
               </a>
-            </div>
-            <div class="basic-details">
-              <p>
-                {{ edfeg.name }}
-                <br />
-                <span class="com-text-xs"
-                  >Form type:
-                  <strong>
-                    {{ edfeg.registration_type.name | titlecase }}
-                  </strong>
-                </span>
-                <br />
-                <a
-                  [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']"
-                  target="_blank"
-                  class="com-mt-1 com-no-underline com-text-xs"
+              <div *appBreakpoints="'<=md'">
+                <div
+                  *ngIf="
+                    [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                    event.editable
+                  "
                 >
-                  {{ edfeg.data_form_entity.name }} Edit
-                </a>
-              </p>
+                  <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                    Allow RSVP
+                  </nb-toggle>
+                </div>
+              </div>
+            </div>
+
+            <!-- payment details -->
+            <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
+              <commudle-payment-settings
+                [communityId]="community.id"
+                [event]="event"
+                [edfeg]="edfeg"
+                [stripeAccounts]="stripeAccounts"
+              ></commudle-payment-settings>
             </div>
             <div>
               <label class="switch">
@@ -44,10 +70,30 @@
             </div>
           </div>
 
-          <div class="stats">
-            <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
+          <!-- stats and response -->
+          <div
+            class="com-flex com-items-center com-flex-row md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal"
+          >
+            <div class="stats">
+              <p><fa-icon [icon]="faUsers"></fa-icon> {{ edfeg.responses_count }}</p>
+            </div>
+            <a
+              [queryParams]="{
+                parent_type: 'EventDataFormEntityGroup',
+                parent_id: edfeg.id,
+                data_form_id: edfeg.data_form_entity.data_form_id
+              }"
+              [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
+              nbButton
+              size="small"
+              status="info"
+            >
+              Show Responses
+            </a>
           </div>
-          <div class="actions">
+
+          <!-- change status and rsvp  -->
+          <div class="com-flex com-flex-row md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal">
             <div class="dropdown">
               <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
                 <option
@@ -88,50 +134,53 @@
                 </option>
               </select>
             </div>
-            <div>
-              <a
-                [queryParams]="{
-                  parent_type: 'EventDataFormEntityGroup',
-                  parent_id: edfeg.id,
-                  data_form_id: edfeg.data_form_entity.data_form_id
-                }"
-                [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
-                nbButton
-                size="tiny"
-                status="info"
+            <div *appBreakpoints="'>md'">
+              <div
+                *ngIf="
+                  [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                  event.editable
+                "
               >
-                Show Responses
-              </a>
+                <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                  Allow RSVP
+                </nb-toggle>
+              </div>
             </div>
-            <div
-              *ngIf="
-                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
-                event.editable
-              "
-            >
-              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
-                Allow RSVP
-              </nb-toggle>
+            <div *appBreakpoints="'<=md'">
+              <div *ngIf="event.editable" class="com-mt-2">
+                <button
+                  (click)="openEmailWindow(edfeg)"
+                  class="com-bg-transparent com-border com-border-solid com-border-black com-rounded-md com-p-2"
+                >
+                  <fa-icon [icon]="faEnvelope"></fa-icon>
+                  Send By EMail
+                </button>
+              </div>
             </div>
-            <div *ngIf="event.editable">
-              <a (click)="openEmailWindow(edfeg)" nbButton outline size="tiny" status="info">
+          </div>
+          <!-- send emails -->
+          <div *appBreakpoints="'>md'">
+            <div *ngIf="event.editable" class="com-mt-2">
+              <button
+                (click)="openEmailWindow(edfeg)"
+                class="com-bg-transparent com-border com-border-solid com-border-black com-rounded-md com-p-2"
+              >
                 <fa-icon [icon]="faEnvelope"></fa-icon>
-                &nbsp; Send By EMail
-              </a>
+                Send By EMail
+              </button>
             </div>
-            <div *ngIf="edfeg.responses_count >= 0">
-              <a
-                (click)="deleteEventDataFormEntityGroup(edfeg.id)"
-                *ngIf="edfeg.responses_count === 0"
-                nbButton
-                outline
-                size="tiny"
-                status="danger"
-              >
-                <fa-icon [icon]="faTimesCircle"></fa-icon>
-                &nbsp; Delete
-              </a>
-            </div>
+          </div>
+
+          <!-- clone and delete -->
+          <div class="com-mt-2 com-flex md:com-flex-col md:com-gap-8 com-justify-between md:com-justify-normal">
+            <a nbButton outline size="small" status="primary">
+              <fa-icon [icon]="faCopy"></fa-icon>
+              &nbsp; Clone Form
+            </a>
+            <a (click)="deleteEventDataFormEntityGroup(edfeg.id)" nbButton outline size="small" status="danger">
+              <fa-icon [icon]="faTimesCircle"></fa-icon>
+              &nbsp; Delete
+            </a>
           </div>
         </div>
       </nb-list-item>
@@ -146,11 +195,11 @@
           You can add more forms if you want members to fill more information for this event, by filling the form below
         </p>
       </div>
-      <div class="create-form-button">
+      <!-- <div class="create-form-button">
         <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
           <nb-icon icon="plus-outline"></nb-icon>Create New Form
         </button>
-      </div>
+      </div> -->
     </div>
     <form
       (ngSubmit)="createEventDataFormEntityGroup()"
@@ -216,8 +265,10 @@
                   'com-text-[#8E9BB3]':
                     eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
                 }"
+                (change)="changeDataFormValue($event.target)"
               >
                 <option disabled selected value="">Which Form?</option>
+                <option value="createNewForm" (click)="openNewFormWindow()"><strong>+</strong> CREATE NEW FORM</option>
                 <option *ngFor="let df of communityDataForms" [value]="df.id">
                   {{ df.name | titlecase }}
                 </option>
@@ -249,7 +300,10 @@
 
       <div class="save-button-bottom">
         <button
-          [disabled]="!eventDataFormEntityGroupForm.valid"
+          [disabled]="
+            !eventDataFormEntityGroupForm.valid ||
+            eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === 'createNewForm'
+          "
           fullWidth
           nbButton
           outline

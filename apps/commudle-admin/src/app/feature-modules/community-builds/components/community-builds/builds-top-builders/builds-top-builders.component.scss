@@ -1,5 +1,6 @@
 nb-card {
-  @apply com-p-0 com-m-0 md:com-mt-6 md:com-bg-Tigers-Eye com-border-0;
+  @apply com-p-0 com-m-0 md:com-mt-6  com-border-0;
+
   nb-card-body {
     @apply md:com-pt-3 md:com-px-3 com-m-0 com-p-0;
 
@@ -44,7 +45,7 @@ nb-card {
     }
 
     .top-builders {
-      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-[60px] md:com-m-0 com-gap-4 md:com-gap-y-4 com-mt-4 com-p-0 md:com-pb-2 com-items-center md:com-justify-center;
+      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-10 md:com-m-0 com-gap-4 md:com-gap-y-4 com-mt-4 com-p-0 md:com-pb-2 com-items-center md:com-justify-center;
       .top-builders-card {
         @apply com-m-0 com-p-0;
       }

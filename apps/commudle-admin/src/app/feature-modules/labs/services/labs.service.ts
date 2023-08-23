@@ -7,6 +7,7 @@ import { ILabs } from 'apps/shared-models/labs.model';
 import { ITags } from 'apps/shared-models/tags.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
+import { IPagination } from '@commudle/shared-models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -77,13 +78,13 @@ export class LabsService {
     });
   }
 
-  pIndex(tag?: string): Observable<ILabs> {
-    let params = new HttpParams();
-    if (tag) {
-      params = params.append('tag', tag);
-    }
-    return this.http.get<ILabs>(this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), { params });
-  }
+  // pIndex(tag?: string): Observable<ILabs> {
+  //   let params = new HttpParams();
+  //   if (tag) {
+  //     params = params.append('tag', tag);
+  //   }
+  //   return this.http.get<ILabs>(this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), { params });
+  // }
 
   pShow(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
@@ -116,15 +117,33 @@ export class LabsService {
     return this.http.get<ITags>(this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.TAGS), { params });
   }
 
-  searchLabsByTags(tags: string[], page?: number, count?: number) {
+  pIndex(after?: string, limit?: number, query?: string): Observable<IPagination<ILab>> {
     let params = new HttpParams();
-    tags.forEach((tag: string) => (params = params.append('tag_names[]', tag)));
-    if (page) {
-      params = params.append('page', String(page));
+    if (after) {
+      params = params.set('after', after);
     }
-    if (count) {
-      params = params.append('count', String(count));
+    if (limit) {
+      params = params.set('limit', limit);
     }
-    return this.http.get<ILabs>(this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.LABS_BY_TAGS), { params });
+    if (query) {
+      params = params.set('query', query);
+    }
+    return this.http.get<IPagination<ILab>>(this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), { params });
+  }
+
+  pGetTopBuilders(count: number, page: number, month?: boolean, year?: boolean, allTime?: boolean): Observable<any> {
+    let params = new HttpParams().set('count', String(count)).set('page', String(page));
+    if (month) {
+      params = params.set('month', month);
+    }
+    if (year) {
+      params = params.set('year', year);
+    }
+    if (allTime) {
+      params = params.set('all-time', allTime);
+    }
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.TOP_AUTHORS), {
+      params,
+    });
   }
 }

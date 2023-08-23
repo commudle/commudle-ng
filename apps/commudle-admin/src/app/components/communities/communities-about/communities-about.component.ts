@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { CmsService } from 'apps/shared-services/cms.service';
+import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 
 @Component({
   selector: 'app-communities-about',
@@ -7,18 +8,20 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   styleUrls: ['./communities-about.component.scss'],
 })
 export class CommunitiesAboutComponent implements OnInit {
-  staticAssets = staticAssets;
-  constructor() {
-    // do nothing
-  }
+  communitiesPageHeader: IListingPageHeader;
+  constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
-    // do nothing
+    this.getHeaderText();
   }
 
-  // Function to scroll to communities list section
-  scrollToCommunitiesList(): void {
-    const element = document.getElementById('communities-list');
-    window.scroll({ top: element.offsetTop - 56, behavior: 'smooth' });
+  imageUrl(source: any) {
+    return this.cmsService.getImageUrl(source);
+  }
+
+  getHeaderText() {
+    this.cmsService.getDataBySlug('communities').subscribe((data) => {
+      this.communitiesPageHeader = data;
+    });
   }
 }

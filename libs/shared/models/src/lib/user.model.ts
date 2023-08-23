@@ -45,11 +45,15 @@ export interface IUser {
   profile_banner_image: IAttachedFile;
   deactivated: boolean;
   speaker_events_count: number;
+  phone: string;
+  phone_country_code: string;
   total_builds_votes?: number;
   published_community_builds_count?: number;
   communities_count?: number;
   looking_for_work?: boolean;
   hiring?: boolean;
+  published_labs_count?: number;
+  total_labs_votes?: number;
 }
 
 export interface IUserSearch extends IUser {

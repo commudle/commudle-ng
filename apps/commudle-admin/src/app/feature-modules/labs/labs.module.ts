@@ -41,6 +41,12 @@ import { LabsComponent } from './components/labs/labs.component';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabsRoutingModule } from './labs-routing.module';
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [
@@ -76,6 +82,10 @@ import { LabsRoutingModule } from './labs-routing.module';
     InfiniteScrollModule,
     RecommendationsModule,
     MiniUserProfileModule,
+    PublicHomeListSpeakersModule,
+    CommunityBuildsModule,
+    PublicHomeListSpeakersModule,
+    AppSharedComponentsModule,
 
     // Nebular
     NbCardModule,
@@ -89,6 +99,9 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbUserModule,
     NbSidebarModule.forRoot(),
     NbContextMenuModule,
+    ListingPagesLayoutComponent,
+    SkeletonVerticalCardsComponent,
+    SkeletonCardsComponent,
   ],
 })
 export class LabsModule {}

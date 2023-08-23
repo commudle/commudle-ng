@@ -29,13 +29,14 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
-    SEARCH: 'api/v2/communities/search',
+    // SEARCH: 'api/v2/communities/search',    //DEPRECATED
     SPEAKERS: 'api/v2/communities/speakers',
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
     TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
     PUBLIC: {
+      INDEX: 'api/v2/communities/public',
       SPEAKERS: 'api/v2/communities/public/speakers',
     },
   },
@@ -530,6 +531,7 @@ export const API_ROUTES = {
       TAGS: 'api/v2/labs/public/tags',
       INDEX: 'api/v2/labs/public',
       GET_STEPS: 'api/v2/labs/public/steps',
+      TOP_AUTHORS: 'api/v2/labs/public/top_authors',
     },
     ADMIN: {
       INDEX: 'api/v2/labs/admin',
@@ -702,5 +704,29 @@ export const API_ROUTES = {
     INDEX: 'api/v2/stripe_connect_accounts',
     CREATE: 'api/v2/stripe_connect_accounts',
     RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
+  },
+  DISCOUNT_CODES: {
+    CREATE: 'api/v2/discount_codes',
+    UPDATE: 'api/v2/discount_codes',
+    INDEX: 'api/v2/discount_codes',
+    DELETE: 'api/v2/discount_codes',
+    CAN_BE_APPLIED: 'api/v2/discount_codes/can_be_applied',
+  },
+
+  PAID_TICKET_SETTINGS: {
+    CREATE: 'api/v2/paid_ticket_settings',
+    UPDATE: 'api/v2/paid_ticket_settings',
+    INDEX: 'api/v2/paid_ticket_settings/details',
+    PUBLIC: {
+      SHOW: 'api/v2/paid_ticket_settings/public/show',
+    },
+  },
+
+  EVENT_TICKET_ORDERS: {
+    CREATE: 'api/v2/event_ticket_orders',
+    UPDATE: 'api/v2/event_ticket_orders',
+    CHECK: 'api/v2/event_ticket_orders/check_payment',
+    SHOW: 'api/v2/event_ticket_orders/show',
+    CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
   },
 };
