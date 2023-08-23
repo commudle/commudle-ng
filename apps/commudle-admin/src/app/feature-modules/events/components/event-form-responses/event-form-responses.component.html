@@ -212,11 +212,22 @@
             <div class="row-cell question mobile-hidden" style="height: 100px">
               <p
                 [innerHTML]="
-                  getQuestionResponse(row.data_form_entity_response_values, question.id)
-                    | linky : { sanitizeHtml: true }
+                  showFullAnswer
+                    ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | linky : { sanitizeHtml: true })
+                    : (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | truncatetext : 100
+                      | linky : { sanitizeHtml: true })
                 "
                 class="question-responses"
               ></p>
+              <a
+                (click)="showFullAnswer = !showFullAnswer"
+                *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
+                class="clickable"
+              >
+                {{ showFullAnswer ? 'Read less' : 'Read more' }}
+              </a>
             </div>
           </ng-template>
         </ngx-datatable-column>

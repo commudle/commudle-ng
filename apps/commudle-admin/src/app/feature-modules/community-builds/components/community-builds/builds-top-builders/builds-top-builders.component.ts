@@ -15,7 +15,7 @@ export class BuildsTopBuildersComponent implements OnInit {
   @Input() subHeading: string;
   @Input() parentType: string;
   @Input() toolTipText: string;
-  @Input() selectedByDefault = 'month'; // month || year || all-time
+  @Input() selectedByDefault: 'month' | 'year' | 'all-time' = 'month';
   topBuilders: IUser[] = [];
   page = 1;
   count = 5;

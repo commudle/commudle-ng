@@ -1,13 +1,14 @@
 .header {
-  @apply md:com-max-h-[386px] com-max-h-[400px];
+  @apply md:com-max-h-[386px] com-max-h-full;
   .background {
     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
     .base-layout {
+      @apply com-min-h-full;
       .content {
-        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between com-items-center md:com-w-[1280px];
+        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between com-items-center md:com-w-[1280px] com-h-full;
         .header-text {
-          @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[72px] com-pt-10 com-pb-0 md:com-w-[665px] md:com-min-h-[386px] com-w-full com-h-full;
+          @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[72px] com-pt-10 com-pb-0 md:com-w-[665px] md:com-min-h-[386px] com-w-full com-min-h-full com-h-full;
 
           .heading {
             @apply com-flex com-items-center md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-4 md:com-mb-8 com-text-primary-200;
@@ -19,7 +20,7 @@
         }
 
         .header-image {
-          @apply com-flex com-items-center com-m-0 md:com-h-auto com-h-[130px] com-w-[250px];
+          @apply com-flex com-items-center com-m-0 md:com-h-auto com-h-[130px] com-w-[250px] com-mb-4;
 
           img {
             @apply com-w-full com-h-full;
