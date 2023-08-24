@@ -14,7 +14,6 @@ export class GooglePlacesAutocompleteService {
   initAutocomplete(inputElement: HTMLInputElement, types: string = '(cities)') {
     this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
       types: [types],
-      componentRestrictions: { country: 'IN' },
     });
 
     this.autocomplete.addListener('place_changed', () => {
