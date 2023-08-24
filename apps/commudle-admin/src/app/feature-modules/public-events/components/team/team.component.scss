@@ -7,7 +7,7 @@ nb-card {
     }
   }
   .volunteers {
-    @apply com-grid com-grid-cols-1 com-gap-4 md:com-grid-cols-2;
+    @apply com-grid com-grid-cols-1 com-gap-x-[22px] com-gap-y-4 md:com-grid-cols-2;
     fieldset {
       @apply com-border com-border-solid com-border-gray-300 com-rounded-md com-h-full;
 

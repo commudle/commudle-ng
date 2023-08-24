@@ -124,17 +124,21 @@
           <nb-card-body>
             <p>
               <nb-icon icon="clock-outline"></nb-icon>
-              <span>
+              <!-- <span>
                 {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd') }}
               </span>
-              <br />
+              <br /> -->
               <small>
                 <strong>
-                  {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('Do MMM, YYYY h:mm A') }}
+                  {{
+                    momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd, Do MMM, YYYY h:mm A')
+                  }}
                 </strong>
                 to
                 <strong *ngIf="event.end_time.getDate !== event.start_time.getDate">
-                  {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
+                  {{
+                    momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd, Do MMM, YYYY h:mm A')
+                  }}
                 </strong>
                 <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
                   {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('h:mm A') }}
