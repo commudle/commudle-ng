@@ -11,6 +11,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-public-profile',
@@ -31,9 +32,11 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
     private userProfileManagerService: UserProfileManagerService,
+    private footerService: FooterService,
   ) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.checkFragment();
 
     this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUser()));
@@ -62,6 +65,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.seoService.noIndex(false);
+    this.footerService.changeFooterStatus(false);
   }
 
   checkFragment() {
