@@ -65,13 +65,6 @@
       }
     }
 
-    .view-more {
-      @apply com-text-sm com-font-normal com-text-Yankees-Blue md:com-max-h-[647px] com-max-h-[416px] com-overflow-y-hidden;
-    }
-    .view-less {
-      @apply com-max-h-max;
-    }
-
     // @media all and (max-width: 767px) {
     //   .track-name {
     //     font-size: 1.1rem;
