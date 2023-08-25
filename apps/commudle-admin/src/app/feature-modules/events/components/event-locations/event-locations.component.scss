@@ -67,3 +67,7 @@
   min-height: 150px;
   background-color: white;
 }
+
+.event-location-form {
+  @apply md:com-w-[40vw] com-w-full;
+}
