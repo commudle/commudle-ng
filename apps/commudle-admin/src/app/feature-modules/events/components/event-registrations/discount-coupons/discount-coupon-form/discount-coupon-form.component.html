@@ -13,8 +13,15 @@
       <div formGroupName="discount_code" class="com-flex com-flex-col com-gap-3">
         <!-- Name -->
         <label>
-          Name*
-          <input formControlName="code" fullWidth nbInput type="text" placeholder="Coupon Name" />
+          Code*
+          <input
+            formControlName="code"
+            fullWidth
+            nbInput
+            type="text"
+            placeholder="Coupon Name"
+            (input)="onCodeInput($event)"
+          />
         </label>
 
         <!-- Discount type* -->
@@ -48,7 +55,10 @@
 
         <!-- Expires At* -->
         <label class="com-col-span-1">
-          Expires At
+          <div>
+            Expires At
+            <button (click)="clearExpiresAt()">Clear</button>
+          </div>
           <input formControlName="expires_at" fullWidth nbInput type="datetime-local" />
         </label>
 
