@@ -138,10 +138,8 @@
                 </p>
               </div>
             </div>
-            <div
-              *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) <= moment()"
-              class="attending-members"
-            >
+
+            <div *ngIf="event.interested_members_count" class="attending-members">
               <app-attending-members
                 (hasInterestedMembers)="hasInterestedMembers = $event"
                 [community]="community"
@@ -160,7 +158,7 @@
             >
               View attended members
             </button>
-            <div *ngIf="moment() <= moment(event.end_time)" class="registrations-buttons">
+            <div *ngIf="moment() < moment(event.end_time)" class="registrations-buttons">
               <div class="registration-form">
                 <app-highlighted-links
                   (hasOpenForms)="hasOpenForms = $event"
