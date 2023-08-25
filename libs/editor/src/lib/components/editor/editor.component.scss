@@ -67,9 +67,9 @@
   }
 
   .emoji-button {
-    @apply com-mx-4 com-p-0 com-bg-white com-border-0;
+    @apply md:com-mx-4 com-ml-3 com-mr-4 com-p-0 com-bg-white com-border-0;
     p {
-      @apply com-text-xl com-m-0 com-px-10px;
+      @apply com-text-xl com-m-0 md:com-px-10px com-p-0;
     }
   }
 
@@ -78,7 +78,7 @@
   }
 
   .submit-button {
-    @apply com-mx-4 com-p-0 com-border-0;
+    @apply md:com-mx-4 com-ml-4 com-mr-3 com-p-0 com-border-0;
 
     nb-icon {
       @apply com-text-xl com-m-0;

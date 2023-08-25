@@ -1,24 +1,26 @@
-.users {
-  display: flex;
-  flex-wrap: wrap;
-
-  .user {
+.interested-members {
+  .heading {
+    @apply com-text-base com-font-normal com-mb-4;
+  }
+  .users {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    .profile-picture {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      overflow: hidden;
-      img {
-        vertical-align: text-top;
-        width: 100%;
+    flex-wrap: wrap;
+
+    .user {
+      @apply com-flex com-items-center com-ml-[-6px];
+      .profile-picture {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+          vertical-align: text-top;
+          width: 100%;
+        }
       }
     }
-    margin: 0.1rem;
-  }
-  p {
-    margin: 9px 0;
+    p {
+      margin: 9px 0;
+    }
   }
 }

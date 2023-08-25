@@ -22,7 +22,7 @@
       ></app-user-profile-card-large>
     </div>
   </nb-card-body>
-  <nb-card-footer *ngIf="event.event_speakers_count > 5" (click)="viewMore()" class="com-cursor-pointer">
+  <nb-card-footer *ngIf="event.event_speakers_count > totalSpeakers" (click)="viewMore()" class="com-cursor-pointer">
     <div>
       {{ footerText }}
       <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>

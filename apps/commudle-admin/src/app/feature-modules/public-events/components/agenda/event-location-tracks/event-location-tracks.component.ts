@@ -14,7 +14,6 @@ import * as _ from 'lodash';
 })
 export class EventLocationTracksComponent implements OnInit {
   moment = moment;
-
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
@@ -24,18 +23,22 @@ export class EventLocationTracksComponent implements OnInit {
   viewMoreSection = true;
   footerText = 'View More';
   totalSlotsCount: number;
+  totalSlots: number;
+  isMobileView: boolean;
 
   constructor(private trackSlotsService: TrackSlotsService) {}
 
   ngOnInit() {
+    this.isMobileView = window.innerWidth <= 640;
     const visibility = this.eventLocation.event_location_tracks.length <= 2;
     for (const event_location_track of this.eventLocation.event_location_tracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
       this.totalSlotsCount = this.sortTrackSlots(event_location_track.track_slots).length;
     }
-    if (this.totalSlotsCount > 8) {
-      this.footerText = `View More (${this.totalSlotsCount - 8})`;
+    this.isMobileView ? (this.totalSlots = 4) : (this.totalSlots = 8);
+    if (this.totalSlotsCount > this.totalSlots) {
+      this.footerText = `View More (${this.totalSlotsCount - this.totalSlots})`;
     }
   }
 
@@ -65,7 +68,7 @@ export class EventLocationTracksComponent implements OnInit {
     if (!this.viewMoreSection) {
       this.footerText = `View Less`;
     } else {
-      this.footerText = `View More (${this.totalSlotsCount - 8})`;
+      this.footerText = `View More (${this.totalSlotsCount - this.totalSlots})`;
     }
   }
 }

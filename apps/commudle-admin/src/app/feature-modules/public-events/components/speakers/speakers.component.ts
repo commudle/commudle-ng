@@ -18,6 +18,8 @@ export class SpeakersComponent implements OnInit {
   viewMoreSection = true;
   footerText = 'View More';
   isLoading = true;
+  isMobileView: boolean;
+  totalSpeakers: number;
 
   speakers: IDataFormEntityResponseGroup[] = [];
   simpleAgendaSpeakers: IUserEventRegistration[] = [];
@@ -28,10 +30,15 @@ export class SpeakersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isMobileView = window.innerWidth <= 640;
     if (this.event.custom_agenda || this.event.custom_registration) {
       this.getCustomAgendaSpeakers();
     } else {
       this.getSimpleAgendaSpeakers();
+    }
+    this.isMobileView ? (this.totalSpeakers = 4) : (this.totalSpeakers = 5);
+    if (this.speakers.length + this.simpleAgendaSpeakers.length > this.totalSpeakers) {
+      this.footerText = `View More (${this.speakers.length + this.simpleAgendaSpeakers.length - this.totalSpeakers})`;
     }
   }
 
@@ -39,7 +46,7 @@ export class SpeakersComponent implements OnInit {
     this.dataFormEntityResponseGroupsService.pGetEventSpeakers(this.event.id).subscribe((data) => {
       this.speakers = data.data_form_entity_response_groups;
       this.isLoading = false;
-      this.footerText = `View More (${this.speakers.length - 5})`;
+      this.footerText = `View More (${this.speakers.length + this.simpleAgendaSpeakers.length - this.totalSpeakers})`;
     });
   }
 
@@ -47,7 +54,7 @@ export class SpeakersComponent implements OnInit {
     this.userEventRegistrationsService.pSpeakers(this.event.slug).subscribe((data) => {
       this.simpleAgendaSpeakers = data.user_event_registrations;
       this.isLoading = false;
-      this.footerText = `View More (${this.simpleAgendaSpeakers.length - 5})`;
+      this.footerText = `View More (${this.simpleAgendaSpeakers.length - this.totalSpeakers})`;
     });
   }
 
@@ -56,7 +63,7 @@ export class SpeakersComponent implements OnInit {
     if (!this.viewMoreSection) {
       this.footerText = `View Less`;
     } else {
-      this.footerText = `View More (${this.speakers.length + this.simpleAgendaSpeakers.length - 5})`;
+      this.footerText = `View More (${this.speakers.length + this.simpleAgendaSpeakers.length - this.totalSpeakers})`;
     }
   }
 }

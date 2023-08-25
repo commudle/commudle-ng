@@ -1,9 +1,10 @@
 nb-card {
-  @apply com-mx-0 com-mt-4 com-mb-0;
+  @apply com-mx-0 com-mt-4 com-mb-0 md:com-rounded-[10px] com-rounded-none;
 
   nb-card-header {
+    @apply com-py-4 md:com-px-6 com-px-4;
     h6 {
-      @apply com-font-semibold com-m-0;
+      @apply md:com-font-semibold com-font-bold com-m-0;
     }
   }
   nb-card-body {
@@ -25,7 +26,7 @@ nb-card {
   }
 
   .view-more {
-    @apply com-max-h-[460px] com-overflow-y-hidden;
+    @apply md:com-max-h-[460px] com-max-h-[405px] com-overflow-y-hidden;
   }
   .view-less {
     @apply com-max-h-max;
