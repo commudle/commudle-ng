@@ -19,6 +19,7 @@ import { EEmbeddedVideoStreamSources } from 'apps/shared-models/enums/embedded_v
 import { EEventType, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 
 @Component({
   selector: 'app-event-locations',
@@ -60,6 +61,7 @@ export class EventLocationsComponent implements OnInit {
     private windowService: NbWindowService,
     private toastLogService: LibToastLogService,
     private sanitizer: DomSanitizer,
+    private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.eventLocationForm = this.fb.group({
@@ -146,6 +148,8 @@ export class EventLocationsComponent implements OnInit {
       title: 'Add Location',
       context: { operationType: 'create' },
     });
+
+    this.initAutocomplete();
   }
 
   addEventLocation() {
@@ -180,6 +184,8 @@ export class EventLocationsComponent implements OnInit {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
     });
+
+    this.initAutocomplete();
   }
 
   editEventLocation(eventLocation) {
@@ -286,5 +292,18 @@ export class EventLocationsComponent implements OnInit {
 
   activateTabAdd() {
     this.tabsetEl.selectTab(this.addTabEl);
+  }
+
+  //Using native element javascript because the form input element on which  location is need to be applied is not getting rendered
+  initAutocomplete() {
+    const addressInput = document.getElementById('addressInput') as HTMLInputElement;
+    this.googlePlacesAutocompleteService.initAutocomplete(addressInput, '(regions)');
+    this.googlePlacesAutocompleteService.placeChanged.subscribe((place: google.maps.places.PlaceResult) => {
+      this.onLocationPlaceSelected(place);
+    });
+  }
+
+  onLocationPlaceSelected(place: google.maps.places.PlaceResult) {
+    this.eventLocationForm.get('location').get('address').setValue(place.formatted_address);
   }
 }
