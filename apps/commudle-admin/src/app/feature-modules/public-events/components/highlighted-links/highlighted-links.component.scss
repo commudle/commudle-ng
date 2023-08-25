@@ -1,5 +1,6 @@
 nb-card-body {
-  padding: 0.5rem !important;
+  @apply com-p-0;
+  // padding: 0.5rem !important;
 }
 
 .open-forms {
@@ -9,7 +10,6 @@ nb-card-body {
   @media screen and (min-width: 800px) {
     flex-direction: column;
   }
-
 
   .form-link {
     margin: 0.5rem;
@@ -27,6 +27,5 @@ nb-card-body {
         }
       }
     }
-
   }
 }

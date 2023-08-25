@@ -138,7 +138,10 @@
                 </p>
               </div>
             </div>
-            <div class="attending-members">
+            <div
+              *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) <= moment()"
+              class="attending-members"
+            >
               <app-attending-members
                 (hasInterestedMembers)="hasInterestedMembers = $event"
                 [community]="community"

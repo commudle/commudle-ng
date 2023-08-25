@@ -79,7 +79,7 @@
             </nb-list-item>
           </nb-list>
           <div
-            *ngIf="totalSlotsCount > totalSlots"
+            *ngIf="totalSlotsCount > totalSlots && !isBot"
             (click)="viewMore(); $event.stopPropagation()"
             class="view-more-section com-cursor-pointer"
           >
