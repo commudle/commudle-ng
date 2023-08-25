@@ -297,13 +297,17 @@ export class EventLocationsComponent implements OnInit {
   //Using native element javascript because the form input element on which  location is need to be applied is not getting rendered
   initAutocomplete() {
     const addressInput = document.getElementById('addressInput') as HTMLInputElement;
-    this.googlePlacesAutocompleteService.initAutocomplete(addressInput, '(regions)');
+    this.googlePlacesAutocompleteService.initAutocomplete(addressInput, 'establishment');
     this.googlePlacesAutocompleteService.placeChanged.subscribe((place: google.maps.places.PlaceResult) => {
       this.onLocationPlaceSelected(place);
     });
   }
 
   onLocationPlaceSelected(place: google.maps.places.PlaceResult) {
-    this.eventLocationForm.get('location').get('address').setValue(place.formatted_address);
+    this.eventLocationForm
+      .get('location')
+      .get('address')
+      .setValue(place.name + ', ' + place.formatted_address);
+    this.eventLocationForm.get('location').get('map_link').setValue(place.url);
   }
 }
