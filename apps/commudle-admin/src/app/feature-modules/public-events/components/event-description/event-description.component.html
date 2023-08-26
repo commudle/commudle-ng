@@ -11,14 +11,20 @@
       [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
     ></app-share-button>
   </nb-card-header>
-  <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
-    <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
+  <nb-card-body>
+    <div
+      [innerHTML]="
+        showFullDescription
+          ? (event.description | linky : { sanitizeHtml: false })
+          : (event.description | linky : { sanitizeHtml: false } | truncatetext : 1000)
+      "
+    ></div>
   </nb-card-body>
-  <nb-card-footer (click)="viewMore()" class="com-cursor-pointer">
+  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 1000" class="com-cursor-pointer">
     <div>
       {{ footerText }}
-      <nb-icon *ngIf="viewMoreSection" icon="arrow-ios-downward-outline"></nb-icon>
-      <nb-icon *ngIf="!viewMoreSection" icon="arrow-ios-upward-outline"></nb-icon>
+      <nb-icon *ngIf="!showFullDescription" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="showFullDescription" icon="arrow-ios-upward-outline"></nb-icon>
     </div>
   </nb-card-footer>
 </nb-card>

@@ -50,7 +50,7 @@
       }
 
       nb-card {
-        @apply com-mb-0 com-mx-0 md:com-ml-4 com-ml-0 md:com-rounded-[10px] com-rounded-none;
+        @apply com-mb-0 com-mx-0 md:com-ml-4 com-ml-0 md:com-rounded-[10px] com-rounded-none com-flex md:com-sticky md:com-top-32;
         .event-date-time {
           @apply com-p-0 com-pb-4 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
           .event-date,

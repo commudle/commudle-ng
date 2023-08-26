@@ -1,5 +1,5 @@
 .sponsors {
-  @apply com-m-0 com-mt-4;
+  @apply com-mx-0 com-mt-4 com-mb-0 md:com-rounded-[10px] com-rounded-none;
   nb-list-item.sponsor {
     border-top: none;
     a {
@@ -8,17 +8,14 @@
       text-decoration: none;
 
       .logo {
-        width: 100px;
-        overflow: hidden;
+        @apply com-flex com-items-center com-m-0 com-mr-3 com-w-8 com-h-8 com-flex-shrink-0 com-overflow-hidden com-object-contain;
         img {
           width: 100%;
         }
       }
 
       p.name {
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-left: 5px;
+        @apply com-m-0 com-font-semibold;
       }
     }
   }

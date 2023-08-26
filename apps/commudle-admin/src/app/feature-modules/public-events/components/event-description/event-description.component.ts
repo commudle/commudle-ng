@@ -14,21 +14,17 @@ export class EventDescriptionComponent implements OnInit {
 
   @Input() share?: boolean;
 
-  viewMoreSection = true;
   footerText = 'View More';
-  descriptionTextHeight: number;
+  showFullDescription = false;
   environment = environment;
 
   constructor() {}
 
-  ngOnInit() {
-    // this.descriptionTextHeight = document.querySelector('nb-card-body').clientHeight;
-    // this.viewMoreSection = this.descriptionTextHeight > 200;
-  }
+  ngOnInit() {}
 
   viewMore() {
-    this.viewMoreSection = !this.viewMoreSection;
-    if (!this.viewMoreSection) {
+    this.showFullDescription = !this.showFullDescription;
+    if (!this.showFullDescription) {
       this.footerText = `View Less`;
     } else {
       this.footerText = `View More`;

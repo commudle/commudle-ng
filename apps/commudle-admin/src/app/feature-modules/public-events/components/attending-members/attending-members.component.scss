@@ -1,13 +1,13 @@
 .interested-members {
   .heading {
-    @apply com-text-base com-font-normal com-mb-4;
+    @apply com-text-base com-font-normal com-text-Auro-Metal-Saurus com-mb-4;
   }
   .users {
     display: flex;
     flex-wrap: wrap;
 
     .user {
-      @apply com-flex com-items-center com-ml-[-6px];
+      @apply com-flex com-items-center com-m-0 com-ml-[-12px];
       .profile-picture {
         width: 35px;
         height: 35px;
