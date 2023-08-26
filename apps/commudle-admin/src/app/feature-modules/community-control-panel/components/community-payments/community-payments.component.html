@@ -55,7 +55,7 @@
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Active</th>
-      <th>Actions</th>
+      <!-- <th>Actions</th> -->
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
       <th>Bank Details</th>
@@ -64,10 +64,9 @@
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
-      <td>
+      <!-- <td>
         <a>{{ stripeAccount.details.external_accounts.url }}</a>
-
-      </td>
+      </td> -->
       <td>
         <p>{{ stripeAccount.details.charges_enabled }}</p>
       </td>

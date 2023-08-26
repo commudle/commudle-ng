@@ -81,8 +81,8 @@
               <nb-icon icon="edit" status="success"></nb-icon>
               <span class="title">Edit Details</span>
             </a>
-            <a [routerLink]="['payments']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="edit" status="success"></nb-icon>
+            <a [routerLink]="['payments']" class="d-flex" routerLinkActive="active" *ngIf="community.payments_enabled">
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
               <span class="title">Payments</span>
             </a>
           </div>

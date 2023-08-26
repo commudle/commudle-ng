@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StripeHandlerService, countries_details } from '@commudle/shared-services';
@@ -10,12 +10,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './community-payments.component.html',
   styleUrls: ['./community-payments.component.scss'],
 })
-export class CommunityPaymentsComponent implements OnInit {
+export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   isLoading = false;
   communityId: number;
   ac: string;
   stripeAccounts = [];
-  subscription: Subscription[] = [];
+  subscriptions: Subscription[] = [];
   isUpdating = false;
   stripeConnectAccountForm;
   dialogRef: NbDialogRef<any>;
@@ -41,7 +41,6 @@ export class CommunityPaymentsComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
     this.getStripeAccounts();
@@ -51,28 +50,32 @@ export class CommunityPaymentsComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    this.dialogRef.close();
+  }
+
   openDialogBox(StripeConnectAccount: TemplateRef<any>) {
     this.dialogRef = this.dialogService.open(StripeConnectAccount);
   }
 
-
   connectStripeAccount() {
     const currentUrl = this.router.url;
     this.isLoading = true;
-    this.subscription.push(
+    this.subscriptions.push(
       this.stripeHandlerService
         .connectStripeAccount(this.stripeConnectAccountForm, currentUrl, this.communityId)
         .subscribe((data) => {
           this.isLoading = false;
           this.stripeConnectAccountForm.reset();
           this.dialogRef.close();
-          window.open(data.url, '_blank');
+          window.open(data.url);
         }),
     );
   }
 
   getStripeAccounts() {
-    this.subscription.push(
+    this.subscriptions.push(
       this.stripeHandlerService.indexStripeAccount(this.communityId).subscribe((data) => {
         this.stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       }),
@@ -81,7 +84,7 @@ export class CommunityPaymentsComponent implements OnInit {
 
   retrieveStripeAccount(uuid) {
     this.isUpdating = true;
-    this.subscription.push(
+    this.subscriptions.push(
       this.stripeHandlerService.retrieveStripeAccount(uuid).subscribe((data) => {
         for (let i = 0; i < this.stripeAccounts.length; i++) {
           if (this.stripeAccounts[i].uuid === this.ac) {

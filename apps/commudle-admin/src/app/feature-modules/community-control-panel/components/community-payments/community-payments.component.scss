@@ -17,3 +17,7 @@ th {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
   }
 }
+
+.select:focus-within {
+  @apply com-border com-border-solid com-border-primary-500;
+}
