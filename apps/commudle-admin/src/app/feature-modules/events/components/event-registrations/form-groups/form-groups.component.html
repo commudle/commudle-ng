@@ -24,7 +24,9 @@
                 *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK && community.payments_enabled"
                 class="com-mt-2"
               >
-                <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid"> Paid </nb-toggle>
+                <nb-toggle (checkedChange)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid">
+                  Paid Ticket
+                </nb-toggle>
               </div>
             </div>
 
