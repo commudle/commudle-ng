@@ -216,11 +216,11 @@
         </div>
       </form>
       <div *ngIf="isLoading">
-        <p class="com-text-center com-font-bold">Connecting to Stripe Account......</p>
+        <p class="com-text-center com-font-bold com-mb-1">Connecting to Stripe Account......</p>
+        <p class="com-text-center com-font-light com-text-xs com-my-1">This might take a moment</p>
         <app-loading-spinner></app-loading-spinner>
       </div>
     </nb-card-body>
-
     <nb-card-footer>
       <div class="save-button-bottom">
         <button
@@ -231,7 +231,6 @@
           size="small"
           status="primary"
           type="submit"
-          [nbSpinner]="isLoading"
         >
           Proceed
         </button>

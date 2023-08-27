@@ -266,7 +266,7 @@
     </nb-card-body>
     <nb-card-footer class="com-flex com-justify-between">
       <button nbButton status="primary" (click)="pay()">Pay</button>
-      <button nbButton status="danger" (click)="ref.close()">Cancel</button>
+      <button nbButton ghost (click)="ref.close()">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
