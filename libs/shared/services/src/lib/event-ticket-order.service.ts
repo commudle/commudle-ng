@@ -40,4 +40,11 @@ export class EventTicketOrderService {
     const params = new HttpParams().set('stripe_payment_intent_id', stripePaymentIntentId);
     return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CHECK_PAYMENT), params);
   }
+
+  checkRefundAmount(eventTicketOrderId): Observable<any> {
+    const params = new HttpParams().set('event_ticket_order_id', eventTicketOrderId).set('all', true);
+    return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CHECK_REFUND_AMOUNT), {
+      params,
+    });
+  }
 }

@@ -1,0 +1,18 @@
+<table class="data" *ngFor="let detail of eto">
+  <tr>
+    <td>Amount Paid</td>
+    <td>{{ detail.amount / 100 }}</td>
+  </tr>
+
+  <tr>
+    <td>Users</td>
+    <td class="com-flex com-flex-col" *ngFor="let user of detail.eto_users">
+      <span>{{ user.name }}</span>
+      <span>{{ user.email }}</span>
+      <span>{{ user.phone }}</span>
+    </td>
+  </tr>
+  <div class="com-mt-4" *ngIf="detail.status">
+    <button nbButton (click)="refund(detail.uuid)">Create Refund</button>
+  </div>
+</table>
