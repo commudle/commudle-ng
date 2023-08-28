@@ -67,7 +67,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.hmsLiveChannel.unsubscribe(this.currentUser.id);
+    this.hmsLiveChannel.unsubscribe(this.currentUser?.id);
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
