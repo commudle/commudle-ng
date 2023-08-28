@@ -2,7 +2,7 @@
   <div class="user-details-container">
     <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     <p class="contact-details">
-      <small>{{ user.email }}</small>
+      <small>{{ user.email === 'Not Visible' ? 'Email: Not Visible' : user.email }}</small>
     </p>
     <div class="social-links">
       <a *ngIf="user.github" href="{{ user.github }}" target="_blank">
