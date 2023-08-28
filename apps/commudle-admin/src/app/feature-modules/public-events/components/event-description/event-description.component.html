@@ -16,11 +16,11 @@
       [innerHTML]="
         showFullDescription
           ? (event.description | linky : { sanitizeHtml: false })
-          : (event.description | linky : { sanitizeHtml: false } | truncatetext : 1000)
+          : (event.description | linky : { sanitizeHtml: false } | truncatetext : 2500)
       "
     ></div>
   </nb-card-body>
-  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 1000" class="com-cursor-pointer">
+  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 2500" class="com-cursor-pointer">
     <div>
       {{ footerText }}
       <nb-icon *ngIf="!showFullDescription" icon="arrow-ios-downward-outline"></nb-icon>
