@@ -5,20 +5,20 @@
 }
 
 .commudle-editor {
-  @apply com-flex com-relative com-mb-2 com-pt-2 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+  @apply com-flex com-relative com-items-end;
 
   commudle-editor-menu {
   }
 
   tiptap {
-    @apply com-block com-bg-transparent com-w-full com-outline-none com-py-3 com-min-h-[40px];
+    @apply com-block com-bg-transparent com-w-full com-outline-none com-py-1.5 com-min-h-[40px];
 
     ::ng-deep {
       div.ProseMirror {
         @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-h-full com-break-words;
 
         p {
-          @apply com-text-xs com-font-normal com-m-0;
+          @apply com-mt-0 com-mb-0.5;
         }
 
         a {
@@ -36,7 +36,7 @@
     }
 
     &.editable {
-      @apply com-border com-border-gray-300 com-border-solid com-rounded com-max-h-24 com-px-4 com-overflow-y-auto;
+      @apply com-border com-border-gray-300 com-border-solid com-rounded com-max-h-24 com-px-1.5 com-overflow-y-auto;
 
       ::ng-deep {
         div.ProseMirror {
@@ -67,9 +67,9 @@
   }
 
   .emoji-button {
-    @apply md:com-mx-4 com-ml-3 com-mr-4 com-p-0 com-bg-white com-border-0;
+    @apply com-mr-2 com-p-0;
     p {
-      @apply com-text-xl com-m-0 md:com-px-10px com-p-0;
+      @apply com-text-xl com-m-0 com-p-6px;
     }
   }
 
@@ -78,10 +78,6 @@
   }
 
   .submit-button {
-    @apply md:com-mx-4 com-ml-4 com-mr-3 com-p-0 com-border-0;
-
-    nb-icon {
-      @apply com-text-xl com-m-0;
-    }
+    @apply com-ml-2;
   }
 }
