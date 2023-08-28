@@ -140,6 +140,10 @@
   <ng-container
     *ngIf="evs && currentUser && embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.COMMUDLE"
   >
-    <commudle-event-streaming [embeddedVideoStream]="evs"></commudle-event-streaming>
+    <commudle-event-streaming
+      (refreshEmbeddedVideoStream)="getEmbeddedVideoStream()"
+      [embeddedVideoStream]="evs"
+      [event]="event"
+    ></commudle-event-streaming>
   </ng-container>
 </div>

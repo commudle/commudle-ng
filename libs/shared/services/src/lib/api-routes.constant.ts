@@ -156,6 +156,8 @@ export const API_ROUTES = {
     PUBLIC: {
       GET: 'api/v2/embedded_video_streams/public',
     },
+    CREATE_LIVESTREAM: 'api/v2/embedded_video_streams/create_livestream',
+    DELETE_LIVESTREAM: 'api/v2/embedded_video_streams/delete_livestream',
   },
 
   // events

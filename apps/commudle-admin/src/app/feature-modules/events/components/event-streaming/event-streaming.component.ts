@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService, YoutubeLoginProvider } from '@commudle/auth';
-import { ICommunityAuthToken } from '@commudle/shared-models';
+import { ICommunityAuthToken, IEmbeddedVideoStream, IEvent } from '@commudle/shared-models';
 import { ToastrService } from '@commudle/shared-services';
 import { CommunityAuthTokensService } from 'apps/commudle-admin/src/app/services/community-auth-tokens.service';
-import { IEmbeddedVideoStream } from 'apps/shared-models/embedded_video_stream.model';
+import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,17 +13,26 @@ import { Subscription } from 'rxjs';
 })
 export class EventStreamingComponent implements OnInit {
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
+  @Input() event: IEvent;
+
+  @Output() refreshEmbeddedVideoStream: EventEmitter<any> = new EventEmitter();
 
   communityAuthToken: ICommunityAuthToken;
+  loaders = {
+    createStream: false,
+    deleteStream: false,
+  };
 
   subscriptions: Subscription[] = [];
 
   constructor(
-    // TODO: Remove google login popup
     private authService: AuthService,
     private communityAuthTokensService: CommunityAuthTokensService,
+    private embeddedVideoStreamService: EmbeddedVideoStreamsService,
     private toastrService: ToastrService,
-  ) {}
+  ) {
+    authService.initialize_one(YoutubeLoginProvider.PROVIDER_ID);
+  }
 
   ngOnInit(): void {
     this.getToken();
@@ -47,6 +56,7 @@ export class EventStreamingComponent implements OnInit {
           if (res) {
             this.toastrService.successDialog('Connected to Youtube');
             this.getToken();
+            this.refreshEmbeddedVideoStream.emit();
           }
         }),
     );
@@ -63,6 +73,34 @@ export class EventStreamingComponent implements OnInit {
       this.communityAuthTokensService.deleteToken(this.embeddedVideoStream.id, 'youtube').subscribe((res) => {
         if (res) {
           this.toastrService.successDialog('Disconnected from Youtube');
+          this.getToken();
+          this.refreshEmbeddedVideoStream.emit();
+        }
+      }),
+    );
+  }
+
+  createStream() {
+    this.loaders.createStream = true;
+    this.subscriptions.push(
+      this.embeddedVideoStreamService.createLivestream(this.event.id, 'Event').subscribe((res) => {
+        if (res) {
+          this.toastrService.successDialog('Stream created');
+          this.refreshEmbeddedVideoStream.emit();
+          this.loaders.createStream = false;
+        }
+      }),
+    );
+  }
+
+  deleteStream() {
+    this.loaders.deleteStream = true;
+    this.subscriptions.push(
+      this.embeddedVideoStreamService.deleteLivestream(this.event.id, 'Event').subscribe((res) => {
+        if (res) {
+          this.toastrService.successDialog('Stream deleted');
+          this.refreshEmbeddedVideoStream.emit();
+          this.loaders.deleteStream = false;
         }
       }),
     );

@@ -1,7 +1,24 @@
-<ng-container *ngIf="communityAuthToken; else loginButton">
-  <button (click)="logoutFromYoutube()" nbButton>Disconnect from YouTube</button>
-</ng-container>
+<div class="streaming">
+  <ng-container *ngIf="communityAuthToken; else loginButton">
+    <button (click)="logoutFromYoutube()" nbButton>Disconnect from YouTube</button>
 
-<ng-template #loginButton>
-  <button (click)="loginToYoutube()" nbButton>Connect to YouTube</button>
-</ng-template>
+    <ng-container *ngIf="embeddedVideoStream.youtube_broadcast; else createStreamButton">
+      <button (click)="deleteStream()" [nbSpinner]="loaders.deleteStream" nbButton>Delete stream</button>
+      <a
+        href="https://studio.youtube.com/video/{{ embeddedVideoStream.youtube_broadcast.broadcast_id }}/livestreaming"
+        nbButton
+        target="_blank"
+      >
+        Go to studio
+      </a>
+    </ng-container>
+
+    <ng-template #createStreamButton>
+      <button (click)="createStream()" [nbSpinner]="loaders.createStream" nbButton>Create new stream</button>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loginButton>
+    <button (click)="loginToYoutube()" nbButton>Connect to YouTube</button>
+  </ng-template>
+</div>
