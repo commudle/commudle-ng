@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';

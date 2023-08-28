@@ -118,7 +118,7 @@
       <div>
         <label fullWidth>
           Address*
-          <input formControlName="address" fullWidth nbInput type="text" />
+          <textarea formControlName="address" fullWidth nbInput type="text" id="addressInput"></textarea>
         </label>
         <span
           *ngIf="
@@ -219,7 +219,8 @@
           >
             Required Field
           </span>
-          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea>
+          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea
+          >
         </label>
       </div>
 
@@ -259,7 +260,8 @@
           <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
         </label>
       </div>
-    </div> -->
+    </div>
+    -->
 
     <div class="save-button-bottom">
       <button [disabled]="!eventLocationForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
