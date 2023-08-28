@@ -10,13 +10,5 @@ nb-card {
 
   nb-card-body {
     @apply com-px-6 com-pt-[30px] com-pb-[26px];
-
-    div {
-      ::ng-deep {
-        p {
-          @apply com-m-0;
-        }
-      }
-    }
   }
 }
