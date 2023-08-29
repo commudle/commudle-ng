@@ -260,4 +260,14 @@ export class EventsService {
       },
     );
   }
+
+  pGetEventsInterestedMembers(event_id?): Observable<IUsers> {
+    let params = new HttpParams();
+    if (event_id) {
+      params = params.set('event_id', event_id);
+    }
+    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INTERESTED_MEMBERS), {
+      params,
+    });
+  }
 }
