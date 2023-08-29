@@ -7,10 +7,18 @@ import { EventTicketOrderService } from '@commudle/shared-services';
   templateUrl: './user-payment-details.component.html',
   styleUrls: ['./user-payment-details.component.scss'],
 })
-export class UserPaymentDetailsComponent {
+export class UserPaymentDetailsComponent implements OnInit {
   @Input() eto;
   subscription: Subscription[] = [];
   constructor(private eventTicketOrderService: EventTicketOrderService) {}
+
+  ngOnInit(): void {
+    this.eto;
+    console.log(
+      '🚀 ~ file: user-payment-details.component.ts:17 ~ UserPaymentDetailsComponent ~ ngOnInit ~ this.eto;:',
+      this.eto,
+    );
+  }
 
   refund(eventTicketOrderId) {
     this.subscription.push(
