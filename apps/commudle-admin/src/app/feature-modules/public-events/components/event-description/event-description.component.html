@@ -14,13 +14,13 @@
   <nb-card-body>
     <div
       [innerHTML]="
-        showFullDescription
-          ? (event.description | linky : { sanitizeHtml: false })
-          : (event.description | linky : { sanitizeHtml: false } | truncatetext : 2500)
+        !isBot && !showFullDescription
+          ? (event.description | linky : { sanitizeHtml: false } | truncatetext : 2500)
+          : (event.description | linky : { sanitizeHtml: false })
       "
     ></div>
   </nb-card-body>
-  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 2500" class="com-cursor-pointer">
+  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 2500 && !isBot" class="com-cursor-pointer">
     <div>
       {{ footerText }}
       <nb-icon *ngIf="!showFullDescription" icon="arrow-ios-downward-outline"></nb-icon>

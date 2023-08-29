@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'app-event-description',
@@ -17,17 +18,24 @@ export class EventDescriptionComponent implements OnInit {
   footerText = 'View More';
   showFullDescription = false;
   environment = environment;
+  isBot: boolean;
 
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.seoService.isBot) {
+      this.isBot = true;
+    } else {
+      this.isBot = false;
+    }
+  }
 
   viewMore() {
     this.showFullDescription = !this.showFullDescription;
     if (!this.showFullDescription) {
-      this.footerText = `View Less`;
-    } else {
       this.footerText = `View More`;
+    } else {
+      this.footerText = `View Less`;
     }
   }
 }

@@ -5,6 +5,7 @@ import { IEventLocation } from 'apps/shared-models/event-location.model';
 import * as moment from 'moment';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import * as _ from 'lodash';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -24,12 +25,16 @@ export class EventLocationTracksComponent implements OnInit {
   footerText = 'View More';
   visibility: boolean;
 
-  constructor(private trackSlotsService: TrackSlotsService) {}
+  constructor(private trackSlotsService: TrackSlotsService, private seoService: SeoService) {}
 
   ngOnInit() {
-    const visibility = this.eventLocation.event_location_tracks.length <= 2;
+    if (this.seoService.isBot) {
+      this.visibility = true;
+    } else {
+      this.visibility = this.eventLocation.event_location_tracks.length <= 2;
+    }
     for (const event_location_track of this.eventLocation.event_location_tracks) {
-      this.trackSlotVisibility[event_location_track.id] = visibility;
+      this.trackSlotVisibility[event_location_track.id] = this.visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
   }
