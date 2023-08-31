@@ -195,7 +195,7 @@ export class FormGroupsComponent implements OnInit {
       },
     });
   }
-  
+
   changeDataFormValue(event) {
     if (event.value === 'createNewForm') {
       this.openNewFormWindow();
@@ -205,7 +205,6 @@ export class FormGroupsComponent implements OnInit {
   onSwitchToggled(eventDataFormEntityGroupId, index) {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
       this.eventDataFormEntityGroups[index].is_paid = data;
-      this.toastLogService.successDialog('Payment Enabled');
       this.checkDiscountCode();
     });
   }
