@@ -18,11 +18,4 @@ export class CommunityBuildCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  getDescription(): string {
-    // Get description from html
-    const description = document.createElement('div');
-    description.innerHTML = this.communityBuild.description;
-    return description.textContent || description.innerText;
-  }
 }
