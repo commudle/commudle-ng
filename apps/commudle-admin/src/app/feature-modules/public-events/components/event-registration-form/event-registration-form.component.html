@@ -1,0 +1,16 @@
+<div *ngIf="openForm">
+  <div class="open-forms">
+    <a
+      [routerLink]="['/fill-form', openForm.data_form_entity_id]"
+      nbButton
+      nbTooltip="{{ openForm.name }}"
+      size="small"
+      status="primary"
+    >
+      <nb-icon *ngIf="!openForm.already_filled" icon="people"></nb-icon>
+      <nb-icon *ngIf="openForm.already_filled" class="edit-icon" icon="edit"></nb-icon>
+
+      {{ openForm.name }}
+    </a>
+  </div>
+</div>

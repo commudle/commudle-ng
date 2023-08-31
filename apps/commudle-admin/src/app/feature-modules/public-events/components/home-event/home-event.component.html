@@ -159,7 +159,7 @@
               View attended members
             </button>
             <div *ngIf="moment() < moment(event.end_time)" class="registrations-buttons">
-              <div class="registration-form">
+              <div class="forms">
                 <app-highlighted-links
                   (hasOpenForms)="hasOpenForms = $event"
                   *ngIf="event.editable || event.event_status.name === EEventStatuses.OPEN"
@@ -168,8 +168,19 @@
                 ></app-highlighted-links>
               </div>
             </div>
+            <!-- <div class="registration-form">
+                <commudle-event-registration-form></commudle-event-registration-form>
+              </div> -->
           </nb-card-body>
         </nb-card>
+        <div class="registration-form">
+          <commudle-event-registration-form
+            (hasRegistrationForm)="hasRegistrationForm = $event"
+            *ngIf="event.editable || event.event_status.name === EEventStatuses.OPEN"
+            [community]="community"
+            [event]="event"
+          ></commudle-event-registration-form>
+        </div>
         <nb-card *ngIf="moment() >= moment(event.end_time) && !event.custom_agenda">
           <nb-card-body>
             <p class="text-info">

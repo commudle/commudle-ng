@@ -79,7 +79,7 @@
 
         .registrations-buttons {
           @apply com-p-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
-          .registration-form {
+          .forms {
             @apply com-mb-4;
           }
         }
@@ -87,6 +87,10 @@
 
       app-messages {
         @apply com-block com-h-96;
+      }
+
+      .registration-form {
+        @apply md:com-hidden com-flex com-sticky com-top-12;
       }
     }
   }
