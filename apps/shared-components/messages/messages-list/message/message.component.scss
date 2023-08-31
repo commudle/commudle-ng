@@ -8,7 +8,7 @@ p {
 }
 
 .message-container {
-  padding: $space-8 0 $space-8 $space-8;
+  @apply com-px-0 com-py-3;
 
   .prefix {
     width: 100%;
@@ -24,9 +24,7 @@ p {
       .user {
         .name {
           a {
-            color: inherit;
-            font-weight: $fw-600;
-            text-decoration: none;
+            @apply com-text-sm com-font-semibold com-text-black com-no-underline;
 
             &:hover {
               text-decoration: underline;
@@ -41,7 +39,7 @@ p {
         }
 
         .time {
-          @apply com-ml-2 com-text-xs com-text-gray-500;
+          @apply com-ml-3 com-text-xs com-font-normal com-text-gray-500;
         }
       }
     }
@@ -81,7 +79,7 @@ p {
       }
 
       nb-icon {
-        font-size: $fs-13;
+        @apply com-text-lg;
       }
     }
   }

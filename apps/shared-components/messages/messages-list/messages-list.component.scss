@@ -9,9 +9,7 @@
   position: relative;
 
   .messages-list {
-    height: 100%;
-    overflow: auto;
-    padding-right: $space-8;
+    @apply md:com-px-14 com-px-4 com-h-full com-overflow-auto;
 
     &.compressed {
       height: calc(100% - 32px);

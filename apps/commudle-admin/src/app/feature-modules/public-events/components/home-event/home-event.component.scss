@@ -1,7 +1,23 @@
 .base-layout {
+  @apply com-mt-4 com-mb-8;
   .container {
+    .community-badge {
+      @apply md:com-mb-2 com-mb-3 md:com-mx-0 com-mx-3;
+    }
+    .no-header-image {
+      @apply com-bg-white md:com-pl-[42px] md:com-py-[42px] com-px-4 com-py-7 md:com-pr-4 com-p-0 com-rounded-t-[10px] com-border com-border-solid com-border-Bright-Gray com-border-b-0;
+
+      h2 {
+        @apply com-m-0 md:com-text-[32px] com-text-2xl com-text-Yankees-Blue;
+      }
+    }
+
+    .event-header-image {
+      @apply com-m-0;
+    }
+
     .home-event-menu {
-      @apply com-sticky com-top-14 com-z-10;
+      @apply com-sticky com-top-14 com-z-10 com-m-0 com-rounded-t-none;
 
       nb-card-body {
         @apply com-px-0;
@@ -20,15 +36,58 @@
 
     .two-column-layout {
       .home-event-discussion {
+        @apply com-mx-0 md:com-rounded-[10px] com-rounded-none;
+        nb-card-header {
+          @apply com-py-4 md:com-px-6 com-px-4;
+          h6 {
+            @apply md:com-font-semibold com-font-bold;
+          }
+        }
         nb-card-body {
           @apply com-p-0;
           overflow: initial;
         }
       }
-    }
 
-    app-messages {
-      @apply com-block com-h-96;
+      nb-card {
+        @apply com-mb-0 com-mx-0 md:com-ml-4 com-ml-0 md:com-rounded-[10px] com-rounded-none com-flex md:com-sticky md:com-top-32;
+        .event-date-time {
+          @apply com-p-0 com-pb-4 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+          .event-date,
+          .event-timing {
+            @apply com-flex com-flex-row;
+            nb-icon {
+              @apply com-text-lg com-mr-2;
+            }
+            p {
+              @apply com-font-semibold com-m-0;
+            }
+          }
+
+          .event-timing {
+            @apply com-mt-2;
+          }
+        }
+
+        .attending-members {
+          @apply com-pt-3 com-pb-5 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+        }
+
+        .view-attended-members-button {
+          @apply com-mt-4;
+        }
+
+        .registrations-buttons {
+          @apply com-p-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+          .registration-form {
+            @apply com-mb-4;
+          }
+        }
+      }
+
+      app-messages {
+        @apply com-block com-h-96;
+      }
     }
   }
 }

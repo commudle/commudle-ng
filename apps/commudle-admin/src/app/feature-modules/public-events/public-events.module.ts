@@ -52,6 +52,7 @@ import { LinkyModule } from 'ngx-linky';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/featur
     SessionPageViewersComponent,
     AttendedMembersComponent,
     AttendedMembersCardComponent,
+    EventsAgendaComponent,
   ],
   imports: [
     CommonModule,
