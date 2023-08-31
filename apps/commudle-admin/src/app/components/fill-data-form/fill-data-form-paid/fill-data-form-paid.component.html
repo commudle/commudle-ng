@@ -300,10 +300,7 @@
 <ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      <div class="com-flex com-gap-3 com-flex-col">
-        <span> Complete Payment</span>
-        <div *ngIf="showTimer" class="com-text-xs com-text-red-500">Time Left: {{ formattedTimeRemaining }}</div>
-      </div>
+      <span> Complete Payment with Stripe</span>
       <div>
         <button (click)="ref.close()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
@@ -311,13 +308,19 @@
       </div>
     </nb-card-header>
     <nb-card-body class="com-min-h-[250px]">
+      <div class="com-flex com-justify-between com-mb-4">
+        <div class="com-text-base com-font-semibold">
+          {{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ totalPrice + totalTaxAmount }}
+        </div>
+        <div *ngIf="showTimer" class="com-text-xs com-text-red-500">Time Left: {{ formattedTimeRemaining }}</div>
+      </div>
       <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
         <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
       </ng-container>
     </nb-card-body>
     <nb-card-footer class="com-flex com-justify-between">
-      <button nbButton status="primary" (click)="pay()">Pay</button>
-      <button nbButton ghost (click)="ref.close()">Cancel</button>
+      <button nbButton fullWidth status="primary" (click)="pay()">Pay</button>
+      <button nbButton fullWidth ghost (click)="ref.close()">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
