@@ -25,7 +25,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
 import { StripeElementsOptions } from '@stripe/stripe-js';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faRotateRight, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/data-form-fill.component';
 @Component({
@@ -89,8 +89,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   ticketPaidAlready: boolean;
 
   faIcon = {
-    faArrowRight,
+    faRotateRight,
     faCircleCheck,
+    faTriangleExclamation,
   };
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -490,7 +491,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
           if (result.paymentIntent.status === 'succeeded') {
             this.paymentDialogRef.close();
             this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
-
             this.eventTicketOrderService.checkPayment(this.stripePaymentIntendId).subscribe((data) => {});
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }

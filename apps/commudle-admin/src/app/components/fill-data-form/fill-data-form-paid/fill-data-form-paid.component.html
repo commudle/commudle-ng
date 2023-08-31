@@ -359,12 +359,20 @@
 </ng-template>
 
 <ng-template #paymentErrorDialog let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card class="com-w-96">
     <nb-card-body>
-      <p class="com-text-base com-font-semibold">{{ data | capitalizeAndRemoveUnderscore }}</p>
-      <button nbButton status="base" (click)="reload(); ref.close()">
-        <fa-icon [icon]="faIcon.faArrowRight"></fa-icon> Refresh
-      </button>
+      <div class="com-flex com-justify-center com-my-3">
+        <div class="com-flex com-bg-red-100 com-p-1 com-px-2 com-rounded-md">
+          <fa-icon [icon]="faIcon.faTriangleExclamation" class="com-text-4xl com-text-red-500 com-mx-auto"></fa-icon>
+        </div>
+      </div>
+      <p class="com-text-sm com-font-semibold">Seems like there is a problem with payment</p>
+      <p (click)="reload(); ref.close()" class="com-text-primary-500 com-cursor-pointer com-p-1">
+        <fa-icon [icon]="faIcon.faRotateRight" class="com-mr-2"></fa-icon>Refresh to retry payment
+      </p>
+      <p class="com-text-xs com-font-normal com-italic">
+        If money was deducted from your account, please reach out to our support
+      </p>
     </nb-card-body>
   </nb-card>
 </ng-template>
