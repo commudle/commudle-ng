@@ -44,7 +44,7 @@
                 [dataFormId]="dataFormEntity.data_form_id"
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
-                submitButtonText="Submit & Pay"
+                [submitButtonText]="ticketPaidAlready ? 'Save' : 'Submit & Pay'"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
@@ -55,191 +55,242 @@
         </div>
         <div class="right-column payment-details-section" *ngIf="paymentDetails">
           <nb-card *ngIf="ticketPaidAlready">
-            <nb-card-body class="!com-p-4">
-              <div class="com-text-lg com-font-medium">Ticket Already Paid For</div>
-              <div>
-                <div
-                  *ngFor="let user of eventTicketOrders[0].eto_users"
-                  class="com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-p-2"
-                >
-                  <div>{{ user.name | titlecase }}</div>
-                  <div>{{ user.email }}</div>
+            <nb-card-body>
+              <div class="com-flex com-justify-center com-my-6">
+                <div class="com-flex com-flex-col com-gap-1">
+                  <div class="com-flex">
+                    <fa-icon
+                      [icon]="faIcon.faCircleCheck"
+                      class="com-text-5xl com-text-Caribbean-Green com-mx-auto"
+                    ></fa-icon>
+                  </div>
+                  <div class="com-text-xl com-font-semibold">Payment Successful!</div>
                 </div>
               </div>
-            </nb-card-body>
-          </nb-card>
-          <nb-card *ngIf="!ticketPaidAlready">
-            <nb-card-body>
+              <div class="com-px-4 com-py-2 com-text-base com-italic">Order Summary</div>
               <div class="payment-deatils !com-flex-col">
                 <div class="com-flex com-justify-between">
                   <span class="heading">Price </span>
                   <span class="value">
-                    <span class="heading com-mr-2">x{{ forms.length }}</span>
-                    <span> {{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }} </span>
+                    <span class="heading com-mr-2">x{{ eventTicketOrders[0].eto_users.length }}</span>
+                    <span>
+                      {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                      {{ basePrice * eventTicketOrders[0].eto_users.length }}
+                    </span>
                   </span>
                 </div>
-                <div class="com-flex com-justify-between com-mt-4">
-                  <span class="heading">Sub Total</span>
-                  <span class="value"
-                    >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice * this.forms.length }}</span
-                  >
-                </div>
               </div>
-              <div class="payment-deatils" *ngIf="discountAmount > 0">
+              <div class="payment-deatils" *ngIf="eventTicketOrders[0].discount_amount > 0">
                 <span class="heading">Discount Amount</span>
                 <span class="value">
-                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ discountAmount }}
+                  {{ eventTicketOrders[0].currency === 'inr' ? '₹' : '$' }}
+                  {{ eventTicketOrders[0].discount_amount / 100 }}
                 </span>
               </div>
-              <div class="payment-deatils" *ngIf="totalTaxAmount > 0">
+              <div class="payment-deatils" *ngIf="eventTicketOrders[0].tax_amount > 0">
                 <span class="heading">{{ paymentDetails.tax_name }} ({{ paymentDetails.tax_percentage }}%)</span>
                 <span class="value">
-                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ totalTaxAmount }}
+                  {{ eventTicketOrders[0].currency === 'inr' ? '₹' : '$' }}
+                  {{ eventTicketOrders[0].tax_amount / 100 }}
                 </span>
               </div>
-
               <div class="payment-deatils">
                 <span class="heading">Total</span>
                 <span class="value">
-                  {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                  {{ totalPrice + totalTaxAmount }}
+                  {{ eventTicketOrders[0].currency === 'inr' ? '₹' : '$' }}
+                  {{ eventTicketOrders[0].total_amount / 100 }}
                 </span>
               </div>
 
-              <div class="discount-code">
-                <span class="heading">Apply Coupon</span>
-                <div class="input">
-                  <input
-                    nbInput
-                    type="text"
-                    fieldSize="small"
-                    [(ngModel)]="promoCode"
-                    [readonly]="promoCodeApplied"
-                    placeholder="Enter Promo Code"
-                  />
-                  <button
-                    nbButton
-                    status="primary"
-                    size="tiny"
-                    outline
-                    (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
-                  >
-                    {{ promoCodeApplied ? 'Remove' : 'Apply' }}
-                  </button>
-                </div>
-                <span *ngIf="discountAmount > 0" class="code-success">Coupon code applied successfully!</span>
-              </div>
-              <div class="user-details">
-                <span class="com-text-lg com-font-semibold">YOU</span>
-                <br />
-                <div class="user-detail">
-                  <div *ngFor="let form of forms; let i = index">
-                    <div (click)="removeUser(i)" *ngIf="i !== 0" class="com-flex com-cursor-pointer">
-                      <span class="com-text-red-500 com-mx-auto com-mt-2 com-text-base"> Remove </span>
+              <div class="com-px-4 com-py-2 com-text-base com-italic">Recipients</div>
+              <div class="com-pb-2 com-px-4">
+                <div *ngFor="let user of eventTicketOrders[0].eto_users">
+                  <div class="com-flex com-justify-between com-gap-2 com-py-2">
+                    <div>{{ user.name | titlecase }}</div>
+                    <div class="com-flex com-flex-col">
+                      <span>{{ user.email }}</span>
+                      <span>{{ user.phone }}</span>
                     </div>
-                    <form [formGroup]="form">
-                      <div formGroupName="additional_users">
-                        <!-- name -->
-                        <label>
-                          Name*
-                          <input
-                            fieldSize="small"
-                            formControlName="name"
-                            placeholder="Name"
-                            fullWidth
-                            nbInput
-                            type="text"
-                            [readonly]="i === 0"
-                          />
-                          <span
-                            *ngIf="
-                              form.get('additional_users').get('name').touched &&
-                              form.get('additional_users').get('name').invalid &&
-                              form.get('additional_users').get('name').errors.required
-                            "
-                          >
-                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                          </span>
-                        </label>
-
-                        <!-- email address -->
-                        <label>
-                          Email Address*
-                          <input
-                            fieldSize="small"
-                            formControlName="email"
-                            placeholder="Email Address"
-                            fullWidth
-                            nbInput
-                            type="email"
-                            [readonly]="i === 0"
-                          />
-
-                          <span
-                            *ngIf="
-                              form.get('additional_users').get('email').touched &&
-                              form.get('additional_users').get('email').invalid &&
-                              form.get('additional_users').get('email').errors.required
-                            "
-                          >
-                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                          </span>
-                        </label>
-
-                        <!-- phone number -->
-                        <label>
-                          Number*
-                          <div class="com-flex com-gap-2">
-                            <div class="select">
-                              <select
-                                id="numberCode"
-                                formControlName="phone_country_code"
-                                class="com-w-[120px]"
-                                [ngClass]="{
-                                  'com-text-[#8E9BB3]':
-                                    form.get('additional_users').get('phone_country_code').value === ''
-                                }"
-                              >
-                                <option selected disabled value="">Select Country</option>
-                                <option *ngFor="let code of countries" [value]="code.phone">
-                                  <span> +{{ code.phone }} ({{ code.name }}) </span>
-                                </option>
-                              </select>
-                            </div>
-                            <input
-                              fieldSize="small"
-                              formControlName="phone_number"
-                              placeholder="Mobile Number"
-                              fullWidth
-                              nbInput
-                              type="number"
-                            />
-                          </div>
-                          <span
-                            *ngIf="
-                              form.get('additional_users').get('phone_number').touched &&
-                              form.get('additional_users').get('phone_number').invalid &&
-                              form.get('additional_users').get('phone_number').errors.required
-                            "
-                          >
-                            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                          </span>
-                        </label>
-                      </div>
-                    </form>
                   </div>
-                </div>
-                <div class="com-mt-4">
-                  <button (click)="addNewUser()" class="add-another-user">+ Add Another Recipient</button>
                 </div>
               </div>
             </nb-card-body>
           </nb-card>
-          <!-- <div class="com-px-2">
-            <button nbButton status="primary" fullWidth (click)="submitForm($event)"> Submit & Pay</button>
-          </div> -->
+          <div *ngIf="!ticketPaidAlready">
+            <nb-card>
+              <nb-card-body>
+                <div class="payment-deatils !com-flex-col">
+                  <div class="com-flex com-justify-between">
+                    <span class="heading">Price </span>
+                    <span class="value">
+                      <span class="heading com-mr-2">x{{ forms.length }}</span>
+                      <span> {{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice }} </span>
+                    </span>
+                  </div>
+                  <div class="com-flex com-justify-between com-mt-4">
+                    <span class="heading">Sub Total</span>
+                    <span class="value"
+                      >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice * this.forms.length }}</span
+                    >
+                  </div>
+                </div>
+                <div class="payment-deatils" *ngIf="discountAmount > 0">
+                  <span class="heading">Discount Amount</span>
+                  <span class="value">
+                    {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                    {{ discountAmount }}
+                  </span>
+                </div>
+                <div class="payment-deatils" *ngIf="totalTaxAmount > 0">
+                  <span class="heading">{{ paymentDetails.tax_name }} ({{ paymentDetails.tax_percentage }}%)</span>
+                  <span class="value">
+                    {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                    {{ totalTaxAmount }}
+                  </span>
+                </div>
+
+                <div class="payment-deatils">
+                  <span class="heading">Total</span>
+                  <span class="value">
+                    {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                    {{ totalPrice + totalTaxAmount }}
+                  </span>
+                </div>
+
+                <div class="discount-code">
+                  <span class="heading">Apply Coupon</span>
+                  <div class="input">
+                    <input
+                      nbInput
+                      type="text"
+                      fieldSize="small"
+                      [(ngModel)]="promoCode"
+                      [readonly]="promoCodeApplied"
+                      placeholder="Enter Promo Code"
+                    />
+                    <button
+                      nbButton
+                      status="primary"
+                      size="tiny"
+                      outline
+                      [disabled]="promoCode === ''"
+                      (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
+                    >
+                      {{ promoCodeApplied ? 'Remove' : 'Apply' }}
+                    </button>
+                  </div>
+                  <span *ngIf="discountAmount > 0" class="code-success">Coupon code applied successfully!</span>
+                </div>
+                <div class="user-details">
+                  <span class="com-text-lg com-font-semibold">YOU</span>
+                  <br />
+                  <div class="user-detail">
+                    <div *ngFor="let form of forms; let i = index">
+                      <div (click)="removeUser(i)" *ngIf="i !== 0" class="com-flex com-cursor-pointer">
+                        <span class="com-text-red-500 com-mx-auto com-mt-2 com-text-base"> Remove </span>
+                      </div>
+                      <form [formGroup]="form">
+                        <div formGroupName="additional_users">
+                          <!-- name -->
+                          <label>
+                            Name*
+                            <input
+                              fieldSize="small"
+                              formControlName="name"
+                              placeholder="Name"
+                              fullWidth
+                              nbInput
+                              type="text"
+                              [readonly]="i === 0"
+                            />
+                            <span
+                              *ngIf="
+                                form.get('additional_users').get('name').touched &&
+                                form.get('additional_users').get('name').invalid &&
+                                form.get('additional_users').get('name').errors.required
+                              "
+                            >
+                              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                            </span>
+                          </label>
+
+                          <!-- email address -->
+                          <label>
+                            Email Address*
+                            <input
+                              fieldSize="small"
+                              formControlName="email"
+                              placeholder="Email Address"
+                              fullWidth
+                              nbInput
+                              type="email"
+                              [readonly]="i === 0"
+                            />
+
+                            <span
+                              *ngIf="
+                                form.get('additional_users').get('email').touched &&
+                                form.get('additional_users').get('email').invalid &&
+                                form.get('additional_users').get('email').errors.required
+                              "
+                            >
+                              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                            </span>
+                          </label>
+
+                          <!-- phone number -->
+                          <label>
+                            Number*
+                            <div class="com-flex com-gap-2">
+                              <div class="select">
+                                <select
+                                  id="numberCode"
+                                  formControlName="phone_country_code"
+                                  class="com-w-[120px]"
+                                  [ngClass]="{
+                                    'com-text-[#8E9BB3]':
+                                      form.get('additional_users').get('phone_country_code').value === ''
+                                  }"
+                                >
+                                  <option *ngFor="let code of countries" [value]="code.phone">
+                                    <span> +{{ code.phone }} ({{ code.name }}) </span>
+                                  </option>
+                                </select>
+                              </div>
+                              <input
+                                fieldSize="small"
+                                formControlName="phone_number"
+                                placeholder="Mobile Number"
+                                fullWidth
+                                nbInput
+                                type="number"
+                              />
+                            </div>
+                            <span
+                              *ngIf="
+                                form.get('additional_users').get('phone_number').touched &&
+                                form.get('additional_users').get('phone_number').invalid &&
+                                form.get('additional_users').get('phone_number').errors.required
+                              "
+                            >
+                              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                            </span>
+                          </label>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="com-mt-4">
+                    <button (click)="addNewUser()" class="add-another-user">+ Add Another Recipient</button>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+
+          <div class="com-px-2" *ngIf="!ticketPaidAlready">
+            <button nbButton status="primary" fullWidth (click)="submitFormAndPay()">Submit & Pay</button>
+          </div>
         </div>
       </div>
     </div>
