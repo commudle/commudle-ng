@@ -14,6 +14,7 @@ import { CommunityStatsComponent } from './components/community-stats/community-
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
 import { CommunityFormsAndSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-forms-and-surveys.component';
 import { CommunitySurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-surveys/community-surveys.component';
+import { CommunityChannelsComponent } from './components/community-channels/community-channels.component';
 
 const routes = [
   {
@@ -74,6 +75,10 @@ const routes = [
       {
         path: 'team',
         component: CommunityTeamComponent,
+      },
+      {
+        path: 'channels',
+        component: CommunityChannelsComponent,
       },
     ],
   },

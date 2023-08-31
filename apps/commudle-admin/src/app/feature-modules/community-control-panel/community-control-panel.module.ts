@@ -48,6 +48,8 @@ import { EventsModule } from 'apps/commudle-admin/src/app/feature-modules/events
 import { CommunityFormsAndSurveysComponent } from './components/community-forms-and-surveys/community-forms-and-surveys.component';
 import { CommunitySurveysComponent } from './components/community-forms-and-surveys/community-surveys/community-surveys.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { CommunityChannelsComponent } from './components/community-channels/community-channels.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     CommunityEventsListPublicPageComponent,
     CommunityFormsAndSurveysComponent,
     CommunitySurveysComponent,
+    CommunityChannelsComponent,
   ],
   imports: [
     CommonModule,
@@ -84,6 +87,8 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     SharedPipesModule,
     EventsModule,
     AppSharedComponentsModule,
+    CommunityChannelsModule,
+
     // Nebular
     NbCardModule,
     NbInputModule,
