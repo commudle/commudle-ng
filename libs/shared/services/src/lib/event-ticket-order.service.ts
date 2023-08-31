@@ -47,4 +47,9 @@ export class EventTicketOrderService {
       params,
     });
   }
+
+  createRefund(eventTicketOrderId): Observable<any> {
+    const params = new HttpParams().set('event_ticket_order_id', eventTicketOrderId).set('all', true);
+    return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CREATE_REFUND), params);
+  }
 }

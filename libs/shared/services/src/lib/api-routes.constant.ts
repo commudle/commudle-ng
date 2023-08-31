@@ -730,5 +730,6 @@ export const API_ROUTES = {
     SHOW: 'api/v2/event_ticket_orders/show',
     CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
+    CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
   },
 };

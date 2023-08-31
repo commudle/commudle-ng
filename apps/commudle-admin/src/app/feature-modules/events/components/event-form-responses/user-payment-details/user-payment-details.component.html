@@ -1,7 +1,7 @@
 <table class="data" *ngFor="let detail of eto">
   <tr>
     <td>Status</td>
-    <td>{{ detail.status | titlecase }}</td>
+    <td>{{ detail.status | capitalizeAndRemoveUnderscore }}</td>
   </tr>
   <tr>
     <td>Amount Paid</td>
@@ -13,7 +13,7 @@
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.tax_amount / 100 }}</td>
   </tr>
 
-  <tr>
+  <tr *ngIf="detail.discount_amount > 0">
     <td>Discount Amount</td>
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.discount_amount / 100 }}</td>
   </tr>
@@ -25,7 +25,21 @@
       <span>{{ user.phone }}</span>
     </td>
   </tr>
-  <div class="com-mt-4" *ngIf="detail.status">
-    <button nbButton (click)="refund(detail.uuid)">Create Refund</button>
+  <div class="com-mt-4" *ngIf="detail.status === 'paid'">
+    <button nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
   </div>
 </table>
+
+<ng-template #refundDialogBox let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <div class="com-font-semibold">Refund Amount: {{ refundAmount / 100 }}</div>
+      <p>Are you sure you want to create refund!</p>
+      <span class="com-italic">This action can't be done once processed</span>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button nbButton (click)="createRefund(data); ref.close()" status="primary">Yes</button>
+      <button nbButton status="danger" outline (click)="ref.close()">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
