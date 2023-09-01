@@ -1,10 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPagination, IStripeAccount } from '@commudle/shared-models';
-import { API_ROUTES, BaseApiService } from '@commudle/shared-services';
+import { API_ROUTES } from './api-routes.constant';
+import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
 declare let Stripe: any;
-
 
 @Injectable({
   providedIn: 'root',
