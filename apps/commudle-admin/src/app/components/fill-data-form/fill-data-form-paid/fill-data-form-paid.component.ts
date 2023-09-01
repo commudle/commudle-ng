@@ -25,7 +25,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService, StripePaymentElementComponent } from 'ngx-stripe';
 import { StripeElementsOptions } from '@stripe/stripe-js';
-import { faRotateRight, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faRotateRight, faTriangleExclamation, faUndo, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/data-form-fill.component';
 @Component({
@@ -92,7 +92,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     faRotateRight,
     faCircleCheck,
     faTriangleExclamation,
+    faUndo,
+    faCircleXmark,
   };
+
+  showEventTicketOrder;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -204,49 +208,72 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   checkEventTicketOrder(edfegId) {
     this.eventTicketOrderService.showEventTicketOrder(edfegId).subscribe((data) => {
       this.eventTicketOrders = data.event_ticket_orders;
-      if (this.eventTicketOrders[0]?.status === 'paid') {
-        this.ticketPaidAlready = true;
-      } else {
-        this.ticketPaidAlready = false;
-      }
       if (this.eventTicketOrders.length === 0) {
         this.createCurrentUserForm();
       } else {
-        if (this.eventTicketOrders[0].eto_users) {
-          for (let i = 0; i < this.eventTicketOrders[0].eto_users.length; i++) {
-            const user = this.eventTicketOrders[0].eto_users[i];
-            this.addNewUser();
-            this.forms[i].patchValue({
-              additional_users: {
-                name: user.name,
-                email: user.email,
-                phone_country_code: user.phone_country_code,
-                phone_number: user.phone,
-              },
-            });
+        for (const eto of this.eventTicketOrders) {
+          if (this.currentUser.username === eto.user_id && eto.status === 'unpaid') {
+            this.showEventTicketOrder = eto;
+            if (eto.status === 'full_refund') {
+              this.showEventTicketOrder = eto;
+              this.ticketPaidAlready = true;
+            }
+            this.etoPrefilledDetails(this.showEventTicketOrder);
+          }
+
+          if (this.currentUser.username !== eto.user_id && eto.status === 'unpaid') {
+            this.showEventTicketOrder = [];
+            this.showEventTicketOrder = eto;
+            this.etoPrefilledDetails(this.showEventTicketOrder);
+          }
+
+          if (eto.status === 'paid') {
+            this.ticketPaidAlready = true;
+            this.showEventTicketOrder = eto;
+            this.etoPrefilledDetails(this.showEventTicketOrder);
+            break;
           }
         }
-      }
 
-      if (this.eventTicketOrders[0]?.discount_code.code) {
-        this.promoCode = this.eventTicketOrders[0].discount_code.code;
-        this.applyPromo();
-      }
-
-      if (data.event_ticket_orders.length > 0) {
-        if (this.eventTicketOrders[0].discount_code_expires_at) {
-          this.targetDate = new Date(this.eventTicketOrders[0].discount_code_expires_at);
-          if (this.targetDate) {
-            this.updateTimeRemaining();
-            if (this.showTimer) {
-              setInterval(() => {
-                this.updateTimeRemaining();
-              }, 1000);
-            }
-          }
+        if (!this.showEventTicketOrder) {
+          this.createCurrentUserForm();
         }
       }
     });
+  }
+
+  etoPrefilledDetails(eto) {
+    if (eto?.discount_code.code) {
+      this.promoCode = eto.discount_code.code;
+      this.applyPromo();
+    }
+
+    if (eto?.eto_users) {
+      for (let i = 0; i < eto.eto_users.length; i++) {
+        const user = eto.eto_users[i];
+        this.addNewUser();
+        this.forms[i].patchValue({
+          additional_users: {
+            name: user.name,
+            email: user.email,
+            phone_country_code: user.phone_country_code,
+            phone_number: user.phone,
+          },
+        });
+      }
+    }
+
+    if (eto?.discount_code_expires_at) {
+      this.targetDate = new Date(eto.discount_code_expires_at);
+      if (this.targetDate) {
+        this.updateTimeRemaining();
+        if (this.showTimer) {
+          setInterval(() => {
+            this.updateTimeRemaining();
+          }, 1000);
+        }
+      }
+    }
   }
 
   updateTimeRemaining() {
@@ -366,7 +393,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     if (index >= 0 && index < this.forms.length) {
       this.forms.splice(index, 1);
       this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
-      this.applyPromo();
+      if (this.promoCodeApplied) {
+        this.applyPromo();
+      }
       this.calculateTaxAmount();
     }
   }
@@ -417,7 +446,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       if (this.ticketPaidAlready) {
         this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
       } else if (!this.ticketPaidAlready) {
-        if (this.eventTicketOrders.length > 0) {
+        if (this.eventTicketOrders.length > 0 || this.showEventTicketOrder !== undefined) {
           this.updateTickerOrder();
         } else {
           this.createTicketOrder();
@@ -452,7 +481,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.eventTicketOrderService
       .updateEventTicketOrder(
         this.formData,
-        this.eventTicketOrders[0].uuid,
+        this.showEventTicketOrder.uuid,
         this.promoCodeApplied ? this.promoCode : '',
       )
       .subscribe((data) => {

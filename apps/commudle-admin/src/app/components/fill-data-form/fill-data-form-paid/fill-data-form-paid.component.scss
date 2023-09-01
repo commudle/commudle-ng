@@ -56,7 +56,6 @@
 
 .payment-details-section {
   nb-card {
-    @apply com-sticky com-top-20;
     nb-card-body {
       @apply com-p-0;
       .payment-deatils {
