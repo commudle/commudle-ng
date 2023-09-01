@@ -1,0 +1,27 @@
+<button nbButton status="primary" (click)="openFormDialog()" class="create-button">Create Discount Coupon</button>
+
+<div class="discount-codes">
+  <table *ngFor="let discountCode of discountCodes">
+    <tr>
+      <th class="heading">Code</th>
+      <th class="heading" *ngIf="discountCode.expires_at">Valid Upto</th>
+      <th>
+        <div class="action-button" (click)="openFormDialog(discountCode)">
+          <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+          <span> Edit </span>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <td class="content">{{ discountCode.code }}</td>
+      <td class="content" *ngIf="discountCode.expires_at">{{ discountCode.expires_at | date : 'dd-MM-yy hh:mm a' }}</td>
+
+      <td>
+        <div class="action-button" (click)="copyTextToClipboard(discountCode.code)">
+          <fa-icon [icon]="icons.faCopy"></fa-icon>
+          <span> Copy </span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

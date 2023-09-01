@@ -6,8 +6,12 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  EventEmitter,
+  Output,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
+import { StripeHandlerService } from '@commudle/shared-services';
 import { NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -20,18 +24,18 @@ import { Visibility } from 'apps/shared-models/data_form_entity.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'apps/shared-models/enums/registration_types.enum';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
-import { IRegistrationType } from 'apps/shared-models/registration_type.model';
+import { IRegistrationType, RegistrationTypeNames } from 'apps/shared-models/registration_type.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-form-groups',
   templateUrl: './form-groups.component.html',
   styleUrls: ['./form-groups.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormGroupsComponent implements OnInit {
-  @Input() event;
-  @Input() community;
+  @Input() event: IEvent;
+  @Input() community: ICommunity;
 
   faCopy = faCopy;
   faEnvelope = faEnvelope;
@@ -45,9 +49,13 @@ export class FormGroupsComponent implements OnInit {
   communityDataForms: IDataForm[] = [];
   visibilityOptions = Visibility;
 
-  eventDataFormEntityGroupForm;
+  eventDataFormEntityGroupForm: FormGroup;
+  stripeAccounts: IStripeAccount[] = [];
+  ERegistrationTypeNames = RegistrationTypeNames;
+  showDiscountCouponComponent = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
+  @Output() showDiscountCoupons = new EventEmitter<boolean>();
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
@@ -58,6 +66,7 @@ export class FormGroupsComponent implements OnInit {
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private changeDetectorRef: ChangeDetectorRef,
+    private stripeHandlerService: StripeHandlerService,
   ) {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
@@ -69,12 +78,6 @@ export class FormGroupsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get all the event_data_form_entity_groups for this event
-    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
-      this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
-      this.changeDetectorRef.markForCheck();
-    });
-
     // get all the registration_types
     this.registrationTypesService.getRegistrationTypes().subscribe((data) => {
       this.registrationTypes = data.registration_types;
@@ -82,6 +85,23 @@ export class FormGroupsComponent implements OnInit {
     });
 
     this.getCommunityDataForms();
+    this.getStripeAccountData();
+    this.getEventDataFormEntityGroups();
+  }
+
+  getEventDataFormEntityGroups() {
+    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(this.event.id).subscribe((data) => {
+      this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
+      this.checkDiscountCode();
+      this.changeDetectorRef.markForCheck();
+    });
+  }
+  //get stripe account information
+  getStripeAccountData() {
+    this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
+      const stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.details.charges_enabled === true);
+    });
   }
 
   // get all the data forms made in this community
@@ -180,5 +200,24 @@ export class FormGroupsComponent implements OnInit {
     if (event.value === 'createNewForm') {
       this.openNewFormWindow();
     }
+  }
+
+  onSwitchToggled(eventDataFormEntityGroupId, index) {
+    this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
+      this.eventDataFormEntityGroups[index].is_paid = data;
+      this.checkDiscountCode();
+    });
+  }
+
+  checkDiscountCode() {
+    for (const entity of this.eventDataFormEntityGroups) {
+      if (entity.is_paid === true) {
+        this.showDiscountCouponComponent = true; // Set showDiscount to true if is_paid is true
+        break; // Exit the loop since we found a true value
+      } else {
+        this.showDiscountCouponComponent = false;
+      }
+    }
+    this.showDiscountCoupons.emit(this.showDiscountCouponComponent);
   }
 }

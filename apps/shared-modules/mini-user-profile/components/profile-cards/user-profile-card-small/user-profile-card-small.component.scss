@@ -9,7 +9,7 @@ a:active {
 }
 
 .user-profile-small {
-  background-color: $white;
+  @apply com-bg-transparent;
 
   .avatar {
     @apply com-h-6 com-w-6 com-overflow-hidden;

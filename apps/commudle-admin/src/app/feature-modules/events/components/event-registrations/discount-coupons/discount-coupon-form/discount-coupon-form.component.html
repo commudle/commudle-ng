@@ -1,0 +1,123 @@
+<nb-card class="com-max-h-[80dvh] com-w-full md:com-w-40vw">
+  <nb-card-header>
+    <div class="com-flex com-justify-between">
+      <div>{{ type | titlecase }} Discount Coupon</div>
+
+      <button (click)="this.closeDialogBox(); discountCouponForm.reset()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="discountCouponForm">
+      <div formGroupName="discount_code" class="com-flex com-flex-col com-gap-3">
+        <!-- Name -->
+        <label>
+          Code*
+          <input
+            formControlName="code"
+            fullWidth
+            nbInput
+            type="text"
+            placeholder="Coupon Name"
+            (input)="onCodeInput($event)"
+          />
+        </label>
+
+        <!-- Discount type* -->
+        <label class="com-col-span-1">
+          Discount type*
+          <div class="select !com-mt-0">
+            <select
+              formControlName="discount_type"
+              [ngClass]="{
+                'com-text-[#8E9BB3]': discountCouponForm.controls.discount_code.get('discount_type').value === ''
+              }"
+            >
+              <option value="" selected disabled>Select Discount Type</option>
+              <option value="percent">Percent</option>
+              <option value="fixed_amount">Value</option>
+            </select>
+          </div>
+        </label>
+
+        <!-- Is Limited* -->
+        <label class="com-col-span-1 com-flex com-items-center com-gap-2">
+          <input formControlName="is_limited" type="checkbox" />
+          <span class="com-text-primary-500 com-font-medium"> Limited Users </span>
+        </label>
+        <!-- Max Limit* -->
+        <label
+          class="com-col-span-1"
+          *ngIf="discountCouponForm.controls.discount_code.get('is_limited').value === true"
+        >
+          Max Limit*
+          <input formControlName="max_limit" nbInput fullWidth type="number" placeholder="Max Limit" />
+        </label>
+
+        <!-- Discount value* -->
+        <label class="com-col-span-1">
+          Discount value*
+          <input
+            formControlName="discount_value"
+            fullWidth
+            nbInput
+            type="number"
+            placeholder=" Discount value"
+            min="0"
+          />
+        </label>
+
+        <!-- Expires At* -->
+        <label class="com-col-span-1">
+          <div>
+            <span> Expires At </span>
+            <span
+              class="com-p-1 com-text-xs com-cursor-pointer com-text-primary-500"
+              (click)="clearExpiresAt(); ($event.stopPropagation)"
+              >Clear</span
+            >
+          </div>
+          <input formControlName="expires_at" fullWidth nbInput type="datetime-local" />
+        </label>
+
+        <!-- Event Data Form Entity Group Ids* -->
+        <div>
+          <label class="com-col-span-1 com-my-4"> Select the form in which you want to apply coupon* </label>
+          <br />
+          <div class="com-grid com-gap-3 com-grid-cols-2">
+            <div
+              *ngFor="let edfeg of eventDataFormEntityGroups; let i = index"
+              class="com-flex com-items-center com-gap-2"
+            >
+              <input
+                type="checkbox"
+                [checked]="type === 'edit' ? selectedEventDataFormEntityGroups.includes(edfeg.id) : edfeg.is_paid"
+                [value]="edfeg.id"
+                (change)="addEventDataForm($event)"
+              />
+              <span class="com-text-primary-500 com-font-semibold">
+                {{ edfeg.name }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="com-flex com-gap-6 com-mx-4">
+      <button
+        nbButton
+        status="primary"
+        (click)="type === 'edit' ? savedDiscountCouponData(discountCode.id) : savedDiscountCouponData()"
+        [disabled]="!discountCouponForm.valid || selectedEventDataFormEntityGroups.length === 0"
+      >
+        {{ type === 'edit' ? 'Update' : type }}
+      </button>
+      <button nbButton status="danger" outline (click)="this.closeDialogBox(); discountCouponForm.reset()">
+        Cancel
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

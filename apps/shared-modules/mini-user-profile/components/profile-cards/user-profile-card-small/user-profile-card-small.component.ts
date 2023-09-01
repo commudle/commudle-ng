@@ -9,6 +9,7 @@ import { IUser } from 'apps/shared-models/user.model';
 export class UserProfileCardSmallComponent implements OnInit {
   @Input() user: IUser;
   @Input() maxNameLength = 50;
+  @Input() disableAnchor: boolean = false;
 
   constructor() {}
 

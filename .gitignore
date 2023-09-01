@@ -61,3 +61,7 @@ firebase-debug.log
 # Scripts
 ssr-deployment-prod.sh
 ssr-deployment-staging.sh
+
+
+#nx
+*NX
