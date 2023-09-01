@@ -19,10 +19,11 @@
   </tr>
   <tr>
     <td>Users</td>
-    <td class="com-flex com-flex-col" *ngFor="let user of detail.eto_users">
-      <span>{{ user.name }}</span>
-      <span>{{ user.email }}</span>
-      <span>{{ user.phone }}</span>
+    <td class="com-flex com-flex-col" *ngFor="let etoUser of detail.eto_users">
+      <span *ngIf="detail.user.id === etoUser.user_id">Paid By:</span>
+      <span class="com-text-xs">{{ etoUser.name }}</span>
+      <span class="com-text-xs">{{ etoUser.email }}</span>
+      <span class="com-text-xs">{{ etoUser.phone }}</span>
     </td>
   </tr>
   <div class="com-mt-4" *ngIf="detail.status === 'paid'">
