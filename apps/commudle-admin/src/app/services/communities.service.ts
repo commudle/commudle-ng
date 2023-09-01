@@ -93,6 +93,12 @@ export class CommunitiesService {
     });
   }
 
+  togglePaymentEnable(communityId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.TOGGLE_PAYMENTS), {
+      community_id: communityId,
+    });
+  }
+
   getSpeakersList(
     mini?: boolean,
     after?: string,

@@ -101,6 +101,9 @@
                 [communityId]="community.id"
               ></app-user-engagement-data>
             </div>
+            <div class="com-max-w-fit" *ngIf="eventDataFormEntityGroup?.is_paid">
+              <commudle-user-payment-details [eto]="row.event_ticket_orders"></commudle-user-payment-details>
+            </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
               <div *ngFor="let question of questions">
                 <p>
@@ -136,6 +139,22 @@
                 [user]="row.user"
                 [communityId]="community.id"
               ></app-user-engagement-data>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [width]="300" *ngIf="eventDataFormEntityGroup?.is_paid">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="">
+                <p>Payment Details</p>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <commudle-user-payment-details [eto]="row.event_ticket_orders"></commudle-user-payment-details>
             </div>
           </ng-template>
         </ngx-datatable-column>

@@ -12,4 +12,5 @@ export interface IEventDataFormEntityGroup {
   data_form_entity_id: number;
   already_filled: boolean;
   is_paid: boolean;
+  summary_registration_counts: any;
 }

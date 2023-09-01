@@ -73,6 +73,7 @@ import { EventRegistrationsComponent } from './components/event-registrations/ev
 import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
 import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
 import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
+import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { DiscountCouponFormComponent } from './components/event-registrations/di
     DiscountCouponsComponent,
     PaymentSettingsComponent,
     DiscountCouponFormComponent,
+    UserPaymentDetailsComponent,
   ],
   imports: [
     CommonModule,

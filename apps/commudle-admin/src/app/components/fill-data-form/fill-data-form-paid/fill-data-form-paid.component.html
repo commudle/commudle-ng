@@ -44,7 +44,7 @@
                 [dataFormId]="dataFormEntity.data_form_id"
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
-                submitButtonText="Submit & Pay"
+                [submitButtonText]="ticketPaidAlready ? 'Save' : 'Submit & Pay'"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
@@ -55,19 +55,79 @@
         </div>
         <div class="right-column payment-details-section" *ngIf="paymentDetails">
           <nb-card *ngIf="ticketPaidAlready">
-            <nb-card-body class="!com-p-4">
-              <div class="com-text-lg com-font-medium">Ticket Already Paid For</div>
-              <div>
-                <div
-                  *ngFor="let user of eventTicketOrders[0].eto_users"
-                  class="com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-p-2"
-                >
-                  <div>{{ user.name | titlecase }}</div>
-                  <div>{{ user.email }}</div>
+            <nb-card-body>
+              <div class="com-flex com-justify-center com-my-6">
+                <div class="com-flex com-flex-col com-gap-1">
+                  <div class="com-flex">
+                    <fa-icon
+                      [icon]="faIcon.faCircleCheck"
+                      class="com-text-5xl com-text-Caribbean-Green com-mx-auto"
+                      *ngIf="showEventTicketOrder.status === 'paid'"
+                    ></fa-icon>
+                    <fa-icon
+                      [icon]="faIcon.faUndo"
+                      class="com-text-5xl com-text-gray-500 com-mx-auto"
+                      *ngIf="showEventTicketOrder.status === 'full_refund'"
+                    ></fa-icon>
+                  </div>
+                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder.status === 'paid'">
+                    Payment Successful!
+                  </div>
+                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder.status === 'full_refund'">
+                    Cancelled (Refunded)
+                  </div>
+                </div>
+              </div>
+              <div class="com-px-4 com-py-2 com-text-base com-italic">Order Summary</div>
+              <div class="payment-deatils !com-flex-col">
+                <div class="com-flex com-justify-between">
+                  <span class="heading">Price </span>
+                  <span class="value">
+                    <span class="heading com-mr-2">x{{ showEventTicketOrder.eto_users.length }}</span>
+                    <span>
+                      {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
+                      {{ basePrice * showEventTicketOrder.eto_users.length }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div class="payment-deatils" *ngIf="showEventTicketOrder.discount_amount > 0">
+                <span class="heading">Discount Amount</span>
+                <span class="value">
+                  {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
+                  {{ showEventTicketOrder.discount_amount / 100 }}
+                </span>
+              </div>
+              <div class="payment-deatils" *ngIf="showEventTicketOrder.tax_amount > 0">
+                <span class="heading">{{ paymentDetails.tax_name }} ({{ paymentDetails.tax_percentage }}%)</span>
+                <span class="value">
+                  {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
+                  {{ showEventTicketOrder.tax_amount / 100 }}
+                </span>
+              </div>
+              <div class="payment-deatils">
+                <span class="heading">Total</span>
+                <span class="value">
+                  {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
+                  {{ showEventTicketOrder.total_amount / 100 }}
+                </span>
+              </div>
+
+              <div class="com-px-4 com-py-2 com-text-base com-italic">Recipients</div>
+              <div class="com-pb-2 com-px-4">
+                <div *ngFor="let user of showEventTicketOrder.eto_users">
+                  <div class="com-flex com-justify-between com-gap-2 com-py-2">
+                    <div>{{ user.name | titlecase }}</div>
+                    <div class="com-flex com-flex-col">
+                      <span>{{ user.email }}</span>
+                      <span>{{ user.phone }}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </nb-card-body>
           </nb-card>
+
           <nb-card *ngIf="!ticketPaidAlready">
             <nb-card-body>
               <div class="payment-deatils !com-flex-col">
@@ -124,6 +184,7 @@
                     status="primary"
                     size="tiny"
                     outline
+                    [disabled]="promoCode === ''"
                     (click)="promoCodeApplied ? removePromoCode() : applyPromo()"
                   >
                     {{ promoCodeApplied ? 'Remove' : 'Apply' }}
@@ -136,9 +197,6 @@
                 <br />
                 <div class="user-detail">
                   <div *ngFor="let form of forms; let i = index">
-                    <div (click)="removeUser(i)" *ngIf="i !== 0" class="com-flex com-cursor-pointer">
-                      <span class="com-text-red-500 com-mx-auto com-mt-2 com-text-base"> Remove </span>
-                    </div>
                     <form [formGroup]="form">
                       <div formGroupName="additional_users">
                         <!-- name -->
@@ -151,8 +209,8 @@
                             fullWidth
                             nbInput
                             type="text"
-                            [readonly]="i === 0"
                           />
+                          <!-- [readonly]="i === 0" -->
                           <span
                             *ngIf="
                               form.get('additional_users').get('name').touched &&
@@ -174,8 +232,8 @@
                             fullWidth
                             nbInput
                             type="email"
-                            [readonly]="i === 0"
                           />
+                          <!-- [readonly]="i === 0" -->
 
                           <span
                             *ngIf="
@@ -202,7 +260,6 @@
                                     form.get('additional_users').get('phone_country_code').value === ''
                                 }"
                               >
-                                <option selected disabled value="">Select Country</option>
                                 <option *ngFor="let code of countries" [value]="code.phone">
                                   <span> +{{ code.phone }} ({{ code.name }}) </span>
                                 </option>
@@ -229,6 +286,12 @@
                         </label>
                       </div>
                     </form>
+                    <div (click)="removeUser(i)" *ngIf="i !== 0" class="com-flex com-cursor-pointer">
+                      <span class="com-text-red-500 com-mx-auto com-mt-2 com-text-base">
+                        <fa-icon [icon]="faIcon.faCircleXmark"></fa-icon>
+                        Remove
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="com-mt-4">
@@ -237,9 +300,10 @@
               </div>
             </nb-card-body>
           </nb-card>
-          <!-- <div class="com-px-2">
-            <button nbButton status="primary" fullWidth (click)="submitForm($event)"> Submit & Pay</button>
-          </div> -->
+
+          <div class="com-px-2" *ngIf="!ticketPaidAlready">
+            <button nbButton status="primary" fullWidth (click)="submitFormAndPay()">Submit & Pay</button>
+          </div>
         </div>
       </div>
     </div>
@@ -249,10 +313,7 @@
 <ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      <div class="com-flex com-gap-3 com-flex-col">
-        <span> Complete Payment</span>
-        <div *ngIf="showTimer" class="com-text-xs com-text-red-500">Time Left: {{ formattedTimeRemaining }}</div>
-      </div>
+      <span> Complete Payment with Stripe</span>
       <div>
         <button (click)="ref.close()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
@@ -260,13 +321,19 @@
       </div>
     </nb-card-header>
     <nb-card-body class="com-min-h-[250px]">
+      <div class="com-flex com-justify-between com-mb-4">
+        <div class="com-text-base com-font-semibold">
+          {{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ totalPrice + totalTaxAmount }}
+        </div>
+        <div *ngIf="showTimer" class="com-text-xs com-text-red-500">Time Left: {{ formattedTimeRemaining }}</div>
+      </div>
       <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
         <ngx-stripe-payment [clientSecret]="clientSecret"> </ngx-stripe-payment>
       </ng-container>
     </nb-card-body>
     <nb-card-footer class="com-flex com-justify-between">
-      <button nbButton status="primary" (click)="pay()">Pay</button>
-      <button nbButton status="danger" (click)="ref.close()">Cancel</button>
+      <button nbButton fullWidth status="primary" (click)="pay()">Pay</button>
+      <button nbButton fullWidth ghost (click)="ref.close()">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
@@ -308,12 +375,20 @@
 </ng-template>
 
 <ng-template #paymentErrorDialog let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card class="com-w-96">
     <nb-card-body>
-      <p class="com-text-base com-font-semibold">{{ data | capitalizeAndRemoveUnderscore }}</p>
-      <button nbButton status="base" (click)="reload(); ref.close()">
-        <fa-icon [icon]="faIcon.faArrowRight"></fa-icon> Refresh
-      </button>
+      <div class="com-flex com-justify-center com-my-3">
+        <div class="com-flex com-bg-red-100 com-p-1 com-px-2 com-rounded-md">
+          <fa-icon [icon]="faIcon.faTriangleExclamation" class="com-text-4xl com-text-red-500 com-mx-auto"></fa-icon>
+        </div>
+      </div>
+      <p class="com-text-sm com-font-semibold">Seems like there is a problem with payment</p>
+      <p (click)="reload(); ref.close()" class="com-text-primary-500 com-cursor-pointer com-p-1">
+        <fa-icon [icon]="faIcon.faRotateRight" class="com-mr-2"></fa-icon>Refresh to retry payment
+      </p>
+      <p class="com-text-xs com-font-normal com-italic">
+        If money was deducted from your account, please reach out to our support
+      </p>
     </nb-card-body>
   </nb-card>
 </ng-template>

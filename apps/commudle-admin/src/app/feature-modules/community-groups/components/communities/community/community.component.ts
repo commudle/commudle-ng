@@ -59,4 +59,8 @@ export class CommunityComponent implements OnInit, OnDestroy {
   toggleEmailVisibility(communityId) {
     this.communitiesService.toggleEmailVisibility(communityId).subscribe();
   }
+
+  togglePaymentEnable(communityId) {
+    this.communitiesService.togglePaymentEnable(communityId).subscribe();
+  }
 }

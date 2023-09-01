@@ -13,17 +13,32 @@
       <div formGroupName="discount_code" class="com-flex com-flex-col com-gap-3">
         <!-- Name -->
         <label>
-          Name*
-          <input formControlName="code" fullWidth nbInput type="text" placeholder="Coupon Name" />
+          Code*
+          <input
+            formControlName="code"
+            fullWidth
+            nbInput
+            type="text"
+            placeholder="Coupon Name"
+            (input)="onCodeInput($event)"
+          />
         </label>
 
         <!-- Discount type* -->
         <label class="com-col-span-1">
           Discount type*
-          <nb-select formControlName="discount_type" fullWidth placeholder="Select Discount Type">
-            <nb-option value="percent"> Percent </nb-option>
-            <nb-option value="fixed_amount"> Value </nb-option>
-          </nb-select>
+          <div class="select !com-mt-0">
+            <select
+              formControlName="discount_type"
+              [ngClass]="{
+                'com-text-[#8E9BB3]': discountCouponForm.controls.discount_code.get('discount_type').value === ''
+              }"
+            >
+              <option value="" selected disabled>Select Discount Type</option>
+              <option value="percent">Percent</option>
+              <option value="fixed_amount">Value</option>
+            </select>
+          </div>
         </label>
 
         <!-- Is Limited* -->
@@ -43,12 +58,26 @@
         <!-- Discount value* -->
         <label class="com-col-span-1">
           Discount value*
-          <input formControlName="discount_value" fullWidth nbInput type="number" placeholder=" Discount value" />
+          <input
+            formControlName="discount_value"
+            fullWidth
+            nbInput
+            type="number"
+            placeholder=" Discount value"
+            min="0"
+          />
         </label>
 
         <!-- Expires At* -->
         <label class="com-col-span-1">
-          Expires At
+          <div>
+            <span> Expires At </span>
+            <span
+              class="com-p-1 com-text-xs com-cursor-pointer com-text-primary-500"
+              (click)="clearExpiresAt(); ($event.stopPropagation)"
+              >Clear</span
+            >
+          </div>
           <input formControlName="expires_at" fullWidth nbInput type="datetime-local" />
         </label>
 
@@ -63,7 +92,7 @@
             >
               <input
                 type="checkbox"
-                [checked]="selectedEventDataFormEntityGroups.includes(edfeg.id)"
+                [checked]="type === 'edit' ? selectedEventDataFormEntityGroups.includes(edfeg.id) : edfeg.is_paid"
                 [value]="edfeg.id"
                 (change)="addEventDataForm($event)"
               />

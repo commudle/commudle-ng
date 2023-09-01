@@ -81,6 +81,16 @@ export class DiscountCouponFormComponent implements OnInit {
     }
   }
 
+  onCodeInput(event: any) {
+    const inputElement = event.target;
+    const inputValue = inputElement.value.toUpperCase();
+    this.discountCouponForm.get('discount_code.code')?.setValue(inputValue, { emitEvent: false });
+  }
+
+  clearExpiresAt() {
+    this.discountCouponForm.get('discount_code.expires_at').setValue('');
+  }
+
   // fetch EDFEG:forms name
   fetchEventDataFormEntityGroups() {
     this.subscriptions.push(

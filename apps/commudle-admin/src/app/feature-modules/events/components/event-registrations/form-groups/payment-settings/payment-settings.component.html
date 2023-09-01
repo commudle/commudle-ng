@@ -1,20 +1,4 @@
 <div>
-  <div *ngIf="paymentData">
-    <table>
-      <tr>
-        <th>Price</th>
-        <th>Account No.</th>
-        <th *ngIf="paymentData.has_taxes">Tax Name</th>
-        <th *ngIf="paymentData.has_taxes">Tax Percentage</th>
-      </tr>
-      <tr>
-        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price / 100 }}</td>
-        <td>***{{ bankAccountNo }}</td>
-        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_name }}</td>
-        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_percentage }}%</td>
-      </tr>
-    </table>
-  </div>
   <div *ngIf="paymentDetailsExist" class="edit-buttons">
     <div (click)="open(dialog)">
       <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
@@ -32,6 +16,26 @@
   >
     Add Payment Details
   </button>
+  <div *ngIf="paymentData">
+    <table>
+      <tr>
+        <td>Price</td>
+        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price / 100 }}</td>
+      </tr>
+      <tr>
+        <td>Account</td>
+        <td>***{{ bankAccountNo }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="paymentData.has_taxes">Tax Name</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_name }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="paymentData.has_taxes">Tax Percentage</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_percentage }}%</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <ng-template #dialog let-data let-ref="dialogRef">
@@ -61,7 +65,7 @@
                 >
                   <option value="" selected disabled>Currency</option>
                   <option value="inr">INR</option>
-                  <option value="usd">USD Dollar</option>
+                  <option value="usd">USD</option>
                 </select>
               </div>
               <span

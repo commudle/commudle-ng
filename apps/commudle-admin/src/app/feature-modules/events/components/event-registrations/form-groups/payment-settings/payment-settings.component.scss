@@ -1,31 +1,27 @@
 table {
-  @apply com-w-full md:com-w-max;
-  td,
-  th {
-    @apply com-p-2 com-text-base;
+  @apply com-w-full com-bg-gray-500/5 com-p-3 com-rounded-md com-mt-4;
+  tr {
+    @apply com-p-2 com-text-xs com-font-normal;
   }
-  th {
-    @apply com-text-Auro-Metal-Saurus  com-font-medium;
+  tr td:nth-child(2) {
+    @apply com-font-medium com-text-right;
   }
-  td {
-    @apply com-font-semibold;
-  }
-}
-td:not(:first-child),
-th:not(:first-child) {
-  @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
 }
 
 .edit-buttons {
-  @apply com-flex com-gap-4 com-mt-4;
+  @apply com-flex com-gap-3 com-mt-4 com-flex-col;
   div {
-    @apply com-text-primary-500 com-text-sm com-font-semibold com-cursor-pointer com-flex com-gap-1;
+    @apply com-text-primary-500 com-text-sm com-font-medium com-cursor-pointer com-flex com-gap-1;
   }
 }
 
 .select {
-  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#E4E9F2]  com-w-full;
   select {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
   }
+}
+
+.select:focus-within {
+  @apply com-border com-border-solid com-border-primary-500;
 }
