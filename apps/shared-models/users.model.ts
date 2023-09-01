@@ -4,4 +4,5 @@ export interface IUsers {
   users: IUser[];
   page: number;
   total: number;
+  total_count: number;
 }

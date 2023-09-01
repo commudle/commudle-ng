@@ -6,14 +6,27 @@
     <div *ngIf="!event.header_image_path" class="no-header-image">
       <h2>{{ event.name }}</h2>
     </div>
-    <div class="event-header-image">
-      <commudle-banner-image
-        [headerImagePath]="event.header_image_path"
-        [name]="event.name"
-        [bottomRightCurve]="false"
-        [bottomLeftCurve]="false"
-      ></commudle-banner-image>
+    <div *ngIf="event.header_image_path" class="event-header-image">
+      <div *appBreakpoints="'>lg'">
+        <commudle-banner-image
+          [headerImagePath]="event.header_image_path"
+          [name]="event.name"
+          [bottomRightCurve]="false"
+          [bottomLeftCurve]="false"
+        ></commudle-banner-image>
+      </div>
+      <div *appBreakpoints="'<=lg'">
+        <commudle-banner-image
+          [headerImagePath]="event.header_image_path"
+          [name]="event.name"
+          [topRightCurve]="false"
+          [topLeftCurve]="false"
+          [bottomRightCurve]="false"
+          [bottomLeftCurve]="false"
+        ></commudle-banner-image>
+      </div>
     </div>
+
     <nb-card class="home-event-menu">
       <nb-card-body>
         <nb-actions>
