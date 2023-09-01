@@ -14,7 +14,7 @@ export class TagComponent implements OnInit, OnDestroy {
   @Input() minimumTags: number = 5;
   @Input() backgroundColor: string;
   @Input() fontColor: string;
-  @Input() maximumTag = 5;
+  @Input() maximumTag;
   @Input() size; //It can be tiny;
 
   @Output() tagAdd: EventEmitter<string> = new EventEmitter<string>();
@@ -33,7 +33,11 @@ export class TagComponent implements OnInit, OnDestroy {
   }
 
   getTags() {
-    const tags = this.tags.filter(Boolean);
+    let tags = this.tags.filter(Boolean);
+
+    if (this.maximumTag) {
+      tags = tags.slice(0, this.maximumTag);
+    }
 
     return tags;
   }
