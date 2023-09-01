@@ -15,18 +15,16 @@
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Active</th>
-      <!-- <th>Actions</th> -->
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
       <th>Bank Details</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
-      <!-- <td>
-        <a>{{ stripeAccount.details.external_accounts.url }}</a>
-      </td> -->
+
       <td>
         <p>{{ stripeAccount.details.charges_enabled }}</p>
       </td>
@@ -49,8 +47,20 @@
           </details>
         </div>
         <div *ngIf="stripeAccount.details.external_accounts.data.length <= 0">
-          <strong> No Band Details Found </strong>
+          <strong> No Bank Details Found </strong>
         </div>
+      </td>
+      <td>
+        <button
+          nbButton
+          status="primary"
+          (click)="updateStripeAccount(stripeAccount.uuid)"
+          size="tiny"
+          [disabled]="stripeAccount.active"
+        >
+          Update
+        </button>
+        <!-- <a>{{ stripeAccount.details.external_accounts.url }}</a> -->
       </td>
     </tr>
   </table>

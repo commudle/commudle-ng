@@ -52,7 +52,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-    this.dialogRef.close();
+    this.dialogRef?.close();
   }
 
   openDialogBox(StripeConnectAccount: TemplateRef<any>) {
@@ -96,5 +96,10 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
         this.isUpdating = false;
       }),
     );
+  }
+
+  updateStripeAccount(uuid) {
+    const currentUrl = this.router.url;
+    this.subscriptions.push(this.stripeHandlerService.linkAccount(uuid, currentUrl).subscribe((data) => {}));
   }
 }
