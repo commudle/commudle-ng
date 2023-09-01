@@ -20,7 +20,7 @@
   <tr>
     <td>Users</td>
     <td class="com-flex com-flex-col" *ngFor="let etoUser of detail.eto_users">
-      <span *ngIf="detail.user.id === etoUser.user_id">Paid By:</span>
+      <span *ngIf="detail.user.id === etoUser.user_id" class="com-italic">Paid By:</span>
       <span class="com-text-xs">{{ etoUser.name }}</span>
       <span class="com-text-xs">{{ etoUser.email }}</span>
       <span class="com-text-xs">{{ etoUser.phone }}</span>
