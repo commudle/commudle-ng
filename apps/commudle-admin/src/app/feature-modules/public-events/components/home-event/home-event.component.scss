@@ -17,7 +17,7 @@
     }
 
     .home-event-menu {
-      @apply com-sticky com-top-14 com-z-10 com-m-0 com-rounded-t-none;
+      @apply com-sticky com-top-14 com-z-10 com-m-0 com-rounded-t-none md:com-rounded-b-[10px] com-rounded-b-none;
 
       nb-card-body {
         @apply com-px-0;
@@ -70,7 +70,7 @@
         }
 
         .attending-members {
-          @apply com-pt-3 com-pb-5 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+          @apply com-py-3 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
         }
 
         .view-attended-members-button {

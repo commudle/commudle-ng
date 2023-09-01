@@ -36,7 +36,7 @@ export class AttendingMembersComponent implements OnInit {
   getInterestedMembers() {
     this.eventsService.pGetEventsInterestedMembers(this.event.id).subscribe((data) => {
       this.users = data.users;
-      this.totalCount = data.total;
+      this.totalCount = data.total_count;
       if (this.users.length > 0) {
         this.hasInterestedMembers.emit(true);
       }

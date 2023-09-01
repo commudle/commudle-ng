@@ -3,23 +3,23 @@
     @apply com-text-base com-font-normal com-text-Auro-Metal-Saurus com-mb-4;
   }
   .users {
-    @apply com-flex com-flex-wrap com-pl-4;
+    @apply com-flex com-items-center com-flex-wrap com-pl-4;
 
     .user {
       @apply com-flex com-items-center com-m-0 com-ml-[-14px];
       .profile-picture {
+        @apply com-border com-border-solid com-border-Bright-Gray com-bg-gray-100;
         width: 35px;
         height: 35px;
         border-radius: 50%;
         overflow: hidden;
         img {
-          vertical-align: text-top;
           width: 100%;
         }
       }
     }
     p {
-      margin: 9px 0;
+      @apply com-m-0 md:com-mt-2;
     }
   }
 }
