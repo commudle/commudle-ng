@@ -32,6 +32,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   hasCollaborationCommunities = false;
   hasVolunteers = false;
   hasOpenForms = false;
+  hasRegistrationForm;
   hasInterestedMembers = false;
   hasSponsors = false;
 

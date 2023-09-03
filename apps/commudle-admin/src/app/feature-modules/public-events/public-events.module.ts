@@ -53,6 +53,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
+import { EventRegistrationFormComponent } from './components/event-registration-form/event-registration-form.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { EventsAgendaComponent } from './components/events-agenda/events-agenda.
     AttendedMembersComponent,
     AttendedMembersCardComponent,
     EventsAgendaComponent,
+    EventRegistrationFormComponent,
   ],
   imports: [
     CommonModule,
