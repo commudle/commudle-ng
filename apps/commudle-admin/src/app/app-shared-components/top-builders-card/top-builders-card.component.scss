@@ -35,10 +35,10 @@ nb-card {
         }
 
         .votes {
-          @apply com-text-xs com-font-medium com-m-0 com-mt-2 com-text-Chocolate-Traditional;
+          @apply com-text-xs com-font-medium com-m-0 com-mt-2 com-text-Chocolate-Traditional com-flex com-gap-x-2;
 
           span {
-            @apply com-rounded-[20px] com-px-2 com-py-1 com-bg-white;
+            @apply com-rounded-[20px] com-px-2 com-py-1 com-border com-border-solid com-border-Chocolate-Traditional;
           }
         }
 
