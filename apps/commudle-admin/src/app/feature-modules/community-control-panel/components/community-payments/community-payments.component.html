@@ -51,16 +51,24 @@
         </div>
       </td>
       <td>
-        <button
-          nbButton
-          status="primary"
-          (click)="updateStripeAccount(stripeAccount.uuid)"
-          size="tiny"
-          [disabled]="stripeAccount.active"
-        >
-          Update
-        </button>
-        <!-- <a>{{ stripeAccount.details.external_accounts.url }}</a> -->
+        <div class="com-flex com-justify-evenly">
+          <button
+            nbButton
+            status="primary"
+            (click)="updateStripeAccount(stripeAccount.uuid)"
+            size="tiny"
+            [disabled]="stripeAccount.active"
+          >
+            <span> Update </span>
+          </button>
+          <a [href]="'https://dashboard.stripe.com/' + stripeAccount.details.id" target="_blank">
+            <button nbButton status="primary" size="tiny" class="com-flex com-items-center com-gap-1">
+              <fa-icon [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+              <span> Stripe Dashboard </span>
+            </button>
+          </a>
+          <!-- <a>{{ stripeAccount.details.external_accounts.url }}</a> -->
+        </div>
       </td>
     </tr>
   </table>

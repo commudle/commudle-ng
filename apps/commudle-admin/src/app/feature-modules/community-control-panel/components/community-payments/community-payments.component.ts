@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StripeHandlerService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
-
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-community-payments',
   templateUrl: './community-payments.component.html',
@@ -20,6 +20,9 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   stripeConnectAccountForm;
   dialogRef: NbDialogRef<any>;
   countries = countries_details;
+  icons = {
+    faArrowUpRightFromSquare,
+  };
 
   constructor(
     private stripeHandlerService: StripeHandlerService,
@@ -69,7 +72,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           this.stripeConnectAccountForm.reset();
           this.dialogRef.close();
-          window.open(data.url);
+          window.location.href = data.url;
         }),
     );
   }
@@ -100,6 +103,10 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
 
   updateStripeAccount(uuid) {
     const currentUrl = this.router.url;
-    this.subscriptions.push(this.stripeHandlerService.linkAccount(uuid, currentUrl).subscribe((data) => {}));
+    this.subscriptions.push(
+      this.stripeHandlerService.linkAccount(uuid, currentUrl).subscribe((data) => {
+        window.location.href = data.url;
+      }),
+    );
   }
 }
