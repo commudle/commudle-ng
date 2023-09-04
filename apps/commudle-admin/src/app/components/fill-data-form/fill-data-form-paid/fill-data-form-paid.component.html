@@ -332,8 +332,8 @@
       </ng-container>
     </nb-card-body>
     <nb-card-footer class="com-flex com-justify-between">
-      <button nbButton fullWidth status="primary" (click)="pay()">Pay</button>
-      <button nbButton fullWidth ghost (click)="ref.close()">Cancel</button>
+      <button nbButton fullWidth status="primary" (click)="pay()" [nbSpinner]="isLoadingPayment">Pay</button>
+      <button nbButton fullWidth ghost (click)="ref.close()" [disabled]="isLoadingPayment">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
