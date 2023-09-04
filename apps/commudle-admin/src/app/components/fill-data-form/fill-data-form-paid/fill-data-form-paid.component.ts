@@ -212,7 +212,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         this.createCurrentUserForm();
       } else {
         for (const eto of this.eventTicketOrders) {
-          if (this.currentUser.username === eto.user_id && eto.status === 'unpaid') {
+          if (this.currentUser.username === eto.user_id) {
             this.showEventTicketOrder = eto;
             if (eto.status === 'full_refund') {
               this.showEventTicketOrder = eto;
@@ -410,7 +410,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         .canBeApplied(
           this.promoCode,
           this.dataFormEntity.entity_id,
-          this.paymentDetails.price / 100,
+          this.paymentDetails.price,
           this.event.id,
           this.forms.length,
         )
@@ -419,7 +419,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
             this.discountAmount =
               data.discount_type === 'fixed_amount' ? data.discount_amount / 100 : data.discount_amount;
             this.promoCodeApplied = true;
-            this.toastLogService.successDialog('Coupon code applied successfully!', 1000);
             this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
             this.calculateTaxAmount();
           } else {
@@ -446,7 +445,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       if (this.ticketPaidAlready) {
         this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
       } else if (!this.ticketPaidAlready) {
-        if (this.eventTicketOrders.length > 0 || this.showEventTicketOrder !== undefined) {
+        if (this.eventTicketOrders.length > 0 && this.showEventTicketOrder !== undefined) {
           this.updateTickerOrder();
         } else {
           this.createTicketOrder();

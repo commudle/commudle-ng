@@ -30,12 +30,13 @@ export class DiscountCouponsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.discountCodesService.indexDiscountCodes(this.event.id);
     this.getDiscountCoupons();
   }
 
   getDiscountCoupons() {
     this.subscriptions.push(
-      this.discountCodesService.indexDiscountCodes(this.event.id).subscribe((data: IDiscountCode[]) => {
+      this.discountCodesService.discountCodes$.subscribe((data) => {
         this.discountCodes = data;
       }),
     );

@@ -24,23 +24,36 @@
           />
         </label>
 
-        <!-- Discount type* -->
-        <label class="com-col-span-1">
-          Discount type*
-          <div class="select !com-mt-0">
-            <select
-              formControlName="discount_type"
-              [ngClass]="{
-                'com-text-[#8E9BB3]': discountCouponForm.controls.discount_code.get('discount_type').value === ''
-              }"
-            >
-              <option value="" selected disabled>Select Discount Type</option>
-              <option value="percent">Percent</option>
-              <option value="fixed_amount">Value</option>
-            </select>
-          </div>
-        </label>
-
+        <div class="com-flex com-gap-2">
+          <!-- Discount type* -->
+          <label>
+            Discount type*
+            <div class="select !com-mt-0">
+              <select
+                formControlName="discount_type"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]': discountCouponForm.controls.discount_code.get('discount_type').value === ''
+                }"
+              >
+                <option value="" selected disabled>Select Discount Type</option>
+                <option value="percent">Percent</option>
+                <option value="fixed_amount">Value</option>
+              </select>
+            </div>
+          </label>
+          <!-- Discount value* -->
+          <label>
+            Discount value*
+            <input
+              formControlName="discount_value"
+              fullWidth
+              nbInput
+              type="number"
+              placeholder=" Discount value"
+              min="0"
+            />
+          </label>
+        </div>
         <!-- Is Limited* -->
         <label class="com-col-span-1 com-flex com-items-center com-gap-2">
           <input formControlName="is_limited" type="checkbox" />
@@ -55,24 +68,12 @@
           <input formControlName="max_limit" nbInput fullWidth type="number" placeholder="Max Limit" />
         </label>
 
-        <!-- Discount value* -->
-        <label class="com-col-span-1">
-          Discount value*
-          <input
-            formControlName="discount_value"
-            fullWidth
-            nbInput
-            type="number"
-            placeholder=" Discount value"
-            min="0"
-          />
-        </label>
-
         <!-- Expires At* -->
         <label class="com-col-span-1">
           <div>
             <span> Expires At </span>
             <span
+              *ngIf="discountCouponForm.controls.discount_code.get('expires_at').value"
               class="com-p-1 com-text-xs com-cursor-pointer com-text-primary-500"
               (click)="clearExpiresAt(); ($event.stopPropagation)"
               >Clear</span
@@ -96,9 +97,7 @@
                 [value]="edfeg.id"
                 (change)="addEventDataForm($event)"
               />
-              <span class="com-text-primary-500 com-font-semibold">
-                {{ edfeg.name }}
-              </span>
+              <span class="com-text-primary-500 com-font-semibold"> {{ edfeg.name }}, {{ edfeg.id }} </span>
             </div>
           </div>
         </div>
