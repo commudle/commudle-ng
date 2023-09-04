@@ -1,5 +1,5 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -66,6 +66,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   @ViewChild(StripePaymentElementComponent)
   paymentElement: StripePaymentElementComponent;
 
+  @ViewChild('consentAnimation', { static: false }) consentAnimationContainer: ElementRef<HTMLDivElement>;
+
   elementsOptions: StripeElementsOptions = {
     locale: 'auto',
   };
@@ -121,6 +123,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.fetchDataFormEntity();
     this.setRedirectPath();
     this.setupCurrentUser();
+  }
+
+  ngAfterViewInit(): void {
+    import('lottie-web').then((l) => {
+      l.default.loadAnimation({
+        container: this.consentAnimationContainer.nativeElement,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'https://lottie.host/c2cb6499-cc9b-4613-b2e0-1d5010f352a1/aGhiQxpT0w.json',
+      });
+    });
   }
 
   ngOnDestroy() {
