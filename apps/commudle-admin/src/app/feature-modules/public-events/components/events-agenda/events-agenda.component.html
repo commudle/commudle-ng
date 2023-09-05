@@ -1,9 +1,7 @@
 <div *ngIf="community && event">
-  <app-agenda
-    [community]="community"
-    [event]="event"
-    [showAgendaAsHeading]="false"
-    [showEventNameAsHeading]="true"
-    [showShareButton]="false"
-  ></app-agenda>
+  <div class="community-badge">
+    <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+  </div>
+  <h1>{{ event.name }}</h1>
+  <app-agenda [community]="community" [event]="event" [showShareButton]="false"></app-agenda>
 </div>
