@@ -1,5 +1,5 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -33,7 +33,7 @@ import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/dat
   templateUrl: './fill-data-form-paid.component.html',
   styleUrls: ['./fill-data-form-paid.component.scss'],
 })
-export class FillDataFormPaidComponent implements OnInit, OnDestroy {
+export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewInit {
   countries = countries_details; //list of country code for phone numbers codes
   dataFormEntity: IDataFormEntity;
   formClosed = false; //form is closed or open for filling state
@@ -66,6 +66,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   @ViewChild(StripePaymentElementComponent)
   paymentElement: StripePaymentElementComponent;
 
+  @ViewChild('consentAnimation', { static: false }) consentAnimationContainer: ElementRef<HTMLDivElement>;
+
   elementsOptions: StripeElementsOptions = {
     locale: 'auto',
   };
@@ -97,6 +99,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
   };
 
   showEventTicketOrder;
+  isLoadingPayment = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -121,6 +124,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
     this.fetchDataFormEntity();
     this.setRedirectPath();
     this.setupCurrentUser();
+  }
+
+  ngAfterViewInit(): void {
+    import('lottie-web').then((l) => {
+      l.default.loadAnimation({
+        container: this.consentAnimationContainer?.nativeElement,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'https://lottie.host/81ecf9b7-b435-487c-b2d5-1386e690df6f/AQjcda3Dkr.json',
+      });
+    });
   }
 
   ngOnDestroy() {
@@ -212,7 +227,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         this.createCurrentUserForm();
       } else {
         for (const eto of this.eventTicketOrders) {
-          if (this.currentUser.username === eto.user_id && eto.status === 'unpaid') {
+          if (this.currentUser.username === eto.user_id) {
             this.showEventTicketOrder = eto;
             if (eto.status === 'full_refund') {
               this.showEventTicketOrder = eto;
@@ -410,7 +425,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
         .canBeApplied(
           this.promoCode,
           this.dataFormEntity.entity_id,
-          this.paymentDetails.price / 100,
+          this.paymentDetails.price,
           this.event.id,
           this.forms.length,
         )
@@ -419,7 +434,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
             this.discountAmount =
               data.discount_type === 'fixed_amount' ? data.discount_amount / 100 : data.discount_amount;
             this.promoCodeApplied = true;
-            this.toastLogService.successDialog('Coupon code applied successfully!', 1000);
             this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
             this.calculateTaxAmount();
           } else {
@@ -446,7 +460,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       if (this.ticketPaidAlready) {
         this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
       } else if (!this.ticketPaidAlready) {
-        if (this.eventTicketOrders.length > 0 || this.showEventTicketOrder !== undefined) {
+        if (this.eventTicketOrders.length > 0 && this.showEventTicketOrder !== undefined) {
           this.updateTickerOrder();
         } else {
           this.createTicketOrder();
@@ -504,6 +518,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
 
   // for Payment confirm Function
   pay() {
+    this.isLoadingPayment = true;
     this.stripeService
       .confirmPayment({
         elements: this.paymentElement.elements,
@@ -511,6 +526,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
       })
       .subscribe((result) => {
         if (result.error) {
+          this.isLoadingPayment = false;
           this.toastLogService.warningDialog(result.error.decline_code, 10000);
           this.dialogRef = this.dialogService.open(this.paymentErrorDialog, {
             closeOnBackdropClick: false,
@@ -518,6 +534,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy {
           });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
+            this.isLoadingPayment = false;
             this.paymentDialogRef.close();
             this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
             this.eventTicketOrderService.checkPayment(this.stripePaymentIntendId).subscribe((data) => {});

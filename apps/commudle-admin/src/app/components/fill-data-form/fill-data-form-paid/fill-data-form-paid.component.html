@@ -332,8 +332,8 @@
       </ng-container>
     </nb-card-body>
     <nb-card-footer class="com-flex com-justify-between">
-      <button nbButton fullWidth status="primary" (click)="pay()">Pay</button>
-      <button nbButton fullWidth ghost (click)="ref.close()">Cancel</button>
+      <button nbButton fullWidth status="primary" (click)="pay()" [nbSpinner]="isLoadingPayment">Pay</button>
+      <button nbButton fullWidth ghost (click)="ref.close()" [disabled]="isLoadingPayment">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
@@ -342,9 +342,10 @@
   <nb-card class="confirmation-dialog">
     <nb-card-body>
       <div>
-        <p class="thank-you-icon">
-          <nb-icon icon="done-all" status="success"></nb-icon>
-        </p>
+        <div class="com-w-40 com-mx-auto">
+          <span #consentAnimation></span>
+        </div>
+        <p class="com-text-xl com-my-1">Purchase Successful!</p>
         <p>Thank You {{ currentUser.name }} for filling the form!</p>
       </div>
     </nb-card-body>
