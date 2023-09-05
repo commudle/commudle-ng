@@ -1,10 +1,13 @@
 <nb-card>
   <nb-card-header>
-    <h6>
+    <h6 *ngIf="showAgendaAsHeading">
       <nb-icon icon="calendar-outline" status="primary"></nb-icon>
       Agenda
     </h6>
-    <div class="share-btn">
+    <h1 *ngIf="showEventNameAsHeading">
+      {{ event.name }}
+    </h1>
+    <div *ngIf="showShareButton" class="share-btn">
       <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'agenda']" target="_blank">
         <span>Share</span>
         <nb-icon icon="external-link" status="primary"></nb-icon>

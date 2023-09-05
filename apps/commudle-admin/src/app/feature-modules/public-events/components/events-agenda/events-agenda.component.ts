@@ -4,6 +4,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-events-agenda',
@@ -19,6 +20,7 @@ export class EventsAgendaComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
     private eventsService: EventsService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,15 @@ export class EventsAgendaComponent implements OnInit {
   getEvent() {
     this.eventsService.pGetEvent(this.eventId).subscribe((data) => {
       this.event = data;
+      this.setSeoService();
     });
+  }
+
+  setSeoService() {
+    this.seoService.setTags(
+      `Agenda - ${this.event.name} - ${this.community.name}`,
+      'Enter the world of techies and knowledge, just one step to begin your journey. Login or sign up now!',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
