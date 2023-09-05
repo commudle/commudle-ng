@@ -133,7 +133,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         renderer: 'svg',
         loop: false,
         autoplay: true,
-        path: 'https://lottie.host/c2cb6499-cc9b-4613-b2e0-1d5010f352a1/aGhiQxpT0w.json',
+        path: 'https://lottie.host/81ecf9b7-b435-487c-b2d5-1386e690df6f/AQjcda3Dkr.json',
       });
     });
   }
