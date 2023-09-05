@@ -76,13 +76,6 @@
         .view-attended-members-button {
           @apply com-mt-4;
         }
-
-        .registrations-buttons {
-          @apply com-p-0 com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
-          .registration-form {
-            @apply com-mb-4;
-          }
-        }
       }
 
       app-messages {
