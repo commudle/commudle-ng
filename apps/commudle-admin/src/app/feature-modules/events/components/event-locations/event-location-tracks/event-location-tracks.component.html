@@ -248,18 +248,22 @@
           </span>
         </nb-select>
       </div>
-      <div>
-        <nb-select
-          formControlName="speaker_registration_id"
-          placeholder="Select Speaker (optional)"
-          fullWidth
-          class="select-speaker"
-        >
-          <nb-option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
+      <div
+        *ngFor="
+          let speakerControl of trackSlotForm.get('track_slot.track_slot_speaker_registration_ids').controls;
+          let i = index
+        "
+        class="dropdown"
+      >
+        <select [formControl]="speakerControl" class="com-border-0" (change)="speakerSelected($event, i)">
+          <option value="" selected disabled>Select Speaker (optional)</option>
+          <option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
             {{ speaker.user.name }}
-          </nb-option>
-        </nb-select>
+          </option>
+        </select>
       </div>
+      <span (click)="addSpeakerDropdown()" class="com-text-primary-500 com-cursor-pointer">Add Another Speaker</span>
+
       <div class="session-name">
         <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
         <span

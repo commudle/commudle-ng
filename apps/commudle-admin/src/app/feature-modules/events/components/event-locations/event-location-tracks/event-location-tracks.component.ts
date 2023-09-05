@@ -12,7 +12,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbTagComponent, NbTagInputAddEvent, NbWindowService } from '@commudle/theme';
 import { faClock, faInfo, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -100,13 +100,18 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         end_time: [new Date(), Validators.required],
         session_title: ['', Validators.required],
         tags_list: [''],
-        speaker_registration_id: [''],
+        track_slot_speaker_registration_ids: this.fb.array([]),
       }),
     });
   }
 
   ngOnInit() {
     this.setTrackVisibility();
+    this.eventSpeakers;
+    console.log(
+      '🚀 ~ file: event-location-tracks.component.ts:111 ~ EventLocationTracksComponent ~ ngOnInit ~   this.eventSpeakers;:',
+      this.eventSpeakers,
+    );
 
     const visibility = this.eventLocationTracks.length <= 2;
     for (const event_location_track of this.eventLocationTracks) {
@@ -145,6 +150,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         start_time: time,
         end_time: endTime,
       });
+      this.addSpeakerDropdown();
       this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
         title: 'Add a session',
         context: { operationType: 'create' },
@@ -504,5 +510,17 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   onTagRemove(tagToRemove: NbTagComponent): void {
     this.tags = this.tags.filter((tag) => tag !== tagToRemove.text);
+  }
+
+  speakerSelected(event, index) {
+    const selectedSpeakerId = Number(event.target.value);
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.at(index).setValue(selectedSpeakerId);
+  }
+
+  addSpeakerDropdown() {
+    const speakerControl = this.fb.control('');
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.push(speakerControl);
   }
 }
