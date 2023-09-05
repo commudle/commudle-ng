@@ -526,10 +526,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       })
       .subscribe((result) => {
         if (result.error) {
-          console.log(
-            '🚀 ~ file: fill-data-form-paid.component.ts:529 ~ FillDataFormPaidComponent ~ .subscribe ~ result.error:',
-            result.error,
-          );
           this.isLoadingPayment = false;
           this.toastLogService.warningDialog(result.error.decline_code, 10000);
           this.dialogRef = this.dialogService.open(this.paymentErrorDialog, {
