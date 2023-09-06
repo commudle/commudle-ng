@@ -1,0 +1,7 @@
+<div *ngFor="let trackSlot of trackSlots">
+  <p>{{ trackSlot.session_title }}</p>
+</div>
+
+<div *ngIf="trackSlots.length === 0">
+  <p>No Track Slot Selected Yet</p>
+</div>
