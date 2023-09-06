@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -34,7 +33,7 @@ import * as moment from 'moment';
   styleUrls: ['./event-location-tracks.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventLocationTracksComponent implements OnInit, AfterViewInit {
+export class EventLocationTracksComponent implements OnInit {
   @Input() eventLocations: IEventLocation[] = [];
   @Input() eventLocationTracks: IEventLocationTrack[] = [];
   @Input() event: IEvent;
@@ -112,15 +111,9 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     for (const event_location_track of this.eventLocationTracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
-      console.log(
-        '🚀 ~ file: event-location-tracks.component.ts:115 ~ EventLocationTracksComponent ~ ngOnInit ~ this.sortedTrackSlots:',
-        this.sortedTrackSlots,
-      );
     }
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
-
-  ngAfterViewInit(): void {}
 
   scrollFromTop() {
     if (
@@ -135,6 +128,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   showAddSlotForm(eventLocationTrack, startTime, eventLocTrack) {
     this.trackSlotForm.reset();
+    this.removeAllDropdowns();
     for (const event_location_track of this.eventLocationTracks) {
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
@@ -195,6 +189,10 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   showEditSlotForm(trackSlot) {
     this.trackSlotForm.reset();
+    this.removeAllDropdowns();
+    for (const speakers of trackSlot.track_slot_speakers) {
+      this.addSpeakerToDropdown(speakers.speaker_registration_id);
+    }
     const sTime = trackSlot['start_time'];
     const eTime = trackSlot['end_time'];
     const sTimeArr = sTime.split('T')[1].split(':');
@@ -523,12 +521,24 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     speakerIdsArray.push(speakerControl);
   }
 
+  addSpeakerToDropdown(value) {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.push(this.fb.control(value));
+  }
+
   removeSpeakerDropdown(index: number) {
     const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
 
     // Check if the index is valid before attempting to remove the control.
     if (index >= 0 && index < speakerIdsArray.length) {
       speakerIdsArray.removeAt(index);
+    }
+  }
+
+  removeAllDropdowns() {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    while (speakerIdsArray.length > 0) {
+      speakerIdsArray.removeAt(0);
     }
   }
 }
