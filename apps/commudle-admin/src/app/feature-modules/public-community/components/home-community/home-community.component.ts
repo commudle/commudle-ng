@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 import { NbDialogService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-community',
@@ -27,6 +28,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   ENotificationSenderTypes = ENotificationSenderTypes;
   uploadedBannerFile: File;
   uploadedBanner: any;
+  faMessage = faMessage;
 
   subscriptions: Subscription[] = [];
 

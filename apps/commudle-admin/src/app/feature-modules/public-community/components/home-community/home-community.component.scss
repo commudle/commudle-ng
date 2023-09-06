@@ -100,7 +100,8 @@
     a {
       @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
-      nb-icon {
+      nb-icon,
+      fa-icon {
         @apply com-text-gunmetal/80;
       }
 
@@ -118,11 +119,15 @@
       @apply com-text-2xl;
     }
 
+    fa-icon {
+      @apply com-text-lg;
+    }
+
     .active {
       @apply com-border-0 com-border-b-3 com-border-solid com-border-primary-500;
 
       nb-icon,
-      .title {
+      fa-icon .title {
         @apply com-text-primary-500;
       }
     }

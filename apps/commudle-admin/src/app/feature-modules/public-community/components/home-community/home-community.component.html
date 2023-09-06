@@ -211,7 +211,7 @@
                   <span class="title">Channels</span>
                 </a>
                 <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
-                  <nb-icon icon="message-square" status="success"></nb-icon>
+                  <fa-icon [icon]="faMessage"></fa-icon>
                   <span class="title">Forums</span>
                 </a>
                 <div *ngIf="isOrganizer" class="com-relative" (click)="gtmService()">
