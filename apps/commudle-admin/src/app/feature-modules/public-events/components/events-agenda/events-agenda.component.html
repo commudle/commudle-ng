@@ -1,3 +1,11 @@
-<div *ngIf="event.event_locations_count">
-  <app-agenda [community]="community" [event]="event"></app-agenda>
+<div *ngIf="community && event">
+  <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="back-btn">
+    <fa-icon class="icon" [icon]="faArrowLeft"></fa-icon>
+    <p class="heading">Back to Events Page</p>
+  </a>
+  <div class="community-badge">
+    <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+  </div>
+  <h1>{{ event.name }}</h1>
+  <app-agenda [community]="community" [event]="event" [showShareButton]="false"></app-agenda>
 </div>

@@ -4,6 +4,12 @@
       <nb-icon icon="calendar-outline" status="primary"></nb-icon>
       Agenda
     </h6>
+    <div *ngIf="showShareButton" class="share-btn">
+      <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'agenda']" target="_blank">
+        <span>Share</span>
+        <nb-icon icon="external-link" status="primary"></nb-icon>
+      </a>
+    </div>
   </nb-card-header>
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>

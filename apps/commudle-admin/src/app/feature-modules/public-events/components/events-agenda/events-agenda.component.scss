@@ -1,0 +1,17 @@
+div {
+  @apply com-bg-white com-px-4;
+
+  .back-btn {
+    @apply com-flex com-items-center com-no-underline com-py-4 com-ml-4;
+    .icon {
+      @apply com-text-Auro-Metal-Saurus com-mr-2;
+    }
+    .heading {
+      @apply com-text-xs com-text-Auro-Metal-Saurus com-m-0;
+    }
+  }
+
+  h1 {
+    @apply com-mt-1 com-ml-4;
+  }
+}
