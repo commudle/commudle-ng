@@ -139,9 +139,5 @@ export class SurveysComponent implements OnInit, OnDestroy {
       this.openNewFormDialogBox();
     }
   }
-
-  resetDataFormId() {
-    this.createSurveyForm.controls.survey.get('data_form_id').setValue('');
-  }
   updateSurvey() {}
 }

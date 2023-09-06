@@ -168,6 +168,10 @@ export class FormGroupsComponent implements OnInit {
       },
       windowClass: 'form-window',
     });
+
+    this.newDataFormWindowRef.onClose.subscribe(() =>
+      this.eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').setValue(''),
+    );
   }
 
   createAndSelectForm(newFormData) {
