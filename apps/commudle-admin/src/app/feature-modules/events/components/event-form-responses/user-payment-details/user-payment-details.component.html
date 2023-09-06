@@ -17,24 +17,34 @@
     <td>Discount Amount</td>
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.discount_amount / 100 }}</td>
   </tr>
-  <tr>
-    <td>Users</td>
-    <td class="com-flex com-flex-col" *ngFor="let etoUser of detail.eto_users">
-      <span *ngIf="detail.user.id === etoUser.user_id" class="com-italic">Paid By:</span>
-      <span class="com-text-xs">{{ etoUser.name }}</span>
-      <span class="com-text-xs">{{ etoUser.email }}</span>
-      <span class="com-text-xs">{{ etoUser.phone }}</span>
+  <tr *ngIf="paidUser">
+    <td class="com-italic">Paid By</td>
+    <td class="com-flex com-flex-col">
+      <span class="com-text-xs">{{ paidUser.name }}</span>
+      <span class="com-text-xs">{{ paidUser.email }}</span>
+      <span class="com-text-xs">{{ paidUser.phone }}</span>
     </td>
   </tr>
-  <tr class="com-mt-4" *ngIf="detail.status === 'paid'">
+  <tr *ngIf="otherUsers">
+    <td class="com-italic">Others</td>
+    <td>
+      <div class="com-flex com-flex-col com-mt-1" *ngFor="let otherUser of otherUsers">
+        <span class="com-text-xs">{{ otherUser.name }}</span>
+        <span class="com-text-xs">{{ otherUser.email }}</span>
+        <span class="com-text-xs">{{ otherUser.phone }}</span>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="detail.status === 'paid' && user.id === paidUser.user_id">
     <td colspan="2">
-      <button fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
+      <button class="com-mt-4" fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
     </td>
   </tr>
 </table>
 
 <ng-template #refundDialogBox let-data let-ref="dialogRef">
   <nb-card>
+    <nb-card-header></nb-card-header>
     <nb-card-body>
       <div class="com-font-semibold">Refund Amount: {{ refundAmount / 100 }}</div>
       <p>Are you sure you want to create refund!</p>

@@ -1,20 +1,36 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { EventTicketOrderService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
+import { IUser } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-user-payment-details',
   templateUrl: './user-payment-details.component.html',
   styleUrls: ['./user-payment-details.component.scss'],
 })
-export class UserPaymentDetailsComponent {
+export class UserPaymentDetailsComponent implements OnInit {
   @Input() eto;
+  @Input() user: IUser;
   refundAmount: number;
   subscription: Subscription[] = [];
+  paidUser;
+  otherUsers: IUser[] = [];
   constructor(private eventTicketOrderService: EventTicketOrderService, private dialogService: NbDialogService) {}
 
   @ViewChild('refundDialogBox') refundDialogBox: TemplateRef<any>;
+
+  ngOnInit(): void {
+    for (const eto of this.eto) {
+      for (const etoUser of eto.eto_users) {
+        if (eto.user.id === etoUser.user_id) {
+          this.paidUser = etoUser;
+        } else if (eto.user.id !== etoUser.user_id) {
+          this.otherUsers.push(etoUser);
+        }
+      }
+    }
+  }
 
   checkRefund(eventTicketOrderId) {
     this.subscription.push(
