@@ -16,5 +16,10 @@ export interface ITrackSlot {
   user_vote: boolean;
   speaker_resource: ISpeakerResource;
   rsvp_token: string;
+  track_slot_speakers: ITrackSlotSpeakers[];
+}
 
+export interface ITrackSlotSpeakers {
+  speaker_registration_id: number;
+  user: IUser;
 }

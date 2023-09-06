@@ -15,7 +15,7 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbTagComponent, NbTagInputAddEvent, NbWindowService } from '@commudle/theme';
-import { faClock, faInfo, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faInfo, faPen, faPlusCircle, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { EventLocationTracksService } from 'apps/commudle-admin/src/app/services/event-location-tracks.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -56,6 +56,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   faPlusCircle = faPlusCircle;
   faTrash = faTrash;
   faPen = faPen;
+  faXmark = faXmark;
   EEventType = EEventType;
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
@@ -107,16 +108,14 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.setTrackVisibility();
-    this.eventSpeakers;
-    console.log(
-      '🚀 ~ file: event-location-tracks.component.ts:111 ~ EventLocationTracksComponent ~ ngOnInit ~   this.eventSpeakers;:',
-      this.eventSpeakers,
-    );
-
     const visibility = this.eventLocationTracks.length <= 2;
     for (const event_location_track of this.eventLocationTracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+      console.log(
+        '🚀 ~ file: event-location-tracks.component.ts:115 ~ EventLocationTracksComponent ~ ngOnInit ~ this.sortedTrackSlots:',
+        this.sortedTrackSlots,
+      );
     }
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
@@ -522,5 +521,14 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     const speakerControl = this.fb.control('');
     const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
     speakerIdsArray.push(speakerControl);
+  }
+
+  removeSpeakerDropdown(index: number) {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+
+    // Check if the index is valid before attempting to remove the control.
+    if (index >= 0 && index < speakerIdsArray.length) {
+      speakerIdsArray.removeAt(index);
+    }
   }
 }

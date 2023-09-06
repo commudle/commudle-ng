@@ -70,8 +70,7 @@
               }
 
               .session-speaker {
-                @apply com-mt-1;
-                width: fit-content;
+                @apply com-mt-1 com-flex com-gap-3;
               }
             }
 
