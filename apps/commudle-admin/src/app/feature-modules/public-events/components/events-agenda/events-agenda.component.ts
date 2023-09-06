@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-events-agenda',
@@ -16,6 +17,7 @@ export class EventsAgendaComponent implements OnInit {
   event: IEvent;
   communityId: string;
   eventId: string;
+  faArrowLeft = faArrowLeft;
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,

@@ -1,4 +1,8 @@
 <div *ngIf="community && event">
+  <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="back-btn">
+    <fa-icon class="icon" [icon]="faArrowLeft"></fa-icon>
+    <p class="heading">Back to Events Page</p>
+  </a>
   <div class="community-badge">
     <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
   </div>
