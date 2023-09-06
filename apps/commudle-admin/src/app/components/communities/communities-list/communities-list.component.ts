@@ -33,6 +33,9 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   isLoading = false;
   canLoadMore = true;
   seoTitle: string;
+  newest_communities = true;
+  loadingData = false;
+  loadingCommunities = false;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -41,7 +44,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     private location: Location,
     private seoService: SeoService,
   ) {
-    this.options = ['Most Events', 'Most Members'];
+    this.options = ['Newest', 'Most Events', 'Most Members'];
     this.searchForm = this.fb.group({
       name: [''],
     });
@@ -52,14 +55,22 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.search();
     const params = this.activatedRoute.snapshot.queryParams;
     if (Object.keys(params).length > 0) {
+      if (params.newest_communities) {
+        this.newest_communities = true;
+        this.members_count = false;
+        this.completed_events_count = false;
+        this.order_by = '';
+      }
       if (params.members_count) {
         this.members_count = true;
         this.completed_events_count = false;
+        this.newest_communities = false;
         this.order_by = 'members_count';
       }
       if (params.completed_events_count) {
         this.members_count = false;
         this.completed_events_count = true;
+        this.newest_communities = false;
         this.order_by = 'completed_events_count';
       }
       if (params.query) {
@@ -68,6 +79,7 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
       }
     }
     this.communities = [];
+    this.pageInfo = null;
     this.updateSeoTitle();
     if (!params.query) {
       this.getPopularCommunities();
@@ -90,6 +102,10 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   getPopularCommunities(): void {
     this.showSpinner = true;
+    if (this.loadingCommunities) {
+      return;
+    }
+    this.loadingCommunities = true;
     if (!this.pageInfo?.end_cursor) {
       this.communities = [];
     }
@@ -102,6 +118,8 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
           this.pageInfo = data.page_info;
           this.showSpinner = false;
           this.skeletonLoaderCard = false;
+          this.loadingData = false;
+          this.loadingCommunities = false;
         }),
     );
   }
@@ -109,22 +127,34 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   search() {
     this.query = '';
     this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
+      if (this.loadingData) {
+        return;
+      }
       this.communities = [];
-      this.query = this.searchForm.get('name').value;
       this.pageInfo = null;
-      this.generateParams(this.members_count, this.completed_events_count, this.query);
+      this.loadingData = true;
+      this.query = this.searchForm.get('name').value;
+      this.generateParams(this.newest_communities, this.members_count, this.completed_events_count, this.query);
     });
   }
 
   filterByTags(event) {
     if (event === this.options[0]) {
-      this.completed_events_count = !this.completed_events_count;
+      this.newest_communities = !this.newest_communities;
+      this.completed_events_count = false;
       this.members_count = false;
-      this.order_by = 'completed_events_count';
+      this.order_by = '';
     }
     if (event === this.options[1]) {
+      this.completed_events_count = !this.completed_events_count;
+      this.members_count = false;
+      this.newest_communities = false;
+      this.order_by = 'completed_events_count';
+    }
+    if (event === this.options[2]) {
       this.completed_events_count = false;
       this.members_count = !this.members_count;
+      this.newest_communities = false;
       this.order_by = 'members_count';
     }
     if (!this.completed_events_count && !this.members_count) {
@@ -133,12 +163,15 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.skeletonLoaderCard = true;
     this.communities = [];
     this.pageInfo = null;
-    this.generateParams(this.members_count, this.completed_events_count, this.query);
+    this.generateParams(this.newest_communities, this.members_count, this.completed_events_count, this.query);
   }
 
-  generateParams(members_count, completed_events_count, query) {
+  generateParams(newest_communities, members_count, completed_events_count, query) {
     this.skeletonLoaderCard = true;
     const queryParams: { [key: string]: any } = {};
+    if (newest_communities) {
+      queryParams.newest_communities = true;
+    }
     if (members_count) {
       queryParams.members_count = true;
     }

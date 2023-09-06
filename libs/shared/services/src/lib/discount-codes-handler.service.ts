@@ -3,19 +3,32 @@ import { Injectable } from '@angular/core';
 import { IDiscountCode } from '@commudle/shared-models';
 import { API_ROUTES } from './api-routes.constant';
 import { BaseApiService } from './base-api.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DiscountCodesService {
+  private discountCodes = new BehaviorSubject<IDiscountCode[]>([]);
+  public discountCodes$ = this.discountCodes.asObservable();
+
   constructor(private baseApiService: BaseApiService, private http: HttpClient) {}
 
-  indexDiscountCodes(eventId): Observable<IDiscountCode[]> {
+  indexDiscountCodes(eventId) {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IDiscountCode[]>(this.baseApiService.getRoute(API_ROUTES.DISCOUNT_CODES.INDEX), {
-      params,
-    });
+    this.http
+      .get<IDiscountCode[]>(this.baseApiService.getRoute(API_ROUTES.DISCOUNT_CODES.INDEX), {
+        params,
+      })
+      .subscribe((discountCodes) => {
+        this.discountCodes.next(discountCodes);
+      });
+  }
+
+  updateDiscountIndex(discountCode) {
+    const currentDiscountCodes = this.discountCodes.value;
+    currentDiscountCodes.push(discountCode);
+    this.discountCodes.next(currentDiscountCodes);
   }
 
   createDiscountCode(discount_code: any, eventId): Observable<any> {

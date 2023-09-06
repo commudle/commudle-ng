@@ -39,4 +39,9 @@ export class StripeHandlerService {
       params,
     });
   }
+
+  linkAccount(uuid: string, sourceUrl: string): Observable<any> {
+    const params = new HttpParams().set('uuid', uuid).set('source_url', sourceUrl);
+    return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.ACCOUNT_LINK), params);
+  }
 }

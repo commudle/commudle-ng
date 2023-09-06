@@ -706,6 +706,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/stripe_connect_accounts',
     CREATE: 'api/v2/stripe_connect_accounts',
     RETRIEVE_ACCOUNT: 'api/v2/stripe_connect_accounts/retrieve_account',
+    ACCOUNT_LINK: 'api/v2/stripe_connect_accounts/account_link',
   },
   DISCOUNT_CODES: {
     CREATE: 'api/v2/discount_codes',

@@ -8,7 +8,7 @@
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.total_amount / 100 }}</td>
   </tr>
 
-  <tr>
+  <tr *ngIf="detail.tax_amount > 0">
     <td>Tax Amount</td>
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.tax_amount / 100 }}</td>
   </tr>
@@ -26,9 +26,11 @@
       <span class="com-text-xs">{{ etoUser.phone }}</span>
     </td>
   </tr>
-  <div class="com-mt-4" *ngIf="detail.status === 'paid'">
-    <button nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
-  </div>
+  <tr class="com-mt-4" *ngIf="detail.status === 'paid'">
+    <td colspan="2">
+      <button fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
+    </td>
+  </tr>
 </table>
 
 <ng-template #refundDialogBox let-data let-ref="dialogRef">

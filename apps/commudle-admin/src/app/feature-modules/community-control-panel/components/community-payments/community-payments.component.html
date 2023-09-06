@@ -15,18 +15,16 @@
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Active</th>
-      <!-- <th>Actions</th> -->
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
       <th>Bank Details</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
-      <!-- <td>
-        <a>{{ stripeAccount.details.external_accounts.url }}</a>
-      </td> -->
+
       <td>
         <p>{{ stripeAccount.details.charges_enabled }}</p>
       </td>
@@ -49,7 +47,27 @@
           </details>
         </div>
         <div *ngIf="stripeAccount.details.external_accounts.data.length <= 0">
-          <strong> No Band Details Found </strong>
+          <strong> No Bank Details Found </strong>
+        </div>
+      </td>
+      <td>
+        <div class="com-flex com-justify-evenly">
+          <button
+            nbButton
+            status="primary"
+            (click)="updateStripeAccount(stripeAccount.uuid)"
+            size="tiny"
+            [disabled]="stripeAccount.active"
+          >
+            <span> Update </span>
+          </button>
+          <a [href]="'https://dashboard.stripe.com/' + stripeAccount.details.id" target="_blank">
+            <button nbButton status="primary" size="tiny" class="com-flex com-items-center com-gap-1">
+              <fa-icon [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+              <span> Stripe Dashboard </span>
+            </button>
+          </a>
+          <!-- <a>{{ stripeAccount.details.external_accounts.url }}</a> -->
         </div>
       </td>
     </tr>
@@ -148,7 +166,7 @@
 
           <!-- Country* -->
           <label>
-            country*
+            Country*
             <div class="select !com-mt-0">
               <select formControlName="country">
                 <option value="" selected disabled>Select Bank Ac</option>

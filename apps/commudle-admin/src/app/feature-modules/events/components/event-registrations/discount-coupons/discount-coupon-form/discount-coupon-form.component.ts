@@ -57,27 +57,23 @@ export class DiscountCouponFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchEventDataFormEntityGroups();
-
-    //set form details Case: Edit Mode
+    this.selectedEventDataFormEntityGroups = [];
     if (this.discountCode) {
-      this.selectedEventDataFormEntityGroups = [];
-      if (this.discountCode) {
-        const date = new Date(this.discountCode.expires_at);
-        for (const code of this.discountCode.event_data_form_entity_group_ids) {
-          this.addEventDataForm(code, 'edit');
-        }
-        this.discountCouponForm.get('discount_code').setValue({
-          code: this.discountCode.code,
-          discount_type: this.discountCode.discount_type,
-          discount_value:
-            this.discountCode.discount_type === 'fixed_amount'
-              ? this.discountCode.discount_value / 100
-              : this.discountCode.discount_value,
-          is_limited: this.discountCode.is_limited,
-          max_limit: this.discountCode.max_limit,
-          expires_at: this.discountCode.expires_at ? this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss') : '',
-        });
+      const date = new Date(this.discountCode.expires_at);
+      for (const code of this.discountCode.event_data_form_entity_group_ids) {
+        this.addEventDataForm(code, 'edit');
       }
+      this.discountCouponForm.get('discount_code').setValue({
+        code: this.discountCode.code,
+        discount_type: this.discountCode.discount_type,
+        discount_value:
+          this.discountCode.discount_type === 'fixed_amount'
+            ? this.discountCode.discount_value / 100
+            : this.discountCode.discount_value,
+        is_limited: this.discountCode.is_limited,
+        max_limit: this.discountCode.max_limit,
+        expires_at: this.discountCode.expires_at ? this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss') : '',
+      });
     }
   }
 
@@ -98,6 +94,13 @@ export class DiscountCouponFormComponent implements OnInit {
         this.eventDataFormEntityGroups = data.event_data_form_entity_groups.filter(
           (item) => item.registration_type.id !== 3, //3 is for feedback
         );
+        if (this.type === 'create') {
+          for (const edfeg of this.eventDataFormEntityGroups) {
+            if (edfeg.is_paid) {
+              this.selectedEventDataFormEntityGroups.push(edfeg.id);
+            }
+          }
+        }
       }),
     );
   }
@@ -131,7 +134,7 @@ export class DiscountCouponFormComponent implements OnInit {
   create(formData) {
     this.subscriptions.push(
       this.discountCodesService.createDiscountCode(formData, this.event.id).subscribe((data) => {
-        this.consentValueChangedOutput.emit(data);
+        this.discountCodesService.updateDiscountIndex(data);
         this.toastrService.successDialog('Discount Coupon Has Been Created');
         this.closeDialogBox();
         this.discountCouponForm.reset();
@@ -156,7 +159,7 @@ export class DiscountCouponFormComponent implements OnInit {
     if (formType) {
       this.selectedEventDataFormEntityGroups.push(event);
     } else {
-      const id = event.target.value;
+      const id = Number(event.target.value);
       const index = this.selectedEventDataFormEntityGroups.indexOf(id);
       if (event.target.checked) {
         this.selectedEventDataFormEntityGroups.push(id);
