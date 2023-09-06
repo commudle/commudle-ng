@@ -60,6 +60,10 @@
                 margin-bottom: 0.3rem;
               }
             }
+
+            .session-speaker {
+              @apply com-flex com-gap-3 com-flex-wrap;
+            }
           }
         }
       }
