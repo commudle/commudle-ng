@@ -80,6 +80,10 @@ const routes = [
         path: 'channels',
         component: CommunityChannelsComponent,
       },
+      {
+        path: 'forums',
+        component: CommunityChannelsComponent,
+      },
     ],
   },
 ];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 
 @Component({
@@ -9,11 +10,19 @@ import { ICommunity } from 'apps/shared-models/community.model';
 })
 export class CommunityChannelsComponent implements OnInit {
   community: ICommunity;
-  constructor(private activatedRoute: ActivatedRoute) {}
+  communityId: string;
+  constructor(private activatedRoute: ActivatedRoute, private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((data) => {
-      this.community = data.community;
+    this.activatedRoute.parent.params.subscribe((data) => {
+      this.communityId = data.community_id;
+      this.getCommunity();
+    });
+  }
+
+  getCommunity() {
+    this.communitiesService.pGetCommunityDetails(this.communityId).subscribe((data) => {
+      this.community = data;
     });
   }
 }
