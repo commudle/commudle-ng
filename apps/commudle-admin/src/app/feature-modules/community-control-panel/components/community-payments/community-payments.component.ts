@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StripeHandlerService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpRightFromSquare, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-community-payments',
   templateUrl: './community-payments.component.html',
@@ -22,6 +22,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   countries = countries_details;
   icons = {
     faArrowUpRightFromSquare,
+    faTriangleExclamation,
   };
 
   constructor(
