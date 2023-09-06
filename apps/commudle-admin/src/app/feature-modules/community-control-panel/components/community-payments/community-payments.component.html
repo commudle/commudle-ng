@@ -51,14 +51,16 @@
         </div>
       </td>
       <td>
-        <div class="com-flex com-justify-evenly">
+        <div>
           <button
             *ngIf="!stripeAccount.active"
             nbButton
             status="primary"
             (click)="updateStripeAccount(stripeAccount.uuid)"
             size="tiny"
+            class="com-flex com-items-center com-gap-1"
           >
+            <fa-icon [icon]="icons.faTriangleExclamation" class="com-text-white"></fa-icon>
             <span> Complete stripe A/C setup </span>
           </button>
           <a
