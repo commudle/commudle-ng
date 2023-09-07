@@ -39,6 +39,7 @@ const routes = [
         children: [
           {
             path: '',
+            runGuardsAndResolvers: 'always',
             component: EventDashboardComponent,
             children: [
               {

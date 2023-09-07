@@ -1,0 +1,108 @@
+.header {
+  @apply com-mx-[28px];
+  .form-name {
+    @apply com-text-2xl com-font-semibold com-my-1 com-text-center;
+  }
+
+  .community {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .event {
+    @apply com-mt-2;
+    text-align: center;
+    .header-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+    .event-name {
+      @apply com-text-Ultramarine-Blue com-m-0 com-text-lg com-font-bold com-my-1;
+    }
+  }
+}
+
+.confirmation-dialog {
+  nb-card-body {
+    text-align: center;
+    .thank-you-icon {
+      nb-icon {
+        font-size: 100px;
+      }
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    p {
+      flex-grow: 1;
+      max-width: 30%;
+      text-align: center;
+      a {
+        text-decoration: none;
+        img {
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
+.payment-details-section {
+  nb-card {
+    nb-card-body {
+      @apply com-p-0;
+      .payment-deatils {
+        @apply com-flex com-justify-between com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-2 com-px-4;
+        span {
+          @apply com-text-base com-font-medium;
+        }
+        .heading {
+          @apply com-text-gray-500;
+        }
+      }
+
+      .discount-code {
+        @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-4 com-px-6;
+        .heading {
+          @apply com-my-4 com-text-lg com-font-semibold;
+        }
+        .input {
+          @apply com-mt-4 com-mb-2 com-flex com-gap-3;
+        }
+        .code-success {
+          @apply com-text-Caribbean-Green;
+        }
+      }
+      .user-details {
+        @apply com-px-6 com-py-4;
+        form {
+          @apply com-mt-3;
+        }
+        form > div {
+          @apply com-flex com-flex-col com-gap-3;
+        }
+        .add-another-user {
+          @apply com-border-0 com-text-primary-500 com-bg-transparent  com-py-3 com-text-base com-cursor-pointer com-font-semibold;
+        }
+      }
+
+      .user-detail > div:not(:last-child) {
+        @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-pb-6;
+      }
+    }
+  }
+}
+
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#e4e9f2] com-w-24;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}

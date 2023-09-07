@@ -70,8 +70,7 @@
               }
 
               .session-speaker {
-                @apply com-mt-1;
-                width: fit-content;
+                @apply com-mt-1 com-flex com-gap-3;
               }
             }
 
@@ -130,4 +129,11 @@
 .select-track,
 .select-speaker {
   @apply com-mb-4;
+}
+
+.dropdown {
+  @apply com-w-full com-flex com-items-center com-gap-1 com-h-10 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-0 com-mb-2;
+  select {
+    @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
+  }
 }

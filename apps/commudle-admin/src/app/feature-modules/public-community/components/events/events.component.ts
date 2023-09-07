@@ -48,7 +48,7 @@ export class EventsComponent implements OnInit {
       this.events = data.events;
 
       this.events.forEach((event) => {
-        if (moment(event.end_time) > moment()) {
+        if (moment(event.end_time) > moment() || event.end_time === null) {
           this.upcomingEvents.push(event);
         } else {
           this.pastEvents.push(event);

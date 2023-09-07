@@ -28,6 +28,7 @@ export class AgendaComponent implements OnInit {
 
   @Input() community: ICommunity;
   @Input() event: IEvent;
+  @Input() showShareButton = true;
 
   eventLocations: IEventLocation[] = [];
 

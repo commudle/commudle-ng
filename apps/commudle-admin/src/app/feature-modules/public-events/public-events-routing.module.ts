@@ -7,6 +7,7 @@ import { HmsBeamComponent } from 'apps/shared-modules/hms-video/components/hms-b
 import { CheckRedirectGuard } from 'apps/shared-services/check-redirect.guard';
 import { HomeEventComponent } from './components/home-event/home-event.component';
 import { SessionPageComponent } from './components/session-page/session-page.component';
+import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
       {
         path: 'attended-members',
         component: AttendedMembersComponent,
+      },
+      {
+        path: 'agenda',
+        component: EventsAgendaComponent,
       },
     ],
   },

@@ -1,9 +1,34 @@
-.event-update {
-  .details {
-    margin-bottom: 0;
+nb-card {
+  @apply com-m-0 com-mt-4 md:com-rounded-[10px] com-rounded-none;
+
+  nb-card-header {
+    @apply com-py-4 md:com-px-6 com-px-4;
+    h6 {
+      @apply md:com-font-semibold com-font-bold;
+    }
   }
 
-  .time {
-    margin-top: 0;
+  nb-card-body {
+    @apply com-flex com-flex-col com-gap-4;
+    .event-update {
+      .details {
+        @apply com-m-0;
+
+        nb-icon {
+          @apply com-mr-2;
+        }
+      }
+
+      .time {
+        @apply com-m-0 com-ml-7 com-text-xs com-font-light com-text-Auro-Metal-Saurus;
+      }
+    }
+  }
+
+  .view-more {
+    @apply md:com-max-h-[126px] com-max-h-[146px] com-overflow-y-hidden;
+  }
+  .view-less {
+    @apply com-max-h-max;
   }
 }

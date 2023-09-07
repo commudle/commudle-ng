@@ -32,6 +32,9 @@ export const staticAssets = {
   community_build_empty_state:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKzBxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e5e8758fa8ec29c35266d3a555b2c2945c2a34b2/Build%20Empty%20State.png',
 
+  gdpr_compliance:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL0UzQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7aeb8a9428dd04a80f57b579e2344092bf7783c3/GDPR.png',
+
   emojis: {
     stars:
       'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGtxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--281b13ba73667dc6d98c85fa396713292c954732/acfc24b007f742e181c004f11d4128f7.png',
@@ -42,4 +45,7 @@ export const staticAssets = {
     medal_of_honour:
       'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGNxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c32f54e069ae256b46224c8d591a14e100abcc9d/b3d37220175f46299a2639f1bf15ded2.png',
   },
+
+  community_lab_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeUE0QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--93698b16ab6c8f95a106895116c8f0cf79ba9757/Labs%20Empty%20State.png',
 };

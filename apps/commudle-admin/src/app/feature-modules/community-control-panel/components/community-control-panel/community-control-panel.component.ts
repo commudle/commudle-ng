@@ -11,6 +11,7 @@ import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -27,6 +28,9 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   faScroll = faScroll;
 
   subscriptions: Subscription[] = [];
+  icons = {
+    faBuildingColumns,
+  };
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -71,7 +75,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
 
   sendEmails() {
     this.windowService.open(EmailerComponent, {
-      title: `Send Email to All ${this.community.member_count} Members`,
+      title: `Send Email to All ${this.community.members_count} Members`,
       context: {
         community: this.community,
         mailType: EemailTypes.GENERAL_ALL,

@@ -20,6 +20,7 @@ export class TopBuildersCardComponent implements OnInit {
   @Input() displayDesignation = false;
   @Input() showFollowButton = false;
   @Input() allignFollowButtonToRight = false;
+  @Input() displayUsername = true;
 
   constructor() {}
 

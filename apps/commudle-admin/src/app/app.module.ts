@@ -39,6 +39,7 @@ import {
   NbTooltipModule,
   NbUserModule,
   NbWindowModule,
+  NbAutocompleteModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -106,7 +107,14 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
-
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
+import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
+import { NgxStripeModule } from 'ngx-stripe';
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
@@ -149,6 +157,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PushNotificationComponent,
     LoginComponent,
     LoginConsentPopupComponent,
+    FillDataFormPaidComponent,
+    CheckFillDataFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -182,6 +192,11 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     RecommendationsModule,
     SearchModule,
     MiniUserProfileModule,
+    ListingPagesLayoutComponent,
+    PublicHomeListSpeakersModule,
+    PublicHomeListEventsModule,
+    SkeletonVerticalCardsComponent,
+    InfiniteScrollModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -220,6 +235,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbTagModule,
     NbPopoverModule,
     NbToggleModule,
+    NbAutocompleteModule,
 
     // Other external npm modules
     Angular2SmartTableModule,
@@ -232,6 +248,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
 
     //standalone component
     CommunitiesCardComponent,
+    NgxStripeModule.forRoot(environment.stripe),
   ],
   providers: [
     AppInitService,

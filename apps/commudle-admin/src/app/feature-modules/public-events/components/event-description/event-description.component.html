@@ -12,6 +12,19 @@
     ></app-share-button>
   </nb-card-header>
   <nb-card-body>
-    <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
+    <div
+      [innerHTML]="
+        !isBot && !showFullDescription
+          ? (event.description | linky : { sanitizeHtml: false } | truncatetext : 2500)
+          : (event.description | linky : { sanitizeHtml: false })
+      "
+    ></div>
   </nb-card-body>
+  <nb-card-footer (click)="viewMore()" *ngIf="event.description.length > 2500 && !isBot" class="com-cursor-pointer">
+    <div>
+      {{ footerText }}
+      <nb-icon *ngIf="!showFullDescription" icon="arrow-ios-downward-outline"></nb-icon>
+      <nb-icon *ngIf="showFullDescription" icon="arrow-ios-upward-outline"></nb-icon>
+    </div>
+  </nb-card-footer>
 </nb-card>

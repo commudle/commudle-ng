@@ -72,6 +72,10 @@ import { UserDetailsComponent } from './components/user-event-registrations/user
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
+import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
+import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
+import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
+import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +109,10 @@ import { EventsRoutingModule } from './events-routing.module';
     EventAgendaComponent,
     EventRegistrationsComponent,
     EventStreamingComponent,
+    DiscountCouponsComponent,
+    PaymentSettingsComponent,
+    DiscountCouponFormComponent,
+    UserPaymentDetailsComponent,
   ],
   imports: [
     CommonModule,

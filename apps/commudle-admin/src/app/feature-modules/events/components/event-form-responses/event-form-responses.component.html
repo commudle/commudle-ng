@@ -4,7 +4,6 @@
 
 <nb-card class="com-mx-0 com-my-6">
   <nb-card-body>
-    <h3>{{ event.name }}</h3>
     <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
 
     <div class="group-actions">
@@ -64,17 +63,7 @@
         CSV
       </button>
 
-      <nb-select
-        (selectedChange)="bulkStatusChangeConfirmation($event)"
-        *ngIf="event.editable"
-        [(ngModel)]="bulkStatus"
-        [ngModelOptions]="{ standalone: true }"
-        filled
-        placeholder="Bulk Status Change"
-        status="info"
-      >
-        <nb-option *ngFor="let rs of registrationStatuses" [value]="rs"> {{ rs.name | titlecase }} </nb-option>
-      </nb-select>
+      <button (click)="bulkStatusChangeConfirmation()" nbButton size="small" status="info">Change Bulk Status</button>
     </div>
   </nb-card-body>
 </nb-card>
@@ -112,6 +101,12 @@
                 [communityId]="community.id"
               ></app-user-engagement-data>
             </div>
+            <div class="com-max-w-fit" *ngIf="eventDataFormEntityGroup?.is_paid">
+              <commudle-user-payment-details
+                [eto]="row.event_ticket_orders"
+                [user]="row.user"
+              ></commudle-user-payment-details>
+            </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
               <div *ngFor="let question of questions">
                 <p>
@@ -147,6 +142,25 @@
                 [user]="row.user"
                 [communityId]="community.id"
               ></app-user-engagement-data>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [width]="300" *ngIf="eventDataFormEntityGroup?.is_paid">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="">
+                <p>Payment Details</p>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <commudle-user-payment-details
+                [eto]="row.event_ticket_orders"
+                [user]="row.user"
+              ></commudle-user-payment-details>
             </div>
           </ng-template>
         </ngx-datatable-column>
@@ -223,11 +237,22 @@
             <div class="row-cell question mobile-hidden" style="height: 100px">
               <p
                 [innerHTML]="
-                  getQuestionResponse(row.data_form_entity_response_values, question.id)
-                    | linky : { sanitizeHtml: true }
+                  showFullAnswer
+                    ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | linky : { sanitizeHtml: true })
+                    : (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | truncatetext : 100
+                      | linky : { sanitizeHtml: true })
                 "
                 class="question-responses"
               ></p>
+              <a
+                (click)="showFullAnswer = !showFullAnswer"
+                *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
+                class="clickable"
+              >
+                {{ showFullAnswer ? 'Read less' : 'Read more' }}
+              </a>
             </div>
           </ng-template>
         </ngx-datatable-column>
@@ -237,14 +262,55 @@
 </nb-card>
 
 <ng-template #confirmStatusChange let-data>
-  <p>This will change the status of all {{ totalEntries }} entries and <strong>cannot be undone</strong>.</p>
-  <p>
-    <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of 'Canceled' responses also</nb-checkbox>
-  </p>
-  <div>
-    <button (click)="bulkStatusChange(data.registration_status.id)" ghost nbButton size="medium" status="success">
-      Yes
-    </button>
-    <button (click)="windowRef.close()" ghost nbButton size="medium" status="danger">No</button>
+  <div class="md:com-w-500px">
+    <div class="com-flex com-gap-4">
+      <div class="dropdown">
+        <select
+          class="com-border-0"
+          (change)="changeFromRegistrationStatus($event)"
+          [ngClass]="{
+            'com-text-[#8E9BB3]': fromRegistrationStatus === undefined
+          }"
+        >
+          <option selected disabled>From</option>
+          <option *ngFor="let rs of registrationStatuses" [value]="rs.name">
+            {{ rs.name | titlecase }}
+          </option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select
+          class="com-border-0"
+          (change)="changeToRegistrationStatus($event)"
+          [ngClass]="{
+            'com-text-[#8E9BB3]': toRegistrationStatus === undefined
+          }"
+        >
+          <option selected disabled>To</option>
+          <option *ngFor="let rs of registrationStatuses" [value]="rs.name">
+            {{ rs.name | titlecase }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div *ngIf="fromRegistrationStatus === toRegistrationStatus && toRegistrationStatus !== undefined">
+      <commudle-alert [error]="true" errorMessage="From and To value can't be same"></commudle-alert>
+    </div>
+    <p *ngIf="selectedRegistrationStatus !== 0">
+      This will change the status of all {{ selectedRegistrationStatus }} entries and <strong>cannot be undone</strong>.
+    </p>
+
+    <div>
+      <button
+        (click)="bulkStatusChange()"
+        nbButton
+        size="medium"
+        status="success"
+        [disabled]="toRegistrationStatus === undefined || fromRegistrationStatus === undefined"
+      >
+        Yes
+      </button>
+      <button (click)="windowRef.close()" ghost nbButton size="medium" status="danger">No</button>
+    </div>
   </div>
 </ng-template>

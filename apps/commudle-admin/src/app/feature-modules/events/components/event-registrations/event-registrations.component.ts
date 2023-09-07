@@ -11,6 +11,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 export class EventRegistrationsComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
+  showDiscountComponent = false;
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
 
   ngOnInit(): void {

@@ -21,7 +21,7 @@ nb-card {
     }
 
     .featured-projects {
-      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-[60px] md:com-m-0 md:com-pb-4 com-mt-4 com-p-0 md:com-p-0 com-gap-3 md:com-gap-y-4 md:com-gap-x-0;
+      @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-mb-10 md:com-m-0 md:com-pb-4 com-mt-4 com-p-0 md:com-p-0 com-gap-3 md:com-gap-y-4 md:com-gap-x-0;
       .featured-projects-card {
         @apply com-m-0 com-p-0;
       }

@@ -18,3 +18,6 @@ export * from './lib/user-role.model';
 export * from './lib/user-roles-user.model';
 export * from './lib/youtube-broadcast.model';
 export * from './lib/youtube-stream.model';
+export * from './lib/discount-code.model';
+export * from './lib/payment-detail.model';
+export * from './lib/stripe-account.model';

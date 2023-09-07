@@ -1,0 +1,58 @@
+<table class="data" *ngFor="let detail of eto">
+  <tr>
+    <td>Status</td>
+    <td>{{ detail.status | capitalizeAndRemoveUnderscore }}</td>
+  </tr>
+  <tr>
+    <td>Amount Paid</td>
+    <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.total_amount / 100 }}</td>
+  </tr>
+
+  <tr *ngIf="detail.tax_amount > 0">
+    <td>Tax Amount</td>
+    <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.tax_amount / 100 }}</td>
+  </tr>
+
+  <tr *ngIf="detail.discount_amount > 0">
+    <td>Discount Amount</td>
+    <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.discount_amount / 100 }}</td>
+  </tr>
+  <tr *ngIf="paidUser">
+    <td class="com-italic">Paid By</td>
+    <td class="com-flex com-flex-col">
+      <span class="com-text-xs">{{ paidUser.name }}</span>
+      <span class="com-text-xs">{{ paidUser.email }}</span>
+      <span class="com-text-xs">{{ paidUser.phone }}</span>
+    </td>
+  </tr>
+  <tr *ngIf="otherUsers">
+    <td class="com-italic">Others</td>
+    <td>
+      <div class="com-flex com-flex-col com-mt-1" *ngFor="let otherUser of otherUsers">
+        <span class="com-text-xs">{{ otherUser.name }}</span>
+        <span class="com-text-xs">{{ otherUser.email }}</span>
+        <span class="com-text-xs">{{ otherUser.phone }}</span>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="detail.status === 'paid' && user.id === paidUser.user_id">
+    <td colspan="2">
+      <button class="com-mt-4" fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
+    </td>
+  </tr>
+</table>
+
+<ng-template #refundDialogBox let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header></nb-card-header>
+    <nb-card-body>
+      <div class="com-font-semibold">Refund Amount: {{ refundAmount / 100 }}</div>
+      <p>Are you sure you want to create refund!</p>
+      <span class="com-italic">This action can't be done once processed</span>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button nbButton (click)="createRefund(data); ref.close()" status="primary">Yes</button>
+      <button nbButton status="danger" outline (click)="ref.close()">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

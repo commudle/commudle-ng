@@ -11,7 +11,11 @@
     </div>
     <commudle-builds></commudle-builds>
     <commudle-featured-projects></commudle-featured-projects>
-    <commudle-builds-top-builders></commudle-builds-top-builders>
+    <commudle-builds-top-builders
+      [heading]="'POPULAR BUILDERS'"
+      [subHeading]="'Follow these builders and get inspired'"
+      [parentType]="'builds'"
+    ></commudle-builds-top-builders>
     <commudle-explore-experts></commudle-explore-experts>
   </div>
   <div main-column *ngIf="!isMobileView">
@@ -25,7 +29,15 @@
       </a>
     </div>
     <div>
-      <commudle-builds-top-builders></commudle-builds-top-builders>
+      <commudle-builds-top-builders
+        [backgroundColor]="'#D59B5D'"
+        [heading]="'POPULAR BUILDERS'"
+        [subHeading]="'Follow these builders and get inspired'"
+        [parentType]="'builds'"
+        [toolTipText]="
+          'People whose builds have the highest upvotes in the selected duration. The number in the profile card displays overall total builds and overall total stars.'
+        "
+      ></commudle-builds-top-builders>
       <commudle-featured-projects></commudle-featured-projects>
       <commudle-explore-experts></commudle-explore-experts>
     </div>

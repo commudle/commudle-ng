@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@commudle/theme';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/us
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { LibErrorHandlerService } from 'apps/lib-error-handler/src/lib/lib-error-handler.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -51,6 +52,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private router: Router,
     private route: ActivatedRoute,
     private userProfileManagerService: UserProfileManagerService,
+    private errorHandler: LibErrorHandlerService,
   ) {}
 
   ngOnInit(): void {
@@ -138,6 +140,14 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // Open a chat with the particular user
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  checkCurrentUser() {
+    if (this.currentUser) {
+      this.openChatWithUser();
+    } else {
+      this.errorHandler.handleError(401, 'Login to message');
+    }
   }
 
   openForWork() {

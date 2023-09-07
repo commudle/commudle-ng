@@ -1,0 +1,36 @@
+<nb-card class="com-min-w-[50vw]">
+  <nb-card-header class="d-flex align-items-center justify-content-space-between">
+    Create a Featured Community Build
+    <button (click)="close()" ghost nbButton size="small">
+      <nb-icon icon="close"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="com-flex com-flex-col com-gap-3">
+      <nb-form-field>
+        <input
+          #searchInput
+          [formControl]="inputFormControl"
+          [nbAutocomplete]="autoNgModel"
+          [value]="selectedEntityValue"
+          fullWidth
+          nbInput
+          placeholder="search (type at least 3 words)"
+          type="text"
+        />
+      </nb-form-field>
+      <nb-autocomplete #autoNgModel>
+        <nb-option *ngFor="let result of searchResult" (click)="selected(result.id, result.name)">
+          {{ result.name }}
+        </nb-option>
+      </nb-autocomplete>
+      <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-space-between">
+    <button (click)="createFeaturedItems()" [disabled]="!reason || entityId === undefined" nbButton status="success">
+      Create
+    </button>
+    <button (click)="close()" ghost nbButton status="danger">Cancel</button>
+  </nb-card-footer>
+</nb-card>

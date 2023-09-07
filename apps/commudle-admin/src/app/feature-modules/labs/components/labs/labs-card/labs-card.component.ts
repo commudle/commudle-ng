@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ILab } from 'apps/shared-models/lab.model';
 
 @Component({
@@ -8,6 +9,7 @@ import { ILab } from 'apps/shared-models/lab.model';
 })
 export class LabsCardComponent implements OnInit {
   @Input() lab: ILab;
+  staticAssets = staticAssets;
 
   constructor() {}
 

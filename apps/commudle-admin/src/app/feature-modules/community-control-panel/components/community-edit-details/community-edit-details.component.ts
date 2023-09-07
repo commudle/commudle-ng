@@ -1,10 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 
 @Component({
   selector: 'app-community-edit-details',
@@ -20,6 +21,8 @@ export class CommunityEditDetailsComponent implements OnInit {
   tags: string[] = [];
   minimumTags = 5;
 
+  @ViewChild('autocompleteInput', { static: true })
+  autocompleteInput: ElementRef;
   @Output() updateCommunity = new EventEmitter();
 
   communityForm;
@@ -44,6 +47,7 @@ export class CommunityEditDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private communitiesService: CommunitiesService,
     private toastLogService: LibToastLogService,
+    private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.communityForm = this.fb.group({
@@ -67,6 +71,7 @@ export class CommunityEditDetailsComponent implements OnInit {
     this.activatedRoute.parent.params.subscribe((params) => {
       this.getCommunityDetails(params.community_id);
     });
+    this.initAutocomplete();
   }
 
   getCommunityDetails(communityId) {
@@ -137,5 +142,16 @@ export class CommunityEditDetailsComponent implements OnInit {
 
   onTagDelete(value: string) {
     this.tags = this.tags.filter((tag) => tag !== value);
+  }
+
+  initAutocomplete() {
+    this.googlePlacesAutocompleteService.initAutocomplete(this.autocompleteInput.nativeElement);
+    this.googlePlacesAutocompleteService.placeChanged.subscribe((place: google.maps.places.PlaceResult) => {
+      this.onLocationPlaceSelected(place);
+    });
+  }
+
+  onLocationPlaceSelected(place: google.maps.places.PlaceResult) {
+    this.communityForm.get('community').get('location').setValue(place.formatted_address);
   }
 }

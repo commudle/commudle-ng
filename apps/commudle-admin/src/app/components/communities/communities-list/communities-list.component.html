@@ -1,36 +1,93 @@
-<nb-card class="communities-list-container" id="communities-list">
-  <nb-card-body>
-    <div class="communities-list-prefix d-flex justify-content-space-between align-items-center">
-      <div class="communities-list-heading">Popular Communities</div>
-      <div class="communities-list-navigation">
-        <button (click)="changePage(-1)" class="communities-list-left-btn" nbButton>
-          <nb-icon icon="arrow-ios-back"></nb-icon>
-        </button>
-        <button (click)="changePage(1)" class="communities-list-right-btn" nbButton>
-          <nb-icon icon="arrow-ios-forward"></nb-icon>
-        </button>
-      </div>
-    </div>
-    <div class="communities-list-search d-flex flex-wrap align-items-center">
-      <div class="communities-list-search-tags d-flex">
-        <div
-          (click)="changeTag(searchTag)"
-          *ngFor="let searchTag of searchTags"
-          [ngClass]="{ active: tag === searchTag }"
-          class="clickable communities-list-search-tag"
-        >
-          {{ searchTag }}
-        </div>
-      </div>
-      <div class="communities-list-search-bar">
+<div class="communities-list-container" id="communities-list">
+  <div class="communities-list-prefix d-flex justify-content-space-between align-items-center">
+    <div class="communities-list-heading">Popular Communities</div>
+  </div>
+  <div class="communities-list-search d-flex flex-wrap align-items-center">
+    <div class="communities-list-search-bar">
+      <form [formGroup]="searchForm">
         <nb-form-field>
           <nb-icon icon="search" nbPrefix></nb-icon>
-          <input [formControl]="searchField" class="communities-list-search-input" nbInput type="text" />
+          <input
+            formControlName="name"
+            class="communities-list-search-input"
+            nbInput
+            size="tiny"
+            type="text"
+            fullWidth
+            placeholder="Find your nearest community by location, technology, name..."
+          />
         </nb-form-field>
+      </form>
+    </div>
+
+    <div class="tags">
+      <nb-tag-list>
+        <nb-tag
+          appearance="outline"
+          [text]="options[0]"
+          size="small"
+          [removable]="newest_communities ? 'true' : 'false'"
+          [ngClass]="{ activeTag: newest_communities }"
+          (click)="filterByTags(options[0])"
+        ></nb-tag>
+        <nb-tag
+          appearance="outline"
+          [text]="options[1]"
+          size="small"
+          [removable]="completed_events_count ? 'true' : 'false'"
+          [ngClass]="{ activeTag: completed_events_count }"
+          (click)="filterByTags(options[1])"
+        ></nb-tag>
+        <nb-tag
+          appearance="outline"
+          [text]="options[2]"
+          size="small"
+          [removable]="members_count ? 'true' : 'false'"
+          [ngClass]="{ activeTag: members_count }"
+          (click)="filterByTags(options[2])"
+        ></nb-tag>
+      </nb-tag-list>
+    </div>
+  </div>
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
+  </div>
+  <div *ngIf="!showSpinner && communities.length === 0">
+    <commudle-empty-state-component [parentType]="'Communities'"></commudle-empty-state-component>
+  </div>
+  <div *ngIf="communities.length > 0">
+    <div
+      *appBreakpoints="'>lg'"
+      (scrolled)="getPopularCommunities()"
+      [infiniteScrollDisabled]="communities.length >= total"
+      appInfiniteScroll
+      class="communities-list-cards"
+    >
+      <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+    </div>
+    <div *ngIf="showSpinner" class="loading-spinner">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *appBreakpoints="'<=lg'">
+      <div class="communities-list-cards">
+        <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+      </div>
+      <div *ngIf="showSpinner" class="loading-spinner">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div class="load-more">
+        <button
+          *ngIf="pageInfo?.has_next_page"
+          (click)="getPopularCommunities(); showSpinner = true"
+          nbButton
+          outline
+          size="tiny"
+          status="info"
+          [disabled]="showSpinner || isLoading"
+        >
+          Load More
+        </button>
       </div>
     </div>
-    <div class="communities-list-cards">
-      <app-communities-card *ngFor="let community of communities" [community]="community"> </app-communities-card>
-    </div>
-  </nb-card-body>
-</nb-card>
+  </div>
+</div>

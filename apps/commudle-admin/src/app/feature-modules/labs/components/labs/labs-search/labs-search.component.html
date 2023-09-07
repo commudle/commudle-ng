@@ -1,58 +1,71 @@
-<div class="labs-search-container d-flex">
-  <div
-    (clickOutside)="toggleSearchSuffix(false)"
-    (mouseleave)="toggleSearchSuffix(false)"
-    appClickOutside
-    class="lab-search"
-  >
-    <nb-form-field (mouseenter)="toggleSearchSuffix(true)" class="labs-search-form">
-      <nb-icon icon="search" nbPrefix></nb-icon>
-      <input
-        #searchBar
-        (input)="getTagSearchResults()"
-        (keyup.enter)="onTagAdd(tagSearchParam)"
-        [(ngModel)]="tagSearchParam"
-        class="labs-search-input"
-        nbInput
-        placeholder="Search labs on your favorite topics"
-        type="text"
-      />
-    </nb-form-field>
-
-    <div class="labs-search-suffix">
-      <div (mouseenter)="toggleSearchSuffix(true)" *ngIf="labSearchParams.length > 0" class="labs-search-params">
-        <app-tag
-          (tagDelete)="onTagDelete($event)"
-          [editable]="true"
-          [inputDisabled]="true"
-          [tags]="labSearchParams"
-        ></app-tag>
-      </div>
-      <div [ngClass]="{ active: showTagSearchResults }" class="labs-tag-search-results d-flex">
-        <ul *ngIf="tagSearchResults.length > 0">
-          <li
-            (click)="onTagAdd(result.name, false)"
-            *ngFor="let result of tagSearchResults"
-            class="labs-tag-search-result clickable"
-          >
-            {{ result.name }}
-          </li>
-        </ul>
-        <p *ngIf="tagSearchResults.length === 0" class="text-center">
-          Quickly search your favorite topics, labs by industry experts or find an event you missed
-        </p>
+<div class="labs">
+  <form [formGroup]="searchForm">
+    <div class="search">
+      <nb-form-field>
+        <nb-icon icon="search" nbPrefix></nb-icon>
+        <input
+          [disabled]="isLoadingSearch"
+          fieldSize="small"
+          formControlName="name"
+          fullWidth
+          nbInput
+          placeholder="Search for Speakers, or type specific tags"
+          type="text"
+        />
+      </nb-form-field>
+    </div>
+  </form>
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <app-skeleton-cards [cards]="10" [ImageShapeSquare]="true" [ImageShapeCircle]="false"></app-skeleton-cards>
+  </div>
+  <div *ngIf="!skeletonLoaderCard && labs.length === 0">
+    <commudle-empty-state-component [parentType]="'Labs'"></commudle-empty-state-component>
+  </div>
+  <div *ngIf="labs.length > 0">
+    <div
+      *appBreakpoints="'>lg'"
+      (scrolled)="getLabs()"
+      [infiniteScrollDisabled]="labs.length >= total"
+      appInfiniteScroll
+      class="labs"
+    >
+      <div *ngFor="let lab of labs" class="labs-card">
+        <app-labs-card [lab]="lab"></app-labs-card>
       </div>
     </div>
-  </div>
+    <div *ngIf="loading" class="loading-spinner">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
 
-  <div class="labs-search-actions">
-    <!-- <button [nbContextMenu]="labFilters" class="filter-btn" nbButton>
-      <nb-icon icon="options-2"></nb-icon>
-      Filters
-    </button> -->
-    <button class="labs-create-btn" nbButton routerLink="/labs/create">
-      <nb-icon icon="plus"></nb-icon>
-      Create Lab
-    </button>
+    <div *appBreakpoints="'<=lg'">
+      <div class="labs">
+        <div *ngFor="let lab of labs.slice(0, 5)" class="labs-card">
+          <app-labs-card [lab]="lab"></app-labs-card>
+        </div>
+      </div>
+      <commudle-builds-top-builders
+        [heading]="'TOP PUBLISHERS'"
+        [subHeading]="'Top publishers for you to check out'"
+        [parentType]="'labs'"
+        [toolTipText]="
+          'People whose labs have the highest upvotes in the selected duration. The number in the profile card displays overall total labs and overall total likes.'
+        "
+        [selectedByDefault]="'all-time'"
+      ></commudle-builds-top-builders>
+      <commudle-labs-featured [showCardsHorizontal]="true"></commudle-labs-featured>
+      <commudle-explore-experts></commudle-explore-experts>
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
+      <div class="labs">
+        <div *ngFor="let lab of labs.slice(3)" class="labs-card">
+          <app-labs-card [lab]="lab"></app-labs-card>
+        </div>
+      </div>
+      <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+      <button (click)="getLabs()" *ngIf="pageInfo?.has_next_page" fullWidth ghost nbButton class="view-more-button">
+        View More
+      </button>
+    </div>
   </div>
 </div>

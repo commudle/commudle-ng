@@ -59,8 +59,10 @@
                     ></app-badge>
                   </div>
                   <p>{{ slot.session_title }}</p>
-                  <div *ngIf="slot.user" class="session-speaker">
-                    <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                  <div *ngIf="slot.track_slot_speakers" class="session-speaker">
+                    <div *ngFor="let slot of slot.track_slot_speakers">
+                      <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                    </div>
                   </div>
                 </div>
                 <div class="links">
@@ -248,18 +250,32 @@
           </span>
         </nb-select>
       </div>
-      <div>
-        <nb-select
-          formControlName="speaker_registration_id"
-          placeholder="Select Speaker (optional)"
-          fullWidth
-          class="select-speaker"
-        >
-          <nb-option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
-            {{ speaker.user.name }}
-          </nb-option>
-        </nb-select>
+      <div
+        *ngFor="
+          let speakerControl of trackSlotForm.get('track_slot.track_slot_speaker_registration_ids').controls;
+          let i = index
+        "
+        class="com-flex com-items-baseline com-gap-2"
+      >
+        <div class="dropdown">
+          <select [formControl]="speakerControl" class="com-border-0" (change)="speakerSelected($event, i)">
+            <option value="" selected disabled>Select Speaker (optional)</option>
+            <option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
+              {{ speaker.user.name }}
+            </option>
+          </select>
+        </div>
+        <div (click)="removeSpeakerDropdown(i)" class="com-p-1 com-cursor-pointer com-text-red-500">
+          <fa-icon [icon]="faXmark"></fa-icon>
+        </div>
       </div>
+      <div
+        (click)="addSpeakerDropdown()"
+        class="com-text-primary-500 com-cursor-pointer com-flex com-justify-center com-mb-3"
+      >
+        + Add Another Speaker
+      </div>
+
       <div class="session-name">
         <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
         <span

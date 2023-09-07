@@ -41,13 +41,15 @@ export class EventsVolunteerListComponent implements OnInit, OnDestroy {
     }
     this.isLoadingVolunteers = true;
     this.subscriptions.push(
-      this.eventsService.pGetEventVolunteers(this.event.slug).subscribe((data) => {
-        this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        this.pageInfo = data.page_info;
-        this.isLoadingVolunteers = false;
-        this.showSpinner = false;
-        this.showSkeletonLoading = false;
-      }),
+      this.eventsService
+        .pGetEventVolunteers(this.event.slug, this.limit, this.pageInfo?.end_cursor)
+        .subscribe((data) => {
+          this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.pageInfo = data.page_info;
+          this.isLoadingVolunteers = false;
+          this.showSpinner = false;
+          this.showSkeletonLoading = false;
+        }),
     );
   }
 }

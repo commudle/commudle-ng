@@ -1,5 +1,5 @@
 .header {
-  @apply md:com-max-h-[386px] com-max-h-[682px];
+  @apply md:com-max-h-[386px] com-max-h-full;
   .background {
     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
@@ -27,7 +27,7 @@
           .content {
             ::ng-deep {
               p {
-                font-size: initial;
+                font-size: 24px;
                 color: initial;
               }
             }

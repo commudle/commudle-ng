@@ -25,6 +25,7 @@
         <th class="channels-count">Channels Count</th>
         <th class="links">Links</th>
         <th class="toggle">Email Visibility</th>
+        <th class="toggle">Payment Status</th>
       </tr>
     </thead>
     <tbody>
@@ -45,7 +46,7 @@
           <div *ngIf="community.upcoming_events.length === 0">No Upcoming Events</div>
         </td>
         <td valign="top">
-          {{ community.member_count }}
+          {{ community.members_count }}
         </td>
         <td valign="top">
           {{ community.completed_events_count }}
@@ -99,6 +100,17 @@
               (click)="toggleEmailVisibility(community.id)"
               status="basic"
               [(checked)]="community.emails_visible"
+              labelPosition="right"
+            >
+            </nb-toggle>
+          </div>
+        </td>
+        <td valign="top">
+          <div class="">
+            <nb-toggle
+              (click)="togglePaymentEnable(community.id)"
+              status="basic"
+              [(checked)]="community.payments_enabled"
               labelPosition="right"
             >
             </nb-toggle>

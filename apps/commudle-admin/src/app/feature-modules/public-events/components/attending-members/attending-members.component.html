@@ -1,13 +1,11 @@
-<nb-card *ngIf="users.length > 0">
-  <nb-card-header>Interested Members!</nb-card-header>
-  <nb-card-body>
-    <div class="users">
-      <div *ngFor="let user of users" class="user" nbTooltip="{{ user.name }}">
-        <div class="profile-picture">
-          <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
-        </div>
+<div *ngIf="users.length > 0" class="interested-members">
+  <div class="heading">Interested Members!</div>
+  <div class="users">
+    <div *ngFor="let user of users" class="user" nbTooltip="{{ user.name }}">
+      <div class="profile-picture">
+        <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
       </div>
-      <p *ngIf="totalCount - users.length > 0">... + {{ totalCount - users.length }} More</p>
     </div>
-  </nb-card-body>
-</nb-card>
+    <p *ngIf="totalCount - users.length > 0">&nbsp;... + {{ totalCount - users.length }} More</p>
+  </div>
+</div>
