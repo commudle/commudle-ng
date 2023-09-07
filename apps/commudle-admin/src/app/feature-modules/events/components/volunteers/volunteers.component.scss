@@ -10,6 +10,7 @@
 }
 
 .volunteers {
+  @apply com-mx-0 com-my-6;
   table {
     @apply com-w-full md:com-w-3/5;
   }
@@ -33,7 +34,6 @@
 }
 
 h6 {
-  font-weight: 300;
   margin: 0;
 }
 

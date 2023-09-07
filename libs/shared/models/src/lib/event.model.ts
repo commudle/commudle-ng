@@ -2,6 +2,7 @@ import { IAttachedFile } from './attached-file.model';
 import { IEventStatus } from './event-status.model';
 import { ICommunity } from './community.model';
 import { ISpeakerResource } from './speaker-resource.model';
+import { ITag } from './tag.model';
 
 export interface IEvent {
   id: number;
@@ -20,6 +21,7 @@ export interface IEvent {
   custom_registration: boolean;
   custom_agenda: boolean;
   editable: boolean;
+  tags: ITag[];
   kommunity_slug: string;
   header_image?: IAttachedFile;
   event_type: string;

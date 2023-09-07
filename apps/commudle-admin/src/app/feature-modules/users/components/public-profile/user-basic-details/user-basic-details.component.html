@@ -11,6 +11,8 @@
             *appBreakpoints="'>md'"
             (userFollowed)="updateProfile.emit()"
             [username]="user.username"
+            [name]="user.name"
+            [userId]="user.id"
             [disabled]="user.deactivated"
             class="com-ml-6 com-mb-4"
           ></app-user-follow>
@@ -20,6 +22,8 @@
             *appBreakpoints="'<=md'"
             (userFollowed)="updateProfile.emit()"
             [username]="user.username"
+            [name]="user.name"
+            [userId]="user.id"
             [disabled]="user.deactivated"
           ></app-user-follow>
           <app-share-button
@@ -43,7 +47,7 @@
           <ng-template #message>
             <button
               [disabled]="user.deactivated"
-              (click)="openChatWithUser()"
+              (click)="checkCurrentUser()"
               nbButton
               shape="semi-round"
               size="small"

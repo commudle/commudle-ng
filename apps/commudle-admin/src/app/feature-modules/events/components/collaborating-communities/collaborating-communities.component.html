@@ -1,51 +1,65 @@
-<div>
-  <div class="collaboration-communities">
-    <div *ngFor="let col of collaborationCommunities; let i = index" class="community">
-      <div class="logo">
-        <a [routerLink]="['/communities', col.community.slug]">
-          <img alt="{{ col.community.name }}" src="{{ col.community.logo_path }}" title="{{ col.community.name }}" />
-        </a>
-      </div>
-      <div class="details">
-        <p>{{ col.community.name | slice: 0:10 }}</p>
-        <div *ngIf="event.editable" class="actions">
-          <a (click)="resendConfirmationEmail(col.id)" *ngIf="!col.approved" class="clickable">
-            <small> Resend Request </small>
-          </a>
-          <a (click)="removeCollaboration(col.id, i)" class="clickable">
-            <small> Remove </small>
-          </a>
+<nb-card class="collaborations">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="pricetags-outline"></nb-icon>
+      Collaborations
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+      <div class="collaboration-communities">
+        <div *ngFor="let col of collaborationCommunities; let i = index" class="community">
+          <div class="logo">
+            <a [routerLink]="['/communities', col.community.slug]">
+              <img
+                alt="{{ col.community.name }}"
+                src="{{ col.community.logo_path }}"
+                title="{{ col.community.name }}"
+              />
+            </a>
+          </div>
+          <div class="details">
+            <p>{{ col.community.name | slice : 0 : 10 }}</p>
+            <div *ngIf="event.editable" class="actions">
+              <a (click)="resendConfirmationEmail(col.id)" *ngIf="!col.approved" class="clickable">
+                <small> Resend Request </small>
+              </a>
+              <a (click)="removeCollaboration(col.id, i)" class="clickable">
+                <small> Remove </small>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="event.editable">
+          <label>
+            <p>
+              <fa-icon [icon]="faInfoCircle"></fa-icon>
+              Type 3 or more characters to get the results
+            </p>
+
+            <input
+              #autoInput
+              (input)="onChange()"
+              (keyup)="checkTyping()"
+              [nbAutocomplete]="auto"
+              [value]="selectedCommunity"
+              nbInput
+              placeholder="Enter Name..."
+              type="text"
+            />
+          </label>
+
+          <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+            <nb-option *ngFor="let community of communities" [value]="community">
+              <div class="logo">
+                <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
+              </div>
+              {{ community.name }}
+            </nb-option>
+            <nb-option *ngIf="communities.length === 0 && typing" disabled>No Results</nb-option>
+          </nb-autocomplete>
         </div>
       </div>
     </div>
-    <div *ngIf="event.editable">
-      <label>
-        <p>
-          <fa-icon [icon]="faInfoCircle"></fa-icon>
-          Type 3 or more characters to get the results
-        </p>
-
-        <input
-          #autoInput
-          (input)="onChange()"
-          (keyup)="checkTyping()"
-          [nbAutocomplete]="auto"
-          [value]="selectedCommunity"
-          nbInput
-          placeholder="Enter Name..."
-          type="text"
-        />
-      </label>
-
-      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
-        <nb-option *ngFor="let community of communities" [value]="community">
-          <div class="logo">
-            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
-          </div>
-          {{ community.name }}
-        </nb-option>
-        <nb-option *ngIf="communities.length === 0 && typing" disabled>No Results</nb-option>
-      </nb-autocomplete>
-    </div>
-  </div>
-</div>
+  </nb-card-body>
+</nb-card>

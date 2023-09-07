@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NbWindowService } from '@commudle/theme';
 import { AdminSurveysService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/admin-surveys.service';
 import { FormResponsesComponent } from 'apps/shared-components/form-responses/form-responses.component';
-import { EAdminSurveyStatus, IAdminSurvey } from 'apps/shared-models/admin-survey.model';
+import { ESurveyStatus, ISurvey } from 'apps/shared-models/survey.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 
@@ -12,8 +12,8 @@ import { SeoService } from 'apps/shared-services/seo.service';
   styleUrls: ['./admin-surveys.component.scss'],
 })
 export class AdminSurveysComponent implements OnInit {
-  adminSurveys: IAdminSurvey[];
-  EAdminSurveyStatus = EAdminSurveyStatus;
+  adminSurveys: ISurvey[];
+  EAdminSurveyStatus = ESurveyStatus;
 
   constructor(
     private adminSurveysService: AdminSurveysService,
@@ -33,7 +33,7 @@ export class AdminSurveysComponent implements OnInit {
     });
   }
 
-  openResponses(survey: IAdminSurvey) {
+  openResponses(survey: ISurvey) {
     this.windowService.open(FormResponsesComponent, {
       title: `Survey ${survey.name} Responses`,
       context: {
@@ -44,7 +44,7 @@ export class AdminSurveysComponent implements OnInit {
   }
 
   updateStatus(status, index) {
-    status = status ? EAdminSurveyStatus.open : EAdminSurveyStatus.closed;
+    status = status ? ESurveyStatus.open : ESurveyStatus.closed;
     this.adminSurveysService.updateStatus(status, this.adminSurveys[index].id).subscribe((data) => {
       this.adminSurveys[index].status = status;
       this.toastLogService.successDialog('Updated', 2000);

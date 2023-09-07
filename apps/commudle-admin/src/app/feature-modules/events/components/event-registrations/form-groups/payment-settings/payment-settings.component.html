@@ -1,0 +1,302 @@
+<div>
+  <div *ngIf="paymentDetailsExist" class="edit-buttons">
+    <div (click)="open(dialog)">
+      <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+      Edit Payment Details
+    </div>
+    <div (click)="openCreateDiscountDialog()"><fa-icon [icon]="icons.faTicket"></fa-icon>Create Coupon Code</div>
+  </div>
+  <button
+    *ngIf="!paymentDetailsExist"
+    (click)="open(dialog)"
+    nbButton
+    size="small"
+    status="primary"
+    class="com-w-full md:com-w-max"
+  >
+    Add Payment Details
+  </button>
+  <div *ngIf="paymentData">
+    <table>
+      <tr>
+        <td>Price</td>
+        <td>{{ paymentData.currency === 'inr' ? '₹' : '$' }} {{ paymentData.price / 100 }}</td>
+      </tr>
+      <tr>
+        <td>Account</td>
+        <td>***{{ bankAccountNo }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="paymentData.has_taxes">Tax Name</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_name }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="paymentData.has_taxes">Tax Percentage</td>
+        <td *ngIf="paymentData.has_taxes">{{ paymentData.tax_percentage }}%</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="com-max-h-[90dvh] com-w-full md:com-w-[30vw]">
+    <nb-card-header>
+      <div class="com-flex com-justify-between">
+        <div>{{ paymentDetailsExist ? 'Edit' : 'Add' }} Payment Details</div>
+        <button (click)="ref.close()" ghost nbButton shape="round" size="small">
+          <nb-icon icon="close"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="paidTicketingForm">
+        <div formGroupName="paid_ticket_setting" class="com-w-full com-flex com-flex-col com-gap-2">
+          <div class="com-flex com-gap-2 com-w-full">
+            <!-- Currency* -->
+            <label>
+              Currency*
+              <br />
+              <div class="select !com-mt-0">
+                <select
+                  formControlName="currency"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('currency').value === ''
+                  }"
+                >
+                  <option value="" selected disabled>Currency</option>
+                  <option value="inr">INR</option>
+                  <option value="usd">USD</option>
+                </select>
+              </div>
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('currency').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('currency').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('currency').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Please select form type'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- Price* -->
+            <label class="com-w-full">
+              Price*
+              <input fieldSize="small" formControlName="price" placeholder="Price" fullWidth nbInput type="number" />
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('price').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('price').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('price').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+          </div>
+
+          <!-- Bank Ac* -->
+          <label>
+            Bank Ac*
+            <br />
+            <div class="select !com-mt-0">
+              <select
+                formControlName="bank_ac_id"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').value === ''
+                }"
+              >
+                <option value="" selected disabled>Select Bank Ac</option>
+                <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
+                  {{ rt.details.external_accounts.data[0].account_holder_name }}
+                  (****{{ rt.details.external_accounts.data[0].last4 }})
+                </option>
+              </select>
+            </div>
+            <span
+              *ngIf="
+                paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').touched &&
+                paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').invalid &&
+                paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Please select form type'"></commudle-alert>
+            </span>
+          </label>
+
+          <!-- has_taxes -->
+          <div>
+            <label>
+              <nb-toggle formControlName="has_taxes">Include Taxes</nb-toggle>
+            </label>
+          </div>
+
+          <!-- tax_details if has tax have value true -->
+          <div
+            *ngIf="paidTicketingForm.controls.paid_ticket_setting.get('has_taxes').value === true"
+            class="com-flex com-flex-col com-gap-2"
+          >
+            <div class="com-flex com-gap-4">
+              <!-- tax_name* -->
+              <label>
+                Tax Name*
+                <input
+                  fieldSize="small"
+                  formControlName="tax_name"
+                  placeholder="GST, VAT...."
+                  fullWidth
+                  nbInput
+                  type="string"
+                />
+                <span
+                  *ngIf="
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_name').touched &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_name').invalid &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_name').errors.required
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
+
+              <!-- tax_percentage -->
+              <label>
+                Tax Percentage*
+                <input
+                  fieldSize="small"
+                  formControlName="tax_percentage"
+                  placeholder="Add Percentage"
+                  fullWidth
+                  nbInput
+                  type="number"
+                />
+                <span
+                  *ngIf="
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').touched &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').invalid &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').errors.required
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
+            </div>
+
+            <!-- seller_tax_details-->
+            <label>
+              Tax ID / GST*
+              <input
+                fieldSize="small"
+                formControlName="seller_tax_details"
+                placeholder="Tax ID / GST"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_tax_details').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_tax_details').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_tax_details').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- country-->
+            <label>
+              Country*
+              <div class="select !com-mt-0">
+                <select
+                  formControlName="country"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('country').value === ''
+                  }"
+                >
+                  <option value="" selected disabled>Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.name">
+                    {{ country.name }}
+                  </option>
+                </select>
+              </div>
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('country').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('country').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('country').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- seller_name-->
+            <label>
+              Seller Name*
+              <input
+                fieldSize="small"
+                formControlName="seller_name"
+                placeholder="Seller/ Business Name"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_name').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_name').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_name').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- seller_address-->
+            <label>
+              Seller Address*
+              <input
+                fieldSize="small"
+                formControlName="seller_address"
+                placeholder="Seller/ Business Address"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_address').touched &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_address').invalid &&
+                  paidTicketingForm.controls.paid_ticket_setting.get('seller_address').errors.required
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+            <commudle-alert
+              [info]="true"
+              message="Disclaimer:
+If you are collecting tax for this ticket, please provide corrected information. In case of incorrect information, you are responsible to tax authorities and for any consequences resulting from a ticket purchases claiming tax benefits on the purchase."
+            ></commudle-alert>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="save-button">
+        <button
+          (click)="paymentDetailsExist ? updateTicketDetails() : createPaidTicketing()"
+          [disabled]="!paidTicketingForm.valid"
+          fullWidth
+          nbButton
+          size="small"
+          status="primary"
+          type="submit"
+        >
+          {{ paymentDetailsExist ? 'Update' : 'Save' }}
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

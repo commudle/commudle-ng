@@ -13,7 +13,7 @@
           <section>
             <div>
               <nb-icon icon="people-outline"></nb-icon>
-              {{ community.member_count }} Members
+              {{ community.members_count }} Members
             </div>
             <div class="buttons">
               <button (click)="sendEmails()" nbButton size="small" status="primary">
@@ -80,6 +80,10 @@
             <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="edit" status="success"></nb-icon>
               <span class="title">Edit Details</span>
+            </a>
+            <a [routerLink]="['payments']" class="d-flex" routerLinkActive="active" *ngIf="community.payments_enabled">
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
+              <span class="title">Bank Details</span>
             </a>
           </div>
           <div class="router-outlet">

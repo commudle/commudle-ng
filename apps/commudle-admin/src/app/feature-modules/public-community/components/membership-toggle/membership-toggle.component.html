@@ -1,4 +1,3 @@
-<!-- (click)="openDialog(addMemberDialog)" -->
 <button
   (click)="onJoinCommunityClick()"
   *ngIf="!isMember"
@@ -7,8 +6,7 @@
   [status]="status"
   [size]="size"
   [appearance]="appearance"
-  [ngClass]="{ fullWidth: isMobileWidthFull }"
-  class="join-community"
+  [ngClass]="isMobileWidthFull ? 'fullWidth' : 'join-community'"
 >
   <nb-icon icon="plus"></nb-icon>
   Join

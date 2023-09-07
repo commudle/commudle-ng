@@ -1,8 +1,8 @@
 <nb-card>
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">Content you can explore</h3>
-      <h4 class="sub-heading">This is content published by users</h4>
+      <h3 class="title">{{ heading }}</h3>
+      <h4 class="sub-heading">{{ subheading }}</h4>
     </div>
     <div class="content custom-scrollbar">
       <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards>
@@ -20,9 +20,20 @@
       <div class="load-more">
         <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
         <button
-          *ngIf="page_info?.has_next_page"
+          *ngIf="page_info?.has_next_page && parentType === 'communities'"
           [disabled]="showSpinner"
-          (click)="getList()"
+          (click)="getAllCommunitiesContentList()"
+          nbButton
+          outline
+          size="tiny"
+          status="basic"
+        >
+          View More
+        </button>
+        <button
+          *ngIf="page_info?.has_next_page && parentType === 'events'"
+          [disabled]="showSpinner"
+          (click)="getEventsContentList()"
           nbButton
           outline
           size="tiny"

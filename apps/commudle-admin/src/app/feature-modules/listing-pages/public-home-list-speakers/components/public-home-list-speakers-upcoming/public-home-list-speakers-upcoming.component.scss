@@ -1,5 +1,5 @@
 div {
-  @apply md:com-mt-5 com-mt-20 com-mb-10 md:com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none md:com-rounded-xl com-rounded-none com-p-0 md:com-px-3 md:com-pt-4;
+  @apply md:com-mt-5 com-mt-10 md:com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none md:com-rounded-xl com-rounded-none com-p-0 md:com-px-3 md:com-pt-4;
 
   .heading {
     @apply com-m-0 md:com-mb-7 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
@@ -16,6 +16,14 @@ div {
     @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-ml-4 md:com-ml-0 com-p-0 md:com-block com-bg-transparent;
     .upcoming-events-card {
       @apply md:com-mb-3 com-m-0 com-p-0 com-rounded-xl com-bg-transparent;
+    }
+  }
+
+  .load-more {
+    @apply com-text-center md:com-pb-2 com-mt-4 com-m-0 com-p-0 com-bg-transparent;
+
+    app-loading-spinner {
+      @apply com-mb-6;
     }
   }
 }

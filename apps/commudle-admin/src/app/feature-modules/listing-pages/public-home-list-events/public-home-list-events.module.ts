@@ -20,6 +20,7 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { EventsVolunteerListComponent } from './components/events-volunteer-list/events-volunteer-list.component';
 @NgModule({
   declarations: [
     PublicHomeListEventsComponent,
@@ -29,6 +30,7 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     PublicHomeListEventsPastComponent,
     PublicHomeListEventsSpeakersComponent,
     PublicHomeListEventsTechSessionsComponent,
+    EventsVolunteerListComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,8 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     PublicHomeListEventsHeaderComponent,
     PublicHomeListEventsFeaturedCommunitiesComponent,
     PublicHomeListEventsTechSessionsComponent,
+    PublicHomeListEventsSpeakersComponent,
+    EventsVolunteerListComponent,
   ],
 })
 export class PublicHomeListEventsModule {}

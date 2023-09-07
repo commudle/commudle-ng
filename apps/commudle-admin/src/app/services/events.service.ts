@@ -12,24 +12,38 @@ import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { ISessions } from 'apps/shared-models/sessions.model';
+import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  updateEvent(event, eventId, community): Observable<IEvent> {
+  updateEvent(event, eventId, community, tags): Observable<IEvent> {
     return this.http.put<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE), {
       event,
       community_id: community.id,
       event_id: eventId,
+      tags: tags,
     });
   }
+  cloneEvent(event, eventId, tags): Observable<IEvent> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.post<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CLONE),
+      {
+        event,
+        tags: tags,
+      },
+      { params },
+    );
+  }
 
-  createEvent(event, community): Observable<IEvent> {
+  createEvent(event, community, tags): Observable<IEvent> {
     return this.http.post<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CREATE), {
       event,
       community_id: community.id,
+      tags: tags,
     });
   }
 
@@ -121,9 +135,20 @@ export class EventsService {
     return this.http.get<IEvent>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params });
   }
 
-  pGetEventVolunteers(eventId): Observable<IUsers> {
-    const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), { params });
+  pGetEventVolunteers(event_id?, limit?, after?): Observable<IPagination<IUsers>> {
+    let params = new HttpParams();
+    if (after) {
+      params = params.set('after', after);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (event_id) {
+      params = params.set('event_id', event_id);
+    }
+    return this.http.get<IPagination<IUsers>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), {
+      params,
+    });
   }
 
   getPolls(eventId: number): Observable<IPolls> {
@@ -136,12 +161,29 @@ export class EventsService {
     return this.http.get<IHmsRecording[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.RECORDINGS), { params });
   }
 
-  getAttendedMembers(query: string, eventId: number, page: number, count: number): Observable<IUsers> {
-    const params = new HttpParams()
-      .set('q', query)
-      .set('event_id', String(eventId))
+  getAttendedMembers(
+    page: number,
+    count: number,
+    eventId: number,
+    query?: string,
+    employer?: boolean,
+    employee?: boolean,
+  ): Observable<IUsers> {
+    let params = new HttpParams()
       .set('page', String(page))
-      .set('count', String(count));
+      .set('count', String(count))
+      .set('event_id', String(eventId));
+
+    if (query) {
+      params = params.set('q', query);
+    }
+
+    if (employer) {
+      params = params.set('employer', employer);
+    }
+    if (employee) {
+      params = params.set('employee', employee);
+    }
     return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.ATTENDED_MEMBERS), { params });
   }
 
@@ -156,13 +198,16 @@ export class EventsService {
     });
   }
 
-  getSpeakersList(after?, limit?): Observable<IPagination<ISpeakers>> {
+  getSpeakersList(after?, limit?, event_id?): Observable<IPagination<ISpeakers>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
     }
     if (limit) {
       params = params.set('limit', limit);
+    }
+    if (event_id) {
+      params = params.set('event_id', event_id);
     }
     return this.http.get<IPagination<ISpeakers>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKERS_LIST),
@@ -186,13 +231,42 @@ export class EventsService {
 
   getEventsList(when, limit?, after?): Observable<IPagination<IEvents>> {
     let params = new HttpParams().set('when', when);
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IEvents>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), {
+      params,
+    });
+  }
+
+  getSocialResources(after?, limit?, event_id?): Observable<IPagination<ISpeakerResource>> {
+    let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
     }
     if (limit) {
       params = params.set('limit', limit);
     }
-    return this.http.get<IPagination<IEvents>>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.EVENTS_LIST), {
+    if (event_id) {
+      params = params.set('event_id', event_id);
+    }
+    return this.http.get<IPagination<ISpeakerResource>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SOCIAL_RESOURCES),
+      {
+        params,
+      },
+    );
+  }
+
+  pGetEventsInterestedMembers(event_id?): Observable<IUsers> {
+    let params = new HttpParams();
+    if (event_id) {
+      params = params.set('event_id', event_id);
+    }
+    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INTERESTED_MEMBERS), {
       params,
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'commudle-public-home-list-speakers',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicHomeListSpeakersComponent implements OnInit {
   isMobileView: boolean;
-  constructor() {}
+  constructor(private footerService: FooterService) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.isMobileView = window.innerWidth <= 640;
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
   }
 }

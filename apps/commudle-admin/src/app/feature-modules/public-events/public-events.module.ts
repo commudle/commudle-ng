@@ -50,6 +50,9 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { TeamComponent } from './components/team/team.component';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SessionPageViewersComponent,
     AttendedMembersComponent,
     AttendedMembersCardComponent,
+    EventsAgendaComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +91,8 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     HmsVideoModule,
     MiniUserProfileModule,
     LinkyModule,
+    PublicHomeListEventsModule,
+    PublicHomeListSpeakersModule,
 
     // external
     FontAwesomeModule,

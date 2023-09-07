@@ -9,7 +9,7 @@
   <form (ngSubmit)="eventId ? onAcceptRoleButton() : submitForm()" [formGroup]="dataFormEntityResponseForm">
     <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <nb-card>
-        <nb-card-body class="com-p-0">
+        <nb-card-body class="com-p-0 com-overflow-hidden">
           <div class="detail">
             <span class="index">{{ i + 1 }}.</span>
             <p>
@@ -126,7 +126,17 @@
     </nb-card>
 
     <div class="submit-button">
-      <button fullWidth nbButton size="medium" status="primary" type="submit">Submit</button>
+      <button
+        fullWidth
+        nbButton
+        size="medium"
+        status="primary"
+        type="submit"
+        [disabled]="isFormSubmitting"
+        [nbSpinner]="isFormSubmitting"
+      >
+        {{ submitButtonText }}
+      </button>
     </div>
   </form>
 </div>

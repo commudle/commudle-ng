@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'com-flex': alignFollowToRight, 'com-w-72': horizontalScroll }">
+<div [ngClass]="{ 'align-right': alignFollowToRight, 'com-w-72': horizontalScroll }">
   <a (click)="profileClicked()" [routerLink]="['/users', user.username]" target="_blank">
     <div class="user-profile-large d-flex align-items-start">
       <div>
@@ -33,7 +33,11 @@
           [user]="user"
           [size]="'small'"
         ></app-hiring-looking-works-tags>
-        <p [ngClass]="{ 'com-line-clamp-3': truncateDesignation }" class="designation" title="{{ user.designation }}">
+        <p
+          [ngClass]="{ 'com-line-clamp-3': truncateDesignation, 'com-h-[60px]': horizontalScroll }"
+          class="designation"
+          title="{{ user.designation }}"
+        >
           {{ user.designation || '--' }}
         </p>
         <div *ngIf="showSpeakersCount" class="speaker-count">
@@ -67,9 +71,15 @@
       </div>
     </div>
   </a>
-  <div *ngIf="showFollowButton" [ngClass]="{ 'align-right': alignFollowToRight }" class="followers">
+  <div
+    *ngIf="showFollowButton"
+    [ngClass]="{ 'align-right': alignFollowToRight, 'com-mt-4': !alignFollowToRight }"
+    class="followers"
+  >
     <app-user-follow
       [username]="user.username"
+      [name]="user.name"
+      [userId]="user.id"
       [isMobileWidthFull]="isMobileWidthFull"
       class="follow-btn"
     ></app-user-follow>

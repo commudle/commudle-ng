@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -12,10 +11,10 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbTagComponent, NbTagInputAddEvent, NbWindowService } from '@commudle/theme';
-import { faClock, faInfo, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faInfo, faPen, faPlusCircle, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { EventLocationTracksService } from 'apps/commudle-admin/src/app/services/event-location-tracks.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -34,7 +33,7 @@ import * as moment from 'moment';
   styleUrls: ['./event-location-tracks.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventLocationTracksComponent implements OnInit, AfterViewInit {
+export class EventLocationTracksComponent implements OnInit {
   @Input() eventLocations: IEventLocation[] = [];
   @Input() eventLocationTracks: IEventLocationTrack[] = [];
   @Input() event: IEvent;
@@ -56,6 +55,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
   faPlusCircle = faPlusCircle;
   faTrash = faTrash;
   faPen = faPen;
+  faXmark = faXmark;
   EEventType = EEventType;
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
@@ -100,14 +100,13 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         end_time: [new Date(), Validators.required],
         session_title: ['', Validators.required],
         tags_list: [''],
-        speaker_registration_id: [''],
+        track_slot_speaker_registration_ids: this.fb.array([]),
       }),
     });
   }
 
   ngOnInit() {
     this.setTrackVisibility();
-
     const visibility = this.eventLocationTracks.length <= 2;
     for (const event_location_track of this.eventLocationTracks) {
       this.trackSlotVisibility[event_location_track.id] = visibility;
@@ -115,8 +114,6 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
     }
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
-
-  ngAfterViewInit(): void {}
 
   scrollFromTop() {
     if (
@@ -131,6 +128,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   showAddSlotForm(eventLocationTrack, startTime, eventLocTrack) {
     this.trackSlotForm.reset();
+    this.removeAllDropdowns();
     for (const event_location_track of this.eventLocationTracks) {
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
@@ -145,6 +143,7 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
         start_time: time,
         end_time: endTime,
       });
+      this.addSpeakerDropdown();
       this.windowRef = this.windowService.open(this.trackSlotFormTemplate, {
         title: 'Add a session',
         context: { operationType: 'create' },
@@ -190,6 +189,10 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   showEditSlotForm(trackSlot) {
     this.trackSlotForm.reset();
+    this.removeAllDropdowns();
+    for (const speakers of trackSlot.track_slot_speakers) {
+      this.addSpeakerToDropdown(speakers.speaker_registration_id);
+    }
     const sTime = trackSlot['start_time'];
     const eTime = trackSlot['end_time'];
     const sTimeArr = sTime.split('T')[1].split(':');
@@ -504,5 +507,38 @@ export class EventLocationTracksComponent implements OnInit, AfterViewInit {
 
   onTagRemove(tagToRemove: NbTagComponent): void {
     this.tags = this.tags.filter((tag) => tag !== tagToRemove.text);
+  }
+
+  speakerSelected(event, index) {
+    const selectedSpeakerId = Number(event.target.value);
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.at(index).setValue(selectedSpeakerId);
+  }
+
+  addSpeakerDropdown() {
+    const speakerControl = this.fb.control('');
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.push(speakerControl);
+  }
+
+  addSpeakerToDropdown(value) {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    speakerIdsArray.push(this.fb.control(value));
+  }
+
+  removeSpeakerDropdown(index: number) {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+
+    // Check if the index is valid before attempting to remove the control.
+    if (index >= 0 && index < speakerIdsArray.length) {
+      speakerIdsArray.removeAt(index);
+    }
+  }
+
+  removeAllDropdowns() {
+    const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
+    while (speakerIdsArray.length > 0) {
+      speakerIdsArray.removeAt(0);
+    }
   }
 }

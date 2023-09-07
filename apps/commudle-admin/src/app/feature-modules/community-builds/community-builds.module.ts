@@ -96,5 +96,6 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     //FontAwesomeModule
     FontAwesomeModule,
   ],
+  exports: [BuildsTopBuildersComponent, ExploreExpertsComponent],
 })
 export class CommunityBuildsModule {}

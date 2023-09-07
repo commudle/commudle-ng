@@ -1,0 +1,41 @@
+<div class="user-event-registration" *ngIf="eventSimpleRegistration">
+  <div>
+    <div
+      class="control-status"
+      [ngClass]="{ open: eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN }"
+    >
+      <nb-checkbox
+        status="control"
+        [disabled]="!event.editable"
+        [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
+        (checkedChange)="toggleRegistration()"
+      >
+        Registrations are {{ eventSimpleRegistration.status }}
+      </nb-checkbox>
+    </div>
+    <div>
+      <a
+        class="send-email-button"
+        *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
+        nbButton
+        status="primary"
+        size="small"
+        (click)="openEmailWindow()"
+      >
+        <nb-icon icon="email-outline"></nb-icon>
+        Send Registration Link
+      </a>
+    </div>
+  </div>
+
+  <div class="registration-count" *ngIf="eventSimpleRegistration.user_event_registrations_count > 0">
+    <p>
+      <span>
+        <nb-icon icon="people-outline" status="primary"></nb-icon>
+        {{ eventSimpleRegistration.user_event_registrations_count }}
+      </span>
+      <br />
+      <a [routerLink]="[eventSimpleRegistration.id, 'user-event-registrations']"> View Registrations </a>
+    </p>
+  </div>
+</div>

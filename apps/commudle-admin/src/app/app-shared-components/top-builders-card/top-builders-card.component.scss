@@ -1,51 +1,55 @@
+a {
+  @apply com-no-underline;
+}
+
 nb-card {
-  @apply com-m-0 com-overflow-hidden md:com-max-h-[177px] com-max-h-full md:com-h-auto com-h-[167px] md:com-w-[318px] com-w-[313px];
+  @apply com-m-0 com-overflow-hidden md:com-max-h-[177px] com-max-h-full com-h-auto md:com-w-[318px] com-w-[313px];
 
   nb-card-body {
-    @apply com-px-3 com-py-2 com-overflow-hidden;
+    @apply com-p-4 md:com-p-3 com-overflow-hidden;
 
-    a {
-      @apply com-no-underline com-flex com-flex-col;
+    .content {
+      @apply com-flex com-flex-row;
+      .user-profile-image {
+        @apply com-w-[60px] com-h-[60px] com-mr-3 md:com-mb-0 com-mb-4 com-flex-shrink-0 com-overflow-hidden com-bg-Anti-Flash-White;
+        border-radius: 50%;
 
-      .content {
-        @apply com-flex com-flex-row;
-        .user-profile-image {
-          @apply com-w-[100px] com-h-[100px] com-mr-3 md:com-mb-0 com-mb-4 com-flex-shrink-0 com-overflow-hidden com-bg-Anti-Flash-White;
-          border-radius: 50%;
-
-          img {
-            @apply com-w-full com-h-auto com-object-cover;
-          }
-        }
-
-        .text {
-          @apply com-flex com-flex-col com-m-0;
-          .name {
-            @apply com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-mb-1 com-flex-row com-items-center;
-            @apply com-flex #{!important};
-
-            .expert-icon {
-              @apply com-h-4 com-w-4 com-m-0 com-ml-2;
-            }
-          }
-
-          .username {
-            @apply md:com-text-sm com-text-xs com-font-normal com-line-clamp-1 com-text-Quartz com-mt-0 com-mx-0 com-mb-1;
-          }
-
-          .votes {
-            @apply com-text-sm com-font-normal com-m-0 com-text-Quartz;
-          }
-
-          .designation {
-            @apply md:com-text-sm com-text-xs com-font-normal com-mx-0 com-mb-1 com-text-Dark-Jungle-Green com-line-clamp-2;
-          }
+        img {
+          @apply com-w-full com-h-auto com-object-cover;
         }
       }
 
-      .follow-button {
-        @apply com-m-0 md:com-mt-4;
+      .text {
+        @apply com-flex com-flex-col com-m-0;
+        .name {
+          @apply md:com-text-lg com-text-sm com-font-medium com-text-black com-m-0 com-line-clamp-1 com-flex-row com-items-center;
+          @apply com-flex #{!important};
+
+          .expert-icon {
+            @apply com-h-4 com-w-4 com-m-0 com-ml-2;
+          }
+        }
+
+        .username {
+          @apply md:com-text-sm com-text-xs com-font-normal com-line-clamp-1 com-text-Quartz com-mt-1 com-mx-0 com-mb-0;
+        }
+
+        .votes {
+          @apply com-text-xs com-font-medium com-m-0 com-mt-2 com-text-Chocolate-Traditional com-flex com-gap-x-2;
+
+          span {
+            @apply com-rounded-[20px] com-px-2 com-py-1 com-border com-border-solid com-border-Chocolate-Traditional;
+          }
+        }
+
+        .designation {
+          @apply md:com-text-sm com-text-xs com-font-normal com-mt-1 com-m-0 md:com-text-Quartz com-text-Dark-Jungle-Green com-line-clamp-2 md:com-h-auto com-h-8;
+        }
       }
+    }
+
+    .follow-button {
+      @apply com-mt-4 md:com-mt-3;
     }
   }
 }

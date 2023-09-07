@@ -1,0 +1,26 @@
+.dropdown {
+  @apply com-w-44 com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-0 com-mb-2;
+  select {
+    @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
+  }
+}
+
+.dropdown:hover {
+  @apply com-bg-[#eef2f7]/50;
+  select {
+    @apply com-bg-[#eef2f7]/30;
+  }
+}
+
+table {
+  @apply com-border-collapse com-w-full com-mt-4;
+}
+
+td,
+th {
+  @apply com-p-4;
+}
+
+tr:not(:last-child) {
+  @apply com-border-0 com-border-b com-border-solid  com-border-Bright-Gray;
+}

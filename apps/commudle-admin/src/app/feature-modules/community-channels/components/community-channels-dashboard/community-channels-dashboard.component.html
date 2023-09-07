@@ -9,7 +9,7 @@
       [expandedWidth]="'extra-large'"
       [forWindow]="false"
     >
-      <div class="com-flex com-h-full">
+      <div class="com-flex com-h-[calc(100%-48px)]">
         <div class="left-section">
           <div
             class="icons !com-bg-[#EFF9FF]"
@@ -69,7 +69,10 @@
 
     <!-- //Channel message Component -->
     <div *ngIf="channelMessage && !forumMessage">
-      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
+      <app-community-channel
+        [selectedChannelId]="selectedChannelOrFormId"
+        [selectedCommunity]="selectedCommunity"
+      ></app-community-channel>
     </div>
 
     <!-- //Form Name List shows after selecting form group -->
@@ -81,9 +84,10 @@
     ></commudle-community-forum>
 
     <!-- //Form message component shows after selecting form name  -->
-    <commudle-community-form-message
+    <commudle-community-forum-message
       *ngIf="forumMessage && !forumsNamesList"
+      [selectedCommunity]="selectedCommunity"
       (updateSelectedForum)="updateSelectedChannelOrForum($event)"
-    ></commudle-community-form-message>
+    ></commudle-community-forum-message>
   </div>
 </div>

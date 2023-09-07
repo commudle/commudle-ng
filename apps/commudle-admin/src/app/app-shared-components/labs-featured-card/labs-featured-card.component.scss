@@ -1,0 +1,49 @@
+nb-card {
+  @apply com-m-0 md:com-w-[318px] com-w-[303px] md:com-max-h-[156px] com-max-h-full com-h-[156px] md:com-h-auto;
+  nb-card-body {
+    @apply com-p-4 com-overflow-hidden;
+
+    a {
+      @apply com-no-underline;
+      .featured-projects-card {
+        @apply com-flex com-items-center com-justify-between;
+        .details {
+          .heading {
+            @apply com-flex com-justify-between com-mb-3 com-h-6 com-items-center;
+            .user-profile-card {
+              @apply com-overflow-hidden;
+            }
+            .steps {
+              @apply com-flex com-text-xs com-font-medium com-text-Azure;
+            }
+          }
+          .title {
+            @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mb-1 com-line-clamp-1;
+          }
+
+          .time {
+            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-mb-6 com-text-Auro-Metal-Saurus;
+          }
+
+          .votes-tags {
+            @apply com-flex com-justify-between com-items-center;
+
+            .tags {
+              @apply com-overflow-hidden;
+            }
+
+            //   .comments {
+            //     @apply com-flex com-items-center;
+            //     fa-icon {
+            //       @apply com-mr-1 com-h-[18px] com-w-[18px];
+            //     }
+            //     p {
+            //       @apply com-m-0;
+            //     }
+            //   }
+          }
+        }
+      }
+    }
+  }
+}

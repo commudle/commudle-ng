@@ -120,6 +120,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         this.showProfileForm = false;
         // nothing need to be done here
         break;
+      case 'Survey':
+        this.showProfileForm = false;
+        // nothing need to be done here
+        break;
       default:
         this.errorHandler.handleError(404, 'You cannot fill this form');
     }

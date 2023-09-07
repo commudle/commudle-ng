@@ -1,0 +1,19 @@
+.create-button {
+  @apply com-my-6;
+}
+
+.discount-codes {
+  @apply com-grid md:com-grid-cols-3 com-gap-4;
+  table {
+    @apply com-border com-border-solid com-border-Bright-Gray com-rounded-xl com-py-3 com-px-4;
+    .heading {
+      @apply com-font-medium com-text-sm com-text-gray-500;
+    }
+    .action-button {
+      @apply com-text-primary-500 com-text-xs com-cursor-pointer com-font-normal;
+    }
+    .content {
+      @apply com-text-sm com-font-semibold;
+    }
+  }
+}

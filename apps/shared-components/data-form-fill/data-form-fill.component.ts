@@ -20,9 +20,11 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   @Input() existingResponses;
   @Input() dataFormId;
   @Input() eventId;
+  @Input() submitButtonText: string = 'Submit';
   dataForm: IDataForm;
   formCreated = false;
   enabledQuestions: IQuestion[] = [];
+  isFormSubmitting = false;
 
   message =
     'Never enter any personal or sensitive information which can be misused (including but not limited to passwords) in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.';
@@ -118,11 +120,14 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   }
 
   submitForm() {
+    this.isFormSubmitting = true;
     if (this.dataFormEntityResponseForm.invalid) {
       this.dataFormEntityResponseForm.markAllAsTouched();
+      this.isFormSubmitting = false;
       return;
     }
     this.formSubmitted.emit(this.dataFormEntityResponseForm.value);
+    this.isFormSubmitting = false;
   }
 
   onAcceptRoleButton() {

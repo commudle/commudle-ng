@@ -355,3 +355,7 @@ nb-option-list.search-autocomplete {
     background-color: darken($light-purple, 8%);
   }
 }
+
+.pac-container {
+  z-index: 1051 !important;
+}

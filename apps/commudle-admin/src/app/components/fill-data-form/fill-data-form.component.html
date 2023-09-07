@@ -15,8 +15,12 @@
                 <app-community-badge [community]="community"></app-community-badge>
               </p>
               <div *ngIf="event" class="event">
-                <div *ngIf="event.header_image_path" class="header-image">
-                  <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}" />
+                <div class="header-image">
+                  <commudle-banner-image
+                    *ngIf="event.header_image_path"
+                    [headerImagePath]="event.header_image_path"
+                    [name]="event.name"
+                  ></commudle-banner-image>
                 </div>
                 <p class="event-name">{{ event.name }}</p>
               </div>

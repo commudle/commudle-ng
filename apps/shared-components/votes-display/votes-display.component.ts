@@ -21,6 +21,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() size;
   @Input() canVote: boolean = true;
   @Input() votesDirectionVertical = false;
+  @Input() textAlignment = 'before'; // Can be either before or after
 
   @Output() isBlocked: EventEmitter<boolean> = new EventEmitter<boolean>();
 

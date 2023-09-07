@@ -12,6 +12,12 @@ import { EntryPassScanComponent } from './components/user-event-registrations/en
 import { ExitPassScanComponent } from './components/user-event-registrations/exit-pass-scan/exit-pass-scan.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
+import { EventDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-details/event-details.component';
+import { EventUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-updates/event-updates.component';
+import { EventAgendaComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-agenda/event-agenda.component';
+import { EventRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/event-registrations.component';
+import { SponsorsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/sponsors/sponsors.component';
+import { CommunityEmailsListComponent } from 'apps/commudle-admin/src/app/feature-modules/reusable-components/components/community-emails-list/community-emails-list.component';
 
 const routes = [
   {
@@ -33,12 +39,56 @@ const routes = [
         children: [
           {
             path: '',
+            runGuardsAndResolvers: 'always',
             component: EventDashboardComponent,
+            children: [
+              {
+                path: '',
+                component: EventDetailsComponent,
+              },
+              {
+                path: 'stats',
+                component: EventStatsComponent,
+              },
+              {
+                path: 'edit',
+                component: EditEventComponent,
+              },
+              {
+                path: 'updates',
+                component: EventUpdatesComponent,
+              },
+              {
+                path: 'agenda',
+                component: EventAgendaComponent,
+              },
+              {
+                path: 'registrations',
+                component: EventRegistrationsComponent,
+              },
+              {
+                path: 'collaborations',
+                component: CollaboratingCommunitiesComponent,
+              },
+              {
+                path: 'volunteers',
+                component: VolunteersComponent,
+              },
+              {
+                path: 'sponsors',
+                component: SponsorsComponent,
+              },
+              {
+                path: 'emails',
+                component: CommunityEmailsListComponent,
+              },
+              {
+                path: 'form-responses',
+                component: EventFormResponsesComponent,
+              },
+            ],
           },
-          {
-            path: 'edit',
-            component: EditEventComponent,
-          },
+
           {
             path: 'collaborating-communities',
             component: CollaboratingCommunitiesComponent,
@@ -50,10 +100,6 @@ const routes = [
           {
             path: 'form-responses',
             component: EventFormResponsesComponent,
-          },
-          {
-            path: 'stats',
-            component: EventStatsComponent,
           },
           {
             path: ':event_simple_registration_id/user-event-registrations',

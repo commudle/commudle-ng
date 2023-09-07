@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListingPagesFilterTypes } from 'apps/shared-models/enums/listing-pages-filter-types';
 @Component({
   selector: 'commudle-public-home-list-speakers-profile',
@@ -34,13 +34,13 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   page = 1;
   count = 10;
   totalSearch = 0;
+  seoTitle: string;
   listingPagesFilterTypes = ListingPagesFilterTypes;
 
   constructor(
     private communitiesService: CommunitiesService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router,
     private location: Location,
     private seoService: SeoService,
   ) {
@@ -50,12 +50,6 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seoService.setTags(
-      'Speakers - Find & Connect With Tech & Design Speakers',
-      'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
-      'https://commudle.com/assets/images/commudle-logo192.png',
-    );
-
     this.search();
     const params = this.activatedRoute.snapshot.queryParams;
     if (Object.keys(params).length > 0) {
@@ -89,9 +83,22 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
       }
     }
     this.speakers = [];
+    this.updateSeoTitle();
     if (!params.query) {
       this.getSpeakersList();
     }
+  }
+
+  updateSeoTitle() {
+    this.seoTitle = this.query
+      ? `${this.query} - Speakers for your community events`
+      : 'Speakers - Find & Connect With Tech & Design Speakers';
+
+    this.seoService.setTags(
+      this.seoTitle,
+      'All the tech speakers from developer communities at one place, from web development, android to ML and AI, find a speaker for your next event or connect with them to learn the latest updates in tech.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   updateFilter() {
@@ -142,6 +149,8 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
     if (query) {
       queryParams.query = query;
     }
+    this.seoTitle = this.query;
+    this.updateSeoTitle();
     const urlSearchParams = new URLSearchParams(queryParams);
     const queryParamsString = urlSearchParams.toString();
     this.location.replaceState(location.pathname, queryParamsString);

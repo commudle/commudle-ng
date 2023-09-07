@@ -14,3 +14,6 @@ export * from './lib/user-role.model';
 export * from './lib/user-roles-user.model';
 export * from './lib/community-channel.model';
 export * from './lib/speaker-resource.model';
+export * from './lib/discount-code.model';
+export * from './lib/payment-detail.model';
+export * from './lib/stripe-account.model';

@@ -1,4 +1,4 @@
-import { IQuestion } from './question.model'
+import { IQuestion } from './question.model';
 
 export interface IDataForm {
   id: number;
@@ -14,9 +14,7 @@ export interface IDataForm {
   questions: IQuestion[];
 }
 
-
-
 export enum EDataFormParentTypes {
   community = 'Kommunity',
-  adminSurvey = 'AdminSurvey'
+  adminSurvey = 'AdminSurvey',
 }

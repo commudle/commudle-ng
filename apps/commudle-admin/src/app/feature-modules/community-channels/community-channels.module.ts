@@ -50,8 +50,9 @@ import { CommunityForumListComponent } from 'apps/commudle-admin/src/app/feature
 import { CommunityForumComponent } from './components/community-forum/community-forum.component';
 import { CommunityChannelsDashboardForumListComponent } from './components/community-channels-dashboard-forum-list/community-channels-dashboard-forum-list.component';
 import { SharedComponentsModule } from '@commudle/shared-components';
-import { CommunityFormMessageComponent } from './components/community-form-message/community-form-message.component';
+import { CommunityForumMessageComponent } from './components/community-forum-message/community-forum-message.component';
 import { ArchiveComponent } from './components/channel-settings/archive/archive.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { ArchiveComponent } from './components/channel-settings/archive/archive.
     CommunityForumListComponent,
     CommunityForumComponent,
     CommunityChannelsDashboardForumListComponent,
-    CommunityFormMessageComponent,
+    CommunityForumMessageComponent,
     ArchiveComponent,
   ],
   imports: [
@@ -90,6 +91,7 @@ import { ArchiveComponent } from './components/channel-settings/archive/archive.
     SharedDirectivesModule,
     LinkyModule,
     MentionModule,
+    InfiniteScrollModule,
     SharedComponentsModule, //new
 
     //External
