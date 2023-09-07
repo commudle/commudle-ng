@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class DeleteChannelComponent {
   @Input() channelId;
+  @Input() currentUrl: string;
   @Output() updateForm = new EventEmitter<string>();
 
   discussionType = EDiscussionType;
@@ -32,8 +33,7 @@ export class DeleteChannelComponent {
   submitForm() {
     this.communityChannelManagerService.deleteChannel(this.channelId, this.discussionType.CHANNEL);
     this.formUpdate();
-    const currentUrl = this.router.url;
-    this.router.navigate([currentUrl.substring(0, currentUrl.lastIndexOf('/'))]);
+    this.router.navigate([this.currentUrl]);
   }
 
   formUpdate() {

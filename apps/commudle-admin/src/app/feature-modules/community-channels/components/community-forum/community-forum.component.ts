@@ -55,7 +55,9 @@ export class CommunityForumComponent implements OnInit {
     this.subscriptions.push(
       this.communityChannelManagerService.selectedForum$.subscribe((data) => {
         this.selectedForum = data;
-        this.setMeta();
+        if (data) {
+          this.setMeta();
+        }
       }),
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
@@ -90,6 +92,7 @@ export class CommunityForumComponent implements OnInit {
       hasScroll: true,
       context: {
         channelId: channelId,
+        currentUrl: 'communities/' + this.selectedCommunity.slug + '/forums',
         // discussionType: this.discussionType.CHANNEL,
       },
     });
