@@ -42,6 +42,12 @@ export const API_ROUTES = {
     },
   },
 
+  COMMUNITY_AUTH_TOKENS: {
+    INDEX: 'api/v2/community_auth_tokens',
+    CREATE: 'api/v2/community_auth_tokens',
+    DELETE: 'api/v2/community_auth_tokens',
+  },
+
   // community_builds
   COMMUNITY_BUILDS: {
     INDEX: 'api/v2/community_builds',
@@ -159,6 +165,8 @@ export const API_ROUTES = {
     PUBLIC: {
       GET: 'api/v2/embedded_video_streams/public',
     },
+    CREATE_LIVESTREAM: 'api/v2/embedded_video_streams/create_livestream',
+    DELETE_LIVESTREAM: 'api/v2/embedded_video_streams/delete_livestream',
   },
 
   // events

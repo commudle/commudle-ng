@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from '@commudle/auth';
+import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider, YoutubeLoginProvider } from '@commudle/auth';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
@@ -58,6 +58,7 @@ import { PrismJsHighlightCodeService } from 'apps/shared-services/prismjs-highli
 import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
+import { CommunitiesCardComponent } from './app-shared-components/communities-card/communities-card.component';
 import { AppComponent } from './app.component';
 import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
@@ -80,6 +81,7 @@ import { HomeLabsComponent } from './components/home/components/home-labs/home-l
 import { HomePromotionsComponent } from './components/home/components/home-promotions/home-promotions.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
@@ -105,8 +107,6 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
-import { CommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/communities-card/communities-card.component';
-import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
@@ -115,7 +115,6 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
 import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
 import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 import { NgxStripeModule } from 'ngx-stripe';
-
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
@@ -285,6 +284,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.google_client_id),
+          },
+          {
+            id: YoutubeLoginProvider.PROVIDER_ID,
+            provider: new YoutubeLoginProvider(environment.google_client_id),
           },
         ],
       } as AuthServiceConfig,
