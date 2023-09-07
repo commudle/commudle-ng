@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="hasForms">
   <nb-card-header> All Forums </nb-card-header>
   <nb-card-body>
     <div class="forums-cards">
@@ -16,6 +16,15 @@
           <div class="discussion-category">{{ (chGroup.key | titlecase) || 'General' }}</div>
         </div>
       </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="!hasForms">
+  <nb-card-body class="empty-state">
+    <div>
+      <p class="heading">No forums Available</p>
+      <p class="sub-heading">You can create one by clicking the “New Topic” button above</p>
     </div>
   </nb-card-body>
 </nb-card>

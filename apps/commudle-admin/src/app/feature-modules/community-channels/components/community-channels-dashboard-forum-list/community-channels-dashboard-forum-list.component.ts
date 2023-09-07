@@ -20,6 +20,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   communityForums: EGroupedCommunityChannels;
   selectedCommunity: ICommunity;
   @Output() updateSelectedForum = new EventEmitter<any>();
+  hasForms = false;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -32,6 +33,7 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
+        Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
       }),
 
       this.activatedRoute.parent.data.subscribe((data) => {
