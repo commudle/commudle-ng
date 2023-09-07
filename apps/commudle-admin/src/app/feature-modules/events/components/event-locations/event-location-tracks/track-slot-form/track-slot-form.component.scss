@@ -1,0 +1,15 @@
+nb-card {
+  @apply com-w-[30dvw] com-h-[90dvh];
+  nb-card-body {
+    @apply com-px-3;
+    .track-slot-form {
+      @apply com-flex com-flex-col com-gap-2;
+      .dropdown {
+        @apply com-w-full com-flex com-items-center com-gap-1 com-h-10 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-0 com-mb-2;
+        select {
+          @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
+        }
+      }
+    }
+  }
+}

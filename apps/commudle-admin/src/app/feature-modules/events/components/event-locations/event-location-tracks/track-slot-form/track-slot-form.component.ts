@@ -1,7 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
-import { faClock, faInfo, faPen, faPlusCircle, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { NbDialogRef, NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import * as moment from 'moment';
+import * as _ from 'lodash';
+import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
+import { IEventLocation } from 'apps/shared-models/event-location.model';
+
 @Component({
   selector: 'commudle-track-slot-form',
   templateUrl: './track-slot-form.component.html',
@@ -9,22 +16,31 @@ import { faClock, faInfo, faPen, faPlusCircle, faTrash, faXmark } from '@fortawe
 })
 export class TrackSlotFormComponent implements OnInit {
   @Input() operationType: 'create' | 'edit';
-  @Input() trackSlotId;
-  @Input() eventLocations;
-  trackSlotForm;
+  @Input() trackSlotId: number;
+  @Input() eventLocations: IEventLocation[] = [];
   @Input() eventSpeakers;
-
+  @Input() eventLocationTracks: IEventLocationTrack[] = [];
+  @Input() startTime;
+  @Input() eventLocTrack;
+  @Input() minSlotDate;
+  @Input() trackSlot;
   icons = {
-    faClock,
-    faInfo,
-    faPen,
-    faPlusCircle,
-    faTrash,
     faXmark,
   };
-
   tags: string[] = [];
-  constructor(private fb: FormBuilder) {
+  sortedTrackSlots = {};
+  trackSlotForm;
+
+  dialogRef: NbDialogRef<any>;
+
+  @Output() createFormOutput = new EventEmitter<any>();
+  @Output() editFormOutput = new EventEmitter<any>();
+
+  constructor(
+    private fb: FormBuilder,
+    private trackSlotsService: TrackSlotsService,
+    private toastLogService: LibToastLogService,
+  ) {
     this.trackSlotForm = this.fb.group({
       track_slot: this.fb.group({
         event_location_track_id: ['', Validators.required],
@@ -38,74 +54,133 @@ export class TrackSlotFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.operationType === 'create') {
+      this.updateNewTrackSlot();
+    } else {
+      this.updateExistingTrackSlot();
+    }
+  }
+
+  updateNewTrackSlot() {
+    this.tags = [];
+    this.addSpeakerDropdown();
+    const time = new Date(this.startTime);
+    const endTime = new Date(time.getTime() + 30 * 60000);
+    this.trackSlotForm.get('track_slot').patchValue({
+      event_location_track_id: this.eventLocTrack.id,
+      date: this.minSlotDate,
+      start_time: time,
+      end_time: endTime,
+    });
+  }
+
+  updateExistingTrackSlot() {
+    this.trackSlotForm.reset();
+    this.removeAllDropdowns();
+    for (const speakers of this.trackSlot.track_slot_speakers) {
+      this.addSpeakerToDropdown(speakers.speaker_registration_id);
+    }
+    const sTime = this.trackSlot['start_time'];
+    const eTime = this.trackSlot['end_time'];
+    const sTimeArr = sTime.split('T')[1].split(':');
+    const eTimeArr = eTime.split('T')[1].split(':');
+    const sTimeHour = parseInt(sTimeArr[0]);
+    const sTimeMinute = parseInt(sTimeArr[1]);
+    const eTimeHour = parseInt(eTimeArr[0]);
+    const eTimeMinute = parseInt(eTimeArr[1]);
+
+    const sTimeNew = new Date();
+    const eTimeNew = new Date();
+    sTimeNew.setHours(sTimeHour);
+    sTimeNew.setMinutes(sTimeMinute);
+
+    eTimeNew.setHours(eTimeHour);
+    eTimeNew.setMinutes(eTimeMinute);
+
+    const trackDate = moment(this.trackSlot.start_time).toDate();
+    const tags = this.trackSlot.tags_list ? this.trackSlot.tags_list.split(' ') : [];
+    this.tags = tags;
+
+    this.trackSlotForm.get('track_slot').patchValue({
+      event_location_track_id: this.trackSlot.event_location_track_id,
+      date: trackDate,
+      start_time: sTimeNew,
+      end_time: eTimeNew,
+      session_title: this.trackSlot.session_title,
+      speaker_registration_id: this.trackSlot.speaker_registration_id,
+    });
+
+    if (this.trackSlot.embedded_video_stream) {
+      this.trackSlotForm.get('track_slot').patchValue({
+        embedded_video_stream: this.trackSlot.embedded_video_stream,
+      });
+    }
+  }
 
   addSlot() {
-    // this.windowRef.close();
-    // const newSlot = this.trackSlotForm.get('track_slot').value;
-    // const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
-    // newSlot.tags_list = tagsAsString;
-    // const startTime = moment({
-    //   years: newSlot.date.getFullYear(),
-    //   months: newSlot.date.getMonth(),
-    //   date: newSlot.date.getDate(),
-    // });
-    // delete newSlot['date'];
-    // const sTime = newSlot['start_time'];
-    // newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
-    // const eTime = newSlot['end_time'];
-    // newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
-    // if (newSlot['start_time'] >= newSlot['end_time']) {
-    //   this.toastLogService.warningDialog('End time should be greater than Start time!');
-    //   return;
-    // }
-    // this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
-    //   this.sortedTrackSlots[data.event_location_track_id].push(data);
-    //   this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
-    //     this.sortedTrackSlots[data.event_location_track_id],
-    //   );
-    //   this.trackSlotForm.reset();
-    //   this.toastLogService.successDialog('Slot Added!');
-    //   this.changeDetectorRef.markForCheck();
-    //   this.addSession.emit(data);
-    // });
+    const newSlot = this.trackSlotForm.get('track_slot').value;
+    const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
+    newSlot.tags_list = tagsAsString;
+    const startTime = moment({
+      years: newSlot.date.getFullYear(),
+      months: newSlot.date.getMonth(),
+      date: newSlot.date.getDate(),
+    });
+    delete newSlot['date'];
+    const sTime = newSlot['start_time'];
+    newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
+    const eTime = newSlot['end_time'];
+    newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
+    if (newSlot['start_time'] >= newSlot['end_time']) {
+      this.toastLogService.warningDialog('End time should be greater than Start time!');
+      return;
+    }
+
+    for (let i = 0; i < newSlot.track_slot_speaker_registration_ids.length; i++) {
+      if (newSlot.track_slot_speaker_registration_ids[i] === '') {
+        newSlot.track_slot_speaker_registration_ids.splice(i, 1);
+        i--;
+      }
+    }
+
+    this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
+      this.createFormOutput.emit(data);
+      this.trackSlotForm.reset();
+    });
+  }
+
+  sortTrackSlots(track_slots) {
+    const sortedTrackSlots = _.sortBy(track_slots, (slot) => {
+      // @ts-ignore
+      return new moment(slot.start_time);
+    });
+    return sortedTrackSlots;
   }
 
   editSlot(trackSlotId) {
-    // this.windowRef.close();
-    // const slot = this.trackSlotForm.get('track_slot').value;
-    // const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
-    // slot.tags_list = tagsAsString;
-    // const startTime = moment({
-    //   years: slot.date.getFullYear(),
-    //   months: slot.date.getMonth(),
-    //   date: slot.date.getDate(),
-    // });
-    // delete slot['date'];
-    // const sTimeNew = slot['start_time'];
-    // slot['start_time'] = startTime.set({ hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes() }).toDate();
-    // const eTimeNew = slot['end_time'];
-    // slot['end_time'] = startTime.set({ hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes() }).toDate();
-    // if (slot['start_time'] >= slot['end_time']) {
-    //   this.toastLogService.warningDialog('End time should be greater than Start time!');
-    //   return;
-    // }
-    // this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
-    //   const eventLocationTrack = this.eventLocationTracks.find((track) =>
-    //     track.track_slots.some((slot) => slot.id === trackSlotId),
-    //   );
-    //   if (eventLocationTrack) {
-    //     eventLocationTrack.track_slots = eventLocationTrack.track_slots.map((slot) => {
-    //       return slot.id === trackSlotId ? data : slot;
-    //     });
-    //     this.sortedTrackSlots[eventLocationTrack.id] = this.sortTrackSlots(eventLocationTrack.track_slots);
-    //     this.changeDetectorRef.markForCheck();
-    //   }
-    //   this.updateSession.emit(data);
-    //   this.toastLogService.successDialog('Slot Updated!');
-    //   this.trackSlotForm.reset();
-    //   this.changeDetectorRef.markForCheck();
-    // });
+    const slot = this.trackSlotForm.get('track_slot').value;
+    const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
+    slot.tags_list = tagsAsString;
+    const startTime = moment({
+      years: slot.date.getFullYear(),
+      months: slot.date.getMonth(),
+      date: slot.date.getDate(),
+    });
+    delete slot['date'];
+    const sTimeNew = slot['start_time'];
+    slot['start_time'] = startTime.set({ hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes() }).toDate();
+    const eTimeNew = slot['end_time'];
+    slot['end_time'] = startTime.set({ hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes() }).toDate();
+    if (slot['start_time'] >= slot['end_time']) {
+      this.toastLogService.warningDialog('End time should be greater than Start time!');
+      return;
+    }
+
+    this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
+      this.editFormOutput.emit(data);
+      this.trackSlotForm.reset();
+    });
   }
 
   onTagAdd({ value, input }: NbTagInputAddEvent): void {
