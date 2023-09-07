@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService, NbToastrService, NbWindowService } from '@commudle/theme';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -20,6 +20,9 @@ export class SpeakerResourceFormComponent implements OnInit {
   speakerResource: ISpeakerResource;
   community: ICommunity;
   embedGoogleSlidesCode: any;
+  showpdfOption = true;
+  showEmbedOption = false;
+  showLinkOption = false;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -33,6 +36,7 @@ export class SpeakerResourceFormComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private communitiesService: CommunitiesService,
     private toastLogService: LibToastLogService,
+    private nbToastrService: NbToastrService,
     private router: Router,
   ) {
     this.speakerResourceForm = this.fb.group({
@@ -89,5 +93,33 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   openGoogleSlidesEmbedStepsWindow() {
     this.windowService.open(this.googleSlidesEmbedTemplate, { title: 'Steps to get Google Slides Embed Link' });
+  }
+
+  onItemChange(data) {
+    this.showpdfOption = data.value === 'pdf' ? true : false;
+    this.showLinkOption = data.value === 'link' ? true : false;
+    this.showEmbedOption = data.value === 'embed' ? true : false;
+  }
+
+  onFileChange(event) {
+    if (event.target.files) {
+      if (event.target.files[0].type !== 'application/pdf') {
+        this.nbToastrService.warning('File must be a pdf', 'Warning');
+        return;
+      }
+
+      const file = event.target.files[0];
+      // this.uploadedResume = {
+      //   id: null,
+      //   file: file,
+      //   url: null,
+      //   name: null,
+      //   type: null,
+      // };
+
+      // const reader = new FileReader();
+      // reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
+      // reader.readAsDataURL(file);
+    }
   }
 }
