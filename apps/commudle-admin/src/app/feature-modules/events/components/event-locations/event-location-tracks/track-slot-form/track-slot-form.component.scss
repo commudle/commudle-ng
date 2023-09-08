@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-w-[30dvw] com-h-[90dvh];
+  @apply com-w-[30dvw] com-max-h-[90dvh];
   nb-card-body {
     @apply com-px-3;
     .track-slot-form {

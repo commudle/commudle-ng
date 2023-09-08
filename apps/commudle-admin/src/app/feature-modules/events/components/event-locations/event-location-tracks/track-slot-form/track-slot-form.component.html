@@ -6,9 +6,8 @@
 
   <nb-card-body>
     <div>
-      <div>{{ trackSlotId }}</div>
       <form
-        (ngSubmit)="operationType === 'create' ? addSlot() : editSlot(trackSlotId)"
+        (ngSubmit)="operationType === 'create' ? addSlot() : editSlot(trackSlot.id)"
         [formGroup]="trackSlotForm"
         class="track-slot-form"
       >
@@ -32,7 +31,7 @@
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
                 "
               >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
               </span>
             </nb-select>
           </div>
@@ -78,7 +77,7 @@
                 trackSlotForm['controls'].track_slot['controls'].session_title.errors.required
               "
             >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
             </span>
           </div>
 
@@ -98,7 +97,7 @@
                 trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
               "
             >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
             </span>
           </div>
 
@@ -131,7 +130,7 @@
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <div class="save-button-bottom" (click)="operationType === 'create' ? addSlot() : editSlot(trackSlotId)">
+    <div class="save-button-bottom" (click)="operationType === 'create' ? addSlot() : editSlot(trackSlot.id)">
       <button [disabled]="!trackSlotForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
     </div>
   </nb-card-footer>

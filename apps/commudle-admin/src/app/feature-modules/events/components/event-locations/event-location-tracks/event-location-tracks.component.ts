@@ -136,7 +136,7 @@ export class EventLocationTracksComponent implements OnInit {
         minSlotDate: this.minSlotDate,
       },
     });
-    dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
+    dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
       this.addSlot(data);
       dialogRef.close();
     });
@@ -162,7 +162,6 @@ export class EventLocationTracksComponent implements OnInit {
         eventSpeakers: this.eventSpeakers,
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
-        trackSlotId: trackSlot.id,
       },
     });
     dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {

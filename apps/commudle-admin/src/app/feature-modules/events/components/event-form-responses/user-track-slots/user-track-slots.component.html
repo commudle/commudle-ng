@@ -1,7 +1,10 @@
 <div *ngFor="let trackSlot of trackSlots">
   <p>{{ trackSlot.session_title }}</p>
+
+  <button (click)="editTrackSlot(trackSlot)">edit</button>
 </div>
 
 <div *ngIf="trackSlots.length === 0">
   <p>No Track Slot Selected Yet</p>
+  <button (click)="showAddSlotForm()">add</button>
 </div>

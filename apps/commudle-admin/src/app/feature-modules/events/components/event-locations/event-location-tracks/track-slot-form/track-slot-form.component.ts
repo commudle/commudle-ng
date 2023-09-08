@@ -16,7 +16,6 @@ import { IEventLocation } from 'apps/shared-models/event-location.model';
 })
 export class TrackSlotFormComponent implements OnInit {
   @Input() operationType: 'create' | 'edit';
-  @Input() trackSlotId: number;
   @Input() eventLocations: IEventLocation[] = [];
   @Input() eventSpeakers;
   @Input() eventLocationTracks: IEventLocationTrack[] = [];

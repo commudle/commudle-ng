@@ -105,7 +105,11 @@
               <commudle-user-payment-details [eto]="row.event_ticket_orders"></commudle-user-payment-details>
             </div>
             <div class="com-max-w-fit" *ngIf="eventDataFormEntityGroup?.is_paid">
-              <commudle-user-track-slots [trackSlots]="row.track_slots"></commudle-user-track-slots>
+              <commudle-user-track-slots
+                [trackSlots]="row.track_slots"
+                [speakers]="rows"
+                [event]="event"
+              ></commudle-user-track-slots>
             </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
               <div *ngFor="let question of questions">
@@ -156,7 +160,11 @@
 
           <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
             <div class="mobile-hidden">
-              <commudle-user-track-slots [trackSlots]="row.track_slots"></commudle-user-track-slots>
+              <commudle-user-track-slots
+                [trackSlots]="row.track_slots"
+                [speakers]="rows"
+                [event]="event"
+              ></commudle-user-track-slots>
             </div>
           </ng-template>
         </ngx-datatable-column>
