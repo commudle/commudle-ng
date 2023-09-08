@@ -6,6 +6,7 @@
       <div class="com-w-full md:com-min-h-[600px] com-relative">
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
+        <commudle-homepage-dashboard></commudle-homepage-dashboard>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
         <div *ngIf="homepageActions.length > 0" class="homepage-actions">
           <a
@@ -19,21 +20,21 @@
             {{ action.title }}
           </a>
         </div>
-        <img
+        <!-- <img
           alt="Homepage arrow"
           class="homepage-arrow"
           src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDRlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9a2418dd47ce429fb718225399df102b528a9e46/homepage-arrow.svg"
-        />
+        /> -->
       </div>
-      <div class="com-w-2/3 md:com-w-full">
-        <!--        <img-->
-        <!--          alt="Homepage banner"-->
-        <!--          class="com-pointer-events-none com-w-full"-->
-        <!--          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19&#45;&#45;6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"-->
-        <!--        />-->
-        <!--        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>-->
-        <div #homepageAnimation></div>
-      </div>
+      <!-- <div class="com-w-2/3 md:com-w-full"> -->
+      <!--        <img-->
+      <!--          alt="Homepage banner"-->
+      <!--          class="com-pointer-events-none com-w-full"-->
+      <!--          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19&#45;&#45;6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"-->
+      <!--        />-->
+      <!--        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>-->
+      <!-- <div #homepageAnimation></div>
+      </div> -->
     </div>
   </div>
 

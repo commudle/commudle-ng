@@ -1,4 +1,9 @@
-<nb-card>
+<nb-card
+  [ngClass]="{
+    'container-scroll': isMobileView || showCardsHorizontal,
+    container: !(isMobileView || showCardsHorizontal)
+  }"
+>
   <nb-card-body>
     <div class="heading">
       <button nbButton status="basic" class="image">
@@ -15,9 +20,18 @@
       [ImageShapeCircle]="false"
       *ngIf="showSpinner"
     ></app-skeleton-cards>
-    <div class="featured-projects custom-scrollbar">
+    <div
+      [ngClass]="{
+        'featured-projects-scroll': isMobileView || showCardsHorizontal,
+        'featured-projects': !(isMobileView || showCardsHorizontal)
+      }"
+      class="custom-scrollbar"
+    >
       <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
-        <commudle-featured-projects-card [featuredProject]="featuredProject"></commudle-featured-projects-card>
+        <commudle-featured-projects-card
+          [featuredProject]="featuredProject"
+          [showTag]="showTag"
+        ></commudle-featured-projects-card>
       </div>
     </div>
   </nb-card-body>
