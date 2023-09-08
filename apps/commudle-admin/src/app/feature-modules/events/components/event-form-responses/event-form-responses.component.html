@@ -92,7 +92,7 @@
         rowHeight="auto"
       >
         <!-- responsive row format -->
-        <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
+        <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="'100%'">
           <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
             <div class="com-max-w-fit">
               <app-user-engagement-data
