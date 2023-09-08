@@ -34,3 +34,16 @@ nb-card {
     @apply com-text-sm com-text-Auro-Metal-Saurus com-mt-4;
   }
 }
+
+.empty-state {
+  @apply com-grid com-place-items-center;
+  div {
+    @apply com-text-center;
+    .heading {
+      @apply com-text-2xl com-font-bold;
+    }
+    .sub-heading {
+      @apply com-text-lg;
+    }
+  }
+}
