@@ -74,4 +74,8 @@
       @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-Quartz;
     }
   }
+
+  .profile-link {
+    @apply com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+  }
 }

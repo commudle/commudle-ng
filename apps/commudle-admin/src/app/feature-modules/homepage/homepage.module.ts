@@ -64,7 +64,7 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
     UserProfileComponent,
     FeaturedProjectsComponent,
     PublicHomeListEventsModule,
-    LabsFeaturedComponent,
+    // LabsFeaturedComponent,
     //Nebular
     NbButtonModule,
     NbCardModule,
@@ -75,5 +75,6 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
     //FontAwesome
     FontAwesomeModule,
   ],
+  exports: [UserprofileDetailsComponent],
 })
 export class HomepageModule {}

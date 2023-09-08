@@ -1,9 +1,6 @@
 <div class="base-layout">
   <div class="container">
-    <!-- <div *appBreakpoints="'<=lg'" class="one-column-layout">
-        <ng-content select="[one-column]"></ng-content>
-      </div> -->
-    <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+    <div class="two-column-layout medium">
       <div class="main-column">
         <div *ngIf="this.speakerResource" class="speaker-resource-form page-padding">
           <nb-card>
@@ -183,7 +180,12 @@
           </ng-template>
         </div>
       </div>
-      <div class="right-column"></div>
+      <div *ngIf="currentUser" class="right-column">
+        <div class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details [currentUser]="currentUser"></commudle-userprofile-details>
+        </div>
+      </div>
     </div>
   </div>
 </div>

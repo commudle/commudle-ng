@@ -26,7 +26,7 @@ import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-compone
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { LabsFeaturedCardComponent } from './labs-featured-card/labs-featured-card.component';
+// import { LabsFeaturedCardComponent } from './labs-featured-card/labs-featured-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],

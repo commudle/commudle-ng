@@ -8,6 +8,9 @@ import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { CommunitiesService } from '../../services/communities.service';
 import { SpeakerResourcesService } from '../../services/speaker-resources.service';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -23,6 +26,8 @@ export class SpeakerResourceFormComponent implements OnInit {
   showpdfOption = true;
   showEmbedOption = false;
   showLinkOption = false;
+  currentUser: ICurrentUser;
+  staticAssets = staticAssets;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -38,6 +43,7 @@ export class SpeakerResourceFormComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private nbToastrService: NbToastrService,
     private router: Router,
+    private authWatchService: LibAuthwatchService,
   ) {
     this.speakerResourceForm = this.fb.group({
       title: ['', Validators.required],
@@ -47,6 +53,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
       if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
         this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
