@@ -109,6 +109,7 @@
                 [trackSlots]="row.track_slots"
                 [speakers]="rows"
                 [event]="event"
+                [community]="community"
               ></commudle-user-track-slots>
             </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
@@ -149,7 +150,7 @@
             </div>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column [width]="300">
+        <ngx-datatable-column [width]="350">
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="mobile-hidden">
               <div class="">
@@ -164,6 +165,7 @@
                 [trackSlots]="row.track_slots"
                 [speakers]="rows"
                 [event]="event"
+                [community]="community"
               ></commudle-user-track-slots>
             </div>
           </ng-template>

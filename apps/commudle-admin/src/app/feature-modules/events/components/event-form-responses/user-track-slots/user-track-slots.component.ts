@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IEvent, IUser } from '@commudle/shared-models';
+import { ICommunity, IEvent, IUser } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { TrackSlotFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
@@ -16,7 +16,9 @@ export class UserTrackSlotsComponent implements OnInit {
   @Input() trackSlots: ITrackSlot[];
   @Input() speakers;
   @Input() event: IEvent;
+  @Input() community: ICommunity;
   eventLocations: IEventLocation[];
+  moment = moment;
   constructor(private dialogService: NbDialogService, private eventLocationsService: EventLocationsService) {}
   speaker: IUser[] = [];
   minSlotDate;
@@ -34,10 +36,19 @@ export class UserTrackSlotsComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
+      for (const eventLocation of this.eventLocations) {
+        for (const eventLocationTrack of eventLocation.event_location_tracks) {
+          for (const trackSlot of this.trackSlots) {
+            if (trackSlot.event_location_track_id === eventLocationTrack.id) {
+              trackSlot.event_location_track_name = eventLocationTrack.name;
+            }
+          }
+        }
+      }
     });
   }
 
-  editTrackSlot(trackSlot) {
+  editTrackSlot(trackSlot, index) {
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'edit',
@@ -48,7 +59,7 @@ export class UserTrackSlotsComponent implements OnInit {
       },
     });
     dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
-      // this.editSlot(data, trackSlot.id);
+      this.trackSlots[index] = data;
       dialogRef.close();
     });
   }
