@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ICommunity, IEvent, IUser } from '@commudle/shared-models';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { TrackSlotFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
+import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import { IEventLocation } from 'apps/shared-models/event-location.model';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
+import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 
 @Component({
@@ -19,7 +21,16 @@ export class UserTrackSlotsComponent implements OnInit {
   @Input() community: ICommunity;
   eventLocations: IEventLocation[];
   moment = moment;
-  constructor(private dialogService: NbDialogService, private eventLocationsService: EventLocationsService) {}
+  dialogRef: NbDialogRef<any>;
+
+  @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
+
+  constructor(
+    private dialogService: NbDialogService,
+    private eventLocationsService: EventLocationsService,
+    private trackSlotsService: TrackSlotsService,
+    private toastLogService: LibToastLogService,
+  ) {}
   speaker: IUser[] = [];
   minSlotDate;
 
@@ -49,7 +60,7 @@ export class UserTrackSlotsComponent implements OnInit {
   }
 
   editTrackSlot(trackSlot, index) {
-    const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
+    this.dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'edit',
         eventLocations: this.eventLocations,
@@ -58,14 +69,15 @@ export class UserTrackSlotsComponent implements OnInit {
         trackSlot: trackSlot,
       },
     });
-    dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
+    this.dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
       this.trackSlots[index] = data;
-      dialogRef.close();
+      this.toastLogService.successDialog('Track slot Updated');
+      this.dialogRef.close();
     });
   }
 
   showAddSlotForm() {
-    const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
+    this.dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'create',
         eventLocations: this.eventLocations,
@@ -73,11 +85,29 @@ export class UserTrackSlotsComponent implements OnInit {
         eventLocTrack: this.eventLocations,
         startTime: this.minSlotDate,
         minSlotDate: this.minSlotDate,
+        community: this.community,
+        event: this.event,
       },
     });
-    dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
+    this.dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
+      this.toastLogService.successDialog('New track slot added');
       this.trackSlots.unshift(data);
-      dialogRef.close();
+      this.dialogRef.close();
+    });
+  }
+
+  confirmDeleteSlot(trackSlot, index) {
+    this.dialogService.open(this.deleteTrackSlotTemplate, {
+      context: {
+        trackSlot: trackSlot,
+        index: index,
+      },
+    });
+  }
+
+  deleteSlot(trackSlot, index) {
+    this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
+      this.toastLogService.successDialog('Deleted');
     });
   }
 }

@@ -1,7 +1,9 @@
 <nb-card>
-  <nb-card-header>
+  <nb-card-header class="com-flex com-justify-between">
     <div>{{ operationType === 'create' ? 'Add a session' : 'Edit a session' }}</div>
-    <div></div>
+    <button (click)="close()" ghost nbButton size="small" shape="round">
+      <nb-icon icon="close"></nb-icon>
+    </button>
   </nb-card-header>
 
   <nb-card-body>
@@ -19,6 +21,14 @@
               fullWidth
               class="select-track"
             >
+              <nb-option *ngIf="eventLocations.length === 0 || eventLocations[0].event_location_tracks.length === 0">
+                <a
+                  [routerLink]="['./admin/communities', community.slug, 'event-dashboard', event.slug, 'agenda']"
+                  (click)="close()"
+                  class="com-text-blac com-no-underline"
+                  >+ Add Location /Tracks</a
+                >
+              </nb-option>
               <nb-option-group *ngFor="let location of eventLocations" title="{{ location.location.name }}">
                 <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
                   {{ ltrack.name }}

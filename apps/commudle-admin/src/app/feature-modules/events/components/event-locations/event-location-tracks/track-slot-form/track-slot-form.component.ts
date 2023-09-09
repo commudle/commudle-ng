@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { IEventLocation } from 'apps/shared-models/event-location.model';
+import { ICommunity, IEvent } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-track-slot-form',
@@ -23,14 +24,14 @@ export class TrackSlotFormComponent implements OnInit {
   @Input() eventLocTrack;
   @Input() minSlotDate;
   @Input() trackSlot;
+  @Input() event: IEvent;
+  @Input() community: ICommunity;
   icons = {
     faXmark,
   };
   tags: string[] = [];
   sortedTrackSlots = {};
   trackSlotForm;
-
-  dialogRef: NbDialogRef<any>;
 
   @Output() createFormOutput = new EventEmitter<any>();
   @Output() editFormOutput = new EventEmitter<any>();
@@ -39,6 +40,7 @@ export class TrackSlotFormComponent implements OnInit {
     private fb: FormBuilder,
     private trackSlotsService: TrackSlotsService,
     private toastLogService: LibToastLogService,
+    private dialogRef: NbDialogRef<any>,
   ) {
     this.trackSlotForm = this.fb.group({
       track_slot: this.fb.group({
@@ -226,5 +228,8 @@ export class TrackSlotFormComponent implements OnInit {
     while (speakerIdsArray.length > 0) {
       speakerIdsArray.removeAt(0);
     }
+  }
+  close() {
+    this.dialogRef.close();
   }
 }
