@@ -92,7 +92,7 @@
         rowHeight="auto"
       >
         <!-- responsive row format -->
-        <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
+        <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="'100%'">
           <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
             <div class="com-max-w-fit">
               <app-user-engagement-data
@@ -107,6 +107,14 @@
                 [user]="row.user"
               ></commudle-user-payment-details>
             </div>
+            <div class="com-max-w-fit" *ngIf="eventDataFormEntityGroup?.is_paid">
+              <commudle-user-track-slots
+                [trackSlots]="row.track_slots"
+                [speakers]="rows"
+                [event]="event"
+                [community]="community"
+              ></commudle-user-track-slots>
+            </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
               <div *ngFor="let question of questions">
                 <p>
@@ -115,11 +123,22 @@
                 <div>
                   <p
                     [innerHTML]="
-                      getQuestionResponse(row.data_form_entity_response_values, question.id)
-                        | linky : { sanitizeHtml: true }
+                      row.showFullAnswer
+                        ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                          | linky : { sanitizeHtml: true })
+                        : (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                          | truncatetext : 100
+                          | linky : { sanitizeHtml: true })
                     "
                     class="question-responses"
                   ></p>
+                  <a
+                    (click)="row.showFullAnswer = !row.showFullAnswer"
+                    *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
+                    class="clickable"
+                  >
+                    {{ row.showFullAnswer ? 'Read less' : 'Read more' }}
+                  </a>
                 </div>
               </div>
             </div>
@@ -142,6 +161,26 @@
                 [user]="row.user"
                 [communityId]="community.id"
               ></app-user-engagement-data>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [width]="350">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="">
+                <p>Track Slot details</p>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <commudle-user-track-slots
+                [trackSlots]="row.track_slots"
+                [speakers]="rows"
+                [event]="event"
+                [community]="community"
+              ></commudle-user-track-slots>
             </div>
           </ng-template>
         </ngx-datatable-column>
@@ -237,7 +276,7 @@
             <div class="row-cell question mobile-hidden" style="height: 100px">
               <p
                 [innerHTML]="
-                  showFullAnswer
+                  row.showFullAnswer
                     ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
                       | linky : { sanitizeHtml: true })
                     : (getQuestionResponse(row.data_form_entity_response_values, question.id)
@@ -247,11 +286,11 @@
                 class="question-responses"
               ></p>
               <a
-                (click)="showFullAnswer = !showFullAnswer"
+                (click)="row.showFullAnswer = !row.showFullAnswer"
                 *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
                 class="clickable"
               >
-                {{ showFullAnswer ? 'Read less' : 'Read more' }}
+                {{ row.showFullAnswer ? 'Read less' : 'Read more' }}
               </a>
             </div>
           </ng-template>

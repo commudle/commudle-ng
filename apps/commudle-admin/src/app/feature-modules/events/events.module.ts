@@ -74,6 +74,8 @@ import { DiscountCouponsComponent } from './components/event-registrations/disco
 import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
 import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
+import { UserTrackSlotsComponent } from './components/event-form-responses/user-track-slots/user-track-slots.component';
+import { TrackSlotFormComponent } from './components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +112,8 @@ import { UserPaymentDetailsComponent } from './components/event-form-responses/u
     PaymentSettingsComponent,
     DiscountCouponFormComponent,
     UserPaymentDetailsComponent,
+    UserTrackSlotsComponent,
+    TrackSlotFormComponent,
   ],
   imports: [
     CommonModule,

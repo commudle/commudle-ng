@@ -7,7 +7,10 @@
       @apply com-text-red-500 com-ml-2px;
     }
     .submit-button {
-      @apply com-mx-2;
+      @apply com-px-2;
+      &.sticky {
+        @apply com-py-1 com-sticky com-bottom-0 com-bg-white;
+      }
     }
 
     .card-body {

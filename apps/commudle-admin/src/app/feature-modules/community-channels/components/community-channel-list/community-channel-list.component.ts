@@ -40,6 +40,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
+  newCommunityChannelPopup;
 
   @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
 
@@ -75,6 +76,9 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    if (this.newCommunityChannelPopup) {
+      this.newCommunityChannelPopup.close();
+    }
   }
 
   setMeta() {
@@ -98,10 +102,10 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   newChannelDialogBox(groupName?) {
-    this.dialogService.open(NewCommunityChannelComponent, {
+    this.newCommunityChannelPopup = this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
@@ -113,10 +117,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
         channelId: channelId,
         invite: true,
+        currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {
@@ -128,10 +133,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
       hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
         channelId: channelId,
         discussionType: this.discussionType.CHANNEL,
+        currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {
