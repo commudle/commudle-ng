@@ -11,6 +11,7 @@ import { SpeakerResourcesService } from '../../services/speaker-resources.servic
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -18,8 +19,6 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
   styleUrls: ['./speaker-resource-form.component.scss'],
 })
 export class SpeakerResourceFormComponent implements OnInit {
-  @Input() currentUser: ICurrentUser;
-  @Input() userProfileDetails;
   token: string;
   eventId: number;
   speakerResource: ISpeakerResource;
@@ -29,6 +28,8 @@ export class SpeakerResourceFormComponent implements OnInit {
   showEmbedOption = false;
   showLinkOption = false;
   staticAssets = staticAssets;
+  currentUser: ICurrentUser;
+  userProfileDetails;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -45,6 +46,7 @@ export class SpeakerResourceFormComponent implements OnInit {
     private nbToastrService: NbToastrService,
     private router: Router,
     private authWatchService: LibAuthwatchService,
+    private appUsersService: AppUsersService,
   ) {
     this.speakerResourceForm = this.fb.group({
       title: ['', Validators.required],
@@ -55,6 +57,9 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
+    this.appUsersService.getProfileStats().subscribe((data) => {
+      this.userProfileDetails = data;
+    });
     this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
       if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
         this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
