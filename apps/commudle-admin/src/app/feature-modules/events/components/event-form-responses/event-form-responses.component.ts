@@ -13,12 +13,14 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
+import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { IQuestion } from 'apps/shared-models/question.model';
 import { IRegistrationStatus } from 'apps/shared-models/registration_status.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -62,6 +64,11 @@ export class EventFormResponsesComponent implements OnInit {
   toRegistrationStatus: string;
   selectedRegistrationStatus = 0;
   gender: string;
+  eventLocationTracks: IEventLocationTrack[];
+  selectedEventLocationTrackId = '';
+  icons = {
+    faXmark,
+  };
 
   //TODO past event stats
   constructor(
@@ -133,6 +140,8 @@ export class EventFormResponsesComponent implements OnInit {
             this.registrationStatusId,
             this.page,
             this.count,
+            this.gender,
+            this.selectedEventLocationTrackId,
           );
         }),
       )
@@ -150,6 +159,16 @@ export class EventFormResponsesComponent implements OnInit {
   genderFilter(gender) {
     this.page = 1;
     this.gender = gender;
+    this.getResponses();
+  }
+
+  eventLocationTrackId(eventLocationTracks) {
+    this.eventLocationTracks = eventLocationTracks;
+  }
+
+  trackSlotFilter(event?) {
+    this.page = 1;
+    this.selectedEventLocationTrackId = event ? event.target.value : '';
     this.getResponses();
   }
 
@@ -185,6 +204,7 @@ export class EventFormResponsesComponent implements OnInit {
         this.page,
         this.count,
         this.gender,
+        this.selectedEventLocationTrackId,
       )
       .subscribe((data) => {
         this.totalEntries = data.total;

@@ -168,7 +168,27 @@
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="mobile-hidden">
               <div class="">
-                <p>Track Slot details</p>
+                <p class="com-mb-0.5">Track Slot details</p>
+              </div>
+              <div class="com-flex com-gap-2 com-items-center">
+                <div class="dropdown !com-my-0">
+                  <select
+                    class="com-border-0"
+                    (change)="trackSlotFilter($event)"
+                    [(ngModel)]="selectedEventLocationTrackId"
+                    [ngClass]="{
+                      'com-text-[#8E9BB3]': selectedEventLocationTrackId === ''
+                    }"
+                  >
+                    <option selected disabled value="">Select Track</option>
+                    <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
+                      {{ elt.name }}
+                    </option>
+                  </select>
+                </div>
+                <div (click)="trackSlotFilter()" class="clear-track-filter" *ngIf="selectedEventLocationTrackId !== ''">
+                  <fa-icon [icon]="icons.faXmark"></fa-icon>
+                </div>
               </div>
             </div>
           </ng-template>
@@ -180,6 +200,7 @@
                 [speakers]="rows"
                 [event]="event"
                 [community]="community"
+                (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
               ></commudle-user-track-slots>
             </div>
           </ng-template>

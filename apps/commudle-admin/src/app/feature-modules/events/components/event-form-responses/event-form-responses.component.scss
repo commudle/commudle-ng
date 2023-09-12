@@ -106,3 +106,10 @@
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-w-full;
   }
 }
+
+.clear-track-filter {
+  @apply com-cursor-pointer;
+  fa-icon {
+    @apply com-text-red-500 com-text-base;
+  }
+}
