@@ -7,6 +7,7 @@ import {
   faFlask,
   faLightbulb,
   faLink,
+  faMicrophone,
 } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 
@@ -16,7 +17,8 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
   styleUrls: ['./userprofile-details.component.scss'],
 })
 export class UserprofileDetailsComponent implements OnInit {
-  @Input() currentUser: ICurrentUser;
+  @Input() userProfileDetails;
+  @Input() username;
   faEye = faEye;
   faFlask = faFlask;
   faLightbulb = faLightbulb;
@@ -24,6 +26,7 @@ export class UserprofileDetailsComponent implements OnInit {
   faBookmark = faBookmark;
   faLink = faLink;
   faArrowRight = faArrowRight;
+  faMicrophone = faMicrophone;
   constructor() {}
 
   ngOnInit(): void {}

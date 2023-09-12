@@ -174,4 +174,8 @@ export class AppUsersService {
       delete_profile: deleteProfile,
     });
   }
+
+  getProfileStats(): Observable<IUser> {
+    return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_STATS));
+  }
 }

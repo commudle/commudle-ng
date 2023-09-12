@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +18,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
   styleUrls: ['./speaker-resource-form.component.scss'],
 })
 export class SpeakerResourceFormComponent implements OnInit {
+  @Input() currentUser: ICurrentUser;
+  @Input() userProfileDetails;
   token: string;
   eventId: number;
   speakerResource: ISpeakerResource;
@@ -26,7 +28,6 @@ export class SpeakerResourceFormComponent implements OnInit {
   showpdfOption = true;
   showEmbedOption = false;
   showLinkOption = false;
-  currentUser: ICurrentUser;
   staticAssets = staticAssets;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;

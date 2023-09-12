@@ -183,7 +183,10 @@
       <div *ngIf="currentUser" class="right-column">
         <div class="user">
           <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
-          <commudle-userprofile-details [currentUser]="currentUser"></commudle-userprofile-details>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.name"
+          ></commudle-userprofile-details>
         </div>
       </div>
     </div>

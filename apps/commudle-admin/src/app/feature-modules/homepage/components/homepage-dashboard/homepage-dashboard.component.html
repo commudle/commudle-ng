@@ -11,7 +11,10 @@
     <div class="main-column">
       <div class="user">
         <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
-        <commudle-userprofile-details></commudle-userprofile-details>
+        <commudle-userprofile-details
+          [userProfileDetails]="userProfileDetails"
+          [username]="currentUser.username"
+        ></commudle-userprofile-details>
       </div>
       <div class="right-column">
         <div class="featured-communities">
