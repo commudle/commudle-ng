@@ -43,13 +43,24 @@
     // .header {
     //   @apply com-flex;
     .heading {
-      @apply com-m-0 com-p-4 com-bg-Anti-Flash-White;
+      @apply com-m-0 com-p-4 com-bg-Anti-Flash-White com-flex com-flex-row com-items-center;
 
-      .title {
-        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+      button {
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12;
+
+        fa-icon {
+          @apply com-text-lg;
+        }
       }
-      .sub-heading {
-        @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+
+      div {
+        @apply com-flex com-flex-col;
+        .title {
+          @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        }
+        .sub-heading {
+          @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+        }
       }
       // }
 
@@ -83,7 +94,7 @@
 .container {
   @apply com-mt-0 com-mb-6 com-mx-0 com-bg-Bright-Gray/30;
   nb-card-body {
-    @apply com-px-3 com-pt-4;
+    @apply com-px-3 com-pt-4 com-pb-0;
     .heading {
       @apply com-m-0 md:com-mb-8 md:com-p-0 md:com-mt-0 com-mt-10 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
@@ -105,7 +116,7 @@
     .featured-communities {
       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
       .featured-communities-card {
-        @apply com-mb-4 com-m-0 com-border-none com-rounded-xl com-p-0;
+        @apply com-m-0 com-border-none com-rounded-xl com-p-0;
       }
     }
 

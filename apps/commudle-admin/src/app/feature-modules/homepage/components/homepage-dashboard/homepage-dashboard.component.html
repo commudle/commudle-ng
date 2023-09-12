@@ -20,10 +20,16 @@
         <div class="featured-communities">
           <commudle-public-home-list-events-featured-communities
             [showCardsHorizontal]="true"
+            [showIconsOnHeading]="true"
           ></commudle-public-home-list-events-featured-communities>
         </div>
         <div class="featured-projects">
-          <commudle-featured-projects [showCardsHorizontal]="true" [showTag]="false"></commudle-featured-projects>
+          <commudle-featured-projects
+            [showCardsHorizontal]="true"
+            [showTag]="false"
+            [showStarsEmojiOnHeading]="false"
+            [showBulbEmojiOnHeading]="true"
+          ></commudle-featured-projects>
         </div>
         <!-- <div class="labs-featured">
           <commudle-labs-featured [showCardsHorizontal]="true"></commudle-labs-featured>

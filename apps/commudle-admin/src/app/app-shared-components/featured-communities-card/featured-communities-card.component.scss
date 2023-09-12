@@ -34,8 +34,7 @@ a {
         }
 
         .mini-description {
-          @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-line-clamp-2;
-          // md:com-h-[34px] com-h-[38px]  md:com-mb-0 com-mb-4
+          @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-mb-4 com-line-clamp-2 md:com-h-[34px] com-h-[38px];
         }
       }
     }

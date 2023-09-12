@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FeaturedCommunitiesService } from 'apps/commudle-admin/src/app/services/featured-communities.service';
 import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
 
@@ -9,9 +10,11 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
 })
 export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit {
   @Input() showCardsHorizontal = false;
+  @Input() showIconsOnHeading = false;
   featuredCommunities: IFeaturedCommunity[] = [];
   showSpinner = false;
   isMobileView: boolean;
+  faUserGroup = faUserGroup;
 
   constructor(private featuredCommunitiesService: FeaturedCommunitiesService) {}
 

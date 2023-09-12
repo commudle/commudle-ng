@@ -6,8 +6,11 @@
 >
   <nb-card-body>
     <div class="heading">
-      <button nbButton status="basic" class="image">
+      <button *ngIf="showStarsEmojiOnHeading" nbButton class="image">
         <img alt="Featured Projects" src="{{ staticAssets.emojis.stars }}" title="Featured Projects" />
+      </button>
+      <button *ngIf="showBulbEmojiOnHeading" nbButton class="emoji" size="small">
+        <fa-icon [icon]="faLightbulb"></fa-icon>
       </button>
       <div class="text">
         <h3 class="title">FEATURED BUILDS</h3>

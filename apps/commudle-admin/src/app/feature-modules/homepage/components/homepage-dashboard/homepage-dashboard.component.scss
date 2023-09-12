@@ -28,7 +28,7 @@ nb-card {
   }
 
   .right-column {
-    @apply com-p-0 com-pl-6 com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+    @apply com-p-0 com-pl-6 com-border-0 com-border-l com-border-solid com-border-Bright-Gray md:com-w-[742px];
 
     .featured-communities,
     .featured-projects {
