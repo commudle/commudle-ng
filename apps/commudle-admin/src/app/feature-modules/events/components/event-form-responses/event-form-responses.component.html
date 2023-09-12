@@ -202,6 +202,14 @@
                   <p [ngClass]="{ 'text-primary': rs.id === registrationStatusId }">{{ rs.name | titlecase }}</p>
                 </div>
               </div>
+              <div class="gender-filter">
+                <div (click)="genderFilter('male')">
+                  <p [ngClass]="{ 'text-primary': 'male' === gender }">Male</p>
+                </div>
+              </div>
+              <div (click)="genderFilter('female')">
+                <p [ngClass]="{ 'text-primary': 'female' === gender }">Female</p>
+              </div>
             </div>
           </ng-template>
 

@@ -61,6 +61,7 @@ export class EventFormResponsesComponent implements OnInit {
   fromRegistrationStatus: string;
   toRegistrationStatus: string;
   selectedRegistrationStatus = 0;
+  gender: string;
 
   //TODO past event stats
   constructor(
@@ -146,6 +147,12 @@ export class EventFormResponsesComponent implements OnInit {
     this.getResponses();
   }
 
+  genderFilter(gender) {
+    this.page = 1;
+    this.gender = gender;
+    this.getResponses();
+  }
+
   setPage(pageNumber) {
     this.page = pageNumber + 1;
     if (this.searchForm.get('name').value) {
@@ -156,6 +163,7 @@ export class EventFormResponsesComponent implements OnInit {
           this.registrationStatusId,
           this.page,
           this.count,
+          this.gender,
         )
         .subscribe((data) => {
           this.setResponses(data);
@@ -176,6 +184,7 @@ export class EventFormResponsesComponent implements OnInit {
         this.registrationStatusId,
         this.page,
         this.count,
+        this.gender,
       )
       .subscribe((data) => {
         this.totalEntries = data.total;
