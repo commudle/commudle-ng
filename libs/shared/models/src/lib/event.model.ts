@@ -33,6 +33,7 @@ export interface IEvent {
   attended_members_count?: number;
   kommunity?: ICommunity;
   speaker_resource?: ISpeakerResource;
+  event_locations?: object;
 }
 
 export interface IEventSearch extends IEvent {
