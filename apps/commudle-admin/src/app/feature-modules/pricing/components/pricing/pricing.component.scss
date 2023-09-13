@@ -3,18 +3,18 @@ p {
 }
 
 .pricing-container {
-  @apply com-bg-gray-50;
+  // @apply com-bg-white;
 
   .pricing-header {
-    @apply com-relative com-max-w-2xl com-mx-auto com-pt-16 com-px-4 com-text-center;
+    @apply com-relative com-mx-auto com-pt-[132px] com-px-4 com-text-center;
 
-    @screen sm {
-      @apply com-pt-32 com-px-6;
-    }
+    // @screen sm {
+    //   @apply com-pt-32 com-px-6;
+    // }
 
-    @screen lg {
-      @apply com-max-w-7xl com-px-8;
-    }
+    // @screen lg {
+    //   @apply com-max-w-7xl com-px-8;
+    // }
 
     .heading {
       @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
@@ -23,6 +23,33 @@ p {
     .subheading {
       @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-600 com-font-normal;
     }
+  }
+
+  .cards {
+    @apply com-flex com-flex-row com-justify-between com-m-0 md:com-mt-20;
+    .enterprise-card,
+    .students-card {
+      @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray;
+      .title {
+        @apply com-p-8 com-text-center;
+        .heading {
+          @apply com-text-4xl com-font-bold com-mb-6;
+        }
+        .sub-heading {
+          @apply com-text-2xl com-font-normal com-mb-8;
+        }
+      }
+      .features {
+        @apply com-mt-4 com-mx-8 com-mb-6;
+
+        .features-heading {
+          @apply com-text-2xl com-font-bold com-text-black com-mb-8;
+        }
+      }
+    }
+    // .students-card {
+    //   @apply md:com-w-[620px] com-w-full;
+    // }
   }
 
   .pricing-toggle {
@@ -59,21 +86,21 @@ p {
         }
       }
 
-      .features {
-        @apply com-mt-7 com-pl-2;
+      // .features {
+      //   @apply com-mt-7 com-pl-2;
 
-        li {
-          @apply com-py-3 com-flex com-items-center;
+      //   li {
+      //     @apply com-py-3 com-flex com-items-center;
 
-          nb-icon {
-            @apply com-text-white com-w-5 com-h-5 com-flex-shrink-0;
-          }
+      //     nb-icon {
+      //       @apply com-text-white com-w-5 com-h-5 com-flex-shrink-0;
+      //     }
 
-          .feature {
-            @apply com-text-white com-ml-4 com-text-base com-font-medium;
-          }
-        }
-      }
+      //     .feature {
+      //       @apply com-text-white com-ml-4 com-text-base com-font-medium;
+      //     }
+      //   }
+      // }
     }
 
     .pricing-card-dark {
