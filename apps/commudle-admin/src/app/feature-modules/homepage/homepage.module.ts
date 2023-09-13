@@ -33,7 +33,10 @@ import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-ev
 // import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 import { UserProfileComponent } from '../../app-shared-components/user-profile/user-profile.component';
 import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
-import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+// import {
+//   AppSharedComponentsModule,
+// } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
 // import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
 
 @NgModule({
@@ -51,6 +54,7 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
     HomepageDashboardComponent,
     UserprofileDetailsComponent,
   ],
+  exports: [UserprofileDetailsComponent],
   imports: [
     CommonModule,
     HomepageRoutingModule,
@@ -74,7 +78,7 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
     NbTooltipModule,
     //FontAwesome
     FontAwesomeModule,
+    AppSharedComponentsModule,
   ],
-  exports: [UserprofileDetailsComponent],
 })
 export class HomepageModule {}
