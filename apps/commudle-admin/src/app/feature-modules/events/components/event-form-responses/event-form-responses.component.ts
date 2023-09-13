@@ -55,6 +55,7 @@ export class EventFormResponsesComponent implements OnInit {
   registrationStatusId = 0;
 
   searchForm;
+  questionForm;
 
   showFullAnswer = false;
 
@@ -84,6 +85,10 @@ export class EventFormResponsesComponent implements OnInit {
   ) {
     this.searchForm = this.fb.group({
       name: [''],
+    });
+    this.questionForm = this.fb.group({
+      q: [''],
+      v: [''],
     });
   }
 
@@ -118,6 +123,7 @@ export class EventFormResponsesComponent implements OnInit {
 
     // this.getResponses();
     this.updateFilter();
+    this.updateQuestionSearch();
   }
 
   getUserRoles() {
@@ -142,6 +148,36 @@ export class EventFormResponsesComponent implements OnInit {
             this.count,
             this.gender,
             this.selectedEventLocationTrackId,
+          );
+        }),
+      )
+      .subscribe((data) => {
+        this.setResponses(data);
+      });
+  }
+  updateClickQuestion(question) {
+    this.questionForm.get('q').setValue(question.id);
+  }
+
+  updateQuestionSearch() {
+    this.questionForm
+      .get('v')
+      .valueChanges.pipe(
+        debounceTime(800),
+        switchMap(() => {
+          this.rows = [];
+          this.page = 1;
+          this.emptyMessage = 'Loading...';
+          return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
+            this.eventDataFormEntityGroupId,
+            this.searchForm.get('name').value.toLowerCase(),
+            this.registrationStatusId,
+            this.page,
+            this.count,
+            this.gender,
+            this.selectedEventLocationTrackId,
+            this.questionForm.get('q').value,
+            this.questionForm.get('v').value,
           );
         }),
       )
