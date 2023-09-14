@@ -169,7 +169,14 @@
 
           <!-- delete and clone -->
           <div>
-            <a (click)="deleteEventDataFormEntityGroup(edfeg.id)" nbButton outline size="small" status="danger">
+            <a
+              (click)="deleteEventDataFormEntityGroup(edfeg.id)"
+              nbButton
+              outline
+              size="small"
+              status="danger"
+              [disabled]="edfeg.responses_count > 0"
+            >
               <fa-icon [icon]="faTimesCircle"></fa-icon>
               &nbsp; Delete
             </a>
