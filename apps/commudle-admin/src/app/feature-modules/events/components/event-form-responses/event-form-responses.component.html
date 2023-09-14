@@ -244,21 +244,27 @@
                 </div>
               </form>
 
-              <div class="registration-status-filter">
-                <div (click)="registrationStatusFilter(0)">
-                  <p [ngClass]="{ 'text-primary': 0 === registrationStatusId }">All</p>
+              <div class="com-flex com-justify-between com-gap-2">
+                <div class="dropdown">
+                  <select class="com-border-0" (change)="registrationStatusFilter($event)">
+                    <option selected value="0">All</option>
+                    <option *ngFor="let rs of registrationStatuses" [value]="rs.id">
+                      {{ rs.name | titlecase }}
+                    </option>
+                  </select>
                 </div>
-                <div (click)="registrationStatusFilter(rs.id)" *ngFor="let rs of registrationStatuses">
-                  <p [ngClass]="{ 'text-primary': rs.id === registrationStatusId }">{{ rs.name | titlecase }}</p>
+                <div class="com-flex com-items-center com-gap-2">
+                  <div class="dropdown">
+                    <select class="com-border-0" (change)="genderFilter($event)">
+                      <option selected disable value="">Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div (click)="genderFilter('')" class="clear-track-filter" *ngIf="gender !== ''">
+                    <fa-icon [icon]="icons.faXmark"></fa-icon>
+                  </div>
                 </div>
-              </div>
-              <div class="gender-filter">
-                <div (click)="genderFilter('male')">
-                  <p [ngClass]="{ 'text-primary': 'male' === gender }">Male</p>
-                </div>
-              </div>
-              <div (click)="genderFilter('female')">
-                <p [ngClass]="{ 'text-primary': 'female' === gender }">Female</p>
               </div>
             </div>
           </ng-template>

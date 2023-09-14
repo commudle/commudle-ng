@@ -186,15 +186,15 @@ export class EventFormResponsesComponent implements OnInit {
       });
   }
 
-  registrationStatusFilter(selectedRegistrationStatusId) {
+  registrationStatusFilter(event) {
     this.page = 1;
-    this.registrationStatusId = selectedRegistrationStatusId;
+    this.registrationStatusId = event.target.value;
     this.getResponses();
   }
 
-  genderFilter(gender) {
+  genderFilter(event) {
     this.page = 1;
-    this.gender = gender;
+    this.gender = event ? event.target.value : '';
     this.getResponses();
   }
 
