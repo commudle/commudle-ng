@@ -91,6 +91,227 @@
         class="material expandable"
         rowHeight="auto"
       >
+        <!-- User Details -->
+        <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="header-column-template">
+              <p>User Details</p>
+              <form [formGroup]="searchForm">
+                <div class="name-filter">
+                  <input
+                    [disabled]="isLoading"
+                    fieldSize="tiny"
+                    formControlName="name"
+                    fullWidth
+                    nbInput
+                    placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
+                    type="text"
+                  />
+                </div>
+              </form>
+
+              <div class="com-grid com-grid-cols-2 com-gap-2 com-mt-1">
+                <div class="user-detail-dropdown">
+                  <select class="com-border-0" (change)="registrationStatusFilter($event)">
+                    <option selected value="0">All</option>
+                    <option *ngFor="let rs of registrationStatuses" [value]="rs.id">
+                      {{ rs.name | titlecase }}
+                    </option>
+                  </select>
+                </div>
+                <div class="com-flex com-items-center com-gap-2">
+                  <div class="user-detail-dropdown">
+                    <select
+                      class="com-border-0"
+                      (change)="genderFilter($event)"
+                      [(ngModel)]="gender"
+                      [ngClass]="{
+                        'com-text-[#8E9BB3]': gender === ''
+                      }"
+                    >
+                      <option selected disable value="">Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div (click)="genderFilter('')" class="clear-track-filter" *ngIf="gender !== ''">
+                    <fa-icon [icon]="icons.faXmark"></fa-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="row-header user-details">
+              <app-user-details-cell
+                (updateEntryPass)="updateEntryPass($event, row.id)"
+                (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
+                [community]="community"
+                [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"
+                [event]="event"
+                [registrationStatuses]="registrationStatuses"
+                [registrationType]="eventDataFormEntityGroup.registration_type"
+                [userResponse]="row"
+              >
+              </app-user-details-cell>
+              <p
+                (click)="toggleExpandRow(row)"
+                [class.datatable-icon-down]="expanded"
+                [class.datatable-icon-right]="!expanded"
+                class="desktop-hidden view-mobile-response"
+                title="Expand/Collapse Row"
+              >
+                View Responses
+              </p>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- engagement Data with -->
+        <ngx-datatable-column [width]="300">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="">
+                <p>Engagement Data with {{ community.name }}</p>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <app-user-engagement-data
+                *ngIf="row"
+                [user]="row.user"
+                [communityId]="community.id"
+              ></app-user-engagement-data>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- track slot details -->
+        <ngx-datatable-column [width]="350">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="com-flex com-gap-2 com-items-center">
+                <div class="track-slot-filter-dropdown">
+                  <select
+                    [(ngModel)]="selectedEventLocationTrackId"
+                    (change)="trackSlotFilter($event)"
+                    class="com-border-0"
+                  >
+                    <option value="">Track Slot details</option>
+                    <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
+                      {{ elt.name }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  (click)="trackSlotFilter('')"
+                  class="clear-track-filter"
+                  *ngIf="selectedEventLocationTrackId !== ''"
+                >
+                  <fa-icon [icon]="icons.faXmark"></fa-icon>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <commudle-user-track-slots
+                [trackSlots]="row.track_slots"
+                [speakers]="rows"
+                [event]="event"
+                [community]="community"
+                (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
+              ></commudle-user-track-slots>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- Payment Details -->
+        <ngx-datatable-column [width]="300" *ngIf="eventDataFormEntityGroup?.is_paid">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <div class="mobile-hidden">
+              <div class="">
+                <p>Payment Details</p>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+            <div class="mobile-hidden">
+              <commudle-user-payment-details
+                [eto]="row.event_ticket_orders"
+                [user]="row.user"
+              ></commudle-user-payment-details>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- Questions -->
+        <ngx-datatable-column
+          *ngFor="let question of questions; let i = index"
+          [canAutoResize]="true"
+          [width]="200"
+          name="{{ question.title }}"
+        >
+          <ng-template ngx-datatable-header-template>
+            <div class="row-header question mobile-hidden" *ngIf="!question.editMode">
+              <p
+                *ngIf="question.title.length > 20"
+                nbTooltip="{{ question.title }}"
+                contentEditable="true"
+                (click)="enableEditMode(question, i)"
+              >
+                {{ question.title }}
+              </p>
+              <p *ngIf="question.title.length <= 20" (click)="enableEditMode(question, i)">{{ question.title }}</p>
+            </div>
+            <div *ngIf="question.editMode">
+              <div>
+                <form [formGroup]="forms[i]">
+                  <div class="name-filter">
+                    <input
+                      [disabled]="isLoading"
+                      fieldSize="tiny"
+                      formControlName="v"
+                      fullWidth
+                      nbInput
+                      placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
+                      type="text"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div class="row-cell question mobile-hidden" style="height: 100px">
+              <p
+                [innerHTML]="
+                  row.showFullAnswer
+                    ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | linky : { sanitizeHtml: true })
+                    : (getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | truncatetext : 100
+                      | linky : { sanitizeHtml: true })
+                "
+                class="question-responses"
+              ></p>
+              <a
+                (click)="row.showFullAnswer = !row.showFullAnswer"
+                *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
+                class="clickable"
+              >
+                {{ row.showFullAnswer ? 'Read less' : 'Read more' }}
+              </a>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
         <!-- responsive row format -->
         <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="'100%'">
           <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
@@ -144,209 +365,6 @@
             </div>
           </ng-template>
         </ngx-datatable-row-detail>
-        <!-- responsive row format -->
-        <ngx-datatable-column [width]="300">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <div class="mobile-hidden">
-              <div class="">
-                <p>Engagement Data with {{ community.name }}</p>
-              </div>
-            </div>
-          </ng-template>
-
-          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-            <div class="mobile-hidden">
-              <app-user-engagement-data
-                *ngIf="row"
-                [user]="row.user"
-                [communityId]="community.id"
-              ></app-user-engagement-data>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column [width]="350">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <div class="mobile-hidden">
-              <div class="com-flex com-gap-2 com-items-center">
-                <div class="track-slot-filter-dropdown">
-                  <select
-                    class="com-border-0"
-                    (change)="trackSlotFilter($event)"
-                    [(ngModel)]="selectedEventLocationTrackId"
-                  >
-                    <option value="">Track Slot details</option>
-                    <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
-                      {{ elt.name }}
-                    </option>
-                  </select>
-                </div>
-                <div (click)="trackSlotFilter()" class="clear-track-filter" *ngIf="selectedEventLocationTrackId !== ''">
-                  <fa-icon [icon]="icons.faXmark"></fa-icon>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-
-          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-            <div class="mobile-hidden">
-              <commudle-user-track-slots
-                [trackSlots]="row.track_slots"
-                [speakers]="rows"
-                [event]="event"
-                [community]="community"
-                (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
-              ></commudle-user-track-slots>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column [width]="300" *ngIf="eventDataFormEntityGroup?.is_paid">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <div class="mobile-hidden">
-              <div class="">
-                <p>Payment Details</p>
-              </div>
-            </div>
-          </ng-template>
-
-          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-            <div class="mobile-hidden">
-              <commudle-user-payment-details
-                [eto]="row.event_ticket_orders"
-                [user]="row.user"
-              ></commudle-user-payment-details>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-        <!-- complete table format -->
-        <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <div class="header-column-template">
-              <p>User Details</p>
-              <form [formGroup]="searchForm">
-                <div class="name-filter">
-                  <input
-                    [disabled]="isLoading"
-                    fieldSize="tiny"
-                    formControlName="name"
-                    fullWidth
-                    nbInput
-                    placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
-                    type="text"
-                  />
-                </div>
-              </form>
-
-              <div class="com-flex com-justify-between com-gap-2">
-                <div class="dropdown">
-                  <select class="com-border-0" (change)="registrationStatusFilter($event)">
-                    <option selected value="0">All</option>
-                    <option *ngFor="let rs of registrationStatuses" [value]="rs.id">
-                      {{ rs.name | titlecase }}
-                    </option>
-                  </select>
-                </div>
-                <div class="com-flex com-items-center com-gap-2">
-                  <div class="dropdown">
-                    <select class="com-border-0" (change)="genderFilter($event)">
-                      <option selected disable value="">Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div (click)="genderFilter('')" class="clear-track-filter" *ngIf="gender !== ''">
-                    <fa-icon [icon]="icons.faXmark"></fa-icon>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-
-          <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-            <div class="row-header user-details">
-              <app-user-details-cell
-                (updateEntryPass)="updateEntryPass($event, row.id)"
-                (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
-                [community]="community"
-                [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"
-                [event]="event"
-                [registrationStatuses]="registrationStatuses"
-                [registrationType]="eventDataFormEntityGroup.registration_type"
-                [userResponse]="row"
-              >
-              </app-user-details-cell>
-              <p
-                (click)="toggleExpandRow(row)"
-                [class.datatable-icon-down]="expanded"
-                [class.datatable-icon-right]="!expanded"
-                class="desktop-hidden view-mobile-response"
-                title="Expand/Collapse Row"
-              >
-                View Responses
-              </p>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column
-          *ngFor="let question of questions"
-          [canAutoResize]="true"
-          [width]="200"
-          name="{{ question.title }}"
-        >
-          <ng-template ngx-datatable-header-template>
-            <div class="row-header question mobile-hidden" *ngIf="!editMode">
-              <p
-                *ngIf="question.title.length > 20"
-                nbTooltip="{{ question.title }}"
-                contentEditable="true"
-                (click)="enableEditMode(question)"
-              >
-                {{ question.title }}
-              </p>
-              <p *ngIf="question.title.length <= 20" (click)="enableEditMode(question)">{{ question.title }}</p>
-            </div>
-            <div *ngIf="editMode">
-              <form [formGroup]="questionForm">
-                <div class="name-filter">
-                  <input
-                    [disabled]="isLoading"
-                    fieldSize="tiny"
-                    formControlName="v"
-                    fullWidth
-                    nbInput
-                    placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
-                    type="text"
-                  />
-                </div>
-              </form>
-            </div>
-          </ng-template>
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <div class="row-cell question mobile-hidden" style="height: 100px">
-              <p
-                [innerHTML]="
-                  row.showFullAnswer
-                    ? (getQuestionResponse(row.data_form_entity_response_values, question.id)
-                      | linky : { sanitizeHtml: true })
-                    : (getQuestionResponse(row.data_form_entity_response_values, question.id)
-                      | truncatetext : 100
-                      | linky : { sanitizeHtml: true })
-                "
-                class="question-responses"
-              ></p>
-              <a
-                (click)="row.showFullAnswer = !row.showFullAnswer"
-                *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100"
-                class="clickable"
-              >
-                {{ row.showFullAnswer ? 'Read less' : 'Read more' }}
-              </a>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </nb-card-body>
