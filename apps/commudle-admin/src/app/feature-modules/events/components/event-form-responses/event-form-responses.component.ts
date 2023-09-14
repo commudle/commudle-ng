@@ -70,6 +70,7 @@ export class EventFormResponsesComponent implements OnInit {
   icons = {
     faXmark,
   };
+  editMode = false;
 
   //TODO past event stats
   constructor(
@@ -154,9 +155,6 @@ export class EventFormResponsesComponent implements OnInit {
       .subscribe((data) => {
         this.setResponses(data);
       });
-  }
-  updateClickQuestion(question) {
-    this.questionForm.get('q').setValue(question.id);
   }
 
   updateQuestionSearch() {
@@ -353,5 +351,15 @@ export class EventFormResponsesComponent implements OnInit {
 
   changeToRegistrationStatus(event) {
     this.toRegistrationStatus = event.target.value;
+  }
+
+  enableEditMode(question) {
+    this.questionForm.get('q').setValue(question.id);
+    this.editMode = true;
+  }
+
+  disableEditMode() {
+    this.questionForm.get('q').setValue('');
+    this.editMode = false;
   }
 }

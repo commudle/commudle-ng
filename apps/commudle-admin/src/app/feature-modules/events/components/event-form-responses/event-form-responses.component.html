@@ -296,11 +296,18 @@
           name="{{ question.title }}"
         >
           <ng-template ngx-datatable-header-template>
-            <div class="row-header question mobile-hidden">
-              <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">{{ question.title }}</p>
-              <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
+            <div class="row-header question mobile-hidden" *ngIf="!editMode">
+              <p
+                *ngIf="question.title.length > 20"
+                nbTooltip="{{ question.title }}"
+                contentEditable="true"
+                (click)="enableEditMode(question)"
+              >
+                {{ question.title }}
+              </p>
+              <p *ngIf="question.title.length <= 20" (click)="enableEditMode(question)">{{ question.title }}</p>
             </div>
-            <div (click)="updateClickQuestion(question)">
+            <div *ngIf="editMode">
               <form [formGroup]="questionForm">
                 <div class="name-filter">
                   <input
