@@ -107,6 +107,13 @@
   }
 }
 
+.track-slot-filter-dropdown {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-cursor-pointer com-bg-transparent com-my-2  com-w-1/2 com-border-0;
+  select {
+    @apply com-bg-transparent  com-cursor-pointer com-w-full;
+  }
+}
+
 .clear-track-filter {
   @apply com-cursor-pointer;
   fa-icon {

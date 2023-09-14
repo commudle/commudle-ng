@@ -168,20 +168,14 @@
         <ngx-datatable-column [width]="350">
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="mobile-hidden">
-              <div class="">
-                <p class="com-mb-0.5">Track Slot details</p>
-              </div>
               <div class="com-flex com-gap-2 com-items-center">
-                <div class="dropdown !com-my-0">
+                <div class="track-slot-filter-dropdown">
                   <select
                     class="com-border-0"
                     (change)="trackSlotFilter($event)"
                     [(ngModel)]="selectedEventLocationTrackId"
-                    [ngClass]="{
-                      'com-text-[#8E9BB3]': selectedEventLocationTrackId === ''
-                    }"
                   >
-                    <option selected disabled value="">Select Track</option>
+                    <option value="">Track Slot details</option>
                     <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
                       {{ elt.name }}
                     </option>
