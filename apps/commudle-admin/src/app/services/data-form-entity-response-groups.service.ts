@@ -34,11 +34,11 @@ export class DataFormEntityResponseGroupsService {
     if (eventLocationTrackId) {
       params = params.set('event_location_track_id', eventLocationTrackId);
     }
-    // if (formData) {
-    //   for (const key of formData) {
-    //     params = params.set(key[0], key[1]);
-    //   }
-    // }
+    if (formData) {
+      for (const key of formData) {
+        params = params.set(key[0], key[1]);
+      }
+    }
 
     return this.http.get<IDataFormEntityResponseGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES),

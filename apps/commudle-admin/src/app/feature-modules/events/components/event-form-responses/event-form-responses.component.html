@@ -113,30 +113,18 @@
               <div class="com-grid com-grid-cols-2 com-gap-2 com-mt-1">
                 <div class="user-detail-dropdown">
                   <select class="com-border-0" (change)="registrationStatusFilter($event)">
-                    <option selected value="0">All</option>
+                    <option selected value="0">Status: All</option>
                     <option *ngFor="let rs of registrationStatuses" [value]="rs.id">
                       {{ rs.name | titlecase }}
                     </option>
                   </select>
                 </div>
-                <div class="com-flex com-items-center com-gap-2">
-                  <div class="user-detail-dropdown">
-                    <select
-                      class="com-border-0"
-                      (change)="genderFilter($event)"
-                      [(ngModel)]="gender"
-                      [ngClass]="{
-                        'com-text-[#8E9BB3]': gender === ''
-                      }"
-                    >
-                      <option selected disable value="">Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div (click)="genderFilter('')" class="clear-track-filter" *ngIf="gender !== ''">
-                    <fa-icon [icon]="icons.faXmark"></fa-icon>
-                  </div>
+                <div class="user-detail-dropdown">
+                  <select class="com-border-0" (change)="genderFilter($event)" [(ngModel)]="gender">
+                    <option selected disable value="">Gender: All</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -200,7 +188,7 @@
                     (change)="trackSlotFilter($event)"
                     class="com-border-0"
                   >
-                    <option value="">Track Slot details</option>
+                    <option value="">Assigned Session Slots</option>
                     <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
                       {{ elt.name }}
                     </option>
@@ -258,32 +246,38 @@
           name="{{ question.title }}"
         >
           <ng-template ngx-datatable-header-template>
-            <div class="row-header question mobile-hidden" *ngIf="!question.editMode">
-              <p
-                *ngIf="question.title.length > 20"
-                nbTooltip="{{ question.title }}"
-                contentEditable="true"
-                (click)="enableEditMode(question, i)"
-              >
+            <div
+              class="row-header question mobile-hidden"
+              *ngIf="!question.editMode"
+              (click)="enableEditMode(question, i)"
+            >
+              <div><fa-icon [icon]="icons.faFilter"></fa-icon></div>
+              <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">
                 {{ question.title }}
               </p>
-              <p *ngIf="question.title.length <= 20" (click)="enableEditMode(question, i)">{{ question.title }}</p>
+              <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
             </div>
-            <div *ngIf="question.editMode">
-              <div>
-                <form [formGroup]="forms[i]">
-                  <div class="name-filter">
-                    <input
-                      [disabled]="isLoading"
-                      fieldSize="tiny"
-                      formControlName="v"
-                      fullWidth
-                      nbInput
-                      placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
-                      type="text"
-                    />
-                  </div>
-                </form>
+            <div *ngIf="question.editMode" class="com-flex com-items-center com-gap-2">
+              <div class="com-my-14px">
+                <div>
+                  <form [formGroup]="forms[i]">
+                    <div class="name-filter">
+                      <input
+                        [disabled]="isLoading"
+                        fieldSize="tiny"
+                        formControlName="v"
+                        fullWidth
+                        nbInput
+                        placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
+                        type="text"
+                        autofocus
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div (click)="disableEditMode(question)" class="clear-track-filter">
+                <fa-icon [icon]="icons.faXmark"></fa-icon>
               </div>
             </div>
           </ng-template>
