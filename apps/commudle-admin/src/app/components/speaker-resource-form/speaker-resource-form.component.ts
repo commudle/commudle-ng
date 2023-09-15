@@ -12,7 +12,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { IAttachedFile } from '@commudle/shared-models';
+import { ERegistrationType, IAttachedFile } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -35,6 +35,8 @@ export class SpeakerResourceFormComponent implements OnInit {
   // uploadedResume: IAttachedFile;
   uploadedResumeSrc: string;
   attachmentType = 'pdf_file';
+  ERegistrationType = ERegistrationType;
+  source: string;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -58,11 +60,13 @@ export class SpeakerResourceFormComponent implements OnInit {
       title: ['', Validators.required],
       embedded_content: [''],
       session_details_links: ['', Validators.required],
-      attachment_type: [''],
+      attachment_type: ['pdf_file'],
     });
   }
 
   ngOnInit() {
+    this.source =
+      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM05VQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2e99899390cd6dd5a932e331033fe7ccc756830/SampleDocs-sample-pdf-file.pdf';
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.appUsersService.getProfileStats().subscribe((data) => {
       this.userProfileDetails = data;
@@ -86,6 +90,7 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe((data) => {
       this.speakerResource = data;
       this.uploadedResumeSrc = data.presentation_file.url;
+      console.log(this.uploadedResumeSrc, 'before');
       if (this.speakerResource.id) {
         this.prefillForm();
       }
@@ -128,7 +133,8 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   getResumeFormData(): FormData {
     const formData = new FormData();
-    this.speakerResourceForm.get('attachment_type').patchValue(this.attachmentType);
+    // this.speakerResourceForm.get('attachment_type').patchValue(this.attachmentType);
+    console.log(this.speakerResourceForm.get('attachment_type').value, 'hello');
     const resumeValue = this.speakerResourceForm.value;
 
     Object.keys(resumeValue).forEach((key) => {
@@ -156,20 +162,20 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.windowService.open(this.googleSlidesEmbedTemplate, { title: 'Steps to get Google Slides Embed Link' });
   }
 
-  onItemChange(data) {
-    this.attachmentType = data.value;
-    this.showPdfOption = this.attachmentType === 'pdf_file' ? true : false;
-    this.showLinkOption = this.attachmentType === 'link' ? true : false;
-    this.showEmbedOption = this.attachmentType === 'embedded_link' ? true : false;
-  }
+  // onItemChange(data) {
+  //   this.attachmentType = data.value;
+  //   this.showPdfOption = this.attachmentType === ERegistrationType.PDF_FILE ? true : false;
+  //   this.showLinkOption = this.attachmentType === ERegistrationType.LINK ? true : false;
+  //   this.showEmbedOption = this.attachmentType === ERegistrationType.EMBEDDED_LINK ? true : false;
+  // }
 
   onFileChange(event) {
     console.log('called');
     if (event.target.files) {
-      if (event.target.files[0].type !== 'application/pdf') {
-        this.nbToastrService.warning('File must be a pdf', 'Warning');
-        return;
-      }
+      // if (event.target.files[0].type !== 'application/pdf') {
+      //   this.nbToastrService.warning('File must be a pdf', 'Warning');
+      //   return;
+      // }
 
       const file = event.target.files[0];
       this.uploadedResume = file;
@@ -180,8 +186,7 @@ export class SpeakerResourceFormComponent implements OnInit {
       reader.onload = () => {
         console.log('FileReader onload callback called');
         this.uploadedResumeSrc = <string>reader.result;
-        console.log(this.uploadedResumeSrc);
-        this.cdr.detectChanges();
+        console.log(this.uploadedResumeSrc, 'after');
       };
       reader.readAsDataURL(file);
     }

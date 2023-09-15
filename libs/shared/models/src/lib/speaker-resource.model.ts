@@ -18,3 +18,9 @@ export interface ISpeakerResource {
   description?: string;
   presentation_file: IAttachedFile;
 }
+
+export enum ERegistrationType {
+  PDF_FILE = 'pdf_file',
+  LINK = 'link',
+  EMBEDDED_LINK = 'embedded_link',
+}
