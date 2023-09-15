@@ -20,7 +20,7 @@ import { IQuestion } from 'apps/shared-models/question.model';
 import { IRegistrationStatus } from 'apps/shared-models/registration_status.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faFilter } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -55,7 +55,6 @@ export class EventFormResponsesComponent implements OnInit {
   registrationStatusId = 0;
 
   searchForm;
-  questionForm;
 
   showFullAnswer = false;
 
@@ -69,6 +68,7 @@ export class EventFormResponsesComponent implements OnInit {
   selectedEventLocationTrackId = '';
   icons = {
     faXmark,
+    faFilter,
   };
   editMode = false;
 
@@ -88,10 +88,6 @@ export class EventFormResponsesComponent implements OnInit {
   ) {
     this.searchForm = this.fb.group({
       name: [''],
-    });
-    this.questionForm = this.fb.group({
-      q: [''],
-      v: [''],
     });
   }
 
@@ -126,7 +122,6 @@ export class EventFormResponsesComponent implements OnInit {
 
     // this.getResponses();
     this.updateFilter();
-    // this.updateQuestionSearch();
   }
 
   getUserRoles() {
@@ -158,33 +153,6 @@ export class EventFormResponsesComponent implements OnInit {
         this.setResponses(data);
       });
   }
-
-  // updateQuestionSearch() {
-  //   this.questionForm
-  //     .get('v')
-  //     .valueChanges.pipe(
-  //       debounceTime(800),
-  //       switchMap(() => {
-  //         this.rows = [];
-  //         this.page = 1;
-  //         this.emptyMessage = 'Loading...';
-  //         return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
-  //           this.eventDataFormEntityGroupId,
-  //           this.searchForm.get('name').value.toLowerCase(),
-  //           this.registrationStatusId,
-  //           this.page,
-  //           this.count,
-  //           this.gender,
-  //           this.selectedEventLocationTrackId,
-  //           this.questionForm.get('q').value,
-  //           this.questionForm.get('v').value,
-  //         );
-  //       }),
-  //     )
-  //     .subscribe((data) => {
-  //       this.setResponses(data);
-  //     });
-  // }
 
   registrationStatusFilter(event) {
     this.page = 1;
@@ -396,8 +364,8 @@ export class EventFormResponsesComponent implements OnInit {
     }
   }
 
-  disableEditMode() {
-    this.questionForm.get('q').setValue('');
-    this.editMode = false;
+  disableEditMode(question) {
+    question.editMode = false;
+    this.getResponses();
   }
 }
