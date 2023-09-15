@@ -55,14 +55,17 @@
   </div>
 
   <div class="community-channel-discussion">
-    <!-- /channel card (landing page)-->
-    <div *ngIf="channelsCards && !forumsCards" class="com-h-full">
-      <app-community-channels-dashboard-channel-list></app-community-channels-dashboard-channel-list>
+    <!-- /channel card -->
+    <div *ngIf="channelsCards && !forumsCards">
+      <app-community-channels-dashboard-channel-list
+        [community]="selectedCommunity"
+      ></app-community-channels-dashboard-channel-list>
     </div>
 
     <!-- //form cards (landing page) -->
     <div *ngIf="forumsCards && !channelsCards" class="com-h-full">
       <commudle-community-channels-dashboard-forum-list
+        [community]="selectedCommunity"
         (updateSelectedForum)="updateSelectedChannelOrForum($event)"
       ></commudle-community-channels-dashboard-forum-list>
     </div>

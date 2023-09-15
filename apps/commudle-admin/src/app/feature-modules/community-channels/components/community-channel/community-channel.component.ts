@@ -57,7 +57,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     this.initialize();
     this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
       this.selectedChannel = data;
-      this.setMeta();
+      if (data) {
+        this.setMeta();
+      }
     });
   }
 
