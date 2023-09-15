@@ -109,7 +109,7 @@
 }
 
 .user-detail-dropdown {
-  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-0 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-border com-border-solid com-border-primary-200 com-w-full;
+  @apply com-flex com-items-center com-gap-1 com-h-6 com-p-0 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-border com-border-solid com-border-[#E4E9F2] com-w-full;
   select {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-w-full;
   }

@@ -21,6 +21,7 @@ import { IRegistrationStatus } from 'apps/shared-models/registration_status.mode
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { faXmark, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -65,7 +66,7 @@ export class EventFormResponsesComponent implements OnInit {
   selectedRegistrationStatus = 0;
   gender = '';
   eventLocationTracks: IEventLocationTrack[];
-  selectedEventLocationTrackId = '';
+  selectedEventLocationTrackId = 0;
   icons = {
     faXmark,
     faFilter,
@@ -73,6 +74,7 @@ export class EventFormResponsesComponent implements OnInit {
   editMode = false;
 
   forms: FormGroup[] = [];
+  EQuestionTypes = EQuestionTypes;
 
   //TODO past event stats
   constructor(
@@ -170,9 +172,12 @@ export class EventFormResponsesComponent implements OnInit {
     this.eventLocationTracks = eventLocationTracks;
   }
 
-  trackSlotFilter(event) {
+  trackSlotFilter(data?) {
+    this.selectedEventLocationTrackId;
+    if (data === 0) {
+      this.selectedEventLocationTrackId = data;
+    }
     this.page = 1;
-    this.selectedEventLocationTrackId = event ? event.target.value : '';
     this.getResponses();
   }
 

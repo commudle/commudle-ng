@@ -110,7 +110,7 @@
                 </div>
               </form>
 
-              <div class="com-grid com-grid-cols-2 com-gap-2 com-mt-1">
+              <div class="com-grid com-grid-cols-2 com-gap-2 com-my-2">
                 <div class="user-detail-dropdown">
                   <select class="com-border-0" (change)="registrationStatusFilter($event)">
                     <option selected value="0">Status: All</option>
@@ -183,22 +183,14 @@
             <div class="mobile-hidden">
               <div class="com-flex com-gap-2 com-items-center">
                 <div class="track-slot-filter-dropdown">
-                  <select
-                    [(ngModel)]="selectedEventLocationTrackId"
-                    (change)="trackSlotFilter($event)"
-                    class="com-border-0"
-                  >
-                    <option value="">Assigned Session Slots</option>
-                    <option *ngFor="let elt of eventLocationTracks" [value]="elt.id">
+                  <select [(ngModel)]="selectedEventLocationTrackId" (change)="trackSlotFilter()" class="com-border-0">
+                    <option [ngValue]="0">Assigned Session Slots</option>
+                    <option *ngFor="let elt of eventLocationTracks" [ngValue]="elt.id">
                       {{ elt.name }}
                     </option>
                   </select>
                 </div>
-                <div
-                  (click)="trackSlotFilter('')"
-                  class="clear-track-filter"
-                  *ngIf="selectedEventLocationTrackId !== ''"
-                >
+                <div (click)="trackSlotFilter(0)" class="clear-track-filter" *ngIf="selectedEventLocationTrackId !== 0">
                   <fa-icon [icon]="icons.faXmark"></fa-icon>
                 </div>
               </div>
@@ -271,7 +263,33 @@
                         placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
                         type="text"
                         autofocus
+                        *ngIf="
+                          question.question_type_id === EQuestionTypes.SHORT_ANSWER ||
+                          question.question_type_id === EQuestionTypes.LONG_ANSWER
+                        "
                       />
+                      <input
+                        [disabled]="isLoading"
+                        fieldSize="tiny"
+                        formControlName="v"
+                        fullWidth
+                        nbInput
+                        placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
+                        type="number"
+                        autofocus
+                        *ngIf="question.question_type_id === EQuestionTypes.NUMBER"
+                      />
+                      <select
+                        formControlName="v"
+                        autofocus
+                        *ngIf="
+                          question.question_type_id === EQuestionTypes.SINGLE_CHOICE ||
+                          question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE
+                        "
+                      >
+                        <option selected disabled>Choose Answer</option>
+                        <option [value]="qc.title" *ngFor="let qc of question.question_choices">{{ qc.title }}</option>
+                      </select>
                     </div>
                   </form>
                 </div>
