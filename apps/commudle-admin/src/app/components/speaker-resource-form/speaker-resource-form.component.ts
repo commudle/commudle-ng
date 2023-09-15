@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { IAttachedFile } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -24,12 +25,16 @@ export class SpeakerResourceFormComponent implements OnInit {
   speakerResource: ISpeakerResource;
   community: ICommunity;
   embedGoogleSlidesCode: any;
-  showpdfOption = true;
+  showPdfOption = true;
   showEmbedOption = false;
   showLinkOption = false;
   staticAssets = staticAssets;
   currentUser: ICurrentUser;
   userProfileDetails;
+  uploadedResume: File;
+  // uploadedResume: IAttachedFile;
+  uploadedResumeSrc: string;
+  attachmentType = 'pdf_file';
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -47,11 +52,13 @@ export class SpeakerResourceFormComponent implements OnInit {
     private router: Router,
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.speakerResourceForm = this.fb.group({
       title: ['', Validators.required],
       embedded_content: [''],
       session_details_links: ['', Validators.required],
+      attachment_type: [''],
     });
   }
 
@@ -78,6 +85,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   getSpeakerResource() {
     this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe((data) => {
       this.speakerResource = data;
+      this.uploadedResumeSrc = data.presentation_file.url;
       if (this.speakerResource.id) {
         this.prefillForm();
       }
@@ -97,24 +105,66 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   submitForm() {
     this.speakerResourcesService
-      .createOrUpdateByToken(this.token, this.speakerResourceForm.value, this.eventId)
+      .createOrUpdateByToken(this.token, this.getResumeFormData(), this.eventId)
       .subscribe((data) => {
         this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/communities', this.community.slug, 'events', this.speakerResource.event.slug]);
       });
   }
 
+  // getResumeFormData(): FormData {
+  //   const formData = new FormData();
+  //   const resumeValue = this.speakerResourceForm.value;
+
+  //   Object.keys(resumeValue).forEach((key) => {
+  //     formData.append(`user_resume[${key}]`, resumeValue[key]);
+  //   });
+
+  //   Object.keys(this.uploadedResume).forEach((key) => {
+  //     formData.append(`user_resume[resume][${key}]`, this.uploadedResume[key]);
+  //   });
+  //   return formData;
+  // }
+
+  getResumeFormData(): FormData {
+    const formData = new FormData();
+    this.speakerResourceForm.get('attachment_type').patchValue(this.attachmentType);
+    const resumeValue = this.speakerResourceForm.value;
+
+    Object.keys(resumeValue).forEach((key) => {
+      if (resumeValue[key] !== null && resumeValue[key] !== undefined && resumeValue[key] !== '') {
+        formData.append(`speaker_resource[${key}]`, resumeValue[key]);
+      }
+    });
+
+    if (this.uploadedResume != null) {
+      formData.append('speaker_resource[presentation_file]', this.uploadedResume);
+    }
+
+    // if (this.uploadedResume instanceof Blob) {
+    //   console.log(this.uploadedResume, 'key 2');
+    //   formData.append('resume', this.uploadedResume, 'resume.pdf');
+    // }
+    return formData;
+  }
+  // Object.keys(this.uploadedResume).forEach((key) => {
+  //   console.log(key, 'key');
+  //   formData.append(`speaker_resource[${key}]`, this.uploadedResume[key]);
+  // });
+
   openGoogleSlidesEmbedStepsWindow() {
     this.windowService.open(this.googleSlidesEmbedTemplate, { title: 'Steps to get Google Slides Embed Link' });
   }
 
   onItemChange(data) {
-    this.showpdfOption = data.value === 'pdf' ? true : false;
-    this.showLinkOption = data.value === 'link' ? true : false;
-    this.showEmbedOption = data.value === 'embed' ? true : false;
+    this.attachmentType = data.value;
+    this.showPdfOption = this.attachmentType === 'pdf_file' ? true : false;
+    this.showLinkOption = this.attachmentType === 'link' ? true : false;
+    this.showEmbedOption = this.attachmentType === 'embedded_link' ? true : false;
   }
 
   onFileChange(event) {
+    console.log('called');
     if (event.target.files) {
       if (event.target.files[0].type !== 'application/pdf') {
         this.nbToastrService.warning('File must be a pdf', 'Warning');
@@ -122,17 +172,28 @@ export class SpeakerResourceFormComponent implements OnInit {
       }
 
       const file = event.target.files[0];
-      // this.uploadedResume = {
-      //   id: null,
-      //   file: file,
-      //   url: null,
-      //   name: null,
-      //   type: null,
-      // };
+      this.uploadedResume = file;
 
-      // const reader = new FileReader();
+      const reader = new FileReader();
       // reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
-      // reader.readAsDataURL(file);
+      // console.log('FileReader onload callback called');
+      reader.onload = () => {
+        console.log('FileReader onload callback called');
+        this.uploadedResumeSrc = <string>reader.result;
+        console.log(this.uploadedResumeSrc);
+        this.cdr.detectChanges();
+      };
+      reader.readAsDataURL(file);
     }
   }
 }
+
+// this.uploadedResume = {
+//   id: null,
+//   // file: file,
+//   presentation_file: file,
+//   //file ki jagh presentation_file
+//   url: null,
+//   name: null,
+//   type: null,
+// };

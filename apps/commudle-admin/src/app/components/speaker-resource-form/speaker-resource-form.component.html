@@ -58,7 +58,7 @@
                         ><input
                           type="radio"
                           name="slides"
-                          value="pdf"
+                          value="pdf_file"
                           checked
                           (change)="onItemChange($event.target)"
                         />Upload (PDF)</label
@@ -75,13 +75,13 @@
                         ><input
                           type="radio"
                           name="slides"
-                          value="embed"
+                          value="embedded_link"
                           (change)="onItemChange($event.target)"
                         />Embed</label
                       >
                     </div>
                   </div>
-                  <div *ngIf="showpdfOption" class="upload-pdf">
+                  <div *ngIf="showPdfOption" class="upload-pdf">
                     <label>
                       <p>Please upload your PDF file here*</p>
                       <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
@@ -90,7 +90,7 @@
                   <div *ngIf="showLinkOption" class="link">
                     <label>
                       Add your presentation link here*
-                      <input fullWidth nbInput size="small" type="url" />
+                      <input formControlName="embedded_content" fullWidth nbInput size="small" type="url" />
                     </label>
                     <!-- <span *ngIf="communityBuildForm.get('link').invalid">
                         <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
@@ -192,3 +192,14 @@
     </div>
   </div>
 </div>
+
+<!-- <iframe
+                            src="{{ speakerResource.presentation_file.url | safe : 'resourceUrl' }}"
+                            style="width: 100%; height: 100%; border: none"
+                          ></iframe> -->
+<!-- <object
+                          class="com-w-2/6 com-h-40"
+                          attr.data="{{ uploadedResumeSrc | safe : 'resourceUrl' }}"
+                          type="application/pdf"
+                        ></object> -->
+<!-- <iframe src="{{ uploadedResumeSrc }}" style="width: 100%; height: 100%; border: none"></iframe> -->
