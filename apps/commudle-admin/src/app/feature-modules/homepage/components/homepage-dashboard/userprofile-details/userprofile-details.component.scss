@@ -4,7 +4,7 @@
     @apply com-flex com-flex-row com-justify-between com-mb-3;
 
     .profile-visited-text {
-      @apply com-flex com-flex-row com-items-center;
+      @apply com-flex com-flex-row md:com-items-center com-items-start;
 
       .icon {
         @apply com-flex com-items-center com-justify-center com-bg-Anti-Flash-White com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;

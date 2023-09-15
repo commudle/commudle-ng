@@ -4,8 +4,8 @@
   </div>
   <div class="user-details">
     <p class="user-name">{{ currentUser.name }}</p>
-    <p class="user-username">{{ currentUser.username }}</p>
-    <p class="user-designation">{{ currentUser.designation }}</p>
+    <p class="user-username">@{{ currentUser.username }}</p>
+    <p *ngIf="currentUser.designation" class="user-designation">{{ currentUser.designation }}</p>
     <div class="count">
       <p class="followers">
         <span>{{ currentUser.followers_count }}</span
