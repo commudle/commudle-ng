@@ -88,7 +88,6 @@ section {
 }
 
 .disabled {
-  @apply com-pointer-events-none;
   fa-icon,
   span {
     @apply com-text-gray-400 #{!important};
