@@ -65,8 +65,6 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.source =
-      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM05VQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2e99899390cd6dd5a932e331033fe7ccc756830/SampleDocs-sample-pdf-file.pdf';
     this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
     this.appUsersService.getProfileStats().subscribe((data) => {
       this.userProfileDetails = data;
@@ -89,8 +87,9 @@ export class SpeakerResourceFormComponent implements OnInit {
   getSpeakerResource() {
     this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe((data) => {
       this.speakerResource = data;
-      this.uploadedResumeSrc = data.presentation_file.url;
-      console.log(this.uploadedResumeSrc, 'before');
+      if (data.presentation_file) {
+        this.uploadedResumeSrc = data.presentation_file.url;
+      }
       if (this.speakerResource.id) {
         this.prefillForm();
       }
@@ -172,10 +171,15 @@ export class SpeakerResourceFormComponent implements OnInit {
   onFileChange(event) {
     console.log('called');
     if (event.target.files) {
-      // if (event.target.files[0].type !== 'application/pdf') {
-      //   this.nbToastrService.warning('File must be a pdf', 'Warning');
-      //   return;
-      // }
+      if (event.target.files[0].type !== 'application/pdf') {
+        this.nbToastrService.warning('File must be a pdf', 'Warning');
+        return;
+      }
+
+      if (event.target.files[0].size > 30000000) {
+        this.nbToastrService.warning('File must be less than 30MB', 'Warning');
+        return;
+      }
 
       const file = event.target.files[0];
       this.uploadedResume = file;
@@ -184,9 +188,7 @@ export class SpeakerResourceFormComponent implements OnInit {
       // reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
       // console.log('FileReader onload callback called');
       reader.onload = () => {
-        console.log('FileReader onload callback called');
         this.uploadedResumeSrc = <string>reader.result;
-        console.log(this.uploadedResumeSrc, 'after');
       };
       reader.readAsDataURL(file);
     }
