@@ -36,7 +36,7 @@ export class DataFormEntityResponseGroupsService {
     }
     if (formData) {
       for (const key of formData) {
-        params = params.set(key[0], key[1]);
+        params = params.append(key[0], key[1]);
       }
     }
 
