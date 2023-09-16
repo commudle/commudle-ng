@@ -278,6 +278,7 @@ export const API_ROUTES = {
     DATA_FORM_ENTITY_RESPONSES: 'api/v2/data_form_entity_response_groups/data_form_entity_responses',
     PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
     PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users',
+    FILTERED_RESPONSE_VALUES: 'api/v2/data_form_entity_response_groups/filtered_response_values',
   },
 
   // event_entry_passes

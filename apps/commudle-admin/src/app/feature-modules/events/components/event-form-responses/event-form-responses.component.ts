@@ -20,7 +20,7 @@ import { IQuestion } from 'apps/shared-models/question.model';
 import { IRegistrationStatus } from 'apps/shared-models/registration_status.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { faXmark, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faFilter, faPieChart } from '@fortawesome/free-solid-svg-icons';
 import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 
 @Component({
@@ -70,6 +70,7 @@ export class EventFormResponsesComponent implements OnInit {
   icons = {
     faXmark,
     faFilter,
+    faPieChart,
   };
   editMode = false;
 
@@ -202,9 +203,16 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   getResponses() {
+    const formData = new FormData();
     this.emptyMessage = 'Loading...';
     this.isLoading = false;
     this.rows = [];
+    if (this.forms.length > 0) {
+      for (const form of this.forms) {
+        formData.append(`qres[]q`, form.get('q').value);
+        formData.append(`qres[]v`, form.get('v').value);
+      }
+    }
     this.dataFormEntityResponseGroupsService
       .getEventDataFormResponses(
         this.eventDataFormEntityGroupId,
@@ -214,6 +222,7 @@ export class EventFormResponsesComponent implements OnInit {
         this.count,
         this.gender,
         this.selectedEventLocationTrackId,
+        formData,
       )
       .subscribe((data) => {
         this.totalEntries = data.total;
@@ -369,8 +378,9 @@ export class EventFormResponsesComponent implements OnInit {
     }
   }
 
-  disableEditMode(question) {
+  disableEditMode(question, i) {
     question.editMode = false;
+    this.forms.splice(i, 1);
     this.getResponses();
   }
 }

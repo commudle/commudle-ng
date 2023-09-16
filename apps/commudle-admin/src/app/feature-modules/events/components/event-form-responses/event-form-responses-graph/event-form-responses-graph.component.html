@@ -1,0 +1,30 @@
+<div class="com-relative com-h-auto com-w-auto">
+  <canvas id="diversity"></canvas>
+</div>
+
+<div
+  class="com-relative com-h-auto com-w-auto"
+  *ngIf="
+    question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE ||
+    question.question_type_id === EQuestionTypes.SINGLE_CHOICE
+  "
+>
+  <canvas id="responses"></canvas>
+</div>
+
+<div
+  *ngIf="
+    question.question_type_id === EQuestionTypes.SHORT_ANSWER ||
+    question.question_type_id === EQuestionTypes.LONG_ANSWER ||
+    question.question_type_id === EQuestionTypes.NUMBER
+  "
+>
+  <table *ngIf="responses">
+    <tr>
+      <th>Answers</th>
+    </tr>
+    <tr *ngFor="let response of responses">
+      <td>{{ response }}</td>
+    </tr>
+  </table>
+</div>

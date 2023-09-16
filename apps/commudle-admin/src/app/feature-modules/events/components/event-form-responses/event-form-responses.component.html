@@ -112,13 +112,29 @@
 
               <div class="com-grid com-grid-cols-2 com-gap-2 com-my-2">
                 <div class="user-detail-dropdown">
-                  <select class="com-border-0" (change)="registrationStatusFilter($event)">
-                    <option selected value="0">Status: All</option>
+                  <select
+                    class="com-border-0"
+                    (change)="registrationStatusFilter($event)"
+                    *ngIf="eventDataFormEntityGroup"
+                  >
+                    <option selected value="0">
+                      Status: All ({{
+                        eventDataFormEntityGroup.summary_registration_counts.all
+                          ? eventDataFormEntityGroup.summary_registration_counts.all
+                          : 0
+                      }})
+                    </option>
                     <option *ngFor="let rs of registrationStatuses" [value]="rs.id">
-                      {{ rs.name | titlecase }}
+                      {{ rs.name | titlecase }} ({{
+                        eventDataFormEntityGroup.summary_registration_counts[rs.name]
+                          ? eventDataFormEntityGroup.summary_registration_counts[rs.name]
+                          : 0
+                      }})
                     </option>
                   </select>
                 </div>
+
+                <!-- gender filter -->
                 <div class="user-detail-dropdown">
                   <select class="com-border-0" (change)="genderFilter($event)" [(ngModel)]="gender">
                     <option selected disable value="">Gender: All</option>
@@ -244,59 +260,70 @@
               class="row-header question mobile-hidden"
               *ngIf="!question.editMode"
               (click)="enableEditMode(question, i)"
+              [nbPopover]="templateRef"
+              nbPopoverTrigger="hover"
+              nbPopoverPlacement="bottom"
+              [nbPopoverContext]="{ question: question }"
             >
               <div><fa-icon [icon]="icons.faFilter"></fa-icon></div>
               <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">
                 {{ question.title }}
               </p>
               <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
+              <div><fa-icon [icon]="icons.faPieChart"></fa-icon></div>
             </div>
             <div *ngIf="question.editMode" class="com-flex com-items-center com-gap-2">
               <div class="com-my-14px">
                 <div>
                   <form [formGroup]="forms[i]">
                     <div class="name-filter">
-                      <input
-                        [disabled]="isLoading"
-                        fieldSize="tiny"
-                        formControlName="v"
-                        fullWidth
-                        nbInput
-                        placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
-                        type="text"
-                        autofocus
+                      <div
                         *ngIf="
                           question.question_type_id === EQuestionTypes.SHORT_ANSWER ||
                           question.question_type_id === EQuestionTypes.LONG_ANSWER
                         "
-                      />
-                      <input
-                        [disabled]="isLoading"
-                        fieldSize="tiny"
-                        formControlName="v"
-                        fullWidth
-                        nbInput
-                        placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
-                        type="number"
-                        autofocus
-                        *ngIf="question.question_type_id === EQuestionTypes.NUMBER"
-                      />
-                      <select
-                        formControlName="v"
-                        autofocus
+                      >
+                        <input
+                          [disabled]="isLoading"
+                          fieldSize="tiny"
+                          formControlName="v"
+                          fullWidth
+                          nbInput
+                          placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
+                          type="text"
+                          autofocus
+                        />
+                      </div>
+                      <div *ngIf="question.question_type_id === EQuestionTypes.NUMBER">
+                        <input
+                          [disabled]="isLoading"
+                          fieldSize="tiny"
+                          formControlName="v"
+                          fullWidth
+                          nbInput
+                          placeholder="{{ isLoading ? 'Still Loading' : 'Search Answer' }}"
+                          type="number"
+                          autofocus
+                        />
+                      </div>
+                      <div
                         *ngIf="
                           question.question_type_id === EQuestionTypes.SINGLE_CHOICE ||
                           question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE
                         "
                       >
-                        <option selected disabled>Choose Answer</option>
-                        <option [value]="qc.title" *ngFor="let qc of question.question_choices">{{ qc.title }}</option>
-                      </select>
+                        <select formControlName="v" autofocus>
+                          <option selected disabled>Choose Answer</option>
+                          <option [value]="qc.title" *ngFor="let qc of question.question_choices">
+                            {{ qc.title }}
+                          </option>
+                        </select>
+                      </div>
                     </div>
                   </form>
                 </div>
               </div>
-              <div (click)="disableEditMode(question)" class="clear-track-filter">
+              <div (click)="disableEditMode(question, i)" class="clear-track-filter">
                 <fa-icon [icon]="icons.faXmark"></fa-icon>
               </div>
             </div>
@@ -436,4 +463,18 @@
       <button (click)="windowRef.close()" ghost nbButton size="medium" status="danger">No</button>
     </div>
   </div>
+</ng-template>
+
+<ng-template #templateRef let-data>
+  <commudle-event-form-responses-graph
+    [forms]="forms"
+    [eventDataFormEntityGroupId]="eventDataFormEntityGroupId"
+    [filterValue]="filterValue"
+    [registrationStatusId]="registrationStatusId"
+    [page]="page"
+    [count]="count"
+    [gender]="gender"
+    [selectedEventLocationTrackId]="selectedEventLocationTrackId"
+    [question]="data.question"
+  ></commudle-event-form-responses-graph>
 </ng-template>

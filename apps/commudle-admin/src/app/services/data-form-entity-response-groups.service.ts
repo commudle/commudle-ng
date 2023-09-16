@@ -46,6 +46,42 @@ export class DataFormEntityResponseGroupsService {
     );
   }
 
+  getEventDataFormResponsesByFilter(
+    eventDataFormEntityGroupId,
+    filterQuery,
+    registrationStatusId,
+    page,
+    count,
+    questionId,
+    gender?,
+    eventLocationTrackId?,
+    formData?,
+  ): Observable<any> {
+    let params = new HttpParams()
+      .set('event_data_form_entity_group_id', eventDataFormEntityGroupId)
+      .set('count', count)
+      .set('page', page)
+      .set('registration_status_id', registrationStatusId)
+      .set('query', filterQuery)
+      .set('question_id', questionId);
+    if (gender) {
+      params = params.set('gender', gender);
+    }
+    if (eventLocationTrackId) {
+      params = params.set('event_location_track_id', eventLocationTrackId);
+    }
+    if (formData) {
+      for (const key of formData) {
+        params = params.append(key[0], key[1]);
+      }
+    }
+
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.FILTERED_RESPONSE_VALUES),
+      { params },
+    );
+  }
+
   updateEventRegistrationStatus(
     registrationStatusId,
     dataFormEntityResponseGroupId,
