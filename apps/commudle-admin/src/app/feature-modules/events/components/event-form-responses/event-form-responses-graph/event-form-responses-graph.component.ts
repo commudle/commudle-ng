@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 import { IQuestion } from 'apps/shared-models/question.model';
@@ -9,7 +9,7 @@ import { Chart } from 'chart.js';
   templateUrl: './event-form-responses-graph.component.html',
   styleUrls: ['./event-form-responses-graph.component.scss'],
 })
-export class EventFormResponsesGraphComponent implements OnInit {
+export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
   isLoading = true;
   @Input() forms;
   @Input() eventDataFormEntityGroupId;
@@ -22,10 +22,17 @@ export class EventFormResponsesGraphComponent implements OnInit {
   @Input() question: IQuestion;
   EQuestionTypes = EQuestionTypes;
   responses;
+  responseChart;
+  diversityChat;
   constructor(private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService) {}
 
   ngOnInit(): void {
     this.getResponses();
+  }
+
+  ngOnDestroy(): void {
+    this.diversityChat = [];
+    this.responseChart = [];
   }
 
   getResponses() {
@@ -51,7 +58,7 @@ export class EventFormResponsesGraphComponent implements OnInit {
       )
       .subscribe((data) => {
         this.responses = data.responses;
-        const divesityChat = new Chart(`diversity`, {
+        this.diversityChat = new Chart(`diversity`, {
           type: 'pie',
           data: {
             datasets: [
@@ -78,7 +85,7 @@ export class EventFormResponsesGraphComponent implements OnInit {
           this.question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE ||
           this.question.question_type_id === EQuestionTypes.SINGLE_CHOICE
         ) {
-          const responseChart = new Chart(`responses`, {
+          this.responseChart = new Chart(`responses`, {
             type: 'pie',
             data: {
               datasets: [
