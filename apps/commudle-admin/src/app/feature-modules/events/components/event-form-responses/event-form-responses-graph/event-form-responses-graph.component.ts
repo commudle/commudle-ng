@@ -31,8 +31,8 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.diversityChat = [];
-    this.responseChart = [];
+    if (this.diversityChat) this.diversityChat.destroy();
+    if (this.responseChart) this.responseChart.destroy();
   }
 
   getResponses() {
@@ -91,7 +91,7 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
               datasets: [
                 {
                   data: this.responses.map((row) => row),
-                  backgroundColor: ['blue', '#ff43bc', 'purple', 'green'],
+                  backgroundColor: ['blue', '#ff43bc', 'purple', 'green', 'red', 'yellow'],
                 },
               ],
 

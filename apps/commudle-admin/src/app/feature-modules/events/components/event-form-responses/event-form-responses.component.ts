@@ -103,12 +103,7 @@ export class EventFormResponsesComponent implements OnInit {
 
     this.eventDataFormEntityGroupId = this.activatedRoute.snapshot.queryParamMap['params']['parent_id'];
 
-    // get event_data_form_entity_group
-    this.eventDataFormEntityGroupsService
-      .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
-      .subscribe((data) => {
-        this.eventDataFormEntityGroup = data;
-      });
+    this.getEventDataFromEntityGroup();
 
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) => {
@@ -125,6 +120,15 @@ export class EventFormResponsesComponent implements OnInit {
 
     // this.getResponses();
     this.updateFilter();
+  }
+
+  // get event_data_form_entity_group
+  getEventDataFromEntityGroup() {
+    this.eventDataFormEntityGroupsService
+      .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
+      .subscribe((data) => {
+        this.eventDataFormEntityGroup = data;
+      });
   }
 
   getUserRoles() {
@@ -233,6 +237,7 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   setResponses(data) {
+    this.getEventDataFromEntityGroup();
     this.totalEntries = data.total;
     this.rows = data.data_form_entity_response_groups;
     this.isLoading = false;
