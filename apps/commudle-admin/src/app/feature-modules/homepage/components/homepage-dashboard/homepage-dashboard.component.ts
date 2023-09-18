@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'commudle-homepage-dashboard',
@@ -12,7 +13,7 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 export class HomepageDashboardComponent implements OnInit {
   currentUser: ICurrentUser;
   staticAssets = staticAssets;
-  userProfileDetails;
+  userProfileDetails: IUserStatsModel;
   constructor(private authWatchService: LibAuthwatchService, private appUsersService: AppUsersService) {}
 
   ngOnInit(): void {

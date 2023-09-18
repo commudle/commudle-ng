@@ -13,6 +13,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { EAttachmentType } from '@commudle/shared-models';
+import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -27,7 +28,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   embedGoogleSlidesCode: any;
   staticAssets = staticAssets;
   currentUser: ICurrentUser;
-  userProfileDetails;
+  userProfileDetails: IUserStatsModel;
   uploadedPdf: File;
   uploadedPdfSrc: string;
   EAttachmentType = EAttachmentType;
