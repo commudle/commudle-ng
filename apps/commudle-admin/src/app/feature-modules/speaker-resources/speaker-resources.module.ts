@@ -15,6 +15,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
 import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [SpeakerResourceComponent],
@@ -25,7 +26,6 @@ import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.modul
     SharedComponentsModule,
     MiniUserProfileModule,
     LinkyModule,
-
     // Nebular
     NbCardModule,
     NbLayoutModule,
@@ -34,6 +34,7 @@ import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.modul
     NbUserModule,
     NbButtonModule,
     NbInputModule,
+    SharedPipesModule,
   ],
 })
 export class SpeakerResourcesModule {}

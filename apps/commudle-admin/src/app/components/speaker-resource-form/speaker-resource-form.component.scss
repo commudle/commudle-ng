@@ -101,6 +101,14 @@
             @apply com-mt-1;
           }
         }
+
+        .pdf-preview {
+          @apply com-my-3 com-mx-0;
+
+          object {
+            @apply com-h-40 com-w-full;
+          }
+        }
       }
     }
   }

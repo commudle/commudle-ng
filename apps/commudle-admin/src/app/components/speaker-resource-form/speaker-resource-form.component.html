@@ -90,19 +90,9 @@
                     <label>
                       <p>Please upload your PDF file here*</p>
                       <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
-                      <!-- <iframe
-                        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM05VQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2e99899390cd6dd5a932e331033fe7ccc756830/SampleDocs-sample-pdf-file.pdf"
-                        style="width: 100%; height: 100%; border: none"
-                      ></iframe> -->
-                      <!-- <object
-                        class="com-w-2/6 com-h-40"
-                        attr.data="{{ uploadedPdfSrc | safe : 'resourceUrl' }}"
-                        type="application/pdf"
-                      ></object> -->
-                      <!-- <iframe
-                        src="{{ source | safe : 'resourceUrl' }}"
-                        style="width: 100%; height: 100%; border: none"
-                      ></iframe> -->
+                      <div *ngIf="uploadedPdfSrc" class="pdf-preview">
+                        <object attr.data="{{ uploadedPdfSrc | safe : 'resourceUrl' }}" type="application/pdf"></object>
+                      </div>
                     </label>
                   </div>
                   <div *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK" class="link">
@@ -110,9 +100,6 @@
                       Add your presentation link here*
                       <input formControlName="embedded_content" fullWidth nbInput size="small" type="url" />
                     </label>
-                    <!-- <span *ngIf="communityBuildForm.get('link').invalid">
-                        <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
-                      </span> -->
                   </div>
                   <div
                     *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
