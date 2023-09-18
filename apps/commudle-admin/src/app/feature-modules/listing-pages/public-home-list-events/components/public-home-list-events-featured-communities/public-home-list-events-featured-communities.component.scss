@@ -1,47 +1,7 @@
-// nb-card {
-//   @apply md:com-mt-0 md:com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none;
-//   nb-card-body {
-//     @apply com-p-0 md:com-px-3 md:com-pt-4;
-//     .heading {
-//       @apply com-m-0 md:com-mb-8 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
-
-//       .title {
-//         @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
-//       }
-//       .sub-heading {
-//         @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-m-0;
-//       }
-//     }
-
-//     // .featured-communities {
-//     //   @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
-//     //   .featured-communities-card {
-//     //     @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
-//     //   }
-//     // }
-
-//     .featured-communities {
-//       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
-//       .featured-communities-card {
-//         @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
-//       }
-//     }
-
-//     .featured-communities-scroll {
-//       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
-//       .featured-communities-card {
-//         @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4;
-//       }
-//     }
-//   }
-// }
-
 .container-scroll {
   @apply com-m-0  com-border-none;
   nb-card-body {
     @apply com-p-0;
-    // .header {
-    //   @apply com-flex;
     .heading {
       @apply com-m-0 com-p-4 com-bg-Anti-Flash-White com-flex com-flex-row com-items-center;
 
@@ -62,25 +22,7 @@
           @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
         }
       }
-      // }
-
-      // .view-all-button {
-      //   @apply com-no-underline com-text-base com-font-medium com-text-black com-ml-[400px];
-      // }
     }
-    // .featured-communities {
-    //   @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
-    //   .featured-communities-card {
-    //     @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
-    //   }
-    // }
-
-    // .featured-communities {
-    //   @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
-    //   .featured-communities-card {
-    //     @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
-    //   }
-    // }
 
     .featured-communities-scroll {
       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
@@ -106,25 +48,11 @@
       }
     }
 
-    // .featured-communities {
-    //   @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
-    //   .featured-communities-card {
-    //     @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
-    //   }
-    // }
-
     .featured-communities {
       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
       .featured-communities-card {
         @apply com-m-0 com-border-none com-rounded-xl com-p-0;
       }
     }
-
-    // .featured-communities-scroll {
-    //   @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
-    //   .featured-communities-card {
-    //     @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4;
-    //   }
-    // }
   }
 }

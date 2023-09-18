@@ -5,7 +5,6 @@
   }"
 >
   <nb-card-body>
-    <!-- <div class="header"> -->
     <div class="heading">
       <button *ngIf="showIconsOnHeading" nbButton class="emoji" size="small">
         <fa-icon [icon]="faUserGroup"></fa-icon>
@@ -24,36 +23,10 @@
       class="custom-scrollbar"
     >
       <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
-        <!-- <div *appBreakpoints="'>lg'"> -->
-        <!-- <div *ngIf="!isMobileView && !showCardsHorizontal">
-          <commudle-featured-communities-card
-            [featuredCommunity]="featuredCommunity"
-          ></commudle-featured-communities-card>
-        </div> -->
-        <!-- <div *appBreakpoints="'<=lg'"> -->
-        <!-- <div *ngIf="isMobileView || (!isMobileView && showCardsHorizontal)">
-          <commudle-featured-communities-card
-            [featuredCommunity]="featuredCommunity"
-            [horizontalScroll]="true"
-          ></commudle-featured-communities-card>
-        </div> -->
-        <!-- <div [ngClass]="{ 'class-a': horizontalScroll, 'class-b': !horizontalScroll }">
-          <commudle-featured-communities-card
-            [featuredCommunity]="featuredCommunity"
-            [horizontalScroll]="isMobileView || showCardsHorizontal"
-          ></commudle-featured-communities-card>
-        </div> -->
-        <!-- <div
-          [ngClass]="{
-            featuredCommunitiesScroll: isMobileView || showCardsHorizontal,
-            featuredCommunities: !(isMobileView || showCardsHorizontal)
-          }"
-        > -->
         <commudle-featured-communities-card
           [featuredCommunity]="featuredCommunity"
           [horizontalScroll]="isMobileView || showCardsHorizontal"
         ></commudle-featured-communities-card>
-        <!-- </div> -->
       </div>
     </div>
   </nb-card-body>

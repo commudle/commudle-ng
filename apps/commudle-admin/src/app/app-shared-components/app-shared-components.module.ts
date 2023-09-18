@@ -27,7 +27,6 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { LabsFeaturedCardComponent } from './labs-featured-card/labs-featured-card.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],

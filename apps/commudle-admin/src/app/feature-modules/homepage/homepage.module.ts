@@ -30,14 +30,9 @@ import { HomepageDashboardComponent } from './components/homepage-dashboard/home
 import { UserprofileDetailsComponent } from './components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
-// import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 import { UserProfileComponent } from '../../app-shared-components/user-profile/user-profile.component';
 import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
-// import {
-//   AppSharedComponentsModule,
-// } from 'apps/commudle-admin/src/app/app-shared-components/labs-featured/labs-featured.component';
-// import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
 
 @NgModule({
   declarations: [
@@ -68,7 +63,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     UserProfileComponent,
     FeaturedProjectsComponent,
     PublicHomeListEventsModule,
-    // LabsFeaturedComponent,
+
     //Nebular
     NbButtonModule,
     NbCardModule,
@@ -76,6 +71,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     NbListModule,
     NbActionsModule,
     NbTooltipModule,
+
     //FontAwesome
     FontAwesomeModule,
     AppSharedComponentsModule,

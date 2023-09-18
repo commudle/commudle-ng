@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogService, NbToastrService, NbWindowService } from '@commudle/theme';
+import { NbToastrService, NbWindowService } from '@commudle/theme';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
@@ -32,9 +32,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   currentUser: ICurrentUser;
   userProfileDetails;
   uploadedResume: File;
-  // uploadedResume: IAttachedFile;
   uploadedResumeSrc: string;
-  // attachmentType = 'link';
   ERegistrationType = ERegistrationType;
   source: string;
 
@@ -69,9 +67,6 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.appUsersService.getProfileStats().subscribe((data) => {
       this.userProfileDetails = data;
     });
-    console.log(this.speakerResourceForm.get('attachment_type').value, '1');
-    // this.speakerResourceForm.get('attachment_type').patchValue('link');
-    // console.log(this.speakerResourceForm.get('attachment_type').value, '2');
     if (this.speakerResourceForm.get('attachment_type').value === 'embedded_link') {
       this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
         if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
@@ -121,23 +116,8 @@ export class SpeakerResourceFormComponent implements OnInit {
       });
   }
 
-  // getResumeFormData(): FormData {
-  //   const formData = new FormData();
-  //   const resumeValue = this.speakerResourceForm.value;
-
-  //   Object.keys(resumeValue).forEach((key) => {
-  //     formData.append(`user_resume[${key}]`, resumeValue[key]);
-  //   });
-
-  //   Object.keys(this.uploadedResume).forEach((key) => {
-  //     formData.append(`user_resume[resume][${key}]`, this.uploadedResume[key]);
-  //   });
-  //   return formData;
-  // }
-
   getResumeFormData(): FormData {
     const formData = new FormData();
-    // this.speakerResourceForm.get('attachment_type').patchValue(this.attachmentType);
     const resumeValue = this.speakerResourceForm.value;
 
     Object.keys(resumeValue).forEach((key) => {
@@ -149,31 +129,14 @@ export class SpeakerResourceFormComponent implements OnInit {
     if (this.uploadedResume != null) {
       formData.append('speaker_resource[presentation_file]', this.uploadedResume);
     }
-
-    // if (this.uploadedResume instanceof Blob) {
-    //   console.log(this.uploadedResume, 'key 2');
-    //   formData.append('resume', this.uploadedResume, 'resume.pdf');
-    // }
     return formData;
   }
-  // Object.keys(this.uploadedResume).forEach((key) => {
-  //   console.log(key, 'key');
-  //   formData.append(`speaker_resource[${key}]`, this.uploadedResume[key]);
-  // });
 
   openGoogleSlidesEmbedStepsWindow() {
     this.windowService.open(this.googleSlidesEmbedTemplate, { title: 'Steps to get Google Slides Embed Link' });
   }
 
-  // onItemChange(data) {
-  //   this.attachmentType = data.value;
-  //   this.showPdfOption = this.attachmentType === ERegistrationType.PDF_FILE ? true : false;
-  //   this.showLinkOption = this.attachmentType === ERegistrationType.LINK ? true : false;
-  //   this.showEmbedOption = this.attachmentType === ERegistrationType.EMBEDDED_LINK ? true : false;
-  // }
-
   onFileChange(event) {
-    console.log('called');
     if (event.target.files) {
       if (event.target.files[0].type !== 'application/pdf') {
         this.nbToastrService.warning('File must be a pdf', 'Warning');
@@ -189,8 +152,6 @@ export class SpeakerResourceFormComponent implements OnInit {
       this.uploadedResume = file;
 
       const reader = new FileReader();
-      // reader.onload = () => (this.uploadedResumeSrc = <string>reader.result);
-      // console.log('FileReader onload callback called');
       reader.onload = () => {
         this.uploadedResumeSrc = <string>reader.result;
       };
@@ -198,13 +159,3 @@ export class SpeakerResourceFormComponent implements OnInit {
     }
   }
 }
-
-// this.uploadedResume = {
-//   id: null,
-//   // file: file,
-//   presentation_file: file,
-//   //file ki jagh presentation_file
-//   url: null,
-//   name: null,
-//   type: null,
-// };

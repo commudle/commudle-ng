@@ -63,7 +63,6 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     LabsHeaderComponent,
     LabsSearchComponent,
     LabsCardComponent,
-    // LabsFeaturedComponent,
   ],
   imports: [
     CommonModule,
@@ -104,6 +103,5 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     SkeletonVerticalCardsComponent,
     SkeletonCardsComponent,
   ],
-  // exports: [LabsFeaturedComponent],
 })
 export class LabsModule {}

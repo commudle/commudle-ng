@@ -33,7 +33,6 @@ import { BuildListItemComponent } from './components/my-community-builds/build-l
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
-// import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects/featured-projects.component';
 import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects-card/featured-projects-card.component';
 import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
 import { BuildsTopBuildersComponent } from './components/community-builds/builds-top-builders/builds-top-builders.component';
@@ -54,7 +53,6 @@ import { FeaturedProjectsComponent } from '../../app-shared-components/featured-
     BuildListItemComponent,
     TeammateInviteConfirmationComponent,
     CommunityBuildCardComponent,
-    // FeaturedProjectsComponent,
     BuildsHeaderComponent,
     BuildsTopBuildersComponent,
     ExploreExpertsComponent,
@@ -77,7 +75,7 @@ import { FeaturedProjectsComponent } from '../../app-shared-components/featured-
     SharedComponentsModule,
     PublicHomeListEventsModule,
 
-    //standalome
+    //Standalone
     FeaturedProjectsCardComponent,
     TopBuildersCardComponent,
     SkeletonCardsComponent,

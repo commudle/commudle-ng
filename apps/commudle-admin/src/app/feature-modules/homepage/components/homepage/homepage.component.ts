@@ -62,19 +62,19 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.footerService.changeFooterStatus(false);
   }
 
-  // ngAfterViewInit(): void {
-  //   if (this.isBrowserService.isBrowser()) {
-  //     import('lottie-web').then((l) => {
-  //       l.default.loadAnimation({
-  //         container: this.homepageAnimationContainer.nativeElement,
-  //         renderer: 'svg',
-  //         loop: true,
-  //         autoplay: true,
-  //         path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
-  //       });
-  //     });
-  //   }
-  // }
+  ngAfterViewInit(): void {
+    if (this.isBrowserService.isBrowser()) {
+      import('lottie-web').then((l) => {
+        l.default.loadAnimation({
+          container: this.homepageAnimationContainer.nativeElement,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
+        });
+      });
+    }
+  }
 
   getHomepageActions() {
     this.cmsService.getDataByType('homepageActions').subscribe((value: IHomepageAction[]) => {
