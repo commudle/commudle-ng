@@ -164,45 +164,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     FillDataFormPaidComponent,
     CheckFillDataFormComponent,
   ],
-  providers: [
-    AppInitService,
-    Title,
-    CookieService,
-    NbSidebarService,
-    IsBrowserService,
-    PrismJsHighlightCodeService,
-    AuthService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initApp,
-      deps: [AppInitService],
-      multi: true,
-    },
-    {
-      // TODO move the interceptors to a common barrel file if needed
-      // https://angular.io/guide/http#provide-the-interceptor
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiParserResponseInterceptor,
-      multi: true,
-    },
-    {
-      provide: 'AuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.google_client_id),
-          },
-        ],
-      } as AuthServiceConfig,
-    },
-  ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -292,6 +253,45 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
     UserProfileComponent,
+  ],
+  providers: [
+    AppInitService,
+    Title,
+    CookieService,
+    NbSidebarService,
+    IsBrowserService,
+    PrismJsHighlightCodeService,
+    AuthService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      deps: [AppInitService],
+      multi: true,
+    },
+    {
+      // TODO move the interceptors to a common barrel file if needed
+      // https://angular.io/guide/http#provide-the-interceptor
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiParserResponseInterceptor,
+      multi: true,
+    },
+    {
+      provide: 'AuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.google_client_id),
+          },
+        ],
+      } as AuthServiceConfig,
+    },
   ],
 })
 export class AppModule {}

@@ -20,7 +20,7 @@ export interface ISpeakerResource {
   attachment_type: string;
 }
 
-export enum ERegistrationType {
+export enum EAttachmentType {
   PDF_FILE = 'pdf_file',
   LINK = 'link',
   EMBEDDED_LINK = 'embedded_link',

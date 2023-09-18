@@ -59,7 +59,7 @@
                           type="radio"
                           name="slides"
                           value="link"
-                          [checked]="speakerResourceForm.get('attachment_type').value === ERegistrationType.LINK"
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK"
                           (change)="speakerResourceForm.get('attachment_type').patchValue('link')"
                         />Link</label
                       >
@@ -68,7 +68,7 @@
                           type="radio"
                           name="slides"
                           value="pdf_file"
-                          [checked]="speakerResourceForm.get('attachment_type').value === ERegistrationType.PDF_FILE"
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.PDF_FILE"
                           (change)="speakerResourceForm.get('attachment_type').patchValue('pdf_file')"
                         />Upload (PDF)</label
                       >
@@ -77,16 +77,14 @@
                           type="radio"
                           name="slides"
                           value="embedded_link"
-                          [checked]="
-                            speakerResourceForm.get('attachment_type').value === ERegistrationType.EMBEDDED_LINK
-                          "
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
                           (change)="speakerResourceForm.get('attachment_type').patchValue('embedded_link')"
                         />Embed</label
                       >
                     </div>
                   </div>
                   <div
-                    *ngIf="speakerResourceForm.get('attachment_type').value === ERegistrationType.PDF_FILE"
+                    *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.PDF_FILE"
                     class="upload-pdf"
                   >
                     <label>
@@ -107,7 +105,7 @@
                       ></iframe> -->
                     </label>
                   </div>
-                  <div *ngIf="speakerResourceForm.get('attachment_type').value === ERegistrationType.LINK" class="link">
+                  <div *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK" class="link">
                     <label>
                       Add your presentation link here*
                       <input formControlName="embedded_content" fullWidth nbInput size="small" type="url" />
@@ -117,7 +115,7 @@
                       </span> -->
                   </div>
                   <div
-                    *ngIf="speakerResourceForm.get('attachment_type').value === ERegistrationType.EMBEDDED_LINK"
+                    *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
                     class="embed"
                   >
                     <label>

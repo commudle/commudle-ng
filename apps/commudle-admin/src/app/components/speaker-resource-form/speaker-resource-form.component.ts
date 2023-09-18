@@ -12,7 +12,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { ERegistrationType } from '@commudle/shared-models';
+import { EAttachmentType } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -30,7 +30,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   userProfileDetails;
   uploadedPdf: File;
   uploadedPdfSrc: string;
-  ERegistrationType = ERegistrationType;
+  EAttachmentType = EAttachmentType;
   source: string;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;

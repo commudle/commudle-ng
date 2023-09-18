@@ -9,8 +9,7 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { ERegistrationType } from '@commudle/shared-models';
-
+import { EAttachmentType } from '@commudle/shared-models';
 @Component({
   selector: 'app-speaker-resource',
   templateUrl: './speaker-resource.component.html',
@@ -26,7 +25,7 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   iframe;
-  ERegistrationType = ERegistrationType;
+  EAttachmentType = EAttachmentType;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,7 +52,6 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.speakerResourcesService.getDetails(speakerId).subscribe((data) => {
         this.speakerResource = data;
-        console.log(this.speakerResource, 'speaker-resource');
         if (this.speakerResource.embedded_content) {
           this.iframe = this.domSanitizer.bypassSecurityTrustHtml(this.speakerResource.embedded_content);
         }
