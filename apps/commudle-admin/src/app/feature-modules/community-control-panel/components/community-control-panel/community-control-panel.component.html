@@ -42,7 +42,7 @@
             </div>
           </section>
         </nb-card-header>
-        <nb-card-body class="com-px-0 md:com-px-6">
+        <nb-card-body class="com-px-0 md:com-px-6 com-pt-0">
           <div class="menu d-flex">
             <a
               [routerLinkActiveOptions]="{ exact: true }"
@@ -81,7 +81,38 @@
               <nb-icon icon="edit" status="success"></nb-icon>
               <span class="title">Edit Details</span>
             </a>
-            <a [routerLink]="['payments']" class="d-flex" routerLinkActive="active" *ngIf="community.payments_enabled">
+            <a
+              *ngIf="community.payments_enabled"
+              [routerLink]="['payments']"
+              class="d-flex com-relative"
+              routerLinkActive="active"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
+              <span class="title">Bank Details</span>
+            </a>
+            <a
+              *ngIf="!community.payments_enabled"
+              class="d-flex disabled com-relative"
+              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to arpan@commudle.com"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
               <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
               <span class="title">Bank Details</span>
             </a>

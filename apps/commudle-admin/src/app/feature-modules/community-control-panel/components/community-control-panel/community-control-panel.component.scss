@@ -52,7 +52,7 @@ section {
 }
 
 .menu {
-  @apply com-border-0 com-border-b com-border-solid com-border-gray-200 com-w-auto com-overflow-auto com-scrollbar-hide;
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200 com-w-auto com-overflow-auto com-scrollbar-hide com-pt-4;
   a {
     @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
@@ -84,5 +84,12 @@ section {
     .title {
       @apply com-text-Blueberry;
     }
+  }
+}
+
+.disabled {
+  fa-icon,
+  span {
+    @apply com-text-gray-400 #{!important};
   }
 }
