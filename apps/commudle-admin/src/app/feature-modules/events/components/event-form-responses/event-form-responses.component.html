@@ -260,17 +260,20 @@
               class="row-header question mobile-hidden"
               *ngIf="!question.editMode"
               (click)="enableEditMode(question, i)"
-              [nbPopover]="templateRef"
-              nbPopoverTrigger="hover"
-              nbPopoverPlacement="bottom"
-              [nbPopoverContext]="{ question: question }"
             >
               <div><fa-icon [icon]="icons.faFilter"></fa-icon></div>
               <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">
                 {{ question.title }}
               </p>
               <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
-              <div><fa-icon [icon]="icons.faPieChart"></fa-icon></div>
+              <div
+                [nbPopover]="templateRef"
+                nbPopoverTrigger="hover"
+                nbPopoverPlacement="bottom"
+                [nbPopoverContext]="{ question: question }"
+              >
+                <fa-icon [icon]="icons.faPieChart"></fa-icon>
+              </div>
             </div>
             <div *ngIf="question.editMode" class="com-flex com-items-center com-gap-2">
               <div class="com-my-14px">

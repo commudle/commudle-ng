@@ -31,8 +31,12 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.diversityChat) this.diversityChat.destroy();
-    if (this.responseChart) this.responseChart.destroy();
+    if (this.diversityChat) {
+      this.diversityChat.destroy();
+    }
+    if (this.responseChart) {
+      this.responseChart.destroy();
+    }
   }
 
   getResponses() {
