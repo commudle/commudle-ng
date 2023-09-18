@@ -18,10 +18,14 @@ p {
 
     .heading {
       @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
+
+      // span {
+      //   @apply com-block com-w-full com-text-transparent com-bg-clip-text com-bg-gradient-to-r com-from-blue-400 com-via-purple-500 com-to-blue-900 lg:com-inline;
+      // }
     }
 
     .subheading {
-      @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-600 com-font-normal;
+      @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-500 com-font-normal;
     }
   }
 
@@ -39,6 +43,12 @@ p {
           @apply com-text-2xl com-font-normal com-mb-8;
         }
       }
+      .card-image {
+        @apply com-h-[487px] com-w-[620px] com-overflow-hidden;
+        img {
+          @apply com-h-auto com-w-full com-object-cover;
+        }
+      }
       .features {
         @apply com-mt-4 com-mx-8 com-mb-6;
 
@@ -49,7 +59,7 @@ p {
         ul {
           @apply com-m-0 com-p-0;
           li {
-            @apply com-list-none com-mb-6;
+            @apply com-list-none com-mb-6 com-text-gray-500;
             nb-icon {
               @apply com-h-6 com-w-6 com-text-Azure com-mr-3;
             }
@@ -184,7 +194,7 @@ p {
         @apply sm:com-w-auto lg:com-w-full;
 
         &.light {
-          @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-shadow;
+          @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-shadow-2xl;
         }
 
         &.dark {
@@ -201,7 +211,7 @@ p {
       @apply com-relative com-w-full com-my-1;
 
       .heading {
-        @apply com-w-1/3 com-py-3 com-text-left com-text-base com-font-medium com-text-gray-600;
+        @apply com-w-1/3 com-py-3 com-text-left com-text-base com-font-medium com-text-gray-500;
 
         &.w-full {
           @apply com-w-full;

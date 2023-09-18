@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-pricing',
@@ -9,6 +10,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
   styleUrls: ['./pricing.component.scss'],
 })
 export class PricingComponent implements OnInit, OnDestroy {
+  staticAssets = staticAssets;
   logoCloud: { image: string; name: string; slug: string }[] = [
     {
       name: 'GDG New Delhi',
