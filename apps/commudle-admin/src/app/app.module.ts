@@ -115,6 +115,9 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
 import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
 import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
+import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
+import { HomepageModule } from 'apps/commudle-admin/src/app/feature-modules/homepage/homepage.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -161,6 +164,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     FillDataFormPaidComponent,
     CheckFillDataFormComponent,
   ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -198,11 +202,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PublicHomeListEventsModule,
     SkeletonVerticalCardsComponent,
     InfiniteScrollModule,
-
+    HomepageModule,
     // external service modules
     LibErrorHandlerModule,
     AuthModule,
-
     // Nebula modules
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
@@ -246,10 +249,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-
     //standalone component
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
+    UserProfileComponent,
   ],
   providers: [
     AppInitService,
@@ -290,6 +293,5 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       } as AuthServiceConfig,
     },
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

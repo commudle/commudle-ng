@@ -485,6 +485,7 @@ export const API_ROUTES = {
     UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
     DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
+    PROFILE_STATS: 'api/v2/users/profile_stats',
   },
 
   SPEAKER_RESOURCES: {

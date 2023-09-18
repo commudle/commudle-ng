@@ -1,49 +1,114 @@
-.speaker-resource-form {
-  max-width: 800px;
-  margin: 0 auto;
+.main-column {
+  @apply md:com-mr-[60px] com-mr-0;
+  .speaker-resource-form {
+    @apply com-m-0 com-p-0;
+    .heading {
+      @apply com-text-xl com-text-Yankees-Blue com-p-6 com-m-0;
+    }
 
-  .form {
-    form {
-      display: flex;
-      flex-direction: column;
+    nb-card-body {
+      @apply com-m-0 com-p-6;
+      .details {
+        .community {
+          @apply com-flex com-items-center;
+          .logo {
+            @apply com-w-12 com-h-12 com-overflow-hidden com-mr-3;
+            img {
+              width: 100%;
+            }
+          }
 
-      >div {
-        margin-bottom: 1rem;
+          .community-name {
+            @apply com-text-xs com-font-semibold com-text-black com-m-0;
+          }
+        }
       }
 
+      .event {
+        h6 {
+          @apply com-mt-4 com-mb-0 com-text-black;
+        }
+      }
+
+      .profile-complete {
+        p {
+          @apply com-my-4 com-text-black;
+        }
+
+        .update-profile {
+          @apply com-m-0 com-font-medium com-text-primary-500;
+        }
+      }
+    }
+
+    nb-card-body {
+      @apply com-m-0 com-px-6 com-pt-6 com-pb-4;
+      .form {
+        .title {
+          @apply com-mb-4;
+        }
+
+        .session-slides-options {
+          @apply com-m-0 com-mb-4;
+          p {
+            @apply com-m-0 com-text-sm com-font-medium com-text-Yankees-Blue com-mb-4;
+          }
+          .options {
+            @apply com-flex com-flex-row com-items-center com-text-sm com-font-semibold com-text-primary-500 com-gap-4;
+            label {
+              @apply com-flex com-flex-row com-items-center;
+              input {
+                @apply com-mr-2;
+              }
+            }
+          }
+        }
+
+        .upload-pdf {
+          @apply com-m-0 com-mb-4;
+          p {
+            @apply com-m-0 com-mb-1;
+          }
+        }
+
+        .link {
+          @apply com-mb-4;
+          input {
+            @apply com-mt-1;
+          }
+        }
+
+        .embed {
+          @apply com-mb-4;
+
+          .instruction {
+            @apply com-text-xs com-font-normal com-text-Yankees-Blue com-m-0 com-mb-1;
+          }
+        }
+
+        .open-window-link {
+          @apply com-text-primary-500 com-no-underline com-cursor-pointer;
+        }
+
+        .embedded-slides {
+          display: flex;
+          justify-content: center;
+        }
+
+        .session-details {
+          @apply com-m-0 com-mb-6;
+          textarea {
+            @apply com-mt-1;
+          }
+        }
+      }
     }
   }
 }
 
-
-.open-window-link {
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.embedded-slides {
-  display: flex;
-  justify-content: center;
-}
-
-
-.details {
-  .community {
-    display: flex;
-    .logo {
-      width: 50px;
-      overflow: hidden;
-      margin-right: 1rem;
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  .event {
-    h5 {
-      margin: 0.5rem 0;
-    }
+.right-column {
+  @apply md:com-flex com-hidden;
+  .user {
+    @apply com-w-[374px] com-h-max com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-bg-white com-mt-4;
   }
 }

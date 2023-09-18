@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-body>
-    <a [routerLink]="[featuredItem.lab.slug]">
+    <a [routerLink]="['/labs', featuredItem.lab.slug]">
       <div class="featured-projects-card">
         <div class="details">
           <div class="heading">
@@ -15,7 +15,7 @@
           <h5 class="title">{{ featuredItem.lab.name }}</h5>
           <p class="time">{{ moment(featuredItem.lab.created_at).format('dddd, MMM Do') }}</p>
           <div class="votes-tags">
-            <div class="tags">
+            <div *ngIf="featuredItem.lab.tags.length > 0" class="tags">
               <app-tag
                 [tags]="featuredItem.lab.tags"
                 [backgroundColor]="'rgba(0, 149, 255, 0.1)'"

@@ -1,0 +1,81 @@
+.main-container {
+  @apply com-p-4 com-m-0;
+  .profile-visited {
+    @apply com-flex com-flex-row com-justify-between com-mb-3;
+
+    .profile-visited-text {
+      @apply com-flex com-flex-row md:com-items-center com-items-start;
+
+      .icon {
+        @apply com-flex com-items-center com-justify-center com-bg-Anti-Flash-White com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+      }
+
+      p {
+        @apply com-m-0 com-p-0 com-text-sm com-font-medium com-text-black;
+      }
+    }
+    .profile-visited-count {
+      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
+    }
+  }
+  .talks-given {
+    @apply com-flex com-flex-row com-justify-between com-mb-4;
+
+    .talks-given-text {
+      @apply com-flex com-flex-row com-items-center;
+
+      .icon {
+        @apply com-flex com-items-center com-justify-center com-bg-Anti-Flash-White com-text-black com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+
+        fa-icon {
+          @apply com-w-[16px];
+        }
+      }
+
+      p {
+        @apply com-m-0 com-p-0 com-text-sm com-font-medium com-text-black;
+      }
+    }
+    .talks-given-count {
+      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
+    }
+  }
+  .complete-profile {
+    @apply com-text-base com-font-normal com-text-black com-m-0 com-py-4 com-px-0 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+  }
+
+  .labs-published,
+  .builds-published,
+  .attended-events,
+  .content-published,
+  .social-links {
+    @apply com-flex com-flex-row com-justify-between com-mb-4;
+
+    .labs-published-text,
+    .builds-published-text,
+    .attended-events-text,
+    .content-published-text,
+    .social-links-text {
+      @apply com-flex com-flex-row com-items-center;
+
+      .icon {
+        @apply com-flex com-items-center com-justify-center com-bg-Anti-Flash-White com-text-Quartz com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+      }
+
+      p {
+        @apply com-m-0 com-p-0 com-text-sm com-font-normal com-text-Quartz;
+      }
+    }
+    .labs-published-count,
+    .builds-published-count,
+    .attended-events-count,
+    .content-published-count,
+    .social-links-count {
+      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-Quartz;
+    }
+  }
+
+  .profile-link {
+    @apply com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+  }
+}

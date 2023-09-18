@@ -1,11 +1,12 @@
 <div class="homepage">
-  <div class="homepage-section com-py-8 md:com-py-16">
+  <div class="homepage-section com-py-8 md:com-py-16 com-px-2 md:com-px-0">
     <div
       class="com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center md:com-gap-16 md:com-flex-row"
     >
       <div class="com-w-full md:com-min-h-[600px] com-relative">
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
+        <!-- <commudle-homepage-dashboard></commudle-homepage-dashboard> -->
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
         <div *ngIf="homepageActions.length > 0" class="homepage-actions">
           <a

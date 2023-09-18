@@ -32,6 +32,21 @@
             *ngIf="speakerResource.session_details_links"
             [innerHTML]="speakerResource.session_details_links | linky : { sanitizeHtml: true }"
           ></div>
+          <!-- <div
+            *ngIf="speakerResource.attachment_type === EAttachmentType.EMBEDDED_LINK"
+            [innerHTML]="iframe"
+            class="embedded-content"
+          ></div> -->
+          <!-- <div *ngIf="speakerResource.attachment_type === EAttachmentType.LINK" class="link-content">
+            <a>{{ speakerResource.embedded_content }}</a>
+          </div> -->
+          <!-- <div *ngIf="speakerResource.attachment_type === EAttachmentType.PDF_FILE" class="pdf-content">
+            <object
+              class="com-w-2/6 com-h-40"
+              attr.data="{{ speakerResource.presentation_file.url| safe : 'resourceUrl' }}"
+              type="application/pdf"
+            ></object>
+          </div> -->
           <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
         </div>
         <div class="interactions d-flex">

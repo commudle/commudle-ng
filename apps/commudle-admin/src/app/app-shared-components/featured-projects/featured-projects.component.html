@@ -1,0 +1,41 @@
+<nb-card
+  [ngClass]="{
+    'container-scroll': isMobileView || showCardsHorizontal,
+    container: !(isMobileView || showCardsHorizontal)
+  }"
+>
+  <nb-card-body>
+    <div class="heading">
+      <button *ngIf="showStarsEmojiOnHeading" nbButton class="image">
+        <img alt="Featured Projects" src="{{ staticAssets.emojis.stars }}" title="Featured Projects" />
+      </button>
+      <button *ngIf="showBulbEmojiOnHeading" nbButton class="emoji" size="small">
+        <fa-icon [icon]="faLightbulb"></fa-icon>
+      </button>
+      <div class="text">
+        <h3 class="title">FEATURED BUILDS</h3>
+        <h4 class="sub-heading">We found these innovative!</h4>
+      </div>
+    </div>
+    <app-skeleton-cards
+      [cards]="5"
+      [ImageShapeSquare]="false"
+      [ImageShapeCircle]="false"
+      *ngIf="showSpinner"
+    ></app-skeleton-cards>
+    <div
+      [ngClass]="{
+        'featured-projects-scroll': isMobileView || showCardsHorizontal,
+        'featured-projects': !(isMobileView || showCardsHorizontal)
+      }"
+      class="custom-scrollbar"
+    >
+      <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
+        <commudle-featured-projects-card
+          [featuredProject]="featuredProject"
+          [showTag]="showTag"
+        ></commudle-featured-projects-card>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

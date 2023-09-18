@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-body>
-    <a [routerLink]="[featuredProject.community_build.slug]">
+    <a [routerLink]="['/builds', featuredProject.community_build.slug]">
       <div class="featured-projects-card">
         <div class="details">
           <div class="user-profile-card">
@@ -19,7 +19,7 @@
           ></app-votes-display>
         </div>
       </div>
-      <div>
+      <div class="tags" *ngIf="showTag">
         <app-tag
           [tags]="featuredProject.community_build.tags"
           [backgroundColor]="'#FCEDE7'"

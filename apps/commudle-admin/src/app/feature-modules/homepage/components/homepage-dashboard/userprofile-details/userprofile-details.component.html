@@ -1,0 +1,50 @@
+<div *ngIf="userProfileDetails" class="main-container">
+  <div class="profile-visited">
+    <div class="profile-visited-text">
+      <p class="icon"><fa-icon [icon]="faEye"></fa-icon></p>
+      <p>Unique Profile Visits in Last 90 Days</p>
+    </div>
+    <p class="profile-visited-count">{{ userProfileDetails.profile_views.overall.ninety_days }}</p>
+  </div>
+  <div class="talks-given">
+    <div class="talks-given-text">
+      <p class="icon"><fa-icon [icon]="faMicrophone"></fa-icon></p>
+      <p>Talks Given</p>
+    </div>
+    <p *ngIf="userProfileDetails.speaker_events_count > 0" class="talks-given-count">
+      {{ userProfileDetails.speaker_events_count }}
+    </p>
+  </div>
+  <p class="complete-profile">Your Profile Stats</p>
+  <div class="labs-published">
+    <div class="labs-published-text">
+      <p class="icon"><fa-icon [icon]="faFlask"></fa-icon></p>
+      <p>Total Labs Published</p>
+    </div>
+    <p class="labs-published-count">{{ userProfileDetails.published_labs_count }}</p>
+  </div>
+  <div class="builds-published">
+    <div class="builds-published-text">
+      <p class="icon"><fa-icon [icon]="faLightbulb"></fa-icon></p>
+      <p>Total Builds Published</p>
+    </div>
+    <p class="builds-published-count">{{ userProfileDetails.published_community_builds_count }}</p>
+  </div>
+  <div class="attended-events">
+    <div class="attended-events-text">
+      <p class="icon"><fa-icon [icon]="faCalendarCheck"></fa-icon></p>
+      <p>Attended Events</p>
+    </div>
+    <p class="attended-events-count">{{ userProfileDetails.events_attended_count }}</p>
+  </div>
+  <div class="content-published">
+    <div class="content-published-text">
+      <p class="icon"><fa-icon [icon]="faBookmark"></fa-icon></p>
+      <p>Content Links Shared</p>
+    </div>
+    <p class="content-published-count">{{ userProfileDetails.social_resources_count }}</p>
+  </div>
+  <a [routerLink]="['/users', username]" class="profile-link"
+    >Complete Your Profile <fa-icon [icon]="faArrowRight"></fa-icon
+  ></a>
+</div>

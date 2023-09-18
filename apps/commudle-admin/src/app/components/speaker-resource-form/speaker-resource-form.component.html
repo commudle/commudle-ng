@@ -1,140 +1,226 @@
-<div *ngIf="this.speakerResource" class="speaker-resource-form page-padding">
-  <nb-card>
-    <nb-card-body>
-      <div *ngIf="this.community" class="details">
-        <div class="community">
-          <div class="logo">
-            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
-          </div>
-          <div>
-            <p>{{ community.name }}</p>
-          </div>
-        </div>
-        <div class="event">
-          <h5>{{ speakerResource.event.name }}</h5>
-        </div>
-        <div>
-          <p>
-            Hi
-            <strong>{{ speakerResource.user.name }}</strong
-            >, we think that the content shared by you is something that people will benefit from even after the event.
-            Please fill this short form!
-          </p>
-          <p>Also, please do update your profile on <a [routerLink]="['/my-profile']">THIS LINK</a></p>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-
-  <nb-card>
-    <nb-card-body>
-      <div class="form">
-        <form (ngSubmit)="submitForm()" [formGroup]="speakerResourceForm">
-          <div>
-            <label>
-              Title*
-              <input formControlName="title" fullWidth nbInput type="text" />
-            </label>
-            <span
-              *ngIf="
-                speakerResourceForm['controls'].title.touched &&
-                speakerResourceForm['controls'].title.invalid &&
-                speakerResourceForm['controls'].title.errors.required
-              "
-              class="validation-error-text"
-            >
-              Required Field
-            </span>
-          </div>
-          <div>
-            <label>
-              Do you have a Google Slides Presentation?
-              <span (click)="openGoogleSlidesEmbedStepsWindow()" class="open-window-link">
-                Steps to embed Google Slides
-              </span>
-              <br />
-              <small>These will be shared after the event with everyone!</small>
-              <input
-                formControlName="embedded_content"
-                fullWidth
-                nbInput
-                placeholder="Paste the embed code here"
-                type="text"
-              />
-            </label>
-          </div>
-          <div *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode" class="embedded-slides"></div>
-          <div>
-            <label>
-              Session Details*
-              <textarea
-                formControlName="session_details_links"
-                fullWidth
-                nbInput
-                placeholder="My session is about..."
-                type="text"
-              ></textarea>
-            </label>
-            <span
-              *ngIf="
-                speakerResourceForm['controls'].session_details_links.touched &&
-                speakerResourceForm['controls'].session_details_links.invalid &&
-                speakerResourceForm['controls'].session_details_links.errors.required
-              "
-              class="validation-error-text"
-            >
-              Required Field
-            </span>
-          </div>
-
-          <div>
-            <button [disabled]="!speakerResourceForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
-          </div>
-        </form>
-      </div>
-    </nb-card-body>
-  </nb-card>
-
-  <!-- Templates for embedding steps -->
-  <ng-template #googleSlidesEmbed>
-    <div>
-      <ol>
-        <li>Open your Google Slides</li>
-        <li>At the top, <strong>click File and then Publish to the web</strong></li>
-        <li>In the window that appears, <strong>click Embed</strong></li>
-        <li>
-          Choose a publishing option:
-          <strong>
-            Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides
-            <strong>(Default)</strong>.
-          </strong>
-        </li>
-        <li>Click Publish</li>
-        <li>
-          Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
-          <small>
-            <code>
-              <div>
-                <div>
-                  &lt;iframe
-                  src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
-                  frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
-                  webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+<div class="base-layout">
+  <div class="container">
+    <div class="two-column-layout medium">
+      <div class="main-column">
+        <div *ngIf="this.speakerResource" class="speaker-resource-form page-padding">
+          <nb-card>
+            <h5 class="heading">UPDATE YOUR SESSION DETAILS</h5>
+          </nb-card>
+          <nb-card>
+            <nb-card-body>
+              <div *ngIf="this.community" class="details">
+                <div class="community">
+                  <div class="logo">
+                    <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
+                  </div>
+                  <div>
+                    <p class="community-name">{{ community.name }}</p>
+                  </div>
+                </div>
+                <div class="event">
+                  <h6>{{ speakerResource.event.name }}</h6>
+                </div>
+                <div class="profile-complete">
+                  <p>
+                    Hi {{ speakerResource.user.name }}, we think that the content shared by you is something that people
+                    will benefit from even after the event. Please fill this short form!
+                  </p>
+                  <p class="update-profile">Please update your profile by clicking on your profile card on the right</p>
                 </div>
               </div>
-            </code>
-          </small>
-        </li>
-      </ol>
+            </nb-card-body>
+          </nb-card>
 
-      <p>
-        <small>
-          <a href="https://support.google.com/docs/answer/183965?co=GENIE.Platform%3DDesktop&hl=en">
-            Source
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-        </small>
-      </p>
+          <nb-card>
+            <nb-card-body>
+              <div class="form">
+                <form (ngSubmit)="submitForm()" [formGroup]="speakerResourceForm">
+                  <div class="title">
+                    <label>
+                      Title*
+                      <input formControlName="title" fullWidth nbInput type="text" size="small" />
+                    </label>
+                    <span
+                      *ngIf="
+                        speakerResourceForm['controls'].title.touched &&
+                        speakerResourceForm['controls'].title.invalid &&
+                        speakerResourceForm['controls'].title.errors.required
+                      "
+                      class="validation-error-text"
+                    >
+                      Required Field
+                    </span>
+                  </div>
+                  <div class="session-slides-options">
+                    <p>Select one of the following</p>
+                    <div class="options">
+                      <label
+                        ><input
+                          type="radio"
+                          name="slides"
+                          value="link"
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK"
+                          (change)="speakerResourceForm.get('attachment_type').patchValue('link')"
+                        />Link</label
+                      >
+                      <label
+                        ><input
+                          type="radio"
+                          name="slides"
+                          value="pdf_file"
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.PDF_FILE"
+                          (change)="speakerResourceForm.get('attachment_type').patchValue('pdf_file')"
+                        />Upload (PDF)</label
+                      >
+                      <label
+                        ><input
+                          type="radio"
+                          name="slides"
+                          value="embedded_link"
+                          [checked]="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
+                          (change)="speakerResourceForm.get('attachment_type').patchValue('embedded_link')"
+                        />Embed</label
+                      >
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.PDF_FILE"
+                    class="upload-pdf"
+                  >
+                    <label>
+                      <p>Please upload your PDF file here*</p>
+                      <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
+                      <!-- <iframe
+                        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM05VQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2e99899390cd6dd5a932e331033fe7ccc756830/SampleDocs-sample-pdf-file.pdf"
+                        style="width: 100%; height: 100%; border: none"
+                      ></iframe> -->
+                      <!-- <object
+                        class="com-w-2/6 com-h-40"
+                        attr.data="{{ uploadedPdfSrc | safe : 'resourceUrl' }}"
+                        type="application/pdf"
+                      ></object> -->
+                      <!-- <iframe
+                        src="{{ source | safe : 'resourceUrl' }}"
+                        style="width: 100%; height: 100%; border: none"
+                      ></iframe> -->
+                    </label>
+                  </div>
+                  <div *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK" class="link">
+                    <label>
+                      Add your presentation link here*
+                      <input formControlName="embedded_content" fullWidth nbInput size="small" type="url" />
+                    </label>
+                    <!-- <span *ngIf="communityBuildForm.get('link').invalid">
+                        <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
+                      </span> -->
+                  </div>
+                  <div
+                    *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
+                    class="embed"
+                  >
+                    <label>
+                      Do you have a Google Slides Presentation?
+                      <span (click)="openGoogleSlidesEmbedStepsWindow()" class="open-window-link">
+                        Steps to embed Google Slides
+                      </span>
+                      <br />
+                      <p class="instruction">(This will be shared with everyone after the event ends)</p>
+                      <input
+                        formControlName="embedded_content"
+                        fullWidth
+                        nbInput
+                        placeholder="Paste the embed code here"
+                        type="text"
+                      />
+                    </label>
+                  </div>
+                  <div *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode" class="embedded-slides"></div>
+                  <div class="session-details">
+                    <label>
+                      Describe your session for event attendees*
+                      <textarea formControlName="session_details_links" fullWidth nbInput type="text"></textarea>
+                    </label>
+                    <span
+                      *ngIf="
+                        speakerResourceForm['controls'].session_details_links.touched &&
+                        speakerResourceForm['controls'].session_details_links.invalid &&
+                        speakerResourceForm['controls'].session_details_links.errors.required
+                      "
+                      class="validation-error-text"
+                    >
+                      Required Field
+                    </span>
+                  </div>
+                  <button [disabled]="!speakerResourceForm.valid" nbButton status="primary" type="submit">Save</button>
+                </form>
+              </div>
+            </nb-card-body>
+          </nb-card>
+
+          <!-- Templates for embedding steps -->
+          <ng-template #googleSlidesEmbed>
+            <div>
+              <ol>
+                <li>Open your Google Slides</li>
+                <li>At the top, <strong>click File and then Publish to the web</strong></li>
+                <li>In the window that appears, <strong>click Embed</strong></li>
+                <li>
+                  Choose a publishing option:
+                  <strong>
+                    Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the
+                    slides <strong>(Default)</strong>.
+                  </strong>
+                </li>
+                <li>Click Publish</li>
+                <li>
+                  Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
+                  <small>
+                    <code>
+                      <div>
+                        <div>
+                          &lt;iframe
+                          src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
+                          frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
+                          webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+                        </div>
+                      </div>
+                    </code>
+                  </small>
+                </li>
+              </ol>
+
+              <p>
+                <small>
+                  <a href="https://support.google.com/docs/answer/183965?co=GENIE.Platform%3DDesktop&hl=en">
+                    Source
+                    <nb-icon icon="external-link"></nb-icon>
+                  </a>
+                </small>
+              </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div *ngIf="currentUser" class="right-column">
+        <div class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.name"
+          ></commudle-userprofile-details>
+        </div>
+      </div>
     </div>
-  </ng-template>
+  </div>
 </div>
+
+<!-- <iframe
+                            src="{{ speakerResource.presentation_file.url | safe : 'resourceUrl' }}"
+                            style="width: 100%; height: 100%; border: none"
+                          ></iframe> -->
+<!-- <object
+                          class="com-w-2/6 com-h-40"
+                          attr.data="{{ uploadedPdfSrc | safe : 'resourceUrl' }}"
+                          type="application/pdf"
+                        ></object> -->
+<!-- <iframe src="{{ uploadedPdfSrc }}" style="width: 100%; height: 100%; border: none"></iframe> -->

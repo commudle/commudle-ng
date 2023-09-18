@@ -33,7 +33,6 @@ import { BuildListItemComponent } from './components/my-community-builds/build-l
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
-import { FeaturedProjectsComponent } from './components/community-builds/featured-projects/featured-projects.component';
 import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects-card/featured-projects-card.component';
 import { BuildsHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/community-builds/components/community-builds/builds-header/builds-header.component';
 import { BuildsTopBuildersComponent } from './components/community-builds/builds-top-builders/builds-top-builders.component';
@@ -42,6 +41,7 @@ import { ExploreExpertsComponent } from './components/community-builds/explore-e
 import { BuildsComponent } from './components/community-builds/builds/builds.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects/featured-projects.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,6 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     BuildListItemComponent,
     TeammateInviteConfirmationComponent,
     CommunityBuildCardComponent,
-    FeaturedProjectsComponent,
     BuildsHeaderComponent,
     BuildsTopBuildersComponent,
     ExploreExpertsComponent,
@@ -76,11 +75,12 @@ import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-sha
     SharedComponentsModule,
     PublicHomeListEventsModule,
 
-    //standalome
+    //Standalone
     FeaturedProjectsCardComponent,
     TopBuildersCardComponent,
     SkeletonCardsComponent,
     ListingPagesLayoutComponent,
+    FeaturedProjectsComponent,
 
     // Nebular
     NbCardModule,
