@@ -5,8 +5,8 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { CommonModule } from '@angular/common';
 import { NbCardModule } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-import { FeaturedProjectsCardComponent } from '../featured-projects-card/featured-projects-card.component';
-import { SkeletonCardsComponent } from '../../feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects-card/featured-projects-card.component';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 

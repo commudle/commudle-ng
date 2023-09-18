@@ -49,7 +49,6 @@ export class SpeakerResourceFormComponent implements OnInit {
     private router: Router,
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
-    private cdr: ChangeDetectorRef,
   ) {
     this.speakerResourceForm = this.fb.group({
       title: ['', Validators.required],
@@ -106,14 +105,14 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   submitForm() {
     this.speakerResourcesService
-      .createOrUpdateByToken(this.token, this.getPdfFormData(), this.eventId)
+      .createOrUpdateByToken(this.token, this.getSpeakerResponseFormData(), this.eventId)
       .subscribe((data) => {
         this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/communities', this.community.slug, 'events', this.speakerResource.event.slug]);
       });
   }
 
-  getPdfFormData(): FormData {
+  getSpeakerResponseFormData(): FormData {
     const formData = new FormData();
     const pdfValue = this.speakerResourceForm.value;
 

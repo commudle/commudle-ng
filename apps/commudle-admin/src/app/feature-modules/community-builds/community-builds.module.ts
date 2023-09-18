@@ -41,7 +41,7 @@ import { ExploreExpertsComponent } from './components/community-builds/explore-e
 import { BuildsComponent } from './components/community-builds/builds/builds.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
-import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
+import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects/featured-projects.component';
 
 @NgModule({
   declarations: [
