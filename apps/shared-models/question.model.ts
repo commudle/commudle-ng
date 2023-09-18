@@ -10,5 +10,5 @@ export interface IQuestion {
   disabled: boolean;
   has_responses: boolean;
   question_choices: IQuestionChoice[];
-
+  editMode?: string;
 }

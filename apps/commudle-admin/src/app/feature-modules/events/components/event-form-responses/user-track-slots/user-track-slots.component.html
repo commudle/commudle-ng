@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="event.editable" class="com-flex com-justify-center com-flex-col">
+        <div *ngIf="event.editable" class="com-flex com-justify-center com-flex-col com-gap-2">
           <div>
             <nb-icon icon="edit-outline" (click)="editTrackSlot(trackSlot, i)" class="edit-outline"></nb-icon>
           </div>
@@ -61,7 +61,7 @@
   <!-- <button (click)="editTrackSlot(trackSlot)">edit</button> -->
 </div>
 
-<div *ngIf="trackSlots.length === 0">
+<div *ngIf="trackSlots.length === 0" class="com-text-center">
   <p>No session slot assigned</p>
   <button nbButton (click)="showAddSlotForm()">Assign session slot</button>
 </div>

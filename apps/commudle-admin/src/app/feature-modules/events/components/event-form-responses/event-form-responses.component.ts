@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnMode, SortType } from '@commudle/ngx-datatable';
 import { NbWindowService } from '@commudle/theme';
@@ -13,12 +13,15 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
+import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { IQuestion } from 'apps/shared-models/question.model';
 import { IRegistrationStatus } from 'apps/shared-models/registration_status.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { faXmark, faFilter, faPieChart } from '@fortawesome/free-solid-svg-icons';
+import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -61,6 +64,18 @@ export class EventFormResponsesComponent implements OnInit {
   fromRegistrationStatus: string;
   toRegistrationStatus: string;
   selectedRegistrationStatus = 0;
+  gender = '';
+  eventLocationTracks: IEventLocationTrack[];
+  selectedEventLocationTrackId = 0;
+  icons = {
+    faXmark,
+    faFilter,
+    faPieChart,
+  };
+  editMode = false;
+
+  forms: FormGroup[] = [];
+  EQuestionTypes = EQuestionTypes;
 
   //TODO past event stats
   constructor(
@@ -88,12 +103,7 @@ export class EventFormResponsesComponent implements OnInit {
 
     this.eventDataFormEntityGroupId = this.activatedRoute.snapshot.queryParamMap['params']['parent_id'];
 
-    // get event_data_form_entity_group
-    this.eventDataFormEntityGroupsService
-      .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
-      .subscribe((data) => {
-        this.eventDataFormEntityGroup = data;
-      });
+    this.getEventDataFromEntityGroup();
 
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) => {
@@ -110,6 +120,15 @@ export class EventFormResponsesComponent implements OnInit {
 
     // this.getResponses();
     this.updateFilter();
+  }
+
+  // get event_data_form_entity_group
+  getEventDataFromEntityGroup() {
+    this.eventDataFormEntityGroupsService
+      .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
+      .subscribe((data) => {
+        this.eventDataFormEntityGroup = data;
+      });
   }
 
   getUserRoles() {
@@ -132,6 +151,8 @@ export class EventFormResponsesComponent implements OnInit {
             this.registrationStatusId,
             this.page,
             this.count,
+            this.gender,
+            this.selectedEventLocationTrackId,
           );
         }),
       )
@@ -140,9 +161,28 @@ export class EventFormResponsesComponent implements OnInit {
       });
   }
 
-  registrationStatusFilter(selectedRegistrationStatusId) {
+  registrationStatusFilter(event) {
     this.page = 1;
-    this.registrationStatusId = selectedRegistrationStatusId;
+    this.registrationStatusId = event.target.value;
+    this.getResponses();
+  }
+
+  genderFilter(event) {
+    this.page = 1;
+    this.gender = event ? event.target.value : '';
+    this.getResponses();
+  }
+
+  eventLocationTrackId(eventLocationTracks) {
+    this.eventLocationTracks = eventLocationTracks;
+  }
+
+  trackSlotFilter(data?) {
+    this.selectedEventLocationTrackId;
+    if (data === 0) {
+      this.selectedEventLocationTrackId = data;
+    }
+    this.page = 1;
     this.getResponses();
   }
 
@@ -156,6 +196,7 @@ export class EventFormResponsesComponent implements OnInit {
           this.registrationStatusId,
           this.page,
           this.count,
+          this.gender,
         )
         .subscribe((data) => {
           this.setResponses(data);
@@ -166,9 +207,16 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   getResponses() {
+    const formData = new FormData();
     this.emptyMessage = 'Loading...';
     this.isLoading = false;
     this.rows = [];
+    if (this.forms.length > 0) {
+      for (const form of this.forms) {
+        formData.append(`qres[]q`, form.get('q').value);
+        formData.append(`qres[]v`, form.get('v').value);
+      }
+    }
     this.dataFormEntityResponseGroupsService
       .getEventDataFormResponses(
         this.eventDataFormEntityGroupId,
@@ -176,6 +224,9 @@ export class EventFormResponsesComponent implements OnInit {
         this.registrationStatusId,
         this.page,
         this.count,
+        this.gender,
+        this.selectedEventLocationTrackId,
+        formData,
       )
       .subscribe((data) => {
         this.totalEntries = data.total;
@@ -186,6 +237,7 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   setResponses(data) {
+    this.getEventDataFromEntityGroup();
     this.totalEntries = data.total;
     this.rows = data.data_form_entity_response_groups;
     this.isLoading = false;
@@ -288,5 +340,52 @@ export class EventFormResponsesComponent implements OnInit {
 
   changeToRegistrationStatus(event) {
     this.toRegistrationStatus = event.target.value;
+  }
+
+  enableEditMode(question, i) {
+    const newForm = this.fb.group({
+      q: [question.id],
+      v: [''],
+    });
+    // this.forms.push(newForm);
+    this.forms.splice(i, 0, newForm);
+    question.editMode = true;
+    const vControl = newForm.get('v');
+    const formData = new FormData();
+
+    if (vControl) {
+      vControl.valueChanges
+        .pipe(
+          debounceTime(800),
+          switchMap(() => {
+            this.rows = [];
+            this.page = 1;
+            this.emptyMessage = 'Loading...';
+            for (const form of this.forms) {
+              formData.append(`qres[]q`, form.get('q').value);
+              formData.append(`qres[]v`, form.get('v').value);
+            }
+            return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
+              this.eventDataFormEntityGroupId,
+              this.searchForm.get('name').value.toLowerCase(),
+              this.registrationStatusId,
+              this.page,
+              this.count,
+              this.gender,
+              this.selectedEventLocationTrackId,
+              formData,
+            );
+          }),
+        )
+        .subscribe((data) => {
+          this.setResponses(data);
+        });
+    }
+  }
+
+  disableEditMode(question, i) {
+    question.editMode = false;
+    this.forms.splice(i, 1);
+    this.getResponses();
   }
 }
