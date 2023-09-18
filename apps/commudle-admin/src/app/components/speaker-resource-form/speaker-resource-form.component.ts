@@ -34,7 +34,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   uploadedResume: File;
   // uploadedResume: IAttachedFile;
   uploadedResumeSrc: string;
-  attachmentType = 'pdf_file';
+  // attachmentType = 'link';
   ERegistrationType = ERegistrationType;
   source: string;
 
@@ -60,7 +60,7 @@ export class SpeakerResourceFormComponent implements OnInit {
       title: ['', Validators.required],
       embedded_content: [''],
       session_details_links: ['', Validators.required],
-      attachment_type: ['pdf_file'],
+      attachment_type: ['link'],
     });
   }
 
@@ -69,13 +69,18 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.appUsersService.getProfileStats().subscribe((data) => {
       this.userProfileDetails = data;
     });
-    this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
-      if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
-        this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
-      } else {
-        this.embedGoogleSlidesCode = null;
-      }
-    });
+    console.log(this.speakerResourceForm.get('attachment_type').value, '1');
+    // this.speakerResourceForm.get('attachment_type').patchValue('link');
+    // console.log(this.speakerResourceForm.get('attachment_type').value, '2');
+    if (this.speakerResourceForm.get('attachment_type').value === 'embedded_link') {
+      this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
+        if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
+          this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
+        } else {
+          this.embedGoogleSlidesCode = null;
+        }
+      });
+    }
 
     this.activatedRoute.queryParams.subscribe((data) => {
       this.token = data['token'];
@@ -133,7 +138,6 @@ export class SpeakerResourceFormComponent implements OnInit {
   getResumeFormData(): FormData {
     const formData = new FormData();
     // this.speakerResourceForm.get('attachment_type').patchValue(this.attachmentType);
-    console.log(this.speakerResourceForm.get('attachment_type').value, 'hello');
     const resumeValue = this.speakerResourceForm.value;
 
     Object.keys(resumeValue).forEach((key) => {
