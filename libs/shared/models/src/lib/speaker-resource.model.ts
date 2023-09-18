@@ -17,6 +17,7 @@ export interface ISpeakerResource {
   favicon?: string;
   description?: string;
   presentation_file: IAttachedFile;
+  attachment_type: string;
 }
 
 export enum ERegistrationType {

@@ -9,6 +9,7 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
+import { ERegistrationType } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-speaker-resource',
@@ -25,6 +26,7 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   iframe;
+  ERegistrationType = ERegistrationType;
 
   constructor(
     private activatedRoute: ActivatedRoute,

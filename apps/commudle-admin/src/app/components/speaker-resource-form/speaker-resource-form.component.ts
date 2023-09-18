@@ -12,7 +12,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { ERegistrationType, IAttachedFile } from '@commudle/shared-models';
+import { ERegistrationType } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-speaker-resource-form',
