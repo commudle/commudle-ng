@@ -25,14 +25,11 @@ export class SpeakerResourceFormComponent implements OnInit {
   speakerResource: ISpeakerResource;
   community: ICommunity;
   embedGoogleSlidesCode: any;
-  showPdfOption = true;
-  showEmbedOption = false;
-  showLinkOption = false;
   staticAssets = staticAssets;
   currentUser: ICurrentUser;
   userProfileDetails;
-  uploadedResume: File;
-  uploadedResumeSrc: string;
+  uploadedPdf: File;
+  uploadedPdfSrc: string;
   ERegistrationType = ERegistrationType;
   source: string;
 
@@ -88,7 +85,7 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe((data) => {
       this.speakerResource = data;
       if (data.presentation_file) {
-        this.uploadedResumeSrc = data.presentation_file.url;
+        this.uploadedPdfSrc = data.presentation_file.url;
       }
       if (this.speakerResource.id) {
         this.prefillForm();
@@ -109,25 +106,25 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   submitForm() {
     this.speakerResourcesService
-      .createOrUpdateByToken(this.token, this.getResumeFormData(), this.eventId)
+      .createOrUpdateByToken(this.token, this.getPdfFormData(), this.eventId)
       .subscribe((data) => {
         this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/communities', this.community.slug, 'events', this.speakerResource.event.slug]);
       });
   }
 
-  getResumeFormData(): FormData {
+  getPdfFormData(): FormData {
     const formData = new FormData();
-    const resumeValue = this.speakerResourceForm.value;
+    const pdfValue = this.speakerResourceForm.value;
 
-    Object.keys(resumeValue).forEach((key) => {
-      if (resumeValue[key] !== null && resumeValue[key] !== undefined && resumeValue[key] !== '') {
-        formData.append(`speaker_resource[${key}]`, resumeValue[key]);
+    Object.keys(pdfValue).forEach((key) => {
+      if (pdfValue[key] !== null && pdfValue[key] !== undefined && pdfValue[key] !== '') {
+        formData.append(`speaker_resource[${key}]`, pdfValue[key]);
       }
     });
 
-    if (this.uploadedResume != null) {
-      formData.append('speaker_resource[presentation_file]', this.uploadedResume);
+    if (this.uploadedPdf != null) {
+      formData.append('speaker_resource[presentation_file]', this.uploadedPdf);
     }
     return formData;
   }
@@ -149,11 +146,11 @@ export class SpeakerResourceFormComponent implements OnInit {
       }
 
       const file = event.target.files[0];
-      this.uploadedResume = file;
+      this.uploadedPdf = file;
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.uploadedResumeSrc = <string>reader.result;
+        this.uploadedPdfSrc = <string>reader.result;
       };
       reader.readAsDataURL(file);
     }

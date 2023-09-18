@@ -51,6 +51,7 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.speakerResourcesService.getDetails(speakerId).subscribe((data) => {
         this.speakerResource = data;
+        console.log(this.speakerResource, 'speaker-resource');
         if (this.speakerResource.embedded_content) {
           this.iframe = this.domSanitizer.bypassSecurityTrustHtml(this.speakerResource.embedded_content);
         }
