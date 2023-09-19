@@ -17,13 +17,14 @@ import * as moment from 'moment';
 })
 export class UserTrackSlotsComponent implements OnInit {
   @Input() trackSlots: ITrackSlot[];
-  @Input() speakers;
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  @Input() row;
   eventLocations: IEventLocation[];
   moment = moment;
   dialogRef: NbDialogRef<any>;
   eventLocationTracks: IEventLocationTrack[] = [];
+  minSlotDate;
   @Output() eventLocationTrackIdsEmit = new EventEmitter<IEventLocationTrack[]>();
 
   @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
@@ -34,15 +35,8 @@ export class UserTrackSlotsComponent implements OnInit {
     private trackSlotsService: TrackSlotsService,
     private toastLogService: LibToastLogService,
   ) {}
-  speaker: IUser[] = [];
-  minSlotDate;
 
   ngOnInit(): void {
-    for (const speaker of this.speakers) {
-      if (speaker.registration_status.name === 'confirmed') {
-        this.speaker.push(speaker);
-      }
-    }
     this.minSlotDate = moment(this.event.start_time).toDate();
     this.getEventLocations();
   }
@@ -50,16 +44,6 @@ export class UserTrackSlotsComponent implements OnInit {
   getEventLocations() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
-      for (const eventLocation of this.eventLocations) {
-        for (const eventLocationTrack of eventLocation.event_location_tracks) {
-          this.eventLocationTracks.push(eventLocationTrack);
-          for (const trackSlot of this.trackSlots) {
-            if (trackSlot.event_location_track_id === eventLocationTrack.id) {
-              trackSlot.event_location_track_name = eventLocationTrack.name;
-            }
-          }
-        }
-      }
       if (this.eventLocationTracks.length > 0) {
         this.eventLocationTrackIdsEmit.emit(this.eventLocationTracks);
       }
@@ -71,7 +55,6 @@ export class UserTrackSlotsComponent implements OnInit {
       context: {
         operationType: 'edit',
         eventLocations: this.eventLocations,
-        eventSpeakers: this.speaker,
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
       },
@@ -88,7 +71,6 @@ export class UserTrackSlotsComponent implements OnInit {
       context: {
         operationType: 'create',
         eventLocations: this.eventLocations,
-        eventSpeakers: this.speaker,
         eventLocTrack: this.eventLocations,
         startTime: this.minSlotDate,
         minSlotDate: this.minSlotDate,
