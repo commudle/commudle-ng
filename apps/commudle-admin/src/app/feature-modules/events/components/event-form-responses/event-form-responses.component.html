@@ -277,7 +277,7 @@
             </div>
             <div *ngIf="question.editMode" class="com-flex com-items-center com-gap-2">
               <div class="com-my-14px">
-                <div>
+                <div *ngIf="forms[i]">
                   <form [formGroup]="forms[i]">
                     <div class="name-filter">
                       <div
@@ -315,8 +315,8 @@
                           question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE
                         "
                       >
-                        <select formControlName="v" autofocus>
-                          <option selected disabled>Choose Answer</option>
+                        <select formControlName="v" autofocus class="com-max-w-[150px]">
+                          <option selected disabled value="">Choose Answer</option>
                           <option [value]="qc.title" *ngFor="let qc of question.question_choices">
                             {{ qc.title }}
                           </option>
@@ -469,15 +469,17 @@
 </ng-template>
 
 <ng-template #templateRef let-data>
-  <commudle-event-form-responses-graph
-    [forms]="forms"
-    [eventDataFormEntityGroupId]="eventDataFormEntityGroupId"
-    [filterValue]="filterValue"
-    [registrationStatusId]="registrationStatusId"
-    [page]="page"
-    [count]="count"
-    [gender]="gender"
-    [selectedEventLocationTrackId]="selectedEventLocationTrackId"
-    [question]="data.question"
-  ></commudle-event-form-responses-graph>
+  <div class="com-h-96 com-w-80 com-overflow-scroll">
+    <commudle-event-form-responses-graph
+      [forms]="forms"
+      [eventDataFormEntityGroupId]="eventDataFormEntityGroupId"
+      [filterValue]="filterValue"
+      [registrationStatusId]="registrationStatusId"
+      [page]="page"
+      [count]="count"
+      [gender]="gender"
+      [selectedEventLocationTrackId]="selectedEventLocationTrackId"
+      [question]="data.question"
+    ></commudle-event-form-responses-graph>
+  </div>
 </ng-template>

@@ -68,7 +68,7 @@
         overflow-y: visible;
 
         white-space: normal;
-        @apply com-flex com-gap-1 com-items-center com-cursor-pointer com-w-max;
+        @apply com-flex com-gap-1 com-items-baseline com-cursor-pointer;
 
         .small-text {
           font-size: 10px;
