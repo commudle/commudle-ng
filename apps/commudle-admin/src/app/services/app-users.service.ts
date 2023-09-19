@@ -16,6 +16,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserRolesUsers } from 'apps/shared-models/user_roles_users.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -175,7 +176,7 @@ export class AppUsersService {
     });
   }
 
-  getProfileStats(): Observable<IUser> {
-    return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_STATS));
+  getProfileStats(): Observable<IUserStat> {
+    return this.http.get<IUserStat>(this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_STATS));
   }
 }
