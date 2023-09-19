@@ -42,10 +42,11 @@
             <a [href]="speakerResource.embedded_content" target="_blank">{{ speakerResource.embedded_content }}</a>
           </div>
           <div *ngIf="speakerResource.attachment_type === EAttachmentType.PDF_FILE" class="pdf-content">
-            <object
-              attr.data="{{ speakerResource.presentation_file.url | safe : 'resourceUrl' }}"
-              type="application/pdf"
-            ></object>
+            <iframe
+              [src]="speakerResource.presentation_file.url | safe : 'resourceUrl'"
+              width="100%"
+              height="500"
+            ></iframe>
           </div>
         </div>
         <div class="interactions d-flex">

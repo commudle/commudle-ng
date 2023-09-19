@@ -84,15 +84,17 @@
           .instruction {
             @apply com-text-xs com-font-normal com-text-Yankees-Blue com-m-0 com-mb-1;
           }
+
+          ::ng-deep .embedded-slides {
+            @apply com-mt-3;
+            iframe {
+              @apply com-w-full com-h-96 com-border com-border-solid com-border-Bright-Gray;
+            }
+          }
         }
 
         .open-window-link {
           @apply com-text-primary-500 com-no-underline com-cursor-pointer;
-        }
-
-        .embedded-slides {
-          display: flex;
-          justify-content: center;
         }
 
         .session-details {

@@ -10,7 +10,7 @@ import {
   faMicrophone,
 } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'commudle-userprofile-details',
@@ -18,7 +18,7 @@ import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
   styleUrls: ['./userprofile-details.component.scss'],
 })
 export class UserprofileDetailsComponent implements OnInit {
-  @Input() userProfileDetails: IUserStatsModel;
+  @Input() userProfileDetails: IUserStat;
   @Input() username;
   faEye = faEye;
   faFlask = faFlask;

@@ -1,4 +1,4 @@
-export interface IUserStatsModel {
+export interface IUserStat {
   events_attended_count: number;
   profile_views: {
     overall: {

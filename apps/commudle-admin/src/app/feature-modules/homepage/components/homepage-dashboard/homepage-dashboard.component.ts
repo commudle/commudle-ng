@@ -3,7 +3,7 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'commudle-homepage-dashboard',
@@ -13,7 +13,7 @@ import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
 export class HomepageDashboardComponent implements OnInit {
   currentUser: ICurrentUser;
   staticAssets = staticAssets;
-  userProfileDetails: IUserStatsModel;
+  userProfileDetails: IUserStat;
   constructor(private authWatchService: LibAuthwatchService, private appUsersService: AppUsersService) {}
 
   ngOnInit(): void {

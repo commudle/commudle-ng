@@ -13,7 +13,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { EAttachmentType } from '@commudle/shared-models';
-import { IUserStatsModel } from 'libs/shared/models/src/lib/user-stats.model';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -28,7 +28,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   embedGoogleSlidesCode: any;
   staticAssets = staticAssets;
   currentUser: ICurrentUser;
-  userProfileDetails: IUserStatsModel;
+  userProfileDetails: IUserStat;
   uploadedPdf: File;
   uploadedPdfSrc: string;
   EAttachmentType = EAttachmentType;
@@ -64,15 +64,6 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.appUsersService.getProfileStats().subscribe((data) => {
       this.userProfileDetails = data;
     });
-    if (this.speakerResourceForm.get('attachment_type').value === 'embedded_link') {
-      this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
-        if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
-          this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
-        } else {
-          this.embedGoogleSlidesCode = null;
-        }
-      });
-    }
 
     this.activatedRoute.queryParams.subscribe((data) => {
       this.token = data['token'];
@@ -87,6 +78,17 @@ export class SpeakerResourceFormComponent implements OnInit {
       if (data.presentation_file) {
         this.uploadedPdfSrc = data.presentation_file.url;
       }
+
+      if (data.embedded_content) {
+        this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
+          if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
+            this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
+          } else {
+            this.embedGoogleSlidesCode = null;
+          }
+        });
+      }
+
       if (this.speakerResource.id) {
         this.prefillForm();
       }
