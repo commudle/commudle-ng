@@ -20,6 +20,7 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
   @Input() gender;
   @Input() selectedEventLocationTrackId;
   @Input() question: IQuestion;
+  @Input() showGenderGraphOnly = false;
   EQuestionTypes = EQuestionTypes;
   responses;
   responseChart;
@@ -29,11 +30,13 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getResponses();
-    if (
-      this.question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE ||
-      this.question.question_type_id === EQuestionTypes.SINGLE_CHOICE
-    ) {
-      this.showChartView = true;
+    if (this.question) {
+      if (
+        this.question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE ||
+        this.question.question_type_id === EQuestionTypes.SINGLE_CHOICE
+      ) {
+        this.showChartView = true;
+      }
     }
   }
 
@@ -64,7 +67,7 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
         this.registrationStatusId,
         this.page,
         this.count,
-        this.question.id,
+        this.question ? this.question.id : '',
         this.gender,
         this.selectedEventLocationTrackId,
         formData,
@@ -87,29 +90,35 @@ export class EventFormResponsesGraphComponent implements OnInit, OnDestroy {
             ],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: ['Male', 'Female', 'Prefer Not To Answer', 'NA'],
-          },
-          options: {
-            responsive: true,
-          },
-        });
-        this.responseChart = new Chart(`responses`, {
-          type: 'pie',
-          data: {
-            datasets: [
-              {
-                data: Object.values(this.responses).map((row) => row),
-                backgroundColor: ['blue', '#ff43bc', 'purple', 'green', 'red', 'yellow'],
-              },
+            labels: [
+              `Male (${data.diversity.male ? data.diversity.male : 0})`,
+              `Female (${data.diversity.female ? data.diversity.female : 0})`,
+              `Prefer Not To Answer (${data.diversity.prefer_not_to_answer ? data.diversity.prefer_not_to_answer : 0})`,
+              `NA (${data.diversity.NA ? data.diversity.NA : 0})`,
             ],
-
-            // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: Object.keys(this.responses),
           },
           options: {
             responsive: true,
           },
         });
+        if (!this.showGenderGraphOnly) {
+          this.responseChart = new Chart(`responses`, {
+            type: 'pie',
+            data: {
+              datasets: [
+                {
+                  data: Object.values(this.responses).map((row) => row),
+                  backgroundColor: ['blue', '#ff43bc', 'purple', 'green', 'red', 'yellow', 'orange', 'pink'],
+                },
+              ],
+              // These labels appear in the legend and in the tooltips when hovering different arcs
+              labels: Object.keys(this.responses),
+            },
+            options: {
+              responsive: true,
+            },
+          });
+        }
       });
   }
 }

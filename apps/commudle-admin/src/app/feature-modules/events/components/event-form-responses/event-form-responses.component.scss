@@ -86,6 +86,19 @@
   }
 }
 
+.name-filter {
+  @apply com-w-full com-flex com-gap-1 com-items-center;
+  input {
+    @apply com-w-full;
+  }
+  .clear-search-filter {
+    @apply com-cursor-pointer;
+    fa-icon {
+      @apply com-text-red-500 com-text-base;
+    }
+  }
+}
+
 .group-actions {
   display: flex;
   flex-wrap: wrap;

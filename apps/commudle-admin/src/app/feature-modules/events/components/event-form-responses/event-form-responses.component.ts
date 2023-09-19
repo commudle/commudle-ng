@@ -22,6 +22,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { faXmark, faFilter, faPieChart } from '@fortawesome/free-solid-svg-icons';
 import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
+import { RegistrationTypeNames } from 'apps/shared-models/registration_type.model';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -76,6 +77,7 @@ export class EventFormResponsesComponent implements OnInit {
 
   forms: FormGroup[] = [];
   EQuestionTypes = EQuestionTypes;
+  RegistrationTypeNames = RegistrationTypeNames;
 
   //TODO past event stats
   constructor(
@@ -131,6 +133,9 @@ export class EventFormResponsesComponent implements OnInit {
       });
   }
 
+  clearInput() {
+    this.searchForm.get('name').setValue('');
+  }
   getUserRoles() {
     this.appUsersService.getMyRoles('Kommunity', this.community.id).subscribe((res) => {
       this.userRoles = res;

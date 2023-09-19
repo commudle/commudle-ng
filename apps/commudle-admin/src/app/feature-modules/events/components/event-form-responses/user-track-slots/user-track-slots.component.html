@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="row && row.registration_status.name === 'confirmed'">
   <nb-list *ngIf="trackSlots" class="com-p-0">
     <nb-list-item *ngFor="let trackSlot of trackSlots; let i = index" class="com-flex com-flex-col">
       <div class="com-flex">
@@ -61,7 +61,7 @@
   <!-- <button (click)="editTrackSlot(trackSlot)">edit</button> -->
 </div>
 
-<div *ngIf="trackSlots.length === 0" class="com-text-center">
+<div *ngIf="trackSlots.length === 0 && row && row.registration_status.name === 'confirmed'" class="com-text-center">
   <p>No session slot assigned</p>
   <button nbButton (click)="showAddSlotForm()">Assign session slot</button>
 </div>

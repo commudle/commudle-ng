@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { IEventLocation } from 'apps/shared-models/event-location.model';
 import { ICommunity, IEvent } from '@commudle/shared-models';
+import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 
 @Component({
   selector: 'commudle-track-slot-form',
@@ -18,7 +19,6 @@ import { ICommunity, IEvent } from '@commudle/shared-models';
 export class TrackSlotFormComponent implements OnInit {
   @Input() operationType: 'create' | 'edit';
   @Input() eventLocations: IEventLocation[] = [];
-  @Input() eventSpeakers;
   @Input() eventLocationTracks: IEventLocationTrack[] = [];
   @Input() startTime;
   @Input() eventLocTrack;
@@ -26,6 +26,7 @@ export class TrackSlotFormComponent implements OnInit {
   @Input() trackSlot;
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  eventSpeakers;
   icons = {
     faXmark,
   };
@@ -41,6 +42,7 @@ export class TrackSlotFormComponent implements OnInit {
     private trackSlotsService: TrackSlotsService,
     private toastLogService: LibToastLogService,
     private dialogRef: NbDialogRef<any>,
+    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
   ) {
     this.trackSlotForm = this.fb.group({
       track_slot: this.fb.group({
@@ -56,11 +58,18 @@ export class TrackSlotFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getEventSpeakers();
     if (this.operationType === 'create') {
       this.updateNewTrackSlot();
     } else {
       this.updateExistingTrackSlot();
     }
+  }
+
+  getEventSpeakers() {
+    this.dataFormEntityResponseGroupsService.getEventSpeakers(this.event.id).subscribe((data) => {
+      this.eventSpeakers = data.data_form_entity_response_groups;
+    });
   }
 
   updateNewTrackSlot() {

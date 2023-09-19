@@ -130,7 +130,6 @@ export class EventLocationTracksComponent implements OnInit {
       context: {
         operationType: 'create',
         eventLocations: this.eventLocations,
-        eventSpeakers: this.eventSpeakers,
         startTime: startTime,
         eventLocTrack: eventLocTrack,
         minSlotDate: this.minSlotDate,
@@ -159,7 +158,6 @@ export class EventLocationTracksComponent implements OnInit {
       context: {
         operationType: 'edit',
         eventLocations: this.eventLocations,
-        eventSpeakers: this.eventSpeakers,
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
       },
