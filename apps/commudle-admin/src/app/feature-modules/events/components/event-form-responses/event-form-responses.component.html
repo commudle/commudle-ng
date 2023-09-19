@@ -95,18 +95,30 @@
         <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="header-column-template">
-              <p>User Details</p>
+              <div class="com-flex com-gap-2">
+                <p>User Details</p>
+                <div
+                  [nbPopover]="templateRef"
+                  nbPopoverTrigger="hover"
+                  nbPopoverPlacement="bottom"
+                  [nbPopoverContext]="{ showGenderGraph: true }"
+                >
+                  <fa-icon [icon]="icons.faPieChart"></fa-icon>
+                </div>
+              </div>
               <form [formGroup]="searchForm">
                 <div class="name-filter">
                   <input
                     [disabled]="isLoading"
                     fieldSize="tiny"
                     formControlName="name"
-                    fullWidth
                     nbInput
-                    placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
+                    placeholder="{{ isLoading ? 'Still Loading' : 'Search by name, email, designation or tags' }}"
                     type="text"
                   />
+                  <div (click)="clearInput()" class="clear-search-filter" *ngIf="searchForm.get('name').value">
+                    <fa-icon [icon]="icons.faXmark"></fa-icon>
+                  </div>
                 </div>
               </form>
 
@@ -196,13 +208,16 @@
         </ngx-datatable-column>
 
         <!-- track slot details -->
-        <ngx-datatable-column [width]="350">
+        <ngx-datatable-column
+          [width]="350"
+          *ngIf="eventDataFormEntityGroup?.registration_type.name === RegistrationTypeNames.SPEAKER"
+        >
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="mobile-hidden">
-              <div class="com-flex com-gap-2 com-items-center">
+              <div class="com-flex com-gap-2 com-items-center com-justify-center">
                 <div class="track-slot-filter-dropdown">
                   <select [(ngModel)]="selectedEventLocationTrackId" (change)="trackSlotFilter()" class="com-border-0">
-                    <option [ngValue]="0">Assigned Session Slots</option>
+                    <option [ngValue]="0">Assigned Session Slots: All</option>
                     <option *ngFor="let elt of eventLocationTracks" [ngValue]="elt.id">
                       {{ elt.name }}
                     </option>
@@ -219,9 +234,9 @@
             <div class="mobile-hidden">
               <commudle-user-track-slots
                 [trackSlots]="row.track_slots"
-                [speakers]="rows"
                 [event]="event"
                 [community]="community"
+                [row]="row"
                 (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
               ></commudle-user-track-slots>
             </div>
@@ -375,7 +390,6 @@
             <div class="com-max-w-fit" *ngIf="eventDataFormEntityGroup?.is_paid">
               <commudle-user-track-slots
                 [trackSlots]="row.track_slots"
-                [speakers]="rows"
                 [event]="event"
                 [community]="community"
               ></commudle-user-track-slots>
@@ -469,7 +483,7 @@
 </ng-template>
 
 <ng-template #templateRef let-data>
-  <div class="com-h-96 com-w-80 com-overflow-scroll">
+  <div class="com-max-h-[384px] com-w-80 com-overflow-scroll">
     <commudle-event-form-responses-graph
       [forms]="forms"
       [eventDataFormEntityGroupId]="eventDataFormEntityGroupId"
@@ -480,6 +494,7 @@
       [gender]="gender"
       [selectedEventLocationTrackId]="selectedEventLocationTrackId"
       [question]="data.question"
+      [showGenderGraphOnly]="data.showGenderGraph"
     ></commudle-event-form-responses-graph>
   </div>
 </ng-template>
