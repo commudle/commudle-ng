@@ -1,23 +1,32 @@
-<nb-card>
+<nb-card
+  [ngClass]="{
+    'container-scroll': isMobileView || showCardsHorizontal,
+    container: !(isMobileView || showCardsHorizontal)
+  }"
+>
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">Featured Communities</h3>
-      <h4 class="sub-heading">Join the most active groups</h4>
+      <button *ngIf="showIconsOnHeading" nbButton class="emoji" size="small">
+        <fa-icon [icon]="faUserGroup"></fa-icon>
+      </button>
+      <div>
+        <h3 class="title">Featured Communities</h3>
+        <h4 class="sub-heading">Join the most active groups</h4>
+      </div>
     </div>
     <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
-    <div class="featured-communities custom-scrollbar">
+    <div
+      [ngClass]="{
+        'featured-communities-scroll': isMobileView || showCardsHorizontal,
+        'featured-communities': !(isMobileView || showCardsHorizontal)
+      }"
+      class="custom-scrollbar"
+    >
       <div class="featured-communities-card" *ngFor="let featuredCommunity of featuredCommunities">
-        <div *appBreakpoints="'>lg'">
-          <commudle-featured-communities-card
-            [featuredCommunity]="featuredCommunity"
-          ></commudle-featured-communities-card>
-        </div>
-        <div *appBreakpoints="'<=lg'">
-          <commudle-featured-communities-card
-            [featuredCommunity]="featuredCommunity"
-            [horizontalScroll]="true"
-          ></commudle-featured-communities-card>
-        </div>
+        <commudle-featured-communities-card
+          [featuredCommunity]="featuredCommunity"
+          [horizontalScroll]="isMobileView || showCardsHorizontal"
+        ></commudle-featured-communities-card>
       </div>
     </div>
   </nb-card-body>

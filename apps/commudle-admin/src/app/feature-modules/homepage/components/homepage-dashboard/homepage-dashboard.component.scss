@@ -1,0 +1,42 @@
+nb-card {
+  @apply com-mt-6 com-m-0;
+  nb-card-body {
+    @apply com-overflow-hidden md:com-px-6 md:com-pb-6 com-pt-4 com-px-3 com-pb-4;
+    .title {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-m-0 md:com-mb-6 com-mb-4;
+
+      .heading {
+        @apply com-flex com-items-center com-text-2xl com-font-semibold com-text-Yankees-Blue com-m-0 com-mb-2;
+
+        span {
+          @apply com-ml-2;
+        }
+      }
+
+      .sub-heading {
+        @apply com-text-base com-font-medium com-text-Quartz com-p-0 md:com-pb-3 com-pb-6 com-m-0;
+      }
+    }
+  }
+}
+
+.main-column {
+  @apply com-flex md:com-flex-row com-flex-col;
+
+  .user {
+    @apply md:com-w-[489px] com-w-full com-h-max com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray md:com-mr-6 com-mr-0 com-mb-4 md:com-mb-0;
+  }
+
+  .right-column {
+    @apply com-p-0 md:com-pl-6 com-pl-0 com-pt-4 md:com-pt-0 com-border-0 md:com-border-l com-border-l-0 com-border-t md:com-border-t-0 com-border-solid com-border-Bright-Gray md:com-w-[742px] md:com-pb-0;
+
+    .featured-communities,
+    .featured-projects {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mb-6;
+    }
+
+    .labs-featured {
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mt-6;
+    }
+  }
+}

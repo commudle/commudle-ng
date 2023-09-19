@@ -85,8 +85,8 @@ export class FormGroupsComponent implements OnInit {
     });
 
     this.getCommunityDataForms();
-    this.getStripeAccountData();
     this.getEventDataFormEntityGroups();
+    if (this.community.payments_enabled) this.getStripeAccountData();
   }
 
   getEventDataFormEntityGroups() {
