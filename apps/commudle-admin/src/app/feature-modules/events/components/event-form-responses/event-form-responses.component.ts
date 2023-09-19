@@ -142,9 +142,18 @@ export class EventFormResponsesComponent implements OnInit {
       .pipe(
         debounceTime(800),
         switchMap(() => {
+          const formData = new FormData();
           this.rows = [];
           this.page = 1;
           this.emptyMessage = 'Loading...';
+          if (this.forms.length > 0) {
+            for (const form of this.forms) {
+              if (form && form.get('v').value !== '') {
+                formData.append(`qres[]q`, form.get('q').value);
+                formData.append(`qres[]v`, form.get('v').value);
+              }
+            }
+          }
           return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
             this.eventDataFormEntityGroupId,
             this.searchForm.get('name').value.toLowerCase(),
@@ -153,6 +162,7 @@ export class EventFormResponsesComponent implements OnInit {
             this.count,
             this.gender,
             this.selectedEventLocationTrackId,
+            formData,
           );
         }),
       )
@@ -213,8 +223,10 @@ export class EventFormResponsesComponent implements OnInit {
     this.rows = [];
     if (this.forms.length > 0) {
       for (const form of this.forms) {
-        formData.append(`qres[]q`, form.get('q').value);
-        formData.append(`qres[]v`, form.get('v').value);
+        if (form && form.get('v').value !== '') {
+          formData.append(`qres[]q`, form.get('q').value);
+          formData.append(`qres[]v`, form.get('v').value);
+        }
       }
     }
     this.dataFormEntityResponseGroupsService
@@ -347,8 +359,7 @@ export class EventFormResponsesComponent implements OnInit {
       q: [question.id],
       v: [''],
     });
-    // this.forms.push(newForm);
-    this.forms.splice(i, 0, newForm);
+    this.forms[i] = newForm;
     question.editMode = true;
     const vControl = newForm.get('v');
     const formData = new FormData();
@@ -362,8 +373,10 @@ export class EventFormResponsesComponent implements OnInit {
             this.page = 1;
             this.emptyMessage = 'Loading...';
             for (const form of this.forms) {
-              formData.append(`qres[]q`, form.get('q').value);
-              formData.append(`qres[]v`, form.get('v').value);
+              if (form && form.get('v').value !== '') {
+                formData.append(`qres[]q`, form.get('q').value);
+                formData.append(`qres[]v`, form.get('v').value);
+              }
             }
             return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
               this.eventDataFormEntityGroupId,
@@ -385,7 +398,9 @@ export class EventFormResponsesComponent implements OnInit {
 
   disableEditMode(question, i) {
     question.editMode = false;
-    this.forms.splice(i, 1);
-    this.getResponses();
+    if (this.forms[i] !== undefined && this.forms[i].get('v').value !== '') {
+      this.forms[i] = null;
+      this.getResponses();
+    }
   }
 }
