@@ -48,9 +48,8 @@
                         speakerResourceForm['controls'].title.invalid &&
                         speakerResourceForm['controls'].title.errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
                   <div class="session-slides-options">
@@ -91,17 +90,45 @@
                   >
                     <label>
                       <p>Please upload your PDF file here*</p>
-                      <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
+                      <input
+                        (change)="onFileChange($event)"
+                        accept="application/pdf"
+                        formControlName="presentation_file_source"
+                        fullWidth
+                        nbInput
+                        type="file"
+                      />
                       <div *ngIf="uploadedPdfSrc" class="pdf-preview">
                         <iframe [src]="uploadedPdfSrc | safe : 'resourceUrl'" width="100%" height="500"></iframe>
                       </div>
                     </label>
+                    <!-- <span
+                      *ngIf="
+                        speakerResourceForm['controls'].presentation_file_source.touched &&
+                        speakerResourceForm['controls'].presentation_file_source.invalid &&
+                        speakerResourceForm['controls'].presentation_file_source.errors.required
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
+                    <!-- <span *ngIf="speakerResourceForm['controls'].presentation_file_source.touched">
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
                   </div>
                   <div *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK" class="link">
                     <label>
                       Add your presentation link here*
                       <input formControlName="embedded_content" fullWidth nbInput size="small" type="url" />
                     </label>
+                    <!-- <span
+                      *ngIf="
+                        speakerResourceForm['controls'].embedded_content.touched &&
+                        speakerResourceForm['controls'].embedded_content.invalid &&
+                        speakerResourceForm['controls'].embedded_content.errors.required
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span> -->
                   </div>
                   <div
                     *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK"
@@ -139,9 +166,8 @@
                         speakerResourceForm['controls'].session_details_links.invalid &&
                         speakerResourceForm['controls'].session_details_links.errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
                   <button [disabled]="!speakerResourceForm.valid" nbButton status="primary" type="submit">Save</button>

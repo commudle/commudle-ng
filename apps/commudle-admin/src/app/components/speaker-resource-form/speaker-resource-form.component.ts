@@ -51,12 +51,30 @@ export class SpeakerResourceFormComponent implements OnInit {
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
   ) {
-    this.speakerResourceForm = this.fb.group({
-      title: ['', Validators.required],
-      embedded_content: [''],
-      session_details_links: ['', Validators.required],
-      attachment_type: ['link'],
-    });
+    this.speakerResourceForm = this.fb.group(
+      {
+        title: ['', Validators.required],
+        embedded_content: [''],
+        session_details_links: ['', Validators.required],
+        attachment_type: ['link'],
+        presentation_file_source: [''],
+      },
+      {
+        validators: [
+          (fb) =>
+            (fb.get('attachment_type').value === EAttachmentType.LINK ||
+              fb.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK) &&
+            !fb.get('embedded_content').value
+              ? { embedded_content: true }
+              : null,
+          (fb) => {
+            fb.get('attachment_type').value === EAttachmentType.PDF_FILE && !fb.get('presentation_file_source').value
+              ? { presentation_file_source: true }
+              : null;
+          },
+        ],
+      },
+    );
   }
 
   ngOnInit() {
@@ -107,6 +125,11 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   submitForm() {
+    if (!this.speakerResourceForm.valid) {
+      this.speakerResourceForm.markAllAsTouched();
+      console.log('called return');
+      return;
+    }
     this.speakerResourcesService
       .createOrUpdateByToken(this.token, this.getSpeakerResponseFormData(), this.eventId)
       .subscribe((data) => {
@@ -114,6 +137,27 @@ export class SpeakerResourceFormComponent implements OnInit {
         this.router.navigate(['/communities', this.community.slug, 'events', this.speakerResource.event.slug]);
       });
   }
+
+  // getSpeakerResponseFormData(): FormData {
+  //   console.log('5');
+  //   const formData = new FormData();
+  //   const pdfValue = this.speakerResourceForm.value;
+
+  //   Object.keys(pdfValue).forEach((key) => {
+  //     if (key === 'presentation_file') {
+  //       if (this.uploadedPdf != null) {
+  //         console.log('called pdf');
+  //         formData.append(`speaker_resource[${key}]`, this.uploadedPdf);
+  //       }
+  //     } else {
+  //       if (pdfValue[key] !== null && pdfValue[key] !== undefined && pdfValue[key] !== '') {
+  //         console.log('called');
+  //         formData.append(`speaker_resource[${key}]`, pdfValue[key]);
+  //       }
+  //     }
+  //   });
+  //   return formData;
+  // }
 
   getSpeakerResponseFormData(): FormData {
     const formData = new FormData();
