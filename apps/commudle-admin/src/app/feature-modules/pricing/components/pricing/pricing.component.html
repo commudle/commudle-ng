@@ -1722,11 +1722,13 @@
     <!-- Logo cloud -->
     <div class="pricing-logo-cloud">
       <p class="subheading">Communities already on Commudle</p>
-      <div
-        class="com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-8 lg:com-grid-cols-4 lg:com-gap-10"
-      >
-        <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]" class="logo">
-          <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
+      <div class="communities">
+        <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]">
+          <div class="communities-card">
+            <div class="logo">
+              <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
+            </div>
+          </div>
         </a>
       </div>
     </div>

@@ -303,12 +303,19 @@ p {
       @apply com-text-center com-text-2xl com-mb-16 com-text-gray-500 com-font-semibold com-uppercase;
     }
 
-    .logo {
-      text-decoration: none;
-      @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+    .communities {
+      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-8 lg:com-grid-cols-4 lg:com-gap-10;
 
-      img {
-        @apply com-h-24;
+      .communities-card {
+        @apply com-w-[338px] com-h-[120px] com-border com-border-solid com-rounded-[20px];
+        .logo {
+          text-decoration: none;
+          @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+
+          img {
+            @apply com-h-24;
+          }
+        }
       }
     }
   }
