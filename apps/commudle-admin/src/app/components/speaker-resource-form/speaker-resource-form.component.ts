@@ -33,6 +33,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   uploadedPdfSrc: string;
   EAttachmentType = EAttachmentType;
   source: string;
+  pdfFileName: string;
 
   @ViewChild('googleSlidesEmbed', { read: TemplateRef }) googleSlidesEmbedTemplate: TemplateRef<HTMLElement>;
 
@@ -67,11 +68,10 @@ export class SpeakerResourceFormComponent implements OnInit {
             !fb.get('embedded_content').value
               ? { embedded_content: true }
               : null,
-          (fb) => {
+          (fb) =>
             fb.get('attachment_type').value === EAttachmentType.PDF_FILE && !fb.get('presentation_file_source').value
               ? { presentation_file_source: true }
-              : null;
-          },
+              : null,
         ],
       },
     );
@@ -193,6 +193,7 @@ export class SpeakerResourceFormComponent implements OnInit {
 
       const file = event.target.files[0];
       this.uploadedPdf = file;
+      this.pdfFileName = file.name;
 
       const reader = new FileReader();
       reader.onload = () => {
