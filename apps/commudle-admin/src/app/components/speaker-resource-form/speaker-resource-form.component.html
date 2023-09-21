@@ -4,7 +4,7 @@
       <div class="main-column">
         <div *ngIf="this.speakerResource" class="speaker-resource-form page-padding">
           <nb-card>
-            <h5 class="heading">UPDATE YOUR SESSION DETAILS</h5>
+            <h5 class="heading">UPDATE SESSION DETAILS FOR {{ speakerResource.user.name | uppercase }}</h5>
           </nb-card>
           <nb-card>
             <nb-card-body>
@@ -25,7 +25,9 @@
                     Hi {{ speakerResource.user.name }}, we think that the content shared by you is something that people
                     will benefit from even after the event. Please fill this short form!
                   </p>
-                  <p class="update-profile">Please update your profile by clicking on your profile card on the right</p>
+                  <p *ngIf="currentUser.username === speakerResource.user.username" class="update-profile">
+                    Please update your profile by clicking on your profile card on the right
+                  </p>
                 </div>
               </div>
             </nb-card-body>
@@ -46,9 +48,8 @@
                         speakerResourceForm['controls'].title.invalid &&
                         speakerResourceForm['controls'].title.errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
                   <div class="session-slides-options">
@@ -94,6 +95,7 @@
                         <iframe [src]="uploadedPdfSrc | safe : 'resourceUrl'" width="100%" height="500"></iframe>
                       </div>
                     </label>
+                    <button nbButton status="danger" outline size="tiny" (click)="removePdfFile()">Remove Pdf</button>
                   </div>
                   <div *ngIf="speakerResourceForm.get('attachment_type').value === EAttachmentType.LINK" class="link">
                     <label>
@@ -137,12 +139,11 @@
                         speakerResourceForm['controls'].session_details_links.invalid &&
                         speakerResourceForm['controls'].session_details_links.errors.required
                       "
-                      class="validation-error-text"
                     >
-                      Required Field
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                     </span>
                   </div>
-                  <button [disabled]="!speakerResourceForm.valid" nbButton status="primary" type="submit">Save</button>
+                  <button nbButton status="primary" type="submit">Save</button>
                 </form>
               </div>
             </nb-card-body>
@@ -192,26 +193,17 @@
           </ng-template>
         </div>
       </div>
-      <div *ngIf="currentUser" class="right-column">
-        <div class="user">
-          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
-          <commudle-userprofile-details
-            [userProfileDetails]="userProfileDetails"
-            [username]="currentUser.name"
-          ></commudle-userprofile-details>
+      <div *ngIf="currentUser && speakerResource">
+        <div *ngIf="currentUser.username === speakerResource.user.username" class="right-column">
+          <div class="user">
+            <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+            <commudle-userprofile-details
+              [userProfileDetails]="userProfileDetails"
+              [username]="currentUser.name"
+            ></commudle-userprofile-details>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <iframe
-                            src="{{ speakerResource.presentation_file.url | safe : 'resourceUrl' }}"
-                            style="width: 100%; height: 100%; border: none"
-                          ></iframe> -->
-<!-- <object
-                          class="com-w-2/6 com-h-40"
-                          attr.data="{{ uploadedPdfSrc | safe : 'resourceUrl' }}"
-                          type="application/pdf"
-                        ></object> -->
-<!-- <iframe src="{{ uploadedPdfSrc }}" style="width: 100%; height: 100%; border: none"></iframe> -->
