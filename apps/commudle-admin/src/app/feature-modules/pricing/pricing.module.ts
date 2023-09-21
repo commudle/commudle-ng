@@ -11,12 +11,14 @@ import {
 import { CommudleFeaturesComponent } from './components/commudle-features/commudle-features.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { PricingRoutingModule } from './pricing-routing.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [PricingComponent, CommudleFeaturesComponent],
   imports: [
     CommonModule,
     PricingRoutingModule,
+    AppSharedComponentsModule,
 
     // Nebular
     NbCardModule,

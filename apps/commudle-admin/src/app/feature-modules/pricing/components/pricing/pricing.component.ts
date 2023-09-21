@@ -70,6 +70,8 @@ export class PricingComponent implements OnInit, OnDestroy {
     },
   ];
 
+  answers = ['Answer 1', 'Answer 2', 'Answer 3'];
+
   constructor(
     private seoService: SeoService,
     private gtm: GoogleTagManagerService,

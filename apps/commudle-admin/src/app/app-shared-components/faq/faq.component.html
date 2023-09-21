@@ -1,0 +1,11 @@
+<div>
+  <!-- <div class="com-max-w-2xl lg:com-mx-auto lg:com-text-center"> -->
+  <h2 class="heading">Frequently Asked Questions</h2>
+  <!-- </div> -->
+  <div *ngFor="let question of questions; let i = index" class="faq-items">
+    <div class="faq-item">
+      <div class="question">{{ question }}</div>
+      <div class="answer">{{ answers[i] }}</div>
+    </div>
+  </div>
+</div>

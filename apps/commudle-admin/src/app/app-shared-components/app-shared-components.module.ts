@@ -27,6 +27,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaqComponent } from 'apps/commudle-admin/src/app/app-shared-components/faq/faq.component';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
@@ -46,6 +47,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    FaqComponent,
 
     // Nebular
     NbRadioModule,
@@ -63,6 +65,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     //FontAwesome
     FontAwesomeModule,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent, FaqComponent],
 })
 export class AppSharedComponentsModule {}

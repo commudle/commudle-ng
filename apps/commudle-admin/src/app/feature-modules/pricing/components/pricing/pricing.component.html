@@ -1718,27 +1718,35 @@
         emailers through community organizers
       </p>
     </div>
+  </div>
 
-    <!-- Logo cloud -->
-    <div class="pricing-logo-cloud">
-      <p class="subheading">Communities already on Commudle</p>
-      <div class="communities">
-        <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]">
-          <div class="communities-card">
-            <div class="logo">
-              <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
-            </div>
+  <!-- Logo cloud -->
+  <div class="pricing-logo-cloud">
+    <p class="subheading">Communities already on Commudle</p>
+    <div class="communities">
+      <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]">
+        <div class="communities-card">
+          <div class="logo">
+            <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
           </div>
-        </a>
-      </div>
+          <div class="communities-card-text">
+            <p class="name">{{ logo.name }}</p>
+            <p class="description">{{ logo.description }}</p>
+          </div>
+        </div>
+      </a>
     </div>
+  </div>
 
-    <!-- FAQs -->
-    <div class="com-bg-gray-900">
+  <div class="faq">
+    <commudle-faq [answers]="answers"></commudle-faq>
+  </div>
+
+  <!-- FAQs -->
+  <!-- <div class="com-bg-gray-900">
       <div class="pricing-faq">
         <div class="com-max-w-2xl lg:com-mx-auto lg:com-text-center">
           <h2 class="heading">Frequently asked questions</h2>
-          <!--        <div class="subheading"></div>-->
         </div>
         <div class="com-mt-20">
           <dl class="questions">
@@ -1780,7 +1788,5 @@
           </dl>
         </div>
       </div>
-    </div>
-    <!-- </div> -->
-  </div>
+    </div> -->
 </div>
