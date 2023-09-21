@@ -14,6 +14,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { EAttachmentType } from '@commudle/shared-models';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+import { validate } from 'uuid';
 
 @Component({
   selector: 'app-speaker-resource-form',
@@ -30,7 +31,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   currentUser: ICurrentUser;
   userProfileDetails: IUserStat;
   uploadedPdf: File;
-  uploadedPdfSrc: string;
+  uploadedPdfSrc = '';
   EAttachmentType = EAttachmentType;
   source: string;
 
@@ -51,12 +52,24 @@ export class SpeakerResourceFormComponent implements OnInit {
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
   ) {
-    this.speakerResourceForm = this.fb.group({
-      title: ['', Validators.required],
-      embedded_content: [''],
-      session_details_links: ['', Validators.required],
-      attachment_type: ['link'],
-    });
+    this.speakerResourceForm = this.fb.group(
+      {
+        title: ['', Validators.required],
+        embedded_content: [''],
+        session_details_links: ['', Validators.required],
+        attachment_type: ['link'],
+      },
+      {
+        validators: [
+          (fb) =>
+            (fb.get('attachment_type').value === EAttachmentType.LINK ||
+              fb.get('attachment_type').value === EAttachmentType.EMBEDDED_LINK) &&
+            !fb.get('embedded_content').value
+              ? { embedded_content: true }
+              : null,
+        ],
+      },
+    );
   }
 
   ngOnInit() {
@@ -103,10 +116,22 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   prefillForm() {
-    this.speakerResourceForm.patchValue(this.speakerResource);
+    this.speakerResourceForm.patchValue({
+      title: this.speakerResource.title,
+      embedded_content: this.speakerResource.embedded_content,
+      session_details_links: this.speakerResource.session_details_links,
+      attachment_type: this.speakerResource.attachment_type,
+    });
   }
 
   submitForm() {
+    if (
+      this.speakerResourceForm.invalid ||
+      (this.speakerResourceForm.get('attachment_type').value === EAttachmentType.PDF_FILE && this.uploadedPdfSrc === '')
+    ) {
+      this.toastLogService.warningDialog('Required Field');
+      return;
+    }
     this.speakerResourcesService
       .createOrUpdateByToken(this.token, this.getSpeakerResponseFormData(), this.eventId)
       .subscribe((data) => {
@@ -117,11 +142,11 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   getSpeakerResponseFormData(): FormData {
     const formData = new FormData();
-    const pdfValue = this.speakerResourceForm.value;
+    const srfValue = this.speakerResourceForm.value;
 
-    Object.keys(pdfValue).forEach((key) => {
-      if (pdfValue[key] !== null && pdfValue[key] !== undefined && pdfValue[key] !== '') {
-        formData.append(`speaker_resource[${key}]`, pdfValue[key]);
+    Object.keys(srfValue).forEach((key) => {
+      if (srfValue[key] !== null && srfValue[key] !== undefined && srfValue[key] !== '') {
+        formData.append(`speaker_resource[${key}]`, srfValue[key]);
       }
     });
 
@@ -156,5 +181,10 @@ export class SpeakerResourceFormComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  removePdfFile() {
+    this.uploadedPdf = null;
+    this.uploadedPdfSrc = '';
   }
 }
