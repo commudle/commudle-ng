@@ -58,7 +58,7 @@ export class SpeakerResourceFormComponent implements OnInit {
         embedded_content: [''],
         session_details_links: ['', Validators.required],
         attachment_type: ['link'],
-        presentation_file_source: [''],
+        presentation_file: [],
       },
       {
         validators: [
@@ -69,8 +69,8 @@ export class SpeakerResourceFormComponent implements OnInit {
               ? { embedded_content: true }
               : null,
           (fb) =>
-            fb.get('attachment_type').value === EAttachmentType.PDF_FILE && !fb.get('presentation_file_source').value
-              ? { presentation_file_source: true }
+            fb.get('attachment_type').value === EAttachmentType.PDF_FILE && !fb.get('presentation_file').value
+              ? { presentation_file: true }
               : null,
         ],
       },
@@ -93,11 +93,13 @@ export class SpeakerResourceFormComponent implements OnInit {
   getSpeakerResource() {
     this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe((data) => {
       this.speakerResource = data;
-      if (data.presentation_file) {
+      console.log(this.speakerResource);
+      if (data.attachment_type === EAttachmentType.PDF_FILE) {
         this.uploadedPdfSrc = data.presentation_file.url;
+        // console.log(this.uploadedPdf, 'uploaded 1');
       }
 
-      if (data.embedded_content) {
+      if (data.attachment_type === EAttachmentType.EMBEDDED_LINK) {
         this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
           if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
             this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
@@ -106,6 +108,16 @@ export class SpeakerResourceFormComponent implements OnInit {
           }
         });
       }
+
+      // if (data.embedded_content) {
+      //   this.speakerResourceForm.get('embedded_content').valueChanges.subscribe((val) => {
+      //     if (val.startsWith('<iframe src=') && val.endsWith('</iframe>')) {
+      //       this.embedGoogleSlidesCode = this.sanitizer.bypassSecurityTrustHtml(val);
+      //     } else {
+      //       this.embedGoogleSlidesCode = null;
+      //     }
+      //   });
+      // }
 
       if (this.speakerResource.id) {
         this.prefillForm();
@@ -122,6 +134,7 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   prefillForm() {
     this.speakerResourceForm.patchValue(this.speakerResource);
+    console.log(this.speakerResourceForm.value);
   }
 
   submitForm() {
@@ -164,14 +177,21 @@ export class SpeakerResourceFormComponent implements OnInit {
     const pdfValue = this.speakerResourceForm.value;
 
     Object.keys(pdfValue).forEach((key) => {
-      if (pdfValue[key] !== null && pdfValue[key] !== undefined && pdfValue[key] !== '') {
+      if (
+        pdfValue[key] !== null &&
+        pdfValue[key] !== undefined &&
+        pdfValue[key] !== '' &&
+        key !== 'presentation_file'
+      ) {
+        console.log(key);
         formData.append(`speaker_resource[${key}]`, pdfValue[key]);
       }
     });
 
-    if (this.uploadedPdf != null) {
+    if (this.uploadedPdf !== null) {
       formData.append('speaker_resource[presentation_file]', this.uploadedPdf);
     }
+    console.log(formData, 'data');
     return formData;
   }
 
@@ -193,7 +213,8 @@ export class SpeakerResourceFormComponent implements OnInit {
 
       const file = event.target.files[0];
       this.uploadedPdf = file;
-      this.pdfFileName = file.name;
+      console.log(this.uploadedPdf);
+      // this.pdfFileName = file.name;
 
       const reader = new FileReader();
       reader.onload = () => {
