@@ -304,13 +304,13 @@ p {
   }
 
   .communities {
-    @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-8 lg:com-grid-cols-4 lg:com-gap-[60px] md:com-mx-[194px] md:com-mb-24;
+    @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px];
 
     a {
       @apply com-no-underline;
       .communities-card {
         //Border hatana hai iska
-        @apply com-flex com-flex-row com-w-[338px] com-h-[120px] com-border com-border-solid com-rounded-[20px] com-p-4;
+        @apply com-flex com-flex-row com-w-[385px] com-h-[120px] com-border com-border-solid com-rounded-[20px] com-p-4;
         .logo {
           @apply com-flex com-items-center com-w-[88px] com-h-[88px] com-object-cover com-m-0 com-mr-4 com-flex-shrink-0;
           // @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
@@ -333,9 +333,9 @@ p {
   }
 }
 
-.faq {
-  @apply com-mt-[126px];
-}
+// .faq {
+//   @apply com-mt-[126px];
+// }
 
 // .pricing-faq {
 //   @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;

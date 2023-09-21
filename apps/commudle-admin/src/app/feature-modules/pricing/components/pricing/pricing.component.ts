@@ -68,6 +68,13 @@ export class PricingComponent implements OnInit, OnDestroy {
       image:
         'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1lmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d1aab5e1bd61349d5582ec309b13ea60f75dbfa3/cdn_commudle_developer_network.png',
     },
+    {
+      name: 'CDN Commudle Developer Network',
+      slug: 'cdn-commudle-developer-network',
+      description: 'A community for software developers to help each other upskill',
+      image:
+        'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1lmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d1aab5e1bd61349d5582ec309b13ea60f75dbfa3/cdn_commudle_developer_network.png',
+    },
   ];
 
   answers = ['Answer 1', 'Answer 2', 'Answer 3'];

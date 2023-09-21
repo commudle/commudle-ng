@@ -2,10 +2,14 @@ h2 {
   @apply com-text-4xl com-font-bold com-text-Yankees-Blue com-m-0 com-mb-[52px] com-text-center;
 }
 
-.faq-items {
-  @apply com-gap-6;
-
-  .faq-item {
-    @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl;
+.faq-cards {
+  @apply com-flex com-flex-col com-gap-y-6;
+  .faq-items {
+    .faq-item {
+      @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl;
+    }
+    .question {
+      @apply com-mb-2;
+    }
   }
 }

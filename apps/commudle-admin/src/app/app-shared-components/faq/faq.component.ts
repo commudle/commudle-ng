@@ -10,9 +10,14 @@ import { CommonModule } from '@angular/common';
 })
 export class FaqComponent implements OnInit {
   @Input() answers: string[];
+  showAnswers = false;
 
   questions: string[] = ['Question 1', 'Question 2', 'Question 3'];
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleShowAnswers(index: number) {
+    this.showAnswers[index] = !this.showAnswers[index];
+  }
 }
