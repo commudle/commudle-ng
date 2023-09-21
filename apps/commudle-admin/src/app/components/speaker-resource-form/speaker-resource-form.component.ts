@@ -39,6 +39,8 @@ export class SpeakerResourceFormComponent implements OnInit {
 
   speakerResourceForm;
 
+  @ViewChild('fileInput') fileInput: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private speakerResourcesService: SpeakerResourcesService,
@@ -184,6 +186,9 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   removePdfFile() {
+    if (!this.uploadedPdfSrc) {
+      this.fileInput.nativeElement.value = '';
+    }
     this.uploadedPdf = null;
     this.uploadedPdfSrc = '';
   }
