@@ -21,7 +21,7 @@ export class DataFormEntityResponseGroupsService {
     gender?,
     eventLocationTrackId?,
     formData?,
-  ): Observable<IDataFormEntityResponseGroups> {
+  ): Observable<any> {
     let params = new HttpParams()
       .set('event_data_form_entity_group_id', eventDataFormEntityGroupId)
       .set('count', count)
@@ -34,14 +34,9 @@ export class DataFormEntityResponseGroupsService {
     if (eventLocationTrackId) {
       params = params.set('event_location_track_id', eventLocationTrackId);
     }
-    if (formData) {
-      for (const key of formData) {
-        params = params.append(key[0], key[1]);
-      }
-    }
-
-    return this.http.get<IDataFormEntityResponseGroups>(
+    return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES),
+      formData,
       { params },
     );
   }
@@ -70,14 +65,10 @@ export class DataFormEntityResponseGroupsService {
     if (eventLocationTrackId) {
       params = params.set('event_location_track_id', eventLocationTrackId);
     }
-    if (formData) {
-      for (const key of formData) {
-        params = params.append(key[0], key[1]);
-      }
-    }
 
-    return this.http.get<any>(
+    return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.FILTERED_RESPONSE_VALUES),
+      formData,
       { params },
     );
   }
