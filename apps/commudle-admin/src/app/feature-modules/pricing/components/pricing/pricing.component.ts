@@ -77,7 +77,14 @@ export class PricingComponent implements OnInit, OnDestroy {
     // },
   ];
 
-  answers = ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4', 'Answer 5', 'Answer 6'];
+  answers = [
+    "We don't think so, the Developer Communities on Commudle are able to manage all their activities here.",
+    "You can host your complete Developer Ecosystem with 100's of Communities on Commudle. We have an organization page too. You have access to all the data and stats you need.",
+    "As a DevRel, it's important to have an experience of building and growing your own Developer Community. Some folks are at leading DevRel positions who started by building their own Community here.",
+    "Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of your communities' activities on your own web page.",
+    "Yes! And it's very easy.",
+    'Absolutely, a few Design Communities are already using Commudle.',
+  ];
 
   constructor(
     private seoService: SeoService,
