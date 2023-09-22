@@ -36,7 +36,7 @@ p {
   }
 
   .background-container {
-    @apply com-relative com-overflow-hidden com-w-full;
+    @apply com-relative com-overflow-hidden com-w-full com-h-full;
 
     // md:com-w-[calc(100%-30px)] com-blur-sm
     .background {
@@ -310,12 +310,12 @@ p {
   }
 }
 
-.background-container {
-  @apply com-relative com-overflow-hidden com-w-full;
+.background-container-community {
+  @apply com-relative com-overflow-hidden com-w-full com-h-[732px];
 
   // md:com-w-[calc(100%-30px)] com-blur-sm
   .background {
-    @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat;
+    @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
   }
   .pricing-logo-cloud {
     @apply com-mx-auto com-my-0 com-p-0 com-pt-[102px];
@@ -327,8 +327,8 @@ p {
     }
 
     .communities {
-      // md:com-mb-[225px] //YEAH LAGANA HAI
-      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px];
+      //YEAH LAGANA HAI
+      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px];
 
       a {
         @apply com-no-underline;
