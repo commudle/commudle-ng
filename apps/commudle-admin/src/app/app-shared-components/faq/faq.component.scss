@@ -3,13 +3,26 @@ h2 {
 }
 
 .faq-cards {
-  @apply com-flex com-flex-col com-gap-y-6;
+  @apply com-flex com-flex-col com-gap-y-6 com-pb-8;
   .faq-items {
     .faq-item {
       @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl;
-    }
-    .question {
-      @apply com-mb-2;
+
+      .question {
+        @apply com-flex com-flex-row com-justify-between com-items-center com-mb-2;
+
+        p {
+          @apply com-m-0 com-text-lg com-font-medium com-text-gray-900;
+        }
+
+        fa-icon {
+          @apply com-flex com-justify-end com-text-2xl com-text-black;
+        }
+      }
+
+      .answer {
+        @apply com-m-0 com-text-lg com-font-normal com-text-gray-500;
+      }
     }
   }
 }
