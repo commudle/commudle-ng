@@ -7,26 +7,14 @@ p {
 }
 
 .pricing-container {
-  // @apply com-bg-white;
-
   .pricing-header {
     @apply com-relative com-mx-auto com-pt-[132px] com-px-4 com-text-center;
-
-    // @screen sm {
-    //   @apply com-pt-32 com-px-6;
-    // }
-
-    // @screen lg {
-    //   @apply com-max-w-7xl com-px-8;
-    // }
 
     .heading {
       @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
 
       span {
         @apply com-w-full com-text-transparent com-bg-clip-text com-bg-gradient-to-r com-from-blue-500 com-via-purple-500 com-to-blue-700 md:com-inline com-block;
-        // lg:com-inline
-        // com-block
       }
     }
 
@@ -83,9 +71,6 @@ p {
           }
         }
       }
-      // .students-card {
-      //   @apply md:com-w-[620px] com-w-full;
-      // }
     }
 
     .pricing-quotes {
@@ -94,7 +79,6 @@ p {
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center com-text-[28px] com-leading-10 com-font-medium com-text-gray-900;
-        //
       }
     }
   }
@@ -132,22 +116,6 @@ p {
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
-
-      // .features {
-      //   @apply com-mt-7 com-pl-2;
-
-      //   li {
-      //     @apply com-py-3 com-flex com-items-center;
-
-      //     nb-icon {
-      //       @apply com-text-white com-w-5 com-h-5 com-flex-shrink-0;
-      //     }
-
-      //     .feature {
-      //       @apply com-text-white com-ml-4 com-text-base com-font-medium;
-      //     }
-      //   }
-      // }
     }
 
     .pricing-card-dark {
@@ -171,22 +139,6 @@ p {
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
-
-      // .features {
-      //   @apply com-mt-7 com-pl-2;
-
-      //   li {
-      //     @apply com-py-3 com-flex com-items-center;
-
-      //     nb-icon {
-      //       @apply com-text-[#3aa49a] com-w-5 com-h-5 com-flex-shrink-0;
-      //     }
-
-      //     .feature {
-      //       @apply com-text-gray-600 com-ml-4 com-text-base com-font-medium;
-      //     }
-      //   }
-      // }
     }
   }
 
@@ -327,17 +279,14 @@ p {
     }
 
     .communities {
-      //YEAH LAGANA HAI
       @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px];
 
       a {
         @apply com-no-underline;
         .communities-card {
-          //Border hatana hai iska
           @apply com-flex com-flex-row com-w-[385px] com-h-[120px] com-border com-border-solid com-border-white com-rounded-[20px] com-bg-white com-p-4;
           .logo {
             @apply com-flex com-items-center com-w-[88px] com-h-[88px] com-object-cover com-m-0 com-mr-4 com-flex-shrink-0;
-            // @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
 
             img {
               @apply com-w-full com-h-auto com-rounded-lg;
@@ -361,30 +310,3 @@ p {
 .faq {
   @apply com-m-0 com-mb-[138px];
 }
-
-// .pricing-faq {
-//   @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;
-//   @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
-
-//   .heading {
-//     @apply com-my-0 com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
-//     @apply sm:com-text-4xl;
-//   }
-
-//   .subheading {
-//     @apply com-mt-4 com-text-gray-400;
-//   }
-
-//   .questions {
-//     @apply com-space-y-10;
-//     @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
-
-//     .question {
-//       @apply com-font-semibold com-text-white com-text-base;
-//     }
-
-//     .answer {
-//       @apply com-mt-3 com-ml-0 com-text-gray-400 com-text-base;
-//     }
-//   }
-// }
