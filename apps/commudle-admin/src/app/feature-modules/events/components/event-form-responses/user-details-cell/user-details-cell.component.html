@@ -1,5 +1,8 @@
 <div>
   <div class="user-details-container">
+    <p class="timeago" title="{{ moment(userResponse.created_at).format('dddd Do MMM, YYYY h:mm A') }}">
+      {{ moment(userResponse.created_at).fromNow() }}
+    </p>
     <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     <p class="contact-details">
       <small>{{ user.email === 'Not Visible' ? 'Email: Not Visible' : user.email }}</small>
