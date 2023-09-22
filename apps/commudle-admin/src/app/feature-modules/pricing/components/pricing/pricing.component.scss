@@ -2,6 +2,10 @@ p {
   @apply com-my-0;
 }
 
+.base-layout {
+  @apply com-min-h-full;
+}
+
 .pricing-container {
   // @apply com-bg-white;
 
@@ -31,50 +35,68 @@ p {
     }
   }
 
-  .cards {
-    @apply com-flex com-flex-row com-justify-between com-m-0 md:com-mt-20;
-    .enterprise-card,
-    .students-card {
-      @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray;
-      .title {
-        @apply com-p-8 com-text-center;
-        .heading {
-          @apply com-text-4xl com-font-bold com-mb-6 com-text-gray-900;
-        }
-        .sub-heading {
-          @apply com-text-2xl com-font-normal com-mb-8;
-        }
-      }
-      .card-image {
-        @apply com-h-[487px] com-w-[620px] com-overflow-hidden;
-        img {
-          @apply com-h-auto com-w-full com-object-cover;
-        }
-      }
-      .features {
-        @apply com-mt-4 com-mx-8 com-mb-6;
+  .background-container {
+    @apply com-relative com-overflow-hidden com-w-full;
 
-        .features-heading {
-          @apply com-text-2xl com-font-bold com-text-black com-mb-8;
+    // md:com-w-[calc(100%-30px)] com-blur-sm
+    .background {
+      @apply com-mx-auto lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
+    }
+    .cards {
+      @apply com-flex com-flex-row com-justify-between com-m-0 md:com-mt-20 com-absolute com-top-0 com-gap-x-10;
+      .enterprise-card,
+      .students-card {
+        @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white;
+        .title {
+          @apply com-p-8 com-text-center;
+          .heading {
+            @apply com-text-4xl com-font-bold com-mb-6 com-text-gray-900;
+          }
+          .sub-heading {
+            @apply com-text-2xl com-font-normal com-mb-8;
+          }
         }
+        .card-image {
+          @apply com-h-[487px] com-w-[620px] com-overflow-hidden;
+          img {
+            @apply com-h-auto com-w-full com-object-cover;
+          }
+        }
+        .features {
+          @apply com-mt-4 com-mx-8 com-mb-6;
 
-        ul {
-          @apply com-m-0 com-p-0;
-          li {
-            @apply com-list-none com-mb-6 com-text-gray-500;
-            nb-icon {
-              @apply com-h-6 com-w-6 com-text-Azure com-mr-3;
-            }
-            span {
-              @apply com-text-lg com-font-semibold;
+          .features-heading {
+            @apply com-text-2xl com-font-bold com-text-black com-mb-8;
+          }
+
+          ul {
+            @apply com-m-0 com-p-0;
+            li {
+              @apply com-list-none com-mb-6 com-text-gray-500;
+              nb-icon {
+                @apply com-h-6 com-w-6 com-text-Azure com-mr-3;
+              }
+              span {
+                @apply com-text-lg com-font-semibold;
+              }
             }
           }
         }
       }
+      // .students-card {
+      //   @apply md:com-w-[620px] com-w-full;
+      // }
     }
-    // .students-card {
-    //   @apply md:com-w-[620px] com-w-full;
-    // }
+
+    .pricing-quotes {
+      @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-pt-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-top-0;
+      // @apply   com-h-full com-absolute com-top-0;
+
+      .quote {
+        @apply com-max-w-[1150px] com-mx-auto com-text-center com-text-[28px] com-leading-10 com-font-medium com-text-gray-900;
+        //
+      }
+    }
   }
 
   .pricing-toggle {
@@ -286,46 +308,49 @@ p {
       }
     }
   }
-
-  .pricing-quotes {
-    @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-pt-20 com-mt-8 md:com-mt-20 com-pb-0;
-
-    .quote {
-      @apply com-max-w-[1150px] com-mx-auto com-text-center com-text-[28px] com-leading-10 com-font-medium com-text-gray-900;
-    }
-  }
 }
-.pricing-logo-cloud {
-  @apply com-mx-auto com-pt-[102px];
-  // @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
-  .subheading {
-    @apply com-text-center com-text-2xl com-mb-16 com-text-gray-500 com-font-semibold com-uppercase;
+.background-container {
+  @apply com-relative com-overflow-hidden com-w-full;
+
+  // md:com-w-[calc(100%-30px)] com-blur-sm
+  .background {
+    @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat;
   }
+  .pricing-logo-cloud {
+    @apply com-mx-auto com-my-0 com-p-0 com-pt-[102px];
+    @apply com-absolute com-top-0;
+    // @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
-  .communities {
-    @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px];
+    .subheading {
+      @apply com-text-center com-text-2xl com-mb-16 com-text-gray-500 com-font-semibold com-uppercase;
+    }
 
-    a {
-      @apply com-no-underline;
-      .communities-card {
-        //Border hatana hai iska
-        @apply com-flex com-flex-row com-w-[385px] com-h-[120px] com-border com-border-solid com-rounded-[20px] com-p-4;
-        .logo {
-          @apply com-flex com-items-center com-w-[88px] com-h-[88px] com-object-cover com-m-0 com-mr-4 com-flex-shrink-0;
-          // @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+    .communities {
+      // md:com-mb-[225px] //YEAH LAGANA HAI
+      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px];
 
-          img {
-            @apply com-w-full com-h-auto com-rounded-lg;
+      a {
+        @apply com-no-underline;
+        .communities-card {
+          //Border hatana hai iska
+          @apply com-flex com-flex-row com-w-[385px] com-h-[120px] com-border com-border-solid com-border-white com-rounded-[20px] com-bg-white com-p-4;
+          .logo {
+            @apply com-flex com-items-center com-w-[88px] com-h-[88px] com-object-cover com-m-0 com-mr-4 com-flex-shrink-0;
+            // @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+
+            img {
+              @apply com-w-full com-h-auto com-rounded-lg;
+            }
           }
-        }
-        .communities-card-text {
-          @apply com-flex com-flex-col;
-          .name {
-            @apply com-m-0 com-mb-1 com-line-clamp-1 com-text-base com-font-semibold com-text-Yankees-Blue;
-          }
-          .description {
-            @apply com-m-0 com-line-clamp-3 com-text-sm com-font-normal com-text-gray-500;
+          .communities-card-text {
+            @apply com-flex com-flex-col;
+            .name {
+              @apply com-m-0 com-mb-1 com-line-clamp-1 com-text-base com-font-semibold com-text-Yankees-Blue;
+            }
+            .description {
+              @apply com-m-0 com-line-clamp-3 com-text-sm com-font-normal com-text-gray-500;
+            }
           }
         }
       }
@@ -334,7 +359,7 @@ p {
 }
 
 .faq {
-  @apply com-mb-[138px];
+  @apply com-m-0 com-mb-[138px];
 }
 
 // .pricing-faq {
