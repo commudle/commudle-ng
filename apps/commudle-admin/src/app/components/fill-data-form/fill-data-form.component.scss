@@ -45,31 +45,29 @@
     }
   }
 }
-
 .confirmation-dialog {
+  @apply com-m-0 md:com-w-[25dvw] com-w-auto com-h-full;
   nb-card-body {
+    @apply com-px-0 com-py-0;
     text-align: center;
     .thank-you-icon {
+      @apply com-m-0;
       nb-icon {
         font-size: 100px;
       }
+    }
+    .thank-you-text {
+      @apply com-mt-0;
     }
   }
 
   nb-card-footer {
     display: flex;
-    justify-content: space-evenly;
-    align-items: baseline;
     p {
-      flex-grow: 1;
-      max-width: 30%;
-      text-align: center;
-      a {
-        text-decoration: none;
-        img {
-          width: 50px;
-        }
-      }
+      @apply com-m-0 com-font-medium;
+    }
+    a {
+      text-decoration: none;
     }
   }
 }

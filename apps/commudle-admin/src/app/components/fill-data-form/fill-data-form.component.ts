@@ -15,6 +15,9 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -35,6 +38,8 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   gtmData: any = {};
+  userProfileDetails: IUserStat;
+  faArrowRight = faArrowRight;
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
@@ -51,6 +56,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
+    private appUsersService: AppUsersService,
   ) {}
 
   ngOnInit() {
@@ -76,6 +82,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         }
       }),
     );
+
+    this.appUsersService.getProfileStats().subscribe((data) => {
+      this.userProfileDetails = data;
+    });
   }
 
   ngOnDestroy() {
