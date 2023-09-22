@@ -57,6 +57,7 @@ export class UserTrackSlotsComponent implements OnInit {
         eventLocations: this.eventLocations,
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
+        event: this.event,
       },
     });
     this.dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {

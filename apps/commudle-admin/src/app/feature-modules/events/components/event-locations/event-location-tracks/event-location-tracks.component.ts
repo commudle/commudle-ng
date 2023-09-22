@@ -133,6 +133,7 @@ export class EventLocationTracksComponent implements OnInit {
         startTime: startTime,
         eventLocTrack: eventLocTrack,
         minSlotDate: this.minSlotDate,
+        event: this.event,
       },
     });
     dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
@@ -160,6 +161,7 @@ export class EventLocationTracksComponent implements OnInit {
         eventLocations: this.eventLocations,
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
+        event: this.event,
       },
     });
     dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {

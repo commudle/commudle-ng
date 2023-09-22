@@ -237,7 +237,7 @@ export class EventFormResponsesComponent implements OnInit {
     this.dataFormEntityResponseGroupsService
       .getEventDataFormResponses(
         this.eventDataFormEntityGroupId,
-        this.filterValue,
+        this.searchForm.get('name').value.toLowerCase(),
         this.registrationStatusId,
         this.page,
         this.count,
