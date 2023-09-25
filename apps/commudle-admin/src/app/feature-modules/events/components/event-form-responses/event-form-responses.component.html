@@ -237,7 +237,7 @@
                 [event]="event"
                 [community]="community"
                 [row]="row"
-                (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
+                [eventLocations]="eventLocations"
               ></commudle-user-track-slots>
             </div>
           </ng-template>
@@ -392,6 +392,8 @@
                 [trackSlots]="row.track_slots"
                 [event]="event"
                 [community]="community"
+                [row]="row"
+                [eventLocations]="eventLocations"
               ></commudle-user-track-slots>
             </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">

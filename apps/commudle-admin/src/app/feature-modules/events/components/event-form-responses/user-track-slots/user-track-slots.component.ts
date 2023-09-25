@@ -20,34 +20,36 @@ export class UserTrackSlotsComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() row;
-  eventLocations: IEventLocation[];
+  @Input() eventLocations: IEventLocation[];
   moment = moment;
   dialogRef: NbDialogRef<any>;
   eventLocationTracks: IEventLocationTrack[] = [];
   minSlotDate;
-  @Output() eventLocationTrackIdsEmit = new EventEmitter<IEventLocationTrack[]>();
 
   @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
 
   constructor(
     private dialogService: NbDialogService,
-    private eventLocationsService: EventLocationsService,
     private trackSlotsService: TrackSlotsService,
     private toastLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {
     this.minSlotDate = moment(this.event.start_time).toDate();
-    this.getEventLocations();
+    if (this.eventLocations) this.getEventLocationTracks();
   }
 
-  getEventLocations() {
-    this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
-      this.eventLocations = data.event_locations;
-      if (this.eventLocationTracks.length > 0) {
-        this.eventLocationTrackIdsEmit.emit(this.eventLocationTracks);
+  getEventLocationTracks() {
+    for (const eventLocation of this.eventLocations) {
+      for (const eventLocationTrack of eventLocation.event_location_tracks) {
+        this.eventLocationTracks.push(eventLocationTrack);
+        for (const trackSlot of this.trackSlots) {
+          if (trackSlot.event_location_track_id === eventLocationTrack.id) {
+            trackSlot.event_location_track_name = eventLocationTrack.name;
+          }
+        }
       }
-    });
+    }
   }
 
   editTrackSlot(trackSlot, index) {
