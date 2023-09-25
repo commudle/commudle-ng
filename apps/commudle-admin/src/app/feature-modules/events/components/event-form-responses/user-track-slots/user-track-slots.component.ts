@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ICommunity, IEvent, IUser } from '@commudle/shared-models';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ICommunity, IEvent } from '@commudle/shared-models';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { TrackSlotFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
-import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
+
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { IEventLocation } from 'apps/shared-models/event-location.model';
@@ -79,6 +79,7 @@ export class UserTrackSlotsComponent implements OnInit {
         minSlotDate: this.minSlotDate,
         community: this.community,
         event: this.event,
+        selectedSpeakerSlot: this.row.id,
       },
     });
     this.dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
