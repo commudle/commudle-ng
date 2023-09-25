@@ -8,10 +8,10 @@ p {
 
 .pricing-container {
   .pricing-header {
-    @apply com-relative com-mx-auto com-pt-[132px] com-px-4 com-text-center;
+    @apply com-relative com-mx-auto md:com-pt-[132px] com-pt-[60px] md:com-px-4 com-px-3 com-text-center;
 
     .heading {
-      @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
+      @apply com-my-0 md:com-text-4xl com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
 
       span {
         @apply com-w-full com-text-transparent com-bg-clip-text com-bg-gradient-to-r com-from-blue-500 com-via-purple-500 com-to-blue-700 md:com-inline com-block;
@@ -19,7 +19,7 @@ p {
     }
 
     .subheading {
-      @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-500 com-font-normal;
+      @apply com-mt-4 com-mb-0 md:com-text-xl com-text-base com-text-gray-500 com-font-normal;
     }
   }
 
@@ -31,10 +31,10 @@ p {
       @apply com-mx-auto lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
     .cards {
-      @apply com-flex com-flex-row com-justify-between com-m-0 md:com-mt-20 com-absolute com-top-0 com-gap-x-10;
+      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-mt-20 com-mt-10 com-absolute com-top-0 md:com-gap-x-10 com-gap-0;
       .enterprise-card,
       .students-card {
-        @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white;
+        @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white com-m-0 md:com-mx-0 com-mx-3;
         .title {
           @apply com-p-8 com-text-center;
           .heading {
@@ -45,7 +45,7 @@ p {
           }
         }
         .card-image {
-          @apply com-h-[487px] com-w-[620px] com-overflow-hidden;
+          @apply md:com-h-[487px] md:com-w-[620px] com-h-full com-w-full com-overflow-hidden;
           img {
             @apply com-h-auto com-w-full com-object-cover;
           }
@@ -146,7 +146,7 @@ p {
     @apply com-overflow-x-auto;
 
     .pricing-features-heading {
-      @apply com-text-4xl com-font-bold com-text-gray-900 com-m-0 com-mb-[26px];
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900 com-m-0 md:com-mb-[26px] com-mb-2;
     }
 
     .pricing-feature-headings {
@@ -166,7 +166,7 @@ p {
 
       .buy-btn {
         text-decoration: none;
-        @apply com-mt-0 md:com-mt-10 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+        @apply com-mt-10 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
         @apply sm:com-w-auto lg:com-w-full;
 
         &.light {
@@ -227,12 +227,12 @@ p {
   }
 
   .avenues {
-    @apply com-mt-[125px] com-m-0 com-px-8 com-py-0 com-mb-12;
+    @apply md:com-mt-[125px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-12 com-mb-0;
     .heading {
-      @apply com-text-4xl com-font-bold com-text-gray-900;
+      @apply md:com-text-4xl com-text-2xl md:com-font-bold com-font-semibold com-text-gray-900;
     }
     .sub-heading {
-      @apply com-mt-8 com-m-0 com-text-xl com-font-normal com-text-gray-500;
+      @apply md:com-mt-8 com-mt-4 com-m-0 md:com-text-xl com-text-base com-font-normal com-text-gray-500;
     }
   }
 
@@ -270,23 +270,23 @@ p {
     @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
   }
   .pricing-logo-cloud {
-    @apply com-mx-auto com-my-0 com-p-0 com-pt-[102px];
+    @apply md:com-mx-auto com-mx-4 com-my-0 com-p-0 md:com-pt-[102px] com-pt-20 md:com-w-auto com-w-full;
     @apply com-absolute com-top-0;
     // @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
     .subheading {
-      @apply com-text-center com-text-2xl com-mb-16 com-text-gray-500 com-font-semibold com-uppercase;
+      @apply com-text-center md:com-text-2xl com-text-base md:com-mb-16 com-mb-12 com-text-gray-500 com-font-semibold com-uppercase;
     }
 
     .communities {
-      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px];
+      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px] com-mb-28;
 
       a {
-        @apply com-no-underline;
+        @apply com-flex com-justify-center md:com-justify-normal com-no-underline;
         .communities-card {
-          @apply com-flex com-flex-row com-w-[385px] com-h-[120px] com-border com-border-solid com-border-white com-rounded-[20px] com-bg-white com-p-4;
+          @apply com-flex com-flex-row md:com-w-[385px] md:com-h-[120px] com-h-[100px] com-w-[254px] com-border com-border-solid com-border-white com-rounded-[20px] com-bg-white md:com-p-4 com-p-3;
           .logo {
-            @apply com-flex com-items-center com-w-[88px] com-h-[88px] com-object-cover com-m-0 com-mr-4 com-flex-shrink-0;
+            @apply com-flex com-items-center md:com-w-[88px] md:com-h-[88px] com-w-[66px] com-h-[66px] com-object-cover com-m-0 md:com-mr-4 com-mr-3 com-flex-shrink-0;
 
             img {
               @apply com-w-full com-h-auto com-rounded-lg;
@@ -295,10 +295,10 @@ p {
           .communities-card-text {
             @apply com-flex com-flex-col;
             .name {
-              @apply com-m-0 com-mb-1 com-line-clamp-1 com-text-base com-font-semibold com-text-Yankees-Blue;
+              @apply com-m-0 com-mb-1 com-line-clamp-1 md:com-text-base com-text-xs com-font-semibold com-text-Yankees-Blue;
             }
             .description {
-              @apply com-m-0 com-line-clamp-3 com-text-sm com-font-normal com-text-gray-500;
+              @apply com-m-0 com-line-clamp-3 md:com-text-sm com-text-10px com-font-normal com-text-gray-500;
             }
           }
         }
@@ -308,5 +308,5 @@ p {
 }
 
 .faq {
-  @apply com-m-0 com-mb-[138px];
+  @apply com-m-0 com-mb-[138px] com-mx-3 md:com-mx-0;
 }

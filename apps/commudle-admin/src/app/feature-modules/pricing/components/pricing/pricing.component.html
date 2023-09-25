@@ -12,8 +12,9 @@
     </div>
 
     <div class="background-container">
-      <img class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" />
-      <div class="base-layout com-min-h-full">
+      <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" />
+      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_mobile }}" />
+      <div class="base-layout">
         <div class="cards">
           <div class="enterprise-card">
             <div class="title">
@@ -28,6 +29,7 @@
             </div>
             <div class="card-image">
               <img src="{{ staticAssets.pricing_enterprise }}" />
+              <!-- <img *ngIf="isMobileView" src="{{ staticAssets.pricing_enterprise_mobile }}" /> -->
             </div>
             <div class="features">
               <p class="features-heading">Exclusive For Enterprises & Startups</p>
@@ -141,7 +143,7 @@
     <!-- Feature comparison (Desktop) -->
     <div class="base-layout">
       <div class="pricing-features">
-        <div class="com-mt-[150px] com-max-w-7xl com-min-w-[60rem] com-mx-auto com-px-8">
+        <div class="com-mt-[150px] com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3">
           <p class="pricing-features-heading">Features for Developer Relations Teams</p>
           <div class="pricing-feature-headings sticky">
             <div class="com--mt-px com-w-1/3 com-py-6 com-px-0 com-flex com-items-end">
@@ -1101,7 +1103,8 @@
 
     <!-- Logo cloud -->
     <div class="background-container-community">
-      <img class="background" src="{{ staticAssets.pricing_community_logo_desktop }}" />
+      <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_desktop }}" />
+      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_mobile }}" />
       <div class="base-layout">
         <div class="pricing-logo-cloud">
           <p class="subheading">Communities already on Commudle</p>

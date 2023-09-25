@@ -1,5 +1,5 @@
 h2 {
-  @apply com-text-4xl com-font-bold com-text-Yankees-Blue com-m-0 com-mb-[52px] com-text-center;
+  @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0 md:com-mb-[52px] com-mb-10 com-text-center;
 }
 
 .faq-cards {
@@ -9,10 +9,10 @@ h2 {
       @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl;
 
       .question {
-        @apply com-flex com-flex-row com-justify-between com-items-center com-mb-2;
+        @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2;
 
         p {
-          @apply com-m-0 com-text-lg com-font-medium com-text-gray-900;
+          @apply com-m-0 md:com-text-lg com-mr-1 com-text-base com-font-medium com-text-gray-900;
         }
 
         fa-icon {
@@ -21,7 +21,7 @@ h2 {
       }
 
       .answer {
-        @apply com-m-0 com-text-lg com-font-normal com-text-gray-500;
+        @apply com-m-0 md:com-text-lg com-text-base com-font-normal com-text-gray-500;
       }
     }
   }

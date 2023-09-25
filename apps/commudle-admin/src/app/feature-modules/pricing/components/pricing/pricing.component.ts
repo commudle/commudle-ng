@@ -11,6 +11,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 })
 export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
+  isMobileView = false;
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
       name: 'GDG New Delhi',
@@ -93,6 +94,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 1024;
     this.footerService.changeFooterStatus(true);
     this.seoService.setTags(
       'Pricing: Students, DevRels, Startups',
