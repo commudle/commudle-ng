@@ -26,6 +26,7 @@ export class TrackSlotFormComponent implements OnInit {
   @Input() trackSlot;
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  @Input() selectedSpeakerSlot = '';
   eventSpeakers;
   icons = {
     faXmark,
@@ -74,7 +75,7 @@ export class TrackSlotFormComponent implements OnInit {
 
   updateNewTrackSlot() {
     this.tags = [];
-    this.addSpeakerDropdown();
+    this.addSpeakerDropdown(this.selectedSpeakerSlot);
     const time = new Date(this.startTime);
     const endTime = new Date(time.getTime() + 30 * 60000);
     this.trackSlotForm.get('track_slot').patchValue({
@@ -212,8 +213,8 @@ export class TrackSlotFormComponent implements OnInit {
     speakerIdsArray.at(index).setValue(selectedSpeakerId);
   }
 
-  addSpeakerDropdown() {
-    const speakerControl = this.fb.control('');
+  addSpeakerDropdown(selectedSpeaker?) {
+    const speakerControl = this.fb.control(selectedSpeaker ? selectedSpeaker : '');
     const speakerIdsArray = this.trackSlotForm.get('track_slot.track_slot_speaker_registration_ids') as FormArray;
     speakerIdsArray.push(speakerControl);
   }

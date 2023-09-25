@@ -23,6 +23,8 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 import { faXmark, faFilter, faPieChart } from '@fortawesome/free-solid-svg-icons';
 import { EQuestionTypes } from 'apps/shared-models/enums/question_types.enum';
 import { RegistrationTypeNames } from 'apps/shared-models/registration_type.model';
+import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
+import { IEventLocation } from 'apps/shared-models/event-location.model';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -66,7 +68,7 @@ export class EventFormResponsesComponent implements OnInit {
   toRegistrationStatus: string;
   selectedRegistrationStatus = 0;
   gender = '';
-  eventLocationTracks: IEventLocationTrack[];
+  eventLocationTracks: IEventLocationTrack[] = [];
   selectedEventLocationTrackId = 0;
   icons = {
     faXmark,
@@ -78,6 +80,7 @@ export class EventFormResponsesComponent implements OnInit {
   forms: FormGroup[] = [];
   EQuestionTypes = EQuestionTypes;
   RegistrationTypeNames = RegistrationTypeNames;
+  eventLocations: IEventLocation[];
 
   //TODO past event stats
   constructor(
@@ -90,6 +93,7 @@ export class EventFormResponsesComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private appUsersService: AppUsersService,
+    private eventLocationsService: EventLocationsService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -130,6 +134,9 @@ export class EventFormResponsesComponent implements OnInit {
       .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
       .subscribe((data) => {
         this.eventDataFormEntityGroup = data;
+        if (this.eventDataFormEntityGroup.registration_type.name === RegistrationTypeNames.SPEAKER) {
+          this.getEventLocationTracks();
+        }
       });
   }
 
@@ -176,6 +183,18 @@ export class EventFormResponsesComponent implements OnInit {
       });
   }
 
+  clearAllFilter() {
+    this.emptyMessage = 'Loading...';
+    this.forms = [];
+    this.searchForm.get('name').setValue('');
+    for (const question of this.questions) {
+      if (question.editMode === true) question.editMode = false;
+    }
+    this.gender = '';
+    this.registrationStatusId = 0;
+    this.selectedEventLocationTrackId = 0;
+  }
+
   registrationStatusFilter(event) {
     this.page = 1;
     this.registrationStatusId = event.target.value;
@@ -188,8 +207,15 @@ export class EventFormResponsesComponent implements OnInit {
     this.getResponses();
   }
 
-  eventLocationTrackId(eventLocationTracks) {
-    this.eventLocationTracks = eventLocationTracks;
+  getEventLocationTracks() {
+    this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
+      this.eventLocations = data.event_locations;
+      for (const eventLocation of data.event_locations) {
+        for (const eventLocationTrack of eventLocation.event_location_tracks) {
+          this.eventLocationTracks.push(eventLocationTrack);
+        }
+      }
+    });
   }
 
   trackSlotFilter(data?) {

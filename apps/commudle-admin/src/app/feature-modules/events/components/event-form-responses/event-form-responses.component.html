@@ -95,15 +95,28 @@
         <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
           <ng-template let-column="column" ngx-datatable-header-template>
             <div class="header-column-template">
-              <div class="com-flex com-gap-2">
-                <p>User Details</p>
+              <div class="com-flex com-gap-2 com-justify-between">
+                <div class="com-flex com-gap-2">
+                  <p>User Details</p>
+                  <div
+                    [nbPopover]="templateRef"
+                    nbPopoverTrigger="hover"
+                    nbPopoverPlacement="bottom"
+                    [nbPopoverContext]="{ showGenderGraph: true }"
+                  >
+                    <fa-icon [icon]="icons.faPieChart"></fa-icon>
+                  </div>
+                </div>
                 <div
-                  [nbPopover]="templateRef"
-                  nbPopoverTrigger="hover"
-                  nbPopoverPlacement="bottom"
-                  [nbPopoverContext]="{ showGenderGraph: true }"
+                  *ngIf="
+                    forms.length > 0 ||
+                    gender !== '' ||
+                    this.searchForm.get('name').value !== '' ||
+                    registrationStatusId !== 0 ||
+                    selectedEventLocationTrackId !== 0
+                  "
                 >
-                  <fa-icon [icon]="icons.faPieChart"></fa-icon>
+                  <div (click)="clearAllFilter()" class="com-text-red-500 com-cursor-pointer">Clear All Filters</div>
                 </div>
               </div>
               <form [formGroup]="searchForm">
@@ -237,7 +250,7 @@
                 [event]="event"
                 [community]="community"
                 [row]="row"
-                (eventLocationTrackIdsEmit)="eventLocationTrackId($event)"
+                [eventLocations]="eventLocations"
               ></commudle-user-track-slots>
             </div>
           </ng-template>
@@ -392,6 +405,8 @@
                 [trackSlots]="row.track_slots"
                 [event]="event"
                 [community]="community"
+                [row]="row"
+                [eventLocations]="eventLocations"
               ></commudle-user-track-slots>
             </div>
             <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
