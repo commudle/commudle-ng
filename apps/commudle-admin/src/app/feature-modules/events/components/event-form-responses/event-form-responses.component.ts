@@ -183,6 +183,18 @@ export class EventFormResponsesComponent implements OnInit {
       });
   }
 
+  clearAllFilter() {
+    this.emptyMessage = 'Loading...';
+    this.forms = [];
+    this.searchForm.get('name').setValue('');
+    for (const question of this.questions) {
+      if (question.editMode === true) question.editMode = false;
+    }
+    this.gender = '';
+    this.registrationStatusId = 0;
+    this.selectedEventLocationTrackId = 0;
+  }
+
   registrationStatusFilter(event) {
     this.page = 1;
     this.registrationStatusId = event.target.value;
