@@ -15,7 +15,7 @@
       }
     }
     .profile-visited-count {
-      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
+      @apply com-m-0 com-ml-4 com-p-0 com-text-base com-font-semibold com-text-black;
     }
   }
   .talks-given {
@@ -97,6 +97,9 @@
   }
 
   .profile-link {
-    @apply com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+    @apply com-flex com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+    span {
+      @apply com-text-left;
+    }
   }
 }

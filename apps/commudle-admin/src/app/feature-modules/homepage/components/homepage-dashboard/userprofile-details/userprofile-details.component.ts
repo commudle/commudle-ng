@@ -20,6 +20,9 @@ import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 export class UserprofileDetailsComponent implements OnInit {
   @Input() userProfileDetails: IUserStat;
   @Input() username;
+  @Input() showUpperCardUserDetails = true;
+  @Input() showLowerCardUserDetails = true;
+  @Input() completeProfileText = 'Complete Your Profile';
   faEye = faEye;
   faFlask = faFlask;
   faLightbulb = faLightbulb;
