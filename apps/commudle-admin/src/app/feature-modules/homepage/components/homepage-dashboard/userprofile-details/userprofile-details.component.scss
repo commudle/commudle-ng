@@ -97,6 +97,9 @@
   }
 
   .profile-link {
-    @apply com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+    @apply com-flex com-text-sm com-font-semibold com-text-primary-500 com-no-underline;
+    span {
+      @apply com-text-left;
+    }
   }
 }

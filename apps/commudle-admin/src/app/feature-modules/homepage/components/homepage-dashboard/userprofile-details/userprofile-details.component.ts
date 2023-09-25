@@ -22,6 +22,7 @@ export class UserprofileDetailsComponent implements OnInit {
   @Input() username;
   @Input() showUpperCardUserDetails = true;
   @Input() showLowerCardUserDetails = true;
+  @Input() completeProfileText = 'Complete Your Profile';
   faEye = faEye;
   faFlask = faFlask;
   faLightbulb = faLightbulb;

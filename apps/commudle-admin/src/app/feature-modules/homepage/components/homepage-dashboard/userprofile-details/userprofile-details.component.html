@@ -47,8 +47,8 @@
       </div>
       <p class="content-published-count">{{ userProfileDetails.social_resources_count }}</p>
     </div>
-    <a [routerLink]="['/users', username]" class="profile-link"
-      >Complete your profile to increase chances of getting selected <fa-icon [icon]="faArrowRight"></fa-icon
-    ></a>
   </div>
+  <a [routerLink]="['/users', username]" class="profile-link"
+    ><span>{{ completeProfileText }}&nbsp;<fa-icon [icon]="faArrowRight"></fa-icon></span
+  ></a>
 </div>
