@@ -7,50 +7,30 @@ import { IEventUpdates } from 'apps/shared-models/event_updates.model';
 import { IEventUpdate } from 'apps/shared-models/event_update.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventUpdatesService {
-
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getEventUpdates(eventId): Observable<IEventUpdates> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IEventUpdates>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.INDEX), { params }
-    );
+    return this.http.get<IEventUpdates>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.INDEX), { params });
   }
 
-  createEventUpdate(eventUpdateData, eventId): Observable<IEventUpdate> {
-    return this.http.post<IEventUpdate>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.CREATE), {
-        event_id: eventId,
-        event_update: eventUpdateData
-       }
-    );
+  createEventUpdate(formData, eventId): Observable<any> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.CREATE), formData, { params });
   }
 
   deleteEventUpdate(eventUpdateId): Observable<any> {
     const params = new HttpParams().set('event_update_id', eventUpdateId);
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.DELETE), { params }
-    );
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.DELETE), { params });
   }
-
-
-
 
   pGetEventUpdates(eventId): Observable<IEventUpdates> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<IEventUpdates>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.PUBLIC_INDEX), { params }
-    );
+    return this.http.get<IEventUpdates>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.PUBLIC_INDEX), {
+      params,
+    });
   }
-
-
-
-
 }

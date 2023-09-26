@@ -3,6 +3,9 @@
     <p>😃</p>
     <!-- <nb-icon icon="smiling-face-outline"></nb-icon> -->
   </button>
+  <button *ngIf="addImageSection" class="image-button" nbButton (click)="fileInput.click()">
+    <p>I</p>
+  </button>
   <commudle-editor-menu *ngIf="showMenu && editable" [editor]="editor"></commudle-editor-menu>
   <tiptap [editor]="editor" [ngClass]="{ editable: editable }"></tiptap>
 
@@ -23,3 +26,5 @@
   <!-- TODO: Replace emoji mart with inbuilt emoji picker -->
   <emoji-mart (emojiSelect)="onEmojiSelect($event)" set="twitter" title="Select an emoji!"></emoji-mart>
 </ng-template>
+
+<input #fileInput type="file" style="display: none" multiple (change)="uploadImage($event)" />

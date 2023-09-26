@@ -72,6 +72,12 @@
       @apply com-text-xl com-m-0 com-p-6px;
     }
   }
+  .image-button {
+    @apply com-mr-2 com-p-0;
+    p {
+      @apply com-text-xl com-m-0 com-p-6px;
+    }
+  }
 
   emoji-mart {
     @apply com-absolute com-bottom-10 com-right-0;

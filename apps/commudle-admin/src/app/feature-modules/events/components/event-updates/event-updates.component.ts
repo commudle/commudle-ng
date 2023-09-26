@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EventUpdatesService } from 'apps/commudle-admin/src/app/services/event-updates.service';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
@@ -19,19 +18,15 @@ export class EventUpdatesComponent implements OnInit {
   EEventStatuses = EEventStatuses;
 
   eventUpdates: IEventUpdate[] = [];
-
-  eventUpdateForm;
+  images: any[] = [];
+  showPreviewImages = false;
+  imgesSelect;
 
   constructor(
     private eventUpdatesService: EventUpdatesService,
-    private fb: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-  ) {
-    this.eventUpdateForm = this.fb.group({
-      details: ['', Validators.required],
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe((value) => {
@@ -47,12 +42,26 @@ export class EventUpdatesComponent implements OnInit {
     });
   }
 
-  createEventUpdate() {
-    this.eventUpdatesService.createEventUpdate(this.eventUpdateForm.value, this.event.id).subscribe((data) => {
+  createEventUpdate(event) {
+    // Create a new FormData object
+    const formData = new FormData();
+
+    // Append the event text (assuming removeHtmlTags returns the text)
+    formData.append('event_update[details]', this.removeHtmlTags(event));
+
+    // Append the images to the FormData
+    for (let i = 0; i < this.imgesSelect.length; i++) {
+      const image = this.imgesSelect[i];
+      formData.append('event_update[images][]', image);
+    }
+    this.eventUpdatesService.createEventUpdate(formData, this.event.id).subscribe((data) => {
       this.eventUpdates.unshift(data);
-      this.eventUpdateForm.reset();
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  removeHtmlTags(data) {
+    return data.replace(/<[^>]*>/g, '');
   }
 
   deleteEventUpdate(eventUpdateId, index) {
@@ -60,5 +69,28 @@ export class EventUpdatesComponent implements OnInit {
       this.eventUpdates.splice(index, 1);
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  uploadImages(event) {
+    // this.images = [];
+    this.imgesSelect = event;
+    this.showPreview();
+  }
+
+  showPreview() {
+    this.showPreviewImages = true;
+    for (let i = 0; i < this.imgesSelect.length; i++) {
+      const file = this.imgesSelect[i];
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.images.push({
+          url: e.target.result,
+          name: file.name,
+        });
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 }

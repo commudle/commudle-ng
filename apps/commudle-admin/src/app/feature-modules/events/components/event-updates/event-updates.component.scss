@@ -1,5 +1,8 @@
 nb-card {
   @apply com-mx-0 com-my-6;
+  .updates {
+    @apply com-py-2 com-flex com-flex-col;
+  }
 }
 
 .delete-event-update {
@@ -12,4 +15,14 @@ nb-card {
 
 .update-input {
   @apply com-mb-4;
+}
+
+.image-section {
+  @apply com-flex com-gap-3 com-h-full com-items-center com-my-2 com-flex-wrap;
+  .images {
+    @apply com-w-32 com-h-32 com-aspect-1;
+    img {
+      @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain;
+    }
+  }
 }
