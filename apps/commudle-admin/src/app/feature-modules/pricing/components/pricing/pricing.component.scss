@@ -28,33 +28,33 @@ p {
 
     // md:com-w-[calc(100%-30px)] com-blur-sm
     .background {
-      @apply com-mx-auto lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
+      @apply com-mx-auto lg:com-w-full com-w-auto com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
     .cards {
-      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-mt-20 com-mt-10 com-absolute com-top-0 md:com-gap-x-10 com-gap-0;
+      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-mt-20 com-mt-10 com-absolute com-top-0 md:com-gap-x-10 md:com-gap-y-0 com-gap-x-0 com-gap-y-6;
       .enterprise-card,
       .students-card {
-        @apply md:com-w-[622px] com-w-full com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white com-m-0 md:com-mx-0 com-mx-3;
+        @apply md:com-w-[622px] com-w-auto com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white com-m-0 md:com-mx-0 com-mx-3;
         .title {
-          @apply com-p-8 com-text-center;
+          @apply md:com-p-8 com-px-4 com-pt-6 com-pb-4 com-text-center;
           .heading {
-            @apply com-text-4xl com-font-bold com-mb-6 com-text-gray-900;
+            @apply md:com-text-4xl com-text-2xl com-font-bold md:com-mb-6 com-mb-4 com-text-gray-900;
           }
           .sub-heading {
-            @apply com-text-2xl com-font-normal com-mb-8;
+            @apply md:com-text-2xl com-text-base com-font-normal md:com-mb-8 com-mb-6;
           }
         }
         .card-image {
-          @apply md:com-h-[487px] md:com-w-[620px] com-h-full com-w-full com-overflow-hidden;
+          @apply md:com-h-[487px] md:com-w-[620px] com-h-[276px]  com-w-full com-overflow-hidden;
           img {
             @apply com-h-auto com-w-full com-object-cover;
           }
         }
         .features {
-          @apply com-mt-4 com-mx-8 com-mb-6;
+          @apply md:com-mt-4 com-mt-2 md:com-mx-8 com-mx-4 md:com-mb-6 com-mb-4;
 
           .features-heading {
-            @apply com-text-2xl com-font-bold com-text-black com-mb-8;
+            @apply md:com-text-2xl com-text-base com-font-bold com-text-black md:com-mb-8 com-mb-4;
           }
 
           ul {
@@ -62,10 +62,10 @@ p {
             li {
               @apply com-list-none com-mb-6 com-text-gray-500;
               nb-icon {
-                @apply com-h-6 com-w-6 com-text-Azure com-mr-3;
+                @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-Azure com-mr-3;
               }
               span {
-                @apply com-text-lg com-font-semibold;
+                @apply md:com-text-lg com-text-sm com-font-semibold;
               }
             }
           }
@@ -74,7 +74,9 @@ p {
     }
 
     .pricing-quotes {
-      @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-pt-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-top-0;
+      @apply com-bg-red-500/40 com-overflow-hidden com-pt-8 md:com-py-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-bottom-[644px];
+      //1400px b- 644px
+      // @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-py-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-bottom-[644px];
       // @apply   com-h-full com-absolute com-top-0;
 
       .quote {

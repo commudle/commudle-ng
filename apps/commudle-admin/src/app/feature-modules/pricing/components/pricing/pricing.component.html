@@ -14,7 +14,7 @@
     <div class="background-container">
       <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" />
       <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_mobile }}" />
-      <div class="base-layout">
+      <div class="base-layout com-min-h-full">
         <div class="cards">
           <div class="enterprise-card">
             <div class="title">
@@ -129,10 +129,10 @@
         <section>
           <blockquote class="pricing-quotes">
             <!-- <div class="base-layout"> -->
-            <!-- <p class="quote">
+            <p class="quote">
               "Developers want to engage with other developers, brands and their awesome product teams, they don't want
-              to just be an outlet to marketing efforts. Communities need to be built with a lot of passion and care." -->
-            <!-- </p> -->
+              to just be an outlet to marketing efforts. Communities need to be built with a lot of passion and care."
+            </p>
             <!-- </div> -->
           </blockquote>
           <!-- </div> -->
@@ -141,7 +141,7 @@
     </div>
 
     <!-- Feature comparison (Desktop) -->
-    <div class="base-layout">
+    <div class="base-layout com-min-h-full">
       <div class="pricing-features">
         <div class="com-mt-[150px] com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3">
           <p class="pricing-features-heading">Features for Developer Relations Teams</p>
