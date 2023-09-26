@@ -66,7 +66,7 @@
                   </div>
                 </div>
                 <div class="links">
-                  <div *ngIf="event.editable" class="session-links">
+                  <div *ngIf="event.editable && slot.track_slot_speakers.length > 0" class="session-links">
                     <a
                       *ngIf="!slot.speaker_resource"
                       [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"

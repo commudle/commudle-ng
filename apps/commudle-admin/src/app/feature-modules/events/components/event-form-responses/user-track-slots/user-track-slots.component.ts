@@ -63,6 +63,9 @@ export class UserTrackSlotsComponent implements OnInit {
       },
     });
     this.dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
+      for (const elt of this.eventLocationTracks) {
+        if (elt.id === data.event_location_track_id) data.event_location_track_name = elt.name;
+      }
       this.trackSlots[index] = data;
       this.toastLogService.successDialog('Track slot Updated');
       this.dialogRef.close();

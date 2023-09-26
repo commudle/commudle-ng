@@ -75,10 +75,10 @@
             }
 
             .links {
-              @apply com-flex com-flex-row;
+              @apply com-flex com-flex-row com-gap-7;
 
               .session-links {
-                @apply com-mt-1 com-mr-7;
+                @apply com-mt-1;
 
                 .add-session,
                 .edit-session {

@@ -147,9 +147,16 @@ export class TrackSlotFormComponent implements OnInit {
     });
     delete newSlot['date'];
     const sTime = newSlot['start_time'];
-    newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
+    const sTimeParts = sTime.split(':');
+    newSlot['start_time'] = startTime
+      .set({ hour: parseInt(sTimeParts[0], 10), minute: parseInt(sTimeParts[1], 10) })
+      .toDate();
     const eTime = newSlot['end_time'];
-    newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
+    const eTimeParts = eTime.split(':');
+    newSlot['end_time'] = startTime
+      .set({ hour: parseInt(eTimeParts[0], 10), minute: parseInt(eTimeParts[1], 10) })
+      .toDate();
+
     if (newSlot['start_time'] >= newSlot['end_time']) {
       this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;
@@ -187,9 +194,15 @@ export class TrackSlotFormComponent implements OnInit {
     });
     delete slot['date'];
     const sTimeNew = slot['start_time'];
-    slot['start_time'] = startTime.set({ hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes() }).toDate();
+    const sTimeParts = sTimeNew.split(':');
+    slot['start_time'] = startTime
+      .set({ hour: parseInt(sTimeParts[0], 10), minute: parseInt(sTimeParts[1], 10) })
+      .toDate();
     const eTimeNew = slot['end_time'];
-    slot['end_time'] = startTime.set({ hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes() }).toDate();
+    const eTimeParts = eTimeNew.split(':');
+    slot['end_time'] = startTime
+      .set({ hour: parseInt(eTimeParts[0], 10), minute: parseInt(eTimeParts[1], 10) })
+      .toDate();
     if (slot['start_time'] >= slot['end_time']) {
       this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;
