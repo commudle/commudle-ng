@@ -25,21 +25,22 @@
           </small>
         </div>
       </div>
+    </nb-card-body>
+    <nb-card-footer class="com-sticky com-bg-white com-bottom-0">
       <commudle-editor
         [addImageSection]="true"
         (contentChange)="createEventUpdate($event)"
         (uploadImages)="uploadImages($event)"
       ></commudle-editor>
 
-      <div *ngIf="showPreviewImages" class="com-flex com-gap-3 com-flex-wrap">
-        <div *ngFor="let image of images" class="com-w-32 com-h-32 com-aspect-1">
-          <img
-            [src]="image.url"
-            [alt]="image.name"
-            class="com-mx-auto com-my-0 com-h-full com-w-full com-object-contain"
-          />
+      <div *ngIf="showPreviewImages" class="image-preview-section">
+        <div *ngFor="let image of images; let i = index" class="images">
+          <img [src]="image.url" [alt]="image.name" class="" />
+          <div class="delete" (click)="removeImage(i)">
+            <fa-icon [icon]="icons.faXmark"></fa-icon>
+          </div>
         </div>
       </div>
-    </nb-card-body>
+    </nb-card-footer>
   </nb-card>
 </div>

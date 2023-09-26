@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventUpdatesService } from 'apps/commudle-admin/src/app/services/event-updates.service';
 import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IEventUpdate } from 'apps/shared-models/event_update.model';
 import * as moment from 'moment';
-
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-event-updates',
   templateUrl: './event-updates.component.html',
   styleUrls: ['./event-updates.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventUpdatesComponent implements OnInit {
   event: IEvent;
@@ -18,15 +17,14 @@ export class EventUpdatesComponent implements OnInit {
   EEventStatuses = EEventStatuses;
 
   eventUpdates: IEventUpdate[] = [];
-  images: any[] = [];
+  images = [];
   showPreviewImages = false;
-  imgesSelect;
+  selectedImages: File[] = [];
+  icons = {
+    faXmark,
+  };
 
-  constructor(
-    private eventUpdatesService: EventUpdatesService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+  constructor(private eventUpdatesService: EventUpdatesService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe((value) => {
@@ -38,7 +36,6 @@ export class EventUpdatesComponent implements OnInit {
   getEventUpdates() {
     this.eventUpdatesService.getEventUpdates(this.event.id).subscribe((data) => {
       this.eventUpdates = data.event_updates;
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -50,13 +47,14 @@ export class EventUpdatesComponent implements OnInit {
     formData.append('event_update[details]', this.removeHtmlTags(event));
 
     // Append the images to the FormData
-    for (let i = 0; i < this.imgesSelect.length; i++) {
-      const image = this.imgesSelect[i];
+    for (let i = 0; i < this.selectedImages.length; i++) {
+      const image = this.selectedImages[i];
       formData.append('event_update[images][]', image);
     }
     this.eventUpdatesService.createEventUpdate(formData, this.event.id).subscribe((data) => {
+      this.images = [];
+      this.selectedImages = [];
       this.eventUpdates.unshift(data);
-      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -67,20 +65,21 @@ export class EventUpdatesComponent implements OnInit {
   deleteEventUpdate(eventUpdateId, index) {
     this.eventUpdatesService.deleteEventUpdate(eventUpdateId).subscribe((data) => {
       this.eventUpdates.splice(index, 1);
-      this.changeDetectorRef.markForCheck();
     });
   }
 
   uploadImages(event) {
-    // this.images = [];
-    this.imgesSelect = event;
+    for (let i = 0; i < event.length; i++) {
+      this.selectedImages.push(event[i]);
+    }
     this.showPreview();
   }
 
   showPreview() {
     this.showPreviewImages = true;
-    for (let i = 0; i < this.imgesSelect.length; i++) {
-      const file = this.imgesSelect[i];
+    for (let i = 0; i < this.selectedImages.length; i++) {
+      const file = this.selectedImages[i];
+
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
@@ -92,5 +91,10 @@ export class EventUpdatesComponent implements OnInit {
 
       reader.readAsDataURL(file);
     }
+  }
+
+  removeImage(index) {
+    this.images.splice(index, 1);
+    this.selectedImages.splice(index, 1);
   }
 }
