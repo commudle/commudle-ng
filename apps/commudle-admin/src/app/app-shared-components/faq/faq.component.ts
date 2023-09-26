@@ -23,6 +23,7 @@ export class FaqComponent implements OnInit {
     'I want to display activities from Commudle on my website, is it possible?',
     'Will you help me migrate from other platforms?',
     'I lead a Design Community, is Commudle for me?',
+    'Does Commudle support paid ticket events?',
   ];
   constructor() {}
 

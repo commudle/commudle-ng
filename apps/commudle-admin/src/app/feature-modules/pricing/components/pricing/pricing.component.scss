@@ -81,13 +81,13 @@ p {
 
     .pricing-quotes {
       // com-absolute com-bottom-[644px]
-      @apply com-bg-white/40 com-overflow-hidden com-pt-8 com-m-0 md:com-py-20 com-mt-8 md:com-my-20 com-pb-0;
+      @apply com-bg-white/40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-py-20 com-mt-8 md:com-my-20 md:com-p-0;
       //1400px b- 644px
       // @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-py-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-bottom-[644px];
       // @apply   com-h-full com-absolute com-top-0;
 
       .quote {
-        @apply com-max-w-[1150px] com-mx-auto com-text-center com-text-[28px] com-leading-10 com-font-medium com-text-gray-900;
+        @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal md:com-text-gray-900 com-text-black;
       }
     }
   }
@@ -152,7 +152,7 @@ p {
   }
 
   .pricing-features {
-    @apply com-p-0 com-pt-24 com-overflow-x-auto;
+    @apply com-p-0 md:com-pt-24 com-pt-9 com-overflow-x-auto;
 
     .pricing-features-heading {
       @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900 com-m-0 md:com-mb-[26px] com-mb-2;
@@ -272,15 +272,16 @@ p {
 }
 
 .background-container-community {
-  @apply com-relative com-overflow-hidden com-w-full com-h-[732px];
+  // com-relative com-h-[732px]
+  @apply com-overflow-hidden com-w-full;
 
   // md:com-w-[calc(100%-30px)] com-blur-sm
   .background {
     @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
   }
   .pricing-logo-cloud {
-    @apply md:com-mx-auto com-mx-4 com-my-0 com-p-0 md:com-pt-[102px] com-pt-20 md:com-w-auto com-w-full;
-    @apply com-absolute com-top-0;
+    @apply md:com-mx-auto com-my-0 com-p-0 md:com-pt-[102px] com-pt-20 md:com-w-auto com-w-full;
+    // @apply com-absolute com-top-0;
     // @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
     .subheading {
@@ -288,7 +289,7 @@ p {
     }
 
     .communities {
-      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-[225px] com-mb-28;
+      @apply com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 sm:com-gap-6 md:com-grid-cols-3 md:com-gap-[60px] md:com-mb-24 com-mb-28;
 
       a {
         @apply com-flex com-justify-center md:com-justify-normal com-no-underline;
@@ -317,5 +318,5 @@ p {
 }
 
 .faq {
-  @apply com-m-0 com-mb-[138px] com-mx-3 md:com-mx-0;
+  @apply com-m-0 com-mb-[138px] md:com-mt-32 com-mt-0 com-mx-3 md:com-mx-0;
 }

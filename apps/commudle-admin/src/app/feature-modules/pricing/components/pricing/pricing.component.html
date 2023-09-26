@@ -15,7 +15,7 @@
       class="background-container"
       [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.pricing_usecase_cards_desktop + '\')' }"
     > -->
-    <div class="background-container" [ngStyle]="{ 'background-image': getUrl() }">
+    <div class="background-container" [ngStyle]="{ 'background-image': getUseCaseCardsUrl() }">
       <!-- <div
         class="background"
       ></div> -->
@@ -153,7 +153,7 @@
     <!-- Feature comparison (Desktop) -->
     <div class="base-layout com-min-h-full">
       <div class="pricing-features">
-        <div class="com-mt-[150px] com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3">
+        <div class="md:com-mt-[150px] com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3">
           <p class="pricing-features-heading">Features for Developer Relations Teams</p>
           <div class="pricing-feature-headings sticky">
             <div class="com--mt-px com-w-1/3 com-py-6 com-px-0 com-flex com-items-end">
@@ -1112,9 +1112,9 @@
     </div>
 
     <!-- Logo cloud -->
-    <div class="background-container-community">
-      <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_desktop }}" />
-      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_mobile }}" />
+    <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
+      <!-- <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_desktop }}" />
+      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_mobile }}" /> -->
       <div class="base-layout">
         <div class="pricing-logo-cloud">
           <p class="subheading">Communities already on Commudle</p>
