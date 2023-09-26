@@ -1,5 +1,6 @@
 <div *ngIf="openForms.length > 0">
   <div class="open-forms">
+    <p class="registrations"><nb-icon icon="book-outline"></nb-icon><span>Registrations</span></p>
     <div *ngFor="let form of openForms" class="form-link">
       <a
         [routerLink]="['/fill-form', form.data_form_entity_id]"
