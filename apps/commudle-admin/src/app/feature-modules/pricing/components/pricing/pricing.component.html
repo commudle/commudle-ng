@@ -11,129 +11,139 @@
       </div>
     </div>
 
-    <div class="background-container">
-      <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" />
-      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_mobile }}" />
-      <div class="base-layout com-min-h-full">
-        <div class="cards">
-          <div class="enterprise-card">
-            <div class="title">
-              <p class="heading">Commudle For Enterprises & Startups</p>
-              <p class="sub-heading">
-                With Commudle features and support, you can have complete control of your community while maintaining
-                your business
-              </p>
-              <a [routerLink]="['/fill-form', 1344]" (click)="gtmDatalayerPush('startup')">
-                <button nbButton fullWidth status="info">Get Started</button></a
-              >
-            </div>
-            <div class="card-image">
-              <img src="{{ staticAssets.pricing_enterprise }}" />
-              <!-- <img *ngIf="isMobileView" src="{{ staticAssets.pricing_enterprise_mobile }}" /> -->
-            </div>
-            <div class="features">
-              <p class="features-heading">Exclusive For Enterprises & Startups</p>
-              <ul>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Unlimited Teammates</span>
-                </li>
+    <!-- <div
+      class="background-container"
+      [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.pricing_usecase_cards_desktop + '\')' }"
+    > -->
+    <div class="background-container" [ngStyle]="{ 'background-image': getUrl() }">
+      <!-- <div
+        class="background"
+      ></div> -->
+      <!-- <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" /> -->
+      <!-- <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_mobile }}" /> -->
+      <div>
+        <div class="base-layout com-min-h-full">
+          <div class="cards">
+            <div class="enterprise-card">
+              <div class="title">
+                <p class="heading">Commudle For Enterprises & Startups</p>
+                <p class="sub-heading">
+                  With Commudle features and support, you can have complete control of your community while maintaining
+                  your business
+                </p>
+                <a [routerLink]="['/fill-form', 1344]" (click)="gtmDatalayerPush('startup')">
+                  <button nbButton fullWidth status="info">Get Started</button></a
+                >
+              </div>
+              <div class="card-image">
+                <img src="{{ staticAssets.pricing_enterprise }}" />
+                <!-- <img *ngIf="isMobileView" src="{{ staticAssets.pricing_enterprise_mobile }}" /> -->
+              </div>
+              <div class="features">
+                <p class="features-heading">Exclusive For Enterprises & Startups</p>
+                <ul>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Unlimited Teammates</span>
+                  </li>
 
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Access to exclusive Blogs and Newsletter</span>
-                </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Access to exclusive Blogs and Newsletter</span>
+                  </li>
 
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Host Online/ Offline events</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Community Dashboard</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Event Statistics</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Publish Tutorials & Projects</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Video Integrations</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Publish Tutorials & Projects</span>
-                </li>
-              </ul>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Host Online/ Offline events</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Community Dashboard</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Event Statistics</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Publish Tutorials & Projects</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Video Integrations</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Publish Tutorials & Projects</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="students-card">
-            <div class="title">
-              <p class="heading">Exclusive For Students & Individuals</p>
-              <p class="sub-heading">
-                Get access to a dedicated community space, tools for creating and managing content Students and
-                Non-Profit get all the perks for free
-              </p>
-              <a [routerLink]="['/fill-form', 1343]" (click)="gtmDatalayerPush('non_profit')" class="buy-btn"
-                ><button nbButton outline fullWidth status="info">Get Started</button></a
-              >
-            </div>
-            <div class="card-image">
-              <img src="{{ staticAssets.pricing_students }}" />
-            </div>
-            <div class="features">
-              <p class="features-heading">Exclusive For Students & Individuals</p>
-              <ul>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Unlimited Teammates</span>
-                </li>
+            <div class="students-card">
+              <div class="title">
+                <p class="heading">Exclusive For Students & Individuals</p>
+                <p class="sub-heading">
+                  Get access to a dedicated community space, tools for creating and managing content Students and
+                  Non-Profit get all the perks for free
+                </p>
+                <a [routerLink]="['/fill-form', 1343]" (click)="gtmDatalayerPush('non_profit')" class="buy-btn"
+                  ><button nbButton outline fullWidth status="info">Get Started</button></a
+                >
+              </div>
+              <div class="card-image">
+                <img src="{{ staticAssets.pricing_students }}" />
+              </div>
+              <div class="features">
+                <p class="features-heading">Exclusive For Students & Individuals</p>
+                <ul>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Unlimited Teammates</span>
+                  </li>
 
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Access to exclusive Blogs and Newsletter</span>
-                </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Access to exclusive Blogs and Newsletter</span>
+                  </li>
 
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Host Online/ Offline events</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Community Dashboard</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Event Statistics</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Publish Tutorials & Projects</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Video Integrations</span>
-                </li>
-                <li>
-                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                  <span class="feature">Publish Tutorials & Projects</span>
-                </li>
-              </ul>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Host Online/ Offline events</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Community Dashboard</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Event Statistics</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Publish Tutorials & Projects</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Video Integrations</span>
+                  </li>
+                  <li>
+                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                    <span class="feature">Publish Tutorials & Projects</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <section>
           <blockquote class="pricing-quotes">
-            <!-- <div class="base-layout"> -->
-            <p class="quote">
-              "Developers want to engage with other developers, brands and their awesome product teams, they don't want
-              to just be an outlet to marketing efforts. Communities need to be built with a lot of passion and care."
-            </p>
-            <!-- </div> -->
+            <div class="base-layout">
+              <p class="quote">
+                "Developers want to engage with other developers, brands and their awesome product teams, they don't
+                want to just be an outlet to marketing efforts. Communities need to be built with a lot of passion and
+                care."
+              </p>
+            </div>
           </blockquote>
           <!-- </div> -->
         </section>
