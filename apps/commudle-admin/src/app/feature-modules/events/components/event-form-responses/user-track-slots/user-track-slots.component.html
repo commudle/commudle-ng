@@ -42,10 +42,10 @@
           </div>
         </div>
         <div *ngIf="event.editable" class="com-flex com-justify-center com-flex-col com-gap-2">
-          <div>
+          <div class="com-cursor-pointer">
             <nb-icon icon="edit-outline" (click)="editTrackSlot(trackSlot, i)" class="edit-outline"></nb-icon>
           </div>
-          <div>
+          <div class="com-cursor-pointer">
             <nb-icon
               icon="trash-outline"
               (click)="confirmDeleteSlot(trackSlot, i)"
@@ -79,7 +79,8 @@
     </nb-card-body>
     <nb-card-footer>
       <div>
-        <button (click)="deleteSlot(data.trackSlot, data.index)" nbButton status="primary">Yes</button> &nbsp;
+        <button (click)="deleteSlot(data.trackSlot, data.index); ref.close()" nbButton status="primary">Yes</button>
+        &nbsp;
         <button (click)="ref.close()" nbButton status="danger" outline>No</button>
       </div>
     </nb-card-footer>

@@ -84,6 +84,9 @@ export class UserTrackSlotsComponent implements OnInit {
     });
     this.dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
       this.toastLogService.successDialog('New track slot added');
+      for (const elt of this.eventLocationTracks) {
+        if (elt.id === data.event_location_track_id) data.event_location_track_name = elt.name;
+      }
       this.trackSlots.unshift(data);
       this.dialogRef.close();
     });
@@ -101,6 +104,7 @@ export class UserTrackSlotsComponent implements OnInit {
   deleteSlot(trackSlot, index) {
     this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
       this.toastLogService.successDialog('Deleted');
+      this.trackSlots.splice(index, 1);
     });
   }
 }
