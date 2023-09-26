@@ -13,6 +13,7 @@ import { CommunityChannelMessageComponent } from './components/channel-discussio
 import { CommunityForumMessageComponent } from './components/channel-discussion/community-forum-message/community-forum-message.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { FaqComponent } from 'libs/shared/components/src/lib/components/faq/faq.component';
 @NgModule({
   declarations: [
     DiscussionComponent,
@@ -34,8 +35,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     InViewportDirective,
     NbContextMenuModule,
     FontAwesomeModule,
+    FaqComponent,
   ],
-  exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent, LoadingSpinnerComponent],
+  exports: [DiscussionComponent, VoteComponent, ChannelDiscussionComponent, LoadingSpinnerComponent, FaqComponent],
   providers: [InViewportDirective],
 })
 export class SharedComponentsModule {}

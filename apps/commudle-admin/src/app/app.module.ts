@@ -253,6 +253,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
     UserProfileComponent,
+    SharedComponentsModule,
   ],
   providers: [
     AppInitService,

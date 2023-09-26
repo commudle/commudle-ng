@@ -12,6 +12,7 @@ import { CommudleFeaturesComponent } from './components/commudle-features/commud
 import { PricingComponent } from './components/pricing/pricing.component';
 import { PricingRoutingModule } from './pricing-routing.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { FaqComponent } from 'libs/shared/components/src/lib/components/faq/faq.component';
 
 @NgModule({
   declarations: [PricingComponent, CommudleFeaturesComponent],
@@ -19,7 +20,6 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     CommonModule,
     PricingRoutingModule,
     AppSharedComponentsModule,
-
     // Nebular
     NbCardModule,
     NbListModule,
@@ -27,6 +27,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     NbTooltipModule,
     NbButtonModule,
     NbToggleModule,
+    FaqComponent,
   ],
 })
 export class PricingModule {}
