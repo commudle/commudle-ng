@@ -29,14 +29,12 @@ p {
   }
 
   .background-container {
-    // com-relative
     @apply com-overflow-hidden com-w-full com-h-full;
 
     .background {
       @apply com-mx-auto lg:com-w-full com-w-auto com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
     .cards {
-      // com-absolute com-top-0
       @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-pt-20 com-pt-10 md:com-gap-x-9 md:com-gap-y-0 com-gap-x-0 com-gap-y-6;
       .enterprise-card,
       .students-card {
@@ -80,76 +78,13 @@ p {
     }
 
     .pricing-quotes {
-      // com-absolute com-bottom-[644px]
       @apply com-bg-white/40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-py-20 com-mt-8 md:com-my-20 md:com-p-0;
-      //1400px b- 644px
-      // @apply com-bg-white/40 com-overflow-hidden com-pt-8 md:com-py-20 com-mt-8 md:com-mt-20 com-pb-0 com-absolute com-bottom-[644px];
-      // @apply   com-h-full com-absolute com-top-0;
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal md:com-text-gray-900 com-text-black;
       }
     }
   }
-
-  // .pricing-toggle {
-  //   @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
-
-  //   label {
-  //     @apply com-text-[#57c3b9];
-  //   }
-  // }
-
-  // .pricing-cards {
-  //   @apply com-relative com-mt-8 com-max-w-2xl com-mx-auto com-px-4 com-pb-8;
-  //   @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0 lg:com-flex lg:com-justify-center;
-
-  //   .pricing-card-light {
-  //     @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-r-lg com-rounded-l-lg;
-  //     @apply lg:com-px-8 lg:com-pt-12 lg:com-my-4 lg:com-rounded-l-none;
-  //     .name {
-  //       @apply com-text-white com-text-base com-font-semibold com-uppercase com-tracking-wide;
-  //     }
-
-  //     .pricing {
-  //       @apply com-flex com-flex-col com-items-start;
-  //       @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
-
-  //       .amount {
-  //         @apply com-text-white com-text-4xl com-font-extrabold com-tracking-tight;
-  //       }
-
-  //       .buy-btn {
-  //         text-decoration: none;
-  //         @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
-  //         @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
-  //       }
-  //     }
-  //   }
-
-  //   .pricing-card-dark {
-  //     @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
-  //     @apply lg:com-px-8 lg:com-pt-12;
-  //     .name {
-  //       @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
-  //     }
-
-  //     .pricing {
-  //       @apply com-flex com-flex-col com-items-start;
-  //       @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
-
-  //       .amount {
-  //         @apply com-text-[#3aa49a] com-text-4xl com-font-extrabold com-tracking-tight;
-  //       }
-
-  //       .buy-btn {
-  //         text-decoration: none;
-  //         @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
-  //         @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
-  //       }
-  //     }
-  //   }
-  // }
 
   .pricing-features {
     @apply com-p-0 md:com-pt-0 com-pt-9 com-overflow-x-auto;
@@ -244,45 +179,16 @@ p {
       @apply md:com-mt-8 com-mt-4 com-m-0 md:com-text-xl com-text-base com-font-normal com-text-gray-500;
     }
   }
-
-  // .non-profit {
-  //   @apply com-px-6 md:com-my-12 md:com-mx-72px com-mx-auto;
-
-  //   div {
-  //     @apply com-flex md:com-flex-row com-m-0 com-p-0 com-flex-col-reverse com-gap-x-28;
-
-  //     .content {
-  //       @apply com-mt-12 com-mx-4 com-flex com-flex-col;
-
-  //       h1 {
-  //         @apply com-mb-4 com-p-0 com-font-extrabold com-mt-0;
-  //       }
-  //       .subheading {
-  //         @apply com-mb-5 com-text-lg com-font-normal;
-  //       }
-  //       .button {
-  //         @apply com-py-3 com-px-5 com-m-0 com-bg-black com-rounded-3xl com-text-white com-w-fit com-text-sm com-border-black;
-  //       }
-  //     }
-  //     .image {
-  //       @apply com-m-0 com-p-0 md:com-w-[550px] md:com-h-[400px] com-w-full com-h-full;
-  //     }
-  //   }
-  // }
 }
 
 .background-container-community {
-  // com-relative com-h-[732px]
   @apply com-overflow-hidden com-w-full;
 
-  // md:com-w-[calc(100%-30px)] com-blur-sm
   .background {
     @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
   }
   .pricing-logo-cloud {
     @apply md:com-mx-auto com-my-0 com-p-0 md:com-pt-[102px] com-pt-20 md:com-w-auto com-w-full;
-    // @apply com-absolute com-top-0;
-    // @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
     .subheading {
       @apply com-text-center md:com-text-2xl com-text-base md:com-mb-16 com-mb-12 com-text-gray-500 com-font-semibold com-uppercase;

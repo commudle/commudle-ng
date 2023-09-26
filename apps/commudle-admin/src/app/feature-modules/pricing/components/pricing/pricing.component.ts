@@ -176,9 +176,6 @@ export class PricingComponent implements OnInit, OnDestroy {
     } else {
       return "url('" + staticAssets.pricing_usecase_cards_desktop + "')";
     }
-    // return "url('https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnBnQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--19af23aeba1556ddef013ced2d20db12ab1b2c4e/Usecase%20Cards%20Desktop.svg')";
-    // return "url('" + staticAssets.pricing_usecase_cards_desktop + "')";
-    // return `url(${staticAssets.pricing_usecase_cards_desktop})`;
   }
 
   getCommunityLogoCardsUrl() {
@@ -187,8 +184,5 @@ export class PricingComponent implements OnInit, OnDestroy {
     } else {
       return "url('" + staticAssets.pricing_community_logo_desktop + "')";
     }
-    // return "url('https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnBnQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--19af23aeba1556ddef013ced2d20db12ab1b2c4e/Usecase%20Cards%20Desktop.svg')";
-    // return "url('" + staticAssets.pricing_usecase_cards_desktop + "')";
-    // return `url(${staticAssets.pricing_usecase_cards_desktop})`;
   }
 }

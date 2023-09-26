@@ -11,16 +11,7 @@
       </div>
     </div>
 
-    <!-- <div
-      class="background-container"
-      [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.pricing_usecase_cards_desktop + '\')' }"
-    > -->
     <div class="background-container" [ngStyle]="{ 'background-image': getUseCaseCardsUrl() }">
-      <!-- <div
-        class="background"
-      ></div> -->
-      <!-- <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_desktop }}" /> -->
-      <!-- <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_usecase_cards_mobile }}" /> -->
       <div>
         <div class="base-layout com-min-h-full">
           <div class="cards">
@@ -37,7 +28,6 @@
               </div>
               <div class="card-image">
                 <img src="{{ staticAssets.pricing_enterprise }}" />
-                <!-- <img *ngIf="isMobileView" src="{{ staticAssets.pricing_enterprise_mobile }}" /> -->
               </div>
               <div class="features">
                 <p class="features-heading">Exclusive For Enterprises & Startups</p>
@@ -145,7 +135,6 @@
               </p>
             </div>
           </blockquote>
-          <!-- </div> -->
         </section>
       </div>
     </div>
@@ -1115,8 +1104,6 @@
 
     <!-- Logo cloud -->
     <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
-      <!-- <img *ngIf="!isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_desktop }}" />
-      <img *ngIf="isMobileView" class="background" src="{{ staticAssets.pricing_community_logo_mobile }}" /> -->
       <div class="base-layout">
         <div class="pricing-logo-cloud">
           <p class="subheading">Communities already on Commudle</p>
