@@ -76,14 +76,21 @@ export class TrackSlotFormComponent implements OnInit {
   updateNewTrackSlot() {
     this.tags = [];
     this.addSpeakerDropdown(this.selectedSpeakerSlot);
-    const time = new Date(this.startTime);
-    const endTime = new Date(time.getTime() + 30 * 60000);
+    const startTime = new Date(this.startTime);
+    const endTime = new Date(startTime.getTime() + 30 * 60000);
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.eventLocTrack.id,
       date: this.minSlotDate,
-      start_time: time,
-      end_time: endTime,
+      start_time: this.timeFormat(startTime),
+      end_time: this.timeFormat(endTime),
     });
+  }
+
+  timeFormat(time) {
+    const formattedHours = time.getHours().toString().padStart(2, '0');
+    const formattedMinutes = time.getMinutes().toString().padStart(2, '0');
+    const formattedStartTime = `${formattedHours}:${formattedMinutes}`;
+    return formattedStartTime;
   }
 
   updateExistingTrackSlot() {
@@ -116,8 +123,8 @@ export class TrackSlotFormComponent implements OnInit {
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.trackSlot.event_location_track_id,
       date: trackDate,
-      start_time: sTimeNew,
-      end_time: eTimeNew,
+      start_time: this.timeFormat(sTimeNew),
+      end_time: this.timeFormat(eTimeNew),
       session_title: this.trackSlot.session_title,
       speaker_registration_id: this.trackSlot.speaker_registration_id,
     });
