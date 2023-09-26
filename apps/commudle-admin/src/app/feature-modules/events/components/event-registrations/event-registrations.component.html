@@ -31,3 +31,16 @@
     ></app-event-simple-registration>
   </nb-card-body>
 </nb-card>
+
+<div class="next-step-section">
+  <a>
+    Next Step
+    <fa-icon [icon]="icons.faArrowRight"></fa-icon>
+  </a>
+  <commudle-next-step-card
+    routePath="agenda"
+    [nbIcon]="'calendar-outline'"
+    headingText="Setup Agenda"
+    subHeadingText="Setup your agenda which helps attendee know the schedule of event"
+  ></commudle-next-step-card>
+</div>
