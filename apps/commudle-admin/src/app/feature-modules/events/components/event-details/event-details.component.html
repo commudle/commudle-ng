@@ -72,7 +72,7 @@
   </nb-card-body>
 </nb-card>
 
-<div class="next-step-section">
+<div class="next-step-section" *ngIf="event.event_status.id !== 5">
   <a>
     Next Step
     <fa-icon [icon]="icons.faArrowRight"></fa-icon>
@@ -82,5 +82,7 @@
     [faIcon]="icons.faFileLines"
     headingText="Setup Registrations"
     subHeadingText="Setup your registrations so that you are aware of the attendees & Speaker"
+    [eventSlug]="event.slug"
+    [communitySlug]="community.slug"
   ></commudle-next-step-card>
 </div>

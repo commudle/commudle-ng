@@ -32,7 +32,7 @@
   </nb-card-body>
 </nb-card>
 
-<div class="next-step-section">
+<div class="next-step-section" *ngIf="event.event_status.id !== 5">
   <a>
     Next Step
     <fa-icon [icon]="icons.faArrowRight"></fa-icon>
@@ -42,5 +42,7 @@
     [nbIcon]="'calendar-outline'"
     headingText="Setup Agenda"
     subHeadingText="Setup your agenda which helps attendee know the schedule of event"
+    [eventSlug]="event.slug"
+    [communitySlug]="community.slug"
   ></commudle-next-step-card>
 </div>

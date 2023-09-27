@@ -65,18 +65,21 @@
   </nb-card>
 </div>
 
-<div class="next-step-section">
+<div class="next-step-section" *ngIf="event.event_status.id !== 5">
   <a>
     More things to do
     <fa-icon [icon]="icons.faArrowRight"></fa-icon>
   </a>
   <div class="com-flex com-flex-wrap com-gap-4">
     <commudle-next-step-card
+      *ngIf="event.event_status.id === 2"
       routePath="update"
       [faIcon]="icons.faStar"
       headingText="Post Updates"
       subHeadingText="Post every update related to your event so that the attendees are well updated"
       buttonText="Post now"
+      [eventSlug]="event.slug"
+      [communitySlug]="community.slug"
     ></commudle-next-step-card>
     <commudle-next-step-card
       routePath="collaborations"
@@ -84,6 +87,8 @@
       headingText="Add Collaborations & Teammates"
       subHeadingText="Add your event collaborations and teammates"
       buttonText="add now"
+      [eventSlug]="event.slug"
+      [communitySlug]="community.slug"
     ></commudle-next-step-card>
     <commudle-next-step-card
       routePath="sponsors"
@@ -91,6 +96,8 @@
       headingText="Add Sponsors"
       subHeadingText="Add your event sponsors and give the due credits"
       buttonText="add now"
+      [eventSlug]="event.slug"
+      [communitySlug]="community.slug"
     ></commudle-next-step-card>
   </div>
 </div>
