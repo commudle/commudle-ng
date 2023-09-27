@@ -20,9 +20,9 @@ nb-card {
 .image-section {
   @apply com-flex com-gap-3 com-h-full com-items-center com-my-2 com-flex-wrap;
   .images {
-    @apply com-w-32 com-h-32 com-aspect-1;
+    @apply com-w-auto com-h-32 com-aspect-1 com-border com-border-solid com-border-Bright-Gray com-rounded;
     img {
-      @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain;
+      @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain com-rounded;
     }
   }
 }
