@@ -12,7 +12,7 @@ import { CommudleFeaturesComponent } from './components/commudle-features/commud
 import { PricingComponent } from './components/pricing/pricing.component';
 import { PricingRoutingModule } from './pricing-routing.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
-import { FaqComponent } from 'libs/shared/components/src/lib/components/faq/faq.component';
+import { SharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
   declarations: [PricingComponent, CommudleFeaturesComponent],
@@ -27,7 +27,7 @@ import { FaqComponent } from 'libs/shared/components/src/lib/components/faq/faq.
     NbTooltipModule,
     NbButtonModule,
     NbToggleModule,
-    FaqComponent,
+    SharedComponentsModule,
   ],
 })
 export class PricingModule {}

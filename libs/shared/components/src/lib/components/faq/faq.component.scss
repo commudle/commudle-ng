@@ -6,7 +6,7 @@ h2 {
   @apply com-flex com-flex-col com-gap-y-6 com-pb-8;
   .faq-items {
     .faq-item {
-      @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl;
+      @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl com-cursor-pointer;
 
       .question {
         @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2;

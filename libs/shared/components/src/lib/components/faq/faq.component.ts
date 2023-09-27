@@ -5,8 +5,6 @@ import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-faq',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
 })
@@ -16,7 +14,7 @@ export class FaqComponent implements OnInit {
   faAdd = faAdd;
   faMinus = faMinus;
 
-  questions: string[] = [
+  @Input() questions: string[] = [
     'Do I need to purchase any other platform when I setup a Community on Commudle?',
     'How many Communities can I host on Commudle?',
     "I'm looking to build a career in DevRel, how can Commudle be useful in that?",
