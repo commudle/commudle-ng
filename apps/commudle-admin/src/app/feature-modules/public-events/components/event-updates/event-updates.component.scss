@@ -36,11 +36,19 @@ nb-card {
       }
     }
   }
+}
 
-  .view-more {
-    @apply md:com-max-h-[126px] com-max-h-[146px] com-overflow-y-hidden;
+.image-window {
+  @apply com-w-96;
+  nb-card-header {
+    @apply com-flex com-justify-between;
   }
-  .view-less {
-    @apply com-max-h-max;
+  nb-card-body {
+    .image {
+      @apply com-w-full com-h-full com-aspect-1 com-rounded;
+      img {
+        @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain com-rounded;
+      }
+    }
   }
 }

@@ -11,7 +11,7 @@
         <nb-icon icon="star" status="warning"></nb-icon>
         <span [innerHTML]="eu.details | linky : { sanitizeHtml: true }"></span>
         <div class="image-section" *ngIf="eu.images">
-          <div *ngFor="let img of eu.images" class="images">
+          <div *ngFor="let img of eu.images" class="images" (click)="openImage(img, eu)">
             <img [src]="img.i128" alt="" />
           </div>
         </div>
@@ -34,3 +34,19 @@
     </div>
   </nb-card-footer>
 </nb-card>
+
+<ng-template #imageTemplate let-ref="dialogRef" let-data>
+  <nb-card class="image-window">
+    <nb-card-header>
+      <div>Image Preview</div>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="image" *ngIf="data.image.url">
+        <img [src]="data.image.url" [alt]="data.eventUpdate.details" />
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
