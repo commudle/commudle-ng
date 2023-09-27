@@ -78,7 +78,7 @@ p {
     }
 
     .pricing-quotes {
-      @apply com-bg-white/40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-py-20 com-mt-8 md:com-my-20 md:com-p-0;
+      @apply com-bg-white/40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-pb-20 com-mt-8 md:com-mt-20 md:com-p-0;
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal md:com-text-gray-900 com-text-black;
@@ -90,11 +90,11 @@ p {
     @apply com-p-0 md:com-pt-0 com-pt-9 com-overflow-x-auto;
 
     .pricing-features-heading {
-      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900 com-m-0 md:com-mb-[26px] com-mb-2;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900 com-m-0 md:com-mb-[26px] com-mb-2 md:com-mt-0 com-mt-9;
     }
 
     .pricing-feature-headings {
-      @apply com-w-full com-flex com-items-stretch;
+      @apply com-w-full com-flex com-items-center;
 
       &.sticky {
         @apply com-sticky com-top-16 com-z-10;
@@ -114,11 +114,11 @@ p {
         @apply sm:com-w-auto lg:com-w-full;
 
         &.light {
-          @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-shadow-2xl;
+          @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-border com-border-solid com-border-Bright-Gray com-shadow com-mb-1;
         }
 
         &.dark {
-          @apply com-bg-Azure com-text-white hover:com-bg-blue-500;
+          @apply com-bg-Azure com-text-white hover:com-bg-blue-500 com-mb-1;
         }
       }
     }
@@ -171,7 +171,7 @@ p {
   }
 
   .avenues {
-    @apply md:com-mt-[125px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-12 com-mb-0;
+    @apply md:com-mt-[125px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-12 com-mb-10;
     .heading {
       @apply md:com-text-4xl com-text-2xl md:com-font-bold com-font-semibold com-text-gray-900;
     }
@@ -188,7 +188,7 @@ p {
     @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
   }
   .pricing-logo-cloud {
-    @apply md:com-mx-auto com-my-0 com-p-0 md:com-pt-[102px] com-pt-20 md:com-w-auto com-w-full;
+    @apply md:com-mx-auto com-my-0 com-p-0 md:com-pt-[102px] com-pt-10 md:com-w-auto com-w-full;
 
     .subheading {
       @apply com-text-center md:com-text-2xl com-text-base md:com-mb-16 com-mb-12 com-text-gray-500 com-font-semibold com-uppercase;
