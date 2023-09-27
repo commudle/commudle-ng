@@ -29,7 +29,7 @@ p {
   }
 
   .background-container {
-    @apply com-overflow-hidden com-w-full com-h-full;
+    @apply com-overflow-hidden com-bg-no-repeat com-w-full com-h-full;
 
     .background {
       @apply com-mx-auto lg:com-w-full com-w-auto com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
@@ -182,7 +182,7 @@ p {
 }
 
 .background-container-community {
-  @apply com-overflow-hidden com-w-full;
+  @apply com-overflow-hidden com-bg-no-repeat com-w-full;
 
   .background {
     @apply com-mx-auto com-my-0 lg:com-w-full com-w-full com-z-0 com-bg-cover com-bg-center com-bg-no-repeat com-h-full;
