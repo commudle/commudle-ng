@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-faq',
@@ -23,11 +22,31 @@ export class FaqComponent implements OnInit {
     'I lead a Design Community, is Commudle for me?',
     'Does Commudle support paid ticket events?',
   ];
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setSchema();
+  }
 
   toggleShowAnswers(index: number) {
     this.showAnswers[index] = !this.showAnswers[index];
+  }
+
+  setSchema() {
+    const faqData = this.questions.map((question, index) => {
+      return {
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: this.answers[index],
+        },
+      };
+    });
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqData,
+    });
   }
 }
