@@ -18,9 +18,21 @@ nb-card {
           @apply com-mr-2;
         }
       }
+      .image-section {
+        @apply com-flex com-gap-3 com-h-full com-items-center com-my-2 com-flex-wrap com-ml-7;
+        .images {
+          @apply com-w-32 com-h-32 com-aspect-1 com-border com-border-solid com-border-Bright-Gray com-rounded;
+          img {
+            @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain com-rounded;
+          }
+        }
+      }
 
       .time {
         @apply com-m-0 com-ml-7 com-text-xs com-font-light com-text-Auro-Metal-Saurus;
+      }
+      .votes {
+        @apply com-ml-7 com-mt-2;
       }
     }
   }

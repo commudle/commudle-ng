@@ -7,11 +7,24 @@
   </nb-card-header>
   <nb-card-body [ngClass]="{ 'view-more': viewMoreSection, 'view-less': !viewMoreSection }">
     <div *ngFor="let eu of eventUpdates" class="event-update">
-      <p class="details">
+      <div class="details">
         <nb-icon icon="star" status="warning"></nb-icon>
         <span [innerHTML]="eu.details | linky : { sanitizeHtml: true }"></span>
-      </p>
+        <div class="image-section" *ngIf="eu.images">
+          <div *ngFor="let img of eu.images" class="images">
+            <img [src]="img.i128" alt="" />
+          </div>
+        </div>
+      </div>
       <p class="time">{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</p>
+      <div class="votes">
+        <app-votes-display
+          [icon]="'heart-outline'"
+          [votableId]="eu.id"
+          votableType="EventUpdate"
+          [textAlignment]="'after'"
+        ></app-votes-display>
+      </div>
     </div>
   </nb-card-body>
   <nb-card-footer *ngIf="eventUpdates.length > 2" (click)="viewMore()" class="com-cursor-pointer">
