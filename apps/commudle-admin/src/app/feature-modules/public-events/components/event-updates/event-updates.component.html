@@ -9,10 +9,12 @@
     <div *ngFor="let eu of eventUpdates" class="event-update">
       <div class="details">
         <nb-icon icon="star" status="warning"></nb-icon>
-        <span [innerHTML]="eu.details | linky : { sanitizeHtml: true }"></span>
-        <div class="image-section" *ngIf="eu.images">
-          <div *ngFor="let img of eu.images" class="images" (click)="openImage(img, eu)">
-            <img [src]="img.i128" alt="" />
+        <div>
+          <commudle-editor [content]="eu.details" [editable]="false"></commudle-editor>
+          <div class="image-section" *ngIf="eu.images">
+            <div *ngFor="let img of eu.images" class="images" (click)="openImage(img, eu)">
+              <img [src]="img.i128" alt="" />
+            </div>
           </div>
         </div>
       </div>

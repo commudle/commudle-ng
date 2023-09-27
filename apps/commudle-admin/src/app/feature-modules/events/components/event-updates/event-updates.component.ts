@@ -44,7 +44,7 @@ export class EventUpdatesComponent implements OnInit {
     const formData = new FormData();
 
     // Append the event text (assuming removeHtmlTags returns the text)
-    formData.append('event_update[details]', this.removeHtmlTags(event));
+    formData.append('event_update[details]', event);
 
     // Append the images to the FormData
     for (let i = 0; i < this.selectedImages.length; i++) {
@@ -56,10 +56,6 @@ export class EventUpdatesComponent implements OnInit {
       this.selectedImages = [];
       this.eventUpdates.unshift(data);
     });
-  }
-
-  removeHtmlTags(data) {
-    return data.replace(/<[^>]*>/g, '');
   }
 
   deleteEventUpdate(eventUpdateId, index) {

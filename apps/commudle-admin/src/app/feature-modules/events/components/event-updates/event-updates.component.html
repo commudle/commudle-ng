@@ -4,10 +4,8 @@
       <h6 class="com-mt-0 com-mb-2">Updates</h6>
       <div *ngFor="let eu of eventUpdates; let i = index" class="updates">
         <div>
-          <div>
-            <span>
-              {{ eu.details }}
-            </span>
+          <div class="com-flex com-gap-2 com-items-baseline">
+            <commudle-editor [content]="eu.details" [editable]="false"></commudle-editor>
             <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
               <nb-icon icon="close"></nb-icon>
             </span>
@@ -28,7 +26,7 @@
     </nb-card-body>
     <nb-card-footer class="com-sticky com-bg-white com-bottom-0">
       <commudle-editor
-        [addImageSection]="true"
+        [addAttachment]="true"
         (contentChange)="createEventUpdate($event)"
         (uploadImages)="uploadImages($event)"
       ></commudle-editor>
