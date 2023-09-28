@@ -1,28 +1,36 @@
 .base-layout {
+  @apply com-py-10;
   .container {
-    .one-column-layout {
-      .search-results {
-        nb-card-body {
-          nb-list {
-            @apply com-mt-4;
+    // .one-column-layout {
+    .search-results {
+      .query-searched {
+        @apply com-text-base com-font-normal com-text-Dark-Jungle-Green com-mt-6 com-mb-4;
 
-            .search-result {
-              @apply com-px-0 com-border-0 com-cursor-pointer;
+        strong {
+          @apply com-text-base com-font-medium com-text-black;
+        }
+      }
+      // nb-card-body {
+      nb-list {
+        @apply com-mt-4;
 
-              nb-user {
-                &::ng-deep {
-                  .info-container {
-                    .user-name,
-                    .user-title {
-                      @apply com-line-clamp-1;
-                    }
-                  }
+        .search-result {
+          @apply com-px-0 com-border-0 com-cursor-pointer;
+
+          nb-user {
+            &::ng-deep {
+              .info-container {
+                .user-name,
+                .user-title {
+                  @apply com-line-clamp-1;
                 }
               }
             }
           }
         }
+        // }
       }
+      // }
     }
   }
 }

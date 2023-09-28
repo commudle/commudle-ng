@@ -16,6 +16,7 @@ import {
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { SearchRoutingModule } from './search-routing.module';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent],
@@ -33,6 +34,7 @@ import { SearchRoutingModule } from './search-routing.module';
     NbButtonModule,
     NbListModule,
     NbTagModule,
+    SharedDirectivesModule,
   ],
   exports: [SearchBoxComponent],
 })
