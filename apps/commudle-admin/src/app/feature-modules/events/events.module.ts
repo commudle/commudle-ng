@@ -78,6 +78,7 @@ import { UserTrackSlotsComponent } from './components/event-form-responses/user-
 import { TrackSlotFormComponent } from './components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 import { EventFormResponsesGraphComponent } from './components/event-form-responses/event-form-responses-graph/event-form-responses-graph.component';
 import { EditorModule as NewEditorModule } from '@commudle/editor';
+import { NextStepCardComponent } from './components/next-step-card/next-step-card.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { EditorModule as NewEditorModule } from '@commudle/editor';
     UserTrackSlotsComponent,
     TrackSlotFormComponent,
     EventFormResponsesGraphComponent,
+    NextStepCardComponent,
   ],
   exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [
