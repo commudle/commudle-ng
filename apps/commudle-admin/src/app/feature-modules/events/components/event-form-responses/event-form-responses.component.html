@@ -141,6 +141,7 @@
                     class="com-border-0"
                     (change)="registrationStatusFilter($event)"
                     *ngIf="eventDataFormEntityGroup"
+                    [(ngModel)]="registrationStatusId"
                   >
                     <option selected value="0">
                       Status: All ({{
