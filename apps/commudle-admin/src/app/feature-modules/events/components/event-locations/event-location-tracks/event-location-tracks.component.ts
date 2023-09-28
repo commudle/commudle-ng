@@ -12,7 +12,18 @@ import {
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogService, NbTagComponent, NbTagInputAddEvent, NbWindowService } from '@commudle/theme';
-import { faClock, faInfo, faPen, faPlusCircle, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClock,
+  faInfo,
+  faPen,
+  faPlusCircle,
+  faTrash,
+  faXmark,
+  faChevronRight,
+  faPaperclip,
+  faArrowUpRightFromSquare,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { TrackSlotFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 import { EventLocationTracksService } from 'apps/commudle-admin/src/app/services/event-location-tracks.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
@@ -21,7 +32,6 @@ import { EEmbeddedVideoStreamSources } from 'apps/shared-models/enums/embedded_v
 import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 import { EEventType, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
-import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -55,6 +65,10 @@ export class EventLocationTracksComponent implements OnInit {
   faTrash = faTrash;
   faPen = faPen;
   faXmark = faXmark;
+  faChevronRight = faChevronRight;
+  faPaperclip = faPaperclip;
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faPlus = faPlus;
   EEventType = EEventType;
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
