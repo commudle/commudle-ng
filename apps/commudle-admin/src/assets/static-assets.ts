@@ -58,9 +58,6 @@ export const staticAssets = {
   pricing_enterprise:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnhWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f2d3ee8f767ad2d0a1cd11a236f2cd898bfc8e35/Enterprises%20&%20Startups.png',
 
-  pricing_enterprise_mobile:
-    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnhWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f2d3ee8f767ad2d0a1cd11a236f2cd898bfc8e35/Enterprises%20&%20Startups.png',
-
   pricing_usecase_cards_desktop:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnBnQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--19af23aeba1556ddef013ced2d20db12ab1b2c4e/Usecase%20Cards%20Desktop.svg',
 
