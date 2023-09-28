@@ -24,6 +24,7 @@ export class EventUpdatesComponent implements OnInit {
     faXmark,
   };
 
+  isLoading = false;
   constructor(private eventUpdatesService: EventUpdatesService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
@@ -40,6 +41,7 @@ export class EventUpdatesComponent implements OnInit {
   }
 
   createEventUpdate(event) {
+    this.isLoading = true;
     // Create a new FormData object
     const formData = new FormData();
 
@@ -51,10 +53,11 @@ export class EventUpdatesComponent implements OnInit {
       const image = this.selectedImages[i];
       formData.append('event_update[images][]', image);
     }
+    this.images = [];
     this.eventUpdatesService.createEventUpdate(formData, this.event.id).subscribe((data) => {
-      this.images = [];
       this.selectedImages = [];
       this.eventUpdates.unshift(data);
+      this.isLoading = false;
     });
   }
 
@@ -74,6 +77,7 @@ export class EventUpdatesComponent implements OnInit {
   showPreview() {
     this.showPreviewImages = true;
     for (let i = 0; i < this.selectedImages.length; i++) {
+      this.images = [];
       const file = this.selectedImages[i];
 
       const reader = new FileReader();

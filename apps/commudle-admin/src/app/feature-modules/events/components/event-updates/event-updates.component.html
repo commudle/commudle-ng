@@ -2,6 +2,7 @@
   <nb-card class="updates">
     <nb-card-body>
       <h6 class="com-mt-0 com-mb-2">Updates</h6>
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div *ngFor="let eu of eventUpdates; let i = index" class="updates">
         <div>
           <div class="com-flex com-gap-2 com-items-baseline">
