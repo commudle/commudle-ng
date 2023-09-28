@@ -9,24 +9,24 @@
 <div class="com-bg-white">
   <div class="base-layout">
     <app-search-box [overrideSearchStatus]="true" [showSuggestions]="false" class="com-mt-6"></app-search-box>
+    <p class="query-searched">
+      You searched for <strong>{{ query }}</strong>
+    </p>
+    <nb-tag-list>
+      <nb-tag
+        (click)="onFilterChange(filter)"
+        *ngFor="let filter of filters"
+        [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
+        [text]="filter"
+        class="com-cursor-pointer"
+      ></nb-tag>
+    </nb-tag-list>
     <div class="container">
       <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
       <div *appBreakpoints="'>lg'" class="two-column-layout medium">
         <div class="main-column">
           <div [nbSpinner]="searchLoader" class="search-results">
-            <p class="query-searched">
-              You searched for <strong>{{ query }}</strong>
-            </p>
             <div *ngIf="total > 0">
-              <nb-tag-list>
-                <nb-tag
-                  (click)="onFilterChange(filter)"
-                  *ngFor="let filter of filters"
-                  [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
-                  [text]="filter"
-                  class="com-cursor-pointer"
-                ></nb-tag>
-              </nb-tag-list>
               <p class="fs-p3 com-mt-0">{{ total }} Results Found</p>
               <nb-list>
                 <nb-list-item (click)="navigate(option)" *ngFor="let option of getResults()" class="search-result">
