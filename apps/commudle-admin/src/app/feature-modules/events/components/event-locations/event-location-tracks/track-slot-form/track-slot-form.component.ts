@@ -76,14 +76,21 @@ export class TrackSlotFormComponent implements OnInit {
   updateNewTrackSlot() {
     this.tags = [];
     this.addSpeakerDropdown(this.selectedSpeakerSlot);
-    const time = new Date(this.startTime);
-    const endTime = new Date(time.getTime() + 30 * 60000);
+    const startTime = new Date(this.startTime);
+    const endTime = new Date(startTime.getTime() + 30 * 60000);
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.eventLocTrack.id,
       date: this.minSlotDate,
-      start_time: time,
-      end_time: endTime,
+      start_time: this.timeFormat(startTime),
+      end_time: this.timeFormat(endTime),
     });
+  }
+
+  timeFormat(time) {
+    const formattedHours = time.getHours().toString().padStart(2, '0');
+    const formattedMinutes = time.getMinutes().toString().padStart(2, '0');
+    const formattedStartTime = `${formattedHours}:${formattedMinutes}`;
+    return formattedStartTime;
   }
 
   updateExistingTrackSlot() {
@@ -116,8 +123,8 @@ export class TrackSlotFormComponent implements OnInit {
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.trackSlot.event_location_track_id,
       date: trackDate,
-      start_time: sTimeNew,
-      end_time: eTimeNew,
+      start_time: this.timeFormat(sTimeNew),
+      end_time: this.timeFormat(eTimeNew),
       session_title: this.trackSlot.session_title,
       speaker_registration_id: this.trackSlot.speaker_registration_id,
     });
@@ -140,9 +147,16 @@ export class TrackSlotFormComponent implements OnInit {
     });
     delete newSlot['date'];
     const sTime = newSlot['start_time'];
-    newSlot['start_time'] = startTime.set({ hour: sTime.getHours(), minute: sTime.getMinutes() }).toDate();
+    const sTimeParts = sTime.split(':');
+    newSlot['start_time'] = startTime
+      .set({ hour: parseInt(sTimeParts[0], 10), minute: parseInt(sTimeParts[1], 10) })
+      .toDate();
     const eTime = newSlot['end_time'];
-    newSlot['end_time'] = startTime.set({ hour: eTime.getHours(), minute: eTime.getMinutes() }).toDate();
+    const eTimeParts = eTime.split(':');
+    newSlot['end_time'] = startTime
+      .set({ hour: parseInt(eTimeParts[0], 10), minute: parseInt(eTimeParts[1], 10) })
+      .toDate();
+
     if (newSlot['start_time'] >= newSlot['end_time']) {
       this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;
@@ -180,9 +194,15 @@ export class TrackSlotFormComponent implements OnInit {
     });
     delete slot['date'];
     const sTimeNew = slot['start_time'];
-    slot['start_time'] = startTime.set({ hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes() }).toDate();
+    const sTimeParts = sTimeNew.split(':');
+    slot['start_time'] = startTime
+      .set({ hour: parseInt(sTimeParts[0], 10), minute: parseInt(sTimeParts[1], 10) })
+      .toDate();
     const eTimeNew = slot['end_time'];
-    slot['end_time'] = startTime.set({ hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes() }).toDate();
+    const eTimeParts = eTimeNew.split(':');
+    slot['end_time'] = startTime
+      .set({ hour: parseInt(eTimeParts[0], 10), minute: parseInt(eTimeParts[1], 10) })
+      .toDate();
     if (slot['start_time'] >= slot['end_time']) {
       this.toastLogService.warningDialog('End time should be greater than Start time!');
       return;

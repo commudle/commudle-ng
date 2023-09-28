@@ -109,7 +109,7 @@ export class EventFormResponsesComponent implements OnInit {
 
     this.eventDataFormEntityGroupId = this.activatedRoute.snapshot.queryParamMap['params']['parent_id'];
 
-    this.getEventDataFromEntityGroup();
+    this.getEventDataFromEntityGroup(true);
 
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) => {
@@ -129,12 +129,15 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   // get event_data_form_entity_group
-  getEventDataFromEntityGroup() {
+  getEventDataFromEntityGroup(fetchEventLocationTrack?) {
     this.eventDataFormEntityGroupsService
       .getEventDataFormEntityGroup(this.eventDataFormEntityGroupId)
       .subscribe((data) => {
         this.eventDataFormEntityGroup = data;
-        if (this.eventDataFormEntityGroup.registration_type.name === RegistrationTypeNames.SPEAKER) {
+        if (
+          this.eventDataFormEntityGroup.registration_type.name === RegistrationTypeNames.SPEAKER &&
+          fetchEventLocationTrack
+        ) {
           this.getEventLocationTracks();
         }
       });

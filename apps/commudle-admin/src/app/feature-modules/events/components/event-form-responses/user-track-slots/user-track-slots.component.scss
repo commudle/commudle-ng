@@ -48,7 +48,7 @@
         @apply com-text-xs com-flex com-items-center;
 
         nb-icon {
-          @apply com-text-xs com-ml-1;
+          @apply com-text-xs com-ml-1 com-cursor-pointer;
         }
       }
     }
@@ -60,7 +60,7 @@
       @apply com-text-xs com-flex com-items-center;
 
       nb-icon {
-        @apply com-text-xs com-ml-1;
+        @apply com-text-xs com-ml-1 com-cursor-pointer;
       }
     }
   }
