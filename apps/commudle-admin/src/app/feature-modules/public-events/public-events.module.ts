@@ -53,6 +53,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
+import { EditorModule } from '@commudle/editor';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,8 @@ import { EventsAgendaComponent } from './components/events-agenda/events-agenda.
     NbFormFieldModule,
     NbSpinnerModule,
     NbAccordionModule,
+
+    EditorModule,
   ],
 })
 export class PublicEventsModule {}

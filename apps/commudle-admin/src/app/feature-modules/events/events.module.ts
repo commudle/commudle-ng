@@ -77,6 +77,7 @@ import { UserPaymentDetailsComponent } from './components/event-form-responses/u
 import { UserTrackSlotsComponent } from './components/event-form-responses/user-track-slots/user-track-slots.component';
 import { TrackSlotFormComponent } from './components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
 import { EventFormResponsesGraphComponent } from './components/event-form-responses/event-form-responses-graph/event-form-responses-graph.component';
+import { EditorModule as NewEditorModule } from '@commudle/editor';
 import { NextStepCardComponent } from './components/next-step-card/next-step-card.component';
 
 @NgModule({
@@ -119,6 +120,7 @@ import { NextStepCardComponent } from './components/next-step-card/next-step-car
     EventFormResponsesGraphComponent,
     NextStepCardComponent,
   ],
+  exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [
     CommonModule,
     EventsRoutingModule,
@@ -132,17 +134,14 @@ import { NextStepCardComponent } from './components/next-step-card/next-step-car
     MiniUserProfileModule,
     SharedComponentsModule,
     SharedPipesModule,
-
     // External
     FontAwesomeModule,
     NgxDatatableModule,
     LinkyModule,
     ZXingScannerModule,
-
     //standalone
     SidebarComponent,
     BackButtonComponent,
-
     //Nebular
     NbButtonModule,
     NbCardModule,
@@ -170,7 +169,7 @@ import { NextStepCardComponent } from './components/next-step-card/next-step-car
     NbFormFieldModule,
     NbSpinnerModule,
     NbTagModule,
+    NewEditorModule,
   ],
-  exports: [UserDetailsComponent, UserEngagementDataComponent],
 })
 export class EventsModule {}
