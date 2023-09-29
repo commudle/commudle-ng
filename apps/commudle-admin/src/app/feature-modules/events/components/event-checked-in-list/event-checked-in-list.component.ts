@@ -42,10 +42,6 @@ export class EventCheckedInListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.eventsService.getAttendedMembers(this.page, this.count, this.event.id, this.query).subscribe((data) => {
         this.members = data.users;
-        console.log(
-          '🚀 ~ file: event-checked-in-list.component.ts:38 ~ EventCheckedInListComponent ~ this.eventsService.getAttendedMembers ~  this.members:',
-          this.members,
-        );
         this.total = data.total;
       }),
     );
@@ -55,10 +51,8 @@ export class EventCheckedInListComponent implements OnInit, OnDestroy {
     this.query = '';
     this.searchForm.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
       this.members = [];
-      // this.pageInfo = null;
       this.query = this.searchForm.get('name').value;
       this.getMembers();
-      // this.generateParams(this.employee, this.employer, this.query);
     });
     this.page = 1;
   }

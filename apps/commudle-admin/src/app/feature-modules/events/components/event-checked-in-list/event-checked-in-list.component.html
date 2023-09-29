@@ -35,6 +35,15 @@
               <app-user-profile-card-small [user]="member"></app-user-profile-card-small>
             </div>
           </div>
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+          ></app-pagination>
         </nb-card-body>
       </nb-card>
     </div>
