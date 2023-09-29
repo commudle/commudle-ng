@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-w-[248px] com-h-[196px] com-mx-0;
+  @apply com-w-[248px] com-h-[196px] com-mx-0 com-my-2 md:com-my-4;
   nb-card-body {
     @apply com-p-3 com-text-center com-flex com-flex-col com-justify-between;
     .text {

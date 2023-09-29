@@ -8,8 +8,14 @@
     *ngFor="let notification of notifications"
     [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
   >
-    <div class="com-flex com-items-center">
-      <div class="com-h-10 com-w-10">
+    <div class="com-flex com-items-center com-w-full">
+      <div
+        class="com-h-10 com-w-10"
+        *ngIf="
+          notification.sender_type === ENotificationSenderTypes.USER ||
+          notification.sender_type === ENotificationSenderTypes.KOMMUNITY
+        "
+      >
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
           alt="{{ notification.sender.name }}"
@@ -23,7 +29,7 @@
           src="{{ notification.sender.logo_image.i64 }}"
         />
       </div>
-      <div class="com-ml-2">
+      <div class="com-ml-2 com-w-full">
         <div class="com-flex com-justify-between com-items-center com-h-[20px] com-my-[5px]">
           <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
           <div>

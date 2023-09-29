@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IEditorValidator } from '@commudle/editor';
@@ -56,6 +56,16 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.allActions = this.discussionChatChannel.ACTIONS;
     this.receiveData();
     this.getDiscussionMessages();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.discussion.firstChange) {
+      this.messages = [];
+      this.discussionChatChannel.subscribe(`${changes.discussion.currentValue.id}`);
+      this.allActions = this.discussionChatChannel.ACTIONS;
+      this.receiveData();
+      this.getDiscussionMessages();
+    }
   }
 
   ngOnDestroy(): void {
