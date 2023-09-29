@@ -79,6 +79,7 @@ import { TrackSlotFormComponent } from './components/event-locations/event-locat
 import { EventFormResponsesGraphComponent } from './components/event-form-responses/event-form-responses-graph/event-form-responses-graph.component';
 import { EditorModule as NewEditorModule } from '@commudle/editor';
 import { NextStepCardComponent } from './components/next-step-card/next-step-card.component';
+import { EventCheckedInListComponent } from './components/event-checked-in-list/event-checked-in-list.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { NextStepCardComponent } from './components/next-step-card/next-step-car
     TrackSlotFormComponent,
     EventFormResponsesGraphComponent,
     NextStepCardComponent,
+    EventCheckedInListComponent,
   ],
   exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [
