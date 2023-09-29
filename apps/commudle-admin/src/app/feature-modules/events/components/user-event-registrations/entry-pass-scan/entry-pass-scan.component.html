@@ -25,7 +25,9 @@
         </nb-card-header>
         <nb-card-body>
           <div class="com-my-2">
-            <a [routerLink]="['./checked-in-list']" nbButton outline status="primary" fullWidth>View All Checked In</a>
+            <a [routerLink]="['./checked-in-list']" nbButton outline status="primary" fullWidth
+              >View All Checked In Members
+            </a>
           </div>
           <div *ngIf="hasPermission; else noPermission" class="scanner-controls">
             <div *ngIf="hasDevices; else noDevices" class="camera-controls">

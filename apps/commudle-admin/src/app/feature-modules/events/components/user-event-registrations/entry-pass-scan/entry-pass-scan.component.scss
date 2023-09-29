@@ -27,9 +27,8 @@ p {
         @apply com-p-6 com-absolute com-top-4 com-left-1/2 com--translate-x-1/2 com-w-72;
       }
 
-      zxing-scanner,
-      .no-scanner {
-        @apply com-mx-auto com-max-w-xl com-w-full com-aspect-[1/1];
+      zxing-scanner {
+        @apply com-mx-auto com-h-[35dvh] com-aspect-[1/1];
 
         ::ng-deep {
           video {
