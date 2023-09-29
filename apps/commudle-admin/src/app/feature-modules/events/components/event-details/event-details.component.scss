@@ -39,8 +39,12 @@ nb-card {
   }
 }
 
+.inner-html {
+  word-break: break-word;
+}
+
 .next-step-section {
   a {
-    @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-no-underline hover:com-text-Yankees-Blue;
+    @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-no-underline hover:com-text-Yankees-Blue com-ml-3 md:com-ml-0;
   }
 }

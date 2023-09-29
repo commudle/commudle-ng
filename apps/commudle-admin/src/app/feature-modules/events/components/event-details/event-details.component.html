@@ -64,8 +64,8 @@
         <div class="com-text-xl">
           <nb-icon icon="info-outline"></nb-icon>
         </div>
-        <div class="com-w-2/3">
-          <div [innerHTML]="event.description | linky : { sanitizeHtml: false }"></div>
+        <div class="md:com-w-2/3">
+          <div [innerHTML]="event.description | linky : { sanitizeHtml: false }" class="inner-html"></div>
         </div>
       </div>
     </div>

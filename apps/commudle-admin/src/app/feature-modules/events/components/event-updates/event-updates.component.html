@@ -5,8 +5,8 @@
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div *ngFor="let eu of eventUpdates; let i = index" class="updates">
         <div>
-          <div class="com-flex com-gap-2 com-items-baseline">
-            <commudle-editor [content]="eu.details" [editable]="false"></commudle-editor>
+          <div class="com-flex com-gap-2 com-items-baseline com-w-[90%]">
+            <commudle-editor [content]="eu.details" [editable]="false" class="com-w-full"></commudle-editor>
             <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
               <nb-icon icon="close"></nb-icon>
             </span>

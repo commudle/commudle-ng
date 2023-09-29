@@ -18,11 +18,11 @@
         @apply com-prose com-prose-sm com-prose-slate com-max-w-none com-h-full com-break-words;
 
         p {
-          @apply com-mt-0 com-mb-0.5;
+          @apply com-mt-0 com-mb-0.5 com-break-words;
         }
 
         a {
-          @apply com-text-primary-500;
+          @apply com-text-primary-500 com-break-words;
         }
 
         & p.is-editor-empty:first-child::before {
