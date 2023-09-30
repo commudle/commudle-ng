@@ -1,4 +1,11 @@
-<div (click)="goBackToPrevPage()" class="backButton">
+<div (click)="goBackToPrevPage()" class="backButton" *ngIf="!router">
   <fa-icon [icon]="faChevronLeft" class="com-mr-1"></fa-icon>
   {{ text }}
+</div>
+
+<div *ngIf="router" class="anchor-tag">
+  <a [routerLink]="router">
+    <fa-icon [icon]="faChevronLeft" class="com-mr-1"></fa-icon>
+    {{ text }}
+  </a>
 </div>
