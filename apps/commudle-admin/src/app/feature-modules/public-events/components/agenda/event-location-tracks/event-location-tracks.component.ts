@@ -44,6 +44,15 @@ export class EventLocationTracksComponent implements OnInit {
     }
     if (this.activatedRoute.snapshot.queryParamMap.get('track_id')) {
       this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')] = true;
+      if (this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')]) {
+        setTimeout(() => {
+          document.getElementById(this.activatedRoute.snapshot.queryParamMap.get('track_id')).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }, 100);
+      }
     }
   }
 
