@@ -97,6 +97,9 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
       this.dataFormEntity = data;
+      if (this.dataFormEntity.form_type) {
+        this.gtmData.com_form_type_name = this.dataFormEntity.form_type.form_type_name;
+      }
       this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
       this.seoService.setTags(
         `${this.dataFormEntity.name}`,
