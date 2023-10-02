@@ -27,6 +27,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   searchLoader = false;
   loadMoreLoader = false;
+  // showSpinner = true;
 
   getPicture = getPicture;
   getTitle = getTitle;
@@ -73,6 +74,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
       this.seoService.setTitle(`Search results for "${this.query}"`);
       this.results = [...this.results, ...value.results];
+      console.log(value.total);
       this.total = value.total;
       this.page++;
       this.filters = [
@@ -93,8 +95,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   onFilterChange(filter: string) {
     if (this.selectedFilters.includes(filter)) {
+      console.log('entered');
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
+      console.log('entered blank');
       this.selectedFilters.push(filter);
     }
   }
@@ -107,6 +111,25 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // getUsers() {
+  //   const filters = this.selectedFilters.length ? this.selectedFilters : this.filters;
+  //   return this.results.filter((result) => {
+  //     result.type === 'User';
+  //     // if (result) {
+  //     //   return filters.includes(result.type);
+  //     // }
+  //   });
+  // }
+  // getCommunity() {
+  //   const filters = this.selectedFilters.length ? this.selectedFilters : this.filters;
+  //   return this.results.filter((result) => {
+  //     result.type === 'Community Build';
+  //     // if (result) {
+  //     //   return filters.includes(result.type);
+  //     // }
+  //   });
+  // }
 
   gtmService(query) {
     this.gtm.dataLayerPushEvent('search_query', { query });
