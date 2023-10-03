@@ -67,6 +67,8 @@ export class SponsorsComponent implements OnInit {
   }
 
   openForm() {
+    this.sponsorForm.reset();
+    this.uploadedLogoImageFile = null;
     this.windowRef = this.windowService.open(this.sponsorFormTemplate, {
       title: 'Add a Sponsor',
     });
