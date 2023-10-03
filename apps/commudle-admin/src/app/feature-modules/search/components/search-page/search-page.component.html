@@ -13,12 +13,18 @@
       You searched for <strong>{{ query }}</strong>
     </p>
     <nb-tag-list>
-      <nb-tag text="All" status="'primary'"></nb-tag>
+      <nb-tag
+        text="All"
+        [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
+        appearance="filled"
+        (click)="onFilterChange('All')"
+      ></nb-tag>
       <nb-tag
         (click)="onFilterChange(filter)"
         *ngFor="let filter of filters"
         [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
         [text]="filter"
+        appearance="filled"
         class="com-cursor-pointer"
       ></nb-tag>
     </nb-tag-list>
@@ -49,7 +55,20 @@
                 *ngFor="let option of getResults()"
                 class="search-result com-border-t-0"
               >
-                <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
+                <div [ngSwitch]="option.type">
+                  <div *ngSwitchCase="'User'">
+                    <commudle-search-details [option]="option"></commudle-search-details>
+                  </div>
+                  <div *ngSwitchCase="'Community'">
+                    <commudle-search-details [option]="option"></commudle-search-details>
+                  </div>
+                  <div *ngSwitchCase="'Labs'">
+                    <div class="labs-card">
+                      <commudle-labs-featured-card></commudle-labs-featured-card>
+                    </div>
+                  </div>
+                </div>
+                <!-- <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user> -->
               </nb-list-item>
             </nb-list>
             <button

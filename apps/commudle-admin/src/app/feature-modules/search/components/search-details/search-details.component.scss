@@ -1,0 +1,29 @@
+.user,
+.community {
+  @apply com-flex com-flex-row;
+  .user-profile-image {
+    @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-full;
+    //   border-radius: 50%;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .community-image {
+    @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-[4px];
+    //   border-radius: 50%;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .name {
+    @apply com-text-sm com-font-medium com-text-black com-mb-2px;
+  }
+
+  .designation {
+    @apply com-text-xs com-font-normal com-line-clamp-1 com-mb-2;
+  }
+}

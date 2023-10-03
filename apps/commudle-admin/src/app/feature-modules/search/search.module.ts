@@ -20,9 +20,12 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { SearchDetailsComponent } from './components/search-details/search-details.component';
+import { LabsFeaturedCardComponent } from '../../app-shared-components/labs-featured-card/labs-featured-card.component';
 
 @NgModule({
-  declarations: [SearchBoxComponent, SearchPageComponent],
+  declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
+  exports: [SearchBoxComponent],
   imports: [
     CommonModule,
     SearchRoutingModule,
@@ -41,7 +44,7 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
     SharedComponentsModule,
     PublicHomeListSpeakersModule,
     PublicHomeListEventsModule,
+    LabsFeaturedCardComponent,
   ],
-  exports: [SearchBoxComponent],
 })
 export class SearchModule {}

@@ -74,7 +74,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
       this.seoService.setTitle(`Search results for "${this.query}"`);
       this.results = [...this.results, ...value.results];
-      console.log(value.total);
       this.total = value.total;
       this.page++;
       this.filters = [
@@ -94,11 +93,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   onFilterChange(filter: string) {
+    // console.log(filter);
+    console.log(this.selectedFilters);
     if (this.selectedFilters.includes(filter)) {
-      console.log('entered');
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
-      console.log('entered blank');
       this.selectedFilters.push(filter);
     }
   }

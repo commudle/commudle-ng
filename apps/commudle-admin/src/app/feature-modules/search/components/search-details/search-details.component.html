@@ -1,0 +1,20 @@
+<div *ngIf="option.type === 'User'" class="user">
+  <div class="user-profile-image">
+    <img [src]="option.avatar" [alt]="option.name" [title]="option.name" />
+  </div>
+  <div class="details">
+    <p class="name">{{ option.name }}</p>
+    <div class="designation" [title]="option.designation">
+      {{ option.designation || '--' }}
+    </div>
+  </div>
+</div>
+<div *ngIf="option.type === 'Community'" class="community">
+  <div class="community-image">
+    <img [src]="option.logo_image.i32" [alt]="option.name" [title]="option.name" />
+  </div>
+  <p class="name">{{ option.name }}</p>
+  <div class="designation" [title]="option.about">
+    {{ option.about || '--' }}
+  </div>
+</div>
