@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { NbDialogService } from '@commudle/theme';
@@ -7,6 +7,7 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { Subscription } from 'rxjs';
+import { EDiscussionType } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-join-by-token',
@@ -14,11 +15,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./join-by-token.component.scss'],
 })
 export class JoinByTokenComponent implements OnInit {
+  @Input() selectedCommunity;
   joined = false;
   communityName;
   channelId;
   channelName: string;
   subscriptions: Subscription[] = [];
+  discussionType: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,6 +34,7 @@ export class JoinByTokenComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.communityChannelsService.showByToken(this.activatedRoute.snapshot.params.token).subscribe((data) => {
+        this.discussionType = data.display_type === EDiscussionType.CHANNEL ? 'channels' : 'forums';
         this.communityName = data.kommunity.name;
         this.channelId = data.id;
         this.channelName = data.name;
@@ -41,20 +45,22 @@ export class JoinByTokenComponent implements OnInit {
 
   verifyToken(decline?: boolean) {
     this.subscriptions.push(
-      this.communityChannelsService
-        .joinByToken(this.activatedRoute.snapshot.params.token, decline)
-        .subscribe((data) => {
+      this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
+        (data) => {
           this.libToasLogService.successDialog('Taking you to the channel!', 2500);
           if (decline) {
-            this.router.navigate(
-              ['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', this.channelId],
-              { queryParams: { decline: true } },
-            );
+            this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, this.channelId], {
+              queryParams: { decline: true },
+            });
           } else {
             this.joined = true;
-            this.router.navigate(['/communities', this.activatedRoute.snapshot.params.community_id, 'channels', data]);
+            this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, data]);
           }
-        }),
+        },
+        (error) => {
+          this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, this.channelId]);
+        },
+      ),
     );
   }
 
