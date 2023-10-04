@@ -43,11 +43,19 @@ const routes = [
         component: CommunityChannelsListComponent,
       },
       {
+        path: 'channels/join/:token',
+        component: CommunityChannelsListComponent,
+      },
+      {
         path: 'forums',
         component: CommunityChannelsListComponent,
       },
       {
         path: 'forums/:community_channel_id',
+        component: CommunityChannelsListComponent,
+      },
+      {
+        path: 'forums/join/:token',
         component: CommunityChannelsListComponent,
       },
       {

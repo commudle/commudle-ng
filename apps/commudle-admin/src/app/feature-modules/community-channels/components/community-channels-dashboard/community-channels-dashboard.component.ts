@@ -56,6 +56,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   currentRoute: string;
+  token: string;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -124,6 +125,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getQueryParamsData() {
+    this.token = this.activatedRoute.snapshot.params.token;
     this.discussionTypeForum = this.activatedRoute.snapshot.url.join('/').includes('forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
     this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
