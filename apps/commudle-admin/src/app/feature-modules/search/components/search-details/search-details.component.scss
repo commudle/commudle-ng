@@ -20,10 +20,22 @@
   }
 
   .name {
-    @apply com-text-sm com-font-medium com-text-black com-mb-2px;
+    @apply com-text-sm com-font-medium com-text-black com-m-0 com-mb-2px;
   }
 
   .designation {
-    @apply com-text-xs com-font-normal com-line-clamp-1 com-mb-2;
+    @apply com-text-xs com-font-normal com-line-clamp-1 com-mb-1;
+  }
+
+  .followers-count {
+    @apply com-text-xs com-font-medium com-text-black com-m-0;
+
+    span {
+      @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-ml-1;
+    }
+  }
+
+  .user-details {
+    @apply com-flex com-flex-row com-w-full;
   }
 }

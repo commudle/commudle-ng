@@ -22,6 +22,7 @@ import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/featur
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
 import { LabsFeaturedCardComponent } from '../../app-shared-components/labs-featured-card/labs-featured-card.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -45,6 +46,7 @@ import { LabsFeaturedCardComponent } from '../../app-shared-components/labs-feat
     PublicHomeListSpeakersModule,
     PublicHomeListEventsModule,
     LabsFeaturedCardComponent,
+    MiniUserProfileModule,
   ],
 })
 export class SearchModule {}

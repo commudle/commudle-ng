@@ -12,6 +12,9 @@
     @apply com-m-0 com-p-0 com-pb-6 com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
   }
   .container {
+    .main-column {
+      @apply com-p-0 com-pr-30px;
+    }
     .results-count {
       @apply com-m-0 com-mb-6 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
     }
@@ -26,7 +29,7 @@
       // @apply com-mt-4;
 
       .search-result {
-        @apply com-px-0 com-cursor-pointer;
+        @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer;
 
         &:first-child {
           @apply com-border-t-0;
@@ -51,5 +54,9 @@
     }
     // }
     // }
+  }
+
+  .switch-case {
+    @apply com-w-full;
   }
 }

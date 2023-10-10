@@ -55,7 +55,7 @@
                 *ngFor="let option of getResults()"
                 class="search-result com-border-t-0"
               >
-                <div [ngSwitch]="option.type">
+                <div [ngSwitch]="option.type" class="switch-case">
                   <div *ngSwitchCase="'User'">
                     <commudle-search-details [option]="option"></commudle-search-details>
                   </div>
