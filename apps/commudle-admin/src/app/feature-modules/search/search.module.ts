@@ -23,6 +23,7 @@ import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
 import { LabsFeaturedCardComponent } from '../../app-shared-components/labs-featured-card/labs-featured-card.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
+import { PublicCommunityModule } from '../public-community/public-community.module';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -47,6 +48,7 @@ import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/min
     PublicHomeListEventsModule,
     LabsFeaturedCardComponent,
     MiniUserProfileModule,
+    PublicCommunityModule,
   ],
 })
 export class SearchModule {}
