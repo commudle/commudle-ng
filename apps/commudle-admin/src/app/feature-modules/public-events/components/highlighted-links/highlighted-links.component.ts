@@ -60,7 +60,36 @@ export class HighlightedLinksComponent implements OnInit {
   getOpenForms() {
     if (this.event.editable) {
       this.eventDataFormEntityGroupsService.pGetPublicOpenDataForms(this.event.id).subscribe((data) => {
-        this.openForms = data.event_data_form_entity_groups;
+        for (const form of data.event_data_form_entity_groups) {
+          if (
+            this.event.event_status.name === EEventStatuses.CANCELED ||
+            this.event.event_status.name === EEventStatuses.COMPLETED
+          ) {
+            if (form.registration_type.name === ERegistationTypes.FEEDBACK) {
+              this.openForms.push(form);
+            }
+            if (form.registration_type.name === ERegistationTypes.COMMUNICATION) {
+              this.openForms.push(form);
+            }
+          }
+          if (
+            this.event.event_status.name === EEventStatuses.OPEN ||
+            this.event.event_status.name === EEventStatuses.DRAFT
+          ) {
+            if (form.registration_type.name === ERegistationTypes.ATTENDEE) {
+              this.openForms.push(form);
+            }
+            if (form.registration_type.name === ERegistationTypes.SPEAKER) {
+              this.openForms.push(form);
+            }
+            if (form.registration_type.name === ERegistationTypes.FEEDBACK) {
+              this.openForms.push(form);
+            }
+            if (form.registration_type.name === ERegistationTypes.COMMUNICATION) {
+              this.openForms.push(form);
+            }
+          }
+        }
         if (this.openForms.length > 0) {
           this.hasOpenForms.emit(true);
         }

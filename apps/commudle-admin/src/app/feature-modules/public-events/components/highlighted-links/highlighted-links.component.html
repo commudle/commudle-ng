@@ -3,65 +3,27 @@
     <p class="registrations"><nb-icon icon="book-outline"></nb-icon><span>Registrations</span></p>
     <div *ngFor="let form of openForms" class="form-link">
       <a
-        *ngIf="
-          !form.already_filled &&
-          form.registration_type.name === ERegistationTypes.SPEAKER &&
-          (event.event_status.name === EEventStatuses.OPEN || event.event_status.name === EEventStatuses.DRAFT)
-        "
         [routerLink]="['/fill-form', form.data_form_entity_id]"
         nbButton
         nbTooltip="{{ form.name }}"
         size="small"
         status="primary"
       >
-        <nb-icon icon="award"></nb-icon>
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER"
+          icon="award"
+        ></nb-icon>
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE"
+          icon="people"
+        ></nb-icon>
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK"
+          icon="bulb"
+        ></nb-icon>
+        <nb-icon *ngIf="form.already_filled" class="edit-icon" icon="edit"></nb-icon>
         {{ form.name }}
       </a>
-      <a
-        *ngIf="
-          !form.already_filled &&
-          form.registration_type.name === ERegistationTypes.ATTENDEE &&
-          (event.event_status.name === EEventStatuses.OPEN || event.event_status.name === EEventStatuses.DRAFT)
-        "
-        [routerLink]="['/fill-form', form.data_form_entity_id]"
-        nbButton
-        nbTooltip="{{ form.name }}"
-        size="small"
-        status="primary"
-      >
-        <nb-icon icon="people"></nb-icon>
-        {{ form.name }}
-      </a>
-      <a
-        *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK"
-        [routerLink]="['/fill-form', form.data_form_entity_id]"
-        nbButton
-        nbTooltip="{{ form.name }}"
-        size="small"
-        status="primary"
-      >
-        <nb-icon icon="bulb"></nb-icon>
-        {{ form.name }}
-      </a>
-      <a
-        *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.COMMUNICATION"
-        [routerLink]="['/fill-form', form.data_form_entity_id]"
-        nbButton
-        nbTooltip="{{ form.name }}"
-        size="small"
-        status="primary"
-      >
-        {{ form.name }}
-      </a>
-      <a
-        *ngIf="form.already_filled"
-        [routerLink]="['/fill-form', form.data_form_entity_id]"
-        nbButton
-        nbTooltip="{{ form.name }}"
-        size="small"
-        status="primary"
-        ><nb-icon class="edit-icon" icon="edit"></nb-icon>{{ form.name }}</a
-      >
     </div>
   </div>
 </div>
