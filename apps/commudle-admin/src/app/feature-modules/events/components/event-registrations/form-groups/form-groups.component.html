@@ -67,6 +67,22 @@
                 Allow RSVP
               </nb-toggle>
             </div>
+
+            <!-- auto close -->
+            <div>
+              <div
+                class="com-text-primary-500 com-cursor-pointer"
+                (click)="openAutomationDialog(automationDialog, edfeg.data_form_entity)"
+              >
+                Add Automation
+              </div>
+              <div
+                class="com-text-xs"
+                *ngIf="edfeg.data_form_entity.auto_close && edfeg.data_form_entity.responses_count"
+              >
+                User can fill form: {{ edfeg.data_form_entity.responses_count }}
+              </div>
+            </div>
           </div>
 
           <!-- send email and link to fill -->
@@ -325,4 +341,21 @@
       [stickSubmitButtonBottom]="true"
     ></app-new-data-form>
   </div>
+</ng-template>
+
+<ng-template #automationDialog let-data let-ref="dialogRef">
+  <nb-card class="com-w-60 com-h-64">
+    <nb-card-header>Form Automation</nb-card-header>
+    <nb-card-body>
+      <nb-toggle [(ngModel)]="data.dfe.auto_close" labelPosition="start">Auto Close</nb-toggle>
+      <br />
+      <br />
+      <div *ngIf="data.dfe.auto_close">
+        <input type="number" nbInput [(ngModel)]="data.dfe.responses_count" />
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="saveAutomation(data.dfe); ref.close()">Save</button>
+    </nb-card-footer>
+  </nb-card>
 </ng-template>

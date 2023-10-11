@@ -12,7 +12,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
 import { StripeHandlerService } from '@commudle/shared-services';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/data-form-entities.service';
@@ -65,6 +65,7 @@ export class FormGroupsComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
     private windowService: NbWindowService,
+    private dialogService: NbDialogService,
     private changeDetectorRef: ChangeDetectorRef,
     private stripeHandlerService: StripeHandlerService,
   ) {
@@ -223,5 +224,21 @@ export class FormGroupsComponent implements OnInit {
       }
     }
     this.showDiscountCoupons.emit(this.showDiscountCouponComponent);
+  }
+
+  openAutomationDialog(automationDialog: TemplateRef<any>, dfe) {
+    this.dialogService.open(automationDialog, {
+      context: {
+        dfe: dfe,
+      },
+    });
+  }
+
+  saveAutomation(dfe) {
+    this.dataFormEntitiesService.updateAutomation(dfe.id, dfe.auto_close, dfe.responses_count).subscribe((data) => {
+      if (data) {
+        this.toastLogService.successDialog('Automation Updated');
+      }
+    });
   }
 }

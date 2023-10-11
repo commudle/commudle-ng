@@ -6,30 +6,33 @@ import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IDataFormEntity } from 'apps/shared-models/data_form_entity.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataFormEntitiesService {
-
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   updateVisibilityStatus(newStatus, dataFormEntityId): Observable<IDataFormEntity> {
     return this.http.put<IDataFormEntity>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.UPDATE_VISIBILITY), {
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.UPDATE_VISIBILITY),
+      {
         data_form_entity_id: dataFormEntityId,
-        visibility: newStatus
-      }
+        visibility: newStatus,
+      },
     );
+  }
+
+  updateAutomation(dataFormEntityId, autoClose, responsesCount): Observable<IDataFormEntity> {
+    return this.http.put<IDataFormEntity>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.AUTOMATION), {
+      data_form_entity_id: dataFormEntityId,
+      auto_close: autoClose,
+      responses_count: responsesCount,
+    });
   }
 
   getDataFormEntity(dataFormEntityId): Observable<IDataFormEntity> {
     const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
-    return this.http.get<IDataFormEntity>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.SHOW), { params }
-    );
+    return this.http.get<IDataFormEntity>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.SHOW), {
+      params,
+    });
   }
-
 }
