@@ -16,6 +16,7 @@ import { IUserEventRegistration } from 'apps/shared-models/user_event_registrati
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 
 @Component({
   selector: 'app-highlighted-links',
@@ -26,6 +27,7 @@ export class HighlightedLinksComponent implements OnInit {
   ERegistationTypes = ERegistationTypes;
   EEventSimpleRegistrationStatuses = EEventSimpleRegistrationStatuses;
   ERegistrationStatuses = ERegistrationStatuses;
+  EEventStatuses = EEventStatuses;
 
   @Input() community: ICommunity;
   @Input() event: IEvent;
