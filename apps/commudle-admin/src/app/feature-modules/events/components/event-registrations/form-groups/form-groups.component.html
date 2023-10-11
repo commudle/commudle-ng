@@ -1,7 +1,10 @@
 <div class="event-data-form-groups">
   <div>
     <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
-      <nb-card *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
+      <nb-card
+        *ngFor="let edfeg of eventDataFormEntityGroups; let i = index"
+        [ngStyle]="{ 'background-color': RegistrationTypeBackgroundColor[edfeg.registration_type.name] }"
+      >
         <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
           <!-- form details -->
           <div class="form-details">
