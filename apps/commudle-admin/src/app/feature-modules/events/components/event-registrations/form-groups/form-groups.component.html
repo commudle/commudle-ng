@@ -1,7 +1,10 @@
 <div class="event-data-form-groups">
   <div>
     <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
-      <nb-card *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
+      <nb-card
+        *ngFor="let edfeg of eventDataFormEntityGroups; let i = index"
+        [ngStyle]="{ 'background-color': RegistrationTypeBackgroundColor[edfeg.registration_type.name] }"
+      >
         <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
           <!-- form details -->
           <div class="form-details">
@@ -62,10 +65,24 @@
                 [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
                 event.editable
               "
+              class="com-mb-2"
             >
               <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
                 Allow RSVP
               </nb-toggle>
+            </div>
+
+            <!-- auto close -->
+            <div>
+              <div
+                class="com-text-primary-500 com-cursor-pointer"
+                (click)="openAutomationDialog(automationDialog, edfeg.data_form_entity, i)"
+              >
+                {{ edfeg.data_form_entity.auto_close_responses_count > 0 ? 'Edit Auto Close' : 'Add Auto Close' }}
+              </div>
+              <div class="com-text-xs" *ngIf="edfeg.data_form_entity.auto_close_responses_count > 0">
+                Auto Close in {{ edfeg.data_form_entity.auto_close_responses_count }} entities
+              </div>
             </div>
           </div>
 
@@ -325,4 +342,36 @@
       [stickSubmitButtonBottom]="true"
     ></app-new-data-form>
   </div>
+</ng-template>
+
+<ng-template #automationDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Form Auto Close</nb-card-header>
+    <nb-card-body>
+      <label>
+        Auto close form responses limit: <br />
+        <input
+          #autoCloseInput
+          nbInput
+          type="number"
+          [value]="data.dfe.auto_close_responses_count"
+          fullWidth
+          required
+          min="0"
+        />
+      </label>
+      <div class="com-mt-2 com-h-max">
+        <commudle-alert [info]="true" message="Enter 0 if you want to remove Auto close"></commudle-alert>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        (click)="saveAutomation(data.dfe, autoCloseInput.value, data.index); ref.close()"
+      >
+        Save
+      </button>
+    </nb-card-footer>
+  </nb-card>
 </ng-template>
