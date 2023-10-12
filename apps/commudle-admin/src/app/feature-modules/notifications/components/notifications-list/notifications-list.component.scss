@@ -1,6 +1,6 @@
 .notification-list {
   nb-list-item {
-    @apply com-justify-between com-px-6 com-py-4;
+    @apply com-justify-between com-p-4;
 
     &.active {
       @apply com-bg-gray-100;
@@ -27,8 +27,11 @@
     .notification-card {
       @apply com-flex com-items-center com-w-full;
 
-      img {
+      .user-image {
         @apply com-h-8 com-w-8 com-object-contain com-rounded-full com-m-0 com-mr-3;
+      }
+      .community-image {
+        @apply com-h-8 com-w-8 com-object-contain com-rounded-sm com-m-0 com-mr-3;
       }
 
       .details {

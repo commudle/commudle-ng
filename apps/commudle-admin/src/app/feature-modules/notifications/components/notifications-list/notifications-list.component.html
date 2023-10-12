@@ -17,11 +17,13 @@
       >
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.USER"
+          class="user-image"
           alt="{{ notification.sender.name }}"
           src="{{ notification.sender.photo.i64 }}"
         />
         <img
           *ngIf="notification.sender_type === ENotificationSenderTypes.KOMMUNITY"
+          class="community-image"
           alt="{{ notification.sender.name }}"
           src="{{ notification.sender.logo_image.i64 }}"
         />

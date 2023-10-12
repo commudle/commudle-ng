@@ -1,6 +1,6 @@
 .notifications-container {
   nb-card-header {
-    @apply com-flex com-justify-between com-items-center;
+    @apply com-flex com-justify-between com-items-center com-p-4;
   }
 
   nb-card-body {
