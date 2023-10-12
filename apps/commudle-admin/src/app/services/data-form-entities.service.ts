@@ -21,11 +21,10 @@ export class DataFormEntitiesService {
     );
   }
 
-  updateAutomation(dataFormEntityId, autoClose, responsesCount): Observable<IDataFormEntity> {
+  updateAutomation(dataFormEntityId, autoCloseResponsesCount): Observable<IDataFormEntity> {
     return this.http.put<IDataFormEntity>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.AUTOMATION), {
       data_form_entity_id: dataFormEntityId,
-      auto_close: autoClose,
-      responses_count: responsesCount,
+      auto_close_responses_count: autoCloseResponsesCount,
     });
   }
 

@@ -231,18 +231,19 @@ export class FormGroupsComponent implements OnInit {
     this.showDiscountCoupons.emit(this.showDiscountCouponComponent);
   }
 
-  openAutomationDialog(automationDialog: TemplateRef<any>, dfe) {
+  openAutomationDialog(automationDialog: TemplateRef<any>, dfe, i) {
     this.dialogService.open(automationDialog, {
       context: {
         dfe: dfe,
+        index: i,
       },
     });
   }
 
-  saveAutomation(dfe) {
-    this.dataFormEntitiesService.updateAutomation(dfe.id, dfe.auto_close, dfe.responses_count).subscribe((data) => {
+  saveAutomation(dfe, value, index) {
+    this.dataFormEntitiesService.updateAutomation(dfe.id, value).subscribe((data) => {
       if (data) {
-        this.toastLogService.successDialog('Automation Updated');
+        this.eventDataFormEntityGroups[index].data_form_entity.auto_close_responses_count = value;
       }
     });
   }
