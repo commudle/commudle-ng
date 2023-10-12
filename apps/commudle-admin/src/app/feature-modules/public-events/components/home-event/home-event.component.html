@@ -160,7 +160,7 @@
               ></app-attending-members>
             </div>
             <button
-              *ngIf="moment() > moment(event.end_time)"
+              *ngIf="moment() >= moment(event.start_time)"
               [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
               class="view-attended-members-button"
               fullWidth
