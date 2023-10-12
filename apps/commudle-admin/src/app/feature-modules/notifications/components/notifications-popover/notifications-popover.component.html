@@ -1,12 +1,19 @@
 <nb-card class="notifications-popover com-rounded com-border-1">
   <nb-card-header>
     <span>Notifications</span>
-    <a (click)="closePopover.emit()" ghost nbButton routerLink="/notifications" size="small">
-      Show All
-      <nb-icon icon="arrow-forward"></nb-icon>
-    </a>
+    <!-- (click)="changeStatus(ENotificationStatuses.READ, notification)"
+    *ngIf="notification.status === ENotificationStatuses.UNREAD" -->
+    <button class="mark-as-read" nbButton size="small" status="primary" outline>
+      Mark All As Read
+      <nb-icon icon="checkmark-circle-outline" size="tiny"></nb-icon>
+    </button>
   </nb-card-header>
   <nb-card-body>
     <app-notifications-list (closePopover)="closePopover.emit()"></app-notifications-list>
   </nb-card-body>
+  <nb-card-footer>
+    <a (click)="closePopover.emit()" ghost nbButton status="primary" routerLink="/notifications" size="small">
+      View all notifications
+    </a>
+  </nb-card-footer>
 </nb-card>

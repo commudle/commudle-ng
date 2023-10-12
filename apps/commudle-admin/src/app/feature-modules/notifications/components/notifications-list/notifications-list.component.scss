@@ -1,6 +1,6 @@
 .notification-list {
   nb-list-item {
-    @apply com-justify-between;
+    @apply com-justify-between com-px-6 com-py-4;
 
     &.active {
       @apply com-bg-gray-100;
@@ -21,6 +21,22 @@
     &:hover {
       .mark-as-read {
         @apply com-block;
+      }
+    }
+
+    .notification-card {
+      @apply com-flex com-items-center com-w-full;
+
+      img {
+        @apply com-h-8 com-w-8 com-object-contain com-rounded-full com-m-0 com-mr-3;
+      }
+
+      .details {
+        @apply com-flex com-justify-between com-items-center com-line-clamp-1;
+      }
+
+      .time {
+        @apply com-text-10px com-m-0 com-font-normal com-text-gray-500;
       }
     }
   }
