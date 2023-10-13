@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-community-channels',
@@ -11,6 +12,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 export class CommunityChannelsComponent implements OnInit {
   community: ICommunity;
   communityId: string;
+  subscriptions: Subscription[] = [];
   constructor(private activatedRoute: ActivatedRoute, private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
@@ -20,9 +22,15 @@ export class CommunityChannelsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
   getCommunity() {
-    this.communitiesService.pGetCommunityDetails(this.communityId).subscribe((data) => {
-      this.community = data;
-    });
+    this.subscriptions.push(
+      this.communitiesService.pGetCommunityDetails(this.communityId).subscribe((data) => {
+        this.community = data;
+      }),
+    );
   }
 }
