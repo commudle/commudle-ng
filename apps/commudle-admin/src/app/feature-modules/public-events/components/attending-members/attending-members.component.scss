@@ -1,24 +1,25 @@
-.users {
-  display: flex;
-  flex-wrap: wrap;
+.interested-members {
+  .heading {
+    @apply com-text-base com-font-normal com-text-Auro-Metal-Saurus com-mb-4;
+  }
+  .users {
+    @apply com-flex com-items-center com-flex-wrap com-pl-4;
 
-  .user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .profile-picture {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      overflow: hidden;
-      img {
-        vertical-align: text-top;
-        width: 100%;
+    .user {
+      @apply com-flex com-items-center com-m-0 com-ml-[-14px];
+      .profile-picture {
+        @apply com-border com-border-solid com-border-Bright-Gray com-bg-gray-100;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
       }
     }
-    margin: 0.1rem;
-  }
-  p {
-    margin: 9px 0;
+    p {
+      @apply com-m-0 md:com-mt-2;
+    }
   }
 }

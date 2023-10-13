@@ -18,6 +18,8 @@ import {
   NbBadgeModule,
   NbTagModule,
   NbToggleModule,
+  NbSpinnerModule,
+  NbTooltipModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -50,6 +52,7 @@ import { CommunitySurveysComponent } from './components/community-forms-and-surv
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { CommunityChannelsComponent } from './components/community-channels/community-channels.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     CommunityFormsAndSurveysComponent,
     CommunitySurveysComponent,
     CommunityChannelsComponent,
+    CommunityPaymentsComponent,
   ],
   imports: [
     CommonModule,
@@ -108,6 +112,8 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     NbBadgeModule,
     NbTagModule,
     NbToggleModule,
+    NbSpinnerModule,
+    NbTooltipModule,
   ],
 })
 export class CommunityGroupsModule {}

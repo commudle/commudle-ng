@@ -1,4 +1,7 @@
 .user-details-container {
+  .timeago {
+    @apply com-text-gray-400;
+  }
   app-user-profile-card-large {
     &::ng-deep {
       .user-profile-large {

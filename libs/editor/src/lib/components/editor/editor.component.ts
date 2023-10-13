@@ -40,8 +40,10 @@ export class EditorComponent implements OnInit, OnDestroy {
   @Input() validators: IEditorValidator = {};
   @Input() status: NbComponentStatus = 'basic';
   @Input() appearance: NbButtonAppearance = 'filled';
+  @Input() addAttachment = false;
 
   @Output() contentChange = new EventEmitter<string>();
+  @Output() uploadImages = new EventEmitter<any>();
 
   injector = inject(Injector);
 
@@ -139,5 +141,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   onEmojiSelect(event): void {
     this.editor.chain().focus().insertContent(event.emoji.native).run();
     // this.showEmojiPicker$.next(false);
+  }
+  uploadAttachment(event) {
+    this.uploadImages.emit(event.target.files);
   }
 }

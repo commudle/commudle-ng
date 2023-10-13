@@ -1,0 +1,20 @@
+<div class="user">
+  <div class="user-image">
+    <img [src]="currentUser.photo.i96" [alt]="currentUser.name" [title]="currentUser.name" />
+  </div>
+  <div class="user-details">
+    <p class="user-name">{{ currentUser.name }}</p>
+    <p class="user-username">@{{ currentUser.username }}</p>
+    <p *ngIf="currentUser.designation" class="user-designation">{{ currentUser.designation }}</p>
+    <div class="count">
+      <p class="followers">
+        <span>{{ currentUser.followers_count }}</span
+        >Followers
+      </p>
+      <p class="following">
+        <span>{{ currentUser.followees_count }}</span
+        >Following
+      </p>
+    </div>
+  </div>
+</div>

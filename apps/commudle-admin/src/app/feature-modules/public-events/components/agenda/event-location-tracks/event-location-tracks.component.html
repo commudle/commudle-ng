@@ -15,7 +15,7 @@
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
         (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
       >
-        <nb-accordion-item-header>
+        <nb-accordion-item-header [id]="elt.id">
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon
@@ -40,8 +40,10 @@
                     ></app-badge>
                   </div>
                   <p>{{ slot.session_title }}</p>
-                  <div *ngIf="slot.user" class="session-speaker">
-                    <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                  <div *ngIf="slot.track_slot_speakers" class="session-speaker">
+                    <div *ngFor="let slot of slot.track_slot_speakers">
+                      <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                    </div>
                   </div>
                   <!-- <div *ngIf="slot.user_vote != null && event.editable">
                   <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
@@ -74,8 +76,8 @@
               </div>
               <div *ngIf="elt.track_slots.length == 0">no slots yet</div>
             </nb-list-item>
-          </nb-list></nb-accordion-item-body
-        >
+          </nb-list>
+        </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
   </div>

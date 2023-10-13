@@ -1,40 +1,45 @@
-div {
-  @apply md:com-flex md:com-justify-between;
-  a {
-    @apply com-no-underline;
+.container {
+  @apply com-flex com-justify-between;
+}
 
-    .featured-community {
-      @apply com-flex com-items-start;
+.scroll-container {
+  @apply com-w-72;
+}
 
-      .avatar {
-        @apply com-h-12 com-w-12 com-rounded-none com-object-contain com-object-center com-align-middle com-mr-3;
+a {
+  @apply com-no-underline;
+
+  .featured-community {
+    @apply com-flex com-items-start;
+
+    .avatar {
+      @apply com-h-12 com-w-12 com-rounded-none com-object-contain com-object-center com-align-middle com-mr-3;
+    }
+
+    .no-image-header {
+      @apply com-h-14 com-w-14 com-flex com-items-center com-justify-center com-mr-3;
+
+      nb-icon {
+        @apply com-text-xl;
       }
+    }
 
-      .no-image-header {
-        @apply com-h-14 com-w-14 com-flex com-items-center com-justify-center com-mr-3;
+    .featured-communities-details {
+      @apply md:com-flex com-items-start md:com-justify-between;
 
-        nb-icon {
-          @apply com-text-xl;
+      .details {
+        @apply com-flex com-flex-col md:com-mr-3;
+        .community-name {
+          @apply md:com-text-sm com-text-base com-font-semibold com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
         }
-      }
 
-      .featured-communities-details {
-        @apply md:com-flex com-items-start md:com-justify-between;
-
-        .details {
-          @apply com-flex com-flex-col md:com-mr-3;
-          .community-name {
-            @apply md:com-text-sm com-text-base com-font-semibold com-text-black com-mt-0 com-mb-1 com-line-clamp-1;
-          }
-
-          .mini-description {
-            @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-mt-0 md:com-mb-0 com-mb-4 com-line-clamp-2 md:com-h-[34px] com-h-[38px];
-          }
+        .mini-description {
+          @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-mt-0 com-mb-4 com-line-clamp-2 md:com-h-[34px] com-h-[38px];
         }
       }
     }
   }
-  .membership-toggle {
-    @apply md:com-ml-auto md:com-my-0 md:com-mr-0 com-m-0;
-  }
+}
+.membership-toggle {
+  @apply md:com-ml-auto md:com-my-0 md:com-mr-0 com-m-0;
 }

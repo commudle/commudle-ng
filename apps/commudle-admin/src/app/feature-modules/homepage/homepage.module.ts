@@ -26,6 +26,13 @@ import { HomepageLabsComponent } from './components/homepage-labs/homepage-labs.
 import { HomepageTestimonialsComponent } from './components/homepage-testimonials/homepage-testimonials.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
+import { HomepageDashboardComponent } from './components/homepage-dashboard/homepage-dashboard.component';
+import { UserprofileDetailsComponent } from './components/homepage-dashboard/userprofile-details/userprofile-details.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
+import { UserProfileComponent } from '../../app-shared-components/user-profile/user-profile.component';
+import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,10 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     HomepageTestimonialsComponent,
     HomepageExpertsComponent,
     HomepageAboutComponent,
+    HomepageDashboardComponent,
+    UserprofileDetailsComponent,
   ],
+  exports: [UserprofileDetailsComponent],
   imports: [
     CommonModule,
     HomepageRoutingModule,
@@ -50,13 +60,21 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     PublicCommunityModule,
     SearchModule,
     MiniUserProfileModule,
+    UserProfileComponent,
+    FeaturedProjectsComponent,
+    PublicHomeListEventsModule,
 
+    //Nebular
     NbButtonModule,
     NbCardModule,
     NbIconModule,
     NbListModule,
     NbActionsModule,
     NbTooltipModule,
+
+    //FontAwesome
+    FontAwesomeModule,
+    AppSharedComponentsModule,
   ],
 })
 export class HomepageModule {}

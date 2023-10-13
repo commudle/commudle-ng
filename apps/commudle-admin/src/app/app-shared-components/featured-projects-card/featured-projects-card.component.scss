@@ -1,5 +1,6 @@
 nb-card {
-  @apply com-m-0 md:com-w-[318px] com-w-[303px] md:com-max-h-[200px] com-max-h-full com-h-[200px] md:com-h-auto;
+  @apply com-m-0 md:com-w-[318px] com-w-[303px];
+
   nb-card-body {
     @apply com-p-4 com-overflow-hidden;
 
@@ -16,13 +17,17 @@ nb-card {
           }
 
           .time {
-            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 md:com-mb-5 com-mb-4 com-text-Auro-Metal-Saurus;
+            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus;
           }
         }
 
         .votes {
           @apply com-ml-auto com-border com-border-solid com-px-[18px] com-py-3 com-rounded-lg com-border-Bright-Gray;
         }
+      }
+
+      .tags {
+        @apply md:com-mt-5 com-mt-4;
       }
     }
   }

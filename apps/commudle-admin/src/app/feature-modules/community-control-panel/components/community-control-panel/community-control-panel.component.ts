@@ -12,6 +12,7 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -29,6 +30,9 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   faMessage = faMessage;
 
   subscriptions: Subscription[] = [];
+  icons = {
+    faBuildingColumns,
+  };
 
   constructor(
     private communitiesService: CommunitiesService,

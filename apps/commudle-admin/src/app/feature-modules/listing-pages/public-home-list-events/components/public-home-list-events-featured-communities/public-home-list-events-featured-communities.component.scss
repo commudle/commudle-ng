@@ -1,22 +1,57 @@
-nb-card {
-  @apply md:com-mt-0 md:com-mb-6 md:com-mx-0 com-m-0 md:com-bg-Bright-Gray/30 com-border-none;
+.container-scroll {
+  @apply com-m-0  com-border-none;
   nb-card-body {
-    @apply com-p-0 md:com-px-3 md:com-pt-4;
+    @apply com-p-0;
+    .heading {
+      @apply com-m-0 com-p-4 com-bg-Anti-Flash-White com-flex com-flex-row com-items-center;
+
+      button {
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12;
+
+        fa-icon {
+          @apply com-text-lg;
+        }
+      }
+
+      div {
+        @apply com-flex com-flex-col;
+        .title {
+          @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        }
+        .sub-heading {
+          @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+        }
+      }
+    }
+
+    .featured-communities-scroll {
+      @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
+      .featured-communities-card {
+        @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4;
+      }
+    }
+  }
+}
+
+.container {
+  @apply com-mt-0 com-mb-6 com-mx-0 com-bg-Bright-Gray/30;
+  nb-card-body {
+    @apply com-px-3 com-pt-4 com-pb-0;
     .heading {
       @apply com-m-0 md:com-mb-8 md:com-p-0 md:com-mt-0 com-mt-10 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
 
       .title {
-        @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
+        @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
       }
       .sub-heading {
-        @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-m-0;
+        @apply com-text-xs com-font-normal com-text-gunmetal com-m-0;
       }
     }
 
     .featured-communities {
       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
       .featured-communities-card {
-        @apply md:com-mb-4 com-m-0 com-border com-border-solid md:com-border-none com-border-Bright-Gray-Light com-rounded-xl md:com-p-0 com-p-4;
+        @apply com-m-0 com-border-none com-rounded-xl com-p-0;
       }
     }
   }

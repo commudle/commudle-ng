@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { Subscription } from 'rxjs';
+import { IPageInfo } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-team',
@@ -17,15 +18,14 @@ export class TeamComponent implements OnInit, OnDestroy {
   volunteers: IUser[] = [];
   isLoading = true;
 
-  viewMoreSection = true;
-  footerText = 'View More';
+  pageInfo: IPageInfo;
+  count = 6;
 
   subscriptions: Subscription[] = [];
 
   constructor(private eventsService: EventsService) {}
 
   ngOnInit() {
-    this.footerText = `View More (${this.event.event_volunteers_count - 10})`;
     this.getVolunteers();
   }
 
@@ -35,19 +35,13 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   getVolunteers() {
     this.subscriptions.push(
-      this.eventsService.pGetEventVolunteers(this.event.slug).subscribe((data) => {
-        this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        this.isLoading = false;
-      }),
+      this.eventsService
+        .pGetEventVolunteers(this.event.slug, this.count, this.pageInfo?.end_cursor)
+        .subscribe((data) => {
+          this.volunteers = this.volunteers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.pageInfo = data.page_info;
+          this.isLoading = false;
+        }),
     );
-  }
-
-  viewMore() {
-    this.viewMoreSection = !this.viewMoreSection;
-    if (!this.viewMoreSection) {
-      this.footerText = `View Less`;
-    } else {
-      this.footerText = `View More (${this.event.event_volunteers_count - 10})`;
-    }
   }
 }

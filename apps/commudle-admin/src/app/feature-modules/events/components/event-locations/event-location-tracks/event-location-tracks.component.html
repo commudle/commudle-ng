@@ -41,80 +41,126 @@
           </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
+          <div class="add-session" (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            &nbsp; Add New Session
+          </div>
           <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
             <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
-              <div class="session-time">
-                <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
-                <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
-              </div>
-              <div class="session-details">
-                <div class="session-title">
-                  <div *ngIf="slot.tags_list" class="tag-badge">
-                    <app-badge
-                      *ngFor="let tag of slot.tags_list.split(' ')"
-                      [fontSize]="'small'"
-                      [text]="tag"
-                      [color]="'com-bg-primary-400'"
-                      [fontColor]="'com-text-white'"
-                    ></app-badge>
+              <div
+                class="com-flex com-items-center com-justify-between com-gap-2 md:com-gap-0 com-w-full com-flex-col md:com-flex-row"
+              >
+                <div class="com-flex com-w-full md:com-w-auto">
+                  <div class="session-time">
+                    <p class="start-time">{{ moment(slot.start_time).format('HH:mm') }}</p>
+                    <fa-icon *appBreakpoints="'>md'" [icon]="faChevronRight"></fa-icon>
+                    <p class="end-time">{{ moment(slot.end_time).format('HH:mm') }}</p>
                   </div>
-                  <p>{{ slot.session_title }}</p>
-                  <div *ngIf="slot.user" class="session-speaker">
-                    <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                  <div class="session-title">
+                    <p>{{ slot.session_title }}</p>
+                    <div *appBreakpoints="'<=md'" class="mobile-action-buttons">
+                      <div
+                        *ngIf="event.editable"
+                        class="edit"
+                        (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                      >
+                        <fa-icon [icon]="faPen"></fa-icon>
+                      </div>
+                      <div class="attachment" *ngIf="slot.track_slot_speakers.length > 0">
+                        <a
+                          [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
+                          [routerLink]="['/speaker-resource-form']"
+                          class="add-session"
+                          target="_blank"
+                        >
+                          <fa-icon [icon]="faPaperclip"></fa-icon>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div *appBreakpoints="'<=md'" class="com-flex com-justify-between com-flex-col">
+                    <div class="speakers" *ngIf="slot.track_slot_speakers">
+                      <div *ngFor="let slot of slot.track_slot_speakers">
+                        <div class="avatar">
+                          <img
+                            [alt]="slot.user.name"
+                            [src]="slot.user.photo?.i32 || slot.user.avatar"
+                            [title]="slot.user.name"
+                            [username]="slot.user.username"
+                            appMiniUserProfile
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mobile-action-buttons">
+                      <div class="public">
+                        <a
+                          [queryParams]="{ track_slot_id: slot.id }"
+                          [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                          target="_blank"
+                        >
+                          <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+                        </a>
+                      </div>
+                      <div
+                        class="delete"
+                        *ngIf="event.editable"
+                        (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
+                      >
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="links">
-                  <div *ngIf="event.editable" class="session-links">
-                    <a
-                      *ngIf="!slot.speaker_resource"
-                      [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
-                      [routerLink]="['/speaker-resource-form']"
-                      class="add-session"
-                      target="_blank"
-                    >
-                      Add session slides
-                      <nb-icon icon="clipboard-outline"></nb-icon>
-                    </a>
-                    <a
-                      *ngIf="slot.speaker_resource"
-                      [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
-                      [routerLink]="['/speaker-resource-form']"
-                      class="edit-session"
-                      target="_blank"
-                    >
-                      <span>Edit Session Details/Slides</span>
-                      <nb-icon icon="clipboard-outline"></nb-icon>
-                    </a>
-                  </div>
-                  <p class="public-session">
-                    <small>
+
+                <div *appBreakpoints="'>md'" class="com-flex com-justify-between com-w-full md:com-w-auto">
+                  <div class="action-buttons">
+                    <div *ngIf="event.editable" class="edit" (click)="showEditSlotForm(slot); $event.stopPropagation()">
+                      <fa-icon [icon]="faPen"></fa-icon>
+                    </div>
+                    <div class="attachment" *ngIf="slot.track_slot_speakers.length > 0">
+                      <a
+                        [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
+                        [routerLink]="['/speaker-resource-form']"
+                        class="add-session"
+                        target="_blank"
+                      >
+                        <fa-icon [icon]="faPaperclip"></fa-icon>
+                      </a>
+                    </div>
+                    <div class="public">
                       <a
                         [queryParams]="{ track_slot_id: slot.id }"
                         [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
                         target="_blank"
                       >
-                        Public Session Page
-                        <nb-icon icon="external-link"></nb-icon>
+                        <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
                       </a>
-                    </small>
-                  </p>
+                    </div>
+                    <div
+                      class="delete"
+                      *ngIf="event.editable"
+                      (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
+                    >
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="speakers" *ngIf="slot.track_slot_speakers">
+                      <div *ngFor="let slot of slot.track_slot_speakers">
+                        <div class="avatar">
+                          <img
+                            [alt]="slot.user.name"
+                            [src]="slot.user.photo?.i32 || slot.user.avatar"
+                            [title]="slot.user.name"
+                            [username]="slot.user.username"
+                            appMiniUserProfile
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div *ngIf="event.editable">
-                <nb-icon
-                  icon="edit-outline"
-                  (click)="showEditSlotForm(slot); $event.stopPropagation()"
-                  class="edit-outline"
-                ></nb-icon>
-              </div>
-              &nbsp;
-              <div *ngIf="event.editable">
-                <nb-icon
-                  icon="trash-outline"
-                  (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
-                  status="danger"
-                  class="close-circle-outline"
-                ></nb-icon>
               </div>
             </nb-list-item>
           </nb-list>
@@ -221,182 +267,6 @@
     <button (click)="deleteTrack(true, data.eventLocationTrackId)" nbButton status="link">Yes</button>&nbsp;
     <button (click)="deleteTrack(false, data.eventLocationTrackId)" nbButton status="link">No</button>
   </div>
-</ng-template>
-
-<ng-template #trackSlotFormTemplate let-data>
-  <form
-    (ngSubmit)="data.operationType === 'create' ? addSlot() : editSlot(data.trackSlotId)"
-    [formGroup]="trackSlotForm"
-    class="track-slot-form"
-  >
-    <div formGroupName="track_slot">
-      <div>
-        <nb-select formControlName="event_location_track_id" placeholder="Select Track" fullWidth class="select-track">
-          <nb-option-group *ngFor="let location of eventLocations" title="{{ location.id }}">
-            <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
-              {{ ltrack.name }}
-            </nb-option>
-          </nb-option-group>
-          <span
-            *ngIf="
-              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
-              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.invalid &&
-              trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
-            "
-          >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-          </span>
-        </nb-select>
-      </div>
-      <div>
-        <nb-select
-          formControlName="speaker_registration_id"
-          placeholder="Select Speaker (optional)"
-          fullWidth
-          class="select-speaker"
-        >
-          <nb-option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
-            {{ speaker.user.name }}
-          </nb-option>
-        </nb-select>
-      </div>
-      <div class="session-name">
-        <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
-        <span
-          *ngIf="
-            trackSlotForm['controls'].track_slot['controls'].session_title.touched &&
-            trackSlotForm['controls'].track_slot['controls'].session_title.invalid &&
-            trackSlotForm['controls'].track_slot['controls'].session_title.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div>
-
-      <!-- <div class="date">
-        <input
-          fullWidth
-          nbInput
-          placeholder="Date*"
-          value="{{ trackSlotForm['controls'].track_slot['controls'].date.value | date : 'fullDate' }}"
-          disabled
-        />
-        <span
-          *ngIf="
-            trackSlotForm['controls'].track_slot['controls'].date.touched &&
-            trackSlotForm['controls'].track_slot['controls'].date.invalid &&
-            trackSlotForm['controls'].track_slot['controls'].date.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div> -->
-
-      <div class="start-time">
-        <input
-          [nbTimepicker]="startTimePicker"
-          formControlName="start_time"
-          fullWidth
-          nbInput
-          placeholder="Start Time*"
-          readonly
-        />
-        <nb-timepicker #startTimePicker></nb-timepicker>
-        <span
-          *ngIf="
-            trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
-            trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
-          "
-        >
-          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-        </span>
-      </div>
-
-      <div class="end-time">
-        <input
-          [nbTimepicker]="endTimePicker"
-          formControlName="end_time"
-          fullWidth
-          nbInput
-          placeholder="End Time*"
-          readonly
-        />
-        <nb-timepicker #endTimePicker></nb-timepicker>
-      </div>
-
-      <nb-tag-list (tagRemove)="onTagRemove($event)">
-        <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
-        <input
-          (tagAdd)="onTagAdd($event)"
-          [separatorKeys]="[13, 188]"
-          (keypress)="restrictComma($event)"
-          fullWidth
-          nbTagInput
-          placeholder="Type a tag name and press comma ',' to add the tag"
-          type="text"
-          formControlName="tags_list"
-        />
-      </nb-tag-list>
-
-      <!-- <div
-        *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY"
-        class="online-event-fields"
-        formGroupName="embedded_video_stream"
-      >
-        <p>
-          <small>
-            <i>If this speaker has an individual video stream, add here, else leave blank</i>
-          </small>
-        </p>
-        <div>
-          <nb-select
-            (selectedChange)="updateTrackSlotFormZoomValidators()"
-            formControlName="source"
-            fullWidth
-            placeholder="Source"
-            size="small"
-            status="primary"
-          >
-            <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE"> YouTube (URL)</nb-option>
-            <nb-option [value]="EEmbeddedVideoStreamSources.OTHER"> Other (Embedded Iframe)</nb-option>
-            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM" disabled> Zoom</nb-option>
-          </nb-select>
-        </div>
-        <div>
-          <label>
-            Video Url / Zoom Meeting ID / Embed Iframe (depending on the source above)
-            <textarea formControlName="embed_code" fullWidth nbInput type="text"></textarea>
-          </label>
-        </div>
-        <div
-          *ngIf="
-            trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value ===
-            EEmbeddedVideoStreamSources.ZOOM
-          "
-        >
-          <label>
-            Meeting/Webinar Host Email*
-            <input formControlName="zoom_host_email" fullWidth nbInput placeholder="Type email id here" />
-          </label>
-        </div>
-        <div
-          *ngIf="
-            trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value ===
-            EEmbeddedVideoStreamSources.ZOOM
-          "
-        >
-          <label>
-            Meeting/Webinar Password (visible only to organizers)*
-            <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
-          </label>
-        </div>
-      </div> -->
-    </div>
-
-    <div class="save-button-bottom">
-      <button [disabled]="!trackSlotForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
-    </div>
-  </form>
 </ng-template>
 
 <ng-template #deleteTrackSlotTemplate let-data>

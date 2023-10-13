@@ -8,6 +8,7 @@ nb-card {
       .featured-projects-card {
         @apply com-flex com-items-center com-justify-between;
         .details {
+          @apply com-w-full;
           .heading {
             @apply com-flex com-justify-between com-mb-3 com-h-6 com-items-center;
             .user-profile-card {

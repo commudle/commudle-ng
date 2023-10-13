@@ -1,34 +1,32 @@
-<nb-card *ngIf="openForms.length > 0">
-  <nb-card-body>
-    <div class="open-forms">
-      <div *ngFor="let form of openForms" class="form-link">
-        <a
-          [routerLink]="['/fill-form', form.data_form_entity_id]"
-          nbButton
-          nbTooltip="{{ form.name }}"
-          size="small"
-          status="primary"
-        >
-          <nb-icon
-            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER"
-            icon="award"
-          ></nb-icon>
-          <nb-icon
-            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE"
-            icon="people"
-          ></nb-icon>
-          <nb-icon
-            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK"
-            icon="bulb"
-          ></nb-icon>
-          <nb-icon *ngIf="form.already_filled" class="edit-icon" icon="edit"></nb-icon>
-
-          {{ form.name }}
-        </a>
-      </div>
+<div *ngIf="openForms.length > 0">
+  <div class="open-forms">
+    <p class="registrations"><nb-icon icon="book-outline"></nb-icon><span>Registrations</span></p>
+    <div *ngFor="let form of openForms" class="form-link">
+      <a
+        [routerLink]="['/fill-form', form.data_form_entity_id]"
+        nbButton
+        nbTooltip="{{ form.name }}"
+        size="small"
+        status="primary"
+      >
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER"
+          icon="award"
+        ></nb-icon>
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE"
+          icon="people"
+        ></nb-icon>
+        <nb-icon
+          *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK"
+          icon="bulb"
+        ></nb-icon>
+        <nb-icon *ngIf="form.already_filled" class="edit-icon" icon="edit"></nb-icon>
+        {{ form.name }}
+      </a>
     </div>
-  </nb-card-body>
-</nb-card>
+  </div>
+</div>
 
 <nb-card *ngIf="eventSimpleRegistration">
   <nb-card-body>

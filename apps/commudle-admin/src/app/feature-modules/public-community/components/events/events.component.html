@@ -50,7 +50,10 @@
                             >
                           </p>
                           <p class="event-timing">
-                            {{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards
+                            <span *ngIf="event.end_time !== null"
+                              >{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</span
+                            >
+                            <span *ngIf="event.end_time === null">Date and time to be announced soon</span>
                           </p>
                         </div>
                         <button nbButton size="small" class="event_type_button">

@@ -1,0 +1,44 @@
+<nb-card *ngIf="currentUser">
+  <nb-card-body>
+    <div class="title">
+      <p class="heading">
+        Welcome {{ currentUser.name }}!!<span
+          ><img alt="Featured Projects" src="{{ staticAssets.emojis.smiley }}" title="Featured Projects"
+        /></span>
+      </p>
+      <p class="sub-heading">Here are some of the things to help you start your DevRel journey with us</p>
+    </div>
+    <div class="main-column">
+      <div class="user">
+        <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+        <commudle-userprofile-details
+          [userProfileDetails]="userProfileDetails"
+          [username]="currentUser.username"
+        ></commudle-userprofile-details>
+      </div>
+      <div class="right-column">
+        <div class="featured-communities">
+          <commudle-public-home-list-events-featured-communities
+            [showCardsHorizontal]="true"
+            [showIconsOnHeading]="true"
+          ></commudle-public-home-list-events-featured-communities>
+        </div>
+        <div class="featured-projects">
+          <commudle-featured-projects
+            [showCardsHorizontal]="true"
+            [showTag]="false"
+            [showStarsEmojiOnHeading]="false"
+            [showBulbEmojiOnHeading]="true"
+          ></commudle-featured-projects>
+        </div>
+        <div class="labs-featured">
+          <commudle-labs-featured
+            [showCardsHorizontal]="true"
+            [showStarsEmojiOnHeading]="false"
+            [showFlaskEmojiOnHeading]="true"
+          ></commudle-labs-featured>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

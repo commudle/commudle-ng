@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-channels-dashboard-channel-list.component.scss'],
 })
 export class CommunityChannelsDashboardChannelListComponent implements OnInit, OnDestroy {
+  @Input() community: ICommunity;
   channels: ICommunityChannel[] = [];
-  community: ICommunity;
   displayCommunityList = false;
   subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
@@ -26,13 +26,8 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.activatedRoute.parent.data.subscribe((data) => {
-        this.community = data.community;
-        this.getChannels();
-        this.communityChannelManagerService.setCommunityListview(false);
-      }),
-    );
+    this.getChannels();
+    this.communityChannelManagerService.setCommunityListview(false);
   }
 
   ngOnDestroy(): void {

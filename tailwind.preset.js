@@ -64,6 +64,7 @@ module.exports = {
         Blue: '#001FFF',
         Bittersweet: '#FF725E',
         'American-Orange': '#FF8A00',
+        'Blue-Lotus': '#635BFF', //used in stripe connect button for now
         'Catalina-Blue': '#022C7D',
         'Alice-Blue-Dark': '#EBF5FF',
       },
@@ -133,6 +134,7 @@ module.exports = {
         '630px': '630px',
         '800px': '800px',
         '95vh': '95vh',
+        '50vw': '50vw',
         '70vw': '70vw',
         '80vw': '80vw',
         '95vw': '95vw',

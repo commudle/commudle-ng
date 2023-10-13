@@ -48,7 +48,7 @@ export class EventsComponent implements OnInit {
       this.events = data.events;
 
       this.events.forEach((event) => {
-        if (moment(event.end_time) > moment()) {
+        if (moment(event.end_time) > moment() || event.end_time === null) {
           this.upcomingEvents.push(event);
         } else {
           this.pastEvents.push(event);
@@ -62,6 +62,21 @@ export class EventsComponent implements OnInit {
   setSchema() {
     if (this.upcomingEvents.length > 0) {
       for (const event of this.upcomingEvents) {
+        let location: object, eventStatus: string;
+        if (event.event_locations && Object.keys(event.event_locations).length > 0) {
+          location = {
+            '@type': 'Place',
+            name: event.event_locations[0].name,
+            address: event.event_locations[0].address,
+          };
+          eventStatus = 'OfflineEventAttendanceMode';
+        } else {
+          location = {
+            '@type': 'VirtualLocation',
+            url: environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug,
+          };
+          eventStatus = 'OnlineEventAttendanceMode';
+        }
         this.eventForSchema.push({
           '@context': 'https://schema.org',
           '@type': 'Event',
@@ -70,7 +85,8 @@ export class EventsComponent implements OnInit {
           startDate: event.start_time,
           endDate: event.end_time,
           eventStatus: 'https://schema.org/EventScheduled',
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          eventAttendanceMode: 'https://schema.org/' + eventStatus,
+          location: location,
           organizer: {
             '@type': 'Organization',
             name: this.community.name,

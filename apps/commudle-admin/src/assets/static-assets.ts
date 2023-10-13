@@ -44,6 +44,9 @@ export const staticAssets = {
 
     medal_of_honour:
       'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGNxQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c32f54e069ae256b46224c8d591a14e100abcc9d/b3d37220175f46299a2639f1bf15ded2.png',
+
+    smiley:
+      'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNjFWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7b8fa3296cfbb5419adb6d7ab200fb727e3faad6/eee169b54e19448db171335e87d0e20a.svg',
   },
 
   community_lab_empty_state:

@@ -30,7 +30,7 @@
           >
             <option value="" selected disabled>Select Form</option>
             <option value="createNewForm">+ Create New Form</option>
-            <option *ngFor="let qt of dataForms" [ngValue]="qt.id">
+            <option *ngFor="let qt of dataForms" [value]="qt.id">
               {{ qt.name | titlecase }}
             </option>
           </select>
@@ -119,13 +119,22 @@
   <nb-card class="com-h-[90dvh] md:com-w-[50dvw]">
     <nb-card-header class="com-flex com-items-center com-justify-between">
       <div>Create New Survey Form</div>
-      <button (click)="ref.close()" ghost nbButton size="small">
+      <button
+        (click)="ref.close(); createSurveyForm.controls.survey.get('data_form_id').setValue('')"
+        ghost
+        nbButton
+        size="small"
+      >
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
-    <nb-card-body class="com-px-0">
+    <nb-card-body class="com-p-0 com-bg-Anti-Flash-White">
       <div class="new-data-form-template">
-        <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+        <app-new-data-form
+          (newDataForm)="createAndSelectForm($event)"
+          [minQuestionCount]="1"
+          [stickSubmitButtonBottom]="true"
+        ></app-new-data-form>
       </div>
     </nb-card-body>
   </nb-card>

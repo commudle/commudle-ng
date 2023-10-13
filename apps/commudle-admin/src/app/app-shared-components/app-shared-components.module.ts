@@ -25,6 +25,8 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
@@ -57,6 +59,9 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     NbToggleModule,
     NbIconModule,
     NbCardModule,
+
+    //FontAwesome
+    FontAwesomeModule,
   ],
   exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
 })

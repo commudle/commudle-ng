@@ -5,6 +5,7 @@ import { ISpeakerResource } from './speaker_resource.model';
 export interface ITrackSlot {
   id: number;
   event_location_track_id: number;
+  event_location_track_name: string;
   start_time: Date;
   end_time: Date;
   session_title: string;
@@ -16,5 +17,10 @@ export interface ITrackSlot {
   user_vote: boolean;
   speaker_resource: ISpeakerResource;
   rsvp_token: string;
+  track_slot_speakers: ITrackSlotSpeakers[];
+}
 
+export interface ITrackSlotSpeakers {
+  speaker_registration_id: number;
+  user: IUser;
 }

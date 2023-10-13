@@ -1,48 +1,24 @@
 <div class="event-data-form-groups">
   <div>
-    <nb-list *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
-      <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index">
-        <div *ngIf="edfeg.data_form_entity" class="edfeg-details">
-          <div class="display-details">
-            <div class="copy-link clickable">
-              <a
-                *ngIf="event.editable"
-                [routerLink]="['/fill-form', edfeg.data_form_entity.id]"
-                class="text-primary"
-                target="_blank"
-              >
-                <nb-icon icon="external-link"></nb-icon>
-                <br />
-                <small>Link to fill</small>
-              </a>
-            </div>
-            <div class="basic-details">
-              <p>
-                {{ edfeg.name }}
-                <br />
-                <span class="com-text-xs"
-                  >Form type:
-                  <strong>
-                    {{ edfeg.registration_type.name | titlecase }}
-                  </strong>
-                </span>
-                <br />
-                <a
-                  [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']"
-                  target="_blank"
-                  class="com-mt-1 com-no-underline com-text-xs"
-                >
-                  {{ edfeg.data_form_entity.name }} Edit
-                </a>
-              </p>
-            </div>
+    <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
+      <nb-card
+        *ngFor="let edfeg of eventDataFormEntityGroups; let i = index"
+        [ngStyle]="{ 'background-color': RegistrationTypeBackgroundColor[edfeg.registration_type.name] }"
+      >
+        <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
+          <!-- form details -->
+          <div class="form-details">
+            <p class="name">{{ edfeg.name }}</p>
+            <p class="type">Form type: {{ edfeg.registration_type.name | titlecase }}</p>
+            <a [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']" target="_blank">
+              Edit Form Questions
+            </a>
           </div>
 
-          <div class="stats">
-            <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{ edfeg.responses_count }}</p>
-          </div>
-          <div class="actions">
-            <div class="dropdown">
+          <!-- edfeg status and rsvp toggle -->
+          <div>
+            <!-- edfeg status dropdown -->
+            <div class="edfeg-status-dropdown">
               <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
                 <option
                   value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
@@ -82,7 +58,53 @@
                 </option>
               </select>
             </div>
+
+            <!-- rsvp toggle -->
+            <div
+              *ngIf="
+                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
+                event.editable
+              "
+              class="com-mb-2"
+            >
+              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
+                Allow RSVP
+              </nb-toggle>
+            </div>
+
+            <!-- auto close -->
             <div>
+              <div
+                class="com-text-primary-500 com-cursor-pointer"
+                (click)="openAutomationDialog(automationDialog, edfeg.data_form_entity, i)"
+              >
+                {{ edfeg.data_form_entity.auto_close_responses_count > 0 ? 'Edit Auto Close' : 'Add Auto Close' }}
+              </div>
+              <div class="com-text-xs" *ngIf="edfeg.data_form_entity.auto_close_responses_count > 0">
+                Auto Close in {{ edfeg.data_form_entity.auto_close_responses_count }} entities
+              </div>
+            </div>
+          </div>
+
+          <!-- send email and link to fill -->
+          <div>
+            <div *ngIf="event.editable" class="send-email">
+              <button (click)="openEmailWindow(edfeg)">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+                Send By EMail
+              </button>
+            </div>
+            <div class="link-to-fill">
+              <a *ngIf="event.editable" [routerLink]="['/fill-form', edfeg.data_form_entity.id]" target="_blank">
+                <nb-icon icon="external-link" class="com-text-sm"></nb-icon>
+                <span class="com-text-sm">Link to fill</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- show Response -->
+          <div>
+            <div class="show-response">
               <a
                 [queryParams]="{
                   parent_type: 'EventDataFormEntityGroup',
@@ -90,46 +112,95 @@
                   data_form_id: edfeg.data_form_entity.data_form_id
                 }"
                 [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'form-responses']"
-                nbButton
-                size="tiny"
-                status="info"
               >
                 Show Responses
               </a>
             </div>
-            <div
-              *ngIf="
-                [ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) &&
-                event.editable
-              "
-            >
-              <nb-toggle (checkedChange)="updateRSVP(edfeg.id, i)" [checked]="edfeg.rsvp_open === true">
-                Allow RSVP
-              </nb-toggle>
-            </div>
-            <div *ngIf="event.editable">
-              <a (click)="openEmailWindow(edfeg)" nbButton outline size="tiny" status="info">
-                <fa-icon [icon]="faEnvelope"></fa-icon>
-                &nbsp; Send By EMail
-              </a>
-            </div>
-            <div *ngIf="edfeg.responses_count >= 0">
-              <a
-                (click)="deleteEventDataFormEntityGroup(edfeg.id)"
-                *ngIf="edfeg.responses_count === 0"
-                nbButton
-                outline
-                size="tiny"
-                status="danger"
-              >
-                <fa-icon [icon]="faTimesCircle"></fa-icon>
-                &nbsp; Delete
-              </a>
+            <div>
+              <div class="response-stat">
+                <table class="com-w-full">
+                  <tr>
+                    <th>Total</th>
+                    <th>{{ edfeg.summary_registration_counts?.all ? edfeg.summary_registration_counts.all : 0 }}</th>
+                  </tr>
+                  <tr>
+                    <td>Registered</td>
+                    <td>
+                      {{
+                        edfeg.summary_registration_counts?.registered ? edfeg.summary_registration_counts.registered : 0
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Waiting</td>
+                    <td>
+                      {{ edfeg.summary_registration_counts?.waiting ? edfeg.summary_registration_counts.waiting : 0 }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Shortlisted</td>
+                    <td>
+                      {{
+                        edfeg.summary_registration_counts?.shortlisted
+                          ? edfeg.summary_registration_counts.shortlisted
+                          : 0
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Confirmed</td>
+                    <td>
+                      {{
+                        edfeg.summary_registration_counts?.confirmed ? edfeg.summary_registration_counts.confirmed : 0
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cancelled</td>
+                    <td>
+                      {{
+                        edfeg.summary_registration_counts?.cancelled ? edfeg.summary_registration_counts.cancelled : 0
+                      }}
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      </nb-list-item>
-    </nb-list>
+
+          <!-- payment Details -->
+          <div *ngIf="community.payments_enabled">
+            <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
+              <input type="checkbox" (change)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid" />
+              <span class="com-text-primary-500"> Paid Ticketing </span>
+            </div>
+            <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
+              <commudle-payment-settings
+                [communityId]="community.id"
+                [event]="event"
+                [edfeg]="edfeg"
+                [stripeAccounts]="stripeAccounts"
+              ></commudle-payment-settings>
+            </div>
+          </div>
+
+          <!-- delete and clone -->
+          <div>
+            <button
+              (click)="deleteEventDataFormEntityGroup(edfeg.id)"
+              nbButton
+              outline
+              size="small"
+              status="danger"
+              [disabled]="edfeg.responses_count > 0"
+            >
+              <fa-icon [icon]="faTimesCircle"></fa-icon>
+              &nbsp; Delete
+            </button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 
   <div *ngIf="event.editable">
@@ -265,6 +336,42 @@
 
 <ng-template #newDataFormTemplate let-data>
   <div class="new-data-form-template">
-    <app-new-data-form (newDataForm)="createAndSelectForm($event)" [minQuestionCount]="1"></app-new-data-form>
+    <app-new-data-form
+      (newDataForm)="createAndSelectForm($event)"
+      [minQuestionCount]="1"
+      [stickSubmitButtonBottom]="true"
+    ></app-new-data-form>
   </div>
+</ng-template>
+
+<ng-template #automationDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Form Auto Close</nb-card-header>
+    <nb-card-body>
+      <label>
+        Auto close form responses limit: <br />
+        <input
+          #autoCloseInput
+          nbInput
+          type="number"
+          [value]="data.dfe.auto_close_responses_count"
+          fullWidth
+          required
+          min="0"
+        />
+      </label>
+      <div class="com-mt-2 com-h-max">
+        <commudle-alert [info]="true" message="Enter 0 if you want to remove Auto close"></commudle-alert>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        (click)="saveAutomation(data.dfe, autoCloseInput.value, data.index); ref.close()"
+      >
+        Save
+      </button>
+    </nb-card-footer>
+  </nb-card>
 </ng-template>

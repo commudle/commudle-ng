@@ -1,0 +1,77 @@
+.container-scroll {
+  @apply com-p-0 com-m-0 com-border-0;
+
+  nb-card-body {
+    @apply com-m-0 com-p-0;
+    .heading {
+      @apply com-flex com-items-center com-m-0 com-p-4 com-bg-Anti-Flash-White;
+
+      .image {
+        @apply com-p-10px com-m-0 com-mr-3 com-rounded-xl com-w-[52px] com-h-[52px] com-border-none com-bg-transparent;
+      }
+
+      .emoji {
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12 com-border-none;
+
+        fa-icon {
+          @apply com-text-xl;
+        }
+      }
+
+      .text {
+        .title {
+          @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
+        }
+        .sub-heading {
+          @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+        }
+      }
+    }
+
+    .featured-projects-scroll {
+      @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-mt-4 com-p-0 com-gap-3;
+      .featured-projects-card {
+        @apply com-m-0 com-p-0;
+      }
+    }
+  }
+}
+
+.container {
+  @apply com-p-0 com-m-0 com-bg-Bright-Gray/30 com-border-0 com-mt-6;
+
+  nb-card-body {
+    @apply com-pt-4 com-px-3 com-m-0 com-p-0;
+    .heading {
+      @apply com-flex com-items-center com-m-0 com-p-0 com-pb-6 com-bg-transparent;
+
+      .image {
+        @apply com-p-10px com-m-0 com-mr-3 com-rounded-xl com-w-[52px] com-h-[52px] com-border-none com-bg-transparent;
+      }
+
+      .emoji {
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12 com-border-none;
+
+        fa-icon {
+          @apply com-text-lg;
+        }
+      }
+
+      .text {
+        .title {
+          @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-2px com-mt-0 com-mx-0;
+        }
+        .sub-heading {
+          @apply com-text-sm com-font-normal com-text-gunmetal com-m-0;
+        }
+      }
+    }
+
+    .featured-projects {
+      @apply com-flex com-flex-wrap com-overflow-x-auto com-m-0 com-pb-4 com-p-0 com-gap-y-4 com-gap-x-0;
+      .featured-projects-card {
+        @apply com-m-0 com-p-0;
+      }
+    }
+  }
+}
