@@ -28,10 +28,12 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((params) => {
-        this.checkFormStatus(params.data_form_entity_id);
         this.dataFormEntitiesService.getDataFormEntity(params.data_form_entity_id).subscribe((data) => {
           this.dataFormEntity = data;
           this.formClosed = !this.dataFormEntity.user_can_fill_form; // this will always return true for organizers
+          if (!this.formClosed) {
+            this.checkFormStatus(params.data_form_entity_id);
+          }
         });
       }),
     );
