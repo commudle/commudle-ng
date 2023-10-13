@@ -51,6 +51,18 @@ export class NewDataFormComponent implements OnInit {
   // define the form
   createDataForm: FormGroup;
 
+  tinyMCE: any = {
+    placeholder: '(Optional)',
+    min_height: 100,
+    menubar: false,
+    convert_urls: false,
+    statusbar: false,
+    toolbar: false,
+    plugins: 'autoresize',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 14px !important;}",
+  };
+
   initQuestion(): FormGroup {
     return this.fb.group({
       question_type_id: [1, Validators.required],
