@@ -48,13 +48,13 @@
             <div class="description">
               <label fullWidth>
                 Description
-                <textarea
+                <editor
+                  [init]="tinyMCE"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                   formControlName="description"
-                  nbInput
-                  fullWidth
-                  formControlName="description"
-                  placeholder="Description (optional)"
-                ></textarea>
+                  class="editor"
+                >
+                </editor>
               </label>
             </div>
           </div>

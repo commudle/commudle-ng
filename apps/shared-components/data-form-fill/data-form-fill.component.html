@@ -2,7 +2,7 @@
   <nb-card *ngIf="dataForm.description">
     <nb-card-body class="com-p-0">
       <div class="form-description">
-        <p [innerHTML]="dataForm.description | linky : { sanitizeHtml: true }"></p>
+        <div [innerHTML]="dataForm.description | linky : { sanitizeHtml: false }"></div>
       </div>
     </nb-card-body>
   </nb-card>

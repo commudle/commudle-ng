@@ -28,6 +28,13 @@ export class DataFormEntitiesService {
     });
   }
 
+  checkFormStatus(dataFormEntityId): Observable<any> {
+    const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.FORM_STATUS), {
+      params,
+    });
+  }
+
   getDataFormEntity(dataFormEntityId): Observable<IDataFormEntity> {
     const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
     return this.http.get<IDataFormEntity>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.SHOW), {
