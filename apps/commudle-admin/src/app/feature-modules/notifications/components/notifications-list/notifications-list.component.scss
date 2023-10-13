@@ -35,7 +35,7 @@
       }
 
       .details {
-        @apply com-flex com-justify-between com-items-center com-line-clamp-1;
+        @apply com-flex com-justify-between com-items-center com-line-clamp-1 com-break-all;
       }
 
       .time {
