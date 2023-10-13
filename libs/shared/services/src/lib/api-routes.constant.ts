@@ -261,6 +261,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
     AUTOMATION: 'api/v2/data_form_entities/automation',
+    FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
   },
 
