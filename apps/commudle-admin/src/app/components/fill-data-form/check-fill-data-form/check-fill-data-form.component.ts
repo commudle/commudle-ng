@@ -17,7 +17,7 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
   intervalSubscription: Subscription;
   faTriangleExclamation = faTriangleExclamation;
 
-  @ViewChild('paymentErrorDialog', { static: true }) paymentErrorDialog: TemplateRef<any>;
+  @ViewChild('formClosedDialog', { static: true }) formClosedDialog: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,7 +44,7 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
       this.dataFormEntitiesService.checkFormStatus(dataFormId).subscribe((data) => {
         if (!data.form_open) {
           this.clearInterval();
-          const dialogRef = this.dialogService.open(this.paymentErrorDialog, {
+          const dialogRef = this.dialogService.open(this.formClosedDialog, {
             closeOnBackdropClick: false,
             closeOnEsc: false,
             hasScroll: false,
