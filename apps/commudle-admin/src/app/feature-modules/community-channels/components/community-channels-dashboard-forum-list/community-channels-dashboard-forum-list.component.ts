@@ -32,8 +32,10 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
-        this.communityForums = data;
-        Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
+        if (data) {
+          this.communityForums = data;
+          Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
+        }
       }),
     );
     this.setMeta();
