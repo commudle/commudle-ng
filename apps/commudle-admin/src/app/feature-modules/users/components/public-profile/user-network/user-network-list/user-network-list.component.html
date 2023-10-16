@@ -10,4 +10,7 @@
       ></app-user-profile-card-large>
     </nb-list-item>
   </nb-list>
+  <div *ngIf="page_info.has_next_page">
+    <button nbButton fullWidth (click)="checkNetworkType()">View More</button>
+  </div>
 </div>
