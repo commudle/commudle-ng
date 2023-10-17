@@ -54,5 +54,6 @@
     </div>
   </nb-list-item>
 </nb-list>
-
-<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div *ngIf="isLoading" class="loading-spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
