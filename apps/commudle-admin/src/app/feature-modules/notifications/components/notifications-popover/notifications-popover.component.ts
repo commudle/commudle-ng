@@ -51,13 +51,4 @@ export class NotificationsPopoverComponent implements OnInit {
       com_notification_type: this.ENotificationSenderTypes.USER,
     });
   }
-
-  // changeStatus(status: ENotificationStatuses, notification: INotification) {
-  //   this.notificationsStore.changeStatus(status, notification);
-  //   if (status === ENotificationStatuses.INTERACTED) {
-  //     this.closePopover.emit();
-  //   } else {
-  //     this.gtmService();
-  //   }
-  // }
 }
