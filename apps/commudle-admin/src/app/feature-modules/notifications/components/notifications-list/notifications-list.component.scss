@@ -27,11 +27,15 @@
     .notification-card {
       @apply com-flex com-items-center com-w-full;
 
+      img {
+        @apply com-h-8 com-w-8 com-object-contain com-m-0 com-mr-3;
+      }
+
       .user-image {
-        @apply com-h-8 com-w-8 com-object-contain com-rounded-full com-m-0 com-mr-3;
+        @apply com-rounded-full;
       }
       .community-image {
-        @apply com-h-8 com-w-8 com-object-contain com-rounded-sm com-m-0 com-mr-3;
+        @apply com-rounded-sm;
       }
 
       .details {

@@ -3,7 +3,7 @@
     <p>
       Notifications<span *ngIf="notificationCount > 0">{{ notificationCount }}</span>
     </p>
-    <button (click)="markAllAsRead()" nbButton size="small" [disabled]="notificationCount <= 0" status="primary">
+    <button (click)="markAllAsRead()" nbButton size="small" ghost [disabled]="notificationCount <= 0" status="primary">
       Mark all as read
       <nb-icon icon="checkmark-circle-outline"></nb-icon>
     </button>
