@@ -32,48 +32,51 @@
       <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
       <div *appBreakpoints="'>lg'" class="two-column-layout medium">
         <div class="main-column">
-          <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
+          <!-- <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner> -->
           <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
-          <div *ngIf="total > 0">
+          <!-- *ngIf="total > 0" -->
+          <div>
             <p class="results-count">{{ total }} Results Found</p>
             <!-- <p class="option-name">Hello</p> -->
             <nb-list>
-              <!-- <ng-container *ngFor="let option of getUsers()">
-                <nb-list-item (click)="navigate(option)" class="search-result com-border-t-0">
-                  <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
-                  <h1>{{ option.type }}</h1>
-                </nb-list-item>
-              </ng-container>
-              <ng-container *ngFor="let option of getCommunity()">
+              <nb-list-item *ngIf="users.length > 0">
+                <p>User</p>
+                <div *ngFor="let user of users" class="search-result com-border-t-0">
+                  <commudle-search-details [option]="user"></commudle-search-details>
+                </div>
+              </nb-list-item>
+              <nb-list-item *ngIf="communities.length > 0">
+                <p>Community</p>
+                <div *ngFor="let community of communities" class="search-result com-border-t-0">
+                  <commudle-search-details [option]="community"></commudle-search-details>
+                </div>
+              </nb-list-item>
+              <nb-list-item *ngIf="labs.length > 0">
+                <p>Labs</p>
+                <div *ngFor="let lab of labs" class="search-result com-border-t-0">
+                  <h1>Hello</h1>
+                  <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card>
+                </div>
+              </nb-list-item>
+              <!-- </div> -->
+              <!-- </ng-container> -->
+              <!-- <ng-container *ngFor="let option of getCommunity()">
                 <nb-list-item (click)="navigate(option)" class="search-result com-border-t-0">
                   <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
                   <h1>{{ option.type }}</h1>
                 </nb-list-item>
               </ng-container> -->
-              <nb-list-item
-                (click)="navigate(option)"
-                *ngFor="let option of getResults()"
-                class="search-result com-border-t-0"
-              >
-                <div [ngSwitch]="option.type" class="switch-case">
-                  <div *ngSwitchCase="'User'">
-                    <commudle-search-details [option]="option"></commudle-search-details>
-                  </div>
-                  <div *ngSwitchCase="'Community'">
-                    <commudle-search-details [option]="option"></commudle-search-details>
-                  </div>
-                  <!-- <div *ngSwitchCase="'Labs'"> -->
-                  <h1>Hello</h1>
+              <!-- <nb-list-item
+                
+                  <div *ngSwitchCase="'Labs'">
                   <div class="labs-card">
-                    <h1>Hello</h1>
                     <commudle-labs-featured-card></commudle-labs-featured-card>
                   </div>
-                  <!-- </div> -->
+                  </div>
                 </div>
-                <!-- <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user> -->
-              </nb-list-item>
+              </nb-list-item> -->
             </nb-list>
-            <button
+            <!-- <button
               (click)="getSearchData()"
               *ngIf="total !== results.length"
               [nbSpinner]="loadMoreLoader"
@@ -83,7 +86,7 @@
               status="primary"
             >
               Load More
-            </button>
+            </button> -->
           </div>
         </div>
 
@@ -99,3 +102,4 @@
   </div>
 </div>
 <!-- </div> -->
+<!-- <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user> -->

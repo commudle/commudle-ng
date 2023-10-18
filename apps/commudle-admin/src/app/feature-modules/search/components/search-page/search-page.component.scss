@@ -27,13 +27,20 @@
     // nb-card-body {
     nb-list {
       // @apply com-mt-4;
-
-      .search-result {
-        @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer;
+      nb-list-item {
+        @apply com-flex com-flex-col com-items-start com-border-0;
 
         &:first-child {
           @apply com-border-t-0;
         }
+      }
+
+      .search-result {
+        @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+
+        // &:first-child {
+        //   @apply com-border-t-0;
+        // }
 
         nb-user {
           &::ng-deep {
@@ -57,6 +64,10 @@
   }
 
   .switch-case {
+    @apply com-w-full;
+  }
+
+  commudle-search-details {
     @apply com-w-full;
   }
 }
