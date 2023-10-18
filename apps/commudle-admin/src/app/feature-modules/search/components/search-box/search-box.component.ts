@@ -49,30 +49,30 @@ export class SearchBoxComponent implements OnInit {
   }
 
   observeInput() {
-    // this.inputFormControl.valueChanges
-    //   .pipe(
-    //     filter((value) => typeof value === 'string'),
-    //     map((value: string) => value.trim().toLowerCase()),
-    //     filter(Boolean),
-    //     distinctUntilChanged(),
-    //     tap(() => {
-    //       if (!this.showSuggestions) {
-    //         this.onSubmit();
-    //       }
-    //     }),
-    //     filter(() => this.showSuggestions),
-    //     tap(() => {
-    //       this.searchLoader = true;
-    //       this.groupedResults = {};
-    //     }),
-    //     debounceTime(500),
-    //     switchMap((value: string) => this.searchService.getSearchResults(value)),
-    //   )
-    //   .subscribe((value: ISearch) => {
-    //     this.groupedResults = groupResults(value.results);
-    //     this.searchLoader = false;
-    //     this.total = value.total;
-    //   });
+    this.inputFormControl.valueChanges
+      .pipe(
+        filter((value) => typeof value === 'string'),
+        map((value: string) => value.trim().toLowerCase()),
+        filter(Boolean),
+        distinctUntilChanged(),
+        tap(() => {
+          if (!this.showSuggestions) {
+            this.onSubmit();
+          }
+        }),
+        filter(() => this.showSuggestions),
+        tap(() => {
+          this.searchLoader = true;
+          this.groupedResults = {};
+        }),
+        debounceTime(500),
+        switchMap((value: string) => this.searchService.getSearchResults(value)),
+      )
+      .subscribe((value: ISearch) => {
+        this.groupedResults = groupResults(value.results);
+        this.searchLoader = false;
+        this.total = value.total;
+      });
   }
 
   observeSearchStatus() {

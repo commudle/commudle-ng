@@ -53,9 +53,20 @@
               </nb-list-item>
               <nb-list-item *ngIf="labs.length > 0">
                 <p>Labs</p>
-                <div *ngFor="let lab of labs" class="search-result com-border-t-0">
-                  <h1>Hello</h1>
-                  <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card>
+                <div class="labs-card com-border-t-0">
+                  <div *ngFor="let lab of labs">
+                    <h1>Hello</h1>
+                  </div>
+                  <!-- <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card> -->
+                </div>
+              </nb-list-item>
+              <nb-list-item *ngIf="builds.length > 0">
+                <p>Builds</p>
+                <div class="builds-card com-border-t-0">
+                  <div *ngFor="let build of builds">
+                    <h1>Hello</h1>
+                  </div>
+                  <!-- <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card> -->
                 </div>
               </nb-list-item>
               <!-- </div> -->

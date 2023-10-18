@@ -33,6 +33,9 @@
         &:first-child {
           @apply com-border-t-0;
         }
+        .labs-card {
+          @apply com-grid com-grid-cols-2 com-gap-4;
+        }
       }
 
       .search-result {

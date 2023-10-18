@@ -11,12 +11,11 @@ import { Observable } from 'rxjs';
 export class SearchService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getSearchResults(query: string, page = 1, count = 10, s: string): Observable<any> {
-    const params = new HttpParams()
-      .set('q', query)
-      .set('page', page.toString())
-      .set('count', count.toString())
-      .set('s', s);
+  getSearchResults(query: string, page = 1, count = 10, s?: string): Observable<any> {
+    let params = new HttpParams().set('q', query).set('page', page.toString()).set('count', count.toString());
+    if (s !== null && s !== undefined) {
+      params = params.set('s', s);
+    }
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.SEARCH.INDEX), { params });
   }
 
