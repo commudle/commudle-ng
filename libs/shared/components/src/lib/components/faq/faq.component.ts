@@ -14,13 +14,9 @@ export class FaqComponent implements OnInit {
   faMinus = faMinus;
 
   @Input() questions: string[] = [
-    'Do I need to purchase any other platform when I setup a Community on Commudle?',
-    'How many Communities can I host on Commudle?',
-    "I'm looking to build a career in DevRel, how can Commudle be useful in that?",
-    'I want to display activities from Commudle on my website, is it possible?',
-    'Will you help me migrate from other platforms?',
-    'I lead a Design Community, is Commudle for me?',
-    'Does Commudle support paid ticket events?',
+    'What are the charges for payments received through payment gateway on Commudle?',
+    'Will I get access to new features which are rolled out after I pay for my subscription?',
+    'Is Commudle the right platform for my global community members?',
   ];
   constructor(private seoService: SeoService) {}
 
