@@ -738,4 +738,16 @@ export const API_ROUTES = {
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
     CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
   },
+
+  CUSTOM_PAGE: {
+    CREATE: 'api/v2/event_ticket_orders',
+    UPDATE: 'api/v2/event_ticket_orders',
+    DELETE: 'api/v2/event_ticket_orders/check_payment',
+    SHOW: 'api/v2/event_ticket_orders/show',
+    INDEX: 'api/v2/event_ticket_orders/show',
+    PUBLIC: {
+      SHOW: 'api/v2/event_ticket_orders/show',
+      INDEX: 'api/v2/event_ticket_orders/show',
+    },
+  },
 };
