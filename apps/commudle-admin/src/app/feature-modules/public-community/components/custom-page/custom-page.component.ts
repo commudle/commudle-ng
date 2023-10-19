@@ -23,7 +23,7 @@ export class CustomPageComponent implements OnInit, OnDestroy {
 
   getCustomPage(pageSlug) {
     this.subscriptions.push(
-      this.customPageService.getShow(pageSlug).subscribe((data) => {
+      this.customPageService.getPShow(pageSlug).subscribe((data) => {
         this.page = data;
       }),
     );
