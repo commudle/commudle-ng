@@ -10,7 +10,5 @@ export class SearchDetailsComponent implements OnInit {
   @Input() option: any;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.option);
-  }
+  ngOnInit(): void {}
 }

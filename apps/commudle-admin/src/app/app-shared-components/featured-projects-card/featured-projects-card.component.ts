@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { RouterModule } from '@angular/router';
+import { ICommunityBuild } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-featured-projects-card',
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule, RouterModule],
 })
 export class FeaturedProjectsCardComponent implements OnInit {
-  @Input() featuredProject: IFeaturedItems;
+  @Input() community_build: ICommunityBuild;
   @Input() showTag = true;
   moment = moment;
   constructor() {}

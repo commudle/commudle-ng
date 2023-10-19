@@ -55,18 +55,18 @@
                 <p>Labs</p>
                 <div class="labs-card com-border-t-0">
                   <div *ngFor="let lab of labs">
-                    <h1>Hello</h1>
+                    <!-- <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card> -->
                   </div>
-                  <!-- <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card> -->
                 </div>
               </nb-list-item>
               <nb-list-item *ngIf="builds.length > 0">
                 <p>Builds</p>
                 <div class="builds-card com-border-t-0">
-                  <div *ngFor="let build of builds">
-                    <h1>Hello</h1>
+                  <div *ngFor="let community_build of builds">
+                    <commudle-featured-projects-card
+                      [community_build]="community_build"
+                    ></commudle-featured-projects-card>
                   </div>
-                  <!-- <commudle-labs-featured-card [featuredItem]="lab"></commudle-labs-featured-card> -->
                 </div>
               </nb-list-item>
               <!-- </div> -->

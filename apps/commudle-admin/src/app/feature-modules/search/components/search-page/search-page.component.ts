@@ -267,10 +267,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
+
   getCommunity() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Kommunity').subscribe((value: any) => {
       this.communities = value.results;
-      console.log(value.results, 'value community');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total = value.total;
@@ -281,10 +281,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
+
   getLabs() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Lab').subscribe((value: any) => {
       this.labs = value.results;
-      console.log(value.results, 'value lab');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total = value.total;
@@ -295,15 +295,26 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
-  getBuilds() {}
+  getBuilds() {
+    this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
+      this.builds = value.results;
+      console.log(value.results, 'value build');
+      this.seoService.setTitle(`Search results for "${this.query}"`);
+      // this.results = [...this.results, ...value.results];
+      this.total = value.total;
+      this.page++;
+      this.gtmService(this.query);
+
+      // this.searchLoader = false;
+      // this.loadMoreLoader = false;
+    });
+  }
   getEvents() {}
   getContent() {}
   getBlogs() {}
   getNewsletter() {}
 
   onFilterChange(filter: string) {
-    // console.log(filter);
-    console.log(this.selectedFilters);
     if (this.selectedFilters.includes(filter)) {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {

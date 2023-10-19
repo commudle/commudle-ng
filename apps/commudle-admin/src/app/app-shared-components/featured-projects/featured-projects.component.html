@@ -32,7 +32,7 @@
     >
       <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
         <commudle-featured-projects-card
-          [featuredProject]="featuredProject"
+          [community_build]="featuredProject.community_build"
           [showTag]="showTag"
         ></commudle-featured-projects-card>
       </div>
