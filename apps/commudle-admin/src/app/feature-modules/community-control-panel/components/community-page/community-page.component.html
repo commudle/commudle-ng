@@ -1,17 +1,1 @@
-<button nbButton status="primary" (click)="openCreateNewPageDialog(createNewFormDialog)">Create New Page</button>
-
-<ng-template #createNewFormDialog let-data let-ref="dialogRef">
-  <nb-card>
-    <nb-card-header>
-      <h6>Create New Page</h6>
-      <button ghost nbButton size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body></nb-card-body>
-    <nb-card-footer>
-      <button nbButton status="primary" (click)="create()">Save</button>
-      <button nbButton status="danger" (click)="ref.close()">cancel</button>
-    </nb-card-footer>
-  </nb-card>
-</ng-template>
+<commudle-custom-page [parentId]="parentId" parentType="Kommunity"></commudle-custom-page>

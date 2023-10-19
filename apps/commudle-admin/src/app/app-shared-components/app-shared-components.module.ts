@@ -25,11 +25,18 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CustomPageComponent } from './custom-page/custom-page.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @NgModule({
-  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  declarations: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -38,6 +45,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RouterModule,
     PublicCommunityModule,
     SharedComponentsModule,
+    MiniUserProfileModule,
 
     //Standalone
     TechSessionsCardComponent,
@@ -63,6 +71,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     //FontAwesome
     FontAwesomeModule,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  exports: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+  ],
 })
 export class AppSharedComponentsModule {}

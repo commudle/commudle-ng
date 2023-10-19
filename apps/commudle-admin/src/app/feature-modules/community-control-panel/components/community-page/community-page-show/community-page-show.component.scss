@@ -1,0 +1,9 @@
+.page {
+  @apply com-my-4;
+  h5 {
+    @apply com-my-0;
+  }
+  .content {
+    @apply com-break-words;
+  }
+}

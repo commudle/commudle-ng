@@ -1,0 +1,40 @@
+.create-button {
+  @apply com-my-6;
+}
+table {
+  @apply com-border-collapse com-w-full;
+  tr {
+    .published {
+      @apply com-flex com-items-center com-gap-8;
+    }
+    .action {
+      @apply com-flex com-gap-3;
+    }
+  }
+}
+
+td,
+th {
+  @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
+}
+
+tr:nth-child(even) {
+  @apply com-bg-Bright-Gray;
+}
+
+nb-card {
+  @apply com-w-full md:com-w-[50dvw] com-h-full md:com-h-[90dvh];
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+
+  nb-card-body {
+    form {
+      @apply com-flex com-flex-col com-gap-3;
+      div {
+        @apply com-flex com-flex-col;
+      }
+    }
+  }
+}

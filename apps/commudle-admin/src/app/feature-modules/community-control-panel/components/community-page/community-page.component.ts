@@ -1,23 +1,17 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NbDialogService } from '@commudle/theme';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'commudle-community-page',
   templateUrl: './community-page.component.html',
   styleUrls: ['./community-page.component.scss'],
 })
 export class CommunityPageComponent implements OnInit {
-  constructor(private dialogService: NbDialogService) {}
+  parentId: number;
+
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getCustomPages();
+    this.parentId = this.activatedRoute.parent.snapshot.params.community_id;
   }
-
-  getCustomPages() {}
-
-  openCreateNewPageDialog(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog, { context: 'this is some additional data passed to dialog' });
-  }
-  create() {}
-
-  update() {}
 }
