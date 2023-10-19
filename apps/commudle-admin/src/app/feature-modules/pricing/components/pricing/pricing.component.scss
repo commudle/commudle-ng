@@ -111,7 +111,7 @@ p {
       .buy-btn {
         text-decoration: none;
         @apply com-mt-10 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
-        @apply sm:com-w-auto lg:com-w-full;
+        @apply sm:com-w-auto lg:com-w-[96%];
 
         &.light {
           @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-border com-border-solid com-border-Bright-Gray com-shadow com-mb-1;
@@ -139,7 +139,7 @@ p {
       }
 
       .description {
-        @apply com-relative com-w-1/3 com-py-0 com-text-center;
+        @apply com-relative com-py-0 com-text-center;
 
         .item {
           @apply com-relative com-w-full com-h-full com-py-3;
