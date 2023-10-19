@@ -6,6 +6,7 @@ import {
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
+  NbContextMenuModule,
   NbDialogModule,
   NbIconModule,
   NbInputModule,
@@ -36,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { CustomPageComponent } from './components/custom-page/custom-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     CommunityChannelsListComponent,
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
+    CustomPageComponent,
   ],
   exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [
@@ -80,6 +83,8 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     NbOptionModule,
     NbDialogModule.forChild(),
     NbSpinnerModule,
+    NbContextMenuModule,
+
     SkeletonVerticalCardsComponent,
   ],
 })

@@ -1,0 +1,9 @@
+<nb-card>
+  <nb-card-body>
+    <div *ngIf="page" class="page">
+      <h5>{{ page.title }}</h5>
+      <small> Last updated on: {{ page.updated_at | date : 'medium' }} </small>
+      <div [innerHTML]="page.content" class="content"></div>
+    </div>
+  </nb-card-body>
+</nb-card>

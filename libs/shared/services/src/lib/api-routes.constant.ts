@@ -746,8 +746,8 @@ export const API_ROUTES = {
     SHOW: 'api/v2/custom_pages/show', //GET
     INDEX: 'api/v2/custom_pages', //GET
     PUBLIC: {
-      SHOW: 'api/v2/custom_pages/show', //GET
-      INDEX: 'api/v2/custom_pages/index', //GET
+      SHOW: 'api/v2/custom_pages/public/show', //GET
+      INDEX: 'api/v2/custom_pages/public/index', //GET
     },
   },
 };

@@ -1,0 +1,12 @@
+nb-card {
+  @apply com-mx-0;
+  .page {
+    @apply com-my-1;
+    h5 {
+      @apply com-my-0;
+    }
+    .content {
+      @apply com-break-words;
+    }
+  }
+}
