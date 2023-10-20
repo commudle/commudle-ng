@@ -100,7 +100,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       .onItemClick()
       .pipe(map(({ item }) => item as CustomMenuItem))
       .subscribe(({ title, slug }) => {
-        this.router.navigate(['communities', this.community.slug, slug]);
+        this.router.navigate(['communities', this.community.slug, 'p', slug]);
       });
   }
   getNotificationsCount(id) {

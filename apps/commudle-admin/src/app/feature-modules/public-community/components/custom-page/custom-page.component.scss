@@ -1,12 +1,17 @@
 nb-card {
-  @apply com-mx-0;
-  .page {
-    @apply com-my-1;
-    h5 {
-      @apply com-my-0;
+  @apply com-mx-0 com-min-h-[70dvh];
+  nb-card-body {
+    .page {
+      @apply com-my-1;
+      h5 {
+        @apply com-my-0;
+      }
+      .content {
+        @apply com-break-words;
+      }
     }
-    .content {
-      @apply com-break-words;
-    }
+  }
+  nb-card-footer {
+    @apply com-pt-0 com-border-0;
   }
 }

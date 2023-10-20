@@ -28,6 +28,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomPageComponent } from './custom-page/custom-page.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/min
     SurveysComponent,
     LabsFeaturedComponent,
     CustomPageComponent,
+    CustomPageFormComponent,
   ],
   imports: [
     CommonModule,

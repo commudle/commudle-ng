@@ -12,6 +12,6 @@ export class CommunityPageComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.parentId = this.activatedRoute.parent.snapshot.params.community_id;
+    this.parentId = this.activatedRoute.parent.parent.snapshot.params.community_id;
   }
 }

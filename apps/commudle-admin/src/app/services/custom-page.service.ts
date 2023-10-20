@@ -47,7 +47,7 @@ export class CustomPageService {
     return this.http.get<ICustomPage[]>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.INDEX), { params });
   }
 
-  update(dataForm, customPageId: number): Observable<ICustomPage> {
+  update(dataForm, customPageId): Observable<ICustomPage> {
     return this.http.put<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.UPDATE), {
       custom_page_id: customPageId,
       custom_page: dataForm,
@@ -63,7 +63,7 @@ export class CustomPageService {
     });
   }
 
-  getShow(customPageId: number): Observable<ICustomPage> {
+  getShow(customPageId): Observable<ICustomPage> {
     const params = new HttpParams().set('custom_page_id', customPageId);
     return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.SHOW), { params });
   }
@@ -93,5 +93,28 @@ export class CustomPageService {
   destroy(customPageId: number): Observable<boolean> {
     const params = new HttpParams().set('custom_page_id', customPageId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.DELETE), { params });
+  }
+
+  getSlug(parentId, parentType: string, title: string): Observable<any> {
+    let params = new HttpParams();
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.GET_SLUG),
+      {
+        custom_page: {
+          title: title,
+        },
+      },
+      { params },
+    );
   }
 }

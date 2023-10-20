@@ -62,7 +62,7 @@ const routes = [
         component: PublicCommunityNotificationsComponent,
       },
       {
-        path: ':page_slug',
+        path: 'p/:page_slug',
         component: CustomPageComponent,
       },
     ],

@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CommunityPageShowComponent } from './community-page-show.component';
+import { CustomPageFormComponent } from './custom-page-form.component';
 
-describe('CommunityPageShowComponent', () => {
-  let component: CommunityPageShowComponent;
-  let fixture: ComponentFixture<CommunityPageShowComponent>;
+describe('CustomPageFormComponent', () => {
+  let component: CustomPageFormComponent;
+  let fixture: ComponentFixture<CustomPageFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CommunityPageShowComponent],
+      declarations: [CustomPageFormComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommunityPageShowComponent);
+    fixture = TestBed.createComponent(CustomPageFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

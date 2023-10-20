@@ -60,7 +60,6 @@
                   [text]="notificationCount.toString()"
                   status="danger"
                 ></nb-badge>
-
                 <nb-icon icon="bell" status="success"></nb-icon>
                 <span class="title">Activity</span>
               </a>
@@ -72,6 +71,19 @@
             <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
               <fa-icon [icon]="faScroll"></fa-icon>
               <span class="title">Forms</span>
+            </a>
+            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faFileLines"></fa-icon>
+              <span class="title">Pages</span>
             </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="people" status="success"></nb-icon>
@@ -115,19 +127,6 @@
               ></app-badge>
               <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
               <span class="title">Bank Details</span>
-            </a>
-            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
-              <app-badge
-                class="-com-mt-4"
-                text="New"
-                [fontColor]="'com-text-white'"
-                [fontSize]="'small'"
-                [borderRadius]="'round'"
-                [color]="'com-bg-Caribbean-Green'"
-                [position]="'top right'"
-              ></app-badge>
-              <fa-icon [icon]="icons.faFileLines"></fa-icon>
-              <span class="title">Pages</span>
             </a>
           </div>
           <div class="router-outlet">

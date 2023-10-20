@@ -1,0 +1,90 @@
+<div class="back-button" (click)="backButtonClick()">
+  <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to list of pages
+</div>
+<h6>Create new page</h6>
+<form [formGroup]="customPageForm">
+  <div class="title">
+    <label for="title">Title*</label>
+    <input type="text" formControlName="title" nbInput fullWidth placeholder="Title" />
+    <commudle-alert
+      *ngIf="
+        customPageForm.controls['title'].touched &&
+        customPageForm.controls['title'].errors?.required &&
+        customPageForm.controls['title'].invalid
+      "
+      errorMessage="Title is Required"
+      [error]="true"
+    ></commudle-alert>
+  </div>
+
+  <div *ngIf="customPageForm.controls['slug'].value">
+    <span> Slug: {{ customPageForm.controls['slug'].value }}</span>
+  </div>
+  <div class="discription">
+    <label for="description">Description*</label>
+    <textarea formControlName="description" nbInput fullWidth placeholder="Description"></textarea>
+    <commudle-alert
+      *ngIf="
+        customPageForm.controls['description'].touched &&
+        customPageForm.controls['description'].hasError('required') &&
+        customPageForm.controls['description'].invalid
+      "
+      errorMessage="Description is Required"
+      [error]="true"
+    ></commudle-alert>
+    <commudle-alert
+      *ngIf="customPageForm.controls['description'].hasError('maxlength')"
+      errorMessage="Description cannot exceed 200 characters"
+      [error]="true"
+    ></commudle-alert>
+  </div>
+  <div class="content">
+    <label for="content">Content*</label>
+    <editor formControlName="content" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" [init]="tinyMCE">
+    </editor>
+    <commudle-alert
+      *ngIf="
+        customPageForm.controls['content'].touched &&
+        customPageForm.controls['content'].errors?.required &&
+        customPageForm.controls['content'].invalid
+      "
+      errorMessage="Content is Required"
+      [error]="true"
+    ></commudle-alert>
+  </div>
+</form>
+<section>
+  <div class="action-buttons">
+    <button
+      nbButton
+      status="primary"
+      (click)="customPageForm.controls['published'].setValue(true); createOrUpdate()"
+      [disabled]="!customPageForm.valid"
+    >
+      Save
+    </button>
+    <button
+      nbButton
+      status="primary"
+      (click)="customPageForm.controls['published'].setValue(false); createOrUpdate()"
+      [disabled]="!customPageForm.valid"
+    >
+      Save As Draft
+    </button>
+  </div>
+  <div class="back-button" (click)="backButtonClick()">
+    <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to list of pages
+  </div>
+</section>
+
+<ng-template #cancelDialogBox let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <div>Are you sure you want to discard changes?</div>
+    </nb-card-body>
+    <nb-card-footer class="action-buttons !com-my-0">
+      <button nbButton status="primary" (click)="backPage(); ref.close()">Yes</button>
+      <button nbButton status="danger" (click)="ref.close()">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
