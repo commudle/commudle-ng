@@ -70,22 +70,26 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   getNotifications() {
-    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
-      this.notificationsStore.getUserNotifications(this.page, this.count);
-      this.isLoading = true;
-      this.subscriptions.push(
-        this.notificationsStore.userNotifications$.subscribe((value) => {
-          if (value.notifications) {
-            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-            this.page += 1;
-            this.total = value.total;
-            this.isLoading = false;
-            if (this.notifications.length >= this.total) {
-              this.canLoadMore = false;
+    if (!this.total || this.notifications.length < this.total) {
+      if (this.isLoading) {
+        return;
+      } else {
+        this.notificationsStore.getUserNotifications(this.page, this.count);
+        this.isLoading = true;
+        this.subscriptions.push(
+          this.notificationsStore.userNotifications$.subscribe((value) => {
+            if (value.notifications) {
+              this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+              this.page = value.page + 1;
+              this.total = value.total;
+              this.isLoading = false;
+              if (this.notifications.length >= this.total) {
+                this.canLoadMore = false;
+              }
             }
-          }
-        }),
-      );
+          }),
+        );
+      }
     }
   }
 

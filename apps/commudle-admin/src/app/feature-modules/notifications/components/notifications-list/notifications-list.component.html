@@ -1,5 +1,5 @@
 <nb-list
-  (scrolled)="getNotifications()"
+  (scrolled)="getNotifications(); isLoading = true"
   [infiniteScrollDisabled]="!(canLoadMore && total)"
   appInfiniteScroll
   class="notification-list"
