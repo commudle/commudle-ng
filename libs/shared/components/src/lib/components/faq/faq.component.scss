@@ -12,7 +12,7 @@ h2 {
         @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2;
 
         p {
-          @apply com-m-0 md:com-text-lg com-mr-1 com-text-base com-font-medium com-text-gray-900;
+          @apply com-m-0 md:com-text-xl com-mr-1 com-text-base com-font-semibold com-text-gray-900;
         }
 
         fa-icon {
@@ -21,7 +21,7 @@ h2 {
       }
 
       .answer {
-        @apply com-m-0 md:com-text-lg com-text-base com-font-normal com-text-gray-500;
+        @apply com-m-0 md:com-text-lg com-text-base com-font-normal com-text-black;
       }
     }
   }
