@@ -39,19 +39,27 @@
             <p class="results-count">{{ total }} Results Found</p>
             <!-- <p class="option-name">Hello</p> -->
             <nb-list>
-              <nb-list-item *ngIf="users.length > 0">
+              <nb-list-item
+                *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
+              >
                 <p>User</p>
                 <div *ngFor="let user of users" class="search-result com-border-t-0">
                   <commudle-search-details [option]="user"></commudle-search-details>
                 </div>
               </nb-list-item>
-              <nb-list-item *ngIf="communities.length > 0">
+              <nb-list-item
+                *ngIf="
+                  communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                "
+              >
                 <p>Community</p>
                 <div *ngFor="let community of communities" class="search-result com-border-t-0">
                   <commudle-search-details [option]="community"></commudle-search-details>
                 </div>
               </nb-list-item>
-              <nb-list-item *ngIf="labs.length > 0">
+              <nb-list-item
+                *ngIf="labs.length > 0 && (selectedFilters.includes('Lab ') || selectedFilters.includes('All'))"
+              >
                 <p>Labs</p>
                 <div class="labs-card com-border-t-0">
                   <div *ngFor="let lab of labs">
@@ -59,13 +67,27 @@
                   </div>
                 </div>
               </nb-list-item>
-              <nb-list-item *ngIf="builds.length > 0">
+              <nb-list-item
+                *ngIf="
+                  builds.length > 0 && (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
+                "
+              >
                 <p>Builds</p>
                 <div class="builds-card com-border-t-0">
                   <div *ngFor="let community_build of builds">
                     <commudle-featured-projects-card
                       [community_build]="community_build"
                     ></commudle-featured-projects-card>
+                  </div>
+                </div>
+              </nb-list-item>
+              <nb-list-item
+                *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+              >
+                <p>Events</p>
+                <div class="events-card com-border-t-0">
+                  <div *ngFor="let event of events">
+                    <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
                   </div>
                 </div>
               </nb-list-item>

@@ -25,6 +25,7 @@ import { LabsFeaturedCardComponent } from '../../app-shared-components/labs-feat
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { PublicCommunityModule } from '../public-community/public-community.module';
 import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
+import { EventCardComponent } from '../../app-shared-components/event-card/event-card.component';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -51,6 +52,7 @@ import { FeaturedProjectsCardComponent } from '../../app-shared-components/featu
     MiniUserProfileModule,
     PublicCommunityModule,
     FeaturedProjectsCardComponent,
+    EventCardComponent,
   ],
 })
 export class SearchModule {}

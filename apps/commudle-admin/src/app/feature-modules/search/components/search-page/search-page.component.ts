@@ -155,7 +155,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   query: string;
   results = [];
   filters = [];
-  selectedFilters = [];
+  selectedFilters = ['All'];
 
   users: any[] = [];
   communities = [];
@@ -193,23 +193,34 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.total = -1;
       // this.page = 1;
       // this.filters = [];
-      // this.selectedFilters = [];
 
       this.query = params.q;
+      // this.users = [];
+      // this.communities = [];
+      // this.labs = [];
+      // this.builds = [];
+      // this.events = [];
+      // this.content = [];
+      // this.blogs = [];
+      // this.newsletters = [];
+      this.selectedFilters = ['All'];
+      this.getAllData();
       // this.getSearchData();
-      this.getUsers();
-      this.getCommunity();
-      this.getLabs();
-      this.getBuilds();
-      this.getEvents();
+      // this.getUsers();
+      // this.getCommunity();
+      // this.getLabs();
+      // this.getBuilds();
+      // this.getEvents();
       // this.getContent();
-      this.getBlogs();
-      this.getNewsletter();
+      // // this.getBlogs();
+      // this.getNewsletter();
     });
 
-    this.searchService.getSearchResults(this.query, this.page, this.count, 'all').subscribe((value: ISearch) => {
+    this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
       this.seoService.setTitle(`Search results for "${this.query}"`);
+      console.log(value, 'value');
       this.results = [...this.results, ...value.results];
+      // console.log(this.results);
       this.filters = [
         ...new Set(
           this.results.map((result) => {
@@ -219,6 +230,18 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           }),
         ),
       ];
+      // this.results = [];
+      // this.total = -1;
+      // this.page = 1;
+      // this.filters = [];
+      // this.selectedFilters = [];
+      this.getUsers();
+      this.getCommunity();
+      this.getLabs();
+      this.getBuilds();
+      this.getEvents();
+      this.getContent();
+      this.getNewsletter();
 
       // this.searchLoader = false;
       // this.loadMoreLoader = false;
@@ -297,8 +320,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
   getBuilds() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
+      // console.log(value.results, 'value build');
       this.builds = value.results;
-      console.log(value.results, 'value build');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total = value.total;
@@ -309,23 +332,71 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
-  getEvents() {}
+  getEvents() {
+    this.searchService.getSearchResults(this.query, this.page, this.count, 'Event').subscribe((value: any) => {
+      // console.log(value.results, 'value event');
+      this.events = value.results;
+      this.seoService.setTitle(`Search results for "${this.query}"`);
+      // this.results = [...this.results, ...value.results];
+      this.total = value.total;
+      this.page++;
+      this.gtmService(this.query);
+
+      // this.searchLoader = false;
+      // this.loadMoreLoader = false;
+    });
+  }
   getContent() {}
   getBlogs() {}
   getNewsletter() {}
 
   onFilterChange(filter: string) {
+    console.log('called onfilter change');
     if (this.selectedFilters.includes(filter)) {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
       this.selectedFilters.push(filter);
-      this.getUsers();
-      this.getCommunity();
-      this.getLabs();
+      console.log(this.selectedFilters, 'selected Filter');
+      // this.getAllData();
+      // this.getUsers();
+      // this.getCommunity();
+      // this.getLabs();
     }
   }
 
   gtmService(query) {
     this.gtm.dataLayerPushEvent('search_query', { query });
+  }
+
+  getAllData() {
+    if (this.selectedFilters.includes('User')) {
+      console.log('user');
+      this.getUsers();
+    }
+    if (this.selectedFilters.includes('Community')) {
+      console.log('kommunity');
+      this.getCommunity();
+    }
+    if (this.selectedFilters.includes('Lab ')) {
+      console.log('lab');
+      this.getLabs();
+    }
+    if (this.selectedFilters.includes('Community Build')) {
+      console.log('build');
+      this.getBuilds();
+    }
+    if (this.selectedFilters.includes('Event')) {
+      console.log('event');
+      this.getEvents();
+    }
+    if (this.selectedFilters.includes('Content')) {
+      console.log('content');
+      this.getContent();
+    }
+    if (this.selectedFilters.includes('Newsletter')) {
+      console.log('newletter');
+      this.getNewsletter();
+    }
+    // this.getBlogs();
   }
 }
