@@ -1,6 +1,6 @@
-<nb-card>
+<nb-card *ngIf="page">
   <nb-card-body>
-    <div *ngIf="page" class="page">
+    <div class="page">
       <h5>{{ page.title }}</h5>
       <div [innerHTML]="page.content | safeHtml" class="content"></div>
     </div>

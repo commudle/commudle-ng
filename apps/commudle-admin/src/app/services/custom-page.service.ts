@@ -63,8 +63,19 @@ export class CustomPageService {
     });
   }
 
-  getShow(customPageId): Observable<ICustomPage> {
-    const params = new HttpParams().set('custom_page_id', customPageId);
+  getShow(customPageId, parentId, parentType): Observable<ICustomPage> {
+    let params = new HttpParams().set('custom_page_id', customPageId);
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+
     return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.SHOW), { params });
   }
 
@@ -85,8 +96,18 @@ export class CustomPageService {
     });
   }
 
-  getPShow(customPageId: number): Observable<ICustomPage> {
-    const params = new HttpParams().set('custom_page_id', customPageId);
+  getPShow(customPageId: number, parentId, parentType): Observable<ICustomPage> {
+    let params = new HttpParams().set('custom_page_id', customPageId);
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
     return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.PUBLIC.SHOW), { params });
   }
 

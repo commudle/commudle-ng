@@ -1,4 +1,4 @@
-import { Subscription, debounceTime } from 'rxjs';
+import { Subscription, debounceTime, combineLatest } from 'rxjs';
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,7 +6,7 @@ import { ToastrService } from '@commudle/shared-services';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { Location } from '@angular/common';
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
-import { NbDialogRef, NbDialogService } from '@commudle/theme';
+import { NbDialogService } from '@commudle/theme';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -59,20 +59,17 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.generateSlug();
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe((params) => {
-        this.pageSlug = params['page_slug'];
-        if (this.pageSlug) {
-          this.fetchCustomPageDetails();
-        }
-      }),
-
-      this.activatedRoute.parent.parent.paramMap.subscribe((params) => {
+    combineLatest([this.activatedRoute.parent.parent.paramMap, this.activatedRoute.params]).subscribe(
+      ([params, data]) => {
+        this.pageSlug = data.page_slug;
         if (params.get('community_id')) {
           this.parentId = params.get('community_id');
           this.parentType = 'Kommunity';
         }
-      }),
+        if (this.pageSlug) {
+          this.fetchCustomPageDetails();
+        }
+      },
     );
   }
 
@@ -82,23 +79,26 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
 
   generateSlug() {
     this.customPageForm.controls['title'].valueChanges.pipe(debounceTime(800)).subscribe(() => {
-      this.customPageService
-        .getSlug(this.parentId, this.parentType, this.customPageForm.controls['title'].value)
-        .subscribe((data) => {
-          this.customPageForm.controls['slug'].setValue(data);
-        });
+      if (!this.pageSlug) {
+        this.customPageService
+          .getSlug(this.parentId, this.parentType, this.customPageForm.controls['title'].value)
+          .subscribe((data) => {
+            this.customPageForm.controls['slug'].setValue(data);
+          });
+      }
     });
   }
 
   fetchCustomPageDetails() {
     this.subscriptions.push(
-      this.customPageService.getShow(this.pageSlug).subscribe((data: ICustomPage) => {
+      this.customPageService.getShow(this.pageSlug, this.parentId, this.parentType).subscribe((data: ICustomPage) => {
         if (data) {
           this.customPageForm.patchValue({
             title: data.title,
             description: data.description,
             published: data.published,
             content: data.content,
+            slug: data.slug,
           });
         }
       }),

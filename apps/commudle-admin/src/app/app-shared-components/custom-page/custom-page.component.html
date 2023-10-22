@@ -2,7 +2,7 @@
   <button nbButton status="primary" [routerLink]="['new']">Create New Page</button>
 </div>
 
-<table>
+<table *ngIf="pages && pages.length > 0">
   <tr>
     <th>Title</th>
     <th>Published</th>
