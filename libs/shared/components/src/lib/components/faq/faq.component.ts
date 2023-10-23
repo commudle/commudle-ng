@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SeoService } from '@commudle/shared-services';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-faq',
