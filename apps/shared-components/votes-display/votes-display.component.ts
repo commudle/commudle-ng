@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { SVotesService } from '../services/s-votes.service';
 import { VoteChannel } from '../services/websockets/vote.channel';
 import { VotersComponent } from './voters/voters.component';
+import { GoogleTagManagerService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-votes-display',
@@ -47,6 +48,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
     private voteChannel: VoteChannel,
     private votesService: SVotesService,
     private toastLogService: LibToastLogService,
+    private gtm: GoogleTagManagerService,
   ) {}
 
   ngOnInit() {
@@ -91,6 +93,9 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
           this.voteChannel.ACTIONS.TOGGLE_VOTE,
           {},
         );
+        if (!this.myVote) {
+          this.gtmService();
+        }
       } else {
         this.authWatchService.logInUser();
       }
@@ -125,6 +130,13 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
           }
         });
       }
+    });
+  }
+
+  gtmService() {
+    this.gtm.dataLayerPushEvent('vote-created', {
+      com_vote_id: this.votableId,
+      com_voteable_type: this.votableType,
     });
   }
 }
