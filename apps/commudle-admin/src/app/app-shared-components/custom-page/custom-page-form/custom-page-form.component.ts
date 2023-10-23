@@ -31,6 +31,8 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     menubar: false,
     convert_urls: false,
     placeholder: 'Write content for custom page',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     plugins:
       'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
     toolbar:
