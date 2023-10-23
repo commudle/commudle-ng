@@ -14,68 +14,49 @@ export class PricingComponent implements OnInit, OnDestroy {
   isMobileView = false;
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
-      name: 'GDG New Delhi',
+      name: 'Google Developer Groups',
       slug: 'gdg-new-delhi',
-      description: 'The largest Tech Community on Commudle consists of Software Developers',
+      description:
+        'GDG New Delhi, Noida, Cloud, Siliguri and many more communities from the Google Developers ecosystem.',
       image:
         'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmNlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1931d8ac25e32d52949f7069bfa3ceaf01db6524/gdg_new_delhi.png',
     },
     {
       name: 'Women Who Code Delhi',
       slug: 'women-who-code-delhi',
-      description: 'WWC is the largest and most active community of engineers for inspiring women',
+      description:
+        'WWC Delhi is the one of the largest and most active community of engineers for inspiring women in tech.',
       image:
         'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmdlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0eea224f77b91c395fe673164ee631209119061b/women_who_code_delhi.jpg',
     },
-    // {
-    //   name: '#VoiceFirst India',
-    //   slug: 'voicefirst',
-    //   description: '',
-    //   image:
-    //     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmtlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--91fa65611243731b0634dde7543ce281bc0efcc0/voice_first_india.png',
-    // },
     {
-      name: 'AWS User Group Punjab',
-      slug: 'aws-user-group-punjab',
-      description: 'We are a comprehensive, continuously evolving cloud computing platform',
+      name: 'Microsoft Learn Student Ambassador',
+      slug: 'microsoft-learn-student-ambassadors-chapter',
+      description: 'From Student Partner Communities to Ambassador and MVP communities, a flourishing ecosystem.',
       image:
-        'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbm9lIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--eb88ade542fb4c46b4e706041a558052b04e4221/aws_user_group_punjab.png',
+        "https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbTZ6IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4f526e73c5364dd74efad7dfba8608f1a0309395/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKZUFXa0NYZ0U2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b54362eb80bd09837e5bde550bb5151f95283d3/Microsoft%20Learn%20Student%20Ambassadors'%20Chapter.png",
     },
     {
-      name: 'Aeologic - Building Innovators',
-      slug: 'aeologic-building-innovators',
-      description: 'Aeologic - Building Innovators is an initiative to promote responsible innovation',
+      name: 'Tensor Flow User Groups',
+      slug: 'tensor-flow-user-group-nagpur',
+      description: 'The most active machine learning communities in the world.',
       image:
-        'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbnNlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5bcee4c04c89e3a69bc3cf14341b272d746fd560/aeologic.png',
-    },
-    // {
-    //   name: 'CodeChef SRM Chennai',
-    //   slug: 'codechef-srm-chennai',
-    //   description: '',
-    //   image:
-    //     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbndlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d397a7bbae81d16d5da6e8a7574573d7ad90602b/codechef_srm_chennai.png',
-    // },
-    {
-      name: 'Code Warriors',
-      slug: 'code-warriors',
-      description: 'We are a community with a mission to improve people’s lives through learning',
-      image:
-        'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1VmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cabf8b38a9a79bb33d3163c4f9cda70a85e19e47/code_warriors.png',
+        'https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdEVPIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--19a346d2585fbd6fd86b2a193ede2a9be1d4c7b6/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKZUFXa0NYZ0U2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b54362eb80bd09837e5bde550bb5151f95283d3/TF_FullColor_Stacked.png',
     },
     {
-      name: 'CDN Commudle Developer Network',
-      slug: 'cdn-commudle-developer-network',
-      description: 'A community for software developers to help each other upskill',
+      name: 'Robotex India',
+      slug: 'robotex-india',
+      description: 'One of the largest robotics communities which is empowering students to build unique solutions',
       image:
-        'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1lmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d1aab5e1bd61349d5582ec309b13ea60f75dbfa3/cdn_commudle_developer_network.png',
+        'https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNU0yQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--bc2e10c5f6c0d0601d382add9cae31c7258fc941/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKZUFXa0NYZ0U2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b54362eb80bd09837e5bde550bb5151f95283d3/Robotex_India.png',
     },
-    // {
-    //   name: 'CDN Commudle Developer Network',
-    //   slug: 'cdn-commudle-developer-network',
-    //   description: 'A community for software developers to help each other upskill',
-    //   image:
-    //     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1lmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d1aab5e1bd61349d5582ec309b13ea60f75dbfa3/cdn_commudle_developer_network.png',
-    // },
+    {
+      name: 'IEEE',
+      slug: 'ieee-jamia-hamdard-student-branch',
+      description: 'The largest communities of engineers across the world.',
+      image:
+        'https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE8vIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--05e1517a8137079260ec3f02571686337815a16e/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKZUFXa0NYZ0U2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b54362eb80bd09837e5bde550bb5151f95283d3/IEEE%20JHSB%20logo%20colored.png',
+    },
   ];
 
   answers = [

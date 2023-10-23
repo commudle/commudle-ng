@@ -24,7 +24,7 @@ p {
     }
 
     .subheading {
-      @apply com-mt-4 com-mb-0 md:com-text-xl com-text-base com-text-gray-500 com-font-normal;
+      @apply com-mt-4 com-mb-0 md:com-text-[22px] com-text-base com-text-gray-500 com-font-normal;
     }
   }
 
@@ -45,7 +45,7 @@ p {
             @apply md:com-text-4xl com-text-2xl com-font-bold md:com-mb-6 com-mb-4 com-text-gray-900;
           }
           .sub-heading {
-            @apply md:com-text-2xl com-text-base com-font-normal md:com-mb-8 com-mb-6;
+            @apply md:com-text-xl com-text-base com-font-normal md:com-mb-8 com-mb-6;
           }
         }
         .card-image {
