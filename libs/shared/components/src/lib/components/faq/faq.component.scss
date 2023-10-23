@@ -1,0 +1,28 @@
+h2 {
+  @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0 md:com-mb-[52px] com-mb-10 com-text-center;
+}
+
+.faq-cards {
+  @apply com-flex com-flex-col com-gap-y-6 com-pb-8;
+  .faq-items {
+    .faq-item {
+      @apply com-px-4 com-py-6 com-border com-border-solid com-border-Bright-Gray com-rounded-xl com-cursor-pointer;
+
+      .question {
+        @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2;
+
+        p {
+          @apply com-m-0 md:com-text-xl com-mr-1 com-text-base com-font-semibold com-text-gray-900;
+        }
+
+        fa-icon {
+          @apply com-flex com-justify-end com-text-2xl com-text-black;
+        }
+      }
+
+      .answer {
+        @apply com-m-0 md:com-text-lg com-text-base com-font-normal com-text-black;
+      }
+    }
+  }
+}
