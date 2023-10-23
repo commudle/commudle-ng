@@ -51,6 +51,7 @@ import { CommunityFormsAndSurveysComponent } from './components/community-forms-
 import { CommunitySurveysComponent } from './components/community-forms-and-surveys/community-surveys/community-surveys.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
+import { CommunityPageComponent } from './components/community-page/community-page.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CommunityPaymentsComponent } from './components/community-payments/comm
     CommunityFormsAndSurveysComponent,
     CommunitySurveysComponent,
     CommunityPaymentsComponent,
+    CommunityPageComponent,
   ],
   imports: [
     CommonModule,

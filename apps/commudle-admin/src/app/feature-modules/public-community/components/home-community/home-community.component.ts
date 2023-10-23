@@ -4,14 +4,19 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription } from 'rxjs';
+import { Subscription, filter, map } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { DOCUMENT } from '@angular/common';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogService, NbMenuService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 
+interface CustomMenuItem {
+  title: string;
+  slug: string;
+}
 @Component({
   selector: 'app-home-community',
   templateUrl: './home-community.component.html',
@@ -30,6 +35,8 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  items = [{ title: 'pages', slug: 'pages' }];
+
   @ViewChild('updateBannerDialogBox') updateBannerDialogBox: TemplateRef<any>;
 
   constructor(
@@ -42,6 +49,8 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private gtm: GoogleTagManagerService,
     private router: Router,
+    private customPageService: CustomPageService,
+    private nbMenuService: NbMenuService,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +61,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     });
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      this.getCustomPages();
       this.updateHeaderVariation();
 
       this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '';
@@ -76,6 +86,23 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
+  getCustomPages() {
+    this.subscriptions.push(
+      this.customPageService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
+        this.items = [];
+        for (const page of data) {
+          const newItem = { title: page.title, slug: page.slug };
+          this.items.push(newItem);
+        }
+      }),
+    );
+    this.nbMenuService
+      .onItemClick()
+      .pipe(map(({ item }) => item as CustomMenuItem))
+      .subscribe(({ title, slug }) => {
+        this.router.navigate(['communities', this.community.slug, 'p', slug]);
+      });
+  }
   getNotificationsCount(id) {
     if (this.notificationsStore.communityNotificationsCount$[id] !== undefined) {
       this.subscriptions.push(
