@@ -49,7 +49,7 @@ p {
           }
         }
         .card-image {
-          @apply md:com-h-[487px] md:com-w-[620px] com-h-[276px]  com-w-full com-overflow-hidden;
+          @apply md:com-h-[486px] md:com-w-[620px] com-h-[276px]  com-w-full com-overflow-hidden;
           img {
             @apply com-h-auto com-w-full com-object-cover;
           }
@@ -171,7 +171,7 @@ p {
   }
 
   .avenues {
-    @apply md:com-mt-[125px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-12 com-mb-10;
+    @apply md:com-mt-[124px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-12 com-mb-10;
     .heading {
       @apply md:com-text-4xl com-text-2xl md:com-font-bold com-font-semibold com-text-gray-900;
     }
