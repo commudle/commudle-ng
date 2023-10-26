@@ -69,6 +69,7 @@ export class SearchBoxComponent implements OnInit {
         switchMap((value: string) => this.searchService.getSearchResults(value)),
       )
       .subscribe((value: ISearch) => {
+        console.log('observe Input');
         this.groupedResults = groupResults(value.results);
         this.searchLoader = false;
         this.total = value.total;
