@@ -1,0 +1,6 @@
+.section {
+  @apply com-flex com-flex-row com-justify-between com-mx-24;
+}
+.image-on-left {
+  @apply com-flex com-flex-row-reverse;
+}
