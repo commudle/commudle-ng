@@ -1,0 +1,15 @@
+.content {
+  @apply com-flex com-flex-col com-max-w-[574px];
+
+  .heading {
+    @apply com-text-4xl com-font-extrabold com-text-black com-m-0;
+  }
+
+  .subheading {
+    @apply com-text-lg com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+  }
+
+  button {
+    @apply com-m-0 com-mt-8;
+  }
+}
