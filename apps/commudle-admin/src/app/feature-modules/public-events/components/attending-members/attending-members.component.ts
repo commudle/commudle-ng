@@ -25,7 +25,9 @@ export class AttendingMembersComponent implements OnInit {
     private eventsService: EventsService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges() {
     if (this.event.custom_registration) {
       this.getInterestedMembers();
     } else {
