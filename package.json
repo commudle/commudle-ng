@@ -41,6 +41,7 @@
     "@sanity/block-content-to-html": "^2.0.0",
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
+    "@sentry/angular-ivy": "^7.74.1",
     "@tinymce/tinymce-angular": "^7.0.0",
     "@tiptap/core": "^2.0.3",
     "@tiptap/extension-bubble-menu": "^2.0.3",
