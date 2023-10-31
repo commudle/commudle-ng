@@ -12,10 +12,9 @@
   <tr *ngFor="let page of pages; let i = index">
     <td>
       <a
-        [routerLink]="['/communities', parentId, 'p', page.slug]"
-        target="_blank"
+        (click)="redirectTo(page.slug)"
         [ngClass]="{ disableAnchorTag: !page.published }"
-        class="com-no-underline"
+        class="com-no-underline com-cursor-pointer"
         >{{ page.title }}</a
       >
     </td>

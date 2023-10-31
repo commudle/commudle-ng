@@ -32,7 +32,7 @@ export class CustomPageService {
     );
   }
 
-  getIndex(parentId: number, parentType: string): Observable<ICustomPage[]> {
+  getIndex(parentId: number | string, parentType: string): Observable<ICustomPage[]> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {

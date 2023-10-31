@@ -12,6 +12,8 @@ import { EventsComponent } from 'apps/commudle-admin/src/app/feature-modules/com
 import { CommunityComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/communities/community/community.component';
 import { CommunityGroupDetailsResolver } from 'apps/commudle-admin/src/app/feature-modules/community-groups/Resolver/community-group-details.resolver';
 import { CommunityGroupsSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-groups-surveys/community-groups-surveys.component';
+import { CommunityGroupCustomPagesComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-group-custom-pages/community-group-custom-pages.component';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 
 const routes = [
   {
@@ -82,6 +84,27 @@ const routes = [
         data: {
           expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
         },
+      },
+      {
+        path: 'pages',
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+        children: [
+          {
+            path: '',
+            component: CommunityGroupCustomPagesComponent,
+          },
+          {
+            path: 'new',
+            component: CustomPageFormComponent,
+          },
+          {
+            path: 'edit/:page_slug',
+            component: CustomPageFormComponent,
+          },
+        ],
       },
     ],
   },
