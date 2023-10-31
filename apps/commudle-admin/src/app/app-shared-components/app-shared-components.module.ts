@@ -30,6 +30,7 @@ import { CustomPageComponent } from './custom-page/custom-page.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 import { PublicPageLayoutComponent } from './public-page-layout/public-page-layout.component';
+import { TestimonialCardComponent } from './testimonial-card/testimonial-card.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PublicPageLayoutComponent } from './public-page-layout/public-page-layo
     CustomPageComponent,
     CustomPageFormComponent,
     PublicPageLayoutComponent,
+    TestimonialCardComponent,
   ],
   imports: [
     CommonModule,
@@ -82,6 +84,7 @@ import { PublicPageLayoutComponent } from './public-page-layout/public-page-layo
     LabsFeaturedComponent,
     CustomPageComponent,
     PublicPageLayoutComponent,
+    TestimonialCardComponent,
   ],
 })
 export class AppSharedComponentsModule {}
