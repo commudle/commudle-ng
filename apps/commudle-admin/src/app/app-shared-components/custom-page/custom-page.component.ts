@@ -5,6 +5,7 @@ import { NbDialogService } from '@commudle/theme';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { Subscription } from 'rxjs';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-custom-page',
@@ -16,6 +17,7 @@ export class CustomPageComponent implements OnInit {
   @Input() parentType: 'CommunityGroup' | 'Kommunity';
   subscription: Subscription[] = [];
   pages: ICustomPage[];
+  faPlus = faPlus;
 
   constructor(
     private customPageService: CustomPageService,

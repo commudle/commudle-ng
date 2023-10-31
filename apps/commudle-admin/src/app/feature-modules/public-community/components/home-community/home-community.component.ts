@@ -12,6 +12,7 @@ import { NbDialogService, NbMenuService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 interface CustomMenuItem {
   title: string;
@@ -34,6 +35,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   uploadedBanner: any;
 
   subscriptions: Subscription[] = [];
+  faCaretDown = faCaretDown;
 
   items = [{ title: 'pages', slug: 'pages' }];
 
@@ -54,6 +56,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.items = [];
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();

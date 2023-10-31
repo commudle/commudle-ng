@@ -55,7 +55,8 @@
         .community-social-links {
           @apply com-gap-6;
 
-          nb-icon {
+          nb-icon,
+          fa-icon {
             @apply com-text-Very-Light-Blue;
           }
 
@@ -100,7 +101,8 @@
     a {
       @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
-      nb-icon {
+      nb-icon,
+      fa-icon {
         @apply com-text-gunmetal/80;
       }
 

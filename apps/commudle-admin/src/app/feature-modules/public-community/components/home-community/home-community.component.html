@@ -217,13 +217,12 @@
                       [text]="notificationCount.toString()"
                       status="danger"
                     ></nb-badge>
-
                     <nb-icon icon="bell" status="success"></nb-icon>
                     <span class="title">Activity</span>
                   </a>
                 </div>
-                <a class="d-flex" [nbContextMenu]="items">
-                  <nb-icon icon="hash" status="success"></nb-icon>
+                <a class="d-flex" [nbContextMenu]="items" nbContextMenuTrigger="hover" *ngIf="items.length > 0">
+                  <fa-icon [icon]="faCaretDown" class="com-text-2xl com-leading-none"></fa-icon>
                   <span class="title">More</span>
                 </a>
               </div>

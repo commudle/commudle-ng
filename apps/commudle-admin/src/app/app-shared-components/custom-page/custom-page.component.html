@@ -1,5 +1,7 @@
 <div class="create-button">
-  <button nbButton status="primary" [routerLink]="['new']">Create New Page</button>
+  <button nbButton status="primary" [routerLink]="['new']">
+    <fa-icon [icon]="faPlus" class="com-mr-2"></fa-icon>Create New Page
+  </button>
 </div>
 
 <table *ngIf="pages && pages.length > 0">
