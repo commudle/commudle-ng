@@ -39,3 +39,7 @@ nb-form-field {
     @apply com-px-4 com-pt-2 com-pb-0;
   }
 }
+
+.search-placeholder {
+  @apply com-flex com-items-center com-justify-center com-h-full;
+}

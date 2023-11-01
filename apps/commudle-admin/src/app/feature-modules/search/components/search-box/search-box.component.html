@@ -1,4 +1,4 @@
-<nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
+<!-- <nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
   <input
     #searchInput
@@ -19,21 +19,20 @@
 
 <nb-autocomplete #loading></nb-autocomplete>
 
-<nb-autocomplete
-  #autoComplete
-  (selectedChange)="navigate($event)"
-  [handleDisplayFn]="handleDisplay"
-  optionsListClass="search-autocomplete"
->
-  <nb-option *ngIf="searchLoader" class="search-placeholder loading-spinner">
+
+<nb-autocomplete #autoComplete  (selectedChange)="navigate($event)"
+  [handleDisplayFn]="handleDisplay" optionsListClass="search-autocomplete">
+  <!-- *ngIf="searchLoader"
+  <nb-option class="search-placeholder loading-spinner">
     <div class="spinner">
       <div *ngFor="let _ of [].constructor(5)"></div>
     </div>
   </nb-option>
-  <nb-option *ngIf="inputFormControl.value?.length === 0" class="search-placeholder">
+  *ngIf="inputFormControl.value?.length === 0" 
+  <nb-option class="search-placeholder">
     Quickly search your favorite topics, labs by industry experts or find an event you missed
   </nb-option>
-  <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
+   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
   <nb-option-group *ngFor="let group of groupedResults | keyvalue" [title]="group.key" class="search-results-group">
     <nb-option *ngFor="let option of group.value" [value]="option">
       <a [routerLink]="getRoute(option)" class="navigate">
@@ -48,5 +47,122 @@
   >
     Show all results
     <nb-icon icon="arrow-forward-outline"></nb-icon>
+  </nb-option> 
+</nb-autocomplete>
+-->
+
+<nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
+  <nb-icon icon="search-outline" nbPrefix></nb-icon>
+  <!-- #searchInput
+(keyup.enter)="onSubmit()" -->
+  <form [formGroup]="inputFormControl">
+    <input
+      #searchInput
+      (keyup.enter)="onSubmit()"
+      [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
+      [ngClass]="{ giant: overrideSearchStatus }"
+      [nbAutocomplete]="showSuggestions ? autoComplete : loading"
+      [shape]="shape"
+      [overlayOffset]="0"
+      class="main-search-bar"
+      fullWidth
+      nbInput
+      placeholder="Search react, gdg, design, tutorials"
+      type="text"
+      formControlName="name"
+    />
+  </form>
+</nb-form-field>
+
+<nb-autocomplete #loading>
+  <h1>called loading</h1>
+</nb-autocomplete>
+
+<!-- (selectedChange)="navigate($event)"
+[handleDisplayFn]="handleDisplay" -->
+<!-- optionsListClass="search-autocomplete" -->
+<nb-autocomplete #autoComplete>
+  <nb-option>
+    <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
+  </nb-option>
+  <!-- *ngIf="inputFormControl.value?.length === 0" -->
+  <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder">
+    Quickly search your favorite topics, labs by industry experts or find an event you missed
+  </nb-option>
+  <nb-option>
+    <div *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</div>
+  </nb-option>
+  <nb-option>
+    <div *ngIf="searchResults.length > 0">
+      <div>
+        <ng-container *ngIf="Users.length > 0">
+          <p>Users</p>
+          <div *ngFor="let user of Users">{{ user?.name }}</div>
+        </ng-container>
+        <ng-container *ngIf="Community.length > 0">
+          <p>Community</p>
+          <div *ngFor="let community of Community">{{ community?.name }}</div>
+        </ng-container>
+        <ng-container *ngIf="Lab.length > 0">
+          <p>Lab</p>
+          <div *ngFor="let lab of Lab">{{ lab?.name }}</div>
+        </ng-container>
+        <ng-container *ngIf="Build.length > 0">
+          <p>Build</p>
+          <div *ngFor="let build of Build">{{ build?.name }}</div>
+        </ng-container>
+        <ng-container *ngIf="Event.length > 0">
+          <p>Event</p>
+          <div *ngFor="let event of Event">{{ event?.name }}</div>
+        </ng-container>
+      </div>
+    </div>
+  </nb-option>
+  <!-- [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }" -->
+  <nb-option *ngIf="total > 0" (click)="onSubmit()" class="com-justify-center com-items-center com-gap-2">
+    Show all results
+    <nb-icon icon="arrow-forward-outline"></nb-icon>
   </nb-option>
 </nb-autocomplete>
+
+<!-- <div *ngFor="let result of searchResults">
+  <ng-container [ngSwitch]="result.type">
+    <div *ngSwitchCase="'Community'">
+      <h2>Community</h2>
+      <div>{{ result.value.name }}</div>
+    </div>
+    <div *ngSwitchCase="'Event'">
+      <h2>Event</h2>
+      <div>{{ result.value.name }}</div>
+    </div>
+    <div *ngSwitchCase="'Build'">
+      <h2>Build</h2>
+      <div>{{ result.value.name }}</div>
+    </div>
+  </ng-container>
+</div> -->
+
+<!-- <div *ngFor="let result of searchResults">
+  <ng-container [ngSwitch]="result?.type">
+    <div *ngSwitchCase="'User'">
+      <p>User</p>
+      <div *ngFor="let user of Users">{{ user }}</div>
+    </div>
+    <div *ngSwitchCase="'Community'">
+      <p>Community</p>
+      <div *ngFor="let community of Community">{{ community }}</div>
+    </div>
+   <div *ngSwitchCase="' Lab'">
+      <p>Lab</p>
+      <div *ngFor="let lab of searchResults">{{ lab.value?.name }}</div>
+    </div>
+    <div *ngSwitchCase="'Community Build'">
+      <p>Build</p>
+      <div *ngFor="let build of searchResults">{{ build.value?.name }}</div>
+    </div>
+    <div *ngSwitchCase="'Event'">
+      <p>Event</p>
+      <div *ngFor="let event of searchResults">{{ event.value?.name }}</div>
+    </div> 
+  </ng-container>
+</div> -->
