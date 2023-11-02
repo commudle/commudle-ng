@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -118,6 +118,9 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
 import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import { HomepageModule } from 'apps/commudle-admin/src/app/feature-modules/homepage/homepage.module';
+
+import * as Sentry from '@sentry/angular-ivy';
+import { Router } from '@angular/router';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -291,6 +294,22 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
           },
         ],
       } as AuthServiceConfig,
+    },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: false,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
     },
   ],
 })
