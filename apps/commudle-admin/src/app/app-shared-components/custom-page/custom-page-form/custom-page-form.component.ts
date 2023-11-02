@@ -68,6 +68,11 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
           this.parentId = params.get('community_id');
           this.parentType = 'Kommunity';
         }
+        if (params.get('community_group_id')) {
+          this.parentId = params.get('community_group_id');
+          this.parentType = 'CommunityGroup';
+        }
+
         if (this.pageSlug) {
           this.fetchCustomPageDetails();
         }

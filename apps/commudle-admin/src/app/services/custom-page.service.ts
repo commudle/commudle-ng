@@ -32,7 +32,7 @@ export class CustomPageService {
     );
   }
 
-  getIndex(parentId: number, parentType: string): Observable<ICustomPage[]> {
+  getIndex(parentId: number | string, parentType: string): Observable<ICustomPage[]> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -79,7 +79,7 @@ export class CustomPageService {
     return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.SHOW), { params });
   }
 
-  getPIndex(parentId: number, parentType: string): Observable<ICustomPage[]> {
+  getPIndex(parentId: number | string, parentType: string): Observable<ICustomPage[]> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {

@@ -1,4 +1,11 @@
-import { NbCardModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbButtonModule } from '@commudle/theme';
+import {
+  NbCardModule,
+  NbIconModule,
+  NbTabsetModule,
+  NbRouteTabsetModule,
+  NbButtonModule,
+  NbContextMenuModule,
+} from '@commudle/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PublicCommunityGroupsRoutingModule } from './public-community-groups-routing.module';
@@ -20,6 +27,7 @@ import { ChannelCardComponent } from 'apps/commudle-admin/src/app/app-shared-com
 import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-card/event-card.component';
 import { EventMediumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-medium-card/event-medium-card.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { CommunityGroupCustomPageComponent } from './components/community-group-custom-page/community-group-custom-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +38,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     CommunityGroupActivityComponent,
     CommunityGroupEventsComponent,
     CommunityGroupChannelsComponent,
+    CommunityGroupCustomPageComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +63,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     NbRouteTabsetModule,
     NbTagModule,
     NbButtonModule,
+    NbContextMenuModule,
   ],
 })
 export class PublicCommunityGroupsModule {}
