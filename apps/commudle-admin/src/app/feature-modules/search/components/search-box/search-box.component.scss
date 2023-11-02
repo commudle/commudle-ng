@@ -41,5 +41,11 @@ nb-form-field {
 }
 
 .search-placeholder {
-  @apply com-flex com-items-center com-justify-center com-h-full;
+  @apply com-flex com-items-center com-justify-center;
 }
+
+.loader {
+  @apply com-flex com-justify-center com-items-center com-w-full;
+}
+
+// nb-option-list.search-autocomplete ul.option-list

@@ -72,7 +72,6 @@
 //         switchMap((value: string) => this.searchService.getSearchResults(value)),
 //       )
 //       .subscribe((value: ISearch) => {
-//         console.log('observe Input');
 //         this.groupedResults = groupResults(value.results);
 //         this.searchLoader = false;
 //         this.total = value.total;
@@ -146,8 +145,8 @@ export class SearchBoxComponent implements OnInit {
 
   ngOnInit() {
     this.search();
+    this.observeSearchStatus();
     const params = this.activatedRoute.snapshot.queryParams;
-    console.log(params, 'params');
     if (Object.keys(params).length > 0) {
       if (params.q) {
         this.query = params.q;
@@ -204,9 +203,9 @@ export class SearchBoxComponent implements OnInit {
     this.Event = [];
 
     if (this.query === '') {
-      console.log('empty query');
       this.total = -1;
       this.searchLoader = false;
+      return;
     }
 
     this.searchService.getSearchResults(this.query).subscribe((value) => {
@@ -223,10 +222,12 @@ export class SearchBoxComponent implements OnInit {
         } else if (result?.type === 'Event') {
           this.Event.push(result);
         }
-        this.searchLoader = false;
-        this.total = value.total;
+        // this.total = value.total;
+        // this.searchLoader = false;
         return result;
       });
+      this.total = value.total;
+      this.searchLoader = false;
       // this.isLoading = false;
     });
   }
@@ -238,7 +239,6 @@ export class SearchBoxComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('called onSubmit');
     this.router.navigate(['/search'], {
       queryParams: { q: this.query },
       // queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
