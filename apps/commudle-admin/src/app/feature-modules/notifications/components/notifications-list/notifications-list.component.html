@@ -54,6 +54,7 @@
     </div>
   </nb-list-item>
 </nb-list>
-<div *ngIf="isLoading" class="loading-spinner">
+<div #notificationRef></div>
+<div *ngIf="showLoader && canLoadMore" class="loading-spinner">
   <app-loading-spinner></app-loading-spinner>
 </div>

@@ -1,4 +1,16 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'apps/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'apps/shared-models/notification.model';
@@ -19,6 +31,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   @Input() markAllAsRead: boolean;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('notificationRef') notificationRef: ElementRef;
+
   currentUser: ICurrentUser;
 
   notifications: INotification[] = [];
@@ -28,6 +42,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   total: number;
   isLoading = false;
   canLoadMore = true;
+  showLoader = false;
 
   ENotificationStatuses = ENotificationStatuses;
   ENotificationSenderTypes = ENotificationSenderTypes;
@@ -56,8 +71,28 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
 
+  ngAfterViewInit() {
+    const options = {
+      root: null,
+      threshold: 1,
+    };
+
+    const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
+    observer.observe(this.notificationRef.nativeElement);
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  checkIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        this.showLoader = true;
+      } else {
+        this.showLoader = false;
+      }
+    });
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
