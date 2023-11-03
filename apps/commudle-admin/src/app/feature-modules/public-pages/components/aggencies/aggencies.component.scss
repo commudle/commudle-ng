@@ -1,25 +1,37 @@
-.public-page {
-  @apply com-flex com-flex-row com-justify-between;
-  .public-page-content {
-    // @apply com-flex com-justify-between com-max-w-[574px];
-    .content {
-      @apply com-flex com-flex-col com-max-w-[574px];
+.agencies {
+  @apply com-bg-white com-px-120px com-py-72px;
 
-      .heading {
-        @apply com-text-4xl com-font-extrabold com-text-black com-m-0;
+  .heading {
+    @apply com-text-2xl com-font-semibold com-text-primary-500 com-m-0 com-mb-6;
+  }
+
+  .public-page {
+    @apply com-flex com-flex-row com-justify-between;
+    .public-page-content {
+      // @apply com-flex com-justify-between com-max-w-[574px];
+      .content {
+        @apply com-flex com-flex-col com-max-w-[574px];
+
+        .heading {
+          @apply com-text-4xl com-font-extrabold com-text-black com-m-0;
+        }
+
+        .heading-developer-profile {
+          @apply com-text-5xl com-font-bold com-text-Yankees-Blue com-m-0;
+        }
+
+        .subheading {
+          @apply com-text-lg com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+        }
+
+        .subheading-developer-profile {
+          @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-mt-4;
+        }
       }
 
-      .subheading {
-        @apply com-text-lg com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+      button {
+        @apply com-m-0 com-mt-8;
       }
-    }
-
-    button {
-      @apply com-m-0 com-mt-8;
     }
   }
-}
-
-.agencies {
-  @apply com-bg-white;
 }
