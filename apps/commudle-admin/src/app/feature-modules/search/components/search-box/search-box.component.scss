@@ -24,28 +24,58 @@ nb-form-field {
   }
 }
 
-.navigate {
-  @apply com-no-underline;
-}
+// .search-results-group {
+//   &::ng-deep {
+//     .option-group-title {
+//       @apply com-px-4 com-pt-3 com-pb-0 com-text-sm com-font-medium com-text-gray-500;
+//     }
+//   }
 
-.search-results-group {
-  &::ng-deep {
-    .option-group-title {
-      @apply com-px-4 com-pt-3 com-pb-0 com-text-sm com-font-medium com-text-gray-500;
-    }
-  }
+//   nb-option {
+//     @apply com-px-4 com-pt-2 com-pb-0;
+//   }
+// }
 
-  nb-option {
-    @apply com-px-4 com-pt-2 com-pb-0;
-  }
+nb-option {
+  @apply com-m-0 com-p-0 com-py-1 com-px-4;
 }
 
 .search-placeholder {
-  @apply com-flex com-items-center com-justify-center;
+  @apply com-flex com-items-center com-justify-center com-text-sm com-font-semibold com-text-black;
 }
 
 .loader {
   @apply com-flex com-justify-center com-items-center com-w-full;
+}
+
+.results {
+  .container {
+    @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray;
+  }
+
+  p {
+    @apply com-m-0 com-p-0 com-py-1 com-text-sm com-font-medium com-text-gray-500;
+  }
+
+  .navigate {
+    @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-mt-2;
+
+    .user-image {
+      @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-object-contain com-m-0 com-mr-3;
+    }
+
+    .name {
+      @apply com-m-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
+    }
+
+    .designation {
+      @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1;
+
+      span {
+        @apply com-text-xs com-font-medium com-text-black;
+      }
+    }
+  }
 }
 
 // nb-option-list.search-autocomplete ul.option-list

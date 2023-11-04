@@ -74,9 +74,7 @@
   </form>
 </nb-form-field>
 
-<nb-autocomplete #loading>
-  <h1>called loading</h1>
-</nb-autocomplete>
+<nb-autocomplete #loading> </nb-autocomplete>
 
 <!-- (selectedChange)="navigate($event)"
 [handleDisplayFn]="handleDisplay" -->
@@ -91,27 +89,33 @@
   </nb-option>
   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
   <nb-option *ngIf="total > 0 && !searchLoader">
-    <div>
-      <ng-container *ngIf="Users.length > 0">
+    <div class="results">
+      <div *ngIf="Users.length > 0" class="container">
         <p>Users</p>
-        <div *ngFor="let user of Users">{{ user?.name }}</div>
-      </ng-container>
-      <ng-container *ngIf="Community.length > 0">
+        <div *ngFor="let user of Users">
+          <a class="navigate">
+            <img [src]="user?.avatar" alt="{{ user?.name }}" class="user-image" />
+            <p class="name">{{ user?.name }}</p>
+            <p class="designation"><span> · </span> {{ user.designation ? user.designation : '--' }}</p>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="Community.length > 0">
         <p>Community</p>
         <div *ngFor="let community of Community">{{ community?.name }}</div>
-      </ng-container>
-      <ng-container *ngIf="Lab.length > 0">
+      </div>
+      <div *ngIf="Lab.length > 0">
         <p>Lab</p>
         <div *ngFor="let lab of Lab">{{ lab?.name }}</div>
-      </ng-container>
-      <ng-container *ngIf="Build.length > 0">
+      </div>
+      <div *ngIf="Build.length > 0">
         <p>Build</p>
         <div *ngFor="let build of Build">{{ build?.name }}</div>
-      </ng-container>
-      <ng-container *ngIf="Event.length > 0">
+      </div>
+      <div *ngIf="Event.length > 0">
         <p>Event</p>
         <div *ngFor="let event of Event">{{ event?.name }}</div>
-      </ng-container>
+      </div>
     </div>
   </nb-option>
   <!-- [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }" -->

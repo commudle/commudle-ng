@@ -185,17 +185,17 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.seoService.noIndex(true);
     this.searchStatusService.setSearchStatus(false);
+    this.getAllData();
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       // this.searchLoader = true;
-
-      this.results = [];
-      this.total = -1;
+      this.query = params.q;
       this.page = 1;
       this.filters = [];
       this.selectedFilters = ['All'];
-
-      this.query = params.q;
+      this.results = [];
+      this.total = -1;
+      this.getAllData();
       // this.users = [];
       // this.communities = [];
       // this.labs = [];
@@ -228,7 +228,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           }),
         ),
       ];
-      this.getAllData();
 
       // this.results = [];
       // this.total = -1;
@@ -395,32 +394,33 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getAllData() {
+    console.log('search page fn called');
     if (this.selectedFilters.includes('User') || this.selectedFilters.includes('All')) {
-      console.log('user');
+      // console.log('user');
       this.getUsers();
     }
     if (this.selectedFilters.includes('Community') || this.selectedFilters.includes('All')) {
-      console.log('kommunity');
+      // console.log('kommunity');
       this.getCommunity();
     }
     if (this.selectedFilters.includes('Lab ') || this.selectedFilters.includes('All')) {
-      console.log('lab');
+      // console.log('lab');
       this.getLabs();
     }
     if (this.selectedFilters.includes('Community Build') || this.selectedFilters.includes('All')) {
-      console.log('build');
+      // console.log('build');
       this.getBuilds();
     }
     if (this.selectedFilters.includes('Event') || this.selectedFilters.includes('All')) {
-      console.log('event');
+      // console.log('event');
       this.getEvents();
     }
     if (this.selectedFilters.includes('Content') || this.selectedFilters.includes('All')) {
-      console.log('content');
+      // console.log('content');
       this.getContent();
     }
     if (this.selectedFilters.includes('Newsletter') || this.selectedFilters.includes('All')) {
-      console.log('newletter');
+      // console.log('newletter');
       this.getNewsletter();
     }
     // this.getBlogs();

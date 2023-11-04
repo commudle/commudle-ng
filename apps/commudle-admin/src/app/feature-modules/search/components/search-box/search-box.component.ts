@@ -193,7 +193,7 @@ export class SearchBoxComponent implements OnInit {
   }
 
   getNotifications() {
-    console.log('fn called');
+    console.log('search box fn called');
     this.searchResults = [];
     this.Users = [];
     this.Community = [];
