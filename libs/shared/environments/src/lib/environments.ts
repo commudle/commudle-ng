@@ -27,7 +27,7 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
-    sentry_dsn: 'https://008ea51833883ac6933856b26757b700566989.ingest.sentry.10/4506098297405440',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
   },
   test: {
     production: false,
@@ -42,7 +42,7 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_test_51NIQahSAaAm97WzmtpZtqYAuI1cCfN7LAJPoy8SmBpJqXQ5c7gnmOXXS9VtXa1b6YvCa1Uc9bX3Ra9ZLjm4AQBSs00en3kVojH',
-    sentry_dsn: 'https://008ea51833883ac6933856b26757b700566989.ingest.sentry.10/4506098297405440',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
   },
   staging: {
     production: false,
@@ -57,7 +57,7 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
-    sentry_dsn: 'https://008ea51833883ac6933856b26757b700566989.ingest.sentry.10/4506098297405440',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
   },
   production: {
     production: true,
@@ -72,7 +72,7 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
-    sentry_dsn: 'https://008ea51833883ac6933856b26757b700566989.ingest.sentry.10/4506098297405440',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
   },
 };
 
