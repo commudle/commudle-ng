@@ -22,13 +22,10 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getData();
-
-    this.seoService.noIndex(true);
   }
 
   ngOnDestroy() {
     this.footerService.changeFooterStatus(false);
-    this.seoService.noIndex(false);
   }
 
   setMeta(): void {
