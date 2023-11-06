@@ -4,7 +4,8 @@
       <div>
         <p class="margin0 fontw-300">
           <nb-icon icon="people" status="basic"></nb-icon>
-          Members ({{ channelUsers.length }})
+          Members
+          <span *ngIf="total"> ({{ total }}) </span>
         </p>
       </div>
       <span (click)="close()" class="clickable">
@@ -14,7 +15,13 @@
       </span>
     </nb-card-header>
     <nb-card-body>
-      <div (scrolled)="getMembers()" [infiniteScrollDistance]="3" appInfiniteScroll>
+      <div>{{ channelUsers.length >= total }}</div>
+      <div
+        (scrolled)="getMembers()"
+        [infiniteScrollDistance]="5"
+        appInfiniteScroll
+        [infiniteScrollDisabled]="channelUsers.length >= total"
+      >
         <ng-container *ngFor="let u of channelUsers; let i = index" class="com-my-3">
           <app-member
             (exitChannel)="leaveChannel(i)"
