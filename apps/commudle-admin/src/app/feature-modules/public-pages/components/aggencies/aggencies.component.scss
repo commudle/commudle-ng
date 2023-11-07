@@ -61,31 +61,36 @@
   }
   // }
 
-  .developer-profile {
-    @apply com-m-0 com-mt-36;
-  }
+  // .developer-profile {
+  //   @apply com-m-0 com-mt-36;
+  // }
 
-  .for-devrel {
+  .developer-profile,
+  .for-devrel,
+  .tech-communities,
+  .experts-group,
+  .events,
+  .projects {
     @apply com-m-0 com-mt-[154px];
   }
 
-  .tech-communities {
-    @apply com-m-0 com-mt-[172px];
-  }
-
-  .experts-group {
-    @apply com-m-0 com-mt-[62px];
-  }
-
-  .events {
-    @apply com-m-0 com-mt-[108px];
-  }
-
-  .projects {
-    @apply com-m-0 com-mt-[126px];
-  }
-
   .security {
-    @apply com-m-0 com-mt-[136px];
+    @apply com-m-0 com-mt-[154px] com-mb-[88px];
+  }
+
+  .testimonials {
+    @apply com-flex com-flex-col com-m-0 com-mt-20;
+
+    .heading {
+      @apply com-text-center com-text-xl com-font-bold com-text-primary-500 com-m-0 com-mb-4;
+    }
+
+    .subheading {
+      @apply com-text-center com-text-4xl com-font-bold com-text-black com-m-0 com-mb-[52px];
+    }
+
+    // .testimonial-card {
+    //   @apply com-grid com-grid-cols-3 com-grid-rows-3;
+    // }
   }
 }

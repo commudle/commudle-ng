@@ -180,7 +180,7 @@
       </div>
 
       <div class="security">
-        <commudle-public-page-layout [imageOnLeft]="true">
+        <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
@@ -207,12 +207,14 @@
       <!-- <commudle-testimonial-card></commudle-testimonial-card> -->
     </div>
   </div>
-  <div class="com-bg-blue-50">
-    bg
-    <div class="base-layout">
-      <div class="com-grid com-grid-cols-3">
-        <div>
-          <p></p>
+  <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
+  <div class="base-layout">
+    <div class="container">
+      <div class="testimonials">
+        <p class="heading">Testimonials</p>
+        <p class="subheading">Don't just take our word for it</p>
+        <div class="testimonial-card">
+          <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
         </div>
       </div>
     </div>
