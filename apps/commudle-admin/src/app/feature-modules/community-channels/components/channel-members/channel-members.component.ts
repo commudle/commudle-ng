@@ -1,14 +1,12 @@
 import { Component, OnDestroy, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
-import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { CommunityChannelsService } from '../../services/community-channels.service';
 import * as _ from 'lodash';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-channel-members',
@@ -19,7 +17,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   @Input() channelOrForum: ICommunityChannel;
   EUserRoles = EUserRoles;
   subscriptions = [];
-  // channel: ICommunityChannel;
   channelUsers: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
   page = 1;
@@ -27,7 +24,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   currentUserIsAdmin = false;
   total = 0;
-  isLoading = true;
+  isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
 
   constructor(
@@ -53,17 +50,23 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   // get members
   getMembers() {
-    this.isLoading = true;
-    this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
-      console.log(
-        '🚀 ~ file: channel-members.component.ts:58 ~ ChannelMembersComponent ~ this.communityChannelsService.membersList ~ data:',
-        data,
-      );
-      this.channelUsers = this.channelUsers.concat(data.user_roles_users);
-      this.total = data.total;
-      this.page += 1;
-      this.isLoading = false;
-    });
+    if (!this.total || this.channelUsers.length < this.total) {
+      if (this.isLoading) {
+        return;
+      } else {
+        this.isLoading = true;
+        this.subscriptions.push(
+          this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
+            if (data.user_roles_users) {
+              this.channelUsers = this.channelUsers.concat(data.user_roles_users);
+              this.page = data.page + 1;
+              this.total = data.total;
+              this.isLoading = false;
+            }
+          }),
+        );
+      }
+    }
   }
 
   // toggle role

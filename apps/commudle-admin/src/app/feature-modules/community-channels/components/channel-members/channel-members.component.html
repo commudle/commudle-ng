@@ -15,10 +15,9 @@
       </span>
     </nb-card-header>
     <nb-card-body>
-      <div>{{ channelUsers.length >= total }}</div>
       <div
-        (scrolled)="getMembers()"
-        [infiniteScrollDistance]="5"
+        (scrolled)="getMembers(); isLoading = true"
+        [infiniteScrollDistance]="2"
         appInfiniteScroll
         [infiniteScrollDisabled]="channelUsers.length >= total"
       >
