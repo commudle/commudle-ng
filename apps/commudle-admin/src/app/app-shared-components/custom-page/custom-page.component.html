@@ -1,5 +1,7 @@
 <div class="create-button">
-  <button nbButton status="primary" [routerLink]="['new']">Create New Page</button>
+  <button nbButton status="primary" [routerLink]="['new']">
+    <fa-icon [icon]="faPlus" class="com-mr-2"></fa-icon>Create New Page
+  </button>
 </div>
 
 <table *ngIf="pages && pages.length > 0">
@@ -12,10 +14,9 @@
   <tr *ngFor="let page of pages; let i = index">
     <td>
       <a
-        [routerLink]="['/communities', parentId, 'p', page.slug]"
-        target="_blank"
+        (click)="redirectTo(page.slug)"
         [ngClass]="{ disableAnchorTag: !page.published }"
-        class="com-no-underline"
+        class="com-no-underline com-cursor-pointer"
         >{{ page.title }}</a
       >
     </td>

@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { Subscription } from 'rxjs';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-custom-page',
@@ -11,15 +13,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./custom-page.component.scss'],
 })
 export class CustomPageComponent implements OnInit {
-  @Input() parentId: number;
+  @Input() parentId: number | string;
   @Input() parentType: 'CommunityGroup' | 'Kommunity';
   subscription: Subscription[] = [];
   pages: ICustomPage[];
+  faPlus = faPlus;
 
   constructor(
     private customPageService: CustomPageService,
     private toastrService: ToastrService,
     private dialogService: NbDialogService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -51,5 +55,17 @@ export class CustomPageComponent implements OnInit {
         this.pages.splice(index, 1);
       }
     });
+  }
+
+  redirectTo(slug) {
+    let redirectUrl = '';
+    if (this.parentType === 'Kommunity') {
+      redirectUrl = '/communities/' + this.parentId + '/p/' + slug;
+    }
+    if (this.parentType === 'CommunityGroup') {
+      redirectUrl = '/orgs/' + this.parentId + '/p/' + slug;
+    }
+    const url = this.router.serializeUrl(this.router.createUrlTree([redirectUrl]));
+    window.open(url, '_blank');
   }
 }

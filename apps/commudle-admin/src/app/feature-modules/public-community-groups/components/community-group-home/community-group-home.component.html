@@ -124,6 +124,10 @@
                 <span class="title">Admin Team</span>
               </a>
             </div>
+            <a class="d-flex" [nbContextMenu]="items" nbContextMenuTrigger="hover" *ngIf="items.length > 0">
+              <fa-icon [icon]="faCaretDown"></fa-icon>
+              <span class="title">More</span>
+            </a>
           </div>
         </div>
         <div>
