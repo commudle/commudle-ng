@@ -31,6 +31,7 @@ import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/min
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 import { PublicPageLayoutComponent } from './public-page-layout/public-page-layout.component';
 import { TestimonialCardComponent } from './testimonial-card/testimonial-card.component';
+import { PublicPageStatsComponent } from './public-page-stats/public-page-stats.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TestimonialCardComponent } from './testimonial-card/testimonial-card.co
     CustomPageFormComponent,
     PublicPageLayoutComponent,
     TestimonialCardComponent,
+    PublicPageStatsComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +87,7 @@ import { TestimonialCardComponent } from './testimonial-card/testimonial-card.co
     CustomPageComponent,
     PublicPageLayoutComponent,
     TestimonialCardComponent,
+    PublicPageStatsComponent,
   ],
 })
 export class AppSharedComponentsModule {}
