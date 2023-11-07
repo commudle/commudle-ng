@@ -1,37 +1,91 @@
 .agencies {
-  @apply com-bg-white com-px-120px com-py-72px;
+  // com-px-120px
+  @apply com-bg-white com-py-72px;
 
   .heading {
     @apply com-text-2xl com-font-semibold com-text-primary-500 com-m-0 com-mb-6;
   }
 
-  .public-page {
-    @apply com-flex com-flex-row com-justify-between;
-    .public-page-content {
-      // @apply com-flex com-justify-between com-max-w-[574px];
-      .content {
-        @apply com-flex com-flex-col com-max-w-[574px];
+  // .section {
+  //   // com-flex-row
+  //   @apply com-flex com-justify-between;
+  .public-page-content {
+    // @apply com-flex com-justify-between com-max-w-[574px];
+    .content {
+      @apply com-flex com-flex-col com-max-w-[574px];
 
-        .heading {
-          @apply com-text-4xl com-font-extrabold com-text-black com-m-0;
-        }
-
-        .heading-developer-profile {
-          @apply com-text-5xl com-font-bold com-text-Yankees-Blue com-m-0;
-        }
-
-        .subheading {
-          @apply com-text-lg com-font-normal com-text-gray-600 com-m-0 com-mt-4;
-        }
-
-        .subheading-developer-profile {
-          @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-mt-4;
-        }
+      .heading {
+        @apply com-text-4xl com-font-extrabold com-text-black com-m-0;
       }
 
-      button {
-        @apply com-m-0 com-mt-8;
+      .heading-developer-profile {
+        @apply com-text-5xl com-font-bold com-text-Yankees-Blue com-m-0;
+      }
+
+      .subheading {
+        @apply com-text-lg com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+      }
+
+      .subheading-developer-profile {
+        @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-mt-4;
       }
     }
+
+    .btn {
+      @apply com-m-0 com-mt-8;
+    }
+
+    .developer-communities-btn {
+      @apply com-m-0 com-mt-10;
+
+      button {
+        @apply com-m-0 com-mr-6;
+      }
+    }
+  }
+
+  .developer-communities-image {
+    // com-h-[332px]
+    @apply com-w-[552px];
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .image {
+    // com-h-[332px]
+    @apply com-w-[540px];
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+  // }
+
+  .developer-profile {
+    @apply com-m-0 com-mt-36;
+  }
+
+  .for-devrel {
+    @apply com-m-0 com-mt-[154px];
+  }
+
+  .tech-communities {
+    @apply com-m-0 com-mt-[172px];
+  }
+
+  .experts-group {
+    @apply com-m-0 com-mt-[62px];
+  }
+
+  .events {
+    @apply com-m-0 com-mt-[108px];
+  }
+
+  .projects {
+    @apply com-m-0 com-mt-[126px];
+  }
+
+  .security {
+    @apply com-m-0 com-mt-[136px];
   }
 }

@@ -1,22 +1,22 @@
 <!-- <div>
   <ng-content select="[header]"></ng-content>
 </div> -->
-<div class="com-bg-white">
-  <!-- <div class="base-layout">
+<!-- <div class="com-bg-white"> -->
+<!-- <div class="base-layout">
     <div class="container"> -->
-  <!-- <div *appBreakpoints="'<=lg'" class="one-column-layout">
+<!-- <div *appBreakpoints="'<=lg'" class="one-column-layout">
     <ng-content select="[one-column]"></ng-content>
   </div> -->
-  <!-- <div *appBreakpoints="'>lg'"> -->
-  <div class="section" [ngClass]="{ 'image-on-left': imageOnLeft }">
-    <div class="content">
-      <ng-content select="[content]"></ng-content>
-    </div>
-    <div class="image">
-      <ng-content select="[image]"></ng-content>
-    </div>
-  </div>
+<!-- <div *appBreakpoints="'>lg'"> -->
+<div class="section" [ngClass]="{ 'image-on-left': imageOnLeft }">
+  <!-- <div class="content"> -->
+  <ng-content select="[content]"></ng-content>
   <!-- </div> -->
-  <!-- </div>
-  </div> -->
+  <!-- <div class="image"> -->
+  <ng-content select="[image]"></ng-content>
+  <!-- </div> -->
 </div>
+<!-- </div> -->
+<!-- </div>
+  </div> -->
+<!-- </div> -->

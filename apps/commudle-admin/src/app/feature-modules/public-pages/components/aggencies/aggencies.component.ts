@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-aggencies',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aggencies.component.scss'],
 })
 export class AggenciesComponent implements OnInit {
+  staticAssets = staticAssets;
   constructor() {}
 
   ngOnInit(): void {}

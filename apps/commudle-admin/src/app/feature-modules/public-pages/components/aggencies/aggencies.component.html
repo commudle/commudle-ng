@@ -1,53 +1,220 @@
 <div class="agencies">
-  <p class="heading">COMMUDLE FOR AGENCIES</p>
+  <div class="base-layout">
+    <div class="container">
+      <p class="heading">COMMUDLE FOR AGENCIES</p>
 
-  <commudle-public-page-layout [imageOnLeft]="false">
-    <!-- <div class="section"> -->
-    <div content class="public-page">
-      <div class="public-page-content">
-        <div class="content">
-          <h1 class="heading-developer-profile">Build Stronger Developer Communities</h1>
-          <p class="subheading-developer-profile">
-            We’re different. Flex is the only saas business platform that lets you run your business on one platform,
-            seamlessly across all digital channels.
-          </p>
-        </div>
-        <div>
-          <button nbButton status="primary">Request a Demo</button>
-          <button nbButton status="basic">Sign Up</button>
-        </div>
+      <div class="developer-communities">
+        <commudle-public-page-layout>
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading-developer-profile">Build Stronger Developer Communities</h1>
+              <p class="subheading-developer-profile">
+                We’re different. Flex is the only saas business platform that lets you run your business on one
+                platform, seamlessly across all digital channels.
+              </p>
+            </div>
+            <div class="developer-communities-btn">
+              <button nbButton status="primary" size="large">Request a Demo</button>
+              <button nbButton status="basic" size="large">Sign Up</button>
+            </div>
+          </div>
+          <div image class="developer-communities-image">
+            <img
+              alt="Developer Communities"
+              src="{{ staticAssets.commudle_logo_full }}"
+              title="Developer Communities"
+            />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
       </div>
-      <div image class="image">
-        <h1>Image</h1>
-        <!-- <img src="" alt="" /> -->
+
+      <div class="developer-profile">
+        <commudle-public-page-layout>
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">Developer Profile</h1>
+              <p class="subheading">
+                A developer's profile is much more than just their professional work history, it includes blogs,
+                tutorials, videos, projects, certificates, sessions at events, communities, your network and more. Your
+                Commudle profile is your developer profile!
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">Build Your Profile</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="for-devrel">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">For DevRels, By DevRels</h1>
+              <p class="subheading">
+                What all does a DevRel need to run successful developer programs? Developers, 'the right tool' to engage
+                with them and deep insights from these engagements which could be events, channels, emails and more.
+                Commudle has all these at one place, find your heroes, find insights, host events, manage communities,
+                coding competitions and hackathons.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">View All Features</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="DevRels" src="{{ staticAssets.commudle_logo_full }}" title="DevRels" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="tech-communities">
+        <commudle-public-page-layout>
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">Tech Communities</h1>
+              <p class="subheading">
+                We started as a side project to help manage one developer community which scaled to one of the largest
+                in India. we have extensive focus on developers, designers & all techies.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">Visit Communities</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Tech Community" src="{{ staticAssets.commudle_logo_full }}" title="Tech Community" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="experts-group">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">An Exciting Experts Group</h1>
+              <p class="subheading">
+                Learn from the best and brightest in the business and get ahead of the competition. Our team is based
+                out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">Read More!</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="events">
+        <commudle-public-page-layout>
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">Host Online/ Offline Events</h1>
+              <p class="subheading">
+                We started as a side project to help manage one developer community which scaled to one of the largest
+                in India. we have extensive focus on developers, designers & all techies.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">Visit Communities</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Tech Community" src="{{ staticAssets.commudle_logo_full }}" title="Tech Community" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="projects">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">Publish Exciting Projects</h1>
+              <p class="subheading">
+                Learn from the best and brightest in the business and get ahead of the competition. Our team is based
+                out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">Read More!</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="security">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <!-- <div class="section"> -->
+          <!-- <div class="public-page"> -->
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">Data Privacy & Security</h1>
+              <p class="subheading">
+                We started as a side project to help manage one developer community which scaled to one of the largest
+                in India. we have extensive focus on developers, designers & all techies.ng it.
+              </p>
+            </div>
+            <div>
+              <p>Logo</p>
+              <!-- <img /> -->
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </commudle-public-page-layout>
+      </div>
+
+      <!-- <commudle-testimonial-card></commudle-testimonial-card> -->
+    </div>
+  </div>
+  <div class="com-bg-blue-50">
+    bg
+    <div class="base-layout">
+      <div class="com-grid com-grid-cols-3">
+        <div>
+          <p></p>
+        </div>
       </div>
     </div>
-    <!-- </div> -->
-  </commudle-public-page-layout>
-
-  <commudle-public-page-layout [imageOnLeft]="false">
-    <!-- <div class="section"> -->
-    <div content class="public-page">
-      <div class="public-page-content">
-        <div class="content">
-          <h1 class="heading">Developer Profile</h1>
-          <p class="subheading">
-            A developer's profile is much more than just their professional work history, it includes blogs, tutorials,
-            videos, projects, certificates, sessions at events, communities, your network and more. Your Commudle
-            profile is your developer profile!
-          </p>
-        </div>
-        <div>
-          <button nbButton status="basic">Build Your Profile</button>
-        </div>
-      </div>
-      <div image class="image">
-        <h1>Image</h1>
-        <!-- <img src="" alt="" /> -->
-      </div>
-    </div>
-    <!-- </div> -->
-  </commudle-public-page-layout>
-
-  <commudle-testimonial-card></commudle-testimonial-card>
+  </div>
 </div>
