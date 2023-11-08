@@ -1,0 +1,18 @@
+h6 {
+  @apply com-my-4;
+}
+
+form {
+  @apply com-flex com-flex-col com-gap-3;
+  div {
+    @apply com-flex com-flex-col;
+  }
+}
+
+.action-buttons {
+  @apply com-flex com-gap-4 com-my-3;
+}
+
+.back-button {
+  @apply com-mt-3 com-cursor-pointer com-w-max com-text-[#8f9bb3];
+}

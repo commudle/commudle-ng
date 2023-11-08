@@ -21,15 +21,14 @@
       }
     }
   }
+}
+.newsletters > table > td,
+th {
+  @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
+}
 
-  td,
-  th {
-    @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
-  }
-
-  tr:nth-child(even) {
-    @apply com-bg-Bright-Gray;
-  }
+.newsletters > table > tr:nth-child(even) {
+  @apply com-bg-Bright-Gray;
 }
 .disableAnchorTag {
   @apply com-pointer-events-none com-no-underline com-text-black;

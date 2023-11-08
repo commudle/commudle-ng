@@ -48,19 +48,8 @@ export class NewsletterService {
     });
   }
 
-  getShow(newsletterId, parentId, parentType): Observable<INewsletter> {
-    let params = new HttpParams().set('newsletter_id', newsletterId);
-    switch (parentType) {
-      case 'Kommunity': {
-        params = params.set('community_id', parentId);
-        break;
-      }
-      case 'CommunityGroup': {
-        params = params.set('community_group_id', parentId);
-        break;
-      }
-    }
-
+  getShow(newsletterId): Observable<INewsletter> {
+    const params = new HttpParams().set('newsletter_id', newsletterId);
     return this.http.get<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SHOW), { params });
   }
 
