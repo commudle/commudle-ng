@@ -1,10 +1,10 @@
 .testimonial {
   // com-flex com-flex-col
-  @apply com-grid com-grid-cols-3;
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1;
 
   .testimonial-card {
     // com-flex com-flex-col
-    @apply com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] com-w-[374px];
+    @apply com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] md:com-w-[374px] com-w-full com-h-[208px] com-m-0 md:com-mb-10 com-mb-6;
 
     .top-card {
       @apply com-flex com-flex-row com-m-0 com-mb-4;
@@ -25,24 +25,24 @@
         }
 
         .username {
-          @apply com-m-0 com-text-sm com-font-normal com-line-clamp-1;
+          @apply com-m-0 com-text-sm com-font-normal com-line-clamp-1 com-text-gray-400;
         }
       }
     }
 
     .testimonial-text {
-      @apply com-m-0 com-text-lg com-font-normal com-text-black com-mb-4;
+      @apply com-m-0 com-text-lg com-font-normal com-text-black com-mb-4 com-h-[74px] com-line-clamp-3;
     }
 
     .bottom-card {
       @apply com-flex com-justify-between com-text-sm com-font-normal;
 
       .show-original {
-        @apply com-m-0 com-flex com-items-start;
+        @apply com-m-0 com-flex com-items-start com-text-gray-400;
       }
 
       .date {
-        @apply com-m-0 com-flex com-items-end;
+        @apply com-m-0 com-flex com-items-end com-text-gray-400;
       }
     }
   }

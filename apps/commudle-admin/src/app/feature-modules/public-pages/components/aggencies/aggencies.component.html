@@ -1,6 +1,6 @@
 <div class="agencies">
   <div class="base-layout">
-    <div class="container">
+    <div class="container commudle-agencies">
       <p class="heading">COMMUDLE FOR AGENCIES</p>
 
       <div class="developer-communities">
@@ -17,7 +17,7 @@
             </div>
             <div class="developer-communities-btn">
               <button nbButton status="primary" size="large">Request a Demo</button>
-              <button nbButton status="basic" size="large">Sign Up</button>
+              <button nbButton status="basic" size="large" class="signUp-btn">Sign Up</button>
             </div>
           </div>
           <div image class="developer-communities-image">
@@ -192,8 +192,7 @@
               </p>
             </div>
             <div>
-              <p>Logo</p>
-              <!-- <img /> -->
+              <img src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" class="gdpr" />
             </div>
           </div>
           <div image class="image">
@@ -209,7 +208,7 @@
   </div>
   <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   <div class="base-layout">
-    <div class="container">
+    <div class="container commudle-agencies">
       <div class="testimonials">
         <p class="heading">Testimonials</p>
         <p class="subheading">Don't just take our word for it</p>
@@ -217,6 +216,12 @@
           <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
         </div>
       </div>
+    </div>
+  </div>
+  <commudle-public-page-cta></commudle-public-page-cta>
+  <div class="base-layout">
+    <div class="container faq commudle-agencies">
+      <commudle-faq></commudle-faq>
     </div>
   </div>
 </div>

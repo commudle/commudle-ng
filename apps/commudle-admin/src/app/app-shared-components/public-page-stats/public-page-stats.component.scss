@@ -3,11 +3,11 @@
 }
 
 .stats {
-  @apply com-grid com-grid-cols-3 com-pt-[100px] com-p-0 com-pb-[126px];
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 md:com-gap-0 com-gap-[60px] md:com-pt-[100px] com-p-0 md:com-pb-[126px] com-py-[60px] md:com-px-0 com-px-7;
 }
 
 .stat {
-  @apply com-w-[380px];
+  @apply md:com-w-[380px] com-w-full;
 }
 
 .stats-number {

@@ -32,6 +32,7 @@ import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-
 import { PublicPageLayoutComponent } from './public-page-layout/public-page-layout.component';
 import { TestimonialCardComponent } from './testimonial-card/testimonial-card.component';
 import { PublicPageStatsComponent } from './public-page-stats/public-page-stats.component';
+import { PublicPageCtaComponent } from './public-page-cta/public-page-cta.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PublicPageStatsComponent } from './public-page-stats/public-page-stats.
     PublicPageLayoutComponent,
     TestimonialCardComponent,
     PublicPageStatsComponent,
+    PublicPageCtaComponent,
   ],
   imports: [
     CommonModule,
@@ -88,6 +90,7 @@ import { PublicPageStatsComponent } from './public-page-stats/public-page-stats.
     PublicPageLayoutComponent,
     TestimonialCardComponent,
     PublicPageStatsComponent,
+    PublicPageCtaComponent,
   ],
 })
 export class AppSharedComponentsModule {}

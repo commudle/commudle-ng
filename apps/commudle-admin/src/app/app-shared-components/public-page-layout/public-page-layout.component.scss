@@ -1,6 +1,6 @@
 .section {
-  @apply com-flex com-flex-row com-justify-between com-items-center;
+  @apply com-flex md:com-flex-row com-flex-col com-justify-between com-items-center;
 }
 .image-on-left {
-  @apply com-flex com-flex-row-reverse;
+  @apply com-flex md:com-flex-row-reverse com-flex-col;
 }
