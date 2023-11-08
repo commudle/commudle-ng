@@ -1,0 +1,94 @@
+<div class="create-button">
+  <button nbButton status="primary" [routerLink]="['new']">
+    <fa-icon [icon]="faPlus" class="com-mr-2"></fa-icon>Create Newsletter
+  </button>
+</div>
+
+<div *ngIf="newsletters && newsletters.length > 0" class="newsletters">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Published</th>
+      <th>Stats</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let newsletter of newsletters; let i = index">
+      <!-- title -->
+      <td>
+        <a
+          (click)="redirectTo(newsletter.slug)"
+          [ngClass]="{ disableAnchorTag: !newsletter.published }"
+          class="com-no-underline com-cursor-pointer"
+          >{{ newsletter.title }}</a
+        >
+      </td>
+
+      <!-- published -->
+      <td>
+        <div class="published">
+          <nb-toggle [checked]="newsletter.published" (click)="togglePublished(newsletter.id, i)"></nb-toggle>
+        </div>
+      </td>
+
+      <!-- stats -->
+      <td>
+        <div class="stats">
+          <table>
+            <tr>
+              <td>Total Sent</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Delivered</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Opened</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Clicked</td>
+              <td>0</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+
+      <!-- action buttons -->
+      <td>
+        <div class="action">
+          <button [routerLink]="['../edit', newsletter.slug]" nbButton status="primary" size="tiny">
+            <nb-icon icon="edit"></nb-icon> Edit
+          </button>
+          <button
+            (click)="openConfirmDialogBox(deleteDialog, newsletter.id, i)"
+            nbButton
+            status="danger"
+            outline
+            size="tiny"
+          >
+            <nb-icon icon="close"></nb-icon> delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<ng-template #deleteDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div>Delete Newsletter</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>Are you sure you want to delete this Newsletter?</div>
+      <em>This action can not be undone</em>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="destroy(data.id, data.index); ref.close()">Confirm</button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

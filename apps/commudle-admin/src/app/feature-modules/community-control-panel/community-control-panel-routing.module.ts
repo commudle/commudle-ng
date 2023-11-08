@@ -17,6 +17,8 @@ import { CommunityFormsAndSurveysComponent } from 'apps/commudle-admin/src/app/f
 import { CommunitySurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-surveys/community-surveys.component';
 import { CommunityPageComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-page/community-page.component';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
+import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 
 const routes = [
   {
@@ -78,6 +80,23 @@ const routes = [
           {
             path: 'edit/:page_slug',
             component: CustomPageFormComponent,
+          },
+        ],
+      },
+      {
+        path: 'newsletter',
+        children: [
+          {
+            path: '',
+            component: CommunityNewsletterComponent,
+          },
+          {
+            path: 'new',
+            component: NewsletterFormComponent,
+          },
+          {
+            path: 'edit/:newsletter_slug',
+            component: NewsletterFormComponent,
           },
         ],
       },

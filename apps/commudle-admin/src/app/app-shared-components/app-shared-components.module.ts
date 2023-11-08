@@ -29,6 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomPageComponent } from './custom-page/custom-page.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter.component';
+import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-
     LabsFeaturedComponent,
     CustomPageComponent,
     CustomPageFormComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
   ],
   imports: [
     CommonModule,
@@ -79,6 +83,8 @@ import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-
     SurveysComponent,
     LabsFeaturedComponent,
     CustomPageComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
   ],
 })
 export class AppSharedComponentsModule {}
