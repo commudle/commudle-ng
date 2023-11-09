@@ -3,13 +3,16 @@
     <div class="container commudle-agencies">
       <p class="heading">COMMUDLE FOR AGENCIES</p>
 
-      <div class="developer-communities">
+      <div class="developer-communities" id="developer-communities-section">
         <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading-developer-profile">Build Stronger Developer Communities</h1>
+              <!-- <h1 class="heading-developer-profile">Build Stronger Developer Communities</h1> -->
+              <h1 class="heading-developer-profile">
+                <a [routerLink]="'.'" fragment="developer-communities-section">Build Stronger Developer Communities</a>
+              </h1>
               <p class="subheading-developer-profile">
                 We’re different. Flex is the only saas business platform that lets you run your business on one
                 platform, seamlessly across all digital channels.
@@ -23,7 +26,7 @@
           <div image class="developer-communities-image">
             <img
               alt="Developer Communities"
-              src="{{ staticAssets.commudle_logo_full }}"
+              src="https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBblFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--01057b5be393344ed188982aa64722b41ab5b509/Homepage-Banner.png"
               title="Developer Communities"
             />
           </div>
@@ -32,13 +35,13 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="developer-profile">
+      <div class="developer-profile" id="developer-profile-section">
         <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">Developer Profile</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="developer-profile-section">Developer Profile</a></h1>
               <p class="subheading">
                 A developer's profile is much more than just their professional work history, it includes blogs,
                 tutorials, videos, projects, certificates, sessions at events, communities, your network and more. Your
@@ -57,13 +60,13 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="for-devrel">
+      <div class="for-devrel" id="devrel-section">
         <commudle-public-page-layout [imageOnLeft]="true">
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">For DevRels, By DevRels</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a></h1>
               <p class="subheading">
                 What all does a DevRel need to run successful developer programs? Developers, 'the right tool' to engage
                 with them and deep insights from these engagements which could be events, channels, emails and more.
@@ -76,20 +79,24 @@
             </div>
           </div>
           <div image class="image">
-            <img alt="DevRels" src="{{ staticAssets.commudle_logo_full }}" title="DevRels" />
+            <img
+              alt="DevRels"
+              src="https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDNlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9bdb82202f1d3511b44ff30a0c8a598197eb8a90/Join%20Community.png"
+              title="DevRels"
+            />
           </div>
           <!-- </div> -->
           <!-- </div> -->
         </commudle-public-page-layout>
       </div>
 
-      <div class="tech-communities">
+      <div class="tech-communities" id="tech-communities-section">
         <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">Tech Communities</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="tech-communities-section">Tech Communities</a></h1>
               <p class="subheading">
                 We started as a side project to help manage one developer community which scaled to one of the largest
                 in India. we have extensive focus on developers, designers & all techies.
@@ -107,13 +114,15 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="experts-group">
+      <div class="experts-group" id="experts-group-section">
         <commudle-public-page-layout [imageOnLeft]="true">
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">An Exciting Experts Group</h1>
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="experts-group-section">An Exciting Experts Group</a>
+              </h1>
               <p class="subheading">
                 Learn from the best and brightest in the business and get ahead of the competition. Our team is based
                 out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
@@ -131,13 +140,13 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="events">
+      <div class="events" id="events-section">
         <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">Host Online/ Offline Events</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="events-section">Host Online/ Offline Events</a></h1>
               <p class="subheading">
                 We started as a side project to help manage one developer community which scaled to one of the largest
                 in India. we have extensive focus on developers, designers & all techies.
@@ -155,13 +164,13 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="projects">
+      <div class="projects" id="projects-section">
         <commudle-public-page-layout [imageOnLeft]="true">
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">Publish Exciting Projects</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="projects-section">Publish Exciting Projects</a></h1>
               <p class="subheading">
                 Learn from the best and brightest in the business and get ahead of the competition. Our team is based
                 out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
@@ -179,13 +188,13 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="security">
+      <div class="security" id="security-section">
         <commudle-public-page-layout>
           <!-- <div class="section"> -->
           <!-- <div class="public-page"> -->
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">Data Privacy & Security</h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="security-section">Data Privacy & Security</a></h1>
               <p class="subheading">
                 We started as a side project to help manage one developer community which scaled to one of the largest
                 in India. we have extensive focus on developers, designers & all techies.ng it.
@@ -206,11 +215,13 @@
       <!-- <commudle-testimonial-card></commudle-testimonial-card> -->
     </div>
   </div>
-  <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
-  <div class="base-layout">
+  <div id="stats-section">
+    <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
+  </div>
+  <div class="base-layout" id="testimonials-section">
     <div class="container commudle-agencies">
       <div class="testimonials">
-        <p class="heading">Testimonials</p>
+        <p class="heading"><a [routerLink]="'.'" fragment="testimonials-section">Testimonials</a></p>
         <p class="subheading">Don't just take our word for it</p>
         <div class="testimonial-card">
           <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
@@ -218,8 +229,10 @@
       </div>
     </div>
   </div>
-  <commudle-public-page-cta></commudle-public-page-cta>
-  <div class="base-layout">
+  <div id="cta-section">
+    <commudle-public-page-cta></commudle-public-page-cta>
+  </div>
+  <div class="base-layout" id="faq-section">
     <div class="container faq commudle-agencies">
       <commudle-faq></commudle-faq>
     </div>

@@ -2,6 +2,10 @@
   @apply com-min-h-0;
 }
 
+a {
+  @apply com-no-underline;
+}
+
 .stats {
   @apply com-grid md:com-grid-cols-3 com-grid-cols-1 md:com-gap-0 com-gap-[60px] md:com-pt-[100px] com-p-0 md:com-pb-[126px] com-py-[60px] md:com-px-0 com-px-7;
 }
