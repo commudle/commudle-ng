@@ -3,21 +3,22 @@
     <div class="container commudle-agencies">
       <p class="heading">COMMUDLE FOR AGENCIES</p>
 
-      <div class="developer-communities" id="developer-communities-section">
+      <div class="developer-communities" id="developer-programs-section">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading-developer-profile">
-                <a [routerLink]="'.'" fragment="developer-communities-section">Build Stronger Developer Communities</a>
+                <a [routerLink]="'.'" fragment="developer-programs-section"
+                  >Scale Developer Programs For Your Clients</a
+                >
               </h1>
               <p class="subheading-developer-profile">
-                We’re different. Flex is the only saas business platform that lets you run your business on one
-                platform, seamlessly across all digital channels.
+                Commudle lets you manage all your clients, their developer programs and the engagements seamlessly at
+                one place
               </p>
             </div>
             <div class="developer-communities-btn">
-              <button nbButton status="primary" size="large">Request a Demo</button>
-              <button nbButton status="basic" size="large" class="signUp-btn">Sign Up</button>
+              <button nbButton status="primary" size="large">Setup A Call</button>
             </div>
           </div>
           <div image class="developer-communities-image">
@@ -30,19 +31,20 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="developer-profile" id="developer-profile-section">
+      <div class="developer-profile" id="devrel-section">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="developer-profile-section">Developer Profile</a></h1>
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a>
+              </h1>
               <p class="subheading">
-                A developer's profile is much more than just their professional work history, it includes blogs,
-                tutorials, videos, projects, certificates, sessions at events, communities, your network and more. Your
-                Commudle profile is your developer profile!
+                Commudle is created by experts from the DevRel industry who understand what it takes to build, run &
+                scale a developer program. Your search for ‘the right platform’ completes here.
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn">Build Your Profile</button>
+              <button nbButton status="basic" size="medium" class="btn">The Team</button>
             </div>
           </div>
           <div image class="image">
@@ -51,20 +53,17 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="for-devrel" id="devrel-section">
+      <div class="for-devrel" id="organizations-programs-section">
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a></h1>
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="organizations-programs-section">Organizations & Programs</a>
+              </h1>
               <p class="subheading">
-                What all does a DevRel need to run successful developer programs? Developers, 'the right tool' to engage
-                with them and deep insights from these engagements which could be events, channels, emails and more.
-                Commudle has all these at one place, find your heroes, find insights, host events, manage communities,
-                coding competitions and hackathons.
+                Are you running multiple developer programs for multiple clients? Create organizations, customized
+                programs & communities for them on Commudle and manage it all with a single login account.
               </p>
-            </div>
-            <div>
-              <button nbButton status="basic" size="medium" class="btn">View All Features</button>
             </div>
           </div>
           <div image class="image">
@@ -77,18 +76,20 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="tech-communities" id="tech-communities-section">
+      <div class="tech-communities" id="features-section">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="tech-communities-section">Tech Communities</a></h1>
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="features-section">Unlimited Engagement Features</a>
+              </h1>
               <p class="subheading">
-                We started as a side project to help manage one developer community which scaled to one of the largest
-                in India. we have extensive focus on developers, designers & all techies.
+                Events, emails, newsletters, forums, channels, virtual stage, QR scanner, member profiles, content
+                repository, projects, tutorials, custom pages and more!
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn">Visit Communities</button>
+              <button nbButton status="basic" size="medium" class="btn">Checkout Features</button>
             </div>
           </div>
           <div image class="image">
@@ -97,60 +98,20 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="experts-group" id="experts-group-section">
+      <div class="experts-group" id="growth-performance-section">
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading">
-                <a [routerLink]="'.'" fragment="experts-group-section">An Exciting Experts Group</a>
+                <a [routerLink]="'.'" fragment="growth-performance-section">Track Growth and Performance</a>
               </h1>
               <p class="subheading">
-                Learn from the best and brightest in the business and get ahead of the competition. Our team is based
-                out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
+                Understand the interests of your members, get engagement stats and see how your communities are growing
+                globally
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn">Read More!</button>
-            </div>
-          </div>
-          <div image class="image">
-            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
-          </div>
-        </commudle-public-page-layout>
-      </div>
-
-      <div class="events" id="events-section">
-        <commudle-public-page-layout>
-          <div content class="public-page-content">
-            <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="events-section">Host Online/ Offline Events</a></h1>
-              <p class="subheading">
-                We started as a side project to help manage one developer community which scaled to one of the largest
-                in India. we have extensive focus on developers, designers & all techies.
-              </p>
-            </div>
-            <div>
-              <button nbButton status="basic" size="medium" class="btn">Visit Communities</button>
-            </div>
-          </div>
-          <div image class="image">
-            <img alt="Tech Community" src="{{ staticAssets.commudle_logo_full }}" title="Tech Community" />
-          </div>
-        </commudle-public-page-layout>
-      </div>
-
-      <div class="projects" id="projects-section">
-        <commudle-public-page-layout [imageOnLeft]="true">
-          <div content class="public-page-content">
-            <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="projects-section">Publish Exciting Projects</a></h1>
-              <p class="subheading">
-                Learn from the best and brightest in the business and get ahead of the competition. Our team is based
-                out of more than 10 cities in 4 countries across the world. Commudle is the people building it.
-              </p>
-            </div>
-            <div>
-              <button nbButton status="basic" size="medium" class="btn">Read More!</button>
+              <button nbButton status="basic" size="medium" class="btn">Request A Demo</button>
             </div>
           </div>
           <div image class="image">
@@ -165,12 +126,9 @@
             <div class="content">
               <h1 class="heading"><a [routerLink]="'.'" fragment="security-section">Data Privacy & Security</a></h1>
               <p class="subheading">
-                We started as a side project to help manage one developer community which scaled to one of the largest
-                in India. we have extensive focus on developers, designers & all techies.ng it.
+                Your clients need a platform which has global data compliance and certifications. Commudle is now GDPR
+                compliant and ISO 27001 certified. We take user consents seriously.
               </p>
-            </div>
-            <div>
-              <img src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" class="gdpr" />
             </div>
           </div>
           <div image class="image">
@@ -199,7 +157,7 @@
   </div>
   <div class="base-layout" id="faq-section">
     <div class="container faq commudle-agencies">
-      <commudle-faq></commudle-faq>
+      <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
     </div>
   </div>
 </div>
