@@ -7,7 +7,6 @@ a {
 }
 
 .agencies {
-  // com-px-120px
   @apply md:com-text-left com-text-center com-bg-white md:com-pt-72px com-py-10 md:com-pb-[60px];
 
   .commudle-agencies {
@@ -18,11 +17,7 @@ a {
     @apply md:com-text-2xl com-text-xl com-font-semibold com-text-primary-500 com-m-0 md:com-mb-6 com-mb-4;
   }
 
-  // .section {
-  //   // com-flex-row
-  //   @apply com-flex com-justify-between;
   .public-page-content {
-    // @apply com-flex com-justify-between com-max-w-[574px];
     .content {
       @apply com-flex com-flex-col com-max-w-[574px];
 
@@ -67,7 +62,6 @@ a {
   }
 
   .developer-communities-image {
-    // com-h-[332px]
     @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[552px] com-w-full;
     img {
       @apply com-w-full com-h-auto com-object-cover;
@@ -75,17 +69,11 @@ a {
   }
 
   .image {
-    // com-h-[332px]
     @apply md:com-w-[540px] com-w-full md:com-m-0 md:com-mt-0 com-mt-[34px];
     img {
       @apply com-w-full com-h-auto com-object-cover;
     }
   }
-  // }
-
-  // .developer-profile {
-  //   @apply com-m-0 com-mt-36;
-  // }
 
   .developer-profile,
   .for-devrel,
@@ -114,10 +102,6 @@ a {
     .subheading {
       @apply com-text-center md:com-text-4xl com-text-2xl com-font-bold com-text-black com-m-0 md:com-mb-[52px] com-mb-6;
     }
-
-    // .testimonial-card {
-    //   @apply com-grid com-grid-cols-3 com-grid-rows-3;
-    // }
   }
 
   .faq {

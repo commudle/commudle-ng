@@ -3,11 +3,9 @@
     <div class="base-layout">
       <div class="stats">
         <div *ngFor="let stat of stats; let i = index" class="stat">
-          <!-- <div> -->
           <p class="stats-number">{{ stats[i].number }}<fa-icon [icon]=""></fa-icon></p>
           <p class="stats-name">{{ stats[i].name }}</p>
           <p class="stats-description">{{ stats[i].description }}</p>
-          <!-- </div> -->
         </div>
       </div>
     </div>

@@ -1,9 +1,7 @@
 .testimonial {
-  // com-flex com-flex-col
   @apply com-grid md:com-grid-cols-3 com-grid-cols-1;
 
   .testimonial-card {
-    // com-flex com-flex-col
     @apply com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] md:com-w-[374px] com-w-full com-h-[208px] com-m-0 md:com-mb-10 com-mb-6;
 
     .top-card {
