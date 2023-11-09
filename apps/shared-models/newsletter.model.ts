@@ -1,3 +1,5 @@
+import { IAttachedFile } from '@commudle/shared-models';
+
 export interface INewsletter {
   id: number;
   slug: string;
@@ -5,4 +7,6 @@ export interface INewsletter {
   published: boolean;
   content: string;
   email_subject: string;
+  banner_image: IAttachedFile;
+  created_at: Date;
 }

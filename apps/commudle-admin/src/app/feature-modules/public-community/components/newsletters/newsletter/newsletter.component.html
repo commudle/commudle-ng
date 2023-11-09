@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-body *ngIf="newsletter">
+    <h2>{{ newsletter.title }}</h2>
+    <commudle-banner-image
+      [name]="newsletter.title"
+      [headerImagePath]="newsletter.banner_image?.url"
+    ></commudle-banner-image>
+    <div [innerHTML]="newsletter.content | safeHtml"></div>
+  </nb-card-body>
+</nb-card>

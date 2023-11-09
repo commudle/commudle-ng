@@ -53,7 +53,7 @@ export class NewsletterService {
     return this.http.get<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SHOW), { params });
   }
 
-  getPIndex(parentId: number | string, parentType: string): Observable<INewsletter[]> {
+  getPIndex(parentId: number | string, parentType?: string): Observable<INewsletter[]> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -70,7 +70,7 @@ export class NewsletterService {
     });
   }
 
-  getPShow(newsletterId: number, parentId, parentType): Observable<INewsletter> {
+  getPShow(newsletterId: number | string, parentId?, parentType?): Observable<INewsletter> {
     let params = new HttpParams().set('newsletter_id', newsletterId);
     switch (parentType) {
       case 'Kommunity': {
