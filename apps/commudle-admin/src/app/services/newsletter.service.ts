@@ -44,7 +44,7 @@ export class NewsletterService {
   update(dataForm, newsletterId): Observable<INewsletter> {
     return this.http.put<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.UPDATE), {
       newsletter_id: newsletterId,
-      custom_page: dataForm,
+      newsletter: dataForm,
     });
   }
 
