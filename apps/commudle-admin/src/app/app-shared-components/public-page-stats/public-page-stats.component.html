@@ -1,0 +1,13 @@
+<a [routerLink]="'.'" fragment="stats-section">
+  <div class="com-bg-blue-50">
+    <div class="base-layout">
+      <div class="stats">
+        <div *ngFor="let stat of stats; let i = index" class="stat">
+          <p class="stats-number">{{ stats[i].number }}<fa-icon [icon]=""></fa-icon></p>
+          <p class="stats-name">{{ stats[i].name }}</p>
+          <p class="stats-description">{{ stats[i].description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

@@ -2,6 +2,10 @@ h2 {
   @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0 md:com-mb-[52px] com-mb-10 com-text-center;
 }
 
+a {
+  @apply com-no-underline;
+}
+
 .faq-cards {
   @apply com-flex com-flex-col com-gap-y-6 com-pb-8;
   .faq-items {

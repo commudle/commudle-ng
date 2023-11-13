@@ -57,6 +57,10 @@ const routes: Routes = [
         (m) => m.StudentNonProfitSupportModule,
       ),
   },
+  {
+    path: 'agencies',
+    loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,

@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { PublicPageGuidelinesComponent } from './components/public-page-guidelines/public-page-guidelines.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AggenciesComponent } from 'apps/commudle-admin/src/app/feature-modules/public-pages/components/aggencies/aggencies.component';
 
-const routes = [
-  {
-    path: ':name',
-    component: PublicPageGuidelinesComponent,
-  },
-];
+const routes: Routes = [{ path: '', component: AggenciesComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
