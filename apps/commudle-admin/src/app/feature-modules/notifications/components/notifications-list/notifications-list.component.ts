@@ -115,7 +115,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
           this.notificationsStore.userNotifications$.subscribe((value) => {
             if (value.notifications) {
               this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-              this.page = value.page + 1;
+              this.page++;
               this.total = value.total;
               this.isLoading = false;
               if (this.notifications.length >= this.total) {
