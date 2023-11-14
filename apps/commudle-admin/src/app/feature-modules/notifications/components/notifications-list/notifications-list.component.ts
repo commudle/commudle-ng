@@ -115,9 +115,12 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
           this.notificationsStore.userNotifications$.subscribe((value) => {
             if (value.notifications) {
               this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-              this.page++;
+              // this.page = value.page + 1; //working fine normally, but when redirecting then doesnot
+              // this.page++; //notifications comes in correct order
               this.total = value.total;
               this.isLoading = false;
+              console.log(this.notifications.length, 'length');
+              console.log(this.total, 'total');
               if (this.notifications.length >= this.total) {
                 this.canLoadMore = false;
               }
