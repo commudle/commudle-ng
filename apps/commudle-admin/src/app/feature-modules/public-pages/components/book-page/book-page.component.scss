@@ -1,0 +1,48 @@
+.power-of-communities {
+  @apply com-flex com-items-center com-bg-primary-500 com-rounded-[20px] com-mt-14 com-px-20 com-pt-16 com-pb-72px;
+
+  .power-of-communities-content {
+    @apply com-flex com-flex-col com-max-w-[660px];
+
+    // .heading {
+    //   @apply com-m-0;
+    //   a {
+    //     @apply com-no-underline md:com-text-4xl com-text-2xl md:com-font-extrabold com-font-bold com-text-black;
+    //   }
+    // }
+
+    .heading-power-of-communities {
+      @apply com-m-0;
+      a {
+        @apply com-no-underline md:com-text-5xl com-text-3xl com-font-semibold com-text-white;
+      }
+    }
+
+    // .subheading {
+    //   @apply md:com-text-lg com-text-base com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+    // }
+
+    .subheading-power-of-communities {
+      @apply com-text-xl com-font-medium com-text-white com-m-0 md:com-mt-8 com-mt-7;
+    }
+  }
+
+  .power-of-communities-btn {
+    @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mt-[66px] com-mt-[34px];
+
+    .signUp-btn {
+      @apply com-bg-white md:com-m-0 md:com-mt-0 com-mt-6;
+    }
+
+    button {
+      @apply com-m-0 md:com-mr-4 com-mr-0;
+    }
+  }
+
+  .power-of-communities-image {
+    @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[428px] com-w-full;
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+}

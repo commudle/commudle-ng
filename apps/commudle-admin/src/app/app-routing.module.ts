@@ -58,7 +58,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'agencies',
+    path: 'public-pages',
     loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
   // {
