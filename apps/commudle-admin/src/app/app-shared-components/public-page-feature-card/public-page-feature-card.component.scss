@@ -1,0 +1,26 @@
+.feature {
+  @apply com-flex com-flex-col com-p-0 com-py-8 com-px-4;
+
+  .image {
+    @apply com-w-16 com-h-16 com-mb-6;
+
+    img {
+      @apply com-w-full com-h-auto com-object-contain;
+    }
+  }
+
+  .heading {
+    @apply com-m-0 com-mb-4 com-text-2xl com-font-bold com-text-primary-500;
+  }
+
+  .subheading {
+    @apply com-m-0 com-text-base com-font-medium com-text-gray-400;
+  }
+
+  .all-features {
+    @apply com-flex com-flex-row com-justify-between;
+    .features-left-col {
+      @apply com-flex com-flex-col com-gap-6;
+    }
+  }
+}

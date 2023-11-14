@@ -7,9 +7,17 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
 import { NbButtonModule } from '@commudle/theme';
 import { SharedComponentsModule } from '@commudle/shared-components';
 import { BookPageComponent } from './components/book-page/book-page.component';
+import { BadgeComponent } from '../../../../../shared-components/badge/badge.component';
 
 @NgModule({
   declarations: [AggenciesComponent, BookPageComponent],
-  imports: [CommonModule, PublicPagesRoutingModule, AppSharedComponentsModule, NbButtonModule, SharedComponentsModule],
+  imports: [
+    CommonModule,
+    PublicPagesRoutingModule,
+    AppSharedComponentsModule,
+    NbButtonModule,
+    SharedComponentsModule,
+    BadgeComponent,
+  ],
 })
 export class PublicPagesModule {}

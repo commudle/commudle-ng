@@ -46,3 +46,19 @@
     }
   }
 }
+
+.features {
+  @apply com-flex com-flex-col com-items-center com-mt-[170px];
+
+  app-badge {
+    @apply com-m-0 com-mb-4;
+  }
+
+  .heading {
+    @apply com-m-0 com-mb-4 com-text-4xl com-font-bold com-text-center;
+  }
+
+  .subheading {
+    @apply com-m-0 com-mb-12 com-text-xl com-font-medium com-text-center;
+  }
+}

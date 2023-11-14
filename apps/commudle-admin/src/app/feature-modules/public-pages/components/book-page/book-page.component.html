@@ -29,7 +29,26 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="features"></div>
+      <div class="features">
+        <app-badge
+          [text]="'FEATURES'"
+          [fontColor]="'com-text-green-500'"
+          [fontSize]="'small'"
+          [borderRadius]="'round'"
+          [color]="'com-bg-green-100'"
+        ></app-badge>
+        <p class="heading">Gain more insight into how people use your</p>
+        <p class="subheading">
+          With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
+          aspect of your business in one secure platform.
+        </p>
+        <div class="all-features">
+          <div class="features-left-col">
+            <commudle-public-page-feature-card [feature]="feature1"></commudle-public-page-feature-card>
+            <commudle-public-page-feature-card [feature]="feature2"></commudle-public-page-feature-card>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
