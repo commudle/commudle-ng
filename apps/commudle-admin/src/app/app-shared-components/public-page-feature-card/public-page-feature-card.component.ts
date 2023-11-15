@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-public-page-feature-card',
@@ -7,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PublicPageFeatureCardComponent implements OnInit {
   @Input() feature: any;
+  staticAssets = staticAssets;
   constructor() {}
 
   ngOnInit(): void {}

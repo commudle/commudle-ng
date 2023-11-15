@@ -1,5 +1,5 @@
 .feature {
-  @apply com-flex com-flex-col com-p-0 com-py-8 com-px-4;
+  @apply com-flex com-flex-col com-items-center com-p-0 com-py-8 com-px-4 com-w-[358px];
 
   .image {
     @apply com-w-16 com-h-16 com-mb-6;
@@ -10,11 +10,11 @@
   }
 
   .heading {
-    @apply com-m-0 com-mb-4 com-text-2xl com-font-bold com-text-primary-500;
+    @apply com-m-0 com-mb-4 com-text-2xl com-font-bold com-text-primary-500 com-text-center;
   }
 
   .subheading {
-    @apply com-m-0 com-text-base com-font-medium com-text-gray-400;
+    @apply com-m-0 com-text-base com-font-medium com-text-gray-400 com-text-center;
   }
 
   .all-features {
