@@ -8,6 +8,7 @@ import { NbButtonModule, NbInputModule } from '@commudle/theme';
 import { SharedComponentsModule } from '@commudle/shared-components';
 import { BookPageComponent } from './components/book-page/book-page.component';
 import { BadgeComponent } from '../../../../../shared-components/badge/badge.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AggenciesComponent, BookPageComponent],
@@ -22,6 +23,9 @@ import { BadgeComponent } from '../../../../../shared-components/badge/badge.com
     //Nebular
     NbInputModule,
     NbButtonModule,
+
+    //FontAwesome
+    FontAwesomeModule,
   ],
 })
 export class PublicPagesModule {}

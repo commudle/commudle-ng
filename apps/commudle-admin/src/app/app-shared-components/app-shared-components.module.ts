@@ -34,6 +34,7 @@ import { TestimonialCardComponent } from 'apps/commudle-admin/src/app/app-shared
 import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-stats/public-page-stats.component';
 import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-cta/public-page-cta.component';
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
+import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-
     PublicPageStatsComponent,
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +96,7 @@ import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-
     PublicPageStatsComponent,
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
   ],
 })
 export class AppSharedComponentsModule {}

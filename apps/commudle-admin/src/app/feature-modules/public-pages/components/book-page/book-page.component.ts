@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
@@ -9,15 +10,28 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 export class BookPageComponent implements OnInit {
   constructor() {}
   staticAssets = staticAssets;
+  faPencil = faPencil;
 
   feature1 = {
-    image: '',
+    icon: faPencil,
     heading: 'Measure your performance',
     subheading: 'Stay connected with your team and make quick decisions wherever you are.',
   };
 
   feature2 = {
-    image: '',
+    icon: faPencil,
+    heading: 'Build your website',
+    subheading: 'A tool that lets you build a dream website even if you know nothing about web design or programming.',
+  };
+
+  feature3 = {
+    icon: faPencil,
+    heading: 'Measure your performance',
+    subheading: 'Stay connected with your team and make quick decisions wherever you are.',
+  };
+
+  feature4 = {
+    icon: faPencil,
     heading: 'Build your website',
     subheading: 'A tool that lets you build a dream website even if you know nothing about web design or programming.',
   };

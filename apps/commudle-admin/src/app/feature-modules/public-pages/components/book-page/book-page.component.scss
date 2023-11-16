@@ -6,7 +6,7 @@
   }
 
   .power-of-communities {
-    @apply com-flex com-items-center com-bg-primary-500 com-rounded-[20px] com-px-20 com-pt-16 com-pb-72px;
+    @apply com-flex com-items-center com-bg-blue-600 com-rounded-[20px] md:com-px-20 md:com-pt-16 md:com-pb-72px com-px-3 com-pt-8 com-pb-[18px];
 
     .power-of-communities-content {
       @apply com-flex com-flex-col com-max-w-[660px];
@@ -30,24 +30,20 @@
       // }
 
       .subheading-power-of-communities {
-        @apply com-text-xl com-font-medium com-text-white com-m-0 md:com-mt-8 com-mt-7;
+        @apply com-text-xl com-font-medium com-text-white com-m-0 md:com-mt-8 com-mt-6;
       }
     }
 
     .power-of-communities-btn {
       @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mt-[66px] com-mt-[34px];
 
-      .signUp-btn {
-        @apply com-bg-white md:com-m-0 md:com-mt-0 com-mt-6;
-      }
-
       button {
-        @apply com-m-0 md:com-mr-4 com-mr-0;
+        @apply com-bg-white com-text-gray-900 com-m-0 md:com-mr-4 com-mr-0;
       }
     }
 
     .power-of-communities-image {
-      @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[428px] com-w-full;
+      @apply com-m-0 md:com-mt-0 com-mt-8 md:com-w-[428px] com-w-full;
       img {
         @apply com-w-full com-h-auto com-object-cover;
       }
@@ -55,37 +51,33 @@
   }
 
   .features {
-    @apply com-flex com-flex-col com-items-center com-m-0 com-mt-[170px] com-mb-[88px];
-
-    app-badge {
-      @apply com-m-0 com-mb-4;
-    }
+    @apply com-flex com-flex-col com-items-center com-m-0 md:com-mt-[170px] com-mt-[60px] md:com-mb-[52px];
 
     .heading {
-      @apply com-m-0 com-mb-4 com-text-4xl com-font-bold com-text-center;
+      @apply com-m-0 md:com-mb-4 com-mb-30px md:com-text-4xl com-text-3xl com-font-bold com-text-center com-text-Yankees-Blue;
     }
 
     .subheading {
-      @apply com-m-0 com-mb-12 com-text-xl com-font-medium com-text-center;
+      @apply com-m-0 md:com-mb-12 com-mb-8 md:com-text-xl com-text-base com-font-medium com-text-center com-text-gray-500;
     }
 
     .all-features {
-      @apply com-flex com-flex-row com-justify-between;
+      @apply com-flex md:com-flex-row com-flex-col com-justify-between;
 
       .features-left-col {
-        @apply com-flex com-flex-col com-m-0 com-mr-8;
+        @apply com-flex com-flex-col com-m-0 md:com-mr-8 com-mr-0;
       }
 
       .center-image {
-        @apply com-w-[358px] com-h-[556px];
+        @apply com-m-0 md:com-mt-0 com-mt-1 md:com-mb-0 com-mb-6 md:com-w-[358px] md:com-h-[556px] com-w-full com-h-[344px];
 
         img {
-          @apply com-w-full com-h-auto com-object-cover com-rounded-3xl;
+          @apply com-w-full com-h-full com-object-cover com-rounded-3xl;
         }
       }
 
       .features-right-col {
-        @apply com-flex com-flex-col com-m-0 com-ml-8;
+        @apply com-flex com-flex-col com-m-0 md:com-ml-8 com-ml-0;
       }
     }
   }
@@ -95,46 +87,6 @@
 
     .base-layout {
       @apply com-min-h-0;
-
-      .signup-newsletter {
-        @apply com-p-0 com-py-[88px] com-flex com-flex-row com-justify-between;
-
-        .signup {
-          @apply com-flex com-flex-col;
-
-          .signup-heading {
-            @apply com-m-0 com-text-4xl com-font-bold;
-          }
-
-          .signup-subheading {
-            @apply com-m-0 com-text-xl com-font-medium;
-          }
-        }
-
-        .signup-email {
-          @apply com-flex com-flex-col;
-
-          .email {
-            @apply com-flex com-flex-row;
-
-            input {
-              @apply com-bg-white com-m-0 com-mr-6 com-mb-2 com-w-80;
-            }
-
-            button {
-              @apply com-h-10;
-            }
-          }
-
-          .signup-privacy {
-            @apply com-m-0 com-text-xs com-font-medium;
-
-            a {
-              @apply com-no-underline com-text-primary-500;
-            }
-          }
-        }
-      }
     }
   }
 
@@ -151,7 +103,7 @@
   }
 
   .platform {
-    @apply com-m-0 com-mb-[90px] com-p-0 com-pt-[126px];
+    @apply com-m-0 com-mb-[90px] com-p-0 md:com-mt-[126px] com-mt-14;
     //Set padding after image and content
     .content {
       @apply com-flex com-flex-col com-max-w-[554px];
@@ -159,12 +111,12 @@
       .heading {
         @apply com-m-0;
         a {
-          @apply com-no-underline md:com-text-4xl com-text-2xl md:com-font-extrabold com-font-bold com-text-black;
+          @apply com-no-underline md:com-text-5xl com-text-2xl com-font-bold com-text-Yankees-Blue;
         }
       }
 
       .subheading {
-        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-600 com-m-0 com-mt-6 com-mb-12;
+        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0 com-mt-6 com-mb-[60px];
       }
 
       ul {
@@ -172,19 +124,19 @@
         li {
           @apply com-flex com-flex-row com-m-0 md:com-mb-10 com-mb-0;
 
-          img {
-            @apply com-m-0 com-mr-6 com-h-14 com-w-14;
+          fa-icon {
+            @apply com-flex com-items-center com-justify-center com-p-[18px] com-w-14 com-h-14 com-bg-primary-500 com-text-white com-rounded-md com-m-0 com-mr-6;
           }
 
           div {
             @apply com-flex com-flex-col;
 
             .heading {
-              @apply com-m-0 com-mb-14px com-text-2xl com-font-bold com-text-black;
+              @apply com-m-0 com-mb-14px com-text-2xl com-font-bold com-text-Yankees-Blue;
             }
 
             .subheading {
-              @apply com-m-0 com-text-base com-font-medium com-text-black;
+              @apply com-m-0 com-text-base com-font-medium com-text-gray-500;
             }
           }
         }
@@ -200,7 +152,9 @@
     }
   }
 
-  .developer-profile {
+  .developer-profile,
+  .dev-rels {
+    @apply com-m-0 com-mb-[142px];
     .public-page-content {
       .content {
         @apply com-flex com-flex-col com-max-w-[574px];
@@ -220,12 +174,12 @@
       .btn {
         @apply com-m-0 md:com-mt-8 com-mt-[54px] md:com-w-auto com-w-full;
       }
+    }
 
-      .image {
-        @apply md:com-w-[540px] com-w-full md:com-m-0 md:com-mt-0 com-mt-[34px];
-        img {
-          @apply com-w-full com-h-auto com-object-cover;
-        }
+    .image {
+      @apply md:com-w-[540px] com-w-full md:com-m-0 md:com-mt-0 com-mt-[34px];
+      img {
+        @apply com-w-full com-h-auto com-object-cover;
       }
     }
   }

@@ -1,0 +1,39 @@
+.signup-newsletter {
+  @apply com-p-0 com-py-[88px] com-flex com-flex-row com-justify-between;
+
+  .signup {
+    @apply com-flex com-flex-col;
+
+    .signup-heading {
+      @apply com-m-0 com-text-4xl com-font-bold com-text-Yankees-Blue;
+    }
+
+    .signup-subheading {
+      @apply com-m-0 com-text-xl com-font-medium com-text-gray-500;
+    }
+  }
+
+  .signup-email {
+    @apply com-flex com-flex-col;
+
+    .email {
+      @apply com-flex com-flex-row;
+
+      input {
+        @apply com-bg-white com-m-0 com-mr-6 com-mb-2 com-w-80;
+      }
+
+      button {
+        @apply com-h-10;
+      }
+    }
+
+    .signup-privacy {
+      @apply com-m-0 com-text-xs com-font-medium;
+
+      a {
+        @apply com-no-underline com-text-primary-500;
+      }
+    }
+  }
+}

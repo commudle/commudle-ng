@@ -1,6 +1,6 @@
 <div class="book">
   <div class="base-layout">
-    <div class="container">
+    <div class="container commudle-agencies">
       <div class="power-of-communities">
         <commudle-public-page-layout>
           <div content>
@@ -15,8 +15,7 @@
               </p>
             </div>
             <div class="power-of-communities-btn">
-              <button nbButton status="info" size="large">Request a Demo</button>
-              <button nbButton size="large" class="signUp-btn">Sign Up</button>
+              <button nbButton size="large">Request a Demo</button>
             </div>
           </div>
           <div image class="power-of-communities-image">
@@ -30,13 +29,6 @@
       </div>
 
       <div class="features">
-        <app-badge
-          [text]="'FEATURES'"
-          [fontColor]="'com-text-green-500'"
-          [fontSize]="'small'"
-          [borderRadius]="'round'"
-          [color]="'com-bg-green-100'"
-        ></app-badge>
         <p class="heading">Gain more insight into how people use your</p>
         <p class="subheading">
           With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
@@ -55,8 +47,8 @@
             />
           </div>
           <div class="features-right-col">
-            <commudle-public-page-feature-card [feature]="feature1"></commudle-public-page-feature-card>
-            <commudle-public-page-feature-card [feature]="feature2"></commudle-public-page-feature-card>
+            <commudle-public-page-feature-card [feature]="feature3"></commudle-public-page-feature-card>
+            <commudle-public-page-feature-card [feature]="feature4"></commudle-public-page-feature-card>
           </div>
         </div>
       </div>
@@ -65,19 +57,7 @@
   <div class="newsletter">
     <div class="base-layout">
       <div class="container">
-        <div class="signup-newsletter">
-          <div class="signup">
-            <p class="signup-heading">Sign up for our newsletter</p>
-            <p class="signup-subheading">Stay in the loop with everything you need to know.</p>
-          </div>
-          <div class="signup-email">
-            <div class="email">
-              <input type="text" nbInput fullWidth placeholder="Enter your email" />
-              <button nbButton status="primary" size="medium" class="subscribe">Subscribe</button>
-            </div>
-            <p class="signup-privacy">We care about your data in our <a>privacy policy</a></p>
-          </div>
-        </div>
+        <commudle-public-page-signup-newsletter></commudle-public-page-signup-newsletter>
       </div>
     </div>
   </div>
@@ -105,14 +85,14 @@
               <!-- <div> -->
               <ul>
                 <li>
-                  <img src="" />
+                  <fa-icon [icon]="faPencil"></fa-icon>
                   <div>
                     <p class="heading">Measure your performance</p>
                     <p class="subheading">Stay connected with your team and make quick decisions wherever you are.</p>
                   </div>
                 </li>
                 <li>
-                  <img src="" />
+                  <fa-icon [icon]="faPencil"></fa-icon>
                   <div>
                     <p class="heading">Build your website</p>
                     <p class="subheading">
@@ -122,7 +102,7 @@
                   </div>
                 </li>
                 <li>
-                  <img src="" />
+                  <fa-icon [icon]="faPencil"></fa-icon>
                   <div>
                     <p class="heading">Connect multiple apps</p>
                     <p class="subheading">
@@ -159,6 +139,34 @@
           </div>
         </commudle-public-page-layout>
       </div>
+      <div class="dev-rels" id="devrel-section">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a>
+              </h1>
+              <p class="subheading">
+                Commudle is created by experts from the DevRel industry who understand what it takes to build, run &
+                scale a developer program. Your search for ‘the right platform’ completes here.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">The Team</button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+      <!-- <div class="newsletter-signup">
+        <div class="base-layout">
+          <div class="container">
+            <commudle-public-page-signup-newsletter></commudle-public-page-signup-newsletter>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>
