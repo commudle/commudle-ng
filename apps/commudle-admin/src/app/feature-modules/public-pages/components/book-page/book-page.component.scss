@@ -1,6 +1,10 @@
 .book {
   @apply com-bg-white com-p-0 com-pt-14;
 
+  a {
+    @apply com-no-underline;
+  }
+
   .commudle-agencies {
     @apply com-p-0 md:com-px-0 com-px-4;
   }
@@ -48,6 +52,14 @@
         @apply com-w-full com-h-auto com-object-cover;
       }
     }
+
+    .desktop-hidden {
+      @apply md:com-hidden com-flex com-m-0 com-mt-20;
+    }
+
+    .mobile-hidden {
+      @apply md:com-flex com-hidden;
+    }
   }
 
   .features {
@@ -91,7 +103,7 @@
   }
 
   .testimonials {
-    @apply com-flex com-flex-col com-m-0 md:com-mt-20 com-mt-11 md:com-mb-2 com-mb-2;
+    @apply com-flex com-flex-col com-m-0 md:com-mt-20 com-mt-11 md:com-mb-2 com-mb-0;
 
     .heading {
       @apply com-text-center md:com-text-xl com-text-base com-font-bold com-text-primary-500 com-m-0 md:com-mb-4 com-mb-6;
@@ -111,12 +123,12 @@
       .heading {
         @apply com-m-0;
         a {
-          @apply com-no-underline md:com-text-5xl com-text-2xl com-font-bold com-text-Yankees-Blue;
+          @apply com-no-underline md:com-text-5xl com-text-3xl com-font-bold com-text-Yankees-Blue;
         }
       }
 
       .subheading {
-        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0 com-mt-6 com-mb-[60px];
+        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0 md:com-mt-6 com-mt-30px md:com-mb-[60px] com-mb-20;
       }
 
       ul {
@@ -182,5 +194,9 @@
         @apply com-w-full com-h-auto com-object-cover;
       }
     }
+  }
+
+  .faq {
+    @apply com-m-0 com-p-0 com-mt-20 com-pb-5;
   }
 }

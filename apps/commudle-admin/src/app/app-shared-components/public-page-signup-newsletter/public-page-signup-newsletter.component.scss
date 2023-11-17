@@ -1,39 +1,43 @@
 .signup-newsletter {
-  @apply com-p-0 com-py-[88px] com-flex com-flex-row com-justify-between;
+  @apply com-p-0 md:com-py-[88px] com-pt-10 com-pb-[60px] md:com-px-0 com-px-4 com-flex com-items-center com-text-center md:com-flex-row com-flex-col com-justify-between;
+
+  a {
+    @apply com-no-underline;
+  }
 
   .signup {
     @apply com-flex com-flex-col;
 
     .signup-heading {
-      @apply com-m-0 com-text-4xl com-font-bold com-text-Yankees-Blue;
+      @apply com-m-0 md:com-text-4xl com-text-3xl com-font-bold com-text-Yankees-Blue;
     }
 
     .signup-subheading {
-      @apply com-m-0 com-text-xl com-font-medium com-text-gray-500;
+      @apply com-m-0 md:com-my-0 com-mt-4 com-mb-10 com-text-xl com-font-medium com-text-gray-500;
     }
   }
 
   .signup-email {
-    @apply com-flex com-flex-col;
+    @apply com-flex com-text-start md:com-flex-row com-flex-col md:com-w-auto com-w-full;
 
     .email {
-      @apply com-flex com-flex-row;
+      @apply com-flex com-flex-col;
 
       input {
-        @apply com-bg-white com-m-0 com-mr-6 com-mb-2 com-w-80;
+        @apply com-bg-white com-m-0 md:com-mr-6 com-mr-0 com-mb-2 md:com-w-80 com-w-full;
       }
 
-      button {
-        @apply com-h-10;
+      .signup-privacy {
+        @apply com-m-0 md:com-mb-0 com-mb-4 com-text-xs com-font-medium com-text-gray-500;
+
+        a {
+          @apply com-no-underline com-text-primary-500;
+        }
       }
     }
 
-    .signup-privacy {
-      @apply com-m-0 com-text-xs com-font-medium;
-
-      a {
-        @apply com-no-underline com-text-primary-500;
-      }
+    button {
+      @apply com-h-10;
     }
   }
 }

@@ -1,7 +1,7 @@
 <div class="book">
   <div class="base-layout">
     <div class="container commudle-agencies">
-      <div class="power-of-communities">
+      <div class="power-of-communities" id="power-of-communities">
         <commudle-public-page-layout>
           <div content>
             <div class="power-of-communities-content">
@@ -14,7 +14,7 @@
                 Herox helps businesses in Africa get paid by anyone, anywhere in the world securedly.
               </p>
             </div>
-            <div class="power-of-communities-btn">
+            <div class="power-of-communities-btn mobile-hidden">
               <button nbButton size="large">Request a Demo</button>
             </div>
           </div>
@@ -24,12 +24,15 @@
               src="https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBblFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--01057b5be393344ed188982aa64722b41ab5b509/Homepage-Banner.png"
               title="Power Communities"
             />
+            <div class="power-of-communities-btn desktop-hidden">
+              <button nbButton size="large">Request a Demo</button>
+            </div>
           </div>
         </commudle-public-page-layout>
       </div>
 
-      <div class="features">
-        <p class="heading">Gain more insight into how people use your</p>
+      <div class="features" id="features">
+        <a [routerLink]="'.'" fragment="features"><p class="heading">Gain more insight into how people use your</p></a>
         <p class="subheading">
           With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
           aspect of your business in one secure platform.
@@ -54,7 +57,7 @@
       </div>
     </div>
   </div>
-  <div class="newsletter">
+  <div class="newsletter" id="signup-newsletter">
     <div class="base-layout">
       <div class="container">
         <commudle-public-page-signup-newsletter></commudle-public-page-signup-newsletter>
@@ -159,6 +162,9 @@
             <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
           </div>
         </commudle-public-page-layout>
+      </div>
+      <div class="faq">
+        <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
       </div>
       <!-- <div class="newsletter-signup">
         <div class="base-layout">

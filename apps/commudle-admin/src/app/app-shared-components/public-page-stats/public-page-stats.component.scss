@@ -15,7 +15,14 @@ a {
 }
 
 .stats-number {
-  @apply com-m-0 com-text-4xl com-font-bold com-text-blue-600;
+  @apply com-flex com-flex-row com-items-center md:com-justify-start com-justify-center;
+  p {
+    @apply com-m-0 com-mr-2 com-text-4xl com-font-bold com-text-blue-600;
+  }
+
+  .svg-icon {
+    @apply com-flex com-items-center com-justify-center com-rounded-full com-bg-blue-200 com-w-7 com-h-7;
+  }
 }
 
 .stats-name {
