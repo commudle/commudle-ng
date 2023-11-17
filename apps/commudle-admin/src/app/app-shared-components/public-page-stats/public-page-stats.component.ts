@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faBolt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-public-page-stats',
@@ -8,7 +7,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons';
 })
 export class PublicPageStatsComponent implements OnInit {
   @Input() stats: any[];
-  faBolt = faBolt;
+
   constructor() {}
 
   ngOnInit(): void {}
