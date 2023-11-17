@@ -104,7 +104,7 @@
   }
 
   .platform {
-    @apply com-m-0 com-mb-[90px] com-p-0 md:com-mt-[126px] com-mt-14;
+    @apply com-m-0 md:com-mb-[90px] com-mb-0 com-p-0 md:com-mt-[126px] com-mt-14;
     .content {
       @apply com-flex com-flex-col com-max-w-[554px];
 
@@ -122,21 +122,21 @@
       ul {
         @apply com-m-0 com-p-0 com-text-left com-list-none;
         li {
-          @apply com-flex com-flex-row com-m-0 md:com-mb-10 com-mb-0;
+          @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mb-10 com-mb-[84px] md:com-items-start com-items-center;
 
           fa-icon {
-            @apply com-flex com-items-center com-justify-center com-p-[18px] com-w-14 com-h-14 com-bg-primary-500 com-text-white com-rounded-md com-m-0 com-mr-6;
+            @apply com-flex com-items-center com-justify-center com-p-[18px] com-w-14 com-h-14 com-bg-primary-500 com-text-white com-rounded-md com-m-0 com-mr-6 md:com-mb-0 com-mb-6;
           }
 
           div {
             @apply com-flex com-flex-col;
 
             .heading {
-              @apply com-m-0 com-mb-14px com-text-2xl com-font-bold com-text-Yankees-Blue;
+              @apply com-m-0 md:com-mb-14px com-mb-4 com-text-2xl com-font-bold com-text-Yankees-Blue md:com-text-left com-text-center;
             }
 
             .subheading {
-              @apply com-m-0 com-text-base com-font-medium com-text-gray-500;
+              @apply com-m-0 com-text-base com-font-medium com-text-gray-500 md:com-text-left com-text-center;
             }
           }
         }
@@ -144,11 +144,19 @@
     }
 
     .image {
-      @apply com-w-[198px];
+      @apply md:com-w-[198px] com-w-full;
 
       img {
         @apply com-w-full com-h-auto;
       }
+    }
+
+    .desktop-hidden {
+      @apply com-m-0 com-mb-20 md:com-hidden com-flex;
+    }
+
+    .mobile-hidden {
+      @apply md:com-flex com-hidden;
     }
   }
 
