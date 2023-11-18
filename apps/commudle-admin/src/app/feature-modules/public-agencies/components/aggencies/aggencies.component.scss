@@ -95,11 +95,15 @@ a {
   .security {
     @apply com-m-0 md:com-mt-[154px] com-mt-10 md:com-mb-[88px] com-mb-8;
 
-    .gdpr-logo {
-      @apply com-m-0 com-mr-4 com-mt-4;
+    .logos {
+      @apply com-flex com-flex-row com-m-0 com-mt-4;
+      .gdpr-logo,
+      .iso-logo {
+        @apply com-m-0 com-mr-4;
 
-      img {
-        @apply com-h-16;
+        img {
+          @apply com-h-16;
+        }
       }
     }
   }
