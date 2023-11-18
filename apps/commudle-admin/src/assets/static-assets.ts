@@ -69,4 +69,7 @@ export const staticAssets = {
 
   pricing_community_logo_mobile:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2x1QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e8324303fd3f4f1df5a070d5ee27527de0fabf84/Community%20Logo%20Gradients.svg',
+
+  iso_27001:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2FiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--97a087b48b3a1bfde5838275f5d3d3148b1f2067/iso27001logo.png',
 };
