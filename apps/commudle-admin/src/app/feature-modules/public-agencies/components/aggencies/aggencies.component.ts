@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'apps/shared-services/seo.service';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
@@ -101,7 +103,22 @@ export class AggenciesComponent implements OnInit {
     'Commudle is GDPR compliant and ISO 27001 certified. We take data privacy very seriously and understand its importance for businesses and have placed consents at multiple points on the platform so that the users know how their data will be processed and who will have access to it.',
   ];
 
-  constructor() {}
+  constructor(private footerService: FooterService, private seoService: SeoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
+    this.setMeta();
+  }
+
+  ngOnDestroy() {
+    this.footerService.changeFooterStatus(false);
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      'For DevRel Agencies',
+      "Build developer programs using Commudle's developer focused engagement features. Host events, run forums & channels, send newsletters. All at one place!",
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
 }

@@ -18,7 +18,9 @@
               </p>
             </div>
             <div class="developer-communities-btn">
-              <button nbButton status="primary" size="large"><a [routerLink]="''">Setup A Call</a></button>
+              <button nbButton status="primary" size="large">
+                <a [routerLink]="'/fill-form/2046'">Setup A Call</a>
+              </button>
             </div>
           </div>
           <div image class="developer-communities-image">
@@ -44,7 +46,7 @@
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="''">The Team</a></button>
+              <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="'/about'">The Team</a></button>
             </div>
           </div>
           <div image class="image">
@@ -90,7 +92,7 @@
             </div>
             <div>
               <button nbButton status="basic" size="medium" class="btn">
-                <a [routerLink]="''">Checkout Features</a>
+                <a [routerLink]="'/pricing'">Checkout Features</a>
               </button>
             </div>
           </div>
@@ -113,7 +115,9 @@
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="''">Request A Demo</a></button>
+              <button nbButton status="basic" size="medium" class="btn">
+                <a [routerLink]="'/fill-form/2046'">Request A Demo</a>
+              </button>
             </div>
           </div>
           <div image class="image">
@@ -131,6 +135,9 @@
                 Your clients need a platform which has global data compliance and certifications. Commudle is now GDPR
                 compliant and ISO 27001 certified. We take user consents seriously.
               </p>
+              <a class="gdpr-logo">
+                <img class="" src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
+              </a>
             </div>
           </div>
           <div image class="image">
@@ -143,7 +150,7 @@
   <div id="stats-section">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>
-  <div class="base-layout" id="testimonials-section">
+  <!-- <div class="base-layout" id="testimonials-section">
     <div class="container commudle-agencies">
       <div class="testimonials">
         <p class="heading"><a [routerLink]="'.'" fragment="testimonials-section">Testimonials</a></p>
@@ -153,7 +160,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div id="cta-section">
     <commudle-public-page-cta></commudle-public-page-cta>
   </div>
