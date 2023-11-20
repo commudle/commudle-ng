@@ -45,8 +45,8 @@
               <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="'/about'">The Team</a></button>
             </div>
           </div>
-          <div image class="image">
-            <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
+          <div image class="devrel-image">
+            <img alt="Developer Profile" [src]="staticAssets.devrel" title="Developer Profile" />
           </div>
         </commudle-public-page-layout>
       </div>
@@ -112,8 +112,8 @@
               </button>
             </div>
           </div>
-          <div image class="image">
-            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
+          <div image class="track-groth-image">
+            <img alt="Experts" [src]="staticAssets.business_growth" title="Experts" />
           </div>
         </commudle-public-page-layout>
       </div>
@@ -129,7 +129,7 @@
               </p>
               <div class="logos">
                 <a class="gdpr-logo">
-                  <img class="" src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
+                  <img src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
                 </a>
                 <a href="https://compliances.commudle.com/" class="iso-logo">
                   <img class="com-h-16 com-ml-4" src="{{ staticAssets.iso_27001 }}" alt="Commudle is Iso 27001" />
@@ -137,8 +137,8 @@
               </div>
             </div>
           </div>
-          <div image class="image">
-            <img alt="Experts" src="{{ staticAssets.commudle_logo_full }}" title="Experts" />
+          <div image class="data-privacy-image">
+            <img alt="Experts" [src]="staticAssets.data_privacy_security" title="Experts" />
           </div>
         </commudle-public-page-layout>
       </div>

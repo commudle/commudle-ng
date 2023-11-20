@@ -84,4 +84,13 @@ export const staticAssets = {
 
   personal_goals_checklist:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOXViQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--9ccf3f4a8a8e4fc6e317c6f4171b5be8a19ffbb1/personal%20goals%20checklist-pana.svg',
+
+  business_growth:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK09iQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--aa721b1bc53d97442715c54360c29b40ff597bca/Business%20growth-pana.svg',
+
+  data_privacy_security:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK1NiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--bfb70302bf1d251a482b0146468a9c066e8a4f3f/GDPR-pana.svg',
+
+  devrel:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK1diQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--eb644bdd5599f5dc3cfeedd07eadd43cebbd7a65/Pair%20programming-bro.svg',
 };

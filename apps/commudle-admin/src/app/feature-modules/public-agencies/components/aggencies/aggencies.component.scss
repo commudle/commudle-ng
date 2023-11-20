@@ -83,17 +83,33 @@ a {
     }
   }
 
+  .track-groth-image {
+    @apply md:com-h-[450px] md:com-w-[450px] com-w-full com-h-full com-m-0 md:com-mt-0 com-mt-5;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .devrel-image {
+    @apply md:com-h-[500px] md:com-w-[500px] com-w-full com-h-full;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
   .developer-profile,
   .for-devrel,
   .tech-communities,
   .experts-group,
   .events,
   .projects {
-    @apply com-m-0 md:com-mt-[154px] com-mt-10;
+    @apply com-m-0 md:com-mt-[90px] com-mt-10;
   }
 
   .security {
-    @apply com-m-0 md:com-mt-[154px] com-mt-10 md:com-mb-[88px] com-mb-8;
+    @apply com-m-0 md:com-mt-[90px] com-mt-10 md:com-mb-[88px] com-mb-8;
 
     .logos {
       @apply com-flex com-flex-row com-m-0 com-mt-4;
@@ -104,6 +120,14 @@ a {
         img {
           @apply com-h-16;
         }
+      }
+    }
+
+    .data-privacy-image {
+      @apply md:com-w-[600px] md:com-h-[400px] com-w-full com-h-full com-m-0 md:com-mt-0 com-mt-5;
+
+      img {
+        @apply com-w-full com-h-auto com-object-cover;
       }
     }
   }
