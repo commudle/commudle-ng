@@ -27,6 +27,7 @@ export class HomepageFeaturedCommunitiesComponent implements OnInit {
   getFeaturedCommunities(): void {
     this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
       this.featuredCommunities = value.featured_communities.slice(0, 4);
+      console.log(this.featuredCommunities);
       this.extractPalette();
       this.changeDetectorRef.markForCheck();
     });

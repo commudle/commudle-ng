@@ -1,0 +1,49 @@
+<a [routerLink]="['/communities', featuredItems.kommunity.slug]">
+  <div class="banner">
+    <div *ngIf="featuredItems.kommunity.banner_image" class="banner-image">
+      <commudle-banner-image
+        [headerImagePath]="featuredItems.kommunity.banner_image.i320"
+        [name]="featuredItems.kommunity.name"
+        [aspectRatio]="'6/1'"
+        [bottomRightCurve]="false"
+        [bottomLeftCurve]="false"
+      ></commudle-banner-image>
+    </div>
+    <div *ngIf="!featuredItems.kommunity.banner_image" class="no-banner-image"></div>
+
+    <div class="community-image">
+      <img
+        alt="{{ featuredItems.kommunity.name }}"
+        src="{{ featuredItems.kommunity.logo_image?.i64 }}"
+        title="{{ featuredItems.kommunity.name }}"
+      />
+    </div>
+  </div>
+  <div class="clickable featured-community-about">
+    <h3 class="featured-community-name">{{ featuredItems.kommunity.name }}</h3>
+    <p class="featured-community-reason">{{ featuredItems.reason }}</p>
+    <div class="members-events">
+      <p class="members"><nb-icon icon="people-outline"></nb-icon>{{ featuredItems.kommunity.members_count }}</p>
+      <p class="events-organized">
+        <nb-icon icon="calendar-outline"></nb-icon>{{ featuredItems.kommunity.completed_events_count }}
+      </p>
+    </div>
+    <div class="featured-community-tags">
+      <!-- <app-tag
+        [tags]="getTagNames(featuredItems.kommunity)"
+        [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+        [size]="'tiny'"
+        [fontColor]="'#101828'"
+        [maximumTag]="5"
+      ></app-tag> -->
+    </div>
+  </div>
+</a>
+<div class="community-join-btn">
+  <app-membership-toggle
+    [community]="featuredItems.kommunity"
+    [status]="'info'"
+    [shapes]="'semi-round'"
+    [isMobileWidthFull]="true"
+  ></app-membership-toggle>
+</div>
