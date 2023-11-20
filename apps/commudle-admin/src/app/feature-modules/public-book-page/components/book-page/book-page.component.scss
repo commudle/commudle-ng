@@ -70,7 +70,7 @@
       }
 
       .center-image {
-        @apply com-m-0 md:com-mt-0 com-mt-1 md:com-mb-0 com-mb-6 md:com-w-[358px] md:com-h-[556px] com-w-full com-h-[344px];
+        @apply com-m-0 md:com-mt-0 com-mt-1 md:com-mb-0 com-mb-6 md:com-w-[608px] md:com-h-[388px] com-w-full com-h-[344px];
 
         img {
           @apply com-w-full com-h-full com-object-cover com-rounded-3xl;
@@ -144,7 +144,7 @@
     }
 
     .image {
-      @apply md:com-w-[198px] com-w-full;
+      @apply md:com-w-[532px] com-w-full;
 
       img {
         @apply com-w-full com-h-auto;

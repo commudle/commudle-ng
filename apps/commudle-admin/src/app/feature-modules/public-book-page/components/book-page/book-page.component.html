@@ -32,7 +32,7 @@
       </div>
 
       <div class="features" id="features">
-        <a [routerLink]="'.'" fragment="features"><p class="heading">Gain more insight into how people use your</p></a>
+        <a [routerLink]="'.'" fragment="features"><p class="heading">Lessons from veteran community leaders</p></a>
         <p class="subheading">
           With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
           aspect of your business in one secure platform.
@@ -85,7 +85,11 @@
                 every aspect of your business in one secure platform.
               </p>
               <div image class="image desktop-hidden">
-                <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
+                <img
+                  alt="Developer Profile"
+                  src="{{ staticAssets.personal_goals_checklist }}"
+                  title="Developer Profile"
+                />
               </div>
               <ul>
                 <li>
@@ -118,7 +122,7 @@
             </div>
           </div>
           <div image class="image mobile-hidden">
-            <img alt="Developer Profile" src="{{ staticAssets.commudle_logo_full }}" title="Developer Profile" />
+            <img alt="Developer Profile" [src]="staticAssets.personal_goals_checklist" title="Developer Profile" />
           </div>
         </commudle-public-page-layout>
       </div>

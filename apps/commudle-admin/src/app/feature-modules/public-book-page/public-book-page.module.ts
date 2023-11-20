@@ -6,6 +6,7 @@ import { BookPageComponent } from 'apps/commudle-admin/src/app/feature-modules/p
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from '@commudle/shared-components';
+import { NbButtonModule } from '@commudle/theme';
 
 @NgModule({
   declarations: [BookPageComponent],
@@ -17,6 +18,9 @@ import { SharedComponentsModule } from '@commudle/shared-components';
 
     //FontAwesome
     FontAwesomeModule,
+
+    //Nebular
+    NbButtonModule,
   ],
 })
 export class PublicBookPageModule {}
