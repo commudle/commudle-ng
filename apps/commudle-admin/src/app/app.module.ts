@@ -117,7 +117,6 @@ import { CheckFillDataFormComponent } from './components/fill-data-form/check-fi
 import { NgxStripeModule } from 'ngx-stripe';
 import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
 import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
-import { HomepageModule } from 'apps/commudle-admin/src/app/feature-modules/homepage/homepage.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -202,7 +201,9 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PublicHomeListEventsModule,
     SkeletonVerticalCardsComponent,
     InfiniteScrollModule,
-    HomepageModule,
+    UserProfileComponent,
+    UserprofileDetailsComponent,
+
     // external service modules
     LibErrorHandlerModule,
     AuthModule,
@@ -252,7 +253,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     //standalone component
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
-    UserProfileComponent,
   ],
   providers: [
     AppInitService,

@@ -1,9 +1,23 @@
-.notifications-container {
-  nb-card-header {
-    @apply com-flex com-justify-between com-items-center com-p-4;
+.base-layout {
+  @apply md:com-mb-8;
+
+  .main-column {
+    @apply md:com-mr-10 com-mr-0;
+    .notifications-container {
+      nb-card-header {
+        @apply com-flex com-justify-between com-items-center com-p-4;
+      }
+
+      nb-card-body {
+        @apply com-p-0 com-scrollbar-hide;
+      }
+    }
   }
 
-  nb-card-body {
-    @apply com-p-0;
+  .right-column {
+    @apply md:com-flex com-hidden;
+    .user {
+      @apply com-w-[374px] com-h-max com-flex-shrink-0 com-border com-rounded-lg com-border-solid com-border-Bright-Gray com-bg-white com-mt-4;
+    }
   }
 }

@@ -47,9 +47,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     HomepageExpertsComponent,
     HomepageAboutComponent,
     HomepageDashboardComponent,
-    UserprofileDetailsComponent,
   ],
-  exports: [UserprofileDetailsComponent],
   imports: [
     CommonModule,
     HomepageRoutingModule,
@@ -63,6 +61,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     UserProfileComponent,
     FeaturedProjectsComponent,
     PublicHomeListEventsModule,
+    UserprofileDetailsComponent,
 
     //Nebular
     NbButtonModule,
