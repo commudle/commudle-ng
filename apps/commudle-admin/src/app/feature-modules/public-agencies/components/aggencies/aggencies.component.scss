@@ -13,13 +13,13 @@ a {
     @apply com-p-0 md:com-px-0 com-px-4;
   }
 
-  .heading {
-    @apply md:com-text-2xl com-text-xl com-font-semibold com-text-primary-500 com-m-0 md:com-mb-6 com-mb-4;
-  }
-
   .public-page-content {
     .content {
       @apply com-flex com-flex-col com-max-w-[574px];
+
+      .commudle-for-agencies {
+        @apply md:com-text-2xl com-text-xl com-font-semibold com-text-primary-500 com-m-0 md:com-mb-6 com-mb-4;
+      }
 
       .heading {
         @apply com-m-0;
@@ -70,7 +70,7 @@ a {
   }
 
   .developer-communities-image {
-    @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[627px] com-w-full;
+    @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[650px] com-w-full;
     img {
       @apply com-w-full com-h-auto com-object-cover;
     }
