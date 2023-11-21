@@ -1,0 +1,18 @@
+<div class="testimonial">
+  <div *ngFor="let testimonial of testimonials; let i = index" class="testimonial-card">
+    <div class="top-card">
+      <div class="image">
+        <img />
+      </div>
+      <div class="user-details">
+        <p class="name">{{ testimonial.name }}</p>
+        <p class="username">{{ testimonial.name }}</p>
+      </div>
+    </div>
+    <p class="testimonial-text">{{ testimonial.testimonialText }}</p>
+    <div class="bottom-card">
+      <a class="show-original">showOriginal</a>
+      <p class="date">{{ testimonial.date }}</p>
+    </div>
+  </div>
+</div>

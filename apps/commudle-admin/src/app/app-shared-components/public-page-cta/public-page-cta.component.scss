@@ -1,0 +1,48 @@
+a {
+  @apply com-no-underline;
+}
+
+div {
+  @apply com-bg-blue-50;
+  .base-layout {
+    @apply com-min-h-0;
+    .cta-card {
+      @apply com-p-0 md:com-py-20 com-pt-[60px] com-pb-[52px] md:com-px-0 com-px-4 com-flex md:com-flex-row com-flex-col com-justify-between;
+
+      .left-col {
+        .heading-subheading {
+          @apply md:com-w-[564px] com-w-full;
+          .heading {
+            a {
+              @apply md:com-text-4xl com-text-3xl com-font-bold com-text-black com-m-0 md:com-mb-4 com-mb-6;
+            }
+          }
+
+          .sub-heading {
+            @apply com-text-xl com-font-normal com-text-gray-500 com-m-0 com-mb-8;
+          }
+        }
+        button {
+          @apply md:com-w-auto com-w-full;
+
+          a {
+            @apply com-text-white;
+          }
+        }
+      }
+
+      .right-col {
+        ul {
+          @apply com-m-0 com-p-0 md:com-mt-0 com-mt-[60px] com-text-left com-list-none;
+          li {
+            @apply com-text-lg com-font-normal com-text-black com-m-0 md:com-mb-3 com-mb-6;
+
+            fa-icon {
+              @apply com-m-0 com-mr-2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

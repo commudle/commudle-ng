@@ -1,0 +1,168 @@
+<div class="agencies">
+  <div class="base-layout">
+    <div class="container commudle-agencies">
+      <div class="developer-communities" id="developer-programs-section">
+        <commudle-public-page-layout>
+          <div content class="public-page-content">
+            <div class="content">
+              <p class="commudle-for-agencies">COMMUDLE FOR AGENCIES</p>
+              <h1 class="heading-developer-profile">
+                <a [routerLink]="'.'" fragment="developer-programs-section"
+                  >Scale Developer Programs For Your Clients</a
+                >
+              </h1>
+              <p class="subheading-developer-profile">
+                Commudle lets you manage all your clients, their developer programs and the engagements seamlessly at
+                one place
+              </p>
+            </div>
+            <div class="developer-communities-btn">
+              <button nbButton status="primary" size="large">
+                <a [routerLink]="'/fill-form/2046'">Setup A Call</a>
+              </button>
+            </div>
+          </div>
+          <div image class="developer-communities-image">
+            <img alt="Developer Programs" [src]="staticAssets.agencies_header_image" title="Developer Programs" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="developer-profile" id="devrel-section">
+        <commudle-public-page-layout>
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a>
+              </h1>
+              <p class="subheading">
+                Commudle is created by experts from the DevRel industry who understand what it takes to build, run &
+                scale a developer program. Your search for ‘the right platform’ completes here.
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="'/about'">The Team</a></button>
+            </div>
+          </div>
+          <div image class="devrel-image">
+            <img alt="Developer Profile" [src]="staticAssets.devrel" title="Developer Profile" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="for-devrel" id="organizations-programs-section">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="organizations-programs-section">Organizations & Programs</a>
+              </h1>
+              <p class="subheading">
+                Are you running multiple developer programs for multiple clients? Create organizations, customized
+                programs & communities for them on Commudle and manage it all with a single login account.
+              </p>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="DevRels" [src]="staticAssets.orgnization_programs" title="DevRels" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="tech-communities" id="features-section">
+        <commudle-public-page-layout>
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="features-section">Unlimited Engagement Features</a>
+              </h1>
+              <p class="subheading">
+                Events, emails, newsletters, forums, channels, virtual stage, QR scanner, member profiles, content
+                repository, projects, tutorials, custom pages and more!
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">
+                <a [routerLink]="'/pricing'">Checkout Features</a>
+              </button>
+            </div>
+          </div>
+          <div image class="image">
+            <img alt="Tech Community" src="{{ staticAssets.unlimited_engagement_features }}" title="Tech Community" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="experts-group" id="growth-performance-section">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="growth-performance-section">Track Growth and Performance</a>
+              </h1>
+              <p class="subheading">
+                Understand the interests of your members, get engagement stats and see how your communities are growing
+                globally
+              </p>
+            </div>
+            <div>
+              <button nbButton status="basic" size="medium" class="btn">
+                <a [routerLink]="'/fill-form/2046'">Request A Demo</a>
+              </button>
+            </div>
+          </div>
+          <div image class="track-groth-image">
+            <img alt="Experts" [src]="staticAssets.business_growth" title="Experts" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="security" id="security-section">
+        <commudle-public-page-layout>
+          <div content class="public-page-content">
+            <div class="content">
+              <h1 class="heading"><a [routerLink]="'.'" fragment="security-section">Data Privacy & Security</a></h1>
+              <p class="subheading">
+                Your clients need a platform which has global data compliance and certifications. Commudle is now GDPR
+                compliant and ISO 27001 certified. We take user consents seriously.
+              </p>
+              <div class="logos">
+                <a class="gdpr-logo">
+                  <img src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
+                </a>
+                <a href="https://compliances.commudle.com/" class="iso-logo">
+                  <img class="com-h-16 com-ml-4" src="{{ staticAssets.iso_27001 }}" alt="Commudle is Iso 27001" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div image class="data-privacy-image">
+            <img alt="Experts" [src]="staticAssets.data_privacy_security" title="Experts" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+    </div>
+  </div>
+  <div id="stats-section">
+    <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
+  </div>
+  <!-- <div class="base-layout" id="testimonials-section">
+    <div class="container commudle-agencies">
+      <div class="testimonials">
+        <p class="heading"><a [routerLink]="'.'" fragment="testimonials-section">Testimonials</a></p>
+        <p class="subheading">Don't just take our word for it</p>
+        <div class="testimonial-card">
+          <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div id="cta-section">
+    <commudle-public-page-cta></commudle-public-page-cta>
+  </div>
+  <div class="base-layout" id="faq-section">
+    <div class="container faq commudle-agencies">
+      <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
+    </div>
+  </div>
+</div>
