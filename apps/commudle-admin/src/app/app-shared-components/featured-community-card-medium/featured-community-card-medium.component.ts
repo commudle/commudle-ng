@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
 import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
 import { NbIconModule } from '@commudle/theme';
 import { PublicCommunityModule } from '../../feature-modules/public-community/public-community.module';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-featured-community-card-medium',
@@ -14,17 +14,15 @@ import { PublicCommunityModule } from '../../feature-modules/public-community/pu
   imports: [CommonModule, RouterModule, SharedComponentsModule, NbIconModule, PublicCommunityModule],
 })
 export class FeaturedCommunityCardMediumComponent implements OnInit {
-  @Input() featuredItems: IFeaturedCommunity;
+  @Input() featuredItems: IFeaturedItems;
   tags: string[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.featuredItems);
-  }
+  ngOnInit(): void {}
 
-  // getTagNames(community) {
-  //   this.tags = community.tags.map((tag) => tag.name);
-  //   return this.tags;
-  // }
+  getTagNames(community) {
+    this.tags = community.tags.map((tag) => tag.name);
+    return this.tags;
+  }
 }
