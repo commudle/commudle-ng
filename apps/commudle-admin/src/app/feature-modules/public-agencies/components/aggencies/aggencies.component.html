@@ -1,15 +1,13 @@
 <div class="agencies">
   <div class="base-layout">
     <div class="container commudle-agencies">
-      <div class="developer-communities" id="developer-programs-section">
+      <div class="developer-communities" id="developer-programs">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
               <p class="commudle-for-agencies">COMMUDLE FOR AGENCIES</p>
               <h1 class="heading-developer-profile">
-                <a [routerLink]="'.'" fragment="developer-programs-section"
-                  >Scale Developer Programs For Your Clients</a
-                >
+                <a [routerLink]="'.'" fragment="developer-programs">Scale Developer Programs For Your Clients</a>
               </h1>
               <p class="subheading-developer-profile">
                 Commudle lets you manage all your clients, their developer programs and the engagements seamlessly at
@@ -17,9 +15,9 @@
               </p>
             </div>
             <div class="developer-communities-btn">
-              <button nbButton status="primary" size="large">
-                <a [routerLink]="'/fill-form/2046'">Setup A Call</a>
-              </button>
+              <a [routerLink]="'/fill-form/2046'"
+                ><button nbButton status="primary" size="large">Setup A Call</button></a
+              >
             </div>
           </div>
           <div image class="developer-communities-image">
@@ -28,12 +26,12 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="developer-profile" id="devrel-section">
+      <div class="developer-profile" id="devrel">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading">
-                <a [routerLink]="'.'" fragment="devrel-section">For DevRels, By DevRels</a>
+                <a [routerLink]="'.'" fragment="devrel">For DevRels, By DevRels</a>
               </h1>
               <p class="subheading">
                 Commudle is created by experts from the DevRel industry who understand what it takes to build, run &
@@ -41,7 +39,9 @@
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn"><a [routerLink]="'/about'">The Team</a></button>
+              <a [routerLink]="'/about'">
+                <button nbButton status="basic" size="medium" class="btn">The Team</button></a
+              >
             </div>
           </div>
           <div image class="devrel-image">
@@ -50,12 +50,12 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="for-devrel" id="organizations-programs-section">
+      <div class="for-devrel" id="organizations-programs">
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading">
-                <a [routerLink]="'.'" fragment="organizations-programs-section">Organizations & Programs</a>
+                <a [routerLink]="'.'" fragment="organizations-programs">Organizations & Programs</a>
               </h1>
               <p class="subheading">
                 Are you running multiple developer programs for multiple clients? Create organizations, customized
@@ -69,12 +69,12 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="tech-communities" id="features-section">
+      <div class="tech-communities" id="features">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading">
-                <a [routerLink]="'.'" fragment="features-section">Unlimited Engagement Features</a>
+                <a [routerLink]="'.'" fragment="features">Unlimited Engagement Features</a>
               </h1>
               <p class="subheading">
                 Events, emails, newsletters, forums, channels, virtual stage, QR scanner, member profiles, content
@@ -82,9 +82,9 @@
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn">
-                <a [routerLink]="'/pricing'">Checkout Features</a>
-              </button>
+              <a [routerLink]="'/pricing'"
+                ><button nbButton status="basic" size="medium" class="btn">Checkout Features</button></a
+              >
             </div>
           </div>
           <div image class="image">
@@ -93,12 +93,12 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="experts-group" id="growth-performance-section">
+      <div class="experts-group" id="growth-performance">
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
               <h1 class="heading">
-                <a [routerLink]="'.'" fragment="growth-performance-section">Track Growth and Performance</a>
+                <a [routerLink]="'.'" fragment="growth-performance">Track Growth and Performance</a>
               </h1>
               <p class="subheading">
                 Understand the interests of your members, get engagement stats and see how your communities are growing
@@ -106,9 +106,9 @@
               </p>
             </div>
             <div>
-              <button nbButton status="basic" size="medium" class="btn">
-                <a [routerLink]="'/fill-form/2046'">Request A Demo</a>
-              </button>
+              <a [routerLink]="'/fill-form/2046'"
+                ><button nbButton status="basic" size="medium" class="btn">Request A Demo</button></a
+              >
             </div>
           </div>
           <div image class="track-groth-image">
@@ -117,11 +117,11 @@
         </commudle-public-page-layout>
       </div>
 
-      <div class="security" id="security-section">
+      <div class="security" id="security">
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="security-section">Data Privacy & Security</a></h1>
+              <h1 class="heading"><a [routerLink]="'.'" fragment="security">Data Privacy & Security</a></h1>
               <p class="subheading">
                 Your clients need a platform which has global data compliance and certifications. Commudle is now GDPR
                 compliant and ISO 27001 certified. We take user consents seriously.
@@ -143,13 +143,13 @@
       </div>
     </div>
   </div>
-  <div id="stats-section">
+  <div id="stats">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>
-  <!-- <div class="base-layout" id="testimonials-section">
+  <!-- <div class="base-layout" id="testimonials">
     <div class="container commudle-agencies">
       <div class="testimonials">
-        <p class="heading"><a [routerLink]="'.'" fragment="testimonials-section">Testimonials</a></p>
+        <p class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></p>
         <p class="subheading">Don't just take our word for it</p>
         <div class="testimonial-card">
           <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
@@ -157,10 +157,10 @@
       </div>
     </div>
   </div> -->
-  <div id="cta-section">
+  <div id="cta">
     <commudle-public-page-cta></commudle-public-page-cta>
   </div>
-  <div class="base-layout" id="faq-section">
+  <div class="base-layout" id="faq">
     <div class="container faq commudle-agencies">
       <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
     </div>
