@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {} from '@fortawesome/fontawesome-svg-core';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({

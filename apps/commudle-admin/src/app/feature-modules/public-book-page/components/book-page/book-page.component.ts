@@ -14,26 +14,28 @@ export class BookPageComponent implements OnInit {
 
   feature1 = {
     icon: faPencil,
-    heading: 'Measure your performance',
-    subheading: 'Stay connected with your team and make quick decisions wherever you are.',
+    heading: 'For DevRels, By DevRels',
+    subheading: 'Get the perspective of Developer Relations professionals',
   };
 
   feature2 = {
     icon: faPencil,
-    heading: 'Build your website',
-    subheading: 'A tool that lets you build a dream website even if you know nothing about web design or programming.',
+    heading: 'Calculating ROI',
+    subheading:
+      'This is a big question and we have dedicated sections for generating a proposal with get you an ROI in the long term.',
   };
 
   feature3 = {
     icon: faPencil,
-    heading: 'Measure your performance',
-    subheading: 'Stay connected with your team and make quick decisions wherever you are.',
+    heading: 'Real World Examples',
+    subheading: 'We have collected both successful and not so successful examples with a strong reasoning behind it.',
   };
 
   feature4 = {
     icon: faPencil,
-    heading: 'Build your website',
-    subheading: 'A tool that lets you build a dream website even if you know nothing about web design or programming.',
+    heading: 'Step By Step Actionables',
+    subheading:
+      'This is for you if you are an established enterprise with a running developer ecosystem or just starting out to build one.',
   };
 
   testimonials: any[] = [
@@ -94,19 +96,21 @@ export class BookPageComponent implements OnInit {
   ];
 
   questions = [
-    'Can I create multiple organizations or business pages which have communities under them?',
-    'What is the subscription / payment model?',
-    'Does Commudle have the option for custom dashboards and API’s?',
-    'How do you ensure that my communities rank up on search engines?',
-    'How do you ensure data privacy of the users and my clients?',
+    'Do I need to purchase any other platform when I setup a Community on Commudle?',
+    'How many Communities can I host on Commudle?',
+    "I'm looking to build a career in DevRel, how can Commudle be useful in that?",
+    'I want to display activities from Commudle on my website, is it possible?',
+    'Will you help me migrate from other platforms?',
+    'I lead a Design Community, is Commudle for me?',
   ];
 
   answers = [
-    'Yes, Commudle has the features for creating an umbrella of communities for different businesses you manage and each can have a separate page and communities under it. You can run multiple technology based, geography or any other classification based global communities on Commudle.',
-    'You can purchase annual community subscriptions for individual chapters or in bulk exclusively for your business clients.',
-    'Yes, we can create custom dashboards or API’s for you to integrate in your existing dashboards as per requirements. The charges for these can be a part of your subscription plan.',
-    'All our pages with rich content are search engine optimized and we have dedicated experts who keep improving the strategy. Most of our existing active communities pages have top ranks on search engines.',
-    'Commudle is GDPR compliant and ISO 27001 certified. We take data privacy very seriously and understand its importance for businesses and have placed consents at multiple points on the platform so that the users know how their data will be processed and who will have access to it.',
+    "We don't think so, the Developer Communities on Commudle are able to manage all their activities here.",
+    "You can host your complete Developer Ecosystem with 100's of Communities on Commudle. We have an organization page too. You have access to all the data and stats you need.",
+    "As a DevRel, it's important to have an experience of building and growing your own Developer Community. Some folks are at leading DevRel positions who started by building their own Community here.",
+    "Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of your communities' activities on your own web page.",
+    "Yes! And it's very easy.",
+    'Absolutely, a few Design Communities are already using Commudle.',
   ];
 
   ngOnInit(): void {

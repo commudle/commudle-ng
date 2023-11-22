@@ -6,10 +6,10 @@
   }
 
   .signup {
-    @apply com-flex com-flex-col;
+    @apply com-flex com-flex-col com-text-left;
 
     .signup-heading {
-      @apply com-m-0 md:com-text-4xl com-text-3xl com-font-bold com-text-Yankees-Blue;
+      @apply com-m-0 md:com-mb-6px md:com-text-4xl com-text-3xl com-font-bold com-text-Yankees-Blue;
     }
 
     .signup-subheading {
