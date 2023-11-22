@@ -27,8 +27,9 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
   templateUrl: './notifications-list.component.html',
   styleUrls: ['./notifications-list.component.scss'],
 })
-export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
+export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @Input() markAllAsRead: boolean;
+  @Input() showLoaderButton = true;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('notificationRef') notificationRef: ElementRef;
@@ -38,11 +39,12 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   notifications: INotification[] = [];
 
   page = 1;
-  count = 10;
+  count = 20;
   total: number;
   isLoading = false;
   canLoadMore = true;
-  showLoader = false;
+  showLoader = true;
+  loadingNotifications = false;
 
   ENotificationStatuses = ENotificationStatuses;
   ENotificationSenderTypes = ENotificationSenderTypes;
@@ -57,11 +59,37 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   ) {}
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
-      this.currentUser = currentUser;
-    });
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+        this.currentUser = currentUser;
+      }),
+    );
 
-    this.getNotifications();
+    this.notifications = [];
+    this.notificationsStore.resetNotifications();
+    this.subscriptions.push(
+      this.notificationsStore.userNotifications$.subscribe((value) => {
+        console.log(value.page);
+        if (value.notifications && value.notifications.length > 0) {
+          console.log('callled subscription');
+          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+          this.page = value.page + 1;
+          this.total = value.total;
+          this.loadingNotifications = false;
+          // this.isLoading = false;
+          // this.showLoader = false;
+          if (this.notifications.length >= this.total) {
+            this.showLoader = false;
+            this.canLoadMore = false;
+          }
+        }
+      }),
+    );
+
+    if (this.notifications.length === 0) {
+      this.getNotifications();
+    }
+
     this.receiveData();
   }
 
@@ -76,7 +104,6 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       root: null,
       threshold: 1,
     };
-
     const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
     observer.observe(this.notificationRef.nativeElement);
   }
@@ -88,8 +115,10 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   checkIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        this.showLoader = true;
+        console.log('interacting');
+        this.getNotifications();
       } else {
+        console.log('not interacting');
         this.showLoader = false;
       }
     });
@@ -105,28 +134,14 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   getNotifications() {
+    console.log(this.loadingNotifications, 'called get notifications');
     if (!this.total || this.notifications.length < this.total) {
-      if (this.isLoading) {
+      if (this.loadingNotifications) {
         return;
       } else {
+        this.showLoader = true;
+        this.loadingNotifications = true;
         this.notificationsStore.getUserNotifications(this.page, this.count);
-        this.isLoading = true;
-        this.subscriptions.push(
-          this.notificationsStore.userNotifications$.subscribe((value) => {
-            if (value.notifications) {
-              this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-              // this.page = value.page + 1; //working fine normally, but when redirecting then doesnot
-              // this.page++; //notifications comes in correct order
-              this.total = value.total;
-              this.isLoading = false;
-              console.log(this.notifications.length, 'length');
-              console.log(this.total, 'total');
-              if (this.notifications.length >= this.total) {
-                this.canLoadMore = false;
-              }
-            }
-          }),
-        );
       }
     }
   }
@@ -158,3 +173,26 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     });
   }
 }
+
+// if (!this.total || this.notifications.length < this.total) {
+//   if (this.isLoading) {
+//     return;
+//   } else {
+//     this.notificationsStore.getUserNotifications(this.page, this.count);
+//     this.isLoading = true;
+//     this.subscriptions.push(
+//       this.notificationsStore.userNotifications$.subscribe((value) => {
+//         if (value.notifications) {
+//           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+//           this.page = value.page + 1; //working fine normally, but when redirecting then doesnot
+//           // this.page++; //notifications comes in correct order
+//           this.total = value.total;
+//           this.isLoading = false;
+//           if (this.notifications.length >= this.total) {
+//             this.canLoadMore = false;
+//           }
+//         }
+//       }),
+//     );
+//   }
+// }

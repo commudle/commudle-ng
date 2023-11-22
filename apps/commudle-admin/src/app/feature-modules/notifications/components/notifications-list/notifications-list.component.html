@@ -1,9 +1,4 @@
-<nb-list
-  (scrolled)="getNotifications(); isLoading = true"
-  [infiniteScrollDisabled]="!(canLoadMore && total)"
-  appInfiniteScroll
-  class="notification-list"
->
+<nb-list class="notification-list">
   <nb-list-item
     *ngFor="let notification of notifications"
     [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
@@ -54,7 +49,9 @@
     </div>
   </nb-list-item>
 </nb-list>
-<div #notificationRef></div>
+<div #notificationRef>
+  <button *ngIf="showLoaderButton" [ngClass]="{ hidden: showLoader || !canLoadMore }">Load More</button>
+</div>
 <div *ngIf="showLoader && canLoadMore" class="loading-spinner">
   <app-loading-spinner></app-loading-spinner>
 </div>
