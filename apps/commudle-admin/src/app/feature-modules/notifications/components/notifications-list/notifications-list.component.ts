@@ -69,15 +69,11 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
     this.notificationsStore.resetNotifications();
     this.subscriptions.push(
       this.notificationsStore.userNotifications$.subscribe((value) => {
-        console.log(value.page);
         if (value.notifications && value.notifications.length > 0) {
-          console.log('callled subscription');
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page = value.page + 1;
           this.total = value.total;
           this.loadingNotifications = false;
-          // this.isLoading = false;
-          // this.showLoader = false;
           if (this.notifications.length >= this.total) {
             this.showLoader = false;
             this.canLoadMore = false;
@@ -114,11 +110,9 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
 
   checkIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log('interacting');
+      if (entry.isIntersecting && this.showLoaderButton) {
         this.getNotifications();
       } else {
-        console.log('not interacting');
         this.showLoader = false;
       }
     });
@@ -134,7 +128,6 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
   }
 
   getNotifications() {
-    console.log(this.loadingNotifications, 'called get notifications');
     if (!this.total || this.notifications.length < this.total) {
       if (this.loadingNotifications) {
         return;
@@ -173,26 +166,3 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
     });
   }
 }
-
-// if (!this.total || this.notifications.length < this.total) {
-//   if (this.isLoading) {
-//     return;
-//   } else {
-//     this.notificationsStore.getUserNotifications(this.page, this.count);
-//     this.isLoading = true;
-//     this.subscriptions.push(
-//       this.notificationsStore.userNotifications$.subscribe((value) => {
-//         if (value.notifications) {
-//           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-//           this.page = value.page + 1; //working fine normally, but when redirecting then doesnot
-//           // this.page++; //notifications comes in correct order
-//           this.total = value.total;
-//           this.isLoading = false;
-//           if (this.notifications.length >= this.total) {
-//             this.canLoadMore = false;
-//           }
-//         }
-//       }),
-//     );
-//   }
-// }
