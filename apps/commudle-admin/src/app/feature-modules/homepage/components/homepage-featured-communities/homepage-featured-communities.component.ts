@@ -27,7 +27,6 @@ export class HomepageFeaturedCommunitiesComponent implements OnInit {
       this.featuredCommunities = this.featuredCommunities
         .concat(data.page.reduce((acc, value) => [...acc, value.data], []))
         .slice(0, 4);
-      // this.skeletonLoaderCard = false;
       this.extractPalette();
       this.changeDetectorRef.markForCheck();
     });
