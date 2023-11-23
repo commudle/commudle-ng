@@ -32,6 +32,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
   @Input() showLoaderButton = true;
   @Input() notificationsCount: number;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
+  @Output() notificationLoaded: EventEmitter<boolean> = new EventEmitter();
 
   @ViewChild('notificationRef') notificationRef: ElementRef;
 
@@ -73,6 +74,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
       this.notificationsStore.userNotifications$.subscribe((value) => {
         if (value.notifications && value.notifications.length > 0) {
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+          this.notificationLoaded.emit(true);
           this.page = value.page + 1;
           this.total = value.total;
           this.loadingNotifications = false;
@@ -112,7 +114,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
 
   checkIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && this.showLoaderButton) {
         this.getNotifications();
       } else {
         this.showLoader = false;

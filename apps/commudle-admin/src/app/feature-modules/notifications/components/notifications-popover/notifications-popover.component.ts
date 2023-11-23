@@ -12,6 +12,7 @@ import { INotification } from 'apps/shared-models/notification.model';
   styleUrls: ['./notifications-popover.component.scss'],
 })
 export class NotificationsPopoverComponent implements OnInit {
+  isLoading = true;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
 
   ENotificationStatuses = ENotificationStatuses;

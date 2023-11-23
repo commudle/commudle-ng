@@ -52,6 +52,6 @@
 <div #notificationRef>
   <button *ngIf="showLoaderButton" [ngClass]="{ hidden: showLoader || !canLoadMore }">Load More</button>
 </div>
-<div *ngIf="showLoader && canLoadMore" class="loading-spinner">
+<div *ngIf="showLoader && canLoadMore && showLoaderButton" class="loading-spinner">
   <app-loading-spinner></app-loading-spinner>
 </div>

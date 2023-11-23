@@ -9,8 +9,10 @@
     </button>
   </nb-card-header>
   <nb-card-body>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <app-notifications-list
       (closePopover)="closePopover.emit()"
+      (notificationLoaded)="isLoading = false"
       [markAllAsRead]="trackMarkAllAsRead"
       [showLoaderButton]="false"
       [notificationsCount]="10"
