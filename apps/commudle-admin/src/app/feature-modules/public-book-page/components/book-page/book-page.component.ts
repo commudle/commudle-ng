@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChartLine,
+  faEarthAsia,
+  faHandsHoldingCircle,
+  faPeopleGroup,
+  faSackDollar,
+  faShapes,
+  faStairs,
+} from '@fortawesome/free-solid-svg-icons';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
@@ -10,29 +18,35 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 export class BookPageComponent implements OnInit {
   constructor() {}
   staticAssets = staticAssets;
-  faPencil = faPencil;
+  faPeopleGroup = faPeopleGroup;
+  faSackDollar = faSackDollar;
+  faEarthAsia = faEarthAsia;
+  faStairs = faStairs;
+  faShapes = faShapes;
+  faHandsHoldingCircle = faHandsHoldingCircle;
+  faChartLine = faChartLine;
 
   feature1 = {
-    icon: faPencil,
+    icon: faPeopleGroup,
     heading: 'For DevRels, By DevRels',
     subheading: 'Get the perspective of Developer Relations professionals',
   };
 
   feature2 = {
-    icon: faPencil,
+    icon: faSackDollar,
     heading: 'Calculating ROI',
     subheading:
       'This is a big question and we have dedicated sections for generating a proposal with get you an ROI in the long term.',
   };
 
   feature3 = {
-    icon: faPencil,
+    icon: faEarthAsia,
     heading: 'Real World Examples',
     subheading: 'We have collected both successful and not so successful examples with a strong reasoning behind it.',
   };
 
   feature4 = {
-    icon: faPencil,
+    icon: faStairs,
     heading: 'Step By Step Actionables',
     subheading:
       'This is for you if you are an established enterprise with a running developer ecosystem or just starting out to build one.',
@@ -113,7 +127,5 @@ export class BookPageComponent implements OnInit {
     'Absolutely, a few Design Communities are already using Commudle.',
   ];
 
-  ngOnInit(): void {
-    console.log(this.feature1.heading);
-  }
+  ngOnInit(): void {}
 }

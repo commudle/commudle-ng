@@ -1,8 +1,11 @@
 .feature {
   @apply com-flex com-flex-col com-items-center com-p-0 com-py-8 md:com-px-4 com-px-6 md:com-w-[358px] com-w-full com-m-0 md:com-mb-6 com-mb-5;
 
-  fa-icon {
-    @apply com-flex com-items-center com-justify-center com-p-20px com-w-16 com-h-16 com-mb-6 com-bg-primary-500 com-text-white com-rounded-md;
+  .icon {
+    @apply com-flex com-items-center com-justify-center  com-p-20px com-bg-primary-500 com-rounded-md com-mb-6 com-w-16 com-h-16;
+    fa-icon {
+      @apply com-text-3xl com-shrink-0 com-text-white;
+    }
   }
 
   .heading {
