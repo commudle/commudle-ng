@@ -37,9 +37,15 @@ export class CmsService {
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
-  getDataByTypeWithFilter(type: string, filterType: string, keyword: string) {
+  getDataByTypeWithFilter(
+    type: string,
+    filterType: string,
+    keyword: string,
+    finalCount: number,
+    initialCount: number = 0,
+  ) {
     const params = new HttpParams()
-      .set('query', `*[_type == "${type}" && $keyword in ${filterType}[]]`)
+      .set('query', `*[_type == "${type}" && $keyword in ${filterType}[]] [${initialCount}...${finalCount}]`)
       .set('$keyword', `"${keyword}"`);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
