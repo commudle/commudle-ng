@@ -146,7 +146,7 @@
   <div id="stats">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>
-  <!-- <div class="base-layout" id="testimonials">
+  <div *ngIf="testimonials" class="base-layout" id="testimonials">
     <div class="container commudle-agencies">
       <div class="testimonials">
         <p class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></p>
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <div id="cta">
     <commudle-public-page-cta></commudle-public-page-cta>
   </div>

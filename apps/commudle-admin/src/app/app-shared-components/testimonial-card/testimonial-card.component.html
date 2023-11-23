@@ -1,18 +1,14 @@
-<div class="testimonial">
+<div *ngIf="users && testimonials" class="testimonial">
   <div *ngFor="let testimonial of testimonials; let i = index" class="testimonial-card">
     <div class="top-card">
       <div class="image">
-        <img />
+        <img [src]="users[i]?.photo.i64" alt="{{ users[i]?.name }}" />
       </div>
       <div class="user-details">
-        <p class="name">{{ testimonial.name }}</p>
-        <p class="username">{{ testimonial.name }}</p>
+        <p class="name">{{ users[i]?.name }}</p>
+        <p class="username">@{{ users[i]?.username }}</p>
       </div>
     </div>
-    <p class="testimonial-text">{{ testimonial.testimonialText }}</p>
-    <div class="bottom-card">
-      <a class="show-original">showOriginal</a>
-      <p class="date">{{ testimonial.date }}</p>
-    </div>
+    <p class="testimonial-text">{{ testimonials[i].Content }}</p>
   </div>
 </div>
