@@ -30,6 +30,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @Input() markAllAsRead: boolean;
   @Input() showLoaderButton = true;
+  @Input() notificationsCount: number;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('notificationRef') notificationRef: ElementRef;
@@ -39,7 +40,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
   notifications: INotification[] = [];
 
   page = 1;
-  count = 20;
+  count: number;
   total: number;
   isLoading = false;
   canLoadMore = true;
@@ -59,6 +60,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
   ) {}
 
   ngOnInit(): void {
+    this.count = this.notificationsCount;
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
         this.currentUser = currentUser;
@@ -110,7 +112,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges,
 
   checkIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && this.showLoaderButton) {
+      if (entry.isIntersecting) {
         this.getNotifications();
       } else {
         this.showLoader = false;

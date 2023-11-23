@@ -8,6 +8,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-page',
@@ -20,6 +21,7 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
   ENotificationSenderTypes = ENotificationSenderTypes;
   currentUser: ICurrentUser;
   userProfileDetails: IUserStat;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private seoService: SeoService,
@@ -31,10 +33,12 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
-    this.appUsersService.getProfileStats().subscribe((data) => {
-      this.userProfileDetails = data;
-    });
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)),
+      this.appUsersService.getProfileStats().subscribe((data) => {
+        this.userProfileDetails = data;
+      }),
+    );
     this.seoService.noIndex(true);
     this.notificationsCount();
     this.seoService.setTags(
@@ -46,6 +50,7 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   markAllAsRead() {
