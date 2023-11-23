@@ -37,6 +37,13 @@ export class CmsService {
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
+  getDataByTypeWithFilter(type: string, filterType: string, keyword: string) {
+    const params = new HttpParams()
+      .set('query', `*[_type == "${type}" && $keyword in ${filterType}[]]`)
+      .set('$keyword', `"${keyword}"`);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+  }
+
   getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
     const params = new HttpParams().set('query', `*[_type == "${type}"]{${fields}} | order(${order}) `);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
