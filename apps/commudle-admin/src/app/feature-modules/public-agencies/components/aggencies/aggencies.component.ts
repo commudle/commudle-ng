@@ -32,7 +32,7 @@ export class AggenciesComponent implements OnInit {
     },
   ];
 
-  testimonials: any;
+  testimonials: ITestimonial[];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',

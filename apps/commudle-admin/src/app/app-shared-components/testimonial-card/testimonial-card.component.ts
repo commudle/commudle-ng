@@ -9,7 +9,7 @@ import { IUser } from 'apps/shared-models/user.model';
   styleUrls: ['./testimonial-card.component.scss'],
 })
 export class TestimonialCardComponent implements OnInit {
-  @Input() testimonials: any;
+  @Input() testimonials: ITestimonial[];
   users: IUser[] = [];
 
   constructor(private usersService: AppUsersService) {}
