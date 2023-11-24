@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowRight,
   faBookmark,
@@ -14,6 +17,8 @@ import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 
 @Component({
   selector: 'commudle-userprofile-details',
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
   templateUrl: './userprofile-details.component.html',
   styleUrls: ['./userprofile-details.component.scss'],
 })

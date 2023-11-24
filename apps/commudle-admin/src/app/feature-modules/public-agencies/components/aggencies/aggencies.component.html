@@ -127,7 +127,7 @@
                 compliant and ISO 27001 certified. We take user consents seriously.
               </p>
               <div class="logos">
-                <a class="gdpr-logo">
+                <a href="https://compliances.commudle.com/" class="gdpr-logo">
                   <img src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
                 </a>
                 <a href="https://compliances.commudle.com/" class="iso-logo">
@@ -146,7 +146,7 @@
   <div id="stats">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>
-  <!-- <div class="base-layout" id="testimonials">
+  <div *ngIf="testimonials" class="base-layout" id="testimonials">
     <div class="container commudle-agencies">
       <div class="testimonials">
         <p class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></p>
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <div id="cta">
     <commudle-public-page-cta></commudle-public-page-cta>
   </div>
