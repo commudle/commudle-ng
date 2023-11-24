@@ -1,4 +1,5 @@
 .notification-list {
+  @apply com-overflow-hidden;
   nb-list-item {
     @apply com-justify-between com-p-4;
 
@@ -15,12 +16,12 @@
     }
 
     .mark-as-read {
-      @apply com-hidden;
+      @apply com-p-0 com-hidden;
     }
 
     &:hover {
       .mark-as-read {
-        @apply com-block;
+        @apply com-p-0 com-m-0 com-ml-2px com-flex com-justify-between com-items-center;
       }
     }
 
@@ -47,4 +48,7 @@
       }
     }
   }
+}
+.notification-ref {
+  @apply com-flex com-justify-center com-p-4;
 }

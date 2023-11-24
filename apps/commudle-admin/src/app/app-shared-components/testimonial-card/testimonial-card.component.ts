@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ITestimonial } from 'apps/shared-models/testimonial.model';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { IUser } from 'apps/shared-models/user.model';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-testimonial-card',
@@ -10,21 +10,36 @@ import { IUser } from 'apps/shared-models/user.model';
 })
 export class TestimonialCardComponent implements OnInit {
   @Input() testimonials: ITestimonial[];
-  users: IUser[] = [];
 
-  constructor(private usersService: AppUsersService) {}
+  constructor(private usersService: AppUsersService, private seoService: SeoService) {}
 
   ngOnInit(): void {
     this.testimonials.forEach((testimonial) => {
-      this.getUserDetails(testimonial.username);
+      this.usersService.getProfile(testimonial.username).subscribe((data) => {
+        if (data) {
+          testimonial.user = data;
+        }
+      });
     });
+    // this.setSchema();
   }
 
-  getUserDetails(username) {
-    this.usersService.getProfile(username).subscribe((data) => {
-      if (data) {
-        this.users.push(data);
-      }
-    });
-  }
+  // setSchema() {
+  //   const testimonialData = this.testimonials.map((testimonial) => {
+  //     return {
+  //       '@type': 'Review',
+  //       name: testimonial.name,
+  //       reviewBody: testimonial.content,
+  //       datePublished: testimonial.createdAt,
+  //       author: { '@type': 'Person', name: 'Commudle' },
+  //       publisher: { '@type': 'Organization', name: 'Commudle' },
+  //     };
+  //   });
+  //   this.seoService.setSchema({
+  //     '@context': 'https://schema.org',
+  //     '@type': 'Product',
+  //     name: 'Commudle',
+  //     mainEntity: testimonialData,
+  //   });
+  // }
 }

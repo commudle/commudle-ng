@@ -19,9 +19,9 @@
   }
 
   nb-card-footer {
-    @apply com-flex com-justify-center;
+    @apply com-flex com-justify-center com-p-2;
     a {
-      @apply com-text-sm com-font-medium com-p-0;
+      @apply com-text-xs com-font-medium com-p-0;
     }
   }
 }

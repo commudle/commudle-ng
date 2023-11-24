@@ -1,14 +1,17 @@
-<div *ngIf="users && testimonials" class="testimonial">
-  <div *ngFor="let testimonial of testimonials; let i = index" class="testimonial-card">
-    <div class="top-card">
-      <div class="image">
-        <img [src]="users[i]?.photo.i64" alt="{{ users[i]?.name }}" />
+<div *ngIf="testimonials" class="testimonial">
+  <div *ngFor="let testimonial of testimonials" class="testimonial-container">
+    <a *ngIf="testimonial.user" [routerLink]="['/users', testimonial.user.username]" class="testimonial-card">
+      <div class="top-card">
+        <div class="image">
+          <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.user.name }}" />
+        </div>
+        <div class="user-details">
+          <p class="name">{{ testimonial.user.name }}</p>
+          <p class="username">@{{ testimonial.user.username }}</p>
+          <p class="designation">{{ testimonial.userDesignation }}</p>
+        </div>
       </div>
-      <div class="user-details">
-        <p class="name">{{ users[i]?.name }}</p>
-        <p class="username">@{{ users[i]?.username }}</p>
-      </div>
-    </div>
-    <p class="testimonial-text">{{ testimonials[i].Content }}</p>
+      <p class="testimonial-text">{{ testimonial.content }}</p>
+    </a>
   </div>
 </div>
