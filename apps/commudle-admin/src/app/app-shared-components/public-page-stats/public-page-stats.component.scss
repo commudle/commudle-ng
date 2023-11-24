@@ -1,0 +1,34 @@
+.base-layout {
+  @apply com-min-h-0;
+}
+
+a {
+  @apply com-no-underline;
+}
+
+.stats {
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 md:com-gap-0 com-gap-[60px] md:com-pt-[100px] com-p-0 md:com-pb-[126px] com-py-[60px] md:com-px-0 com-px-7;
+}
+
+.stat {
+  @apply md:com-w-[380px] com-w-full;
+}
+
+.stats-number {
+  @apply com-flex com-flex-row com-items-center md:com-justify-start com-justify-center;
+  p {
+    @apply com-m-0 com-mr-2 com-text-4xl com-font-bold com-text-blue-600;
+  }
+
+  .svg-icon {
+    @apply com-flex com-items-center com-justify-center com-rounded-full com-bg-blue-200 com-w-7 com-h-7;
+  }
+}
+
+.stats-name {
+  @apply com-m-0 com-mb-10px com-text-lg com-font-bold com-text-Yankees-Blue;
+}
+
+.stats-description {
+  @apply com-m-0 com-text-sm com-font-normal com-text-gray-700;
+}

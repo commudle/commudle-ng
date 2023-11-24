@@ -1,0 +1,150 @@
+.base-layout {
+  @apply com-min-h-0;
+}
+
+a {
+  @apply com-no-underline;
+}
+
+.agencies {
+  @apply md:com-text-left com-text-center com-bg-white md:com-pt-72px com-py-10 md:com-pb-[60px];
+
+  .commudle-agencies {
+    @apply com-p-0 md:com-px-0 com-px-4;
+  }
+
+  .public-page-content {
+    .content {
+      @apply com-flex com-flex-col com-max-w-[574px];
+
+      .commudle-for-agencies {
+        @apply md:com-text-2xl com-text-xl com-font-semibold com-text-primary-500 com-m-0 md:com-mb-6 com-mb-4;
+      }
+
+      .heading {
+        @apply com-m-0;
+        a {
+          @apply com-no-underline md:com-text-4xl com-text-2xl md:com-font-extrabold com-font-bold com-text-black;
+        }
+      }
+
+      .heading-developer-profile {
+        @apply com-m-0;
+        a {
+          @apply com-no-underline md:com-text-5xl com-text-3xl com-font-bold com-text-Yankees-Blue;
+        }
+      }
+
+      .subheading {
+        @apply md:com-text-lg com-text-base com-font-normal com-text-gray-600 com-m-0 com-mt-4;
+      }
+
+      .subheading-developer-profile {
+        @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 md:com-mt-4 com-mt-7;
+      }
+    }
+
+    .btn {
+      @apply com-m-0 md:com-mt-8 com-mt-[54px] md:com-w-auto com-w-full com-border com-border-solid com-border-slate-300;
+
+      a {
+        @apply com-text-Yankees-Blue;
+      }
+    }
+
+    .developer-communities-btn {
+      @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mt-10 com-mt-[34px];
+
+      .signUp-btn {
+        @apply md:com-m-0 md:com-mt-0 com-mt-6;
+      }
+
+      button {
+        @apply com-m-0 md:com-mr-6 com-mr-0;
+
+        a {
+          @apply com-text-white;
+        }
+      }
+    }
+  }
+
+  .developer-communities-image {
+    @apply com-m-0 md:com-mt-0 com-mt-10 md:com-w-[650px] com-w-full;
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .image {
+    @apply md:com-w-[548px] com-w-full md:com-m-0 md:com-mt-0 com-mt-[34px];
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .track-groth-image {
+    @apply md:com-h-[450px] md:com-w-[450px] com-w-full com-h-full com-m-0 md:com-mt-0 com-mt-5;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .devrel-image {
+    @apply md:com-h-[500px] md:com-w-[500px] com-w-full com-h-full;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .developer-profile,
+  .for-devrel,
+  .tech-communities,
+  .experts-group,
+  .events,
+  .projects {
+    @apply com-m-0 md:com-mt-[90px] com-mt-10;
+  }
+
+  .security {
+    @apply com-m-0 md:com-mt-[90px] com-mt-10 md:com-mb-[88px] com-mb-8;
+
+    .logos {
+      @apply com-flex com-flex-row com-m-0 com-mt-4;
+      .gdpr-logo,
+      .iso-logo {
+        @apply com-m-0 com-mr-4;
+
+        img {
+          @apply com-h-16;
+        }
+      }
+    }
+
+    .data-privacy-image {
+      @apply md:com-w-[600px] md:com-h-[400px] com-w-full com-h-full com-m-0 md:com-mt-0 com-mt-5;
+
+      img {
+        @apply com-w-full com-h-auto com-object-cover;
+      }
+    }
+  }
+
+  .testimonials {
+    @apply com-flex com-flex-col com-m-0 md:com-mt-20 com-mt-11 md:com-mb-0 com-mb-2;
+
+    .heading {
+      @apply com-text-center md:com-text-xl com-text-base com-font-bold com-text-primary-500 com-m-0 md:com-mb-4 com-mb-6;
+    }
+
+    .subheading {
+      @apply com-text-center md:com-text-4xl com-text-2xl com-font-bold com-text-black com-m-0 md:com-mb-[52px] com-mb-6;
+    }
+  }
+
+  .faq {
+    @apply com-m-0 md:com-mt-[60px] com-mt-8;
+  }
+}
