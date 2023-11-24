@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { CmsService } from 'apps/shared-services/cms.service';
+import { ITestimonial } from 'apps/shared-models/testimonial.model';
 
 @Component({
   selector: 'commudle-aggencies',
@@ -30,62 +32,7 @@ export class AggenciesComponent implements OnInit {
     },
   ];
 
-  testimonials: any[] = [
-    {
-      name: 'name1',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name2',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name3',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name4',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name5',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name6',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name7',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name8',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name9',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-  ];
+  testimonials: ITestimonial[];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',
@@ -103,11 +50,12 @@ export class AggenciesComponent implements OnInit {
     'Commudle is GDPR compliant and ISO 27001 certified. We take data privacy very seriously and understand its importance for businesses and have placed consents at multiple points on the platform so that the users know how their data will be processed and who will have access to it.',
   ];
 
-  constructor(private footerService: FooterService, private seoService: SeoService) {}
+  constructor(private footerService: FooterService, private seoService: SeoService, private cmsService: CmsService) {}
 
   ngOnInit(): void {
     this.footerService.changeFooterStatus(true);
     this.setMeta();
+    this.getTestimonials();
   }
 
   ngOnDestroy() {
@@ -120,5 +68,13 @@ export class AggenciesComponent implements OnInit {
       "Build developer programs using Commudle's developer focused engagement features. Host events, run forums & channels, send newsletters. All at one place!",
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  getTestimonials() {
+    this.cmsService
+      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 3)
+      .subscribe((data) => {
+        this.testimonials = data;
+      });
   }
 }
