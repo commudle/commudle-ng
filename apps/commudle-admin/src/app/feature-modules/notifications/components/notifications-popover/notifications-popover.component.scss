@@ -3,10 +3,25 @@
   @apply com-m-0;
 
   nb-card-header {
-    @apply com-flex com-justify-between com-items-center;
+    @apply com-flex com-justify-between com-items-center com-p-4;
+
+    p {
+      @apply com-m-0 com-mr-2;
+
+      span {
+        @apply com-text-xs com-font-semibold com-text-Yankees-Blue com-ml-2 com-p-1 com-bg-blue-300 com-rounded-full;
+      }
+    }
   }
 
   nb-card-body {
     @apply com-p-0 com-w-72;
+  }
+
+  nb-card-footer {
+    @apply com-flex com-justify-center;
+    a {
+      @apply com-text-sm com-font-medium com-p-0;
+    }
   }
 }
