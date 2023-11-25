@@ -5,10 +5,10 @@
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <p class="commudle-for-agencies">COMMUDLE FOR AGENCIES</p>
-              <h1 class="heading-developer-profile">
+              <h1 class="commudle-for-agencies">COMMUDLE FOR AGENCIES</h1>
+              <h2 class="heading-developer-profile">
                 <a [routerLink]="'.'" fragment="developer-programs">Scale Developer Programs For Your Clients</a>
-              </h1>
+              </h2>
               <p class="subheading-developer-profile">
                 Commudle lets you manage all your clients, their developer programs and the engagements seamlessly at
                 one place
@@ -30,9 +30,9 @@
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">
+              <h2 class="heading">
                 <a [routerLink]="'.'" fragment="devrel">For DevRels, By DevRels</a>
-              </h1>
+              </h2>
               <p class="subheading">
                 Commudle is created by experts from the DevRel industry who understand what it takes to build, run &
                 scale a developer program. Your search for ‘the right platform’ completes here.
@@ -54,9 +54,9 @@
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">
+              <h2 class="heading">
                 <a [routerLink]="'.'" fragment="organizations-programs">Organizations & Programs</a>
-              </h1>
+              </h2>
               <p class="subheading">
                 Are you running multiple developer programs for multiple clients? Create organizations, customized
                 programs & communities for them on Commudle and manage it all with a single login account.
@@ -73,9 +73,9 @@
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">
+              <h2 class="heading">
                 <a [routerLink]="'.'" fragment="features">Unlimited Engagement Features</a>
-              </h1>
+              </h2>
               <p class="subheading">
                 Events, emails, newsletters, forums, channels, virtual stage, QR scanner, member profiles, content
                 repository, projects, tutorials, custom pages and more!
@@ -97,9 +97,9 @@
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading">
+              <h2 class="heading">
                 <a [routerLink]="'.'" fragment="growth-performance">Track Growth and Performance</a>
-              </h1>
+              </h2>
               <p class="subheading">
                 Understand the interests of your members, get engagement stats and see how your communities are growing
                 globally
@@ -121,7 +121,7 @@
         <commudle-public-page-layout>
           <div content class="public-page-content">
             <div class="content">
-              <h1 class="heading"><a [routerLink]="'.'" fragment="security">Data Privacy & Security</a></h1>
+              <h2 class="heading"><a [routerLink]="'.'" fragment="security">Data Privacy & Security</a></h2>
               <p class="subheading">
                 Your clients need a platform which has global data compliance and certifications. Commudle is now GDPR
                 compliant and ISO 27001 certified. We take user consents seriously.
@@ -149,8 +149,8 @@
   <div *ngIf="testimonials" class="base-layout" id="testimonials">
     <div class="container commudle-agencies">
       <div class="testimonials">
-        <p class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></p>
-        <p class="subheading">Don't just take our word for it</p>
+        <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></h2>
+        <h3 class="subheading">Don't just take our word for it</h3>
         <div class="testimonial-card">
           <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
         </div>

@@ -1,35 +1,41 @@
 .testimonial {
-  @apply com-grid md:com-grid-cols-3 com-grid-cols-1;
+  @apply com-columns-3 com-gap-4;
+  .testimonial-container {
+    @apply com-w-full com-break-inside-avoid-column;
+    .testimonial-card {
+      @apply com-flex com-flex-col com-no-underline com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] md:com-w-[374px] com-h-max com-w-full com-m-0 md:com-mb-10 com-mb-6;
 
-  .testimonial-card {
-    @apply com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] md:com-w-[374px] com-w-full com-h-[180px] com-m-0 md:com-mb-10 com-mb-6;
+      .top-card {
+        @apply com-flex com-flex-row com-m-0 com-mb-4;
 
-    .top-card {
-      @apply com-flex com-flex-row com-m-0 com-mb-4;
+        .image {
+          @apply com-w-10 com-h-10 com-flex com-flex-shrink-0;
 
-      .image {
-        @apply com-w-10 com-h-10;
+          img {
+            @apply com-rounded-full com-w-full com-h-auto com-object-cover com-object-center;
+          }
+        }
 
-        img {
-          @apply com-w-full com-h-auto com-object-contain;
+        .user-details {
+          @apply com-flex com-flex-col com-ml-10px;
+
+          .name {
+            @apply com-m-0 com-text-sm com-font-bold com-text-primary-500 com-line-clamp-1;
+          }
+
+          .username {
+            @apply com-m-0 com-text-sm com-font-normal com-line-clamp-1 com-text-gray-400;
+          }
+
+          .designation {
+            @apply com-m-0 com-text-sm com-font-normal com-line-clamp-1 com-text-gray-500;
+          }
         }
       }
 
-      .user-details {
-        @apply com-flex com-flex-col com-ml-10px;
-
-        .name {
-          @apply com-m-0 com-text-sm com-font-bold com-text-primary-500 com-line-clamp-1;
-        }
-
-        .username {
-          @apply com-m-0 com-text-sm com-font-normal com-line-clamp-1 com-text-gray-400;
-        }
+      .testimonial-text {
+        @apply com-m-0 com-text-lg com-font-normal com-text-black;
       }
-    }
-
-    .testimonial-text {
-      @apply com-m-0 com-text-lg com-font-normal com-text-black com-line-clamp-3;
     }
   }
 }

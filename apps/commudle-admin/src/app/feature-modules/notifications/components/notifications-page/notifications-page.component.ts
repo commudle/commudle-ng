@@ -34,7 +34,11 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)),
+      this.authWatchService.currentUser$.subscribe((data) => {
+        if (data) {
+          this.currentUser = data;
+        }
+      }),
       this.appUsersService.getProfileStats().subscribe((data) => {
         this.userProfileDetails = data;
       }),

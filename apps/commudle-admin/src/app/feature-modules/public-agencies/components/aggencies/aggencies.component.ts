@@ -72,9 +72,11 @@ export class AggenciesComponent implements OnInit {
 
   getTestimonials() {
     this.cmsService
-      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 3)
+      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 10)
       .subscribe((data) => {
-        this.testimonials = data;
+        if (data) {
+          this.testimonials = data;
+        }
       });
   }
 }
