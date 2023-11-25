@@ -15,12 +15,7 @@
       </span>
     </nb-card-header>
     <nb-card-body>
-      <div
-        (scrolled)="getMembers(); isLoading = true"
-        [infiniteScrollDistance]="2"
-        appInfiniteScroll
-        [infiniteScrollDisabled]="channelUsers.length >= total"
-      >
+      <div>
         <ng-container *ngFor="let u of channelUsers; let i = index" class="com-my-3">
           <app-member
             (exitChannel)="leaveChannel(i)"
@@ -31,6 +26,7 @@
             [userRolesUser]="u"
           ></app-member>
         </ng-container>
+        <div #notificationRef></div>
         <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       </div>
     </nb-card-body>

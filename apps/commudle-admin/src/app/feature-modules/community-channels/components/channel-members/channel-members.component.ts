@@ -1,4 +1,14 @@
-import { Component, OnDestroy, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import * as _ from 'lodash';
@@ -13,7 +23,7 @@ import { CommunityChannelsService } from '@commudle/shared-services';
   templateUrl: './channel-members.component.html',
   styleUrls: ['./channel-members.component.scss'],
 })
-export class ChannelMembersComponent implements OnInit, OnDestroy {
+export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() channelOrForum: ICommunityChannel;
   EUserRoles = EUserRoles;
   subscriptions = [];
@@ -26,6 +36,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   total = 0;
   isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
+  @ViewChild('notificationRef') notificationRef: ElementRef;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -46,6 +57,25 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+  }
+
+  ngAfterViewInit() {
+    const options = {
+      root: null,
+      threshold: 1,
+    };
+    const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
+    observer.observe(this.notificationRef.nativeElement);
+  }
+
+  checkIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        this.getMembers();
+      } else {
+        this.isLoading = false;
+      }
+    });
   }
 
   // get members
