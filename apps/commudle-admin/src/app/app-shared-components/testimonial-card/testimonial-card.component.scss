@@ -1,6 +1,7 @@
 .testimonial {
-  @apply com-grid md:com-grid-cols-3 com-grid-cols-1;
+  @apply com-columns-3 com-gap-4;
   .testimonial-container {
+    @apply com-w-full com-break-inside-avoid-column;
     .testimonial-card {
       @apply com-flex com-flex-col com-no-underline com-p-20px com-border com-border-solid com-border-Bright-Gray com-rounded-[10px] md:com-w-[374px] com-h-max com-w-full com-m-0 md:com-mb-10 com-mb-6;
 
@@ -33,7 +34,7 @@
       }
 
       .testimonial-text {
-        @apply com-m-0 com-text-lg com-font-normal com-text-black com-line-clamp-6;
+        @apply com-m-0 com-text-lg com-font-normal com-text-black;
       }
     }
   }
