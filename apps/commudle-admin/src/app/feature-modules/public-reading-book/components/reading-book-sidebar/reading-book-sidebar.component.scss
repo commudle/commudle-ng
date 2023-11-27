@@ -1,0 +1,17 @@
+.chapters-heading {
+  @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-mb-4;
+}
+
+nb-card {
+  @apply com-m-0  com-border-0;
+  nb-list {
+    @apply com-border-0;
+    nb-list-item {
+      //   @apply com-border-0;
+      //   @apply com-py-3 com-px-4 com-border com-border-b com-border-Bright-Gray;
+      .chapter-title {
+        @apply com-m-0 com-text-lg com-font-normal com-text-Yankees-Blue;
+      }
+    }
+  }
+}

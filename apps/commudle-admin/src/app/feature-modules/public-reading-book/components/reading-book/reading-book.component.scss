@@ -1,0 +1,22 @@
+.reading-book {
+  @apply com-bg-white;
+  .right-column {
+    @apply com-flex com-flex-col com-m-0 md:com-mr-7;
+
+    nb-sidebar {
+      &::ng-deep {
+        .scrollable {
+          @apply com-p-0;
+        }
+      }
+    }
+
+    .download-pdf {
+      @apply com-m-0 com-mt-5 com-w-full;
+
+      fa-icon {
+        @apply com-m-0 com-mr-2;
+      }
+    }
+  }
+}
