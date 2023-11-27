@@ -81,21 +81,17 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   // get members
   getMembers() {
     if (!this.total || this.channelUsers.length < this.total) {
-      if (this.isLoading) {
-        return;
-      } else {
-        this.isLoading = true;
-        this.subscriptions.push(
-          this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
-            if (data.user_roles_users) {
-              this.channelUsers = this.channelUsers.concat(data.user_roles_users);
-              this.page = data.page + 1;
-              this.total = data.total;
-              this.isLoading = false;
-            }
-          }),
-        );
-      }
+      this.isLoading = true;
+      this.subscriptions.push(
+        this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
+          if (data.user_roles_users) {
+            this.channelUsers = this.channelUsers.concat(data.user_roles_users);
+            this.page = data.page + 1;
+            this.total = data.total;
+            this.isLoading = false;
+          }
+        }),
+      );
     }
   }
 
