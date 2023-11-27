@@ -6,7 +6,7 @@ import { NbWindowService } from '@commudle/theme';
 @Component({
   selector: 'app-voters',
   templateUrl: './voters.component.html',
-  styleUrls: ['./voters.component.scss']
+  styleUrls: ['./voters.component.scss'],
 })
 export class VotersComponent implements OnInit {
   @ViewChild('votersList') votersList: TemplateRef<any>;
@@ -17,38 +17,27 @@ export class VotersComponent implements OnInit {
   page = 1;
   count = 10;
   total;
-  isLoading = false;
+  isLoading = true;
 
   voters: IUser[] = [];
 
-  constructor(
-    private votesService: SVotesService,
-    private windowService: NbWindowService
-  ) { }
+  constructor(private votesService: SVotesService, private windowService: NbWindowService) {}
 
   ngOnInit() {
     this.getVoters();
   }
 
   getVoters() {
-    if (!this.isLoading) {
-      this.votesService.pGetVoters(this.votableType, this.votableId, this.page, this.count).subscribe(
-        data => {
-          this.voters = this.voters.concat(data.users);
-          this.total = data.total;
-          this.page += 1;
-          this.isLoading = true;
-        }
-      );
-    }
+    this.votesService.pGetVoters(this.votableType, this.votableId, this.page, this.count).subscribe((data) => {
+      this.voters = this.voters.concat(data.users);
+      this.total = data.total;
+      this.page += 1;
+      this.isLoading = false;
+    });
   }
-
 
   openWindow() {
     this.getVoters();
-    this.windowService.open(
-      this.votersList,
-    );
+    this.windowService.open(this.votersList);
   }
-
 }
