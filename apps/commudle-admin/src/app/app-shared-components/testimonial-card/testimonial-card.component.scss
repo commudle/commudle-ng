@@ -1,5 +1,5 @@
 .testimonial {
-  @apply com-columns-3 com-gap-4;
+  @apply md:com-columns-3 com-columns-1 com-gap-10 com-m-0 md:com-mb-10 com-mb-6;
   .testimonial-container {
     @apply com-w-full com-break-inside-avoid-column;
     .testimonial-card {
@@ -17,7 +17,7 @@
         }
 
         .user-details {
-          @apply com-flex com-flex-col com-ml-10px;
+          @apply com-flex com-flex-col com-ml-10px com-text-left;
 
           .name {
             @apply com-m-0 com-text-sm com-font-bold com-text-primary-500 com-line-clamp-1;
@@ -34,7 +34,7 @@
       }
 
       .testimonial-text {
-        @apply com-m-0 com-text-lg com-font-normal com-text-black;
+        @apply com-m-0 com-text-lg com-font-normal com-text-black com-text-left;
       }
     }
   }
