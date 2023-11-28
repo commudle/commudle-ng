@@ -1,7 +1,7 @@
 .reading-book {
-  @apply com-bg-white;
+  @apply com-bg-white com-m-0 com-p-0 md:com-pt-14;
   .right-column {
-    @apply com-flex com-flex-col com-m-0 md:com-mr-7;
+    @apply com-flex com-flex-col com-m-0 md:com-mr-6;
 
     nb-sidebar {
       &::ng-deep {

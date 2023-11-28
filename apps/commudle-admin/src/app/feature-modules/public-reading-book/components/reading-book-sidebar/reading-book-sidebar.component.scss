@@ -3,14 +3,18 @@
 }
 
 nb-card {
-  @apply com-m-0  com-border-0;
+  @apply com-m-0;
   nb-list {
-    @apply com-border-0;
     nb-list-item {
-      //   @apply com-border-0;
-      //   @apply com-py-3 com-px-4 com-border com-border-b com-border-Bright-Gray;
-      .chapter-title {
-        @apply com-m-0 com-text-lg com-font-normal com-text-Yankees-Blue;
+      @apply com-border-t-0 com-py-3 com-px-4;
+      &:last-child {
+        @apply com-border-b-0;
+      }
+      a {
+        @apply com-no-underline;
+        .chapter-title {
+          @apply com-m-0 com-text-lg com-font-normal com-text-Yankees-Blue;
+        }
       }
     }
   }

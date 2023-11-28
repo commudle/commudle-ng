@@ -15,20 +15,41 @@
     <div class="container commudle-agencies">
       <div class="two-column-layout thin">
         <div class="right-column">
-          <nb-sidebar right>
-            <commudle-reading-book-sidebar
-              (setChapter)="setChapter($event)"
-              [chapter]="chapter"
-              [selectedChapterIndex]="selectedChapterIndex"
-            ></commudle-reading-book-sidebar>
-            <button nbButton status="primary" class="download-pdf">
-              <fa-icon [icon]="faDownload"></fa-icon>Download PDF
-            </button>
-          </nb-sidebar>
+          <!-- <nb-sidebar right> -->
+          <commudle-reading-book-sidebar
+            (setChapter)="setChapter($event)"
+            [chapterIndexes]="chapterIndexes"
+            [selectedChapterIndex]="selectedChapterIndex"
+          ></commudle-reading-book-sidebar>
+          <button nbButton status="primary" class="download-pdf">
+            <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+          </button>
+          <!-- </nb-sidebar> -->
         </div>
         <div class="main-column">
           <div class="content">
-            <nb-card>
+            <div>
+              <div [ngSwitch]="selectedChapterIndex">
+                <div *ngSwitchCase="1">
+                  <h1>First</h1>
+                </div>
+                <div *ngSwitchCase="2"><h1>Second</h1></div>
+                <div *ngSwitchCase="3"><h1>Third</h1></div>
+                <div *ngSwitchCase="4"><h1>Fourth</h1></div>
+                <div *ngSwitchCase="5"><h1>Fifth</h1></div>
+                <div *ngSwitchCase="6"><h1>Sixth</h1></div>
+                <div *ngSwitchCase="7"><h1>Seven</h1></div>
+                <div *ngSwitchCase="8"><h1>Eight</h1></div>
+                <div *ngSwitchCase="9"><h1>Nine</h1></div>
+                <div *ngSwitchCase="10"><h1>Tenth</h1></div>
+                <div *ngSwitchCase="11"><h1>Eleven</h1></div>
+                <div *ngSwitchCase="12"><h1>Twelve</h1></div>
+                <div *ngSwitchCase="13"><h1>Thirtheen</h1></div>
+                <div *ngSwitchCase="14"><h1>Fourteen</h1></div>
+                <div *ngSwitchCase="15"><h1>Fifteen</h1></div>
+                <div *ngSwitchCase="16"><h1>Sixteen</h1></div>
+                <div *ngSwitchCase="17"><h1>Seventeen</h1></div>
+              </div>
               <!-- <nb-card-body>
                 <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
                   <h1 class="lab-title">{{ lab.name }}</h1>
@@ -68,7 +89,7 @@
                 <div>
                   <router-outlet></router-outlet>
                 </div>
-              </nb-card-body> -->
+              </nb-card-body>
               <!-- <nb-card-footer>
                 <div class="steps-navigation d-flex justify-content-space-between">
                   <button
@@ -96,7 +117,7 @@
                   </button>
                 </div>
               </nb-card-footer> -->
-            </nb-card>
+            </div>
           </div>
         </div>
       </div>

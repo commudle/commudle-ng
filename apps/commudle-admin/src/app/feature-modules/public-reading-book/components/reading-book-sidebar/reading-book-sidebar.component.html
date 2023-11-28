@@ -1,16 +1,16 @@
 <h2 class="chapters-heading">Chapters</h2>
 <nb-card>
   <nb-list>
-    <!-- [routerLink]="['steps', lab.lab_steps[i].id]" -->
+    <!-- [routerLink]="['index', chapterIndex.slug]" -->
     <nb-list-item
-      *ngFor="let of; let i = index"
-      (click)="onSetStep(i)"
-      [ngClass]="{ active: selectedChapterIndex === i }"
+      *ngFor="let chapterIndex of chapterIndexes"
+      (click)="onSetStep(chapterIndex.page)"
+      [ngClass]="{ active: selectedChapterIndex === chapterIndex.page }"
       class="clickable"
     >
       <div>
-        <!-- <a [routerLink]="['steps', lab.lab_steps[i].id]"> -->
-        <h2 class="chapter-title">Name</h2>
+        <!-- <a [routerLink]="['steps', chapterIndex.slug]"> -->
+        <h2 class="chapter-title">{{ chapterIndex.title }}</h2>
         <!-- </a> -->
       </div>
     </nb-list-item>
