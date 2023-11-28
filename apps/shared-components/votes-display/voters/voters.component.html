@@ -7,18 +7,25 @@
   </nb-list>
 
   <div class="load-more-button" *ngIf="total && voters.length < total">
-    <button nbButton size="tiny" status="primary" outline (click)="openWindow()">Load More...</button>
+    <button nbButton size="tiny" status="primary" outline (click)="openWindow()">View all</button>
   </div>
 </div>
 
-<ng-template #votersList let-data>
-  <nb-list>
-    <nb-list-item *ngFor="let voter of voters">
-      <app-user-profile-horizontal [user]="voter" [socialMediaLinks]="true"></app-user-profile-horizontal>
-    </nb-list-item>
-  </nb-list>
+<ng-template #votersList let-data let-ref="dialogRef">
+  <nb-card class="users-list">
+    <nb-card-header>
+      <div>Voters List</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon></button
+    ></nb-card-header>
+    <nb-card-body>
+      <div *ngFor="let voter of voters" class="users">
+        <app-user-profile-card-medium [user]="voter"></app-user-profile-card-medium>
+      </div>
 
-  <div class="load-more-button" *ngIf="total && voters.length < total">
-    <button nbButton size="tiny" status="primary" outline>Load More...</button>
-  </div>
+      <div class="load-more-button" *ngIf="total && voters.length < total">
+        <button nbButton size="tiny" status="primary" outline (click)="getVoters()">Load More</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
 </ng-template>
