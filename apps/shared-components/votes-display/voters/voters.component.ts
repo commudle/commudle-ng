@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { SVotesService } from 'apps/shared-components/services/s-votes.service';
 import { IUser } from 'apps/shared-models/user.model';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService } from '@commudle/theme';
 
 @Component({
   selector: 'app-voters',
@@ -21,7 +21,7 @@ export class VotersComponent implements OnInit {
 
   voters: IUser[] = [];
 
-  constructor(private votesService: SVotesService, private windowService: NbWindowService) {}
+  constructor(private votesService: SVotesService, private dialogService: NbDialogService) {}
 
   ngOnInit() {
     this.getVoters();
@@ -38,6 +38,6 @@ export class VotersComponent implements OnInit {
 
   openWindow() {
     this.getVoters();
-    this.windowService.open(this.votersList);
+    this.dialogService.open(this.votersList);
   }
 }
