@@ -758,6 +758,8 @@ export const API_ROUTES = {
     DELETE: 'api/v2/newsletters', //DELETE
     SHOW: 'api/v2/newsletters/show', //GET
     INDEX: 'api/v2/newsletters', //GET
+    SET_SCHEDULE: 'api/v2/newsletters/set_schedule', //POST
+    RESET_SCHEDULE: 'api/v2/newsletters/reset_schedule', //DELETE
     PUBLIC: {
       SHOW: 'api/v2/newsletters/public/show', //GET
       INDEX: 'api/v2/newsletters/public/index', //GET

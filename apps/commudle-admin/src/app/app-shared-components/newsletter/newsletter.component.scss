@@ -5,8 +5,15 @@
 .newsletters > table {
   @apply com-border-collapse com-w-full;
   tr {
+    td {
+      @apply com-px-4;
+    }
     .published {
       @apply com-flex com-items-center com-gap-8;
+    }
+
+    .scheduled-for {
+      @apply com-mt-3;
     }
     .action {
       @apply com-flex com-gap-3;
@@ -14,7 +21,7 @@
 
     .stats {
       table {
-        @apply com-w-1/2;
+        @apply com-w-3/4 com-py-1;
         td {
           @apply com-p-0;
         }

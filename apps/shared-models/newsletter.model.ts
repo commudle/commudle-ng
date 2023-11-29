@@ -9,4 +9,5 @@ export interface INewsletter {
   email_subject: string;
   banner_image: IAttachedFile;
   created_at: Date;
+  scheduled_for: Date;
 }

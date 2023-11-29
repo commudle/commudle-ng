@@ -4,8 +4,9 @@ import { NbDialogService } from '@commudle/theme';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
 import { Subscription } from 'rxjs';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faClock } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'commudle-newsletter',
@@ -17,7 +18,12 @@ export class NewsletterComponent implements OnInit {
   @Input() parentType: 'CommunityGroup' | 'Kommunity';
   subscriptions: Subscription[] = [];
   newsletters: INewsletter[];
-  faPlus = faPlus;
+  newScheduleDateTime;
+  icons = {
+    faPlus,
+    faClock,
+  };
+  moment = moment;
   constructor(
     private newsletterService: NewsletterService,
     private dialogService: NbDialogService,
@@ -37,7 +43,11 @@ export class NewsletterComponent implements OnInit {
     );
   }
 
-  togglePublished(id, index) {}
+  togglePublished(id, index) {
+    this.newsletterService.togglePublished(!this.newsletters[index].published, id).subscribe((data) => {
+      this.newsletters[index] = data;
+    });
+  }
 
   openConfirmDialogBox(dialog: TemplateRef<any>, id, index) {
     this.dialogService.open(dialog, { context: { id, index } });
@@ -55,12 +65,29 @@ export class NewsletterComponent implements OnInit {
   redirectTo(slug) {
     let redirectUrl = '';
     if (this.parentType === 'Kommunity') {
-      redirectUrl = '/communities/' + this.parentId + '/' + slug;
+      redirectUrl = '/communities/' + this.parentId + '/newsletter/' + slug;
     }
     if (this.parentType === 'CommunityGroup') {
       redirectUrl = '/orgs/' + this.parentId + '/' + slug;
     }
     const url = this.router.serializeUrl(this.router.createUrlTree([redirectUrl]));
     window.open(url, '_blank');
+  }
+
+  openScheduleDialogBox(dialog: TemplateRef<any>, id, index) {
+    this.newScheduleDateTime = '';
+    this.dialogService.open(dialog, { context: { id, index } });
+  }
+
+  setSchedule(id, index) {
+    this.newsletterService.setSchedule(id, this.newScheduleDateTime).subscribe((data) => {
+      if (data) this.newsletters[index].scheduled_for = this.newScheduleDateTime;
+    });
+  }
+
+  resetSchedule(id, index) {
+    this.newsletterService.resetSchedule(id).subscribe((data) => {
+      if (data) this.newsletters[index].scheduled_for = null;
+    });
   }
 }

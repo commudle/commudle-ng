@@ -48,6 +48,15 @@ export class NewsletterService {
     });
   }
 
+  togglePublished(published, newsletterId: number): Observable<INewsletter> {
+    return this.http.put<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.UPDATE), {
+      newsletter_id: newsletterId,
+      newsletter: {
+        published: published,
+      },
+    });
+  }
+
   getShow(newsletterId): Observable<INewsletter> {
     const params = new HttpParams().set('newsletter_id', newsletterId);
     return this.http.get<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SHOW), { params });
@@ -88,5 +97,17 @@ export class NewsletterService {
   destroy(newsletterId: number): Observable<boolean> {
     const params = new HttpParams().set('newsletter_id', newsletterId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.DELETE), { params });
+  }
+
+  setSchedule(newsletterId: number, schedule): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SET_SCHEDULE), {
+      newsletter_id: newsletterId,
+      schedule: schedule,
+    });
+  }
+
+  resetSchedule(newsletterId: number): Observable<boolean> {
+    const params = new HttpParams().set('newsletter_id', newsletterId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.RESET_SCHEDULE), { params });
   }
 }
