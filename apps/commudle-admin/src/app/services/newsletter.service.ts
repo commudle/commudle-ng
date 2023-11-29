@@ -12,18 +12,18 @@ export class NewsletterService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   createNewNewsletter(newsletter, parentId, parentType): Observable<any> {
-    let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
-        params = params.set('community_id', parentId);
+        newsletter.append('community_id', parentId);
         break;
       }
       case 'CommunityGroup': {
-        params = params.set('community_group_id', parentId);
+        newsletter.append('community_group_id', parentId);
         break;
       }
     }
-    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.CREATE), newsletter, { params });
+
+    return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.CREATE), newsletter);
   }
 
   getIndex(parentId: number | string, parentType: string): Observable<INewsletter[]> {
@@ -42,10 +42,9 @@ export class NewsletterService {
   }
 
   update(dataForm, newsletterId): Observable<INewsletter> {
-    return this.http.put<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.UPDATE), {
-      newsletter_id: newsletterId,
-      newsletter: dataForm,
-    });
+    dataForm.append('newsletter_id', newsletterId);
+
+    return this.http.put<INewsletter>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.UPDATE), dataForm);
   }
 
   togglePublished(published, newsletterId: number): Observable<INewsletter> {

@@ -19,6 +19,7 @@ export class NewsletterFormComponent implements OnInit {
   parentType: string;
   pageSlug: string;
   subscriptions: Subscription[] = [];
+  imagePreview;
 
   icons = {
     faChevronLeft,
@@ -70,6 +71,7 @@ export class NewsletterFormComponent implements OnInit {
             published: data.published,
             content: data.content,
           });
+          if (data.banner_image) this.imagePreview = data.banner_image?.url;
         }
       }),
     );
@@ -84,18 +86,44 @@ export class NewsletterFormComponent implements OnInit {
   }
 
   create() {
-    this.newsletterService
-      .createNewNewsletter(this.newsletterForm.value, this.parentId, this.parentType)
-      .subscribe((data) => {
-        if (data) {
-          this.toastrService.successDialog('Page Created');
-          this.backPage();
-        }
-      });
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append form values to the FormData object
+    Object.keys(this.newsletterForm.value).forEach((key) => {
+      const value = this.newsletterForm.value[key];
+
+      // Check if the value is a File (FileList) for file inputs
+      if (value instanceof File) {
+        formData.append('newsletter[' + key + ']', value, value.name); // Append the file with its name
+      } else {
+        formData.append('newsletter[' + key + ']', value);
+      }
+    });
+    this.newsletterService.createNewNewsletter(formData, this.parentId, this.parentType).subscribe((data) => {
+      if (data) {
+        this.toastrService.successDialog('Page Created');
+        this.backPage();
+      }
+    });
   }
 
   update() {
-    this.newsletterService.update(this.newsletterForm.value, this.pageSlug).subscribe((data) => {
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append form values to the FormData object
+    Object.keys(this.newsletterForm.value).forEach((key) => {
+      const value = this.newsletterForm.value[key];
+
+      // Check if the value is a File (FileList) for file inputs
+      if (value instanceof File) {
+        formData.append('newsletter[' + key + ']', value, value.name); // Append the file with its name
+      } else {
+        formData.append('newsletter[' + key + ']', value);
+      }
+    });
+    this.newsletterService.update(formData, this.pageSlug).subscribe((data) => {
       if (data) {
         this.toastrService.successDialog('Page Updated');
         this.backPage();
@@ -105,5 +133,24 @@ export class NewsletterFormComponent implements OnInit {
 
   backPage() {
     this.location.back();
+  }
+
+  onFileChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.newsletterForm.patchValue({
+      banner_image: file,
+    });
+    this.newsletterForm.get('banner_image').updateValueAndValidity();
+
+    // Display image preview
+    this.previewImage(file);
+  }
+
+  previewImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 }

@@ -32,6 +32,7 @@
   </div>
   <div class="content">
     <label for="content">Content*</label>
+    <!-- <textarea name="" id="" cols="30" rows="10" formControlName="content"></textarea> -->
     <!-- <editor formControlName="content" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" [init]="tinyMCE">
     </editor>
     <commudle-alert
@@ -43,6 +44,23 @@
       errorMessage="Content is Required"
       [error]="true"
     ></commudle-alert> -->
+  </div>
+
+  <div class="banner-image">
+    <label for="banner_image">Banner Image</label>
+    <input type="file" (change)="onFileChange($event)" />
+    <commudle-alert
+      *ngIf="
+        newsletterForm.controls['banner_image'].touched &&
+        newsletterForm.controls['banner_image'].hasError('required') &&
+        newsletterForm.controls['banner_image'].invalid
+      "
+      errorMessage="Banner Image is Required"
+      [error]="true"
+    ></commudle-alert>
+  </div>
+  <div *ngIf="imagePreview" class="image-preview">
+    <commudle-banner-image [headerImagePath]="imagePreview"></commudle-banner-image>
   </div>
 </form>
 <section>
