@@ -15,106 +15,73 @@
     <div class="container commudle-agencies">
       <div class="two-column-layout thin">
         <div class="right-column">
-          <commudle-reading-book-index
-            (setChapter)="setChapter($event)"
-            [chapterIndexes]="chapterIndexes"
-            [selectedChapterIndex]="selectedChapterIndex"
-          ></commudle-reading-book-index>
-          <button nbButton status="primary" class="download-pdf">
+          <div *ngIf="chapterIndexes">
+            <commudle-reading-book-index [chapterIndexes]="chapterIndexes"></commudle-reading-book-index>
+          </div>
+          <button nbButton status="primary" size="large" class="download-pdf">
             <fa-icon [icon]="faDownload"></fa-icon>Download PDF
           </button>
         </div>
         <div class="main-column">
           <div class="content">
-            <div>
-              <div [ngSwitch]="selectedChapterIndex">
-                <div *ngSwitchCase="1">
-                  <h1>First</h1>
-                </div>
-                <div *ngSwitchCase="2"><h1>Second</h1></div>
-                <div *ngSwitchCase="3"><h1>Third</h1></div>
-                <div *ngSwitchCase="4"><h1>Fourth</h1></div>
-                <div *ngSwitchCase="5"><h1>Fifth</h1></div>
-                <div *ngSwitchCase="6"><h1>Sixth</h1></div>
-                <div *ngSwitchCase="7"><h1>Seven</h1></div>
-                <div *ngSwitchCase="8"><h1>Eight</h1></div>
-                <div *ngSwitchCase="9"><h1>Nine</h1></div>
-                <div *ngSwitchCase="10"><h1>Tenth</h1></div>
-                <div *ngSwitchCase="11"><h1>Eleven</h1></div>
-                <div *ngSwitchCase="12"><h1>Twelve</h1></div>
-                <div *ngSwitchCase="13"><h1>Thirtheen</h1></div>
-                <div *ngSwitchCase="14"><h1>Fourteen</h1></div>
-                <div *ngSwitchCase="15"><h1>Fifteen</h1></div>
-                <div *ngSwitchCase="16"><h1>Sixteen</h1></div>
-                <div *ngSwitchCase="17"><h1>Seventeen</h1></div>
-              </div>
-              <!-- <nb-card-body>
-                <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
-                  <h1 class="lab-title">{{ lab.name }}</h1>
-                  <div class="lab-detail d-flex justify-content-space-between">
-                    <div class="user-profile d-flex justify-content-start align-items-center">
-                      <div class="avatar">
-                        <a [routerLink]="['/users', lab.user.username]" target="_blank">
-                          <img alt="{{ lab.user.name }}" src="{{ lab.user.photo.i32 }}" title="{{ lab.user.name }}" />
-                        </a>
-                      </div>
-                      <div class="details d-flex align-items-center">
-                        <p class="d-flex align-items-center">
-                          created by&nbsp;
-                          <a [routerLink]="['/users', lab.user.username]" class="name" target="_blank">{{
-                            lab.user.name
-                          }}</a>
-                          <img
-                            *ngIf="lab.user.is_expert"
-                            alt="Expert Tick"
-                            class="expert-icon"
-                            src="/assets/images/Expert-Tick.svg"
-                            title="Expert Tick"
-                          />&nbsp;
-                          <span class="date">{{ lab.created_at | date }}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="tags">
-                      <app-tag [tags]="lab.tags"></app-tag>
-                    </div>
+            <div *ngIf="chapterData">
+              <h1 class="chapter-name">{{ chapterData.chapter_name }}</h1>
+              <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
+              <nb-card>
+                <nb-card-header>
+                  <div class="image">
+                    <h1>Image</h1>
+                    <!-- <img
+                      alt="{{ chapterData.chapter_name }}"
+                      [src]="imageUrl(chapterData.headerImage).url()"
+                      title="{{ chapterData.chapter_name }}"
+                    /> -->
                   </div>
-                  <div *ngIf="lab.header_image" class="header-image">
-                    <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}" />
-                  </div>
-                  <div #introCon [innerHTML]="labDescription" class="intro-content"></div>
-                </div>
-                <div>
-                  <router-outlet></router-outlet>
-                </div>
-              </nb-card-body>
-              <!-- <nb-card-footer>
-                <div class="steps-navigation d-flex justify-content-space-between">
-                  <button
-                    (click)="changeStep(-1)"
-                    *ngIf="selectedLabStep !== -1"
-                    [routerLink]="selectedLabStep === 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]"
-                    nbButton
-                  >
-                    <span>
-                      <nb-icon icon="arrow-back"></nb-icon>
-                      Prev
-                    </span>
-                  </button>
-                  <span></span>
-                  <button
-                    (click)="changeStep(1)"
-                    *ngIf="selectedLabStep < lab.lab_steps.length - 1"
-                    [routerLink]="['steps', this.lab.lab_steps[selectedLabStep + 1].id]"
-                    nbButton
-                  >
-                    <span>
-                      Next
-                      <nb-icon icon="arrow-forward"></nb-icon>
-                    </span>
-                  </button>
-                </div>
-              </nb-card-footer> -->
+                </nb-card-header>
+                <nb-card-body *ngIf="richText">
+                  <article>
+                    <!-- !com-prose !com-prose-sm  -->
+                    <div [innerHTML]="richText" class="!com-max-w-full content"></div>
+                  </article>
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="footer">
+              <button
+                nbButton
+                size="large"
+                [routerLink]="
+                  chapterData?.link_to_previous_page ? ['/reading-book', chapterData.link_to_previous_page] : null
+                "
+                [disabled]="!chapterData?.link_to_previous_page"
+                class="prev-btn"
+              >
+                <span>
+                  <nb-icon icon="arrow-back"></nb-icon>
+                  Prev
+                </span>
+              </button>
+              <!-- <button
+            (click)="changeStep(-1)"
+            *ngIf="selectedLabStep !== -1"
+            [routerLink]="selectedLabStep === 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]"
+            nbButton
+          > -->
+              <button
+                nbButton
+                size="large"
+                [routerLink]="chapterData?.link_to_next_page ? ['/reading-book', chapterData.link_to_next_page] : null"
+                [disabled]="!chapterData?.link_to_next_page"
+                class="next-btn"
+              >
+                <span>
+                  Next
+                  <nb-icon icon="arrow-forward"></nb-icon>
+                </span>
+              </button>
+              <!-- (click)="changeStep(1)"
+          *ngIf="selectedLabStep < lab.lab_steps.length - 1"
+          [routerLink]="['steps', this.lab.lab_steps[selectedLabStep + 1].id]" -->
             </div>
           </div>
         </div>

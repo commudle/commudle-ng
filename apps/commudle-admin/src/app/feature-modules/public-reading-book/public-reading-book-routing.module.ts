@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: ReadingBookComponent,
   },
+  {
+    path: ':slug',
+    component: ReadingBookComponent,
+  },
 ];
 
 @NgModule({

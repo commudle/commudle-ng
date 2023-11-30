@@ -1,18 +1,14 @@
 <h2 class="chapters-heading">Chapters</h2>
 <nb-card>
   <nb-list>
-    <!-- [routerLink]="['index', chapterIndex.slug]" -->
     <nb-list-item
       *ngFor="let chapterIndex of chapterIndexes"
-      (click)="onSetStep(chapterIndex.page)"
-      [ngClass]="{ active: selectedChapterIndex === chapterIndex.page }"
+      [routerLink]="['/reading-book', chapterIndex.slug.current]"
       class="clickable"
     >
-      <div>
-        <!-- <a [routerLink]="['steps', chapterIndex.slug]"> -->
-        <h2 class="chapter-title">{{ chapterIndex.title }}</h2>
-        <!-- </a> -->
-      </div>
+      <h2 [ngClass]="params === chapterIndex.slug.current ? 'active' : 'title'">
+        {{ chapterIndex.chapter_name }}
+      </h2>
     </nb-list-item>
   </nb-list>
 </nb-card>

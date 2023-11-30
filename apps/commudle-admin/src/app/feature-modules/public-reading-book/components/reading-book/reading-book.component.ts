@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { CmsService } from 'apps/shared-services/cms.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-reading-book',
@@ -10,7 +12,11 @@ import { CmsService } from 'apps/shared-services/cms.service';
 export class ReadingBookComponent implements OnInit {
   faDownload = faDownload;
   selectedChapterIndex;
-  chapterIndexes = [];
+  chapterIndexes;
+  richText: string;
+  subscriptions: Subscription[] = [];
+  chapterData;
+  isLoading = true;
 
   // chapterIndexes = [
   //   {
@@ -100,22 +106,57 @@ export class ReadingBookComponent implements OnInit {
   //   },
   // ];
 
-  constructor(private cmsService: CmsService) {}
+  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute) {
+    activatedRoute.params.subscribe(() => {
+      this.getChaptersData();
+    });
+  }
 
   ngOnInit(): void {
-    this.getChapters();
+    this.getIndex();
   }
 
-  setChapter(index) {
-    this.selectedChapterIndex = index;
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getChapters() {
+  imageUrl(source: any) {
+    // this.imageLoading = false;
+    return this.cmsService.getImageUrl(source);
+  }
+
+  getIndex() {
     this.cmsService.getDataByType('book').subscribe((data) => {
       if (data) {
         this.chapterIndexes = data;
-        console.log(this.chapterIndexes, 'indexes');
       }
     });
+  }
+
+  getChaptersData() {
+    this.isLoading = true;
+    const slug: string = this.activatedRoute.snapshot.params.slug;
+    this.subscriptions.push(
+      this.cmsService.getDataBySlug(slug).subscribe((value) => {
+        if (value) {
+          this.chapterData = value;
+          this.richText = this.cmsService.getHtmlFromBlock(value);
+        }
+        this.isLoading = false;
+        // this.setMeta();
+      }),
+    );
+  }
+
+  changeStep(slug: string) {
+    console.log(slug);
+    // this.scrollToTop();
+    // this.selectedLabStep += count;
+    // this.lastVisitedStepId = null;
+    // this.highlightCodeSnippets();
+    // if (this.selectedLabStep === -1) {
+    //   this.router.navigate(['/labs', this.lab.slug]);
+    //   this.setMeta();
+    // }
   }
 }

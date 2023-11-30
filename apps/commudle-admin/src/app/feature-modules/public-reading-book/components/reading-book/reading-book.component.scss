@@ -1,7 +1,7 @@
 .reading-book {
-  @apply com-bg-white com-m-0 com-p-0 md:com-pt-14;
+  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32;
   .right-column {
-    @apply com-flex com-flex-col com-m-0 md:com-mr-6;
+    @apply com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px];
 
     nb-sidebar {
       &::ng-deep {
@@ -16,6 +16,48 @@
 
       fa-icon {
         @apply com-m-0 com-mr-2;
+      }
+    }
+  }
+
+  .main-column {
+    @apply com-m-0 com-p-0 md:com-pt-[42px];
+    .chapter-name {
+      @apply com-text-[28px] com-font-semibold com-text-blue-600 com-m-0 com-mb-4;
+    }
+
+    nb-card {
+      @apply com-m-0;
+      nb-card-header {
+        @apply com-px-9 com-pt-9 com-pb-0;
+        .image {
+          @apply com-w-[844px] com-h-[470px];
+        }
+      }
+
+      nb-card-body {
+        @apply com-pb-4 com-pt-9 com-px-9;
+        article {
+          .content {
+            ::ng-deep {
+              p,
+              li {
+                font-size: 16px;
+                color: initial;
+                margin: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      @apply com-flex com-justify-between com-m-0 com-mt-5;
+
+      .prev-btn,
+      .next-btn {
+        @apply com-bg-Yankees-Blue com-text-white;
       }
     }
   }
