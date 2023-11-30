@@ -15,16 +15,14 @@
     <div class="container commudle-agencies">
       <div class="two-column-layout thin">
         <div class="right-column">
-          <!-- <nb-sidebar right> -->
-          <commudle-reading-book-sidebar
+          <commudle-reading-book-index
             (setChapter)="setChapter($event)"
             [chapterIndexes]="chapterIndexes"
             [selectedChapterIndex]="selectedChapterIndex"
-          ></commudle-reading-book-sidebar>
+          ></commudle-reading-book-index>
           <button nbButton status="primary" class="download-pdf">
             <fa-icon [icon]="faDownload"></fa-icon>Download PDF
           </button>
-          <!-- </nb-sidebar> -->
         </div>
         <div class="main-column">
           <div class="content">
