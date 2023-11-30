@@ -98,13 +98,15 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
           this.items.push(newItem);
         }
       }),
-    );
-    this.nbMenuService
-      .onItemClick()
-      .pipe(map(({ item }) => item as CustomMenuItem))
-      .subscribe(({ title, slug }) => {
-        this.router.navigate(['communities', this.community.slug, 'p', slug]);
-      });
+    ),
+      this.nbMenuService
+        .onItemClick()
+        .pipe(map(({ item }) => item as CustomMenuItem))
+        .subscribe(({ title, slug }) => {
+          if (slug) {
+            this.router.navigate(['communities', this.community.slug, 'p', slug]);
+          }
+        });
   }
   getNotificationsCount(id) {
     if (this.notificationsStore.communityNotificationsCount$[id] !== undefined) {

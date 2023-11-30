@@ -1,4 +1,16 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import * as moment from 'moment';
 import { ENotificationStatuses } from 'apps/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'apps/shared-models/notification.model';
@@ -15,19 +27,26 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
   templateUrl: './notifications-list.component.html',
   styleUrls: ['./notifications-list.component.scss'],
 })
-export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
+export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @Input() markAllAsRead: boolean;
+  @Input() showLoaderButton = true;
+  @Input() notificationsCount: number;
   @Output() closePopover: EventEmitter<any> = new EventEmitter();
+  @Output() notificationLoaded: EventEmitter<boolean> = new EventEmitter();
+
+  @ViewChild('notificationRef') notificationRef: ElementRef;
 
   currentUser: ICurrentUser;
 
   notifications: INotification[] = [];
 
   page = 1;
-  count = 10;
+  count: number;
   total: number;
   isLoading = false;
   canLoadMore = true;
+  showLoader = true;
+  loadingNotifications = false;
 
   ENotificationStatuses = ENotificationStatuses;
   ENotificationSenderTypes = ENotificationSenderTypes;
@@ -42,11 +61,35 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   ) {}
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
-      this.currentUser = currentUser;
-    });
+    this.count = this.notificationsCount;
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+        this.currentUser = currentUser;
+      }),
+    );
 
-    this.getNotifications();
+    this.notifications = [];
+    this.notificationsStore.resetNotifications();
+    this.subscriptions.push(
+      this.notificationsStore.userNotifications$.subscribe((value) => {
+        if (value.notifications && value.notifications.length > 0) {
+          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
+          this.notificationLoaded.emit(true);
+          this.page = value.page + 1;
+          this.total = value.total;
+          this.loadingNotifications = false;
+          if (this.notifications.length >= this.total) {
+            this.showLoader = false;
+            this.canLoadMore = false;
+          }
+        }
+      }),
+    );
+
+    if (this.notifications.length === 0) {
+      this.getNotifications();
+    }
+
     this.receiveData();
   }
 
@@ -56,8 +99,27 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
 
+  ngAfterViewInit() {
+    const options = {
+      root: null,
+      threshold: 1,
+    };
+    const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
+    observer.observe(this.notificationRef.nativeElement);
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  checkIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && this.showLoaderButton) {
+        this.getNotifications();
+      } else {
+        this.showLoader = false;
+      }
+    });
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
@@ -70,22 +132,14 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   getNotifications() {
-    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
-      this.notificationsStore.getUserNotifications(this.page, this.count);
-      this.isLoading = true;
-      this.subscriptions.push(
-        this.notificationsStore.userNotifications$.subscribe((value) => {
-          if (value.notifications) {
-            this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
-            this.page += 1;
-            this.total = value.total;
-            this.isLoading = false;
-            if (this.notifications.length >= this.total) {
-              this.canLoadMore = false;
-            }
-          }
-        }),
-      );
+    if (!this.total || this.notifications.length < this.total) {
+      if (this.loadingNotifications) {
+        return;
+      } else {
+        this.showLoader = true;
+        this.loadingNotifications = true;
+        this.notificationsStore.getUserNotifications(this.page, this.count);
+      }
     }
   }
 

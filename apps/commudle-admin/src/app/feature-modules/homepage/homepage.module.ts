@@ -48,9 +48,7 @@ import { FeaturedCommunityCardMediumComponent } from '../../app-shared-component
     HomepageExpertsComponent,
     HomepageAboutComponent,
     HomepageDashboardComponent,
-    UserprofileDetailsComponent,
   ],
-  exports: [UserprofileDetailsComponent],
   imports: [
     CommonModule,
     HomepageRoutingModule,
@@ -64,6 +62,7 @@ import { FeaturedCommunityCardMediumComponent } from '../../app-shared-component
     UserProfileComponent,
     FeaturedProjectsComponent,
     PublicHomeListEventsModule,
+    UserprofileDetailsComponent,
     //Nebular
     NbButtonModule,
     NbCardModule,

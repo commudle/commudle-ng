@@ -82,11 +82,11 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
         } else if (event.item.title === 'Share This Message') {
           this.share();
         } else if (event.item.title === 'Pin Message') {
-          // this.pinMessage(this.message);
+          this.pinMessage(this.message);
         } else if (event.item.title === 'Unpin Message') {
-          // this.unpinMessage(this.message);
+          this.unpinMessage(this.message);
         } else if (event.item.title === 'Email to all members') {
-          // this.sendMessageByEmail(this.message.id);
+          this.sendMessageByEmail(this.message.id);
         }
       });
     if (this.authService.getCurrentUser()?.id === this.message.user.id) {

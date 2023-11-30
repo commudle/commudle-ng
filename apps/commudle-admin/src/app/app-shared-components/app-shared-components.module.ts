@@ -30,6 +30,12 @@ import { CustomPageComponent } from './custom-page/custom-page.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
+import { PublicPageLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-layout/public-page-layout.component';
+import { TestimonialCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/testimonial-card/testimonial-card.component';
+import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-stats/public-page-stats.component';
+import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-cta/public-page-cta.component';
+import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
+import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/ap
     LabsFeaturedComponent,
     CustomPageComponent,
     CustomPageFormComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +92,12 @@ import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/ap
     SurveysComponent,
     LabsFeaturedComponent,
     CustomPageComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
   ],
 })
 export class AppSharedComponentsModule {}

@@ -1,25 +1,32 @@
-import { Component, OnDestroy, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
-import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { CommunityChannelsService } from '../../services/community-channels.service';
 import * as _ from 'lodash';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
+import { CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-channel-members',
   templateUrl: './channel-members.component.html',
   styleUrls: ['./channel-members.component.scss'],
 })
-export class ChannelMembersComponent implements OnInit, OnDestroy {
-  @Input() channelOfForum: ICommunityChannel;
+export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() channelOrForum: ICommunityChannel;
   EUserRoles = EUserRoles;
   subscriptions = [];
-  // channel: ICommunityChannel;
   channelUsers: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
   page = 1;
@@ -27,8 +34,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   currentUserIsAdmin = false;
   total = 0;
-  isLoading = true;
+  isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
+  @ViewChild('notificationRef') notificationRef: ElementRef;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -51,15 +59,40 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngAfterViewInit() {
+    const options = {
+      root: null,
+      threshold: 1,
+    };
+    const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
+    observer.observe(this.notificationRef.nativeElement);
+  }
+
+  checkIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        this.getMembers();
+      } else {
+        this.isLoading = false;
+      }
+    });
+  }
+
   // get members
   getMembers() {
-    this.isLoading = true;
-    this.communityChannelsService.membersList(this.channelOfForum.id, this.page, this.count).subscribe((data) => {
-      this.channelUsers = this.channelUsers.concat(data.user_roles_users);
-      this.total = data.total;
-      this.page += 1;
-      this.isLoading = false;
-    });
+    if (!this.total || this.channelUsers.length < this.total) {
+      this.isLoading = true;
+      this.subscriptions.push(
+        this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
+          if (data.user_roles_users) {
+            this.channelUsers = this.channelUsers.concat(data.user_roles_users);
+            this.page = data.page + 1;
+            this.total = data.total;
+            this.isLoading = false;
+          }
+        }),
+      );
+    }
   }
 
   // toggle role
@@ -70,9 +103,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     let isAdmin = false;
     if (this.allUsers[index].user_role.name === 'community_channel_admin') {
       isAdmin = true;
-      alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOfForum.name}?`;
+      alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOrForum.name}?`;
     } else {
-      alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOfForum.name}?`;
+      alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
     }
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe((data) => {
@@ -86,8 +119,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   leaveChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
-    if (window.confirm(`Are you sure you want to exit ${this.channelOfForum.name}?`)) {
-      this.communityChannelsService.exitChannel(this.channelOfForum.id).subscribe((data) => {
+    if (window.confirm(`Are you sure you want to exit ${this.channelOrForum.name}?`)) {
+      this.communityChannelsService.exitChannel(this.channelOrForum.id).subscribe((data) => {
         this.allUsers.splice(index, 1);
         this.toastLogService.successDialog('You have exited this channel');
         window.location.reload();
@@ -99,7 +132,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     // TODO CHANNEL ask for a confirmation in a dialog
     if (
       window.confirm(
-        `Are you sure you want to remove ${this.allUsers[index].user.name} from ${this.channelOfForum.name}?`,
+        `Are you sure you want to remove ${this.allUsers[index].user.name} from ${this.channelOrForum.name}?`,
       )
     ) {
       this.communityChannelsService.removeMembership(this.allUsers[index].id).subscribe((data) => {
