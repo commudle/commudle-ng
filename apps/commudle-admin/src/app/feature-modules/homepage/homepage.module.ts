@@ -33,7 +33,7 @@ import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-ev
 import { UserProfileComponent } from '../../app-shared-components/user-profile/user-profile.component';
 import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
-import { FeaturedCommunityCardMediumComponent } from '../../app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
+import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
 
 @NgModule({
   declarations: [
