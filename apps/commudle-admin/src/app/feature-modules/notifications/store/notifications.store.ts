@@ -140,4 +140,10 @@ export class NotificationsStore {
       return this.notificationsService.markAllAsRead();
     }
   }
+
+  resetNotifications() {
+    this.userNotifications.next([]);
+    this.newUserNotifications.next([]);
+    this.updateUserNotifications.next([]);
+  }
 }
