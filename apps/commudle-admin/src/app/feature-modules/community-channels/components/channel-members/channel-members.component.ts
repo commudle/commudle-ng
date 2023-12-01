@@ -16,7 +16,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { CommunityChannelsService } from '@commudle/shared-services';
+import { CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-channel-members',
@@ -36,12 +36,15 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   total = 0;
   isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
+  channelRoles = {};
+  forumsRoles = {};
   @ViewChild('notificationRef') notificationRef: ElementRef;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private libAuthWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
+    private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,20 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
         this.getMembers();
       }),
     );
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
+        this.channelRoles = data;
+        this.channelRoles[this.channelOrForum.id].find((k) => {
+          this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+        });
+      }),
+    ),
+      this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
+        this.forumsRoles = data;
+        this.forumsRoles[this.channelOrForum.id].find((k) => {
+          this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+        });
+      });
   }
 
   ngOnDestroy() {
