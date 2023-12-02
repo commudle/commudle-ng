@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
@@ -7,6 +7,8 @@ import { Subscription, combineLatest } from 'rxjs';
 import { Location } from '@angular/common';
 import { ToastrService } from '@commudle/shared-services';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import grapesjs from 'grapesjs';
+import plugin from 'grapesjs-preset-newsletter';
 
 @Component({
   selector: 'commudle-newsletter-form',
@@ -24,6 +26,9 @@ export class NewsletterFormComponent implements OnInit {
   icons = {
     faChevronLeft,
   };
+  editor: any = null;
+
+  @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
 
   constructor(
     private newsletterService: NewsletterService,
@@ -36,7 +41,7 @@ export class NewsletterFormComponent implements OnInit {
       title: ['', Validators.required],
       email_subject: ['', Validators.required],
       published: [true],
-      content: ['', Validators.required],
+      content: [''],
       banner_image: [File, Validators.required],
     });
   }
@@ -56,6 +61,8 @@ export class NewsletterFormComponent implements OnInit {
 
         if (this.pageSlug) {
           this.fetchCustomPageDetails();
+        } else {
+          this.initEditor();
         }
       },
     );
@@ -72,12 +79,38 @@ export class NewsletterFormComponent implements OnInit {
             content: data.content,
           });
           if (data.banner_image) this.imagePreview = data.banner_image?.url;
+          this.initEditor();
         }
       }),
     );
   }
 
+  initEditor() {
+    this.editor = grapesjs.init({
+      // Indicate where to init the editor. You can also pass an HTMLElement
+      container: '#gjs',
+      components: this.newsletterForm.get('content').value
+        ? this.newsletterForm.get('content').value
+        : '<h1>Content for newsletter, You can drag drop from right pannel</h1>',
+      // Get the content for the canvas directly from the element
+      // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
+      fromElement: false,
+      // Size of the editor
+      height: '700px',
+      width: 'auto',
+      // Disable the storage manager for the moment
+      storageManager: false,
+      // Avoid any default panel
+      panels: { defaults: [] },
+      plugins: [plugin],
+      pluginsOpts: {
+        plugin: {},
+      },
+    });
+  }
+
   createOrUpdate() {
+    this.newsletterForm.patchValue({ content: this.editor.getHtml() });
     if (this.pageSlug) {
       this.update();
     } else {
