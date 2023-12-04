@@ -3,7 +3,8 @@
 }
 
 nb-card {
-  @apply com-m-0 com-h-[1050px];
+  // com-h-[86vh]
+  @apply com-m-0;
   nb-list {
     nb-list-item {
       @apply com-border-t-0 com-py-3 com-px-4;

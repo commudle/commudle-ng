@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogService } from '@commudle/theme';
+import { faAngleDown, faAngleUp, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { ReadingBookIndexComponent } from 'apps/commudle-admin/src/app/feature-modules/public-reading-book/components/reading-book-index/reading-book-index.component';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { Subscription } from 'rxjs';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'commudle-reading-book',
@@ -17,6 +23,10 @@ export class ReadingBookComponent implements OnInit {
   subscriptions: Subscription[] = [];
   chapterData;
   isLoading = true;
+  faAngleDown = faAngleDown;
+  faAngleUp = faAngleUp;
+  currentUser: ICurrentUser;
+  params = '';
 
   // chapterIndexes = [
   //   {
@@ -106,13 +116,28 @@ export class ReadingBookComponent implements OnInit {
   //   },
   // ];
 
-  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private cmsService: CmsService,
+    private activatedRoute: ActivatedRoute,
+    private dialogService: NbDialogService,
+    private authwatchService: LibAuthwatchService,
+    private errorHandler: LibErrorHandlerService,
+    private router: Router,
+    private http: HttpClient,
+  ) {
     activatedRoute.params.subscribe(() => {
       this.getChaptersData();
     });
   }
 
   ngOnInit(): void {
+    this.authwatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+      // if (!this.currentUser) {
+      //   this.errorHandler.handleError(401, 'Login to apply');
+      // }
+    });
+    // this.params = this.activatedRoute.snapshot.params.slug;
     this.getIndex();
   }
 
@@ -148,15 +173,50 @@ export class ReadingBookComponent implements OnInit {
     );
   }
 
-  changeStep(slug: string) {
-    console.log(slug);
-    // this.scrollToTop();
-    // this.selectedLabStep += count;
-    // this.lastVisitedStepId = null;
-    // this.highlightCodeSnippets();
-    // if (this.selectedLabStep === -1) {
-    //   this.router.navigate(['/labs', this.lab.slug]);
-    //   this.setMeta();
-    // }
+  // changeStep(slug: string) {
+  //   // this.scrollToTop();
+  //   // this.selectedLabStep += count;
+  //   // this.lastVisitedStepId = null;
+  //   // this.highlightCodeSnippets();
+  //   // if (this.selectedLabStep === -1) {
+  //   //   this.router.navigate(['/labs', this.lab.slug]);
+  //   //   this.setMeta();
+  //   // }
+  // }
+
+  showIndex(event) {
+    this.router.navigate(['/reading-book', event.target.value]);
+  }
+
+  downloadPDF() {
+    console.log('called');
+    const proxyUrl = 'https://your-ngrok-tunnel-url/api/pdf';
+    const pdfUrl = 'https://pdfkit.com/docs/v0.9/basic.pdf';
+    this.http.get(proxyUrl + '?url=' + pdfUrl, { responseType: 'blob' }).subscribe((data) => {
+      console.log(data, 'called 2');
+      // this.http.get(pdfUrl, { responseType: 'blob' }).subscribe((data) => {
+      const fileURL = URL.createObjectURL(data);
+      const anchor = document.createElement('a');
+      anchor.href = fileURL;
+      anchor.download = 'sample.pdf';
+      anchor.click();
+      URL.revokeObjectURL(fileURL);
+    });
   }
 }
+
+// downloadPDF() {
+//   const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+//   this.http.get(pdfUrl, { responseType: 'arraybuffer' }).subscribe((data: ArrayBuffer) => {
+//     const blob = new Blob([data], { type: 'application/pdf' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = 'your-filename.pdf';
+//     document.body.appendChild(a);
+//     a.click();
+
+//     document.body.removeChild(a);
+//     window.URL.revokeObjectURL(url);
+//   });
+// }

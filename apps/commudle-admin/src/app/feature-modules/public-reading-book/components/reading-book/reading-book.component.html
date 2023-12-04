@@ -18,9 +18,28 @@
           <div *ngIf="chapterIndexes">
             <commudle-reading-book-index [chapterIndexes]="chapterIndexes"></commudle-reading-book-index>
           </div>
-          <button nbButton status="primary" size="large" class="download-pdf">
-            <fa-icon [icon]="faDownload"></fa-icon>Download PDF
-          </button>
+          <div class="pdf">
+            <button
+              *ngIf="currentUser"
+              nbButton
+              status="primary"
+              size="large"
+              (click)="downloadPDF()"
+              class="download-pdf mobile-hidden"
+            >
+              <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+            </button>
+            <button
+              *ngIf="!currentUser"
+              nbButton
+              status="primary"
+              size="large"
+              class="download-pdf mobile-hidden"
+              [routerLink]="'/login'"
+            >
+              Login to Read or Download
+            </button>
+          </div>
         </div>
         <div class="main-column">
           <div class="content">
@@ -28,14 +47,13 @@
               <h1 class="chapter-name">{{ chapterData.chapter_name }}</h1>
               <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
               <nb-card>
-                <nb-card-header>
+                <nb-card-header *ngIf="chapterData.header_image">
                   <div class="image">
-                    <h1>Image</h1>
-                    <!-- <img
+                    <img
                       alt="{{ chapterData.chapter_name }}"
-                      [src]="imageUrl(chapterData.headerImage).url()"
+                      [src]="imageUrl(chapterData.header_image).url()"
                       title="{{ chapterData.chapter_name }}"
-                    /> -->
+                    />
                   </div>
                 </nb-card-header>
                 <nb-card-body *ngIf="richText">
@@ -46,42 +64,55 @@
                 </nb-card-body>
               </nb-card>
             </div>
+            <div class="fixed-btn">
+              <button
+                nbButton
+                status="primary"
+                size="large"
+                class="download-pdf desktop-hidden"
+                (click)="downloadPDF()"
+              >
+                <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+              </button>
+            </div>
             <div class="footer">
-              <button
-                nbButton
-                size="large"
-                [routerLink]="
-                  chapterData?.link_to_previous_page ? ['/reading-book', chapterData.link_to_previous_page] : null
-                "
-                [disabled]="!chapterData?.link_to_previous_page"
-                class="prev-btn"
-              >
-                <span>
-                  <nb-icon icon="arrow-back"></nb-icon>
-                  Prev
-                </span>
-              </button>
-              <!-- <button
-            (click)="changeStep(-1)"
-            *ngIf="selectedLabStep !== -1"
-            [routerLink]="selectedLabStep === 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]"
-            nbButton
-          > -->
-              <button
-                nbButton
-                size="large"
-                [routerLink]="chapterData?.link_to_next_page ? ['/reading-book', chapterData.link_to_next_page] : null"
-                [disabled]="!chapterData?.link_to_next_page"
-                class="next-btn"
-              >
-                <span>
-                  Next
-                  <nb-icon icon="arrow-forward"></nb-icon>
-                </span>
-              </button>
-              <!-- (click)="changeStep(1)"
-          *ngIf="selectedLabStep < lab.lab_steps.length - 1"
-          [routerLink]="['steps', this.lab.lab_steps[selectedLabStep + 1].id]" -->
+              <div class="actions">
+                <button
+                  nbButton
+                  size="large"
+                  [routerLink]="
+                    chapterData?.link_to_previous_page ? ['/reading-book', chapterData.link_to_previous_page] : null
+                  "
+                  [disabled]="!chapterData?.link_to_previous_page"
+                  class="prev-btn"
+                >
+                  <span>
+                    <nb-icon icon="arrow-back"></nb-icon>
+                    Prev
+                  </span>
+                </button>
+                <div class="desktop-hidden">
+                  <select (change)="showIndex($event)">
+                    <option *ngFor="let index of chapterIndexes" [value]="index.slug.current">
+                      {{ index.chapter_name }}
+                    </option>
+                  </select>
+                </div>
+                <button
+                  nbButton
+                  size="large"
+                  [routerLink]="
+                    chapterData?.link_to_next_page ? ['/reading-book', chapterData.link_to_next_page] : null
+                  "
+                  [disabled]="!chapterData?.link_to_next_page"
+                  class="next-btn"
+                >
+                  <span>
+                    Next
+                    <nb-icon icon="arrow-forward"></nb-icon>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

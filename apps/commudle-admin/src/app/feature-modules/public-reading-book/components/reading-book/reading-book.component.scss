@@ -1,7 +1,7 @@
 .reading-book {
-  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32;
+  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32 com-pb-8 md:com-px-0 com-px-3;
   .right-column {
-    @apply com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px];
+    @apply md:com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px] com-hidden;
 
     nb-sidebar {
       &::ng-deep {
@@ -23,20 +23,24 @@
   .main-column {
     @apply com-m-0 com-p-0 md:com-pt-[42px];
     .chapter-name {
-      @apply com-text-[28px] com-font-semibold com-text-blue-600 com-m-0 com-mb-4;
+      @apply md:com-text-[28px] com-text-xl com-font-semibold com-text-blue-600 com-m-0 md:com-mt-0 com-my-4;
     }
 
     nb-card {
       @apply com-m-0;
       nb-card-header {
-        @apply com-px-9 com-pt-9 com-pb-0;
+        @apply md:com-px-9 md:com-pt-9 md:com-pb-0 com-p-0;
         .image {
-          @apply com-w-[844px] com-h-[470px];
+          @apply md:com-w-[994px] md:com-h-auto com-h-[190px] com-w-full;
+
+          img {
+            @apply com-h-auto com-w-full com-object-cover;
+          }
         }
       }
 
       nb-card-body {
-        @apply com-pb-4 com-pt-9 com-px-9;
+        @apply md:com-pb-4 md:com-pt-6 md:com-px-9 com-px-3 com-pt-4 com-pb-0;
         article {
           .content {
             ::ng-deep {
@@ -53,12 +57,40 @@
     }
 
     .footer {
-      @apply com-flex com-justify-between com-m-0 com-mt-5;
+      @apply com-m-0 com-mt-5 com-fixed md:com-relative com-bottom-20 md:com-bottom-0;
+      .actions {
+        @apply com-flex com-justify-between com-w-full;
+      }
 
       .prev-btn,
       .next-btn {
-        @apply com-bg-Yankees-Blue com-text-white;
+        @apply com-bg-Yankees-Blue com-text-white com-flex-shrink-0;
+        flex: 0 0 20%;
       }
+
+      // select {
+      //   @apply com-flex-1;
+      // }
+    }
+  }
+
+  .mobile-hidden {
+    @apply md:com-flex com-hidden;
+  }
+
+  .desktop-hidden {
+    @apply md:com-hidden com-flex;
+  }
+
+  .fixed-btn {
+    @apply md:com-relative md:com-bottom-0 com-fixed com-bottom-36 md:com-w-auto com-w-full;
+  }
+
+  .chapters-btn {
+    @apply com-border com-border-Yankees-Blue com-border-solid md:com-hidden com-flex;
+
+    fa-icon {
+      @apply com-m-0 com-ml-2;
     }
   }
 }

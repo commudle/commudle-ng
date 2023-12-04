@@ -6,6 +6,7 @@ import { NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbSidebarModu
 import { ReadingBookIndexComponent } from './components/reading-book-index/reading-book-index.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
+import { SharedPipesModule } from '../../../../../shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [ReadingBookComponent, ReadingBookIndexComponent],
@@ -14,13 +15,13 @@ import { SharedComponentsModule } from '../../../../../shared-components/shared-
     PublicReadingBookRoutingModule,
     FontAwesomeModule,
     SharedComponentsModule,
-
     //Nebular
     NbButtonModule,
     NbIconModule,
     NbSidebarModule,
     NbCardModule,
     NbListModule,
+    SharedPipesModule,
   ],
 })
 export class PublicReadingBookModule {}
