@@ -2,7 +2,7 @@
 <nb-card>
   <nb-list>
     <nb-list-item
-      *ngFor="let chapterIndex of chapterIndexes | orderBy : ['chapter_number'] : ['asc']"
+      *ngFor="let chapterIndex of chapterIndexes"
       [routerLink]="['/reading-book', chapterIndex.slug.current]"
       class="clickable"
     >

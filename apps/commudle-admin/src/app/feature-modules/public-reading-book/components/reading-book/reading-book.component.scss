@@ -31,11 +31,14 @@
       nb-card-header {
         @apply md:com-px-9 md:com-pt-9 md:com-pb-0 com-p-0;
         .image {
-          @apply md:com-w-[994px] md:com-h-auto com-h-[190px] com-w-full;
+          @apply md:com-w-[994px] com-h-auto com-w-full;
 
           img {
             @apply com-h-auto com-w-full com-object-cover;
           }
+        }
+
+        .fun-facts {
         }
       }
 
@@ -50,6 +53,12 @@
                 color: initial;
                 margin: 0px;
               }
+
+              figure {
+                img {
+                  @apply com-w-full;
+                }
+              }
             }
           }
         }
@@ -59,7 +68,8 @@
     .footer {
       @apply com-m-0 com-mt-5 com-fixed md:com-relative com-bottom-20 md:com-bottom-0;
       .actions {
-        @apply com-flex com-justify-between com-w-full;
+        @apply md:com-flex com-grid md:com-justify-between com-grid-cols-3 md:com-gap-0 com-gap-3;
+        // @apply   com-w-full;
       }
 
       .prev-btn,
@@ -68,9 +78,9 @@
         flex: 0 0 20%;
       }
 
-      // select {
-      //   @apply com-flex-1;
-      // }
+      select {
+        @apply com-w-full;
+      }
     }
   }
 
@@ -83,14 +93,18 @@
   }
 
   .fixed-btn {
-    @apply md:com-relative md:com-bottom-0 com-fixed com-bottom-36 md:com-w-auto com-w-full;
-  }
-
-  .chapters-btn {
-    @apply com-border com-border-Yankees-Blue com-border-solid md:com-hidden com-flex;
+    @apply md:com-relative md:com-bottom-0 com-fixed com-bottom-36 com-w-[calc(100%-25px)];
 
     fa-icon {
-      @apply com-m-0 com-ml-2;
+      @apply com-m-0 com-mr-2;
     }
   }
+
+  // .chapters-btn {
+  //   @apply com-border com-border-Yankees-Blue com-border-solid md:com-hidden com-flex;
+
+  //   fa-icon {
+  //     @apply com-m-0 com-ml-2;
+  //   }
+  // }
 }

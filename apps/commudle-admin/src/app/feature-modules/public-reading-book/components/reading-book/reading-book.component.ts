@@ -9,6 +9,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'commudle-reading-book',
@@ -19,7 +20,8 @@ export class ReadingBookComponent implements OnInit {
   faDownload = faDownload;
   selectedChapterIndex;
   chapterIndexes;
-  richText: string;
+  richTextContent: string;
+  richTextFunFact: string;
   subscriptions: Subscription[] = [];
   chapterData;
   isLoading = true;
@@ -124,6 +126,7 @@ export class ReadingBookComponent implements OnInit {
     private errorHandler: LibErrorHandlerService,
     private router: Router,
     private http: HttpClient,
+    private sanitizer: DomSanitizer,
   ) {
     activatedRoute.params.subscribe(() => {
       this.getChaptersData();
@@ -133,9 +136,6 @@ export class ReadingBookComponent implements OnInit {
   ngOnInit(): void {
     this.authwatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
-      // if (!this.currentUser) {
-      //   this.errorHandler.handleError(401, 'Login to apply');
-      // }
     });
     // this.params = this.activatedRoute.snapshot.params.slug;
     this.getIndex();
@@ -151,7 +151,9 @@ export class ReadingBookComponent implements OnInit {
   }
 
   getIndex() {
-    this.cmsService.getDataByType('book').subscribe((data) => {
+    const fields = '_id, slug, chapter_name, chapter_number';
+    const order = 'chapter_number asc';
+    this.cmsService.getDataByTypeFieldOrder('book', fields, order).subscribe((data) => {
       if (data) {
         this.chapterIndexes = data;
       }
@@ -165,7 +167,10 @@ export class ReadingBookComponent implements OnInit {
       this.cmsService.getDataBySlug(slug).subscribe((value) => {
         if (value) {
           this.chapterData = value;
-          this.richText = this.cmsService.getHtmlFromBlock(value);
+          console.log(value);
+          this.richTextContent = this.cmsService.getHtmlFromBlock(value);
+          // this.richTextFunFact = this.cmsService.getHtmlFromBlock(value);
+          // console.log(this.richTextFunFact, 'hello');
         }
         this.isLoading = false;
         // this.setMeta();
@@ -173,50 +178,77 @@ export class ReadingBookComponent implements OnInit {
     );
   }
 
-  // changeStep(slug: string) {
-  //   // this.scrollToTop();
-  //   // this.selectedLabStep += count;
-  //   // this.lastVisitedStepId = null;
-  //   // this.highlightCodeSnippets();
-  //   // if (this.selectedLabStep === -1) {
-  //   //   this.router.navigate(['/labs', this.lab.slug]);
-  //   //   this.setMeta();
-  //   // }
-  // }
+  redirectToLogin() {
+    if (!this.currentUser) {
+      this.errorHandler.handleError(401, 'Login to apply');
+    }
+  }
 
   showIndex(event) {
     this.router.navigate(['/reading-book', event.target.value]);
   }
 
   downloadPDF() {
-    console.log('called');
-    const proxyUrl = 'https://your-ngrok-tunnel-url/api/pdf';
-    const pdfUrl = 'https://pdfkit.com/docs/v0.9/basic.pdf';
-    this.http.get(proxyUrl + '?url=' + pdfUrl, { responseType: 'blob' }).subscribe((data) => {
-      console.log(data, 'called 2');
-      // this.http.get(pdfUrl, { responseType: 'blob' }).subscribe((data) => {
-      const fileURL = URL.createObjectURL(data);
-      const anchor = document.createElement('a');
-      anchor.href = fileURL;
-      anchor.download = 'sample.pdf';
-      anchor.click();
-      URL.revokeObjectURL(fileURL);
-    });
+    const pdfUrl = this.getPdfUrl();
+    const link = document.createElement('a');
+    link.href = pdfUrl.toString();
+    link.download = 'dummy.pdf';
+    // console.log(link);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
+
+  getPdfUrl(): SafeUrl {
+    const pdfUrl = 'https://www.africau.edu/images/default/sample.pdf';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
+    // return pdfUrl;
+  }
+
+  // downloadPDF() {
+  //   console.log('called');
+  //   const pdfUrl = 'https://pdfkit.com/docs/v0.9/basic.pdf';
+  //   this.http.get(pdfUrl, { responseType: 'blob' }).subscribe((data) => {
+  //     console.log(data, 'called 2');
+  //     const fileURL = URL.createObjectURL(data);
+  //     const anchor = document.createElement('a');
+  //     anchor.href = fileURL;
+  //     anchor.download = 'sample.pdf';
+  //     anchor.click();
+  //     URL.revokeObjectURL(fileURL);
+  //   });
+  // }
+
+  // downloadPDF() {
+  //   const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+  //   this.http.get(pdfUrl, { responseType: 'arraybuffer' }).subscribe((data: ArrayBuffer) => {
+  //     const blob = new Blob([data], { type: 'application/pdf' });
+  //     const url = window.URL.createObjectURL(blob);
+  //     const a = document.createElement('a');
+  //     a.href = url;
+  //     a.download = 'your-filename.pdf';
+  //     document.body.appendChild(a);
+  //     a.click();
+
+  //     document.body.removeChild(a);
+  //     window.URL.revokeObjectURL(url);
+  //   });
+  // }
+
+  // downloadPDF() {
+  //   const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+  //   this.http.get(pdfUrl, { responseType: 'arraybuffer' }).subscribe((data: ArrayBuffer) => {
+  //     const uint8Array = new Uint8Array(data); // Convert ArrayBuffer to Uint8Array
+  //     const blob = new Blob([uint8Array], { type: 'application/pdf' });
+  //     const url = window.URL.createObjectURL(blob);
+  //     const a = document.createElement('a');
+  //     a.href = url;
+  //     a.download = 'your-filename.pdf';
+  //     document.body.appendChild(a);
+  //     a.click();
+
+  //     document.body.removeChild(a);
+  //     window.URL.revokeObjectURL(url);
+  //   });
+  // }
 }
-
-// downloadPDF() {
-//   const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-//   this.http.get(pdfUrl, { responseType: 'arraybuffer' }).subscribe((data: ArrayBuffer) => {
-//     const blob = new Blob([data], { type: 'application/pdf' });
-//     const url = window.URL.createObjectURL(blob);
-//     const a = document.createElement('a');
-//     a.href = url;
-//     a.download = 'your-filename.pdf';
-//     document.body.appendChild(a);
-//     a.click();
-
-//     document.body.removeChild(a);
-//     window.URL.revokeObjectURL(url);
-//   });
-// }

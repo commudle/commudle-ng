@@ -19,6 +19,7 @@
             <commudle-reading-book-index [chapterIndexes]="chapterIndexes"></commudle-reading-book-index>
           </div>
           <div class="pdf">
+            <!-- <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" download> -->
             <button
               *ngIf="currentUser"
               nbButton
@@ -29,15 +30,16 @@
             >
               <fa-icon [icon]="faDownload"></fa-icon>Download PDF
             </button>
+            <!-- </a> -->
             <button
               *ngIf="!currentUser"
               nbButton
               status="primary"
               size="large"
               class="download-pdf mobile-hidden"
-              [routerLink]="'/login'"
+              (click)="redirectToLogin()"
             >
-              Login to Read or Download
+              <fa-icon [icon]="faDownload"></fa-icon>Login to Download
             </button>
           </div>
         </div>
@@ -47,33 +49,33 @@
               <h1 class="chapter-name">{{ chapterData.chapter_name }}</h1>
               <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
               <nb-card>
-                <nb-card-header *ngIf="chapterData.header_image">
-                  <div class="image">
+                <nb-card-header *ngIf="chapterData.header_image || chapterData.fun_facts">
+                  <div *ngIf="chapterData.header_image" class="image">
                     <img
                       alt="{{ chapterData.chapter_name }}"
                       [src]="imageUrl(chapterData.header_image).url()"
                       title="{{ chapterData.chapter_name }}"
                     />
                   </div>
+                  <div *ngIf="chapterData.fun_facts" class="fun-facts"></div>
                 </nb-card-header>
-                <nb-card-body *ngIf="richText">
+                <nb-card-body *ngIf="richTextContent">
                   <article>
                     <!-- !com-prose !com-prose-sm  -->
-                    <div [innerHTML]="richText" class="!com-max-w-full content"></div>
+                    <div [innerHTML]="richTextContent" class="!com-max-w-full content"></div>
                   </article>
                 </nb-card-body>
               </nb-card>
             </div>
             <div class="fixed-btn">
-              <button
-                nbButton
-                status="primary"
-                size="large"
-                class="download-pdf desktop-hidden"
-                (click)="downloadPDF()"
+              <a
+                href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                download="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
               >
-                <fa-icon [icon]="faDownload"></fa-icon>Download PDF
-              </button>
+                <button nbButton status="primary" size="large" class="download-pdf desktop-hidden" fullWidth>
+                  <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+                </button>
+              </a>
             </div>
             <div class="footer">
               <div class="actions">
