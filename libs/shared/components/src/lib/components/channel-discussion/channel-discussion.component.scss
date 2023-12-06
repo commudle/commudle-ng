@@ -3,7 +3,7 @@
 }
 
 .discussion-container {
-  @apply com-h-full com-grid com-grid-rows-1;
+  @apply com-grid com-grid-rows-1;
 
   .messages-list {
     @apply com-overflow-auto com-flex com-flex-col-reverse com-gap-3;
@@ -20,4 +20,8 @@ commudle-community-forum-message:not(:last-child) {
 
 .messages {
   @apply com-flex com-flex-col-reverse;
+}
+
+.pinned-message {
+  @apply com-shadow-sm com-h-20 com-bg-white com-overflow-y-auto;
 }

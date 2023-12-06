@@ -109,7 +109,5 @@ export class BookPageComponent implements OnInit {
     'Commudle is GDPR compliant and ISO 27001 certified. We take data privacy very seriously and understand its importance for businesses and have placed consents at multiple points on the platform so that the users know how their data will be processed and who will have access to it.',
   ];
 
-  ngOnInit(): void {
-    console.log(this.feature1.heading);
-  }
+  ngOnInit(): void {}
 }

@@ -13,7 +13,7 @@
 <div *ngIf="discussion && !isLoading" class="com-ml-2">
   <commudle-channel-discussion
     [discussionId]="discussion.id"
-    [channelOfForum]="selectedChannel"
+    [channelOrForum]="selectedChannel"
     discussionParent="channels"
     discussionType="channel"
   ></commudle-channel-discussion>
@@ -23,5 +23,6 @@
   <app-channel-members
     (closeMembersList)="toggleMembersList()"
     [channelOrForum]="selectedChannel"
+    discussionType="channel"
   ></app-channel-members>
 </div>

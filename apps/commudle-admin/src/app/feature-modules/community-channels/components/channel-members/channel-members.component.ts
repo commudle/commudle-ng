@@ -16,7 +16,7 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { CommunityChannelsService } from '@commudle/shared-services';
+import { CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-channel-members',
@@ -25,6 +25,7 @@ import { CommunityChannelsService } from '@commudle/shared-services';
 })
 export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() channelOrForum: ICommunityChannel;
+  @Input() discussionType;
   EUserRoles = EUserRoles;
   subscriptions = [];
   channelUsers: IUserRolesUser[] = [];
@@ -36,12 +37,15 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   total = 0;
   isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
+  channelRoles = {};
+  forumsRoles = {};
   @ViewChild('notificationRef') notificationRef: ElementRef;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private libAuthWatchService: LibAuthwatchService,
     private toastLogService: LibToastLogService,
+    private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,25 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
         this.getMembers();
       }),
     );
+    if (this.discussionType === 'channel') {
+      this.subscriptions.push(
+        this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
+          this.channelRoles = data;
+          this.channelRoles[this.channelOrForum.id].find((k) => {
+            this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+          });
+        }),
+      );
+    } else if (this.discussionType === 'forum') {
+      this.subscriptions.push(
+        this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
+          this.forumsRoles = data;
+          this.forumsRoles[this.channelOrForum.id].find((k) => {
+            this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+          });
+        }),
+      );
+    }
   }
 
   ngOnDestroy() {
@@ -98,19 +121,19 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   // toggle role
   toggleAdmin(index) {
     // send request to toggle
-    const username = this.allUsers[index].user.name;
+    const username = this.channelUsers[index].user.name;
     let alertMessage;
     let isAdmin = false;
-    if (this.allUsers[index].user_role.name === 'community_channel_admin') {
+    if (this.channelUsers[index].user_role.name === 'community_channel_admin') {
       isAdmin = true;
       alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOrForum.name}?`;
     } else {
       alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
     }
     if (window.confirm(alertMessage)) {
-      this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe((data) => {
-        this.allUsers[index] = data;
-        if (isAdmin && this.allUsers[index].id === this.currentUser.id) {
+      this.communityChannelsService.toggleAdmin(this.channelUsers[index].id).subscribe((data) => {
+        this.channelUsers[index] = data;
+        if (isAdmin && this.channelUsers[index].id === this.currentUser.id) {
           window.location.reload();
         }
       });
@@ -132,11 +155,11 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     // TODO CHANNEL ask for a confirmation in a dialog
     if (
       window.confirm(
-        `Are you sure you want to remove ${this.allUsers[index].user.name} from ${this.channelOrForum.name}?`,
+        `Are you sure you want to remove ${this.channelUsers[index].user.name} from ${this.channelOrForum.name}?`,
       )
     ) {
-      this.communityChannelsService.removeMembership(this.allUsers[index].id).subscribe((data) => {
-        this.allUsers.splice(index, 1);
+      this.communityChannelsService.removeMembership(this.channelUsers[index].id).subscribe((data) => {
+        this.channelUsers.splice(index, 1);
         this.toastLogService.successDialog('Removed');
       });
     }
