@@ -88,21 +88,26 @@
     Quickly search your favorite topics, labs by industry experts or find an event you missed
   </nb-option>
   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
-  <nb-option *ngIf="total > 0 && !searchLoader">
+  <nb-option *ngIf="total > 0 && !searchLoader" class="search-box-results">
     <div class="results">
-      <div *ngIf="Users.length > 0" class="container">
+      <div *ngIf="Users && Users.length > 0" class="container">
         <p>Users</p>
         <div *ngFor="let user of Users">
-          <a class="navigate">
-            <img [src]="user?.avatar" alt="{{ user?.name }}" class="user-image" />
-            <p class="name">{{ user?.name }}</p>
+          <a class="navigate" [routerLink]="['/users', user.username]">
+            <img [src]="user.avatar" alt="{{ user.name }}" class="user-image" />
+            <p class="name">{{ user.name }}</p>
             <p class="designation"><span> · </span> {{ user.designation ? user.designation : '--' }}</p>
           </a>
         </div>
       </div>
-      <div *ngIf="Community.length > 0">
+      <div *ngIf="Community && Community.length > 0" class="container">
         <p>Community</p>
-        <div *ngFor="let community of Community">{{ community?.name }}</div>
+        <div *ngFor="let community of Community">
+          <a class="navigate" [routerLink]="['/communities', community.slug]">
+            <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
+            <p class="name">{{ community.name }}</p>
+          </a>
+        </div>
       </div>
       <div *ngIf="Lab.length > 0">
         <p>Lab</p>

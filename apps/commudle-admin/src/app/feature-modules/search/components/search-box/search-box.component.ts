@@ -226,6 +226,7 @@ export class SearchBoxComponent implements OnInit {
         // this.searchLoader = false;
         return result;
       });
+      console.log(this.Community);
       this.total = value.total;
       this.searchLoader = false;
       // this.isLoading = false;
