@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IReadingBookModel } from 'apps/shared-models/reading_book.model';
 
 @Component({
   selector: 'commudle-reading-book-index',
@@ -7,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./reading-book-index.component.scss'],
 })
 export class ReadingBookIndexComponent implements OnInit {
-  @Input() chapterIndexes;
+  @Input() chapterIndexes: IReadingBookModel[] = [];
   params = '';
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
@@ -19,7 +20,7 @@ export class ReadingBookIndexComponent implements OnInit {
 
     if (this.chapterIndexes && this.chapterIndexes.length > 0) {
       this.params = this.chapterIndexes[0].slug.current;
-      this.router.navigate(['/reading-book', this.chapterIndexes[0].slug.current]);
+      this.router.navigate(['/developer-community-blueprint', this.chapterIndexes[0].slug.current]);
     }
   }
 }

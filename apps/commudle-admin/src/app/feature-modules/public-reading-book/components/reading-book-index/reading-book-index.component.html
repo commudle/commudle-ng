@@ -3,7 +3,7 @@
   <nb-list>
     <nb-list-item
       *ngFor="let chapterIndex of chapterIndexes"
-      [routerLink]="['/reading-book', chapterIndex.slug.current]"
+      [routerLink]="['/developer-community-blueprint', chapterIndex.slug.current]"
       class="clickable"
     >
       <h2 [ngClass]="params === chapterIndex.slug.current ? 'active' : 'title'">

@@ -37,9 +37,6 @@
             @apply com-h-auto com-w-full com-object-cover;
           }
         }
-
-        .fun-facts {
-        }
       }
 
       nb-card-body {
@@ -58,6 +55,30 @@
                 img {
                   @apply com-w-full;
                 }
+              }
+            }
+          }
+        }
+
+        .fun-facts {
+          @apply com-bg-yellow-100 com-p-2 com-m-0 com-mt-2;
+          div {
+            @apply com-text-base com-text-black com-italic com-font-light;
+            ::ng-deep {
+              p {
+                @apply com-m-0;
+              }
+            }
+          }
+        }
+
+        .how-commudle-helps {
+          @apply com-bg-blue-100 com-p-2 com-m-0 com-mt-2;
+          div {
+            @apply com-text-base com-text-black com-font-light;
+            ::ng-deep {
+              p {
+                @apply com-m-0;
               }
             }
           }
