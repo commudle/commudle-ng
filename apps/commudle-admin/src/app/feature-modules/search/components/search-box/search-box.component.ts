@@ -103,6 +103,7 @@ import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/searc
 import { ISearch, ISearchResult } from 'apps/shared-models/search.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Location } from '@angular/common';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'app-search-box',
@@ -129,6 +130,7 @@ export class SearchBoxComponent implements OnInit {
   Build = [];
   Lab = [];
   Event = [];
+  staticAssets = staticAssets;
 
   constructor(
     private searchService: SearchService,
@@ -226,7 +228,7 @@ export class SearchBoxComponent implements OnInit {
         // this.searchLoader = false;
         return result;
       });
-      console.log(this.Community);
+      console.log(this.Event);
       this.total = value.total;
       this.searchLoader = false;
       // this.isLoading = false;

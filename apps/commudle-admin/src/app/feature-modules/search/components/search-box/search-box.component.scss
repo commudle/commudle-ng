@@ -53,7 +53,7 @@ nb-option {
   .results {
     @apply com-w-full;
     .container {
-      @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray com-p-0 com-pt-2;
+      @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray com-m-0 com-mt-3;
 
       &:first-child {
         border-top: none;
@@ -61,28 +61,33 @@ nb-option {
     }
 
     p {
-      @apply com-m-0 com-p-0 com-py-1 com-text-sm com-font-medium com-text-gray-500;
+      @apply com-m-0 com-p-0 com-pt-2 com-pb-1 com-text-sm com-font-medium com-text-gray-500;
     }
 
     .navigate {
       @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-mt-2;
 
-      .user-image {
-        // com-object-contain
-        @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3;
+      .user-image,
+      .lab-image {
+        @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-object-cover;
       }
 
       .name {
         @apply com-m-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
       }
 
-      .designation {
-        @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1;
+      .designation,
+      .member-count {
+        @apply com-m-0 com-text-xs com-font-normal com-text-Quartz com-line-clamp-1;
         text-wrap: nowrap;
 
-        span {
+        .dot {
           @apply com-text-xs com-font-medium com-text-black;
         }
+      }
+
+      .community-image {
+        @apply com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3;
       }
     }
   }
