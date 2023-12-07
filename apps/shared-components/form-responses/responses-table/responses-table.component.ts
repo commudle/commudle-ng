@@ -100,10 +100,18 @@ export class ResponsesTableComponent implements OnInit {
   }
 
   getQuestionResponse(userResponses, questionId) {
-    const userQuestionResponses = userResponses.filter((k) => k.question_id === questionId);
+    let userQuestionResponses;
+    if (userResponses) {
+      userQuestionResponses = userResponses.filter((k) => k.question_id === questionId);
+    } else {
+      userQuestionResponses = '';
+    }
+
     let responses = '';
-    for (let resp of userQuestionResponses) {
-      responses += `${resp.response_text} \n`;
+    if (userQuestionResponses) {
+      for (let resp of userQuestionResponses) {
+        responses += `${resp.response_text} \n`;
+      }
     }
 
     return userQuestionResponses.length === 0 ? '..' : responses;
