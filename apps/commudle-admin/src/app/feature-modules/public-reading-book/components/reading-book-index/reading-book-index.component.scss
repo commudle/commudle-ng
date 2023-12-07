@@ -11,16 +11,12 @@ nb-card {
         @apply com-border-b-0;
       }
 
-      h2 {
-        @apply com-m-0 com-text-lg;
+      a {
+        @apply com-no-underline com-text-Yankees-Blue com-text-lg com-font-normal;
       }
 
       .active {
-        @apply com-text-primary-500 com-font-semibold;
-      }
-
-      .title {
-        @apply com-font-normal com-text-Yankees-Blue;
+        @apply com-text-primary-500;
       }
     }
   }

@@ -3,14 +3,6 @@
   .right-column {
     @apply md:com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px] com-hidden;
 
-    nb-sidebar {
-      &::ng-deep {
-        .scrollable {
-          @apply com-p-0;
-        }
-      }
-    }
-
     .download-pdf {
       @apply com-m-0 com-mt-5 com-w-full;
 

@@ -5,8 +5,8 @@ import { ReadingBookComponent } from 'apps/commudle-admin/src/app/feature-module
 import { NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbSidebarModule } from '@commudle/theme';
 import { ReadingBookIndexComponent } from './components/reading-book-index/reading-book-index.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
-import { SharedPipesModule } from '../../../../../shared-pipes/pipes.module';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [ReadingBookComponent, ReadingBookIndexComponent],
