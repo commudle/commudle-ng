@@ -93,6 +93,4 @@ export const staticAssets = {
 
   devrel:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK1diQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--eb644bdd5599f5dc3cfeedd07eadd43cebbd7a65/Pair%20programming-bro.svg',
-
-  pdf: '',
 };

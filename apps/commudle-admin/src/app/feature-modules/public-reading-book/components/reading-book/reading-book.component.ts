@@ -44,7 +44,6 @@ export class ReadingBookComponent implements OnInit {
     this.authwatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
     });
-    // this.params = this.activatedRoute.snapshot.params.slug;
     this.getIndex();
   }
 
@@ -53,7 +52,6 @@ export class ReadingBookComponent implements OnInit {
   }
 
   imageUrl(source: any) {
-    // this.imageLoading = false;
     return this.cmsService.getImageUrl(source);
   }
 
@@ -79,7 +77,6 @@ export class ReadingBookComponent implements OnInit {
           this.richTextCommudleHelps = this.cmsService.getHtmlFromBlock(value, 'how_commudle_helps');
         }
         this.isLoading = false;
-        // this.setMeta();
       }),
     );
   }

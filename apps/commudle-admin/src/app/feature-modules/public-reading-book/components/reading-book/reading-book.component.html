@@ -1,15 +1,3 @@
-<!-- <ng-template #dialog let-data let-ref="dialogRef">
-    <nb-card class="image-popup">
-      <nb-card-header style="align-self: flex-end">
-        <nb-icon (click)="ref.close()" icon="close"></nb-icon>
-      </nb-card-header>
-      <nb-card-body>
-        <img [src]="src" [alt]="lab.name" class="Image" />
-      </nb-card-body>
-    </nb-card>
-  </ng-template> -->
-
-<!--  -->
 <div class="reading-book">
   <div class="base-layout">
     <div class="container commudle-agencies">
@@ -40,7 +28,6 @@
           <div class="content">
             <div *ngIf="chapterData">
               <h1 class="chapter-name">{{ chapterData.chapter_name }}</h1>
-              <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
               <nb-card>
                 <nb-card-header *ngIf="chapterData.header_image">
                   <div *ngIf="chapterData.header_image" class="image">
@@ -53,7 +40,6 @@
                 </nb-card-header>
                 <nb-card-body *ngIf="richTextContent">
                   <article>
-                    <!-- !com-prose !com-prose-sm  -->
                     <div [innerHTML]="richTextContent" class="!com-max-w-full content"></div>
                   </article>
                   <div *ngIf="chapterData.fun_facts" class="fun-facts">

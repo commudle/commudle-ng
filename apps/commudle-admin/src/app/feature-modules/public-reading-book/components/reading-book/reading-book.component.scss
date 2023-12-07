@@ -90,7 +90,6 @@
       @apply com-m-0 com-mt-5 com-fixed md:com-relative com-bottom-20 md:com-bottom-0;
       .actions {
         @apply md:com-flex com-grid md:com-justify-between com-grid-cols-3 md:com-gap-0 com-gap-3;
-        // @apply   com-w-full;
       }
 
       .prev-btn,
@@ -120,12 +119,4 @@
       @apply com-m-0 com-mr-2;
     }
   }
-
-  // .chapters-btn {
-  //   @apply com-border com-border-Yankees-Blue com-border-solid md:com-hidden com-flex;
-
-  //   fa-icon {
-  //     @apply com-m-0 com-ml-2;
-  //   }
-  // }
 }
