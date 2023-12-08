@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAngleDown, faAngleUp, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { CmsService } from 'apps/shared-services/cms.service';
@@ -6,22 +6,22 @@ import { Subscription } from 'rxjs';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
-import { IReadingBookModel } from 'apps/shared-models/reading_book.model';
+import { IReadingBook } from 'apps/shared-models/reading_book.model';
 
 @Component({
   selector: 'commudle-reading-book',
   templateUrl: './reading-book.component.html',
   styleUrls: ['./reading-book.component.scss'],
 })
-export class ReadingBookComponent implements OnInit {
+export class ReadingBookComponent implements OnInit, OnDestroy {
   faDownload = faDownload;
   selectedChapterIndex;
-  chapterIndexes;
+  chapterIndexes: IReadingBook[];
   richTextContent: string;
   richTextFunFact: string;
   richTextCommudleHelps: string;
   subscriptions: Subscription[] = [];
-  chapterData: IReadingBookModel;
+  chapterData: IReadingBook;
   isLoading = true;
   faAngleDown = faAngleDown;
   faAngleUp = faAngleUp;
@@ -58,7 +58,7 @@ export class ReadingBookComponent implements OnInit {
   getIndex() {
     const fields = '_id, slug, chapter_name, chapter_number';
     const order = 'chapter_number asc';
-    this.cmsService.getDataByTypeFieldOrder('book', fields, order).subscribe((data) => {
+    this.cmsService.getDataByTypeFieldOrder('book', fields, order).subscribe((data: IReadingBook[]) => {
       if (data) {
         this.chapterIndexes = data;
       }
@@ -67,14 +67,16 @@ export class ReadingBookComponent implements OnInit {
 
   getChaptersData() {
     this.isLoading = true;
+    this.chapterData = null;
     const slug: string = this.activatedRoute.snapshot.params.slug;
     this.subscriptions.push(
-      this.cmsService.getDataBySlug(slug).subscribe((value) => {
+      this.cmsService.getDataBySlug(slug).subscribe((value: IReadingBook) => {
         if (value) {
           this.chapterData = value;
-          this.richTextContent = this.cmsService.getHtmlFromBlock(value);
-          this.richTextFunFact = this.cmsService.getHtmlFromBlock(value, 'fun_facts');
-          this.richTextCommudleHelps = this.cmsService.getHtmlFromBlock(value, 'how_commudle_helps');
+          if (value.content) this.richTextContent = this.cmsService.getHtmlFromBlock(value);
+          if (value.fun_facts) this.richTextFunFact = this.cmsService.getHtmlFromBlock(value, 'fun_facts');
+          if (value.how_commudle_helps)
+            this.richTextCommudleHelps = this.cmsService.getHtmlFromBlock(value, 'how_commudle_helps');
         }
         this.isLoading = false;
       }),
