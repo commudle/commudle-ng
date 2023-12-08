@@ -42,7 +42,7 @@ export class NewsletterFormComponent implements OnInit {
       email_subject: ['', Validators.required],
       published: [true],
       content: [''],
-      banner_image: [File, Validators.required],
+      banner_image: [File],
     });
   }
 
@@ -77,8 +77,8 @@ export class NewsletterFormComponent implements OnInit {
             email_subject: data.email_subject,
             published: data.published,
             content: data.content,
+            banner_image: data.banner_image?.url,
           });
-          if (data.banner_image) this.imagePreview = data.banner_image?.url;
           this.initEditor();
         }
       }),
@@ -152,7 +152,7 @@ export class NewsletterFormComponent implements OnInit {
       // Check if the value is a File (FileList) for file inputs
       if (value instanceof File) {
         formData.append('newsletter[' + key + ']', value, value.name); // Append the file with its name
-      } else {
+      } else if (key !== 'banner_image') {
         formData.append('newsletter[' + key + ']', value);
       }
     });
