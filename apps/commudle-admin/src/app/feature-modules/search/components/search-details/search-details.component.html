@@ -4,7 +4,13 @@
       <img [src]="option.avatar" [alt]="option.name" [title]="option.name" />
     </div>
     <div class="details">
-      <p class="name">{{ option.name }}</p>
+      <p class="name">
+        {{ option.name
+        }}<img *ngIf="option.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg" />
+        <button *ngIf="option.is_community_leader" nbButton shape="round" size="tiny" outline class="leader">
+          Leader
+        </button>
+      </p>
       <div class="designation" [title]="option.designation">
         {{ option.designation || '--' }}
       </div>
@@ -25,7 +31,7 @@
       <div class="designation" [title]="option.about">
         {{ option.about || '--' }}
       </div>
-      <p class="members-count">24<span>Followers</span></p>
+      <p class="members-count">{{ option.member_count }}<span>Members</span></p>
     </div>
   </div>
   <div class="membership-toggle">

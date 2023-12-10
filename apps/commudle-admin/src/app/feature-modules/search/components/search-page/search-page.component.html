@@ -12,94 +12,97 @@
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
     </p>
-    <nb-tag-list>
-      <nb-tag
-        text="All"
-        [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
-        appearance="filled"
-        (click)="onFilterChange('All')"
-      ></nb-tag>
-      <nb-tag
-        (click)="onFilterChange(filter)"
-        *ngFor="let filter of filters"
-        [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
-        [text]="filter"
-        appearance="filled"
-        class="com-cursor-pointer"
-      ></nb-tag>
-    </nb-tag-list>
-    <div class="container">
-      <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
-      <div *appBreakpoints="'>lg'" class="two-column-layout medium">
-        <div class="main-column">
-          <!-- <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner> -->
-          <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
-          <!-- *ngIf="total > 0" -->
-          <div>
-            <p class="results-count">{{ total }} Results Found</p>
-            <!-- <p class="option-name">Hello</p> -->
-            <nb-list>
-              <nb-list-item
-                *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
-              >
-                <p>User</p>
-                <div *ngFor="let user of users" class="search-result com-border-t-0">
-                  <commudle-search-details [option]="user"></commudle-search-details>
-                </div>
-              </nb-list-item>
-              <nb-list-item
-                *ngIf="
-                  communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
-                "
-              >
-                <p>Community</p>
-                <div *ngFor="let community of communities" class="search-result com-border-t-0">
-                  <commudle-search-details [option]="community"></commudle-search-details>
-                </div>
-              </nb-list-item>
-              <nb-list-item
-                *ngIf="labs.length > 0 && (selectedFilters.includes('Lab ') || selectedFilters.includes('All'))"
-              >
-                <p>Labs</p>
-                <div class="labs-card com-border-t-0">
-                  <div *ngFor="let lab of labs">
-                    <!-- <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card> -->
+    <!-- <app-loading-spinner *ngIf="showLoader"></app-loading-spinner> -->
+    <div>
+      <nb-tag-list>
+        <nb-tag
+          text="All"
+          [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
+          appearance="filled"
+          (click)="onFilterChange('All')"
+        ></nb-tag>
+        <nb-tag
+          (click)="onFilterChange(filter)"
+          *ngFor="let filter of filters"
+          [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
+          [text]="filter"
+          appearance="filled"
+          class="com-cursor-pointer"
+        ></nb-tag>
+      </nb-tag-list>
+      <div class="container">
+        <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
+        <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+          <div class="main-column">
+            <!-- <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner> -->
+            <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
+            <!-- *ngIf="total > 0" -->
+            <div>
+              <p class="results-count">{{ total }} Results Found</p>
+              <!-- <p class="option-name">Hello</p> -->
+              <nb-list>
+                <nb-list-item
+                  *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
+                >
+                  <p class="query-results-heading">User</p>
+                  <div *ngFor="let user of users" class="search-result com-border-t-0">
+                    <commudle-search-details [option]="user"></commudle-search-details>
                   </div>
-                </div>
-              </nb-list-item>
-              <nb-list-item
-                *ngIf="
-                  builds.length > 0 && (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
-                "
-              >
-                <p>Builds</p>
-                <div class="builds-card com-border-t-0">
-                  <div *ngFor="let community_build of builds">
-                    <commudle-featured-projects-card
-                      [community_build]="community_build"
-                    ></commudle-featured-projects-card>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p class="query-results-heading">Community</p>
+                  <div *ngFor="let community of communities" class="search-result com-border-t-0">
+                    <commudle-search-details [option]="community"></commudle-search-details>
                   </div>
-                </div>
-              </nb-list-item>
-              <nb-list-item
-                *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
-              >
-                <p>Events</p>
-                <div class="events-card com-border-t-0">
-                  <div *ngFor="let event of events">
-                    <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab ') || selectedFilters.includes('All'))"
+                >
+                  <p class="query-results-heading">Labs</p>
+                  <div class="labs-card com-border-t-0">
+                    <div *ngFor="let lab of labs">
+                      <!-- <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card> -->
+                    </div>
                   </div>
-                </div>
-              </nb-list-item>
-              <!-- </div> -->
-              <!-- </ng-container> -->
-              <!-- <ng-container *ngFor="let option of getCommunity()">
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    builds.length > 0 &&
+                    (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p>Builds</p>
+                  <div class="builds-card com-border-t-0">
+                    <div *ngFor="let community_build of builds">
+                      <commudle-featured-projects-card
+                        [community_build]="community_build"
+                      ></commudle-featured-projects-card>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                >
+                  <p>Events</p>
+                  <div class="events-card com-border-t-0">
+                    <div *ngFor="let event of events">
+                      <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
+                    </div>
+                  </div>
+                </nb-list-item>
+                <!-- </div> -->
+                <!-- </ng-container> -->
+                <!-- <ng-container *ngFor="let option of getCommunity()">
                 <nb-list-item (click)="navigate(option)" class="search-result com-border-t-0">
                   <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
                   <h1>{{ option.type }}</h1>
                 </nb-list-item>
               </ng-container> -->
-              <!-- <nb-list-item
+                <!-- <nb-list-item
                 
                   <div *ngSwitchCase="'Labs'">
                   <div class="labs-card">
@@ -108,8 +111,8 @@
                   </div>
                 </div>
               </nb-list-item> -->
-            </nb-list>
-            <!-- <button
+              </nb-list>
+              <!-- <button
               (click)="getSearchData()"
               *ngIf="total !== results.length"
               [nbSpinner]="loadMoreLoader"
@@ -120,15 +123,16 @@
             >
               Load More
             </button> -->
+            </div>
           </div>
-        </div>
 
-        <div class="right-column">
-          <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-          <commudle-public-home-list-events-speakers
-            [parentType]="'communities'"
-          ></commudle-public-home-list-events-speakers>
-          <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+          <div class="right-column">
+            <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+            <commudle-public-home-list-events-speakers
+              [parentType]="'communities'"
+            ></commudle-public-home-list-events-speakers>
+            <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+          </div>
         </div>
       </div>
     </div>

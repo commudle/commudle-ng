@@ -16,7 +16,7 @@
       @apply com-p-0 com-pr-30px;
     }
     .results-count {
-      @apply com-m-0 com-mb-6 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
+      @apply com-m-0 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
     }
 
     .option-name {
@@ -28,11 +28,20 @@
     nb-list {
       // @apply com-mt-4;
       nb-list-item {
-        @apply com-flex com-flex-col com-items-start com-border-0;
+        @apply com-p-0 com-flex com-flex-col com-items-start com-border-0;
 
         &:first-child {
           @apply com-border-t-0;
         }
+
+        .query-results-heading {
+          @apply com-m-0 com-mt-6 com-mb-1 com-text-xl com-font-bold com-text-Dark-Jungle-Green com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-w-full;
+
+          &:first-child {
+            @apply com-border-t-0;
+          }
+        }
+
         .labs-card {
           @apply com-grid com-grid-cols-2 com-gap-4;
         }

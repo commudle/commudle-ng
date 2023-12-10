@@ -93,8 +93,6 @@
 //   }
 
 //   onFilterChange(filter: string) {
-//     // console.log(filter);
-//     console.log(this.selectedFilters);
 //     if (this.selectedFilters.includes(filter)) {
 //       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
 //     } else {
@@ -166,13 +164,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   blogs = [];
   newsletters = [];
 
-  // searchLoader = false;
-  // loadMoreLoader = false;
-  // showSpinner = true;
-  // getPicture = getPicture;
-  // getTitle = getTitle;
-  // navigate = navigate;
-
   constructor(
     private searchService: SearchService,
     private seoService: SeoService,
@@ -196,29 +187,15 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.results = [];
       this.total = -1;
       this.getAllData();
-      // this.users = [];
-      // this.communities = [];
-      // this.labs = [];
-      // this.builds = [];
-      // this.events = [];
-      // this.content = [];
-      // this.blogs = [];
-      // this.newsletters = [];
-      // this.getSearchData();
-      // this.getUsers();
-      // this.getCommunity();
-      // this.getLabs();
-      // this.getBuilds();
-      // this.getEvents();
-      // this.getContent();
-      // // this.getBlogs();
-      // this.getNewsletter();
     });
 
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
+      // console.log('called on query change');
       this.seoService.setTitle(`Search results for "${this.query}"`);
+      // console.log(this.results, 'results');
       this.results = [...this.results, ...value.results];
-      // console.log(this.results);
+      this.total = value.total;
+      // this.page++;
       this.filters = [
         ...new Set(
           this.results.map((result) => {
@@ -228,19 +205,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           }),
         ),
       ];
-
-      // this.results = [];
-      // this.total = -1;
-      // this.page = 1;
-      // this.filters = [];
-      // this.selectedFilters = [];
-      // this.getUsers();
-      // this.getCommunity();
-      // this.getLabs();
-      // this.getBuilds();
-      // this.getEvents();
-      // this.getContent();
-      // this.getNewsletter();
 
       // this.searchLoader = false;
       // this.loadMoreLoader = false;
@@ -281,10 +245,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.users = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
-
       // this.searchLoader = false;
       // this.loadMoreLoader = false;
     });
@@ -295,7 +258,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.communities = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -309,7 +272,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.labs = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -319,12 +282,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
   getBuilds() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
-      // console.log(value.results, 'value build');
       this.builds = value.results;
-      // console.log(this.labs, 'builds');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -334,11 +295,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
   getEvents() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Event').subscribe((value: any) => {
-      // console.log(value.results, 'value event');
       this.events = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -348,11 +308,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
   getContent() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Content').subscribe((value: any) => {
-      // console.log(value.results, 'value content');
       this.content = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -362,11 +321,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
   getNewsletter() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Newsletter').subscribe((value: any) => {
-      // console.log(value.results, 'value newsletter');
       this.newsletters = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      this.total = value.total;
+      this.total += value.total;
       this.page++;
       this.gtmService(this.query);
 
@@ -376,12 +334,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   onFilterChange(filter: string) {
-    // console.log('called onfilter change');
+    this.total = 0;
     if (this.selectedFilters.includes(filter)) {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
       this.selectedFilters.push(filter);
-      // console.log(this.selectedFilters, 'selected Filter');
       // this.getAllData();
       // this.getUsers();
       // this.getCommunity();
@@ -393,36 +350,67 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.gtm.dataLayerPushEvent('search_query', { query });
   }
 
+  // getAllData() {
+  //   if (this.selectedFilters.includes('User') || this.selectedFilters.includes('All')) {
+  //     this.getUsers();
+  //   }
+  //   if (this.selectedFilters.includes('Community') || this.selectedFilters.includes('All')) {
+  //     this.getCommunity();
+  //   }
+  //   if (this.selectedFilters.includes('Lab ') || this.selectedFilters.includes('All')) {
+  //     this.getLabs();
+  //   }
+  //   if (this.selectedFilters.includes('Community Build') || this.selectedFilters.includes('All')) {
+  //     this.getBuilds();
+  //   }
+  //   if (this.selectedFilters.includes('Event') || this.selectedFilters.includes('All')) {
+  //     this.getEvents();
+  //   }
+  //   if (this.selectedFilters.includes('Content') || this.selectedFilters.includes('All')) {
+  //     this.getContent();
+  //   }
+  //   if (this.selectedFilters.includes('Newsletter') || this.selectedFilters.includes('All')) {
+  //     this.getNewsletter();
+  //   }
+  //   // this.getBlogs();
+  // }
+
   getAllData() {
-    console.log('search page fn called');
-    if (this.selectedFilters.includes('User') || this.selectedFilters.includes('All')) {
-      // console.log('user');
+    // ...
+    if (this.selectedFilters.includes('All')) {
       this.getUsers();
-    }
-    if (this.selectedFilters.includes('Community') || this.selectedFilters.includes('All')) {
-      // console.log('kommunity');
       this.getCommunity();
-    }
-    if (this.selectedFilters.includes('Lab ') || this.selectedFilters.includes('All')) {
-      // console.log('lab');
       this.getLabs();
-    }
-    if (this.selectedFilters.includes('Community Build') || this.selectedFilters.includes('All')) {
-      // console.log('build');
       this.getBuilds();
-    }
-    if (this.selectedFilters.includes('Event') || this.selectedFilters.includes('All')) {
-      // console.log('event');
       this.getEvents();
-    }
-    if (this.selectedFilters.includes('Content') || this.selectedFilters.includes('All')) {
-      // console.log('content');
       this.getContent();
-    }
-    if (this.selectedFilters.includes('Newsletter') || this.selectedFilters.includes('All')) {
-      // console.log('newletter');
       this.getNewsletter();
+    } else {
+      this.selectedFilters.forEach((filter) => {
+        switch (filter) {
+          case 'User':
+            this.getUsers();
+            break;
+          case 'Community':
+            this.getCommunity();
+            break;
+          case 'Lab ':
+            this.getLabs();
+            break;
+          case 'Community Build':
+            this.getBuilds();
+            break;
+          case 'Event':
+            this.getEvents();
+            break;
+          case 'Content':
+            this.getContent();
+            break;
+          case 'Newsletter':
+            this.getNewsletter();
+            break;
+        }
+      });
     }
-    // this.getBlogs();
   }
 }

@@ -164,18 +164,20 @@ export class SearchBoxComponent implements OnInit {
     this.query = '';
     this.inputFormControl.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
       this.query = this.inputFormControl.get('name').value;
+      console.log('called n value change box');
       if (!this.showSuggestions) {
         this.onSubmit();
       }
       if (this.showSuggestions) {
         this.searchLoader = true;
+        this.getNotifications();
       }
       // if (this.isLoadingSearch) {
       //   return;
       // }
       // this.isLoadingSearch = true;
       // this.queryParamsString = this.query;
-      this.getNotifications();
+      // this.getNotifications();
       // this.generateParams(this.query);
     });
   }
@@ -195,7 +197,7 @@ export class SearchBoxComponent implements OnInit {
   }
 
   getNotifications() {
-    console.log('search box fn called');
+    // console.log('search box fn called');
     this.searchResults = [];
     this.Users = [];
     this.Community = [];
@@ -228,7 +230,7 @@ export class SearchBoxComponent implements OnInit {
         // this.searchLoader = false;
         return result;
       });
-      console.log(this.Event);
+      // console.log(this.Event);
       this.total = value.total;
       this.searchLoader = false;
       // this.isLoading = false;
