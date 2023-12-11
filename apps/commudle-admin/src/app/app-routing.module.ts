@@ -67,6 +67,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./feature-modules/public-book-page/public-book-page.module').then((m) => m.PublicBookPageModule),
   },
+  {
+    path: 'developer-community-blueprint',
+    loadChildren: () =>
+      import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,
