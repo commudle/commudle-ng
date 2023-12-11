@@ -60,22 +60,21 @@
             </div>
             <div class="footer">
               <div class="actions">
-                <button
-                  nbButton
-                  size="large"
-                  [routerLink]="
-                    chapterData?.link_to_previous_page
-                      ? ['/developer-community-blueprint', chapterData.link_to_previous_page]
-                      : null
-                  "
-                  [disabled]="!chapterData?.link_to_previous_page"
-                  class="prev-btn"
-                >
-                  <span>
-                    <nb-icon icon="arrow-back"></nb-icon>
-                    Prev
-                  </span>
-                </button>
+                <div>
+                  <button
+                    *ngIf="chapterData?.link_to_previous_page"
+                    nbButton
+                    size="large"
+                    [routerLink]="['/developer-community-blueprint', chapterData.link_to_previous_page]"
+                    [disabled]="!chapterData?.link_to_previous_page"
+                    class="prev-btn"
+                  >
+                    <span>
+                      <nb-icon icon="arrow-back"></nb-icon>
+                      Prev
+                    </span>
+                  </button>
+                </div>
                 <div class="desktop-hidden">
                   <select (change)="showIndex($event)">
                     <option *ngFor="let index of chapterIndexes" [value]="index.slug.current">
@@ -83,22 +82,21 @@
                     </option>
                   </select>
                 </div>
-                <button
-                  nbButton
-                  size="large"
-                  [routerLink]="
-                    chapterData?.link_to_next_page
-                      ? ['/developer-community-blueprint', chapterData.link_to_next_page]
-                      : null
-                  "
-                  [disabled]="!chapterData?.link_to_next_page"
-                  class="next-btn"
-                >
-                  <span>
-                    Next
-                    <nb-icon icon="arrow-forward"></nb-icon>
-                  </span>
-                </button>
+                <div>
+                  <button
+                    *ngIf="chapterData?.link_to_next_page"
+                    nbButton
+                    size="large"
+                    [routerLink]="['/developer-community-blueprint', chapterData.link_to_next_page]"
+                    [disabled]="!chapterData?.link_to_next_page"
+                    class="next-btn"
+                  >
+                    <span>
+                      Next
+                      <nb-icon icon="arrow-forward"></nb-icon>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
