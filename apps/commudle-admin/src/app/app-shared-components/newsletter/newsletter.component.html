@@ -88,6 +88,15 @@
           >
             <nb-icon icon="close"></nb-icon> delete
           </button>
+          <button
+            (click)="openConfirmDialogBox(testEmailsBox, newsletter.id, i)"
+            nbButton
+            status="primary"
+            outline
+            size="tiny"
+          >
+            <fa-icon [icon]="icons.faEnvelopeOpenText" class="com-mr-2"></fa-icon> Send Test Mail
+          </button>
         </div>
       </td>
     </tr>
@@ -151,6 +160,45 @@
     </nb-card-body>
     <nb-card-footer>
       <button nbButton status="primary" (click)="resetSchedule(data.id, data.index); ref.close()">Confirm</button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #testEmailsBox let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div>Send Test Email for {{ data.title }}</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="testEmailsForms">
+        <div>
+          <input nbInput fullWidth placeholder="Enter multiple comma separated emails" formControlName="emails" />
+          <commudle-alert
+            *ngIf="
+              testEmailsForms['controls'].emails.touched &&
+              testEmailsForms['controls'].emails.invalid &&
+              testEmailsForms['controls'].emails.errors.required
+            "
+            [error]="true"
+          >
+            Required Field</commudle-alert
+          >
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        (click)="sendTestMail(data.id); ref.close()"
+        [disabled]="!testEmailsForms.valid"
+      >
+        Confirm
+      </button>
       <button nbButton status="danger" (click)="ref.close()">cancel</button>
     </nb-card-footer>
   </nb-card>

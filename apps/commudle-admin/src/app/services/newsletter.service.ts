@@ -109,4 +109,11 @@ export class NewsletterService {
     const params = new HttpParams().set('newsletter_id', newsletterId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.RESET_SCHEDULE), { params });
   }
+
+  sendTestEmail(newsletterId, emails): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SEND_TEST_EMAIL), {
+      newsletter_id: newsletterId,
+      emails,
+    });
+  }
 }

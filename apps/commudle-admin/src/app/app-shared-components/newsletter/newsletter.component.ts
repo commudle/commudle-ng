@@ -4,9 +4,11 @@ import { NbDialogService } from '@commudle/theme';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
 import { Subscription } from 'rxjs';
-import { faPlus, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faClock, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { FormBuilder, Validators } from '@angular/forms';
+import { CommaSeparatedEmailsValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 
 @Component({
   selector: 'commudle-newsletter',
@@ -22,14 +24,21 @@ export class NewsletterComponent implements OnInit {
   icons = {
     faPlus,
     faClock,
+    faEnvelopeOpenText,
   };
   moment = moment;
+  testEmailsForms;
   constructor(
     private newsletterService: NewsletterService,
     private dialogService: NbDialogService,
     private toastrService: ToastrService,
     private router: Router,
-  ) {}
+    private fb: FormBuilder,
+  ) {
+    this.testEmailsForms = this.fb.group({
+      emails: ['', [Validators.required, CommaSeparatedEmailsValidator]],
+    });
+  }
 
   ngOnInit() {
     this.getNewsletters();
@@ -89,5 +98,22 @@ export class NewsletterComponent implements OnInit {
     this.newsletterService.resetSchedule(id).subscribe((data) => {
       if (data) this.newsletters[index].scheduled_for = null;
     });
+  }
+
+  sendTestMail(newsletterId) {
+    this.newsletterService
+      .sendTestEmail(
+        newsletterId,
+        this.testEmailsForms.value.emails
+          .replaceAll(' ', '')
+          .split(',')
+          .filter((x) => x),
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.toastrService.successDialog('Test Email send successfully');
+          this.testEmailsForms.reset();
+        }
+      });
   }
 }
