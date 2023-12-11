@@ -8,7 +8,6 @@ import { faPlus, faClock, faEnvelopeOpenText } from '@fortawesome/free-solid-svg
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CommaSeparatedEmailsValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 
 @Component({
   selector: 'commudle-newsletter',
@@ -36,7 +35,7 @@ export class NewsletterComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.testEmailsForms = this.fb.group({
-      emails: ['', [Validators.required, CommaSeparatedEmailsValidator]],
+      emails: ['', Validators.required],
     });
   }
 
