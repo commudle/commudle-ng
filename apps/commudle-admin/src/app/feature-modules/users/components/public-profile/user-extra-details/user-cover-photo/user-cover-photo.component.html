@@ -30,7 +30,12 @@
         Dimensions: 1000px X 185px
         <input (change)="displayCoverImage($event)" accept="image/*" fullWidth nbInput type="file" />
       </label>
-      <img alt="Cover Image" src="{{ coverImage || user.profile_banner_image.profile_banner }}" title="Cover Image" />
+      <img
+        *ngIf="coverImage || user.profile_banner_image"
+        alt="Cover Image"
+        src="{{ coverImage || user.profile_banner_image.profile_banner }}"
+        title="Cover Image"
+      />
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
