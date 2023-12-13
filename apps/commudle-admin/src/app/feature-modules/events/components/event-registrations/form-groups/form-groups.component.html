@@ -8,7 +8,14 @@
         <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
           <!-- form details -->
           <div class="form-details">
-            <p class="name">{{ edfeg.name }}</p>
+            <p class="name">
+              {{ edfeg.name }}
+              <fa-icon
+                [icon]="faPenToSquare"
+                (click)="openUpdateEventDataFormGroup(updateEventDataFormGroup, edfeg, i)"
+                class="clickable"
+              ></fa-icon>
+            </p>
             <p class="type">Form type: {{ edfeg.registration_type.name | titlecase }}</p>
             <a [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']" target="_blank">
               Edit Form Questions
@@ -342,6 +349,31 @@
       [stickSubmitButtonBottom]="true"
     ></app-new-data-form>
   </div>
+</ng-template>
+
+<ng-template #updateEventDataFormGroup let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>{{ data.dfe.name }}</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="updateEventDataFormEntityGroupForm">
+        <label fullWidth>
+          Name*
+          <input formControlName="name" placeholder="Form Name" fullWidth nbInput type="text" />
+        </label>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button
+        nbButton
+        status="primary"
+        [disabled]="!updateEventDataFormEntityGroupForm.dirty"
+        (click)="updateEventDataFormEntityGroup(data.dfe, data.index); ref.close()"
+      >
+        Save
+      </button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
 </ng-template>
 
 <ng-template #automationDialog let-data let-ref="dialogRef">
