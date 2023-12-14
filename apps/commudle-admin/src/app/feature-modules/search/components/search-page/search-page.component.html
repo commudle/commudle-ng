@@ -17,7 +17,7 @@
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
     </p>
-    <!-- <app-loading-spinner *ngIf="showLoader"></app-loading-spinner> -->
+    <!-- <app-loading-spinner></app-loading-spinner> -->
     <div>
       <nb-tag-list>
         <nb-tag
@@ -25,13 +25,11 @@
           [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
           appearance="filled"
           (click)="onFilterChange('All')"
-          [ngClass]="selectedFilters.includes('All') ? 'selected' : 'unselected'"
         ></nb-tag>
         <nb-tag
           (click)="onFilterChange(filter)"
           *ngFor="let filter of filters"
           [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
-          [ngClass]="selectedFilters.includes(filter) ? 'selected' : 'unselected'"
           [text]="filter"
           appearance="filled"
           class="com-cursor-pointer"
@@ -44,17 +42,20 @@
             <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
             <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
             <!-- *ngIf="total > 0" -->
-            <div>
+            <div *ngIf="!searchLoader">
               <p class="results-count">{{ total }} Results Found</p>
               <!-- <p class="option-name">Hello</p> -->
               <nb-list>
                 <nb-list-item
                   *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
                 >
+                  <!-- <div class="details"> -->
                   <p class="query-results-heading">User</p>
                   <div *ngFor="let user of users" class="search-result com-border-t-0">
                     <commudle-search-details [option]="user"></commudle-search-details>
                   </div>
+                  <!-- </div> -->
+                  <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a>
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="
@@ -97,7 +98,7 @@
                   <p class="query-results-heading">Events</p>
                   <div class="events-card com-border-t-0">
                     <div *ngFor="let event of events" class="event-card">
-                      <commudle-event-card [event]="event"></commudle-event-card>
+                      <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
                     </div>
                   </div>
                 </nb-list-item>

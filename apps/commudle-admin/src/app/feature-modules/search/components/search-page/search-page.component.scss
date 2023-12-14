@@ -102,4 +102,12 @@
   commudle-search-details {
     @apply com-w-full;
   }
+
+  app-loading-spinner {
+    @apply com-m-0 com-mt-6;
+  }
+
+  .view-all {
+    @apply com-no-underline com-p-0 com-text-base com-font-normal com-text-Yankees-Blue;
+  }
 }

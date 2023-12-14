@@ -135,7 +135,7 @@
         <div *ngFor="let build of Build">
           <a class="navigate" [routerLink]="['/builds', build.slug]">
             <img
-              [src]="build?.images ? build.images[0]?.i32 : staticAssets.community_lab_empty_state"
+              [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
               alt="{{ build.name }}"
               class="lab-image"
             />
