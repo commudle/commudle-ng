@@ -130,6 +130,7 @@ export class SearchBoxComponent implements OnInit {
   Build = [];
   Lab = [];
   Event = [];
+  Content = [];
   staticAssets = staticAssets;
 
   constructor(
@@ -205,6 +206,7 @@ export class SearchBoxComponent implements OnInit {
     this.Build = [];
     this.Lab = [];
     this.Event = [];
+    this.Content = [];
 
     if (this.query === '') {
       this.total = -1;
@@ -215,6 +217,7 @@ export class SearchBoxComponent implements OnInit {
     this.searchService.getSearchResults(this.query).subscribe((value) => {
       // this.isLoading = true;
       this.searchResults = value.results.map((result) => {
+        console.log(result.type);
         if (result?.type === 'User') {
           this.Users.push(result);
         } else if (result?.type === 'Community') {
@@ -223,8 +226,12 @@ export class SearchBoxComponent implements OnInit {
           this.Lab.push(result);
         } else if (result?.type === 'Community Build') {
           this.Build.push(result);
+          console.log(this.Build);
         } else if (result?.type === 'Event') {
           this.Event.push(result);
+        } else if (result?.type === 'Content') {
+          this.Content.push(result);
+          console.log(this.Content);
         }
         // this.total = value.total;
         // this.searchLoader = false;

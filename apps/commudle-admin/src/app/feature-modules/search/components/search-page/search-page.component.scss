@@ -10,6 +10,12 @@
 
   nb-tag-list {
     @apply com-m-0 com-p-0 com-pb-6 com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+
+    nb-tag {
+      .selected {
+        @apply com-bg-primary-500;
+      }
+    }
   }
   .container {
     .main-column {
@@ -42,8 +48,22 @@
           }
         }
 
-        .labs-card {
+        .labs-card,
+        .builds-card {
           @apply com-grid com-grid-cols-2 com-gap-4;
+
+          .lab-card,
+          .build-card {
+            @apply md:com-w-[428px];
+          }
+        }
+
+        .events-card {
+          @apply com-grid com-grid-cols-3 com-gap-5;
+
+          .event-card {
+            @apply com-w-[272px];
+          }
         }
       }
 

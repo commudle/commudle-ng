@@ -33,6 +33,6 @@ export class LabsFeaturedCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.lab);
+    console.log(this.lab.slug, 'lab');
   }
 }

@@ -8,7 +8,12 @@
 
 <div class="com-bg-white">
   <div class="base-layout">
-    <app-search-box [overrideSearchStatus]="true" [showSuggestions]="false" class="com-mt-6"></app-search-box>
+    <app-search-box
+      [overrideSearchStatus]="true"
+      [showSuggestions]="false"
+      class="com-mt-6"
+      (input)="searchQuery()"
+    ></app-search-box>
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
     </p>
@@ -20,11 +25,13 @@
           [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
           appearance="filled"
           (click)="onFilterChange('All')"
+          [ngClass]="selectedFilters.includes('All') ? 'selected' : 'unselected'"
         ></nb-tag>
         <nb-tag
           (click)="onFilterChange(filter)"
           *ngFor="let filter of filters"
           [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
+          [ngClass]="selectedFilters.includes(filter) ? 'selected' : 'unselected'"
           [text]="filter"
           appearance="filled"
           class="com-cursor-pointer"
@@ -34,7 +41,7 @@
         <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
         <div *appBreakpoints="'>lg'" class="two-column-layout medium">
           <div class="main-column">
-            <!-- <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner> -->
+            <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
             <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
             <!-- *ngIf="total > 0" -->
             <div>
@@ -64,8 +71,8 @@
                 >
                   <p class="query-results-heading">Labs</p>
                   <div class="labs-card com-border-t-0">
-                    <div *ngFor="let lab of labs">
-                      <!-- <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card> -->
+                    <div *ngFor="let lab of labs" class="lab-card">
+                      <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
                     </div>
                   </div>
                 </nb-list-item>
@@ -75,9 +82,9 @@
                     (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
                   "
                 >
-                  <p>Builds</p>
+                  <p class="query-results-heading">Builds</p>
                   <div class="builds-card com-border-t-0">
-                    <div *ngFor="let community_build of builds">
+                    <div *ngFor="let community_build of builds" class="build-card">
                       <commudle-featured-projects-card
                         [community_build]="community_build"
                       ></commudle-featured-projects-card>
@@ -87,13 +94,23 @@
                 <nb-list-item
                   *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
                 >
-                  <p>Events</p>
+                  <p class="query-results-heading">Events</p>
                   <div class="events-card com-border-t-0">
-                    <div *ngFor="let event of events">
-                      <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
+                    <div *ngFor="let event of events" class="event-card">
+                      <commudle-event-card [event]="event"></commudle-event-card>
                     </div>
                   </div>
                 </nb-list-item>
+                <!-- <nb-list-item
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                >
+                  <p class="query-results-heading">Events</p>
+                  <div class="events-card com-border-t-0">
+                    <div *ngFor="let event of events" class="event-card">
+                      <commudle-event-card [event]="event"></commudle-event-card>
+                    </div>
+                  </div>
+                </nb-list-item> -->
                 <!-- </div> -->
                 <!-- </ng-container> -->
                 <!-- <ng-container *ngFor="let option of getCommunity()">

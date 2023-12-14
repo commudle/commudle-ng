@@ -40,6 +40,10 @@ nb-option {
   @apply com-m-0 com-p-0 com-py-1 com-px-4;
 }
 
+.search-box {
+  @apply com-h-[320px];
+}
+
 .search-placeholder {
   @apply com-flex com-items-center com-justify-center com-text-sm com-font-semibold com-text-black;
 }
@@ -91,6 +95,10 @@ nb-option {
       }
     }
   }
+}
+
+.show-all-results {
+  @apply com-justify-center com-items-center com-gap-2;
 }
 
 // nb-option-list.search-autocomplete ul.option-list

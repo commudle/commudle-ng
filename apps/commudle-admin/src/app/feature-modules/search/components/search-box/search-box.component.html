@@ -80,14 +80,14 @@
 [handleDisplayFn]="handleDisplay" -->
 <!-- optionsListClass="search-autocomplete" -->
 <nb-autocomplete #autoComplete>
-  <nb-option *ngIf="searchLoader" class="loader">
+  <nb-option *ngIf="searchLoader" class="loader search-box">
     <app-loading-spinner></app-loading-spinner>
   </nb-option>
   <!-- *ngIf="inputFormControl.value?.length === 0" -->
-  <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder">
+  <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder search-box">
     Quickly search your favorite topics, labs by industry experts or find an event you missed
   </nb-option>
-  <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
+  <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder search-box">No results found</nb-option>
   <nb-option *ngIf="total > 0 && !searchLoader" class="search-box-results">
     <div class="results">
       <div *ngIf="Users && Users.length > 0" class="container">
@@ -96,7 +96,9 @@
           <a class="navigate" [routerLink]="['/users', user.username]">
             <img [src]="user.avatar" alt="{{ user.name }}" class="user-image" />
             <p class="name">{{ user.name }}</p>
-            <p class="designation"><span class="dot"> · </span> {{ user.designation ? user.designation : '--' }}</p>
+            <p class="designation">
+              <span class="dot"> &nbsp;·&nbsp; </span> {{ user.designation ? user.designation : '--' }}
+            </p>
           </a>
         </div>
       </div>
@@ -107,8 +109,10 @@
             <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
             <p class="name">{{ community.name }}</p>
             <!-- <p class="member-count"><span> · </span>{{ community.member_count }} <span class="member-count">Members</span></p> -->
-            <p class="member-count">
-              <span class="member-count"><span class="dot"> · </span> {{ community.member_count }} Members </span>
+            <p>
+              <span class="member-count"
+                ><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members
+              </span>
             </p>
           </a>
         </div>
@@ -131,7 +135,7 @@
         <div *ngFor="let build of Build">
           <a class="navigate" [routerLink]="['/builds', build.slug]">
             <img
-              [src]="build?.images ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
+              [src]="build?.images ? build.images[0]?.i32 : staticAssets.community_lab_empty_state"
               alt="{{ build.name }}"
               class="lab-image"
             />
@@ -155,14 +159,27 @@
           </a>
         </div>
       </div>
+      <div *ngIf="Content && Content.length > 0">
+        <p>Content</p>
+        <div *ngFor="let content of Content">
+          <!-- <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+            <img
+              [src]="event?.header_image ? event?.header_image.i32 : staticAssets.community_build_empty_state"
+              alt="{{ event.name }}"
+              class="lab-image"
+            />
+            <p class="name">{{ event.name }}</p>
+            <p class="event-date">
+              <span class="event-date"><span class="dot"> · </span> {{ community.member_count }} Members </span>
+            </p>
+          </a> -->
+        </div>
+      </div>
     </div>
   </nb-option>
   <!-- [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }" -->
-  <nb-option
-    *ngIf="total > 0 && !searchLoader"
-    (click)="onSubmit()"
-    class="com-justify-center com-items-center com-gap-2"
-  >
+  <nb-option *ngIf="total > 0 && !searchLoader" (click)="onSubmit()" class="show-all-results">
+    <!-- class="" -->
     Show all results
     <nb-icon icon="arrow-forward-outline"></nb-icon>
   </nb-option>

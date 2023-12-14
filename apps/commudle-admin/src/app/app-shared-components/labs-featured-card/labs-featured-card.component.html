@@ -5,17 +5,19 @@
         <div class="details">
           <div class="heading">
             <div class="user-profile-card">
-              <app-user-profile-card-small [user]="lab.user"> </app-user-profile-card-small>
+              <!-- <app-user-profile-card-small [user]="lab.user"> </app-user-profile-card-small> -->
             </div>
             <p class="steps">
-              <span>{{ lab.lab_steps_count }}</span
-              >&nbsp;<span>STEP{{ lab.lab_steps_count > 1 ? 'S' : '' }}</span>
+              <!-- <span>{{ lab.lab_steps_count }}</span> -->
+              <span>40</span>
+              &nbsp;<span>STEP{{ lab.lab_steps_count > 1 ? 'S' : '' }}</span>
             </p>
           </div>
           <h5 class="title">{{ lab.name }}</h5>
-          <p class="time">{{ moment(lab.created_at).format('dddd, MMM Do') }}</p>
+          <!-- <p class="time">{{ moment(lab.created_at).format('dddd, MMM Do') }}</p> -->
+          <p class="time">TIME</p>
           <div class="votes-tags">
-            <div *ngIf="lab.tags.length > 0" class="tags">
+            <!-- <div *ngIf="lab.tags.length > 0" class="tags">
               <app-tag
                 [tags]="lab.tags"
                 [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
@@ -23,17 +25,19 @@
                 [fontColor]="'#101828'"
                 [maximumTag]="2"
               ></app-tag>
-            </div>
-            <app-votes-display
+            </div> -->
+            <!-- <app-votes-display
               [icon]="'heart-outline'"
               [votableId]="lab.id"
               [votableType]="'Lab'"
               [textAlignment]="'after'"
-            ></app-votes-display>
+            ></app-votes-display> -->
+
+            <!-- // Already commented -->
             <!-- <div class="comments">
-                <fa-icon [icon]="faMessage"></fa-icon>
-                <p>views</p>
-              </div> -->
+              <fa-icon [icon]="faMessage"></fa-icon>
+              <p>views</p>
+            </div> -->
           </div>
         </div>
       </div>

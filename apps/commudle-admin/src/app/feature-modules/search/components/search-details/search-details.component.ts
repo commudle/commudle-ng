@@ -11,6 +11,6 @@ export class SearchDetailsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.option);
+    // console.log(this.option);
   }
 }

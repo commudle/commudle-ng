@@ -149,7 +149,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 export class SearchPageComponent implements OnInit, OnDestroy {
   page = 1;
   count = 15;
-  total = -1;
+  total = 0;
   query: string;
   results = [];
   filters = [];
@@ -164,6 +164,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   blogs = [];
   newsletters = [];
 
+  searchLoader = true;
+
   constructor(
     private searchService: SearchService,
     private seoService: SeoService,
@@ -176,7 +178,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.seoService.noIndex(true);
     this.searchStatusService.setSearchStatus(false);
-    this.getAllData();
+    // this.getAllData();
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       // this.searchLoader = true;
@@ -185,15 +187,40 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.filters = [];
       this.selectedFilters = ['All'];
       this.results = [];
-      this.total = -1;
+      this.total = 0;
       this.getAllData();
     });
 
+    // this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
+    //   this.seoService.setTitle(`Search results for "${this.query}"`);
+    //   this.results = [...this.results, ...value.results];
+    //   this.total = value.total;
+    //   this.filters = [
+    //     ...new Set(
+    //       this.results.map((result) => {
+    //         if (result) {
+    //           return result.type;
+    //         }
+    //       }),
+    //     ),
+    //   ];
+    // });
+  }
+
+  ngOnDestroy(): void {
+    this.seoService.noIndex(false);
+    this.searchStatusService.setSearchStatus(true);
+  }
+
+  searchQuery() {
+    console.log('called search query on every change');
+    console.log(this.results, 'filters resultzs');
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
-      // console.log('called on query change');
+      // this.searchLoader = true;
       this.seoService.setTitle(`Search results for "${this.query}"`);
-      // console.log(this.results, 'results');
       this.results = [...this.results, ...value.results];
+      console.log(this.results, 'init');
+      // console.log(value.total);
       this.total = value.total;
       // this.page++;
       this.filters = [
@@ -210,11 +237,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
       // this.gtmService(this.query);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.seoService.noIndex(false);
-    this.searchStatusService.setSearchStatus(true);
+    console.log(this.filters, 'filters');
   }
 
   // getSearchData() {
@@ -280,6 +303,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
+
   getBuilds() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
       this.builds = value.results;
@@ -293,6 +317,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
+
   getEvents() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Event').subscribe((value: any) => {
       this.events = value.results;
@@ -309,6 +334,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   getContent() {
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Content').subscribe((value: any) => {
       this.content = value.results;
+      console.log(this.content, 'content');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -319,31 +345,34 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
-  getNewsletter() {
-    this.searchService.getSearchResults(this.query, this.page, this.count, 'Newsletter').subscribe((value: any) => {
-      this.newsletters = value.results;
-      this.seoService.setTitle(`Search results for "${this.query}"`);
-      // this.results = [...this.results, ...value.results];
-      this.total += value.total;
-      this.page++;
-      this.gtmService(this.query);
+  // getNewsletter() {
+  //   this.searchService.getSearchResults(this.query, this.page, this.count, 'Newsletter').subscribe((value: any) => {
+  //     this.newsletters = value.results;
+  //     this.seoService.setTitle(`Search results for "${this.query}"`);
+  //     // this.results = [...this.results, ...value.results];
+  //     this.total += value.total;
+  //     this.page++;
+  //     this.gtmService(this.query);
 
-      // this.searchLoader = false;
-      // this.loadMoreLoader = false;
-    });
-  }
+  //     // this.searchLoader = false;
+  //     // this.loadMoreLoader = false;
+  //   });
+  // }
 
   onFilterChange(filter: string) {
+    // console.log('onsearch called');
+    this.searchLoader = true;
     this.total = 0;
     if (this.selectedFilters.includes(filter)) {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
       this.selectedFilters.push(filter);
-      // this.getAllData();
+
       // this.getUsers();
       // this.getCommunity();
       // this.getLabs();
     }
+    this.getAllData();
   }
 
   gtmService(query) {
@@ -376,7 +405,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   // }
 
   getAllData() {
-    // ...
+    console.log('get called');
+    this.searchLoader = true;
     if (this.selectedFilters.includes('All')) {
       this.getUsers();
       this.getCommunity();
@@ -384,7 +414,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getBuilds();
       this.getEvents();
       this.getContent();
-      this.getNewsletter();
+      // this.getNewsletter();
     } else {
       this.selectedFilters.forEach((filter) => {
         switch (filter) {
@@ -406,11 +436,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           case 'Content':
             this.getContent();
             break;
-          case 'Newsletter':
-            this.getNewsletter();
+            // case 'Newsletter':
+            //   this.getNewsletter();
             break;
         }
       });
     }
+    this.searchLoader = false;
   }
 }
