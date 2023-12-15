@@ -99,10 +99,10 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
     this.router.navigate(['/developer-community-blueprint', event.target.value]);
   }
 
-  setMeta(slug, description) {
+  setMeta(chapter_name, description) {
     this.seoService.setTags(
-      `${slug}`,
-      description ? `${description}` : '',
+      chapter_name,
+      description ? description : '',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
