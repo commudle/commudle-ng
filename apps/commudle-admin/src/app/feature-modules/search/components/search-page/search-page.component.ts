@@ -221,21 +221,17 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         (result) => result && result.type !== null && result.type !== undefined,
       );
       this.results = [...this.results, ...filteredResults];
-      console.log(this.results, 'init');
-      // console.log(value.total);
       this.total = value.total;
       // this.page++;
       this.filters = [
         ...new Set(
           this.results.map((result) => {
             if (result && result.type !== null && result.type !== undefined) {
-              console.log(result.type, 'type');
               return result.type;
             }
           }),
         ),
       ];
-      // console.log(this.filters, 'filters');
       // this.searchLoader = false;
       // this.loadMoreLoader = false;
       // this.gtmService(this.query);
@@ -269,7 +265,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count, 'User').subscribe((value: any) => {
       this.users = value.results;
-      // console.log(this.users, 'users');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -311,9 +306,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getBuilds() {
+    console.log('builds called');
     this.searchLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
       this.builds = value.results;
+      console.log(value);
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -343,7 +340,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count, 'Content').subscribe((value: any) => {
       this.content = value.results;
-      // console.log(this.content, 'content');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -369,10 +365,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   // }
 
   onFilterChange(filter: string) {
-    // console.log('onsearch called');
     this.searchLoader = true;
     this.total = 0;
-    // console.log(this.selectedFilters);
     if (this.selectedFilters.includes(filter)) {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
@@ -415,10 +409,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   // }
 
   getAllData() {
-    // console.log('get called');
     this.searchLoader = true;
     if (this.selectedFilters.includes('All')) {
-      // console.log(this.selectedFilters, 'if');
       this.getUsers();
       this.getCommunity();
       this.getLabs();
@@ -428,7 +420,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.searchLoader = false;
       // this.getNewsletter();
     } else {
-      // console.log(this.selectedFilters, 'else');
       this.selectedFilters.forEach((filter) => {
         switch (filter) {
           case 'User':

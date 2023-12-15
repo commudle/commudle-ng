@@ -1,6 +1,6 @@
 nb-card {
-  @apply com-m-0 md:com-max-h-[156px] com-max-h-full com-h-[156px] md:com-h-auto;
-  // md:com-w-[318px] com-w-[303px]
+  @apply com-m-0 md:com-max-h-[156px] com-max-h-full com-h-[156px] md:com-h-auto md:com-w-auto com-w-[303px];
+
   nb-card-body {
     @apply com-p-4 com-overflow-hidden;
 
