@@ -78,7 +78,7 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
       this.cmsService.getDataBySlug(slug).subscribe((value: IReadingBook) => {
         if (value) {
           this.chapterData = value;
-          this.setMeta(value.slug.current, value?.meta_description);
+          this.setMeta(value.chapter_name, value?.meta_description);
           if (value.content) this.richTextContent = this.cmsService.getHtmlFromBlock(value);
           if (value.fun_facts) this.richTextFunFact = this.cmsService.getHtmlFromBlock(value, 'fun_facts');
           if (value.how_commudle_helps)
@@ -100,7 +100,6 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
   }
 
   setMeta(slug, description) {
-    console.log(description, 'description');
     this.seoService.setTags(
       `${slug}`,
       description ? `${description}` : '',
