@@ -7,6 +7,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
 import { IReadingBook } from 'apps/shared-models/reading_book.model';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-reading-book',
@@ -34,6 +35,7 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
     private authwatchService: LibAuthwatchService,
     private errorHandler: LibErrorHandlerService,
     private router: Router,
+    private seoService: SeoService,
   ) {
     activatedRoute.params.subscribe(() => {
       this.getChaptersData();
@@ -76,6 +78,7 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
       this.cmsService.getDataBySlug(slug).subscribe((value: IReadingBook) => {
         if (value) {
           this.chapterData = value;
+          this.setMeta(value.slug.current, value?.meta_description);
           if (value.content) this.richTextContent = this.cmsService.getHtmlFromBlock(value);
           if (value.fun_facts) this.richTextFunFact = this.cmsService.getHtmlFromBlock(value, 'fun_facts');
           if (value.how_commudle_helps)
@@ -94,5 +97,14 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
 
   showIndex(event) {
     this.router.navigate(['/developer-community-blueprint', event.target.value]);
+  }
+
+  setMeta(slug, description) {
+    console.log(description, 'description');
+    this.seoService.setTags(
+      `${slug}`,
+      description ? `${description}` : '',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
