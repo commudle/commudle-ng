@@ -225,7 +225,8 @@ export class SearchBoxComponent implements OnInit {
           this.Build.push(result);
         } else if (result?.type === 'Event') {
           this.Event.push(result);
-        } else if (result?.type === 'Content') {
+          console.log(this.Event);
+        } else if (result?.type === 'SocialResource') {
           this.Content.push(result);
         }
         // this.total = value.total;

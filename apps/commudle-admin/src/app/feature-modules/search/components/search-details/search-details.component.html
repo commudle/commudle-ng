@@ -15,7 +15,9 @@
         <div class="designation" [title]="option.designation">
           {{ option.designation || '--' }}
         </div>
-        <p class="followers-count">24<span>Followers</span></p>
+        <p *ngIf="option.followers_count > 0" class="followers-count">
+          {{ option.followers_count }}<span>Followers</span>
+        </p>
       </div>
     </div>
     <div class="follow-btn">

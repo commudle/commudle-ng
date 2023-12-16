@@ -148,7 +148,7 @@
         <div *ngFor="let event of Event">
           <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
             <img
-              [src]="event?.header_image ? event?.header_image.i32 : staticAssets.community_build_empty_state"
+              [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
               alt="{{ event.name }}"
               class="lab-image"
             />
@@ -162,17 +162,14 @@
       <div *ngIf="Content && Content.length > 0">
         <p>Content</p>
         <div *ngFor="let content of Content">
-          <!-- <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+          <a class="navigate" [routerLink]="['/users', content.user.username]">
             <img
-              [src]="event?.header_image ? event?.header_image.i32 : staticAssets.community_build_empty_state"
-              alt="{{ event.name }}"
-              class="lab-image"
+              [src]="content.images ? content.images.i32 : staticAssets.content_empty_state"
+              alt="{{ content.name }}"
+              class="content-image"
             />
-            <p class="name">{{ event.name }}</p>
-            <p class="event-date">
-              <span class="event-date"><span class="dot"> · </span> {{ community.member_count }} Members </span>
-            </p>
-          </a> -->
+            <p class="name">{{ content.title }}</p>
+          </a>
         </div>
       </div>
     </div>

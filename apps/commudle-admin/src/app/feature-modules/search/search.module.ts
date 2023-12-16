@@ -26,6 +26,7 @@ import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/min
 import { PublicCommunityModule } from '../public-community/public-community.module';
 import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
 import { EventCardComponent } from '../../app-shared-components/event-card/event-card.component';
+import { EventContentCardComponent } from '../../app-shared-components/event-content-card/event-content-card.component';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -53,6 +54,7 @@ import { EventCardComponent } from '../../app-shared-components/event-card/event
     PublicCommunityModule,
     FeaturedProjectsCardComponent,
     EventCardComponent,
+    EventContentCardComponent,
   ],
 })
 export class SearchModule {}

@@ -55,7 +55,20 @@
                     <commudle-search-details [option]="user"></commudle-search-details>
                   </div>
                   <!-- </div> -->
-                  <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a>
+                  <!-- <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a> -->
+                  <!-- <div class="load-more">
+                    <button
+                      *ngIf="pageInfo?.has_next_page"
+                      (click)="getPopularCommunities(); showSpinner = true"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="info"
+                      [disabled]="showSpinner || isLoading"
+                    >
+                      Load More
+                    </button>
+                  </div> -->
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="
@@ -98,20 +111,23 @@
                   <p class="query-results-heading">Events</p>
                   <div class="events-card com-border-t-0">
                     <div *ngFor="let event of events" class="event-card">
-                      <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
-                    </div>
-                  </div>
-                </nb-list-item>
-                <!-- <nb-list-item
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
-                >
-                  <p class="query-results-heading">Events</p>
-                  <div class="events-card com-border-t-0">
-                    <div *ngFor="let event of events" class="event-card">
                       <commudle-event-card [event]="event"></commudle-event-card>
                     </div>
                   </div>
-                </nb-list-item> -->
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    socialResources.length > 0 &&
+                    (selectedFilters.includes('SocialResource') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p class="query-results-heading">Social Resources</p>
+                  <div class="social-resources-card com-border-t-0">
+                    <div *ngFor="let socialResource of socialResources" class="social-resource-card">
+                      <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
+                    </div>
+                  </div>
+                </nb-list-item>
                 <!-- </div> -->
                 <!-- </ng-container> -->
                 <!-- <ng-container *ngFor="let option of getCommunity()">

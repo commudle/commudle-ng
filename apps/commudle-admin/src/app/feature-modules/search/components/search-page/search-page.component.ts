@@ -135,7 +135,7 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IUser } from '@commudle/shared-models';
+import { IPageInfo, IUser } from '@commudle/shared-models';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
@@ -160,11 +160,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   labs = [];
   builds = [];
   events = [];
-  content = [];
+  socialResources = [];
   blogs = [];
   newsletters = [];
 
   searchLoader = true;
+  pageInfo: IPageInfo;
 
   constructor(
     private searchService: SearchService,
@@ -232,6 +233,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           }),
         ),
       ];
+      console.log(this.filters);
       // this.searchLoader = false;
       // this.loadMoreLoader = false;
       // this.gtmService(this.query);
@@ -265,6 +267,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchLoader = true;
     this.searchService.getSearchResults(this.query, this.page, this.count, 'User').subscribe((value: any) => {
       this.users = value.results;
+      console.log(this.users, 'users');
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -306,20 +309,22 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getBuilds() {
-    console.log('builds called');
+    // console.log('builds called');
     this.searchLoader = true;
-    this.searchService.getSearchResults(this.query, this.page, this.count, 'Build').subscribe((value: any) => {
-      this.builds = value.results;
-      console.log(value);
-      this.seoService.setTitle(`Search results for "${this.query}"`);
-      // this.results = [...this.results, ...value.results];
-      this.total += value.total;
-      this.page++;
-      this.gtmService(this.query);
+    this.searchService
+      .getSearchResults(this.query, this.page, this.count, 'Community Build')
+      .subscribe((value: any) => {
+        this.builds = value.results;
+        console.log(value.results);
+        this.seoService.setTitle(`Search results for "${this.query}"`);
+        // this.results = [...this.results, ...value.results];
+        this.total += value.total;
+        this.page++;
+        this.gtmService(this.query);
 
-      this.searchLoader = false;
-      // this.loadMoreLoader = false;
-    });
+        this.searchLoader = false;
+        // this.loadMoreLoader = false;
+      });
   }
 
   getEvents() {
@@ -336,10 +341,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       // this.loadMoreLoader = false;
     });
   }
+
   getContent() {
     this.searchLoader = true;
-    this.searchService.getSearchResults(this.query, this.page, this.count, 'Content').subscribe((value: any) => {
-      this.content = value.results;
+    this.searchService.getSearchResults(this.query, this.page, this.count, 'SocialResource').subscribe((value: any) => {
+      this.socialResources = value.results;
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
       this.total += value.total;
@@ -371,10 +377,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.selectedFilters = this.selectedFilters.filter((f) => f !== filter);
     } else {
       this.selectedFilters.push(filter);
-
-      // this.getUsers();
-      // this.getCommunity();
-      // this.getLabs();
+    }
+    if (this.selectedFilters.length === 0) {
+      this.total = 0;
+      this.searchLoader = false;
+      return;
     }
     this.getAllData();
   }
@@ -383,70 +390,69 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.gtm.dataLayerPushEvent('search_query', { query });
   }
 
-  // getAllData() {
-  //   if (this.selectedFilters.includes('User') || this.selectedFilters.includes('All')) {
-  //     this.getUsers();
-  //   }
-  //   if (this.selectedFilters.includes('Community') || this.selectedFilters.includes('All')) {
-  //     this.getCommunity();
-  //   }
-  //   if (this.selectedFilters.includes('Lab ') || this.selectedFilters.includes('All')) {
-  //     this.getLabs();
-  //   }
-  //   if (this.selectedFilters.includes('Community Build') || this.selectedFilters.includes('All')) {
-  //     this.getBuilds();
-  //   }
-  //   if (this.selectedFilters.includes('Event') || this.selectedFilters.includes('All')) {
-  //     this.getEvents();
-  //   }
-  //   if (this.selectedFilters.includes('Content') || this.selectedFilters.includes('All')) {
-  //     this.getContent();
-  //   }
-  //   if (this.selectedFilters.includes('Newsletter') || this.selectedFilters.includes('All')) {
-  //     this.getNewsletter();
-  //   }
-  //   // this.getBlogs();
-  // }
-
   getAllData() {
     this.searchLoader = true;
-    if (this.selectedFilters.includes('All')) {
+    if (this.selectedFilters.includes('User') || this.selectedFilters.includes('All')) {
+      console.log('users called');
       this.getUsers();
-      this.getCommunity();
-      this.getLabs();
-      this.getBuilds();
-      this.getEvents();
-      this.getContent();
-      // this.searchLoader = false;
-      // this.getNewsletter();
-    } else {
-      this.selectedFilters.forEach((filter) => {
-        switch (filter) {
-          case 'User':
-            this.getUsers();
-            break;
-          case 'Community':
-            this.getCommunity();
-            break;
-          case 'Lab ':
-            this.getLabs();
-            break;
-          case 'Community Build':
-            this.getBuilds();
-            break;
-          case 'Event':
-            this.getEvents();
-            break;
-          case 'Content':
-            this.getContent();
-            break;
-          // case 'Newsletter':
-          //   this.getNewsletter();
-          // break;
-        }
-        // this.searchLoader = false;
-      });
     }
-    // this.searchLoader = false;
+    if (this.selectedFilters.includes('Community') || this.selectedFilters.includes('All')) {
+      this.getCommunity();
+    }
+    if (this.selectedFilters.includes('Lab ') || this.selectedFilters.includes('All')) {
+      this.getLabs();
+    }
+    if (this.selectedFilters.includes('Community Build') || this.selectedFilters.includes('All')) {
+      this.getBuilds();
+    }
+    if (this.selectedFilters.includes('Event') || this.selectedFilters.includes('All')) {
+      this.getEvents();
+    }
+    if (this.selectedFilters.includes('SocialResource') || this.selectedFilters.includes('All')) {
+      this.getContent();
+    }
+    // this.getBlogs();
   }
+
+  // getAllData() {
+  //   this.searchLoader = true;
+  //   if (this.selectedFilters.includes('All')) {
+  //     this.getUsers();
+  //     this.getCommunity();
+  //     this.getLabs();
+  //     this.getBuilds();
+  //     this.getEvents();
+  //     this.getContent();
+  //     // this.searchLoader = false;
+  //     // this.getNewsletter();
+  //   } else {
+  //     this.selectedFilters.forEach((filter) => {
+  //       switch (filter) {
+  //         case 'User':
+  //           this.getUsers();
+  //         // break;
+  //         case 'Community':
+  //           this.getCommunity();
+  //         // break;
+  //         case 'Lab ':
+  //           this.getLabs();
+  //         // break;
+  //         case 'Community Build':
+  //           this.getBuilds();
+  //         // break;
+  //         case 'Event':
+  //           this.getEvents();
+  //         // break;
+  //         case 'SocialResource':
+  //           this.getContent();
+  //         // break;
+  //         // case 'Newsletter':
+  //         //   this.getNewsletter();
+  //         // break;
+  //       }
+  //       // this.searchLoader = false;
+  //     });
+  //   }
+  //   // this.searchLoader = false;
+  // }
 }

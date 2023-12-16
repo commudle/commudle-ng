@@ -17,7 +17,7 @@
           <!-- <p class="time">{{ moment(lab.created_at).format('dddd, MMM Do') }}</p> -->
           <p class="time">TIME</p>
           <div class="votes-tags">
-            <!-- <div *ngIf="lab.tags.length > 0" class="tags">
+            <div *ngIf="lab.tags.length > 0" class="tags">
               <app-tag
                 [tags]="lab.tags"
                 [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
@@ -25,7 +25,7 @@
                 [fontColor]="'#101828'"
                 [maximumTag]="2"
               ></app-tag>
-            </div> -->
+            </div>
             <!-- <app-votes-display
               [icon]="'heart-outline'"
               [votableId]="lab.id"

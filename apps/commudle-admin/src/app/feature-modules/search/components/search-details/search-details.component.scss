@@ -22,11 +22,15 @@ a {
     }
 
     .name {
-      @apply com-text-sm com-font-medium com-text-black com-m-0 com-mb-2px;
+      @apply com-flex com-text-sm com-font-medium com-text-black com-m-0 com-mb-2px com-items-center;
     }
 
     .leader {
-      @apply com-mr-2 com-text-American-Orange com-border-American-Orange com-bg-white;
+      @apply com-ml-2 com-text-American-Orange com-border-American-Orange com-bg-white;
+    }
+
+    .expert-icon {
+      @apply com-m-0 com-ml-2 com-h-4 com-w-4;
     }
 
     .designation {

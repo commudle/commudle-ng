@@ -53,7 +53,7 @@ nb-option {
 }
 
 .search-box-results {
-  @apply com-py-2 com-px-4;
+  @apply com-p-0 com-py-2;
   .results {
     @apply com-w-full;
     .container {
@@ -65,24 +65,25 @@ nb-option {
     }
 
     p {
-      @apply com-m-0 com-p-0 com-pt-2 com-pb-1 com-text-sm com-font-medium com-text-gray-500;
+      @apply com-m-0 com-p-0 com-pt-2 com-pb-1 com-px-4 com-text-sm com-font-medium com-text-gray-500;
     }
 
     .navigate {
-      @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-mt-2;
+      @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-p-0 com-px-4 com-py-1;
 
       .user-image,
-      .lab-image {
+      .lab-image,
+      .content-image {
         @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-object-cover;
       }
 
       .name {
-        @apply com-m-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
+        @apply com-m-0 com-p-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
       }
 
       .designation,
       .member-count {
-        @apply com-m-0 com-text-xs com-font-normal com-text-Quartz com-line-clamp-1;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz com-line-clamp-1;
         text-wrap: nowrap;
 
         .dot {
@@ -94,11 +95,21 @@ nb-option {
         @apply com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3;
       }
     }
+
+    .navigate:hover {
+      @apply com-bg-gray-200;
+    }
   }
+}
+
+.search-box-results:hover {
+  @apply com-bg-transparent;
 }
 
 .show-all-results {
   @apply com-justify-center com-items-center com-gap-2;
 }
 
-// nb-option-list.search-autocomplete ul.option-list
+.nb-autocomplete:hover {
+  @apply com-bg-transparent #{!important};
+}
