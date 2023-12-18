@@ -1,7 +1,13 @@
 .base-layout {
-  @apply com-py-10;
+  @apply com-px-0 com-py-10;
+
+  app-search-box {
+    @apply md:com-m-0 com-mx-4;
+    // width: calc(100% - 16px);
+  }
+
   .query-searched {
-    @apply com-text-base com-font-normal com-text-Dark-Jungle-Green com-mt-6 com-mb-4;
+    @apply com-text-base com-font-normal com-text-Dark-Jungle-Green com-mt-6 com-mb-4 md:com-px-0 com-px-4;
 
     strong {
       @apply com-text-base com-font-medium com-text-black;
@@ -9,9 +15,10 @@
   }
 
   nb-tag-list {
-    @apply com-m-0 com-p-0 com-pb-6 com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+    @apply com-m-0 com-p-0 md:com-pb-6 com-pb-2 md:com-px-0 com-px-4 com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
 
     nb-tag {
+      @apply md:com-mb-0 com-mb-4;
       .selected {
         @apply com-bg-primary-500;
       }
@@ -19,7 +26,7 @@
   }
   .container {
     .main-column {
-      @apply com-p-0 com-pr-30px;
+      @apply com-p-0 md:com-pr-30px md:com-pl-0 com-px-4;
     }
     .results-count {
       @apply com-m-0 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
@@ -41,7 +48,7 @@
         }
 
         .query-results-heading {
-          @apply com-m-0 com-mt-6 com-mb-1 com-text-xl com-font-bold com-text-Dark-Jungle-Green com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-w-full;
+          @apply com-m-0 com-mt-6 com-mb-2 com-text-xl com-font-bold com-text-Dark-Jungle-Green com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-w-full;
 
           &:first-child {
             @apply com-border-t-0;
@@ -51,20 +58,20 @@
         .labs-card,
         .builds-card,
         .social-resources-card {
-          @apply com-grid com-grid-cols-2 com-gap-4;
+          @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4 com-w-full;
 
           .lab-card,
           .build-card,
           .social-resource-card {
-            @apply md:com-w-[428px];
+            @apply md:com-w-[428px] com-w-full;
           }
         }
 
         .events-card {
-          @apply com-grid com-grid-cols-3 com-gap-5;
+          @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-5 com-w-full;
 
           .event-card {
-            @apply com-w-[272px];
+            @apply md:com-w-[272px] com-w-full;
           }
         }
       }
@@ -91,7 +98,7 @@
     }
 
     .right-column {
-      @apply com-p-0 com-pl-30px com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+      @apply com-p-0 md:com-pl-30px com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
     }
     // }
     // }

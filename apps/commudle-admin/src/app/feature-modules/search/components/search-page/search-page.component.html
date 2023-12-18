@@ -36,8 +36,8 @@
         ></nb-tag>
       </nb-tag-list>
       <div class="container">
-        <div *appBreakpoints="'<=lg'" class="one-column-layout"></div>
-        <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+        <!-- <div *appBreakpoints="'<=lg'" class="one-column-layout"></div> -->
+        <div class="two-column-layout medium">
           <div class="main-column">
             <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
             <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
@@ -58,6 +58,7 @@
                   <!-- <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a> -->
                   <div class="load-more">
                     <button
+                      *ngIf="usersTotal < users.length"
                       (click)="getUsers(); searchLoader = true"
                       nbButton
                       outline

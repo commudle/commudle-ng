@@ -33,9 +33,10 @@
       </div>
       <div class="details">
         <p class="name">{{ option.name }}</p>
-        <div class="designation" [title]="option.about">
-          {{ option.about || '--' }}
-        </div>
+        <!-- <div *ngIf="option.about && richText">
+          <div *ngIf="richText" [innerHTML]="richText" class="content" class="designation"></div>
+          <div *ngIf="!richText" class="designation" [title]="option.about"><p>--</p></div>
+        </div> -->
         <p class="members-count">{{ option.member_count }}<span>Members</span></p>
       </div>
     </div>

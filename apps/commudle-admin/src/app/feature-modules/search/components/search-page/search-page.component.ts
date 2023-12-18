@@ -189,21 +189,22 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.searchLoader = true;
+      console.log(params, 'params');
       this.query = params.q;
 
-      this.usersPage = 1;
-      this.communitiesPage = 1;
-      this.labsPage = 1;
-      this.buildsPage = 1;
-      this.eventsPage = 1;
-      this.socialResourcesPage = 1;
-      this.page = 1;
+      // this.usersPage = 1;
+      // this.communitiesPage = 1;
+      // this.labsPage = 1;
+      // this.buildsPage = 1;
+      // this.eventsPage = 1;
+      // this.socialResourcesPage = 1;
+      // this.page = 1;
 
       this.filters = [];
       this.selectedFilters = ['All'];
       this.results = [];
       this.total = 0;
-      this.searchQuery();
+      // this.searchQuery();
       this.getAllData();
     });
 
@@ -229,6 +230,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   searchQuery() {
+    console.log('called');
     this.searchService.getSearchResults(this.query, this.page, this.count).subscribe((value: ISearch) => {
       // this.searchLoader = true;
       this.seoService.setTitle(`Search results for "${this.query}"`);
@@ -279,11 +281,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   getUsers() {
     this.searchLoader = true;
     this.searchService.getSearchResults(this.query, this.usersPage, this.count, 'User').subscribe((value: any) => {
-      this.users = value.results;
-      // this.users = [...this.users, ...value.results];
+      // this.users = value.results;
+      this.users = [...this.users, ...value.results];
       this.seoService.setTitle(`Search results for "${this.query}"`);
       // this.results = [...this.results, ...value.results];
-      // this.usersTotal = value.total;
+      this.usersTotal = value.total;
       this.total += value.total;
       this.usersPage++;
       this.gtmService(this.query);

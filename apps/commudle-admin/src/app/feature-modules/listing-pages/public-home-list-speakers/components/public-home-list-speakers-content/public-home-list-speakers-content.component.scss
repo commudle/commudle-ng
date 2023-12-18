@@ -17,7 +17,7 @@ nb-card {
     .content {
       @apply com-flex com-flex-row md:com-block com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-items-center;
       .content-card {
-        @apply md:com-mb-4 com-m-0;
+        @apply md:com-mb-4 com-m-0 com-w-full;
       }
 
       .load-more {

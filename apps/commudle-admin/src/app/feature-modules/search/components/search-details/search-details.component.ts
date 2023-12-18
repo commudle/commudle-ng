@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
   selector: 'commudle-search-details',
@@ -8,9 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SearchDetailsComponent implements OnInit {
   // @Input() parentType: string;
   @Input() option: any;
-  constructor() {}
+  richText: string;
+
+  constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
+    this.getHeaderText();
     // console.log(this.option);
+  }
+
+  getHeaderText() {
+    // this.richText = this.cmsService.getHtmlFromBlock(this.option, 'about');
+    console.log(this.richText);
   }
 }

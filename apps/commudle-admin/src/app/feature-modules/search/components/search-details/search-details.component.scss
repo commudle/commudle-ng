@@ -2,7 +2,7 @@ a {
   @apply com-no-underline;
   .user,
   .community {
-    @apply com-flex com-flex-row;
+    @apply com-flex com-flex-row com-justify-between;
     .user-profile-image {
       @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-full;
       //   border-radius: 50%;
@@ -34,7 +34,11 @@ a {
     }
 
     .designation {
-      @apply com-text-xs com-font-normal com-line-clamp-1 com-mb-1 com-text-Quartz;
+      @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1 com-mb-1 com-text-Quartz;
+
+      p {
+        @apply com-m-0;
+      }
     }
 
     .followers-count,

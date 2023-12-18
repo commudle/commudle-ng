@@ -27,7 +27,7 @@
     .featured-communities-scroll {
       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
       .featured-communities-card {
-        @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4;
+        @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4 md:com-w-[318px] com-w-[303px];
       }
     }
   }
