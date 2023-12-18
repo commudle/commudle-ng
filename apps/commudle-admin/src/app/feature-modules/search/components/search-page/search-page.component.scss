@@ -116,4 +116,8 @@
   nb-tag.appearance-filled.status-primary.selected {
     @apply com-bg-primary-500 com-text-white;
   }
+
+  .load-more {
+    @apply com-m-0 com-mt-4;
+  }
 }

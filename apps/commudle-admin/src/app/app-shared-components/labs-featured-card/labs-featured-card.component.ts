@@ -32,7 +32,5 @@ export class LabsFeaturedCardComponent implements OnInit {
   faHeart = faHeart;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.lab.slug, 'lab');
-  }
+  ngOnInit(): void {}
 }

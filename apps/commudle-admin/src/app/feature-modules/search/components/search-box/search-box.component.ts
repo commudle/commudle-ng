@@ -104,6 +104,7 @@ import { ISearch, ISearchResult } from 'apps/shared-models/search.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Location } from '@angular/common';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-search-box',
@@ -124,14 +125,15 @@ export class SearchBoxComponent implements OnInit {
   searchLoader = false;
   searchStatus = true;
   searchResults = [];
-  Users = [];
-  Community = [];
-  Events = [];
-  Build = [];
-  Lab = [];
-  Event = [];
-  Content = [];
+  users = [];
+  communities = [];
+  events = [];
+  builds = [];
+  labs = [];
+  contents = [];
   staticAssets = staticAssets;
+
+  moment = moment;
 
   constructor(
     private searchService: SearchService,
@@ -198,13 +200,12 @@ export class SearchBoxComponent implements OnInit {
 
   getNotifications() {
     this.searchResults = [];
-    this.Users = [];
-    this.Community = [];
-    this.Events = [];
-    this.Build = [];
-    this.Lab = [];
-    this.Event = [];
-    this.Content = [];
+    this.users = [];
+    this.communities = [];
+    this.events = [];
+    this.builds = [];
+    this.labs = [];
+    this.contents = [];
 
     if (this.query === '') {
       this.total = -1;
@@ -216,18 +217,17 @@ export class SearchBoxComponent implements OnInit {
       // this.isLoading = true;
       this.searchResults = value.results.map((result) => {
         if (result?.type === 'User') {
-          this.Users.push(result);
+          this.users.push(result);
         } else if (result?.type === 'Community') {
-          this.Community.push(result);
+          this.communities.push(result);
         } else if (result?.type === 'Lab') {
-          this.Lab.push(result);
+          this.labs.push(result);
         } else if (result?.type === 'Community Build') {
-          this.Build.push(result);
+          this.builds.push(result);
         } else if (result?.type === 'Event') {
-          this.Event.push(result);
-          console.log(this.Event);
+          this.events.push(result);
         } else if (result?.type === 'SocialResource') {
-          this.Content.push(result);
+          this.contents.push(result);
         }
         // this.total = value.total;
         // this.searchLoader = false;

@@ -90,9 +90,9 @@
   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder search-box">No results found</nb-option>
   <nb-option *ngIf="total > 0 && !searchLoader" class="search-box-results">
     <div class="results">
-      <div *ngIf="Users && Users.length > 0" class="container">
+      <div *ngIf="users && users.length > 0" class="container">
         <p>Users</p>
-        <div *ngFor="let user of Users">
+        <div *ngFor="let user of users">
           <a class="navigate" [routerLink]="['/users', user.username]">
             <img [src]="user.avatar" alt="{{ user.name }}" class="user-image" />
             <p class="name">{{ user.name }}</p>
@@ -102,24 +102,20 @@
           </a>
         </div>
       </div>
-      <div *ngIf="Community && Community.length > 0" class="container">
+      <div *ngIf="communities && communities.length > 0" class="container">
         <p>Community</p>
-        <div *ngFor="let community of Community">
+        <div *ngFor="let community of communities">
           <a class="navigate" [routerLink]="['/communities', community.slug]">
             <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
             <p class="name">{{ community.name }}</p>
             <!-- <p class="member-count"><span> · </span>{{ community.member_count }} <span class="member-count">Members</span></p> -->
-            <p>
-              <span class="member-count"
-                ><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members
-              </span>
-            </p>
+            <p class="member-count"><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members</p>
           </a>
         </div>
       </div>
-      <div *ngIf="Lab && Lab.length > 0" class="container">
+      <div *ngIf="labs && labs.length > 0" class="container">
         <p>Labs</p>
-        <div *ngFor="let lab of Lab">
+        <div *ngFor="let lab of labs">
           <a class="navigate" [routerLink]="['/labs', lab.slug]">
             <img
               [src]="lab.header_image ? lab.header_image.i32 : staticAssets.community_lab_empty_state"
@@ -130,9 +126,9 @@
           </a>
         </div>
       </div>
-      <div *ngIf="Build && Build.length > 0" class="container">
+      <div *ngIf="builds && builds.length > 0" class="container">
         <p>Builds</p>
-        <div *ngFor="let build of Build">
+        <div *ngFor="let build of builds">
           <a class="navigate" [routerLink]="['/builds', build.slug]">
             <img
               [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
@@ -143,9 +139,9 @@
           </a>
         </div>
       </div>
-      <div *ngIf="Event && Event.length > 0">
+      <div *ngIf="events && events.length > 0">
         <p>Event</p>
-        <div *ngFor="let event of Event">
+        <div *ngFor="let event of events">
           <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
             <img
               [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
@@ -154,17 +150,17 @@
             />
             <p class="name">{{ event.name }}</p>
             <p class="event-date">
-              <!-- <span class="event-date"><span class="dot"> · </span> {{ community.member_count }} Members </span> -->
+              <span class="dot"> &nbsp;·&nbsp; </span> {{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}
             </p>
           </a>
         </div>
       </div>
-      <div *ngIf="Content && Content.length > 0">
+      <div *ngIf="contents && contents.length > 0">
         <p>Content</p>
-        <div *ngFor="let content of Content">
-          <a class="navigate" [routerLink]="['/users', content.user.username]">
+        <div *ngFor="let content of contents">
+          <a class="navigate" [href]="content.link" target="_blank">
             <img
-              [src]="content.images ? content.images.i32 : staticAssets.content_empty_state"
+              [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
               alt="{{ content.name }}"
               class="content-image"
             />

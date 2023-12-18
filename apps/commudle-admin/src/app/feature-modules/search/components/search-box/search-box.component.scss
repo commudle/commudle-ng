@@ -82,7 +82,8 @@ nb-option {
       }
 
       .designation,
-      .member-count {
+      .member-count,
+      .event-date {
         @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz com-line-clamp-1;
         text-wrap: nowrap;
 

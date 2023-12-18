@@ -56,19 +56,18 @@
                   </div>
                   <!-- </div> -->
                   <!-- <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a> -->
-                  <!-- <div class="load-more">
+                  <div class="load-more">
                     <button
-                      *ngIf="pageInfo?.has_next_page"
-                      (click)="getPopularCommunities(); showSpinner = true"
+                      (click)="getUsers(); searchLoader = true"
                       nbButton
                       outline
                       size="tiny"
-                      status="info"
-                      [disabled]="showSpinner || isLoading"
+                      status="basic"
+                      [disabled]="searchLoader"
                     >
                       Load More
                     </button>
-                  </div> -->
+                  </div>
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="
@@ -121,7 +120,7 @@
                     (selectedFilters.includes('SocialResource') || selectedFilters.includes('All'))
                   "
                 >
-                  <p class="query-results-heading">Social Resources</p>
+                  <p class="query-results-heading">Content</p>
                   <div class="social-resources-card com-border-t-0">
                     <div *ngFor="let socialResource of socialResources" class="social-resource-card">
                       <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
