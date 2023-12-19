@@ -1,60 +1,5 @@
-<!-- <nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
-  <nb-icon icon="search-outline" nbPrefix></nb-icon>
-  <input
-    #searchInput
-    (keyup.enter)="onSubmit()"
-    [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
-    [formControl]="inputFormControl"
-    [nbAutocomplete]="showSuggestions ? autoComplete : loading"
-    [ngClass]="{ giant: overrideSearchStatus }"
-    [overlayOffset]="0"
-    [shape]="shape"
-    class="main-search-bar"
-    fullWidth
-    nbInput
-    placeholder="Search react, gdg, design, tutorials"
-    type="text"
-  />
-</nb-form-field>
-
-<nb-autocomplete #loading></nb-autocomplete>
-
-
-<nb-autocomplete #autoComplete  (selectedChange)="navigate($event)"
-  [handleDisplayFn]="handleDisplay" optionsListClass="search-autocomplete">
-  <!-- *ngIf="searchLoader"
-  <nb-option class="search-placeholder loading-spinner">
-    <div class="spinner">
-      <div *ngFor="let _ of [].constructor(5)"></div>
-    </div>
-  </nb-option>
-  *ngIf="inputFormControl.value?.length === 0" 
-  <nb-option class="search-placeholder">
-    Quickly search your favorite topics, labs by industry experts or find an event you missed
-  </nb-option>
-   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
-  <nb-option-group *ngFor="let group of groupedResults | keyvalue" [title]="group.key" class="search-results-group">
-    <nb-option *ngFor="let option of group.value" [value]="option">
-      <a [routerLink]="getRoute(option)" class="navigate">
-        <nb-user [name]="option.name" [picture]="getPicture(option)" [showTitle]="false"></nb-user>
-      </a>
-    </nb-option>
-  </nb-option-group>
-  <nb-option
-    *ngIf="total > 0"
-    [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }"
-    class="com-justify-center com-items-center com-gap-2"
-  >
-    Show all results
-    <nb-icon icon="arrow-forward-outline"></nb-icon>
-  </nb-option> 
-</nb-autocomplete>
--->
-
 <nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
-  <!-- #searchInput
-(keyup.enter)="onSubmit()" -->
   <form [formGroup]="inputFormControl">
     <input
       #searchInput
@@ -76,14 +21,10 @@
 
 <nb-autocomplete #loading> </nb-autocomplete>
 
-<!-- (selectedChange)="navigate($event)"
-[handleDisplayFn]="handleDisplay" -->
-<!-- optionsListClass="search-autocomplete" -->
 <nb-autocomplete #autoComplete>
   <nb-option *ngIf="searchLoader" class="loader search-box">
     <app-loading-spinner></app-loading-spinner>
   </nb-option>
-  <!-- *ngIf="inputFormControl.value?.length === 0" -->
   <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder search-box">
     Quickly search your favorite topics, labs by industry experts or find an event you missed
   </nb-option>
@@ -108,7 +49,6 @@
           <a class="navigate" [routerLink]="['/communities', community.slug]">
             <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
             <p class="name">{{ community.name }}</p>
-            <!-- <p class="member-count"><span> · </span>{{ community.member_count }} <span class="member-count">Members</span></p> -->
             <p class="member-count"><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members</p>
           </a>
         </div>
@@ -170,52 +110,8 @@
       </div>
     </div>
   </nb-option>
-  <!-- [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }" -->
   <nb-option *ngIf="total > 0 && !searchLoader" (click)="onSubmit()" class="show-all-results">
-    <!-- class="" -->
     Show all results
     <nb-icon icon="arrow-forward-outline"></nb-icon>
   </nb-option>
 </nb-autocomplete>
-
-<!-- <div *ngFor="let result of searchResults">
-  <ng-container [ngSwitch]="result.type">
-    <div *ngSwitchCase="'Community'">
-      <h2>Community</h2>
-      <div>{{ result.value.name }}</div>
-    </div>
-    <div *ngSwitchCase="'Event'">
-      <h2>Event</h2>
-      <div>{{ result.value.name }}</div>
-    </div>
-    <div *ngSwitchCase="'Build'">
-      <h2>Build</h2>
-      <div>{{ result.value.name }}</div>
-    </div>
-  </ng-container>
-</div> -->
-
-<!-- <div *ngFor="let result of searchResults">
-  <ng-container [ngSwitch]="result?.type">
-    <div *ngSwitchCase="'User'">
-      <p>User</p>
-      <div *ngFor="let user of Users">{{ user }}</div>
-    </div>
-    <div *ngSwitchCase="'Community'">
-      <p>Community</p>
-      <div *ngFor="let community of Community">{{ community }}</div>
-    </div>
-   <div *ngSwitchCase="' Lab'">
-      <p>Lab</p>
-      <div *ngFor="let lab of searchResults">{{ lab.value?.name }}</div>
-    </div>
-    <div *ngSwitchCase="'Community Build'">
-      <p>Build</p>
-      <div *ngFor="let build of searchResults">{{ build.value?.name }}</div>
-    </div>
-    <div *ngSwitchCase="'Event'">
-      <p>Event</p>
-      <div *ngFor="let event of searchResults">{{ event.value?.name }}</div>
-    </div> 
-  </ng-container>
-</div> -->

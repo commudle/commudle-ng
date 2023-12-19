@@ -32,7 +32,6 @@
         <div class="two-column-layout medium">
           <div class="main-column">
             <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
-            <!-- *ngIf="total > 0" -->
             <div *ngIf="!searchLoader">
               <p class="results-count">{{ total }} Results Found</p>
               <nb-list>
@@ -109,7 +108,7 @@
                   <div class="builds-card com-border-t-0">
                     <div *ngFor="let community_build of builds" class="build-card">
                       <commudle-featured-projects-card
-                        [community_build]="community_build"
+                        [communityBuild]="community_build"
                       ></commudle-featured-projects-card>
                     </div>
                     <button

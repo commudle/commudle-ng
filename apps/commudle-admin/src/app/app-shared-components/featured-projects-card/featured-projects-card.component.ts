@@ -16,7 +16,7 @@ import { ICommunityBuild } from '@commudle/shared-models';
   imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule, RouterModule],
 })
 export class FeaturedProjectsCardComponent implements OnInit {
-  @Input() community_build: ICommunityBuild;
+  @Input() communityBuild: ICommunityBuild;
   @Input() showTag = true;
   moment = moment;
   constructor() {}

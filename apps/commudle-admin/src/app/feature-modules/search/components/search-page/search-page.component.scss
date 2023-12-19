@@ -34,11 +34,8 @@
     .option-name {
       @apply com-m-0 com-mb-3 com-text-xl com-font-bold com-text-Dark-Jungle-Green;
     }
-    // .one-column-layout {
-    // .search-results {
-    // nb-card-body {
+
     nb-list {
-      // @apply com-mt-4;
       nb-list-item {
         @apply com-p-0 com-flex com-flex-col com-items-start com-border-0;
 
@@ -78,10 +75,6 @@
       .search-result {
         @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
 
-        // &:first-child {
-        //   @apply com-border-t-0;
-        // }
-
         nb-user {
           &::ng-deep {
             .info-container {
@@ -93,14 +86,11 @@
           }
         }
       }
-      // }
     }
 
     .right-column {
       @apply com-p-0 md:com-pl-30px com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
     }
-    // }
-    // }
   }
 
   .switch-case {

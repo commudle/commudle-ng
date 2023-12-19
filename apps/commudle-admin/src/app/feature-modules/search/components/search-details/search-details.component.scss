@@ -5,7 +5,6 @@ a {
     @apply com-flex com-flex-row com-justify-between;
     .user-profile-image {
       @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-full;
-      //   border-radius: 50%;
 
       img {
         @apply com-w-full com-h-auto com-object-cover;
@@ -14,7 +13,6 @@ a {
 
     .community-image {
       @apply com-flex com-items-center com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-[4px] com-border com-border-solid com-border-Bright-Gray;
-      //   border-radius: 50%;
 
       img {
         @apply com-w-full com-h-auto com-object-cover;
