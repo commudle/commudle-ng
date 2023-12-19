@@ -118,12 +118,14 @@
     </div>
   </div>
 
-  <div class="homepage-section com-pb-12">
-    <div class="section-heading">
-      <h2>Testimonials</h2>
-      <h3 class="subheading">By DevRels, Non Profits, Communities, Developers, Experts & Mentors</h3>
+  <div *ngIf="testimonials" class="homepage-section com-pb-12" id="testimonials">
+    <div class="testimonials">
+      <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></h2>
+      <h3 class="subheading">Don't just take our word for it</h3>
+      <div class="testimonial-card">
+        <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
+      </div>
     </div>
-    <app-homepage-testimonials></app-homepage-testimonials>
   </div>
 
   <div class="homepage-section com-pb-36">

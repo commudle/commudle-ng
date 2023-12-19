@@ -93,4 +93,16 @@ export class EventDataFormEntityGroupsService {
       { params },
     );
   }
+
+  updateEventDataFormEntityGroup(
+    eventDataFormEntityGroupId,
+    dataFormEntityGroup,
+  ): Observable<IEventDataFormEntityGroup> {
+    const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
+    return this.http.put<IEventDataFormEntityGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.UPDATE),
+      { event_data_form_entity_group: dataFormEntityGroup.value },
+      { params },
+    );
+  }
 }

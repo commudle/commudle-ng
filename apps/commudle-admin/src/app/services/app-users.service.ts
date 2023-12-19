@@ -156,14 +156,20 @@ export class AppUsersService {
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), { params });
   }
 
-  getFollowers(username: string): Observable<IUser[]> {
-    const params = new HttpParams().set('username', username);
-    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWERS), { params });
+  getFollowers(username: string, after: string): Observable<IPagination<IUser[]>> {
+    let params = new HttpParams().set('username', username);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser[]>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWERS), { params });
   }
 
-  getFollowees(username: string): Observable<IUser[]> {
-    const params = new HttpParams().set('username', username);
-    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWEES), { params });
+  getFollowees(username: string, after: string): Observable<IPagination<IUser[]>> {
+    let params = new HttpParams().set('username', username);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser[]>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWEES), { params });
   }
 
   getUserEmailSubscriptions(): Observable<any> {

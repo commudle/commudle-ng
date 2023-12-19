@@ -1,9 +1,26 @@
-<div class="discussion-container">
+<div *ngIf="pinnedMessages && pinnedMessages.length > 0" class="com-z-10">
+  <div class="pinned-message">
+    <div *ngFor="let message of pinnedMessages">
+      <commudle-community-channel-message
+        *ngIf="message"
+        [message]="message"
+        [canReply]="false"
+        [messagePinned]="true"
+      ></commudle-community-channel-message>
+    </div>
+  </div>
+</div>
+
+<div
+  class="discussion-container"
+  [ngClass]="{ 'com-h-[calc(100%-80px)]': pinnedMessages.length > 0, 'com-h-full': pinnedMessages.length === 0 }"
+>
   <!-- TODO: Fix problem with infinite scroll -->
 
   <div *ngIf="communityChannelHandlerService.loading$ | async" class="com-flex com-items-center com-justify-center">
     <commudle-loading-spinner></commudle-loading-spinner>
   </div>
+
   <div
     #messagesListRef
     (scrolled)="communityChannelHandlerService.getMessagesBefore()"
@@ -25,9 +42,9 @@
         [cursor]="message.cursor"
         [message]="message.data"
         [canReply]="
-          channelsRoles[channelOfForum.id] &&
-          (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
-            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+          channelsRoles[channelOrForum.id] &&
+          (channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+            channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
         "
       ></commudle-community-channel-message>
     </div>
@@ -45,23 +62,23 @@
   <div *ngIf="(authService.currentUser$ | async)?.id; else notLoggedIn">
     <div
       *ngIf="
-        (channelsRoles[channelOfForum.id] &&
-          (channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
-            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))) ||
-          (forumsRoles[channelOfForum.id] &&
-            (forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
-              forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)));
+        (channelsRoles[channelOrForum.id] &&
+          (channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+            channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))) ||
+          (forumsRoles[channelOrForum.id] &&
+            (forumsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
+              forumsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)));
         else joinButton
       "
     >
       <commudle-editor
         (contentChange)="communityChannelHandlerService.sendMessage($event)"
         *ngIf="
-          !channelOfForum.is_readonly ||
-          (channelsRoles[channelOfForum.id] &&
-            channelsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
-          (forumsRoles[channelOfForum.id] &&
-            forumsRoles[channelOfForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+          !channelOrForum.is_readonly ||
+          (channelsRoles[channelOrForum.id] &&
+            channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
+          (forumsRoles[channelOrForum.id] &&
+            forumsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
         "
         [validators]="validators"
         [status]="'primary'"

@@ -1,3 +1,9 @@
 .backButton {
   @apply com-cursor-pointer com-w-max com-text-[#8f9bb3];
 }
+
+.anchor-tag {
+  a {
+    @apply com-text-[#8f9bb3] com-no-underline;
+  }
+}

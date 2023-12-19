@@ -15,6 +15,8 @@ import { CommunityTeamComponent } from './components/community-team/community-te
 import { CommunityPaymentsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-payments/community-payments.component';
 import { CommunityFormsAndSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-forms-and-surveys.component';
 import { CommunitySurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-forms-and-surveys/community-surveys/community-surveys.component';
+import { CommunityPageComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-page/community-page.component';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 
 const routes = [
   {
@@ -61,6 +63,23 @@ const routes = [
       {
         path: 'payments',
         component: CommunityPaymentsComponent,
+      },
+      {
+        path: 'pages',
+        children: [
+          {
+            path: '',
+            component: CommunityPageComponent,
+          },
+          {
+            path: 'new',
+            component: CustomPageFormComponent,
+          },
+          {
+            path: 'edit/:page_slug',
+            component: CustomPageFormComponent,
+          },
+        ],
       },
       {
         path: 'members',

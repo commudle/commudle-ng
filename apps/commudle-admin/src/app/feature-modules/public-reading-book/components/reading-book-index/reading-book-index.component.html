@@ -1,0 +1,12 @@
+<h2 class="chapters-heading">Chapters</h2>
+<nb-card>
+  <nb-list>
+    <nb-list-item *ngFor="let chapterIndex of chapterIndexes" class="clickable">
+      <a [routerLink]="['/developer-community-blueprint', chapterIndex.slug.current]" routerLinkActive="active">
+        <span>
+          {{ chapterIndex.chapter_name }}
+        </span>
+      </a>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

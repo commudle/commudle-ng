@@ -19,12 +19,16 @@
 <div *ngIf="discussion && forum" class="com-ml-2">
   <commudle-channel-discussion
     [discussionId]="discussion.id"
-    [channelOfForum]="forum"
+    [channelOrForum]="forum"
     discussionParent="channels"
     discussionType="forum"
   ></commudle-channel-discussion>
 </div>
 
 <div class="com-absolute com-bottom-0 com-right-0 com-h-full" *ngIf="showMembersList">
-  <app-channel-members (closeMembersList)="toggleMembersList()" [channelOfForum]="forum"></app-channel-members>
+  <app-channel-members
+    (closeMembersList)="toggleMembersList()"
+    [channelOrForum]="forum"
+    discussionType="forum"
+  ></app-channel-members>
 </div>

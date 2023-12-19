@@ -1,0 +1,11 @@
+<nb-card *ngIf="page">
+  <nb-card-body>
+    <div class="page">
+      <h5>{{ page.title }}</h5>
+      <div [innerHTML]="page.content | safeHtml" class="content"></div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <small> Last updated on: {{ page.updated_at | date : 'medium' }} </small>
+  </nb-card-footer>
+</nb-card>

@@ -44,6 +44,7 @@ export class EmailerComponent implements OnInit, OnDestroy {
   eMailForm;
 
   subscriptions: Subscription[] = [];
+  isEmailSending = false;
 
   tinyMCE = {
     height: 200,
@@ -438,9 +439,17 @@ export class EmailerComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
-    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe((data) => {
-      this.close();
-      this.toastLogService.successDialog('Emails are being delivered!');
-    });
+    this.isEmailSending = true;
+    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe(
+      (data) => {
+        this.isEmailSending = false;
+        this.close();
+        this.toastLogService.successDialog('Emails are being delivered!');
+      },
+      (error) => {
+        this.close();
+        this.isEmailSending = false;
+      },
+    );
   }
 }

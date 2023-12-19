@@ -1,3 +1,9 @@
 .agenda {
   @apply com-mx-0 com-my-6;
 }
+
+.next-step-section {
+  a {
+    @apply com-text-lg com-font-semibold com-text-Yankees-Blue com-no-underline hover:com-text-Yankees-Blue;
+  }
+}

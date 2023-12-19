@@ -55,7 +55,7 @@
               <fa-icon [icon]="faReply" class="com-text-lg com-text-primary-500"></fa-icon>
             </div>
           </ng-container>
-          <div [nbContextMenu]="items" nbContextMenuTag="chat-menu-{{ message.id }}">
+          <div [nbContextMenu]="contextMenuItems" nbContextMenuTag="chat-menu-{{ message.id }}">
             <nb-icon icon="more-vertical" pack="eva" class="com-text-lg"></nb-icon>
           </div>
         </div>

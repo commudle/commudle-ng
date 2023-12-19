@@ -69,6 +69,9 @@ export class AuthService {
             com_has_social_resources: data.user.has_social_resources,
             com_work_experience_months: data.user.work_experience_months,
             com_is_community_leader: data.user.is_community_leader,
+            com_username: data.user.username,
+            com_user_designation: data.user.designation,
+            com_user_tags: data.user.tags.map((tag) => tag.name),
           });
         } else {
           this.currentUserVerified.next(false);

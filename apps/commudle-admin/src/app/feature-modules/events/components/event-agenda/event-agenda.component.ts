@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IEvent, ICommunity } from '@commudle/shared-models';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
+import { faArrowRight, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'commudle-event-agenda',
@@ -11,6 +13,11 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
 export class EventAgendaComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
+  icons = {
+    faArrowRight,
+    faStar,
+    faTag,
+  };
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
 
   ngOnInit(): void {
