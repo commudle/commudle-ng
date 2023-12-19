@@ -201,6 +201,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_data_form_entity_groups',
     GET: 'api/v2/event_data_form_entity_group',
     CREATE: 'api/v2/event_data_form_entity_groups',
+    UPDATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
@@ -260,6 +261,8 @@ export const API_ROUTES = {
     INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+    AUTOMATION: 'api/v2/data_form_entities/automation',
+    FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
   },
 
@@ -735,5 +738,18 @@ export const API_ROUTES = {
     CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
     CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
+  },
+
+  CUSTOM_PAGES: {
+    CREATE: 'api/v2/custom_pages', //POST
+    UPDATE: 'api/v2/custom_pages', //PUT
+    DELETE: 'api/v2/custom_pages', //DELETE
+    SHOW: 'api/v2/custom_pages/show', //GET
+    INDEX: 'api/v2/custom_pages', //GET
+    GET_SLUG: 'api/v2/custom_pages/generate_slug',
+    PUBLIC: {
+      SHOW: 'api/v2/custom_pages/public/show', //GET
+      INDEX: 'api/v2/custom_pages/public/index', //GET
+    },
   },
 };

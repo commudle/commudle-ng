@@ -29,6 +29,7 @@ import { CommunityComponent } from './components/communities/community/community
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunityGroupsSurveysComponent } from './components/community-groups-surveys/community-groups-surveys.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { CommunityGroupCustomPagesComponent } from './components/community-group-custom-pages/community-group-custom-pages.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     ChannelsComponent,
     CommunityComponent,
     CommunityGroupsSurveysComponent,
+    CommunityGroupCustomPagesComponent,
   ],
   imports: [
     CommonModule,

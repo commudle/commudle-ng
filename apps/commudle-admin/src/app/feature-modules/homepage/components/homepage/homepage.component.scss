@@ -74,6 +74,22 @@
         }
       }
     }
+
+    .testimonials {
+      @apply com-flex com-flex-col com-m-0;
+
+      .heading {
+        @apply com-text-center md:com-text-xl com-text-base com-font-bold com-text-primary-500 com-m-0 md:com-mb-4 com-mb-6;
+      }
+
+      .subheading {
+        @apply com-text-center md:com-text-4xl com-text-2xl com-font-bold com-text-black com-m-0 md:com-mb-[52px] com-mb-6;
+      }
+
+      .testimonial-card {
+        @apply com-flex com-justify-center;
+      }
+    }
   }
 }
 

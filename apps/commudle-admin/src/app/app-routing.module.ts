@@ -57,6 +57,21 @@ const routes: Routes = [
         (m) => m.StudentNonProfitSupportModule,
       ),
   },
+  {
+    path: 'devrel-agencies',
+    loadChildren: () =>
+      import('./feature-modules/public-agencies/public-agencies.module').then((m) => m.PublicAgenciesModule),
+  },
+  {
+    path: 'book',
+    loadChildren: () =>
+      import('./feature-modules/public-book-page/public-book-page.module').then((m) => m.PublicBookPageModule),
+  },
+  {
+    path: 'developer-community-blueprint',
+    loadChildren: () =>
+      import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,
@@ -215,10 +230,6 @@ const routes: Routes = [
           import('./feature-modules/community-groups/community-groups.module').then((m) => m.CommunityGroupsModule),
       },
     ],
-  },
-  {
-    path: 'public',
-    loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },

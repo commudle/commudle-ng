@@ -7,3 +7,5 @@ export * from './lib/components/vote/vote.component';
 export * from './lib/components/channel-discussion/channel-discussion.component';
 
 export * from './lib/components/loading-spinner/loading-spinner.component';
+
+export * from './lib/components/faq/faq.component';

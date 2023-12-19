@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faFileLines } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
@@ -23,6 +24,10 @@ export class EventDetailsComponent implements OnInit {
 
   uploadedHeaderImageFile: File;
   uploadedHeaderImage;
+  icons = {
+    faArrowRight,
+    faFileLines,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,

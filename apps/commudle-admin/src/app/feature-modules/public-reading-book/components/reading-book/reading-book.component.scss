@@ -1,0 +1,114 @@
+.reading-book {
+  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32 com-pb-8 md:com-px-0 com-px-3;
+  .right-column {
+    @apply md:com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px] com-hidden;
+
+    .download-pdf {
+      @apply com-m-0 com-mt-5 com-w-full;
+
+      fa-icon {
+        @apply com-m-0 com-mr-2;
+      }
+    }
+  }
+
+  .main-column {
+    @apply com-m-0 com-p-0 md:com-pt-[42px];
+    .chapter-name {
+      @apply md:com-text-[28px] com-text-xl com-font-semibold com-text-blue-600 com-m-0 md:com-mt-0 com-my-4;
+    }
+
+    nb-card {
+      @apply com-m-0;
+      nb-card-header {
+        @apply md:com-px-9 md:com-pt-9 md:com-pb-0 com-p-0;
+        .image {
+          @apply md:com-w-[994px] com-h-auto com-w-full;
+
+          img {
+            @apply com-h-auto com-w-full com-object-cover;
+          }
+        }
+      }
+
+      nb-card-body {
+        @apply md:com-pb-4 md:com-pt-6 md:com-px-9 com-px-3 com-pt-4 com-pb-0;
+        article {
+          .content {
+            ::ng-deep {
+              p,
+              li {
+                font-size: 16px;
+                color: initial;
+                margin: 0px;
+              }
+
+              figure {
+                img {
+                  @apply com-w-full;
+                }
+              }
+            }
+          }
+        }
+
+        .fun-facts {
+          @apply com-bg-yellow-100 com-p-2 com-m-0 com-mt-2;
+          div {
+            @apply com-text-base com-text-black com-italic com-font-light;
+            ::ng-deep {
+              p {
+                @apply com-m-0;
+              }
+            }
+          }
+        }
+
+        .how-commudle-helps {
+          @apply com-bg-blue-100 com-p-2 com-m-0 com-mt-2;
+          div {
+            @apply com-text-base com-text-black com-font-light;
+            ::ng-deep {
+              p {
+                @apply com-m-0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      @apply com-m-0 com-mt-5 com-fixed md:com-relative com-bottom-20 md:com-bottom-0;
+      .actions {
+        @apply md:com-flex com-grid md:com-justify-between com-grid-cols-3 md:com-gap-0 com-gap-3;
+      }
+
+      .prev-btn,
+      .next-btn {
+        @apply com-bg-Yankees-Blue com-text-white com-flex-shrink-0;
+        flex: 0 0 20%;
+      }
+
+      select {
+        @apply com-w-full;
+      }
+    }
+  }
+
+  .mobile-hidden {
+    @apply md:com-flex com-hidden;
+  }
+
+  .desktop-hidden {
+    @apply md:com-hidden com-flex;
+  }
+
+  .fixed-btn {
+    @apply md:com-relative md:com-bottom-0 com-fixed com-bottom-36 com-w-[calc(100%-25px)];
+
+    fa-icon {
+      @apply com-m-0 com-mr-2;
+    }
+  }
+}

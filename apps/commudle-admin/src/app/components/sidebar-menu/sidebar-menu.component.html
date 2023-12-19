@@ -109,11 +109,14 @@
     </nb-accordion>
   </div>
 
-  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin || isAssetsAdmin">
+  <div *ngIf="isPageAdsAdmin || isBadgesAdmin || isAssetsAdmin || isFeaturedItemsAdmin">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>
-        <nb-accordion-item-body *ngIf="isFeaturedCommunitiesAdmin">
+        <!-- <nb-accordion-item-body *ngIf="isFeaturedCommunitiesAdmin">
+          <a [routerLink]="['/sys-admin', 'featured', 'communities']">Featured</a>
+        </nb-accordion-item-body> -->
+        <nb-accordion-item-body *ngIf="isFeaturedItemsAdmin">
           <a [routerLink]="['/sys-admin', 'featured', 'communities']">Featured</a>
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isPageAdsAdmin">

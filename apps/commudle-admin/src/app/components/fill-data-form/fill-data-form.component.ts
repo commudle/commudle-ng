@@ -78,14 +78,13 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
         if (this.currentUser) {
+          this.appUsersService.getProfileStats().subscribe((data) => {
+            this.userProfileDetails = data;
+          });
           this.gtmData.com_user_id = this.currentUser.id;
         }
       }),
     );
-
-    this.appUsersService.getProfileStats().subscribe((data) => {
-      this.userProfileDetails = data;
-    });
   }
 
   ngOnDestroy() {
@@ -97,6 +96,9 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
       this.dataFormEntity = data;
+      if (this.dataFormEntity.form_type) {
+        this.gtmData.com_form_type_name = this.dataFormEntity.form_type.form_type_name;
+      }
       this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
       this.seoService.setTags(
         `${this.dataFormEntity.name}`,

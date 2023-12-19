@@ -3,7 +3,7 @@ import { CommunityChannelChatChannel } from '@commudle/shared-channels';
 import { IPage, IPageInfo, IPagination, IUserMessage } from '@commudle/shared-models';
 import { CableService, DiscussionService, ToastrService } from '@commudle/shared-services';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-
+import { CommunityChannelsService } from '@commudle/shared-services';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +13,9 @@ export class CommunityChannelHandlerService {
 
   private messages = new BehaviorSubject<IPage<IUserMessage>[]>([]);
   messages$ = this.messages.asObservable();
+
+  private pinnedMessages = new BehaviorSubject<IUserMessage[]>([]);
+  pinnedMessages$ = this.pinnedMessages.asObservable();
 
   private isMessageLoading = new BehaviorSubject<boolean>(true);
   isMessageLoading$ = this.isMessageLoading.asObservable();
@@ -38,6 +41,7 @@ export class CommunityChannelHandlerService {
     private discussionService: DiscussionService,
     private cableService: CableService,
     private toastrService: ToastrService,
+    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   init(discussionId: number, discussionParent: string, fromLastRead?: boolean, after?: string) {
@@ -133,6 +137,26 @@ export class CommunityChannelHandlerService {
       return message;
     });
     this.messages.next(messages);
+  }
+
+  pinnedMessage(channelOrFormId) {
+    this.communityChannelsService.getPinnedMessages(channelOrFormId).subscribe((data) => {
+      this.pinnedMessages.next(data);
+    });
+  }
+
+  updatePinnedMessage(message: IUserMessage) {
+    const currentPinnedMessages = this.pinnedMessages.getValue();
+    const updatedPinnedMessages = [...currentPinnedMessages, message];
+
+    this.pinnedMessages.next(updatedPinnedMessages);
+  }
+
+  removePinnedMessage(message: IUserMessage) {
+    const currentPinnedMessages = this.pinnedMessages.getValue();
+    const updatedPinnedMessages = currentPinnedMessages.filter((msg) => msg !== message);
+
+    this.pinnedMessages.next(updatedPinnedMessages);
   }
 
   handleChatChannel() {

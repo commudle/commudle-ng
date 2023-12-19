@@ -1,0 +1,18 @@
+.heading {
+  @apply com-flex com-gap-2 com-items-center com-mb-3;
+  div {
+    @apply com-text-sm com-flex com-flex-col md:com-flex-row com-items-center com-gap-2 com-justify-center md:com-justify-start com-w-4/5;
+    span {
+      @apply com-text-3xl com-font-semibold md:com-text-sm;
+    }
+  }
+}
+.members {
+  @apply com-px-2 com-py-3;
+  .member {
+    @apply com-py-3;
+  }
+  .member:not(:last-child) {
+    @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  }
+}

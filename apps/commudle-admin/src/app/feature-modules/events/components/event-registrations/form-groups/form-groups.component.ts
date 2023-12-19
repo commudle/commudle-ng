@@ -12,8 +12,8 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
 import { StripeHandlerService } from '@commudle/shared-services';
-import { NbWindowService } from '@commudle/theme';
-import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { NbDialogService, NbWindowService } from '@commudle/theme';
+import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/data-form-entities.service';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
@@ -24,7 +24,11 @@ import { Visibility } from 'apps/shared-models/data_form_entity.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'apps/shared-models/enums/registration_types.enum';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
-import { IRegistrationType, RegistrationTypeNames } from 'apps/shared-models/registration_type.model';
+import {
+  IRegistrationType,
+  RegistrationTypeBackgroundColor,
+  RegistrationTypeNames,
+} from 'apps/shared-models/registration_type.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 
 @Component({
@@ -41,6 +45,7 @@ export class FormGroupsComponent implements OnInit {
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;
   faUsers = faUsers;
+  faPenToSquare = faPenToSquare;
   ERegistationTypes = ERegistationTypes;
   newDataFormWindowRef;
 
@@ -50,9 +55,11 @@ export class FormGroupsComponent implements OnInit {
   visibilityOptions = Visibility;
 
   eventDataFormEntityGroupForm: FormGroup;
+  updateEventDataFormEntityGroupForm: FormGroup;
   stripeAccounts: IStripeAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
   showDiscountCouponComponent = false;
+  RegistrationTypeBackgroundColor = RegistrationTypeBackgroundColor;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
   @Output() showDiscountCoupons = new EventEmitter<boolean>();
@@ -65,6 +72,7 @@ export class FormGroupsComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
     private windowService: NbWindowService,
+    private dialogService: NbDialogService,
     private changeDetectorRef: ChangeDetectorRef,
     private stripeHandlerService: StripeHandlerService,
   ) {
@@ -74,6 +82,11 @@ export class FormGroupsComponent implements OnInit {
         registration_type_id: ['', Validators.required],
         data_form_id: ['', Validators.required],
       }),
+    });
+
+    this.updateEventDataFormEntityGroupForm = this.fb.group({
+      name: ['', Validators.required],
+      registration_type_id: ['', Validators.required],
     });
   }
 
@@ -223,5 +236,49 @@ export class FormGroupsComponent implements OnInit {
       }
     }
     this.showDiscountCoupons.emit(this.showDiscountCouponComponent);
+  }
+
+  openAutomationDialog(automationDialog: TemplateRef<any>, dfe, i) {
+    this.dialogService.open(automationDialog, {
+      context: {
+        dfe: dfe,
+        index: i,
+      },
+    });
+  }
+
+  saveAutomation(dfe, value, index) {
+    this.dataFormEntitiesService.updateAutomation(dfe.id, value).subscribe((data) => {
+      if (data) {
+        this.eventDataFormEntityGroups[index].data_form_entity.auto_close_responses_count = value;
+      }
+    });
+  }
+
+  openUpdateEventDataFormGroup(dialog: TemplateRef<any>, dfe, index) {
+    this.updateEventDataFormEntityGroupForm.patchValue({
+      name: dfe.name,
+      registration_type_id: dfe.registration_type.id,
+    });
+    this.dialogService.open(dialog, {
+      context: {
+        dfe: dfe,
+        index: index,
+      },
+    });
+  }
+
+  updateEventDataFormEntityGroup(edfeg, index) {
+    this.eventDataFormEntityGroupsService
+      .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
+      .subscribe((data) => {
+        this.eventDataFormEntityGroups = [
+          ...this.eventDataFormEntityGroups.slice(0, index),
+          data,
+          ...this.eventDataFormEntityGroups.slice(index + 1),
+        ];
+        this.changeDetectorRef.markForCheck();
+        this.toastLogService.successDialog('Form Updated');
+      });
   }
 }

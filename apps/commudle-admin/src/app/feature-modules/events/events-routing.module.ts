@@ -18,6 +18,7 @@ import { EventAgendaComponent } from 'apps/commudle-admin/src/app/feature-module
 import { EventRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/event-registrations.component';
 import { SponsorsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/sponsors/sponsors.component';
 import { CommunityEmailsListComponent } from 'apps/commudle-admin/src/app/feature-modules/reusable-components/components/community-emails-list/community-emails-list.component';
+import { EventCheckedInListComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-checked-in-list/event-checked-in-list.component';
 
 const routes = [
   {
@@ -107,7 +108,16 @@ const routes = [
           },
           {
             path: 'scan-entry-pass',
-            component: EntryPassScanComponent,
+            children: [
+              {
+                path: '',
+                component: EntryPassScanComponent,
+              },
+              {
+                path: 'checked-in-list',
+                component: EventCheckedInListComponent,
+              },
+            ],
           },
           {
             path: 'scan-exit-pass',

@@ -19,7 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
-
+import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
 @NgModule({
   declarations: [EditDataFormComponent, CreateDataFormComponent],
   imports: [
@@ -45,6 +45,8 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
     //cdk module
     DragDropModule,
+
+    tinyMCEEditorModule,
   ],
 })
 export class DataFormsModule {}
