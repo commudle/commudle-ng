@@ -1,11 +1,3 @@
-<!-- <div class="base-layout thin com-mb-8">
-  <div class="container">
-    <div class="one-column-layout">
-      
-    </div>
-  </div>
-</div> -->
-
 <div class="com-bg-white">
   <div class="base-layout">
     <div class="search-input">
@@ -19,7 +11,6 @@
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
     </p>
-    <!-- <app-loading-spinner></app-loading-spinner> -->
     <div>
       <nb-tag-list>
         <nb-tag
@@ -38,26 +29,20 @@
         ></nb-tag>
       </nb-tag-list>
       <div class="container">
-        <!-- <div *appBreakpoints="'<=lg'" class="one-column-layout"></div> -->
         <div class="two-column-layout medium">
           <div class="main-column">
             <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
-            <!-- <div [nbSpinner]="searchLoader" class="search-results"> -->
             <!-- *ngIf="total > 0" -->
             <div *ngIf="!searchLoader">
               <p class="results-count">{{ total }} Results Found</p>
-              <!-- <p class="option-name">Hello</p> -->
               <nb-list>
                 <nb-list-item
                   *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
                 >
-                  <!-- <div class="details"> -->
                   <p class="query-results-heading">User</p>
                   <div *ngFor="let user of users" class="search-result com-border-t-0">
                     <commudle-search-details [option]="user"></commudle-search-details>
                   </div>
-                  <!-- </div> -->
-                  <!-- <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a> -->
                   <div class="load-more">
                     <button
                       *ngIf="usersTotal > users.length"
@@ -68,9 +53,6 @@
                       status="basic"
                       [disabled]="searchLoader"
                     >
-                      <h1>{{ usersTotal }}</h1>
-                      &nbsp;
-                      <h1>{{ users.length }}</h1>
                       Load More
                     </button>
                   </div>
@@ -84,6 +66,17 @@
                   <div *ngFor="let community of communities" class="search-result com-border-t-0">
                     <commudle-search-details [option]="community"></commudle-search-details>
                   </div>
+                  <button
+                    *ngIf="communitiesTotal > communities.length"
+                    (click)="getCommunity(); searchLoader = true"
+                    nbButton
+                    outline
+                    size="tiny"
+                    status="basic"
+                    [disabled]="searchLoader"
+                  >
+                    Load More
+                  </button>
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
@@ -93,6 +86,17 @@
                     <div *ngFor="let lab of labs" class="lab-card">
                       <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
                     </div>
+                    <button
+                      *ngIf="labsTotal > labs.length"
+                      (click)="getLabs(); searchLoader = true"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="searchLoader"
+                    >
+                      Load More
+                    </button>
                   </div>
                 </nb-list-item>
                 <nb-list-item
@@ -108,6 +112,17 @@
                         [community_build]="community_build"
                       ></commudle-featured-projects-card>
                     </div>
+                    <button
+                      *ngIf="buildsTotal > builds.length"
+                      (click)="getBuilds(); searchLoader = true"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="searchLoader"
+                    >
+                      Load More
+                    </button>
                   </div>
                 </nb-list-item>
                 <nb-list-item
@@ -118,6 +133,17 @@
                     <div *ngFor="let event of events" class="event-card">
                       <commudle-event-card [event]="event"></commudle-event-card>
                     </div>
+                    <button
+                      *ngIf="eventsTotal > events.length"
+                      (click)="(getEvents); searchLoader = true"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="searchLoader"
+                    >
+                      Load More
+                    </button>
                   </div>
                 </nb-list-item>
                 <nb-list-item
@@ -131,37 +157,20 @@
                     <div *ngFor="let socialResource of socialResources" class="social-resource-card">
                       <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
                     </div>
+                    <button
+                      *ngIf="socialResourcesTotal > socialResources.length"
+                      (click)="(getContent); searchLoader = true"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="searchLoader"
+                    >
+                      Load More
+                    </button>
                   </div>
                 </nb-list-item>
-                <!-- </div> -->
-                <!-- </ng-container> -->
-                <!-- <ng-container *ngFor="let option of getCommunity()">
-                <nb-list-item (click)="navigate(option)" class="search-result com-border-t-0">
-                  <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
-                  <h1>{{ option.type }}</h1>
-                </nb-list-item>
-              </ng-container> -->
-                <!-- <nb-list-item
-                
-                  <div *ngSwitchCase="'Labs'">
-                  <div class="labs-card">
-                    <commudle-labs-featured-card></commudle-labs-featured-card>
-                  </div>
-                  </div>
-                </div>
-              </nb-list-item> -->
               </nb-list>
-              <!-- <button
-              (click)="getSearchData()"
-              *ngIf="total !== results.length"
-              [nbSpinner]="loadMoreLoader"
-              fullWidth
-              ghost
-              nbButton
-              status="primary"
-            >
-              Load More
-            </button> -->
             </div>
           </div>
 
@@ -177,5 +186,3 @@
     </div>
   </div>
 </div>
-<!-- </div> -->
-<!-- <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user> -->
