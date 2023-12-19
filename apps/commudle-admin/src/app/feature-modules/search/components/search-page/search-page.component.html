@@ -8,12 +8,14 @@
 
 <div class="com-bg-white">
   <div class="base-layout">
-    <app-search-box
-      [overrideSearchStatus]="true"
-      [showSuggestions]="false"
-      class="com-mt-6"
-      (input)="searchQuery($event)"
-    ></app-search-box>
+    <div class="search-input">
+      <app-search-box
+        [overrideSearchStatus]="true"
+        [showSuggestions]="false"
+        class="com-mt-6"
+        (input)="searchQuery()"
+      ></app-search-box>
+    </div>
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
     </p>
@@ -58,7 +60,7 @@
                   <!-- <a class="view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="basic">View all</a> -->
                   <div class="load-more">
                     <button
-                      *ngIf="usersTotal < users.length"
+                      *ngIf="usersTotal > users.length"
                       (click)="getUsers(); searchLoader = true"
                       nbButton
                       outline
@@ -66,6 +68,9 @@
                       status="basic"
                       [disabled]="searchLoader"
                     >
+                      <h1>{{ usersTotal }}</h1>
+                      &nbsp;
+                      <h1>{{ users.length }}</h1>
                       Load More
                     </button>
                   </div>

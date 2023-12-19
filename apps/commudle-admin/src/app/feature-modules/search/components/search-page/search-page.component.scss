@@ -1,9 +1,8 @@
 .base-layout {
   @apply com-px-0 com-py-10;
 
-  app-search-box {
+  .search-input {
     @apply md:com-m-0 com-mx-4;
-    // width: calc(100% - 16px);
   }
 
   .query-searched {

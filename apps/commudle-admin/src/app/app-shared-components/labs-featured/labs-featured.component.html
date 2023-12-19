@@ -24,8 +24,10 @@
         'featured-communities': !(isMobileView || showCardsHorizontal)
       }"
     >
-      <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
-        <commudle-labs-featured-card [lab]="featuredItem.lab"></commudle-labs-featured-card>
+      <div *ngFor="let featuredItem of featuredItems">
+        <div class="featured-communities-card">
+          <commudle-labs-featured-card [lab]="featuredItem.lab"></commudle-labs-featured-card>
+        </div>
       </div>
     </div>
   </nb-card-body>
