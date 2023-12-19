@@ -125,7 +125,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.seoService.setTitle(`Search results for "${this.query}"`);
         if (this.communitiesPage === 1) {
           this.communitiesTotal = value.total;
-          this.total += this.communitiesPage;
+          this.total += this.communitiesTotal;
         }
         this.communitiesPage++;
         this.gtmService(this.query);
