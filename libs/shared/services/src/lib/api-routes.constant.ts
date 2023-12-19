@@ -761,6 +761,7 @@ export const API_ROUTES = {
     SET_SCHEDULE: 'api/v2/newsletters/set_schedule', //POST
     RESET_SCHEDULE: 'api/v2/newsletters/reset_schedule', //DELETE
     SEND_TEST_EMAIL: 'api/v2/newsletters/send_test_email', //POST
+    EMAIL_STATS: 'api/v2/newsletters/email_stats', //GET
     PUBLIC: {
       SHOW: 'api/v2/newsletters/public/show', //GET
       INDEX: 'api/v2/newsletters/public/index', //GET

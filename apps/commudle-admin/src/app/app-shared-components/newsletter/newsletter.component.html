@@ -19,8 +19,9 @@
           (click)="redirectTo(newsletter.slug)"
           [ngClass]="{ disableAnchorTag: !newsletter.published }"
           class="com-no-underline com-cursor-pointer"
-          >{{ newsletter.title }}</a
-        >
+          >{{ newsletter.title }}
+          <fa-icon *ngIf="newsletter.published" [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+        </a>
       </td>
 
       <!-- published -->
@@ -52,22 +53,22 @@
       <!-- stats -->
       <td width="15%">
         <div class="stats">
-          <table>
+          <table *ngIf="newsletter.stats">
             <tr>
               <td>Total Sent</td>
-              <td>0</td>
+              <td>{{ newsletter.stats.total }}</td>
             </tr>
             <tr>
               <td>Delivered</td>
-              <td>0</td>
+              <td>{{ newsletter.stats.delivered }}</td>
             </tr>
             <tr>
               <td>Opened</td>
-              <td>0</td>
+              <td>{{ newsletter.stats.opened }}</td>
             </tr>
             <tr>
               <td>Clicked</td>
-              <td>0</td>
+              <td>{{ newsletter.stats.clicked }}</td>
             </tr>
           </table>
         </div>
@@ -79,6 +80,9 @@
           <button [routerLink]="['../edit', newsletter.slug]" nbButton status="primary" size="tiny">
             <nb-icon icon="edit"></nb-icon> Edit
           </button>
+          <button (click)="openConfirmDialogBox(testEmailsBox, newsletter.id, i)" nbButton status="success" size="tiny">
+            <fa-icon [icon]="icons.faEnvelopeOpenText" class="com-mr-2"></fa-icon> Send Test Mail
+          </button>
           <button
             (click)="openConfirmDialogBox(deleteDialog, newsletter.id, i)"
             nbButton
@@ -87,15 +91,6 @@
             size="tiny"
           >
             <nb-icon icon="close"></nb-icon> delete
-          </button>
-          <button
-            (click)="openConfirmDialogBox(testEmailsBox, newsletter.id, i)"
-            nbButton
-            status="primary"
-            outline
-            size="tiny"
-          >
-            <fa-icon [icon]="icons.faEnvelopeOpenText" class="com-mr-2"></fa-icon> Send Test Mail
           </button>
         </div>
       </td>

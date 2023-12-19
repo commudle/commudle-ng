@@ -4,7 +4,7 @@ import { NbDialogService } from '@commudle/theme';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
 import { Subscription } from 'rxjs';
-import { faPlus, faClock, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faClock, faEnvelopeOpenText, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -24,6 +24,7 @@ export class NewsletterComponent implements OnInit {
     faPlus,
     faClock,
     faEnvelopeOpenText,
+    faArrowUpRightFromSquare,
   };
   moment = moment;
   testEmailsForms;
@@ -47,13 +48,19 @@ export class NewsletterComponent implements OnInit {
     this.subscriptions.push(
       this.newsletterService.getIndex(this.parentId, this.parentType).subscribe((data: INewsletter[]) => {
         this.newsletters = data;
+        for (let i = 0; i < this.newsletters.length; i++) {
+          const newsletter = this.newsletters[i];
+          this.newsletterService.emailStats(newsletter.id).subscribe((data) => {
+            this.newsletters[i].stats = data;
+          });
+        }
       }),
     );
   }
 
   togglePublished(id, index) {
     this.newsletterService.togglePublished(!this.newsletters[index].published, id).subscribe((data) => {
-      this.newsletters[index] = data;
+      this.newsletters[index].published = data.published;
     });
   }
 

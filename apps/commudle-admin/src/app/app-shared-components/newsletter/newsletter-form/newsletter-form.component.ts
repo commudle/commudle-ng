@@ -42,7 +42,7 @@ export class NewsletterFormComponent implements OnInit {
       email_subject: ['', Validators.required],
       published: [true],
       content: [''],
-      banner_image: [File],
+      banner_image: [null],
     });
   }
 
@@ -129,13 +129,13 @@ export class NewsletterFormComponent implements OnInit {
       // Check if the value is a File (FileList) for file inputs
       if (value instanceof File) {
         formData.append('newsletter[' + key + ']', value, value.name); // Append the file with its name
-      } else {
+      } else if (key !== 'banner_image') {
         formData.append('newsletter[' + key + ']', value);
       }
     });
     this.newsletterService.createNewNewsletter(formData, this.parentId, this.parentType).subscribe((data) => {
       if (data) {
-        this.toastrService.successDialog('Page Created');
+        this.toastrService.successDialog('Newsletter Created');
         this.backPage();
       }
     });
@@ -158,7 +158,7 @@ export class NewsletterFormComponent implements OnInit {
     });
     this.newsletterService.update(formData, this.pageSlug).subscribe((data) => {
       if (data) {
-        this.toastrService.successDialog('Page Updated');
+        this.toastrService.successDialog('Newsletter Updated');
         this.backPage();
       }
     });

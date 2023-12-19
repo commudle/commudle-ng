@@ -1,4 +1,5 @@
 import { IAttachedFile } from '@commudle/shared-models';
+import { IEmailStatsOverview } from 'apps/shared-models/email-stats-overview.model';
 
 export interface INewsletter {
   id: number;
@@ -10,4 +11,5 @@ export interface INewsletter {
   banner_image: IAttachedFile;
   created_at: Date;
   scheduled_for: Date;
+  stats: IEmailStatsOverview;
 }

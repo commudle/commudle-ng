@@ -37,7 +37,7 @@
 
   <div class="banner-image">
     <label for="banner_image">Banner Image</label>
-    <input type="file" (change)="onFileChange($event)" />
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
   </div>
   <div *ngIf="imagePreview || newsletterForm.controls['banner_image'].value" class="image-preview">
     <commudle-banner-image

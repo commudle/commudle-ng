@@ -4,6 +4,7 @@ import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
+import { IEmailStatsOverview } from 'apps/shared-models/email-stats-overview.model';
 
 @Injectable({
   providedIn: 'root',
@@ -114,6 +115,13 @@ export class NewsletterService {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.SEND_TEST_EMAIL), {
       newsletter_id: newsletterId,
       emails,
+    });
+  }
+
+  emailStats(newsletterId): Observable<IEmailStatsOverview> {
+    const params = new HttpParams().set('newsletter_id', newsletterId);
+    return this.http.get<IEmailStatsOverview>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.EMAIL_STATS), {
+      params,
     });
   }
 }
