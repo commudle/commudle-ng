@@ -27,6 +27,7 @@ import { PublicCommunityModule } from '../public-community/public-community.modu
 import { FeaturedProjectsCardComponent } from '../../app-shared-components/featured-projects-card/featured-projects-card.component';
 import { EventCardComponent } from '../../app-shared-components/event-card/event-card.component';
 import { EventContentCardComponent } from '../../app-shared-components/event-content-card/event-content-card.component';
+import { LinkyModule, LinkyPipe } from 'ngx-linky';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -55,6 +56,7 @@ import { EventContentCardComponent } from '../../app-shared-components/event-con
     FeaturedProjectsCardComponent,
     EventCardComponent,
     EventContentCardComponent,
+    LinkyModule,
   ],
 })
 export class SearchModule {}

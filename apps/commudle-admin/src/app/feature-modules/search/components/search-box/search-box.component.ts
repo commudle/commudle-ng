@@ -95,7 +95,7 @@
 //   }
 // }
 
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
@@ -115,6 +115,8 @@ export class SearchBoxComponent implements OnInit {
   @Input() overrideSearchStatus = false;
   @Input() showSuggestions = true;
   @Input() shape: 'round' | 'rectangle' | 'semi-round';
+
+  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('searchInput', { static: false }) searchInputRef: ElementRef<HTMLInputElement>;
 
@@ -174,6 +176,7 @@ export class SearchBoxComponent implements OnInit {
         this.searchLoader = true;
         this.getNotifications();
       }
+      this.searchInput.emit(this.query);
       // if (this.isLoadingSearch) {
       //   return;
       // }
@@ -228,6 +231,7 @@ export class SearchBoxComponent implements OnInit {
           this.events.push(result);
         } else if (result?.type === 'SocialResource') {
           this.contents.push(result);
+          console.log(this.contents);
         }
         // this.total = value.total;
         // this.searchLoader = false;

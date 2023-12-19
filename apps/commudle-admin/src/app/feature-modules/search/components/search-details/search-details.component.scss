@@ -36,8 +36,10 @@ a {
     .designation {
       @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1 com-mb-1 com-text-Quartz;
 
-      p {
-        @apply com-m-0;
+      ::ng-deep {
+        p {
+          @apply com-m-0;
+        }
       }
     }
 

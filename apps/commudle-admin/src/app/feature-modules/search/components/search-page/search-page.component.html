@@ -12,7 +12,7 @@
       [overrideSearchStatus]="true"
       [showSuggestions]="false"
       class="com-mt-6"
-      (input)="searchQuery()"
+      (input)="searchQuery($event)"
     ></app-search-box>
     <p class="query-searched">
       You searched for <strong>{{ query }}</strong>
@@ -81,7 +81,7 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab ') || selectedFilters.includes('All'))"
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
                 >
                   <p class="query-results-heading">Labs</p>
                   <div class="labs-card com-border-t-0">
