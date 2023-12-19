@@ -7,4 +7,5 @@ export interface IReadingBook {
   link_to_previous_page?: string;
   link_to_next_page?: string;
   content: [];
+  meta_description: string;
 }
