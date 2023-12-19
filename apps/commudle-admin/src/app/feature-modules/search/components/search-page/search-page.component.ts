@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IPageInfo, IUser } from '@commudle/shared-models';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ICommunity, ICommunityBuild, IEvent, ILab, ISpeakerResource, IUser } from '@commudle/shared-models';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
-import { ISearch } from 'apps/shared-models/search.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 @Component({
   selector: 'app-search-page',
@@ -19,14 +18,13 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   filters = [];
   selectedFilters = ['All'];
 
-  users: any[] = [];
-  communities = [];
-  labs = [];
-  builds = [];
-  events = [];
-  socialResources = [];
+  users: IUser[] = [];
+  communities: ICommunity[] = [];
+  labs: ILab[] = [];
+  builds: ICommunityBuild[] = [];
+  events: IEvent[] = [];
+  socialResources: ISpeakerResource[] = [];
 
-  page = 1;
   usersPage = 1;
   communitiesPage = 1;
   labsPage = 1;
@@ -34,12 +32,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   eventsPage = 1;
   socialResourcesPage = 1;
 
-  usersTotal = 1;
-  communitiesTotal = 1;
-  labsTotal = 1;
-  buildsTotal = 1;
-  eventsTotal = 1;
-  socialResourcesTotal = 1;
+  usersTotal = 0;
+  communitiesTotal = 0;
+  labsTotal = 0;
+  buildsTotal = 0;
+  eventsTotal = 0;
+  socialResourcesTotal = 0;
 
   searchLoader = true;
 
@@ -47,7 +45,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private seoService: SeoService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private searchStatusService: SearchStatusService,
     private gtm: GoogleTagManagerService,
   ) {}
@@ -72,9 +69,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.searchStatusService.setSearchStatus(true);
   }
 
-  searchQuery() {
+  clearResults() {
     this.total = 0;
-    this.filters = [];
     this.users = [];
     this.communities = [];
     this.labs = [];
@@ -216,28 +212,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   onFilterChange(filter: string) {
     this.searchLoader = true;
-    this.total = 0;
-    this.usersPage = 1;
-    this.communitiesPage = 1;
-    this.labsPage = 1;
-    this.buildsPage = 1;
-    this.eventsPage = 1;
-    this.socialResourcesPage = 1;
-    this.page = 1;
-
-    this.users = [];
-    this.communities = [];
-    this.labs = [];
-    this.builds = [];
-    this.events = [];
-    this.socialResources = [];
-
-    this.usersTotal = 0;
-    this.communitiesTotal = 0;
-    this.labsTotal = 0;
-    this.buildsTotal = 0;
-    this.eventsTotal = 0;
-    this.socialResourcesTotal = 0;
+    this.clearResults();
 
     if (filter !== 'All') {
       if (this.selectedFilters.includes('All')) this.selectedFilters = this.selectedFilters.filter((f) => f !== 'All');
