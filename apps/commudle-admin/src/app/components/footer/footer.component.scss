@@ -25,6 +25,10 @@ footer {
         a {
           @apply com-text-sm com-text-gray-500 hover:com-text-gray-900;
         }
+
+        .developer-community-blueprint {
+          @apply com-text-primary-500;
+        }
       }
     }
   }
