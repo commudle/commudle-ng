@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { toHTML } from '@portabletext/to-html';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { map } from 'rxjs/operators';
 
 const sanityClient = require('@sanity/client');
-const blocksToHtml = require('@sanity/block-content-to-html');
 const builder = require('@sanity/image-url');
 
 @Injectable({
@@ -56,10 +56,18 @@ export class CmsService {
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
-    return blocksToHtml({
-      blocks: value[field],
-      projectId: this.projectId,
-      dataset: this.dataset,
+    return toHTML(value[field], {
+      components: {
+        types: {
+          table: ({ value }) => {
+            return `<table><tbody>${value.rows
+              .map((row: { cells: string[] }) => {
+                return `<tr>${row.cells.map((cell: string) => `<td>${cell}</td>`).join('')}</tr>`;
+              })
+              .join('')}</tbody></table>`;
+          },
+        },
+      },
     });
   }
 
