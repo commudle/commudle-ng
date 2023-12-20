@@ -16,3 +16,10 @@ form {
 .back-button {
   @apply com-mt-3 com-cursor-pointer com-w-max com-text-[#8f9bb3];
 }
+
+#gjs {
+  border: 1px solid #444;
+  ::ng-deep .gjs-cv-canvas {
+    @apply com-w-[600px];
+  }
+}
