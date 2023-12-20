@@ -1,5 +1,5 @@
-<a [routerLink]="['/users', option.username]">
-  <div *ngIf="option.type === 'User'" class="user">
+<div *ngIf="option.type === 'User'" class="user">
+  <a [routerLink]="['/users', option.username]">
     <div class="user-details">
       <div class="user-profile-image">
         <img [src]="option.avatar" [alt]="option.name" [title]="option.name" />
@@ -20,13 +20,13 @@
         </p>
       </div>
     </div>
-    <div class="follow-btn">
-      <app-user-follow [username]="option.username" [name]="option.name" [userId]="option.id"></app-user-follow>
-    </div>
+  </a>
+  <div class="follow-btn">
+    <app-user-follow [username]="option.username" [name]="option.name" [userId]="option.id"></app-user-follow>
   </div>
-</a>
-<a [routerLink]="['/communities', option.slug]">
-  <div *ngIf="option.type === 'Community'" class="community">
+</div>
+<div *ngIf="option.type === 'Community'" class="community">
+  <a [routerLink]="['/communities', option.slug]">
     <div class="community-details">
       <div class="community-image">
         <img [src]="option.logo_image?.i32" [alt]="option.name" [title]="option.name" />
@@ -40,13 +40,13 @@
         <p class="members-count">{{ option.member_count }}<span>Members</span></p>
       </div>
     </div>
-    <div class="membership-toggle">
-      <app-membership-toggle
-        [community]="option"
-        [shapes]="'semi-round'"
-        [size]="'small'"
-        [status]="'info'"
-      ></app-membership-toggle>
-    </div>
+  </a>
+  <div class="membership-toggle">
+    <app-membership-toggle
+      [community]="option"
+      [shapes]="'semi-round'"
+      [size]="'small'"
+      [status]="'info'"
+    ></app-membership-toggle>
   </div>
-</a>
+</div>

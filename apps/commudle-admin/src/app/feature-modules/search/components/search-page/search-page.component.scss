@@ -105,6 +105,14 @@
     @apply com-m-0 com-mt-6;
   }
 
+  .can-load-more-spinner {
+    @apply com-flex com-self-center com-m-0 com-my-4;
+  }
+
+  .results-container {
+    @apply com-flex com-flex-col com-items-center;
+  }
+
   .view-all {
     @apply com-no-underline com-p-0 com-text-base com-font-normal com-text-Yankees-Blue;
   }

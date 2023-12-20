@@ -45,7 +45,7 @@ nb-option {
   .results {
     @apply com-w-full;
     .container {
-      @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray com-m-0 com-mt-3;
+      @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray com-m-0;
 
       &:first-child {
         border-top: none;

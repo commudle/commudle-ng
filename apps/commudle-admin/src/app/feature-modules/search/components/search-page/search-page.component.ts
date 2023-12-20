@@ -40,6 +40,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   socialResourcesTotal = 0;
 
   searchLoader = true;
+  canLoadMoreUser = false;
+  canLoadMoreCommunity = false;
+  canLoadMoreLab = false;
+  canLoadMoreBuild = false;
+  canLoadMoreEvent = false;
+  canLoadMoreContent = false;
 
   constructor(
     private searchService: SearchService,
@@ -92,7 +98,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getUsers() {
-    this.searchLoader = true;
+    this.canLoadMoreUser = true;
     this.searchService.getSearchResults(this.query, this.usersPage, this.count, 'User').subscribe((value: any) => {
       this.users = [...this.users, ...value.results];
       if (this.users.length > 0 && !this.filters.includes('User')) {
@@ -106,11 +112,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.usersPage++;
       this.gtmService(this.query);
       this.searchLoader = false;
+      this.canLoadMoreUser = false;
     });
   }
 
   getCommunity() {
-    this.searchLoader = true;
+    this.canLoadMoreCommunity = true;
     this.searchService
       .getSearchResults(this.query, this.communitiesPage, this.count, 'Kommunity')
       .subscribe((value: any) => {
@@ -125,13 +132,13 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         }
         this.communitiesPage++;
         this.gtmService(this.query);
-
         this.searchLoader = false;
+        this.canLoadMoreCommunity = false;
       });
   }
 
   getLabs() {
-    this.searchLoader = true;
+    this.canLoadMoreLab = true;
     this.searchService.getSearchResults(this.query, this.labsPage, this.count, 'Lab').subscribe((value: any) => {
       this.labs = [...this.labs, ...value.results];
       if (this.labs.length > 0 && !this.filters.includes('Lab')) {
@@ -144,13 +151,13 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       }
       this.labsPage++;
       this.gtmService(this.query);
-
       this.searchLoader = false;
+      this.canLoadMoreLab = false;
     });
   }
 
   getBuilds() {
-    this.searchLoader = true;
+    this.canLoadMoreBuild = true;
     this.searchService
       .getSearchResults(this.query, this.buildsPage, this.count, 'CommunityBuild')
       .subscribe((value: any) => {
@@ -165,13 +172,13 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         }
         this.buildsPage++;
         this.gtmService(this.query);
-
         this.searchLoader = false;
+        this.canLoadMoreBuild = false;
       });
   }
 
   getEvents() {
-    this.searchLoader = true;
+    this.canLoadMoreEvent = true;
     this.searchService.getSearchResults(this.query, this.eventsPage, this.count, 'Event').subscribe((value: any) => {
       this.events = [...this.events, ...value.results];
       if (this.events.length > 0 && !this.filters.includes('Event')) {
@@ -184,19 +191,19 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       }
       this.eventsPage++;
       this.gtmService(this.query);
-
       this.searchLoader = false;
+      this.canLoadMoreEvent = false;
     });
   }
 
   getContent() {
-    this.searchLoader = true;
+    this.canLoadMoreContent = true;
     this.searchService
       .getSearchResults(this.query, this.socialResourcesPage, this.count, 'SocialResource')
       .subscribe((value: any) => {
         this.socialResources = [...this.socialResources, ...value.results];
-        if (this.socialResources.length > 0 && !this.filters.includes('SocialResource')) {
-          this.filters.push('SocialResource');
+        if (this.socialResources.length > 0 && !this.filters.includes('Content')) {
+          this.filters.push('Content');
         }
         this.seoService.setTitle(`Search results for "${this.query}"`);
         if (this.socialResourcesPage === 1) {
@@ -205,8 +212,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         }
         this.socialResourcesPage++;
         this.gtmService(this.query);
-
         this.searchLoader = false;
+        this.canLoadMoreContent = false;
       });
   }
 
@@ -267,7 +274,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           case 'Event':
             this.getEvents();
             break;
-          case 'SocialResource':
+          case 'Content':
             this.getContent();
             break;
         }
