@@ -17,7 +17,33 @@
     ></commudle-alert>
   </div>
 
-  <div class="discription">
+  <div class="brief-description">
+    <label for="brief_description">Brief Description*</label>
+    <textarea
+      type="text"
+      formControlName="brief_description"
+      nbInput
+      fullWidth
+      placeholder="Brief Description for newsletter"
+    >
+    </textarea>
+    <commudle-alert
+      *ngIf="newsletterForm.controls['brief_description'].hasError('maxlength')"
+      errorMessage="Brief Description cannot exceed 50 characters"
+      [error]="true"
+    ></commudle-alert>
+    <commudle-alert
+      *ngIf="
+        newsletterForm.controls['brief_description'].touched &&
+        newsletterForm.controls['brief_description'].hasError('required') &&
+        newsletterForm.controls['brief_description'].invalid
+      "
+      errorMessage="Brief Description is Required"
+      [error]="true"
+    ></commudle-alert>
+  </div>
+
+  <div class="email-subject">
     <label for="email_subject">Email Subject*</label>
     <input type="text" formControlName="email_subject" nbInput fullWidth placeholder="Email Subject" />
     <commudle-alert
@@ -30,10 +56,6 @@
       [error]="true"
     ></commudle-alert>
   </div>
-  <div class="content">
-    <label for="content">Content*</label>
-    <div id="gjs"></div>
-  </div>
 
   <div class="banner-image">
     <label for="banner_image">Banner Image</label>
@@ -43,6 +65,11 @@
     <commudle-banner-image
       [headerImagePath]="imagePreview || newsletterForm.controls['banner_image'].value"
     ></commudle-banner-image>
+  </div>
+
+  <div class="content">
+    <label for="content">Content*</label>
+    <div id="gjs"></div>
   </div>
 </form>
 <section>

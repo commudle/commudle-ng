@@ -7,7 +7,7 @@
 <div *ngIf="newsletters && newsletters.length > 0" class="newsletters">
   <table>
     <tr>
-      <th>Name</th>
+      <th>Title</th>
       <th>Published</th>
       <th>Stats</th>
       <th>Actions</th>
@@ -15,13 +15,18 @@
     <tr *ngFor="let newsletter of newsletters; let i = index">
       <!-- title -->
       <td>
-        <a
-          (click)="redirectTo(newsletter.slug)"
-          [ngClass]="{ disableAnchorTag: !newsletter.published }"
-          class="com-no-underline com-cursor-pointer"
-          >{{ newsletter.title }}
-          <fa-icon *ngIf="newsletter.published" [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
-        </a>
+        <div class="title">
+          <div *ngIf="newsletter.banner_image">
+            <img [src]="newsletter.banner_image?.i160" [alt]="newsletter.title" />
+          </div>
+          <a
+            (click)="redirectTo(newsletter.slug)"
+            [ngClass]="{ disableAnchorTag: !newsletter.published }"
+            class="com-no-underline com-cursor-pointer"
+            >{{ newsletter.title }}
+            <fa-icon *ngIf="newsletter.published" [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+          </a>
+        </div>
       </td>
 
       <!-- published -->
@@ -150,7 +155,7 @@
       </button>
     </nb-card-header>
     <nb-card-body>
-      <div>Are you sure you want to Reset schedular?</div>
+      <div>Are you sure you want to Reset scheduler?</div>
       <em>This action can not be undone</em>
     </nb-card-body>
     <nb-card-footer>
@@ -161,7 +166,7 @@
 </ng-template>
 
 <ng-template #testEmailsBox let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card class="com-w-630px">
     <nb-card-header>
       <div>Send Test Email for {{ data.title }}</div>
       <button ghost nbButton size="small" (click)="ref.close()">
@@ -179,9 +184,19 @@
               testEmailsForms['controls'].emails.errors.required
             "
             [error]="true"
+            errorMessage="  Required Field"
           >
-            Required Field</commudle-alert
+          </commudle-alert>
+          <commudle-alert
+            *ngIf="
+              testEmailsForms['controls'].emails.touched &&
+              testEmailsForms['controls'].emails.invalid &&
+              testEmailsForms['controls'].emails.errors.maxEmails
+            "
+            [error]="true"
+            errorMessage="Maximum 5 emails allowed"
           >
+          </commudle-alert>
         </div>
       </form>
     </nb-card-body>

@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { faPlus, faClock, faEnvelopeOpenText, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'commudle-newsletter',
@@ -36,12 +36,19 @@ export class NewsletterComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.testEmailsForms = this.fb.group({
-      emails: ['', Validators.required],
+      emails: ['', [Validators.required, this.maxEmails(5)]],
     });
   }
 
   ngOnInit() {
     this.getNewsletters();
+  }
+
+  maxEmails(max: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const emails = control.value.split(',').map((email) => email.trim());
+      return emails.length <= max ? null : { maxEmails: { max } };
+    };
   }
 
   getNewsletters() {
@@ -80,10 +87,10 @@ export class NewsletterComponent implements OnInit {
   redirectTo(slug) {
     let redirectUrl = '';
     if (this.parentType === 'Kommunity') {
-      redirectUrl = '/communities/' + this.parentId + '/newsletter/' + slug;
+      redirectUrl = '/communities/' + this.parentId + '/newsletters/' + slug;
     }
     if (this.parentType === 'CommunityGroup') {
-      redirectUrl = '/orgs/' + this.parentId + '/' + slug;
+      redirectUrl = '/orgs/' + this.parentId + '/newsletters/' + slug;
     }
     const url = this.router.serializeUrl(this.router.createUrlTree([redirectUrl]));
     window.open(url, '_blank');

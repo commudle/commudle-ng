@@ -8,6 +8,7 @@ export interface INewsletter {
   published: boolean;
   content: string;
   email_subject: string;
+  brief_description: string;
   banner_image: IAttachedFile;
   created_at: Date;
   scheduled_for: Date;

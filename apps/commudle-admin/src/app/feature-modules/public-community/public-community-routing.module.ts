@@ -68,7 +68,7 @@ const routes = [
         component: CustomPageComponent,
       },
       {
-        path: 'newsletter',
+        path: 'newsletters',
         children: [
           {
             path: '',

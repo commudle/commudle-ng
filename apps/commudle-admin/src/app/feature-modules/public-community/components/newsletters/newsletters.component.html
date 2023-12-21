@@ -15,7 +15,7 @@
           <div class="newsletter">
             <div>
               <div class="date">{{ newsletter.created_at | date : 'MMM dd, yyyy' }}</div>
-              <div class="content" [innerHTML]="newsletter.content | safeHtml"></div>
+              <div class="content">{{ newsletter.brief_description }}</div>
             </div>
             <div class="action">
               <a [routerLink]="newsletter.slug"

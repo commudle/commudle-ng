@@ -40,6 +40,7 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
 import { CustomPageComponent } from './components/custom-page/custom-page.component';
 import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
 import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-module
     NbContextMenuModule,
 
     SkeletonVerticalCardsComponent,
+    BackButtonComponent,
   ],
 })
 export class PublicCommunityModule {}
