@@ -1,0 +1,23 @@
+.chapters-heading {
+  @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-mb-4;
+}
+
+nb-card {
+  @apply com-m-0;
+  nb-list {
+    nb-list-item {
+      @apply com-border-t-0 com-py-3 com-px-4;
+      &:last-child {
+        @apply com-border-b-0;
+      }
+
+      a {
+        @apply com-no-underline com-text-gray-500 com-text-base com-font-normal;
+      }
+
+      .active {
+        @apply com-text-primary-500;
+      }
+    }
+  }
+}

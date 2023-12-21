@@ -6,6 +6,7 @@ import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Observable, timer } from 'rxjs';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { ITestimonial } from 'apps/shared-models/testimonial.model';
 
 @Component({
   selector: 'app-homepage',
@@ -18,6 +19,9 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('homepageAnimation', { static: false }) homepageAnimationContainer: ElementRef<HTMLDivElement>;
 
   homepageActions: IHomepageAction[] = [];
+
+  testimonials: ITestimonial[];
+
   homepageCallouts: { subtitle: string; title: string }[] = [
     {
       title: 'Are you a Student?',
@@ -48,6 +52,7 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.footerService.changeFooterStatus(true);
 
     this.getHomepageActions();
+    this.getTestimonials();
 
     this.seoService.setTags(
       'Commudle - Connect & Learn With Software Developers',
@@ -80,6 +85,16 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.cmsService.getDataByType('homepageActions').subscribe((value: IHomepageAction[]) => {
       this.homepageActions = value.sort((a, b) => a.order - b.order);
     });
+  }
+
+  getTestimonials() {
+    this.cmsService
+      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 10)
+      .subscribe((data) => {
+        if (data) {
+          this.testimonials = data;
+        }
+      });
   }
 
   setSchema() {

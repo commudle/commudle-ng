@@ -12,4 +12,5 @@ export enum EUserRoles {
   BADGES = 'badges',
   FEATURED_COMMUNITIES = 'featured_communities',
   STATIC_ASSETS = 'static_assets',
+  FEATURED_ITEMS = 'featured_items',
 }

@@ -1,7 +1,7 @@
 <nb-card class="user-attended-event-card">
   <nb-card-body class="custom-scrollbar">
     <a
-      [routerLink]="['/communities', attendedEvent.kommunity_id, 'events', attendedEvent.slug]"
+      [routerLink]="['/communities', attendedEvent.kommunity_slug, 'events', attendedEvent.slug]"
       [title]="attendedEvent.name"
     >
       <div *ngIf="cardType === 'attendedEventCard'" nbButton size="small" shape="semi-round" class="icon">

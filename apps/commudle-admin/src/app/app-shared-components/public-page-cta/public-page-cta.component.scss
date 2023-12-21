@@ -13,13 +13,14 @@ div {
         .heading-subheading {
           @apply md:com-w-[564px] com-w-full;
           .heading {
+            @apply com-m-0;
             a {
-              @apply md:com-text-4xl com-text-3xl com-font-bold com-text-black com-m-0 md:com-mb-4 com-mb-6;
+              @apply md:com-text-4xl com-text-3xl com-font-bold com-text-black com-m-0;
             }
           }
 
           .sub-heading {
-            @apply com-text-xl com-font-normal com-text-gray-500 com-m-0 com-mb-8;
+            @apply com-text-xl com-font-normal com-text-gray-500 com-m-0 com-mb-8 md:com-mt-4 com-mt-6;
           }
         }
         button {

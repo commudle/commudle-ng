@@ -10,3 +10,15 @@ div {
   display: flex;
   justify-content: center;
 }
+
+.users-list {
+  @apply com-h-[90dvh] md:com-h-[70dvh];
+  nb-card-header {
+    @apply com-flex com-items-center com-justify-between;
+  }
+  nb-card-body {
+    .users {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-3;
+    }
+  }
+}

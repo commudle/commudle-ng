@@ -17,10 +17,6 @@ export class CommunityGroupCustomPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     combineLatest([this.activatedRoute.params, this.activatedRoute.parent.data]).subscribe(([params, data]) => {
-      console.log(
-        '🚀 ~ file: community-group-custom-page.component.ts:20 ~ CommunityGroupCustomPageComponent ~ combineLatest ~ data:',
-        data,
-      );
       const pageSlug = params.page_slug;
       const communityGroupId = data.community_group.slug;
       this.getCustomPage(pageSlug, communityGroupId);
