@@ -1,7 +1,7 @@
 .reading-book {
-  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32 com-pb-8 md:com-px-0 com-px-3;
+  @apply com-bg-white com-m-0 com-p-0 md:com-pb-32 com-pb-8 md:com-px-0 com-px-3 md:com-pt-[60px];
   .right-column {
-    @apply md:com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 md:com-pt-[60px] com-hidden;
+    @apply md:com-flex com-flex-col com-m-0 md:com-mr-6 com-p-0 com-hidden;
 
     .download-pdf {
       @apply com-m-0 com-mt-5 com-w-full;
@@ -13,7 +13,6 @@
   }
 
   .main-column {
-    @apply com-m-0 com-p-0 md:com-pt-[42px];
     .chapter-name {
       @apply md:com-text-[28px] com-text-xl com-font-semibold com-text-blue-600 com-m-0 md:com-mt-0 com-my-4;
     }
@@ -91,7 +90,7 @@
       }
 
       select {
-        @apply com-w-full;
+        @apply com-w-full com-p-1 com-rounded-[4px] com-bg-Yankees-Blue com-text-white com-font-medium;
       }
     }
   }
