@@ -3,29 +3,25 @@
     <div class="container commudle-agencies">
       <div class="power-of-communities" id="developer-ecosystem">
         <commudle-public-page-layout>
-          <div content>
+          <div content class="left-col">
             <div class="power-of-communities-content">
-              <h1 class="heading-power-of-communities">
-                <a [routerLink]="'.'" fragment="developer-ecosystem"
-                  >The Developer Ecosystem BluePrint : Strategies for Building Thriving Communities</a
-                >
-              </h1>
+              <a [routerLink]="'.'" fragment="developer-ecosystem">
+                <h1 class="heading-power-of-communities">
+                  The Developer Ecosystem BluePrint : Strategies for Building Thriving Communities
+                </h1>
+              </a>
               <p class="subheading-power-of-communities">
                 A handbook for Developer Relations teams to build, sustain and grow their developer programs.
               </p>
             </div>
             <div class="power-of-communities-btn mobile-hidden">
-              <a [routerLink]="'/fill-form/2046'"><button nbButton size="large">Read Now</button></a>
+              <a [routerLink]="'.'" fragment="download-or-read"><button nbButton size="large">Read Now</button></a>
             </div>
           </div>
           <div image class="power-of-communities-image">
-            <img
-              alt="Power Communities"
-              src="https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBblFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--01057b5be393344ed188982aa64722b41ab5b509/Homepage-Banner.png"
-              title="Power Communities"
-            />
+            <img alt="Power Communities" [src]="staticAssets.devrel_ecosystem_blueprint" title="Power Communities" />
             <div class="power-of-communities-btn desktop-hidden">
-              <a [routerLink]="'/fill-form/2046'"><button nbButton size="large">Read Now</button></a>
+              <a [routerLink]="'.'" fragment="download-or-read"><button nbButton size="large">Read Now</button></a>
             </div>
           </div>
         </commudle-public-page-layout>
@@ -67,13 +63,6 @@
   </div>
   <div class="base-layout">
     <div class="container commudle-agencies">
-      <div class="testimonials" id="testimonials">
-        <p class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></p>
-        <p class="subheading">Let’s Hear From The Community Leaders</p>
-        <div class="testimonial-card">
-          <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
-        </div>
-      </div>
       <div class="platform" id="life-of-community">
         <commudle-public-page-layout [imageOnLeft]="true">
           <div content>
@@ -94,7 +83,9 @@
               </div>
               <ul>
                 <li>
-                  <fa-icon [icon]="faShapes"></fa-icon>
+                  <div class="icon">
+                    <fa-icon [icon]="faShapes"></fa-icon>
+                  </div>
                   <div>
                     <p class="heading">Build</p>
                     <p class="subheading">
@@ -103,7 +94,9 @@
                   </div>
                 </li>
                 <li>
-                  <fa-icon [icon]="faHandsHoldingCircle"></fa-icon>
+                  <div class="icon">
+                    <fa-icon [icon]="faHandsHoldingCircle"></fa-icon>
+                  </div>
                   <div>
                     <p class="heading">Sustain</p>
                     <p class="subheading">
@@ -112,7 +105,9 @@
                   </div>
                 </li>
                 <li>
-                  <fa-icon [icon]="faChartLine"></fa-icon>
+                  <div class="icon">
+                    <fa-icon [icon]="faChartLine"></fa-icon>
+                  </div>
                   <div>
                     <p class="heading">Scale</p>
                     <p class="subheading">

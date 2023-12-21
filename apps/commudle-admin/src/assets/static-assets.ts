@@ -96,4 +96,7 @@ export const staticAssets = {
 
   community_leaders:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNE9jQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0896c5576d66b57118117c2325d217351ca12a06/Learn%20from%20veterans%20of%20community.png',
+
+  devrel_ecosystem_blueprint:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnV6QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--51b69e98b3bf99eb5d0749c732d7d16adbdc315a/Book%20Thick%20Cover%20(1).png',
 };

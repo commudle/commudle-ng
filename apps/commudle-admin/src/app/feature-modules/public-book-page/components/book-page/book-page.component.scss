@@ -1,8 +1,12 @@
 .book {
-  @apply com-bg-white com-p-0 com-pt-14;
+  @apply com-bg-white com-p-0 md:com-pt-14 com-pt-6;
 
   a {
     @apply com-no-underline;
+  }
+
+  .base-layout {
+    @apply com-min-h-0;
   }
 
   .commudle-agencies {
@@ -10,20 +14,22 @@
   }
 
   .power-of-communities {
-    @apply com-flex com-items-center com-bg-blue-600 com-rounded-[20px] md:com-px-20 md:com-pt-16 md:com-pb-72px com-px-3 com-pt-8 com-pb-[18px];
+    @apply com-flex com-items-center com-rounded-[20px] com-p-0 md:com-pl-[60px] md:com-pr-11 com-px-3;
+    background: linear-gradient(90deg, #4338ca 0%, #6100ffd1 51.39%, #2b26ca 100%);
+
+    .left-col {
+      @apply com-p-0 md:com-py-[60px] com-pt-8 com-pb-7;
+    }
 
     .power-of-communities-content {
-      @apply com-flex com-flex-col com-max-w-[612px] com-m-0 com-mr-20;
+      @apply com-flex com-flex-col md:com-max-w-[732px] com-max-w-full com-m-0 md:com-mr-12 com-mr-0;
 
       .heading-power-of-communities {
-        @apply com-m-0;
-        a {
-          @apply com-no-underline md:com-text-5xl com-text-3xl com-font-semibold com-text-white;
-        }
+        @apply com-m-0 md:com-text-5xl com-text-3xl com-font-semibold com-text-white;
       }
 
       .subheading-power-of-communities {
-        @apply com-text-xl com-font-medium com-text-white com-m-0 md:com-mt-8 com-mt-6;
+        @apply com-text-xl com-font-medium com-text-white com-m-0 com-mt-6;
       }
     }
 
@@ -36,14 +42,22 @@
     }
 
     .power-of-communities-image {
-      @apply com-m-0 md:com-mt-0 com-mt-8 md:com-w-[428px] com-w-full;
+      @apply md:com-w-[428px] com-w-full com-p-0 md:com-pt-11 com-pt-0;
       img {
         @apply com-w-full com-h-auto com-object-cover;
+      }
+
+      .power-of-communities-btn {
+        @apply com-m-0 md:com-mt-0 com-my-4;
+
+        button {
+          @apply com-w-full;
+        }
       }
     }
 
     .desktop-hidden {
-      @apply md:com-hidden com-flex com-m-0 com-mt-20;
+      @apply md:com-hidden com-flex com-m-0;
     }
 
     .mobile-hidden {
@@ -52,14 +66,14 @@
   }
 
   .features {
-    @apply com-flex com-flex-col com-items-center com-m-0 md:com-mt-[170px] com-mt-[60px] md:com-mb-[52px];
+    @apply com-flex com-flex-col com-items-center com-m-0 md:com-mt-[72px] com-mt-[60px];
 
     .heading {
       @apply com-m-0 md:com-mb-4 com-mb-30px md:com-text-4xl com-text-3xl com-font-bold com-text-center com-text-Yankees-Blue;
     }
 
     .subheading {
-      @apply com-m-0 md:com-mb-12 com-mb-8 md:com-text-xl com-text-base com-font-medium com-text-center com-text-gray-500;
+      @apply com-m-0 md:com-mb-12 com-mb-8 md:com-text-xl com-text-base com-font-medium com-text-center com-text-gray-500 com-max-w-[918px];
     }
 
     .all-features {
@@ -95,22 +109,10 @@
     }
   }
 
-  .testimonials {
-    @apply com-flex com-flex-col com-m-0 md:com-mt-20 com-mt-11 md:com-mb-2 com-mb-0;
-
-    .heading {
-      @apply com-text-center md:com-text-xl com-text-base com-font-bold com-text-primary-500 com-m-0 md:com-mb-4 com-mb-6;
-    }
-
-    .subheading {
-      @apply com-text-center md:com-text-4xl com-text-2xl com-font-bold com-text-black com-m-0 md:com-mb-[52px] com-mb-6;
-    }
-  }
-
   .platform {
-    @apply com-m-0 md:com-mb-[90px] com-mb-0 com-p-0 md:com-mt-[126px] com-mt-14;
+    @apply com-m-0 md:com-mb-20 com-mb-0 com-p-0 md:com-mt-[126px] com-mt-14;
     .content {
-      @apply com-flex com-flex-col com-max-w-[554px];
+      @apply com-flex com-flex-col com-max-w-[554px] md:com-text-left com-text-center;
 
       .heading {
         @apply com-m-0;
@@ -128,8 +130,11 @@
         li {
           @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mb-10 com-mb-[84px] md:com-items-start com-items-center;
 
-          fa-icon {
-            @apply com-flex com-items-center com-justify-center com-p-[18px] com-w-14 com-h-14 com-bg-primary-500 com-text-white com-rounded-md com-m-0 com-mr-6 md:com-mb-0 com-mb-6;
+          .icon {
+            @apply com-flex com-items-center com-justify-center com-p-20px com-bg-primary-500 com-rounded-2xl com-w-14 com-h-14 md:com-mr-6 com-mr-0 md:com-mb-0 com-mb-6;
+            fa-icon {
+              @apply com-text-3xl com-shrink-0 com-text-white;
+            }
           }
 
           div {

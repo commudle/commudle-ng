@@ -52,63 +52,6 @@ export class BookPageComponent implements OnInit {
       'This is for you if you are an established enterprise with a running developer ecosystem or just starting out to build one.',
   };
 
-  testimonials: any[] = [
-    {
-      name: 'name1',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name2',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name3',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name4',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name5',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name6',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name7',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name8',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-    {
-      name: 'name9',
-      username: 'username1',
-      testimonialText: 'testimonial1',
-      date: 'date1',
-    },
-  ];
-
   questions = [
     'Do I need to purchase any other platform when I setup a Community on Commudle?',
     'How many Communities can I host on Commudle?',

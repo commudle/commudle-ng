@@ -96,7 +96,7 @@ export class ReadingBookComponent implements OnInit, OnDestroy {
   }
 
   showIndex(event) {
-    this.router.navigate(['/developer-community-blueprint', event.target.value]);
+    this.router.navigate(['/developer-ecosystem-blueprint/book', event.target.value]);
   }
 
   setMeta(chapter_name, description) {
