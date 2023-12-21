@@ -35,6 +35,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   isBadgesAdmin = false;
   isFeaturedCommunitiesAdmin = false;
   isAssetsAdmin = false;
+  isFeaturedItemsAdmin = false;
 
   notificationCount = 0;
 
@@ -86,6 +87,10 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
 
         if (currentUser.user_roles.includes(EUserRoles.FEATURED_COMMUNITIES)) {
           this.isFeaturedCommunitiesAdmin = true;
+        }
+
+        if (currentUser.user_roles.includes(EUserRoles.FEATURED_ITEMS)) {
+          this.isFeaturedItemsAdmin = true;
         }
 
         if (currentUser.user_roles.includes(EUserRoles.STATIC_ASSETS)) {

@@ -3,11 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
-
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { Subscription } from 'rxjs';
 import { EDiscussionType } from '@commudle/shared-models';
+import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-join-by-token',
@@ -22,6 +24,7 @@ export class JoinByTokenComponent implements OnInit {
   channelName: string;
   subscriptions: Subscription[] = [];
   discussionType: string;
+  currentUser: ICurrentUser;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,6 +32,8 @@ export class JoinByTokenComponent implements OnInit {
     private router: Router,
     private nbDialogService: NbDialogService,
     private libToasLogService: LibToastLogService,
+    private errorHandler: LibErrorHandlerService,
+    private authWatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit(): void {
@@ -38,9 +43,16 @@ export class JoinByTokenComponent implements OnInit {
         this.communityName = data.kommunity.name;
         this.channelId = data.id;
         this.channelName = data.name;
-        this.onAcceptRoleButton();
       }),
-    );
+    ),
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        if (this.currentUser) {
+          this.onAcceptRoleButton();
+        } else {
+          this.errorHandler.handleError(401, 'Login to apply');
+        }
+      });
   }
 
   verifyToken(decline?: boolean) {

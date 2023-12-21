@@ -38,7 +38,7 @@
     "@ngneat/helipopper": "^7.1.1",
     "@ngneat/overview": "^4.1.0",
     "@nrwl/angular": "15.1.1",
-    "@sanity/block-content-to-html": "^2.0.0",
+    "@portabletext/to-html": "^2.0.5",
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
     "@sentry/angular-ivy": "^7.74.1",

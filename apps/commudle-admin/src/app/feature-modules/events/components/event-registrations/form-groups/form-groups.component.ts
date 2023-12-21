@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
 import { StripeHandlerService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
-import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/data-form-entities.service';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
@@ -45,6 +45,7 @@ export class FormGroupsComponent implements OnInit {
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;
   faUsers = faUsers;
+  faPenToSquare = faPenToSquare;
   ERegistationTypes = ERegistationTypes;
   newDataFormWindowRef;
 
@@ -54,6 +55,7 @@ export class FormGroupsComponent implements OnInit {
   visibilityOptions = Visibility;
 
   eventDataFormEntityGroupForm: FormGroup;
+  updateEventDataFormEntityGroupForm: FormGroup;
   stripeAccounts: IStripeAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
   showDiscountCouponComponent = false;
@@ -80,6 +82,11 @@ export class FormGroupsComponent implements OnInit {
         registration_type_id: ['', Validators.required],
         data_form_id: ['', Validators.required],
       }),
+    });
+
+    this.updateEventDataFormEntityGroupForm = this.fb.group({
+      name: ['', Validators.required],
+      registration_type_id: ['', Validators.required],
     });
   }
 
@@ -246,5 +253,32 @@ export class FormGroupsComponent implements OnInit {
         this.eventDataFormEntityGroups[index].data_form_entity.auto_close_responses_count = value;
       }
     });
+  }
+
+  openUpdateEventDataFormGroup(dialog: TemplateRef<any>, dfe, index) {
+    this.updateEventDataFormEntityGroupForm.patchValue({
+      name: dfe.name,
+      registration_type_id: dfe.registration_type.id,
+    });
+    this.dialogService.open(dialog, {
+      context: {
+        dfe: dfe,
+        index: index,
+      },
+    });
+  }
+
+  updateEventDataFormEntityGroup(edfeg, index) {
+    this.eventDataFormEntityGroupsService
+      .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
+      .subscribe((data) => {
+        this.eventDataFormEntityGroups = [
+          ...this.eventDataFormEntityGroups.slice(0, index),
+          data,
+          ...this.eventDataFormEntityGroups.slice(index + 1),
+        ];
+        this.changeDetectorRef.markForCheck();
+        this.toastLogService.successDialog('Form Updated');
+      });
   }
 }

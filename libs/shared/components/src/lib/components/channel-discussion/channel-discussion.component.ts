@@ -10,17 +10,16 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IEditorValidator } from '@commudle/editor';
 import { InfiniteScrollDirective } from '@commudle/infinite-scroll';
-import { EUserRoles, ICommunityChannel } from '@commudle/shared-models';
+import { EUserRoles, ICommunityChannel, IUserMessage } from '@commudle/shared-models';
 import {
   AuthService,
   CommunityChannelsService,
   ToastrService,
   CommunityChannelManagerService,
 } from '@commudle/shared-services';
-import { NbDialogService } from '@commudle/theme';
 import { CommunityChannelHandlerService } from '../../services/community-channel-handler.service';
 
 @Component({
@@ -34,7 +33,8 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   @Input() discussionParent = '';
   @Input() fromLastRead = false;
   @Input() discussionType: string;
-  @Input() channelOfForum: ICommunityChannel;
+  @Input() channelOrForum: ICommunityChannel;
+  pinnedMessages: IUserMessage[];
   EUserRoles = EUserRoles;
   isCommunityChannelForumAdmin = false;
   isCommunityChannelForumMember = false;
@@ -58,9 +58,6 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
-    // private changeDetectorRef: ChangeDetectorRef,
-    private nbDialogService: NbDialogService,
-    private router: Router,
     private communityChannelsService: CommunityChannelsService,
     private toastLogService: ToastrService,
   ) {}
@@ -81,6 +78,8 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
       this.fromLastRead,
       this.activatedRoute.snapshot.queryParamMap.get('after'),
     );
+    this.communityChannelHandlerService.pinnedMessage(this.channelOrForum.id);
+    this.getPinnedMessages();
   }
 
   ngAfterViewInit() {
@@ -106,11 +105,17 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   }
 
   joinChannel() {
-    this.communityChannelsService.joinChannel(this.channelOfForum.id).subscribe((data) => {
+    this.communityChannelsService.joinChannel(this.channelOrForum.id).subscribe((data) => {
       if (data) {
         this.toastLogService.successDialog('Welcome to the channel!');
         location.reload();
       }
+    });
+  }
+
+  getPinnedMessages() {
+    this.communityChannelHandlerService.pinnedMessages$.subscribe((data) => {
+      this.pinnedMessages = data;
     });
   }
 }

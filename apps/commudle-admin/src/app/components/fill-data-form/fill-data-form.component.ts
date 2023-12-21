@@ -78,14 +78,13 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
         if (this.currentUser) {
+          this.appUsersService.getProfileStats().subscribe((data) => {
+            this.userProfileDetails = data;
+          });
           this.gtmData.com_user_id = this.currentUser.id;
         }
       }),
     );
-
-    this.appUsersService.getProfileStats().subscribe((data) => {
-      this.userProfileDetails = data;
-    });
   }
 
   ngOnDestroy() {

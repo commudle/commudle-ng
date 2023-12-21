@@ -1,0 +1,26 @@
+<a [routerLink]="'.'" fragment="stats">
+  <div class="com-bg-blue-50">
+    <div class="base-layout">
+      <div class="stats">
+        <div *ngFor="let stat of stats; let i = index" class="stat">
+          <div class="stats-number">
+            <p>{{ stats[i].number }}</p>
+            <div class="svg-icon">
+              <svg stroke="currentColor" viewBox="0 0 52 52">
+                <polygon
+                  fill="none"
+                  points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                ></polygon>
+              </svg>
+            </div>
+          </div>
+          <p class="stats-name">{{ stats[i].name }}</p>
+          <p class="stats-description">{{ stats[i].description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
