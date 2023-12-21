@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
@@ -7,6 +6,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Location } from '@angular/common';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import * as moment from 'moment';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
@@ -22,7 +22,7 @@ export class SearchBoxComponent implements OnInit {
 
   @ViewChild('searchInput', { static: false }) searchInputRef: ElementRef<HTMLInputElement>;
 
-  inputFormControl;
+  inputFormControl: FormControl;
   query = '';
   total = -1;
   searchLoader = false;
@@ -41,14 +41,11 @@ export class SearchBoxComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     public searchStatusService: SearchStatusService,
-    private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private location: Location,
   ) {
-    this.inputFormControl = this.fb.group({
-      name: [''],
-    });
+    this.inputFormControl = new FormControl('');
   }
 
   ngOnInit() {
@@ -58,7 +55,7 @@ export class SearchBoxComponent implements OnInit {
     if (Object.keys(params).length > 0) {
       if (params.q) {
         this.query = params.q;
-        this.inputFormControl.get('name').setValue(this.query);
+        this.inputFormControl.setValue(this.query);
       }
     }
     if (!params.q) {
@@ -69,7 +66,7 @@ export class SearchBoxComponent implements OnInit {
   search() {
     this.query = '';
     this.inputFormControl.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
-      this.query = this.inputFormControl.get('name').value;
+      this.query = this.inputFormControl.value?.name || this.inputFormControl.value;
       if (!this.showSuggestions) {
         this.onSubmit();
       }
