@@ -96,7 +96,7 @@
       <div *ngIf="contents && contents.length > 0">
         <p>Content</p>
         <div *ngFor="let content of contents">
-          <a class="navigate" [href]="content.link" target="_blank" rel="noopener">
+          <a class="navigate" [routerLink]="['/users', content.user.username]">
             <img
               [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
               alt="{{ content.name }}"
