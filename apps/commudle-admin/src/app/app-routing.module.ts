@@ -63,12 +63,12 @@ const routes: Routes = [
       import('./feature-modules/public-agencies/public-agencies.module').then((m) => m.PublicAgenciesModule),
   },
   {
-    path: 'book',
+    path: 'developer-ecosystem-blueprint',
     loadChildren: () =>
       import('./feature-modules/public-book-page/public-book-page.module').then((m) => m.PublicBookPageModule),
   },
   {
-    path: 'developer-community-blueprint',
+    path: 'developer-ecosystem-blueprint/book',
     loadChildren: () =>
       import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
   },

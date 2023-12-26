@@ -19,9 +19,9 @@ export class ReadingBookIndexComponent implements OnInit {
     });
 
     if (this.params) {
-      this.router.navigate(['/developer-community-blueprint', this.params]);
+      this.router.navigate(['/developer-ecosystem-blueprint/book', this.params]);
     } else {
-      this.router.navigate(['/developer-community-blueprint', this.chapterIndexes[0].slug.current]);
+      this.router.navigate(['/developer-ecosystem-blueprint/book', this.chapterIndexes[0].slug.current]);
     }
   }
 }

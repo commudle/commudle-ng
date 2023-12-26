@@ -65,7 +65,7 @@
                     *ngIf="chapterData?.link_to_previous_page"
                     nbButton
                     size="large"
-                    [routerLink]="['/developer-community-blueprint', chapterData.link_to_previous_page]"
+                    [routerLink]="['/developer-ecosystem-blueprint/book', chapterData.link_to_previous_page]"
                     [disabled]="!chapterData?.link_to_previous_page"
                     class="prev-btn"
                   >
@@ -87,7 +87,7 @@
                     *ngIf="chapterData?.link_to_next_page"
                     nbButton
                     size="large"
-                    [routerLink]="['/developer-community-blueprint', chapterData.link_to_next_page]"
+                    [routerLink]="['/developer-ecosystem-blueprint/book', chapterData.link_to_next_page]"
                     [disabled]="!chapterData?.link_to_next_page"
                     class="next-btn"
                   >
