@@ -28,6 +28,7 @@ import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-s
 import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-card/event-card.component';
 import { EventContentCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-content-card/event-content-card.component';
 import { LinkyModule } from 'ngx-linky';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent],
@@ -57,6 +58,7 @@ import { LinkyModule } from 'ngx-linky';
     EventCardComponent,
     EventContentCardComponent,
     LinkyModule,
+    SkeletonCardsComponent,
   ],
 })
 export class SearchModule {}

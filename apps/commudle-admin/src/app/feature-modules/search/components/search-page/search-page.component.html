@@ -18,6 +18,7 @@
           [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
           appearance="filled"
           (click)="onFilterChange('All')"
+          [removable]="selectedFilters.includes('All')"
         ></nb-tag>
         <nb-tag
           (click)="onFilterChange(filter)"
@@ -26,14 +27,40 @@
           [text]="filter"
           appearance="filled"
           class="com-cursor-pointer"
+          [removable]="selectedFilters.includes(filter)"
         ></nb-tag>
       </nb-tag-list>
       <div class="container">
         <div class="two-column-layout medium">
           <div class="main-column">
-            <app-loading-spinner *ngIf="searchLoader"></app-loading-spinner>
-            <div *ngIf="!searchLoader">
-              <p class="results-count">{{ total }} Results Found</p>
+            <app-skeleton-cards
+              *ngIf="
+                searchLoader ||
+                canLoadMoreUser ||
+                canLoadMoreLab ||
+                canLoadMoreEvent ||
+                canLoadMoreContent ||
+                canLoadMoreCommunity ||
+                canLoadMoreBuild
+              "
+              [cards]="5"
+            ></app-skeleton-cards>
+
+            <div>
+              <p
+                *ngIf="
+                  !searchLoader &&
+                  !canLoadMoreUser &&
+                  !canLoadMoreLab &&
+                  !canLoadMoreEvent &&
+                  !canLoadMoreContent &&
+                  !canLoadMoreCommunity &&
+                  !canLoadMoreBuild
+                "
+                class="results-count"
+              >
+                {{ total }} Results Found
+              </p>
               <nb-list>
                 <nb-list-item
                   *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
