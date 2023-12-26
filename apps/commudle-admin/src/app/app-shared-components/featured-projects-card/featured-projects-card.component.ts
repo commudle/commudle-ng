@@ -4,8 +4,8 @@ import { NbButtonModule, NbCardModule } from '@commudle/theme';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import * as moment from 'moment';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { RouterModule } from '@angular/router';
+import { ICommunityBuild } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-featured-projects-card',
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, NbCardModule, MiniUserProfileModule, SharedComponentsModule, NbButtonModule, RouterModule],
 })
 export class FeaturedProjectsCardComponent implements OnInit {
-  @Input() featuredProject: IFeaturedItems;
+  @Input() communityBuild: ICommunityBuild;
   @Input() showTag = true;
   moment = moment;
   constructor() {}

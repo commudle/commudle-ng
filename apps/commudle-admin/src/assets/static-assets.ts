@@ -52,6 +52,11 @@ export const staticAssets = {
   community_lab_empty_state:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeUE0QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--93698b16ab6c8f95a106895116c8f0cf79ba9757/Labs%20Empty%20State.png',
 
+  events_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNU90QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--537e296dba4aff7727f78debeaae0f03b8376609/Events.svg',
+
+  content_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNUt0QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5b2ccc739fd77ba1a8608864352b8608733279f3/Content.svg',
   pricing_students:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnRWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--614dc5593f001909952dcaf51aaebb28634c5f83/Students%20&%20Individuals.png',
 

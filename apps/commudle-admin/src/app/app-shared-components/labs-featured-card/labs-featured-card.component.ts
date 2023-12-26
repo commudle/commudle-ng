@@ -8,6 +8,7 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
+import { ILab } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-labs-featured-card',
@@ -25,7 +26,7 @@ import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./labs-featured-card.component.scss'],
 })
 export class LabsFeaturedCardComponent implements OnInit {
-  @Input() featuredItem: IFeaturedItems;
+  @Input() lab: ILab;
   moment = moment;
   faMessage = faMessage;
   faHeart = faHeart;

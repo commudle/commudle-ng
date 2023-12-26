@@ -11,10 +11,10 @@ nb-form-field {
 
   &::ng-deep {
     .main-search-bar.giant {
-      @apply com-text-lg;
+      @apply com-text-lg com-rounded-b-none com-rounded-t-xl;
 
       &::placeholder {
-        @apply com-text-lg;
+        @apply com-text-lg com-font-normal;
       }
     }
   }
@@ -24,6 +24,81 @@ nb-form-field {
   }
 }
 
-.navigate {
-  @apply com-no-underline;
+nb-option {
+  @apply com-m-0 com-p-0 com-py-1 com-px-4;
+}
+
+.search-box {
+  @apply com-h-[320px];
+}
+
+.search-placeholder {
+  @apply com-flex com-items-center com-justify-center com-text-sm com-font-semibold com-text-black;
+}
+
+.loader {
+  @apply com-flex com-justify-center com-items-center com-w-full;
+}
+
+.search-box-results {
+  @apply com-p-0 com-py-2;
+  .results {
+    @apply com-w-full;
+    .container {
+      @apply com-border-solid com-border-0 com-border-t com-border-Bright-Gray com-m-0;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+
+    p {
+      @apply com-m-0 com-p-0 com-pt-2 com-pb-1 com-px-4 com-text-sm com-font-medium com-text-gray-500;
+    }
+
+    .navigate {
+      @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-p-0 com-px-4 com-py-1;
+
+      .user-image,
+      .lab-image,
+      .content-image {
+        @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-object-cover;
+      }
+
+      .name {
+        @apply com-m-0 com-p-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
+      }
+
+      .designation,
+      .member-count,
+      .event-date {
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz com-line-clamp-1;
+        text-wrap: nowrap;
+
+        .dot {
+          @apply com-text-xs com-font-medium com-text-black;
+        }
+      }
+
+      .community-image {
+        @apply com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3;
+      }
+    }
+
+    .navigate:hover {
+      @apply com-bg-gray-200;
+    }
+  }
+}
+
+nb-option:hover {
+  @apply com-bg-transparent;
+}
+
+.show-all-results {
+  @apply com-justify-center com-items-center com-gap-2;
+}
+
+.nb-autocomplete:hover {
+  @apply com-bg-transparent #{!important};
 }

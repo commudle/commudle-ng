@@ -31,10 +31,12 @@
       class="custom-scrollbar"
     >
       <div class="featured-projects-card" *ngFor="let featuredProject of featuredProjects">
-        <commudle-featured-projects-card
-          [featuredProject]="featuredProject"
-          [showTag]="showTag"
-        ></commudle-featured-projects-card>
+        <div class="featured-project-card">
+          <commudle-featured-projects-card
+            [communityBuild]="featuredProject.community_build"
+            [showTag]="showTag"
+          ></commudle-featured-projects-card>
+        </div>
       </div>
     </div>
   </nb-card-body>

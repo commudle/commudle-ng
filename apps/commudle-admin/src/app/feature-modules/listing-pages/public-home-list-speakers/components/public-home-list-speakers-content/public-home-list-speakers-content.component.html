@@ -6,15 +6,19 @@
     </div>
     <div class="content custom-scrollbar">
       <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards>
-      <div *ngFor="let speakersContent of speakersContents" class="content-card">
+      <div *ngFor="let speakersContent of speakersContents">
         <div *appBreakpoints="'>lg'">
-          <commudle-event-content-card [speakersContent]="speakersContent"></commudle-event-content-card>
+          <div class="content-card">
+            <commudle-event-content-card [speakersContent]="speakersContent"></commudle-event-content-card>
+          </div>
         </div>
         <div *appBreakpoints="'<=lg'">
-          <commudle-event-content-card
-            [speakersContent]="speakersContent"
-            [horizontalScroll]="true"
-          ></commudle-event-content-card>
+          <div class="content-card">
+            <commudle-event-content-card
+              [speakersContent]="speakersContent"
+              [horizontalScroll]="true"
+            ></commudle-event-content-card>
+          </div>
         </div>
       </div>
       <div class="load-more">

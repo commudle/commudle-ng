@@ -29,9 +29,12 @@
     }
 
     .featured-projects-scroll {
-      @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-mt-4 com-p-0 com-gap-3;
+      @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-mt-4 com-p-0 com-gap-3 com-w-full;
       .featured-projects-card {
-        @apply com-m-0 com-p-0;
+        @apply com-w-full com-h-full com-mb-4;
+        .featured-project-card {
+          @apply com-m-0 com-p-0 md:com-w-full com-w-[304px] md:com-h-full com-h-[180px];
+        }
       }
     }
   }
@@ -68,9 +71,12 @@
     }
 
     .featured-projects {
-      @apply com-flex com-flex-wrap com-overflow-x-auto com-m-0 com-pb-4 com-p-0 com-gap-y-4 com-gap-x-0;
+      @apply com-flex com-flex-wrap com-overflow-x-auto com-m-0 com-pb-4 com-p-0 com-gap-y-4 com-gap-x-0 com-w-full;
       .featured-projects-card {
-        @apply com-m-0 com-p-0;
+        @apply com-w-full;
+        .featured-project-card {
+          @apply com-m-0 com-p-0 md:com-w-full com-w-[303px];
+        }
       }
     }
   }
