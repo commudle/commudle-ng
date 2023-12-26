@@ -13,6 +13,7 @@
     "lib": ["es2017", "dom", "ES2021.String"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@commudle/auth": ["libs/auth/src/index.ts"],
