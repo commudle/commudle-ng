@@ -9,6 +9,7 @@ import {
   faStairs,
 } from '@fortawesome/free-solid-svg-icons';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'commudle-book-page',
@@ -16,7 +17,8 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   styleUrls: ['./book-page.component.scss'],
 })
 export class BookPageComponent implements OnInit {
-  constructor() {}
+  constructor(private footerService: FooterService) {}
+
   staticAssets = staticAssets;
   faPeopleGroup = faPeopleGroup;
   faSackDollar = faSackDollar;
@@ -70,5 +72,11 @@ export class BookPageComponent implements OnInit {
     'Absolutely, a few Design Communities are already using Commudle.',
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
+  }
 }

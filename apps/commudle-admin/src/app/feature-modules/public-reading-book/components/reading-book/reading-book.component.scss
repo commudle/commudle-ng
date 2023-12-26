@@ -22,10 +22,10 @@
       nb-card-header {
         @apply md:com-px-9 md:com-pt-9 md:com-pb-0 com-p-0;
         .image {
-          @apply md:com-w-[994px] com-h-auto com-w-full;
+          @apply md:com-w-[994px] md:com-h-[500px] com-h-auto com-w-full;
 
           img {
-            @apply com-h-auto com-w-full com-object-cover;
+            @apply com-h-full com-w-full;
           }
         }
       }

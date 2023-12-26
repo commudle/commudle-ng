@@ -1,5 +1,5 @@
 .signup-newsletter {
-  @apply com-p-0 md:com-py-[88px] com-pt-10 com-pb-[60px] md:com-px-0 com-px-4 com-flex com-items-center com-text-center md:com-flex-row com-flex-col com-justify-between;
+  @apply com-p-0 md:com-py-[88px] com-pt-10 com-pb-[60px] md:com-px-0 com-px-4 com-flex com-items-center com-text-center md:com-flex-row com-flex-col com-justify-between md:com-max-w-[84%] com-max-w-full;
 
   a {
     @apply com-no-underline;
