@@ -177,13 +177,17 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
       this.forumsNamesList = false;
       this.forumMessage = false;
       this.forumsList = false;
-      this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
+      const currentUrl = this.router.url;
+      const newUrl = currentUrl.replace(/\/forums$/, '/channels');
+      this.router.navigate([newUrl]);
     } else if (discussionType === this.discussionType.FORUM) {
       this.channelsList = false;
       this.forumsNamesList = false;
       this.forumMessage = false;
       this.forumsList = true;
-      this.router.navigate([`communities/${this.selectedCommunity.slug}/forums`]);
+      const currentUrl = this.router.url;
+      const newUrl = currentUrl.replace(/\/channels$/, '/forums');
+      this.router.navigate([newUrl]);
     }
     this.checkDiscussionType();
   }
