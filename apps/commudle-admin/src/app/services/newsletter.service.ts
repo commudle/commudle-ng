@@ -124,4 +124,11 @@ export class NewsletterService {
       params,
     });
   }
+
+  attachImage(newsletterId, image): Observable<string> {
+    const params = new HttpParams().set('newsletter_id', newsletterId);
+    return this.http.put<string>(this.apiRoutesService.getRoute(API_ROUTES.NEWSLETTER.ATTACH_TEXT_IMAGE), image, {
+      params,
+    });
+  }
 }

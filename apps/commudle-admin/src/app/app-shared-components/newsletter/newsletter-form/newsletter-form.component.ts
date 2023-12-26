@@ -27,6 +27,7 @@ export class NewsletterFormComponent implements OnInit {
     faChevronLeft,
   };
   editor: any = null;
+  imageUrl = '';
 
   @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
 
@@ -247,12 +248,54 @@ export class NewsletterFormComponent implements OnInit {
   }
 
   createOrUpdate() {
-    this.newsletterForm.patchValue({ content: this.editor.getHtml() });
+    this.newsletterForm.patchValue({ content: this.replaceImgSrc(this.editor.getHtml()) });
     if (this.pageSlug) {
       this.update();
     } else {
       this.create();
     }
+  }
+
+  replaceImgSrc(htmlContent: string): string {
+    // Create a DOM element to parse the HTML content
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = htmlContent;
+
+    // Find all img tags in the parsed HTML
+    const imgElements = tempElement.getElementsByTagName('img');
+
+    // Loop through each img tag and replace the src attribute
+    for (let i = 0; i < imgElements.length; i++) {
+      const img = imgElements[i];
+      const originalSrc = img.getAttribute('src');
+
+      // Use your custom function to generate a new link based on the original src
+      const newSrc = this.generateNewImgSrc(originalSrc);
+
+      // Set the new src attribute
+      img.setAttribute('src', newSrc);
+    }
+
+    // Return the modified HTML content
+    return tempElement.innerHTML;
+  }
+
+  generateNewImgSrc(originalSrc): string {
+    // this.imageUrl = '';
+    const binaryData = atob(originalSrc.split(',')[1]);
+    const arrayBuffer = new ArrayBuffer(binaryData.length);
+    const uint8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < binaryData.length; i++) {
+      uint8Array[i] = binaryData.charCodeAt(i);
+    }
+
+    const formData: any = new FormData();
+    formData.append('image', new Blob([uint8Array], { type: 'image/png' }));
+
+    this.newsletterService.attachImage(10, formData).subscribe((data) => {
+      this.imageUrl = data;
+    });
+    return this.imageUrl;
   }
 
   create() {
