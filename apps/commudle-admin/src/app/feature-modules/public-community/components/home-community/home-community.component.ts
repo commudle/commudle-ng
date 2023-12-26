@@ -4,7 +4,7 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription, filter, map } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { DOCUMENT } from '@angular/common';
@@ -12,7 +12,7 @@ import { NbDialogService, NbMenuService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faMessage } from '@fortawesome/free-solid-svg-icons';
 
 interface CustomMenuItem {
   title: string;
@@ -36,6 +36,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   faCaretDown = faCaretDown;
+  faMessage = faMessage;
 
   items = [{ title: 'pages', slug: 'pages' }];
 
