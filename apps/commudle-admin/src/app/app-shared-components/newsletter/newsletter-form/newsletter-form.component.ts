@@ -30,6 +30,7 @@ export class NewsletterFormComponent implements OnInit {
   };
   editor: any = null;
   imageUrl = '';
+  defaultTemplate = '';
 
   @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
   @ViewChild('sendTestEmailDialog') sendTestEmailDialogBox: TemplateRef<any>;
@@ -108,142 +109,7 @@ export class NewsletterFormComponent implements OnInit {
       container: '#gjs',
       components: this.newsletterForm.get('content').value
         ? this.newsletterForm.get('content').value
-        : `<body id="iewh" style="box-sizing: border-box; margin: 4px;">
-  <table id="ilu7" style="box-sizing: border-box; height: 150px; margin: 0 auto 10px auto; padding: 5px 5px 5px 5px; width: 100%;" width="100%" height="150">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-        <td id="ifa6" style="box-sizing: border-box; padding: 0; margin: 0; vertical-align: top;" valign="top">
-          <img id="i5zz" src="https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ3UzIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c793a76a579714d72bf7e51b0fe9d4d13640a460/commudle-logo-full.png" style="box-sizing: border-box; color: black; width: 100%;">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="iempk" style="box-sizing: border-box; padding: 10px;">SUP {{name}}
-  </div>
-  <table id="i0js" style="box-sizing: border-box; width: 100%; margin-top: 10px; margin-bottom: 10px;" width="100%">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-      </tr>
-    </tbody>
-  </table>
-  <table class="list-item" style="box-sizing: border-box;">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-        <td class="list-item-cell" style="box-sizing: border-box;">
-          <table class="list-item-content" style="box-sizing: border-box;">
-            <tbody style="box-sizing: border-box;">
-              <tr class="list-item-row" style="box-sizing: border-box;">
-                <td class="list-cell-left" style="box-sizing: border-box;">
-                  <img src="https://via.placeholder.com/150/78c5d6/fff" alt="Image" class="list-item-image" style="box-sizing: border-box;">
-                </td>
-                <td class="list-cell-right" style="box-sizing: border-box;">
-                  <h1 class="card-title" style="box-sizing: border-box;">Title here
-                  </h1>
-                  <p class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="list-item" style="box-sizing: border-box;">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-        <td class="list-item-cell" style="box-sizing: border-box;">
-          <table class="list-item-content" style="box-sizing: border-box;">
-            <tbody style="box-sizing: border-box;">
-              <tr class="list-item-row" style="box-sizing: border-box;">
-                <td class="list-cell-left" style="box-sizing: border-box;">
-                  <img src="https://via.placeholder.com/150/78c5d6/fff" alt="Image" class="list-item-image" style="box-sizing: border-box;">
-                </td>
-                <td class="list-cell-right" style="box-sizing: border-box;">
-                  <h1 class="card-title" style="box-sizing: border-box;">Title here
-                  </h1>
-                  <p class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table id="igo5e" style="box-sizing: border-box; height: 150px; margin: 0 auto 10px auto; padding: 5px 5px 5px 5px; width: 100%;" width="100%" height="150">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-        <td id="isp6a" style="box-sizing: border-box; padding: 0; margin: 0; vertical-align: top;" valign="top">
-          <h1 class="heading" style="box-sizing: border-box;">Insert title here
-          </h1>
-          <p class="paragraph" style="box-sizing: border-box;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="grid-item-row" style="box-sizing: border-box;">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-        <td class="grid-item-cell2-l" style="box-sizing: border-box;">
-          <table class="grid-item-card" style="box-sizing: border-box;">
-            <tbody style="box-sizing: border-box;">
-              <tr style="box-sizing: border-box;">
-                <td class="grid-item-card-cell" style="box-sizing: border-box;">
-                  <img src="https://via.placeholder.com/250x150/78c5d6/fff/" alt="Image" class="grid-item-image" style="box-sizing: border-box;">
-                  <table class="grid-item-card-body" style="box-sizing: border-box;">
-                    <tbody style="box-sizing: border-box;">
-                      <tr style="box-sizing: border-box;">
-                        <td class="grid-item-card-content" style="box-sizing: border-box;">
-                          <h1 class="card-title" style="box-sizing: border-box;">Title here
-                          </h1>
-                          <p class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                          </p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-        <td class="grid-item-cell2-r" style="box-sizing: border-box;">
-          <table class="grid-item-card" style="box-sizing: border-box;">
-            <tbody style="box-sizing: border-box;">
-              <tr style="box-sizing: border-box;">
-                <td class="grid-item-card-cell" style="box-sizing: border-box;">
-                  <img src="https://via.placeholder.com/250x150/78c5d6/fff/" alt="Image" class="grid-item-image" style="box-sizing: border-box;">
-                  <table class="grid-item-card-body" style="box-sizing: border-box;">
-                    <tbody style="box-sizing: border-box;">
-                      <tr style="box-sizing: border-box;">
-                        <td class="grid-item-card-content" style="box-sizing: border-box;">
-                          <h1 class="card-title" style="box-sizing: border-box;">Title here
-                          </h1>
-                          <p class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                          </p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table id="ihwk" style="box-sizing: border-box; height: 150px; margin: 0 auto 10px auto; padding: 5px 5px 5px 5px; width: 100%;" width="100%" height="150">
-    <tbody style="box-sizing: border-box;">
-      <tr style="box-sizing: border-box;">
-      </tr>
-    </tbody>
-  </table>
-</body>`,
+        : this.getDefaultTemplate(),
       // Get the content for the canvas directly from the element
       // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
       fromElement: false,
@@ -273,10 +139,10 @@ export class NewsletterFormComponent implements OnInit {
   createOrUpdate(sendTestEmail: boolean = false) {
     this.replaceImgSrc(this.editor.getHtml())
       .then((modifiedHtmlContent) => {
-        // Now you can use the modified HTML content
-        this.newsletterForm.patchValue({ content: modifiedHtmlContent });
+        const code = '<style>' + this.editor.getCss() + '</style>' + modifiedHtmlContent;
+        console.log('🚀 ~ file: newsletter-form.component.ts:284 ~ NewsletterFormComponent ~ .then ~ code:', code);
+        this.newsletterForm.patchValue({ content: code });
 
-        // Further processing or calling other functions can be done here
         if (this.pageSlug) {
           this.update(sendTestEmail);
         } else {
@@ -299,8 +165,12 @@ export class NewsletterFormComponent implements OnInit {
     for (let i = 0; i < imgElements.length; i++) {
       const img = imgElements[i];
       const originalSrc = img.getAttribute('src');
+      console.log(
+        '🚀 ~ file: newsletter-form.component.ts:302 ~ NewsletterFormComponent ~ replaceImgSrc ~ originalSrc:',
+        originalSrc,
+      );
 
-      if (originalSrc.startsWith('https')) {
+      if (originalSrc.startsWith('http')) {
         const promise = img.setAttribute('src', originalSrc);
         promises.push(promise);
       } else {
@@ -437,5 +307,172 @@ export class NewsletterFormComponent implements OnInit {
           this.testEmailsForms.reset();
         }
       });
+  }
+
+  getDefaultTemplate(): string {
+    this.defaultTemplate = `<body style="box-sizing: border-box; margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+  <table id="i0066" style="box-sizing: border-box; height: 40px; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;" width="100%" height="40">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td id="imuyz" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top;" valign="top">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="iempk" style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">SUP {{name}}
+  </div>
+  <table id="i0js" width="100%" style="box-sizing: border-box; width: 100%; margin-top: 10px; margin-bottom: 10px;">
+    <tbody id="iae1" style="box-sizing: border-box;">
+      <tr id="idk4e" style="box-sizing: border-box;">
+      </tr>
+    </tbody>
+  </table>
+  <table id="ioe5l" class="list-item" style="box-sizing: border-box;">
+    <tbody id="i87qi" style="box-sizing: border-box;">
+      <tr id="igtl5" style="box-sizing: border-box;">
+        <td id="iitl9" class="list-item-cell" style="box-sizing: border-box;">
+          <table id="ig8fz" class="list-item-content" style="box-sizing: border-box;">
+            <tbody id="if80q" style="box-sizing: border-box;">
+              <tr id="izv7k" class="list-item-row" style="box-sizing: border-box;">
+                <td id="ixr34" class="list-cell-left" style="box-sizing: border-box;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ilmv8" style="box-sizing: border-box; height: 150px; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;" width="100%" height="150">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td id="io22z" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top; width: 30%;" width="30%" valign="top">
+          <img id="iwv7m" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="img" style="box-sizing: border-box; margin-top: 16px; margin-right: auto; margin-bottom: 0px; margin-left: auto; height: 121px; width: 129px; color: black;" width="129" height="121">
+        </td>
+        <td id="il5hh" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top; width: 70%;" width="70%" valign="top">
+          <h1 class="heading" style="box-sizing: border-box;">Insert title here
+          </h1>
+          <p class="paragraph" style="box-sizing: border-box;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ihbxq" style="box-sizing: border-box; height: 150px; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;" width="100%" height="150">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td id="ijm9c" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top; width: 30%;" width="30%" valign="top">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ircoj" class="img" style="box-sizing: border-box; margin-top: 16px; margin-right: auto; margin-bottom: 0px; margin-left: auto; height: 121px; width: 129px; color: black;" width="129" height="121">
+        </td>
+        <td id="igggg" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top; width: 70%;" width="70%" valign="top">
+          <h1 class="heading" style="box-sizing: border-box;">Insert title here
+          </h1>
+          <p class="paragraph" style="box-sizing: border-box;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ileda" style="box-sizing: border-box; height: 150px; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;" width="100%" height="150">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td id="ij8e7" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top;" valign="top">
+          <h1 class="heading" style="box-sizing: border-box;">Insert title here
+          </h1>
+          <p class="paragraph" style="box-sizing: border-box;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="i3uq9" class="list-item" style="box-sizing: border-box;">
+    <tbody id="ifj08" style="box-sizing: border-box;">
+      <tr id="i1jc5" style="box-sizing: border-box;">
+        <td id="i0qc8" class="list-item-cell" style="box-sizing: border-box;">
+          <table id="ixkbd" class="list-item-content" style="box-sizing: border-box;">
+            <tbody id="itpeu" style="box-sizing: border-box;">
+              <tr id="i432b" class="list-item-row" style="box-sizing: border-box;">
+                <td id="i4hal" class="list-cell-left" style="box-sizing: border-box;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ics9s" style="box-sizing: border-box; width: 100%; margin-top: 10px; margin-bottom: 10px;" width="100%">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td class="divider" style="box-sizing: border-box; background-color: rgba(0, 0, 0, 0.1); height: 1px;" height="1" bgcolor="rgba(0, 0, 0, 0.1)">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ilp29" class="grid-item-row" style="box-sizing: border-box;">
+    <tbody id="ixumo" style="box-sizing: border-box;">
+      <tr id="is27z" style="box-sizing: border-box;">
+        <td id="iq3m9" class="grid-item-cell2-l" style="box-sizing: border-box;">
+          <table id="i2pjc" class="grid-item-card" style="box-sizing: border-box;">
+            <tbody id="io11a" style="box-sizing: border-box;">
+              <tr id="ij15h" style="box-sizing: border-box;">
+                <td id="imq2i" class="grid-item-card-cell" style="box-sizing: border-box;">
+                  <img id="ijvdw" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="image" style="box-sizing: border-box; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; width: 186px; height: 129px; color: black;" width="186" height="129">
+                  <table id="iw1lb" class="grid-item-card-body" style="box-sizing: border-box;">
+                    <tbody id="i1p21" style="box-sizing: border-box;">
+                      <tr id="izbh4" style="box-sizing: border-box;">
+                        <td id="irrb1" class="grid-item-card-content" style="box-sizing: border-box;">
+                          <h1 id="izf9k" class="card-title" style="box-sizing: border-box;">Title here
+                          </h1>
+                          <p id="icjwm" class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td id="ihm66" class="grid-item-cell2-r" style="box-sizing: border-box;">
+          <img id="irwdk" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="image" style="box-sizing: border-box; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; width: 186px; height: 129px; color: black;" width="186" height="129">
+          <table id="iexc5" class="grid-item-card" style="box-sizing: border-box;">
+            <tbody id="ixpu8" style="box-sizing: border-box;">
+              <tr id="izn8k" style="box-sizing: border-box;">
+                <td id="ii4la" class="grid-item-card-cell" style="box-sizing: border-box;">
+                  <table id="i91kx" class="grid-item-card-body" style="box-sizing: border-box;">
+                    <tbody id="i6nwk" style="box-sizing: border-box;">
+                      <tr id="iae3g" style="box-sizing: border-box;">
+                        <td id="insbg" class="grid-item-card-content" style="box-sizing: border-box;">
+                          <h1 id="iqdnk" class="card-title" style="box-sizing: border-box;">Title here
+                          </h1>
+                          <p id="id0a7" class="card-text" style="box-sizing: border-box;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="ij0tm" style="box-sizing: border-box; height: 40px; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;" width="100%" height="40">
+    <tbody style="box-sizing: border-box;">
+      <tr style="box-sizing: border-box;">
+        <td id="ismog" style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; vertical-align: top;" valign="top">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>`;
+    return this.defaultTemplate;
   }
 }

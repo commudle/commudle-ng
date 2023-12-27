@@ -10,18 +10,16 @@ h6 {
   @apply com-mt-3 com-cursor-pointer com-w-max com-text-[#8f9bb3];
 }
 
+form {
+  @apply com-flex com-flex-col com-gap-3;
+  div {
+    @apply com-flex com-flex-col;
+  }
+}
+
 nb-card {
   nb-card-footer,
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;
-  }
-
-  nb-card-body {
-    form {
-      @apply com-flex com-flex-col com-gap-3;
-      div {
-        @apply com-flex com-flex-col;
-      }
-    }
   }
 }

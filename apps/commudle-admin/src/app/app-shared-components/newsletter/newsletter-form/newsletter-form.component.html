@@ -60,11 +60,11 @@
   <div class="banner-image">
     <label for="banner_image">Banner Image</label>
     <input type="file" (change)="onFileChange($event)" accept="image/*" />
-  </div>
-  <div *ngIf="imagePreview || newsletterForm.controls['banner_image'].value" class="image-preview">
-    <commudle-banner-image
-      [headerImagePath]="imagePreview || newsletterForm.controls['banner_image'].value"
-    ></commudle-banner-image>
+    <div *ngIf="imagePreview || newsletterForm.controls['banner_image'].value" class="image-preview">
+      <commudle-banner-image
+        [headerImagePath]="imagePreview || newsletterForm.controls['banner_image'].value"
+      ></commudle-banner-image>
+    </div>
   </div>
 
   <div class="content">
