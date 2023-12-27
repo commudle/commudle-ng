@@ -141,7 +141,6 @@ export class NewsletterFormComponent implements OnInit {
     this.replaceImgSrc(this.editor.getHtml())
       .then((modifiedHtmlContent) => {
         const code = '<style>' + this.editor.getCss() + '</style>' + modifiedHtmlContent;
-        console.log('🚀 ~ file: newsletter-form.component.ts:284 ~ NewsletterFormComponent ~ .then ~ code:', code);
         this.newsletterForm.patchValue({ content: code });
 
         if (this.pageSlug) {
@@ -166,11 +165,6 @@ export class NewsletterFormComponent implements OnInit {
     for (let i = 0; i < imgElements.length; i++) {
       const img = imgElements[i];
       const originalSrc = img.getAttribute('src');
-      console.log(
-        '🚀 ~ file: newsletter-form.component.ts:302 ~ NewsletterFormComponent ~ replaceImgSrc ~ originalSrc:',
-        originalSrc,
-      );
-
       if (originalSrc.startsWith('http')) {
         const promise = img.setAttribute('src', originalSrc);
         promises.push(promise);
