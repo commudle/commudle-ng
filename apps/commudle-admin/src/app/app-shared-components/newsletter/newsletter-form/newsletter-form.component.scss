@@ -2,13 +2,6 @@ h6 {
   @apply com-my-4;
 }
 
-form {
-  @apply com-flex com-flex-col com-gap-3;
-  div {
-    @apply com-flex com-flex-col;
-  }
-}
-
 .action-buttons {
   @apply com-flex com-gap-4 com-my-3;
 }
@@ -21,5 +14,21 @@ form {
   border: 1px solid #444;
   ::ng-deep .gjs-cv-canvas {
     @apply com-w-[600px];
+  }
+}
+
+nb-card {
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+
+  nb-card-body {
+    form {
+      @apply com-flex com-flex-col com-gap-3;
+      div {
+        @apply com-flex com-flex-col;
+      }
+    }
   }
 }

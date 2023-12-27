@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
@@ -9,6 +9,7 @@ import { ToastrService } from '@commudle/shared-services';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import grapesjs from 'grapesjs';
 import plugin from 'grapesjs-preset-newsletter';
+import { NbDialogService } from '@commudle/theme';
 
 @Component({
   selector: 'commudle-newsletter-form',
@@ -22,6 +23,7 @@ export class NewsletterFormComponent implements OnInit {
   pageSlug: string;
   subscriptions: Subscription[] = [];
   imagePreview;
+  testEmailsForms: FormGroup;
 
   icons = {
     faChevronLeft,
@@ -30,6 +32,7 @@ export class NewsletterFormComponent implements OnInit {
   imageUrl = '';
 
   @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
+  @ViewChild('sendTestEmailDialog') sendTestEmailDialogBox: TemplateRef<any>;
 
   constructor(
     private newsletterService: NewsletterService,
@@ -37,6 +40,7 @@ export class NewsletterFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastrService: ToastrService,
+    private dialogService: NbDialogService,
   ) {
     this.newsletterForm = this.fb.group({
       title: ['', Validators.required],
@@ -45,6 +49,9 @@ export class NewsletterFormComponent implements OnInit {
       brief_description: ['', [Validators.required, Validators.maxLength(50)]],
       content: [''],
       banner_image: [null],
+    });
+    this.testEmailsForms = this.fb.group({
+      emails: ['', [Validators.required, this.maxEmails(5)]],
     });
   }
 
@@ -68,6 +75,13 @@ export class NewsletterFormComponent implements OnInit {
         }
       },
     );
+  }
+
+  maxEmails(max: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const emails = control.value.split(',').map((email) => email.trim());
+      return emails.length <= max ? null : { maxEmails: { max } };
+    };
   }
 
   fetchCustomPageDetails() {
@@ -247,58 +261,82 @@ export class NewsletterFormComponent implements OnInit {
     });
   }
 
-  createOrUpdate() {
-    this.newsletterForm.patchValue({ content: this.replaceImgSrc(this.editor.getHtml()) });
-    if (this.pageSlug) {
-      this.update();
-    } else {
-      this.create();
-    }
+  createOrUpdate(sendTestEmail: boolean = false) {
+    this.replaceImgSrc(this.editor.getHtml())
+      .then((modifiedHtmlContent) => {
+        // Now you can use the modified HTML content
+        this.newsletterForm.patchValue({ content: modifiedHtmlContent });
+
+        // Further processing or calling other functions can be done here
+        if (this.pageSlug) {
+          this.update(sendTestEmail);
+        } else {
+          this.create(sendTestEmail);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
-  replaceImgSrc(htmlContent: string): string {
-    // Create a DOM element to parse the HTML content
+  replaceImgSrc(htmlContent: string): Promise<string> {
     const tempElement = document.createElement('div');
     tempElement.innerHTML = htmlContent;
 
-    // Find all img tags in the parsed HTML
     const imgElements = tempElement.getElementsByTagName('img');
 
-    // Loop through each img tag and replace the src attribute
+    const promises = [];
+
     for (let i = 0; i < imgElements.length; i++) {
       const img = imgElements[i];
       const originalSrc = img.getAttribute('src');
 
-      // Use your custom function to generate a new link based on the original src
-      const newSrc = this.generateNewImgSrc(originalSrc);
-
-      // Set the new src attribute
-      img.setAttribute('src', newSrc);
+      if (originalSrc.startsWith('https')) {
+        const promise = img.setAttribute('src', originalSrc);
+        promises.push(promise);
+      } else {
+        const promise = this.generateNewImgSrc(originalSrc)
+          .then((newSrc) => {
+            img.setAttribute('src', newSrc);
+          })
+          .catch((error) => {
+            console.error('Error generating new image source:', error);
+          });
+        promises.push(promise);
+      }
     }
 
-    // Return the modified HTML content
-    return tempElement.innerHTML;
-  }
-
-  generateNewImgSrc(originalSrc): string {
-    // this.imageUrl = '';
-    const binaryData = atob(originalSrc.split(',')[1]);
-    const arrayBuffer = new ArrayBuffer(binaryData.length);
-    const uint8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < binaryData.length; i++) {
-      uint8Array[i] = binaryData.charCodeAt(i);
-    }
-
-    const formData: any = new FormData();
-    formData.append('image', new Blob([uint8Array], { type: 'image/png' }));
-
-    this.newsletterService.attachImage(10, formData).subscribe((data) => {
-      this.imageUrl = data;
+    return Promise.all(promises).then(() => {
+      return tempElement.innerHTML;
     });
-    return this.imageUrl;
   }
 
-  create() {
+  generateNewImgSrc(originalSrc): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const binaryData = atob(originalSrc.split(',')[1]);
+      const arrayBuffer = new ArrayBuffer(binaryData.length);
+      const uint8Array = new Uint8Array(arrayBuffer);
+
+      for (let i = 0; i < binaryData.length; i++) {
+        uint8Array[i] = binaryData.charCodeAt(i);
+      }
+
+      const formData: any = new FormData();
+      formData.append('image', new Blob([uint8Array], { type: 'image/png' }));
+
+      this.newsletterService.attachImage(formData).subscribe(
+        (data) => {
+          this.imageUrl = data;
+          resolve(this.imageUrl);
+        },
+        (error) => {
+          reject(error);
+        },
+      );
+    });
+  }
+
+  create(sendTestEmail?) {
     // Create a FormData object
     const formData = new FormData();
 
@@ -316,11 +354,14 @@ export class NewsletterFormComponent implements OnInit {
     this.newsletterService.createNewNewsletter(formData, this.parentId, this.parentType).subscribe((data) => {
       if (data) {
         this.toastrService.successDialog('Newsletter Created');
+        if (sendTestEmail) {
+          this.openTestEmailsDialogBox(data);
+        }
       }
     });
   }
 
-  update() {
+  update(sendTestEmail?) {
     // Create a FormData object
     const formData = new FormData();
 
@@ -338,6 +379,9 @@ export class NewsletterFormComponent implements OnInit {
     this.newsletterService.update(formData, this.pageSlug).subscribe((data) => {
       if (data) {
         this.toastrService.successDialog('Newsletter Updated');
+        if (sendTestEmail) {
+          this.openTestEmailsDialogBox(data);
+        }
       }
     });
   }
@@ -363,5 +407,26 @@ export class NewsletterFormComponent implements OnInit {
       this.imagePreview = reader.result as string;
     };
     reader.readAsDataURL(file);
+  }
+
+  openTestEmailsDialogBox(newsletter) {
+    this.dialogService.open(this.sendTestEmailDialogBox, { context: { newsletter } });
+  }
+
+  sendTestMail(newsletterId) {
+    this.newsletterService
+      .sendTestEmail(
+        newsletterId,
+        this.testEmailsForms.value.emails
+          .replaceAll(' ', '')
+          .split(',')
+          .filter((x) => x),
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.toastrService.successDialog('Test Email send successfully');
+          this.testEmailsForms.reset();
+        }
+      });
   }
 }
