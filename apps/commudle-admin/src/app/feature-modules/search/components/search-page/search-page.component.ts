@@ -5,6 +5,7 @@ import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -56,6 +57,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private searchStatusService: SearchStatusService,
     private gtm: GoogleTagManagerService,
+    private titlecasePipe: TitleCasePipe,
   ) {}
 
   ngOnInit(): void {
@@ -279,6 +281,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   updateSeoTitle() {
+    this.query = this.titlecasePipe.transform(this.query);
     this.seoTitle = this.query
       ? `${this.query} - Find Developers, Communities, Events, Projects & Tutorials`
       : 'Find Developers, Communities, Events, Projects & Tutorials';

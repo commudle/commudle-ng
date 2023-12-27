@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
@@ -60,5 +60,6 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
     LinkyModule,
     SkeletonCardsComponent,
   ],
+  providers: [TitleCasePipe],
 })
 export class SearchModule {}
