@@ -258,6 +258,15 @@ export class NewsletterFormComponent implements OnInit {
       pluginsOpts: {
         plugin: {},
       },
+      deviceManager: {
+        devices: [
+          {
+            name: 'standard',
+            width: '600px', // Width of the device
+          },
+          // Add other devices as needed
+        ],
+      },
     });
   }
 
