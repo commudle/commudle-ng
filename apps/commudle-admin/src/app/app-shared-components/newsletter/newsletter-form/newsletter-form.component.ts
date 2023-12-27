@@ -6,7 +6,7 @@ import { INewsletter } from 'apps/shared-models/newsletter.model';
 import { Subscription, combineLatest } from 'rxjs';
 import { Location } from '@angular/common';
 import { ToastrService } from '@commudle/shared-services';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faFileImage } from '@fortawesome/free-solid-svg-icons';
 import grapesjs from 'grapesjs';
 import plugin from 'grapesjs-preset-newsletter';
 import { NbDialogService } from '@commudle/theme';
@@ -27,6 +27,7 @@ export class NewsletterFormComponent implements OnInit {
 
   icons = {
     faChevronLeft,
+    faFileImage,
   };
   editor: any = null;
   imageUrl = '';
@@ -307,6 +308,13 @@ export class NewsletterFormComponent implements OnInit {
           this.testEmailsForms.reset();
         }
       });
+  }
+
+  removeBannerImage() {
+    this.imagePreview = '';
+    this.newsletterForm.patchValue({
+      banner_image: '',
+    });
   }
 
   getDefaultTemplate(): string {

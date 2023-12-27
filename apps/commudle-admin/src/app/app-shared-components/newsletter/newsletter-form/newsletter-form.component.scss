@@ -15,6 +15,11 @@ form {
   div {
     @apply com-flex com-flex-col;
   }
+  .image-preview {
+    .delete-image {
+      @apply com-mx-auto com-my-3;
+    }
+  }
 }
 
 nb-card {
