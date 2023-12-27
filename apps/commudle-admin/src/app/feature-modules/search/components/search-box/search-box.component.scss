@@ -57,12 +57,17 @@ nb-option {
     }
 
     .navigate {
-      @apply com-flex com-flex-row com-items-center com-no-underline com-m-0 com-p-0 com-px-4 com-py-1;
+      @apply com-flex com-flex-row com-items-center com-no-underline com-p-0 com-m-0 com-mx-4 com-my-1 com-overflow-hidden;
 
       .user-image,
       .lab-image,
+      .build-image,
+      .event-image,
       .content-image {
-        @apply com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-object-cover;
+        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
+        img {
+          @apply com-w-full com-h-auto com-object-cover;
+        }
       }
 
       .name {
@@ -81,7 +86,11 @@ nb-option {
       }
 
       .community-image {
-        @apply com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3;
+        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
+
+        img {
+          @apply com-w-full com-h-auto com-object-cover;
+        }
       }
     }
 

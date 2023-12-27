@@ -34,7 +34,9 @@
           <p>Users</p>
           <div *ngFor="let user of users">
             <a class="navigate" [routerLink]="['/users', user.username]">
-              <img [src]="user.avatar" alt="{{ user.name }}" class="user-image" />
+              <div class="user-image">
+                <img [src]="user.avatar" alt="{{ user.name }}" />
+              </div>
               <p class="name">{{ user.name }}</p>
               <p class="designation">
                 <span class="dot"> &nbsp;·&nbsp; </span> {{ user.designation ? user.designation : '--' }}
@@ -46,7 +48,9 @@
           <p>Community</p>
           <div *ngFor="let community of communities">
             <a class="navigate" [routerLink]="['/communities', community.slug]">
-              <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
+              <div class="community-image">
+                <img [src]="community.logo_image?.i32" alt="{{ community.name }}" />
+              </div>
               <p class="name">{{ community.name }}</p>
               <p class="member-count"><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members</p>
             </a>
@@ -56,11 +60,12 @@
           <p>Labs</p>
           <div *ngFor="let lab of labs">
             <a class="navigate" [routerLink]="['/labs', lab.slug]">
-              <img
-                [src]="lab.header_image ? lab.header_image.i32 : staticAssets.community_lab_empty_state"
-                alt="{{ lab.name }}"
-                class="lab-image"
-              />
+              <div class="lab-image">
+                <img
+                  [src]="lab.header_image ? lab.header_image.i32 : staticAssets.community_lab_empty_state"
+                  alt="{{ lab.name }}"
+                />
+              </div>
               <p class="name">{{ lab.name }}</p>
             </a>
           </div>
@@ -69,11 +74,12 @@
           <p>Builds</p>
           <div *ngFor="let build of builds">
             <a class="navigate" [routerLink]="['/builds', build.slug]">
-              <img
-                [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
-                alt="{{ build.name }}"
-                class="lab-image"
-              />
+              <div class="build-image">
+                <img
+                  [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
+                  alt="{{ build.name }}"
+                />
+              </div>
               <p class="name">{{ build.name }}</p>
             </a>
           </div>
@@ -82,11 +88,12 @@
           <p>Event</p>
           <div *ngFor="let event of events">
             <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
-              <img
-                [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
-                alt="{{ event.name }}"
-                class="lab-image"
-              />
+              <div class="event-image">
+                <img
+                  [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
+                  alt="{{ event.name }}"
+                />
+              </div>
               <p class="name">{{ event.name }}</p>
               <p class="event-date">
                 <span class="dot"> &nbsp;·&nbsp; </span> {{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}
@@ -98,11 +105,12 @@
           <p>Content</p>
           <div *ngFor="let content of contents">
             <a class="navigate" [routerLink]="['/users', content.user.username]">
-              <img
-                [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
-                alt="{{ content.name }}"
-                class="content-image"
-              />
+              <div class="content-image">
+                <img
+                  [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
+                  alt="{{ content.name }}"
+                />
+              </div>
               <p class="name">{{ content.title }}</p>
             </a>
           </div>
