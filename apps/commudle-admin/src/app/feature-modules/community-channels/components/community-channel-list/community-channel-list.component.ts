@@ -98,7 +98,17 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   selectedCommunityChannel(channel: ICommunityChannel) {
     this.selectedChannelId = channel.id;
     this.updateSelectedChannel.emit(channel);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'channels', channel.id]);
+    let currentUrl = this.router.url;
+
+    // Replace the channel ID if found in the URL
+    if (this.activatedRoute.snapshot.params.community_channel_id) {
+      currentUrl = currentUrl.replace(/\/channels\/\d+/, `/channels/${channel.id}`);
+    } else {
+      currentUrl = currentUrl + '/' + channel.id;
+    }
+
+    // Navigate to the updated URL
+    this.router.navigateByUrl(currentUrl);
   }
 
   newChannelDialogBox(groupName?) {

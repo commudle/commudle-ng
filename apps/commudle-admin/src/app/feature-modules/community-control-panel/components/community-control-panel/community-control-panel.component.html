@@ -24,7 +24,7 @@
                 Public Page
                 <nb-icon icon="external-link"></nb-icon>
               </a>
-              <a
+              <!-- <a
                 [routerLink]="['/communities', community.slug, 'channels']"
                 nbButton
                 size="small"
@@ -33,7 +33,7 @@
               >
                 Channels
                 <nb-icon icon="external-link"></nb-icon>
-              </a>
+              </a> -->
               <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank">
                 <nb-icon icon="trending-up-outline"></nb-icon>
                 Stats <sup>New</sup>&nbsp;
@@ -42,7 +42,7 @@
             </div>
           </section>
         </nb-card-header>
-        <nb-card-body class="com-px-0 md:com-px-6 com-pt-0">
+        <nb-card-body class="com-p-0">
           <div class="menu d-flex">
             <a
               [routerLinkActiveOptions]="{ exact: true }"
@@ -92,6 +92,15 @@
             <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="edit" status="success"></nb-icon>
               <span class="title">Edit Details</span>
+            </a>
+            <a [routerLink]="['channels']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="hash" status="success"></nb-icon>
+              <span class="title">Channels</span>
+            </a>
+            <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="icons.faMessage"></fa-icon>
+              <!-- <nb-icon icon="message" status="success"></nb-icon> -->
+              <span class="title">Forums</span>
             </a>
             <a
               *ngIf="community.payments_enabled"

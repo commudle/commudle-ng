@@ -210,6 +210,10 @@
                   <nb-icon icon="hash" status="success"></nb-icon>
                   <span class="title">Channels</span>
                 </a>
+                <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
+                  <fa-icon [icon]="faMessage" class="com-text-2xl com-leading-none"></fa-icon>
+                  <span class="title">Forums</span>
+                </a>
                 <div *ngIf="isOrganizer" class="com-relative" (click)="gtmService()">
                   <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
                     <nb-badge
