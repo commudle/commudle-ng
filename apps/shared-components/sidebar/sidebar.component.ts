@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @Component({
   selector: 'commudle-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule, SharedPipesModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
@@ -24,6 +25,7 @@ export class SidebarComponent implements OnInit {
 
   hideFullSidebar = false;
   expandSidebar = false;
+  url;
 
   //font-awesome icons
   faCaretLeft = faCaretLeft;
@@ -40,6 +42,11 @@ export class SidebarComponent implements OnInit {
     if (this.sidebarService.hideSidebar$.hasOwnProperty(this.eventName)) {
       this.sidebarService.hideSidebar$[this.eventName].subscribe((data) => {
         this.hideFullSidebar = data;
+      });
+    }
+    if (this.sidebarService.sidebarUrl$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.sidebarUrl$[this.eventName].subscribe((data) => {
+        this.url = data;
       });
     }
   }

@@ -11,8 +11,8 @@ import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
-import { faBuildingColumns, faFileLines, faNewspaper,faMessage } from '@fortawesome/free-solid-svg-icons';
-
+import { faBuildingColumns, faFileLines, faNewspaper, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -43,9 +43,12 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private notificationsStore: NotificationsStore,
     private gtm: GoogleTagManagerService,
+    private sidebarService: SidebarService,
   ) {}
 
   ngOnInit() {
+    this.sidebarService.setSidebarVisibility('side', false, 'https://documentation.commudle.com/');
+    this.sidebarService.setVariant('side', true);
     this.setCommunity();
     this.seoService.noIndex(true);
   }
@@ -99,5 +102,9 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     this.gtm.dataLayerPushEvent('click-notification-bell-icon', {
       com_notification_type: this.ENotificationSenderTypes.KOMMUNITY,
     });
+  }
+
+  toggleSideBar() {
+    this.sidebarService.toggleSidebarVisibility('side');
   }
 }

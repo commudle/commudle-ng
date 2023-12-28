@@ -1,3 +1,5 @@
+<commudle-sidebar eventName="side"></commudle-sidebar>
+
 <div class="base-layout com-mb-8">
   <div class="container">
     <div class="one-column-layout">
@@ -11,6 +13,7 @@
           </div>
 
           <section>
+            <div (click)="toggleSideBar()">toggle</div>
             <div>
               <nb-icon icon="people-outline"></nb-icon>
               {{ community.members_count }} Members
