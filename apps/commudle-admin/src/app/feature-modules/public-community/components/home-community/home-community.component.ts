@@ -12,7 +12,7 @@ import { NbDialogService, NbMenuService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
-import { faCaretDown, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faMessage, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 
 interface CustomMenuItem {
@@ -39,6 +39,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   faCaretDown = faCaretDown;
   faMessage = faMessage;
+  faNewspaper = faNewspaper;
 
   items = [{ title: 'pages', slug: 'pages' }];
 
