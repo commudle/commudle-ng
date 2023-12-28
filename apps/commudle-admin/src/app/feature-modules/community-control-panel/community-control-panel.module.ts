@@ -52,6 +52,7 @@ import { CommunitySurveysComponent } from './components/community-forms-and-surv
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
 import { CommunityPageComponent } from './components/community-page/community-page.component';
+import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { CommunityChannelsAndForumsComponent } from './components/community-channels-and-forums/community-channels-and-forums.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
@@ -77,6 +78,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     CommunitySurveysComponent,
     CommunityPaymentsComponent,
     CommunityPageComponent,
+    CommunityNewsletterComponent,
     CommunityChannelsAndForumsComponent,
   ],
   imports: [

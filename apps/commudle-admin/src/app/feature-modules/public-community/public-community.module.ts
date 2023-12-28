@@ -38,6 +38,9 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { CustomPageComponent } from './components/custom-page/custom-page.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
+import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import { CustomPageComponent } from './components/custom-page/custom-page.compon
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
     CustomPageComponent,
+    NewslettersComponent,
+    NewsletterComponent,
   ],
   exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [
@@ -86,6 +91,7 @@ import { CustomPageComponent } from './components/custom-page/custom-page.compon
     NbContextMenuModule,
 
     SkeletonVerticalCardsComponent,
+    BackButtonComponent,
   ],
 })
 export class PublicCommunityModule {}

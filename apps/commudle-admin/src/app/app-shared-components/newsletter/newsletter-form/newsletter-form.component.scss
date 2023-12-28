@@ -1,0 +1,30 @@
+h6 {
+  @apply com-my-4;
+}
+
+.action-buttons {
+  @apply com-flex com-gap-4 com-my-3;
+}
+
+.back-button {
+  @apply com-mt-3 com-cursor-pointer com-w-max com-text-[#8f9bb3];
+}
+
+form {
+  @apply com-flex com-flex-col com-gap-3;
+  div {
+    @apply com-flex com-flex-col;
+  }
+  .image-preview {
+    .delete-image {
+      @apply com-mx-auto com-my-3;
+    }
+  }
+}
+
+nb-card {
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+}

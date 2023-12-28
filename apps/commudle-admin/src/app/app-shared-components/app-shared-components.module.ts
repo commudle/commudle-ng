@@ -29,6 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomPageComponent } from './custom-page/custom-page.component';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter.component';
+import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 import { PublicPageLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-layout/public-page-layout.component';
 import { TestimonialCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/testimonial-card/testimonial-card.component';
 import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-stats/public-page-stats.component';
@@ -45,12 +47,15 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     LabsFeaturedComponent,
     CustomPageComponent,
     CustomPageFormComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
     PublicPageLayoutComponent,
     TestimonialCardComponent,
     PublicPageStatsComponent,
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+
   ],
   exports: [
     EmailerComponent,
@@ -58,6 +63,8 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     SurveysComponent,
     LabsFeaturedComponent,
     CustomPageComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
     PublicPageLayoutComponent,
     TestimonialCardComponent,
     PublicPageStatsComponent,

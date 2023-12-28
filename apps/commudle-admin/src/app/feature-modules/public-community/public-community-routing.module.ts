@@ -8,6 +8,8 @@ import { EventsComponent } from './components/events/events.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { MembersComponent } from './components/members/members.component';
 import { CustomPageComponent } from './components/custom-page/custom-page.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
+import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
 
 const routes = [
   {
@@ -64,6 +66,19 @@ const routes = [
       {
         path: 'p/:page_slug',
         component: CustomPageComponent,
+      },
+      {
+        path: 'newsletters',
+        children: [
+          {
+            path: '',
+            component: NewslettersComponent,
+          },
+          {
+            path: ':newsletter_slug',
+            component: NewsletterComponent,
+          },
+        ],
       },
     ],
   },
