@@ -13,6 +13,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { faCaretDown, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 
 interface CustomMenuItem {
   title: string;
@@ -33,6 +34,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   ENotificationSenderTypes = ENotificationSenderTypes;
   uploadedBannerFile: File;
   uploadedBanner: any;
+  showNewslettersTab = false;
 
   subscriptions: Subscription[] = [];
   faCaretDown = faCaretDown;
@@ -54,6 +56,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private router: Router,
     private customPageService: CustomPageService,
     private nbMenuService: NbMenuService,
+    private newsletterService: NewsletterService,
   ) {}
 
   ngOnInit(): void {
@@ -67,8 +70,10 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       this.community = data.community;
       this.getCustomPages();
       this.updateHeaderVariation();
-
-      this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '';
+      this.newsletterService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
+        if (data.length > 0) this.showNewslettersTab = true;
+      }),
+        (this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '');
       if (this.community.is_visible) {
         this.seoService.setTags(this.community.name, this.community.mini_description, this.community.logo_path);
       } else {
