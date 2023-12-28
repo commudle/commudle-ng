@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   faChartLine,
   faEarthAsia,
@@ -17,7 +17,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
   templateUrl: './book-page.component.html',
   styleUrls: ['./book-page.component.scss'],
 })
-export class BookPageComponent implements OnInit {
+export class BookPageComponent implements OnInit, OnDestroy {
   constructor(private footerService: FooterService, private seoService: SeoService) {}
 
   staticAssets = staticAssets;
