@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   faChartLine,
   faEarthAsia,
@@ -9,14 +9,17 @@ import {
   faStairs,
 } from '@fortawesome/free-solid-svg-icons';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-book-page',
   templateUrl: './book-page.component.html',
   styleUrls: ['./book-page.component.scss'],
 })
-export class BookPageComponent implements OnInit {
-  constructor() {}
+export class BookPageComponent implements OnInit, OnDestroy {
+  constructor(private footerService: FooterService, private seoService: SeoService) {}
+
   staticAssets = staticAssets;
   faPeopleGroup = faPeopleGroup;
   faSackDollar = faSackDollar;
@@ -70,5 +73,20 @@ export class BookPageComponent implements OnInit {
     'Absolutely, a few Design Communities are already using Commudle.',
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
+    this.setMeta();
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
+  }
+
+  setMeta() {
+    this.seoService.setTags(
+      'The Developer Ecosystem Blueprint - Handbook',
+      'Build a developer community ecosystem with this practical guide. Lessons from veteran developer relations and community leaders to build, sustain and scale up communities for your edtech, devtools, open source businesses.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
 }

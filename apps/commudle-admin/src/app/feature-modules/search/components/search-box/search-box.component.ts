@@ -37,6 +37,7 @@ export class SearchBoxComponent implements OnInit {
   staticAssets = staticAssets;
 
   moment = moment;
+  showSearchBox = true;
 
   constructor(
     private searchService: SearchService,
@@ -49,6 +50,7 @@ export class SearchBoxComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showSearchBox = true;
     this.search();
     this.observeSearchStatus();
     const params = this.activatedRoute.snapshot.queryParams;
@@ -136,5 +138,6 @@ export class SearchBoxComponent implements OnInit {
     this.router.navigate(['/search'], {
       queryParams: { q: this.query },
     });
+    this.showSearchBox = false;
   }
 }

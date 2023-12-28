@@ -5,6 +5,7 @@ import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -47,20 +48,24 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreEvent = false;
   canLoadMoreContent = false;
 
+  seoTitle = '';
+  seoDescription = '';
+
   constructor(
     private searchService: SearchService,
     private seoService: SeoService,
     private activatedRoute: ActivatedRoute,
     private searchStatusService: SearchStatusService,
     private gtm: GoogleTagManagerService,
+    private titlecasePipe: TitleCasePipe,
   ) {}
 
   ngOnInit(): void {
-    this.seoService.noIndex(true);
     this.searchStatusService.setSearchStatus(false);
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.searchLoader = true;
       this.query = params.q;
+      this.updateSeoTitle();
 
       this.filters = [];
       this.selectedFilters = ['All'];
@@ -71,7 +76,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.seoService.noIndex(false);
     this.searchStatusService.setSearchStatus(true);
   }
 
@@ -104,7 +108,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       if (this.users.length > 0 && !this.filters.includes('User')) {
         this.filters.push('User');
       }
-      this.seoService.setTitle(`Search results for "${this.query}"`);
       if (this.usersPage === 1) {
         this.usersTotal = value.total;
         this.total += this.usersTotal;
@@ -125,7 +128,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         if (this.communities.length > 0 && !this.filters.includes('Community')) {
           this.filters.push('Community');
         }
-        this.seoService.setTitle(`Search results for "${this.query}"`);
         if (this.communitiesPage === 1) {
           this.communitiesTotal = value.total;
           this.total += this.communitiesTotal;
@@ -144,7 +146,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       if (this.labs.length > 0 && !this.filters.includes('Lab')) {
         this.filters.push('Lab');
       }
-      this.seoService.setTitle(`Search results for "${this.query}"`);
       if (this.labsPage === 1) {
         this.labsTotal = value.total;
         this.total += this.labsTotal;
@@ -165,7 +166,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         if (this.builds.length > 0 && !this.filters.includes('Community Build')) {
           this.filters.push('Community Build');
         }
-        this.seoService.setTitle(`Search results for "${this.query}"`);
         if (this.buildsPage === 1) {
           this.buildsTotal = value.total;
           this.total += this.buildsTotal;
@@ -184,7 +184,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       if (this.events.length > 0 && !this.filters.includes('Event')) {
         this.filters.push('Event');
       }
-      this.seoService.setTitle(`Search results for "${this.query}"`);
       if (this.eventsPage === 1) {
         this.eventsTotal = value.total;
         this.total += this.eventsTotal;
@@ -205,7 +204,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         if (this.socialResources.length > 0 && !this.filters.includes('Content')) {
           this.filters.push('Content');
         }
-        this.seoService.setTitle(`Search results for "${this.query}"`);
         if (this.socialResourcesPage === 1) {
           this.socialResourcesTotal = value.total;
           this.total += this.socialResourcesTotal;
@@ -236,9 +234,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     }
 
     if (this.selectedFilters.length === 0) {
+      this.selectedFilters = ['All'];
       this.total = 0;
-      this.searchLoader = false;
-      return;
+      // this.searchLoader = false;
     }
     this.getAllData();
   }
@@ -280,5 +278,20 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  updateSeoTitle() {
+    this.query = this.titlecasePipe.transform(this.query);
+    this.seoTitle = this.query
+      ? `${this.query} - Find Developers, Communities, Events, Projects & Tutorials`
+      : 'Find Developers, Communities, Events, Projects & Tutorials';
+    this.seoDescription = this.query
+      ? `Search results for ${this.query}. You can find software developers, their communities and events for ${this.query} and also their projects & tutorials.`
+      : 'You can find software developers, their communities, events and also their projects & tutorials.';
+    this.seoService.setTags(
+      this.seoTitle,
+      this.seoDescription,
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }

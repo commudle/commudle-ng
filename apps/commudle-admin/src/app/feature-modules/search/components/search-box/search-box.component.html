@@ -1,115 +1,125 @@
-<nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
-  <nb-icon icon="search-outline" nbPrefix></nb-icon>
-  <input
-    #searchInput
-    (keyup.enter)="onSubmit()"
-    [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
-    [formControl]="inputFormControl"
-    [ngClass]="{ giant: overrideSearchStatus }"
-    [nbAutocomplete]="showSuggestions ? autoComplete : loading"
-    [shape]="shape"
-    [overlayOffset]="0"
-    class="main-search-bar"
-    fullWidth
-    nbInput
-    placeholder="Search react, gdg, design, tutorials"
-    type="text"
-  />
-</nb-form-field>
+<div *ngIf="showSearchBox || overrideSearchStatus">
+  <nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
+    <nb-icon icon="search-outline" nbPrefix></nb-icon>
+    <input
+      #searchInput
+      (keyup.enter)="onSubmit()"
+      [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
+      [formControl]="inputFormControl"
+      [ngClass]="{ giant: overrideSearchStatus }"
+      [nbAutocomplete]="showSuggestions ? autoComplete : loading"
+      [shape]="shape"
+      [overlayOffset]="0"
+      class="main-search-bar"
+      fullWidth
+      nbInput
+      placeholder="Search react, gdg, design, tutorials"
+      type="text"
+    />
+  </nb-form-field>
 
-<nb-autocomplete #loading> </nb-autocomplete>
+  <nb-autocomplete #loading> </nb-autocomplete>
 
-<nb-autocomplete #autoComplete>
-  <nb-option *ngIf="searchLoader" class="loader search-box">
-    <app-loading-spinner></app-loading-spinner>
-  </nb-option>
-  <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder search-box">
-    Quickly search your favorite topics, labs by industry experts or find an event you missed
-  </nb-option>
-  <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder search-box">No results found</nb-option>
-  <nb-option *ngIf="total > 0 && !searchLoader" class="search-box-results">
-    <div class="results">
-      <div *ngIf="users && users.length > 0" class="container">
-        <p>Users</p>
-        <div *ngFor="let user of users">
-          <a class="navigate" [routerLink]="['/users', user.username]">
-            <img [src]="user.avatar" alt="{{ user.name }}" class="user-image" />
-            <p class="name">{{ user.name }}</p>
-            <p class="designation">
-              <span class="dot"> &nbsp;·&nbsp; </span> {{ user.designation ? user.designation : '--' }}
-            </p>
-          </a>
+  <nb-autocomplete #autoComplete>
+    <nb-option *ngIf="searchLoader" class="loader search-box">
+      <app-loading-spinner></app-loading-spinner>
+    </nb-option>
+    <nb-option *ngIf="total < 0 && !searchLoader" class="search-placeholder search-box">
+      Quickly search your favorite topics, labs by industry experts or find an event you missed
+    </nb-option>
+    <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder search-box">No results found</nb-option>
+    <nb-option *ngIf="total > 0 && !searchLoader" class="search-box-results">
+      <div class="results">
+        <div *ngIf="users && users.length > 0" class="container">
+          <p>Users</p>
+          <div *ngFor="let user of users">
+            <a class="navigate" [routerLink]="['/users', user.username]">
+              <div class="user-image">
+                <img [src]="user.avatar" alt="{{ user.name }}" />
+              </div>
+              <p class="name">{{ user.name }}</p>
+              <p class="designation">
+                <span class="dot"> &nbsp;·&nbsp; </span> {{ user.designation ? user.designation : '--' }}
+              </p>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="communities && communities.length > 0" class="container">
+          <p>Community</p>
+          <div *ngFor="let community of communities">
+            <a class="navigate" [routerLink]="['/communities', community.slug]">
+              <div class="community-image">
+                <img [src]="community.logo_image?.i32" alt="{{ community.name }}" />
+              </div>
+              <p class="name">{{ community.name }}</p>
+              <p class="member-count"><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members</p>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="labs && labs.length > 0" class="container">
+          <p>Labs</p>
+          <div *ngFor="let lab of labs">
+            <a class="navigate" [routerLink]="['/labs', lab.slug]">
+              <div class="lab-image">
+                <img
+                  [src]="lab.header_image ? lab.header_image.i32 : staticAssets.community_lab_empty_state"
+                  alt="{{ lab.name }}"
+                />
+              </div>
+              <p class="name">{{ lab.name }}</p>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="builds && builds.length > 0" class="container">
+          <p>Builds</p>
+          <div *ngFor="let build of builds">
+            <a class="navigate" [routerLink]="['/builds', build.slug]">
+              <div class="build-image">
+                <img
+                  [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
+                  alt="{{ build.name }}"
+                />
+              </div>
+              <p class="name">{{ build.name }}</p>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="events && events.length > 0">
+          <p>Event</p>
+          <div *ngFor="let event of events">
+            <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+              <div class="event-image">
+                <img
+                  [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
+                  alt="{{ event.name }}"
+                />
+              </div>
+              <p class="name">{{ event.name }}</p>
+              <p class="event-date">
+                <span class="dot"> &nbsp;·&nbsp; </span> {{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}
+              </p>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="contents && contents.length > 0">
+          <p>Content</p>
+          <div *ngFor="let content of contents">
+            <a class="navigate" [routerLink]="['/users', content.user.username]">
+              <div class="content-image">
+                <img
+                  [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
+                  alt="{{ content.name }}"
+                />
+              </div>
+              <p class="name">{{ content.title }}</p>
+            </a>
+          </div>
         </div>
       </div>
-      <div *ngIf="communities && communities.length > 0" class="container">
-        <p>Community</p>
-        <div *ngFor="let community of communities">
-          <a class="navigate" [routerLink]="['/communities', community.slug]">
-            <img [src]="community.logo_image?.i32" alt="{{ community.name }}" class="community-image" />
-            <p class="name">{{ community.name }}</p>
-            <p class="member-count"><span class="dot"> &nbsp;·&nbsp; </span> {{ community.member_count }} Members</p>
-          </a>
-        </div>
-      </div>
-      <div *ngIf="labs && labs.length > 0" class="container">
-        <p>Labs</p>
-        <div *ngFor="let lab of labs">
-          <a class="navigate" [routerLink]="['/labs', lab.slug]">
-            <img
-              [src]="lab.header_image ? lab.header_image.i32 : staticAssets.community_lab_empty_state"
-              alt="{{ lab.name }}"
-              class="lab-image"
-            />
-            <p class="name">{{ lab.name }}</p>
-          </a>
-        </div>
-      </div>
-      <div *ngIf="builds && builds.length > 0" class="container">
-        <p>Builds</p>
-        <div *ngFor="let build of builds">
-          <a class="navigate" [routerLink]="['/builds', build.slug]">
-            <img
-              [src]="build.images.length > 0 ? build.images[0]?.i32 : staticAssets.community_build_empty_state"
-              alt="{{ build.name }}"
-              class="lab-image"
-            />
-            <p class="name">{{ build.name }}</p>
-          </a>
-        </div>
-      </div>
-      <div *ngIf="events && events.length > 0">
-        <p>Event</p>
-        <div *ngFor="let event of events">
-          <a class="navigate" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
-            <img
-              [src]="event?.header_image ? event?.header_image.i32 : staticAssets.events_empty_state"
-              alt="{{ event.name }}"
-              class="lab-image"
-            />
-            <p class="name">{{ event.name }}</p>
-            <p class="event-date">
-              <span class="dot"> &nbsp;·&nbsp; </span> {{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}
-            </p>
-          </a>
-        </div>
-      </div>
-      <div *ngIf="contents && contents.length > 0">
-        <p>Content</p>
-        <div *ngFor="let content of contents">
-          <a class="navigate" [routerLink]="['/users', content.user.username]">
-            <img
-              [src]="content.image ? content.image.i32 : staticAssets.content_empty_state"
-              alt="{{ content.name }}"
-              class="content-image"
-            />
-            <p class="name">{{ content.title }}</p>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nb-option>
-  <nb-option *ngIf="total > 0 && !searchLoader" (click)="onSubmit()" class="show-all-results">
-    Show all results
-    <nb-icon icon="arrow-forward-outline"></nb-icon>
-  </nb-option>
-</nb-autocomplete>
+    </nb-option>
+    <nb-option *ngIf="total > 0 && !searchLoader" (click)="onSubmit()" class="show-all-results">
+      Show all results
+      <nb-icon icon="arrow-forward-outline"></nb-icon>
+    </nb-option>
+  </nb-autocomplete>
+</div>

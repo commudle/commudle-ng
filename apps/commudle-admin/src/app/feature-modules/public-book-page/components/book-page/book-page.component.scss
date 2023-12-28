@@ -14,18 +14,18 @@
   }
 
   .power-of-communities {
-    @apply com-flex com-items-center com-rounded-[20px] com-p-0 md:com-pl-[60px] md:com-pr-11 com-px-3;
+    @apply com-flex com-items-center com-rounded-[20px] com-p-0 md:com-px-[60px] com-px-3;
     background: linear-gradient(90deg, #4338ca 0%, #6100ffd1 51.39%, #2b26ca 100%);
 
     .left-col {
-      @apply com-p-0 md:com-py-[60px] com-pt-8 com-pb-7;
+      @apply com-p-0 md:com-py-[60px] com-pt-8 com-pb-7 com-flex com-flex-col com-justify-between;
     }
 
     .power-of-communities-content {
-      @apply com-flex com-flex-col md:com-max-w-[732px] com-max-w-full com-m-0 md:com-mr-12 com-mr-0;
+      @apply com-flex com-flex-col md:com-max-w-[614px] com-max-w-full com-m-0 md:com-mr-12 com-mr-0;
 
       .heading-power-of-communities {
-        @apply com-m-0 md:com-text-5xl com-text-3xl com-font-semibold com-text-white;
+        @apply com-m-0 md:com-text-[40px] com-text-3xl com-font-semibold com-text-white;
       }
 
       .subheading-power-of-communities {
@@ -34,7 +34,7 @@
     }
 
     .power-of-communities-btn {
-      @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mt-[66px] com-mt-[34px];
+      @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mt-[138px] com-mt-[34px];
 
       button {
         @apply com-bg-white com-text-gray-900 com-m-0 md:com-mr-4 com-mr-0;
@@ -42,7 +42,7 @@
     }
 
     .power-of-communities-image {
-      @apply md:com-w-[428px] com-w-full com-p-0 md:com-pt-11 com-pt-0;
+      @apply md:com-w-[428px] com-w-full com-p-0 md:com-pt-10 com-pt-0;
       img {
         @apply com-w-full com-h-auto com-object-cover;
       }

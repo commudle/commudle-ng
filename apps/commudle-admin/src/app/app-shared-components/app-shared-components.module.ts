@@ -35,6 +35,7 @@ import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared
 import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-cta/public-page-cta.component';
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -51,40 +52,6 @@ import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    EditorModule,
-    RouterModule,
-    PublicCommunityModule,
-    SharedComponentsModule,
-    MiniUserProfileModule,
-
-    //Standalone
-    TechSessionsCardComponent,
-    EventHorizontalCardComponent,
-    FeaturedCommunitiesCardComponent,
-    TopBuildersCardComponent,
-    LabsFeaturedCardComponent,
-    SkeletonCardsComponent,
-
-    // Nebular
-    NbRadioModule,
-    NbSelectModule,
-    NbInputModule,
-    NbButtonModule,
-    NbCheckboxModule,
-    NbToggleModule,
-    NbIconModule,
-    NbCardModule,
-    NbToggleModule,
-    NbIconModule,
-    NbCardModule,
-
-    //FontAwesome
-    FontAwesomeModule,
-  ],
   exports: [
     EmailerComponent,
     SpeakerResourcePreviewComponent,
@@ -97,6 +64,38 @@ import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    EditorModule,
+    RouterModule,
+    PublicCommunityModule,
+    SharedComponentsModule,
+    MiniUserProfileModule,
+    //Standalone
+    TechSessionsCardComponent,
+    EventHorizontalCardComponent,
+    FeaturedCommunitiesCardComponent,
+    TopBuildersCardComponent,
+    LabsFeaturedCardComponent,
+    SkeletonCardsComponent,
+    // Nebular
+    NbRadioModule,
+    NbSelectModule,
+    NbInputModule,
+    NbButtonModule,
+    NbCheckboxModule,
+    NbToggleModule,
+    NbIconModule,
+    NbCardModule,
+    NbToggleModule,
+    NbIconModule,
+    NbCardModule,
+    //FontAwesome
+    FontAwesomeModule,
+    SharedPipesModule,
   ],
 })
 export class AppSharedComponentsModule {}

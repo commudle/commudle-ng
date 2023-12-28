@@ -1,17 +1,28 @@
 <div *ngIf="testimonials" class="testimonial">
-  <div *ngFor="let testimonial of testimonials" class="testimonial-container">
-    <a *ngIf="testimonial.user" [routerLink]="['/users', testimonial.user.username]" class="testimonial-card">
-      <div class="top-card">
-        <div class="image">
-          <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.user.name }}" />
+  <div *ngFor="let testimonial of testimonials; let i = index" class="testimonial-container">
+    <div *ngIf="testimonial.user" class="testimonial-card">
+      <a [routerLink]="['/users', testimonial.user.username]">
+        <div class="top-card">
+          <div class="image">
+            <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.user.name }}" />
+          </div>
+          <div class="user-details">
+            <p class="name">{{ testimonial.user.name }}</p>
+            <p class="username">@{{ testimonial.user.username }}</p>
+            <p class="designation">{{ testimonial.userDesignation }}</p>
+          </div>
         </div>
-        <div class="user-details">
-          <p class="name">{{ testimonial.user.name }}</p>
-          <p class="username">@{{ testimonial.user.username }}</p>
-          <p class="designation">{{ testimonial.userDesignation }}</p>
-        </div>
+      </a>
+      <div *ngIf="testimonial.content">
+        <a [routerLink]="['/users', testimonial.user.username]">
+          <p class="testimonial-text">
+            {{ showFullTestimonial[i] ? testimonial.content : (testimonial.content | truncatetext : 350) }}
+          </p>
+        </a>
+        <a (click)="toggleShowFullTestimonial(i)" *ngIf="testimonial.content.length > 350" class="clickable">
+          {{ showFullTestimonial[i] ? 'Read less' : 'Read more' }}
+        </a>
       </div>
-      <p class="testimonial-text" title="{{ testimonial.content }}">{{ testimonial.content }}</p>
-    </a>
+    </div>
   </div>
 </div>
