@@ -1,16 +1,12 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import {
-  getPicture,
-  getRoute,
-  groupResults,
-  navigate,
-} from 'apps/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
-import { ISearch, ISearchResult } from 'apps/shared-models/search.model';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { Location } from '@angular/common';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import * as moment from 'moment';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
@@ -22,58 +18,114 @@ export class SearchBoxComponent implements OnInit {
   @Input() showSuggestions = true;
   @Input() shape: 'round' | 'rectangle' | 'semi-round';
 
-  inputFormControl: FormControl;
-  total = -1;
-  groupedResults = {};
-  searchLoader = false;
-  searchStatus = true;
-
-  // use getRoute
-  getRoute = getRoute;
-  navigate = navigate;
-  getPicture = getPicture;
+  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('searchInput', { static: false }) searchInputRef: ElementRef<HTMLInputElement>;
+
+  inputFormControl: FormControl;
+  query = '';
+  total = -1;
+  searchLoader = false;
+  searchStatus = true;
+  searchResults = [];
+  users = [];
+  communities = [];
+  events = [];
+  builds = [];
+  labs = [];
+  contents = [];
+  staticAssets = staticAssets;
+
+  moment = moment;
+  showSearchBox = true;
 
   constructor(
     private searchService: SearchService,
     public searchStatusService: SearchStatusService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
   ) {
     this.inputFormControl = new FormControl('');
   }
 
   ngOnInit() {
-    this.observeInput();
+    this.showSearchBox = true;
+    this.search();
     this.observeSearchStatus();
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.q) {
+        this.query = params.q;
+        this.inputFormControl.setValue(this.query);
+      }
+    }
+    if (!params.q) {
+      this.getNotifications();
+    }
   }
 
-  observeInput() {
-    this.inputFormControl.valueChanges
-      .pipe(
-        filter((value) => typeof value === 'string'),
-        map((value: string) => value.trim().toLowerCase()),
-        filter(Boolean),
-        distinctUntilChanged(),
-        tap(() => {
-          if (!this.showSuggestions) {
-            this.onSubmit();
-          }
-        }),
-        filter(() => this.showSuggestions),
-        tap(() => {
-          this.searchLoader = true;
-          this.groupedResults = {};
-        }),
-        debounceTime(500),
-        switchMap((value: string) => this.searchService.getSearchResults(value)),
-      )
-      .subscribe((value: ISearch) => {
-        this.groupedResults = groupResults(value.results);
+  search() {
+    this.query = '';
+    this.inputFormControl.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe(() => {
+      this.query = this.inputFormControl.value?.name || this.inputFormControl.value;
+      if (!this.showSuggestions) {
+        this.onSubmit();
+      }
+      if (this.showSuggestions) {
+        this.searchLoader = true;
+        this.getNotifications();
+      }
+      this.searchInput.emit(this.query);
+    });
+  }
 
-        this.searchLoader = false;
-        this.total = value.total;
+  generateParams(query) {
+    const queryParams: { [key: string]: any } = {};
+
+    if (query) {
+      queryParams.q = query;
+    }
+    const urlSearchParams = new URLSearchParams(queryParams);
+    const queryParamsString = urlSearchParams.toString();
+    this.location.replaceState(location.pathname, queryParamsString);
+  }
+
+  getNotifications() {
+    this.searchResults = [];
+    this.users = [];
+    this.communities = [];
+    this.events = [];
+    this.builds = [];
+    this.labs = [];
+    this.contents = [];
+
+    if (this.query === '') {
+      this.total = -1;
+      this.searchLoader = false;
+      return;
+    }
+
+    this.searchService.getSearchResults(this.query).subscribe((value) => {
+      this.searchResults = value.results.map((result) => {
+        if (result?.type === 'User') {
+          this.users.push(result);
+        } else if (result?.type === 'Community') {
+          this.communities.push(result);
+        } else if (result?.type === 'Lab') {
+          this.labs.push(result);
+        } else if (result?.type === 'Community Build') {
+          this.builds.push(result);
+        } else if (result?.type === 'Event') {
+          this.events.push(result);
+        } else if (result?.type === 'SocialResource') {
+          this.contents.push(result);
+        }
+        return result;
       });
+      this.total = value.total;
+      this.searchLoader = false;
+    });
   }
 
   observeSearchStatus() {
@@ -82,13 +134,10 @@ export class SearchBoxComponent implements OnInit {
     });
   }
 
-  handleDisplay(result: ISearchResult | string) {
-    return typeof result === 'string' ? result : result['query'] || result.name;
-  }
-
   onSubmit() {
     this.router.navigate(['/search'], {
-      queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
+      queryParams: { q: this.query },
     });
+    this.showSearchBox = false;
   }
 }

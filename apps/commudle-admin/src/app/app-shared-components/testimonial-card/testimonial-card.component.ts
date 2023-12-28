@@ -10,6 +10,7 @@ import { SeoService } from '@commudle/shared-services';
 })
 export class TestimonialCardComponent implements OnInit {
   @Input() testimonials: ITestimonial[];
+  showFullTestimonial: boolean[] = [];
 
   constructor(private usersService: AppUsersService, private seoService: SeoService) {}
 
@@ -22,6 +23,10 @@ export class TestimonialCardComponent implements OnInit {
       });
     });
     // this.setSchema();
+  }
+
+  toggleShowFullTestimonial(index: number): void {
+    this.showFullTestimonial[index] = !this.showFullTestimonial[index];
   }
 
   // setSchema() {

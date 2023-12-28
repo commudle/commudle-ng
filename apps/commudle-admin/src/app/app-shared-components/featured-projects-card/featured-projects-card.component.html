@@ -1,18 +1,18 @@
 <nb-card>
   <nb-card-body>
-    <a [routerLink]="['/builds', featuredProject.community_build.slug]">
+    <a [routerLink]="['/builds', communityBuild.slug]">
       <div class="featured-projects-card">
         <div class="details">
           <div class="user-profile-card">
-            <app-user-profile-card-small [user]="featuredProject.community_build.user"> </app-user-profile-card-small>
+            <app-user-profile-card-small [user]="communityBuild.user"> </app-user-profile-card-small>
           </div>
-          <h5 class="title">{{ featuredProject.community_build.name }}</h5>
-          <p class="time">{{ moment(featuredProject.community_build.created_at).format('dddd, MMM Do, YYYY') }}</p>
+          <h5 class="title">{{ communityBuild.name }}</h5>
+          <p class="time">{{ moment(communityBuild.created_at).format('dddd, MMM Do, YYYY') }}</p>
         </div>
         <div class="votes">
           <app-votes-display
             [icon]="'star'"
-            [votableId]="featuredProject.community_build.id"
+            [votableId]="communityBuild.id"
             [votableType]="'CommunityBuild'"
             [votesDirectionVertical]="true"
             size="mini"
@@ -21,7 +21,7 @@
       </div>
       <div class="tags" *ngIf="showTag">
         <app-tag
-          [tags]="featuredProject.community_build.tags"
+          [tags]="communityBuild.tags"
           [backgroundColor]="'#FCEDE7'"
           [size]="'tiny'"
           [fontColor]="'#C05324'"

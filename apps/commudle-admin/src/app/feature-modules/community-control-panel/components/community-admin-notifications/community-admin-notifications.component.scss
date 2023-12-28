@@ -1,7 +1,10 @@
-.heading {
-  @apply com-flex com-justify-end com-pt-2;
-}
+.community-notifications {
+  @apply com-p-6;
+  .heading {
+    @apply com-flex com-justify-end com-pt-2;
+  }
 
-.notification-section {
-  @apply com-p-0;
+  .notification-section {
+    @apply com-p-0;
+  }
 }

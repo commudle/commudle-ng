@@ -1,40 +1,250 @@
-<div class="base-layout thin com-mb-8">
-  <div class="container">
-    <div class="one-column-layout">
-      <app-search-box [overrideSearchStatus]="true" [showSuggestions]="false" class="com-mt-6"></app-search-box>
-      <nb-card [nbSpinner]="searchLoader" class="search-results">
-        <nb-card-header>
-          You searched for <strong>{{ query }}</strong>
-        </nb-card-header>
-        <nb-card-body *ngIf="total > 0">
-          <p class="fs-p3 com-mt-0">{{ total }} Results Found</p>
-          <nb-tag-list>
-            <nb-tag
-              (click)="onFilterChange(filter)"
-              *ngFor="let filter of filters"
-              [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
-              [text]="filter"
-              class="com-cursor-pointer"
-            ></nb-tag>
-          </nb-tag-list>
-          <nb-list>
-            <nb-list-item (click)="navigate(option)" *ngFor="let option of getResults()" class="search-result">
-              <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
-            </nb-list-item>
-          </nb-list>
-          <button
-            (click)="getSearchData()"
-            *ngIf="total !== results.length"
-            [nbSpinner]="loadMoreLoader"
-            fullWidth
-            ghost
-            nbButton
-            status="primary"
-          >
-            Load More
-          </button>
-        </nb-card-body>
-      </nb-card>
+<div class="com-bg-white">
+  <div class="base-layout">
+    <div class="search-input">
+      <app-search-box
+        [overrideSearchStatus]="true"
+        [showSuggestions]="false"
+        class="com-mt-6"
+        (input)="clearResults()"
+      ></app-search-box>
+    </div>
+    <p class="query-searched">
+      You searched for <strong>{{ query }}</strong>
+    </p>
+    <div>
+      <nb-tag-list>
+        <nb-tag
+          text="All"
+          [status]="selectedFilters.includes('All') ? 'primary' : 'basic'"
+          appearance="filled"
+          (click)="onFilterChange('All')"
+          [removable]="selectedFilters.includes('All')"
+        ></nb-tag>
+        <nb-tag
+          (click)="onFilterChange(filter)"
+          *ngFor="let filter of filters"
+          [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
+          [text]="filter"
+          appearance="filled"
+          class="com-cursor-pointer"
+          [removable]="selectedFilters.includes(filter)"
+        ></nb-tag>
+      </nb-tag-list>
+      <div class="container">
+        <div class="two-column-layout medium">
+          <div class="main-column">
+            <app-skeleton-cards
+              *ngIf="
+                searchLoader ||
+                canLoadMoreUser ||
+                canLoadMoreLab ||
+                canLoadMoreEvent ||
+                canLoadMoreContent ||
+                canLoadMoreCommunity ||
+                canLoadMoreBuild
+              "
+              [cards]="5"
+            ></app-skeleton-cards>
+
+            <div>
+              <p
+                *ngIf="
+                  !searchLoader &&
+                  !canLoadMoreUser &&
+                  !canLoadMoreLab &&
+                  !canLoadMoreEvent &&
+                  !canLoadMoreContent &&
+                  !canLoadMoreCommunity &&
+                  !canLoadMoreBuild
+                "
+                class="results-count"
+              >
+                {{ total }} Results Found
+              </p>
+              <nb-list>
+                <nb-list-item
+                  *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
+                >
+                  <p class="query-results-heading">User</p>
+                  <div *ngFor="let user of users" class="search-result com-border-t-0">
+                    <commudle-search-details [option]="user"></commudle-search-details>
+                  </div>
+                  <div class="can-load-more-spinner">
+                    <app-loading-spinner *ngIf="canLoadMoreUser"></app-loading-spinner>
+                  </div>
+                  <div class="load-more">
+                    <button
+                      *ngIf="usersTotal > users.length"
+                      (click)="getUsers()"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="canLoadMoreUser"
+                    >
+                      Load More
+                    </button>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p class="query-results-heading">Community</p>
+                  <div *ngFor="let community of communities" class="search-result com-border-t-0">
+                    <commudle-search-details [option]="community"></commudle-search-details>
+                  </div>
+                  <div class="can-load-more-spinner">
+                    <app-loading-spinner *ngIf="canLoadMoreCommunity"></app-loading-spinner>
+                  </div>
+                  <div class="load-more">
+                    <button
+                      *ngIf="communitiesTotal > communities.length"
+                      (click)="getCommunity()"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="basic"
+                      [disabled]="canLoadMoreCommunity"
+                    >
+                      Load More
+                    </button>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Labs</p>
+                    <div class="labs-card com-border-t-0">
+                      <div *ngFor="let lab of labs" class="lab-card">
+                        <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner">
+                      <app-loading-spinner *ngIf="canLoadMoreLab"></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="labsTotal > labs.length"
+                        (click)="getLabs()"
+                        nbButton
+                        outline
+                        size="tiny"
+                        status="basic"
+                        [disabled]="canLoadMoreLab"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    builds.length > 0 &&
+                    (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
+                  "
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Builds</p>
+                    <div class="builds-card com-border-t-0">
+                      <div *ngFor="let community_build of builds" class="build-card">
+                        <commudle-featured-projects-card
+                          [communityBuild]="community_build"
+                        ></commudle-featured-projects-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner">
+                      <app-loading-spinner *ngIf="canLoadMoreBuild"></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="buildsTotal > builds.length"
+                        (click)="getBuilds()"
+                        nbButton
+                        outline
+                        size="tiny"
+                        status="basic"
+                        [disabled]="canLoadMoreBuild"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Events</p>
+                    <div class="events-card com-border-t-0">
+                      <div *ngFor="let event of events" class="event-card">
+                        <commudle-event-card [event]="event"></commudle-event-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner">
+                      <app-loading-spinner *ngIf="canLoadMoreEvent"></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="eventsTotal > events.length"
+                        (click)="getEvents()"
+                        nbButton
+                        outline
+                        size="tiny"
+                        status="basic"
+                        [disabled]="canLoadMoreEvent"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    socialResources.length > 0 &&
+                    (selectedFilters.includes('Content') || selectedFilters.includes('All'))
+                  "
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Content</p>
+                    <div class="social-resources-card com-border-t-0">
+                      <div *ngFor="let socialResource of socialResources" class="social-resource-card">
+                        <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner">
+                      <app-loading-spinner *ngIf="canLoadMoreContent"></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="socialResourcesTotal > socialResources.length"
+                        (click)="getContent()"
+                        nbButton
+                        outline
+                        size="tiny"
+                        status="basic"
+                        [disabled]="canLoadMoreContent"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+              </nb-list>
+            </div>
+          </div>
+
+          <div class="right-column">
+            <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+            <commudle-public-home-list-events-speakers
+              [parentType]="'communities'"
+            ></commudle-public-home-list-events-speakers>
+            <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -19,6 +19,7 @@ import { CommunityPageComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
+import { CommunityChannelsAndForumsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-channels-and-forums/community-channels-and-forums.component';
 
 const routes = [
   {
@@ -117,6 +118,30 @@ const routes = [
       {
         path: 'team',
         component: CommunityTeamComponent,
+      },
+      {
+        path: 'channels',
+        component: CommunityChannelsAndForumsComponent,
+      },
+      {
+        path: 'channels/:community_channel_id',
+        component: CommunityChannelsAndForumsComponent,
+      },
+      {
+        path: 'channels/join/:token',
+        component: CommunityChannelsAndForumsComponent,
+      },
+      {
+        path: 'forums',
+        component: CommunityChannelsAndForumsComponent,
+      },
+      {
+        path: 'forums/:community_channel_id',
+        component: CommunityChannelsAndForumsComponent,
+      },
+      {
+        path: 'forums/join/:token',
+        component: CommunityChannelsAndForumsComponent,
       },
     ],
   },

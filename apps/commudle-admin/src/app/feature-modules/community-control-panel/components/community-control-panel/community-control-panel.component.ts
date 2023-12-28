@@ -11,7 +11,8 @@ import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/notifications/store/notifications.store';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
-import { faBuildingColumns, faFileLines, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faBuildingColumns, faFileLines, faNewspaper,faMessage } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-community-control-panel',
@@ -32,6 +33,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     faBuildingColumns,
     faFileLines,
     faNewspaper,
+    faMessage,
   };
 
   constructor(

@@ -1,15 +1,15 @@
 .signup-newsletter {
-  @apply com-p-0 md:com-py-[88px] com-pt-10 com-pb-[60px] md:com-px-0 com-px-4 com-flex com-items-center com-text-center md:com-flex-row com-flex-col com-justify-between;
+  @apply com-p-0 md:com-py-[88px] com-pt-10 com-pb-[60px] md:com-px-0 com-px-4 com-flex com-items-center com-text-center md:com-flex-row com-flex-col com-justify-between md:com-max-w-[84%] com-max-w-full;
 
   a {
     @apply com-no-underline;
   }
 
   .signup {
-    @apply com-flex com-flex-col;
+    @apply com-flex com-flex-col md:com-text-left com-text-center;
 
     .signup-heading {
-      @apply com-m-0 md:com-text-4xl com-text-3xl com-font-bold com-text-Yankees-Blue;
+      @apply com-m-0 md:com-mb-6px md:com-text-4xl com-text-3xl com-font-bold com-text-Yankees-Blue;
     }
 
     .signup-subheading {
@@ -17,27 +17,11 @@
     }
   }
 
-  .signup-email {
-    @apply com-flex com-text-start md:com-flex-row com-flex-col md:com-w-auto com-w-full;
+  .read-or-download {
+    @apply md:com-w-auto com-w-full;
+  }
 
-    .email {
-      @apply com-flex com-flex-col;
-
-      input {
-        @apply com-bg-white com-m-0 md:com-mr-6 com-mr-0 com-mb-2 md:com-w-80 com-w-full;
-      }
-
-      .signup-privacy {
-        @apply com-m-0 md:com-mb-0 com-mb-4 com-text-xs com-font-medium com-text-gray-500;
-
-        a {
-          @apply com-no-underline com-text-primary-500;
-        }
-      }
-    }
-
-    button {
-      @apply com-h-10;
-    }
+  button {
+    @apply com-h-10;
   }
 }

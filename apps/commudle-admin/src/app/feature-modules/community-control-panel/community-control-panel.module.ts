@@ -53,6 +53,8 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
 import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
 import { CommunityPageComponent } from './components/community-page/community-page.component';
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
+import { CommunityChannelsAndForumsComponent } from './components/community-channels-and-forums/community-channels-and-forums.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/featur
     CommunityPaymentsComponent,
     CommunityPageComponent,
     CommunityNewsletterComponent,
+    CommunityChannelsAndForumsComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +95,8 @@ import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/featur
     SharedPipesModule,
     EventsModule,
     AppSharedComponentsModule,
+    CommunityChannelsModule,
+
     // Nebular
     NbCardModule,
     NbInputModule,

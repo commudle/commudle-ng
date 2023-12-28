@@ -2,7 +2,7 @@
 <nb-card>
   <nb-list>
     <nb-list-item *ngFor="let chapterIndex of chapterIndexes" class="clickable">
-      <a [routerLink]="['/developer-community-blueprint', chapterIndex.slug.current]" routerLinkActive="active">
+      <a [routerLink]="['/developer-ecosystem-blueprint/book', chapterIndex.slug.current]" routerLinkActive="active">
         <span>
           {{ chapterIndex.chapter_name }}
         </span>
