@@ -1,39 +1,39 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+interface SidebarState {
+  expanded: BehaviorSubject<boolean>;
+  hidden: BehaviorSubject<boolean>;
+  url: BehaviorSubject<string>;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class SidebarService {
-  private setSidebar = {};
-  public setSidebar$ = {};
-  private hideSidebar = {};
-  public hideSidebar$ = {};
-  private sidebarUrl = {};
-  public sidebarUrl$ = {};
+  private setSidebar: { [key: string]: SidebarState } = {};
 
   constructor() {}
 
-  setSidebarVisibility(eventName: string, expanded: boolean, url?: string) {
-    this.setSidebar[eventName] = new BehaviorSubject(expanded);
-    this.setSidebar$[eventName] = this.setSidebar[eventName].asObservable();
-    this.hideSidebar[eventName] = new BehaviorSubject(false);
-    this.hideSidebar$[eventName] = this.hideSidebar[eventName].asObservable();
-    this.sidebarUrl[eventName] = new BehaviorSubject(url);
-    this.sidebarUrl$[eventName] = this.sidebarUrl[eventName].asObservable();
+  setSidebarVisibility(eventName: string, expanded: boolean = false, hidden: boolean = false, url?: string) {
+    this.setSidebar[eventName] = {
+      expanded: new BehaviorSubject(expanded), // default value for side whether it's open or closed
+      hidden: new BehaviorSubject(hidden), // value for sidebar is hidden properly or not
+      url: new BehaviorSubject(url || ''), //url for iframe is required or not
+    };
   }
 
-  getSidebarVisibility(eventName): Observable<boolean> {
-    return this.setSidebar[eventName].asObservable();
+  getSidebarState(eventName: string): SidebarState {
+    return this.setSidebar[eventName];
   }
 
-  toggleSidebarVisibility(eventName) {
+  getSidebarVisibility(eventName: string): Observable<boolean> {
+    return this.setSidebar[eventName].expanded.asObservable();
+  }
+
+  toggleSidebarVisibility(eventName: string) {
     if (this.setSidebar[eventName]) {
-      this.setSidebar[eventName].next(!this.setSidebar[eventName].getValue());
+      this.setSidebar[eventName].expanded.next(!this.setSidebar[eventName].expanded.getValue());
     }
-  }
-
-  setVariant(eventName, data: boolean) {
-    this.hideSidebar[eventName].next(data);
   }
 }

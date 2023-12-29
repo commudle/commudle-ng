@@ -47,8 +47,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sidebarService.setSidebarVisibility('side', false, 'https://documentation.commudle.com/');
-    this.sidebarService.setVariant('side', true);
+    this.sidebarService.setSidebarVisibility('side', false, true, 'https://www.commudle.com/');
     this.setCommunity();
     this.seoService.noIndex(true);
   }

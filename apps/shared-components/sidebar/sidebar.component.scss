@@ -10,6 +10,9 @@
   transition: 0.3s;
 
   @apply com-pt-0 com-h-full com-z-20 com-bg-white com-text-black com-overflow-auto;
+  .iframe {
+    @apply com-m-2;
+  }
   &.hideFullSidebar {
     @apply com-w-0;
   }

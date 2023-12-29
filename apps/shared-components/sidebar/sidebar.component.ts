@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'commudle-sidebar',
@@ -30,23 +31,24 @@ export class SidebarComponent implements OnInit {
   //font-awesome icons
   faCaretLeft = faCaretLeft;
   faBars = faBars;
-  constructor(public sidebarService: SidebarService) {}
+  constructor(public sidebarService: SidebarService, public sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    if (this.sidebarService.setSidebar$.hasOwnProperty(this.eventName)) {
-      this.sidebarService.setSidebar$[this.eventName].subscribe((data) => {
+    const sidebarState = this.sidebarService.getSidebarState(this.eventName);
+
+    if (sidebarState) {
+      sidebarState.expanded.subscribe((data) => {
         this.expandSidebar = data;
       });
-    }
 
-    if (this.sidebarService.hideSidebar$.hasOwnProperty(this.eventName)) {
-      this.sidebarService.hideSidebar$[this.eventName].subscribe((data) => {
+      sidebarState.hidden.subscribe((data) => {
         this.hideFullSidebar = data;
       });
-    }
-    if (this.sidebarService.sidebarUrl$.hasOwnProperty(this.eventName)) {
-      this.sidebarService.sidebarUrl$[this.eventName].subscribe((data) => {
-        this.url = data;
+
+      sidebarState.url.subscribe((data) => {
+        if (data) {
+          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(data);
+        }
       });
     }
   }
