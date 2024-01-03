@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: 'com-',
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -16,7 +17,8 @@ module.exports = {
           800: '#142966',
           900: '#0a1433',
         },
-        'Spiro-Disco': '#1ac7e340',
+        // 'Spiro-Disco': '#1ac7e340',
+        'Spiro-Disco': 'var(--color-spiro-disco)',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
         gunmetal: '#2f2e41',

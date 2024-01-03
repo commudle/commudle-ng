@@ -359,3 +359,16 @@ nb-option-list.search-autocomplete {
 .pac-container {
   z-index: 1051 !important;
 }
+
+:root {
+  --color-spiro-disco-light: #1ac7e3;
+  --color-spiro-disco-dark: #1a1a1a;
+}
+
+[data-theme='light'] {
+  --color-spiro-disco: var(--color-spiro-disco-light);
+}
+
+[data-theme='dark'] {
+  --color-spiro-disco: var(--color-spiro-disco-dark);
+}
