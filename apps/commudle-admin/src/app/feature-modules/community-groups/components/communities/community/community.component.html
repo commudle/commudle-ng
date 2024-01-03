@@ -11,11 +11,8 @@
     New Community
   </button>
 </div>
-<div class="com-h-20" *ngIf="isLoading">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
-  <table>
+<div class="com-my-4" style="overflow-x: auto">
+  <table *ngIf="communities.length > 0">
     <thead>
       <tr class="heading">
         <th class="name">Name</th>
@@ -119,6 +116,12 @@
       </tr>
     </tbody>
   </table>
-</div>
 
-<!-- [(checked)]="true" -->
+  <div *ngIf="isLoading" class="loading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div *ngIf="pageInfo?.has_next_page" class="view-more-button">
+    <button (click)="getCommunities()" nbButton fullWidth>View More</button>
+  </div>
+</div>
