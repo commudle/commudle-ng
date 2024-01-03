@@ -363,12 +363,16 @@ nb-option-list.search-autocomplete {
 :root {
   --color-spiro-disco-light: #1ac7e3;
   --color-spiro-disco-dark: #1a1a1a;
+  --color-dark-jungle-green-light: #101828;
+  --color-dark-jungle-green-dark: #1ac7e3;
 }
 
 [data-theme='light'] {
   --color-spiro-disco: var(--color-spiro-disco-light);
+  --color-dark-jungle-green: var(--color-dark-jungle-green-light);
 }
 
 [data-theme='dark'] {
   --color-spiro-disco: var(--color-spiro-disco-dark);
+  --color-dark-jungle-green: var(--color-dark-jungle-green-dark);
 }
