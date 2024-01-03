@@ -53,6 +53,7 @@
         *ngFor="let message of communityChannelHandlerService.messages$ | async"
         [cursor]="message.cursor"
         [message]="message.data"
+        [channelOrForum]="channelOrForum"
       ></commudle-community-forum-message>
     </div>
   </div>
