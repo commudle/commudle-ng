@@ -53,8 +53,11 @@ export class CommunityGroupsService {
       );
   }
 
-  communities(communityGroupId): Observable<IPagination<ICommunities>> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
+  communities(communityGroupId, after): Observable<IPagination<ICommunities>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    if (after) {
+      params = params.set('after', after);
+    }
     return this.http.get<IPagination<ICommunities>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.COMMUNITIES),
       {
@@ -63,8 +66,11 @@ export class CommunityGroupsService {
     );
   }
 
-  events(communityGroupId): Observable<IPagination<IEvent>> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
+  events(communityGroupId, after): Observable<IPagination<IEvent>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    if (after) {
+      params = params.set('after', after);
+    }
     return this.http.get<IPagination<IEvent>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.EVENTS), {
       params,
     });
@@ -88,8 +94,11 @@ export class CommunityGroupsService {
     });
   }
 
-  communityChannels(communityGroupId): Observable<IPagination<ICommunityChannel>> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
+  communityChannels(communityGroupId, after): Observable<IPagination<ICommunityChannel>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    if (after) {
+      params = params.set('after', after);
+    }
     return this.http.get<IPagination<ICommunityChannel>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.COMMUNITY_CHANNELS),
       {
