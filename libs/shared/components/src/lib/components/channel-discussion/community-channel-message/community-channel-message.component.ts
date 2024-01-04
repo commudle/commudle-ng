@@ -1,7 +1,8 @@
+import { SeoService } from '@commudle/shared-services';
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
-import { EUserRoles, IUserMessage } from '@commudle/shared-models';
+import { EUserRoles, ICommunityChannel, IUserMessage } from '@commudle/shared-models';
 import {
   AuthService,
   CommunityChannelManagerService,
@@ -29,6 +30,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() cursor!: string;
   @Input() canReply = true;
   @Input() messagePinned = false;
+  @Input() channelOrForum: ICommunityChannel;
 
   channelsRoles = {};
   channelOrForumId: number;
@@ -66,9 +68,11 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
     private libToastLogService: ToastrService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
+    this.seoSchema();
     this.channelOrForumId = this.activatedRoute.snapshot.params.community_channel_id;
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
@@ -229,5 +233,50 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  seoSchema() {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'DiscussionForumPosting',
+      headline: this.channelOrForum.name,
+      text: this.removeHtmlTags(this.message.content),
+      author: {
+        '@type': 'Person',
+        name: this.message.user.name,
+        url: `https://www.commudle.com/users/${this.message.user.username}`,
+      },
+      datePublished: this.message.created_at,
+      comment: this.getUserMessages(),
+    });
+  }
+
+  getUserMessages() {
+    const resultArray = [];
+
+    for (const userMessage of this.message.user_messages) {
+      if (userMessage) {
+        const transformedMessage = {
+          '@type': 'Comment',
+          text: this.removeHtmlTags(userMessage.content),
+          author: {
+            '@type': 'Person',
+            name: userMessage.user.name,
+            url: `https://www.commudle.com/users/${userMessage.user.username}`,
+          },
+          datePublished: userMessage.created_at,
+        };
+
+        resultArray.push(transformedMessage);
+      }
+    }
+
+    return resultArray;
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }
