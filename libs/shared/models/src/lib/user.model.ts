@@ -54,7 +54,7 @@ export interface IUser {
   hiring?: boolean;
   published_labs_count?: number;
   total_labs_votes?: number;
-  social_media_links: [];
+  created_at: Date;
 }
 
 export interface IUserSearch extends IUser {

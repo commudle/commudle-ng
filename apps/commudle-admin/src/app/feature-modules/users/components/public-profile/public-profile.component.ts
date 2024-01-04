@@ -102,17 +102,30 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   };
 
   setSchema() {
+    const socialMediaLinks = [
+      this.user.medium,
+      this.user.behance,
+      this.user.dribbble,
+      this.user.facebook,
+      this.user.github,
+      this.user.gitlab,
+      this.user.linkedin,
+      this.user.personal_website,
+      this.user.twitter,
+      this.user.youtube,
+    ].filter((link) => link !== null && link !== undefined);
     this.seoService.setSchema({
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
-      dateCreated: '2019-12-23T12:34:00-05:00',
+      dateCreated: this.user.created_at,
       mainEntity: {
         '@type': 'Person',
         name: this.user.name,
         identifier: this.user.username,
         description: this.user.about_me,
         image: this.user.photo.url,
-        sameAs: this.user.social_media_links.map((links) => links),
+        dateCreated: '2019-12-23T12:34:00-05:00',
+        sameAs: socialMediaLinks.map((links) => links),
       },
     });
   }
