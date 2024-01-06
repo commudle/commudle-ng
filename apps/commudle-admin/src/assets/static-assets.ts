@@ -99,8 +99,7 @@ export const staticAssets = {
   devrel:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK1diQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--eb644bdd5599f5dc3cfeedd07eadd43cebbd7a65/Pair%20programming-bro.svg',
 
-  community_leaders:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNE9jQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0896c5576d66b57118117c2325d217351ca12a06/Learn%20from%20veterans%20of%20community.png',
+  community_leaders: '',
 
   devrel_ecosystem_blueprint:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeXkzQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--22630c366ec0814f85c039c90cf600a75b9ea9a5/Book%20Thick%20Cover%20(1)%202.png',
