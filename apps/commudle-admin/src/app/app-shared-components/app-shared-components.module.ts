@@ -38,6 +38,7 @@ import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-c
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { AdminHackathonComponent } from 'apps/commudle-admin/src/app/app-shared-components/admin-hackathon/admin-hackathon.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
-
+    AdminHackathonComponent,
   ],
   exports: [
     EmailerComponent,
@@ -71,6 +72,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+    AdminHackathonComponent,
   ],
   imports: [
     CommonModule,

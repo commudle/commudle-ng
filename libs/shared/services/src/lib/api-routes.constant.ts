@@ -769,4 +769,15 @@ export const API_ROUTES = {
       INDEX: 'api/v2/newsletters/public/index', //GET
     },
   },
+
+  HACKATHONS: {
+    CREATE: 'api/v2/hackathons', //POST
+    UPDATE: 'api/v2/hackathons', //PUT
+    INDEX: 'api/v2/hackathons', //GET
+    SHOW: 'api/v2/hackathons/show', //GET
+    PUBLIC: {
+      SHOW: 'api/v2/hackathons/public/show', //GET
+      INDEX: 'api/v2/hackathons/public/index', //GET
+    },
+  },
 };

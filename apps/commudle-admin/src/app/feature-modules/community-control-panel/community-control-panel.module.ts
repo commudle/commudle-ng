@@ -55,6 +55,7 @@ import { CommunityPageComponent } from './components/community-page/community-pa
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { CommunityChannelsAndForumsComponent } from './components/community-channels-and-forums/community-channels-and-forums.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { AdminCommunityHackathonComponent } from './components/admin-community-hackathon/admin-community-hackathon.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     CommunityPageComponent,
     CommunityNewsletterComponent,
     CommunityChannelsAndForumsComponent,
+    AdminCommunityHackathonComponent,
   ],
   imports: [
     CommonModule,

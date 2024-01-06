@@ -98,6 +98,19 @@
               <fa-icon [icon]="icons.faNewspaper"></fa-icon>
               <span class="title">Newsletters</span>
             </a>
+            <a [routerLink]="['hackathon']" class="d-flex com-relative" routerLinkActive="active">
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
+              <span class="title">Hackathon</span>
+            </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="people" status="success"></nb-icon>
               <span class="title">Team</span>

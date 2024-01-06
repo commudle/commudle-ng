@@ -1,0 +1,19 @@
+<div class="create-button">
+  <button nbButton status="primary">
+    <fa-icon [icon]="icons.faPlus"></fa-icon>
+    Create New Hackathon
+  </button>
+</div>
+
+<section>
+  <table *ngIf="hackathons && hackathons.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>Creation Date</th>
+    </tr>
+    <tr *ngFor="let hackathon of hackathons">
+      <td>{{ hackathon.name }}</td>
+      <td>{{ moment(hackathon.created_at).format('dddd, MMM Do, YYYY') }}</td>
+    </tr>
+  </table>
+</section>
