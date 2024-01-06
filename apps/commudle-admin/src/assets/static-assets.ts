@@ -104,4 +104,7 @@ export const staticAssets = {
 
   devrel_ecosystem_blueprint:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeXkzQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--22630c366ec0814f85c039c90cf600a75b9ea9a5/Book%20Thick%20Cover%20(1)%202.png',
+
+  credit:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMEc4QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c960cf51544197333114e844a7c7fdbff1eebffe/credit%20framework.png',
 };
