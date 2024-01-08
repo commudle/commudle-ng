@@ -221,6 +221,13 @@ const routes: Routes = [
         loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then((m) => m.DataFormsModule),
       },
       {
+        path: 'communities/:community_id/hackathon-dashboard/:hackathon_id',
+        loadChildren: () =>
+          import('./feature-modules/hackathon-control-panel/hackathon-control-panel.module').then(
+            (m) => m.HackathonControlPanelModule,
+          ),
+      },
+      {
         path: 'communities/:community_id/event-dashboard',
         loadChildren: () => import('./feature-modules/events/events.module').then((m) => m.EventsModule),
       },
