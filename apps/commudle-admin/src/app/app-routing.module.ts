@@ -48,6 +48,10 @@ const routes: Routes = [
       import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
   },
   {
+    path: 'newsletters/:main_newsletter_id',
+    component: MainNewsletterComponent,
+  },
+  {
     path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },
@@ -177,10 +181,6 @@ const routes: Routes = [
   {
     path: 'policies',
     loadChildren: () => import('./feature-modules/policies/policies.module').then((m) => m.PoliciesModule),
-  },
-  {
-    path: 'newsletters/:main_newsletter_id',
-    component: MainNewsletterComponent,
   },
   {
     path: 'blogs',
