@@ -10,10 +10,21 @@
     <tr>
       <th>Name</th>
       <th>Creation Date</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let hackathon of hackathons">
       <td>{{ hackathon.name }}</td>
       <td>{{ moment(hackathon.created_at).format('dddd, MMM Do, YYYY') }}</td>
+      <td>
+        <button
+          nbButton
+          status="primary"
+          size="tiny"
+          [routerLink]="['/communities', parentId, 'hackathon-dashboard', hackathon.slug]"
+        >
+          Dashboard
+        </button>
+      </td>
     </tr>
   </table>
 </section>

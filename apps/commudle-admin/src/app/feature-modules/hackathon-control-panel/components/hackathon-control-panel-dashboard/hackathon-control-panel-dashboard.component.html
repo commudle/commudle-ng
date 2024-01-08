@@ -1,0 +1,29 @@
+<section class="hackathon-details">
+  <app-community-badge *ngIf="community" [community]="community" size="small"></app-community-badge>
+  <div *ngIf="hackathon">
+    <h1>{{ hackathon.name }}</h1>
+    <div class="badge">
+      <p>Hackathon</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sidebar">
+    <commudle-sidebar
+      [isExpanded]="true"
+      [expandedWidth]="'extra-large'"
+      [forWindow]="false"
+      [showExpandedButton]="false"
+    >
+      <div class="action-buttons">
+        <a [routerLink]="['/admin', 'communities', community.slug, 'hackathons']" class="back-admin">
+          <div class="icon">
+            <!-- <fa-icon [icon]="icons.faArrowLeft"></fa-icon> -->
+          </div>
+          <div class="heading">Back to Admin Panel</div>
+        </a>
+      </div>
+    </commudle-sidebar>
+  </div>
+</section>

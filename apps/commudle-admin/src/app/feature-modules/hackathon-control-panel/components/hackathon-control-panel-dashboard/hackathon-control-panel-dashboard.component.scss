@@ -1,0 +1,19 @@
+.hackathon-details {
+  @apply com-p-8 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  > div {
+    @apply com-flex com-gap-4 com-items-center com-mt-2;
+    h1 {
+      @apply com-text-3xl com-m-0;
+    }
+    .badge {
+      @apply com-py-2 com-px-3 com-rounded-[32px] com-border com-border-solid com-border-purple-700 com-bg-purple-50;
+      p {
+        @apply com-m-0 com-text-purple-700 com-text-base;
+      }
+    }
+  }
+}
+
+.sidebar {
+  @apply com-w-80 com-sticky com-top-16 com-h-[calc(100vh-70px)];
+}
