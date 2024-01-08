@@ -11,6 +11,6 @@ export class AdminCommunityHackathonComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.parentId = this.activatedRoute.parent.snapshot.params.community_id;
+    this.parentId = this.activatedRoute.parent.parent.snapshot.params.community_id;
   }
 }

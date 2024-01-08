@@ -16,3 +16,9 @@ export interface IHackathon {
   time_zone: string;
   created_at: Date;
 }
+
+export enum EParticipateTypes {
+  both = 'Both',
+  team = 'Team',
+  individual = 'Individual',
+}

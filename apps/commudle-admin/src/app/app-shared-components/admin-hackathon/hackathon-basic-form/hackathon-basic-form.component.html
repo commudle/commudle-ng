@@ -1,0 +1,131 @@
+<section class="hackathon-form">
+  <form method="post" [formGroup]="hackathonForm">
+    <!-- Name -->
+    <div>
+      <label for="name">Hackathon's Name*</label>
+      <input formControlName="name" id="name" type="text" nbInput fullWidth placeholder="Hackathon's Name" />
+      <commudle-alert
+        *ngIf="
+          hackathonForm.controls['name'].invalid &&
+          hackathonForm.controls['name'].hasError('required') &&
+          hackathonForm.controls['name'].touched
+        "
+        [error]="true"
+        errorMessage="Name is required"
+      ></commudle-alert>
+    </div>
+
+    <!-- Tagline -->
+    <div>
+      <label for="tagline">Tagline*</label>
+      <input formControlName="tagline" id="tagline" type="text" nbInput fullWidth placeholder="Tagline" />
+      <commudle-alert
+        *ngIf="
+          hackathonForm.controls['tagline'].invalid &&
+          hackathonForm.controls['tagline'].hasError('required') &&
+          hackathonForm.controls['tagline'].touched
+        "
+        [error]="true"
+        errorMessage="Tagline is required"
+      ></commudle-alert>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label for="description">Description*</label>
+      <editor
+        formControlName="description"
+        id="description"
+        apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+        [init]="tinyMCE"
+      >
+      </editor>
+      <commudle-alert
+        *ngIf="
+          hackathonForm.controls['description'].invalid &&
+          hackathonForm.controls['description'].hasError('required') &&
+          hackathonForm.controls['description'].touched
+        "
+        [error]="true"
+        errorMessage="Description is required"
+      ></commudle-alert>
+    </div>
+
+    <!-- Hackathon's Theme* -->
+    <div>
+      <label for="hackathon_theme">Hackathon's Theme*</label>
+      <select
+        formControlName="hackathon_theme"
+        [ngClass]="{
+          'com-text-[#8E9BB3]': hackathonForm.controls['hackathon_theme'].value === ''
+        }"
+      >
+        <option value="" disabled selected>Select Hackathon Theme</option>
+        <option value="theme1">Theme 1</option>
+        <option value="theme2">Theme 2</option>
+      </select>
+      <commudle-alert
+        *ngIf="
+          hackathonForm.controls['hackathon_theme'].invalid &&
+          hackathonForm.controls['hackathon_theme'].hasError('required') &&
+          hackathonForm.controls['hackathon_theme'].touched
+        "
+        [error]="true"
+        errorMessage="Name is required"
+      ></commudle-alert>
+    </div>
+
+    <!-- Number of Participants* -->
+    <div>
+      <label for="number_of_participants">Number of Participants*</label>
+      <input formControlName="number_of_participants" id="number_of_participants" type="number" nbInput fullWidth />
+      <commudle-alert
+        *ngIf="
+          hackathonForm.controls['number_of_participants'].invalid &&
+          hackathonForm.controls['number_of_participants'].hasError('required') &&
+          hackathonForm.controls['number_of_participants'].touched
+        "
+        [error]="true"
+        errorMessage="Number of Participants is required"
+      ></commudle-alert>
+      <commudle-alert
+        *ngIf="hackathonForm.controls['number_of_participants'].hasError('min')"
+        [error]="true"
+        errorMessage="Number of participants is always greater than 0"
+      ></commudle-alert>
+    </div>
+
+    <!-- Who can apply for this hackathon?* -->
+    <div class="participate-types">
+      <label for="participate_types">Who can apply for this hackathon?*</label>
+
+      <!-- Use ngFor to loop through enum values -->
+      <div>
+        <div *ngFor="let type of EParticipateTypes | keyvalue">
+          <input type="radio" [id]="type.key" formControlName="participate_types" [value]="type.key" />
+          <label [for]="type.key">{{ type.value }}</label>
+        </div>
+      </div>
+
+      <commudle-alert
+        *ngIf="
+          hackathonForm.get('participate_types').invalid &&
+          hackathonForm.get('participate_types').hasError('required') &&
+          hackathonForm.get('participate_types').touched
+        "
+        [error]="true"
+        errorMessage="Field is required"
+      ></commudle-alert>
+    </div>
+  </form>
+
+  <button
+    nbButton
+    (click)="createOrUpdate()"
+    fullWidth
+    status="primary"
+    [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
+  >
+    Save
+  </button>
+</section>
