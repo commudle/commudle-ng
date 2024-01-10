@@ -1,5 +1,5 @@
 <div class="create-button">
-  <button nbButton status="primary" [routerLink]="'new'">
+  <button nbButton status="primary" [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', 'new']">
     <fa-icon [icon]="icons.faPlus"></fa-icon>
     Create New Hackathon
   </button>
@@ -20,7 +20,7 @@
           nbButton
           status="primary"
           size="tiny"
-          [routerLink]="['/communities', parentId, 'hackathon-dashboard', hackathon.slug]"
+          [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', hackathon.slug]"
         >
           Dashboard
         </button>

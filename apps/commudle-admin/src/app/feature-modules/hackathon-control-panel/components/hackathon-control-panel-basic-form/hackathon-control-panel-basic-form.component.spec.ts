@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { HackathonBasicFormComponent } from './hackathon-basic-form.component';
+import { HackathonControlPanelBasicFormComponent } from './hackathon-control-panel-basic-form.component';
 
-describe('HackathonBasicFormComponent', () => {
-  let component: HackathonBasicFormComponent;
-  let fixture: ComponentFixture<HackathonBasicFormComponent>;
+describe('HackathonControlPanelBasicFormComponent', () => {
+  let component: HackathonControlPanelBasicFormComponent;
+  let fixture: ComponentFixture<HackathonControlPanelBasicFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HackathonBasicFormComponent],
+      declarations: [HackathonControlPanelBasicFormComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HackathonBasicFormComponent);
+    fixture = TestBed.createComponent(HackathonControlPanelBasicFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,22 +8,67 @@
   </div>
 </section>
 
-<section>
+<section class="com-flex">
   <div class="sidebar">
-    <commudle-sidebar
-      [isExpanded]="true"
-      [expandedWidth]="'extra-large'"
-      [forWindow]="false"
-      [showExpandedButton]="false"
-    >
+    <commudle-sidebar [isExpanded]="true" [expandedWidth]="'large'" [forWindow]="false" [showExpandedButton]="false">
       <div class="action-buttons">
-        <a [routerLink]="['/admin', 'communities', community.slug, 'hackathons']" class="back-admin">
+        <a [routerLink]="['/admin', 'communities', community?.slug, 'hackathons']" class="back-admin">
           <div class="icon">
-            <!-- <fa-icon [icon]="icons.faArrowLeft"></fa-icon> -->
+            <fa-icon [icon]="icons.faArrowLeft"></fa-icon>
           </div>
-          <div class="heading">Back to Admin Panel</div>
+          <div class="action-button-name com-font-medium">Back to Admin Panel</div>
         </a>
+        <div>
+          <div class="action-buttons-group-name">Event Setup</div>
+          <div>
+            <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Basic Information</div>
+            </a>
+            <a [routerLink]="['contact']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Contact & Social Links</div>
+            </a>
+            <a>
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Hackathon's Dates</div>
+            </a>
+            <a>
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Tracks & Prizes</div>
+            </a>
+            <a>
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Applications</div>
+            </a>
+            <a>
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Sponsors</div>
+            </a>
+            <a>
+              <div class="icon">
+                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Judges & Speakers</div>
+            </a>
+          </div>
+        </div>
       </div>
     </commudle-sidebar>
+  </div>
+  <div class="router">
+    <router-outlet></router-outlet>
   </div>
 </section>

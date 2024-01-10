@@ -206,6 +206,13 @@ const routes: Routes = [
           import('./feature-modules/main-newsletters/main-newsletters.module').then((m) => m.MainNewslettersModule),
       },
       {
+        path: 'communities/:community_id/hackathon-dashboard',
+        loadChildren: () =>
+          import('./feature-modules/hackathon-control-panel/hackathon-control-panel.module').then(
+            (m) => m.HackathonControlPanelModule,
+          ),
+      },
+      {
         path: 'communities',
         canActivate: [AuthGuard],
         data: {
@@ -219,13 +226,6 @@ const routes: Routes = [
       {
         path: 'forms',
         loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then((m) => m.DataFormsModule),
-      },
-      {
-        path: 'communities/:community_id/hackathon-dashboard/:hackathon_id',
-        loadChildren: () =>
-          import('./feature-modules/hackathon-control-panel/hackathon-control-panel.module').then(
-            (m) => m.HackathonControlPanelModule,
-          ),
       },
       {
         path: 'communities/:community_id/event-dashboard',

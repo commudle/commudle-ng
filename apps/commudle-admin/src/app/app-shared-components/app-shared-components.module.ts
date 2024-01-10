@@ -39,7 +39,6 @@ import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
-import { HackathonBasicFormComponent } from './admin-hackathon/hackathon-basic-form/hackathon-basic-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +57,6 @@ import { HackathonBasicFormComponent } from './admin-hackathon/hackathon-basic-f
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
-    HackathonBasicFormComponent,
   ],
   exports: [
     EmailerComponent,
@@ -75,7 +73,6 @@ import { HackathonBasicFormComponent } from './admin-hackathon/hackathon-basic-f
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
-    HackathonBasicFormComponent,
   ],
   imports: [
     CommonModule,

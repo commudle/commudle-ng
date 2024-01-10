@@ -779,5 +779,8 @@ export const API_ROUTES = {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
     },
+    SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
+    SET_CONTACT_INFO: 'api/v2/hackathons/set_contact_info', //POST
+    UPDATE_CONTACT_INFO: 'api/v2/hackathons/update_contact_info', //PUT
   },
 };

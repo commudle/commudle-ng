@@ -1,0 +1,184 @@
+<nb-card>
+  <nb-card-header>Contact & Social Links</nb-card-header>
+  <nb-card-body class="hackathon-contact-form">
+    <form [formGroup]="hackathonContactForm">
+      <!-- Website -->
+      <div>
+        <label for="website">Hackathon's Name</label>
+        <input formControlName="website" id="website" type="text" nbInput fullWidth placeholder="Website" />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email">Email*</label>
+        <input formControlName="email" id="email" type="text" nbInput fullWidth placeholder="example@xyz.com" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.controls['email'].invalid &&
+            hackathonContactForm.controls['email'].hasError('required') &&
+            hackathonContactForm.controls['email'].touched
+          "
+          [error]="true"
+          errorMessage="Email is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonContactForm.controls['email'].hasError('email')"
+          [error]="true"
+          errorMessage="Invalid Email "
+        ></commudle-alert>
+      </div>
+
+      <!-- phone_number -->
+      <div>
+        <label for="phone_number">Phone Number*</label>
+        <div class="com-flex com-gap-3">
+          <select formControlName="country_code">
+            <option *ngFor="let countryDetail of countriesDetails" [value]="countryDetail.phone">
+              +{{ countryDetail.phone }} ({{ countryDetail.name }})
+            </option>
+          </select>
+          <input
+            formControlName="phone_number"
+            id="phone_number"
+            type="tel"
+            nbInput
+            fullWidth
+            placeholder="9999999999"
+          />
+        </div>
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.controls['phone_number'].invalid &&
+            hackathonContactForm.controls['phone_number'].hasError('required') &&
+            hackathonContactForm.controls['phone_number'].touched
+          "
+          [error]="true"
+          errorMessage="Phone Number is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('phone_number').hasError('maxlength') ||
+            hackathonContactForm.get('phone_number').hasError('minlength')
+          "
+          [error]="true"
+          errorMessage="Phone Number is not valid"
+        ></commudle-alert>
+      </div>
+
+      <!-- Twitter -->
+      <div>
+        <label for="twitter">Twitter</label>
+        <input formControlName="twitter" id="twitter" type="text" nbInput fullWidth placeholder="Twitter" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.controls['twitter'].invalid &&
+            hackathonContactForm.controls['twitter'].hasError('required') &&
+            hackathonContactForm.controls['twitter'].touched
+          "
+          [error]="true"
+          errorMessage="Name is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- Facebook -->
+      <div>
+        <label for="facebook">Facebook</label>
+        <input formControlName="facebook" id="facebook" type="text" nbInput fullWidth placeholder="Facebook" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.controls['facebook'].invalid &&
+            hackathonContactForm.controls['facebook'].hasError('required') &&
+            hackathonContactForm.controls['facebook'].touched
+          "
+          [error]="true"
+          errorMessage="Facebook is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- Instagram -->
+      <div>
+        <label for="instagram">Instagram</label>
+        <input formControlName="instagram" id="instagram" type="text" nbInput fullWidth placeholder="Instagram" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('instagram').invalid &&
+            hackathonContactForm.get('instagram').hasError('required') &&
+            hackathonContactForm.get('instagram').touched
+          "
+          [error]="true"
+          errorMessage="Field is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- linkedIn -->
+      <div>
+        <label for="linkedIn">LinkedIn</label>
+        <input formControlName="linkedIn" id="linkedIn" type="text" nbInput fullWidth placeholder="LinkedIn" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('linkedIn').invalid &&
+            hackathonContactForm.get('linkedIn').hasError('required') &&
+            hackathonContactForm.get('linkedIn').touched
+          "
+          [error]="true"
+          errorMessage="LinkedIn is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- discord -->
+      <div>
+        <label for="discord">Discord</label>
+        <input formControlName="discord" id="discord" type="text" nbInput fullWidth placeholder="Discord" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('discord').invalid &&
+            hackathonContactForm.get('discord').hasError('required') &&
+            hackathonContactForm.get('discord').touched
+          "
+          [error]="true"
+          errorMessage="Field is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- slack -->
+      <div>
+        <label for="slack">Slack</label>
+        <input formControlName="slack" id="slack" type="text" nbInput fullWidth placeholder="Slack" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('slack').invalid &&
+            hackathonContactForm.get('slack').hasError('required') &&
+            hackathonContactForm.get('slack').touched
+          "
+          [error]="true"
+          errorMessage="Field is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- github -->
+      <div>
+        <label for="github">Github</label>
+        <input formControlName="github" id="github" type="text" nbInput fullWidth placeholder="github" />
+        <commudle-alert
+          *ngIf="
+            hackathonContactForm.get('github').invalid &&
+            hackathonContactForm.get('github').hasError('required') &&
+            hackathonContactForm.get('github').touched
+          "
+          [error]="true"
+          errorMessage="Github is required"
+        ></commudle-alert>
+      </div>
+    </form>
+
+    <button
+      nbButton
+      (click)="createOrUpdate()"
+      fullWidth
+      status="primary"
+      [disabled]="hackathonContactForm.invalid || !hackathonContactForm.dirty"
+    >
+      Save
+    </button>
+  </nb-card-body>
+</nb-card>

@@ -5,6 +5,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
+import { faArrowLeft, faInfoCircle, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-dashboard',
@@ -15,6 +16,10 @@ export class HackathonControlPanelDashboardComponent implements OnInit {
   hackathon: IHackathon;
   community: ICommunity;
   subscriptions: Subscription[] = [];
+  icons = {
+    faArrowLeft,
+    faPenToSquare,
+  };
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,

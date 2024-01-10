@@ -21,8 +21,6 @@ import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/featur
 import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 import { CommunityChannelsAndForumsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-channels-and-forums/community-channels-and-forums.component';
 import { AdminCommunityHackathonComponent } from './components/admin-community-hackathon/admin-community-hackathon.component';
-import { HackathonBasicFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/admin-hackathon/hackathon-basic-form/hackathon-basic-form.component';
-
 const routes = [
   {
     path: 'new',
@@ -70,15 +68,11 @@ const routes = [
         component: CommunityPaymentsComponent,
       },
       {
-        path: 'hackathon',
+        path: 'hackathons',
         children: [
           {
             path: '',
             component: AdminCommunityHackathonComponent,
-          },
-          {
-            path: 'new',
-            component: HackathonBasicFormComponent,
           },
         ],
       },
