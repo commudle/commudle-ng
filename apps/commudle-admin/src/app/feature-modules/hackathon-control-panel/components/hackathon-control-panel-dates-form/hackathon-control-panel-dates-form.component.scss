@@ -1,9 +1,10 @@
-.hackathon-contact-form {
+.hackathon-form {
   form {
     @apply com-flex com-flex-col com-gap-3;
     > div {
       @apply com-flex com-flex-col com-gap-1;
     }
+
     select {
       @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
     }
@@ -14,6 +15,7 @@
     .form-groups-heading:not(:first-child) {
       @apply com-mt-6;
     }
+
     .save-button {
       @apply com-mt-5;
     }

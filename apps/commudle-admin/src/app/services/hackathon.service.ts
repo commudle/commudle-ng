@@ -43,7 +43,7 @@ export class HackathonService {
     );
   }
 
-  getHackathons(parentId, parentType: string): Observable<IHackathon[]> {
+  indexHackathons(parentId, parentType: string): Observable<IHackathon[]> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -58,15 +58,15 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
-  fetchHackathon(hackathonId): Observable<IHackathon> {
+  showHackathon(hackathonId): Observable<IHackathon> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW), { params });
   }
 
-  setHackathonContactInfo(formData, hackathonId) {
+  createHackathonContactInfo(formData, hackathonId) {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.post<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SET_CONTACT_INFO),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_CONTACT_INFO),
       {
         contact_info: formData,
       },
@@ -74,8 +74,8 @@ export class HackathonService {
     );
   }
 
-  updateHackathonContactInfo(formData, contactInfoId) {
-    const params = new HttpParams().set('contact_info_id', contactInfoId);
+  updateHackathonContactInfo(formData, hackathonId) {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_CONTACT_INFO),
       {
@@ -85,7 +85,18 @@ export class HackathonService {
     );
   }
 
-  fetchHackathonContactDetails(hackathonId): Observable<any> {
+  updateHackathonDates(dataForm, hackathonId): Observable<IHackathon> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.put<IHackathon>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_HACKATHON_DATE),
+      {
+        hackathon: dataForm,
+      },
+      { params },
+    );
+  }
+
+  showHackathonContactInfo(hackathonId): Observable<any> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_CONTACT_INFO), { params });
   }

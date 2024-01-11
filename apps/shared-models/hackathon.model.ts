@@ -1,6 +1,7 @@
 import { IAttachedFile } from '@commudle/shared-models';
 
 export interface IHackathon {
+  id: number;
   name: string;
   slug: string;
   description: string;

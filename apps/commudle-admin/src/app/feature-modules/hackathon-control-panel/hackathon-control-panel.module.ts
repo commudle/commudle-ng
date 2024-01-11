@@ -10,12 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbInputModule, NbButtonModule, NbCardModule } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
+import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
 
 @NgModule({
   declarations: [
     HackathonControlPanelDashboardComponent,
     HackathonControlPanelBasicFormComponent,
     HackathonControlPanelContactDetailsFormComponent,
+    HackathonControlPanelDatesFormComponent,
   ],
   imports: [
     CommonModule,

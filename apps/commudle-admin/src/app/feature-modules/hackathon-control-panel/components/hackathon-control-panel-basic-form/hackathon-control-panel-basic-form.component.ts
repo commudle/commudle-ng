@@ -78,7 +78,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
 
   fetchHackathonDetails() {
     this.subscriptions.push(
-      this.hackathonService.fetchHackathon(this.hackathonSlug).subscribe((data) => {
+      this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data) => {
         this.hackathon = data;
         this.hackathonForm.patchValue({
           name: data.name,

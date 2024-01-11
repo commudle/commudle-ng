@@ -35,7 +35,7 @@ export class HackathonControlPanelDashboardComponent implements OnInit {
           this.community = data;
         }),
       ),
-        this.hackathonService.fetchHackathon(hackathonId).subscribe((data) => {
+        this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
           this.hackathon = data;
         });
     });

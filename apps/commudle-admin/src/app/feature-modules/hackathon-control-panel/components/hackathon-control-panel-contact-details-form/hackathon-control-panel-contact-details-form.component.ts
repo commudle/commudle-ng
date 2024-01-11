@@ -48,21 +48,23 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
 
   fetchHackathonContactDetails(hackathonSlug) {
     this.subscriptions.push(
-      this.hackathonService.fetchHackathonContactDetails(hackathonSlug).subscribe((data) => {
+      this.hackathonService.showHackathonContactInfo(hackathonSlug).subscribe((data) => {
         this.contactInfo = data;
-        this.hackathonContactForm.patchValue({
-          website: data.website,
-          email: data.email,
-          country_code: data.country_code,
-          phone_number: data.phone_number,
-          twitter: data.twitter,
-          facebook: data.facebook,
-          instagram: data.instagram,
-          linkedIn: data.linkedIn,
-          discord: data.discord,
-          slack: data.slack,
-          github: data.github,
-        });
+        if (data) {
+          this.hackathonContactForm.patchValue({
+            website: data.website,
+            email: data.email,
+            country_code: data.country_code,
+            phone_number: data.phone_number,
+            twitter: data.twitter,
+            facebook: data.facebook,
+            instagram: data.instagram,
+            linkedIn: data.linkedIn,
+            discord: data.discord,
+            slack: data.slack,
+            github: data.github,
+          });
+        }
       }),
     );
   }
@@ -77,7 +79,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
 
   update() {
     this.hackathonService
-      .updateHackathonContactInfo(this.hackathonContactForm.value, this.contactInfo.id)
+      .updateHackathonContactInfo(this.hackathonContactForm.value, this.hackathonSlug)
       .subscribe((data) => {
         if (data) this.toastrService.successDialog('Contact Info updated');
       });
@@ -85,7 +87,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
 
   create() {
     this.hackathonService
-      .setHackathonContactInfo(this.hackathonContactForm.value, this.hackathonSlug)
+      .createHackathonContactInfo(this.hackathonContactForm.value, this.hackathonSlug)
       .subscribe((data) => {
         if (data) this.toastrService.successDialog('Contact Info updated');
       });

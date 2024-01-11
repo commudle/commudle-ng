@@ -30,7 +30,7 @@ export class AdminHackathonComponent implements OnInit {
 
   getHackathons() {
     this.subscriptions.push(
-      this.hackathonService.getHackathons(this.parentId, this.parentType).subscribe((data) => {
+      this.hackathonService.indexHackathons(this.parentId, this.parentType).subscribe((data) => {
         this.hackathons = data;
       }),
     );
