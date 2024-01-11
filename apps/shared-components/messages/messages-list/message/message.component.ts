@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
+import { SeoService } from '@commudle/shared-services';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -40,13 +41,16 @@ export class MessageComponent implements OnInit {
     private fb: FormBuilder,
     // private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private injector: Injector,
+    private seoService: SeoService,
   ) {
     this.replyForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seoSchema();
+  }
 
   emitReply(): void {
     if (this.replyForm.valid) {
@@ -77,5 +81,50 @@ export class MessageComponent implements OnInit {
     // if (messageId && visible) {
     //   this.userMessageReceiptHandlerService.addMessageReceipt(messageId, new Date());
     // }
+  }
+
+  seoSchema() {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'DiscussionForumPosting',
+      headline: 'Comments',
+      text: this.removeHtmlTags(this.message.content),
+      author: {
+        '@type': 'Person',
+        name: this.message.user.name,
+        url: `https://www.commudle.com/users/${this.message.user.username}`,
+      },
+      datePublished: this.message.created_at,
+      comment: this.getUserMessages(),
+    });
+  }
+
+  getUserMessages() {
+    const resultArray = [];
+
+    for (const userMessage of this.message.user_messages) {
+      if (userMessage) {
+        const transformedMessage = {
+          '@type': 'Comment',
+          text: this.removeHtmlTags(userMessage.content),
+          author: {
+            '@type': 'Person',
+            name: userMessage.user.name,
+            url: `https://www.commudle.com/users/${userMessage.user.username}`,
+          },
+          datePublished: userMessage.created_at,
+        };
+
+        resultArray.push(transformedMessage);
+      }
+    }
+
+    return resultArray;
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }
