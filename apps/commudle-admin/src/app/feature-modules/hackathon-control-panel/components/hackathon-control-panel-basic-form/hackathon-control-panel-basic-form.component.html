@@ -119,16 +119,17 @@
           errorMessage="Field is required"
         ></commudle-alert>
       </div>
-    </form>
 
-    <button
-      nbButton
-      (click)="createOrUpdate()"
-      fullWidth
-      status="primary"
-      [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
-    >
-      Save
-    </button>
+      <button
+        class="save-button"
+        nbButton
+        (click)="createOrUpdate()"
+        fullWidth
+        status="primary"
+        [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
+      >
+        Save
+      </button>
+    </form>
   </nb-card-body>
 </nb-card>

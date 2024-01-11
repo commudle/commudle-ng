@@ -2,12 +2,14 @@
   <nb-card-header>Contact & Social Links</nb-card-header>
   <nb-card-body class="hackathon-contact-form">
     <form [formGroup]="hackathonContactForm">
+      <div class="form-groups-heading">Hackathon's Information</div>
       <!-- Website -->
       <div>
         <label for="website">Hackathon's Name</label>
         <input formControlName="website" id="website" type="text" nbInput fullWidth placeholder="Website" />
       </div>
 
+      <div class="form-groups-heading">Contact Information</div>
       <!-- Email -->
       <div>
         <label for="email">Email*</label>
@@ -65,6 +67,7 @@
         ></commudle-alert>
       </div>
 
+      <div class="form-groups-heading">Social Links</div>
       <!-- Twitter -->
       <div>
         <label for="twitter">Twitter</label>
@@ -169,16 +172,17 @@
           errorMessage="Github is required"
         ></commudle-alert>
       </div>
-    </form>
 
-    <button
-      nbButton
-      (click)="createOrUpdate()"
-      fullWidth
-      status="primary"
-      [disabled]="hackathonContactForm.invalid || !hackathonContactForm.dirty"
-    >
-      Save
-    </button>
+      <button
+        class="save-button"
+        nbButton
+        (click)="createOrUpdate()"
+        fullWidth
+        status="primary"
+        [disabled]="hackathonContactForm.invalid || !hackathonContactForm.dirty"
+      >
+        Save
+      </button>
+    </form>
   </nb-card-body>
 </nb-card>
