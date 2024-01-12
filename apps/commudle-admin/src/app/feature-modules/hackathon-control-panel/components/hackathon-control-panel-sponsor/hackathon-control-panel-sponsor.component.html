@@ -1,0 +1,61 @@
+<nb-card>
+  <nb-card-header>Sponsors</nb-card-header>
+  <nb-card-body>
+    <div (click)="openSponsorDialogBox(addSponsorDialogBox)" class="add-sponsors-button">
+      <fa-icon [icon]="icons.faPlus"></fa-icon>
+      <br />
+      <span>Add Sponsors</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="sponsors-card">
+    <div *ngFor="let sponsor of sponsors">
+      <commudle-hackathon-control-panel-sponsor-card
+        [sponsor]="sponsor"
+      ></commudle-hackathon-control-panel-sponsor-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #addSponsorDialogBox let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Add Sponsor</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="sponsorForm">
+        <!-- name -->
+        <div>
+          <label for="name">Name*</label>
+          <input nbInput fullWidth formControlName="name" type="text" />
+        </div>
+
+        <!-- description -->
+        <div>
+          <label for="description">Description*</label>
+          <textarea
+            name="description"
+            fullWidth
+            nbInput
+            id="description"
+            rows="3"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <!-- Tier Name -->
+        <div>
+          <label for="tier_name">Tier Name*</label>
+          <input nbInput fullWidth formControlName="tier_name" type="text" />
+        </div>
+
+        <!-- website -->
+        <div>
+          <label for="link">Website*</label>
+          <input nbInput fullWidth formControlName="link" type="text" />
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="createSponsor(); ref.close()">Save</button>
+      <button nbButton (click)="ref.close()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

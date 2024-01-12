@@ -5,4 +5,6 @@ export interface ISponsor {
   name: string;
   link: string;
   logo: IAttachedFile;
+  description?: string;
+  tier_name?: string;
 }

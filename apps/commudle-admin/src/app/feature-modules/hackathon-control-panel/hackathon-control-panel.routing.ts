@@ -3,6 +3,7 @@ import { HackathonControlPanelDashboardComponent } from './components/hackathon-
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
+import { HackathonControlPanelSponsorComponent } from './components/hackathon-control-panel-sponsor/hackathon-control-panel-sponsor.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
           {
             path: 'dates',
             component: HackathonControlPanelDatesFormComponent,
+          },
+          {
+            path: 'sponsors',
+            component: HackathonControlPanelSponsorComponent,
           },
         ],
       },

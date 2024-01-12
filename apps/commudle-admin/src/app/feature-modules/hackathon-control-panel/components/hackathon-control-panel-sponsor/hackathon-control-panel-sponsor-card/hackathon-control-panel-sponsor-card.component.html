@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-body>
+    <div class="upper-section">
+      <div class="logo">
+        <img [src]="sponsor.logo?.url" [alt]="sponsor.name" />
+      </div>
+      <div class="name-website">
+        <div class="name">{{ sponsor.name }}</div>
+        <a (click)="redirectTo(sponsor.link)" class="website">{{ sponsor.link }}</a>
+      </div>
+    </div>
+    <div class="description">{{ sponsor.description }}</div>
+  </nb-card-body>
+</nb-card>

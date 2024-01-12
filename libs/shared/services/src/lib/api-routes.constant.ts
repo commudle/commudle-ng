@@ -783,5 +783,7 @@ export const API_ROUTES = {
     UPDATE_CONTACT_INFO: 'api/v2/hackathons/update_contact_info', //PUT
     SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
     UPDATE_HACKATHON_DATE: 'api/v2/hackathons/update_hackathon_dates', // POST
+    CREATE_SPONSOR: 'api/v2/hackathons/create_sponsor', //POST
+    INDEX_SPONSORS: 'api/v2/hackathons/index_sponsors', //GET
   },
 };

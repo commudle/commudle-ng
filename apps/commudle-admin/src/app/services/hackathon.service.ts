@@ -4,6 +4,7 @@ import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { ISponsor } from 'apps/shared-models/sponsor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -99,5 +100,21 @@ export class HackathonService {
   showHackathonContactInfo(hackathonId): Observable<any> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_CONTACT_INFO), { params });
+  }
+
+  createSponsor(dataForm, hackathonId): Observable<ISponsor> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.post<ISponsor>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR),
+      {
+        sponsor: dataForm,
+      },
+      { params },
+    );
+  }
+
+  indexSponsors(hackathonId): Observable<ISponsor[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<ISponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), { params });
   }
 }

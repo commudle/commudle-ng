@@ -1,0 +1,25 @@
+nb-card {
+  @apply com-w-56 com-h-52;
+  nb-card-body {
+    @apply com-px-3;
+    .upper-section {
+      @apply com-flex com-gap-3 com-mb-4;
+      .logo {
+        @apply com-w-14 com-h-14;
+        img {
+          @apply com-w-full;
+        }
+      }
+      .name-website {
+        .name {
+          @apply com-my-2;
+        }
+        .website {
+        }
+      }
+    }
+    .description {
+      @apply com-line-clamp-5;
+    }
+  }
+}

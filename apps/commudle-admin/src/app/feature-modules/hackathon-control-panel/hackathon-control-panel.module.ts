@@ -11,6 +11,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbInputModule, NbButtonModule, NbCardModule } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
+import { HackathonControlPanelSponsorComponent } from './components/hackathon-control-panel-sponsor/hackathon-control-panel-sponsor.component';
+import { HackathonControlPanelSponsorCardComponent } from './components/hackathon-control-panel-sponsor/hackathon-control-panel-sponsor-card/hackathon-control-panel-sponsor-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { HackathonControlPanelDatesFormComponent } from './components/hackathon-
     HackathonControlPanelBasicFormComponent,
     HackathonControlPanelContactDetailsFormComponent,
     HackathonControlPanelDatesFormComponent,
+    HackathonControlPanelSponsorComponent,
+    HackathonControlPanelSponsorCardComponent,
   ],
   imports: [
     CommonModule,
