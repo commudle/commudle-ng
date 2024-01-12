@@ -102,19 +102,18 @@ export class HackathonService {
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_CONTACT_INFO), { params });
   }
 
-  createSponsor(dataForm, hackathonId): Observable<ISponsor> {
-    const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.post<ISponsor>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR),
-      {
-        sponsor: dataForm,
-      },
-      { params },
-    );
+  createSponsor(sponsor, hackathonId): Observable<ISponsor> {
+    sponsor.append('hackathon_id', hackathonId);
+    return this.http.post<ISponsor>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR), sponsor);
   }
 
   indexSponsors(hackathonId): Observable<ISponsor[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<ISponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), { params });
+  }
+
+  destroySponsor(sponsorId): Observable<boolean> {
+    const params = new HttpParams().set('sponsor_id', sponsorId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_SPONSOR), { params });
   }
 }

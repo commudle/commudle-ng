@@ -5,7 +5,10 @@
         <img [src]="sponsor.logo?.url" [alt]="sponsor.name" />
       </div>
       <div class="name-website">
-        <div class="name">{{ sponsor.name }}</div>
+        <div class="name">
+          <span>{{ sponsor.name }}</span>
+          <fa-icon (click)="destroySponsor(sponsor.id)" [icon]="faCircleXmark"></fa-icon>
+        </div>
         <a (click)="redirectTo(sponsor.link)" class="website">{{ sponsor.link }}</a>
       </div>
     </div>

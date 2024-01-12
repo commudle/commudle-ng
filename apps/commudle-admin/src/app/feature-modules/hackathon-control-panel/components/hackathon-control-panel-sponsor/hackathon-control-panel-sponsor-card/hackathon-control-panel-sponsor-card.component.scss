@@ -7,19 +7,21 @@ nb-card {
       .logo {
         @apply com-w-14 com-h-14;
         img {
-          @apply com-w-full;
+          @apply com-w-full com-h-full com-object-contain;
         }
       }
       .name-website {
+        @apply com-w-[calc(100%-4rem)];
         .name {
-          @apply com-my-2;
-        }
-        .website {
+          @apply com-my-2 com-flex com-justify-between;
+          fa-icon {
+            @apply com-text-red-500 com-text-xl com-cursor-pointer;
+          }
         }
       }
     }
     .description {
-      @apply com-line-clamp-5;
+      @apply com-line-clamp-4;
     }
   }
 }

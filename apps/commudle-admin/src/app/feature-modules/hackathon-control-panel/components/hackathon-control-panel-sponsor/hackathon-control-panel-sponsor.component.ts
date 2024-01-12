@@ -1,7 +1,7 @@
 import { NbDialogService } from '@commudle/theme';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { ISponsor } from 'apps/shared-models/sponsor.model';
@@ -15,7 +15,11 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
   hackathonSlug = '';
   icons = {
     faPlus,
+    faFileImage,
+    faXmark,
   };
+
+  imagePreview;
 
   sponsors: ISponsor[];
   constructor(
@@ -27,7 +31,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     this.sponsorForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      // logo: [File, Validators.required],
+      logo: [null, Validators.required],
       tier_name: ['', Validators.required],
       link: ['', Validators.required],
     });
@@ -50,9 +54,53 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.sponsorForm.patchValue({
+      logo: file,
+    });
+    this.sponsorForm.get('logo').updateValueAndValidity();
+
+    // Display image preview
+    this.previewImage(file);
+  }
+
+  previewImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  removeBannerImage() {
+    this.imagePreview = '';
+    this.sponsorForm.patchValue({
+      logo: '',
+    });
+  }
+
   createSponsor() {
-    this.hackathonService.createSponsor(this.sponsorForm.value, this.hackathonSlug).subscribe((data) => {
+    const formData = new FormData();
+
+    Object.keys(this.sponsorForm.value).forEach((key) => {
+      const value = this.sponsorForm.value[key];
+
+      if (value instanceof File) {
+        formData.append('sponsor[' + key + ']', value, value.name); // Append the file with its name
+      } else if (key !== 'logo') {
+        formData.append('sponsor[' + key + ']', value);
+      }
+    });
+    this.hackathonService.createSponsor(formData, this.hackathonSlug).subscribe((data) => {
       if (data) this.sponsors.unshift(data);
+      this.sponsorForm.reset();
+    });
+  }
+
+  destroySponsor(sponsorId, index) {
+    this.hackathonService.destroySponsor(sponsorId).subscribe((data) => {
+      if (data) this.sponsors.splice(index, 1);
     });
   }
 }

@@ -5,3 +5,17 @@
 .sponsors-card {
   @apply com-flex com-gap-6 com-bg-gray-200 com-flex-wrap;
 }
+
+.sponsor-form-dialog-box {
+  @apply com-w-500px com-max-h-[90dvh];
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+  }
+  nb-card-header,
+  nb-card-footer {
+    @apply com-flex com-justify-between;
+    fa-icon {
+      @apply com-cursor-pointer;
+    }
+  }
+}
