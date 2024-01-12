@@ -15,9 +15,9 @@
           <p class="heading">{{ buildsPageHeader.heading }}</p>
           <div [innerHTML]="richText" class="content"></div>
         </div>
-        <div class="header-image">
+        <a class="header-image" [href]="buildsPageHeader?.image_link">
           <img [src]="imageUrl(buildsPageHeader?.header_image).url()" class="com-w-full" />
-        </div>
+        </a>
       </div>
     </div>
   </div>

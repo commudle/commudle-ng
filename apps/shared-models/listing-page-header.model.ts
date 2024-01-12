@@ -8,4 +8,5 @@ export interface IListingPageHeader {
   sub_heading: string;
   slug: { current: string };
   content: [];
+  image_link?: string;
 }
