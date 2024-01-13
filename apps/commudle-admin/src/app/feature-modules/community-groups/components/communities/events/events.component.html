@@ -1,8 +1,5 @@
-<div *ngIf="isLoading" class="com-mt-3">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<div class="com-my-4" style="overflow-x: auto" *ngIf="!isLoading">
-  <table>
+<div class="com-my-4" style="overflow-x: auto">
+  <table *ngIf="events.length > 0">
     <thead>
       <tr class="heading">
         <th class="com-w-[350px]">Basic Details</th>
@@ -64,4 +61,12 @@
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="isLoading" class="loading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div *ngIf="pageInfo?.has_next_page" class="view-more-button">
+    <button (click)="getEvents()" nbButton fullWidth>View More</button>
+  </div>
 </div>

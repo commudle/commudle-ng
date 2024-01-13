@@ -49,6 +49,7 @@
           [canReply]="false"
           [message]="reply"
           [cursor]="cursor"
+          [channelOrForum]="channelOrForum"
         ></commudle-community-channel-message>
         <commudle-editor
           (contentChange)="communityChannelHandlerService.sendReply(message.id, $event)"

@@ -19,9 +19,16 @@
           <div [innerHTML]="richText" class="richText"></div>
           <p class="subheading">{{ labsPageHeader.sub_heading }}</p>
         </div>
-        <div class="header-image">
-          <img [src]="imageUrl(labsPageHeader?.header_image).url()" class="com-w-full" />
-        </div>
+        <ng-container *ngIf="labsPageHeader?.image_link">
+          <a class="header-image" [href]="labsPageHeader.image_link">
+            <img [src]="imageUrl(labsPageHeader.header_image).url()" class="com-w-full" />
+          </a>
+        </ng-container>
+        <ng-container *ngIf="!labsPageHeader?.image_link">
+          <div class="header-image">
+            <img [src]="imageUrl(labsPageHeader.header_image).url()" class="com-w-full" />
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
