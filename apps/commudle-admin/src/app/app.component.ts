@@ -1,7 +1,7 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { CableService } from '@commudle/shared-services';
-import { NbSidebarService, NbSidebarState } from '@commudle/theme';
+import { NbSidebarService, NbSidebarState, NbThemeService } from '@commudle/theme';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { ActionCableConnectionSocket } from 'apps/shared-services/action-cable-connection.socket';
@@ -47,6 +47,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private router: Router,
     private cableService: CableService,
     private darkModeService: DarkModeService,
+    private themeService: NbThemeService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -76,6 +77,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
+    this.toggleDarkMode();
   }
 
   ngAfterViewChecked(): void {
@@ -112,11 +114,18 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     });
     this.userTheme = localStorage.getItem('theme');
     this.systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    console.log(window.matchMedia('(prefers-color-scheme: dark)').matches);
     if (this.userTheme === 'dark' || (!this.userTheme && this.systemTheme)) {
       this.darkModeService.toggleDarkMode(true);
     } else {
       this.darkModeService.toggleDarkMode(false);
     }
+  }
+
+  toggleDarkMode(): void {
+    this.darkModeService.isDarkMode$.subscribe((darkMode) => {
+      this.isDarkMode = darkMode;
+    });
+    this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
+    this.darkModeService.toggleDarkMode(this.isDarkMode);
   }
 }

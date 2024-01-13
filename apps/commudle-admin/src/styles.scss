@@ -1,5 +1,6 @@
 @use 'themes' as *;
 @use '@commudle/theme/styles/globals' as *;
+// @import '~@nebular/theme/styles/prebuilt/dark.css';
 
 @tailwind base;
 @tailwind components;
@@ -122,6 +123,7 @@ input {
 }
 
 .nb-theme-default nb-card {
+  background-color: red;
   margin: 16px 8px;
 }
 
@@ -571,4 +573,9 @@ nb-option-list.search-autocomplete {
   --color-american-orange: var(--color-american-orange-dark);
   --color-catalina-blue: var(--color-catalina-blue-dark);
   --color-alice-blue-dark: var(--color-alice-blue-dark-dark);
+}
+
+.nb-theme-dark nb-card {
+  background-color: blue;
+  margin: 16px 8px;
 }

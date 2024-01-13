@@ -1,4 +1,7 @@
-<div [ngClass]="{ 'com-dark': isDarkMode, 'com-light': !isDarkMode }" [attr.data-theme]="isDarkMode ? 'dark' : 'light'">
+<div
+  [ngClass]="{ 'com-dark, nb-theme-dark': isDarkMode, 'com-light, nb-theme-default': !isDarkMode }"
+  [attr.data-theme]="isDarkMode ? 'dark' : 'light'"
+>
   <nb-layout class="home-layout">
     <nb-layout-header fixed>
       <app-navbar></app-navbar>

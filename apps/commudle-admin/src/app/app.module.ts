@@ -211,7 +211,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     LibErrorHandlerModule,
     AuthModule,
     // Nebula modules
-    NbThemeModule.forRoot({ name: 'default' }),
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbSidebarModule,
