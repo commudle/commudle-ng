@@ -13,9 +13,16 @@
           <p class="sub-heading">{{ speakersPageHeader.sub_heading }}</p>
           <div [innerHTML]="richText" class="content"></div>
         </div>
-        <div class="header-image">
-          <img [src]="imageUrl(speakersPageHeader?.header_image).url()" class="com-w-full" />
-        </div>
+        <ng-container *ngIf="speakersPageHeader?.image_link">
+          <a class="header-image" [href]="speakersPageHeader.image_link">
+            <img [src]="imageUrl(speakersPageHeader.header_image).url()" class="com-w-full" />
+          </a>
+        </ng-container>
+        <ng-container *ngIf="!speakersPageHeader?.image_link">
+          <div class="header-image">
+            <img [src]="imageUrl(speakersPageHeader.header_image).url()" class="com-w-full" />
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

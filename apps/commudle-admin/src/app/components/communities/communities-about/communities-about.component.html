@@ -10,9 +10,16 @@
           <h1 class="heading">{{ communitiesPageHeader.heading }}</h1>
           <p class="sub-heading">{{ communitiesPageHeader.sub_heading }}</p>
         </div>
-        <div class="header-image">
-          <img [src]="imageUrl(communitiesPageHeader?.header_image).url()" class="com-w-full" />
-        </div>
+        <ng-container *ngIf="communitiesPageHeader?.image_link">
+          <a class="header-image" [href]="communitiesPageHeader.image_link">
+            <img [src]="imageUrl(communitiesPageHeader.header_image).url()" class="com-w-full" />
+          </a>
+        </ng-container>
+        <ng-container *ngIf="!communitiesPageHeader?.image_link">
+          <div class="header-image">
+            <img [src]="imageUrl(communitiesPageHeader.header_image).url()" class="com-w-full" />
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
