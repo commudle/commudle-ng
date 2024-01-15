@@ -5,6 +5,8 @@ import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { ISponsor } from 'apps/shared-models/sponsor.model';
+import { IContactInfo } from 'apps/shared-models/contact-info.model';
+import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 
 @Injectable({
   providedIn: 'root',
@@ -64,9 +66,9 @@ export class HackathonService {
     return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW), { params });
   }
 
-  createHackathonContactInfo(formData, hackathonId) {
+  createHackathonContactInfo(formData, hackathonId): Observable<IContactInfo> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.post<any>(
+    return this.http.post<IContactInfo>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_CONTACT_INFO),
       {
         contact_info: formData,
@@ -75,15 +77,22 @@ export class HackathonService {
     );
   }
 
-  updateHackathonContactInfo(formData, hackathonId) {
+  updateHackathonContactInfo(formData, hackathonId): Observable<IContactInfo> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.put<any>(
+    return this.http.put<IContactInfo>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_CONTACT_INFO),
       {
         contact_info: formData,
       },
       { params },
     );
+  }
+
+  showHackathonContactInfo(hackathonId): Observable<IContactInfo> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IContactInfo>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_CONTACT_INFO), {
+      params,
+    });
   }
 
   updateHackathonDates(dataForm, hackathonId): Observable<IHackathon> {
@@ -95,11 +104,6 @@ export class HackathonService {
       },
       { params },
     );
-  }
-
-  showHackathonContactInfo(hackathonId): Observable<any> {
-    const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_CONTACT_INFO), { params });
   }
 
   createSponsor(sponsor, hackathonId): Observable<ISponsor> {
@@ -115,5 +119,39 @@ export class HackathonService {
   destroySponsor(sponsorId): Observable<boolean> {
     const params = new HttpParams().set('sponsor_id', sponsorId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_SPONSOR), { params });
+  }
+
+  createTrack(formData, hackathonId): Observable<IHackathonTrack> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.post<IHackathonTrack>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_TRACK),
+      {
+        hackathon_track: formData,
+      },
+      { params },
+    );
+  }
+
+  updateTrack(formData, trackId): Observable<IHackathonTrack> {
+    const params = new HttpParams().set('track_id', trackId);
+    return this.http.put<IHackathonTrack>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_TRACK),
+      {
+        hackathon_track: formData,
+      },
+      { params },
+    );
+  }
+
+  indexTracks(hackathonId): Observable<IHackathonTrack[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IHackathonTrack[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_TRACKS), {
+      params,
+    });
+  }
+
+  destroyTrack(trackId): Observable<boolean> {
+    const params = new HttpParams().set('track_id', trackId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_TRACK), { params });
   }
 }

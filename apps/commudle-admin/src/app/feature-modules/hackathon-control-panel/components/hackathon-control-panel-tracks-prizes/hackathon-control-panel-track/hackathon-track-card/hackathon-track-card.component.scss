@@ -1,0 +1,10 @@
+.hackathon-card {
+  @apply com-m-0;
+  .name {
+    @apply com-text-blue-600 com-text-lg com-font-bold com-flex com-justify-between;
+  }
+
+  .description {
+    @apply com-text-gray-500;
+  }
+}

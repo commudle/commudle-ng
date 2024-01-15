@@ -1,1 +1,91 @@
-<p>hackathon-control-panel-track works!</p>
+<div (click)="openSponsorDialogBox(addTracksDialogBox)" class="add-sponsors-button">
+  <fa-icon [icon]="icons.faPlus"></fa-icon>
+  <br />
+  <span>Add Tracks</span>
+</div>
+
+<div class="hackathon-cards">
+  <div *ngFor="let hackathonTrack of hackathonTracks; let i = index">
+    <commudle-hackathon-track-card
+      [hackathonTrack]="hackathonTrack"
+      (destroyTrackEvent)="destroyTrack($event, i)"
+      (editTrackEvent)="openSponsorDialogBox(addTracksDialogBox, $event, i)"
+    ></commudle-hackathon-track-card>
+  </div>
+</div>
+
+<ng-template #addTracksDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="track-form">
+    <nb-card-header>New track</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="trackForm">
+        <!-- name -->
+        <div>
+          <label for="name">Name *</label>
+          <input formControlName="name" id="name" for="name" type="text" placeholder="Name" nbInput fullWidth />
+          <commudle-alert
+            *ngIf="
+              trackForm.controls['name'].invalid &&
+              trackForm.controls['name'].touched &&
+              trackForm.controls['name'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label for="description">Description *</label>
+          <editor
+            formControlName="description"
+            id="description"
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+            [init]="tinyMCE"
+          >
+          </editor>
+          <commudle-alert
+            *ngIf="
+              trackForm.controls['description'].invalid &&
+              trackForm.controls['description'].touched &&
+              trackForm.controls['description'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Description is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- Problem Statement -->
+        <div>
+          <label for="problem_statement">Problem Statement</label>
+          <input
+            formControlName="problem_statement"
+            id="problem_statement"
+            for="problem_statement"
+            type="text"
+            placeholder="Problem Statement"
+            nbInput
+            fullWidth
+          />
+          <commudle-alert
+            *ngIf="trackForm.controls['problem_statement'].invalid && trackForm.controls['problem_statement'].touched"
+            [error]="true"
+            errorMessage="Problem Statement is required"
+          ></commudle-alert>
+        </div>
+
+        <div>
+          <button
+            nbButton
+            (click)="data.track ? updateTrack(data.track.id, data.index) : createTrack(); ref.close()"
+            status="primary"
+            fullWidth
+            [disabled]="trackForm.invalid || !trackForm.dirty"
+          >
+            {{ data.track ? 'Update' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

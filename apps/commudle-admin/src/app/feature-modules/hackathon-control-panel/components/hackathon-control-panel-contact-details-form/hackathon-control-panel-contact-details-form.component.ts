@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +16,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
   subscriptions: Subscription[] = [];
 
   countriesDetails = countries_details;
-  contactInfo: any;
+  contactInfo: IContactInfo;
   hackathonSlug = '';
 
   constructor(
@@ -48,7 +49,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
 
   fetchHackathonContactDetails(hackathonSlug) {
     this.subscriptions.push(
-      this.hackathonService.showHackathonContactInfo(hackathonSlug).subscribe((data) => {
+      this.hackathonService.showHackathonContactInfo(hackathonSlug).subscribe((data: IContactInfo) => {
         this.contactInfo = data;
         if (data) {
           this.hackathonContactForm.patchValue({
