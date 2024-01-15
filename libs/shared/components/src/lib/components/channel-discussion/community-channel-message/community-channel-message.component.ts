@@ -236,9 +236,11 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   seoSchema() {
+    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
     this.seoService.setSchema({
       '@context': 'https://schema.org',
       '@type': 'DiscussionForumPosting',
+      url: shareLink,
       headline: this.channelOrForum.name,
       text: this.removeHtmlTags(this.message.content),
       author: {
