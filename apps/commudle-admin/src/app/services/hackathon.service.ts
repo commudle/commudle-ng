@@ -7,7 +7,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { ISponsor } from 'apps/shared-models/sponsor.model';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
-
+import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -153,5 +153,28 @@ export class HackathonService {
   destroyTrack(trackId): Observable<boolean> {
     const params = new HttpParams().set('track_id', trackId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_TRACK), { params });
+  }
+
+  createPrize(formData): Observable<IHackathonPrize> {
+    return this.http.post<IHackathonPrize>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_PRIZE), {
+      hackathon_track_prize: formData,
+    });
+  }
+
+  getPrizesByTrack(hackathonTrackId): Observable<IHackathonPrize[]> {
+    const params = new HttpParams().set('hackathon_track_id', hackathonTrackId);
+    return this.http.get<IHackathonPrize[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_TRACK_PRIZE), {
+      params,
+    });
+  }
+
+  getPrizesByHackathon(hackathonId): Observable<IHackathonPrize[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IHackathonPrize[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_HACKATHON_PRIZES),
+      {
+        params,
+      },
+    );
   }
 }

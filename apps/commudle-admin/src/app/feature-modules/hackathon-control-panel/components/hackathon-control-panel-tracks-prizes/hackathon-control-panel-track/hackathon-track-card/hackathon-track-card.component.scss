@@ -1,10 +1,26 @@
 .hackathon-card {
   @apply com-m-0;
-  .name {
-    @apply com-text-blue-600 com-text-lg com-font-bold com-flex com-justify-between;
+  nb-card-body {
+    @apply com-p-0;
+    .name {
+      @apply com-text-blue-600 com-text-lg com-font-bold com-flex com-justify-between com-px-6 com-pt-6;
+    }
+
+    .description {
+      @apply com-text-gray-500 com-px-6;
+    }
   }
 
-  .description {
-    @apply com-text-gray-500;
+  .hackathon-prize-cards {
+    @apply com-bg-gray-50;
+    .hackathon-prize-card {
+      @apply com-border-0 com-border-t com-border-solid com-border-slate-200;
+      .name {
+        @apply com-text-slate-800 com-pt-4;
+      }
+      .prize {
+        @apply com-text-gray-500 com-px-6 com-pb-4;
+      }
+    }
   }
 }

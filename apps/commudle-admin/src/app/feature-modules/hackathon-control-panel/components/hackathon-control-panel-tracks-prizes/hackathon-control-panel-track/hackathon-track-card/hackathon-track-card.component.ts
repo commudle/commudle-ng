@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
+import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
+import { countries_details } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-hackathon-track-card',
@@ -11,7 +14,9 @@ export class HackathonTrackCardComponent implements OnInit {
   @Output() editTrackEvent: EventEmitter<IHackathonTrack> = new EventEmitter();
   @Output() destroyTrackEvent: EventEmitter<number> = new EventEmitter();
 
-  constructor() {}
+  countryDetails = countries_details;
+
+  constructor(private hackathonService: HackathonService) {}
 
   ngOnInit() {}
 
@@ -22,4 +27,8 @@ export class HackathonTrackCardComponent implements OnInit {
   deleteTrack(trackId) {
     this.destroyTrackEvent.emit(trackId);
   }
+
+  editPrize(prize) {}
+
+  deletePrize(hackathonPrizeId) {}
 }

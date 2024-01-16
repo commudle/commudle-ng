@@ -8,5 +8,20 @@
       </div>
     </div>
     <div class="description" [innerHTML]="hackathonTrack.description"></div>
+    <div class="hackathon-prize-cards">
+      <div class="hackathon-prize-card" *ngFor="let hackathonPrize of hackathonTrack.hackathon_prizes">
+        <div class="name">
+          <span>{{ hackathonPrize.name }}</span>
+          <div class="action-buttons">
+            <button nbButton status="primary" ghost (click)="editPrize(hackathonPrize)">Edit</button>
+            <button nbButton status="danger" ghost (click)="deletePrize(hackathonPrize.id)">Delete</button>
+          </div>
+        </div>
+        <div class="prize">
+          {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }},
+          {{ hackathonPrize.no_of_winners }} Winners
+        </div>
+      </div>
+    </div>
   </nb-card-body>
 </nb-card>

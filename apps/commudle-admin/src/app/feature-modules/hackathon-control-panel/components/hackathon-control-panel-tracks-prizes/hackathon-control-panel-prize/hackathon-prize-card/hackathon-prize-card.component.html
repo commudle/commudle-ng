@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-body>
+    <div class="track-details">
+      <div class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+      <div class="action-buttons">
+        <button nbButton ghost status="primary">Edit</button>
+        <button nbButton ghost status="danger">Delete</button>
+      </div>
+    </div>
+    <div class="prize-details">
+      <p class="name">{{ hackathonPrize.name }}</p>
+      <p class="prize">
+        {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }} Winners
+      </p>
+      <div class="description" [innerHTML]="hackathonPrize.description"></div>
+    </div>
+    <div>
+      <button nbButton fullWidth status="primary">Add Winners</button>
+    </div>
+  </nb-card-body>
+</nb-card>
