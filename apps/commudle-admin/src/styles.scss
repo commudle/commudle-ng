@@ -363,6 +363,12 @@ nb-option-list.search-autocomplete {
 }
 
 :root {
+  --color-white-light: #ffffff;
+  --color-white-dark: #121212;
+
+  --color-black-light: #000000;
+  --color-black-dark: #ffffff;
+
   --color-spiro-disco-light: #1ac7e3;
   --color-spiro-disco-dark: #1a1a1a;
 
@@ -379,16 +385,16 @@ nb-option-list.search-autocomplete {
   --color-very-light-blue-dark: #1ac7e3;
 
   --color-sonic-silver-light: #777777;
-  --color-sonic-silver-dark: #1ac7e3;
+  --color-sonic-silver-dark: #ffffff;
 
   --color-blue-jeans-light: #29a5ff;
   --color-blue-jeans-dark: #1ac7e3;
 
   --color-raisin-black-light: #231f20;
-  --color-raisin-black-dark: #1ac7e3;
+  --color-raisin-black-dark: #ffffff;
 
   --color-spanish-gray-light: #979797;
-  --color-spanish-gray-dark: #1ac7e3;
+  --color-spanish-gray-dark: #ffffff;
 
   --color-ultramarine-blue-light: #3366ff;
   --color-ultramarine-blue-dark: #1ac7e3;
@@ -397,25 +403,25 @@ nb-option-list.search-autocomplete {
   --color-blueberry-dark: #1ac7e3;
 
   --color-dark-spring-green-light: #10654c;
-  --color-dark-spring-green-dark: #1ac7e3;
+  --color-dark-spring-green-dark: #ffffff;
 
   --color-blue-violet-light: #6f22df;
   --color-blue-violet-dark: #1ac7e3;
 
-  --color-blond-light: #fff1bb;
+  --color-blond-light: #fff1bb; //check in tailwind
   --color-blond-dark: #1ac7e3;
 
   --color-black-coral-light: #595867;
-  --color-black-coral-dark: #1ac7e3;
+  --color-black-coral-dark: #ffffff;
 
   --color-charcoal-light: #344054;
-  --color-charcoal-dark: #1ac7e3;
+  --color-charcoal-dark: #ffffff;
 
   --color-auro-metal-saurus-light: #667085;
-  --color-auro-metal-saurus-dark: #1ac7e3;
+  --color-auro-metal-saurus-dark: #ffffff;
 
   --color-dark-jungle-green-light: #101828;
-  --color-dark-jungle-green-dark: #1ac7e3;
+  --color-dark-jungle-green-dark: #ffffff;
 
   --color-light-silver-light: #d0d5dd;
   --color-light-silver-dark: #1ac7e3;
@@ -427,19 +433,19 @@ nb-option-list.search-autocomplete {
   --color-crayola-green-dark: #1ac7e3;
 
   --color-vampire-black-light: #0a0a0a;
-  --color-vampire-black-dark: #1ac7e3;
+  --color-vampire-black-dark: #ffffff;
 
   --color-anti-flash-white-light: #f2f2f2;
   --color-anti-flash-white-dark: #1ac7e3;
 
   --color-yankees-blue-light: #222b45;
-  --color-yankees-blue-dark: #1ac7e3;
+  --color-yankees-blue-dark: #ffffff;
 
   --color-alice-blue-light: #edf5ff;
   --color-alice-blue-dark: #1ac7e3;
 
   --color-new-car-light: #1d4ed8;
-  --color-new-car-dark: #1ac7e3;
+  --color-new-car-dark: #ffffff;
 
   --color-chrome-yellow-light: #ffaa00;
   --color-chrome-yellow-dark: #1ac7e3;
@@ -448,10 +454,10 @@ nb-option-list.search-autocomplete {
   --color-infra-red-dark: #1ac7e3;
 
   --color-quartz-light: #4b4b5c;
-  --color-quartz-dark: #1ac7e3;
+  --color-quartz-dark: #ffffff;
 
   --color-chocolate-traditional-light: #7d4402;
-  --color-chocolate-traditional-dark: #1ac7e3;
+  --color-chocolate-traditional-dark: #ffffff;
 
   --color-seashell-light: #fff6eb;
   --color-seashell-dark: #1ac7e3;
@@ -481,13 +487,18 @@ nb-option-list.search-autocomplete {
   --color-american-orange-dark: #1ac7e3;
 
   --color-catalina-blue-light: #022c7d;
-  --color-catalina-blue-dark: #1ac7e3;
+  --color-catalina-blue-dark: #ffffff;
 
   --color-alice-blue-dark-light: #ebf5ff;
   --color-alice-blue-dark-dark: #1ac7e3;
+
+  --color-gunmetal-light: #2f2e41;
+  --color-gunmetal-dark: #ffffff;
 }
 
 [data-theme='light'] {
+  --color-white: var(--color-white-light);
+  --color-black: var(--color-black-light);
   --color-spiro-disco: var(--color-spiro-disco-light);
   // --color-brilliant-azure: var(--color-brilliant-azure-light);
   --color-caribbean-green: var(--color-caribbean-green-light);
@@ -529,9 +540,12 @@ nb-option-list.search-autocomplete {
   --color-american-orange: var(--color-american-orange-light);
   --color-catalina-blue: var(--color-catalina-blue-light);
   --color-alice-blue-dark: var(--color-alice-blue-dark-light);
+  --color-gunmetal: var(--color-gunmetal-light);
 }
 
 [data-theme='dark'] {
+  --color-white: var(--color-white-dark);
+  --color-black: var(--color-black-dark);
   --color-spiro-disco: var(--color-spiro-disco-dark);
   // --color-brilliant-azure: var(--color-brilliant-azure-dark);
   --color-caribbean-green: var(--color-caribbean-green-dark);
@@ -573,6 +587,7 @@ nb-option-list.search-autocomplete {
   --color-american-orange: var(--color-american-orange-dark);
   --color-catalina-blue: var(--color-catalina-blue-dark);
   --color-alice-blue-dark: var(--color-alice-blue-dark-dark);
+  --color-gunmetal: var(--color-gunmetal-dark);
 }
 
 .nb-theme-dark nb-card {
