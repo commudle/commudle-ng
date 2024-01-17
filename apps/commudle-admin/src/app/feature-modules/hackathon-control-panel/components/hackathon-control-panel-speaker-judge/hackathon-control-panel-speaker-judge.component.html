@@ -1,0 +1,87 @@
+<nb-card>
+  <nb-card-header>Judges/Speakers</nb-card-header>
+  <nb-card-body>
+    <form action="" [formGroup]="fetchSpeakerJudge">
+      <div>
+        <label for="email">Enter Email</label>
+        <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
+      </div>
+      <button class="com-w-max" nbButton status="primary" type="submit" (click)="fetchSpeakerJudgeDetails()">
+        Add Speaker
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #speakerForm>
+  <nb-card class="speaker-form">
+    <nb-card-body>
+      <form [formGroup]="speakerRegistrationForm">
+        <!-- profile image -->
+        <div>
+          <label for="profile_image"></label>
+          <!-- <input placeholder="" type="text" nbInput fullWidth id="" formControlName /> -->
+        </div>
+
+        <!-- name -->
+        <div>
+          <label for="name">Name* </label>
+          <input placeholder="Name" type="text" nbInput fullWidth id="name" formControlName="name" />
+        </div>
+
+        <!-- about -->
+        <div>
+          <label for="about">About</label>
+          <input placeholder="About" type="text" nbInput fullWidth id="about" formControlName="about" />
+        </div>
+
+        <!-- email -->
+        <div>
+          <label for="eamil">Email</label>
+          <input placeholder="Email" type="email" nbInput fullWidth id="email" formControlName="email" />
+        </div>
+
+        <!-- company -->
+        <div>
+          <label for="company">Company</label>
+          <input placeholder="Company" type="text" nbInput fullWidth id="company" formControlName="company" />
+        </div>
+
+        <!-- designation -->
+        <div>
+          <label for="designation">Designation</label>
+          <input
+            placeholder="Designation"
+            type="text"
+            nbInput
+            fullWidth
+            id="designation"
+            formControlName="designation"
+          />
+        </div>
+
+        <!-- twitter -->
+        <div>
+          <label for="twitter">Twitter</label>
+          <input placeholder="Twitter" type="text" nbInput fullWidth id="twitter" formControlName="twitter" />
+        </div>
+
+        <!-- linkedin -->
+        <div>
+          <label for="linkedin">linkedin</label>
+          <input placeholder="Linkedin" type="text" nbInput fullWidth id="linkedin" formControlNam="linkedin" />
+        </div>
+
+        <!-- website -->
+        <div>
+          <label for="website">Website</label>
+          <input placeholder="Website" type="text" nbInput fullWidth id="website" formControlName="website" />
+        </div>
+
+        <div>
+          <button type="submit" nbButton fullWidth status="primary">Save</button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

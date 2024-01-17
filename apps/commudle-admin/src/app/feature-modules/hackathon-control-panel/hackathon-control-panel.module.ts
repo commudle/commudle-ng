@@ -18,6 +18,7 @@ import { HackathonControlPanelTrackComponent } from 'apps/commudle-admin/src/app
 import { HackathonControlPanelPrizeComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-tracks-prizes/hackathon-control-panel-prize/hackathon-control-panel-prize.component';
 import { HackathonTrackCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-tracks-prizes/hackathon-control-panel-track/hackathon-track-card/hackathon-track-card.component';
 import { HackathonPrizeCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-tracks-prizes/hackathon-control-panel-prize/hackathon-prize-card/hackathon-prize-card.component';
+import { HackathonControlPanelSpeakerJudgeComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-speaker-judge/hackathon-control-panel-speaker-judge.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HackathonPrizeCardComponent } from 'apps/commudle-admin/src/app/feature
     HackathonControlPanelPrizeComponent,
     HackathonTrackCardComponent,
     HackathonPrizeCardComponent,
+    HackathonControlPanelSpeakerJudgeComponent,
   ],
   imports: [
     CommonModule,

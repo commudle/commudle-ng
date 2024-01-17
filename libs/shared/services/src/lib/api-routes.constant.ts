@@ -793,5 +793,6 @@ export const API_ROUTES = {
     CREATE_PRIZE: 'api/v2/hackathons/create_prize', //POST
     INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
     INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
+    FETCH_USER: 'api/v2/hackathons/fetch_user_info', //GET
   },
 };

@@ -8,6 +8,7 @@ import { ISponsor } from 'apps/shared-models/sponsor.model';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
+import { IUser } from '@commudle/shared-models';
 @Injectable({
   providedIn: 'root',
 })
@@ -176,5 +177,12 @@ export class HackathonService {
         params,
       },
     );
+  }
+
+  fetchUserByEmail(email): Observable<IUser> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.FETCH_USER), {
+      params,
+    });
   }
 }
