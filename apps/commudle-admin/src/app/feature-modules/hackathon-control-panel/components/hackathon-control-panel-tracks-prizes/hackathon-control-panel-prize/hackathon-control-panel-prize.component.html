@@ -76,7 +76,7 @@
             nbButton
             status="primary"
             fullWidth
-            (click)="data.prize ? updatePrize(data.prize.id, data.index) : createPrize()"
+            (click)="data.prize ? updatePrize(data.prize.id, data.index) : createPrize(); ref.close()"
             [disabled]="prizeForm.invalid || !prizeForm.dirty"
           >
             {{ data.prize ? 'update' : 'save' }}

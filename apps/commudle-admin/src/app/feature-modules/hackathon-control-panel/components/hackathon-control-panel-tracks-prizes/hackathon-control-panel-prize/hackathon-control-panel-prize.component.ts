@@ -7,6 +7,7 @@ import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-prize',
@@ -16,6 +17,7 @@ import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 export class HackathonControlPanelPrizeComponent implements OnInit {
   prizeForm: FormGroup;
   hackathonTracks: IHackathonTrack[];
+  hackathon: IHackathon;
   icons = {
     faPlus,
     faFileImage,
@@ -53,6 +55,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
       currency_type: ['₹', Validators.required],
       order: ['', Validators.required],
       hackathon_track_id: '',
+      hackathon_id: '',
     });
   }
 
@@ -60,6 +63,13 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
     this.activatedRoute.parent.parent.paramMap.subscribe((params) => {
       this.fetchTracks(params.get('hackathon_id'));
       this.fetchPrizes(params.get('hackathon_id'));
+      this.fetchHackathon(params.get('hackathon_id'));
+    });
+  }
+
+  fetchHackathon(hackathonId) {
+    this.hackathonService.showHackathon(hackathonId).subscribe((data: IHackathon) => {
+      this.hackathon = data;
     });
   }
 
@@ -72,10 +82,6 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
   fetchPrizes(hackathonId) {
     this.hackathonService.getPrizesByHackathon(hackathonId).subscribe((data) => {
       this.hackathonPrizes = data;
-      console.log(
-        '🚀 ~ HackathonControlPanelPrizeComponent ~ this.hackathonService.getPrizesByHackathon ~  this.hackathonPrizes:',
-        this.hackathonPrizes,
-      );
     });
   }
 
@@ -91,6 +97,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
     }
     this.prizeForm.patchValue({
       order: this.hackathonPrizes.length + 1,
+      hackathon_id: this.hackathon.id,
     });
     this.nbDialogService.open(dialog, {
       context: { index: index, prize: prize },
