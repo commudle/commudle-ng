@@ -15,12 +15,12 @@
         </div>
         <ng-container *ngIf="listingPageHeader?.image_link">
           <a class="header-image" [href]="listingPageHeader.image_link">
-            <img [src]="imageUrl(listingPageHeader.header_image).url()" class="com-w-full" />
+            <img [src]="imageUrl(listingPageHeader.header_image).url()" />
           </a>
         </ng-container>
         <ng-container *ngIf="!listingPageHeader?.image_link">
           <div class="header-image">
-            <img [src]="imageUrl(listingPageHeader.header_image).url()" class="com-w-full" />
+            <img [src]="imageUrl(listingPageHeader.header_image).url()" />
           </div>
         </ng-container>
       </div>
