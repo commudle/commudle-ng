@@ -27,12 +27,18 @@
         /> -->
       </div>
       <div class="com-w-2/3 md:com-w-full">
-        <img
-          *ngIf="this.homePageBannerImage"
-          alt="Homepage banner"
-          class="com-pointer-events-none com-w-full"
-          [src]="this.homePageBannerImage"
-        />
+        <div *ngIf="this.homePageBannerImage">
+          <ng-container *ngIf="banner?.image_link">
+            <a [href]="banner?.image_link">
+              <img alt="Homepage banner" class="com-w-full" [src]="this.homePageBannerImage" />
+            </a>
+          </ng-container>
+          <ng-container *ngIf="!banner?.image_link">
+            <div>
+              <img alt="Homepage banner" class="com-w-full" [src]="this.homePageBannerImage" />
+            </div>
+          </ng-container>
+        </div>
         <!--        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>-->
         <div *ngIf="!this.homePageBannerImage" #homepageAnimation></div>
       </div>
