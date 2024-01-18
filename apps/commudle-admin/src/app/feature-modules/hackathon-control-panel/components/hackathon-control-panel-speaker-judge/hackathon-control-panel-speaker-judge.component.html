@@ -3,10 +3,17 @@
   <nb-card-body>
     <form action="" [formGroup]="fetchSpeakerJudge">
       <div>
-        <label for="email">Enter Email</label>
+        <label for="email">Enter Email*</label>
         <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
       </div>
-      <button class="com-w-max" nbButton status="primary" type="submit" (click)="fetchSpeakerJudgeDetails()">
+      <button
+        [disabled]="fetchSpeakerJudge.invalid"
+        class="com-w-max"
+        nbButton
+        status="primary"
+        type="submit"
+        (click)="fetchSpeakerJudgeDetails()"
+      >
         Add Speaker
       </button>
     </form>
@@ -19,7 +26,35 @@
       <form [formGroup]="speakerRegistrationForm">
         <!-- profile image -->
         <div>
-          <label for="profile_image"></label>
+          <label for="profile_image_url">Profile Image*</label>
+          <div class="com-w-full" *ngIf="!imageUrl">
+            <div
+              class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
+            >
+              <input
+                (change)="onImageChange($event)"
+                type="file"
+                accept="image/*"
+                class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+              />
+              <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
+                <fa-icon [icon]="icons.faFileImage" class="com-text-5xl"></fa-icon>
+                <p>
+                  Drag file here
+                  <br />
+                  or<span class="com-text-primary-500"> BROWSE </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="imageUrl" class="image-preview">
+            <div (click)="removeBannerImage()" class="delete-image">
+              <button nbButton status="danger" outline size="small">Delete</button>
+            </div>
+            <div class="com-w-28 com-h-28 com-mx-auto">
+              <img class="com-w-full com-h-full com-object-contain" [src]="imageUrl" alt="" />
+            </div>
+          </div>
           <!-- <input placeholder="" type="text" nbInput fullWidth id="" formControlName /> -->
         </div>
 
@@ -69,7 +104,7 @@
         <!-- linkedin -->
         <div>
           <label for="linkedin">linkedin</label>
-          <input placeholder="Linkedin" type="text" nbInput fullWidth id="linkedin" formControlNam="linkedin" />
+          <input placeholder="Linkedin" type="text" nbInput fullWidth id="linkedin" formControlName="linkedin" />
         </div>
 
         <!-- website -->
@@ -79,7 +114,16 @@
         </div>
 
         <div>
-          <button type="submit" nbButton fullWidth status="primary">Save</button>
+          <button
+            [disabled]="speakerRegistrationForm.invalid || imageUrl.length === 0"
+            type="submit"
+            nbButton
+            fullWidth
+            status="primary"
+            (click)="createJudge()"
+          >
+            Save
+          </button>
         </div>
       </form>
     </nb-card-body>

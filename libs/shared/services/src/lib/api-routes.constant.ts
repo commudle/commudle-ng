@@ -489,6 +489,7 @@ export const API_ROUTES = {
     DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
     PROFILE_STATS: 'api/v2/users/profile_stats',
+    GET_USER_BY_EMAIL: 'api/v2/users/get_user_by_email',
   },
 
   SPEAKER_RESOURCES: {
@@ -793,6 +794,6 @@ export const API_ROUTES = {
     CREATE_PRIZE: 'api/v2/hackathons/create_prize', //POST
     INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
     INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
-    FETCH_USER: 'api/v2/hackathons/fetch_user_info', //GET
+    CREATE_JUDGE: 'api/v2/hackathons/create_judge', //POST
   },
 };
