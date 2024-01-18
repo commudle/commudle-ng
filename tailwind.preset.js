@@ -46,7 +46,7 @@ module.exports = {
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
         'Alice-Blue': '#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
-        'Bright-Gray': '#E4E9F2',
+        'Bright-Gray': '#E4E9F2', // 'Bright-Gray': 'var(--color-bright-gray)',
         'Brandeis-Blue': '#0074ED',
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
@@ -69,6 +69,9 @@ module.exports = {
         'Alice-Blue-Dark': '#EBF5FF',
         white: 'var(--color-white)',
         black: 'var(--color-black)',
+        'blue-50': 'var(--color-blue-50)',
+        'gray-900': 'var(--color-gray-900)',
+        'gray-50': 'var(--color-gray-50)',
 
         // 'Spiro-Disco': '#1ac7e340', //used only in profile-status-bar.component
         // 'Very-Light-Blue': '#536eff', //Used only in home-commumity.component
