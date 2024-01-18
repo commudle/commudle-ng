@@ -1,13 +1,14 @@
-<commudle-listing-pages-layout>
-  <div header></div>
-  <!-- <div one-column *ngIf="isMobileView"> -->
-  <!-- <div class="publish-community-button">
-      <a [routerLink]="['/pricing']" nbButton size="giant" class="button">
-        <nb-icon icon="plus"></nb-icon>
-        Start your community
-      </a>
-    </div> -->
-  <!-- <app-communities-featured></app-communities-featured>
+<div class="experts-page">
+  <commudle-listing-pages-layout>
+    <div header></div>
+    <!-- <div one-column *ngIf="isMobileView"> -->
+    <!-- <div class="apply-expert">
+        <a [routerLink]="['']" target="_blank" nbButton status="info" size="giant" class="button">
+          <nb-icon icon="plus"></nb-icon>
+          Start your community
+        </a>
+      </div> -->
+    <!-- <app-communities-featured></app-communities-featured>
     <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
     <div class="speakers">
       <commudle-public-home-list-events-speakers
@@ -19,27 +20,26 @@
     <commudle-public-home-list-speakers-content
       [parentType]="'communities'"
     ></commudle-public-home-list-speakers-content> -->
-  <!-- </div> -->
-  <!-- <div main-column *ngIf="!isMobileView"> -->
-  <!-- <app-communities-featured></app-communities-featured>
-    <app-communities-list></app-communities-list> -->
-  <!-- </div> -->
-  <div right-column>
-    <!-- <div class="publish-community-button">
-      <a [routerLink]="['/pricing']" target="_blank" nbButton size="giant" class="button">
-        <nb-icon icon="plus"></nb-icon>
-        Start your community
-      </a>
+    <!-- </div> -->
+    <div main-column *ngIf="!isMobileView">
+      <commudle-experts-featured></commudle-experts-featured>
     </div>
-    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <div class="speakers">
-      <commudle-public-home-list-events-speakers
+    <div right-column class="right-column">
+      <div class="apply-expert">
+        <a [routerLink]="['']" target="_blank" nbButton status="info" size="giant" class="button">
+          <nb-icon icon="plus"></nb-icon>
+          Start your community
+        </a>
+      </div>
+      <div class="speakers">
+        <commudle-public-home-list-events-speakers
+          [parentType]="'communities'"
+        ></commudle-public-home-list-events-speakers>
+      </div>
+      <commudle-public-home-list-speakers-content
         [parentType]="'communities'"
-      ></commudle-public-home-list-events-speakers>
+      ></commudle-public-home-list-speakers-content>
+      <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
     </div>
-    <commudle-public-home-list-speakers-content
-      [parentType]="'communities'"
-    ></commudle-public-home-list-speakers-content> -->
-  </div>
-</commudle-listing-pages-layout>
+  </commudle-listing-pages-layout>
+</div>

@@ -38,6 +38,7 @@ import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-c
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-experts-card/featured-experts-card.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,6 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
-
   ],
   exports: [
     EmailerComponent,
@@ -71,6 +71,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+    FeaturedExpertsCardComponent,
   ],
   imports: [
     CommonModule,
@@ -88,6 +89,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    FeaturedExpertsCardComponent,
     // Nebular
     NbRadioModule,
     NbSelectModule,
