@@ -26,17 +26,17 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
     private toastrService: ToastrService,
   ) {
     this.hackathonContactForm = this.fb.group({
-      website: '',
+      website: ['', this.urlValidator],
       email: ['', [Validators.required, Validators.email]],
       country_code: [91, Validators.required],
       phone_number: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
-      twitter: '',
-      facebook: '',
-      instagram: '',
-      linkedIn: '',
-      discord: '',
-      slack: '',
-      github: '',
+      twitter: ['', this.urlValidator],
+      facebook: ['', this.urlValidator],
+      instagram: ['', this.urlValidator],
+      linkedIn: ['', this.urlValidator],
+      discord: ['', this.urlValidator],
+      slack: ['', this.urlValidator],
+      github: ['', this.urlValidator],
     });
   }
 
@@ -45,6 +45,13 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
       this.hackathonSlug = params.get('hackathon_id');
       this.fetchHackathonContactDetails(params.get('hackathon_id'));
     });
+  }
+
+  urlValidator(control) {
+    if (control.value && !/^(http|https|www)/.test(control.value)) {
+      return { invalidUrl: true };
+    }
+    return null;
   }
 
   fetchHackathonContactDetails(hackathonSlug) {
