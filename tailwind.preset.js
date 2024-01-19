@@ -20,7 +20,7 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        gunmetal: '#2f2e41', //Change
+        gunmetal: 'var(--color-gunmetal)', // gunmetal: '#2f2e41', //Change
         'Silver-Sand': '#c4c4c4',
         'Azureish-White': '#dae0ff',
         'Very-Light-Blue': '#536eff',

@@ -16,7 +16,7 @@
       @apply md:com-w-[481px] com-w-full;
       nb-form-field {
         nb-icon {
-          @apply com-h-4 com-w-4 com-text-gunmetal/80;
+          @apply com-h-4 com-w-4 com-text-gunmetal com-opacity-80;
         }
 
         .communities-list-search-input {
