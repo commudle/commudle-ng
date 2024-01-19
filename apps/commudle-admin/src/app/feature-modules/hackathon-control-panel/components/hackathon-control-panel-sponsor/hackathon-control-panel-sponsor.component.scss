@@ -11,11 +11,9 @@
   form {
     @apply com-flex com-flex-col com-gap-3;
   }
-  nb-card-header,
-  nb-card-footer {
-    @apply com-flex com-justify-between;
-    fa-icon {
-      @apply com-cursor-pointer;
-    }
-  }
+}
+
+nb-card-header,
+nb-card-footer {
+  @apply com-flex com-justify-between;
 }

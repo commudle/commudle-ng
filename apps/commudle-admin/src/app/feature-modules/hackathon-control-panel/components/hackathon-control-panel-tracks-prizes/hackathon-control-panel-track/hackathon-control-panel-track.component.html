@@ -1,14 +1,14 @@
 <div (click)="openSponsorDialogBox(addTracksDialogBox)" class="add-track-button">
   <fa-icon [icon]="icons.faPlus"></fa-icon>
   <br />
-  <span>Add Tracks</span>
+  <span>Add Track</span>
 </div>
 
 <div class="hackathon-cards">
   <div *ngFor="let hackathonTrack of hackathonTracks; let i = index">
     <commudle-hackathon-track-card
       [hackathonTrack]="hackathonTrack"
-      (destroyTrackEvent)="destroyTrack($event, i)"
+      (destroyTrackEvent)="confirmDeleteDialogBox(deleteTrackDilaogBox, $event, i)"
       (editTrackEvent)="openSponsorDialogBox(addTracksDialogBox, $event, i)"
     ></commudle-hackathon-track-card>
   </div>
@@ -16,7 +16,12 @@
 
 <ng-template #addTracksDialogBox let-ref="dialogRef" let-data>
   <nb-card class="track-form">
-    <nb-card-header>New track</nb-card-header>
+    <nb-card-header>
+      <span> {{ data.track ? 'Edit Track' : 'New Track' }}</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
     <nb-card-body>
       <form [formGroup]="trackForm">
         <!-- name -->
@@ -87,5 +92,21 @@
         </div>
       </form>
     </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #deleteTrackDilaogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header>
+      <span>Confirm delete track</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete track?</nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="destroyTrack(data.trackId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>

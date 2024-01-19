@@ -11,7 +11,7 @@
     <div *ngFor="let sponsor of sponsors; let i = index">
       <commudle-hackathon-control-panel-sponsor-card
         [sponsor]="sponsor"
-        (destroySponsorEvent)="destroySponsor($event, i)"
+        (destroySponsorEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
       ></commudle-hackathon-control-panel-sponsor-card>
     </div>
   </nb-card-footer>
@@ -21,7 +21,9 @@
   <nb-card class="sponsor-form-dialog-box">
     <nb-card-header>
       <span>Add Sponsor</span>
-      <fa-icon (click)="ref.close(); sponsorForm.reset()" [icon]="icons.faXmark"></fa-icon>
+      <button nbButton ghost (click)="ref.close(); sponsorForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
     </nb-card-header>
     <nb-card-body>
       <form [formGroup]="sponsorForm">
@@ -145,6 +147,24 @@
         Save
       </button>
       <button nbButton status="danger" outline (click)="ref.close(); sponsorForm.reset()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #conformDeleteDialogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header>
+      <span>Confirm delete Sponsor</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete sponsor?</nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="destroySponsor(data.sponsorId, data.index); ref.close()">
+        Delete
+      </button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

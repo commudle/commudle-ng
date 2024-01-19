@@ -12,3 +12,8 @@
     @apply com-flex com-flex-col com-gap-3;
   }
 }
+
+nb-card-header,
+nb-card-footer {
+  @apply com-flex com-justify-between com-items-center;
+}

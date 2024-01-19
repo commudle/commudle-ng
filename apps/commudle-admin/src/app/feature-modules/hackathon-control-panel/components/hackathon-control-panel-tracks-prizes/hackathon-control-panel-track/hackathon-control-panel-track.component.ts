@@ -72,6 +72,12 @@ export class HackathonControlPanelTrackComponent implements OnInit {
     });
   }
 
+  confirmDeleteDialogBox(dialog, trackId, index) {
+    this.nbDialogService.open(dialog, {
+      context: { index: index, trackId: trackId },
+    });
+  }
+
   indexTracks(hackathonId) {
     this.hackathonService.indexTracks(hackathonId).subscribe((data: IHackathonTrack[]) => {
       this.hackathonTracks = data;

@@ -48,6 +48,12 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     this.nbDialogService.open(dialog);
   }
 
+  openConfirmDeleteDialogBox(dialog, sponsorId, index) {
+    this.nbDialogService.open(dialog, {
+      context: { index: index, sponsorId: sponsorId },
+    });
+  }
+
   indexSponsors(hackathonId) {
     this.hackathonService.indexSponsors(hackathonId).subscribe((data: ISponsor[]) => {
       this.sponsors = data;

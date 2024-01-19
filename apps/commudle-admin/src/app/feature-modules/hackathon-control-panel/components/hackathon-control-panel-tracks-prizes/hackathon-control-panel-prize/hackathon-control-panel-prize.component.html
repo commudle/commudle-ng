@@ -10,7 +10,12 @@
 
 <ng-template #addTracksDialogBox let-ref="dialogRef" let-data>
   <nb-card class="prize-form">
-    <nb-card-header>New Prize</nb-card-header>
+    <nb-card-header>
+      <span> {{ data.track ? 'Edit Prize' : 'New Prize' }}</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
     <nb-card-body>
       <form [formGroup]="prizeForm">
         <!-- name -->
