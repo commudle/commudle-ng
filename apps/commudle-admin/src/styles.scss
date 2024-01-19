@@ -122,12 +122,8 @@ input {
   }
 }
 
-.nb-theme-dark nb-card {
-  background-color: #1e1e1e;
-}
-
-// .nb-theme-default nb-card {
-//   background-color: #ffffff;
+// .com-dark nb-card {
+//   background-color: #1e1e1e;
 // }
 
 .nb-theme-default [nbInput].size-giant,
@@ -365,6 +361,10 @@ nb-option-list.search-autocomplete {
   z-index: 1051 !important;
 }
 
+.nb-theme-dark nb-card {
+  background-color: #1e1e1e;
+}
+
 :root {
   --color-white-light: #ffffff;
   --color-white-dark: #121212;
@@ -512,6 +512,9 @@ nb-option-list.search-autocomplete {
 }
 
 [data-theme='light'] {
+  // nb-card {
+  //   background-color: red;
+  // }
   --color-white: var(--color-white-light);
   --color-black: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-light);

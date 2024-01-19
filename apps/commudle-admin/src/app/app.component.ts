@@ -77,7 +77,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
-    this.toggleDarkMode();
+    // this.toggle();
   }
 
   ngAfterViewChecked(): void {
@@ -114,6 +114,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     });
     this.userTheme = localStorage.getItem('theme');
     this.systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
     if (this.userTheme === 'dark' || (!this.userTheme && this.systemTheme)) {
       this.darkModeService.toggleDarkMode(true);
     } else {
@@ -121,11 +122,11 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
-  toggleDarkMode(): void {
-    this.darkModeService.isDarkMode$.subscribe((darkMode) => {
-      this.isDarkMode = darkMode;
-    });
-    this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
-    this.darkModeService.toggleDarkMode(this.isDarkMode);
-  }
+  // toggle(): void {
+  //   this.darkModeService.isDarkMode$.subscribe((darkMode) => {
+  //     this.isDarkMode = darkMode;
+  //   });
+  //   this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
+  //   this.darkModeService.toggleDarkMode(this.isDarkMode);
+  // }
 }
