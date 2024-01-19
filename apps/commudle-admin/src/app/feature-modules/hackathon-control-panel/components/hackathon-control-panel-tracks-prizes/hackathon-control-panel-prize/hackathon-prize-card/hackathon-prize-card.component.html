@@ -5,8 +5,8 @@
         <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
       </div>
       <div class="action-buttons">
-        <button nbButton ghost status="primary">Edit</button>
-        <button nbButton ghost status="danger">Delete</button>
+        <button nbButton ghost status="primary" (click)="editPrize(hackathonPrize)">Edit</button>
+        <button nbButton ghost status="danger" (click)="deletePrize(hackathonPrize.id)">Delete</button>
       </div>
     </div>
     <div class="prize-details">

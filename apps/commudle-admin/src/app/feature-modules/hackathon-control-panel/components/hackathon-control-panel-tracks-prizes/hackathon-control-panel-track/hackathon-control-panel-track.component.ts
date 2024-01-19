@@ -63,7 +63,7 @@ export class HackathonControlPanelTrackComponent implements OnInit {
     if (track) {
       this.trackForm.patchValue({
         name: track.name,
-        describe: track.description,
+        description: track.description,
         problem_statement: track.problem_statement,
       });
     }

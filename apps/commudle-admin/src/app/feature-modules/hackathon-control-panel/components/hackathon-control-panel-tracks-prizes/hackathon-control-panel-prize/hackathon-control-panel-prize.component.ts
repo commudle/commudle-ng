@@ -85,14 +85,16 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
     });
   }
 
-  openSponsorDialogBox(dialog, prize?: IHackathonPrize, index?) {
-    // this.prizeForm.reset();
+  openPrizeFormDialogBox(dialog, prize?: IHackathonPrize, index?) {
+    this.prizeForm.reset();
     if (prize) {
       this.prizeForm.patchValue({
         name: prize.name,
-        describe: prize.description,
+        description: prize.description,
         no_of_winners: prize.no_of_winners,
         prize_amount: prize.prize_amount,
+        hackathon_track_id: prize.hackathon_track.id,
+        currency_type: prize.currency_type,
       });
     }
     this.prizeForm.patchValue({
@@ -104,13 +106,27 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
     });
   }
 
-  createPrize() {
-    this.hackathonService.createPrize(this.prizeForm.value).subscribe((data) => {
-      console.log('🚀 ~ HackathonControlPanelPrizeComponent ~ this.hackathonService.createPrize ~ data:', data);
+  confirmDeleteDialogBox(dialog, prizeId, index) {
+    this.nbDialogService.open(dialog, {
+      context: { index: index, prizeId: prizeId },
     });
   }
 
-  updatePrize(id, index) {
-    console.log('🚀 ~ HackathonControlPanelPrizeComponent ~ updatePrize ~ id, index:', id, index);
+  createPrize() {
+    this.hackathonService.createPrize(this.prizeForm.value).subscribe((data) => {
+      this.hackathonPrizes.unshift(data);
+    });
+  }
+
+  updatePrize(prizeId, index) {
+    this.hackathonService.updatePrize(this.prizeForm.value, prizeId).subscribe((data) => {
+      this.hackathonPrizes[index] = data;
+    });
+  }
+
+  deletePrize(prizeId, index) {
+    this.hackathonService.destroyPrize(prizeId).subscribe((data) => {
+      if (data) this.hackathonPrizes.splice(index, 1);
+    });
   }
 }

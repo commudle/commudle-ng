@@ -162,6 +162,21 @@ export class HackathonService {
     });
   }
 
+  updatePrize(formData, prizeId): Observable<IHackathonPrize> {
+    const params = new HttpParams().set('prize_id', prizeId);
+    return this.http.put<IHackathonPrize>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_PRIZE),
+      {
+        hackathon_track_prize: formData,
+      },
+      { params },
+    );
+  }
+
+  destroyPrize(prizeId): Observable<boolean> {
+    const params = new HttpParams().set('prize_id', prizeId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_PRIZE), { params });
+  }
   getPrizesByTrack(hackathonTrackId): Observable<IHackathonPrize[]> {
     const params = new HttpParams().set('hackathon_track_id', hackathonTrackId);
     return this.http.get<IHackathonPrize[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_TRACK_PRIZE), {

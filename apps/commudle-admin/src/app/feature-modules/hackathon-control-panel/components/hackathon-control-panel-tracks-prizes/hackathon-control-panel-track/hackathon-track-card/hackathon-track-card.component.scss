@@ -6,7 +6,8 @@
       @apply com-text-blue-600 com-text-lg com-font-bold com-flex com-justify-between com-px-6 com-pt-6;
     }
 
-    .description {
+    .description,
+    .problem-statement {
       @apply com-text-gray-500 com-px-6;
     }
   }
@@ -22,5 +23,11 @@
         @apply com-text-gray-500 com-px-6 com-pb-4;
       }
     }
+  }
+}
+.delete-prize-dialog {
+  nb-card-header,
+  nb-card-footer {
+    @apply com-flex com-justify-between com-items-center;
   }
 }

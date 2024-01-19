@@ -63,15 +63,12 @@
         <!-- Problem Statement -->
         <div>
           <label for="problem_statement">Problem Statement</label>
-          <input
+          <editor
             formControlName="problem_statement"
             id="problem_statement"
-            for="problem_statement"
-            type="text"
-            placeholder="Problem Statement"
-            nbInput
-            fullWidth
-          />
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+            [init]="tinyMCE"
+          ></editor>
           <commudle-alert
             *ngIf="trackForm.controls['problem_statement'].invalid && trackForm.controls['problem_statement'].touched"
             [error]="true"
