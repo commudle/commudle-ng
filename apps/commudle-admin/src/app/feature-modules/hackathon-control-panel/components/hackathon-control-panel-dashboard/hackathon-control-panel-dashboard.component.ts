@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -6,13 +6,15 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { faArrowLeft, faInfoCircle, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-dashboard',
   templateUrl: './hackathon-control-panel-dashboard.component.html',
   styleUrls: ['./hackathon-control-panel-dashboard.component.scss'],
 })
-export class HackathonControlPanelDashboardComponent implements OnInit {
+export class HackathonControlPanelDashboardComponent implements OnInit, OnDestroy {
   hackathon: IHackathon;
   community: ICommunity;
   subscriptions: Subscription[] = [];
@@ -24,9 +26,13 @@ export class HackathonControlPanelDashboardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
     private hackathonService: HackathonService,
+    private footerService: FooterService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
+    this.seoService.noIndex(true);
+    this.footerService.changeMiniFooterStatus(false);
     this.activatedRoute.params.subscribe((params) => {
       const communityId = params['community_id'];
       const hackathonId = params['hackathon_id'];
@@ -39,5 +45,10 @@ export class HackathonControlPanelDashboardComponent implements OnInit {
           this.hackathon = data;
         });
     });
+  }
+
+  ngOnDestroy() {
+    this.seoService.noIndex(false);
+    this.footerService.changeMiniFooterStatus(true);
   }
 }
