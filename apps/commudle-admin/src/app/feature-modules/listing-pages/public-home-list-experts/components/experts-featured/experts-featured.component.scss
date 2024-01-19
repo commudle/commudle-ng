@@ -4,4 +4,8 @@
   .featured-heading {
     @apply com-m-0 com-mb-6 com-text-2xl com-font-semibold com-text-black;
   }
+
+  .featured-experts {
+    @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6;
+  }
 }

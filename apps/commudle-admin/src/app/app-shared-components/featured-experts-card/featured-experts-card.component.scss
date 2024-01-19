@@ -1,0 +1,18 @@
+nb-card {
+  @apply com-m-0;
+
+  nb-card-body {
+    @apply com-p-0;
+
+    .expert-card {
+      @apply com-flex com-flex-col;
+
+      .expert-image {
+        @apply com-h-[274px];
+        img {
+          @apply com-w-full com-h-full;
+        }
+      }
+    }
+  }
+}

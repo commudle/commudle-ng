@@ -22,7 +22,7 @@ export class ExpertsHeaderComponent implements OnInit {
   }
 
   getHeaderText() {
-    this.cmsService.getDataBySlug('').subscribe((data) => {
+    this.cmsService.getDataBySlug('experts').subscribe((data) => {
       this.listingPageHeader = data;
       this.richText = this.cmsService.getHtmlFromBlock(data);
     });
