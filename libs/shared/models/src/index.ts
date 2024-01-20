@@ -17,3 +17,5 @@ export * from './lib/speaker-resource.model';
 export * from './lib/discount-code.model';
 export * from './lib/payment-detail.model';
 export * from './lib/stripe-account.model';
+export * from './lib/model-name.enum';
+export * from './lib/faq.model';

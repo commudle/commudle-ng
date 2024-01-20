@@ -1,0 +1,19 @@
+.faq-item {
+  @apply com-cursor-pointer;
+
+  .question {
+    @apply com-flex com-justify-between com-pb-1;
+
+    p {
+      @apply com-m-0 md:com-text-lg com-text-base com-text-gray-900;
+    }
+
+    fa-icon {
+      @apply md:com-text-lg com-text-base;
+    }
+  }
+
+  .answer {
+    @apply com-m-0 md:com-text-lg com-text-base com-font-normal com-text-gray-500;
+  }
+}

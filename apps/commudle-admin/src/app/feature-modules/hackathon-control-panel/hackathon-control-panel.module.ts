@@ -20,6 +20,8 @@ import { HackathonTrackCardComponent } from 'apps/commudle-admin/src/app/feature
 import { HackathonPrizeCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-tracks-prizes/hackathon-control-panel-prize/hackathon-prize-card/hackathon-prize-card.component';
 import { HackathonControlPanelSpeakerJudgeComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-speaker-judge/hackathon-control-panel-speaker-judge.component';
 import { HackathonNewFormComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-new-form/hackathon-new-form.component';
+import { HackathonControlPanelFaqsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-faqs/hackathon-control-panel-faqs.component';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { HackathonNewFormComponent } from 'apps/commudle-admin/src/app/feature-m
     HackathonPrizeCardComponent,
     HackathonControlPanelSpeakerJudgeComponent,
     HackathonNewFormComponent,
+    HackathonControlPanelFaqsComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +48,7 @@ import { HackathonNewFormComponent } from 'apps/commudle-admin/src/app/feature-m
     FormsModule,
     ReactiveFormsModule,
     EditorModule,
+    AppSharedComponentsModule,
 
     //components
     SidebarComponent,

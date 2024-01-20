@@ -5,7 +5,17 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
-import { faArrowLeft, faInfoCircle, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faPenToSquare,
+  faCircleInfo,
+  faLink,
+  faCalendarDays,
+  faAward,
+  faBook,
+  faSackDollar,
+  faMicrophone,
+} from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
 
@@ -21,6 +31,13 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
   icons = {
     faArrowLeft,
     faPenToSquare,
+    faCircleInfo,
+    faLink,
+    faCalendarDays,
+    faAward,
+    faMicrophone,
+    faBook,
+    faSackDollar,
   };
   constructor(
     private activatedRoute: ActivatedRoute,

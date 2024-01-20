@@ -1,0 +1,61 @@
+<nb-card>
+  <nb-card-header> FAQ'S </nb-card-header>
+  <nb-card-body>
+    <div (click)="openSponsorDialogBox(addFaqDialogBox)" class="add-faq-button">
+      <fa-icon [icon]="icons.faPlus"></fa-icon>
+      <br />
+      <span>Add FAQs</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer *ngIf="faqs && faqs.length > 0" class="faq-cards">
+    <div *ngFor="let faq of faqs">
+      <commudle-faq-card [faq]="faq"></commudle-faq-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #addFaqDialogBox let-data let-ref="dialogRef">
+  <nb-card class="sponsor-form-dialog-box">
+    <nb-card-header class="actions">
+      <span>Add FAQ</span>
+      <button nbButton ghost (click)="ref.close(); faqForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="faqForm">
+        <div>
+          <label for="question">Question*</label>
+          <input placeholder="question" nbInput fullWidth formControlName="question" type="text" />
+          <commudle-alert
+            *ngIf="
+              faqForm.controls['question'].touched &&
+              faqForm.controls['question'].invalid &&
+              faqForm.controls['question'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Question is required"
+          ></commudle-alert>
+        </div>
+
+        <div>
+          <label for="answer">Answer*</label>
+          <textarea placeholder="Answer" nbInput fullWidth formControlName="answer" type="text"></textarea>
+          <commudle-alert
+            *ngIf="
+              faqForm.controls['answer'].touched &&
+              faqForm.controls['answer'].invalid &&
+              faqForm.controls['answer'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Answer is required"
+          ></commudle-alert>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="createFaq(); ref.close()" [disabled]="faqForm.invalid">Save</button>
+      <button nbButton status="danger" outline (click)="ref.close(); faqForm.reset()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

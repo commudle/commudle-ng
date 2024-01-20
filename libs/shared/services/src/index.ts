@@ -17,3 +17,4 @@ export * from './lib/discount-codes-handler.service';
 export * from './lib/payment-setting.service';
 export * from './lib/event-ticket-order.service';
 export * from './lib/country-deatils.store';
+export * from './lib/faq.service';

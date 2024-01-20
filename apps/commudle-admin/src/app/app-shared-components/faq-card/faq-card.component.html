@@ -1,0 +1,9 @@
+<nb-card>
+  <nb-card-body (click)="toggleShowAnswers()" class="faq-item">
+    <div class="question">
+      <p>{{ faq.question }}</p>
+      <fa-icon [icon]="showAnswer ? icons.faMinus : icons.faAdd"></fa-icon>
+    </div>
+    <p class="answer" *ngIf="showAnswer">{{ faq.answer }}</p>
+  </nb-card-body>
+</nb-card>
