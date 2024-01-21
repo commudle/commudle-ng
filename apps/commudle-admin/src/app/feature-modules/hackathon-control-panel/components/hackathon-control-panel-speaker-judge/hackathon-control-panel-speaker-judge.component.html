@@ -8,7 +8,7 @@
       </div>
       <button
         [disabled]="fetchSpeakerJudge.invalid"
-        class="com-w-max"
+        class="com-w-max com-mt-3"
         nbButton
         status="primary"
         type="submit"
@@ -18,15 +18,30 @@
       </button>
     </form>
   </nb-card-body>
+  <nb-card-footer *ngIf="judges && judges.length > 0" class="judge-cards">
+    <div *ngFor="let judge of judges">
+      <commudle-hackathon-judge-card [judge]="judge"></commudle-hackathon-judge-card>
+    </div>
+  </nb-card-footer>
 </nb-card>
 
-<ng-template #speakerForm>
+<ng-template #speakerForm let-data let-ref="dialogRef">
   <nb-card class="speaker-form">
+    <nb-card-header>
+      <span> Add New Speaker</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon></button
+    ></nb-card-header>
     <nb-card-body>
       <form [formGroup]="speakerRegistrationForm">
         <!-- profile image -->
         <div>
-          <label for="profile_image_url">Profile Image*</label>
+          <div class="com-flex com-gap-4 com-items-start">
+            <label for="profile_image_url">Profile Image*</label>
+            <div *ngIf="imageUrl" (click)="removeBannerImage()" class="delete-image">
+              <button nbButton status="danger" outline size="small">Replace</button>
+            </div>
+          </div>
           <div class="com-w-full" *ngIf="!imageUrl">
             <div
               class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
@@ -48,9 +63,6 @@
             </div>
           </div>
           <div *ngIf="imageUrl" class="image-preview">
-            <div (click)="removeBannerImage()" class="delete-image">
-              <button nbButton status="danger" outline size="small">Delete</button>
-            </div>
             <div class="com-w-28 com-h-28 com-mx-auto">
               <img class="com-w-full com-h-full com-object-contain" [src]="imageUrl" alt="" />
             </div>
@@ -66,25 +78,31 @@
 
         <!-- about -->
         <div>
-          <label for="about">About</label>
-          <input placeholder="About" type="text" nbInput fullWidth id="about" formControlName="about" />
+          <label for="about">About*</label>
+          <editor
+            formControlName="about"
+            id="about"
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+            [init]="tinyMCE"
+          >
+          </editor>
         </div>
 
         <!-- email -->
         <div>
-          <label for="eamil">Email</label>
+          <label for="eamil">Email*</label>
           <input placeholder="Email" type="email" nbInput fullWidth id="email" formControlName="email" />
         </div>
 
         <!-- company -->
         <div>
-          <label for="company">Company</label>
+          <label for="company">Company*</label>
           <input placeholder="Company" type="text" nbInput fullWidth id="company" formControlName="company" />
         </div>
 
         <!-- designation -->
         <div>
-          <label for="designation">Designation</label>
+          <label for="designation">Designation*</label>
           <input
             placeholder="Designation"
             type="text"
@@ -112,20 +130,19 @@
           <label for="website">Website</label>
           <input placeholder="Website" type="text" nbInput fullWidth id="website" formControlName="website" />
         </div>
-
-        <div>
-          <button
-            [disabled]="speakerRegistrationForm.invalid || imageUrl.length === 0"
-            type="submit"
-            nbButton
-            fullWidth
-            status="primary"
-            (click)="createJudge()"
-          >
-            Save
-          </button>
-        </div>
       </form>
     </nb-card-body>
+    <nb-card-footer>
+      <button
+        [disabled]="speakerRegistrationForm.invalid || imageUrl.length === 0"
+        type="submit"
+        nbButton
+        fullWidth
+        status="primary"
+        (click)="createJudge(); ref.close()"
+      >
+        Save
+      </button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>

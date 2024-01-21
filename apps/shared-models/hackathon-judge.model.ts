@@ -10,5 +10,6 @@ export interface IHackathonJudge {
   twitter: string;
   website: string;
   designation: string;
+  username: string;
   profile_image?: IAttachedFile;
 }

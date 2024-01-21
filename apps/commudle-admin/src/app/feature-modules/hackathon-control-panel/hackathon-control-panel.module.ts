@@ -22,6 +22,7 @@ import { HackathonControlPanelSpeakerJudgeComponent } from 'apps/commudle-admin/
 import { HackathonNewFormComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-new-form/hackathon-new-form.component';
 import { HackathonControlPanelFaqsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-faqs/hackathon-control-panel-faqs.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-speaker-judge/hackathon-judge-card/hackathon-judge-card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     HackathonControlPanelSpeakerJudgeComponent,
     HackathonNewFormComponent,
     HackathonControlPanelFaqsComponent,
+    HackathonJudgeCardComponent,
   ],
   imports: [
     CommonModule,

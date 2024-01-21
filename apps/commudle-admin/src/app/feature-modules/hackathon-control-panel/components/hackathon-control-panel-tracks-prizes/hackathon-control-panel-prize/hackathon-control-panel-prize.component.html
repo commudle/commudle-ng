@@ -28,6 +28,34 @@
           <input type="text" id="name" nbInput fullWidth formControlName="name" placeholder="Name" />
         </div>
 
+        <!-- hackathon_track_id -->
+        <div>
+          <label for="hackathon_track_id">Select Track</label>
+          <br />
+          <select
+            class="!com-w-full"
+            formControlName="hackathon_track_id"
+            name="hackathon_track_id"
+            id="hackathon_track_id"
+          >
+            <option selected disabled value="">Select Track</option>
+            <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
+          </select>
+        </div>
+
+        <!-- prize_amount -->
+        <div>
+          <label for="prize_amount">Prize Amount*</label>
+          <div class="prize-amount">
+            <select name="currency_type" id="currency_type" formControlName="currency_type">
+              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.symbol">
+                {{ countryDetail.symbol }}({{ countryDetail.currency }})
+              </option>
+            </select>
+            <input type="text" id="prize_amount" nbInput fullWidth formControlName="prize_amount" placeholder="100" />
+          </div>
+        </div>
+
         <!-- no_of_winners -->
         <div>
           <label for="no_of_winners">Number of winners*</label>
@@ -53,32 +81,11 @@
           </editor>
         </div>
 
-        <!-- prize_amount -->
-        <div>
-          <label for="prize_amount">Prize Amount*</label>
-          <div class="prize-amount">
-            <select name="currency_type" id="currency_type" formControlName="currency_type">
-              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.symbol">
-                {{ countryDetail.symbol }}({{ countryDetail.currency }})
-              </option>
-            </select>
-            <input type="text" id="prize_amount" nbInput fullWidth formControlName="prize_amount" placeholder="100" />
-          </div>
-        </div>
-
         <!-- order -->
-        <div>
+        <!-- <div>
           <label for="order">Order*</label>
           <input type="number" id="order" nbInput fullWidth formControlName="order" placeholder="Order" />
-        </div>
-
-        <!-- hackathon_track_id -->
-        <div>
-          <label for="hackathon_track_id">Select Track</label>
-          <select formControlName="hackathon_track_id" name="hackathon_track_id" id="hackathon_track_id">
-            <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
-          </select>
-        </div>
+        </div> -->
 
         <div>
           <button

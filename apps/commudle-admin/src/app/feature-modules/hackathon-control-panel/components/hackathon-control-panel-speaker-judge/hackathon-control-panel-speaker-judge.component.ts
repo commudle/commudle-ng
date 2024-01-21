@@ -6,7 +6,8 @@ import { NbDialogService } from '@commudle/theme';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
-import { faFileImage } from '@fortawesome/free-solid-svg-icons';
+import { faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'commudle-hackathon-control-panel-speaker-judge',
   templateUrl: './hackathon-control-panel-speaker-judge.component.html',
@@ -17,17 +18,35 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   speakerRegistrationForm: FormGroup;
   imageUrl: string;
   imageBlob: Blob;
-  judge: IHackathonJudge;
+  judges: IHackathonJudge[];
   icons = {
     faFileImage,
+    faXmark,
   };
+  hackathonSlug = '';
   @ViewChild('speakerForm', { static: true }) speakerFormDialog: TemplateRef<any>;
+
+  tinyMCE = {
+    min_height: 200,
+    menubar: false,
+    convert_urls: false,
+    placeholder: 'Write description for hackathon track',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    plugins:
+      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
+    toolbar:
+      'bold italic backcolor |  emoticons  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+    default_link_target: '_blank',
+    branding: false,
+  };
   constructor(
     private fb: FormBuilder,
     private hackathonService: HackathonService,
     private dialogService: NbDialogService,
     private appUsersService: AppUsersService,
     private http: HttpClient,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.fetchSpeakerJudge = this.fb.group({
       email: ['', Validators.required],
@@ -39,13 +58,25 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       email: ['', Validators.required],
       company: ['', Validators.required],
       designation: ['', Validators.required],
+      username: ['', Validators.required],
       twitter: '',
       linkedin: '',
       website: '',
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.parent.parent.paramMap.subscribe((params) => {
+      this.hackathonSlug = params.get('hackathon_id');
+      this.indexJudges(params.get('hackathon_id'));
+    });
+  }
+
+  indexJudges(hackathonId) {
+    this.hackathonService.indexJudge(hackathonId).subscribe((data: IHackathonJudge[]) => {
+      this.judges = data;
+    });
+  }
 
   fetchSpeakerJudgeDetails() {
     this.appUsersService.getProfileByEmail(this.fetchSpeakerJudge.get('email').value).subscribe((data: IUser) => {
@@ -63,6 +94,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
           twitter: data.twitter,
           linkedin: data.linkedin,
           website: data.personal_website,
+          username: data.username,
         });
       }
       this.dialogService.open(this.speakerFormDialog, { context: 'this is some additional data passed to dialog' });
@@ -89,8 +121,8 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       formData.append('profile_image', this.imageBlob);
     }
 
-    this.hackathonService.createJudge(formData, 4).subscribe((data: IHackathonJudge) => {
-      this.judge = data;
+    this.hackathonService.createJudge(formData, this.hackathonSlug).subscribe((data: IHackathonJudge) => {
+      this.judges.unshift(data);
     });
   }
 

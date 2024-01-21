@@ -8,6 +8,10 @@
     @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
   }
 
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+  }
+
   .prize-amount {
     @apply com-flex com-gap-2;
   }

@@ -1,0 +1,34 @@
+a {
+  @apply com-no-underline com-text-inherit;
+}
+nb-card {
+  @apply com-cursor-pointer hover:com-shadow-md;
+  .image-name {
+    @apply com-flex com-gap-4;
+    .image {
+      @apply com-w-20 com-h-20 com-border com-rounded com-border-solid com-border-Bright-Gray;
+      img {
+        @apply com-w-full com-h-full com-object-contain;
+      }
+    }
+    .name {
+      @apply com-text-lg com-font-semibold;
+    }
+  }
+  .designation,
+  .company,
+  .twitter,
+  .linkedin {
+    @apply com-py-2;
+    .name {
+      @apply com-text-gray-500 com-text-sm;
+    }
+  }
+
+  .designation,
+  .company {
+    .value {
+      @apply com-text-slate-800 com-text-sm;
+    }
+  }
+}

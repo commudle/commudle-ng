@@ -177,6 +177,7 @@ export class HackathonService {
     const params = new HttpParams().set('prize_id', prizeId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_PRIZE), { params });
   }
+
   getPrizesByTrack(hackathonTrackId): Observable<IHackathonPrize[]> {
     const params = new HttpParams().set('hackathon_track_id', hackathonTrackId);
     return this.http.get<IHackathonPrize[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_TRACK_PRIZE), {
@@ -201,5 +202,12 @@ export class HackathonService {
       formData,
       { params },
     );
+  }
+
+  indexJudge(hackathonId): Observable<IHackathonJudge[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IHackathonJudge[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_JUDGES), {
+      params,
+    });
   }
 }
