@@ -13,7 +13,7 @@ export class BadgeComponent implements OnInit {
   @Input() text;
   @Input() fontSize; //can be 'small or regular'
   @Input() color = 'com-bg-Bright-Gray';
-  @Input() fontColor = 'com-text-white';
+  @Input() fontColor = 'com-text-tWhite';
   @Input() nbIcon;
   @Input() dotMode;
   @Input() position;

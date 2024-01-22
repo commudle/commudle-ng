@@ -85,12 +85,12 @@
 
       .prev-btn,
       .next-btn {
-        @apply com-bg-Yankees-Blue com-text-white com-flex-shrink-0;
+        @apply com-bg-Yankees-Blue com-text-tWhite com-flex-shrink-0;
         flex: 0 0 20%;
       }
 
       select {
-        @apply com-w-full com-p-1 com-rounded-[4px] com-bg-Yankees-Blue com-text-white com-font-medium;
+        @apply com-w-full com-p-1 com-rounded-[4px] com-bg-Yankees-Blue com-text-tWhite com-font-medium;
       }
     }
   }

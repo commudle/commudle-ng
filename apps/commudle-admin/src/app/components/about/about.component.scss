@@ -89,11 +89,11 @@ a {
           div {
             @apply com-max-w-lg com-mx-auto com-my-8;
             .title {
-              @apply com-text-3xl com-font-bold sm:com-text-4xl com-text-white;
+              @apply com-text-3xl com-font-bold sm:com-text-4xl com-text-tWhite;
             }
 
             .description {
-              @apply com-text-sm com-text-white com-my-2;
+              @apply com-text-sm com-text-tWhite com-my-2;
             }
           }
         }

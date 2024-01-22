@@ -68,6 +68,7 @@ module.exports = {
         'Catalina-Blue': 'var(--color-catalina-blue)', // 'Catalina-Blue': '#022C7D',
         'Alice-Blue-Dark': '#EBF5FF',
         white: 'var(--color-white)',
+        tWhite: 'var(--color-twhite)',
         black: 'var(--color-black)',
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',

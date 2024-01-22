@@ -32,7 +32,7 @@
   @apply com-relative;
 
   p {
-    @apply com-absolute com-m-0 com-tracking-wider com-text-white com-px-2 com-w-max com-font-extrabold com-rounded-md;
+    @apply com-absolute com-m-0 com-tracking-wider com-text-tWhite com-px-2 com-w-max com-font-extrabold com-rounded-md;
   }
 
   p.work {
@@ -61,7 +61,7 @@
 }
 
 .tags {
-  @apply com-absolute com-m-0 com-tracking-wider com-text-white com-px-1 com-w-max com-h-max com-font-extrabold com-rounded-md;
+  @apply com-absolute com-m-0 com-tracking-wider com-text-tWhite com-px-1 com-w-max com-h-max com-font-extrabold com-rounded-md;
 }
 
 .large {

@@ -516,6 +516,7 @@ nb-option-list.search-autocomplete {
   //   background-color: red;
   // }
   --color-white: var(--color-white-light);
+  --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-light);
   --color-gray-900: var(--color-gray-900-light);
@@ -587,6 +588,7 @@ nb-option-list.search-autocomplete {
 
 [data-theme='dark'] {
   --color-white: var(--color-white-dark);
+  --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-dark);
   --color-blue-50: var(--color-blue-50-dark);
   --color-gray-900: var(--color-gray-900-dark);
