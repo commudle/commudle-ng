@@ -2,9 +2,10 @@
   @apply md:com-max-h-[386px] com-max-h-[520px];
 
   .background {
-    @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
+    @apply com-m-0 com-p-0 com-w-full com-h-full;
 
     .base-layout {
+      @apply com-min-h-0;
       .content {
         @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col-reverse;
 
@@ -12,18 +13,18 @@
           @apply com-flex com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6 md:com-w-[855px] md:com-h-[298px] com-w-full com-h-full;
 
           .heading {
-            @apply md:com-text-4xl com-text-2xl com-font-bold com-mt-0 com-mb-4 com-text-white;
+            @apply md:com-text-5xl com-text-2xl com-font-bold com-mt-0 com-mb-4 com-text-blue-500;
           }
 
           .sub-heading {
-            @apply md:com-text-lg com-text-base com-font-normal com-m-0 com-text-white md:com-mr-72px com-mx-0;
+            @apply md:com-text-xl com-text-base com-font-medium com-m-0 com-text-gray-900 md:com-mr-72px com-mx-0;
           }
 
           .content {
             @apply com-hidden md:com-flex;
             ::ng-deep {
               p {
-                @apply com-text-white;
+                @apply com-text-gray-900 com-font-semibold;
                 font-size: initial;
               }
             }
@@ -31,7 +32,12 @@
         }
 
         .header-image {
-          @apply com-flex md:com-h-[386px] com-h-[300px] com-overflow-hidden;
+          // com-w-[250px]
+          @apply com-flex com-items-center com-m-0 md:com-h-auto com-h-[304px] com-w-auto com-mb-4;
+
+          img {
+            @apply com-w-full com-h-full;
+          }
         }
       }
     }

@@ -25,6 +25,7 @@ export class ExpertsHeaderComponent implements OnInit {
     this.cmsService.getDataBySlug('experts').subscribe((data) => {
       this.listingPageHeader = data;
       this.richText = this.cmsService.getHtmlFromBlock(data);
+      console.log(this.richText);
     });
   }
 }

@@ -10,8 +10,12 @@ nb-card {
       .expert-image {
         @apply com-h-[274px];
         img {
-          @apply com-w-full com-h-full;
+          @apply com-w-full com-h-full com-rounded-t-[10px];
         }
+      }
+
+      .expert-name {
+        @apply com-text-base com-font-medium com-text-black com-m-0 com-mb-1;
       }
     }
   }
