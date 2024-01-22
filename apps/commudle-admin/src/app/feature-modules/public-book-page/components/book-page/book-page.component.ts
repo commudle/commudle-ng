@@ -56,21 +56,21 @@ export class BookPageComponent implements OnInit, OnDestroy {
   };
 
   questions = [
-    'Do I need to purchase any other platform when I setup a Community on Commudle?',
-    'How many Communities can I host on Commudle?',
-    "I'm looking to build a career in DevRel, how can Commudle be useful in that?",
-    'I want to display activities from Commudle on my website, is it possible?',
-    'Will you help me migrate from other platforms?',
-    'I lead a Design Community, is Commudle for me?',
+    'Who is this handbook for?',
+    'What is the authenticity of this book?',
+    'Who has written this hand book?',
+    'Will this book help me write a proposal or a business plan to build my developer communities?',
+    'Is this book focused on ROI from developer communities?',
+    'Will this book keep getting more updates? Can I contribute?',
   ];
 
   answers = [
-    "We don't think so, the Developer Communities on Commudle are able to manage all their activities here.",
-    "You can host your complete Developer Ecosystem with 100's of Communities on Commudle. We have an organization page too. You have access to all the data and stats you need.",
-    "As a DevRel, it's important to have an experience of building and growing your own Developer Community. Some folks are at leading DevRel positions who started by building their own Community here.",
-    "Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of your communities' activities on your own web page.",
-    "Yes! And it's very easy.",
-    'Absolutely, a few Design Communities are already using Commudle.',
+    "This is a guide for any business which is selling to software developers. This includes devtools, developer platforms, edtech and blockchain domains. Communities are essential for your company's growth and this book tells you how to build them for a long term.",
+    'This book has real examples collected from people who have built and scaled developer programs, communities and ecosystems globally. This includes leaders from some of the largest developer communities, startups, enterprises like Google, Microsoft, Amazon, Twilio, Github, LambdaTest, etc. For confidentiality reasons, we kept their names as private.',
+    'This handbook is written by Arpan Garg, a founder at Commudle under the guidance of Shrinath V, a renowned product strategy expert. With support from Apra Sahney, Co-Founder at Commudle.',
+    'Yes, we have also included a sample template for the same',
+    'We help you decide the right ROI at the right stage in this book.',
+    "Yes! That's why we are making it openly available for everyone. You can choose to download a pdf or read it on Commudle itself. To contribute, you can add examples or suggest edits by writing an email to arpan(at)commudle(dot)com.",
   ];
 
   ngOnInit(): void {

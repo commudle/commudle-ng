@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IPageInfo } from '@commudle/shared-models';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
@@ -16,7 +17,8 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   communityGroup: ICommunityGroup;
 
-  isLoading = true;
+  isLoading = false;
+  pageInfo: IPageInfo;
 
   constructor(
     private communityGroupsService: CommunityGroupsService,
@@ -39,11 +41,15 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   }
 
   getChannels() {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.communityGroupsService.communityChannels(this.communityGroup.slug).subscribe((data) => {
-        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        this.isLoading = false;
-      }),
+      this.communityGroupsService
+        .communityChannels(this.communityGroup.slug, this.pageInfo?.end_cursor)
+        .subscribe((data) => {
+          this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.isLoading = false;
+          this.pageInfo = data.page_info;
+        }),
     );
   }
 

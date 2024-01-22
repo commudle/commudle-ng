@@ -100,8 +100,11 @@ export const staticAssets = {
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK1diQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--eb644bdd5599f5dc3cfeedd07eadd43cebbd7a65/Pair%20programming-bro.svg',
 
   community_leaders:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNE9jQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0896c5576d66b57118117c2325d217351ca12a06/Learn%20from%20veterans%20of%20community.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMEs4QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0bd67a0db811221944361763b7edae497200de3d/Community%20Image.png',
 
   devrel_ecosystem_blueprint:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeXkzQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--22630c366ec0814f85c039c90cf600a75b9ea9a5/Book%20Thick%20Cover%20(1)%202.png',
+
+  credit:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMEc4QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c960cf51544197333114e844a7c7fdbff1eebffe/credit%20framework.png',
 };

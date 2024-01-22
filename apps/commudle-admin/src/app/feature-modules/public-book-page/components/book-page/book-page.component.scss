@@ -25,7 +25,7 @@
       @apply com-flex com-flex-col md:com-max-w-[614px] com-max-w-full com-m-0 md:com-mr-12 com-mr-0;
 
       .heading-power-of-communities {
-        @apply com-m-0 md:com-text-[40px] com-text-3xl com-font-semibold com-text-white;
+        @apply com-m-0 md:com-text-[40px] com-text-3xl com-font-semibold com-text-white com-leading-[46px];
       }
 
       .subheading-power-of-communities {
@@ -203,5 +203,12 @@
 
   .faq {
     @apply com-m-0 com-p-0 com-mt-20 com-pb-5;
+  }
+}
+
+.credit {
+  @apply md:com-h-[674px] com-h-full com-w-full md:com-mt-10 com-m-0 com-mt-0;
+  img {
+    @apply com-h-auto com-w-full com-object-cover;
   }
 }
