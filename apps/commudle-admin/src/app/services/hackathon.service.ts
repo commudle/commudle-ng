@@ -204,6 +204,20 @@ export class HackathonService {
     );
   }
 
+  updateJudge(formData, judgeId): Observable<IHackathonJudge> {
+    const params = new HttpParams().set('hackathon_judge_id', judgeId);
+    return this.http.put<IHackathonJudge>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_JUDGE),
+      formData,
+      { params },
+    );
+  }
+
+  destroyJudge(judgeId): Observable<boolean> {
+    const params = new HttpParams().set('hackathon_judge_id', judgeId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_JUDGE), { params });
+  }
+
   indexJudge(hackathonId): Observable<IHackathonJudge[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonJudge[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_JUDGES), {

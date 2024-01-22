@@ -24,7 +24,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     faXmark,
   };
   hackathonSlug = '';
-  @ViewChild('speakerForm', { static: true }) speakerFormDialog: TemplateRef<any>;
+  @ViewChild('judgeForm', { static: true }) judgeFormDialog: TemplateRef<any>;
 
   tinyMCE = {
     min_height: 200,
@@ -91,14 +91,33 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
           about: data.about_me,
           email: data.email,
           designation: data.designation,
-          twitter: data.twitter,
-          linkedin: data.linkedin,
-          website: data.personal_website,
+          twitter: data.twitter ? data.twitter : '',
+          linkedin: data.linkedin ? data.linkedin : '',
+          website: data.personal_website ? data.personal_website : '',
           username: data.username,
         });
       }
-      this.dialogService.open(this.speakerFormDialog, { context: 'this is some additional data passed to dialog' });
+      this.dialogService.open(this.judgeFormDialog);
       this.fetchSpeakerJudge.reset();
+    });
+  }
+
+  openEditJudgeDialogBox(dialog, judge: IHackathonJudge, index) {
+    this.speakerRegistrationForm.patchValue({
+      name: judge.name,
+      about: judge.about,
+      email: judge.email,
+      designation: judge.designation,
+      twitter: judge.twitter ? judge.twitter : '',
+      linkedin: judge.linkedin ? judge.linkedin : '',
+      website: judge.website ? judge.website : '',
+      username: judge.username,
+      company: judge.company,
+    });
+    this.imageUrl = judge.profile_image?.url;
+
+    this.dialogService.open(dialog, {
+      context: { index: index, judge: judge },
     });
   }
 
@@ -143,8 +162,38 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     }
   }
 
+  updateJudge(JudgeId, index) {
+    const formData = new FormData();
+    const formValue: Record<string, string | Blob> = this.speakerRegistrationForm.value;
+
+    // Append form values to formData
+    Object.entries(formValue).forEach(([key, value]) => {
+      formData.append(`hackathon_judge[${key}]`, value);
+    });
+
+    if (this.imageUrl.length > 0) {
+      formData.append('profile_image', this.imageBlob);
+    }
+
+    this.hackathonService.updateJudge(formData, JudgeId).subscribe((data: IHackathonJudge) => {
+      this.judges[index] = data;
+    });
+  }
+
   removeBannerImage() {
     this.imageUrl = '';
     this.imageBlob = null;
+  }
+
+  confirmDeleteDialogBox(dialog, judgeId, index) {
+    this.dialogService.open(dialog, {
+      context: { index: index, judgeId: judgeId },
+    });
+  }
+
+  destroyJudge(JudgeId, index) {
+    this.hackathonService.destroyJudge(JudgeId).subscribe((data) => {
+      if (data) this.judges.splice(index, 1);
+    });
   }
 }

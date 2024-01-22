@@ -797,7 +797,9 @@ export const API_ROUTES = {
     INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
     INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
     CREATE_JUDGE: 'api/v2/hackathons/create_judge', //POST
+    UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
+    DESTROY_JUDGE: 'api/v2/hackathons/destroy_judge', //DELETE
   },
 
   FAQ: {
