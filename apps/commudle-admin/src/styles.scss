@@ -381,6 +381,9 @@ nb-option-list.search-autocomplete {
   --color-gray-50-light: #f9fafb;
   --color-gray-50-dark: #121212;
 
+  --color-gray-500-light: #6b7280;
+  --color-gray-500-dark: #ffffff;
+
   --color-spiro-disco-light: #1ac7e3;
   --color-spiro-disco-dark: #1a1a1a;
 
@@ -521,6 +524,7 @@ nb-option-list.search-autocomplete {
   --color-blue-50: var(--color-blue-50-light);
   --color-gray-900: var(--color-gray-900-light);
   --color-gray-50: var(--color-gray-50-light);
+  --color-gray-500: var(--color-gray-500-light);
   --color-spiro-disco: var(--color-spiro-disco-light);
   // --color-brilliant-azure: var(--color-brilliant-azure-light);
   --color-caribbean-green: var(--color-caribbean-green-light);
@@ -593,6 +597,7 @@ nb-option-list.search-autocomplete {
   --color-blue-50: var(--color-blue-50-dark);
   --color-gray-900: var(--color-gray-900-dark);
   --color-gray-50: var(--color-gray-50-dark);
+  --color-gray-500: var(--color-gray-500-dark);
   --color-spiro-disco: var(--color-spiro-disco-dark);
   // --color-brilliant-azure: var(--color-brilliant-azure-dark);
   --color-caribbean-green: var(--color-caribbean-green-dark);

@@ -73,6 +73,7 @@ module.exports = {
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',
         'gray-50': 'var(--color-gray-50)',
+        'gray-500': 'var(--color-gray-500)',
 
         // 'Spiro-Disco': '#1ac7e340', //used only in profile-status-bar.component
         // 'Very-Light-Blue': '#536eff', //Used only in home-commumity.component
