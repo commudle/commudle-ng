@@ -124,8 +124,11 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
         identifier: this.user.username,
         description: this.user.about_me,
         image: this.user.photo.url,
-        dateCreated: '2019-12-23T12:34:00-05:00',
+        dateCreated: this.user.created_at,
         sameAs: socialMediaLinks.map((links) => links),
+        gender: this.user.gender,
+        jobTitle: this.user.designation,
+        address: this.user.location,
       },
     });
   }

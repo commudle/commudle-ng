@@ -34,6 +34,7 @@ import { UserProfileComponent } from '../../app-shared-components/user-profile/u
 import { FeaturedProjectsComponent } from '../../app-shared-components/featured-projects/featured-projects.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
+import { FirstSigninComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/first-signin/first-signin.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/ap
     HomepageExpertsComponent,
     HomepageAboutComponent,
     HomepageDashboardComponent,
+    FirstSigninComponent,
   ],
   imports: [
     CommonModule,
