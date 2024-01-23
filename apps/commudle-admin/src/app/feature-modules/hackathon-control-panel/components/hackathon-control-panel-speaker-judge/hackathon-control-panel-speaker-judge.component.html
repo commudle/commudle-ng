@@ -31,7 +31,7 @@
 
 <ng-template #judgeForm let-data let-ref="dialogRef">
   <nb-card class="speaker-form">
-    <nb-card-header>
+    <nb-card-header class="actions">
       <span> Add New Speaker</span>
       <button nbButton ghost (click)="ref.close()">
         <fa-icon [icon]="icons.faXmark"></fa-icon></button
@@ -143,9 +143,9 @@
         nbButton
         fullWidth
         status="primary"
-        (click)="data.judge.id ? updateJudge(data.judge.id, data.index) : createJudge(); ref.close()"
+        (click)="data?.judge ? updateJudge(data.judge.id, data.index) : createJudge(); ref.close()"
       >
-        {{ data.judge.id ? 'Update' : 'Save' }}
+        {{ data?.judge ? 'Update' : 'Save' }}
       </button>
     </nb-card-footer>
   </nb-card>
@@ -153,14 +153,14 @@
 
 <ng-template #deleteJudgeDilaogBox let-ref="dialogRef" let-data>
   <nb-card>
-    <nb-card-header>
+    <nb-card-header class="actions">
       <span>Confirm delete Judge</span>
       <button nbButton ghost (click)="ref.close()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
     <nb-card-body>Are you sure, you want to delete Judge?</nb-card-body>
-    <nb-card-footer>
+    <nb-card-footer class="actions">
       <button nbButton status="primary" (click)="destroyJudge(data.judgeId, data.index); ref.close()">Delete</button>
       <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
     </nb-card-footer>

@@ -9,12 +9,12 @@
       }
     }
   }
-
-  nb-card-header,
-  nb-card-footer {
-    @apply com-flex com-justify-between com-items-center;
-  }
 }
+
+.actions {
+  @apply com-flex com-justify-between com-items-center;
+}
+
 .judge-cards {
   @apply com-grid com-grid-cols-3 com-gap-x-5 com-bg-gray-200;
 }
