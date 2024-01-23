@@ -1,12 +1,12 @@
 .track-details {
   @apply com-flex com-justify-between com-items-center;
-  .track-name {
-    @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs;
+  .name {
+    @apply com-text-slate-800 com-text-lg com-font-semibold;
   }
 }
 .prize-details {
-  .name {
-    @apply com-text-slate-800 com-text-lg com-font-semibold;
+  .track-name {
+    @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
   }
 
   .prize {

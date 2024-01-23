@@ -4,7 +4,7 @@ import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
-import { ISponsor } from 'apps/shared-models/sponsor.model';
+import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
@@ -107,18 +107,23 @@ export class HackathonService {
     );
   }
 
-  createSponsor(sponsor, hackathonId): Observable<ISponsor> {
+  createSponsor(sponsor, hackathonId): Observable<IHackathonSponsor> {
     sponsor.append('hackathon_id', hackathonId);
-    return this.http.post<ISponsor>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR), sponsor);
+    return this.http.post<IHackathonSponsor>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR),
+      sponsor,
+    );
   }
 
-  indexSponsors(hackathonId): Observable<ISponsor[]> {
+  indexSponsors(hackathonId): Observable<IHackathonSponsor[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<ISponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), { params });
+    return this.http.get<IHackathonSponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), {
+      params,
+    });
   }
 
   destroySponsor(sponsorId): Observable<boolean> {
-    const params = new HttpParams().set('sponsor_id', sponsorId);
+    const params = new HttpParams().set('hackathon_sponsor_id', sponsorId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.DESTROY_SPONSOR), { params });
   }
 

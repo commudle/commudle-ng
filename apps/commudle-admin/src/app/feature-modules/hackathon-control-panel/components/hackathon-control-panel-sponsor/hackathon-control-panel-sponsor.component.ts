@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { ISponsor } from 'apps/shared-models/sponsor.model';
+import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 @Component({
   selector: 'commudle-hackathon-control-panel-sponsor',
   templateUrl: './hackathon-control-panel-sponsor.component.html',
@@ -21,7 +21,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
 
   imagePreview;
 
-  sponsors: ISponsor[];
+  hackathonSponsors: IHackathonSponsor[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private nbDialogService: NbDialogService,
@@ -55,8 +55,8 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
   }
 
   indexSponsors(hackathonId) {
-    this.hackathonService.indexSponsors(hackathonId).subscribe((data: ISponsor[]) => {
-      this.sponsors = data;
+    this.hackathonService.indexSponsors(hackathonId).subscribe((data: IHackathonSponsor[]) => {
+      this.hackathonSponsors = data;
     });
   }
 
@@ -99,14 +99,14 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
       }
     });
     this.hackathonService.createSponsor(formData, this.hackathonSlug).subscribe((data) => {
-      if (data) this.sponsors.unshift(data);
+      if (data) this.hackathonSponsors.unshift(data);
       this.sponsorForm.reset();
     });
   }
 
-  destroySponsor(sponsorId, index) {
-    this.hackathonService.destroySponsor(sponsorId).subscribe((data) => {
-      if (data) this.sponsors.splice(index, 1);
+  destroySponsor(sponsor, index) {
+    this.hackathonService.destroySponsor(this.hackathonSponsors[index].id).subscribe((data) => {
+      if (data) this.hackathonSponsors.splice(index, 1);
     });
   }
 }

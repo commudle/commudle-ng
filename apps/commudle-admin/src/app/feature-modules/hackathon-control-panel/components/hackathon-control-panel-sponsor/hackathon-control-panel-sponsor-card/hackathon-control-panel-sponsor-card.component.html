@@ -7,9 +7,9 @@
       <div class="name-website">
         <div class="name">
           <span>{{ sponsor.name }}</span>
-          <fa-icon (click)="destroySponsor(sponsor.id)" [icon]="faCircleXmark"></fa-icon>
+          <fa-icon (click)="destroySponsor(sponsor)" [icon]="faCircleXmark"></fa-icon>
         </div>
-        <a (click)="redirectTo(sponsor.link)" class="website">{{ sponsor.link }}</a>
+        <a [href]="sponsor.link" target="_blank" class="website">{{ sponsor.link }}</a>
       </div>
     </div>
     <div class="description">{{ sponsor.description }}</div>

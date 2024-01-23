@@ -29,8 +29,8 @@
           </div>
         </div>
         <div class="prize">
-          {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }},
-          {{ hackathonPrize.no_of_winners }} Winners
+          {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
+          {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}
         </div>
       </div>
     </div>

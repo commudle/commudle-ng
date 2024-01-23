@@ -17,6 +17,10 @@
   }
 }
 
+.hackathon-prize-cards {
+  @apply com-grid com-grid-cols-2 com-gap-x-3;
+}
+
 nb-card-header,
 nb-card-footer {
   @apply com-flex com-justify-between com-items-center;

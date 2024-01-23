@@ -2,7 +2,7 @@
   <nb-card-body>
     <div class="track-details">
       <div>
-        <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+        <p class="name">{{ hackathonPrize.name }}</p>
       </div>
       <div class="action-buttons">
         <button nbButton ghost status="primary" (click)="editPrize(hackathonPrize)">Edit</button>
@@ -10,9 +10,10 @@
       </div>
     </div>
     <div class="prize-details">
-      <p class="name">{{ hackathonPrize.name }}</p>
+      <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
       <p class="prize">
-        {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }} Winners
+        {{ hackathonPrize.currency_type }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
+        {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}
       </p>
       <div class="description" [innerHTML]="hackathonPrize.description"></div>
     </div>
