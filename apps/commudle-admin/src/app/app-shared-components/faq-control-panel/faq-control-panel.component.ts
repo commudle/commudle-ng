@@ -43,13 +43,34 @@ export class FaqControlPanelComponent implements OnInit {
     );
   }
 
-  openSponsorDialogBox(dialog) {
-    this.nbDialogService.open(dialog);
+  openFaqDialogBox(dialog, faq?: IFaq, index?) {
+    if (faq) {
+      this.faqForm.patchValue({
+        question: faq.question,
+        answer: faq.answer,
+      });
+    }
+    this.nbDialogService.open(dialog, {
+      context: { index: index, faq: faq },
+    });
   }
 
   createFaq() {
     this.faqService.createFaq(this.faqForm.value, this.parentType, this.parentId).subscribe((data) => {
       if (data) this.faqs.unshift(data);
+      this.faqForm.reset();
+    });
+  }
+
+  destroyFaq(faq, index) {
+    this.faqService.destroyFaq(faq.id, this.parentType, this.parentId).subscribe((data) => {
+      if (data) this.faqs.splice(index, 1);
+    });
+  }
+
+  editFaq(faqId, index) {
+    this.faqService.updateFaq(this.faqForm.value, faqId, this.parentType, this.parentId).subscribe((data) => {
+      if (data) this.faqs[index] = data;
     });
   }
 }

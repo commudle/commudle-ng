@@ -11,6 +11,12 @@
     fa-icon {
       @apply md:com-text-lg com-text-base;
     }
+    .actions {
+      @apply com-flex com-flex-wrap com-gap-2;
+      .admin-actions {
+        @apply com-border-0 com-border-l-2 com-border-solid com-border-Bright-Gray-Light com-flex com-flex-wrap com-gap-2 com-pl-2;
+      }
+    }
   }
 
   .answer {

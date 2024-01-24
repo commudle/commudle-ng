@@ -18,7 +18,7 @@
   <nb-card class="prize-form">
     <nb-card-header>
       <span> {{ data.prize ? 'Edit Prize' : 'New Prize' }}</span>
-      <button nbButton ghost (click)="ref.close()">
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); prizeForm.reset()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>

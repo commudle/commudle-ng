@@ -22,14 +22,25 @@ export class FaqService {
     );
   }
 
+  updateFaq(formData, faqId, parentType: EModelName, parentId): Observable<IFaq> {
+    const params = new HttpParams().set('faq_id', faqId).set('parent_id', parentId).set('parent_type', parentType);
+    return this.http.put<IFaq>(
+      this.baseApiService.getRoute(API_ROUTES.FAQ.UPDATE),
+      { faq: formData },
+      {
+        params,
+      },
+    );
+  }
+
   indexFaqs(parentId: number | string, parentType: EModelName): Observable<IFaq[]> {
     console.log('all');
     const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
     return this.http.get<IFaq[]>(this.baseApiService.getRoute(API_ROUTES.FAQ.INDEX), { params });
   }
 
-  destroyFaq(faqId): Observable<boolean> {
-    const params = new HttpParams().set('faq_id', faqId);
+  destroyFaq(faqId, parentType: EModelName, parentId): Observable<boolean> {
+    const params = new HttpParams().set('faq_id', faqId).set('parent_id', parentId).set('parent_type', parentType);
     return this.http.delete<boolean>(this.baseApiService.getRoute(API_ROUTES.FAQ.DELETE), { params });
   }
 }

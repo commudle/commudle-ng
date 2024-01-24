@@ -33,9 +33,10 @@
   <nb-card class="speaker-form">
     <nb-card-header class="actions">
       <span> Add New Speaker</span>
-      <button nbButton ghost (click)="ref.close()">
-        <fa-icon [icon]="icons.faXmark"></fa-icon></button
-    ></nb-card-header>
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); speakerRegistrationForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
     <nb-card-body>
       <form [formGroup]="speakerRegistrationForm">
         <!-- profile image -->

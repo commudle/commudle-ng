@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IFaq } from '@commudle/shared-models';
-import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faMinus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-faq-card',
@@ -9,8 +9,11 @@ import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 })
 export class FaqCardComponent implements OnInit {
   @Input() faq: IFaq;
+  @Input() isAdmin = false;
+  @Output() destroyFaqEvent: EventEmitter<IFaq> = new EventEmitter();
+  @Output() editFaqEvent: EventEmitter<IFaq> = new EventEmitter();
   showAnswers = [];
-  icons = { faAdd, faMinus };
+  icons = { faAdd, faMinus, faTrash, faEdit };
 
   showAnswer = false;
 
@@ -20,5 +23,11 @@ export class FaqCardComponent implements OnInit {
 
   toggleShowAnswers() {
     this.showAnswer = !this.showAnswer;
+  }
+  deleteFaq(faq) {
+    this.destroyFaqEvent.emit(faq);
+  }
+  editFaq(faq) {
+    this.editFaqEvent.emit(faq);
   }
 }

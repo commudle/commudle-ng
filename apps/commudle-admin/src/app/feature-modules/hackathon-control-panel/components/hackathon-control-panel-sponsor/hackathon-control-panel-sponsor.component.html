@@ -22,7 +22,7 @@
   <nb-card class="sponsor-form-dialog-box">
     <nb-card-header class="actions">
       <span>Add Sponsor</span>
-      <button nbButton ghost (click)="ref.close(); sponsorForm.reset()">
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); sponsorForm.reset()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
@@ -46,6 +46,7 @@
         <!-- tier_priority -->
         <div>
           <label for="tier_priority">Tier Priority*</label>
+          <br />
           <select name="tier_priority" formControlName="tier_priority">
             <option [value]="1">1 (Higher)</option>
             <option [value]="2">2</option>

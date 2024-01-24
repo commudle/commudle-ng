@@ -806,5 +806,6 @@ export const API_ROUTES = {
     CREATE: 'api/v2/faq', //POST
     INDEX: 'api/v2/faq', //GET
     DELETE: 'api/v2/faq', //DELETE
+    UPDATE: 'api/v2/faq/update', //PUT
   },
 };

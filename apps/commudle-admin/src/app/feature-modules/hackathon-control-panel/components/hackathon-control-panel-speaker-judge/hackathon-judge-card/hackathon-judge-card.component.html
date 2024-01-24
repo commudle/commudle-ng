@@ -32,6 +32,12 @@
               judge.linkedin
             }}</a>
           </div>
+          <div class="website" *ngIf="judge.website">
+            <div class="name">Personal Website</div>
+            <a [href]="judge.website" class="value" target="_blank" (click)="$event.stopPropagation()">{{
+              judge.website
+            }}</a>
+          </div>
         </div>
       </a>
       <div class="actions">
