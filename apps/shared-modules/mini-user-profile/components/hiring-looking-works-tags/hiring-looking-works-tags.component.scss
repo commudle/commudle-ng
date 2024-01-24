@@ -32,7 +32,7 @@
   @apply com-relative;
 
   p {
-    @apply com-absolute com-m-0 com-tracking-wider com-text-tWhite com-px-2 com-w-max com-font-extrabold com-rounded-md;
+    @apply com-absolute com-m-0 com-tracking-wider com-px-2 com-w-max com-font-extrabold com-rounded-md;
   }
 
   p.work {
@@ -53,11 +53,11 @@
 }
 
 .work {
-  @apply com-bg-Dark-Spring-Green;
+  @apply com-bg-Dark-Spring-Green com-text-white;
 }
 
 .hiring {
-  @apply com-bg-Blue-Violet;
+  @apply com-bg-Blue-Violet com-text-tWhite;
 }
 
 .tags {

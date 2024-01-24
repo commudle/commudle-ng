@@ -384,6 +384,9 @@ nb-option-list.search-autocomplete {
   --color-gray-500-light: #6b7280;
   --color-gray-500-dark: #ffffff;
 
+  --color-gray-100-light: #f3f4f6;
+  --color-gray-100-dark: #4b5563;
+
   --color-spiro-disco-light: #1ac7e3;
   --color-spiro-disco-dark: #1a1a1a;
 
@@ -525,6 +528,7 @@ nb-option-list.search-autocomplete {
   --color-gray-900: var(--color-gray-900-light);
   --color-gray-50: var(--color-gray-50-light);
   --color-gray-500: var(--color-gray-500-light);
+  --color-gray-100: var(--color-gray-100-light);
   --color-spiro-disco: var(--color-spiro-disco-light);
   // --color-brilliant-azure: var(--color-brilliant-azure-light);
   --color-caribbean-green: var(--color-caribbean-green-light);
@@ -550,6 +554,7 @@ nb-option-list.search-autocomplete {
   --color-vampire-black: var(--color-vampire-black-light);
   --color-anti-flash-white: var(--color-anti-flash-white-light);
   --color-yankees-blue: var(--color-yankees-blue-light);
+  --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-light);
   --color-new-car: var(--color-new-car-light);
   --color-chrome-yellow: var(--color-chrome-yellow-light);
@@ -598,6 +603,7 @@ nb-option-list.search-autocomplete {
   --color-gray-900: var(--color-gray-900-dark);
   --color-gray-50: var(--color-gray-50-dark);
   --color-gray-500: var(--color-gray-500-dark);
+  --color-gray-100: var(--color-gray-100-dark);
   --color-spiro-disco: var(--color-spiro-disco-dark);
   // --color-brilliant-azure: var(--color-brilliant-azure-dark);
   --color-caribbean-green: var(--color-caribbean-green-dark);
@@ -623,6 +629,7 @@ nb-option-list.search-autocomplete {
   --color-vampire-black: var(--color-vampire-black-dark);
   --color-anti-flash-white: var(--color-anti-flash-white-dark);
   --color-yankees-blue: var(--color-yankees-blue-dark);
+  --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-dark);
   --color-new-car: var(--color-new-car-dark);
   --color-chrome-yellow: var(--color-chrome-yellow-dark);

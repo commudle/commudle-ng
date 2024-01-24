@@ -44,6 +44,7 @@ module.exports = {
         'Vampire-Black': 'var(--color-vampire-black)', // 'Vampire-Black': '#0A0A0A',
         'Anti-Flash-White': '#f2f2f2',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
+        'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain yankees-blue
         'Alice-Blue': '#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
         'Bright-Gray': '#E4E9F2', // 'Bright-Gray': 'var(--color-bright-gray)',
@@ -65,15 +66,16 @@ module.exports = {
         Bittersweet: '#FF725E',
         'American-Orange': '#FF8A00',
         'Blue-Lotus': '#635BFF', //used in stripe connect button for now
-        'Catalina-Blue': 'var(--color-catalina-blue)', // 'Catalina-Blue': '#022C7D',
+        'Catalina-Blue': '#022C7D', //'Catalina-Blue': 'var(--color-catalina-blue)'
         'Alice-Blue-Dark': '#EBF5FF',
         white: 'var(--color-white)',
-        tWhite: 'var(--color-twhite)',
+        tWhite: 'var(--color-twhite)', //Remain white in dark mode
         black: 'var(--color-black)',
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',
         'gray-50': 'var(--color-gray-50)',
         'gray-500': 'var(--color-gray-500)',
+        'gray-100': 'var(--color-gray-100)',
 
         // 'Spiro-Disco': '#1ac7e340', //used only in profile-status-bar.component
         // 'Very-Light-Blue': '#536eff', //Used only in home-commumity.component
