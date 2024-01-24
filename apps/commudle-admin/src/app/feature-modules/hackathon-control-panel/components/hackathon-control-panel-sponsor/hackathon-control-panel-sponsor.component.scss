@@ -3,7 +3,7 @@
 }
 
 .sponsors-card {
-  @apply com-flex com-gap-x-6 com-bg-gray-200 com-flex-wrap;
+  @apply com-grid com-grid-cols-3 com-bg-gray-200;
 }
 
 .sponsor-form-dialog-box {

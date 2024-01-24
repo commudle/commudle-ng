@@ -34,6 +34,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
       logo: [null, Validators.required],
       tier_name: ['', Validators.required],
       link: ['', Validators.required],
+      tier_priority: [1, Validators.required],
     });
   }
 
@@ -44,8 +45,20 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     });
   }
 
-  openSponsorDialogBox(dialog) {
-    this.nbDialogService.open(dialog);
+  openSponsorDialogBox(dialog, sponsor?: IHackathonSponsor, index?) {
+    if (sponsor) {
+      this.sponsorForm = this.fb.group({
+        name: '',
+        description: ['', Validators.required],
+        logo: [null, Validators.required],
+        tier_name: ['', Validators.required],
+        link: ['', Validators.required],
+        tier_priority: [1, Validators.required],
+      });
+    }
+    this.nbDialogService.open(dialog, {
+      context: { index: index, sponsor: sponsor },
+    });
   }
 
   openConfirmDeleteDialogBox(dialog, sponsorId, index) {

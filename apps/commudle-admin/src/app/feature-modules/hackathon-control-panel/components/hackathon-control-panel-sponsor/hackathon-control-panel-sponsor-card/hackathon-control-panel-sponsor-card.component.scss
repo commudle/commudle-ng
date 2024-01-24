@@ -1,7 +1,7 @@
 nb-card {
-  @apply com-w-56 com-h-52;
+  @apply com-h-52;
   nb-card-body {
-    @apply com-px-3;
+    @apply com-px-3 com-flex com-flex-col com-justify-between;
     .upper-section {
       @apply com-flex com-gap-3 com-mb-4;
       .logo {

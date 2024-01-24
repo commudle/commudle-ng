@@ -10,8 +10,9 @@
   <nb-card-footer class="sponsors-card" *ngIf="hackathonSponsors && hackathonSponsors.length > 0">
     <div *ngFor="let hackathonSponsor of hackathonSponsors; let i = index">
       <commudle-hackathon-control-panel-sponsor-card
-        [sponsor]="hackathonSponsor.sponsor"
+        [hackathonSponsor]="hackathonSponsor"
         (destroySponsorEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
+        (editSponsorEvent)="openSponsorDialogBox(conformDeleteDialogBox, $event, i)"
       ></commudle-hackathon-control-panel-sponsor-card>
     </div>
   </nb-card-footer>
@@ -36,6 +37,28 @@
               sponsorForm.controls['tier_name'].touched &&
               sponsorForm.controls['tier_name'].invalid &&
               sponsorForm.controls['tier_name'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Tier name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- tier_priority -->
+        <div>
+          <label for="tier_priority">Tier Priority*</label>
+          <select name="tier_priority" formControlName="tier_priority">
+            <option [value]="1">1 (Higher)</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5 (Lower)</option>
+          </select>
+          <!-- <input placeholder="Tier name" nbInput fullWidth formControlName="tier_priority" type="number" /> -->
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['tier_priority'].touched &&
+              sponsorForm.controls['tier_priority'].invalid &&
+              sponsorForm.controls['tier_priority'].hasError('required')
             "
             [error]="true"
             errorMessage="Tier name is required"

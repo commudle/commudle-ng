@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { NbInputModule, NbButtonModule, NbCardModule, NbRouteTabsetModule } from '@commudle/theme';
+import { NbInputModule, NbButtonModule, NbCardModule, NbRouteTabsetModule, NbCheckboxModule } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
 import { HackathonControlPanelSponsorComponent } from './components/hackathon-control-panel-sponsor/hackathon-control-panel-sponsor.component';
@@ -23,6 +23,7 @@ import { HackathonNewFormComponent } from 'apps/commudle-admin/src/app/feature-m
 import { HackathonControlPanelFaqsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-faqs/hackathon-control-panel-faqs.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-speaker-judge/hackathon-judge-card/hackathon-judge-card.component';
+import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-registrations/hackathon-control-panel-registrations.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature
     HackathonNewFormComponent,
     HackathonControlPanelFaqsComponent,
     HackathonJudgeCardComponent,
+    HackathonControlPanelRegistrationsComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature
     NbInputModule,
     NbCardModule,
     NbRouteTabsetModule,
+    NbCheckboxModule,
   ],
 })
 export class HackathonControlPanelModule {}
