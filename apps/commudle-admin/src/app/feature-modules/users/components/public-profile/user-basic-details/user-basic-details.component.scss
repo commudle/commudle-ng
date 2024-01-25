@@ -43,8 +43,7 @@ p {
         @apply com-flex com-mt-4 com-gap-2;
 
         a {
-          @apply com-text-base hover:com-underline;
-          color: inherit;
+          @apply com-text-base hover:com-underline com-text-Yankees-Blue;
           text-decoration: none;
 
           span {
@@ -56,26 +55,24 @@ p {
       .designation {
         @apply com-text-base com-flex com-items-center com-gap-2 com-mt-4;
 
-        p,
-        nb-icon {
-          @apply com-text-base md:com-text-lg;
+        p {
+          @apply com-text-base md:com-text-lg com-text-Yankees-Blue;
         }
 
         nb-icon {
-          @apply com-text-[#42aaff];
+          @apply com-text-base md:com-text-lg com-text-[#42aaff];
         }
       }
 
       .location {
         @apply com-text-base com-flex com-items-center com-gap-2 com-mt-1;
 
-        p,
-        nb-icon {
-          @apply com-text-base md:com-text-lg;
+        p {
+          @apply com-text-base md:com-text-lg com-text-Yankees-Blue;
         }
 
         nb-icon {
-          @apply com-text-[#42aaff];
+          @apply com-text-base md:com-text-lg com-text-[#42aaff];
         }
       }
 
@@ -87,5 +84,13 @@ p {
         }
       }
     }
+  }
+}
+
+.toggle-tag {
+  @apply com-w-[186px];
+
+  span {
+    @apply com-text-Yankees-Blue;
   }
 }

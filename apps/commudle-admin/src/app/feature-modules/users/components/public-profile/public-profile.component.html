@@ -12,7 +12,9 @@
                     [icon]="item.value.icon"
                     class="{{ highlight === item.value.link ? item.value.active_color : 'com-text-Black-Coral' }}"
                   ></fa-icon>
-                  {{ item.value.name }}
+                  <span>
+                    {{ item.value.name }}
+                  </span>
                 </a>
                 <div *ngIf="highlight === item.value.link" class="highlight"></div>
               </nb-action>

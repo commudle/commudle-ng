@@ -15,8 +15,12 @@ nb-card {
         @apply com-flex com-items-center;
         &.position {
           p {
-            @apply com-text-2xl;
+            @apply com-text-2xl com-text-Yankees-Blue;
           }
+        }
+
+        p {
+          @apply com-text-Yankees-Blue;
         }
       }
 
