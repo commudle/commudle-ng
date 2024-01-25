@@ -45,7 +45,7 @@ p {
             @apply md:com-text-4xl com-text-2xl com-font-bold md:com-mb-6 com-mb-4 com-text-gray-900;
           }
           .sub-heading {
-            @apply md:com-text-xl com-text-base com-font-normal md:com-mb-8 com-mb-6;
+            @apply md:com-text-xl com-text-base com-font-normal md:com-mb-8 com-mb-6 com-text-Yankees-Blue;
           }
         }
         .card-image {
@@ -81,7 +81,7 @@ p {
       // @apply com-bg-white/40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-pb-20 com-mt-8 md:com-mt-20 md:com-p-0;
 
       .quote {
-        @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal md:com-text-gray-900 com-text-black;
+        @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal com-text-tYankees-Blue;
       }
     }
   }
@@ -90,7 +90,7 @@ p {
     @apply com-p-0 md:com-pt-0 com-pt-9 com-overflow-x-auto;
 
     .pricing-features-heading {
-      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900 com-m-0 md:com-mb-[26px] com-mb-2 md:com-mt-0 com-mt-9;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-tYankees-Blue com-m-0 md:com-mb-[26px] com-mb-2 md:com-mt-0 com-mt-9;
     }
 
     .pricing-feature-headings {

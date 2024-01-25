@@ -12,10 +12,10 @@ hr {
       @apply com-mx-4 com-flex com-flex-col com-my-0;
 
       h1 {
-        @apply com-mb-0 com-p-0 md:com-mt-16;
+        @apply com-mb-0 com-p-0 md:com-mt-16 com-text-Yankees-Blue;
       }
       .subheading {
-        @apply com-mt-8 com-text-2xl com-mb-0;
+        @apply com-mt-8 com-text-2xl com-mb-0 com-text-Yankees-Blue;
       }
       .sub-heading {
         @apply com-mt-8 com-mb-0 com-text-base com-text-gray-500;
@@ -34,7 +34,7 @@ hr {
     @apply com-max-w-3xl com-mx-4;
 
     h2 {
-      @apply com-mb-0 com-p-0 md:com-mt-12;
+      @apply com-mb-0 com-p-0 md:com-mt-12 com-text-Yankees-Blue;
     }
     div {
       p {
@@ -66,7 +66,7 @@ hr {
       @apply com-flex com-flex-col;
 
       .subheading {
-        @apply com-text-2xl com-my-0;
+        @apply com-text-2xl com-my-0 com-text-Yankees-Blue;
       }
 
       a {
@@ -86,7 +86,7 @@ hr {
     @apply com-max-w-3xl com-mx-4;
 
     h2 {
-      @apply com-my-0 com-pt-12 com-p-0;
+      @apply com-my-0 com-pt-12 com-p-0 com-text-Yankees-Blue;
     }
 
     ol {
