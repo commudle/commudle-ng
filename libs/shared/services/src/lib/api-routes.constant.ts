@@ -808,4 +808,9 @@ export const API_ROUTES = {
     DELETE: 'api/v2/faq', //DELETE
     UPDATE: 'api/v2/faq/update', //PUT
   },
+
+  HACKATHON_RESPONSE_GROUP: {
+    CREATE: 'api/v2/hackathon_response_group', //POST
+    SHOW: 'api/v2/hackathon_response_group/show', //GET
+  },
 };

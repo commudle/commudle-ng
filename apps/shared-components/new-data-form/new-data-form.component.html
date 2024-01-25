@@ -7,7 +7,14 @@
             <label fullWidth>
               Name
               <span class="required-question">*</span>
-              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
+              <input
+                type="text"
+                nbInput
+                fullWidth
+                formControlName="name"
+                placeholder="Title"
+                [readOnly]="formName.length > 0"
+              />
             </label>
             <span
               *ngIf="
@@ -36,6 +43,10 @@
           </div>
         </nb-card-body>
       </nb-card>
+
+      <div *ngIf="showCustomDataBetweenForm">
+        <ng-content></ng-content>
+      </div>
 
       <div (cdkDropListDropped)="drop($event)" cdkDropList class="data-form-question-choices-container">
         <div

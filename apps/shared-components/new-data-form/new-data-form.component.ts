@@ -27,6 +27,8 @@ export class NewDataFormComponent implements OnInit {
   @Input() minQuestionCount;
   @Input() formPurpose;
   @Input() stickSubmitButtonBottom = false;
+  @Input() showCustomDataBetweenForm = false;
+  @Input() formName: string = '';
 
   @Output() newDataForm = new EventEmitter();
 
@@ -202,7 +204,7 @@ export class NewDataFormComponent implements OnInit {
     this.createDataForm = this.fb.group({
       data_form: this.fb.group({
         id: [''],
-        name: ['', Validators.required],
+        name: [this.formName, Validators.required],
         description: [''],
         questions: this.fb.array([]),
       }),
