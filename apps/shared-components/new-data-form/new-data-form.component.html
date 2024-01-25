@@ -1,7 +1,7 @@
 <div class="data-form-container">
   <form class="create-data-form" [formGroup]="createDataForm">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameField">
+      <nb-card *ngIf="showNameField && showNameDescriptionFiled">
         <nb-card-body class="card-body">
           <div role="group">
             <label fullWidth>
@@ -43,10 +43,6 @@
           </div>
         </nb-card-body>
       </nb-card>
-
-      <div *ngIf="showCustomDataBetweenForm">
-        <ng-content></ng-content>
-      </div>
 
       <div (cdkDropListDropped)="drop($event)" cdkDropList class="data-form-question-choices-container">
         <div

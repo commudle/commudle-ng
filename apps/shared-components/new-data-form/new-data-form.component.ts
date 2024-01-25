@@ -27,7 +27,7 @@ export class NewDataFormComponent implements OnInit {
   @Input() minQuestionCount;
   @Input() formPurpose;
   @Input() stickSubmitButtonBottom = false;
-  @Input() showCustomDataBetweenForm = false;
+  @Input() showNameDescriptionFiled = true;
   @Input() formName: string = '';
 
   @Output() newDataForm = new EventEmitter();

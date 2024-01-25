@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from '@commudle/shared-services';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-registrations',
@@ -11,7 +15,15 @@ import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-g
 export class HackathonControlPanelRegistrationsComponent implements OnInit {
   userDetailsForm: FormGroup;
   registrationTypeId = 1;
-  constructor(private fb: FormBuilder, private hrgService: HackathonResponseGroupService) {
+  hackathon: IHackathon;
+
+  constructor(
+    private fb: FormBuilder,
+    private hrgService: HackathonResponseGroupService,
+    private activatedRoute: ActivatedRoute,
+    private hackathonService: HackathonService,
+    private toastrService: ToastrService,
+  ) {
     this.userDetailsForm = this.fb.group({
       name: false,
       designation: false,
@@ -35,6 +47,9 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.parent.paramMap.subscribe((params) => {
+      this.fetchHackathonDetails(params.get('hackathon_id'));
+    });
     this.hrgService.showHackathon(1).subscribe((data: IHackathonResponseGroup) => {
       if (data) {
         this.userDetailsForm.patchValue({
@@ -60,6 +75,11 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       }
     });
   }
+  fetchHackathonDetails(hackathonId) {
+    this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
+      this.hackathon = data;
+    });
+  }
 
   submit(formResponse) {
     console.log('🚀 ~ HackathonControlPanelRegistrationsComponent ~ submit ~ formResponse:', formResponse);
@@ -68,13 +88,10 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         JSON.stringify(this.userDetailsForm.value),
         1,
         this.registrationTypeId,
-        formResponse.name,
+        `${this.hackathon.name} - Registration`,
       )
       .subscribe((data) => {
-        console.log(
-          '🚀 ~ HackathonControlPanelRegistrationsComponent ~ this.hrgService.createHackathonResponseGroup ~ data:',
-          data,
-        );
+        if (data) this.toastrService.successDialog('Information Updated');
       });
   }
 
