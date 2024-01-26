@@ -77,7 +77,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
-    // this.toggle();
   }
 
   ngAfterViewChecked(): void {
@@ -121,12 +120,4 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       this.darkModeService.toggleDarkMode(false);
     }
   }
-
-  // toggle(): void {
-  //   this.darkModeService.isDarkMode$.subscribe((darkMode) => {
-  //     this.isDarkMode = darkMode;
-  //   });
-  //   this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
-  //   this.darkModeService.toggleDarkMode(this.isDarkMode);
-  // }
 }
