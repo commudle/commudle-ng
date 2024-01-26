@@ -114,6 +114,11 @@ const routes: Routes = [
       import('./feature-modules/public-events/public-events.module').then((m) => m.PublicEventsModule),
   },
   {
+    path: 'communities/:community_id/hackathon/:hackathon_id',
+    loadChildren: () =>
+      import('./feature-modules/public-hackathon/public-hackathon.module').then((m) => m.PublicHackathonModule),
+  },
+  {
     path: 'communities/:community_id/channels',
     loadChildren: () =>
       import('./feature-modules/community-channels/community-channels.module').then((m) => m.CommunityChannelsModule),

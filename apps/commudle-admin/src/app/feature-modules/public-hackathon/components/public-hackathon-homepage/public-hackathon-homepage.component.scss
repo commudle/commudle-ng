@@ -1,0 +1,38 @@
+.details-section {
+  @apply com-flex com-justify-between com-items-center com-py-0;
+  .details {
+    @apply com-flex com-gap-3 com-items-center;
+    .hackathon-name {
+      @apply com-text-Yankees-Blue com-text-4xl com-font-bold;
+    }
+  }
+  .social-links {
+    @apply com-flex com-gap-6 com-items-center;
+    a {
+      @apply com-text-xl com-w-9 com-h-9 com-grid com-items-center com-justify-center com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-text-primary-500 hover:com-shadow;
+    }
+  }
+}
+
+.tabs {
+  @apply com-mt-0 com-sticky com-top-16;
+  .router-links {
+    @apply com-flex com-gap-5 com-py-0 com-px-2;
+    a {
+      @apply com-flex com-gap-1 com-items-center com-text-Black-Coral com-no-underline com-py-3 com-px-1;
+      .name {
+        @apply com-m-0 com-text-Black-Coral;
+      }
+      &.active {
+        @apply com-border-0 com-border-b-2 com-border-solid com-border-primary-500 com-text-primary-500;
+        .name {
+          @apply com-text-primary-500;
+        }
+      }
+    }
+  }
+}
+
+.router {
+  @apply com-px-3;
+}
