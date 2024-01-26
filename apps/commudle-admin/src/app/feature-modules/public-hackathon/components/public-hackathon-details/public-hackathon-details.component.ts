@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
   selector: 'commudle-public-hackathon-details',
@@ -6,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-hackathon-details.component.scss'],
 })
 export class PublicHackathonDetailsComponent implements OnInit {
-  constructor() {}
+  hackathon: IHackathon;
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.subscriptions.push(
+    this.activatedRoute.parent.data.subscribe((data) => {
+      this.hackathon = data.hackathon;
+    });
+    // );
+  }
 }

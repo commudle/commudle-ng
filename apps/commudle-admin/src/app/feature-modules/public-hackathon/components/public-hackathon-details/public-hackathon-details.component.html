@@ -1,1 +1,17 @@
-<p>public-hackathon-details works!</p>
+<div class="two-column-layout wide mobile-reverse">
+  <div class="main-column com-mb-20">
+    <nb-card>
+      <nb-card-body>
+        <div class="banner-image">
+          <img [src]="hackathon.banner_image.url" alt="" />
+        </div>
+        <div [innerHTML]="hackathon.description"></div
+      ></nb-card-body>
+    </nb-card>
+  </div>
+  <div class="right-column">
+    <nb-card>
+      <nb-card-body><h1>details</h1></nb-card-body>
+    </nb-card>
+  </div>
+</div>

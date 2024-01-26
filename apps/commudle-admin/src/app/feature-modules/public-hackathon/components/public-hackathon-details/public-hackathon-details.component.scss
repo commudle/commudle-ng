@@ -1,0 +1,17 @@
+.main-column {
+  nb-card {
+    @apply com-ml-0;
+    .banner-image {
+      @apply com-w-full com-rounded-xl;
+      img {
+        @apply com-w-full com-rounded-xl;
+      }
+    }
+  }
+}
+
+.right-column {
+  nb-card {
+    @apply com-mr-0;
+  }
+}

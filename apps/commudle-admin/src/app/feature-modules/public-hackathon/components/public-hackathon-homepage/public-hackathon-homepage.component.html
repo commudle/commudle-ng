@@ -11,7 +11,7 @@
               <app-community-badge [community]="community"></app-community-badge>
             </div>
           </div>
-          <div class="social-links">
+          <div class="social-links" *ngIf="contactInfo">
             <ng-container *ngIf="contactInfo.website">
               <a [href]="contactInfo.website">
                 <fa-icon [icon]="icons.faGlobe"></fa-icon>
