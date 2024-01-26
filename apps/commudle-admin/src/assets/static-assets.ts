@@ -14,6 +14,9 @@ export const staticAssets = {
   commudle_logo_128:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZzYzIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ec4a1cbde1227bc84c1fc145325263b3dfb219e4/commudle-logo128.png',
 
+  commudle_logo_dark_mode:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNmZLQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--d66f9155a4bb4bdf4dfbc9a4cc77613dd7709893/Commudle%20Logo.svg',
+
   communities_home:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaHEzIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--03c48c684f1ce579df1c15c5ac2c0bdfd41b1dde/Communities-Home.png',
 
