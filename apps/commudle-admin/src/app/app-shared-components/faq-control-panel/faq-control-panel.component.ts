@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EModelName, IFaq } from '@commudle/shared-models';
-import { FaqService } from '@commudle/shared-services';
+import { FaqService, ToastrService } from '@commudle/shared-services';
 import { Subscription } from 'rxjs';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { NbDialogService } from '@commudle/theme';
@@ -24,7 +24,12 @@ export class FaqControlPanelComponent implements OnInit {
     faXmark,
   };
 
-  constructor(private faqService: FaqService, private nbDialogService: NbDialogService, private fb: FormBuilder) {
+  constructor(
+    private faqService: FaqService,
+    private nbDialogService: NbDialogService,
+    private fb: FormBuilder,
+    private toastrService: ToastrService,
+  ) {
     this.faqForm = this.fb.group({
       question: ['', Validators.required],
       answer: ['', Validators.required],
@@ -63,8 +68,11 @@ export class FaqControlPanelComponent implements OnInit {
   }
 
   destroyFaq(faq, index) {
-    this.faqService.destroyFaq(faq.id, this.parentType, this.parentId).subscribe((data) => {
-      if (data) this.faqs.splice(index, 1);
+    this.faqService.destroyFaq(faq.id).subscribe((data) => {
+      if (data) {
+        this.toastrService.successDialog('Faq has been deleted');
+        this.faqs.splice(index, 1);
+      }
     });
   }
 

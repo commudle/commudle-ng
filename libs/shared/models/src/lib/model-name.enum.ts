@@ -1,6 +1,6 @@
 export enum EModelName {
-  CommunityGroup = 'CommunityGroup',
-  Kommunity = 'Kommunity',
-  Event = 'Event',
-  Hackathon = 'Hackathon',
+  COMMUNITY_GROUP = 'CommunityGroup',
+  KOMMUNITY = 'Kommunity',
+  EVENT = 'Event',
+  HACKATHON = 'Hackathon',
 }

@@ -74,6 +74,7 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { EntityUpdatesComponent } from './entity-updates/entity-updates.component';
 import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
@@ -115,6 +116,7 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     BannerImageComponent,
     AlertComponent,
     MessagesComponent,
+    EntityUpdatesComponent,
   ],
   imports: [
     CommonModule,
@@ -190,6 +192,7 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     BannerImageComponent,
     AlertComponent,
     MessagesComponent,
+    EntityUpdatesComponent,
   ],
 })
 export class SharedComponentsModule {}

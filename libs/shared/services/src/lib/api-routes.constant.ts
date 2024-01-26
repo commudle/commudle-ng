@@ -813,4 +813,13 @@ export const API_ROUTES = {
     CREATE: 'api/v2/hackathon_response_group', //POST
     SHOW: 'api/v2/hackathon_response_group/show', //GET
   },
+
+  ENTITY_UPDATES: {
+    INDEX: 'api/v2/entity_updates',
+    CREATE: 'api/v2/entity_updates',
+    DELETE: 'api/v2/entity_updates',
+    PUBLIC: {
+      INDEX: 'api/v2/entity_updates/public/index',
+    },
+  },
 };

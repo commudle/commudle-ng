@@ -9,7 +9,7 @@ import { EModelName } from '@commudle/shared-models';
 })
 export class HackathonControlPanelFaqsComponent implements OnInit {
   hackathonSlug = '';
-  parentType = EModelName.Hackathon;
+  parentType = EModelName.HACKATHON;
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {

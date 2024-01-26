@@ -78,6 +78,7 @@ import { FaqCardComponent } from 'apps/commudle-admin/src/app/app-shared-compone
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
     FaqControlPanelComponent,
+    FaqCardComponent,
   ],
   imports: [
     CommonModule,
@@ -85,8 +86,8 @@ import { FaqCardComponent } from 'apps/commudle-admin/src/app/app-shared-compone
     ReactiveFormsModule,
     EditorModule,
     RouterModule,
-    PublicCommunityModule,
-    SharedComponentsModule,
+    // PublicCommunityModule,
+    // SharedComponentsModule,
     MiniUserProfileModule,
     //Standalone
     TechSessionsCardComponent,
