@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathon, EParticipateTypes } from 'apps/shared-models/hackathon.model';
+import { IHackathon, EParticipateTypes, EHackathonLocationType } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,7 @@ import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 })
 export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestroy {
   hackathonForm: FormGroup;
+  locationForm: FormGroup;
   hackathonSlug = '';
   parentId = '';
   parentType = '';
@@ -22,6 +23,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   subscriptions: Subscription[] = [];
   hackathon: IHackathon;
   EParticipateTypes = EParticipateTypes;
+  EHackathonLocationType = EHackathonLocationType;
 
   icons = {
     faFileImage,
@@ -57,7 +59,13 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       hackathon_theme: '',
       number_of_participants: ['', [Validators.required, Validators.min(1)]],
       participate_types: ['', Validators.required],
+      hackathon_location_type: ['', Validators.required],
       banner_image: [null],
+    });
+    this.locationForm = this.fb.group({
+      name: [''],
+      address: [''],
+      map_link: [''],
     });
   }
 
@@ -94,7 +102,15 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
           hackathon_theme: data.hackathon_theme,
           number_of_participants: data.number_of_participants,
           participate_types: data.participate_types,
+          hackathon_location_type: data.hackathon_location_type,
         });
+        if (this.hackathon.location_id) {
+          this.locationForm.patchValue({
+            name: this.hackathon.location_name,
+            address: this.hackathon.location_address,
+            map_link: this.hackathon.location_map_link,
+          });
+        }
       }),
     );
   }
@@ -145,6 +161,11 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
         formData.append('hackathon[' + key + ']', value);
       }
     });
+    if (this.locationForm.get('name').value) formData.append('location[name]', this.locationForm.get('name').value);
+    if (this.locationForm.get('address').value)
+      formData.append('location[address]', this.locationForm.get('address').value);
+    if (this.locationForm.get('map_link').value)
+      formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
     this.hackathonService.createHackathon(formData, this.parentId, this.parentType).subscribe((data) => {
       if (data) this.router.navigate(['/admin', 'communities', this.parentId, 'hackathon-dashboard', data.slug]);
@@ -163,6 +184,12 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
         formData.append('hackathon[' + key + ']', value);
       }
     });
+
+    if (this.locationForm.get('name').value) formData.append('location[name]', this.locationForm.get('name').value);
+    if (this.locationForm.get('address').value)
+      formData.append('location[address]', this.locationForm.get('address').value);
+    if (this.locationForm.get('map_link').value)
+      formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
     this.hackathonService.updateHackathon(formData, this.hackathon.slug).subscribe((data) => {
       if (data) this.toastrService.successDialog('Hackathon Details updated');

@@ -6,7 +6,8 @@ export interface IHackathon {
   slug: string;
   description: string;
   hackathon_theme: string;
-  participate_types: string;
+  participate_types: EParticipateTypes;
+  hackathon_location_type: EHackathonLocationType;
   tagline: string;
   number_of_participants: number;
   banner_image: IAttachedFile;
@@ -16,10 +17,20 @@ export interface IHackathon {
   application_end_date: Date;
   time_zone: string;
   created_at: Date;
+  location_id: number;
+  location_name: string;
+  location_address: string;
+  location_map_link: string;
 }
 
 export enum EParticipateTypes {
-  both = 'Both',
-  team = 'Team',
-  individual = 'Individual',
+  BOTH = 'both',
+  TEAM = 'team',
+  INDIVIDUAL = 'individual',
+}
+
+export enum EHackathonLocationType {
+  OFFLINE = 'offline',
+  ONLINE = 'online',
+  HYBRID = 'hybrid',
 }
