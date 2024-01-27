@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EModelName, IFaq } from '@commudle/shared-models';
 import { FaqService } from '@commudle/shared-services';
+import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
@@ -17,12 +19,14 @@ export class PublicHackathonDetailsComponent implements OnInit {
   EModelName = EModelName;
   sponsors: IHackathonSponsor[];
   faqs: IFaq[];
+  discussionChat: IDiscussion;
 
   subscriptions: Subscription[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private faqService: FaqService,
+    private discussionsService: DiscussionsService,
   ) {}
 
   ngOnInit() {
@@ -31,6 +35,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
         this.hackathon = data.hackathon;
         this.getSponsors();
         this.getFaqs();
+        this.getDiscussionChat();
       }),
     );
   }
@@ -38,7 +43,6 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService.indexSponsors(this.hackathon.id).subscribe((data) => {
         this.sponsors = data;
-        console.log('🚀 ~ PublicHackathonDetailsComponent ~ this.subscriptions.push ~ data:', data);
       }),
     );
   }
@@ -46,8 +50,13 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.faqService.indexFaqs(this.hackathon.id, EModelName.HACKATHON).subscribe((data) => {
         this.faqs = data;
-        console.log('🚀 ~ PublicHackathonDetailsComponent ~ this.subscriptions.push ~ data:', data);
       }),
     );
+  }
+
+  getDiscussionChat() {
+    this.discussionsService.PublicGetOrCreateForHackathon(this.hackathon.id).subscribe((data) => {
+      this.discussionChat = data;
+    });
   }
 }

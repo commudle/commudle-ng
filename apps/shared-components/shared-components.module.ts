@@ -75,6 +75,8 @@ import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { EntityUpdatesComponent } from './entity-updates/entity-updates.component';
+import { FaqCardComponent } from './faq-card/faq-card.component';
+import { FaqControlPanelComponent } from './faq-control-panel/faq-control-panel.component';
 import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
@@ -117,6 +119,8 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     AlertComponent,
     MessagesComponent,
     EntityUpdatesComponent,
+    FaqCardComponent,
+    FaqControlPanelComponent,
   ],
   imports: [
     CommonModule,
@@ -193,6 +197,8 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     AlertComponent,
     MessagesComponent,
     EntityUpdatesComponent,
+    FaqCardComponent,
+    FaqControlPanelComponent,
   ],
 })
 export class SharedComponentsModule {}

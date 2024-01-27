@@ -32,16 +32,15 @@
     <nb-card>
       <nb-card-body>
         <div *ngFor="let faq of faqs">
-          <!-- <commudle-faq-card [faq]="faq"></commudle-faq-card> -->
+          <commudle-faq-card [faq]="faq"></commudle-faq-card>
         </div>
-        <!-- <commudle-entity-updates [entityId]="hackathon.id" [entityType]="EModelName.HACKATHON"></commudle-entity-updates> -->
       </nb-card-body>
     </nb-card>
 
     <h2 class="sub-heading">Comments</h2>
-    <nb-card>
-      <nb-card-body>
-        <!-- <commudle-entity-updates [entityId]="hackathon.id" [entityType]="EModelName.HACKATHON"></commudle-entity-updates> -->
+    <nb-card *ngIf="discussionChat">
+      <nb-card-body class="com-p-0">
+        <commudle-discussion [discussionId]="discussionChat.id" discussionParent="hackathon"></commudle-discussion>
       </nb-card-body>
     </nb-card>
   </div>

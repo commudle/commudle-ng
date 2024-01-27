@@ -11,6 +11,7 @@ import { PublicHackathonJudgesComponent } from 'apps/commudle-admin/src/app/feat
 import { PublicHackathonPrizesComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-prizes/public-hackathon-prizes.component';
 import { PublicHackathonProjectsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-projects/public-hackathon-projects.component';
 import { PublicHackathonChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-channels/public-hackathon-channels.component';
+import { SharedComponentsModule as NewSharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { PublicHackathonChannelsComponent } from 'apps/commudle-admin/src/app/fe
     FontAwesomeModule,
 
     SharedComponentsModule,
+    NewSharedComponentsModule,
   ],
   declarations: [
     PublicHackathonHomepageComponent,

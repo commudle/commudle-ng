@@ -82,7 +82,6 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   }
 
   submit(formResponse) {
-    console.log('🚀 ~ HackathonControlPanelRegistrationsComponent ~ submit ~ formResponse:', formResponse);
     this.hrgService
       .createHackathonResponseGroup(
         JSON.stringify(this.userDetailsForm.value),
@@ -94,6 +93,4 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         if (data) this.toastrService.successDialog('Information Updated');
       });
   }
-
-  // createAndSelectForm(event) {}
 }
