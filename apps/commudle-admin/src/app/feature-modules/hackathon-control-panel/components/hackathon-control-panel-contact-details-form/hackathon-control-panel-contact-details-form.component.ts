@@ -48,7 +48,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
   }
 
   urlValidator(control) {
-    if (control.value && !/^(http|https|www)/.test(control.value)) {
+    if (control.value && !/^(http|https)/.test(control.value)) {
       return { invalidUrl: true };
     }
     return null;

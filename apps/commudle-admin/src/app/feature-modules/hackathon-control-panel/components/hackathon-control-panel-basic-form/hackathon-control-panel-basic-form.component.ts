@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathon, EParticipateTypes } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
+import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-basic-form',
@@ -16,10 +17,15 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   hackathonSlug = '';
   parentId = '';
   parentType = '';
+  imagePreview;
 
   subscriptions: Subscription[] = [];
   hackathon: IHackathon;
   EParticipateTypes = EParticipateTypes;
+
+  icons = {
+    faFileImage,
+  };
 
   tinyMCE = {
     min_height: 300,
@@ -48,10 +54,10 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       name: ['', Validators.required],
       tagline: ['', Validators.required],
       description: ['', Validators.required],
-      hackathon_theme: ['', Validators.required],
+      hackathon_theme: '',
       number_of_participants: ['', [Validators.required, Validators.min(1)]],
       participate_types: ['', Validators.required],
-      banner_image: [File],
+      banner_image: [null],
     });
   }
 
@@ -80,6 +86,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     this.subscriptions.push(
       this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data) => {
         this.hackathon = data;
+        this.imagePreview = data.banner_image.url;
         this.hackathonForm.patchValue({
           name: data.name,
           tagline: data.tagline,
@@ -92,6 +99,32 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     );
   }
 
+  onFileChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.hackathonForm.patchValue({
+      banner_image: file,
+    });
+    this.hackathonForm.get('banner_image').updateValueAndValidity();
+
+    // Display image preview
+    this.previewImage(file);
+  }
+
+  previewImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  removeBannerImage() {
+    this.imagePreview = '';
+    this.hackathonForm.patchValue({
+      banner_image: null,
+    });
+  }
+
   createOrUpdate() {
     if (this.hackathonSlug) {
       this.update();
@@ -101,15 +134,37 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   }
 
   create() {
-    this.hackathonService
-      .createHackathon(this.hackathonForm.value, this.parentId, this.parentType)
-      .subscribe((data) => {
-        if (data) this.router.navigate(['/admin', 'communities', this.parentId, 'hackathon-dashboard', data.slug]);
-      });
+    const formData = new FormData();
+
+    Object.keys(this.hackathonForm.value).forEach((key) => {
+      const value = this.hackathonForm.value[key];
+
+      if (value instanceof File) {
+        formData.append('hackathon[' + key + ']', value, value.name); // Append the file with its name
+      } else if (key !== 'banner_image') {
+        formData.append('hackathon[' + key + ']', value);
+      }
+    });
+
+    this.hackathonService.createHackathon(formData, this.parentId, this.parentType).subscribe((data) => {
+      if (data) this.router.navigate(['/admin', 'communities', this.parentId, 'hackathon-dashboard', data.slug]);
+    });
   }
 
   update() {
-    this.hackathonService.updateHackathon(this.hackathonForm.value, this.hackathon.slug).subscribe((data) => {
+    const formData = new FormData();
+
+    Object.keys(this.hackathonForm.value).forEach((key) => {
+      const value = this.hackathonForm.value[key];
+
+      if (value instanceof File) {
+        formData.append('hackathon[' + key + ']', value, value.name); // Append the file with its name
+      } else if (key !== 'banner_image') {
+        formData.append('hackathon[' + key + ']', value);
+      }
+    });
+
+    this.hackathonService.updateHackathon(formData, this.hackathon.slug).subscribe((data) => {
       if (data) this.toastrService.successDialog('Hackathon Details updated');
     });
   }

@@ -2,6 +2,39 @@
   <nb-card-header>{{ hackathon ? 'Basic Information' : 'New Hackathon Form' }}</nb-card-header>
   <nb-card-body class="hackathon-form">
     <form [formGroup]="hackathonForm">
+      <div>
+        <label for="banner_image">Banner Image</label>
+        <div class="com-w-full" *ngIf="!(imagePreview || hackathonForm.controls['banner_image'].value)">
+          <div class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative">
+            <input
+              (change)="onFileChange($event)"
+              type="file"
+              accept="image/*"
+              class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-20 com-z-50"
+            />
+            <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
+              <fa-icon [icon]="icons.faFileImage" class="com-text-5xl"></fa-icon>
+              <p>
+                Drag file here
+                <br />
+                or<span class="com-text-primary-500"> BROWSE </span> <br />
+                <span class="com-text-base"><small>(1260 x 460)</small></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="imagePreview || hackathonForm.controls['banner_image'].value" class="image-preview">
+          <div (click)="removeBannerImage()" class="delete-image">
+            <button nbButton status="danger" outline size="small">replace</button>
+          </div>
+          <div class="com-w-2/3 com-mx-auto">
+            <commudle-banner-image
+              [headerImagePath]="imagePreview || hackathonForm.controls['banner_image'].value"
+            ></commudle-banner-image>
+          </div>
+        </div>
+      </div>
+
       <!-- Name -->
       <div>
         <label for="name">Hackathon's Name*</label>
@@ -54,7 +87,7 @@
       </div>
 
       <!-- Hackathon's Theme* -->
-      <div>
+      <!-- <div>
         <label for="hackathon_theme">Hackathon's Theme*</label>
         <select
           formControlName="hackathon_theme"
@@ -75,7 +108,7 @@
           [error]="true"
           errorMessage="Name is required"
         ></commudle-alert>
-      </div>
+      </div> -->
 
       <!-- Number of Participants* -->
       <div>

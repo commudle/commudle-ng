@@ -122,18 +122,33 @@
         <div>
           <label for="twitter">Twitter</label>
           <input placeholder="Twitter" type="text" nbInput fullWidth id="twitter" formControlName="twitter" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('twitter').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="invalid URL enter"
+          ></commudle-alert>
         </div>
 
         <!-- linkedin -->
         <div>
           <label for="linkedin">linkedin</label>
           <input placeholder="Linkedin" type="text" nbInput fullWidth id="linkedin" formControlName="linkedin" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('linkedin').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="invalid URL enter"
+          ></commudle-alert>
         </div>
 
         <!-- website -->
         <div>
           <label for="website">Website</label>
           <input placeholder="Website" type="text" nbInput fullWidth id="website" formControlName="website" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('website').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="invalid URL enter"
+          ></commudle-alert>
         </div>
       </form>
     </nb-card-body>

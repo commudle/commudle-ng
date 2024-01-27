@@ -59,9 +59,9 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       company: ['', Validators.required],
       designation: ['', Validators.required],
       username: ['', Validators.required],
-      twitter: '',
-      linkedin: '',
-      website: '',
+      twitter: ['', this.urlValidator],
+      linkedin: ['', this.urlValidator],
+      website: ['', this.urlValidator],
     });
   }
 
@@ -70,6 +70,13 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       this.hackathonSlug = params.get('hackathon_id');
       this.indexJudges(params.get('hackathon_id'));
     });
+  }
+
+  urlValidator(control) {
+    if (control.value && !/^(http|https)/.test(control.value)) {
+      return { invalidUrl: true };
+    }
+    return null;
   }
 
   indexJudges(hackathonId) {

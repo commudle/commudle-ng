@@ -163,6 +163,11 @@
             [error]="true"
             errorMessage="Website is required"
           ></commudle-alert>
+          <commudle-alert
+            *ngIf="sponsorForm.get('link').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="invalid URL enter"
+          ></commudle-alert>
         </div>
       </form>
     </nb-card-body>

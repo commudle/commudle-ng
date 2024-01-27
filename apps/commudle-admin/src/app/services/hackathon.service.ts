@@ -27,24 +27,16 @@ export class HackathonService {
         break;
       }
     }
-    return this.http.post<IHackathon>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE),
-      {
-        hackathon: dataForm,
-      },
-      { params },
-    );
+    return this.http.post<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE), dataForm, {
+      params,
+    });
   }
 
   updateHackathon(dataForm, hackathonId): Observable<IHackathon> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.put<IHackathon>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE),
-      {
-        hackathon: dataForm,
-      },
-      { params },
-    );
+    return this.http.put<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE), dataForm, {
+      params,
+    });
   }
 
   indexHackathons(parentId, parentType: string): Observable<IHackathon[]> {

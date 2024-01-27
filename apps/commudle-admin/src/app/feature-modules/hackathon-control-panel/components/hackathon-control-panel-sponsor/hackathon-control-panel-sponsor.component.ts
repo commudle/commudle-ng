@@ -33,7 +33,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
       description: ['', Validators.required],
       logo: [null, Validators.required],
       tier_name: ['', Validators.required],
-      link: ['', Validators.required],
+      link: ['', [Validators.required, this.urlValidator]],
       tier_priority: [1, Validators.required],
     });
   }
@@ -43,6 +43,13 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
       this.hackathonSlug = params.get('hackathon_id');
       this.indexSponsors(params.get('hackathon_id'));
     });
+  }
+
+  urlValidator(control) {
+    if (control.value && !/^(http|https)/.test(control.value)) {
+      return { invalidUrl: true };
+    }
+    return null;
   }
 
   openSponsorDialogBox(dialog, sponsor?: IHackathonSponsor, index?) {
