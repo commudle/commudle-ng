@@ -24,6 +24,8 @@ import { HackathonControlPanelFaqsComponent } from 'apps/commudle-admin/src/app/
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-speaker-judge/hackathon-judge-card/hackathon-judge-card.component';
 import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-registrations/hackathon-control-panel-registrations.component';
+import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-updates/hackathon-control-panel-updates.component';
+import { EditorModule as NewEditorModule } from '@commudle/editor';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin
     HackathonControlPanelFaqsComponent,
     HackathonJudgeCardComponent,
     HackathonControlPanelRegistrationsComponent,
+    HackathonControlPanelUpdatesComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin
     ReactiveFormsModule,
     EditorModule,
     AppSharedComponentsModule,
+    NewEditorModule,
 
     //components
     SidebarComponent,
