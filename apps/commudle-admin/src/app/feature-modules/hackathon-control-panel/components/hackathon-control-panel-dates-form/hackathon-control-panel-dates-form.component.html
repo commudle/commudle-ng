@@ -2,80 +2,6 @@
   <nb-card-header>Hackathon's Dates</nb-card-header>
   <nb-card-body class="hackathon-form">
     <form [formGroup]="hackathonDatesForm">
-      <div class="form-groups-heading">Open & Close Dates</div>
-      <!-- Hackathon Begins -->
-      <div>
-        <label for="start_date">Hackathon Begins</label>
-        <input formControlName="start_date" id="start_date" type="datetime-local" nbInput fullWidth />
-        <commudle-alert
-          *ngIf="
-            hackathonDatesForm.controls['start_date'].invalid &&
-            hackathonDatesForm.controls['start_date'].hasError('required') &&
-            hackathonDatesForm.controls['start_date'].touched
-          "
-          [error]="true"
-          errorMessage="Hackathon Begins is required"
-        ></commudle-alert>
-      </div>
-
-      <!-- Submission Deadline-->
-      <div>
-        <label for="end_date">Submission Deadline</label>
-        <input formControlName="end_date" id="end_date" type="datetime-local" nbInput fullWidth />
-        <commudle-alert
-          *ngIf="
-            hackathonDatesForm.controls['end_date'].invalid &&
-            hackathonDatesForm.controls['end_date'].hasError('required') &&
-            hackathonDatesForm.controls['end_date'].touched
-          "
-          [error]="true"
-          errorMessage="Submission Deadline is required"
-        ></commudle-alert>
-      </div>
-
-      <div class="form-groups-heading">Application Dates</div>
-      <!-- Application Opens -->
-      <div>
-        <label for="application_start_date">Application Opens</label>
-        <input
-          formControlName="application_start_date"
-          id="application_start_date"
-          type="datetime-local"
-          nbInput
-          fullWidth
-        />
-        <commudle-alert
-          *ngIf="
-            hackathonDatesForm.controls['application_start_date'].invalid &&
-            hackathonDatesForm.controls['application_start_date'].hasError('required') &&
-            hackathonDatesForm.controls['application_start_date'].touched
-          "
-          [error]="true"
-          errorMessage="Application Opens is required"
-        ></commudle-alert>
-      </div>
-
-      <!-- Application Closes -->
-      <div>
-        <label for="application_end_date">Application Closes</label>
-        <input
-          formControlName="application_end_date"
-          id="application_end_date"
-          type="datetime-local"
-          nbInput
-          fullWidth
-        />
-        <commudle-alert
-          *ngIf="
-            hackathonDatesForm.controls['application_end_date'].invalid &&
-            hackathonDatesForm.controls['application_end_date'].hasError('required') &&
-            hackathonDatesForm.controls['application_end_date'].touched
-          "
-          [error]="true"
-          errorMessage="Application Closes is required"
-        ></commudle-alert>
-      </div>
-
       <div class="form-groups-heading">Time Zone</div>
       <!-- Time Zone -->
       <div>
@@ -84,6 +10,85 @@
           <option *ngFor="let tz of allTimeZones" [value]="tz">{{ tz }}</option>
         </select>
       </div>
+
+      <div class="form-groups-heading">Open & Close Dates</div>
+      <div class="!com-grid com-grid-cols-1 !com-gap-4 md:com-grid-cols-2">
+        <!-- Hackathon Begins -->
+        <div>
+          <label for="start_date">Hackathon Begins</label>
+          <input formControlName="start_date" id="start_date" type="datetime-local" nbInput fullWidth />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['start_date'].invalid &&
+              hackathonDatesForm.controls['start_date'].hasError('required') &&
+              hackathonDatesForm.controls['start_date'].touched
+            "
+            [error]="true"
+            errorMessage="Hackathon Begins is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- Submission Deadline-->
+        <div>
+          <label for="end_date">Submission Deadline</label>
+          <input formControlName="end_date" id="end_date" type="datetime-local" nbInput fullWidth />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['end_date'].invalid &&
+              hackathonDatesForm.controls['end_date'].hasError('required') &&
+              hackathonDatesForm.controls['end_date'].touched
+            "
+            [error]="true"
+            errorMessage="Submission Deadline is required"
+          ></commudle-alert>
+        </div>
+      </div>
+
+      <div class="form-groups-heading">Application Dates</div>
+      <div class="!com-grid com-grid-cols-1 !com-gap-4 md:com-grid-cols-2">
+        <!-- Application Opens -->
+        <div>
+          <label for="application_start_date">Application Opens</label>
+          <input
+            formControlName="application_start_date"
+            id="application_start_date"
+            type="datetime-local"
+            nbInput
+            fullWidth
+          />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['application_start_date'].invalid &&
+              hackathonDatesForm.controls['application_start_date'].hasError('required') &&
+              hackathonDatesForm.controls['application_start_date'].touched
+            "
+            [error]="true"
+            errorMessage="Application Opens is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- Application Closes -->
+        <div>
+          <label for="application_end_date">Application Closes</label>
+          <input
+            formControlName="application_end_date"
+            id="application_end_date"
+            type="datetime-local"
+            nbInput
+            fullWidth
+          />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['application_end_date'].invalid &&
+              hackathonDatesForm.controls['application_end_date'].hasError('required') &&
+              hackathonDatesForm.controls['application_end_date'].touched
+            "
+            [error]="true"
+            errorMessage="Application Closes is required"
+          ></commudle-alert>
+        </div>
+      </div>
+
       <button
         class="save-button"
         nbButton
