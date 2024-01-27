@@ -1,0 +1,23 @@
+<div class="hackathon-info">
+  <div class="left-lines">
+    <div class="dot-top"></div>
+    <div class="line"></div>
+    <div class="dot-bottom"></div>
+  </div>
+  <div>
+    <div>
+      <div class="heading">HACKATHON STARTS</div>
+      <div class="value">{{ hackathon.start_date | date : 'dd MMM yyyy' }}</div>
+    </div>
+    <div>
+      <div class="heading com-mt-4">VENUE</div>
+      <a [href]="hackathon.location_map_link" class="value">{{ hackathon.location_name }}</a>
+    </div>
+  </div>
+</div>
+
+<div class="intrested-members"></div>
+
+<div class="action">
+  <button nbButton status="primary" fullWidth>Apply Now</button>
+</div>

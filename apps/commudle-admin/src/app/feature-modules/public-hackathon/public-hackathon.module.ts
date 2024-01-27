@@ -12,6 +12,7 @@ import { PublicHackathonPrizesComponent } from 'apps/commudle-admin/src/app/feat
 import { PublicHackathonProjectsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-projects/public-hackathon-projects.component';
 import { PublicHackathonChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-channels/public-hackathon-channels.component';
 import { SharedComponentsModule as NewSharedComponentsModule } from '@commudle/shared-components';
+import { PublicHackathonDetailsMiniCardComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-details-mini-card/public-hackathon-details-mini-card.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { SharedComponentsModule as NewSharedComponentsModule } from '@commudle/s
     PublicHackathonPrizesComponent,
     PublicHackathonProjectsComponent,
     PublicHackathonChannelsComponent,
+    PublicHackathonDetailsMiniCardComponent,
   ],
 })
 export class PublicHackathonModule {}

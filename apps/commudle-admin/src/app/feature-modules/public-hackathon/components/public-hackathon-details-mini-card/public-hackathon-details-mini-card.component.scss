@@ -1,0 +1,28 @@
+.hackathon-info {
+  @apply com-flex com-flex-row com-gap-1 com-pb-4;
+}
+.heading {
+  @apply com-text-lg com-font-bold com-text-gray-400;
+}
+
+.value {
+  @apply com-no-underline com-text-base com-font-semibold;
+}
+
+.line {
+  @apply com-w-1 com-h-16  com-bg-primary-500 -com-my-1.5;
+  margin-left: 4.4px;
+}
+.dot-top::before {
+  content: ' \25CF';
+  @apply com-text-primary-500;
+}
+
+.dot-bottom::before {
+  content: ' \25CF';
+  @apply com-text-primary-500;
+}
+
+.action {
+  @apply com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+}
