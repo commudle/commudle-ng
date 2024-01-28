@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/commudle-admin/src",
+  "tags": [],
   "prefix": "commudle",
   "targets": {
     "build": {
@@ -18,7 +19,7 @@
         "outputPath": "dist/apps/commudle-admin",
         "index": "apps/commudle-admin/src/index.html",
         "main": "apps/commudle-admin/src/main.ts",
-        "polyfills": "apps/commudle-admin/src/polyfills.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/commudle-admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -89,23 +90,30 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/commudle-admin/**/*.ts", "apps/commudle-admin/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/commudle-admin/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
-    "deploy": {
-      "executor": "@nx-extend/firebase-hosting:deploy",
+    "serve-static": {
+      "executor": "@nx/web:file-server",
       "options": {
-        "site": "commudle-eacee"
+        "buildTarget": "commudle-admin:build"
       }
     },
     "compodoc": {
@@ -119,7 +127,12 @@
           "exportFormat": "json"
         }
       }
+    },
+    "deploy": {
+      "executor": "@nx-extend/firebase-hosting:deploy",
+      "options": {
+        "site": "commudle-eacee"
+      }
     }
-  },
-  "tags": []
+  }
 }

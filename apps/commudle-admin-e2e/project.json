@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/commudle-admin-e2e/cypress.config.ts",
         "devServerTarget": "commudle-admin:serve:development",
@@ -14,11 +14,14 @@
       "configurations": {
         "production": {
           "devServerTarget": "commudle-admin:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "commudle-admin:serve-static"
         }
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/commudle-admin-e2e/**/*.{js,ts}"]

@@ -1,10 +1,8 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import * as Sentry from '@sentry/angular-ivy';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-
-import * as Sentry from '@sentry/angular-ivy';
 
 if (environment.production) {
   enableProdMode();
@@ -13,9 +11,11 @@ if (environment.production) {
     integrations: [
       new Sentry.BrowserTracing({
         // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+        // TODO: This is deprecated, fix before v8
         tracePropagationTargets: ['localhost', /^https:\/\/commudle.com\/api/],
         routingInstrumentation: Sentry.routingInstrumentation,
       }),
+      // TODO: This is deprecated, fix before v8
       new Sentry.Replay(),
     ],
     // Performance Monitoring

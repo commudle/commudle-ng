@@ -5,18 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'libs/ngx-datatable/src/lib/themes/material.scss';
+@import 'libs/ngx-datatable/src/lib/themes/material';
 
-@import '~prismjs/plugins/toolbar/prism-toolbar.css';
-@import '~prismjs/themes/prism-okaidia';
-@import '~@ctrl/ngx-emoji-mart/picker';
+@import 'prismjs/plugins/toolbar/prism-toolbar.min.css';
+@import 'prismjs/themes/prism-okaidia.min.css';
+@import '@ctrl/ngx-emoji-mart/picker';
 
 @include nb-install() {
   @include nb-theme-global();
 }
 
-@import './assets/styles/variables.scss';
-@import './assets/styles/common-classes.scss';
+@import './assets/styles/variables';
+@import './assets/styles/common-classes';
 @import './assets/styles/grid';
 @import './assets/styles/typography';
 
@@ -95,8 +95,8 @@ input {
     }
 
     nav.fixed {
-      padding: 0 !important;
       height: inherit;
+      padding: 0 !important;
 
       @screen md {
         padding: 1rem !important;
