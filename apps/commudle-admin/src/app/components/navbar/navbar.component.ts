@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbSidebarService, NbSidebarState } from '@commudle/theme';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
   sideBarNotifications = false;

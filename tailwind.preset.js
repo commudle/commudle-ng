@@ -70,6 +70,7 @@ module.exports = {
         'Catalina-Blue': '#022C7D', //'Catalina-Blue': 'var(--color-catalina-blue)'
         'Alice-Blue-Dark': '#EBF5FF',
         white: 'var(--color-white)',
+        'white-opacity-40': 'var(--color-white-opacity-40)',
         tWhite: 'var(--color-twhite)', //Remain white in dark mode
         black: 'var(--color-black)',
         'blue-50': 'var(--color-blue-50)',

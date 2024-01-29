@@ -3,6 +3,8 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { SeoService } from 'apps/shared-services/seo.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pricing',
@@ -12,6 +14,8 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   isMobileView = false;
+  isDarkMode = false;
+  private isDarkModeSubscription: Subscription;
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
       name: 'Google Developer Groups',
@@ -76,11 +80,15 @@ export class PricingComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private gtm: GoogleTagManagerService,
     private footerService: FooterService,
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 1024;
     this.footerService.changeFooterStatus(true);
+    this.isDarkModeSubscription = this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
     this.seoService.setTags(
       'Pricing: Students, DevRels, Startups',
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
@@ -90,6 +98,7 @@ export class PricingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.footerService.changeFooterStatus(false);
+    this.isDarkModeSubscription.unsubscribe();
   }
 
   gtmDatalayerPush(event) {
@@ -97,18 +106,22 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
 
   getUseCaseCardsUrl() {
-    if (this.isMobileView) {
-      return "url('" + staticAssets.pricing_usecase_cards_mobile + "')";
-    } else {
-      return "url('" + staticAssets.pricing_usecase_cards_desktop + "')";
+    if (!this.isDarkMode) {
+      if (this.isMobileView) {
+        return "url('" + staticAssets.pricing_usecase_cards_mobile + "')";
+      } else {
+        return "url('" + staticAssets.pricing_usecase_cards_desktop + "')";
+      }
     }
   }
 
   getCommunityLogoCardsUrl() {
-    if (this.isMobileView) {
-      return "url('" + staticAssets.pricing_community_logo_mobile + "')";
-    } else {
-      return "url('" + staticAssets.pricing_community_logo_desktop + "')";
+    if (!this.isDarkMode) {
+      if (this.isMobileView) {
+        return "url('" + staticAssets.pricing_community_logo_mobile + "')";
+      } else {
+        return "url('" + staticAssets.pricing_community_logo_desktop + "')";
+      }
     }
   }
 }

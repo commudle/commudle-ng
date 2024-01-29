@@ -369,6 +369,9 @@ nb-option-list.search-autocomplete {
   --color-white-light: #ffffff;
   --color-white-dark: #121212;
 
+  --color-white-opacity-40-light: #fff6;
+  --color-white-opacity-40-dark: #121212;
+
   --color-black-light: #000000;
   --color-black-dark: #ffffff;
 
@@ -531,6 +534,7 @@ nb-option-list.search-autocomplete {
   //   background-color: red;
   // }
   --color-white: var(--color-white-light);
+  --color-white-opacity-40: var(--color-white-opacity-40-light);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-light);
@@ -609,6 +613,7 @@ nb-option-list.search-autocomplete {
 
 [data-theme='dark'] {
   --color-white: var(--color-white-dark);
+  --color-white-opacity-40: var(--color-white-opacity-40-dark);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-dark);
   --color-blue-50: var(--color-blue-50-dark);
