@@ -15,6 +15,7 @@ export class HackathonResponseGroupService {
     hackathonId,
     registrationTypeId,
     name,
+    datFormId,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
 
@@ -26,22 +27,13 @@ export class HackathonResponseGroupService {
           registration_type_id: registrationTypeId,
           name: name,
         },
+        data_form_id: datFormId,
       },
       { params },
     );
   }
 
   showHackathonResponseGroup(hackathonId): Observable<IHackathonResponseGroup> {
-    const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<IHackathonResponseGroup>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.SHOW),
-      {
-        params,
-      },
-    );
-  }
-
-  showHackathon(hackathonId): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.SHOW),

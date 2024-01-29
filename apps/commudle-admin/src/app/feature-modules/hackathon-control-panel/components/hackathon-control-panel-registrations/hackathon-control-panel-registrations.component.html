@@ -128,7 +128,7 @@
         </div>
       </form>
 
-      <div class="custom-questions">
+      <div class="custom-questions" *ngIf="!dataFormId">
         <app-new-data-form
           (newDataForm)="submit($event)"
           formName="Hackathon Attendee Registration Form"
@@ -136,6 +136,10 @@
           [showNameDescriptionFiled]="false"
         >
         </app-new-data-form>
+      </div>
+      <div *ngIf="dataFormId">
+        <app-edit-data-form [dataFormId]="dataFormId" [showNameDescriptionFiled]="false" [centerLayout]="false">
+        </app-edit-data-form>
       </div>
     </div>
   </nb-card-body>

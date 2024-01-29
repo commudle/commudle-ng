@@ -1,7 +1,9 @@
+import { EModelName } from '@commudle/shared-models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from '@commudle/shared-services';
+import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
@@ -16,12 +18,15 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   userDetailsForm: FormGroup;
   registrationTypeId = 1;
   hackathon: IHackathon;
+  EModelName = EModelName;
+  dataFormId: number;
 
   constructor(
     private fb: FormBuilder,
     private hrgService: HackathonResponseGroupService,
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
+    private dataFormsService: DataFormsService,
     private toastrService: ToastrService,
   ) {
     this.userDetailsForm = this.fb.group({
@@ -50,7 +55,17 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.fetchHackathonDetails(params.get('hackathon_id'));
     });
-    this.hrgService.showHackathon(1).subscribe((data: IHackathonResponseGroup) => {
+  }
+  fetchHackathonDetails(hackathonId) {
+    this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
+      this.hackathon = data;
+      this.fetchHackathonResponseGroup();
+    });
+  }
+
+  fetchHackathonResponseGroup() {
+    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data: IHackathonResponseGroup) => {
+      this.dataFormId = data.data_form_id;
       if (data) {
         this.userDetailsForm.patchValue({
           name: data.user_details.name,
@@ -75,22 +90,22 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       }
     });
   }
-  fetchHackathonDetails(hackathonId) {
-    this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
-      this.hackathon = data;
-    });
-  }
 
   submit(formResponse) {
-    this.hrgService
-      .createHackathonResponseGroup(
-        JSON.stringify(this.userDetailsForm.value),
-        1,
-        this.registrationTypeId,
-        `${this.hackathon.name} - Registration`,
-      )
-      .subscribe((data) => {
-        if (data) this.toastrService.successDialog('Information Updated');
-      });
+    this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EModelName.HACKATHON).subscribe((data) => {
+      if (data) {
+        this.hrgService
+          .createHackathonResponseGroup(
+            JSON.stringify(this.userDetailsForm.value),
+            this.hackathon.id,
+            this.registrationTypeId,
+            `${this.hackathon.name} - Registration`,
+            data.id,
+          )
+          .subscribe((data) => {
+            if (data) this.toastrService.successDialog('Information Updated');
+          });
+      }
+    });
   }
 }

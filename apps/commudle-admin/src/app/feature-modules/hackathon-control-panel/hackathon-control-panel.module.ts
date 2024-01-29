@@ -26,6 +26,7 @@ import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature
 import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-registrations/hackathon-control-panel-registrations.component';
 import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-updates/hackathon-control-panel-updates.component';
 import { EditorModule as NewEditorModule } from '@commudle/editor';
+import { DataFormsModule } from 'apps/commudle-admin/src/app/feature-modules/data-forms/data-forms.module';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EditorModule as NewEditorModule } from '@commudle/editor';
     EditorModule,
     AppSharedComponentsModule,
     NewEditorModule,
+    DataFormsModule,
 
     //components
     SidebarComponent,

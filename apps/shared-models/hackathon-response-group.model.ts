@@ -1,5 +1,3 @@
-import { IUser } from '@commudle/shared-models';
-
 export interface IHackathonResponseGroup {
   id: number;
   deleted_at: any;
@@ -15,6 +13,7 @@ export interface IHackathonResponseGroup {
   user_id: number;
   created_at: string;
   updated_at: string;
+  data_form_id: number;
 }
 
 interface IUserDetails {

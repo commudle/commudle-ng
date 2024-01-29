@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,10 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./edit-data-form.component.scss'],
 })
 export class EditDataFormComponent implements OnInit, OnDestroy {
+  @Input() dataFormId: number;
+  @Input() showNameDescriptionFiled = true;
+  @Input() centerLayout = true;
+
   faTrashAlt = faTrashAlt;
   faPlus = faPlus;
   dataForm: IDataForm;
@@ -89,13 +93,21 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     });
 
     // set the controls
-    this.activatedRoute.params.subscribe((data) => {
-      this.dataFormsService.getDataFormDetails(data.id).subscribe((dataForm) => {
+    if (this.dataFormId) {
+      this.dataFormsService.getDataFormDetails(this.dataFormId).subscribe((dataForm) => {
         this.dataForm = dataForm;
         this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
         this.fillExistingDataForm();
       });
-    });
+    } else {
+      this.activatedRoute.params.subscribe((data) => {
+        this.dataFormsService.getDataFormDetails(data.id).subscribe((dataForm) => {
+          this.dataForm = dataForm;
+          this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
+          this.fillExistingDataForm();
+        });
+      });
+    }
   }
 
   ngOnDestroy() {

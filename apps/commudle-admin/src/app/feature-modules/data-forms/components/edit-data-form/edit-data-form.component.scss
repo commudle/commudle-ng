@@ -8,8 +8,10 @@
   }
 
   div.data-form-container {
-    max-width: 920px;
-    margin: 0 auto;
+    &.center-layout {
+      max-width: 920px;
+      margin: 0 auto;
+    }
 
     .submit-button {
       @apply com-mx-2;
