@@ -101,26 +101,3 @@ hr {
     }
   }
 }
-
-.faq {
-  @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;
-  @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
-
-  .heading {
-    @apply com-my-0 com-text-3xl com-tracking-tight com-text-tWhite;
-    @apply sm:com-text-4xl;
-  }
-
-  .questions {
-    @apply com-space-y-10;
-    @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
-
-    .question {
-      @apply com-text-tWhite com-text-base;
-    }
-
-    .answer {
-      @apply com-mt-3 com-ml-0 com-text-gray-400 com-text-base;
-    }
-  }
-}

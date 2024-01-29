@@ -16,11 +16,11 @@
       @apply md:com-w-[481px] com-w-full;
       nb-form-field {
         nb-icon {
-          @apply com-h-4 com-w-4 com-text-gunmetal com-opacity-80;
+          @apply com-h-4 com-w-4;
         }
 
         .communities-list-search-input {
-          @apply com-text-Quartz com-bg-Bright-Gray/60 com-border-0 com-rounded-lg com-text-xs com-h-8 com-py-2 com-px-8 md:com-w-[482px] com-w-full;
+          @apply com-rounded-lg com-text-xs com-h-8 com-py-2 com-px-8 md:com-w-[482px] com-w-full;
         }
       }
     }

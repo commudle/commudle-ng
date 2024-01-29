@@ -37,6 +37,7 @@ module.exports = {
         'Black-Coral': 'var(--color-black-coral)', // 'Black-Coral': '#595867',
         Charcoal: 'var(--color-charcoal)', // Charcoal: '#344054',
         'Auro-Metal-Saurus': 'var(--color-auro-metal-saurus)', // 'Auro-Metal-Saurus': '#667085',
+        'tAuro-Metal-Saurus': '#667085', //It will remain same,
         'Dark-Jungle-Green': 'var(--color-dark-jungle-green)', // 'Dark-Jungle-Green': '#101828',
         'Light-Silver': '#D0D5DD',
         'Bright-Gray-Light': '#EAECF0',
