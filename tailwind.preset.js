@@ -44,6 +44,7 @@ module.exports = {
         'Crayola-Green': '#1B9F68',
         'Vampire-Black': 'var(--color-vampire-black)', // 'Vampire-Black': '#0A0A0A',
         'Anti-Flash-White': '#f2f2f2',
+        'Anti-Flash': 'var(--color-anti-flash)',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
         'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain yankees-blue
         'Alice-Blue': '#EDF5FF',

@@ -122,10 +122,6 @@ input {
   }
 }
 
-// .com-dark nb-card {
-//   background-color: #1e1e1e;
-// }
-
 .nb-theme-default [nbInput].size-giant,
 .nb-theme-default [nbInput].size-tiny,
 .nb-theme-default [nbInput].size-small,
@@ -361,8 +357,13 @@ nb-option-list.search-autocomplete {
   z-index: 1051 !important;
 }
 
+.nb-theme-default nb-card {
+  margin: 16px 8px;
+}
+
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
+  margin: 16px 8px;
 }
 
 :root {
@@ -468,9 +469,6 @@ nb-option-list.search-autocomplete {
   --color-vampire-black-light: #0a0a0a;
   --color-vampire-black-dark: #ffffff;
 
-  --color-anti-flash-white-light: #f2f2f2;
-  --color-anti-flash-white-dark: #1ac7e3;
-
   --color-yankees-blue-light: #222b45;
   --color-yankees-blue-dark: #ffffff;
 
@@ -527,12 +525,12 @@ nb-option-list.search-autocomplete {
 
   --color-gunmetal-light: #2f2e41;
   --color-gunmetal-dark: #ffffff;
+
+  --color-anti-flash-light: #edf1f7;
+  --color-anti-flash-dark: #121212;
 }
 
 [data-theme='light'] {
-  // nb-card {
-  //   background-color: red;
-  // }
   --color-white: var(--color-white-light);
   --color-white-opacity-40: var(--color-white-opacity-40-light);
   --color-twhite: var(--color-white-light);
@@ -568,7 +566,7 @@ nb-option-list.search-autocomplete {
   --color-bright-gray: var(--color-bright-gray-light);
   --color-crayola-green: var(--color-crayola-green-light);
   --color-vampire-black: var(--color-vampire-black-light);
-  --color-anti-flash-white: var(--color-anti-flash-white-light);
+  --color-anti-flash: var(--color-anti-flash-light);
   --color-yankees-blue: var(--color-yankees-blue-light);
   --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-light);
@@ -647,7 +645,7 @@ nb-option-list.search-autocomplete {
   --color-bright-gray: var(--color-bright-gray-dark);
   --color-crayola-green: var(--color-crayola-green-dark);
   --color-vampire-black: var(--color-vampire-black-dark);
-  --color-anti-flash-white: var(--color-anti-flash-white-dark);
+  --color-anti-flash: var(--color-anti-flash-dark);
   --color-yankees-blue: var(--color-yankees-blue-dark);
   --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-dark);

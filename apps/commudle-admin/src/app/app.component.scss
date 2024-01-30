@@ -18,9 +18,9 @@
       @apply com-shadow-none com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
     }
   }
-  // nb-layout-column {
-  //   .router-outlet {
-  //     @apply com-bg-white;
-  //   }
-  // }
+  nb-layout-column {
+    .router-outlet {
+      @apply com-bg-Anti-Flash;
+    }
+  }
 }
