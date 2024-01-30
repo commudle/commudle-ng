@@ -1,6 +1,5 @@
 @use 'themes' as *;
 @use '@commudle/theme/styles/globals' as *;
-// @import '~@nebular/theme/styles/prebuilt/dark.css';
 
 @tailwind base;
 @tailwind components;
@@ -403,8 +402,8 @@ nb-option-list.search-autocomplete {
   --color-spiro-disco-light: #1ac7e3;
   --color-spiro-disco-dark: #1a1a1a;
 
-  // --color-brilliant-azure-light: #2aa5ff;
-  // --color-brilliant-azure-dark: #1a1a1a;
+  --color-brilliant-azure-light: #2aa5ff;
+  --color-brilliant-azure-dark: #1a1a1a;
 
   --color-caribbean-green-light: #00d68f;
   --color-caribbean-green-dark: #1a1a1a;
@@ -439,7 +438,7 @@ nb-option-list.search-autocomplete {
   --color-blue-violet-light: #6f22df;
   --color-blue-violet-dark: #1ac7e3;
 
-  --color-blond-light: #fff1bb; //check in tailwind
+  --color-blond-light: #fff1bb;
   --color-blond-dark: #1ac7e3;
 
   --color-black-coral-light: #595867;
@@ -528,6 +527,8 @@ nb-option-list.search-autocomplete {
 
   --color-anti-flash-light: #edf1f7;
   --color-anti-flash-dark: #121212;
+
+  --color-gray-500-opacity-50-light: #d7e1ed;
 }
 
 [data-theme='light'] {
@@ -544,7 +545,7 @@ nb-option-list.search-autocomplete {
   --color-gray-800: var(--color-gray-800-light);
   --color-gray-600: var(--color-gray-600-light);
   --color-spiro-disco: var(--color-spiro-disco-light);
-  // --color-brilliant-azure: var(--color-brilliant-azure-light);
+  --color-brilliant-azure: var(--color-brilliant-azure-light);
   --color-caribbean-green: var(--color-caribbean-green-light);
   --color-azureish-white: var(--color-azureish-white-light);
   --color-very-light-blue: var(--color-very-light-blue-light);
@@ -587,6 +588,7 @@ nb-option-list.search-autocomplete {
   --color-catalina-blue: var(--color-catalina-blue-light);
   --color-alice-blue-dark: var(--color-alice-blue-dark-light);
   --color-gunmetal: var(--color-gunmetal-light);
+  --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -623,7 +625,7 @@ nb-option-list.search-autocomplete {
   --color-gray-800: var(--color-gray-800-dark);
   --color-gray-600: var(--color-gray-600-dark);
   --color-spiro-disco: var(--color-spiro-disco-dark);
-  // --color-brilliant-azure: var(--color-brilliant-azure-dark);
+  --color-brilliant-azure: var(--color-brilliant-azure-dark);
   --color-caribbean-green: var(--color-caribbean-green-dark);
   --color-azureish-white: var(--color-azureish-white-dark);
   --color-very-light-blue: var(--color-very-light-blue-dark);
@@ -666,6 +668,7 @@ nb-option-list.search-autocomplete {
   --color-catalina-blue: var(--color-catalina-blue-dark);
   --color-alice-blue-dark: var(--color-alice-blue-dark-dark);
   --color-gunmetal: var(--color-gunmetal-dark);
+  --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
 
   .linear-gradient-top,
   .linear-gradient-bottom,

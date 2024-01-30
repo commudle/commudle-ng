@@ -20,7 +20,7 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        gunmetal: 'var(--color-gunmetal)', // gunmetal: '#2f2e41', //Change
+        gunmetal: 'var(--color-gunmetal)', // gunmetal: '#2f2e41',
         'Silver-Sand': '#c4c4c4',
         'Azureish-White': '#dae0ff',
         'Very-Light-Blue': '#536eff',
@@ -37,7 +37,7 @@ module.exports = {
         'Black-Coral': 'var(--color-black-coral)', // 'Black-Coral': '#595867',
         Charcoal: 'var(--color-charcoal)', // Charcoal: '#344054',
         'Auro-Metal-Saurus': 'var(--color-auro-metal-saurus)', // 'Auro-Metal-Saurus': '#667085',
-        'tAuro-Metal-Saurus': '#667085', //It will remain same,
+        'tAuro-Metal-Saurus': '#667085', //Remain same as Auro-Metal-Saurus,
         'Dark-Jungle-Green': 'var(--color-dark-jungle-green)', // 'Dark-Jungle-Green': '#101828',
         'Light-Silver': '#D0D5DD',
         'Bright-Gray-Light': '#EAECF0',
@@ -46,10 +46,10 @@ module.exports = {
         'Anti-Flash-White': '#f2f2f2',
         'Anti-Flash': 'var(--color-anti-flash)',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
-        'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain yankees-blue
+        'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain same as Yankees blue
         'Alice-Blue': '#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
-        'Bright-Gray': '#E4E9F2', // 'Bright-Gray': 'var(--color-bright-gray)',
+        'Bright-Gray': '#E4E9F2',
         'Brandeis-Blue': '#0074ED',
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
@@ -68,11 +68,11 @@ module.exports = {
         Bittersweet: '#FF725E',
         'American-Orange': '#FF8A00',
         'Blue-Lotus': '#635BFF', //used in stripe connect button for now
-        'Catalina-Blue': '#022C7D', //'Catalina-Blue': 'var(--color-catalina-blue)'
+        'Catalina-Blue': '#022C7D',
         'Alice-Blue-Dark': '#EBF5FF',
         white: 'var(--color-white)',
         'white-opacity-40': 'var(--color-white-opacity-40)',
-        tWhite: 'var(--color-twhite)', //Remain white in dark mode
+        tWhite: 'var(--color-twhite)', //Remain same as white
         black: 'var(--color-black)',
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',
@@ -82,58 +82,7 @@ module.exports = {
         'gray-700': 'var(--color-gray-700)',
         'gray-800': 'var(--color-gray-800)',
         'gray-600': 'var(--color-gray-600)',
-
-        // 'Spiro-Disco': '#1ac7e340', //used only in profile-status-bar.component
-        // 'Very-Light-Blue': '#536eff', //Used only in home-commumity.component
-        // 'Blue-Jeans': ' #29a5ff', //used only in user-work-history
-        // 'Dark-Spring-Green': '#10654c', //Used only in looking-for-work-tags
-        // 'Blue-Violet': '#6F22DF', //used only in hiring-in-work-tags
-        // Blond: '#FFF1BB', //Used only in common-classes.component
-        // 'Light-Silver': '#D0D5DD', //only used for borders, can be replaced with bright-gray
-        // 'New-Car': '#1D4ED8', //used only in alert.component
-        // 'Brandeis-Blue': '#0074ED', //Doesnot get used
-        // AuroMetalSaurus: '#667085', //Doesnot get used
-        // Lavender: '#E6F1FF', //Doesnot get used
-        // Seashell: '#FFF6EB', //USed only in community-builds
-        // 'Metallic-Bronze': '#AC7D47', //Used only in builds-header
-        // 'Tigers-Eye': '#DF913F', //Doesnot get used
-        // 'Blanched-Almond': '#FFEECD', //Only used in builds-header
-        // 'Bleu-De-France': '#2590EB', //Only used in lab-deatils.component
-        // 'Giants-Orange': '#ff5c1e', //Only used in chats-list
-        // Blue: '#001FFF', //Can be replaced
-        // Bittersweet: '#FF725E', //USed only in speakers-header
-        // 'Blue-Lotus': '#635BFF', //used only in stripe connect button for now
-        // 'Alice-Blue-Dark': '#EBF5FF', //Used only in labs.component
-
-        //Define dark variables for the below mentioned colours
-        // gunmetal: 'var(--color-gumental)',
-        // 'Brilliant-Azure': 'var(--color-brilliant-azure)',
-        // 'Spiro-Disco': 'var(--color-spiro-disco)',
-        // 'Caribbean-Green': 'var(--color-caribbean-green)',
-        // 'Azureish-White': 'var(--color-azureish-white)',
-        // 'Very-Light-Blue': 'var(--color-very-light-blue)',
-        // 'Blue-Jeans': 'var(--color-blue-jeans)',
-        // 'Ultramarine-Blue': 'var(--color-ultramarine-blue)',
-        // Blueberry: 'var(--color-blueberry)',
-        // 'Blue-Violet': 'var(--color-blue-violet)',
-        // Blond: 'var(--color-blond)',
-        // 'Light-Silver': 'var(--color-light-silver)',
-        // 'Bright-Gray-Light': 'var(--color-bright-gray-light)',
-        // 'Crayola-Green': 'var(--color-crayola-green)',
-        // 'Anti-Flash-White': 'var(--color-anti-flash-white)',
-        // 'Alice-Blue': 'var(--color-alice-blue)',
-        // 'Chrome-Yellow': 'var(--color-chrome-yellow)',
-        // 'Infra-Red': 'var(--color-infra-red)',
-        // Seashell: 'var(--color-seashell)',
-        // 'Metallic-Bronze': 'var(--color-metallic-bronze)',
-        // 'Blanched-Almond': 'var(--color-blanced-almond)',
-        // 'Deep-Carmine-Pink': 'var(--color-deep-carmine-pink)',
-        // 'Bleu-De-France': 'var(--color-bleu-de-france)',
-        // 'Giants-Orange': 'var(--color-giants-orange)',
-        // Blue: 'var(--color-blue)',
-        // Bittersweet: 'var(--color-bittersweet)',
-        // 'American-Orange': 'var(--color-american-orange)',
-        // 'Alice-Blue-Dark': 'var(--color-alice-blue-dark)',
+        'gray-500-opacity-50': 'var(--color-gray-500-opacity-50)',
       },
 
       lineClamp: {
