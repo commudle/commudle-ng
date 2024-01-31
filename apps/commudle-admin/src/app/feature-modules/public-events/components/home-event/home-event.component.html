@@ -17,9 +17,7 @@
         </div> -->
       </nb-card-body>
     </nb-card>
-    <div *ngIf="!event.header_image_path" class="no-header-image">
-      <h2>{{ event.name }}</h2>
-    </div>
+
     <div *ngIf="event.header_image_path" class="event-header-image">
       <div *appBreakpoints="'>lg'">
         <commudle-banner-image
