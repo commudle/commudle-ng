@@ -15,7 +15,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   isMobileView = false;
   isDarkMode = false;
-  private isDarkModeSubscription: Subscription;
+
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
       name: 'Google Developer Groups',
@@ -86,7 +86,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 1024;
     this.footerService.changeFooterStatus(true);
-    this.isDarkModeSubscription = this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
     this.seoService.setTags(
@@ -98,7 +98,6 @@ export class PricingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.footerService.changeFooterStatus(false);
-    this.isDarkModeSubscription.unsubscribe();
   }
 
   gtmDatalayerPush(event) {

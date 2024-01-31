@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbSidebarService, NbSidebarState } from '@commudle/theme';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
   currentUser: ICurrentUser;
   userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
   sideBarNotifications = false;
@@ -28,8 +28,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   faSun = faSun;
   faMoon = faMoon;
 
-  private isDarkModeSubscription: Subscription;
-
   constructor(
     private router: Router,
     private sidebarService: NbSidebarService,
@@ -41,13 +39,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getUser();
     this.checkNotifications();
-    this.isDarkModeSubscription = this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.isDarkModeSubscription.unsubscribe();
   }
 
   getUser() {
