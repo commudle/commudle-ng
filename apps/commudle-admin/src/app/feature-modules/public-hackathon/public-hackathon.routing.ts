@@ -8,6 +8,7 @@ import { PublicHackathonJudgesComponent } from 'apps/commudle-admin/src/app/feat
 import { PublicHackathonPrizesComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-prizes/public-hackathon-prizes.component';
 import { PublicHackathonProjectsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-projects/public-hackathon-projects.component';
 import { PublicHackathonChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-channels/public-hackathon-channels.component';
+import { PublicHackathonFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-form.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
             component: PublicHackathonChannelsComponent,
           },
         ],
+      },
+      {
+        path: 'form/:hackathon_response_group_id',
+        component: PublicHackathonFormComponent,
       },
     ],
   },

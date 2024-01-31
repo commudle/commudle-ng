@@ -813,6 +813,13 @@ export const API_ROUTES = {
   HACKATHON_RESPONSE_GROUP: {
     CREATE: 'api/v2/hackathon_response_group', //POST
     SHOW: 'api/v2/hackathon_response_group/show', //GET
+    PUBLIC_SHOW: 'api/v2/hackathon_response_group', //GET
+  },
+
+  HACKATHON_USER_RESPONSE: {
+    CREATE: 'api/v2/hackathon_user_response', //POST
+    UPDATE: 'api/v2/hackathon_user_response', //PUT
+    GET_EXISTING_HACKATHON_USER_RESPONSES: 'api/v2/hackathon_user_response/get_existing_hackathon_user_responses', //GET
   },
 
   ENTITY_UPDATES: {

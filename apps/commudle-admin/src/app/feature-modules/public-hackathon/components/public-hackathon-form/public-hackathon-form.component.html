@@ -1,0 +1,43 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="two-column-layout">
+      <div class="main-column">
+        <nb-card>
+          <nb-card-body>
+            <nb-stepper orientation="horizontal" [linear]="false">
+              <nb-step label="Profile">
+                <commudle-public-hackathon-user-details-form
+                  [userForm]="userForm"
+                ></commudle-public-hackathon-user-details-form>
+                <button
+                  nbButton
+                  nbStepperNext
+                  status="primary"
+                  (click)="hackathonUserResponse ? updateUserResponse() : submitUserResponse()"
+                >
+                  Next
+                </button>
+              </nb-step>
+              <nb-step *ngIf="showTeammateForm" label="Teammates">
+                <commudle-public-hackathon-teammate-form
+                  [teammateForm]="teammateForm"
+                  (createTeammateEvent)="addTeammate()"
+                  (removeTeammateEvent)="removeTeammate($event)"
+                ></commudle-public-hackathon-teammate-form>
+                <button nbButton nbStepperNext status="primary">next</button>
+              </nb-step>
+              <nb-step label="Project Details">
+                <form></form>
+                <button nbButton nbStepperNext status="primary">next</button>
+              </nb-step>
+              <nb-step label="Submit">
+                <form></form>
+                <button nbButton nbStepperNext status="primary">next</button>
+              </nb-step>
+            </nb-stepper>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

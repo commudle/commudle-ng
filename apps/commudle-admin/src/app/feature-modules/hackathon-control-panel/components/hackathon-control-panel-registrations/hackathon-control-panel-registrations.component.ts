@@ -32,11 +32,11 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
     this.userDetailsForm = this.fb.group({
       name: false,
       designation: false,
-      about: false,
+      about_me: false,
       location: false,
-      work_experience: false,
+      work_experience_months: false,
       education: false,
-      phone_number: false,
+      phone: false,
       email: false,
       twitter: false,
       linkedin: false,
@@ -65,16 +65,16 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
 
   fetchHackathonResponseGroup() {
     this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data: IHackathonResponseGroup) => {
-      this.dataFormId = data.data_form_id;
       if (data) {
+        this.dataFormId = data.data_form_id;
         this.userDetailsForm.patchValue({
           name: data.user_details.name,
           designation: data.user_details.designation,
-          about: data.user_details.about,
+          about_me: data.user_details.about_me,
           location: data.user_details.location,
-          work_experience: data.user_details.work_experience,
+          work_experience_months: data.user_details.work_experience_months,
           education: data.user_details.education,
-          phone_number: data.user_details.phone_number,
+          phone: data.user_details.phone,
           email: data.user_details.email,
           twitter: data.user_details.twitter,
           linkedin: data.user_details.linkedin,

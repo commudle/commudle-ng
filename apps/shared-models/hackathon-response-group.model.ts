@@ -19,11 +19,11 @@ export interface IHackathonResponseGroup {
 interface IUserDetails {
   name: boolean;
   designation: boolean;
-  about: boolean;
+  about_me: boolean;
   location: boolean;
-  work_experience: boolean;
+  work_experience_months: boolean;
   education: boolean;
-  phone_number: boolean;
+  phone: boolean;
   email: boolean;
   twitter: boolean;
   linkedin: boolean;

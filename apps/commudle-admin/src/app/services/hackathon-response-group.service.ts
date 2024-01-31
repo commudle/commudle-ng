@@ -42,4 +42,14 @@ export class HackathonResponseGroupService {
       },
     );
   }
+
+  pShowHackathonResponseGroup(hackathonResponseGroupId): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    return this.http.get<IHackathonResponseGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC_SHOW),
+      {
+        params,
+      },
+    );
+  }
 }

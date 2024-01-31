@@ -1,0 +1,27 @@
+<form [formGroup]="teammateForm">
+  <div>
+    <label for="name">Team Name*</label>
+    <input type="text" nbInput fullWidth formControlName="name" />
+  </div>
+  <div>Enter Teammate emails</div>
+  <div formArrayName="teammates">
+    <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i">
+      <label for="email">Enter Email*</label>
+      <input type="email" formControlName="email" fullWidth nbInput />
+
+      <label for="tshirt_size">THEIR TSHIRT SIZE</label>
+      <input type="text" list="tshirtSize" formControlName="tshirt_size" fullWidth nbInput />
+      <datalist id="tshirtSize">
+        <option value="S"></option>
+        <option value="M"></option>
+        <option value="L"></option>
+        <option value="XL"></option>
+        <option value="XXL"></option>
+      </datalist>
+
+      <button type="button" (click)="removeTeammate(i)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addTeammate()" nbButton>+ Add Teammate</button>
+</form>
