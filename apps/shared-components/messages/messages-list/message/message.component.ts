@@ -91,7 +91,7 @@ export class MessageComponent implements OnInit {
       text: this.removeHtmlTags(this.message.content),
       author: {
         '@type': 'Person',
-        name: this.message.user.name,
+        name: this.message.user.name ? this.message.user.name : this.message.user.username,
         url: `https://www.commudle.com/users/${this.message.user.username}`,
       },
       datePublished: this.message.created_at,
@@ -109,7 +109,7 @@ export class MessageComponent implements OnInit {
           text: this.removeHtmlTags(userMessage.content),
           author: {
             '@type': 'Person',
-            name: userMessage.user.name,
+            name: userMessage.user.name ? userMessage.user.name : userMessage.user.username,
             url: `https://www.commudle.com/users/${userMessage.user.username}`,
           },
           datePublished: userMessage.created_at,
