@@ -201,6 +201,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_data_form_entity_groups',
     GET: 'api/v2/event_data_form_entity_group',
     CREATE: 'api/v2/event_data_form_entity_groups',
+    UPDATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
@@ -260,6 +261,8 @@ export const API_ROUTES = {
     INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+    AUTOMATION: 'api/v2/data_form_entities/automation',
+    FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
   },
 
@@ -278,6 +281,7 @@ export const API_ROUTES = {
     DATA_FORM_ENTITY_RESPONSES: 'api/v2/data_form_entity_response_groups/data_form_entity_responses',
     PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
     PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users',
+    FILTERED_RESPONSE_VALUES: 'api/v2/data_form_entity_response_groups/filtered_response_values',
   },
 
   // event_entry_passes
@@ -484,6 +488,7 @@ export const API_ROUTES = {
     UPDATE_COMMUNICATION_PREFERENCES: 'api/v2/users/update_communication_consent',
     DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
+    PROFILE_STATS: 'api/v2/users/profile_stats',
   },
 
   SPEAKER_RESOURCES: {
@@ -733,5 +738,35 @@ export const API_ROUTES = {
     CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
     CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
+  },
+
+  CUSTOM_PAGES: {
+    CREATE: 'api/v2/custom_pages', //POST
+    UPDATE: 'api/v2/custom_pages', //PUT
+    DELETE: 'api/v2/custom_pages', //DELETE
+    SHOW: 'api/v2/custom_pages/show', //GET
+    INDEX: 'api/v2/custom_pages', //GET
+    GET_SLUG: 'api/v2/custom_pages/generate_slug',
+    PUBLIC: {
+      SHOW: 'api/v2/custom_pages/public/show', //GET
+      INDEX: 'api/v2/custom_pages/public/index', //GET
+    },
+  },
+
+  NEWSLETTER: {
+    CREATE: 'api/v2/newsletters', //POST
+    UPDATE: 'api/v2/newsletters', //PUT
+    DELETE: 'api/v2/newsletters', //DELETE
+    SHOW: 'api/v2/newsletters/show', //GET
+    INDEX: 'api/v2/newsletters', //GET
+    SET_SCHEDULE: 'api/v2/newsletters/set_schedule', //POST
+    RESET_SCHEDULE: 'api/v2/newsletters/reset_schedule', //DELETE
+    SEND_TEST_EMAIL: 'api/v2/newsletters/send_test_email', //POST
+    EMAIL_STATS: 'api/v2/newsletters/email_stats', //GET
+    ATTACH_TEXT_IMAGE: 'api/v2/newsletters/attach_text_image', //PUT
+    PUBLIC: {
+      SHOW: 'api/v2/newsletters/public/show', //GET
+      INDEX: 'api/v2/newsletters/public/index', //GET
+    },
   },
 };

@@ -13,7 +13,7 @@
                 [routerLinkActive]="'active'"
               >
                 <div class="icon">
-                  <fa-icon [icon]="faCalendar"></fa-icon>
+                  <fa-icon [icon]="icons.faCalendar"></fa-icon>
                 </div>
                 <div class="title">Communities</div>
               </div>
@@ -21,7 +21,7 @@
             <div class="link">
               <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
                 <div class="icon">
-                  <fa-icon [icon]="faUsers"></fa-icon>
+                  <fa-icon [icon]="icons.faUsers"></fa-icon>
                 </div>
                 <div class="title">All Members</div>
               </div>
@@ -29,7 +29,7 @@
             <div class="link">
               <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
                 <div class="icon">
-                  <fa-icon [icon]="faBuilding"></fa-icon>
+                  <fa-icon [icon]="icons.faBuilding"></fa-icon>
                 </div>
                 <div class="title">Admin Team</div>
               </div>
@@ -37,7 +37,7 @@
             <div class="link">
               <div class="content" [routerLink]="['edit']" [routerLinkActive]="'active'">
                 <div class="icon">
-                  <fa-icon [icon]="faPenToSquare"></fa-icon>
+                  <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
                 </div>
                 <div class="title">Edit Details</div>
               </div>
@@ -45,9 +45,17 @@
             <div class="link">
               <div class="content" [routerLink]="['surveys']" [routerLinkActive]="'active'">
                 <div class="icon">
-                  <fa-icon [icon]="faPoll"></fa-icon>
+                  <fa-icon [icon]="icons.faPoll"></fa-icon>
                 </div>
                 <div class="title">Surveys</div>
+              </div>
+            </div>
+            <div class="link">
+              <div class="content" [routerLink]="['pages']" [routerLinkActive]="'active'">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faFileLines"></fa-icon>
+                </div>
+                <div class="title">Pages</div>
               </div>
             </div>
           </div>

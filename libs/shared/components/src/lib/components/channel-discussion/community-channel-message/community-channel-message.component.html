@@ -1,4 +1,4 @@
-<div #messageRef>
+<div #messageRef *ngIf="!messagePinned">
   <div *ngIf="communityChannelHandlerService.scrollToMessageId === message.id" class="last-read">
     <div class="divider">
       <div class="line"></div>
@@ -24,6 +24,7 @@
         </div>
         <span class="time">{{ moment(message.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
         <span class="edited" *ngIf="message.edited">(edited)</span>
+        <fa-icon *ngIf="message.pinned" [icon]="faThumbtack" transform="rotate-45" size="lg"></fa-icon>
       </div>
       <commudle-editor
         (inViewportAction)="markAsRead(message?.id, $event)"
@@ -48,6 +49,7 @@
           [canReply]="false"
           [message]="reply"
           [cursor]="cursor"
+          [channelOrForum]="channelOrForum"
         ></commudle-community-channel-message>
         <commudle-editor
           (contentChange)="communityChannelHandlerService.sendReply(message.id, $event)"
@@ -56,6 +58,37 @@
           [status]="'primary'"
         ></commudle-editor>
       </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="messagePinned">
+  <div class="message-container pinned">
+    <img [alt]="message.user.name" [src]="message.user.photo.i64" [title]="message.user.name" class="avatar" />
+    <div class="message">
+      <div class="prefix">
+        <div class="com-flex com-items-baseline com-gap-2">
+          <a [routerLink]="['/users', message.user.username]" class="name">{{ message.user.name }}</a>
+          <img
+            *ngIf="message.user.is_expert"
+            alt="Expert Tick"
+            class="expert-icon"
+            src="/assets/images/Expert-Tick.svg"
+            title="Expert Tick"
+          />
+        </div>
+        <span class="time">{{ moment(message.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
+        <span class="edited" *ngIf="message.edited">(edited)</span>
+        <fa-icon *ngIf="message.pinned" [icon]="faThumbtack" transform="rotate-45" size="lg"></fa-icon>
+      </div>
+      <commudle-editor
+        (inViewportAction)="markAsRead(message?.id, $event)"
+        [content]="message.content"
+        [editable]="false"
+        [inViewportOptions]="{ threshold: [0] }"
+        [status]="'primary'"
+        inViewport
+      ></commudle-editor>
     </div>
   </div>
 </div>

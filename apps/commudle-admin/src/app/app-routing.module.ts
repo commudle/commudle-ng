@@ -43,6 +43,15 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'newsletters',
+    loadChildren: () =>
+      import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
+  },
+  {
+    path: 'newsletters/:main_newsletter_id',
+    component: MainNewsletterComponent,
+  },
+  {
     path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },
@@ -56,6 +65,21 @@ const routes: Routes = [
       import('./feature-modules/student-non-profit-support/student-non-profit-support.module').then(
         (m) => m.StudentNonProfitSupportModule,
       ),
+  },
+  {
+    path: 'devrel-agencies',
+    loadChildren: () =>
+      import('./feature-modules/public-agencies/public-agencies.module').then((m) => m.PublicAgenciesModule),
+  },
+  {
+    path: 'developer-ecosystem-blueprint',
+    loadChildren: () =>
+      import('./feature-modules/public-book-page/public-book-page.module').then((m) => m.PublicBookPageModule),
+  },
+  {
+    path: 'developer-ecosystem-blueprint/book',
+    loadChildren: () =>
+      import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
   },
   // {
   //   path: 'features',
@@ -159,15 +183,6 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/policies/policies.module').then((m) => m.PoliciesModule),
   },
   {
-    path: 'newsletters/:main_newsletter_id',
-    component: MainNewsletterComponent,
-  },
-  {
-    path: 'newsletters',
-    loadChildren: () =>
-      import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
-  },
-  {
     path: 'blogs',
     loadChildren: () => import('./feature-modules/public-blogs/public-blogs.module').then((m) => m.PublicBlogsModule),
   },
@@ -215,10 +230,6 @@ const routes: Routes = [
           import('./feature-modules/community-groups/community-groups.module').then((m) => m.CommunityGroupsModule),
       },
     ],
-  },
-  {
-    path: 'public',
-    loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },

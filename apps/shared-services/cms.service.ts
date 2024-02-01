@@ -1,52 +1,70 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { toHTML } from '@portabletext/to-html';
+import { type ClientConfig, createClient } from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-const sanityClient = require('@sanity/client');
-const blocksToHtml = require('@sanity/block-content-to-html');
-const builder = require('@sanity/image-url');
 
 @Injectable({
   providedIn: 'root',
 })
 export class CmsService {
-  projectId = 'r9a0cpxc';
-  dataset = 'production';
-  apiVersion = '2021-06-07';
+  config: ClientConfig = {
+    projectId: 'r9a0cpxc',
+    dataset: 'production',
+    useCdn: true,
+    apiVersion: '2023-05-03',
+  };
+  client = createClient(this.config);
 
-  client = sanityClient({
-    projectId: this.projectId,
-    dataset: this.dataset,
-    apiVersion: this.apiVersion, // use a UTC date string
-    useCdn: true, // `false` if you want to ensure fresh data
-  });
-  imageUrlBuilder: ImageUrlBuilder = builder(this.client);
-  private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
+  imageUrlBuilder = imageUrlBuilder(this.client);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   getDataBySlug(slug: string) {
-    const params = new HttpParams().set('query', `*[slug.current == "${slug}"]`);
-    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result[0]));
+    return from(this.client.fetch(`*[slug.current == "${slug}"]`)).pipe(map((data) => data[0]));
   }
 
   getDataByType(type: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
-    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+    return from(this.client.fetch(`*[_type == "${type}"]`));
+  }
+
+  getDataByTypeWithFilter(
+    type: string,
+    filterType: string,
+    keyword: string,
+    finalCount: number,
+    initialCount: number = 0,
+  ) {
+    return from(
+      this.client.fetch(`*[_type == "${type}" && $keyword in ${filterType}[]] [${initialCount}...${finalCount}]`, {
+        keyword,
+      }),
+    );
   }
 
   getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"]{${fields}} | order(${order}) `);
-    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+    return from(this.client.fetch(`*[_type == "${type}"]{${fields}} | order(${order}) `));
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
-    return blocksToHtml({
-      blocks: value[field],
-      projectId: this.projectId,
-      dataset: this.dataset,
+    return toHTML(value[field], {
+      components: {
+        types: {
+          table: ({ value }) => {
+            return `<table><tbody>${value.rows
+              .map((row: { cells: string[] }) => {
+                return `<tr>${row.cells.map((cell: string) => `<td>${cell}</td>`).join('')}</tr>`;
+              })
+              .join('')}</tbody></table>`;
+          },
+          image: ({ value }) => {
+            return `<img src="${this.getImageUrl(value.asset)}" alt="${value.alt}" class="!com-max-w-full" />`;
+          },
+        },
+      },
     });
   }
 

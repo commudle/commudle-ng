@@ -25,9 +25,52 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CustomPageComponent } from './custom-page/custom-page.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter.component';
+import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
+import { PublicPageLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-layout/public-page-layout.component';
+import { TestimonialCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/testimonial-card/testimonial-card.component';
+import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-stats/public-page-stats.component';
+import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-cta/public-page-cta.component';
+import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
+import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
-  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  declarations: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+    CustomPageFormComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
+  ],
+  exports: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,7 +79,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     RouterModule,
     PublicCommunityModule,
     SharedComponentsModule,
-
+    MiniUserProfileModule,
     //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
@@ -44,7 +87,6 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
-
     // Nebular
     NbRadioModule,
     NbSelectModule,
@@ -57,7 +99,9 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     NbToggleModule,
     NbIconModule,
     NbCardModule,
+    //FontAwesome
+    FontAwesomeModule,
+    SharedPipesModule,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
 })
 export class AppSharedComponentsModule {}

@@ -126,7 +126,9 @@
     </div>
 
     <div class="submit-button">
-      <button [disabled]="!eMailForm.valid" fullWidth nbButton status="primary" type="submit">Send Mail</button>
+      <button [disabled]="!eMailForm.valid || isEmailSending" fullWidth nbButton status="primary" type="submit">
+        Send Mail
+      </button>
     </div>
   </form>
 </div>

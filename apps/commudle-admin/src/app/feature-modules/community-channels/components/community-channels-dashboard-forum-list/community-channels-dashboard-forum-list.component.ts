@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '@commudle/shared-services';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
@@ -18,8 +18,9 @@ interface EGroupedCommunityChannels {
 export class CommunityChannelsDashboardForumListComponent implements OnInit {
   subscriptions: Subscription[] = [];
   communityForums: EGroupedCommunityChannels;
-  selectedCommunity: ICommunity;
+  @Input() community: ICommunity;
   @Output() updateSelectedForum = new EventEmitter<any>();
+  hasForms = false;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -32,13 +33,10 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.subscriptions.push(
       this.communityChannelManagerService.communityForums$.subscribe((data) => {
         this.communityForums = data;
-      }),
-
-      this.activatedRoute.parent.data.subscribe((data) => {
-        this.selectedCommunity = data.community;
-        this.setMeta();
+        Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
       }),
     );
+    this.setMeta();
   }
 
   selectedCommunityChannel(forumName) {
@@ -53,9 +51,9 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
 
   setMeta() {
     this.seoService.setTags(
-      `Forums - ${this.selectedCommunity.name}`,
-      `Forum discussions for ${this.selectedCommunity.name}`,
-      this.selectedCommunity.logo_path,
+      `Forums - ${this.community.name}`,
+      `Forum discussions for ${this.community.name}`,
+      this.community.logo_path,
     );
   }
 }

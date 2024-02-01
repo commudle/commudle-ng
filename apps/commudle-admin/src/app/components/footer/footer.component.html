@@ -12,8 +12,11 @@
           >
             <img class="com-h-16" src="{{ staticAssets.google_for_startups_badge }}" alt="Google for Startups 2022" />
           </a>
-          <a>
+          <a href="https://compliances.commudle.com/">
             <img class="com-h-16 com-ml-4" src="{{ staticAssets.gdpr_compliance }}" alt="Commudle is gdpr compliant" />
+          </a>
+          <a href="https://compliances.commudle.com/">
+            <img class="com-h-16 com-ml-4" src="{{ staticAssets.iso_27001 }}" alt="Commudle is Iso 27001" />
           </a>
           <div class="footer-social-links com-flex com-space-x-6">
             <a href="https://twitter.com/commudle" target="_blank">
@@ -59,14 +62,25 @@
           <div class="md:com-grid md:com-grid-cols-2 md:com-gap-8">
             <div>
               <ul>
-                <li><a [routerLink]="['/login']">Login</a></li>
-                <li><a [routerLink]="['/signup']">Signup</a></li>
-                <li><a [routerLink]="['/policies/privacy-policy']">Privacy Policy</a></li>
-                <li><a [routerLink]="['/policies/terms-and-conditions']">Terms and Conditions</a></li>
+                <li>
+                  <a class="developer-community-blueprint" [routerLink]="['/developer-ecosystem-blueprint']"
+                    >The Developer Ecosystem Blueprint</a
+                  >
+                </li>
+                <li><a [routerLink]="['/devrel-agencies']">For DevRel Agencies</a></li>
               </ul>
             </div>
             <div class="com-mt-12 md:com-mt-0">
-              <ul></ul>
+              <ul>
+                <li><a [routerLink]="['/login']">Login</a></li>
+                <li><a [routerLink]="['/signup']">Create Account</a></li>
+                <li><a [routerLink]="['/policies/privacy-policy']">Privacy Policy</a></li>
+                <li><a [routerLink]="['/policies/terms-and-conditions']">Terms and Conditions</a></li>
+                <li><a [routerLink]="['/policies/contact-us']">Contact Us</a></li>
+                <li><a [routerLink]="['/policies/refund-cancellation-policy']">Refund & Cancellation Policy</a></li>
+                <li><a [routerLink]="['/policies/all-policies']">All Policies</a></li>
+                <li><a href="https://compliances.commudle.com/">Compliances</a></li>
+              </ul>
             </div>
           </div>
         </div>

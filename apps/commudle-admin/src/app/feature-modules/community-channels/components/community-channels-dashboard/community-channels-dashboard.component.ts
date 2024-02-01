@@ -56,6 +56,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   currentRoute: string;
+  token: string;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -124,6 +125,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getQueryParamsData() {
+    this.token = this.activatedRoute.snapshot.params.token;
     this.discussionTypeForum = this.activatedRoute.snapshot.url.join('/').includes('forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
     this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
@@ -175,13 +177,17 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
       this.forumsNamesList = false;
       this.forumMessage = false;
       this.forumsList = false;
-      this.router.navigate([`communities/${this.selectedCommunity.slug}/channels`]);
+      const currentUrl = this.router.url;
+      const newUrl = currentUrl.replace(/\/forums$/, '/channels');
+      this.router.navigate([newUrl]);
     } else if (discussionType === this.discussionType.FORUM) {
       this.channelsList = false;
       this.forumsNamesList = false;
       this.forumMessage = false;
       this.forumsList = true;
-      this.router.navigate([`communities/${this.selectedCommunity.slug}/forums`]);
+      const currentUrl = this.router.url;
+      const newUrl = currentUrl.replace(/\/channels$/, '/forums');
+      this.router.navigate([newUrl]);
     }
     this.checkDiscussionType();
   }

@@ -35,7 +35,7 @@
       </div>
     </td>
   </tr>
-  <tr *ngIf="detail.status === 'paid' && user.id === paidUser.user_id">
+  <tr *ngIf="detail.status === 'paid' && paidUser && user.id === paidUser.user_id">
     <td colspan="2">
       <button class="com-mt-4" fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
     </td>

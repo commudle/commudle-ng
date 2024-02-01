@@ -1,0 +1,131 @@
+<nb-card>
+  <nb-card-header class="com-flex com-justify-between">
+    <div>{{ operationType === 'create' ? 'Add a session' : 'Edit a session' }}</div>
+    <button (click)="close()" ghost nbButton size="small" shape="round">
+      <nb-icon icon="close"></nb-icon>
+    </button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div>
+      <form
+        (ngSubmit)="operationType === 'create' ? addSlot() : editSlot(trackSlot.id)"
+        [formGroup]="trackSlotForm"
+        class="track-slot-form"
+      >
+        <div formGroupName="track_slot" class="track-slot-form">
+          <div>
+            <nb-select
+              formControlName="event_location_track_id"
+              placeholder="Select Track"
+              fullWidth
+              class="select-track"
+            >
+              <nb-option *ngIf="eventLocations.length === 0 || eventLocations[0].event_location_tracks.length === 0">
+                <a
+                  [routerLink]="['./admin/communities', community.slug, 'event-dashboard', event.slug, 'agenda']"
+                  (click)="close()"
+                  class="com-text-blac com-no-underline"
+                  >+ Add Location /Tracks</a
+                >
+              </nb-option>
+              <nb-option-group *ngFor="let location of eventLocations" title="{{ location.location.name }}">
+                <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
+                  {{ ltrack.name }}
+                </nb-option>
+              </nb-option-group>
+              <span
+                *ngIf="
+                  trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
+                  trackSlotForm['controls'].track_slot['controls'].event_location_track_id.invalid &&
+                  trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
+                "
+              >
+                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
+              </span>
+            </nb-select>
+          </div>
+          <div
+            *ngFor="
+              let speakerControl of trackSlotForm.get('track_slot.track_slot_speaker_registration_ids').controls;
+              let i = index
+            "
+            class="com-flex com-items-baseline com-gap-2"
+          >
+            <div class="dropdown">
+              <select
+                [formControl]="speakerControl"
+                class="com-border-0"
+                (change)="speakerSelected($event, i)"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]': speakerControl.value === ''
+                }"
+              >
+                <option value="" selected disabled>Select Speaker (optional)</option>
+                <option *ngFor="let speaker of eventSpeakers | orderBy : ['user.name'] : ['asc']" [value]="speaker.id">
+                  {{ speaker.user.name }}
+                </option>
+              </select>
+            </div>
+            <div (click)="removeSpeakerDropdown(i)" class="com-p-1 com-cursor-pointer com-text-red-500">
+              <fa-icon [icon]="icons.faXmark"></fa-icon>
+            </div>
+          </div>
+          <div
+            (click)="addSpeakerDropdown()"
+            class="com-text-primary-500 com-cursor-pointer com-flex com-justify-center com-mb-3"
+          >
+            + Add Another Speaker
+          </div>
+
+          <div class="session-name">
+            <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
+            <span
+              *ngIf="
+                trackSlotForm['controls'].track_slot['controls'].session_title.touched &&
+                trackSlotForm['controls'].track_slot['controls'].session_title.invalid &&
+                trackSlotForm['controls'].track_slot['controls'].session_title.errors.required
+              "
+            >
+              <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
+            </span>
+          </div>
+
+          <div class="start-time">
+            <input formControlName="start_time" fullWidth nbInput placeholder="Start Time*" type="time" />
+            <span
+              *ngIf="
+                trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
+                trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
+              "
+            >
+              <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
+            </span>
+          </div>
+
+          <div class="end-time">
+            <input type="time" formControlName="end_time" fullWidth nbInput placeholder="End Time*" />
+          </div>
+
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
+            <input
+              (tagAdd)="onTagAdd($event)"
+              [separatorKeys]="[13, 188]"
+              fullWidth
+              nbTagInput
+              placeholder="Type a tag name"
+              type="text"
+              formControlName="tags_list"
+            />
+          </nb-tag-list>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="save-button-bottom" (click)="operationType === 'create' ? addSlot() : editSlot(trackSlot.id)">
+      <button [disabled]="!trackSlotForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

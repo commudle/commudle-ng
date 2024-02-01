@@ -1,0 +1,58 @@
+a {
+  @apply com-no-underline;
+}
+.user,
+.community {
+  @apply com-flex com-flex-row com-justify-between;
+  .user-profile-image {
+    @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-full;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .community-image {
+    @apply com-flex com-items-center com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-[4px] com-border com-border-solid com-border-Bright-Gray;
+
+    img {
+      @apply com-w-full com-h-auto com-object-cover;
+    }
+  }
+
+  .name {
+    @apply com-flex com-text-sm com-font-medium com-text-black com-m-0 com-mb-2px com-items-center;
+  }
+
+  .leader {
+    @apply com-ml-2 com-text-American-Orange com-border-American-Orange com-bg-white;
+  }
+
+  .expert-icon {
+    @apply com-m-0 com-ml-2 com-h-4 com-w-4;
+  }
+
+  .designation {
+    @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1 com-mb-1 com-text-Quartz;
+
+    ::ng-deep {
+      p {
+        @apply com-m-0;
+      }
+    }
+  }
+
+  .followers-count,
+  .members-count {
+    @apply com-text-xs com-font-medium com-text-black com-m-0;
+
+    span {
+      @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-ml-1;
+    }
+  }
+
+  .user-details,
+  .community-details {
+    @apply com-flex com-flex-row com-w-full com-m-0 com-mr-6;
+  }
+}

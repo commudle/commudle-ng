@@ -28,8 +28,26 @@
           margin-top: $space-16;
           white-space: pre-wrap;
 
+          ::ng-deep .embedded-content {
+            @apply com-mt-3;
+            iframe {
+              @apply com-w-full com-h-96 com-border com-border-solid com-border-Bright-Gray;
+            }
+          }
+
           .embedded-content {
-            margin-top: $space-8;
+            @apply com-mt-3;
+          }
+
+          .pdf-content {
+            @apply com-mt-3;
+            object {
+              @apply com-w-full com-h-72 com-border com-border-solid com-border-Bright-Gray;
+            }
+          }
+
+          .link-content {
+            @apply com-mt-3;
           }
         }
 

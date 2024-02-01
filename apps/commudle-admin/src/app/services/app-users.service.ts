@@ -16,6 +16,7 @@ import { IUser } from 'apps/shared-models/user.model';
 import { IUserRolesUsers } from 'apps/shared-models/user_roles_users.model';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -155,14 +156,20 @@ export class AppUsersService {
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), { params });
   }
 
-  getFollowers(username: string): Observable<IUser[]> {
-    const params = new HttpParams().set('username', username);
-    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWERS), { params });
+  getFollowers(username: string, after: string): Observable<IPagination<IUser[]>> {
+    let params = new HttpParams().set('username', username);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser[]>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWERS), { params });
   }
 
-  getFollowees(username: string): Observable<IUser[]> {
-    const params = new HttpParams().set('username', username);
-    return this.http.get<IUser[]>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWEES), { params });
+  getFollowees(username: string, after: string): Observable<IPagination<IUser[]>> {
+    let params = new HttpParams().set('username', username);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUser[]>>(this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWEES), { params });
   }
 
   getUserEmailSubscriptions(): Observable<any> {
@@ -173,5 +180,9 @@ export class AppUsersService {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.DEACTIVATE_PROFILE), {
       delete_profile: deleteProfile,
     });
+  }
+
+  getProfileStats(): Observable<IUserStat> {
+    return this.http.get<IUserStat>(this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_STATS));
   }
 }

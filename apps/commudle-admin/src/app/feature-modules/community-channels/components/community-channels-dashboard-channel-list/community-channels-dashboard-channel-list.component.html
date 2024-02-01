@@ -14,3 +14,12 @@
     </div>
   </nb-card-body>
 </nb-card>
+
+<nb-card *ngIf="channels.length === 0">
+  <nb-card-body class="empty-state">
+    <div>
+      <p class="heading">No Channels Available</p>
+      <p class="sub-heading">You can create one by clicking the plus button on the left menu</p>
+    </div>
+  </nb-card-body>
+</nb-card>

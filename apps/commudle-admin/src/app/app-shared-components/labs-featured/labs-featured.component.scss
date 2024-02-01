@@ -1,13 +1,22 @@
 .container-scroll {
-  @apply com-m-0 com-mb-10 com-border-none;
+  @apply com-m-0 com-border-none;
+
   nb-card-body {
     @apply com-p-0;
 
     .heading {
-      @apply com-flex com-items-center md:com-pt-0 md:com-pb-6 com-m-0 md:com-px-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+      @apply com-flex com-items-center com-m-0 com-p-4  com-bg-Anti-Flash-White;
 
       .image {
-        @apply com-p-10px com-m-0 com-mr-3 com-rounded-xl com-w-[52px] com-h-[52px];
+        @apply com-p-10px com-m-0 com-mr-3 com-rounded-xl com-w-[52px] com-h-[52px] com-border-none com-bg-transparent;
+      }
+
+      .emoji {
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12 com-border-none;
+
+        fa-icon {
+          @apply com-text-xl;
+        }
       }
 
       .text {
@@ -22,6 +31,9 @@
 
     .featured-communities-scroll {
       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
+      .featured-communities-card {
+        @apply com-w-[304px] md:com-w-full;
+      }
     }
   }
 }
@@ -51,8 +63,12 @@
     .featured-communities {
       @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto com-mx-4 com-my-0 md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-p-0 md:com-block;
       .featured-communities-card {
-        @apply com-mb-4 com-m-0 com-border-none com-rounded-xl com-p-0;
+        @apply com-w-[300px] md:com-w-full com-mb-4;
       }
     }
   }
+}
+
+.skeleton-cards {
+  @apply com-p-0 com-px-4;
 }

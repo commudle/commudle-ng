@@ -3,6 +3,14 @@
     flex-direction: column;
   }
 
+  .registrations {
+    @apply com-flex com-items-center com-mx-0 com-my-3 com-text-sm com-font-semibold com-text-Yankees-Blue;
+
+    nb-icon {
+      @apply com-mr-2;
+    }
+  }
+
   .form-link {
     @apply com-mt-4;
 
@@ -13,8 +21,8 @@
     @media screen and (min-width: 800px) {
       a {
         .edit-icon {
+          @apply com-m-0 com-mr-1;
           float: right;
-          margin-right: 0;
         }
       }
     }

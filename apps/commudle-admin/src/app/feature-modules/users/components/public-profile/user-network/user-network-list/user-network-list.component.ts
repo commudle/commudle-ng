@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IPageInfo } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class UserNetworkListComponent implements OnInit, OnDestroy {
   user: IUser;
   network: IUser[] = [];
+  page_info: IPageInfo;
 
   subscriptions: Subscription[] = [];
 
@@ -34,6 +36,7 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.appUsersService.getProfile(this.activatedRoute.parent.snapshot.params.username).subscribe((data) => {
         this.user = data;
+        if (this.page_info) this.page_info.end_cursor = '';
         this.checkNetworkType();
       }),
     );
@@ -57,13 +60,19 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
 
   getFollowers(): void {
     this.subscriptions.push(
-      this.appUsersService.getFollowers(this.user.username).subscribe((value) => (this.network = value)),
+      this.appUsersService.getFollowers(this.user.username, this.page_info?.end_cursor).subscribe((value) => {
+        this.network = this.network.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page_info = value.page_info;
+      }),
     );
   }
 
   getFollowing(): void {
     this.subscriptions.push(
-      this.appUsersService.getFollowees(this.user.username).subscribe((value) => (this.network = value)),
+      this.appUsersService.getFollowees(this.user.username, this.page_info?.end_cursor).subscribe((value) => {
+        this.network = this.network.concat(value.page.reduce((acc, value) => [...acc, value.data], []));
+        this.page_info = value.page_info;
+      }),
     );
   }
 }

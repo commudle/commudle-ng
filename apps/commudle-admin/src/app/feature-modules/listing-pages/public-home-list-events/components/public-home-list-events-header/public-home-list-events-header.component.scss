@@ -32,6 +32,9 @@
 
         .header-image {
           @apply com-flex md:com-h-[386px] com-h-[300px] com-overflow-hidden;
+          img {
+            @apply com-h-full com-mx-auto com-py-1;
+          }
         }
       }
     }

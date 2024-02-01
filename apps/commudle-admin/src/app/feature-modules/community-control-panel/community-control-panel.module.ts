@@ -19,6 +19,7 @@ import {
   NbTagModule,
   NbToggleModule,
   NbSpinnerModule,
+  NbTooltipModule,
 } from '@commudle/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
@@ -50,6 +51,10 @@ import { CommunityFormsAndSurveysComponent } from './components/community-forms-
 import { CommunitySurveysComponent } from './components/community-forms-and-surveys/community-surveys/community-surveys.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { CommunityPaymentsComponent } from './components/community-payments/community-payments.component';
+import { CommunityPageComponent } from './components/community-page/community-page.component';
+import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
+import { CommunityChannelsAndForumsComponent } from './components/community-channels-and-forums/community-channels-and-forums.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
 @NgModule({
   declarations: [
@@ -72,6 +77,9 @@ import { CommunityPaymentsComponent } from './components/community-payments/comm
     CommunityFormsAndSurveysComponent,
     CommunitySurveysComponent,
     CommunityPaymentsComponent,
+    CommunityPageComponent,
+    CommunityNewsletterComponent,
+    CommunityChannelsAndForumsComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +95,8 @@ import { CommunityPaymentsComponent } from './components/community-payments/comm
     SharedPipesModule,
     EventsModule,
     AppSharedComponentsModule,
+    CommunityChannelsModule,
+
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -107,6 +117,7 @@ import { CommunityPaymentsComponent } from './components/community-payments/comm
     NbTagModule,
     NbToggleModule,
     NbSpinnerModule,
+    NbTooltipModule,
   ],
 })
 export class CommunityGroupsModule {}

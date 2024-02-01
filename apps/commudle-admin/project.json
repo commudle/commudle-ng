@@ -28,7 +28,11 @@
           "apps/commudle-admin/src/sitemap.xml",
           "apps/commudle-admin/src/robots.txt"
         ],
-        "styles": ["node_modules/@fortawesome/fontawesome-svg-core/styles.css", "apps/commudle-admin/src/styles.scss"],
+        "styles": [
+          "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
+          "apps/commudle-admin/src/styles.scss",
+          "./node_modules/grapesjs/dist/css/grapes.min.css"
+        ],
         "scripts": [],
         "serviceWorker": true,
         "ngswConfigPath": "apps/commudle-admin/ngsw-config.json"

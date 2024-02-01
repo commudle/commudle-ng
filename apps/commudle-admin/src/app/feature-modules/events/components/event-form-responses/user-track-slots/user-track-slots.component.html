@@ -1,0 +1,88 @@
+<div *ngIf="row && row.registration_status.name === 'confirmed'">
+  <nb-list *ngIf="trackSlots" class="com-p-0">
+    <nb-list-item *ngFor="let trackSlot of trackSlots; let i = index" class="com-flex com-flex-col">
+      <div class="com-flex">
+        <div class="session-time">
+          <div class="com-text-xs com-font-semibold">{{ trackSlot.event_location_track_name }}</div>
+          <p>{{ moment(trackSlot.start_time).format('HH:mm') }}</p>
+          <p>{{ moment(trackSlot.end_time).format('HH:mm') }}</p>
+        </div>
+        <div class="session-details">
+          <div class="session-title">
+            <p>{{ trackSlot.session_title }}</p>
+            <div *ngIf="trackSlot.track_slot_speakers" class="session-speaker">
+              <div *ngFor="let slot of trackSlot.track_slot_speakers">
+                <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+              </div>
+            </div>
+          </div>
+          <div class="links">
+            <div *ngIf="event.editable" class="session-links">
+              <a
+                *ngIf="!trackSlot.speaker_resource"
+                [queryParams]="{ token: trackSlot.rsvp_token, event_id: event.slug }"
+                [routerLink]="['/speaker-resource-form']"
+                class="add-session"
+                target="_blank"
+              >
+                Add session slides
+                <nb-icon icon="clipboard-outline"></nb-icon>
+              </a>
+              <a
+                *ngIf="trackSlot.speaker_resource"
+                [queryParams]="{ token: trackSlot.rsvp_token, event_id: event.slug }"
+                [routerLink]="['/speaker-resource-form']"
+                class="edit-session"
+                target="_blank"
+              >
+                <span>Edit Session Details/Slides</span>
+                <nb-icon icon="clipboard-outline"></nb-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="event.editable" class="com-flex com-justify-center com-flex-col com-gap-2">
+          <div class="com-cursor-pointer">
+            <nb-icon icon="edit-outline" (click)="editTrackSlot(trackSlot, i)" class="edit-outline"></nb-icon>
+          </div>
+          <div class="com-cursor-pointer">
+            <nb-icon
+              icon="trash-outline"
+              (click)="confirmDeleteSlot(trackSlot, i)"
+              status="danger"
+              class="close-circle-outline"
+            ></nb-icon>
+          </div>
+        </div>
+      </div>
+    </nb-list-item>
+  </nb-list>
+
+  <!-- <button (click)="editTrackSlot(trackSlot)">edit</button> -->
+</div>
+
+<div *ngIf="trackSlots.length === 0 && row && row.registration_status.name === 'confirmed'" class="com-text-center">
+  <p>No session slot assigned</p>
+  <button nbButton (click)="showAddSlotForm()">Assign session slot</button>
+</div>
+
+<ng-template #deleteTrackSlotTemplate let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <div>
+        <p>
+          Are you sure you want to delete
+          <strong> {{ data.trackSlot.session_title }} </strong>
+          slot?
+        </p>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <div>
+        <button (click)="deleteSlot(data.trackSlot, data.index); ref.close()" nbButton status="primary">Yes</button>
+        &nbsp;
+        <button (click)="ref.close()" nbButton status="danger" outline>No</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

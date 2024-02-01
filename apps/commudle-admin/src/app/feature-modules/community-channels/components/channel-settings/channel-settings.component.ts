@@ -16,6 +16,8 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   @Input() channelId;
   @Input() invite = false;
   @Input() discussionType;
+  @Input() currentUrl: string;
+
   @Output() updateForm = new EventEmitter<string>();
 
   @ViewChild('settingsTemplate', { static: true }) settingsTemplate: TemplateRef<any>;

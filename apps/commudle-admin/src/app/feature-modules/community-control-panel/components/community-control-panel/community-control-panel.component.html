@@ -24,7 +24,7 @@
                 Public Page
                 <nb-icon icon="external-link"></nb-icon>
               </a>
-              <a
+              <!-- <a
                 [routerLink]="['/communities', community.slug, 'channels']"
                 nbButton
                 size="small"
@@ -33,7 +33,7 @@
               >
                 Channels
                 <nb-icon icon="external-link"></nb-icon>
-              </a>
+              </a> -->
               <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank">
                 <nb-icon icon="trending-up-outline"></nb-icon>
                 Stats <sup>New</sup>&nbsp;
@@ -42,7 +42,7 @@
             </div>
           </section>
         </nb-card-header>
-        <nb-card-body class="com-px-0 md:com-px-6">
+        <nb-card-body class="com-p-0">
           <div class="menu d-flex">
             <a
               [routerLinkActiveOptions]="{ exact: true }"
@@ -60,7 +60,6 @@
                   [text]="notificationCount.toString()"
                   status="danger"
                 ></nb-badge>
-
                 <nb-icon icon="bell" status="success"></nb-icon>
                 <span class="title">Activity</span>
               </a>
@@ -73,6 +72,32 @@
               <fa-icon [icon]="faScroll"></fa-icon>
               <span class="title">Forms</span>
             </a>
+            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faFileLines"></fa-icon>
+              <span class="title">Pages</span>
+            </a>
+            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
+              <span class="title">Newsletters</span>
+            </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="people" status="success"></nb-icon>
               <span class="title">Team</span>
@@ -81,7 +106,47 @@
               <nb-icon icon="edit" status="success"></nb-icon>
               <span class="title">Edit Details</span>
             </a>
-            <a [routerLink]="['payments']" class="d-flex" routerLinkActive="active" *ngIf="community.payments_enabled">
+            <a [routerLink]="['channels']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="hash" status="success"></nb-icon>
+              <span class="title">Channels</span>
+            </a>
+            <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="icons.faMessage"></fa-icon>
+              <!-- <nb-icon icon="message" status="success"></nb-icon> -->
+              <span class="title">Forums</span>
+            </a>
+            <a
+              *ngIf="community.payments_enabled"
+              [routerLink]="['payments']"
+              class="d-flex com-relative"
+              routerLinkActive="active"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
+              <span class="title">Bank Details</span>
+            </a>
+            <a
+              *ngIf="!community.payments_enabled"
+              class="d-flex disabled com-relative"
+              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to arpan@commudle.com"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-white'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
               <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
               <span class="title">Bank Details</span>
             </a>

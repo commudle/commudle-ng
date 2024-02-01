@@ -2,9 +2,22 @@
   <nb-card-body> This form is closed! </nb-card-body>
 </nb-card>
 
-<div *ngIf="dataFormEntity?.event_data_form_entity_group.is_paid && !formClosed">
+<div *ngIf="dataFormEntity?.event_data_form_entity_group?.is_paid && !formClosed">
   <commudle-fill-data-form-paid></commudle-fill-data-form-paid>
 </div>
-<div *ngIf="!dataFormEntity?.event_data_form_entity_group.is_paid && !formClosed">
+<div *ngIf="!dataFormEntity?.event_data_form_entity_group?.is_paid && !formClosed">
   <app-fill-data-form></app-fill-data-form>
 </div>
+
+<ng-template #formClosedDialog let-data let-ref="dialogRef">
+  <nb-card class="com-w-auto">
+    <nb-card-body>
+      <div class="com-flex com-justify-center com-my-3">
+        <div class="com-flex com-bg-red-100 com-p-1 com-px-2 com-rounded-md">
+          <fa-icon [icon]="faTriangleExclamation" class="com-text-4xl com-text-red-500 com-mx-auto"></fa-icon>
+        </div>
+      </div>
+      <p class="com-text-sm com-font-semibold">Oops, this form is closed now</p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

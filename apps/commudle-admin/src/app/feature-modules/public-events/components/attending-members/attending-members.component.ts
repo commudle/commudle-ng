@@ -11,7 +11,7 @@ import { EventsService } from 'apps/commudle-admin/src/app/services/events.servi
   templateUrl: './attending-members.component.html',
   styleUrls: ['./attending-members.component.scss'],
 })
-export class AttendingMembersComponent implements OnInit {
+export class AttendingMembersComponent {
   EEventStatuses = EEventStatuses;
   @Input() event: IEvent;
   @Input() community: ICommunity;
@@ -25,7 +25,7 @@ export class AttendingMembersComponent implements OnInit {
     private eventsService: EventsService,
   ) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.event.custom_registration) {
       this.getInterestedMembers();
     } else {

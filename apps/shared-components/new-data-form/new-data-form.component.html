@@ -24,13 +24,13 @@
             <div class="description">
               <label fullWidth>
                 Description
-                <textarea
+                <editor
+                  [init]="tinyMCE"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                   formControlName="description"
-                  nbInput
-                  fullWidth
-                  formControlName="description"
-                  placeholder="(Optional)"
-                ></textarea>
+                  class="editor"
+                >
+                </editor>
               </label>
             </div>
           </div>
@@ -100,12 +100,13 @@
                         {{ question?.get('show_description')?.value ? 'Remove Description' : 'Add Description' }}
                       </button>
                       <div *ngIf="question?.get('show_description')?.value" class="description-textbox">
-                        <textarea
-                          nbInput
-                          fullWidth
+                        <editor
+                          [init]="tinyMCE"
+                          apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                           formControlName="description"
-                          placeholder="Description (Optional)"
-                        ></textarea>
+                          class="editor"
+                        >
+                        </editor>
                       </div>
                     </div>
 
@@ -234,7 +235,7 @@
         </div>
       </div>
 
-      <div class="submit-button">
+      <div class="submit-button" [ngClass]="{ sticky: stickSubmitButtonBottom }">
         <button type="submit" status="primary" nbButton fullWidth size="medium" (click)="saveDataForm()">
           {{ submitButtonText() }}
         </button>

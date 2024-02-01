@@ -1,0 +1,215 @@
+<div class="create-button">
+  <button nbButton status="primary" [routerLink]="['new']">
+    <fa-icon [icon]="icons.faPlus" class="com-mr-2"></fa-icon>Create Newsletter
+  </button>
+</div>
+
+<div *ngIf="newsletters && newsletters.length > 0" class="newsletters">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Published</th>
+      <th>Stats</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let newsletter of newsletters; let i = index">
+      <!-- title -->
+      <td>
+        <div class="title">
+          <div *ngIf="newsletter.banner_image">
+            <img [src]="newsletter.banner_image?.i160" [alt]="newsletter.title" />
+          </div>
+          <a
+            (click)="redirectTo(newsletter.slug)"
+            [ngClass]="{ disableAnchorTag: !newsletter.published }"
+            class="com-no-underline com-cursor-pointer"
+            >{{ newsletter.title }}
+            <fa-icon *ngIf="newsletter.published" [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+          </a>
+        </div>
+      </td>
+
+      <!-- published -->
+      <td width="25%">
+        <div class="published">
+          <nb-toggle [checked]="newsletter.published" (click)="togglePublished(newsletter.id, i)"></nb-toggle>
+          <div *ngIf="newsletter.published">
+            <button
+              outline
+              nbButton
+              status="base"
+              size="small"
+              (click)="
+                newsletter.scheduled_for
+                  ? openScheduleDialogBox(scheduleResetDialogBox, newsletter.id, i)
+                  : openScheduleDialogBox(scheduleDialogBox, newsletter.id, i)
+              "
+            >
+              <fa-icon [icon]="icons.faClock" class="com-mr-2"></fa-icon
+              >{{ newsletter.scheduled_for ? 'Reset' : 'Set Schedule' }}
+            </button>
+          </div>
+        </div>
+        <div *ngIf="newsletter.scheduled_for && newsletter.published" class="scheduled-for">
+          {{ moment(newsletter.scheduled_for).format('dddd Do MMM, YYYY h:mm A') }}
+        </div>
+      </td>
+
+      <!-- stats -->
+      <td width="15%">
+        <div class="stats">
+          <table *ngIf="newsletter.stats">
+            <tr>
+              <td>Total Sent</td>
+              <td>{{ newsletter.stats.total }}</td>
+            </tr>
+            <tr>
+              <td>Delivered</td>
+              <td>{{ newsletter.stats.delivered }}</td>
+            </tr>
+            <tr>
+              <td>Opened</td>
+              <td>{{ newsletter.stats.opened }}</td>
+            </tr>
+            <tr>
+              <td>Clicked</td>
+              <td>{{ newsletter.stats.clicked }}</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+
+      <!-- action buttons -->
+      <td width="20%">
+        <div class="action">
+          <button [routerLink]="['../edit', newsletter.slug]" nbButton status="primary" size="tiny">
+            <nb-icon icon="edit"></nb-icon> Edit
+          </button>
+          <button (click)="openConfirmDialogBox(testEmailsBox, newsletter.id, i)" nbButton status="success" size="tiny">
+            <fa-icon [icon]="icons.faEnvelopeOpenText" class="com-mr-2"></fa-icon> Send Test Mail
+          </button>
+          <button
+            (click)="openConfirmDialogBox(deleteDialog, newsletter.id, i)"
+            nbButton
+            status="danger"
+            outline
+            size="tiny"
+          >
+            <nb-icon icon="close"></nb-icon> delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<ng-template #deleteDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div>Delete Newsletter</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>Are you sure you want to delete this Newsletter?</div>
+      <em>This action can not be undone</em>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="destroy(data.id, data.index); ref.close()">Confirm</button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #scheduleDialogBox let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div>Set Schedule for Newsletter</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <input type="datetime-local" nbInput [(ngModel)]="newScheduleDateTime" />
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        (click)="setSchedule(data.id, data.index); ref.close()"
+        [disabled]="!newScheduleDateTime"
+      >
+        Confirm
+      </button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #scheduleResetDialogBox let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div>Set Schedule for Newsletter</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>Are you sure you want to Reset scheduler?</div>
+      <em>This action can not be undone</em>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="resetSchedule(data.id, data.index); ref.close()">Confirm</button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #testEmailsBox let-data let-ref="dialogRef">
+  <nb-card class="com-w-630px">
+    <nb-card-header>
+      <div>Send Test Email for {{ data.title }}</div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="testEmailsForms">
+        <div>
+          <input nbInput fullWidth placeholder="Enter multiple comma separated emails" formControlName="emails" />
+          <commudle-alert
+            *ngIf="
+              testEmailsForms['controls'].emails.touched &&
+              testEmailsForms['controls'].emails.invalid &&
+              testEmailsForms['controls'].emails.errors.required
+            "
+            [error]="true"
+            errorMessage="  Required Field"
+          >
+          </commudle-alert>
+          <commudle-alert
+            *ngIf="
+              testEmailsForms['controls'].emails.touched &&
+              testEmailsForms['controls'].emails.invalid &&
+              testEmailsForms['controls'].emails.errors.maxEmails
+            "
+            [error]="true"
+            errorMessage="Maximum 5 emails allowed"
+          >
+          </commudle-alert>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        (click)="sendTestMail(data.id); ref.close()"
+        [disabled]="!testEmailsForms.valid"
+      >
+        Confirm
+      </button>
+      <button nbButton status="danger" (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
