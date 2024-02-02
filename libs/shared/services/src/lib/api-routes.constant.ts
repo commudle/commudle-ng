@@ -791,6 +791,7 @@ export const API_ROUTES = {
     CREATE_TRACK: 'api/v2/hackathons/create_track', //POST
     UPDATE_TRACK: 'api/v2/hackathons/update_track', //PUT
     INDEX_TRACKS: 'api/v2/hackathons/index_tracks', //GET
+    PUBLIC_INDEX_HACKATHON_TRACKS: 'api/v2/hackathons/public_index_hackathon_tracks', //GET
     DESTROY_TRACK: 'api/v2/hackathons/destroy_track', //DELETE
     CREATE_PRIZE: 'api/v2/hackathons/create_prize', //POST
     UPDATE_PRIZE: 'api/v2/hackathons/update_prize', //PUT
@@ -812,6 +813,7 @@ export const API_ROUTES = {
 
   HACKATHON_RESPONSE_GROUP: {
     CREATE: 'api/v2/hackathon_response_group', //POST
+    UPDATE: 'api/v2/hackathon_response_group', //PUT
     SHOW: 'api/v2/hackathon_response_group/show', //GET
     PUBLIC_SHOW: 'api/v2/hackathon_response_group', //GET
   },
@@ -820,6 +822,8 @@ export const API_ROUTES = {
     CREATE: 'api/v2/hackathon_user_response', //POST
     UPDATE: 'api/v2/hackathon_user_response', //PUT
     GET_EXISTING_HACKATHON_USER_RESPONSES: 'api/v2/hackathon_user_response/get_existing_hackathon_user_responses', //GET
+    UPDATE_TEAM_DETAILS: 'api/v2/hackathon_user_response/update_team_details', //PUT
+    GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
   },
 
   ENTITY_UPDATES: {

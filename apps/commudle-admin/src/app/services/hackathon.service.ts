@@ -221,4 +221,14 @@ export class HackathonService {
       params,
     });
   }
+
+  pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IHackathonTrack[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC_INDEX_HACKATHON_TRACKS),
+      {
+        params,
+      },
+    );
+  }
 }

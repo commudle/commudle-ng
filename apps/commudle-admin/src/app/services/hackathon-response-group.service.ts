@@ -33,6 +33,18 @@ export class HackathonResponseGroupService {
     );
   }
 
+  updateHackathonResponseGroup(userDetails, hackathonResponseGroupId): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    return this.http.put<IHackathonResponseGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.UPDATE),
+      {
+        hackathon_response_group: {
+          user_details: userDetails,
+        },
+      },
+      { params },
+    );
+  }
   showHackathonResponseGroup(hackathonId): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonResponseGroup>(

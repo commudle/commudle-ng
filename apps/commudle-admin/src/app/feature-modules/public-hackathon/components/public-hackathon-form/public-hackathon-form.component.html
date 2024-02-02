@@ -24,7 +24,9 @@
                   (createTeammateEvent)="addTeammate()"
                   (removeTeammateEvent)="removeTeammate($event)"
                 ></commudle-public-hackathon-teammate-form>
-                <button nbButton nbStepperNext status="primary">next</button>
+                <button nbButton nbStepperNext status="primary" (click)="submitTeammateDetails()">
+                  Submit Teammate
+                </button>
               </nb-step>
               <nb-step label="Project Details">
                 <form></form>

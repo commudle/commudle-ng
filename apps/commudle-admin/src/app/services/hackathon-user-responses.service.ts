@@ -39,4 +39,22 @@ export class HackathonUserResponsesService {
       { params },
     );
   }
+
+  updateTeamDetails(dataForm, hackathonUserResponseId): Observable<IHackathonUserResponse> {
+    const params = new HttpParams().set('hackathon_user_response_id', hackathonUserResponseId);
+    return this.http.put<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.UPDATE_TEAM_DETAILS),
+      {
+        hackathon_team: dataForm,
+      },
+      { params },
+    );
+  }
+
+  getTeamDetails(hackathonUserResponseId): Observable<any> {
+    const params = new HttpParams().set('hackathon_user_response_id', hackathonUserResponseId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.GET_TEAM_DETAILS), {
+      params,
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +22,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   @Input() dataFormId: number;
   @Input() showNameDescriptionFiled = true;
   @Input() centerLayout = true;
+  @Output() updateFormDataEvent: EventEmitter<any> = new EventEmitter<any>();
 
   faTrashAlt = faTrashAlt;
   faPlus = faPlus;
@@ -236,21 +237,26 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.editDataForm.markAllAsTouched();
       return;
     }
-    this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm) => {
-      this.dataForm = dataForm;
-      this.fillExistingDataForm();
-      this.toastLogService.successDialog('Updated!');
 
-      switch (this.dataForm.parent_type) {
-        case EDataFormParentTypes.community: {
-          this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
-          break;
+    if (this.dataFormId) {
+      this.updateFormDataEvent.emit(this.editDataForm.get('data_form').value);
+    } else {
+      this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm) => {
+        this.dataForm = dataForm;
+        this.fillExistingDataForm();
+        this.toastLogService.successDialog('Updated!');
+
+        switch (this.dataForm.parent_type) {
+          case EDataFormParentTypes.community: {
+            this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
+            break;
+          }
+          case EDataFormParentTypes.adminSurvey: {
+            this.router.navigate(['/sys-admin/admin-surveys']);
+          }
         }
-        case EDataFormParentTypes.adminSurvey: {
-          this.router.navigate(['/sys-admin/admin-surveys']);
-        }
-      }
-    });
+      });
+    }
   }
 
   cloneCommunityDataForm() {

@@ -20,6 +20,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   hackathon: IHackathon;
   EModelName = EModelName;
   dataFormId: number;
+  hackathonResponseGroupDetails: IHackathonResponseGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -66,6 +67,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   fetchHackathonResponseGroup() {
     this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data: IHackathonResponseGroup) => {
       if (data) {
+        this.hackathonResponseGroupDetails = data;
         this.dataFormId = data.data_form_id;
         this.userDetailsForm.patchValue({
           name: data.user_details.name,
@@ -101,6 +103,21 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
             this.registrationTypeId,
             `${this.hackathon.name} - Registration`,
             data.id,
+          )
+          .subscribe((data) => {
+            if (data) this.toastrService.successDialog('Information Updated');
+          });
+      }
+    });
+  }
+
+  updateData(formResponse) {
+    this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
+      if (data) {
+        this.hrgService
+          .updateHackathonResponseGroup(
+            JSON.stringify(this.userDetailsForm.value),
+            this.hackathonResponseGroupDetails.id,
           )
           .subscribe((data) => {
             if (data) this.toastrService.successDialog('Information Updated');

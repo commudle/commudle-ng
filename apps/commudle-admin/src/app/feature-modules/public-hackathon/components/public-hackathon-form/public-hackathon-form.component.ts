@@ -74,8 +74,22 @@ export class PublicHackathonFormComponent implements OnInit {
         if (data) {
           this.hackathonUserResponse = data[0];
           this.userForm = this.createForm(this.hackathonResponseGroup.user_details);
+          this.fetchTeamDetails();
+        } else {
+          this.addTeammate();
         }
       });
+  }
+
+  fetchTeamDetails() {
+    this.hurService.getTeamDetails(this.hackathonUserResponse.id).subscribe((data) => {
+      if (data) {
+        this.teammateForm.patchValue({ name: data.team_name });
+        for (const teamDetail of data.teammates_details) {
+          this.addTeammate(teamDetail.user_email, teamDetail.tshirt_size);
+        }
+      }
+    });
   }
 
   createForm(userDetails: any): FormGroup {
@@ -98,7 +112,7 @@ export class PublicHackathonFormComponent implements OnInit {
     this.hurService
       .createHackathonResponseGroup(this.userForm.value, this.hackathonResponseGroup.id)
       .subscribe((data) => {
-        console.log('🚀 ~ PublicHackathonFormComponent ~ .subscribe ~ data:', data);
+        this.hackathonUserResponse = data;
       });
   }
 
@@ -106,14 +120,14 @@ export class PublicHackathonFormComponent implements OnInit {
     this.hurService
       .updateHackathonResponseGroup(this.userForm.value, this.hackathonUserResponse.id)
       .subscribe((data) => {
-        console.log('🚀 ~ PublicHackathonFormComponent ~ .subscribe ~ data:', data);
+        this.hackathonUserResponse = data;
       });
   }
 
-  addTeammate() {
+  addTeammate(email = '', tshirt_size = '') {
     const teammateGroup = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      tshirt_size: ['', Validators.required],
+      email: [email, [Validators.required, Validators.email]],
+      tshirt_size: [tshirt_size, Validators.required],
     });
 
     this.teammatesArray.push(teammateGroup);
@@ -121,5 +135,9 @@ export class PublicHackathonFormComponent implements OnInit {
 
   removeTeammate(index: number) {
     this.teammatesArray.removeAt(index);
+  }
+
+  submitTeammateDetails() {
+    this.hurService.updateTeamDetails(this.teammateForm.value, this.hackathonUserResponse.id).subscribe((data) => {});
   }
 }
