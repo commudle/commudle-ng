@@ -2,6 +2,31 @@ nb-tag {
   @apply com-normal-case;
 }
 
-nb-tag.tiny {
+.tag.tiny {
   @apply com-text-xs com-font-medium com-mr-10px;
+}
+
+.tag-list {
+  @apply com-flex com-flex-wrap com-w-full;
+  // @apply com-px-4 com-py-1;
+}
+
+.tag {
+  @apply com-px-4 com-py-1 com-mx-1 com-my-1 com-rounded-3xl com-font-medium;
+}
+
+.editable {
+  @apply com-bg-[#F7F9FC] com-rounded-[4px] com-px-4 com-py-1;
+}
+
+input {
+  @apply com-flex-1 com-w-auto com-max-w-full;
+}
+
+input .size-medium {
+  max-width: max-content;
+}
+
+[nbInput] {
+  @apply com-max-w-full #{!important};
 }

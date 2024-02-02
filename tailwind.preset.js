@@ -30,6 +30,7 @@ module.exports = {
         'Spanish-Gray': 'var(--color-spanish-gray)', // 'Spanish-Gray': '#979797',
         'Ultramarine-Blue': '#3366FF',
         Azure: '#0095ff',
+        'Azure-opacity-10': 'var(--color-azure-opacity-10)',
         Blueberry: '#4e74ff',
         'Dark-Spring-Green': 'var(--color-dark-spring-green)', // 'Dark-Spring-Green': '#10654c',
         'Blue-Violet': '#6F22DF',

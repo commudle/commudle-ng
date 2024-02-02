@@ -357,6 +357,7 @@ nb-option-list.search-autocomplete {
 }
 
 .nb-theme-default nb-card {
+  background-color: #ffffff;
   margin: 16px 8px;
 }
 
@@ -529,6 +530,8 @@ nb-option-list.search-autocomplete {
   --color-anti-flash-dark: #121212;
 
   --color-gray-500-opacity-50-light: #d7e1ed;
+
+  --color-azure-opacity-10-light: #0095ff19;
 }
 
 [data-theme='light'] {
@@ -589,6 +592,7 @@ nb-option-list.search-autocomplete {
   --color-alice-blue-dark: var(--color-alice-blue-dark-light);
   --color-gunmetal: var(--color-gunmetal-light);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
+  --color-azure-opacity-10: var(--color-azure-opacity-10-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -669,6 +673,7 @@ nb-option-list.search-autocomplete {
   --color-alice-blue-dark: var(--color-alice-blue-dark-dark);
   --color-gunmetal: var(--color-gunmetal-dark);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
+  --color-azure-opacity-10: var(--color-azure-opacity-10-light);
 
   .linear-gradient-top,
   .linear-gradient-bottom,
