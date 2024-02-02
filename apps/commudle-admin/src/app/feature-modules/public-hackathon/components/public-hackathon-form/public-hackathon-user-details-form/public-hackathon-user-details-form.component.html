@@ -67,4 +67,9 @@
     <label for="name">Facebook</label>
     <input type="text" nbInput fullWidth formControlName="facebook" />
   </div>
+  <div *ngIf="userForm.get('tshirt_size')">
+    <label for="tshirt_size">T shirt size</label>
+    <input type="text" nbInput fullWidth formControlName="tshirt_size" />
+  </div>
+  <button status="primary" nbButton [disabled]="userForm.invalid">Next</button>
 </form>

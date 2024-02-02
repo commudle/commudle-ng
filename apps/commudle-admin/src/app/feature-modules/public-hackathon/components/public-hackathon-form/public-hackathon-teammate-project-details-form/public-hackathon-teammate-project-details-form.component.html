@@ -1,0 +1,34 @@
+<form [formGroup]="hackathonProjectDetailsForm">
+  <div>
+    <label for="hackathon_track_id">SELECT TRACK</label>
+    <br />
+    <select formControlName="hackathon_track_id" name="hackathon_track_id" id="hackathon_track_id">
+      <option selected disabled value="">Select Track</option>
+      <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="project_description">DESCRIBE YOUR PROJECT/ IDEA IN BRIEF</label>
+    <br />
+    <textarea
+      name="project_description"
+      id="project_description"
+      rows="3"
+      placeholder="Give us some details about your project"
+      nbInput
+      fullWidth
+      formControlName="project_description"
+    ></textarea>
+  </div>
+
+  <button
+    [disabled]="hackathonProjectDetailsForm.invalid"
+    type="submit"
+    (click)="submitProjectDetails()"
+    nbButton
+    status="primary"
+  >
+    Next
+  </button>
+</form>

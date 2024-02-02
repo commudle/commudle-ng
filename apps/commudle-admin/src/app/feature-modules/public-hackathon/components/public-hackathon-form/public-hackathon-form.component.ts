@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NbStepperComponent } from '@commudle/theme';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon, EParticipateTypes } from 'apps/shared-models/hackathon.model';
-import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,28 +18,16 @@ export class PublicHackathonFormComponent implements OnInit {
   hackathon: IHackathon;
   showTeammateForm = false;
   hackathonResponseGroup: IHackathonResponseGroup;
-  userForm: FormGroup;
-  teammateForm: FormGroup;
   subscriptions: Subscription[] = [];
-  currentUser: ICurrentUser;
   hackathonUserResponse: IHackathonUserResponse;
+  @ViewChild('stepper') stepper: NbStepperComponent;
+
   constructor(
     private hrgService: HackathonResponseGroupService,
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
-    private fb: FormBuilder,
-    private authWatchService: LibAuthwatchService,
     private hurService: HackathonUserResponsesService,
-  ) {
-    this.teammateForm = this.fb.group({
-      name: ['', Validators.required],
-      teammates: this.fb.array([]) as FormArray,
-    });
-  }
-
-  get teammatesArray() {
-    return this.teammateForm.get('teammates') as FormArray;
-  }
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
@@ -61,9 +47,6 @@ export class PublicHackathonFormComponent implements OnInit {
             }
           });
         }),
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.currentUser = data;
-      }),
     );
   }
 
@@ -73,71 +56,30 @@ export class PublicHackathonFormComponent implements OnInit {
       .subscribe((data: IHackathonUserResponse[]) => {
         if (data) {
           this.hackathonUserResponse = data[0];
-          this.userForm = this.createForm(this.hackathonResponseGroup.user_details);
-          this.fetchTeamDetails();
-        } else {
-          this.addTeammate();
         }
       });
   }
 
-  fetchTeamDetails() {
-    this.hurService.getTeamDetails(this.hackathonUserResponse.id).subscribe((data) => {
-      if (data) {
-        this.teammateForm.patchValue({ name: data.team_name });
-        for (const teamDetail of data.teammates_details) {
-          this.addTeammate(teamDetail.user_email, teamDetail.tshirt_size);
-        }
-      }
+  submitUserResponse(formData) {
+    this.hurService.createHackathonResponseGroup(formData, this.hackathonResponseGroup.id).subscribe((data) => {
+      this.hackathonUserResponse = data;
     });
   }
 
-  createForm(userDetails: any): FormGroup {
-    const formGroupConfig: any = {};
-
-    // Dynamically add form controls based on configuration
-    Object.keys(userDetails).forEach((key) => {
-      if (userDetails[key]) {
-        formGroupConfig[key] = [
-          this.hackathonUserResponse ? this.hackathonUserResponse[key] : this.currentUser[key],
-          Validators.required,
-        ];
-      }
+  updateUserResponse(formData) {
+    this.hurService.updateHackathonResponseGroup(formData, this.hackathonUserResponse.id).subscribe((data) => {
+      this.hackathonUserResponse = data;
+      this.stepper.next();
     });
-
-    return this.fb.group(formGroupConfig);
   }
 
-  submitUserResponse() {
-    this.hurService
-      .createHackathonResponseGroup(this.userForm.value, this.hackathonResponseGroup.id)
-      .subscribe((data) => {
-        this.hackathonUserResponse = data;
-      });
-  }
-
-  updateUserResponse() {
-    this.hurService
-      .updateHackathonResponseGroup(this.userForm.value, this.hackathonUserResponse.id)
-      .subscribe((data) => {
-        this.hackathonUserResponse = data;
-      });
-  }
-
-  addTeammate(email = '', tshirt_size = '') {
-    const teammateGroup = this.fb.group({
-      email: [email, [Validators.required, Validators.email]],
-      tshirt_size: [tshirt_size, Validators.required],
+  submitTeammateDetails(formData) {
+    this.hurService.updateTeamDetails(formData, this.hackathonUserResponse.id).subscribe((data) => {
+      if (data) this.stepper.next();
     });
-
-    this.teammatesArray.push(teammateGroup);
   }
 
-  removeTeammate(index: number) {
-    this.teammatesArray.removeAt(index);
-  }
-
-  submitTeammateDetails() {
-    this.hurService.updateTeamDetails(this.teammateForm.value, this.hackathonUserResponse.id).subscribe((data) => {});
+  submitProjectDetails(formData) {
+    console.log('🚀 ~ PublicHackathonFormComponent ~ submitProjectDetails ~ formData:', formData);
   }
 }

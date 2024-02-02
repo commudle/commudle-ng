@@ -4,33 +4,31 @@
       <div class="main-column">
         <nb-card>
           <nb-card-body>
-            <nb-stepper orientation="horizontal" [linear]="false">
+            <nb-stepper orientation="horizontal" [linear]="false" #stepper>
               <nb-step label="Profile">
-                <commudle-public-hackathon-user-details-form
-                  [userForm]="userForm"
-                ></commudle-public-hackathon-user-details-form>
-                <button
-                  nbButton
-                  nbStepperNext
-                  status="primary"
-                  (click)="hackathonUserResponse ? updateUserResponse() : submitUserResponse()"
-                >
-                  Next
-                </button>
+                <div *ngIf="hackathonResponseGroup && hackathonUserResponse">
+                  <commudle-public-hackathon-user-details-form
+                    [hackathonResponseGroup]="hackathonResponseGroup"
+                    [hackathonUserResponse]="hackathonUserResponse"
+                    (submitUserFormData)="
+                      hackathonUserResponse ? updateUserResponse($event) : submitUserResponse($event)
+                    "
+                  ></commudle-public-hackathon-user-details-form>
+                </div>
               </nb-step>
               <nb-step *ngIf="showTeammateForm" label="Teammates">
                 <commudle-public-hackathon-teammate-form
-                  [teammateForm]="teammateForm"
-                  (createTeammateEvent)="addTeammate()"
-                  (removeTeammateEvent)="removeTeammate($event)"
+                  [hackathonUserResponse]="hackathonUserResponse"
+                  (submitTeammateDetailsEvent)="submitTeammateDetails($event)"
                 ></commudle-public-hackathon-teammate-form>
-                <button nbButton nbStepperNext status="primary" (click)="submitTeammateDetails()">
-                  Submit Teammate
-                </button>
               </nb-step>
               <nb-step label="Project Details">
-                <form></form>
-                <button nbButton nbStepperNext status="primary">next</button>
+                <div *ngIf="hackathon">
+                  <commudle-public-hackathon-teammate-project-details-form
+                    [hackathon]="hackathon"
+                    (createOrUpdateProjectDetails)="submitProjectDetails($event)"
+                  ></commudle-public-hackathon-teammate-project-details-form>
+                </div>
               </nb-step>
               <nb-step label="Submit">
                 <form></form>

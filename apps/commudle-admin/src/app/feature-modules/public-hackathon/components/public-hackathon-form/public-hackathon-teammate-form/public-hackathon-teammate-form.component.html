@@ -24,4 +24,7 @@
   </div>
 
   <button type="button" (click)="addTeammate()" nbButton>+ Add Teammate</button>
+  <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
+    Next
+  </button>
 </form>
