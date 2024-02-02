@@ -50,7 +50,7 @@ p {
           }
 
           .featured-community-reason {
-            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3;
+            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3 com-h-8;
           }
 
           .members-events {
@@ -70,7 +70,7 @@ p {
           }
 
           .featured-community-tags {
-            @apply com-h-6 com-mx-0 com-my-4 com-overflow-hidden;
+            @apply com-h-8 com-mx-0 com-my-4 com-overflow-hidden;
           }
         }
       }

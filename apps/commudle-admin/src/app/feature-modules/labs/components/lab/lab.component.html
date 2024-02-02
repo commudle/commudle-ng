@@ -68,7 +68,11 @@
                 </div>
               </div>
               <div class="tags">
-                <app-tag [tags]="lab.tags"></app-tag>
+                <app-tag
+                  [tags]="lab.tags"
+                  [backgroundColor]="'com-bg-Azureish-White'"
+                  [fontColor]="'com-text-tYankees-Blue'"
+                ></app-tag>
               </div>
             </div>
             <div *ngIf="lab.header_image" class="header-image">
