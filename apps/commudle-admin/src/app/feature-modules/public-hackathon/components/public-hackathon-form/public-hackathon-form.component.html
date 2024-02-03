@@ -34,8 +34,12 @@
                 </div>
               </nb-step>
               <nb-step label="Submit">
-                <form></form>
-                <button nbButton nbStepperNext status="primary">next</button>
+                <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
+                <div *ngIf="!isLoading">
+                  <commudle-public-hackathon-custom-questions-form
+                    [hackathonResponseGroup]="hackathonResponseGroup"
+                  ></commudle-public-hackathon-custom-questions-form>
+                </div>
               </nb-step>
             </nb-stepper>
           </nb-card-body>

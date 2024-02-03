@@ -86,7 +86,7 @@ export class PublicHackathonFormComponent implements OnInit {
 
   submitProjectDetails(formData) {
     this.hurService.updateProjectDetails(formData, this.hackathonUserResponse.id).subscribe((data) => {
-      console.log('🚀 ~ PublicHackathonFormComponent ~ this.hurService.updateProjectDetails ~ data:', data);
+      if (data) this.stepper.next();
     });
   }
 }

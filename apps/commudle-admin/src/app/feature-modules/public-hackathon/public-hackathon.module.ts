@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PublicHackathonUserDetailsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-user-details-form/public-hackathon-user-details-form.component';
 import { PublicHackathonTeammateFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-teammate-form/public-hackathon-teammate-form.component';
 import { PublicHackathonProjectDetailsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-project-details-form/public-hackathon-project-details-form.component';
+import { PublicHackathonCustomQuestionsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-custom-questions-form/public-hackathon-custom-questions-form.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { PublicHackathonProjectDetailsFormComponent } from 'apps/commudle-admin/
     PublicHackathonUserDetailsFormComponent,
     PublicHackathonTeammateFormComponent,
     PublicHackathonProjectDetailsFormComponent,
+    PublicHackathonCustomQuestionsFormComponent,
   ],
 })
 export class PublicHackathonModule {}
