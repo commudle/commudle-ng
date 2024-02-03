@@ -823,6 +823,7 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/hackathon_user_response', //PUT
     GET_EXISTING_HACKATHON_USER_RESPONSES: 'api/v2/hackathon_user_response/get_existing_hackathon_user_responses', //GET
     UPDATE_TEAM_DETAILS: 'api/v2/hackathon_user_response/update_team_details', //PUT
+    UPDATE_PROJECT_DETAILS: 'api/v2/hackathon_user_response/update_project_details', //PUT
     GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
   },
 

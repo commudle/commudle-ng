@@ -1,4 +1,4 @@
-export enum EModelName {
+export enum EDbModels {
   COMMUNITY_GROUP = 'CommunityGroup',
   KOMMUNITY = 'Kommunity',
   EVENT = 'Event',

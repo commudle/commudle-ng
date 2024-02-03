@@ -2,15 +2,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
+import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
-  selector: 'commudle-public-hackathon-teammate-project-details-form',
-  templateUrl: './public-hackathon-teammate-project-details-form.component.html',
-  styleUrls: ['./public-hackathon-teammate-project-details-form.component.scss'],
+  selector: 'commudle-public-hackathon-project-details-form',
+  templateUrl: './public-hackathon-project-details-form.component.html',
+  styleUrls: ['./public-hackathon-project-details-form.component.scss'],
 })
-export class PublicHackathonTeammateProjectDetailsFormComponent implements OnInit {
+export class PublicHackathonProjectDetailsFormComponent implements OnInit {
   @Input() hackathon: IHackathon;
+  @Input() hackathonUserResponse: IHackathonUserResponse;
   @Output() createOrUpdateProjectDetails = new EventEmitter<any>();
 
   hackathonTracks: IHackathonTrack[];
@@ -25,6 +27,12 @@ export class PublicHackathonTeammateProjectDetailsFormComponent implements OnIni
 
   ngOnInit() {
     this.fetchHackathonTracks();
+    if (this.hackathonUserResponse && this.hackathonUserResponse.track_id) {
+      this.hackathonProjectDetailsForm.patchValue({
+        hackathon_track_id: this.hackathonUserResponse.track_id,
+        project_description: this.hackathonUserResponse.project_description,
+      });
+    }
   }
 
   fetchHackathonTracks() {

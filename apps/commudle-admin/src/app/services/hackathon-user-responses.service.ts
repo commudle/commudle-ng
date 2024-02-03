@@ -57,4 +57,13 @@ export class HackathonUserResponsesService {
       params,
     });
   }
+
+  updateProjectDetails(dataForm, hackathonUserResponseId): Observable<IHackathonUserResponse> {
+    const params = new HttpParams().set('hackathon_user_response_id', hackathonUserResponseId);
+    return this.http.put<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.UPDATE_PROJECT_DETAILS),
+      dataForm,
+      { params },
+    );
+  }
 }

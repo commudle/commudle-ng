@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
 import { IEventUpdate } from 'apps/shared-models/event_update.model';
 import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
-import { EModelName } from '@commudle/shared-models';
+import { EDbModels } from '@commudle/shared-models';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
@@ -14,7 +14,7 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
   styleUrls: ['./hackathon-control-panel-updates.component.scss'],
 })
 export class HackathonControlPanelUpdatesComponent implements OnInit {
-  EModelName = EModelName;
+  EDbModels = EDbModels;
   moment = moment;
   updates: IEventUpdate[] = [];
   images = [];
@@ -45,7 +45,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
   }
 
   getUpdates() {
-    this.entityUpdatesService.getEventUpdates(this.hackathon.id, EModelName.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.getEventUpdates(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
       this.updates = data;
     });
   }
@@ -64,7 +64,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
       formData.append('entity_update[images][]', image);
     }
     this.images = [];
-    this.entityUpdatesService.createEventUpdate(formData, 1, EModelName.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.createEventUpdate(formData, 1, EDbModels.HACKATHON).subscribe((data) => {
       this.selectedImages = [];
       this.updates.unshift(data);
       this.isLoading = false;

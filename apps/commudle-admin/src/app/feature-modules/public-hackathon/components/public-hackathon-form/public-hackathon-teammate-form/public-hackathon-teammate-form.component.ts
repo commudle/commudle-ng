@@ -13,8 +13,6 @@ export class PublicHackathonTeammateFormComponent implements OnInit {
 
   teammateForm: FormGroup;
 
-  @Output() createTeammateEvent = new EventEmitter();
-  @Output() removeTeammateEvent = new EventEmitter<number>();
   @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder, private hurService: HackathonUserResponsesService) {
@@ -25,7 +23,11 @@ export class PublicHackathonTeammateFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchTeamDetails();
+    if (this.hackathonUserResponse && this.hackathonUserResponse.hackathon_team_id) {
+      this.fetchTeamDetails();
+    } else {
+      this.addTeammate();
+    }
   }
 
   addTeammate(email = '', tshirt_size = '') {
@@ -35,13 +37,10 @@ export class PublicHackathonTeammateFormComponent implements OnInit {
     });
 
     this.teammatesArray.push(teammateGroup);
-    this.createTeammateEvent.emit();
   }
 
   removeTeammate(index: number) {
     this.teammatesArray.removeAt(index);
-
-    this.removeTeammateEvent.emit(index);
   }
 
   get teammatesArray() {
@@ -55,8 +54,6 @@ export class PublicHackathonTeammateFormComponent implements OnInit {
         for (const teamDetail of data.teammates_details) {
           this.addTeammate(teamDetail.user_email, teamDetail.tshirt_size);
         }
-      } else {
-        this.addTeammate();
       }
     });
   }

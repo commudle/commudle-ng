@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EModelName, IFaq } from '@commudle/shared-models';
+import { EDbModels, IFaq } from '@commudle/shared-models';
 import { FaqService, ToastrService } from '@commudle/shared-services';
 import { Subscription } from 'rxjs';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FaqControlPanelComponent implements OnInit {
   @Input() parentId: number | string;
-  @Input() parentType: EModelName;
+  @Input() parentType: EDbModels;
 
   faqs: IFaq[];
   subscriptions: Subscription[] = [];

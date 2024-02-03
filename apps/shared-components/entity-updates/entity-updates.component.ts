@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { IEventUpdate } from 'apps/shared-models/event_update.model';
 import * as moment from 'moment';
-import { EModelName, IPageInfo } from '@commudle/shared-models';
+import { EDbModels, IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 
 @Component({
@@ -13,7 +13,7 @@ import { NbDialogService } from '@commudle/theme';
 })
 export class EntityUpdatesComponent implements OnInit {
   @Input() entityId: number;
-  @Input() entityType: EModelName;
+  @Input() entityType: EDbModels;
   updates: IEventUpdate[] = [];
   moment = moment;
   page_info: IPageInfo;

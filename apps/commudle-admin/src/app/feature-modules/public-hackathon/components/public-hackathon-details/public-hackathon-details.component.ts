@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EModelName, IFaq } from '@commudle/shared-models';
+import { EDbModels, IFaq } from '@commudle/shared-models';
 import { FaqService } from '@commudle/shared-services';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class PublicHackathonDetailsComponent implements OnInit {
   hackathon: IHackathon;
-  EModelName = EModelName;
+  EDbModels = EDbModels;
   sponsors: IHackathonSponsor[];
   faqs: IFaq[];
   discussionChat: IDiscussion;
@@ -48,7 +48,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   }
   getFaqs() {
     this.subscriptions.push(
-      this.faqService.indexFaqs(this.hackathon.id, EModelName.HACKATHON).subscribe((data) => {
+      this.faqService.indexFaqs(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
         this.faqs = data;
       }),
     );

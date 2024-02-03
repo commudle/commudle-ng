@@ -1,4 +1,4 @@
-import { EModelName } from '@commudle/shared-models';
+import { EDbModels } from '@commudle/shared-models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   userDetailsForm: FormGroup;
   registrationTypeId = 1;
   hackathon: IHackathon;
-  EModelName = EModelName;
+  EDbModels = EDbModels;
   dataFormId: number;
   hackathonResponseGroupDetails: IHackathonResponseGroup;
 
@@ -94,7 +94,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   }
 
   submit(formResponse) {
-    this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EModelName.HACKATHON).subscribe((data) => {
+    this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
       if (data) {
         this.hrgService
           .createHackathonResponseGroup(

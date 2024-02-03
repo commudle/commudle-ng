@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-header>Hackathons</nb-card-header>
+  <nb-card-body>
+    <div class="hackathon-cards">
+      <div *ngFor="let hackathon of hackathons">
+        <a [routerLink]="[hackathon.slug]">
+          <nb-card class="hackathon-card">
+            <nb-card-header>
+              <commudle-banner-image
+                [headerImagePath]="hackathon.banner_image.url"
+                [name]="hackathon.name"
+                [bottomLeftCurve]="false"
+                [bottomRightCurve]="false"
+              ></commudle-banner-image>
+            </nb-card-header>
+            <nb-card-body>
+              <div>
+                {{ hackathon.name }}
+              </div>
+              <div>
+                <span>{{ moment(hackathon.start_date).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</span>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </a>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

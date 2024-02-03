@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
@@ -13,6 +13,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 export class PublicHackathonUserDetailsFormComponent implements OnInit {
   @Input() hackathonResponseGroup: IHackathonResponseGroup;
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Output() submitUserDetailsEvent = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
   userForm: FormGroup;
@@ -22,9 +23,8 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => {
       this.currentUser = data;
-      if (this.hackathonUserResponse) {
-        this.userForm = this.createForm(this.hackathonResponseGroup.user_details);
-      }
+      this.hackathonUserResponse;
+      this.userForm = this.createForm(this.hackathonResponseGroup.user_details);
     });
   }
 
@@ -42,5 +42,9 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
     });
 
     return this.fb.group(formGroupConfig);
+  }
+
+  submitUserDetails() {
+    this.submitUserDetailsEvent.emit(this.userForm.value);
   }
 }

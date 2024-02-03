@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EModelName } from '@commudle/shared-models';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-faqs',
@@ -9,7 +9,7 @@ import { EModelName } from '@commudle/shared-models';
 })
 export class HackathonControlPanelFaqsComponent implements OnInit {
   hackathonSlug = '';
-  parentType = EModelName.HACKATHON;
+  parentType = EDbModels.HACKATHON;
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {

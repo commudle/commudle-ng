@@ -6,11 +6,12 @@
           <nb-card-body>
             <nb-stepper orientation="horizontal" [linear]="false" #stepper>
               <nb-step label="Profile">
-                <div *ngIf="hackathonResponseGroup && hackathonUserResponse">
+                <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
+                <div *ngIf="!isLoading">
                   <commudle-public-hackathon-user-details-form
                     [hackathonResponseGroup]="hackathonResponseGroup"
                     [hackathonUserResponse]="hackathonUserResponse"
-                    (submitUserFormData)="
+                    (submitUserDetailsEvent)="
                       hackathonUserResponse ? updateUserResponse($event) : submitUserResponse($event)
                     "
                   ></commudle-public-hackathon-user-details-form>
@@ -23,11 +24,13 @@
                 ></commudle-public-hackathon-teammate-form>
               </nb-step>
               <nb-step label="Project Details">
-                <div *ngIf="hackathon">
-                  <commudle-public-hackathon-teammate-project-details-form
+                <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
+                <div *ngIf="!isLoading && hackathon">
+                  <commudle-public-hackathon-project-details-form
                     [hackathon]="hackathon"
+                    [hackathonUserResponse]="hackathonUserResponse"
                     (createOrUpdateProjectDetails)="submitProjectDetails($event)"
-                  ></commudle-public-hackathon-teammate-project-details-form>
+                  ></commudle-public-hackathon-project-details-form>
                 </div>
               </nb-step>
               <nb-step label="Submit">

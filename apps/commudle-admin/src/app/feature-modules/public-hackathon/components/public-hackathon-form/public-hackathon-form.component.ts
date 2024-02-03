@@ -21,6 +21,7 @@ export class PublicHackathonFormComponent implements OnInit {
   subscriptions: Subscription[] = [];
   hackathonUserResponse: IHackathonUserResponse;
   @ViewChild('stepper') stepper: NbStepperComponent;
+  isLoading = true;
 
   constructor(
     private hrgService: HackathonResponseGroupService,
@@ -56,6 +57,9 @@ export class PublicHackathonFormComponent implements OnInit {
       .subscribe((data: IHackathonUserResponse[]) => {
         if (data) {
           this.hackathonUserResponse = data[0];
+          this.isLoading = false;
+        } else {
+          this.isLoading = false;
         }
       });
   }
@@ -63,6 +67,7 @@ export class PublicHackathonFormComponent implements OnInit {
   submitUserResponse(formData) {
     this.hurService.createHackathonResponseGroup(formData, this.hackathonResponseGroup.id).subscribe((data) => {
       this.hackathonUserResponse = data;
+      this.stepper.next();
     });
   }
 
@@ -80,6 +85,8 @@ export class PublicHackathonFormComponent implements OnInit {
   }
 
   submitProjectDetails(formData) {
-    console.log('🚀 ~ PublicHackathonFormComponent ~ submitProjectDetails ~ formData:', formData);
+    this.hurService.updateProjectDetails(formData, this.hackathonUserResponse.id).subscribe((data) => {
+      console.log('🚀 ~ PublicHackathonFormComponent ~ this.hurService.updateProjectDetails ~ data:', data);
+    });
   }
 }

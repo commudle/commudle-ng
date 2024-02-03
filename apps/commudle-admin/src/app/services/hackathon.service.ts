@@ -54,6 +54,21 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
+  pIndexHackathons(parentId, parentType: string): Observable<IHackathon[]> {
+    let params = new HttpParams();
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), { params });
+  }
+
   showHackathon(hackathonId): Observable<IHackathon> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW), { params });

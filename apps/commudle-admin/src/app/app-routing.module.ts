@@ -114,7 +114,7 @@ const routes: Routes = [
       import('./feature-modules/public-events/public-events.module').then((m) => m.PublicEventsModule),
   },
   {
-    path: 'communities/:community_id/hackathon/:hackathon_id',
+    path: 'communities/:community_id/hackathons/:hackathon_id',
     loadChildren: () =>
       import('./feature-modules/public-hackathon/public-hackathon.module').then((m) => m.PublicHackathonModule),
   },
