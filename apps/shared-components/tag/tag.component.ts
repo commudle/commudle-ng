@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-// import { NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
+import { NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { fromEvent, Subscription } from 'rxjs';
 
@@ -44,16 +44,20 @@ export class TagComponent implements OnInit, OnDestroy {
     return tags;
   }
 
-  onTagAdd(event): void {
-    const tag = event.target.value;
-    if (tag && !this.tags.includes(tag)) {
-      this.tagAdd.emit(tag);
-      event.target.value = '';
-    }
+  onTagAdd({ value, input }): void {
+    this.tagAdd.emit(value);
 
-    if (event.key === 'Enter') {
-      event.stopPropagation();
-      event.preventDefault();
+    if (input) {
+      input.nativeElement.value = '';
+      this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', { capture: true }).subscribe(
+        (e: any) => {
+          console.log(e);
+          if (e.target === input.nativeElement && e.key === 'Enter') {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        },
+      );
     }
   }
 
@@ -61,31 +65,3 @@ export class TagComponent implements OnInit, OnDestroy {
     this.tagDelete.emit(tag);
   }
 }
-
-// onTagAdd({ value, input }: NbTagInputAddEvent): void {
-//   this.tagAdd.emit(value);
-//   // Reset the input
-//   input.nativeElement.value = '';
-
-//   this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', { capture: true }).subscribe((e: any) => {
-//     if (e.target === input.nativeElement && e.key === 'Enter') {
-//       e.stopPropagation();
-//       e.preventDefault();
-//     }
-//   });
-// }
-
-// onTagAdd(event): void {
-//   console.log(event);
-//   console.log(event.key);
-//   // const tag = event.target.value;
-//   // if (tag && !this.tags.includes(tag)) {
-//   //   this.tagAdd.emit(tag);
-//   //   event.target.value = '';
-//   // }
-
-//   // if (event.key === 'Enter') {
-//   //   event.stopPropagation();
-//   //   event.preventDefault();
-//   // }
-// }

@@ -7,10 +7,11 @@
     >{{ tag }} <fa-icon *ngIf="editable" class="remove-icon" (click)="onTagRemove(tag)" [icon]="faXmark"></fa-icon
   ></span>
   <input
-    (keyup.enter)="onTagAdd($event)"
+    (tagAdd)="onTagAdd($event)"
     *ngIf="editable"
     [disabled]="inputDisabled"
     nbInput
+    nbTagInput
     placeholder="Type something and press enter to keep adding (Atleast {{ minimumTags }} tags)"
     type="text"
   />
