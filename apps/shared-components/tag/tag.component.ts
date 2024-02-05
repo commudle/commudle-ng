@@ -51,7 +51,6 @@ export class TagComponent implements OnInit, OnDestroy {
       input.nativeElement.value = '';
       this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', { capture: true }).subscribe(
         (e: any) => {
-          console.log(e);
           if (e.target === input.nativeElement && e.key === 'Enter') {
             e.stopPropagation();
             e.preventDefault();
