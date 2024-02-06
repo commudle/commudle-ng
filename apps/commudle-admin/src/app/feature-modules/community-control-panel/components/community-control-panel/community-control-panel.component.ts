@@ -47,7 +47,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sidebarService.setSidebarVisibility('side', false, true, 'https://www.commudle.com/');
+    this.sidebarService.setSidebarVisibility('side', false, true);
     this.setCommunity();
     this.seoService.noIndex(true);
   }
@@ -104,6 +104,6 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   toggleSideBar() {
-    this.sidebarService.toggleSidebarVisibility('side');
+    this.sidebarService.toggleSidebarVisibility('side', 'https://www.commudle.com/');
   }
 }

@@ -31,9 +31,10 @@ export class SidebarService {
     return this.setSidebar[eventName].expanded.asObservable();
   }
 
-  toggleSidebarVisibility(eventName: string) {
+  toggleSidebarVisibility(eventName: string, url?: string) {
     if (this.setSidebar[eventName]) {
       this.setSidebar[eventName].expanded.next(!this.setSidebar[eventName].expanded.getValue());
+      this.setSidebar[eventName].url.next(url || '');
     }
   }
 }
