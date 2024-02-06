@@ -532,6 +532,8 @@ nb-option-list.search-autocomplete {
   --color-gray-500-opacity-50-light: #d7e1ed;
 
   --color-azure-opacity-10-light: #0095ff19;
+
+  --color-Bright-Gray-opacity-60-light: #e6ecf4;
 }
 
 [data-theme='light'] {
@@ -593,6 +595,7 @@ nb-option-list.search-autocomplete {
   --color-gunmetal: var(--color-gunmetal-light);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
+  --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -626,7 +629,7 @@ nb-option-list.search-autocomplete {
   --color-gray-500: var(--color-gray-500-dark);
   --color-gray-100: var(--color-gray-100-dark);
   --color-gray-700: var(--color-gray-700-dark);
-  --color-gray-800: var(--color-gray-800-dark);
+  --color-gray-800: var(--color-gray-800-light);
   --color-gray-600: var(--color-gray-600-dark);
   --color-spiro-disco: var(--color-spiro-disco-dark);
   --color-brilliant-azure: var(--color-brilliant-azure-dark);
@@ -674,6 +677,7 @@ nb-option-list.search-autocomplete {
   --color-gunmetal: var(--color-gunmetal-dark);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
+  --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
 
   .linear-gradient-top,
   .linear-gradient-bottom,

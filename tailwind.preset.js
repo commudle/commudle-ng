@@ -58,6 +58,7 @@ module.exports = {
         Lavender: '#E6F1FF',
         Quartz: 'var(--color-quartz)', // Quartz: '#4B4B5C',
         'Chocolate-Traditional': 'var(--color-chocolate-traditional)', // 'Chocolate-Traditional': '#7D4402',
+        'tChocolate-Traditional': '#7D4402', //It will remain same as Chocolate-Traditional
         Seashell: '#FFF6EB',
         'Metallic-Bronze': '#AC7D47',
         'Tigers-Eye': '#DF913F',
@@ -84,6 +85,7 @@ module.exports = {
         'gray-800': 'var(--color-gray-800)',
         'gray-600': 'var(--color-gray-600)',
         'gray-500-opacity-50': 'var(--color-gray-500-opacity-50)',
+        'Bright-Gray-opacity-60': 'var(--color-Bright-Gray-opacity-60)',
       },
 
       lineClamp: {

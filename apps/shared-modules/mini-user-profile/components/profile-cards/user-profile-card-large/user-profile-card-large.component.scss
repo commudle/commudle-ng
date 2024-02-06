@@ -76,7 +76,7 @@ p {
 app-badge {
   &::ng-deep {
     div {
-      // @apply com-bg-Bright-Gray/60;
+      @apply com-bg-Bright-Gray-opacity-60;
     }
   }
 }
