@@ -171,18 +171,11 @@ export class EventLocationTracksComponent implements OnInit {
   addSlot(data) {
     const startDate = moment(data.start_time).format('Do, MMM YYYY'); // Format the start date
 
-    // Check if the groupedSlots object has a property for the startDate
     if (!this.groupedSlots[startDate]) {
-      this.groupedSlots[startDate] = []; // If not, initialize it as an empty array
+      this.groupedSlots[startDate] = [];
     }
 
-    // Push the newly added slot data into the corresponding group
     this.groupedSlots[startDate].push(data);
-    // this.sortedTrackSlots[data.event_location_track_id].push(data);
-    // this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
-    //   this.sortedTrackSlots[data.event_location_track_id],
-    // );
-
     this.trackSlotForm.reset();
     this.toastLogService.successDialog('Slot Added!');
     this.changeDetectorRef.markForCheck();
