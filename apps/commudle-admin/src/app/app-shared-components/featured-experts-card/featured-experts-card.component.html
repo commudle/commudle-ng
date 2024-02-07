@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [routerLink]="['/users', expert.username]">
   <nb-card-body>
     <div class="expert-card">
       <div class="expert-image">
@@ -6,6 +6,14 @@
       </div>
       <div class="details">
         <p class="expert-name">{{ expert.name }}</p>
+        <p class="expert-username">@{{ expert.username }}</p>
+        <p class="expert-designation">{{ expert.designation }}</p>
+        <app-user-follow
+          [username]="expert.username"
+          [isMobileWidthFull]="true"
+          [name]="expert.name"
+          [userId]="expert.id"
+        ></app-user-follow>
       </div>
     </div>
   </nb-card-body>

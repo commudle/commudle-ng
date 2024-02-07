@@ -1,3 +1,7 @@
+a {
+  @apply com-no-underline;
+}
+
 nb-card {
   @apply com-m-0;
 
@@ -14,8 +18,19 @@ nb-card {
         }
       }
 
-      .expert-name {
-        @apply com-text-base com-font-medium com-text-black com-m-0 com-mb-1;
+      .details {
+        @apply com-px-4 com-pb-4 com-pt-3;
+        .expert-name {
+          @apply com-text-base com-font-medium com-text-black com-m-0 com-mb-1;
+        }
+
+        .expert-username {
+          @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-1;
+        }
+
+        .expert-designation {
+          @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
+        }
       }
     }
   }
