@@ -21,6 +21,9 @@ export interface IHackathon {
   location_name: string;
   location_address: string;
   location_map_link: string;
+  updates_count: number;
+  faqs_count: number;
+  sponsors_count: number;
 }
 
 export enum EParticipateTypes {

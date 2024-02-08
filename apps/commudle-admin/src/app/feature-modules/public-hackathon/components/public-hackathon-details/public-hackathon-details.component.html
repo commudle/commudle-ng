@@ -8,35 +8,44 @@
         <div [innerHTML]="hackathon.description"></div
       ></nb-card-body>
     </nb-card>
-    <h2 class="sub-heading">Updates</h2>
-    <nb-card>
-      <nb-card-body>
-        <commudle-entity-updates [entityId]="hackathon.id" [entityType]="EDbModels.HACKATHON"></commudle-entity-updates>
-      </nb-card-body>
-    </nb-card>
+    <div *ngIf="hackathon.updates_count > 0">
+      <h2 class="sub-heading">Updates</h2>
+      <nb-card>
+        <nb-card-body>
+          <commudle-entity-updates
+            [entityId]="hackathon.id"
+            [entityType]="EDbModels.HACKATHON"
+          ></commudle-entity-updates>
+        </nb-card-body>
+      </nb-card>
+    </div>
 
-    <h2 class="sub-heading">Sponsors</h2>
-    <nb-card>
-      <nb-card-body class="sponsors-cards">
-        <div *ngFor="let sponsor of sponsors" class="sponsor-card">
-          <img [src]="sponsor.sponsor.logo.url" [alt]="sponsor.sponsor.name" />
-          <div class="name">{{ sponsor.sponsor.name }}</div>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    <div *ngIf="hackathon.sponsors_count > 0">
+      <h2 class="sub-heading">Sponsors</h2>
+      <nb-card>
+        <nb-card-body class="sponsors-cards">
+          <div *ngFor="let sponsor of sponsors" class="sponsor-card">
+            <img [src]="sponsor.sponsor.logo.url" [alt]="sponsor.sponsor.name" />
+            <div class="name">{{ sponsor.sponsor.name }}</div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
 
-    <h2 class="sub-heading">FAQs</h2>
-    <nb-card>
-      <nb-card-body>
-        <div *ngFor="let faq of faqs">
-          <commudle-faq-card [faq]="faq"></commudle-faq-card>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    <div *ngIf="hackathon.faqs_count > 0">
+      <h2 class="sub-heading">FAQs</h2>
+      <nb-card>
+        <nb-card-body>
+          <div *ngFor="let faq of faqs">
+            <commudle-faq-card [faq]="faq"></commudle-faq-card>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
 
     <h2 class="sub-heading">Comments</h2>
     <nb-card *ngIf="discussionChat">
-      <nb-card-body class="com-p-0">
+      <nb-card-body>
         <commudle-discussion [discussionId]="discussionChat.id" discussionParent="hackathon"></commudle-discussion>
       </nb-card-body>
     </nb-card>

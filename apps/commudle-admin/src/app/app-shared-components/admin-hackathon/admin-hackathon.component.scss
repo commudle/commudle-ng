@@ -16,4 +16,8 @@ table {
   tr:nth-child(even) {
     @apply com-bg-Bright-Gray;
   }
+
+  .action-buttons {
+    @apply com-flex com-justify-evenly;
+  }
 }

@@ -1,6 +1,9 @@
 .main-column {
   nb-card {
     @apply com-ml-0;
+    nb-card-body {
+      @apply com-px-4 com-py-3;
+    }
     .banner-image {
       @apply com-w-full com-rounded-xl;
       img {

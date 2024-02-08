@@ -15,7 +15,6 @@ export class HackathonDetailsResolver implements Resolve<IHackathon> {
   resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): Observable<IHackathon> {
     const hackathonId = route.parent.params.hackathon_id || route.params.hackathon_id;
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW), { params });
-    // return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.DETAILS), { params });
+    return this.http.get<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.SHOW), { params });
   }
 }

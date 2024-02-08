@@ -72,11 +72,41 @@
           </div>
           <div class="action-buttons-group-name">Other Options</div>
           <div>
+            <a [routerLink]="['stats']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faStar"></fa-icon>
+              </div>
+              <div class="action-button-name">Stats</div>
+            </a>
+            <a [routerLink]="['review']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faStar"></fa-icon>
+              </div>
+              <div class="action-button-name">Review</div>
+            </a>
+            <a [routerLink]="['rounds']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faStar"></fa-icon>
+              </div>
+              <div class="action-button-name">Rounds</div>
+            </a>
+            <a [routerLink]="['channels']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faStar"></fa-icon>
+              </div>
+              <div class="action-button-name">Channels</div>
+            </a>
             <a [routerLink]="['updates']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faStar"></fa-icon>
               </div>
               <div class="action-button-name">Updates</div>
+            </a>
+            <a [routerLink]="['emails']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faStar"></fa-icon>
+              </div>
+              <div class="action-button-name">Emails</div>
             </a>
           </div>
         </div>
