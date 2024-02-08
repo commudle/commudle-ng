@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbCardModule } from '@commudle/theme';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
-import { IUser } from '@commudle/shared-models';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { RouterModule } from '@angular/router';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-featured-experts-card',
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule, NbCardModule, MiniUserProfileModule],
 })
 export class FeaturedExpertsCardComponent implements OnInit {
-  @Input() expert: IUser;
+  @Input() expert: IFeaturedItems;
   staticAssets = staticAssets;
   constructor() {}
 

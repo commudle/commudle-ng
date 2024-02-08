@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from 'apps/commudle-admin/src/app/services/home.service';
-import { IUser } from 'apps/shared-models/user.model';
+import { FeaturedItemsService } from 'apps/commudle-admin/src/app/services/featured-items.service';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-experts-featured',
@@ -8,16 +8,18 @@ import { IUser } from 'apps/shared-models/user.model';
   styleUrls: ['./experts-featured.component.scss'],
 })
 export class ExpertsFeaturedComponent implements OnInit {
-  experts: IUser[] = [];
-  constructor(private homeService: HomeService) {}
+  experts: IFeaturedItems[] = [];
+  constructor(private featuredItemsService: FeaturedItemsService) {}
 
   ngOnInit(): void {
-    this.getExperts();
+    this.getFeaturedExperts();
   }
 
-  getExperts() {
-    this.homeService.experts().subscribe((value) => {
-      this.experts = value;
+  getFeaturedExperts() {
+    this.featuredItemsService.getFeaturedItems('User', 'experts').subscribe((data) => {
+      this.experts = this.experts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      console.log(this.experts);
+      // this.showSpinner = false;
     });
   }
 }
