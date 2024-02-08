@@ -78,10 +78,6 @@ nb-option {
         @apply com-m-0 com-p-0 com-text-xs com-font-medium com-text-black com-shrink-0 com-line-clamp-1;
       }
 
-      .name:hover {
-        @apply com-text-tYankees-Blue;
-      }
-
       .designation,
       .member-count,
       .event-date {
@@ -115,7 +111,3 @@ nb-option:hover {
 .show-all-results {
   @apply com-justify-center com-items-center com-gap-2 com-text-Yankees-Blue com-bg-white;
 }
-
-// .nb-autocomplete:hover {
-//   @apply com-bg-transparent #{!important};
-// }
