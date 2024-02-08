@@ -42,7 +42,7 @@
                   class="com-flex com-justify-between md:com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
                 >
                   <div class="com-grid com-grid-cols-1 com-items-start md:com-grid-cols-2 md:com-items-center">
-                    <h1>{{ community.name }}</h1>
+                    <h1 class="com-text-Yankees-Blue">{{ community.name }}</h1>
                     <app-share-button
                       *appBreakpoints="'>md'"
                       [content]="environment.app_url + '/communities/' + community.slug"
