@@ -35,7 +35,9 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
     Object.keys(userDetails).forEach((key) => {
       if (userDetails[key]) {
         formGroupConfig[key] = [
-          this.hackathonUserResponse ? this.hackathonUserResponse[key] : this.currentUser[key],
+          this.hackathonUserResponse && this.hackathonUserResponse[key]
+            ? this.hackathonUserResponse[key]
+            : this.currentUser[key],
           Validators.required,
         ];
       }

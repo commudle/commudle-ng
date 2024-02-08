@@ -1,8 +1,15 @@
 <form [formGroup]="hackathonProjectDetailsForm">
-  <div>
+  <div *ngIf="hackathonTracks && hackathonTracks.length > 0">
     <label for="hackathon_track_id">SELECT TRACK</label>
     <br />
-    <select formControlName="hackathon_track_id" name="hackathon_track_id" id="hackathon_track_id">
+    <select
+      formControlName="hackathon_track_id"
+      name="hackathon_track_id"
+      id="hackathon_track_id"
+      [ngClass]="{
+        'com-text-[#8E9BB3]': hackathonProjectDetailsForm.get('hackathon_track_id').value === ''
+      }"
+    >
       <option selected disabled value="">Select Track</option>
       <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
     </select>

@@ -1,19 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
+import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-public-hackathon-teammate-form',
   templateUrl: './public-hackathon-teammate-form.component.html',
   styleUrls: ['./public-hackathon-teammate-form.component.scss'],
 })
-export class PublicHackathonTeammateFormComponent implements OnInit {
+export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewInit {
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
 
   teammateForm: FormGroup;
 
-  @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
+  icons = {
+    faUserLargeSlash,
+    faPlus,
+  };
 
   constructor(private fb: FormBuilder, private hurService: HackathonUserResponsesService) {
     this.teammateForm = this.fb.group({
@@ -22,7 +27,9 @@ export class PublicHackathonTeammateFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
     if (this.hackathonUserResponse && this.hackathonUserResponse.hackathon_team_id) {
       this.fetchTeamDetails();
     } else {

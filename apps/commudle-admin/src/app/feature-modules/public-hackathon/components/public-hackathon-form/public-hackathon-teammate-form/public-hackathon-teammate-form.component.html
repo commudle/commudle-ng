@@ -1,10 +1,9 @@
 <form [formGroup]="teammateForm">
   <div>
     <label for="name">Team Name*</label>
-    <input type="text" nbInput fullWidth formControlName="name" />
+    <input type="text" nbInput fullWidth formControlName="name" placeholder="Enter your team name" />
   </div>
-  <div>Enter Teammate emails</div>
-  <div formArrayName="teammates">
+  <ng-container formArrayName="teammates">
     <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i">
       <label for="email">Enter Email*</label>
       <input type="email" formControlName="email" fullWidth nbInput />
@@ -19,11 +18,13 @@
         <option value="XXL"></option>
       </datalist>
 
-      <button type="button" (click)="removeTeammate(i)">Remove</button>
+      <button type="button" nbButton ghost status="danger" (click)="removeTeammate(i)">
+        <fa-icon [icon]="icons.faUserLargeSlash"></fa-icon> Remove Teammate
+      </button>
     </div>
-  </div>
+  </ng-container>
 
-  <button type="button" (click)="addTeammate()" nbButton>+ Add Teammate</button>
+  <button type="button" (click)="addTeammate()" nbButton><fa-icon [icon]="icons.faPlus"></fa-icon> Add Teammate</button>
   <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
     Next
   </button>

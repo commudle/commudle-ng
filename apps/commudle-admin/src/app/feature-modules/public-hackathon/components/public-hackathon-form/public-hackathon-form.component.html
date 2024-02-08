@@ -4,7 +4,7 @@
       <div class="main-column">
         <nb-card>
           <nb-card-body>
-            <nb-stepper orientation="horizontal" [linear]="false" #stepper>
+            <nb-stepper orientation="horizontal" [linear]="true" #stepper>
               <nb-step label="Profile">
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading">

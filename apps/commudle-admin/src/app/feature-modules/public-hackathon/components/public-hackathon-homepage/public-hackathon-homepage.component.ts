@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
@@ -27,13 +27,26 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faInfoCircle,
     faHashtag,
   };
-  constructor(private activatedRoute: ActivatedRoute, private hackathonService: HackathonService) {}
+  isLoading = true;
+  showBannerImage = false;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private hackathonService: HackathonService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateHeaderVariation();
+      }
+    });
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
         this.community = data.community;
+        this.updateHeaderVariation();
         this.getContactInfo();
       }),
     );
@@ -47,7 +60,17 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.hackathonService.showHackathonContactInfo(this.hackathon.id).subscribe((data) => {
         this.contactInfo = data;
+        this.isLoading = false;
       }),
     );
+  }
+  updateHeaderVariation() {
+    const url = this.router.url;
+    const value = url.split(this.hackathon.slug)[1];
+    if (value) {
+      this.showBannerImage = true;
+    } else {
+      this.showBannerImage = false;
+    }
   }
 }

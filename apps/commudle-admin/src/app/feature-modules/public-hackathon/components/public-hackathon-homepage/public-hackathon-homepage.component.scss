@@ -14,8 +14,15 @@
   }
 }
 
+.banner-image {
+  @apply com-mt-0;
+  nb-card-body {
+    @apply com-p-0;
+  }
+}
+
 .tabs {
-  @apply com-mt-0 com-sticky com-top-16 com-z-30;
+  @apply com-my-0 com-sticky com-top-16 com-z-30;
   .router-links {
     @apply com-flex com-gap-5 com-py-0 com-px-2;
     a {

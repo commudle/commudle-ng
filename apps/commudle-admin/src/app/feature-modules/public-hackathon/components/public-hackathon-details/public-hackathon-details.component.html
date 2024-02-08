@@ -2,11 +2,8 @@
   <div class="main-column com-mb-20">
     <nb-card>
       <nb-card-body>
-        <div class="banner-image">
-          <img [src]="hackathon.banner_image.url" [alt]="hackathon.name" />
-        </div>
-        <div [innerHTML]="hackathon.description"></div
-      ></nb-card-body>
+        <div [innerHTML]="hackathon.description"></div>
+      </nb-card-body>
     </nb-card>
     <div *ngIf="hackathon.updates_count > 0">
       <h2 class="sub-heading">Updates</h2>

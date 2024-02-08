@@ -26,20 +26,6 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   hackathonSlug = '';
   @ViewChild('judgeForm', { static: true }) judgeFormDialog: TemplateRef<any>;
 
-  tinyMCE = {
-    min_height: 200,
-    menubar: false,
-    convert_urls: false,
-    placeholder: 'Write description for hackathon track',
-    content_style:
-      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
-    toolbar:
-      'bold italic backcolor |  emoticons  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
-    default_link_target: '_blank',
-    branding: false,
-  };
   constructor(
     private fb: FormBuilder,
     private hackathonService: HackathonService,

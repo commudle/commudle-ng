@@ -1,0 +1,7 @@
+nb-stepper {
+  ::ng-deep {
+    .step-content {
+      @apply com-px-0;
+    }
+  }
+}
