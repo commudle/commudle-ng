@@ -8,11 +8,13 @@ import {
   selectIsLocalAudioEnabled,
   selectIsLocalScreenShared,
   selectIsLocalVideoEnabled,
+  selectIsLocalVideoPluginPresent,
   selectIsSomeoneScreenSharing,
   selectLocalPeer,
   selectPeers,
   selectRoleChangeRequest,
 } from '@100mslive/hms-video-store';
+import { HMSVirtualBackgroundPlugin } from '@100mslive/hms-virtual-background';
 import {
   Component,
   ElementRef,
@@ -26,6 +28,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NbDialogRef, NbDialogService, NbTrigger } from '@commudle/theme';
+import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IEmbeddedVideoStream } from 'apps/shared-models/embedded_video_stream.model';
@@ -74,6 +77,8 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   selectedVideoDeviceId: string;
   isAudioEnabled: boolean;
   isVideoEnabled: boolean;
+  isHandRaised: boolean;
+  isBackgroundBlurred: boolean;
 
   NbTrigger = NbTrigger;
 
@@ -116,9 +121,11 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.leaveRoom();
+    this.hmsVideoStateService.setState(EHmsStates.LEFT);
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
-    this.notificationUnsubscription();
+    this.notificationUnsubscription?.();
+    this.hmsLiveChannel.unsubscribe(this.currentUser.id);
   }
 
   joinSession(): void {
@@ -246,11 +253,11 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   inviteToStage(userId: number): void {
     if (userId) {
       const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => {
-        return peer.customerDescription && JSON.parse(peer.customerDescription)?.id === userId;
+        return peer.metadata && JSON.parse(peer.metadata)?.id === userId;
       });
       if (peers.length > 0) {
-        const roleName: string = peers[0].roleName;
-        const name: string = JSON.parse(peers[0].customerDescription).name;
+        const roleName = peers[0].roleName;
+        const name: string = JSON.parse(peers[0].metadata || '{}')?.name;
         switch (roleName) {
           case EHmsRoles.HOST:
             this.toastLogService.warningDialog(`Cannot invite ${name} to stage, they are the host`);
@@ -369,6 +376,42 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  toggleRaiseHand(): void {
+    if (this.isHandRaised) {
+      this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_LOWERED, this.currentUser.id, {});
+    } else {
+      this.hmsLiveChannel.sendData(this.hmsLiveChannel.ACTIONS.HAND_RAISED, this.currentUser.id, {});
+    }
+  }
+
+  toggleBackgroundBlur() {
+    const virtualBackground = new HMSVirtualBackgroundPlugin('blur');
+    const pluginSupport = hmsActions.validateVideoPluginSupport(virtualBackground);
+    if (pluginSupport.isSupported) {
+      const isVirtualBackgroundEnabled = hmsStore.getState(
+        selectIsLocalVideoPluginPresent(virtualBackground.getName()),
+      );
+      try {
+        if (!isVirtualBackgroundEnabled) {
+          // Recommended value
+          const pluginFrameRate = 15;
+          // add virtual background
+          hmsActions
+            .addPluginToVideoTrack(virtualBackground, pluginFrameRate)
+            .then(() => (this.isBackgroundBlurred = true));
+        } else {
+          // remove virtual background
+          hmsActions.removePluginFromVideoTrack(virtualBackground).then(() => (this.isBackgroundBlurred = false));
+        }
+      } catch (err) {
+        console.log('virtual background failure - ', isVirtualBackgroundEnabled, err);
+      }
+    } else {
+      const err = pluginSupport.errMsg;
+      console.error(err);
+    }
+  }
+
   getMeetingUrl(): string {
     // if 'admin/' is present in url then remove it, then remove 'session' and add 'beam' at the end
     let meetingUrl = location.href.replace('admin/', '');
@@ -404,32 +447,45 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   receiveChannelData(): void {
-    this.subscriptions.push(
-      this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((value: any) => {
-        switch (value.action) {
-          case this.hmsLiveChannel.ACTIONS.RECORDING_STARTED:
-            this.beamStatus.emit(true);
-            this.isRecording = true;
-            break;
-          case this.hmsLiveChannel.ACTIONS.RECORDING_STOPPED:
-            this.beamStatus.emit(false);
-            this.isRecording = false;
-            break;
-          case this.hmsLiveChannel.ACTIONS.STREAMING_STARTED:
-            this.beamStatus.emit(true);
-            this.isStreaming = true;
-            break;
-          case this.hmsLiveChannel.ACTIONS.STREAMING_STOPPED:
-            this.beamStatus.emit(false);
-            this.isStreaming = false;
-            break;
-          case this.hmsLiveChannel.ACTIONS.END_STREAM:
-            this.leaveRoom();
-            this.hmsVideoStateService.setState(EHmsStates.ENDED);
-            break;
-        }
-      }),
-    );
+    this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((value: any) => {
+      switch (value.action) {
+        // TODO: Use setpermissions for handling this
+        case this.hmsLiveChannel.ACTIONS.RECORDING_STARTED:
+          this.beamStatus.emit(true);
+          this.isRecording = true;
+          break;
+        case this.hmsLiveChannel.ACTIONS.RECORDING_STOPPED:
+          this.beamStatus.emit(false);
+          this.isRecording = false;
+          break;
+        case this.hmsLiveChannel.ACTIONS.STREAMING_STARTED:
+          this.beamStatus.emit(true);
+          this.isStreaming = true;
+          break;
+        case this.hmsLiveChannel.ACTIONS.STREAMING_STOPPED:
+          this.beamStatus.emit(false);
+          this.isStreaming = false;
+          break;
+        case this.hmsLiveChannel.ACTIONS.HAND_RAISED:
+          if (value.user.id === this.currentUser.id) {
+            this.isHandRaised = true;
+          } else {
+            // this.toastLogService.notificationDialog(`${value.user_name} raised hand`);
+          }
+          this.hmsStageService.raiseHand(value.user);
+          break;
+        case this.hmsLiveChannel.ACTIONS.HAND_LOWERED:
+          if (value.user.id === this.currentUser.id) {
+            this.isHandRaised = false;
+          }
+          this.hmsStageService.lowerHand(value.user);
+          break;
+        case this.hmsLiveChannel.ACTIONS.END_STREAM:
+          this.leaveRoom();
+          this.hmsVideoStateService.setState(EHmsStates.ENDED);
+          break;
+      }
+    });
   }
 
   receiveNotifications(): void {
@@ -459,4 +515,6 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
   }
+
+  protected readonly faHand = faHand;
 }

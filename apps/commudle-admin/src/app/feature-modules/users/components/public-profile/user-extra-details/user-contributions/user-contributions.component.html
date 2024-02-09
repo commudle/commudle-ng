@@ -64,7 +64,7 @@
   <nb-card-body [ngClass]="{ 'view-more': viewMoreCommunitiesSection, 'view-less': !viewMoreCommunitiesSection }">
     <div class="grid">
       <app-user-community-card
-        *ngFor="let community of communities | orderBy : ['user_role.id'] : ['desc']"
+        *ngFor="let community of communities | sortBy : ['user_role.id'] : ['desc']"
         [community]="community"
       ></app-user-community-card>
     </div>
