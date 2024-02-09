@@ -9,9 +9,10 @@ import { PublicHomeListEventsModule } from '../public-home-list-events/public-ho
 import { PublicHomeListSpeakersModule } from '../public-home-list-speakers/public-home-list-speakers.module';
 import { ExpertsFeaturedComponent } from './components/experts-featured/experts-featured.component';
 import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
+import { ExpertsComponent } from './components/experts/experts.component';
 
 @NgModule({
-  declarations: [PublicHomeListExpertsComponent, ExpertsHeaderComponent, ExpertsFeaturedComponent],
+  declarations: [PublicHomeListExpertsComponent, ExpertsHeaderComponent, ExpertsFeaturedComponent, ExpertsComponent],
   imports: [
     CommonModule,
     PublicHomeListExpertsRoutingModule,
