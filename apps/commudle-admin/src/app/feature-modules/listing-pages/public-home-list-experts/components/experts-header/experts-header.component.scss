@@ -7,7 +7,7 @@
     .base-layout {
       @apply com-min-h-0;
       .content {
-        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col-reverse;
+        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col;
 
         .header-text {
           @apply com-flex com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6 md:com-w-[855px] md:com-h-[298px] com-w-full com-h-full;
@@ -32,8 +32,8 @@
         }
 
         .header-image {
-          // com-w-[250px]
-          @apply com-flex com-items-center com-m-0 md:com-h-auto com-h-[304px] com-w-auto com-mb-4;
+          // com-w-[250px]  com-h-[304px]
+          @apply com-flex com-items-center com-m-0 com-h-auto com-w-auto com-mb-4;
 
           img {
             @apply com-w-full com-h-full;

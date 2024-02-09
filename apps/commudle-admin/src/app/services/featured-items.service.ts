@@ -20,7 +20,7 @@ export class FeaturedItemsService {
     }
 
     if (categoryType) {
-      params = params.set('category_type', categoryType);
+      params = params.set('category', categoryType);
     }
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.PUBLIC.SHOW), { params });
   }

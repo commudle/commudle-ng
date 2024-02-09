@@ -9,6 +9,8 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 })
 export class ExpertsFeaturedComponent implements OnInit {
   experts: IFeaturedItems[] = [];
+  showSpinner = true;
+
   constructor(private featuredItemsService: FeaturedItemsService) {}
 
   ngOnInit(): void {
@@ -18,8 +20,7 @@ export class ExpertsFeaturedComponent implements OnInit {
   getFeaturedExperts() {
     this.featuredItemsService.getFeaturedItems('User', 'experts').subscribe((data) => {
       this.experts = this.experts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      console.log(this.experts);
-      // this.showSpinner = false;
+      this.showSpinner = false;
     });
   }
 }

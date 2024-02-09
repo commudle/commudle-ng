@@ -1,26 +1,24 @@
 <div class="experts-page">
   <commudle-listing-pages-layout>
     <div header><commudle-experts-header></commudle-experts-header></div>
-    <!-- <div one-column *ngIf="isMobileView"> -->
-    <!-- <div class="apply-expert">
-        <a [routerLink]="['']" target="_blank" nbButton status="info" size="giant" class="button">
+    <div one-column *ngIf="isMobileView">
+      <div class="apply-expert">
+        <a routerLink="/fill-form/1093" nbButton status="info" size="giant" class="button">
           <nb-icon icon="plus"></nb-icon>
-          Start your community
+          Apply to be an Expert
         </a>
-      </div> -->
-    <!-- <app-communities-featured></app-communities-featured>
-    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-    <div class="speakers">
-      <commudle-public-home-list-events-speakers
+      </div>
+      <commudle-experts-featured></commudle-experts-featured>
+      <div class="speakers">
+        <commudle-public-home-list-events-speakers
+          [parentType]="'communities'"
+        ></commudle-public-home-list-events-speakers>
+      </div>
+      <commudle-public-home-list-speakers-content
         [parentType]="'communities'"
-      ></commudle-public-home-list-events-speakers>
+      ></commudle-public-home-list-speakers-content>
+      <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
     </div>
-    <app-communities-list></app-communities-list>
-    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-speakers-content
-      [parentType]="'communities'"
-    ></commudle-public-home-list-speakers-content> -->
-    <!-- </div> -->
     <div main-column *ngIf="!isMobileView">
       <commudle-experts-featured></commudle-experts-featured>
     </div>
