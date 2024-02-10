@@ -1,0 +1,21 @@
+nb-card {
+  @apply com-mx-0;
+  .loading {
+    @apply com-min-h-[50vh];
+  }
+}
+
+.judges-cards {
+  nb-card {
+    @apply com-w-72;
+    nb-card-body {
+      @apply com-p-0;
+    }
+  }
+}
+.profile-image {
+  @apply com-w-[275px] com-h-[275px];
+  img {
+    @apply com-w-full com-h-full com-object-contain;
+  }
+}

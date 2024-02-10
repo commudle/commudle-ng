@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ICommunity } from '@commudle/shared-models';
 import { NbStepperComponent } from '@commudle/theme';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
@@ -8,6 +9,9 @@ import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-g
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon, EParticipateTypes } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
+import { faLinkedinIn, faTwitter, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGlobe, faInfoCircle, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { IContactInfo } from 'apps/shared-models/contact-info.model';
 
 @Component({
   selector: 'commudle-public-hackathon-form',
@@ -16,12 +20,26 @@ import { Subscription } from 'rxjs';
 })
 export class PublicHackathonFormComponent implements OnInit {
   hackathon: IHackathon;
-  showTeammateForm = false;
+  community: ICommunity;
   hackathonResponseGroup: IHackathonResponseGroup;
   subscriptions: Subscription[] = [];
   hackathonUserResponse: IHackathonUserResponse;
+  contactInfo: IContactInfo;
+
   @ViewChild('stepper') stepper: NbStepperComponent;
+
   isLoading = true;
+  showTeammateForm = false;
+
+  icons = {
+    faLinkedinIn,
+    faTwitter,
+    faFacebookF,
+    faGlobe,
+    faGithub,
+    faInfoCircle,
+    faHashtag,
+  };
 
   constructor(
     private hrgService: HackathonResponseGroupService,
@@ -37,17 +55,26 @@ export class PublicHackathonFormComponent implements OnInit {
         .subscribe((data: IHackathonResponseGroup) => {
           this.hackathonResponseGroup = data;
           this.fetchPreExistingFormResponse();
-
-          this.hackathonService.showHackathon(this.hackathonResponseGroup.hackathon_id).subscribe((data) => {
-            this.hackathon = data;
-            if (
-              this.hackathon.participate_types === EParticipateTypes.BOTH ||
-              this.hackathon.participate_types === EParticipateTypes.TEAM
-            ) {
-              this.showTeammateForm = true;
-            }
-          });
         }),
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.hackathon = data.hackathon;
+        this.community = data.community;
+        this.getContactInfo();
+        if (
+          this.hackathon.participate_types === EParticipateTypes.BOTH ||
+          this.hackathon.participate_types === EParticipateTypes.TEAM
+        ) {
+          this.showTeammateForm = true;
+        }
+      }),
+    );
+  }
+
+  getContactInfo() {
+    this.subscriptions.push(
+      this.hackathonService.showHackathonContactInfo(this.hackathon.id).subscribe((data) => {
+        this.contactInfo = data;
+      }),
     );
   }
 

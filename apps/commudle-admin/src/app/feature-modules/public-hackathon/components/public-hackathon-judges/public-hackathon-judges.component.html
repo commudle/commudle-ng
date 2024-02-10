@@ -1,1 +1,23 @@
-<p>public-hackathon-judges works!</p>
+<nb-card>
+  <nb-card-body class="judges-cards">
+    <div class="loading" *ngIf="isLoading; else judgeCards">
+      <commudle-loading-spinner></commudle-loading-spinner>
+    </div>
+    <ng-template #judgeCards>
+      <div *ngFor="let judge of hackathonJudges">
+        <nb-card>
+          <nb-card-body>
+            <div class="profile-image">
+              <img [src]="judge.profile_image.url" [alt]="judge.name" />
+            </div>
+            <div>
+              <div>{{ judge.name }}</div>
+              <div>{{ judge.username }}</div>
+              <div>{{ judge.designation }}</div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </ng-template>
+  </nb-card-body>
+</nb-card>

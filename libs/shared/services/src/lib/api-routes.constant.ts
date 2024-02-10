@@ -777,10 +777,6 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/hackathons', //PUT
     INDEX: 'api/v2/hackathons', //GET
     SHOW: 'api/v2/hackathons/show', //GET
-    PUBLIC: {
-      SHOW: 'api/v2/hackathons/public/show', //GET
-      INDEX: 'api/v2/hackathons/public/index', //GET
-    },
     CREATE_CONTACT_INFO: 'api/v2/hackathons/create_contact_info', //POST
     UPDATE_CONTACT_INFO: 'api/v2/hackathons/update_contact_info', //PUT
     SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
@@ -791,7 +787,6 @@ export const API_ROUTES = {
     CREATE_TRACK: 'api/v2/hackathons/create_track', //POST
     UPDATE_TRACK: 'api/v2/hackathons/update_track', //PUT
     INDEX_TRACKS: 'api/v2/hackathons/index_tracks', //GET
-    PUBLIC_INDEX_HACKATHON_TRACKS: 'api/v2/hackathons/public_index_hackathon_tracks', //GET
     DESTROY_TRACK: 'api/v2/hackathons/destroy_track', //DELETE
     CREATE_PRIZE: 'api/v2/hackathons/create_prize', //POST
     UPDATE_PRIZE: 'api/v2/hackathons/update_prize', //PUT
@@ -802,6 +797,13 @@ export const API_ROUTES = {
     UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
     DESTROY_JUDGE: 'api/v2/hackathons/destroy_judge', //DELETE
+    PUBLIC: {
+      SHOW: 'api/v2/hackathons/public/show', //GET
+      INDEX: 'api/v2/hackathons/public/index', //GET
+      INDEX_JUDGES: 'api/v2/hackathons/public/index_judges', //GET
+      INDEX_PRIZES: 'api/v2/hackathons/public/index_prizes', //GET
+      INDEX_TRACKS: 'api/v2/hackathons/public/index_tracks', //GET
+    },
   },
 
   FAQ: {
