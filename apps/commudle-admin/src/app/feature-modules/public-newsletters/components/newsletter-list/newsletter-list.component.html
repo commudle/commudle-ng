@@ -10,7 +10,7 @@
             <div *ngFor="let newsletter of newsletters" class="newsletter-card">
               <img
                 [alt]="newsletter.title"
-                [src]="newsletter.header_image.url"
+                [src]="newsletter.header_image?.url"
                 class="com-h-36 com-w-full com-object-cover com-object-center"
               />
               <div class="com-p-4">

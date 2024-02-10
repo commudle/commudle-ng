@@ -7,6 +7,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { IPageInfo } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-events',
@@ -19,7 +20,9 @@ export class EventsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   moment = moment;
 
-  isLoading = true;
+  isLoading = false;
+  pageInfo: IPageInfo;
+
   upcomingEvents: IEvent[] = [];
   eventForSchema = [];
 
@@ -52,10 +55,12 @@ export class EventsComponent implements OnInit, OnDestroy {
   }
 
   getEvents() {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.communityGroupsService.events(this.communityGroup.slug).subscribe((data) => {
+      this.communityGroupsService.events(this.communityGroup.slug, this.pageInfo?.end_cursor).subscribe((data) => {
         this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.isLoading = false;
+        this.pageInfo = data.page_info;
         this.setSchema();
       }),
     );

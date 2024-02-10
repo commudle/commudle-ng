@@ -23,6 +23,14 @@
             >
           </small>
         </div>
+        <div class="votes">
+          <app-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="eu.id"
+            votableType="EventUpdate"
+            [textAlignment]="'after'"
+          ></app-votes-display>
+        </div>
       </div>
     </nb-card-body>
     <nb-card-footer class="com-sticky com-bg-white com-bottom-0">

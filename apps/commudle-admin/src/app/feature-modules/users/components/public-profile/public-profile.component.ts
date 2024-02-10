@@ -79,6 +79,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
         this.user = data;
+        this.setSchema();
         if (!this.user.profile_completed) {
           this.seoService.noIndex(true);
         }
@@ -99,4 +100,36 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   originalOrder = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
     return 0;
   };
+
+  setSchema() {
+    const socialMediaLinks = [
+      this.user.medium,
+      this.user.behance,
+      this.user.dribbble,
+      this.user.facebook,
+      this.user.github,
+      this.user.gitlab,
+      this.user.linkedin,
+      this.user.personal_website,
+      this.user.twitter,
+      this.user.youtube,
+    ].filter((link) => link !== null && link !== undefined);
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      dateCreated: this.user.created_at,
+      mainEntity: {
+        '@type': 'Person',
+        name: this.user.name,
+        identifier: this.user.username,
+        description: this.user.about_me,
+        image: this.user.photo.url,
+        dateCreated: this.user.created_at,
+        sameAs: socialMediaLinks.map((links) => links),
+        gender: this.user.gender,
+        jobTitle: this.user.designation,
+        address: this.user.location,
+      },
+    });
+  }
 }

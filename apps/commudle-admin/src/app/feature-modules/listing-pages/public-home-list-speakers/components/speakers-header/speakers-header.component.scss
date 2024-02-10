@@ -29,7 +29,10 @@
         }
 
         .header-image {
-          @apply com-flex com-items-center com-m-0 com-h-[250px] md:com-h-auto com-w-[250px] md:com-w-auto;
+          @apply com-flex com-items-center com-m-0 com-h-[250px] md:com-h-[386px];
+          img {
+            @apply com-h-full com-mx-auto com-py-1;
+          }
         }
       }
     }
