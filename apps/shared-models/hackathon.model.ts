@@ -24,6 +24,7 @@ export interface IHackathon {
   updates_count: number;
   faqs_count: number;
   sponsors_count: number;
+  max_number_of_teammates: number;
 }
 
 export enum EParticipateTypes {

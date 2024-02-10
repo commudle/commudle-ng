@@ -60,6 +60,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       number_of_participants: ['', [Validators.required, Validators.min(1)]],
       participate_types: ['', Validators.required],
       hackathon_location_type: ['', Validators.required],
+      max_number_of_teammates: ['', Validators.min(1)],
       banner_image: [null],
     });
     this.locationForm = this.fb.group({
@@ -103,8 +104,9 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
           number_of_participants: data.number_of_participants,
           participate_types: data.participate_types,
           hackathon_location_type: data.hackathon_location_type,
+          max_number_of_teammates: data.max_number_of_teammates,
         });
-        if (this.hackathon.location_id) {
+        if (this.hackathon.location_name) {
           this.locationForm.patchValue({
             name: this.hackathon.location_name,
             address: this.hackathon.location_address,
@@ -161,9 +163,12 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
         formData.append('hackathon[' + key + ']', value);
       }
     });
-    if (this.locationForm.get('name').value) formData.append('location[name]', this.locationForm.get('name').value);
-    if (this.locationForm.get('address').value)
+
+    if (this.locationForm.get('address').value) {
+      formData.append('location[name]', this.hackathonForm.get('name').value + '- location');
       formData.append('location[address]', this.locationForm.get('address').value);
+    }
+
     if (this.locationForm.get('map_link').value)
       formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
@@ -185,9 +190,11 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       }
     });
 
-    if (this.locationForm.get('name').value) formData.append('location[name]', this.locationForm.get('name').value);
-    if (this.locationForm.get('address').value)
+    if (this.locationForm.get('address').value) {
+      formData.append('location[name]', this.hackathonForm.get('name').value + '- location');
       formData.append('location[address]', this.locationForm.get('address').value);
+    }
+
     if (this.locationForm.get('map_link').value)
       formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
