@@ -1,9 +1,13 @@
 .user-work-history {
   nb-card-header {
-    @apply com-text-lg com-font-medium;
+    @apply com-text-lg com-font-medium com-text-Yankees-Blue;
   }
 
   nb-card-body {
     @apply com-space-y-2;
   }
+}
+
+.title {
+  @apply com-text-Yankees-Blue;
 }

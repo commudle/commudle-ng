@@ -12,18 +12,18 @@
           @apply com-flex com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6 md:com-w-[855px] md:com-h-[298px] com-w-full com-h-full;
 
           .heading {
-            @apply md:com-text-4xl com-text-2xl com-font-bold com-mt-0 com-mb-4 com-text-white;
+            @apply md:com-text-4xl com-text-2xl com-font-bold com-mt-0 com-mb-4 com-text-tWhite;
           }
 
           .sub-heading {
-            @apply md:com-text-lg com-text-base com-font-normal com-m-0 com-text-white md:com-mr-72px com-mx-0;
+            @apply md:com-text-lg com-text-base com-font-normal com-m-0 com-text-tWhite md:com-mr-72px com-mx-0;
           }
 
           .content {
             @apply com-hidden md:com-flex;
             ::ng-deep {
               p {
-                @apply com-text-white;
+                @apply com-text-tWhite;
                 font-size: initial;
               }
             }

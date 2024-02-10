@@ -47,3 +47,11 @@ nb-user {
 nb-accordion {
   box-shadow: none;
 }
+
+nb-accordion-item {
+  @apply com-bg-white;
+}
+
+nb-accordion-item-header {
+  @apply com-text-Yankees-Blue;
+}

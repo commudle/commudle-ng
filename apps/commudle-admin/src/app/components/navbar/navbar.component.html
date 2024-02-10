@@ -1,19 +1,37 @@
 <div class="com-flex com-justify-between com-items-center com-gap-2 com-container com-max-w-screen-xl com-px-2">
   <a [routerLink]="['/']">
-    <img
-      *appBreakpoints="'<=md'"
-      alt="Commudle"
-      class="com-d-block com-w-8 com-h-8 com-object-contain"
-      src="{{ staticAssets.commudle_logo_72 }}"
-      title="Commudle"
-    />
-    <img
-      *appBreakpoints="'>md'"
-      alt="Commudle"
-      class="com-d-block com-w-auto com-h-8 com-object-contain"
-      src="{{ staticAssets.commudle_logo_full }}"
-      title="Commudle"
-    />
+    <div *ngIf="!isDarkMode">
+      <img
+        *appBreakpoints="'<=md'"
+        alt="Commudle"
+        class="com-d-block com-w-8 com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_72 }}"
+        title="Commudle"
+      />
+      <img
+        *appBreakpoints="'>md'"
+        alt="Commudle"
+        class="com-d-block com-w-auto com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_full }}"
+        title="Commudle"
+      />
+    </div>
+    <div *ngIf="isDarkMode">
+      <img
+        *appBreakpoints="'<=md'"
+        alt="Commudle"
+        class="com-d-block com-w-8 com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_72 }}"
+        title="Commudle"
+      />
+      <img
+        *appBreakpoints="'>md'"
+        alt="Commudle"
+        class="com-d-block com-w-auto com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_dark_mode }}"
+        title="Commudle"
+      />
+    </div>
   </a>
 
   <div class="home-navbar">
@@ -39,6 +57,11 @@
         </button>
       </ng-template>
     </div>
+  </div>
+
+  <div>
+    <button (click)="toggleDarkMode(true)" *ngIf="!isDarkMode"><fa-icon [icon]="faMoon"></fa-icon></button>
+    <button (click)="toggleDarkMode(false)" *ngIf="isDarkMode"><fa-icon [icon]="faSun"></fa-icon></button>
   </div>
 
   <div (click)="toggleSidebar()" class="home-sidebar">

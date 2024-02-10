@@ -1,5 +1,5 @@
 .featured-community-card {
-  @apply com-flex com-flex-col com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-flex-shrink-0 com-overflow-hidden com-bg-white com-w-[298px] com-h-[300px];
+  @apply com-flex com-flex-col com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-flex-shrink-0 com-overflow-hidden com-bg-white com-w-[298px] com-h-[290px];
 
   a {
     @apply com-no-underline;
@@ -29,14 +29,14 @@
     }
 
     .featured-community-about {
-      @apply com-p-3 com-pb-0 com-h-[186px] com-relative;
+      @apply com-p-3 com-pb-0 com-h-[174px] com-relative;
 
       .featured-community-name {
         @apply com-m-0 com-text-base com-font-semibold com-text-Dark-Jungle-Green com-line-clamp-1;
       }
 
       .featured-community-reason {
-        @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3;
+        @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3 com-h-8;
       }
 
       .members-events {
@@ -44,7 +44,7 @@
 
         .members,
         .events-organized {
-          @apply com-flex com-items-center;
+          @apply com-flex com-items-center com-text-Yankees-Blue com-m-0;
           nb-icon {
             @apply com-h-4 com-w-4 com-mr-1 com-flex-shrink-0;
           }
@@ -56,7 +56,7 @@
       }
 
       .featured-community-tags {
-        @apply com-h-6 com-mx-0 com-my-4 com-overflow-hidden;
+        @apply com-h-8 com-mx-0 com-my-4 com-overflow-hidden;
       }
     }
   }

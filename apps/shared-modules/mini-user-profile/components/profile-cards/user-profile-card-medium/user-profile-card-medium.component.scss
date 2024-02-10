@@ -13,7 +13,7 @@ p {
 }
 
 .user-profile-medium {
-  background-color: $white;
+  @apply com-bg-white;
 
   .avatar {
     @apply com-h-7 com-w-7 com-rounded-full com-object-cover com-object-center com-mr-1;

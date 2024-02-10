@@ -37,7 +37,7 @@ nb-card {
   }
   .delete {
     transform: translate(-50%, -50%);
-    @apply com-absolute com-hidden com-cursor-pointer com-text-white com-top-2/4 com-left-2/4;
+    @apply com-absolute com-hidden com-cursor-pointer com-text-tWhite com-top-2/4 com-left-2/4;
     fa-icon {
       @apply com-text-3xl com-text-red-500;
     }

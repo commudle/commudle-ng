@@ -8,11 +8,11 @@
       @apply com-w-full com-px-4 com-mb-0;
 
       .heading {
-        @apply com-mt-4 com-font-extrabold com-text-3xl com-leading-none com-text-white com-mb-0;
+        @apply com-mt-4 com-font-extrabold com-text-3xl com-leading-none com-text-tWhite com-mb-0;
       }
 
       .paragraph {
-        @apply com-text-sm com-leading-6 com-text-white com-my-4;
+        @apply com-text-sm com-leading-6 com-text-tWhite com-my-4;
 
         a {
           @apply com-text-Chrome-Yellow;
@@ -21,7 +21,7 @@
     }
 
     .preference-buttons {
-      @apply com-flex com-justify-center com-mb-4 com-mt-0 com-flex-wrap com-text-white;
+      @apply com-flex com-justify-center com-mb-4 com-mt-0 com-flex-wrap com-text-tWhite;
 
       .preferences {
         @apply com-flex com-items-center com-ml-4 com-rounded-md com-py-1 com-px-0;
