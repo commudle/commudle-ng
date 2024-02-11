@@ -14,12 +14,17 @@ export class HackathonTrackCardComponent implements OnInit {
   @Input() hackathonTrack: IHackathonTrack;
   @Output() editTrackEvent: EventEmitter<IHackathonTrack> = new EventEmitter();
   @Output() destroyTrackEvent: EventEmitter<number> = new EventEmitter();
-
+  prizeCurrencySymbol: any;
   countryDetails = countries_details;
   faXmark = faXmark;
   constructor(private hackathonService: HackathonService, private nbDialogService: NbDialogService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.hackathonTrack.hackathon_prizes.forEach((prize) => {
+      this.prizeCurrencySymbol = this.countryDetails.find((detail) => detail.currency === prize.currency_type);
+      prize.currency_symbol = this.prizeCurrencySymbol.symbol;
+    });
+  }
 
   edit(hackathonTrack) {
     this.editTrackEvent.emit(hackathonTrack);

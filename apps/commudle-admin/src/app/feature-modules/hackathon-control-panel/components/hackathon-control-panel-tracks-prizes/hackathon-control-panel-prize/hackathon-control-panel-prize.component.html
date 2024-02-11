@@ -30,12 +30,6 @@
           <input type="text" id="name" nbInput fullWidth formControlName="name" placeholder="Name" />
         </div>
 
-        <!-- Prize Priority  -->
-        <!-- <div>
-          <label for="order">Order*</label>
-          <select name="" id=""></select>
-        </div> -->
-
         <!-- hackathon_track_id -->
         <div>
           <label for="hackathon_track_id">Select Track</label>
@@ -45,9 +39,31 @@
             formControlName="hackathon_track_id"
             name="hackathon_track_id"
             id="hackathon_track_id"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': prizeForm.get('hackathon_track_id').value === null
+            }"
           >
-            <option selected disabled value="">Select Track</option>
+            <option selected disabled [value]="null">Select Track</option>
             <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
+          </select>
+        </div>
+
+        <!-- order -->
+        <div>
+          <label for="order">Order</label>
+          <br />
+          <select
+            class="!com-w-full"
+            formControlName="order"
+            name="order"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': prizeForm.get('order').value === null
+            }"
+          >
+            <option selected disabled [value]="null">Select Order</option>
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
           </select>
         </div>
 
@@ -56,7 +72,10 @@
           <label for="prize_amount">Prize Amount*</label>
           <div class="prize-amount">
             <select name="currency_type" id="currency_type" formControlName="currency_type">
-              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.symbol">
+              <option selected [value]="countryDetails[102].currency">
+                {{ countryDetails[102].symbol }}({{ countryDetails[102].currency }})
+              </option>
+              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.currency">
                 {{ countryDetail.symbol }}({{ countryDetail.currency }})
               </option>
             </select>

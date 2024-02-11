@@ -52,7 +52,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
       description: ['', Validators.required],
       no_of_winners: ['', Validators.required],
       prize_amount: ['', Validators.required],
-      currency_type: ['₹', Validators.required],
+      currency_type: ['', Validators.required],
       order: ['', Validators.required],
       hackathon_track_id: '',
       hackathon_id: '',
@@ -87,6 +87,9 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
 
   openPrizeFormDialogBox(dialog, prize?: IHackathonPrize, index?) {
     this.prizeForm.reset();
+    this.prizeForm.patchValue({
+      hackathon_id: this.hackathon.id,
+    });
     if (prize) {
       this.prizeForm.patchValue({
         name: prize.name,
@@ -95,12 +98,10 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
         prize_amount: prize.prize_amount,
         hackathon_track_id: prize.hackathon_track.id,
         currency_type: prize.currency_type,
+        order: prize.order,
       });
     }
-    this.prizeForm.patchValue({
-      order: this.hackathonPrizes.length + 1,
-      hackathon_id: this.hackathon.id,
-    });
+
     this.nbDialogService.open(dialog, {
       context: { index: index, prize: prize },
     });
