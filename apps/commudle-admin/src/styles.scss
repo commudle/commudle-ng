@@ -363,6 +363,7 @@ nb-option-list.search-autocomplete {
 
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
+  border: #2c2c2c;
   margin: 16px 8px;
 }
 
@@ -537,6 +538,9 @@ nb-option-list.search-autocomplete {
 
   --color-Bright-Gray-opacity-60-light: #e6ecf4;
 
+  --color-Bright-Gray-opacity-30-light: #f7f8fb;
+  --color-Bright-Gray-opacity-30-dark: #1e1e1e;
+
   --color-Ghost-White-light: #f9f9f9;
   --color-Ghost-White-dark: #121212;
 }
@@ -602,6 +606,7 @@ nb-option-list.search-autocomplete {
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-light);
   --color-Ghost-White: var(--color-Ghost-White-light);
 
   .linear-gradient-top {
@@ -686,6 +691,7 @@ nb-option-list.search-autocomplete {
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-dark);
   --color-Ghost-White: var(--color-Ghost-White-dark);
 
   .linear-gradient-top,

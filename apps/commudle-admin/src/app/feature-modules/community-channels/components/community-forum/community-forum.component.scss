@@ -44,7 +44,7 @@ table {
 }
 
 .forum-list:hover {
-  @apply hover:com-bg-Bright-Gray/30;
+  @apply hover:com-bg-Bright-Gray-opacity-30;
   .icons {
     @apply com-flex com-justify-around;
   }

@@ -50,7 +50,7 @@ module.exports = {
         'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain same as Yankees blue
         'Alice-Blue': '#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
-        'Bright-Gray': '#E4E9F2',
+        'Bright-Gray': 'var(--color-bright-gray)', //'#E4E9F2',
         'Brandeis-Blue': '#0074ED',
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
@@ -87,6 +87,7 @@ module.exports = {
         'gray-600': 'var(--color-gray-600)',
         'gray-500-opacity-50': 'var(--color-gray-500-opacity-50)',
         'Bright-Gray-opacity-60': 'var(--color-Bright-Gray-opacity-60)',
+        'Bright-Gray-opacity-30': 'var(--color-Bright-Gray-opacity-30)',
         'Ghost-White': 'var(--color-Ghost-White)',
       },
 
