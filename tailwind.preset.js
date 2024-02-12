@@ -76,6 +76,7 @@ module.exports = {
         'white-opacity-40': 'var(--color-white-opacity-40)',
         tWhite: 'var(--color-twhite)', //Remain same as white
         black: 'var(--color-black)',
+        tblack: 'var(--color-tblack)', //Remain same as black
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',
         'gray-50': 'var(--color-gray-50)',
@@ -86,6 +87,7 @@ module.exports = {
         'gray-600': 'var(--color-gray-600)',
         'gray-500-opacity-50': 'var(--color-gray-500-opacity-50)',
         'Bright-Gray-opacity-60': 'var(--color-Bright-Gray-opacity-60)',
+        'Ghost-White': 'var(--color-Ghost-White)',
       },
 
       lineClamp: {

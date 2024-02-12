@@ -10,7 +10,7 @@
   }
 
   .channel-group {
-    @apply com-bg-[#F9F9F9];
+    @apply com-bg-Ghost-White;
     .group-name {
       display: flex;
       justify-content: space-between;
@@ -21,7 +21,7 @@
     }
 
     .channels {
-      @apply com-bg-[#F9F9F9] com-cursor-pointer;
+      @apply com-bg-Ghost-White com-cursor-pointer;
       ul {
         list-style: none;
         @apply com-p-0 com-my-0;
@@ -87,6 +87,7 @@
 nb-accordion {
   &::ng-deep {
     nb-accordion-item {
+      @apply com-bg-Ghost-White;
       nb-accordion-item-body {
         .ng-trigger-accordionItemBody {
           .item-body {

@@ -376,6 +376,8 @@ nb-option-list.search-autocomplete {
   --color-black-light: #000000;
   --color-black-dark: #ffffff;
 
+  --color-tblack-light: #000000;
+
   --color-blue-50-light: #eff6ff;
   --color-blue-50-dark: #121212;
 
@@ -534,6 +536,9 @@ nb-option-list.search-autocomplete {
   --color-azure-opacity-10-light: #0095ff19;
 
   --color-Bright-Gray-opacity-60-light: #e6ecf4;
+
+  --color-Ghost-White-light: #f9f9f9;
+  --color-Ghost-White-dark: #121212;
 }
 
 [data-theme='light'] {
@@ -541,6 +546,7 @@ nb-option-list.search-autocomplete {
   --color-white-opacity-40: var(--color-white-opacity-40-light);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-light);
+  --color-tblack: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-light);
   --color-gray-900: var(--color-gray-900-light);
   --color-gray-50: var(--color-gray-50-light);
@@ -596,6 +602,7 @@ nb-option-list.search-autocomplete {
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Ghost-White: var(--color-Ghost-White-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -623,6 +630,7 @@ nb-option-list.search-autocomplete {
   --color-white-opacity-40: var(--color-white-opacity-40-dark);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-dark);
+  --color-tblack: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-dark);
   --color-gray-900: var(--color-gray-900-dark);
   --color-gray-50: var(--color-gray-50-dark);
@@ -678,6 +686,7 @@ nb-option-list.search-autocomplete {
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Ghost-White: var(--color-Ghost-White-dark);
 
   .linear-gradient-top,
   .linear-gradient-bottom,
