@@ -60,10 +60,7 @@ export class PublicHackathonFormComponent implements OnInit {
         this.hackathon = data.hackathon;
         this.community = data.community;
         this.getContactInfo();
-        if (
-          this.hackathon.participate_types === EParticipateTypes.BOTH ||
-          this.hackathon.participate_types === EParticipateTypes.TEAM
-        ) {
+        if (this.hackathon.participate_types === EParticipateTypes.TEAM) {
           this.showTeammateForm = true;
         }
       }),

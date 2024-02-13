@@ -4,27 +4,42 @@
     <input type="text" nbInput fullWidth formControlName="name" placeholder="Enter your team name" />
   </div>
   <ng-container formArrayName="teammates">
-    <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i">
-      <label for="email">Enter Email*</label>
-      <input type="email" formControlName="email" fullWidth nbInput />
+    <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i" class="teammate-form">
+      <section>
+        <label for="email">Enter Email*</label>
+        <input type="email" formControlName="email" placeholder="xyz@example.com" fullWidth nbInput />
+      </section>
 
-      <label for="tshirt_size">THEIR TSHIRT SIZE</label>
-      <input type="text" list="tshirtSize" formControlName="tshirt_size" fullWidth nbInput />
-      <datalist id="tshirtSize">
-        <option value="S"></option>
-        <option value="M"></option>
-        <option value="L"></option>
-        <option value="XL"></option>
-        <option value="XXL"></option>
-      </datalist>
+      <section>
+        <label for="tshirt_size">T-Shirt Size</label>
+        <input
+          type="text"
+          list="tshirtSize"
+          formControlName="tshirt_size"
+          fullWidth
+          nbInput
+          placeholder="T-Shirt Size"
+        />
+        <datalist id="tshirtSize">
+          <option value="S"></option>
+          <option value="M"></option>
+          <option value="L"></option>
+          <option value="XL"></option>
+          <option value="XXL"></option>
+        </datalist>
+      </section>
 
       <button type="button" nbButton ghost status="danger" (click)="removeTeammate(i)">
-        <fa-icon [icon]="icons.faUserLargeSlash"></fa-icon> Remove Teammate
+        <fa-icon [icon]="icons.faUserLargeSlash"></fa-icon>
+        <span>Remove Teammate</span>
       </button>
     </div>
   </ng-container>
 
-  <button type="button" (click)="addTeammate()" nbButton><fa-icon [icon]="icons.faPlus"></fa-icon> Add Teammate</button>
+  <button type="button" (click)="addTeammate()" nbButton>
+    <fa-icon [icon]="icons.faPlus"></fa-icon>
+    <span> Add Teammate </span>
+  </button>
   <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
     Next
   </button>

@@ -16,6 +16,7 @@ import {
   faSackDollar,
   faMicrophone,
   faStar,
+  faCircleQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
@@ -40,6 +41,7 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
     faBook,
     faSackDollar,
     faStar,
+    faCircleQuestion,
   };
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EDbModels, IFaq } from '@commudle/shared-models';
-import { FaqService } from '@commudle/shared-services';
+import { FaqService, countries_details } from '@commudle/shared-services';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
+import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 
@@ -19,7 +20,9 @@ export class PublicHackathonDetailsComponent implements OnInit {
   EDbModels = EDbModels;
   sponsors: IHackathonSponsor[];
   faqs: IFaq[];
+  tracks: IHackathonTrack[];
   discussionChat: IDiscussion;
+  countryDetails = countries_details;
 
   subscriptions: Subscription[] = [];
   constructor(
@@ -35,6 +38,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
         this.hackathon = data.hackathon;
         this.getSponsors();
         this.getFaqs();
+        this.getTracks();
         this.getDiscussionChat();
       }),
     );
@@ -50,6 +54,20 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.faqService.indexFaqs(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
         this.faqs = data;
+      }),
+    );
+  }
+
+  getTracks() {
+    this.subscriptions.push(
+      this.hackathonService.pIndexHackathonTracks(this.hackathon.id).subscribe((data) => {
+        this.tracks = data;
+        for (const track of this.tracks) {
+          for (const prize of track.hackathon_prizes) {
+            const prizeCurrencySymbol = this.countryDetails.find((detail) => detail.currency === prize.currency_type);
+            prize.currency_symbol = prizeCurrencySymbol.symbol;
+          }
+        }
       }),
     );
   }

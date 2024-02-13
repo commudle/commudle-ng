@@ -160,13 +160,35 @@
         ></commudle-alert>
       </div>
 
+      <!-- min_number_of_teammates -->
+      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
+        <label for="min_number_of_teammates">Min Number of Teammates*</label>
+        <input
+          formControlName="min_number_of_teammates"
+          id="min_number_of_teammates"
+          type="number"
+          nbInput
+          fullWidth
+          placeholder="1"
+        />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['min_number_of_teammates'].invalid &&
+            hackathonForm.controls['min_number_of_teammates'].hasError('required') &&
+            hackathonForm.controls['min_number_of_teammates'].touched
+          "
+          [error]="true"
+          errorMessage="Number of Participants is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['min_number_of_teammates'].hasError('min')"
+          [error]="true"
+          errorMessage="Number of participants is always greater than 0"
+        ></commudle-alert>
+      </div>
+
       <!-- max_number_of_teammates -->
-      <div
-        *ngIf="
-          hackathonForm.get('participate_types').value === EParticipateTypes.BOTH ||
-          hackathonForm.get('participate_types').value === EParticipateTypes.TEAM
-        "
-      >
+      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
         <label for="max_number_of_teammates">Max Number of Teammates*</label>
         <input
           formControlName="max_number_of_teammates"

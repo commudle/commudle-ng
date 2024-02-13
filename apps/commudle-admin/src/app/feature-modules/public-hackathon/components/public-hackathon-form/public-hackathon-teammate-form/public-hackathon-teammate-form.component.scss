@@ -3,4 +3,13 @@ form {
   div {
     @apply com-border-0 com-pb-4 com-border-b com-border-solid com-border-Bright-Gray;
   }
+  .teammate-form {
+    section {
+      @apply com-mb-4;
+    }
+  }
+}
+
+button {
+  @apply com-flex com-flex-row com-gap-2 com-items-center;
 }

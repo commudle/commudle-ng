@@ -7,7 +7,7 @@
       <div *ngFor="let prize of hackathonPrizes">
         <nb-card>
           <nb-card-body>
-            <div class="prize-amount">PRIZE: {{ prize.currency_type }}{{ prize.prize_amount }}</div>
+            <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
             <div class="track-name">{{ prize.hackathon_track.name }}</div>
             <div class="track-discription" [innerHTML]="prize.hackathon_track.description"></div>
           </nb-card-body>

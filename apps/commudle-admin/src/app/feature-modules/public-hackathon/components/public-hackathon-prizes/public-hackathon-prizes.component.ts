@@ -4,6 +4,7 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
+import { countries_details as countryDetails } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
@@ -30,6 +31,10 @@ export class PublicHackathonPrizesComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService.pIndexPrizes(this.hackathon.id).subscribe((data) => {
         this.hackathonPrizes = data;
+        this.hackathonPrizes.forEach((prize) => {
+          const prizeCurrencySymbol = countryDetails.find((detail) => detail.currency === prize.currency_type);
+          prize.currency_symbol = prizeCurrencySymbol.symbol;
+        });
         this.isLoading = false;
       }),
     );

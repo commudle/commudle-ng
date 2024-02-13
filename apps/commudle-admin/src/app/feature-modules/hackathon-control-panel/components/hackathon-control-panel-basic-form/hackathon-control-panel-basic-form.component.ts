@@ -60,13 +60,14 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       number_of_participants: ['', [Validators.required, Validators.min(1)]],
       participate_types: ['', Validators.required],
       hackathon_location_type: ['', Validators.required],
+      min_number_of_teammates: ['', Validators.min(1)],
       max_number_of_teammates: ['', Validators.min(1)],
       banner_image: [null],
     });
     this.locationForm = this.fb.group({
       name: [''],
-      address: [''],
-      map_link: [''],
+      address: ['', Validators.required],
+      map_link: ['', Validators.required],
     });
   }
 

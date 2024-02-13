@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { countries_details } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';

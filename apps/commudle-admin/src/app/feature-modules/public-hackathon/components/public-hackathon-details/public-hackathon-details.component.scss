@@ -1,18 +1,21 @@
 .main-column {
   nb-card {
     @apply com-ml-0;
+    nb-card-header {
+      h2 {
+        @apply com-text-Yankees-Blue com-text-2xl com-font-bold;
+      }
+    }
     nb-card-body {
-      @apply com-px-4 com-py-3;
+      @apply com-py-3;
     }
   }
-  .sub-heading {
-    @apply com-text-Yankees-Blue com-text-2xl com-font-bold;
-  }
+
   .sponsors-cards {
     .sponsor-card {
       @apply com-flex com-gap-2 com-items-center;
       img {
-        @apply com-w-11 com-h-11;
+        @apply com-w-11 com-h-11 com-object-contain;
       }
       .name {
         @apply com-font-semibold com-text-lg;
@@ -22,6 +25,30 @@
       @apply com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-mt-2 com-pt-3;
     }
   }
+
+  .track-cards {
+    .track-card {
+      @apply com-py-2 com-my-1;
+      .name {
+        @apply com-text-Yankees-Blue com-text-2xl com-font-bold;
+      }
+      .prize-card {
+        .hackathon-prize {
+          @apply com-flex com-gap-2 com-items-center;
+          .prize-name {
+            @apply com-text-Yankees-Blue com-text-lg com-font-bold;
+          }
+          .prize-amount {
+            @apply com-text-blue-600 com-text-lg com-font-semibold;
+          }
+        }
+      }
+    }
+    .track-card:not(:last-child) {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+    }
+  }
+
   commudle-discussion {
     @apply com-h-96;
   }

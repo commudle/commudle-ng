@@ -24,11 +24,12 @@ export interface IHackathon {
   updates_count: number;
   faqs_count: number;
   sponsors_count: number;
+  tracks_count: number;
+  min_number_of_teammates: number;
   max_number_of_teammates: number;
 }
 
 export enum EParticipateTypes {
-  BOTH = 'both',
   TEAM = 'team',
   INDIVIDUAL = 'individual',
 }
