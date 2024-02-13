@@ -28,3 +28,7 @@ nb-card {
     @apply com-flex com-justify-between com-items-center;
   }
 }
+
+.main {
+  @apply com-p-6 com-bg-white com-rounded-md;
+}
