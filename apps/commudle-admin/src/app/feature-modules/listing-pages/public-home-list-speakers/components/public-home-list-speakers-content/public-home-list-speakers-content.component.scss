@@ -23,6 +23,10 @@ nb-card {
       .load-more {
         @apply com-text-center md:com-mt-6 com-mt-0;
 
+        button {
+          @apply com-text-gray-500;
+        }
+
         app-loading-spinner {
           @apply com-mb-6;
         }

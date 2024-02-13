@@ -22,6 +22,10 @@ div {
   .load-more {
     @apply com-text-center md:com-pb-2 com-mt-4 com-m-0 com-p-0 com-bg-transparent;
 
+    button {
+      @apply com-text-gray-500;
+    }
+
     app-loading-spinner {
       @apply com-mb-6;
     }

@@ -22,6 +22,10 @@ nb-card {
 
     .load-more {
       @apply com-text-center com-m-0 com-p-0;
+
+      button {
+        @apply com-text-gray-500;
+      }
     }
 
     .loading-spinner {
