@@ -839,4 +839,14 @@ export const API_ROUTES = {
       INDEX: 'api/v2/entity_updates/public/index',
     },
   },
+
+  ROUND: {
+    CREATE: 'api/v2/round', //POST
+    INDEX: 'api/v2/round', //GET
+    DELETE: 'api/v2/round', //DELETE
+    UPDATE: 'api/v2/round', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/round',
+    },
+  },
 };

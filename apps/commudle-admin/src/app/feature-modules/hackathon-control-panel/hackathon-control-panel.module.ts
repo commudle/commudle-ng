@@ -28,6 +28,8 @@ import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/a
 import { EditorModule as NewEditorModule } from '@commudle/editor';
 import { DataFormsModule } from 'apps/commudle-admin/src/app/feature-modules/data-forms/data-forms.module';
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
+import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
+import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-round-card/hackathon-control-panel-round-card.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/ap
     HackathonControlPanelRegistrationsComponent,
     HackathonControlPanelUpdatesComponent,
     HackathonControlPanelReviewComponent,
+    HackathonControlPanelRoundsComponent,
+    HackathonControlPanelRoundCardComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,86 @@
+<nb-card>
+  <nb-card-header>Rounds</nb-card-header>
+  <nb-card-body>
+    <div (click)="openRoundDialogBox(addRoundsDialogBox)" class="add-round-button">
+      <fa-icon [icon]="icons.faPlus"></fa-icon>
+      <br />
+      <span>Add Round</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="rounds-card" *ngIf="rounds && rounds.length > 0">
+    <div *ngFor="let round of rounds; let i = index">
+      <commudle-hackathon-control-panel-round-card
+        [round]="round"
+        (destroyRoundEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
+        (editRoundEvent)="openRoundDialogBox(addRoundsDialogBox, $event, i)"
+      ></commudle-hackathon-control-panel-round-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #addRoundsDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="round-form-dialog-box">
+    <nb-card-header class="actions">
+      <span>{{ data.round ? 'Edit Round' : 'Add Round' }}</span>
+      <button nbButton ghost shape="round" (click)="ref.close(); roundForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="roundForm">
+        <!-- name -->
+        <div>
+          <label for="name">Round Name:</label>
+          <input id="name" type="text" placeholder="Round Name" nbInput fullWidth formControlName="name" />
+        </div>
+
+        <!-- date -->
+        <div>
+          <label for="name">Round Name:</label>
+          <input id="name" type="date" nbInput fullWidth formControlName="date" />
+        </div>
+
+        <!-- description -->
+        <div>
+          <label for="description">Round Description:</label>
+          <textarea
+            id="description"
+            type="text"
+            placeholder="Round Description"
+            nbInput
+            fullWidth
+            formControlName="description"
+          >
+          </textarea>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="actions">
+      <button
+        nbButton
+        status="primary"
+        (click)="data.round ? updateRound(data.round, data.index) : createRound(); ref.close()"
+        [disabled]="roundForm.invalid"
+      >
+        Save
+      </button>
+      <button nbButton status="danger" outline (click)="ref.close(); roundForm.reset()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #conformDeleteDialogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header class="actions">
+      <span>Confirm delete Round</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete Round?</nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="destroyRound(data.roundId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

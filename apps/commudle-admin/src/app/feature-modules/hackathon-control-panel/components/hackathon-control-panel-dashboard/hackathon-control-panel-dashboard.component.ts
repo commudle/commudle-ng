@@ -17,6 +17,11 @@ import {
   faMicrophone,
   faStar,
   faCircleQuestion,
+  faArrowsRotate,
+  faEye,
+  faChartPie,
+  faHashtag,
+  faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
@@ -42,6 +47,11 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
     faSackDollar,
     faStar,
     faCircleQuestion,
+    faArrowsRotate,
+    faEye,
+    faChartPie,
+    faHashtag,
+    faEnvelope,
   };
   constructor(
     private activatedRoute: ActivatedRoute,

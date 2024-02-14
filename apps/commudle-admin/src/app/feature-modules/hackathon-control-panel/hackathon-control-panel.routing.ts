@@ -14,6 +14,7 @@ import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin
 import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-updates/hackathon-control-panel-updates.component';
 import { QuestionTypesResolver } from 'apps/shared-resolvers/question-types.resolver';
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
+import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,10 @@ const routes: Routes = [
           {
             path: 'review',
             component: HackathonControlPanelReviewComponent,
+          },
+          {
+            path: 'rounds',
+            component: HackathonControlPanelRoundsComponent,
           },
         ],
       },
