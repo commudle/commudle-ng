@@ -1,5 +1,5 @@
 .newsletter-form {
-  @apply com-p-6;
+  @apply com-p-6 com-bg-white com-rounded-md;
 
   h6 {
     @apply com-my-4;
@@ -31,8 +31,4 @@ nb-card {
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;
   }
-}
-
-.main {
-  @apply com-p-6 com-bg-white com-rounded-md;
 }
