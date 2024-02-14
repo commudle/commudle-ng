@@ -14,3 +14,8 @@ table {
     @apply com-font-extrabold com-text-lg;
   }
 }
+
+.loading,
+.view-more-button {
+  @apply com-my-4;
+}

@@ -85,7 +85,7 @@ const routes = [
         ],
       },
       {
-        path: 'newsletter',
+        path: 'newsletters',
         children: [
           {
             path: '',

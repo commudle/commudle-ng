@@ -39,3 +39,15 @@
     Welcome! The hosts will be joining shortly.
   </span>
 </nb-alert>
+
+<nb-alert
+  (close)="showHandRaisedAlert = false"
+  *ngIf="showHandRaisedAlert && latestRaisedHand?.name"
+  class="hand-raised"
+  closable
+>
+  <span>
+    <fa-icon [icon]="faHand"></fa-icon>
+    {{ latestRaisedHand?.name }} has raised their hand!
+  </span>
+</nb-alert>

@@ -1,3 +1,7 @@
+a {
+  @apply com-no-underline;
+}
+
 .main-container {
   @apply com-p-4 com-m-0;
   .profile-visited {
@@ -40,7 +44,6 @@
       @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
     }
   }
-
   .attended-events {
     @apply com-flex com-flex-row com-justify-between com-mb-4;
 
@@ -63,6 +66,7 @@
       @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
     }
   }
+
   .complete-profile {
     @apply com-text-base com-font-normal com-text-black com-m-0 com-py-4 com-px-0 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
   }
@@ -70,12 +74,15 @@
   .labs-published,
   .builds-published,
   .content-published,
+  .attended-events,
   .social-links {
     @apply com-flex com-flex-row com-justify-between com-mb-4;
 
     .labs-published-text,
     .builds-published-text,
     .content-published-text,
+    .attended-events-text,
+    .link-to-event,
     .social-links-text {
       @apply com-flex com-flex-row com-items-center;
 
@@ -91,6 +98,7 @@
     .builds-published-count,
     .attended-events-count,
     .content-published-count,
+    .attended-events-count,
     .social-links-count {
       @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-Quartz;
     }

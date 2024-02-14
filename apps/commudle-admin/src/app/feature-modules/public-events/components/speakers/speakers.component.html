@@ -12,7 +12,7 @@
     }"
   >
     <app-skeleton-cards *ngIf="isLoading" [displayFollowButton]="true"></app-skeleton-cards>
-    <div *ngFor="let speaker of speakers | orderBy : ['speaker.user.name'] : ['asc']" class="speaker">
+    <div *ngFor="let speaker of speakers | sortBy : ['speaker.user.name'] : ['asc']" class="speaker">
       <app-user-profile-card-large
         [alignFollowToRight]="true"
         [showFollowButton]="true"

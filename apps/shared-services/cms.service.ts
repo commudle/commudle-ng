@@ -60,6 +60,9 @@ export class CmsService {
               })
               .join('')}</tbody></table>`;
           },
+          image: ({ value }) => {
+            return `<img src="${this.getImageUrl(value.asset)}" alt="${value.alt}" class="!com-max-w-full" />`;
+          },
         },
       },
     });

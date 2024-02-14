@@ -6,7 +6,7 @@
     .base-layout {
       @apply com-min-h-full;
       .content {
-        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-w-auto;
+        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-w-auto com-h-full;
         .header-text {
           @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
@@ -37,7 +37,10 @@
         }
 
         .header-image {
-          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
+          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-[386px];
+          img {
+            @apply com-h-full com-mx-auto com-py-1;
+          }
         }
       }
     }

@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { IUserMessage } from '@commudle/shared-models';
-import { AuthService, ShareService } from '@commudle/shared-services';
+import { AuthService, SeoService, ShareService } from '@commudle/shared-services';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { DiscussionHandlerService } from '../../../services/discussion-handler.service';
@@ -36,9 +36,12 @@ export class MessageComponent implements OnInit, AfterViewInit {
     public discussionHandlerService: DiscussionHandlerService,
     private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private shareService: ShareService,
+    private seoService: SeoService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seoSchema();
+  }
 
   ngAfterViewInit(): void {
     this.scrollToMessage();
@@ -71,5 +74,50 @@ export class MessageComponent implements OnInit, AfterViewInit {
       'Copied message link successfully!',
       'Shared message successfully!',
     );
+  }
+
+  seoSchema() {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'DiscussionForumPosting',
+      headline: 'Comments',
+      text: this.removeHtmlTags(this.message.content),
+      author: {
+        '@type': 'Person',
+        name: this.message.user.name ? this.message.user.name : this.message.user.username,
+        url: `https://www.commudle.com/users/${this.message.user.username}`,
+      },
+      datePublished: this.message.created_at,
+      comment: this.getUserMessages(),
+    });
+  }
+
+  getUserMessages() {
+    const resultArray = [];
+
+    for (const userMessage of this.message.user_messages) {
+      if (userMessage) {
+        const transformedMessage = {
+          '@type': 'Comment',
+          text: this.removeHtmlTags(userMessage.content),
+          author: {
+            '@type': 'Person',
+            name: userMessage.user.name ? userMessage.user.name : userMessage.user.username,
+            url: `https://www.commudle.com/users/${userMessage.user.username}`,
+          },
+          datePublished: userMessage.created_at,
+        };
+
+        resultArray.push(transformedMessage);
+      }
+    }
+
+    return resultArray;
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }
