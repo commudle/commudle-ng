@@ -15,7 +15,7 @@ export class HackathonResponseGroupService {
     hackathonId,
     registrationTypeId,
     name,
-    datFormId,
+    dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
 
@@ -27,7 +27,7 @@ export class HackathonResponseGroupService {
           registration_type_id: registrationTypeId,
           name: name,
         },
-        data_form_id: datFormId,
+        data_form_id: dataFormId,
       },
       { params },
     );

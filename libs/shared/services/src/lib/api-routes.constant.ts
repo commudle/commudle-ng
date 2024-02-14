@@ -797,12 +797,14 @@ export const API_ROUTES = {
     UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
     DESTROY_JUDGE: 'api/v2/hackathons/destroy_judge', //DELETE
+    INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //DELETE
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
       INDEX_JUDGES: 'api/v2/hackathons/public/index_judges', //GET
       INDEX_PRIZES: 'api/v2/hackathons/public/index_prizes', //GET
       INDEX_TRACKS: 'api/v2/hackathons/public/index_tracks', //GET
+      INDEX_SPONSORS: 'api/v2/hackathons/public/index_sponsors', //GET
     },
   },
 

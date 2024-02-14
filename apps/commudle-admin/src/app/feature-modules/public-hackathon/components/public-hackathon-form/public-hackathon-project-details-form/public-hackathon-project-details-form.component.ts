@@ -20,14 +20,17 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
 
   constructor(private hackathonService: HackathonService, private fb: FormBuilder) {
     this.hackathonProjectDetailsForm = this.fb.group({
-      hackathon_track_id: ['', Validators.required],
+      hackathon_track_id: '',
       project_description: ['', Validators.required],
     });
   }
 
   ngOnInit() {
     this.fetchHackathonTracks();
-    if (this.hackathonUserResponse && this.hackathonUserResponse.track_id) {
+    if (
+      this.hackathonUserResponse &&
+      (this.hackathonUserResponse.track_id || this.hackathonUserResponse.project_description)
+    ) {
       this.hackathonProjectDetailsForm.patchValue({
         hackathon_track_id: this.hackathonUserResponse.track_id,
         project_description: this.hackathonUserResponse.project_description,
@@ -38,6 +41,13 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
   fetchHackathonTracks() {
     this.hackathonService.pIndexHackathonTracks(this.hackathon.id).subscribe((data: IHackathonTrack[]) => {
       this.hackathonTracks = data;
+      const hackathonTrackIdControl = this.hackathonProjectDetailsForm.get('hackathon_track_id');
+      if (hackathonTrackIdControl && this.hackathonTracks.length > 0) {
+        hackathonTrackIdControl.setValidators([Validators.required]);
+      } else if (hackathonTrackIdControl) {
+        hackathonTrackIdControl.clearValidators();
+      }
+      hackathonTrackIdControl.updateValueAndValidity();
     });
   }
 

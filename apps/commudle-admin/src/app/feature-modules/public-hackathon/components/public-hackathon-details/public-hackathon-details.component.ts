@@ -45,7 +45,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   }
   getSponsors() {
     this.subscriptions.push(
-      this.hackathonService.indexSponsors(this.hackathon.id).subscribe((data) => {
+      this.hackathonService.pIndexSponsors(this.hackathon.id).subscribe((data) => {
         this.sponsors = data;
       }),
     );

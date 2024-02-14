@@ -11,6 +11,7 @@ import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewInit {
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Input() hasTeammateOption: boolean;
   @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
 
   teammateForm: FormGroup;
@@ -32,8 +33,6 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   ngAfterViewInit() {
     if (this.hackathonUserResponse && this.hackathonUserResponse.hackathon_team_id) {
       this.fetchTeamDetails();
-    } else {
-      this.addTeammate();
     }
   }
 

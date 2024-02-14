@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 
 @Component({
@@ -10,7 +11,12 @@ import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-respon
 })
 export class HackathonControlPanelReviewComponent implements OnInit {
   hackathonUserResponses: IHackathonUserResponse[];
-  constructor(private hurService: HackathonUserResponsesService, private activatedRoute: ActivatedRoute) {}
+  userResponses: any;
+  constructor(
+    private hurService: HackathonUserResponsesService,
+    private activatedRoute: ActivatedRoute,
+    private hackathonService: HackathonService,
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
@@ -18,7 +24,12 @@ export class HackathonControlPanelReviewComponent implements OnInit {
     });
   }
 
-  fetchUserResponses(hackathonId) {}
+  fetchUserResponses(hackathonId) {
+    this.hackathonService.indexUserResponses(hackathonId).subscribe((data) => {
+      this.userResponses = data;
+      console.log('🚀 ~ HackathonControlPanelReviewComponent ~ this.hackathonService.indexUserResponses ~ data:', data);
+    });
+  }
 
   getTeammateDetails() {}
 }

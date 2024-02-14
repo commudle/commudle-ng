@@ -1,21 +1,18 @@
 <nb-card>
   <nb-card-body>
     <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Updates</th>
-          <th>Note</th>
-          <th>Application Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- <tr *ngFor="let hackathonUserResponse of hackathonUserResponses">
-          <td>{{ hackathonUserResponse.hackathon_team_name }}</td>
-          <td></td>
-          <td></td>
-        </tr> -->
-      </tbody>
+      <tr>
+        <th>Name</th>
+        <th>Updates</th>
+        <th>Note</th>
+        <th>Application Status</th>
+      </tr>
+      <tr *ngFor="let userResponse of userResponses">
+        <td>{{ userResponse.team.name }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
     </table>
   </nb-card-body>
 </nb-card>

@@ -58,9 +58,10 @@
                   ></commudle-public-hackathon-user-details-form>
                 </div>
               </nb-step>
-              <nb-step *ngIf="showTeammateForm" label="Teammates">
+              <nb-step [label]="hasTeammateOption ? 'Teammates' : ''">
                 <commudle-public-hackathon-teammate-form
                   [hackathonUserResponse]="hackathonUserResponse"
+                  [hasTeammateOption]="hasTeammateOption"
                   (submitTeammateDetailsEvent)="submitTeammateDetails($event)"
                 ></commudle-public-hackathon-teammate-form>
               </nb-step>

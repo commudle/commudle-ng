@@ -29,7 +29,7 @@ export class PublicHackathonFormComponent implements OnInit {
   @ViewChild('stepper') stepper: NbStepperComponent;
 
   isLoading = true;
-  showTeammateForm = false;
+  hasTeammateOption = false;
 
   icons = {
     faLinkedinIn,
@@ -61,7 +61,7 @@ export class PublicHackathonFormComponent implements OnInit {
         this.community = data.community;
         this.getContactInfo();
         if (this.hackathon.participate_types === EParticipateTypes.TEAM) {
-          this.showTeammateForm = true;
+          this.hasTeammateOption = true;
         }
       }),
     );

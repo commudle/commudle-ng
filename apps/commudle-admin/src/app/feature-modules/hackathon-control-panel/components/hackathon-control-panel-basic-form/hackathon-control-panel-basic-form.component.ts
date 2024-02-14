@@ -94,7 +94,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
 
   fetchHackathonDetails() {
     this.subscriptions.push(
-      this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data) => {
+      this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data: IHackathon) => {
         this.hackathon = data;
         this.imagePreview = data.banner_image.url;
         this.hackathonForm.patchValue({
@@ -105,6 +105,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
           number_of_participants: data.number_of_participants,
           participate_types: data.participate_types,
           hackathon_location_type: data.hackathon_location_type,
+          min_number_of_teammates: data.min_number_of_teammates,
           max_number_of_teammates: data.max_number_of_teammates,
         });
         if (this.hackathon.location_name) {

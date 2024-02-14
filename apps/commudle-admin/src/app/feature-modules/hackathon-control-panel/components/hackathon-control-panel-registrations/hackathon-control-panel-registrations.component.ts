@@ -94,35 +94,56 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   }
 
   submit(formResponse) {
-    this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
-      if (data) {
-        this.hrgService
-          .createHackathonResponseGroup(
-            JSON.stringify(this.userDetailsForm.value),
-            this.hackathon.id,
-            this.registrationTypeId,
-            `${this.hackathon.name} - Registration`,
-            data.id,
-          )
-          .subscribe((data) => {
-            if (data) this.toastrService.successDialog('Information Updated');
-          });
-      }
-    });
+    if (formResponse.questions.length > 0) {
+      this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
+        if (data) {
+          this.hrgService
+            .createHackathonResponseGroup(
+              JSON.stringify(this.userDetailsForm.value),
+              this.hackathon.id,
+              this.registrationTypeId,
+              `${this.hackathon.name} - Registration`,
+              data.id,
+            )
+            .subscribe((data) => {
+              if (data) this.toastrService.successDialog('Information Updated');
+            });
+        }
+      });
+    } else {
+      this.hrgService
+        .createHackathonResponseGroup(
+          JSON.stringify(this.userDetailsForm.value),
+          this.hackathon.id,
+          this.registrationTypeId,
+          `${this.hackathon.name} - Registration`,
+        )
+        .subscribe((data) => {
+          if (data) this.toastrService.successDialog('Information Updated');
+        });
+    }
   }
 
   updateData(formResponse) {
-    this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
-      if (data) {
-        this.hrgService
-          .updateHackathonResponseGroup(
-            JSON.stringify(this.userDetailsForm.value),
-            this.hackathonResponseGroupDetails.id,
-          )
-          .subscribe((data) => {
-            if (data) this.toastrService.successDialog('Information Updated');
-          });
-      }
-    });
+    if (formResponse.questions.length > 0) {
+      this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
+        if (data) {
+          this.hrgService
+            .updateHackathonResponseGroup(
+              JSON.stringify(this.userDetailsForm.value),
+              this.hackathonResponseGroupDetails.id,
+            )
+            .subscribe((data) => {
+              if (data) this.toastrService.successDialog('Information Updated');
+            });
+        }
+      });
+    } else {
+      this.hrgService
+        .updateHackathonResponseGroup(JSON.stringify(this.userDetailsForm.value), this.hackathonResponseGroupDetails.id)
+        .subscribe((data) => {
+          if (data) this.toastrService.successDialog('Information Updated');
+        });
+    }
   }
 }

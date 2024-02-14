@@ -71,5 +71,7 @@
     <label for="tshirt_size">T shirt size</label>
     <input type="text" nbInput fullWidth formControlName="tshirt_size" />
   </div>
-  <button status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">Next</button>
+  <button class="com-w-max" status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">
+    Next
+  </button>
 </form>
