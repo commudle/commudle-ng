@@ -15,34 +15,50 @@
 }
 
 .sidebar {
-  @apply com-w-52 com-sticky com-top-16 com-h-[calc(100vh-70px)];
+  @apply com-w-80 com-sticky com-top-16 com-h-[calc(100vh-70px)];
+
+  a {
+    @apply com-text-inherit com-no-underline;
+  }
   .action-buttons {
-    @apply com-py-6;
-    .action-buttons-group {
-      @apply com-py-2 com-px-1;
-    }
-    .action-buttons-group-name {
-      @apply com-font-semibold com-mt-8 com-mb-3 com-px-3;
-    }
-    a {
-      @apply com-flex com-gap-2 com-text-Yankees-Blue com-no-underline com-py-1 com-items-center com-px-3 com-my-0.5;
-      .action-button-name {
-        @apply com-text-Yankees-Blue;
+    @apply com-py-4;
+    .back-admin {
+      @apply com-px-4;
+      .icon {
+        @apply com-text-[#8F9BB3];
       }
-      &.back-admin {
-        @apply com-py-2;
+      .heading {
+        @apply com-text-xs com-text-[#8F9BB3];
       }
+    }
+
+    .category-heading {
+      @apply com-text-sm com-font-semibold com-my-2 com-px-4;
+    }
+    .divided-line {
+      @apply com-border com-border-solid com-border-Bright-Gray;
+    }
+    .action-button {
+      @apply com-px-5 com-my-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
       &.active {
-        @apply com-bg-Anti-Flash-White com-text-primary-500;
-        .action-button-name {
-          @apply com-text-primary-500;
-        }
+        @apply com-bg-Bright-Gray-Light;
+      }
+      .icon {
+        @apply com-text-lg com-text-[#8F9BB3];
+      }
+      .heading {
+        @apply com-text-sm com-font-light;
       }
     }
-    a:hover {
-      @apply com-bg-Anti-Flash-White com-cursor-pointer;
+
+    .action-button:hover {
+      @apply com-bg-Bright-Gray-Light;
     }
   }
+}
+
+a {
+  @apply com-flex com-gap-2 com-items-center;
 }
 
 .router {

@@ -10,99 +10,110 @@
 
 <section class="com-flex">
   <div class="sidebar">
-    <commudle-sidebar [isExpanded]="true" [expandedWidth]="'large'" [forWindow]="false" [showExpandedButton]="false">
+    <commudle-sidebar
+      [isExpanded]="true"
+      [expandedWidth]="'extra-large'"
+      [forWindow]="false"
+      [showExpandedButton]="false"
+    >
       <div class="action-buttons">
         <a [routerLink]="['/admin', 'communities', community?.slug, 'hackathons']" class="back-admin">
           <div class="icon">
             <fa-icon [icon]="icons.faArrowLeft"></fa-icon>
           </div>
-          <div class="action-button-name com-font-medium">Back to Admin Panel</div>
+          <div class="heading">Back to Admin Panel</div>
         </a>
-        <div>
-          <div class="action-buttons-group-name">Event Setup</div>
+        <div class="category">
+          <div class="category-heading">Event Setup</div>
           <div>
-            <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./']" routerLinkActive="active">
+            <a
+              class="action-button"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['./']"
+              routerLinkActive="active"
+            >
               <div class="icon">
                 <fa-icon [icon]="icons.faCircleInfo"></fa-icon>
               </div>
               <div class="action-button-name">Basic Information</div>
             </a>
-            <a [routerLink]="['contact']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['contact']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faLink"></fa-icon>
               </div>
               <div class="action-button-name">Contact & Social Links</div>
             </a>
-            <a [routerLink]="['dates']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['dates']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faCalendarDays"></fa-icon>
               </div>
               <div class="action-button-name">Hackathon's Dates</div>
             </a>
-            <a [routerLink]="['tracks']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['tracks']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faAward"></fa-icon>
               </div>
               <div class="action-button-name">Tracks & Prizes</div>
             </a>
-            <a [routerLink]="['registrations']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['registrations']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faBook"></fa-icon>
               </div>
               <div class="action-button-name">Registrations</div>
             </a>
-            <a [routerLink]="['sponsors']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['sponsors']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faSackDollar"></fa-icon>
               </div>
               <div class="action-button-name">Sponsors</div>
             </a>
-            <a [routerLink]="['speakers']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['speakers']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faMicrophone"></fa-icon>
               </div>
               <div class="action-button-name">Judges & Speakers</div>
             </a>
-            <a [routerLink]="['faqs']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['faqs']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faCircleQuestion"></fa-icon>
               </div>
               <div class="action-button-name">FAQ's</div>
             </a>
           </div>
-          <div class="action-buttons-group-name">Other Options</div>
+          <hr class="divided-line" />
+          <div class="category-heading">Other Options</div>
           <div>
-            <a [routerLink]="['stats']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['stats']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faChartPie"></fa-icon>
               </div>
               <div class="action-button-name">Stats</div>
             </a>
-            <a [routerLink]="['review']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['review']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faEye"></fa-icon>
               </div>
               <div class="action-button-name">Review</div>
             </a>
-            <a [routerLink]="['rounds']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['rounds']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faArrowsRotate"></fa-icon>
               </div>
               <div class="action-button-name">Rounds</div>
             </a>
-            <a [routerLink]="['channels']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['channels']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faHashtag"></fa-icon>
               </div>
               <div class="action-button-name">Channels</div>
             </a>
-            <a [routerLink]="['updates']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['updates']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faStar"></fa-icon>
               </div>
               <div class="action-button-name">Updates</div>
             </a>
-            <a [routerLink]="['emails']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faEnvelope"></fa-icon>
               </div>
