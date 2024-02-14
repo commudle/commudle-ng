@@ -11,7 +11,7 @@ nb-card {
     .content {
       @apply com-flex com-flex-row;
       .user-profile-image {
-        @apply com-w-[60px] com-h-[60px] com-mr-3 md:com-mb-0 com-mb-4 com-flex-shrink-0 com-overflow-hidden com-bg-Anti-Flash-White;
+        @apply com-w-[60px] com-h-[60px] com-mr-3 md:com-mb-0 com-mb-4 com-flex-shrink-0 com-overflow-hidden com-bg-zinc-100;
         border-radius: 50%;
 
         img {

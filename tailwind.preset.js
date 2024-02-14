@@ -44,11 +44,11 @@ module.exports = {
         'Bright-Gray-Light': '#EAECF0',
         'Crayola-Green': '#1B9F68',
         'Vampire-Black': 'var(--color-vampire-black)', // 'Vampire-Black': '#0A0A0A',
-        'Anti-Flash-White': '#f2f2f2',
+        'Anti-Flash-White': 'var(--color-anti-flash-white)', // #f2f2f2',
         'Anti-Flash': 'var(--color-anti-flash)',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
         'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain same as Yankees blue
-        'Alice-Blue': '#EDF5FF',
+        'Alice-Blue': 'var(--color-alice-blue)', //'#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
         'Bright-Gray': 'var(--color-bright-gray)', //'#E4E9F2',
         'Brandeis-Blue': '#0074ED',
