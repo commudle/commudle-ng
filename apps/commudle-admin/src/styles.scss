@@ -129,6 +129,10 @@ input {
   font-weight: 300;
 }
 
+.nb-theme-dark [nbInput] {
+  color: #222b45;
+}
+
 nb-window {
   max-height: 100%;
   max-width: 100%;
