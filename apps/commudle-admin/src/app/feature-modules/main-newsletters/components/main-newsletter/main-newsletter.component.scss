@@ -1,3 +1,27 @@
 .newsletter-title {
   @apply com-text-xl;
 }
+
+// nb-card-body {
+//   ::ng-deep {
+//     table {
+//       tbody {
+//         tr {
+//           td {
+//             h3,
+//             p,
+//             h2,
+//             h1,
+//             h4,
+//             span {
+//               @apply com-text-tYankees-Blue #{!important};
+//               span {
+//                 @apply com-text-tYankees-Blue #{!important};
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

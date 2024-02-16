@@ -1,6 +1,7 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
 .session-page-video {
+  @apply com-bg-white;
   margin-top: 0;
   border: none;
   border-radius: $border-10;
@@ -153,6 +154,7 @@
       @apply com-right-0  md:com-right-[45%] com-top-0 #{!important};
     }
     .session-page-window {
+      @apply com-bg-white;
       display: none;
       position: absolute;
       width: 328px;
