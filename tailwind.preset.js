@@ -46,6 +46,7 @@ module.exports = {
         'Vampire-Black': 'var(--color-vampire-black)', // 'Vampire-Black': '#0A0A0A',
         'Anti-Flash-White': 'var(--color-anti-flash-white)', // #f2f2f2',
         'Anti-Flash': 'var(--color-anti-flash)',
+        'tAnti-Flash': '#edf1f7',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
         'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain same as Yankees blue
         'Alice-Blue': 'var(--color-alice-blue)', //'#EDF5FF',

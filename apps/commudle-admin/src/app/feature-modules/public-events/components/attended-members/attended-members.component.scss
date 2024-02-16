@@ -37,10 +37,10 @@ div {
     .filters {
       @apply com-flex com-justify-between com-mb-8 com-mt-6 md:com-mx-0 com-mx-4;
       .filter {
-        @apply com-rounded-3xl com-px-3 com-py-2 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-bg-Bright-Gray-opacity-60 com-border-0;
+        @apply com-rounded-3xl com-px-3 com-py-2 com-text-sm com-font-medium com-text-tYankees-Blue com-bg-Bright-Gray-opacity-60 com-border-0;
       }
       .reset {
-        @apply com-text-sm com-font-medium md:com-w-[66px] com-w-max com-text-Dark-Jungle-Green com-m-0;
+        @apply com-text-sm com-font-medium md:com-w-[66px] com-w-max com-text-tYankees-Blue com-m-0;
       }
     }
 
