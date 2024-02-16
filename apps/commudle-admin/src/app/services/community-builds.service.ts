@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EDbModels } from '@commudle/shared-models';
 import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
 import { IPagination } from 'apps/shared-models/pagination.model';
@@ -32,15 +33,20 @@ export class CommunityBuildsService {
     return this.http.get<ICommunityBuild>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.SHOW), { params });
   }
 
-  create(commmunityBuild): Observable<ICommunityBuild> {
+  create(commmunityBuild, parentId?: number, parentType?: EDbModels): Observable<ICommunityBuild> {
+    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
     return this.http.post<ICommunityBuild>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE),
       commmunityBuild,
+      { params },
     );
   }
 
-  update(communityBuildId, commmunityBuild): Observable<ICommunityBuild> {
-    const params = new HttpParams().set('community_build_id', communityBuildId);
+  update(communityBuildId, commmunityBuild, parentId?: number, parentType?: EDbModels): Observable<ICommunityBuild> {
+    let params = new HttpParams().set('community_build_id', communityBuildId);
+    if (parentId && parentType) {
+      params = params.set('parent_id', parentId).set('parent_type', parentType);
+    }
     return this.http.put<ICommunityBuild>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE),
       commmunityBuild,

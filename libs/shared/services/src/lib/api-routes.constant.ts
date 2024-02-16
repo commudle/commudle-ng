@@ -797,7 +797,11 @@ export const API_ROUTES = {
     UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
     DESTROY_JUDGE: 'api/v2/hackathons/destroy_judge', //DELETE
-    INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //DELETE
+    INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //GET
+    SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
+    CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
+    CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
+    GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details',
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
@@ -813,6 +817,9 @@ export const API_ROUTES = {
     INDEX: 'api/v2/faq', //GET
     DELETE: 'api/v2/faq', //DELETE
     UPDATE: 'api/v2/faq/update', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/faq/public',
+    },
   },
 
   HACKATHON_RESPONSE_GROUP: {
@@ -846,7 +853,7 @@ export const API_ROUTES = {
     DELETE: 'api/v2/round', //DELETE
     UPDATE: 'api/v2/round', //PUT
     PUBLIC: {
-      INDEX: 'api/v2/round',
+      INDEX: 'api/v2/round/public',
     },
   },
 };

@@ -8,4 +8,5 @@ export interface IHackathonUserResponse extends IUser {
   education: string;
   track_id: number;
   project_description: string;
+  user_email: string;
 }

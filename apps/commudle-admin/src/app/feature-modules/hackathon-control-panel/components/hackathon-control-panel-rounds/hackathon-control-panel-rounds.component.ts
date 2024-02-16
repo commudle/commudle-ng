@@ -6,7 +6,6 @@ import { IRound, EDbModels } from '@commudle/shared-models';
 import { RoundService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-rounds',
@@ -34,6 +33,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
+      order: ['', Validators.required],
     });
   }
 

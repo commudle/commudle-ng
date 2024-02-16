@@ -58,4 +58,17 @@
   nb-card {
     @apply com-mr-0;
   }
+
+  .round-card {
+    @apply com-grid com-grid-cols-2 com-gap-3 com-py-2;
+    .name {
+      @apply com-text-gray-500 com-text-base com-font-semibold;
+    }
+    .date {
+      @apply com-text-base com-font-semibold com-text-right;
+    }
+  }
+  .round-card:not(:last-child) {
+    @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  }
 }

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EDbModels, IFaq } from '@commudle/shared-models';
-import { FaqService, countries_details } from '@commudle/shared-services';
+import { EDbModels, IFaq, IRound } from '@commudle/shared-models';
+import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,14 +25,19 @@ export class PublicHackathonDetailsComponent implements OnInit {
   faqs: IFaq[];
   tracks: IHackathonTrack[];
   discussionChat: IDiscussion;
+  rounds: IRound[];
   countryDetails = countries_details;
-
+  moment = moment;
+  userTeamDetails: IHackathonTeam;
   subscriptions: Subscription[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private faqService: FaqService,
     private discussionsService: DiscussionsService,
+    private roundService: RoundService,
+    private authWatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit() {
@@ -40,8 +48,12 @@ export class PublicHackathonDetailsComponent implements OnInit {
         this.getFaqs();
         this.getTracks();
         this.getDiscussionChat();
+        this.getRounds();
       }),
-    );
+    ),
+      this.authWatchService.currentUser$.subscribe((currentUser) => {
+        if (currentUser) this.getHackathonCurrentRegistrationDetails();
+      });
   }
   getSponsors() {
     this.subscriptions.push(
@@ -52,7 +64,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   }
   getFaqs() {
     this.subscriptions.push(
-      this.faqService.indexFaqs(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
+      this.faqService.pIndexFaqs(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
         this.faqs = data;
       }),
     );
@@ -73,8 +85,26 @@ export class PublicHackathonDetailsComponent implements OnInit {
   }
 
   getDiscussionChat() {
-    this.discussionsService.PublicGetOrCreateForHackathon(this.hackathon.id).subscribe((data) => {
-      this.discussionChat = data;
-    });
+    this.subscriptions.push(
+      this.discussionsService.PublicGetOrCreateForHackathon(this.hackathon.id).subscribe((data) => {
+        this.discussionChat = data;
+      }),
+    );
+  }
+
+  getRounds() {
+    this.subscriptions.push(
+      this.roundService.pIndexRounds(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
+        this.rounds = data;
+      }),
+    );
+  }
+
+  getHackathonCurrentRegistrationDetails() {
+    this.subscriptions.push(
+      this.hackathonService.getHackathonCurrentRegistrationDetails().subscribe((data: IHackathonTeam) => {
+        this.userTeamDetails = data;
+      }),
+    );
   }
 }

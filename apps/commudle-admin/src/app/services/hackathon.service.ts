@@ -9,6 +9,9 @@ import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
+import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -237,11 +240,49 @@ export class HackathonService {
     });
   }
 
-  indexUserResponses(hackathonId): Observable<any> {
+  indexUserResponses(hackathonId): Observable<IHackathonUserResponses[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_USER_RESPONSES), {
-      params,
-    });
+    return this.http.get<IHackathonUserResponses[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_USER_RESPONSES),
+      {
+        params,
+      },
+    );
+  }
+
+  showUserResponsesByTeam(teamId): Observable<IHackathonUserResponses> {
+    const params = new HttpParams().set('team_id', teamId);
+    return this.http.get<IHackathonUserResponses>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.SHOW_USER_RESPONSES_BY_TEAM),
+      {
+        params,
+      },
+    );
+  }
+
+  changeTeamStatus(teamId, registrationStatus): Observable<IHackathonTeam> {
+    return this.http.put<IHackathonTeam>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHANGE_TEAM_REGISTRATION_STATUS),
+      {
+        team_id: teamId,
+        registration_status: registrationStatus,
+      },
+    );
+  }
+  changeTeamRound(teamId, roundId): Observable<IHackathonTeam> {
+    return this.http.put<IHackathonTeam>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHANGE_TEAM_ROUND_STATUS),
+      {
+        team_id: teamId,
+        round_id: roundId,
+      },
+    );
+  }
+
+  getHackathonCurrentRegistrationDetails(): Observable<IHackathonTeam> {
+    return this.http.get<IHackathonTeam>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
+    );
   }
 
   // PUBLIC APIS

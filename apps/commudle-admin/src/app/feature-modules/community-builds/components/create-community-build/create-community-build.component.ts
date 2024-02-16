@@ -19,6 +19,9 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { EDbModels } from '@commudle/shared-models';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 
 @Component({
   selector: 'app-create-community-build',
@@ -62,6 +65,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   };
 
   subscriptions: Subscription[] = [];
+  parentId: number;
+  parentType: EDbModels;
+  hackathonUserResponses: IHackathonUserResponse[];
+  showProjectField = false;
 
   constructor(
     private seoService: SeoService,
@@ -72,6 +79,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     private communityBuildsService: CommunityBuildsService,
     private toastLogService: LibToastLogService,
     private gtm: GoogleTagManagerService,
+    private hackathonService: HackathonService,
   ) {
     this.communityBuildForm = this.fb.group({
       name: ['', Validators.required],
@@ -82,6 +90,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       live_app_link: ['', [this.validateLink()]],
       video_iframe: ['', [this.embedded()]],
       team: this.fb.array([]),
+      update: '',
     });
   }
 
@@ -97,9 +106,11 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     );
 
     this.paramsTags = this.activatedRoute.snapshot.queryParamMap.getAll('tags[]');
+    this.activatedRoute.snapshot.queryParamMap;
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
+    this.getParent();
   }
 
   ngOnDestroy() {
@@ -295,15 +306,17 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   createCommunityBuild(publishStatus: EPublishStatus) {
-    this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe((data: ICommunityBuild) => {
-      this.cBuild = data;
-      this.submitTags();
-    });
+    this.communityBuildsService
+      .create(this.buildFormData(publishStatus), this.parentId, this.parentType)
+      .subscribe((data: ICommunityBuild) => {
+        this.cBuild = data;
+        this.submitTags();
+      });
   }
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
     this.communityBuildsService
-      .update(this.cBuild.id, this.buildFormData(publishStatus))
+      .update(this.cBuild.id, this.buildFormData(publishStatus), this.parentId, this.parentType)
       .subscribe((data: ICommunityBuild) => {
         this.cBuild = data;
         this.submitTags();
@@ -334,6 +347,18 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       com_build_id: this.cBuild.id,
       com_build_tags: this.tags.toString(),
       com_build_submit_type: this.cBuild.publish_status,
+    });
+  }
+
+  getParent() {
+    this.activatedRoute.queryParams.subscribe((data: Params) => {
+      this.parentId = data['parent_id'];
+      this.parentType = data['parent_type'];
+      if (this.parentType === EDbModels.HACKATHON_TEAM) {
+        this.hackathonService.showUserResponsesByTeam(this.parentId).subscribe((data) => {
+          this.hackathonUserResponses = data.user_responses;
+        });
+      }
     });
   }
 }

@@ -75,6 +75,20 @@
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
+            <div *ngIf="hackathonUserResponses && hackathonUserResponses.length > 0" class="field">
+              <label> Teammates* </label>
+              <div *ngFor="let hackathonUserResponse of hackathonUserResponses">
+                <input
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="email"
+                  [readonly]="true"
+                  [value]="hackathonUserResponse.user_email"
+                />
+              </div>
+            </div>
+
             <div *ngIf="teammates.length > 0" class="field">
               Teammates
               <div *ngFor="let teammate of teammates; let i = index">
@@ -122,9 +136,32 @@
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </div>
-              <button (click)="addTeammate()" class="add-button" nbButton status="primary">
+              <button
+                (click)="addTeammate()"
+                class="add-button"
+                nbButton
+                status="primary"
+                *ngIf="!(parentId && parentType)"
+              >
                 <nb-icon icon="plus"></nb-icon>
                 Add Teammate
+              </button>
+            </div>
+
+            <div class="field">
+              <div *ngIf="showProjectField">
+                <label> Project Updates* </label>
+                <input formControlName="update" fullWidth nbInput placeholder="Project Updates" required />
+              </div>
+              <button
+                class="add-button"
+                nbButton
+                status="primary"
+                (click)="showProjectField = !showProjectField"
+                *ngIf="parentId && parentType"
+              >
+                <nb-icon icon="plus"></nb-icon>
+                Add Updates
               </button>
             </div>
 

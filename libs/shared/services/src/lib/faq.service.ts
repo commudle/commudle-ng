@@ -42,4 +42,10 @@ export class FaqService {
     const params = new HttpParams().set('faq_id', faqId);
     return this.http.delete<boolean>(this.baseApiService.getRoute(API_ROUTES.FAQ.DELETE), { params });
   }
+
+  // PUBLIC API
+  pIndexFaqs(parentId: number | string, parentType: EDbModels): Observable<IFaq[]> {
+    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
+    return this.http.get<IFaq[]>(this.baseApiService.getRoute(API_ROUTES.FAQ.PUBLIC.INDEX), { params });
+  }
 }

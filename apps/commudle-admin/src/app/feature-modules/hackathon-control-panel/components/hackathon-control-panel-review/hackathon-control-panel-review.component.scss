@@ -1,16 +1,45 @@
 table {
-  font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
+  .name {
+    @apply com-flex com-gap-4 com-flex-wrap com-justify-between com-mr-5;
+    .team-details {
+      .team-name {
+        @apply com-text-black com-text-base com-font-medium;
+      }
+      .date {
+        @apply com-text-gray-400 com-text-base com-font-medium;
+      }
+    }
+    .round-name {
+      @apply com-bg-primary-500 com-px-3 com-py-2 com-text-white com-h-max com-rounded-2xl com-font-medium com-text-sm;
+    }
+  }
 }
 
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.select-wrapper {
+  @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-w-32 com-cursor-pointer;
+  select {
+    @apply com-text-white com-px-2 com-py-2 com-border-0 com-w-28 com-font-semibold com-rounded;
+  }
+}
+
+.response-dialog-box {
+  @apply com-w-full com-max-h-full md:com-max-h-[90dvh] md:com-w-800px;
+  .action-buttons {
+    @apply com-flex com-gap-3;
+  }
+}
+
+.round-select {
+  select {
+    @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded;
+  }
 }

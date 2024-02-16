@@ -82,5 +82,27 @@
         ></commudle-public-hackathon-details-mini-card
       ></nb-card-body>
     </nb-card>
+    <nb-card>
+      <nb-card-header> Rounds </nb-card-header>
+      <nb-card-body>
+        <div *ngFor="let round of rounds" class="round-card">
+          <div class="name">{{ round.name }}</div>
+          <div class="date">{{ moment(round.date).format('DD MMM YYYY') }}</div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="userTeamDetails">
+      <nb-card-header> Profile Submitted for Review </nb-card-header>
+      <nb-card-body>
+        <div>Next: Round 1 confirmation</div>
+        <a
+          [routerLink]="['/builds', 'create']"
+          [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
+        >
+          <button nbButton status="primary" fullWidth>Submit Project</button>
+        </a>
+      </nb-card-body>
+    </nb-card>
   </div>
 </div>

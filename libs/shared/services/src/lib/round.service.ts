@@ -42,4 +42,11 @@ export class RoundService {
     const params = new HttpParams().set('round_id', roundId);
     return this.http.delete<boolean>(this.baseApiService.getRoute(API_ROUTES.ROUND.DELETE), { params });
   }
+
+  // PUBLIC API
+
+  pIndexRounds(parentId: number | string, parentType: EDbModels): Observable<IRound[]> {
+    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
+    return this.http.get<IRound[]>(this.baseApiService.getRoute(API_ROUTES.ROUND.PUBLIC.INDEX), { params });
+  }
 }
