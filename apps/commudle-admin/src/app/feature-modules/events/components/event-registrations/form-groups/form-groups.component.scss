@@ -147,3 +147,11 @@
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
   }
 }
+
+nb-toggle {
+  ::ng-deep {
+    span {
+      @apply com-text-tYankees-Blue #{!important};
+    }
+  }
+}
