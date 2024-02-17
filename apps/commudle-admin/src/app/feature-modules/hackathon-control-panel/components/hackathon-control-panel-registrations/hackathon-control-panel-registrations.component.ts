@@ -31,7 +31,8 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
     private toastrService: ToastrService,
   ) {
     this.userDetailsForm = this.fb.group({
-      name: false,
+      name: true,
+      profile_image: true,
       designation: false,
       about_me: false,
       location: false,

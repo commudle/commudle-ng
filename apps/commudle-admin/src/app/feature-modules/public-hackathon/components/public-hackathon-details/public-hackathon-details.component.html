@@ -79,10 +79,12 @@
       <nb-card-body
         ><commudle-public-hackathon-details-mini-card
           [hackathon]="hackathon"
+          [userTeamDetails]="userTeamDetails"
         ></commudle-public-hackathon-details-mini-card
       ></nb-card-body>
     </nb-card>
-    <nb-card>
+
+    <nb-card *ngIf="rounds && rounds.length > 0">
       <nb-card-header> Rounds </nb-card-header>
       <nb-card-body>
         <div *ngFor="let round of rounds" class="round-card">
@@ -96,20 +98,22 @@
       <nb-card-header> Profile Submitted for Review </nb-card-header>
       <nb-card-body>
         <div>Next: Round 1 confirmation</div>
-        <a
-          *ngIf="!userTeamDetails.community_build"
-          [routerLink]="['/builds', 'create']"
-          [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
-        >
-          <button nbButton status="primary" fullWidth>Submit Project</button>
-        </a>
-        <a
-          *ngIf="userTeamDetails.community_build"
-          [routerLink]="['/builds', userTeamDetails.community_build.slug, 'edit']"
-          [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
-        >
-          <button nbButton status="primary" fullWidth>update Project</button>
-        </a>
+        <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+          <a
+            *ngIf="!userTeamDetails.community_build"
+            [routerLink]="['/builds', 'create']"
+            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
+          >
+            <button nbButton status="primary" fullWidth>Submit Project</button>
+          </a>
+          <a
+            *ngIf="userTeamDetails.community_build"
+            [routerLink]="['/builds', userTeamDetails.community_build.slug, 'edit']"
+            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
+          >
+            <button nbButton status="primary" fullWidth>update Project</button>
+          </a>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>

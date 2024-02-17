@@ -16,7 +16,7 @@
         <input type="email" formControlName="email" placeholder="xyz@example.com" fullWidth nbInput />
       </section>
 
-      <section>
+      <section *ngIf="hackathonResponseGroup.user_details.tshirt_size">
         <label for="tshirt_size">T-Shirt Size</label>
         <input
           type="text"

@@ -19,6 +19,7 @@ export interface IHackathonResponseGroup {
 
 interface IUserDetails {
   name: boolean;
+  profile_image: boolean;
   designation: boolean;
   about_me: boolean;
   location: boolean;

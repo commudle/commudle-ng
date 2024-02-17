@@ -102,7 +102,10 @@
           Waitlist
         </button>
       </div>
-      <div class="round-select" *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+      <div
+        class="round-select"
+        *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED && hackathonRounds.length > 0"
+      >
         <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
           <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
             {{ hackathonRound.name }}

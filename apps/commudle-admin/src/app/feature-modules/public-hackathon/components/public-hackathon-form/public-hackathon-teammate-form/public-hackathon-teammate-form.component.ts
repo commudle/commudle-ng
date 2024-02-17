@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 
 @Component({
   selector: 'commudle-public-hackathon-teammate-form',
@@ -11,6 +12,7 @@ import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewInit {
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Input() hackathonResponseGroup: IHackathonResponseGroup;
   @Input() hasTeammateOption: boolean;
   @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
 
@@ -37,10 +39,17 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   }
 
   addTeammate(email = '', tshirt_size = '') {
-    const teammateGroup = this.fb.group({
-      email: [email, [Validators.required, Validators.email]],
-      tshirt_size: [tshirt_size, Validators.required],
-    });
+    let teammateGroup;
+    if (this.hackathonResponseGroup.user_details.tshirt_size) {
+      teammateGroup = this.fb.group({
+        email: [email, [Validators.required, Validators.email]],
+        tshirt_size: [tshirt_size, Validators.required],
+      });
+    } else {
+      teammateGroup = this.fb.group({
+        email: [email, [Validators.required, Validators.email]],
+      });
+    }
 
     this.teammatesArray.push(teammateGroup);
   }

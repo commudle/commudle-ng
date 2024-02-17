@@ -6,7 +6,7 @@ import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discuss
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { IHackathonTeam, EHackathonRegistrationStatus } from 'apps/shared-models/hackathon-team.model';
 import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
@@ -30,6 +30,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   moment = moment;
   userTeamDetails: IHackathonTeam;
   subscriptions: Subscription[] = [];
+  EHackathonRegistrationStatus = EHackathonRegistrationStatus;
 
   constructor(
     private activatedRoute: ActivatedRoute,

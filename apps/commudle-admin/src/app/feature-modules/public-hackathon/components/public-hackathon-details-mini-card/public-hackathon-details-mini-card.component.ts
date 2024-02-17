@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
@@ -9,6 +10,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 })
 export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
+  @Input() userTeamDetails: IHackathonTeam;
   hrgId: number;
 
   constructor(private hrgService: HackathonResponseGroupService) {}

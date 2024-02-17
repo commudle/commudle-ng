@@ -10,9 +10,15 @@
           <div class="group-name">PERSONAL</div>
           <div class="group-values">
             <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('name').value }">
-              <input type="checkbox" formControlName="name" />
+              <input type="checkbox" formControlName="name" [disabled]="true" />
               <span class="checkmark"></span>
               Name
+            </label>
+
+            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('profile_image').value }">
+              <input type="checkbox" formControlName="profile_image" [disabled]="true" />
+              <span class="checkmark"></span>
+              Profile Image
             </label>
 
             <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('designation').value }">

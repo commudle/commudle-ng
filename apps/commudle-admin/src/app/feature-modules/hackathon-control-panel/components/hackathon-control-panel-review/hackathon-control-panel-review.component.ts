@@ -43,10 +43,6 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   fetchUserResponses(hackathonId) {
     this.hackathonService.indexUserResponses(hackathonId).subscribe((data: IHackathonUserResponses[]) => {
       this.userResponses = data;
-      console.log(
-        '🚀 ~ HackathonControlPanelReviewComponent ~ this.hackathonService.indexUserResponses ~ this.userResponses:',
-        this.userResponses[1].team.entity_updates[this.userResponses[1].team.entity_updates.length - 1],
-      );
     });
   }
 
@@ -84,4 +80,6 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   displayUserData(user) {
     this.selectedUserDetails = user;
   }
+
+  updateNotes() {}
 }

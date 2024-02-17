@@ -1,4 +1,29 @@
 <form [formGroup]="userForm" *ngIf="userForm">
+  <div class="com-flex">
+    <div *ngIf="uploadedProfilePicture === null" class="uploaded-profile"></div>
+    <div *ngIf="uploadedProfilePicture" class="uploaded-profile-image">
+      <img alt="Profile Picture" src="{{ uploadedProfilePicture }}" title="Profile Picture" class="center" />
+    </div>
+    <!-- input for file upload -->
+    <div class="com-w-full">
+      <div class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative">
+        <input
+          (change)="displaySelectedProfileImage($event)"
+          type="file"
+          accept="image/*"
+          class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+        />
+        <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
+          <fa-icon [icon]="faFileImage" class="com-text-5xl"></fa-icon>
+          <p>
+            Drag file here
+            <br />
+            or<span class="com-text-primary-500"> BROWSE </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div *ngIf="userForm.get('name')">
     <label for="name">Your Name*</label>
     <input type="text" nbInput fullWidth formControlName="name" />
