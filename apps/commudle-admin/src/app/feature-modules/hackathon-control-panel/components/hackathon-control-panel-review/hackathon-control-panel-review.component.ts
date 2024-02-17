@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { RoundService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { EDbModels, IRound } from '@commudle/shared-models';
+import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
@@ -23,6 +24,7 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   EHackathonRegistrationStatusColor = EHackathonRegistrationStatusColor;
   hackathonRounds: IRound[];
+  selectedUserDetails: IHackathonUserResponse;
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
@@ -41,13 +43,18 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   fetchUserResponses(hackathonId) {
     this.hackathonService.indexUserResponses(hackathonId).subscribe((data: IHackathonUserResponses[]) => {
       this.userResponses = data;
+      console.log(
+        '🚀 ~ HackathonControlPanelReviewComponent ~ this.hackathonService.indexUserResponses ~ this.userResponses:',
+        this.userResponses[1].team.entity_updates[this.userResponses[1].team.entity_updates.length - 1],
+      );
     });
   }
 
   optionChanged(event, teamId, index) {
     const value = event.target ? event.target.value : event;
     this.hackathonService.changeTeamStatus(teamId, value).subscribe((data) => {
-      this.userResponses[index].team.round = data.round;
+      this.toastrService.successDialog('Details has been updated successfully');
+      this.userResponses[index].team = data;
     });
   }
 
@@ -60,14 +67,21 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   openDialogBox(dialog, teamId, index) {
     this.hackathonService.showUserResponsesByTeam(teamId).subscribe((data: IHackathonUserResponses) => {
       const team = data.team;
+      const userResponse = data.user_responses;
+      this.selectedUserDetails = userResponse[0];
       this.nbDialogService.open(dialog, {
-        context: { team: team, index: index },
+        context: { team: team, index: index, userResponse: userResponse },
       });
     });
   }
   changeRoundOption(event, teamId, index) {
     this.hackathonService.changeTeamRound(teamId, event.target.value).subscribe((data) => {
+      this.toastrService.successDialog('Details has been updated successfully');
       this.userResponses[index].team.round = data.round;
     });
+  }
+
+  displayUserData(user) {
+    this.selectedUserDetails = user;
   }
 }

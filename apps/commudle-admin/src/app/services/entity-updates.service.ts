@@ -12,24 +12,24 @@ import { EDbModels, IPagination } from '@commudle/shared-models';
 export class EntityUpdatesService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  createEventUpdate(formData, entityId: number, entityType: EDbModels): Observable<IEventUpdate> {
+  createEntityUpdate(formData, entityId: number, entityType: EDbModels): Observable<IEventUpdate> {
     const params = new HttpParams().set('entity_id', entityId).set('entity_type', entityType);
     return this.http.post<IEventUpdate>(this.apiRoutesService.getRoute(API_ROUTES.ENTITY_UPDATES.CREATE), formData, {
       params,
     });
   }
 
-  getEventUpdates(entityId: number, entityType: EDbModels): Observable<IEventUpdate[]> {
+  getEntityUpdates(entityId: number, entityType: EDbModels): Observable<IEventUpdate[]> {
     const params = new HttpParams().set('entity_id', entityId).set('entity_type', entityType);
     return this.http.get<IEventUpdate[]>(this.apiRoutesService.getRoute(API_ROUTES.ENTITY_UPDATES.INDEX), { params });
   }
 
-  deleteEventUpdate(entityUpdateId): Observable<boolean> {
+  deleteEntityUpdate(entityUpdateId): Observable<boolean> {
     const params = new HttpParams().set('entity_update_id', entityUpdateId);
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.ENTITY_UPDATES.DELETE), { params });
   }
 
-  pGetEventUpdates(entityId: number, entityType: EDbModels, limit?, after?): Observable<IPagination<IEventUpdate[]>> {
+  pGetEntityUpdates(entityId: number, entityType: EDbModels, limit?, after?): Observable<IPagination<IEventUpdate[]>> {
     let params = new HttpParams().set('entity_id', entityId).set('entity_type', entityType);
     if (limit) params = params.set('limit', limit);
     if (after) params = params.set('after', after);

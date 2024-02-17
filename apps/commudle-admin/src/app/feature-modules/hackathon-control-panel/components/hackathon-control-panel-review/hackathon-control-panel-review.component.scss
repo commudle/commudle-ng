@@ -27,7 +27,7 @@ th {
 .select-wrapper {
   @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-w-32 com-cursor-pointer;
   select {
-    @apply com-text-white com-px-2 com-py-2 com-border-0 com-w-28 com-font-semibold com-rounded;
+    @apply com-text-white com-px-2 com-py-2 com-border-0 com-w-28 com-font-semibold com-rounded com-cursor-pointer;
   }
 }
 
@@ -40,6 +40,34 @@ th {
 
 .round-select {
   select {
-    @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded;
+    @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded com-cursor-pointer;
+  }
+}
+
+.user-response-details {
+  .user-response-tabs {
+    @apply com-flex;
+    .user-response-tab {
+      @apply com-px-4 com-py-2;
+      .name {
+        @apply com-font-bold com-text-sm;
+      }
+      &.active {
+        @apply com-border-0 com-border-b-2 com-border-solid com-border-primary-500;
+        .name {
+          @apply com-text-primary-500;
+        }
+      }
+    }
+  }
+}
+
+.updates {
+  .details {
+    @apply com-text-primary-500 com-text-base com-font-medium;
+  }
+
+  .timeago {
+    @apply com-text-gray-400 com-text-sm;
   }
 }

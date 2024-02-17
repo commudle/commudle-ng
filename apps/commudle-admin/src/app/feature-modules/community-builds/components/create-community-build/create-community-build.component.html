@@ -53,6 +53,7 @@
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
+
             <div class="field">
               <label>
                 Title of your build*
@@ -75,9 +76,13 @@
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </div>
-            <div *ngIf="hackathonUserResponses && hackathonUserResponses.length > 0" class="field">
+
+            <div *ngIf="hackathonUserResponses" class="field">
               <label> Teammates* </label>
-              <div *ngFor="let hackathonUserResponse of hackathonUserResponses">
+              <div
+                *ngFor="let hackathonUserResponse of hackathonUserResponses.user_responses"
+                class="hackathon-user-response"
+              >
                 <input
                   fullWidth
                   nbInput
@@ -148,21 +153,58 @@
               </button>
             </div>
 
-            <div class="field">
-              <div *ngIf="showProjectField">
-                <label> Project Updates* </label>
-                <input formControlName="update" fullWidth nbInput placeholder="Project Updates" required />
-              </div>
-              <button
-                class="add-button"
-                nbButton
-                status="primary"
-                (click)="showProjectField = !showProjectField"
-                *ngIf="parentId && parentType"
+            <!-- list of entity_updates -->
+            <div *ngIf="hackathonUserResponses && hackathonUserResponses.user_responses">
+              <div
+                *ngFor="let update of hackathonUserResponses.team.entity_updates; let i = index"
+                class="entity-update"
               >
-                <nb-icon icon="plus"></nb-icon>
-                Add Updates
-              </button>
+                <div class="update-details">
+                  <span> {{ update.details }}</span>
+                  <br />
+                  <span class="date">{{ moment(update.created_at).format('Do MMM YYYY') }} </span>
+                </div>
+                <nb-icon
+                  (click)="removeEntityUpdate(update.id, i)"
+                  class="clickable"
+                  icon="close-circle"
+                  status="danger"
+                ></nb-icon>
+              </div>
+            </div>
+
+            <!-- to post updates for build -->
+            <div [formGroup]="communityBuildUpdateForm">
+              <div formArrayName="update" class="field">
+                <div
+                  *ngFor="let update of communityBuildUpdateForm.controls.update['controls']; let i = index"
+                  class="build-updates"
+                >
+                  <div [formGroupName]="i" class="build-update">
+                    <textarea formControlName="value" fullWidth nbInput placeholder="Update" required></textarea>
+                    <nb-icon (click)="removeUpdate(i)" class="clickable" icon="close-circle" status="danger"></nb-icon>
+                  </div>
+                  <span
+                    *ngIf="
+                      updateList.controls[i].get('value').touched &&
+                      updateList.controls[i].get('value').invalid &&
+                      updateList.controls[i].get('value').errors.required
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </div>
+                <button
+                  (click)="addUpdate()"
+                  class="add-button"
+                  nbButton
+                  status="warning"
+                  *ngIf="parentId && parentType"
+                >
+                  <nb-icon icon="plus"></nb-icon>
+                  Add Update
+                </button>
+              </div>
             </div>
 
             <div class="field">
@@ -189,8 +231,7 @@
                 <commudle-alert [error]="true" [errorMessage]="'Invalid link'"></commudle-alert>
               </span>
             </div>
-            <!-- <p>{{ communityBuildForm.get('link').invalid }}</p> -->
-            <!-- <p>{{ communityBuildForm.get('live-project').invalid }}</p>-->
+
             <div class="field">
               <label>
                 Link to live project

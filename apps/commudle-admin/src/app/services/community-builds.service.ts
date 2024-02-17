@@ -34,7 +34,11 @@ export class CommunityBuildsService {
   }
 
   create(commmunityBuild, parentId?: number, parentType?: EDbModels): Observable<ICommunityBuild> {
-    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
+    let params = new HttpParams();
+    if (parentId && parentType) {
+      params = params.set('parent_id', parentId).set('parent_type', parentType);
+    }
+
     return this.http.post<ICommunityBuild>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE),
       commmunityBuild,

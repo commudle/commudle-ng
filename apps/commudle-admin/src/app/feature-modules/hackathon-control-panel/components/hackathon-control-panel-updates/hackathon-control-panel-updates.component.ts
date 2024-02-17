@@ -45,7 +45,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
   }
 
   getUpdates() {
-    this.entityUpdatesService.getEventUpdates(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.getEntityUpdates(this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
       this.updates = data;
     });
   }
@@ -64,7 +64,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
       formData.append('entity_update[images][]', image);
     }
     this.images = [];
-    this.entityUpdatesService.createEventUpdate(formData, 1, EDbModels.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.createEntityUpdate(formData, 1, EDbModels.HACKATHON).subscribe((data) => {
       this.selectedImages = [];
       this.updates.unshift(data);
       this.isLoading = false;
@@ -72,7 +72,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
   }
 
   deleteEventUpdate(eventUpdateId, index) {
-    this.entityUpdatesService.deleteEventUpdate(eventUpdateId).subscribe((data) => {
+    this.entityUpdatesService.deleteEntityUpdate(eventUpdateId).subscribe((data) => {
       if (data) this.updates.splice(index, 1);
     });
   }

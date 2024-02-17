@@ -4,4 +4,5 @@ export enum EDbModels {
   EVENT = 'Event',
   HACKATHON = 'Hackathon',
   HACKATHON_TEAM = 'HackathonTeam',
+  COMMUNITY_BUILD = 'CommunityBuild',
 }

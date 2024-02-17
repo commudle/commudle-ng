@@ -99,3 +99,30 @@
     }
   }
 }
+
+.entity-update {
+  @apply com-flex com-justify-between com-items-center com-w-1/3 com-py-1;
+  .update-details {
+    .date {
+      @apply com-text-xs com-text-Auro-Metal-Saurus;
+    }
+  }
+  nb-icon {
+    @apply com-text-left;
+  }
+}
+
+.entity-update:not(:last-child) {
+  @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+}
+
+.build-updates {
+  @apply com-my-3;
+  .build-update {
+    @apply com-flex com-gap-3 com-items-center;
+  }
+}
+
+.hackathon-user-response {
+  @apply com-my-3;
+}

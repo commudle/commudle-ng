@@ -1,4 +1,5 @@
-import { IRound } from '@commudle/shared-models';
+import { IRound, ICommunityBuild } from '@commudle/shared-models';
+import { IEventUpdate } from 'apps/shared-models/event_update.model';
 
 export interface IHackathonTeam {
   id: number;
@@ -7,6 +8,8 @@ export interface IHackathonTeam {
   created_at: Date;
   registration_status: EHackathonRegistrationStatus;
   round?: IRound;
+  community_build?: ICommunityBuild;
+  entity_updates?: IEventUpdate[];
 }
 
 export enum EHackathonRegistrationStatus {

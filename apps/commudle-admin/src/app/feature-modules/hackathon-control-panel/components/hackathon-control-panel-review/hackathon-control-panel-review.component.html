@@ -10,6 +10,7 @@
       <tr
         *ngFor="let userResponse of userResponses; let i = index"
         (click)="openDialogBox(userResponseDetailsDialogBox, userResponse.team.id, i)"
+        class="com-cursor-pointer"
       >
         <td class="name">
           <div class="team-details">
@@ -24,7 +25,29 @@
             {{ userResponse.team.round?.name }}
           </div>
         </td>
-        <td></td>
+
+        <td class="updates">
+          <div *ngIf="userResponse.team.entity_updates.length > 0">
+            <span class="details">{{
+              userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details
+            }}</span>
+            <br />
+            <span
+              class="timeago"
+              title="{{
+                moment(userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].created_at).format(
+                  'dddd Do MMM, YYYY h:mm A'
+                )
+              }}"
+            >
+              {{
+                moment(
+                  userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].created_at
+                ).fromNow()
+              }}
+            </span>
+          </div>
+        </td>
         <td></td>
         <td (click)="$event.stopPropagation()" class="com-cursor-pointer">
           <div
@@ -85,6 +108,39 @@
             {{ hackathonRound.name }}
           </option>
         </select>
+      </div>
+      <div *ngIf="data.team.entity_updates.length > 0">
+        <label>Updates:</label>
+        <div *ngFor="let update of data.team.entity_updates">
+          <textarea nbInput fullWidth readonly [value]="update.details"></textarea>
+        </div>
+      </div>
+      <div *ngIf="selectedUserDetails.project_description">
+        <label>Project Description:</label>
+        <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.project_description"> </textarea>
+      </div>
+      <div class="user-response-details">
+        <div class="user-response-tabs">
+          <div
+            *ngFor="let user of data.userResponse"
+            class="user-response-tab"
+            [ngClass]="{ active: selectedUserDetails.name === user.name }"
+          >
+            <div (click)="displayUserData(user)" class="name">{{ user.name }}</div>
+          </div>
+        </div>
+        <div *ngIf="selectedUserDetails">
+          <!-- email -->
+          <div *ngIf="selectedUserDetails.user_email">
+            <label>Email</label>
+            <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
+          </div>
+
+          <div *ngIf="selectedUserDetails.about_me">
+            <label>About:</label>
+            <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.about_me"> </textarea>
+          </div>
+        </div>
       </div>
     </nb-card-body>
   </nb-card>
