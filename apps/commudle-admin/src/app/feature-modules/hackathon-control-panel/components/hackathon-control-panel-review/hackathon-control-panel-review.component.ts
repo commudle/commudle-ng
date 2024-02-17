@@ -11,7 +11,7 @@ import { RoundService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { EDbModels, IRound } from '@commudle/shared-models';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
   templateUrl: './hackathon-control-panel-review.component.html',
@@ -25,6 +25,7 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   EHackathonRegistrationStatusColor = EHackathonRegistrationStatusColor;
   hackathonRounds: IRound[];
   selectedUserDetails: IHackathonUserResponse;
+  faXmark = faXmark;
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,

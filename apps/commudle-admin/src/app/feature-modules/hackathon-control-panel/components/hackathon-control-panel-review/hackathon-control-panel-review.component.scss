@@ -45,6 +45,7 @@ th {
 }
 
 .user-response-details {
+  @apply com-cursor-pointer;
   .user-response-tabs {
     @apply com-flex;
     .user-response-tab {

@@ -75,6 +75,12 @@
 
 <ng-template #userResponseDetailsDialogBox let-ref="dialogRef" let-data>
   <nb-card class="response-dialog-box">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <span>{{ data.team.name }}</span>
+      <button nbButton ghost (click)="ref.close()" shape="round">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
     <nb-card-body>
       <div class="action-buttons">
         <button
@@ -133,15 +139,46 @@
           </div>
         </div>
         <div *ngIf="selectedUserDetails">
-          <!-- email -->
-          <div *ngIf="selectedUserDetails.user_email">
-            <label>Email</label>
-            <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
-          </div>
-
+          <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
             <label>About:</label>
             <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.about_me"> </textarea>
+          </div>
+
+          <!-- email -->
+          <div *ngIf="selectedUserDetails.user_email">
+            <label>Email:</label>
+            <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
+          </div>
+
+          <!-- designation -->
+          <div *ngIf="selectedUserDetails.designation">
+            <label>Designation:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.designation" />
+          </div>
+
+          <!-- Education -->
+          <div *ngIf="selectedUserDetails.education">
+            <label>Education:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.education" />
+          </div>
+
+          <!-- Work Experience -->
+          <div *ngIf="selectedUserDetails.work_experience_months">
+            <label>Work Experience in months:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.work_experience_months" />
+          </div>
+
+          <!-- Location -->
+          <div *ngIf="selectedUserDetails.location">
+            <label>Location:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.location" />
+          </div>
+
+          <!-- Phone Number -->
+          <div *ngIf="selectedUserDetails.phone">
+            <label>Phone:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
           </div>
         </div>
       </div>
