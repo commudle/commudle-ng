@@ -20,3 +20,4 @@ export * from './lib/stripe-account.model';
 export * from './lib/db-models.enum';
 export * from './lib/faq.model';
 export * from './lib/round.model';
+export * from './lib/note.model';

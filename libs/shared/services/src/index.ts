@@ -19,3 +19,4 @@ export * from './lib/event-ticket-order.service';
 export * from './lib/country-deatils.store';
 export * from './lib/faq.service';
 export * from './lib/round.service';
+export * from './lib/note.service';

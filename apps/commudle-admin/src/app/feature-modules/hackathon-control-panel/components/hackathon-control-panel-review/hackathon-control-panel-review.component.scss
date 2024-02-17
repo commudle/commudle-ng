@@ -39,8 +39,9 @@ th {
 }
 
 .round-select {
+  @apply com-my-4;
   select {
-    @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded com-cursor-pointer;
+    @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded com-cursor-pointer com-w-full;
   }
 }
 
@@ -65,10 +66,41 @@ th {
 
 .updates {
   .details {
-    @apply com-text-primary-500 com-text-base com-font-medium;
+    @apply com-text-primary-500 com-text-base com-font-medium com-line-clamp-1;
   }
 
   .timeago {
     @apply com-text-gray-400 com-text-sm;
+  }
+}
+
+.notes {
+  .details {
+    @apply com-text-base com-line-clamp-1;
+  }
+
+  .notes-count {
+    @apply com-text-orange-400 com-text-base com-font-bold;
+  }
+}
+
+.notes-form {
+  @apply com-my-3;
+  .note {
+    @apply com-flex com-gap-2 com-items-center com-my-3;
+    fa-icon {
+      @apply com-text-red-500;
+    }
+  }
+  button {
+    fa-icon {
+      @apply com-mr-2;
+    }
+  }
+}
+.heading {
+  @apply com-flex com-gap-4 com-items-center;
+  .project-submit {
+    @apply com-text-sm com-font-medium com-bg-teal-700 com-py-2 com-px-3 com-rounded-3xl com-text-white;
   }
 }

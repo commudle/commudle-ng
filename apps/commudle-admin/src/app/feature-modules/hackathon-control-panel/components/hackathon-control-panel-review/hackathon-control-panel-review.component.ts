@@ -7,11 +7,12 @@ import {
   EHackathonRegistrationStatusColor,
 } from 'apps/shared-models/hackathon-team.model';
 import * as moment from 'moment';
-import { RoundService, ToastrService } from '@commudle/shared-services';
+import { RoundService, ToastrService, NoteService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
-import { EDbModels, IRound } from '@commudle/shared-models';
+import { EDbModels, INote, IRound } from '@commudle/shared-models';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
   templateUrl: './hackathon-control-panel-review.component.html',
@@ -26,18 +27,32 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   hackathonRounds: IRound[];
   selectedUserDetails: IHackathonUserResponse;
   faXmark = faXmark;
+  faPlus = faPlus;
+  notesForm;
+  notes: INote[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private toastrService: ToastrService,
     private nbDialogService: NbDialogService,
     private roundService: RoundService,
-  ) {}
+    private noteService: NoteService,
+    private fb: FormBuilder,
+  ) {
+    this.notesForm = this.fb.group({
+      note: this.fb.array([]),
+    });
+  }
+
+  get notesList() {
+    return this.notesForm.get('note') as FormArray;
+  }
 
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.fetchUserResponses(params.get('hackathon_id'));
       this.indexRounds(params.get('hackathon_id'));
+      this.addNote();
     });
   }
 
@@ -65,6 +80,7 @@ export class HackathonControlPanelReviewComponent implements OnInit {
     this.hackathonService.showUserResponsesByTeam(teamId).subscribe((data: IHackathonUserResponses) => {
       const team = data.team;
       const userResponse = data.user_responses;
+      this.notesIndex(data.team.id);
       this.selectedUserDetails = userResponse[0];
       this.nbDialogService.open(dialog, {
         context: { team: team, index: index, userResponse: userResponse },
@@ -82,5 +98,27 @@ export class HackathonControlPanelReviewComponent implements OnInit {
     this.selectedUserDetails = user;
   }
 
-  updateNotes() {}
+  addNote(noteText = '') {
+    this.notesList.push(this.fb.group({ value: new FormControl(noteText, [Validators.required]) }));
+  }
+
+  removeNote(index) {
+    this.notesList.removeAt(index);
+  }
+
+  updateNotes(teamId) {
+    for (const note of this.notesForm.value.note) {
+      if (note.value !== '') {
+        const formData: any = new FormData();
+        formData.append('note[text]', note.value);
+        this.noteService.createNote(formData, EDbModels.HACKATHON_TEAM, teamId);
+      }
+    }
+  }
+
+  notesIndex(teamId) {
+    this.noteService.indexNotes(teamId, EDbModels.HACKATHON_TEAM).subscribe((data) => {
+      this.notes = data;
+    });
+  }
 }

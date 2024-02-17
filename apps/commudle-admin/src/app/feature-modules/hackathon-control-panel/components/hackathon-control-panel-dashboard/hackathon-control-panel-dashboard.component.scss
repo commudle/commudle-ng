@@ -44,9 +44,11 @@
         @apply com-bg-Bright-Gray-Light;
       }
       .icon {
-        @apply com-text-lg com-text-[#8F9BB3];
+        fa-icon {
+          @apply com-text-lg com-text-[#8F9BB3];
+        }
       }
-      .heading {
+      .action-button-name {
         @apply com-text-sm com-font-light;
       }
     }
@@ -58,7 +60,7 @@
 }
 
 a {
-  @apply com-flex com-gap-2 com-items-center;
+  @apply com-flex com-gap-2 com-items-center com-py-1;
 }
 
 .router {

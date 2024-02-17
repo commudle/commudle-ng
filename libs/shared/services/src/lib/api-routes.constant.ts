@@ -856,4 +856,14 @@ export const API_ROUTES = {
       INDEX: 'api/v2/round/public',
     },
   },
+
+  NOTE: {
+    CREATE: 'api/v2/note', //POST
+    INDEX: 'api/v2/note', //GET
+    DELETE: 'api/v2/note', //DELETE
+    UPDATE: 'api/v2/note', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/note/public',
+    },
+  },
 };
