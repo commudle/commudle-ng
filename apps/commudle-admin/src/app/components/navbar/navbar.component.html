@@ -60,8 +60,8 @@
   </div>
 
   <div>
-    <button (click)="toggleDarkMode(true)" *ngIf="!isDarkMode"><fa-icon [icon]="faMoon"></fa-icon></button>
-    <button (click)="toggleDarkMode(false)" *ngIf="isDarkMode"><fa-icon [icon]="faSun"></fa-icon></button>
+    <fa-icon (click)="toggleDarkMode(true)" *ngIf="!isDarkMode" [icon]="faMoon"></fa-icon>
+    <fa-icon (click)="toggleDarkMode(false)" *ngIf="isDarkMode" [icon]="faSun"></fa-icon>
   </div>
 
   <div (click)="toggleSidebar()" class="home-sidebar">

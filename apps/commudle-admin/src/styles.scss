@@ -371,6 +371,31 @@ nb-option-list.search-autocomplete {
   margin: 16px 8px;
 }
 
+.ngx-datatable.material .datatable-header .datatable-header-cell,
+.ngx-datatable.material .datatable-body .datatable-row-left {
+  @apply com-bg-white #{!important};
+}
+
+.ngx-datatable.material {
+  @apply com-bg-white;
+}
+
+.ngx-datatable.material .datatable-body .datatable-row-left {
+  @apply com-bg-red-500;
+}
+
+.datatable-row-group:hover {
+  @apply com-bg-white #{!important};
+}
+
+.datatable-row-center:hover {
+  @apply com-bg-white #{!important};
+}
+
+nb-context-menu {
+  @apply com-bg-white;
+}
+
 :root {
   --color-white-light: #ffffff;
   --color-white-dark: #121212;
