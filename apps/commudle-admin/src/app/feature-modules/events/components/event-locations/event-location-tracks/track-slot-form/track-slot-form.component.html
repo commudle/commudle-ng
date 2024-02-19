@@ -91,6 +91,18 @@
             </span>
           </div>
 
+          <div class="date">
+            <input
+              type="date"
+              formControlName="date"
+              fullWidth
+              nbInput
+              placeholder="Date*"
+              [min]="formatDate(event.start_time)"
+              [max]="formatDate(event.end_time)"
+            />
+          </div>
+
           <div class="start-time">
             <input formControlName="start_time" fullWidth nbInput placeholder="Start Time*" type="time" />
             <span

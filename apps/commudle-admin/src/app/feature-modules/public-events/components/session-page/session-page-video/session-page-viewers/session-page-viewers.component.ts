@@ -1,8 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faChalkboardTeacher, faCommentDots } from '@fortawesome/free-solid-svg-icons';
-import * as _ from 'lodash';
+import { faChalkboardTeacher, faCommentDots, faHand } from '@fortawesome/free-solid-svg-icons';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'apps/commudle-admin/src/app/services/websockets/user-object-visit.channel';
@@ -13,6 +12,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { IUser } from 'apps/shared-models/user.model';
 import { HmsStageService } from 'apps/shared-modules/hms-video/services/hms-stage.service';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -33,7 +33,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   channelName: string;
   subscriptions: Subscription[] = [];
   usersListSubscription: Subscription;
-  usersList: IUser[] = [];
+  usersList: Array<IUser & { is_raised_hand: boolean }> = [];
   currentUser: ICurrentUser;
   pingInterval;
   searchQuery: string;
@@ -41,6 +41,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
 
   faChalkboardTeacher = faChalkboardTeacher;
   faCommentDots = faCommentDots;
+  faHand = faHand;
 
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
@@ -82,6 +83,12 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
               this.currentUser = currentUser;
             }
           }),
+          this.hmsStageService.raisedHands$.subscribe(() => {
+            this.usersList = this.usersList.map((user) => ({
+              ...user,
+              is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+            }));
+          }),
         );
       }
     }
@@ -104,16 +111,21 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     this.eventsService
       .embeddedVideoStreamPastVisitors(this.event.slug, this.embeddedVideoStream.id)
       .subscribe((data) => {
-        this.usersList = data.users;
+        this.usersList = data.users.map((user) => ({ ...user, is_raised_hand: false }));
         this.userCount.emit(this.usersList.length);
       });
   }
 
   getCurrentUsersList() {
-    this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
-      this.usersList = data.users;
-      this.userCount.emit(this.usersList.length);
-    });
+    this.subscriptions.push(
+      this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
+        this.usersList = data.users.map((user) => ({
+          ...user,
+          is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+        }));
+        this.userCount.emit(this.usersList.length);
+      }),
+    );
   }
 
   clientPings() {
@@ -145,7 +157,14 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_ADD: {
-                  this.usersList = _.unionBy(this.usersList, [data.user], 'id');
+                  this.usersList = _.unionBy(
+                    this.usersList.map((user) => ({
+                      ...user,
+                      is_raised_hand: this.hmsStageService.isRaisedHand(user.id),
+                    })),
+                    [data.user],
+                    'id',
+                  );
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_REMOVE: {

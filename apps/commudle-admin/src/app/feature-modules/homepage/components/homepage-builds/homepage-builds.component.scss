@@ -5,7 +5,7 @@ a {
 }
 
 .heading {
-  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold;
+  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold com-text-Yankees-Blue;
 }
 
 .subheading {
@@ -17,7 +17,7 @@ a {
     @apply com-mx-0 com-my-6 com-border-0 com-shadow;
 
     .name {
-      @apply com-mt-0 com-mb-1 com-line-clamp-1;
+      @apply com-mt-0 com-mb-1 com-line-clamp-1 com-text-Yankees-Blue;
     }
 
     .description {

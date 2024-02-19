@@ -2,12 +2,11 @@
 
 .home-events-card-container {
   //border: 0.5px solid $silver-sand;
-  border-radius: $border-10;
   display: block;
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  @apply com-shadow com-w-80 md:com-w-auto;
+  @apply com-shadow com-w-80 md:com-w-auto com-border com-border-solid com-border-Bright-Gray com-rounded-md;
 
   .home-events-card-image-overlay {
     background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);

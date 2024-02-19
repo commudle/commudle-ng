@@ -86,7 +86,7 @@ export class BookPageComponent implements OnInit, OnDestroy {
     this.seoService.setTags(
       'The Developer Ecosystem Blueprint - Handbook',
       'Build a developer community ecosystem with this practical guide. Lessons from veteran developer relations and community leaders to build, sustain and scale up communities for your edtech, devtools, open source businesses.',
-      'https://commudle.com/assets/images/commudle-logo192.png',
+      staticAssets.devrel_ecosystem_blueprint,
     );
   }
 }

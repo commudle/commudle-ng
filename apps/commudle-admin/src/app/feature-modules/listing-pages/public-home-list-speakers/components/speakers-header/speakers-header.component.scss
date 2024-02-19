@@ -14,14 +14,14 @@
             @apply com-flex md:com-text-5xl com-text-[32px] com-font-bold com-mt-0 com-mb-4 md:com-mb-4 com-text-Bittersweet;
           }
           .sub-heading {
-            @apply md:com-text-2xl com-text-lg com-font-normal com-m-0 com-mx-0 md:com-mb-16 com-mb-0 com-text-white;
+            @apply md:com-text-2xl com-text-lg com-font-normal com-m-0 com-mx-0 md:com-mb-16 com-mb-0 com-text-tWhite;
           }
 
           .content {
             @apply com-hidden md:com-flex;
             ::ng-deep {
               p {
-                @apply com-text-white com-m-0;
+                @apply com-text-tWhite com-m-0;
                 font-size: initial;
               }
             }

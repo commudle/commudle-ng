@@ -1,20 +1,19 @@
-<nb-tag-list (tagRemove)="onTagRemove($event)">
-  <nb-tag
+<div class="tag-list" [ngClass]="{ editable: editable }">
+  <span
+    class="tag"
     *ngFor="let tag of getTags()"
-    [removable]="editable"
-    [text]="tag"
-    [ngClass]="{
-      tiny: size === 'tiny'
-    }"
-    [ngStyle]="{ background: backgroundColor, color: fontColor }"
-  ></nb-tag>
+    [ngClass]="{ tiny: size === 'tiny' }"
+    class="{{ backgroundColor }} {{ fontColor }}"
+    >{{ tag }} <fa-icon *ngIf="editable" class="remove-icon" (click)="onTagRemove(tag)" [icon]="faXmark"></fa-icon
+  ></span>
   <input
     (tagAdd)="onTagAdd($event)"
     *ngIf="editable"
     [disabled]="inputDisabled"
+    nbInput
     fullWidth
     nbTagInput
     placeholder="Type something and press enter to keep adding (Atleast {{ minimumTags }} tags)"
     type="text"
   />
-</nb-tag-list>
+</div>

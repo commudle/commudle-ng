@@ -6,6 +6,10 @@
     .notifications-container {
       nb-card-header {
         @apply com-flex com-justify-between com-items-center com-p-4;
+
+        h6 {
+          @apply com-text-Yankees-Blue;
+        }
       }
 
       nb-card-body {

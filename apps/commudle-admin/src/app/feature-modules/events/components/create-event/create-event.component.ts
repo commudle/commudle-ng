@@ -146,7 +146,7 @@ export class CreateEventComponent implements OnInit {
   }
 
   setEndDateTime() {
-    this.endDate = this.eventForm.get('event').get('start_date').value;
+    this.endDate = this.eventForm.get('event').get('end_date').value;
     const endTimePick = this.eventForm.get('event').get('end_time_pick').value;
     this.endHour = Number.parseInt(endTimePick.split(':')[0]);
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
