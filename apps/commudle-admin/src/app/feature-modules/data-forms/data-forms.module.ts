@@ -48,6 +48,5 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
 
     tinyMCEEditorModule,
   ],
-  exports: [EditDataFormComponent],
 })
 export class DataFormsModule {}

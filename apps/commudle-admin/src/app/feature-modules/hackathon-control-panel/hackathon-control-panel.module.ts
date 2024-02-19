@@ -26,7 +26,6 @@ import { HackathonJudgeCardComponent } from 'apps/commudle-admin/src/app/feature
 import { HackathonControlPanelRegistrationsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-registrations/hackathon-control-panel-registrations.component';
 import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-updates/hackathon-control-panel-updates.component';
 import { EditorModule as NewEditorModule } from '@commudle/editor';
-import { DataFormsModule } from 'apps/commudle-admin/src/app/feature-modules/data-forms/data-forms.module';
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
 import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
 import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-round-card/hackathon-control-panel-round-card.component';
@@ -64,7 +63,6 @@ import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src
     EditorModule,
     AppSharedComponentsModule,
     NewEditorModule,
-    DataFormsModule,
 
     //components
     SidebarComponent,

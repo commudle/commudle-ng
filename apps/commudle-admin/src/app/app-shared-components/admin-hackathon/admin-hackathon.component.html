@@ -16,22 +16,12 @@
       <td>{{ hackathon.name }}</td>
       <td>{{ moment(hackathon.created_at).format('dddd, MMM Do, YYYY') }}</td>
       <td class="action-buttons">
-        <button
-          nbButton
-          status="primary"
-          size="tiny"
-          [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', hackathon.slug]"
-        >
-          Dashboard
-        </button>
-        <button
-          nbButton
-          status="primary"
-          size="tiny"
-          [routerLink]="['/communities', parentId, 'hackathons', hackathon.slug]"
-        >
-          Public Page
-        </button>
+        <a [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', hackathon.slug]">
+          <button nbButton status="primary" size="tiny">Dashboard</button>
+        </a>
+        <a [routerLink]="['/communities', parentId, 'hackathons', hackathon.slug]" target="_blank">
+          <button nbButton status="primary" size="tiny">Public Page</button>
+        </a>
       </td>
     </tr>
   </table>

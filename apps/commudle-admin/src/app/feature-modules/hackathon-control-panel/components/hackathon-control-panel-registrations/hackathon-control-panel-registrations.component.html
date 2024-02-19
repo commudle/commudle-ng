@@ -144,13 +144,12 @@
         </app-new-data-form>
       </div>
       <div *ngIf="dataFormId">
-        <app-edit-data-form
+        <commudle-edit-data-form
           [dataFormId]="dataFormId"
           [showNameDescriptionFiled]="false"
           [centerLayout]="false"
           (updateFormDataEvent)="updateData($event)"
-        >
-        </app-edit-data-form>
+        ></commudle-edit-data-form>
       </div>
     </div>
   </nb-card-body>

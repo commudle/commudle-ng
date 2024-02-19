@@ -6,7 +6,7 @@
       </nb-card-body>
     </nb-card>
 
-    <div *ngIf="hackathon.updates_count > 0">
+    <div *ngIf="hackathon.updates_count > 0" id="updates">
       <nb-card>
         <nb-card-header><h2>Updates</h2></nb-card-header>
         <nb-card-body>
@@ -18,7 +18,7 @@
       </nb-card>
     </div>
 
-    <div *ngIf="hackathon.sponsors_count > 0">
+    <div *ngIf="hackathon.sponsors_count > 0" id="sponsors">
       <nb-card>
         <nb-card-header><h2>Sponsors</h2></nb-card-header>
         <nb-card-body class="sponsors-cards">
@@ -30,7 +30,7 @@
       </nb-card>
     </div>
 
-    <div *ngIf="hackathon.faqs_count > 0">
+    <div *ngIf="hackathon.faqs_count > 0" id="faq">
       <nb-card>
         <nb-card-header><h2>FAQs</h2></nb-card-header>
         <nb-card-body>
@@ -41,7 +41,7 @@
       </nb-card>
     </div>
 
-    <div *ngIf="hackathon.tracks_count > 0">
+    <div *ngIf="hackathon.tracks_count > 0" id="tracks">
       <nb-card>
         <nb-card-header><h2>Tracks</h2></nb-card-header>
         <nb-card-body class="track-cards">
@@ -62,7 +62,7 @@
       </nb-card>
     </div>
 
-    <nb-card>
+    <nb-card id="comments">
       <nb-card-header><h2>Comments</h2></nb-card-header>
       <nb-card-body>
         <commudle-discussion

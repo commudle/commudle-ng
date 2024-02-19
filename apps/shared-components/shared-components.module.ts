@@ -78,7 +78,7 @@ import { EntityUpdatesComponent } from './entity-updates/entity-updates.componen
 import { FaqCardComponent } from './faq-card/faq-card.component';
 import { FaqControlPanelComponent } from './faq-control-panel/faq-control-panel.component';
 import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
-
+import { EditDataFormComponent } from './edit-data-form/edit-data-form.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -121,6 +121,7 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     EntityUpdatesComponent,
     FaqCardComponent,
     FaqControlPanelComponent,
+    EditDataFormComponent,
   ],
   imports: [
     CommonModule,
@@ -199,6 +200,7 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     EntityUpdatesComponent,
     FaqCardComponent,
     FaqControlPanelComponent,
+    EditDataFormComponent,
   ],
 })
 export class SharedComponentsModule {}

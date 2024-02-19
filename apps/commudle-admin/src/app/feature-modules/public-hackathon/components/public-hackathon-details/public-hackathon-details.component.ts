@@ -54,6 +54,18 @@ export class PublicHackathonDetailsComponent implements OnInit {
     ),
       this.authWatchService.currentUser$.subscribe((currentUser) => {
         if (currentUser) this.getHackathonCurrentRegistrationDetails();
+      }),
+      this.activatedRoute.fragment.subscribe((fragment) => {
+        if (fragment) {
+          const element = document.getElementById(fragment);
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
+            });
+          }
+        }
       });
   }
   getSponsors() {

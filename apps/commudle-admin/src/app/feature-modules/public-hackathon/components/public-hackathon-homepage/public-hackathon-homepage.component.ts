@@ -6,7 +6,16 @@ import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { faLinkedinIn, faTwitter, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faGlobe, faInfoCircle, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGlobe,
+  faInfoCircle,
+  faHashtag,
+  faStar,
+  faSackDollar,
+  faCircleQuestion,
+  faAward,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-public-hackathon-homepage',
@@ -26,6 +35,11 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faGithub,
     faInfoCircle,
     faHashtag,
+    faStar,
+    faSackDollar,
+    faCircleQuestion,
+    faAward,
+    faUser,
   };
   isLoading = true;
   showBannerImage = false;
