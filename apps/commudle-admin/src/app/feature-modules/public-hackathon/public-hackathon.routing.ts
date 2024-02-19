@@ -49,7 +49,7 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'form/:hackathon_response_group_id',
+        path: 'fill-form/:hackathon_response_group_id',
         component: PublicHackathonFormComponent,
       },
     ],

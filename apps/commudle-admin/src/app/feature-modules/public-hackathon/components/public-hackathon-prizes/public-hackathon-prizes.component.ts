@@ -5,6 +5,7 @@ import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { countries_details as countryDetails } from '@commudle/shared-services';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
@@ -16,6 +17,8 @@ export class PublicHackathonPrizesComponent implements OnInit {
   hackathon: IHackathon;
   hackathonPrizes: IHackathonPrize[];
   isLoading = true;
+  userTeamDetails: IHackathonTeam;
+
   constructor(private activatedRoute: ActivatedRoute, private hackathonService: HackathonService) {}
 
   ngOnInit() {
@@ -23,6 +26,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
         this.getPrizes();
+        this.getHackathonCurrentRegistrationDetails();
       }),
     );
   }
@@ -36,6 +40,14 @@ export class PublicHackathonPrizesComponent implements OnInit {
           prize.currency_symbol = prizeCurrencySymbol.symbol;
         });
         this.isLoading = false;
+      }),
+    );
+  }
+
+  getHackathonCurrentRegistrationDetails() {
+    this.subscriptions.push(
+      this.hackathonService.getHackathonCurrentRegistrationDetails().subscribe((data: IHackathonTeam) => {
+        this.userTeamDetails = data;
       }),
     );
   }
