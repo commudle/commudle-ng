@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -19,11 +19,6 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./edit-data-form.component.scss'],
 })
 export class EditDataFormComponent implements OnInit, OnDestroy {
-  @Input() dataFormId: number;
-  @Input() showNameDescriptionFiled = true;
-  @Input() centerLayout = true;
-  @Output() updateFormDataEvent: EventEmitter<any> = new EventEmitter<any>();
-
   faTrashAlt = faTrashAlt;
   faPlus = faPlus;
   dataForm: IDataForm;
@@ -94,21 +89,13 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     });
 
     // set the controls
-    if (this.dataFormId) {
-      this.dataFormsService.getDataFormDetails(this.dataFormId).subscribe((dataForm) => {
+    this.activatedRoute.params.subscribe((data) => {
+      this.dataFormsService.getDataFormDetails(data.id).subscribe((dataForm) => {
         this.dataForm = dataForm;
         this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
         this.fillExistingDataForm();
       });
-    } else {
-      this.activatedRoute.params.subscribe((data) => {
-        this.dataFormsService.getDataFormDetails(data.id).subscribe((dataForm) => {
-          this.dataForm = dataForm;
-          this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
-          this.fillExistingDataForm();
-        });
-      });
-    }
+    });
   }
 
   ngOnDestroy() {
@@ -237,26 +224,21 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.editDataForm.markAllAsTouched();
       return;
     }
+    this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm) => {
+      this.dataForm = dataForm;
+      this.fillExistingDataForm();
+      this.toastLogService.successDialog('Updated!');
 
-    if (this.dataFormId) {
-      this.updateFormDataEvent.emit(this.editDataForm.get('data_form').value);
-    } else {
-      this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm) => {
-        this.dataForm = dataForm;
-        this.fillExistingDataForm();
-        this.toastLogService.successDialog('Updated!');
-
-        switch (this.dataForm.parent_type) {
-          case EDataFormParentTypes.community: {
-            this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
-            break;
-          }
-          case EDataFormParentTypes.adminSurvey: {
-            this.router.navigate(['/sys-admin/admin-surveys']);
-          }
+      switch (this.dataForm.parent_type) {
+        case EDataFormParentTypes.community: {
+          this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
+          break;
         }
-      });
-    }
+        case EDataFormParentTypes.adminSurvey: {
+          this.router.navigate(['/sys-admin/admin-surveys']);
+        }
+      }
+    });
   }
 
   cloneCommunityDataForm() {

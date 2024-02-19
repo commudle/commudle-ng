@@ -1,5 +1,5 @@
-<div class="data-form-container" [ngClass]="{ 'center-layout': centerLayout }">
-  <nb-card *ngIf="showNameDescriptionFiled">
+<div class="data-form-container page-padding">
+  <nb-card>
     <nb-card-header>
       <h3>Edit Form</h3>
       <commudle-alert
@@ -23,7 +23,7 @@
   </nb-card>
   <form class="edit-data-form" [formGroup]="editDataForm">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameDescriptionFiled">
+      <nb-card>
         <nb-card-body class="card-body">
           <div role="group">
             <div>
