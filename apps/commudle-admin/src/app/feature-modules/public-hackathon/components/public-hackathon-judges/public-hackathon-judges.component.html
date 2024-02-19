@@ -4,16 +4,25 @@
       <commudle-loading-spinner></commudle-loading-spinner>
     </div>
     <ng-template #judgeCards>
-      <div *ngFor="let judge of hackathonJudges">
-        <nb-card>
+      <div *ngFor="let judge of hackathonJudges" class="judge-card">
+        <nb-card [routerLink]="['/users', judge.username]">
           <nb-card-body>
-            <div class="profile-image">
-              <img [src]="judge.profile_image.url" [alt]="judge.name" />
-            </div>
-            <div>
-              <div>{{ judge.name }}</div>
-              <div>{{ judge.username }}</div>
-              <div>{{ judge.designation }}</div>
+            <div class="user-card">
+              <div class="user-image">
+                <img src="{{ judge.profile_image.url }}" alt="{{ judge.name }}" />
+              </div>
+              <div class="details">
+                <p class="user-name">{{ judge.name }}</p>
+                <p class="user-username">@{{ judge.username }}</p>
+                <p class="user-designation">{{ judge.designation }}</p>
+                <app-user-follow
+                  (click)="$event.stopPropagation()"
+                  [username]="judge.username"
+                  [isMobileWidthFull]="true"
+                  [name]="judge.name"
+                  [userId]="judge.id"
+                ></app-user-follow>
+              </div>
             </div>
           </nb-card-body>
         </nb-card>

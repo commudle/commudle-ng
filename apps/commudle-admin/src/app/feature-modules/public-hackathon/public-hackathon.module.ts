@@ -19,6 +19,7 @@ import { PublicHackathonUserDetailsFormComponent } from 'apps/commudle-admin/src
 import { PublicHackathonTeammateFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-teammate-form/public-hackathon-teammate-form.component';
 import { PublicHackathonProjectDetailsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-project-details-form/public-hackathon-project-details-form.component';
 import { PublicHackathonCustomQuestionsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-custom-questions-form/public-hackathon-custom-questions-form.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { PublicHackathonCustomQuestionsFormComponent } from 'apps/commudle-admin
 
     SharedComponentsModule,
     NewSharedComponentsModule,
+    MiniUserProfileModule,
   ],
   declarations: [
     PublicHackathonHomepageComponent,
