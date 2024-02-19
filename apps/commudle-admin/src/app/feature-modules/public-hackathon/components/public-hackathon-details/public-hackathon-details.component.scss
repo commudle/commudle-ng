@@ -71,4 +71,13 @@
   .round-card:not(:last-child) {
     @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
   }
+
+  .project-details-card {
+    .heading {
+      @apply com-text-green-600 com-text-base com-font-semibold;
+    }
+    .round-details {
+      @apply com-text-orange-400 com-text-base com-font-semibold com-pb-6;
+    }
+  }
 }

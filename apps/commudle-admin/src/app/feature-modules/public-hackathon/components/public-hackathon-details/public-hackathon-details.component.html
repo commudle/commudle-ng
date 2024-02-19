@@ -94,10 +94,12 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="userTeamDetails">
-      <nb-card-header> Profile Submitted for Review </nb-card-header>
+    <nb-card *ngIf="userTeamDetails" class="project-details-card">
+      <nb-card-header>
+        <div class="heading">Profile Submitted for Review</div>
+      </nb-card-header>
       <nb-card-body>
-        <div>Next: Round 1 confirmation</div>
+        <div class="round-details">Next: Round 1 confirmation</div>
         <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
           <a
             *ngIf="!userTeamDetails.community_build"
@@ -111,7 +113,7 @@
             [routerLink]="['/builds', userTeamDetails.community_build.slug, 'edit']"
             [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
           >
-            <button nbButton status="primary" fullWidth>update Project</button>
+            <button nbButton status="primary" fullWidth>Update My Build</button>
           </a>
         </div>
       </nb-card-body>
