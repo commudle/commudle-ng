@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { EHackathonStatus, IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import {
   faArrowLeft,
@@ -53,6 +53,9 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
     faHashtag,
     faEnvelope,
   };
+
+  hackathonStatuses: string[] = Object.values(EHackathonStatus);
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
@@ -81,5 +84,9 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
   ngOnDestroy() {
     this.seoService.noIndex(false);
     this.footerService.changeMiniFooterStatus(true);
+  }
+
+  updateStatus(value) {
+    this.hackathonService.updateHackathonStatus(this.hackathon.id, value).subscribe((data) => {});
   }
 }

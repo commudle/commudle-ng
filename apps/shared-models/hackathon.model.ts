@@ -27,6 +27,7 @@ export interface IHackathon {
   tracks_count: number;
   min_number_of_teammates: number;
   max_number_of_teammates: number;
+  status: EHackathonStatus;
 }
 
 export enum EParticipateTypes {
@@ -38,4 +39,11 @@ export enum EHackathonLocationType {
   OFFLINE = 'offline',
   ONLINE = 'online',
   HYBRID = 'hybrid',
+}
+
+export enum EHackathonStatus {
+  DRAFT = 'draft',
+  OPEN = 'open',
+  COMPLETED = 'completed',
+  CANCELED = 'canceled',
 }

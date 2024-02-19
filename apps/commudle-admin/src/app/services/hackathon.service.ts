@@ -285,6 +285,13 @@ export class HackathonService {
     );
   }
 
+  updateHackathonStatus(hackathonId, status): Observable<boolean> {
+    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
+      hackathon_id: hackathonId,
+      hackathon_status: status,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {

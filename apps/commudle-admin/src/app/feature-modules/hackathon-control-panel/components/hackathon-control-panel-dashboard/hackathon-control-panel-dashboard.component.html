@@ -23,6 +23,21 @@
           </div>
           <div class="heading">Back to Admin Panel</div>
         </a>
+        <div>
+          <section>
+            <nb-button-group (valueChange)="updateStatus($event[0])" filled class="border">
+              <button
+                *ngFor="let i of hackathonStatuses"
+                [pressed]="hackathon?.status === i"
+                [value]="i"
+                nbButtonToggle
+                class="md:!com-px-3"
+              >
+                {{ i | titlecase }}
+              </button>
+            </nb-button-group>
+          </section>
+        </div>
         <div class="category">
           <div class="category-heading">Event Setup</div>
           <div>

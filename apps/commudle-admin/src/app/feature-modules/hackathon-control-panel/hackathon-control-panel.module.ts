@@ -8,7 +8,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { NbInputModule, NbButtonModule, NbCardModule, NbRouteTabsetModule, NbCheckboxModule } from '@commudle/theme';
+import {
+  NbInputModule,
+  NbButtonModule,
+  NbCardModule,
+  NbRouteTabsetModule,
+  NbCheckboxModule,
+  NbButtonGroupModule,
+} from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
 import { HackathonControlPanelSponsorComponent } from './components/hackathon-control-panel-sponsor/hackathon-control-panel-sponsor.component';
@@ -73,6 +80,7 @@ import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src
     NbCardModule,
     NbRouteTabsetModule,
     NbCheckboxModule,
+    NbButtonGroupModule,
   ],
 })
 export class HackathonControlPanelModule {}
