@@ -1,23 +1,17 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import * as Sentry from '@sentry/angular-ivy';
+import { browserTracingIntegration, init, replayIntegration } from '@sentry/angular-ivy';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
-  Sentry.init({
+
+  init({
     dsn: environment.sentry_dsn,
-    integrations: [
-      new Sentry.BrowserTracing({
-        // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-        // TODO: This is deprecated, fix before v8
-        tracePropagationTargets: ['localhost', /^https:\/\/commudle.com\/api/],
-        routingInstrumentation: Sentry.routingInstrumentation,
-      }),
-      // TODO: This is deprecated, fix before v8
-      new Sentry.Replay(),
-    ],
+    integrations: [browserTracingIntegration(), replayIntegration()],
+    // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+    tracePropagationTargets: ['localhost', /^https:\/\/commudle.com\/api/],
     // Performance Monitoring
     tracesSampleRate: 1.0, // Capture 100% of the transactions
     // Session Replay

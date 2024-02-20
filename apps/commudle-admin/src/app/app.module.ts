@@ -246,15 +246,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
 
     // Other external npm modules
     Angular2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-    //standalone component
-    CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
+
+    // standalone components
+    CommunitiesCardComponent,
   ],
   providers: [
     AppInitService,

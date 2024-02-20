@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ViewCell } from 'angular2-smart-table';
+import { Component, Input, OnInit } from '@angular/core';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 
 @Component({
@@ -7,7 +6,7 @@ import { IDataForm } from 'apps/shared-models/data_form.model';
   templateUrl: './community-forms-list-stats.component.html',
   styleUrls: ['./community-forms-list-stats.component.scss'],
 })
-export class CommunityFormsListStatsComponent implements ViewCell, OnInit {
+export class CommunityFormsListStatsComponent implements OnInit {
   @Input() value: string | number;
   @Input() rowData: IDataForm;
 

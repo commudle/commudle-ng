@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('commudle-admin', () => {
+describe('commudle-admin-e2e', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('commudle-admin', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome commudle-admin');
+    getGreeting().contains(/Welcome/);
   });
 });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { IColumnType, Settings } from 'angular2-smart-table';
+import { Settings } from 'angular2-smart-table';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import { CommunityEventsListActionsComponent } from './community-events-list-actions/community-events-list-actions.component';
@@ -29,33 +29,30 @@ export class CommunityEventsListComponent implements OnInit {
       },
       date: {
         title: 'Date',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListDateComponent,
       },
       status: {
         title: 'Status',
-        filter: false,
+        isFilterable: false,
       },
       actions: {
         title: 'Actions',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListActionsComponent,
         isSortable: false,
       },
       public_page: {
         title: 'Public Page',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListPublicPageComponent,
         isSortable: false,
       },
     },
-
-    rowClassFunction: (row) => {
-      return 'clickable';
-    },
+    rowClassFunction: () => 'clickable',
   };
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private eventsService: EventsService) {}

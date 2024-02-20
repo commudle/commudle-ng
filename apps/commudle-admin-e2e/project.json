@@ -1,8 +1,8 @@
 {
   "name": "commudle-admin-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/commudle-admin-e2e/src",
   "projectType": "application",
+  "sourceRoot": "apps/commudle-admin-e2e/src",
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/commudle-admin-e2e/**/*.{js,ts}"]

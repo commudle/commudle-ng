@@ -9,8 +9,8 @@ experiences of Community Organizers.
 
 ## To setup
 
-- Install Node.js and npm (at least version 13 of Node.js and at least version 6 of npm)
-- Install [@angular/cli](https://cli.angular.io/)
+- Install Node.js and npm (at least version 18 of Node.js and at least version 9 of npm)
+- Install [@angular/cli](https://angular.io/cli)
 - Clone the project.
 - Run `npm ci`.
 - Run `npx nx run commudle-admin:serve` for a dev server. Navigate to `http://localhost:4200/`.
@@ -25,7 +25,7 @@ experiences of Community Organizers.
 ## Login/Sign Up for Development
 
 - Go to `http://localhost:4200/login`
-- Sign in using your **Google Account** or **By enter your email address** (Other options will be added soon).
+- Sign in using your **Google Account** or **Enter your email address** (Other options will be added soon).
 - Now you are sign in successfully.
   - [Contribution Guidelines](CONTRIBUTING.md)
   - [Contributors.md](CONTRIBUTORS.md)
