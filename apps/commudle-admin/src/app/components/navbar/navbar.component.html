@@ -42,26 +42,27 @@
 
     <app-navbar-menu *appBreakpoints="'>md'" class="com-justify-self-center"></app-navbar-menu>
 
-    <div class="com-justify-self-end">
-      <img
-        *ngIf="currentUser; else guest"
-        [alt]="currentUser.name"
-        [nbContextMenu]="userContextMenu"
-        [src]="currentUser.photo.i64"
-        class="com-w-9 com-h-9 md:com-w-11 md:com-h-11 com-object-cover com-rounded-full com-self-end"
-      />
-      <ng-template #guest>
-        <button (click)="login()" *appBreakpoints="'>lg'" nbButton outline size="small">Login / Signup</button>
-        <button (click)="login()" *appBreakpoints="'<=lg'" nbButton outline size="small" title="Login / Signup">
-          <nb-icon icon="log-in-outline"></nb-icon>
-        </button>
-      </ng-template>
+    <div class="user-login">
+      <div>
+        <fa-icon (click)="toggleDarkMode(true)" *ngIf="!isDarkMode" [icon]="faMoon"></fa-icon>
+        <fa-icon (click)="toggleDarkMode(false)" *ngIf="isDarkMode" [icon]="faSun"></fa-icon>
+      </div>
+      <div>
+        <img
+          *ngIf="currentUser; else guest"
+          [alt]="currentUser.name"
+          [nbContextMenu]="userContextMenu"
+          [src]="currentUser.photo.i64"
+          class="com-w-9 com-h-9 md:com-w-11 md:com-h-11 com-object-cover com-rounded-full com-self-end"
+        />
+        <ng-template #guest>
+          <button (click)="login()" *appBreakpoints="'>lg'" nbButton outline size="small">Login / Signup</button>
+          <button (click)="login()" *appBreakpoints="'<=lg'" nbButton outline size="small" title="Login / Signup">
+            <nb-icon icon="log-in-outline"></nb-icon>
+          </button>
+        </ng-template>
+      </div>
     </div>
-  </div>
-
-  <div>
-    <fa-icon (click)="toggleDarkMode(true)" *ngIf="!isDarkMode" [icon]="faMoon"></fa-icon>
-    <fa-icon (click)="toggleDarkMode(false)" *ngIf="isDarkMode" [icon]="faSun"></fa-icon>
   </div>
 
   <div (click)="toggleSidebar()" class="home-sidebar">
