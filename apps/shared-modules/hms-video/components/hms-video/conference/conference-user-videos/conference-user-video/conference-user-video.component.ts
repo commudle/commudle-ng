@@ -60,8 +60,8 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.peer?.customerDescription) {
-      this.metaData = JSON.parse(this.peer.customerDescription);
+    if (this.peer?.metadata) {
+      this.metaData = JSON.parse(this.peer.metadata);
       this.displayText = this.metaData.name;
     }
   }
@@ -125,7 +125,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
   changeRole(): void {
     switch (this.peer.roleName) {
       case EHmsRoles.HOST:
-        const metaData = JSON.parse(this.peer.customerDescription);
+        const metaData = JSON.parse(this.peer.metadata || '{}');
         this.toastLogService.warningDialog(`Cannot remove ${metaData.name} from stage`);
         break;
       case EHmsRoles.GUEST:
@@ -135,7 +135,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
 
   removeFromSession(): void {
     if (this.peer.roleName === EHmsRoles.HOST) {
-      const metaData = JSON.parse(this.peer.customerDescription);
+      const metaData = JSON.parse(this.peer.metadata || '{}');
       this.toastLogService.warningDialog(`Cannot remove ${metaData.name} from session`);
     } else {
       hmsActions.removePeer(this.peer.id, 'Good bye');

@@ -4,9 +4,16 @@ import { StudentNonProfitSupportRoutingModule } from './student-non-profit-suppo
 import { StudentNonProfitCommunitySupportComponent } from './components/student-non-profit-community-support/student-non-profit-community-support.component';
 import { NbButtonModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
   declarations: [StudentNonProfitCommunitySupportComponent],
-  imports: [CommonModule, StudentNonProfitSupportRoutingModule, NbButtonModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    StudentNonProfitSupportRoutingModule,
+    NbButtonModule,
+    FontAwesomeModule,
+    SharedComponentsModule,
+  ],
 })
 export class StudentNonProfitSupportModule {}

@@ -11,8 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@100mslive/hms-video": "0.1.18",
-    "@100mslive/hms-video-store": "0.2.71",
+    "@100mslive/hms-video-store": "0.10.9",
+    "@100mslive/hms-virtual-background": "1.11.9",
     "@angular/animations": "~15.2.0",
     "@angular/cdk": "~15.2.0",
     "@angular/common": "~15.2.0",

@@ -84,6 +84,7 @@ export class EventLocationTracksComponent implements OnInit {
 
   trackSlotVisibility = {};
   sortedTrackSlots = {};
+  groupedSlots = {};
   @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTrackTemplate') deleteEventLocationTrackTemplate: TemplateRef<any>;
   @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
@@ -124,6 +125,17 @@ export class EventLocationTracksComponent implements OnInit {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
+
+    for (const event_location_track of this.eventLocationTracks) {
+      for (const slot of event_location_track.track_slots) {
+        const startDate = moment(slot.start_time).format('Do, MMM YYYY');
+        if (!this.groupedSlots[startDate]) {
+          this.groupedSlots[startDate] = [];
+        }
+        this.groupedSlots[startDate].push(slot);
+      }
+    }
+
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
 
@@ -157,11 +169,13 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   addSlot(data) {
-    this.sortedTrackSlots[data.event_location_track_id].push(data);
-    this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
-      this.sortedTrackSlots[data.event_location_track_id],
-    );
+    const startDate = moment(data.start_time).format('Do, MMM YYYY'); // Format the start date
 
+    if (!this.groupedSlots[startDate]) {
+      this.groupedSlots[startDate] = [];
+    }
+
+    this.groupedSlots[startDate].push(data);
     this.trackSlotForm.reset();
     this.toastLogService.successDialog('Slot Added!');
     this.changeDetectorRef.markForCheck();

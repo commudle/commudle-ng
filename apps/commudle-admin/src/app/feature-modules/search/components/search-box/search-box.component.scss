@@ -17,6 +17,10 @@ nb-form-field {
         @apply com-text-lg com-font-normal;
       }
     }
+
+    .main-search-bar {
+      @apply com-text-Yankees-Blue;
+    }
   }
 
   ::placeholder {
@@ -29,7 +33,7 @@ nb-option {
 }
 
 .search-box {
-  @apply com-h-[320px];
+  @apply com-h-[320px] com-bg-white;
 }
 
 .search-placeholder {
@@ -41,7 +45,7 @@ nb-option {
 }
 
 .search-box-results {
-  @apply com-p-0 com-py-2;
+  @apply com-p-0 com-py-2 com-bg-white;
   .results {
     @apply com-w-full;
     .container {
@@ -95,19 +99,15 @@ nb-option {
     }
 
     .navigate:hover {
-      @apply com-bg-gray-200;
+      @apply com-bg-gray-200 com-text-tYankees-Blue;
     }
   }
 }
 
 nb-option:hover {
-  @apply com-bg-transparent;
+  @apply com-bg-white;
 }
 
 .show-all-results {
-  @apply com-justify-center com-items-center com-gap-2;
-}
-
-.nb-autocomplete:hover {
-  @apply com-bg-transparent #{!important};
+  @apply com-justify-center com-items-center com-gap-2 com-text-Yankees-Blue com-bg-white;
 }
