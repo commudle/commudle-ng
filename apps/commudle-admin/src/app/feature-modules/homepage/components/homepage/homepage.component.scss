@@ -49,7 +49,7 @@
       &::ng-deep {
         nb-form-field {
           .main-search-bar {
-            @apply com-bg-tWhite;
+            @apply com-bg-white com-text-black;
           }
         }
       }
