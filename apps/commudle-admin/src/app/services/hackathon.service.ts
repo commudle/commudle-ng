@@ -11,6 +11,7 @@ import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
 import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { ICommunityBuild } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -319,6 +320,16 @@ export class HackathonService {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonSponsor[]>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX_SPONSORS),
+      {
+        params,
+      },
+    );
+  }
+
+  pIndexProjects(hackathonId): Observable<ICommunityBuild[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<ICommunityBuild[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX_PROJECTS),
       {
         params,
       },
