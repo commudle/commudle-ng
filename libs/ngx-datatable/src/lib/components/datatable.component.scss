@@ -278,6 +278,7 @@
     }
 
     .page-count {
+      @apply com-text-gray-600;
       flex: 1 1 20%;
     }
 
