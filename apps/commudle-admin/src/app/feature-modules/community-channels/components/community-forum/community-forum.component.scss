@@ -7,11 +7,11 @@ section {
 }
 
 .category {
-  @apply com-text-base com-m-0 com-text-[#344054] com-font-medium;
+  @apply com-text-base com-m-0 com-text-Charcoal com-font-medium;
 }
 
 .group-name {
-  @apply com-text-[#545861] com-text-sm com-m-0 com-pb-1;
+  @apply com-text-gray-600 com-text-sm com-m-0 com-pb-1;
 }
 
 .forum-list {
@@ -44,7 +44,7 @@ table {
 }
 
 .forum-list:hover {
-  @apply hover:com-bg-Bright-Gray/30;
+  @apply hover:com-bg-Bright-Gray-opacity-30;
   .icons {
     @apply com-flex com-justify-around;
   }

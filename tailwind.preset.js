@@ -44,13 +44,14 @@ module.exports = {
         'Bright-Gray-Light': '#EAECF0',
         'Crayola-Green': '#1B9F68',
         'Vampire-Black': 'var(--color-vampire-black)', // 'Vampire-Black': '#0A0A0A',
-        'Anti-Flash-White': '#f2f2f2',
+        'Anti-Flash-White': 'var(--color-anti-flash-white)', // #f2f2f2',
         'Anti-Flash': 'var(--color-anti-flash)',
+        'tAnti-Flash': '#edf1f7',
         'Yankees-Blue': 'var(--color-yankees-blue)', // 'Yankees-Blue': '#222B45',
         'tYankees-Blue': 'var(--color-tyankees-blue)', //Remain same as Yankees blue
-        'Alice-Blue': '#EDF5FF',
+        'Alice-Blue': 'var(--color-alice-blue)', //'#EDF5FF',
         'New-Car': 'var(--color-new-car)', // 'New-Car': '#1D4ED8',
-        'Bright-Gray': '#E4E9F2',
+        'Bright-Gray': 'var(--color-bright-gray)', //'#E4E9F2',
         'Brandeis-Blue': '#0074ED',
         'Chrome-Yellow': '#FFAA00',
         'Infra-Red': '#FF3D71',
@@ -76,6 +77,7 @@ module.exports = {
         'white-opacity-40': 'var(--color-white-opacity-40)',
         tWhite: 'var(--color-twhite)', //Remain same as white
         black: 'var(--color-black)',
+        tblack: 'var(--color-tblack)', //Remain same as black
         'blue-50': 'var(--color-blue-50)',
         'gray-900': 'var(--color-gray-900)',
         'gray-50': 'var(--color-gray-50)',
@@ -86,6 +88,8 @@ module.exports = {
         'gray-600': 'var(--color-gray-600)',
         'gray-500-opacity-50': 'var(--color-gray-500-opacity-50)',
         'Bright-Gray-opacity-60': 'var(--color-Bright-Gray-opacity-60)',
+        'Bright-Gray-opacity-30': 'var(--color-Bright-Gray-opacity-30)',
+        'Ghost-White': 'var(--color-Ghost-White)',
       },
 
       lineClamp: {

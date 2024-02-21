@@ -18,3 +18,7 @@
     @apply com-text-Yankees-Blue com-text-xl;
   }
 }
+
+.user-login {
+  @apply com-flex com-justify-self-end com-gap-4 com-items-center;
+}

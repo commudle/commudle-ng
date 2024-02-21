@@ -8,13 +8,13 @@
         @apply com-my-0;
       }
       .name {
-        @apply com-text-xl com-font-medium;
+        @apply com-text-xl com-font-medium com-text-tYankees-Blue;
       }
       .type {
-        @apply com-text-base;
+        @apply com-text-base com-text-tYankees-Blue;
       }
       a {
-        @apply com-no-underline com-text-xs com-text-black;
+        @apply com-no-underline com-text-xs com-text-tblack;
       }
     }
 
@@ -33,18 +33,18 @@
     }
     .link-to-fill {
       a {
-        @apply com-bg-[#EDF1F7] com-border-0 com-rounded-md com-py-2 com-px-4 com-text-black com-flex com-items-center com-no-underline;
+        @apply com-bg-[#EDF1F7] com-border-0 com-rounded-md com-py-2 com-px-4 com-text-tblack com-flex com-items-center com-no-underline;
       }
     }
     .show-response {
       a {
-        @apply com-bg-[#EDF1F7] com-border-0 com-rounded-md com-py-2 com-px-4 com-text-black com-flex com-items-center com-no-underline;
+        @apply com-bg-[#EDF1F7] com-border-0 com-rounded-md com-py-2 com-px-4 com-text-tblack com-flex com-items-center com-no-underline;
       }
     }
     .response-stat {
       @apply com-mt-4;
       table {
-        @apply com-w-full com-bg-gray-500-opacity-50 com-p-1 com-rounded-md;
+        @apply com-w-full com-bg-gray-500-opacity-50 com-p-1 com-rounded-md com-text-tYankees-Blue;
       }
     }
     .payment-details {
@@ -65,6 +65,7 @@
 .create-form {
   @apply com-flex md:com-flex-row com-flex-col-reverse md:com-justify-between md:com-items-center;
   .text {
+    @apply com-text-tYankees-Blue;
     .attach-form-text {
       @apply com-m-0 com-mb-2px com-text-sm com-font-semibold;
     }
@@ -144,5 +145,13 @@
   @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
   select {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}
+
+nb-toggle {
+  ::ng-deep {
+    span {
+      @apply com-text-tYankees-Blue #{!important};
+    }
   }
 }
