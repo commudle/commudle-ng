@@ -335,6 +335,8 @@
                   (tagDelete)="onTagDelete($event)"
                   [editable]="true"
                   [tags]="tags"
+                  [backgroundColor]="'com-bg-tAnti-Flash'"
+                  [fontColor]="'com-text-tYankees-Blue'"
                 ></app-tag>
               </label>
               <span *ngIf="showTagsValidation && tags.length < 5">

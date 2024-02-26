@@ -45,8 +45,8 @@
       line-height: 20px;
       margin: 0;
       a {
+        @apply com-text-Charcoal;
         text-decoration: none;
-        color: #344054;
 
         &:hover {
           text-decoration: underline;

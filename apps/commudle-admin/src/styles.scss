@@ -363,7 +363,33 @@ nb-option-list.search-autocomplete {
 
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
+  border: #2c2c2c;
   margin: 16px 8px;
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell,
+.ngx-datatable.material .datatable-body .datatable-row-left {
+  @apply com-bg-white #{!important};
+}
+
+.ngx-datatable.material {
+  @apply com-bg-white;
+}
+
+.ngx-datatable.material .datatable-body .datatable-row-left {
+  @apply com-bg-red-500;
+}
+
+.datatable-row-group:hover {
+  @apply com-bg-white #{!important};
+}
+
+.datatable-row-center:hover {
+  @apply com-bg-white #{!important};
+}
+
+nb-context-menu {
+  @apply com-bg-white;
 }
 
 :root {
@@ -375,6 +401,8 @@ nb-option-list.search-autocomplete {
 
   --color-black-light: #000000;
   --color-black-dark: #ffffff;
+
+  --color-tblack-light: #000000;
 
   --color-blue-50-light: #eff6ff;
   --color-blue-50-dark: #121212;
@@ -472,9 +500,6 @@ nb-option-list.search-autocomplete {
   --color-yankees-blue-light: #222b45;
   --color-yankees-blue-dark: #ffffff;
 
-  --color-alice-blue-light: #edf5ff;
-  --color-alice-blue-dark: #1ac7e3;
-
   --color-new-car-light: #1d4ed8;
   --color-new-car-dark: #ffffff;
 
@@ -520,8 +545,8 @@ nb-option-list.search-autocomplete {
   --color-catalina-blue-light: #022c7d;
   --color-catalina-blue-dark: #ffffff;
 
-  --color-alice-blue-dark-light: #ebf5ff;
-  --color-alice-blue-dark-dark: #1ac7e3;
+  --color-alice-blue-light: #edf5ff;
+  --color-alice-blue-dark: #121212;
 
   --color-gunmetal-light: #2f2e41;
   --color-gunmetal-dark: #ffffff;
@@ -529,11 +554,20 @@ nb-option-list.search-autocomplete {
   --color-anti-flash-light: #edf1f7;
   --color-anti-flash-dark: #121212;
 
+  --color-anti-flash-white-light: #f2f2f2;
+  --color-anti-flash-white-dark: #1e1e1e;
+
   --color-gray-500-opacity-50-light: #d7e1ed;
 
   --color-azure-opacity-10-light: #0095ff19;
 
   --color-Bright-Gray-opacity-60-light: #e6ecf4;
+
+  --color-Bright-Gray-opacity-30-light: #f7f8fb;
+  --color-Bright-Gray-opacity-30-dark: #1e1e1e;
+
+  --color-Ghost-White-light: #f9f9f9;
+  --color-Ghost-White-dark: #121212;
 }
 
 [data-theme='light'] {
@@ -541,6 +575,7 @@ nb-option-list.search-autocomplete {
   --color-white-opacity-40: var(--color-white-opacity-40-light);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-light);
+  --color-tblack: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-light);
   --color-gray-900: var(--color-gray-900-light);
   --color-gray-50: var(--color-gray-50-light);
@@ -573,6 +608,7 @@ nb-option-list.search-autocomplete {
   --color-crayola-green: var(--color-crayola-green-light);
   --color-vampire-black: var(--color-vampire-black-light);
   --color-anti-flash: var(--color-anti-flash-light);
+  --color-anti-flash-white: var(--color-anti-flash-white-light);
   --color-yankees-blue: var(--color-yankees-blue-light);
   --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-light);
@@ -591,11 +627,12 @@ nb-option-list.search-autocomplete {
   --color-bittersweet: var(--color-bittersweet-light);
   --color-american-orange: var(--color-american-orange-light);
   --color-catalina-blue: var(--color-catalina-blue-light);
-  --color-alice-blue-dark: var(--color-alice-blue-dark-light);
   --color-gunmetal: var(--color-gunmetal-light);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-light);
+  --color-Ghost-White: var(--color-Ghost-White-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -623,6 +660,7 @@ nb-option-list.search-autocomplete {
   --color-white-opacity-40: var(--color-white-opacity-40-dark);
   --color-twhite: var(--color-white-light);
   --color-black: var(--color-black-dark);
+  --color-tblack: var(--color-black-light);
   --color-blue-50: var(--color-blue-50-dark);
   --color-gray-900: var(--color-gray-900-dark);
   --color-gray-50: var(--color-gray-50-dark);
@@ -655,6 +693,7 @@ nb-option-list.search-autocomplete {
   --color-crayola-green: var(--color-crayola-green-dark);
   --color-vampire-black: var(--color-vampire-black-dark);
   --color-anti-flash: var(--color-anti-flash-dark);
+  --color-anti-flash-white: var(--color-anti-flash-white-dark);
   --color-yankees-blue: var(--color-yankees-blue-dark);
   --color-tyankees-blue: var(--color-yankees-blue-light);
   --color-alice-blue: var(--color-alice-blue-dark);
@@ -673,11 +712,12 @@ nb-option-list.search-autocomplete {
   --color-bittersweet: var(--color-bittersweet-dark);
   --color-american-orange: var(--color-american-orange-dark);
   --color-catalina-blue: var(--color-catalina-blue-dark);
-  --color-alice-blue-dark: var(--color-alice-blue-dark-dark);
   --color-gunmetal: var(--color-gunmetal-dark);
   --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
   --color-azure-opacity-10: var(--color-azure-opacity-10-light);
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-dark);
+  --color-Ghost-White: var(--color-Ghost-White-dark);
 
   .linear-gradient-top,
   .linear-gradient-bottom,

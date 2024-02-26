@@ -54,3 +54,28 @@ app-share-button {
     }
   }
 }
+
+article {
+  div {
+    ::ng-deep {
+      p {
+        @apply com-text-black #{!important};
+        strong {
+          @apply com-text-black #{!important};
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply com-text-gray-700 #{!important};
+        strong {
+          @apply com-text-gray-700 #{!important};
+        }
+      }
+    }
+  }
+}

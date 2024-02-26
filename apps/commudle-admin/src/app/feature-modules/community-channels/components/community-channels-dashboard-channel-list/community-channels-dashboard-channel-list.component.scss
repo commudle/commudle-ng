@@ -36,10 +36,10 @@ nb-card {
   div {
     @apply com-text-center;
     .heading {
-      @apply com-text-2xl com-font-bold;
+      @apply com-text-2xl com-font-bold com-text-Yankees-Blue;
     }
     .sub-heading {
-      @apply com-text-lg;
+      @apply com-text-lg com-text-Yankees-Blue;
     }
   }
 }

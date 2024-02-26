@@ -17,10 +17,6 @@ nb-form-field {
         @apply com-text-lg com-font-normal;
       }
     }
-
-    .main-search-bar {
-      @apply com-text-Yankees-Blue;
-    }
   }
 
   ::placeholder {
@@ -99,7 +95,14 @@ nb-option {
     }
 
     .navigate:hover {
-      @apply com-bg-gray-200 com-text-tYankees-Blue;
+      @apply com-bg-gray-200;
+      .name,
+      .designation,
+      .member-count,
+      .event-date,
+      .dot {
+        @apply com-text-tYankees-Blue;
+      }
     }
   }
 }

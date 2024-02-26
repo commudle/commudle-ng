@@ -6,6 +6,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 
 @Component({
   selector: 'app-about',
@@ -15,13 +16,22 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 export class AboutComponent implements OnInit, OnDestroy {
   ICmsAbout: ICMSAbout;
   staticAssets = staticAssets;
+  isDarkMode = false;
 
-  constructor(private cmsService: CmsService, private seoService: SeoService, private footerService: FooterService) {}
+  constructor(
+    private cmsService: CmsService,
+    private seoService: SeoService,
+    private footerService: FooterService,
+    private darkModeService: DarkModeService,
+  ) {}
 
   ngOnInit(): void {
     this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getData();
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
   }
 
   ngOnDestroy() {
