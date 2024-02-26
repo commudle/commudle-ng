@@ -17,6 +17,7 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
   timer$: Observable<number>;
   homePageBannerImage;
+  banner: IListingPageHeader;
 
   @ViewChild('homepageAnimation', { static: false }) homepageAnimationContainer: ElementRef<HTMLDivElement>;
 
@@ -71,6 +72,7 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cmsService.getDataBySlug('home').subscribe((data: IListingPageHeader) => {
+      this.banner = data;
       if (data.header_image) {
         this.homePageBannerImage = this.cmsService.getImageUrl(data.header_image);
       } else {

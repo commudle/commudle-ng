@@ -14,6 +14,10 @@
 
     button {
       height: 40px;
+
+      fa-icon.text-success {
+        color: var(--icon-success-color);
+      }
     }
   }
 

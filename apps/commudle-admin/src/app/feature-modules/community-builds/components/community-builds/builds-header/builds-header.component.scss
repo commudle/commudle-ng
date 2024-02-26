@@ -4,13 +4,14 @@
     @apply com-m-0 com-p-0 md:com-h-[386px] com-w-full com-h-full;
 
     .base-layout {
+      @apply com-min-h-full;
       .content {
         @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
         .header-text {
           @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 
           .title {
-            @apply com-flex com-items-center md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-8 com-text-Yankees-Blue;
+            @apply com-flex com-items-center md:com-text-5xl com-text-4xl com-font-bold com-mt-0 com-mb-9 md:com-mb-8 com-text-tYankees-Blue;
 
             .button {
               @apply com-mr-4 md:com-w-[52px] md:com-h-[52px] com-w-11 com-h-11 com-bg-Blanched-Almond com-border-0 com-flex com-items-center com-rounded-md;
@@ -21,7 +22,7 @@
             }
           }
           .heading {
-            @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-Yankees-Blue;
+            @apply md:com-text-2xl com-text-xl md:com-font-normal com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-tYankees-Blue;
           }
 
           .content {
@@ -35,7 +36,10 @@
         }
 
         .header-image {
-          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-auto;
+          @apply com-flex com-items-center com-m-0 com-h-[300px] md:com-h-[386px];
+          img {
+            @apply com-h-full com-mx-auto com-py-1;
+          }
         }
       }
     }

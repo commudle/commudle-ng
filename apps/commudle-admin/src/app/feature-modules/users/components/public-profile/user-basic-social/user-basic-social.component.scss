@@ -2,12 +2,16 @@
 
 .user-basic-social-container {
   nb-card-header {
-    @apply com-text-lg com-font-medium;
+    @apply com-text-lg com-font-medium com-text-Yankees-Blue;
   }
 
   nb-card-body {
     .about {
       @apply com-mb-6 com-text-base;
+    }
+
+    span {
+      @apply com-text-Yankees-Blue;
     }
 
     .user-social {

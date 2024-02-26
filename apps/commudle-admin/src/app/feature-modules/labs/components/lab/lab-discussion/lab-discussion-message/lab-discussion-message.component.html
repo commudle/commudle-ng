@@ -24,7 +24,7 @@
           <div class="date">{{ moment(message.created_at).format("MMM D [']YY") }}</div>
         </div>
       </div>
-      <div [innerHTML]="message.content | linky: { sanitizeHtml: true }" class="content"></div>
+      <div [innerHTML]="message.content | linky : { sanitizeHtml: true }" class="content"></div>
       <div class="details-flag">
         <div
           (click)="login() && emitFlag(message.id)"

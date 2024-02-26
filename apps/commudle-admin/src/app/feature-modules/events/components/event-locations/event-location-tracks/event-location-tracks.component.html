@@ -45,20 +45,78 @@
             <fa-icon [icon]="faPlus"></fa-icon>
             &nbsp; Add New Session
           </div>
-          <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
-            <nb-list-item *ngFor="let slot of sortedTrackSlots[elt.id]; let tsi = index">
-              <div
-                class="com-flex com-items-center com-justify-between com-gap-2 md:com-gap-0 com-w-full com-flex-col md:com-flex-row"
-              >
-                <div class="com-flex com-w-full md:com-w-auto">
-                  <div class="session-time">
-                    <p class="start-time">{{ moment(slot.start_time).format('HH:mm') }}</p>
-                    <fa-icon *appBreakpoints="'>md'" [icon]="faChevronRight"></fa-icon>
-                    <p class="end-time">{{ moment(slot.end_time).format('HH:mm') }}</p>
+          <div *ngFor="let startDate of groupedSlots | keyvalue" class="com-my-4">
+            <span class="com-font-semibold">{{ startDate.key }}</span>
+            <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
+              <nb-list-item *ngFor="let slot of startDate.value; let tsi = index">
+                <div
+                  class="com-flex com-items-center com-justify-between com-gap-2 md:com-gap-0 com-w-full com-flex-col md:com-flex-row"
+                >
+                  <div class="com-flex com-w-full md:com-w-auto">
+                    <div class="session-time">
+                      <p class="start-time">{{ moment(slot.start_time).format('HH:mm') }}</p>
+                      <fa-icon *appBreakpoints="'>md'" [icon]="faChevronRight"></fa-icon>
+                      <p class="end-time">{{ moment(slot.end_time).format('HH:mm') }}</p>
+                    </div>
+                    <div class="session-title">
+                      <p>{{ slot.session_title }}</p>
+                      <div *appBreakpoints="'<=md'" class="mobile-action-buttons">
+                        <div
+                          *ngIf="event.editable"
+                          class="edit"
+                          (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                        >
+                          <fa-icon [icon]="faPen"></fa-icon>
+                        </div>
+                        <div class="attachment" *ngIf="slot.track_slot_speakers.length > 0">
+                          <a
+                            [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
+                            [routerLink]="['/speaker-resource-form']"
+                            class="add-session"
+                            target="_blank"
+                          >
+                            <fa-icon [icon]="faPaperclip"></fa-icon>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div *appBreakpoints="'<=md'" class="com-flex com-justify-between com-flex-col">
+                      <div class="speakers" *ngIf="slot.track_slot_speakers">
+                        <div *ngFor="let slot of slot.track_slot_speakers">
+                          <div class="avatar">
+                            <img
+                              [alt]="slot.user.name"
+                              [src]="slot.user.photo?.i32 || slot.user.avatar"
+                              [title]="slot.user.name"
+                              [username]="slot.user.username"
+                              appMiniUserProfile
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mobile-action-buttons">
+                        <div class="public">
+                          <a
+                            [queryParams]="{ track_slot_id: slot.id }"
+                            [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                            target="_blank"
+                          >
+                            <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+                          </a>
+                        </div>
+                        <div
+                          class="delete"
+                          *ngIf="event.editable"
+                          (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
+                        >
+                          <fa-icon [icon]="faTrash"></fa-icon>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="session-title">
-                    <p>{{ slot.session_title }}</p>
-                    <div *appBreakpoints="'<=md'" class="mobile-action-buttons">
+
+                  <div *appBreakpoints="'>md'" class="com-flex com-justify-between com-w-full md:com-w-auto">
+                    <div class="action-buttons">
                       <div
                         *ngIf="event.editable"
                         class="edit"
@@ -76,23 +134,6 @@
                           <fa-icon [icon]="faPaperclip"></fa-icon>
                         </a>
                       </div>
-                    </div>
-                  </div>
-                  <div *appBreakpoints="'<=md'" class="com-flex com-justify-between com-flex-col">
-                    <div class="speakers" *ngIf="slot.track_slot_speakers">
-                      <div *ngFor="let slot of slot.track_slot_speakers">
-                        <div class="avatar">
-                          <img
-                            [alt]="slot.user.name"
-                            [src]="slot.user.photo?.i32 || slot.user.avatar"
-                            [title]="slot.user.name"
-                            [username]="slot.user.username"
-                            appMiniUserProfile
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="mobile-action-buttons">
                       <div class="public">
                         <a
                           [queryParams]="{ track_slot_id: slot.id }"
@@ -110,60 +151,26 @@
                         <fa-icon [icon]="faTrash"></fa-icon>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div *appBreakpoints="'>md'" class="com-flex com-justify-between com-w-full md:com-w-auto">
-                  <div class="action-buttons">
-                    <div *ngIf="event.editable" class="edit" (click)="showEditSlotForm(slot); $event.stopPropagation()">
-                      <fa-icon [icon]="faPen"></fa-icon>
-                    </div>
-                    <div class="attachment" *ngIf="slot.track_slot_speakers.length > 0">
-                      <a
-                        [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
-                        [routerLink]="['/speaker-resource-form']"
-                        class="add-session"
-                        target="_blank"
-                      >
-                        <fa-icon [icon]="faPaperclip"></fa-icon>
-                      </a>
-                    </div>
-                    <div class="public">
-                      <a
-                        [queryParams]="{ track_slot_id: slot.id }"
-                        [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-                        target="_blank"
-                      >
-                        <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-                      </a>
-                    </div>
-                    <div
-                      class="delete"
-                      *ngIf="event.editable"
-                      (click)="confirmDeleteSlot(slot); $event.stopPropagation()"
-                    >
-                      <fa-icon [icon]="faTrash"></fa-icon>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="speakers" *ngIf="slot.track_slot_speakers">
-                      <div *ngFor="let slot of slot.track_slot_speakers">
-                        <div class="avatar">
-                          <img
-                            [alt]="slot.user.name"
-                            [src]="slot.user.photo?.i32 || slot.user.avatar"
-                            [title]="slot.user.name"
-                            [username]="slot.user.username"
-                            appMiniUserProfile
-                          />
+                    <div>
+                      <div class="speakers" *ngIf="slot.track_slot_speakers">
+                        <div *ngFor="let slot of slot.track_slot_speakers">
+                          <div class="avatar">
+                            <img
+                              [alt]="slot.user.name"
+                              [src]="slot.user.photo?.i32 || slot.user.avatar"
+                              [title]="slot.user.name"
+                              [username]="slot.user.username"
+                              appMiniUserProfile
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </nb-list-item>
-          </nb-list>
+              </nb-list-item>
+            </nb-list>
+          </div>
           <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Speaker Slots Added</div>
         </nb-accordion-item-body>
       </nb-accordion-item>

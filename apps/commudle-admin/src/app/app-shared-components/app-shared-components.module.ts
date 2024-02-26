@@ -55,7 +55,6 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
-
   ],
   exports: [
     EmailerComponent,

@@ -236,14 +236,16 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   seoSchema() {
+    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
     this.seoService.setSchema({
       '@context': 'https://schema.org',
       '@type': 'DiscussionForumPosting',
+      url: shareLink,
       headline: this.channelOrForum.name,
       text: this.removeHtmlTags(this.message.content),
       author: {
         '@type': 'Person',
-        name: this.message.user.name,
+        name: this.message.user.name ? this.message.user.name : this.message.user.username,
         url: `https://www.commudle.com/users/${this.message.user.username}`,
       },
       datePublished: this.message.created_at,
@@ -261,7 +263,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
           text: this.removeHtmlTags(userMessage.content),
           author: {
             '@type': 'Person',
-            name: userMessage.user.name,
+            name: userMessage.user.name ? userMessage.user.name : userMessage.user.username,
             url: `https://www.commudle.com/users/${userMessage.user.username}`,
           },
           datePublished: userMessage.created_at,

@@ -1,5 +1,5 @@
 <!-- eslint-disable prettier/prettier -->
-<div>
+<div class="com-bg-white com-rounded-[10px]">
   <form (ngSubmit)="updateCommunityDetails()" [formGroup]="communityForm" class="community-edit-details-form">
     <div formGroupName="community">
       <div role="group">
@@ -196,6 +196,8 @@
               [editable]="true"
               [tags]="tags"
               [minimumTags]="minimumTags"
+              [backgroundColor]="'com-bg-tAnti-Flash'"
+              [fontColor]="'com-text-tYankees-Blue'"
             ></app-tag>
           </label>
           <span *ngIf="tags.length < 5">

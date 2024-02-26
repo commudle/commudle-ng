@@ -14,6 +14,7 @@ import {
   NbSpinnerModule,
   NbTooltipModule,
 } from '@commudle/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
@@ -25,6 +26,7 @@ import { ConferenceComponent } from './components/hms-video/conference/conferenc
 import { HmsVideoComponent } from './components/hms-video/hms-video.component';
 import { LocalPreviewComponent } from './components/hms-video/local-preview/local-preview.component';
 import { SelectRoleComponent } from './components/hms-video/select-role/select-role.component';
+import { HmsStageService } from './services/hms-stage.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { SelectRoleComponent } from './components/hms-video/select-role/select-r
     NbDialogModule.forChild(),
     NbAlertModule,
     RouterModule,
+    FontAwesomeModule,
   ],
   exports: [HmsVideoComponent],
+  providers: [HmsStageService],
 })
 export class HmsVideoModule {}

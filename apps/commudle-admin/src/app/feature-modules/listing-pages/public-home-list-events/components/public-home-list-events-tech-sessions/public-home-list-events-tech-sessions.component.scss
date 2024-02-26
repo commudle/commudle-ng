@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-mx-0 md:com-bg-Bright-Gray/30 com-border-none com-m-0;
+  @apply com-mx-0 md:com-bg-Bright-Gray-opacity-30 com-border-none com-m-0;
 
   nb-card-body {
     @apply com-p-0 md:com-px-3 md:com-py-4;
@@ -22,6 +22,10 @@ nb-card {
 
       .load-more {
         @apply com-text-center md:com-mt-6 com-mt-0;
+
+        button {
+          @apply com-text-gray-500;
+        }
 
         app-loading-spinner {
           @apply com-mb-6;

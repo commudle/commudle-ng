@@ -1,9 +1,27 @@
 .base-layout {
-  @apply com-mt-4 com-mb-8;
+  @apply com-p-4 com-pb-8;
   .container {
-    .community-badge {
-      @apply md:com-mb-2 com-mb-3 md:com-mx-0 com-mx-3;
+    .details-section {
+      @apply com-mx-0;
+      nb-card-body {
+        @apply com-flex com-justify-between com-items-center com-py-0;
+        .details {
+          @apply com-flex com-gap-3 com-items-center;
+          .event-name {
+            @apply com-text-Yankees-Blue com-text-4xl com-font-bold;
+          }
+        }
+        // .social-links {
+        //   @apply com-flex com-gap-6 com-items-center;
+        //   a {
+        //     @apply com-text-xl com-w-9 com-h-9 com-grid com-items-center com-justify-center com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-text-primary-500 hover:com-shadow;
+        //   }
+        // }
+      }
     }
+    // .community-badge {
+    //   @apply md:com-mb-2 com-mb-3 md:com-mx-0 com-mx-3;
+    // }
     .no-header-image {
       @apply com-bg-white md:com-pl-[42px] md:com-py-[42px] com-px-4 com-py-7 md:com-pr-4 com-p-0 com-rounded-t-[10px] com-border com-border-solid com-border-Bright-Gray com-border-b-0;
 
@@ -28,7 +46,7 @@
           }
 
           span {
-            @apply com-text-base com-ml-2 com-font-semibold;
+            @apply com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
           }
         }
       }
