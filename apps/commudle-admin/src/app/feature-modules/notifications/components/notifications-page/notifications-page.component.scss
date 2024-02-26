@@ -5,7 +5,7 @@
     @apply md:com-mr-10 com-mr-0;
     .notifications-container {
       nb-card-header {
-        @apply com-flex com-justify-between com-items-center com-p-4;
+        @apply com-flex com-justify-between com-items-center com-p-4 com-border com-border-Bright-Gray;
 
         h6 {
           @apply com-text-Yankees-Blue;

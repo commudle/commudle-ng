@@ -568,6 +568,9 @@ nb-context-menu {
 
   --color-Ghost-White-light: #f9f9f9;
   --color-Ghost-White-dark: #121212;
+
+  --color-slate-100-light: #f1f5f9;
+  --color-slate-100-dark: #121212;
 }
 
 [data-theme='light'] {
@@ -633,6 +636,7 @@ nb-context-menu {
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
   --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-light);
   --color-Ghost-White: var(--color-Ghost-White-light);
+  --color-slate-100: var(--color-slate-100-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -718,6 +722,7 @@ nb-context-menu {
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
   --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-dark);
   --color-Ghost-White: var(--color-Ghost-White-dark);
+  --color-slate-100: var(--color-slate-100-dark);
 
   .linear-gradient-top,
   .linear-gradient-bottom,
