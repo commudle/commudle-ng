@@ -76,7 +76,7 @@
                   ></commudle-public-hackathon-project-details-form>
                 </div>
               </nb-step>
-              <nb-step label="Submit">
+              <nb-step label="Submit" *ngIf="hackathonResponseGroup.data_form_entity_id">
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading">
                   <commudle-public-hackathon-custom-questions-form

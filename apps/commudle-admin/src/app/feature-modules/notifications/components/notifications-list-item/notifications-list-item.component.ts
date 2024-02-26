@@ -128,6 +128,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         addQueryParams = true;
         url = ['/communities', value['kommunity_slug'], value['display_type'] + 's', slug];
         break;
+      case ENotificationParentTypes.HACKATHON:
+        url = ['/communities', value['kommunity_slug'], 'hackathons', slug];
+        break;
     }
 
     this.gtmService();

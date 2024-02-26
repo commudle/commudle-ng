@@ -17,18 +17,20 @@ export class PublicHackathonCustomQuestionsFormComponent implements OnInit {
   constructor(
     private dataFormEntityResponsesService: DataFormEntityResponsesService,
     private toastrService: ToastrService,
-    private _location: Location,
+    private location: Location,
   ) {}
 
   ngOnInit() {
-    this.dataFormEntityResponsesService
-      .getExistingResponse(this.hackathonResponseGroup.data_form_entity_id)
-      .subscribe((data) => {
-        this.existingResponses = data.existing_responses;
-        if (this.existingResponses.length > 0) {
-          this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
-        }
-      });
+    if (this.hackathonResponseGroup.data_form_entity_id) {
+      this.dataFormEntityResponsesService
+        .getExistingResponse(this.hackathonResponseGroup.data_form_entity_id)
+        .subscribe((data) => {
+          this.existingResponses = data.existing_responses;
+          if (this.existingResponses.length > 0) {
+            this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
+          }
+        });
+    }
   }
 
   submitForm(formData) {
@@ -37,7 +39,7 @@ export class PublicHackathonCustomQuestionsFormComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.toastrService.successDialog('Details has been saved');
-          this._location.back();
+          this.location.back();
         }
       });
   }
