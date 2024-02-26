@@ -31,7 +31,14 @@
         <!-- Submission Deadline-->
         <div>
           <label for="end_date">Submission Deadline</label>
-          <input formControlName="end_date" id="end_date" type="datetime-local" nbInput fullWidth />
+          <input
+            formControlName="end_date"
+            id="end_date"
+            type="datetime-local"
+            nbInput
+            fullWidth
+            [min]="hackathonDatesForm.controls['start_date'].value"
+          />
           <commudle-alert
             *ngIf="
               hackathonDatesForm.controls['end_date'].invalid &&
@@ -55,6 +62,8 @@
             type="datetime-local"
             nbInput
             fullWidth
+            [min]="hackathonDatesForm.controls['start_date'].value"
+            [max]="hackathonDatesForm.controls['end_date'].value"
           />
           <commudle-alert
             *ngIf="
@@ -76,6 +85,9 @@
             type="datetime-local"
             nbInput
             fullWidth
+            [min]="hackathonDatesForm.controls['application_start_date'].value"
+            [min]="hackathonDatesForm.controls['start_date'].value"
+            [max]="hackathonDatesForm.controls['end_date'].value"
           />
           <commudle-alert
             *ngIf="
