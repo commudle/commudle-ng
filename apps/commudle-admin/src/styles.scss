@@ -363,7 +363,6 @@ nb-option-list.search-autocomplete {
 
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
-  border: #2c2c2c;
   margin: 16px 8px;
 }
 
@@ -374,10 +373,6 @@ nb-option-list.search-autocomplete {
 
 .ngx-datatable.material {
   @apply com-bg-white;
-}
-
-.ngx-datatable.material .datatable-body .datatable-row-left {
-  @apply com-bg-red-500;
 }
 
 .datatable-row-group:hover {

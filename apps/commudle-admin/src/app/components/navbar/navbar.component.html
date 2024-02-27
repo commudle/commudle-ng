@@ -43,7 +43,7 @@
     <app-navbar-menu *appBreakpoints="'>md'" class="com-justify-self-center"></app-navbar-menu>
 
     <div class="user-login">
-      <div>
+      <div class="toggle-dark-mode">
         <fa-icon (click)="toggleDarkMode(true)" *ngIf="!isDarkMode" [icon]="faMoon"></fa-icon>
         <fa-icon (click)="toggleDarkMode(false)" *ngIf="isDarkMode" [icon]="faSun"></fa-icon>
       </div>
