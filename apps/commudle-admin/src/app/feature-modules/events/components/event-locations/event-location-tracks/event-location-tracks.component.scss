@@ -38,6 +38,9 @@
           }
         }
       }
+      .group-date {
+        @apply com-mt-4 com-mb-1;
+      }
       nb-list {
         @apply com-m-0 com-p-0;
         nb-list-item {
