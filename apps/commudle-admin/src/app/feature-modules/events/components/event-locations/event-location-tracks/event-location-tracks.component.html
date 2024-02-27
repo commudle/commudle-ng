@@ -45,10 +45,11 @@
             <fa-icon [icon]="faPlus"></fa-icon>
             &nbsp; Add New Session
           </div>
-          <div *ngFor="let startDate of groupedSlots | keyvalue" class="com-my-4">
-            <span class="com-font-semibold">{{ startDate.key }}</span>
+          <ng-container *ngFor="let group of sortedTrackSlots[elt.id] | groupByDate : 'start_time'">
+            <!-- Display the date -->
+            <div class="group-date">{{ moment(group.date).format('dddd, MMM Do, YYYY') }}</div>
             <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
-              <nb-list-item *ngFor="let slot of startDate.value; let tsi = index">
+              <nb-list-item *ngFor="let slot of group.slots; let tsi = index">
                 <div
                   class="com-flex com-items-center com-justify-between com-gap-2 md:com-gap-0 com-w-full com-flex-col md:com-flex-row"
                 >
@@ -170,7 +171,7 @@
                 </div>
               </nb-list-item>
             </nb-list>
-          </div>
+          </ng-container>
           <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Speaker Slots Added</div>
         </nb-accordion-item-body>
       </nb-accordion-item>
