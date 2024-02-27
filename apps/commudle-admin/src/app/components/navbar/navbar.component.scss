@@ -22,3 +22,7 @@
 .user-login {
   @apply com-flex com-justify-self-end com-gap-4 com-items-center;
 }
+
+.toggle-dark-mode {
+  @apply com-cursor-pointer;
+}
