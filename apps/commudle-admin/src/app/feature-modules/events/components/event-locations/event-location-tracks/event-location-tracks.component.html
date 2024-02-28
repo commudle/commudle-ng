@@ -47,7 +47,7 @@
           </div>
           <ng-container *ngFor="let group of sortedTrackSlots[elt.id] | groupByDate : 'start_time'">
             <!-- Display the date -->
-            <div class="group-date">{{ moment(group.date).format('dddd, MMM Do, YYYY') }}</div>
+            <div class="group-date">{{ group.date }}</div>
             <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
               <nb-list-item *ngFor="let slot of group.slots; let tsi = index">
                 <div
