@@ -6,7 +6,7 @@
       @apply com-m-0 com-p-4 com-bg-Anti-Flash-White com-flex com-flex-row com-items-center;
 
       button {
-        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12;
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12 com-border-none;
 
         fa-icon {
           @apply com-text-lg;
