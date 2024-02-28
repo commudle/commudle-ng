@@ -66,12 +66,14 @@
             (change)="onFileChange($event)"
             type="file"
             accept="image/*"
-            class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+            class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-20 com-z-50"
           />
           <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
             <fa-icon [icon]="icons.faFileImage" class="com-text-5xl"></fa-icon>
             <p>
               Drag file here
+              <br />
+              <small>(600px X 200px)</small>
               <br />
               or<span class="com-text-primary-500"> BROWSE </span>
             </p>
