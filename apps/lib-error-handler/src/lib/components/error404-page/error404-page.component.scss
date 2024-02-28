@@ -30,6 +30,7 @@
         width: 100%;
         text-decoration: none;
         button {
+          @apply com-bg-Ghost-White com-text-Yankees-Blue;
           width: 100%;
           margin-bottom: $space-16;
         }
