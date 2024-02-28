@@ -383,6 +383,10 @@ nb-option-list.search-autocomplete {
   @apply com-bg-white #{!important};
 }
 
+iframe {
+  @apply com-bg-white #{!important};
+}
+
 nb-context-menu {
   @apply com-bg-white;
 }
@@ -561,8 +565,8 @@ nb-context-menu {
   --color-Bright-Gray-opacity-30-light: #f7f8fb;
   --color-Bright-Gray-opacity-30-dark: #1e1e1e;
 
-  --color-Ghost-White-light: #f9f9f9;
-  --color-Ghost-White-dark: #121212;
+  --color-Ghost-White-light: #f7f9fc;
+  --color-Ghost-White-dark: #1e1e1e;
 
   --color-slate-100-light: #f1f5f9;
   --color-slate-100-dark: #121212;

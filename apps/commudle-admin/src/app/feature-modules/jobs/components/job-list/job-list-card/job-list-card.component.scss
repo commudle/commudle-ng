@@ -25,7 +25,11 @@ nb-card {
       }
 
       .icons {
-        @apply com-rounded-lg com-inline-flex com-ring-4 com-ring-white com-justify-center com-w-4;
+        @apply com-rounded-full com-flex com-justify-center com-items-center com-h-6 com-w-6;
+
+        fa-icon {
+          @apply com-text-base;
+        }
       }
     }
   }
