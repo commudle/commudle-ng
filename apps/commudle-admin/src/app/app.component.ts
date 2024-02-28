@@ -112,10 +112,9 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     });
     this.userTheme = localStorage.getItem('theme');
-    // this.systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
     this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
-    // if (this.userTheme === 'dark' || (!this.userTheme && this.systemTheme)) {
-    if (this.userTheme === 'dark') {
+    if (this.userTheme === 'dark' || (!this.userTheme && this.systemTheme)) {
       this.darkModeService.toggleDarkMode(true);
     } else {
       this.darkModeService.toggleDarkMode(false);
