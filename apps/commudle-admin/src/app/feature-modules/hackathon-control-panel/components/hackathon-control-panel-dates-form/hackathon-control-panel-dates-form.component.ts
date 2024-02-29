@@ -55,26 +55,38 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
             time_zone: momentTimezone.tz.guess(),
           });
         } else {
-          this.hackathonDatesForm.patchValue({
-            start_date: this.datePipe.transform(this.hackathon.start_date, 'yyyy-MM-ddTHH:mm:ss'),
-            end_date: this.datePipe.transform(this.hackathon.end_date, 'yyyy-MM-ddTHH:mm:ss'),
-            application_start_date: this.datePipe.transform(
-              this.hackathon.application_start_date,
-              'yyyy-MM-ddTHH:mm:ss',
-            ),
-            application_end_date: this.datePipe.transform(this.hackathon.application_end_date, 'yyyy-MM-ddTHH:mm:ss'),
-            time_zone: this.hackathon.time_zone,
-          });
+          this.patchDatesValue(data);
         }
       }),
     );
   }
 
   createOrUpdate() {
+    this.hackathonDatesForm.patchValue({
+      start_date: this.convertDateToLocal(this.hackathonDatesForm.controls['start_date'].value),
+      end_date: this.convertDateToLocal(this.hackathonDatesForm.controls['end_date'].value),
+      application_start_date: this.convertDateToLocal(this.hackathonDatesForm.controls['application_start_date'].value),
+      application_end_date: this.convertDateToLocal(this.hackathonDatesForm.controls['application_end_date'].value),
+    });
     this.hackathonService.updateHackathonDates(this.hackathonDatesForm.value, this.hackathon.id).subscribe((data) => {
       if (data) {
+        this.patchDatesValue(data);
         this.toastrService.successDialog('Hackathon dates was updated');
       }
     });
+  }
+
+  patchDatesValue(hackathon) {
+    this.hackathonDatesForm.patchValue({
+      start_date: this.datePipe.transform(hackathon.start_date, 'yyyy-MM-ddTHH:mm:ss'),
+      end_date: this.datePipe.transform(hackathon.end_date, 'yyyy-MM-ddTHH:mm:ss'),
+      application_start_date: this.datePipe.transform(hackathon.application_start_date, 'yyyy-MM-ddTHH:mm:ss'),
+      application_end_date: this.datePipe.transform(hackathon.application_end_date, 'yyyy-MM-ddTHH:mm:ss'),
+      time_zone: hackathon.time_zone,
+    });
+  }
+
+  convertDateToLocal(submissionDeadlineLocal) {
+    return new Date(submissionDeadlineLocal).toISOString();
   }
 }
