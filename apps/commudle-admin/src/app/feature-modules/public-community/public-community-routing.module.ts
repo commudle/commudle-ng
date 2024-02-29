@@ -48,6 +48,10 @@ const routes = [
         component: CommunityChannelsListComponent,
       },
       {
+        path: 'channels/email-join/:email_token',
+        component: CommunityChannelsListComponent,
+      },
+      {
         path: 'forums',
         component: CommunityChannelsListComponent,
       },
