@@ -56,14 +56,14 @@
 
   <div class="community-channel-discussion">
     <!-- channel card (landing page)-->
-    <div *ngIf="channelsCards && !forumsCards && !token">
+    <div *ngIf="channelsCards && !forumsCards && !(token || emailToken)">
       <app-community-channels-dashboard-channel-list
         [community]="selectedCommunity"
       ></app-community-channels-dashboard-channel-list>
     </div>
 
     <!-- //form cards (landing page) -->
-    <div *ngIf="forumsCards && !channelsCards && !token" class="com-h-full">
+    <div *ngIf="forumsCards && !channelsCards && !(token || emailToken)" class="com-h-full">
       <commudle-community-channels-dashboard-forum-list
         [community]="selectedCommunity"
         (updateSelectedForum)="updateSelectedChannelOrForum($event)"
@@ -79,6 +79,9 @@
     </div>
     <div *ngIf="token">
       <app-join-by-token [selectedCommunity]="selectedCommunity"></app-join-by-token>
+    </div>
+    <div *ngIf="emailToken">
+      <app-email-join></app-email-join>
     </div>
 
     <!-- //Form Name List shows after selecting form group -->
