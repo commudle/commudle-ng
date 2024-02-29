@@ -52,7 +52,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
-        this.getMembers();
+        // this.getMembers();
       }),
     );
     if (this.discussionType === 'channel') {
@@ -68,9 +68,11 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
       this.subscriptions.push(
         this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
           this.forumsRoles = data;
-          this.forumsRoles[this.channelOrForum.id].find((k) => {
-            this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
-          });
+          if (this.forumsRoles[this.channelOrForum.id]) {
+            this.forumsRoles[this.channelOrForum.id].find((k) => {
+              this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+            });
+          }
         }),
       );
     }
@@ -107,6 +109,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
       this.isLoading = true;
       this.subscriptions.push(
         this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
+          console.log('🚀 ~ ChannelMembersComponent ~ this.communityChannelsService.membersList ~ data:', data);
           if (data.user_roles_users) {
             this.channelUsers = this.channelUsers.concat(data.user_roles_users);
             this.page = data.page + 1;
