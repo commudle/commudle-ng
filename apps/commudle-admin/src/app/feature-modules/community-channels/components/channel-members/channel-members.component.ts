@@ -109,7 +109,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
       this.isLoading = true;
       this.subscriptions.push(
         this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
-          console.log('🚀 ~ ChannelMembersComponent ~ this.communityChannelsService.membersList ~ data:', data);
           if (data.user_roles_users) {
             this.channelUsers = this.channelUsers.concat(data.user_roles_users);
             this.page = data.page + 1;
