@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
-import { IEventUpdate } from 'apps/shared-models/event_update.model';
+import { IEntityUpdate } from 'apps/shared-models/entity_update.model';
 import * as moment from 'moment';
 import { EDbModels, IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
@@ -14,7 +14,7 @@ import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entit
 export class EntityUpdatesComponent implements OnInit {
   @Input() entityId: number;
   @Input() entityType: EDbModels;
-  updates: IEventUpdate[] = [];
+  updates: IEntityUpdate[] = [];
   moment = moment;
   page_info: IPageInfo;
   limit = 5;
