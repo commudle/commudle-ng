@@ -11,12 +11,10 @@ export class HackathonControlPanelTracksPrizesComponent implements OnInit {
     {
       title: 'Tracks',
       route: './',
-      icon: 'plus',
     },
     {
       title: 'prizes',
       route: ['./prizes'],
-      icon: 'plus',
     },
   ];
 

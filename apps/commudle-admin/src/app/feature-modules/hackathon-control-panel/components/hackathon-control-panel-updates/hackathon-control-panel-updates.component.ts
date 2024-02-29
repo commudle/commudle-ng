@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
-import { IEventUpdate } from 'apps/shared-models/event_update.model';
+import { IEntityUpdate } from 'apps/shared-models/entity_update.model';
 import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
 import { EDbModels } from '@commudle/shared-models';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
@@ -16,7 +16,7 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
 export class HackathonControlPanelUpdatesComponent implements OnInit {
   EDbModels = EDbModels;
   moment = moment;
-  updates: IEventUpdate[] = [];
+  updates: IEntityUpdate[] = [];
   images = [];
   showPreviewImages = false;
   selectedImages: File[] = [];
