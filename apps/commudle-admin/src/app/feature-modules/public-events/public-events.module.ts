@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -20,11 +19,14 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@commudle/theme';
-import { SkeletonScreensModule } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { HmsVideoModule } from 'apps/shared-modules/hms-video/hms-video.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { LinkyModule } from 'ngx-linky';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
 import { AttendedMembersCardComponent } from './components/attended-members/attended-members-card/attended-members-card.component';
@@ -48,8 +50,6 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { TeamComponent } from './components/team/team.component';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
-import { LinkyModule } from 'ngx-linky';
-import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { EventsAgendaComponent } from './components/events-agenda/events-agenda.component';
@@ -89,6 +89,7 @@ import { EditorModule } from '@commudle/editor';
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    HmsVideoModule,
     MiniUserProfileModule,
     LinkyModule,
     PublicHomeListEventsModule,

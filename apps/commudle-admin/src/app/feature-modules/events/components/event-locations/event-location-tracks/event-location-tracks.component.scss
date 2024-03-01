@@ -10,7 +10,7 @@
 
       nb-icon {
         font-size: 1.3rem;
-        @apply com-text-white;
+        @apply com-text-tWhite;
       }
     }
 
@@ -27,7 +27,7 @@
     }
 
     nb-accordion-item-body {
-      @apply com-p-0;
+      @apply com-p-0 com-bg-white;
       .add-session {
         @apply com-flex com-justify-center com-text-primary-500 com-cursor-pointer com-text-base;
       }
@@ -185,4 +185,8 @@
   select {
     @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
   }
+}
+
+nb-accordion-item {
+  @apply com-bg-white;
 }

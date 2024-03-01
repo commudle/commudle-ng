@@ -1,5 +1,5 @@
 .container-scroll {
-  @apply com-p-0 com-m-0 com-border-0;
+  @apply com-p-0 com-m-0 com-border-none com-relative;
 
   nb-card-body {
     @apply com-m-0 com-p-0;
@@ -29,11 +29,11 @@
     }
 
     .featured-projects-scroll {
-      @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-mt-4 com-p-0 com-gap-3 com-w-full;
+      @apply com-flex com-flex-nowrap com-overflow-x-auto com-px-4 com-mt-4 com-p-0 com-m-0 com-gap-4 com-w-full;
       .featured-projects-card {
         @apply com-w-full com-h-full com-mb-4;
         .featured-project-card {
-          @apply com-m-0 com-p-0 md:com-w-full com-w-[304px] md:com-h-full com-h-[180px];
+          @apply com-m-0 com-p-0 md:com-w-[304px] com-w-[304px] com-h-full;
         }
       }
     }
@@ -41,7 +41,7 @@
 }
 
 .container {
-  @apply com-p-0 com-m-0 com-bg-Bright-Gray/30 com-border-0 com-mt-6;
+  @apply com-p-0 com-m-0 com-bg-Bright-Gray-opacity-30 com-border-0 com-mt-6;
 
   nb-card-body {
     @apply com-pt-4 com-px-3 com-m-0 com-p-0;
@@ -80,4 +80,8 @@
       }
     }
   }
+}
+
+.skeleton-cards {
+  @apply com-p-0 com-px-4;
 }

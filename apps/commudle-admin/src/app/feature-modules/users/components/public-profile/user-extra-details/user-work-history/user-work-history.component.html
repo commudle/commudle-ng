@@ -32,7 +32,7 @@
 
 <ng-template #userWorkHistoryDialog let-data>
   <nb-card class="!com-m-0 com-max-h-[100vh]" style="width: clamp(20rem, 36rem, 100vw)">
-    <nb-card-header class="com-flex com-justify-between com-items-center">
+    <nb-card-header class="com-flex com-justify-between com-items-center com-text-Yankees-Blue">
       {{ isEditing ? 'Edit Work History' : 'Add Work History' }}
       <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
         <nb-icon icon="close"></nb-icon>
@@ -40,28 +40,28 @@
     </nb-card-header>
     <nb-card-body>
       <form [formGroup]="userWorkHistoryForm" class="com-flex com-flex-col com-space-y-3">
-        <label>
+        <label class="title">
           Job Title*
           <input formControlName="job_title" fullWidth nbInput type="text" />
         </label>
-        <label>
+        <label class="title">
           Company*
           <input formControlName="company" fullWidth nbInput type="text" />
         </label>
-        <label>
+        <label class="title">
           Location*
           <input formControlName="location" fullWidth nbInput type="text" />
         </label>
-        <label>
+        <label class="title">
           Start Date*
           <input formControlName="start_date" fullWidth nbInput type="month" />
         </label>
-        <label>
+        <label class="title">
           End Date
           <input formControlName="end_date" fullWidth nbInput type="month" />
         </label>
-        <nb-toggle formControlName="is_working">I'm currently working here</nb-toggle>
-        <label>
+        <nb-toggle formControlName="is_working"><span class="title">I'm currently working here</span></nb-toggle>
+        <label class="title">
           Description
           <textarea formControlName="description" fullWidth nbInput rows="5" type="text"></textarea>
         </label>

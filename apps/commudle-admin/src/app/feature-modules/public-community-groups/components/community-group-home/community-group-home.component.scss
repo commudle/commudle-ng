@@ -14,10 +14,10 @@
         }
       }
       .details {
-        @apply com-text-white md:com-ml-8 com-text-center md:com-text-left com-w-full;
+        @apply com-text-tWhite md:com-ml-8 com-text-center md:com-text-left com-w-full;
         h1,
         p {
-          @apply com-text-white com-leading-3;
+          @apply com-text-tWhite com-leading-3;
         }
         .mini-description {
           @apply com-text-xl;
@@ -25,7 +25,7 @@
         .social-links {
           @apply com-flex com-space-x-3 com-mt-7 com-justify-center md:com-justify-start;
           nb-icon {
-            @apply com-text-white;
+            @apply com-text-tWhite;
           }
         }
       }
@@ -43,7 +43,7 @@
         @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-5 com-pb-3 com-cursor-pointer com-no-underline;
 
         fa-icon {
-          @apply com-text-gunmetal/80 com-text-xl md:com-text-lg;
+          @apply com-text-gunmetal com-opacity-80 com-text-xl md:com-text-lg;
         }
 
         .title {

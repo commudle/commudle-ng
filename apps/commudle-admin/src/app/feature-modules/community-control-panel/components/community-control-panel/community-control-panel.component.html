@@ -79,7 +79,7 @@
               <app-badge
                 class="-com-mt-4"
                 text="New"
-                [fontColor]="'com-text-white'"
+                [fontColor]="'com-text-tWhite'"
                 [fontSize]="'small'"
                 [borderRadius]="'round'"
                 [color]="'com-bg-Caribbean-Green'"
@@ -88,18 +88,18 @@
               <fa-icon [icon]="icons.faFileLines"></fa-icon>
               <span class="title">Pages</span>
             </a>
-            <a [routerLink]="['newsletter']" class="d-flex com-relative" routerLinkActive="active">
+            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
               <app-badge
                 class="-com-mt-4"
                 text="New"
-                [fontColor]="'com-text-white'"
+                [fontColor]="'com-text-tWhite'"
                 [fontSize]="'small'"
                 [borderRadius]="'round'"
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
               <fa-icon [icon]="icons.faNewspaper"></fa-icon>
-              <span class="title">Newsletter</span>
+              <span class="title">Newsletters</span>
             </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="people" status="success"></nb-icon>
@@ -127,7 +127,7 @@
               <app-badge
                 class="-com-mt-4"
                 text="New"
-                [fontColor]="'com-text-white'"
+                [fontColor]="'com-text-tWhite'"
                 [fontSize]="'small'"
                 [borderRadius]="'round'"
                 [color]="'com-bg-Caribbean-Green'"
@@ -144,7 +144,7 @@
               <app-badge
                 class="-com-mt-4"
                 text="New"
-                [fontColor]="'com-text-white'"
+                [fontColor]="'com-text-tWhite'"
                 [fontSize]="'small'"
                 [borderRadius]="'round'"
                 [color]="'com-bg-Caribbean-Green'"
@@ -154,7 +154,7 @@
               <span class="title">Bank Details</span>
             </a>
           </div>
-          <div class="router-outlet">
+          <div>
             <router-outlet></router-outlet>
           </div>
         </nb-card-body>

@@ -14,7 +14,9 @@
         <h4 class="sub-heading">Join the most active groups</h4>
       </div>
     </div>
-    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <div class="skeleton-cards">
+      <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    </div>
     <div
       [ngClass]="{
         'featured-communities-scroll': isMobileView || showCardsHorizontal,

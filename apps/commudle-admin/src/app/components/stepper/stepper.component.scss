@@ -36,7 +36,7 @@ nb-card {
           @apply com-p-0;
 
           .content {
-            height: calc(95% - 56px - 75px);
+            max-height: calc(100dvh - 220px);
             @apply com-overflow-x-hidden;
 
             .completed-gif {

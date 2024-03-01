@@ -7,6 +7,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Observable, timer } from 'rxjs';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { ITestimonial } from 'apps/shared-models/testimonial.model';
+import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 
 @Component({
   selector: 'app-homepage',
@@ -15,6 +16,8 @@ import { ITestimonial } from 'apps/shared-models/testimonial.model';
 })
 export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
   timer$: Observable<number>;
+  homePageBannerImage;
+  banner: IListingPageHeader;
 
   @ViewChild('homepageAnimation', { static: false }) homepageAnimationContainer: ElementRef<HTMLDivElement>;
 
@@ -68,17 +71,24 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.isBrowserService.isBrowser()) {
-      import('lottie-web').then((l) => {
-        l.default.loadAnimation({
-          container: this.homepageAnimationContainer.nativeElement,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
-        });
-      });
-    }
+    this.cmsService.getDataBySlug('home').subscribe((data: IListingPageHeader) => {
+      this.banner = data;
+      if (data.header_image) {
+        this.homePageBannerImage = this.cmsService.getImageUrl(data.header_image);
+      } else {
+        if (this.isBrowserService.isBrowser()) {
+          import('lottie-web').then((l) => {
+            l.default.loadAnimation({
+              container: this.homepageAnimationContainer.nativeElement,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
+            });
+          });
+        }
+      }
+    });
   }
 
   getHomepageActions() {

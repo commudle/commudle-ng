@@ -6,7 +6,7 @@ p {
 
 .user-social {
   nb-card-header {
-    @apply com-text-lg com-font-medium;
+    @apply com-text-lg com-font-medium com-text-Yankees-Blue;
   }
 
   .user-social-add {
@@ -83,9 +83,6 @@ p {
 }
 
 // Drag and drop animations
-.cdk-drag {
-  background-color: $white;
-}
 
 .cdk-drag-preview {
   border-radius: $border-10;

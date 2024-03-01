@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NbTagComponent, NbTagInputAddEvent } from '@commudle/theme';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
@@ -12,7 +13,7 @@ export class TagComponent implements OnInit, OnDestroy {
   @Input() editable: boolean;
   @Input() inputDisabled: boolean;
   @Input() minimumTags: number = 5;
-  @Input() backgroundColor: string;
+  @Input() backgroundColor: string = 'com-bg-[#F7F9FC]';
   @Input() fontColor: string;
   @Input() maximumTag;
   @Input() size; //It can be tiny;
@@ -21,6 +22,7 @@ export class TagComponent implements OnInit, OnDestroy {
   @Output() tagDelete: EventEmitter<string> = new EventEmitter<string>();
 
   subscription: Subscription;
+  faXmark = faXmark;
 
   constructor() {}
 
@@ -42,20 +44,23 @@ export class TagComponent implements OnInit, OnDestroy {
     return tags;
   }
 
-  onTagAdd({ value, input }: NbTagInputAddEvent): void {
+  onTagAdd({ value, input }): void {
     this.tagAdd.emit(value);
-    // Reset the input
-    input.nativeElement.value = '';
 
-    this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', { capture: true }).subscribe((e: any) => {
-      if (e.target === input.nativeElement && e.key === 'Enter') {
-        e.stopPropagation();
-        e.preventDefault();
-      }
-    });
+    if (input) {
+      input.nativeElement.value = '';
+      this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', { capture: true }).subscribe(
+        (e: any) => {
+          if (e.target === input.nativeElement && e.key === 'Enter') {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        },
+      );
+    }
   }
 
-  onTagRemove(tagToRemove: NbTagComponent): void {
-    this.tagDelete.emit(tagToRemove.text);
+  onTagRemove(tag): void {
+    this.tagDelete.emit(tag);
   }
 }

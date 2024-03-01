@@ -17,7 +17,9 @@
         <h4 class="sub-heading">Check out our featured tutorial</h4>
       </div>
     </div>
-    <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <div class="skeleton-cards">
+      <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    </div>
     <div
       [ngClass]="{
         'featured-communities-scroll custom-scrollbar': isMobileView || showCardsHorizontal,
