@@ -55,6 +55,7 @@ import { CommunityPageComponent } from './components/community-page/community-pa
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { CommunityChannelsAndForumsComponent } from './components/community-channels-and-forums/community-channels-and-forums.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,8 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     EventsModule,
     AppSharedComponentsModule,
     CommunityChannelsModule,
+
+    SidebarComponent,
 
     // Nebular
     NbCardModule,

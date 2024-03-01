@@ -18,5 +18,8 @@
       <fa-icon [icon]="expandSidebar || isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
     </div>
   </div>
+  <div *ngIf="url" class="iframe">
+    <iframe width="100%" frameBorder="1" [src]="url"></iframe>
+  </div>
   <ng-content></ng-content>
 </div>
