@@ -1,0 +1,20 @@
+<nb-card [routerLink]="['/users', expert.user.username]">
+  <nb-card-body>
+    <div class="expert-card">
+      <div class="expert-image">
+        <img src="{{ expert.user.photo.i320 }}" alt="{{ expert.user.name }}" />
+      </div>
+      <div class="details">
+        <p class="expert-name">{{ expert.user.name }}</p>
+        <p class="expert-username">@{{ expert.user.username }}</p>
+        <p class="expert-designation">{{ expert.user.designation }}</p>
+        <app-user-follow
+          [username]="expert.user.username"
+          [isMobileWidthFull]="true"
+          [name]="expert.user.name"
+          [userId]="expert.id"
+        ></app-user-follow>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

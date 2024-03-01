@@ -1,0 +1,29 @@
+<div class="header">
+  <div
+    *ngIf="listingPageHeader"
+    [ngStyle]="{ 'background-color': listingPageHeader.background_color.hex }"
+    class="background"
+  >
+    <div class="base-layout">
+      <div class="content">
+        <div class="header-text">
+          <h1 class="heading">{{ listingPageHeader.heading }}</h1>
+          <p class="sub-heading">{{ listingPageHeader.sub_heading }}</p>
+          <div class="content">
+            <div [innerHTML]="richText"></div>
+          </div>
+        </div>
+        <ng-container *ngIf="listingPageHeader?.image_link">
+          <a class="header-image" [href]="listingPageHeader.image_link">
+            <img [src]="imageUrl(listingPageHeader.header_image).url()" class="com-w-full" />
+          </a>
+        </ng-container>
+        <ng-container *ngIf="!listingPageHeader?.image_link">
+          <div class="header-image">
+            <img [src]="imageUrl(listingPageHeader.header_image).url()" class="com-w-full" />
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

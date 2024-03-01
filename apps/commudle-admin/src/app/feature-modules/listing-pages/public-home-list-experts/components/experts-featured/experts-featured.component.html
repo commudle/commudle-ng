@@ -1,0 +1,13 @@
+<div class="experts">
+  <h2 class="featured-heading">Featured Experts</h2>
+  <div class="skeleton-cards">
+    <app-skeleton-cards [displayFollowButton]="true" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+  </div>
+  <div class="featured-experts">
+    <div *ngFor="let expert of experts">
+      <div class="featured-experts-card">
+        <commudle-featured-experts-card [expert]="expert"></commudle-featured-experts-card>
+      </div>
+    </div>
+  </div>
+</div>
