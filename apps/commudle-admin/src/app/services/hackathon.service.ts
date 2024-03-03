@@ -293,6 +293,23 @@ export class HackathonService {
     });
   }
 
+  verifyInvitationTokenJudge(inviteCode): Observable<any> {
+    const params = new HttpParams().set('invite_code', inviteCode);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.VERIFY_INVITATION_TOKEN_JUDGE), {
+      params,
+    });
+  }
+
+  updateInvitationTokenJudge(inviteCode, inviteStatus): Observable<IHackathonJudge> {
+    return this.http.put<IHackathonJudge>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_INVITATION_TOKEN_JUDGE),
+      {
+        invite_code: inviteCode,
+        invite_status: inviteStatus,
+      },
+    );
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {

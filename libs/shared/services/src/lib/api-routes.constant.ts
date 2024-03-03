@@ -801,8 +801,10 @@ export const API_ROUTES = {
     SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
     CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
     CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
-    GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details',
-    UPDATE_STATUS: 'api/v2/hackathons/update_status',
+    GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details', //GET
+    UPDATE_STATUS: 'api/v2/hackathons/update_status', //PUT
+    VERIFY_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/verify_invitation_token_judge', //GET
+    UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET

@@ -1,4 +1,5 @@
-import { IAttachedFile } from '@commudle/shared-models';
+import { IAttachedFile, ICommunity } from '@commudle/shared-models';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 export interface IHackathon {
   id: number;
@@ -28,6 +29,8 @@ export interface IHackathon {
   min_number_of_teammates: number;
   max_number_of_teammates: number;
   status: EHackathonStatus;
+  community: ICommunity;
+  community_group: ICommunityGroup;
 }
 
 export enum EParticipateTypes {

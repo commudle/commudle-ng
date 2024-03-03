@@ -12,4 +12,12 @@ export interface IHackathonJudge {
   designation: string;
   username: string;
   profile_image?: IAttachedFile;
+  invite_status: EInvitationStatus;
+}
+
+export enum EInvitationStatus {
+  INVITED = 0,
+  ACCEPTED = 1,
+  REMOVED = 2,
+  REJECTED = 3,
 }
