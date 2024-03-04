@@ -16,8 +16,8 @@ export interface IHackathonJudge {
 }
 
 export enum EInvitationStatus {
-  INVITED = 0,
-  ACCEPTED = 1,
-  REMOVED = 2,
-  REJECTED = 3,
+  INVITED = 'invited',
+  ACCEPTED = 'accepted',
+  REMOVED = 'removed',
+  REJECTED = 'rejected',
 }

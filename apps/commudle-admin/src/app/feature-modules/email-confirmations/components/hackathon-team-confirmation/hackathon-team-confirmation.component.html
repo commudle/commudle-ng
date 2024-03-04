@@ -1,5 +1,5 @@
 <div class="page-padding" *ngIf="this.showPageDetails">
-  <div *ngIf="judge && judge.invite_status === EInvitationStatus.ACCEPTED">
+  <div *ngIf="hur && hur.invite_status === EInvitationStatus.ACCEPTED">
     <nb-card>
       <nb-card-body>
         <div class="status">
@@ -50,7 +50,7 @@
     </nb-card>
   </div>
 
-  <div *ngIf="judge && judge.invite_status === EInvitationStatus.REJECTED">
+  <div *ngIf="hur && hur.invite_status === EInvitationStatus.REJECTED">
     <nb-card>
       <nb-card-body>
         <div class="status">

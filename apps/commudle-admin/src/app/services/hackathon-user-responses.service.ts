@@ -66,4 +66,24 @@ export class HackathonUserResponsesService {
       { params },
     );
   }
+
+  verifyInvitationTokenHur(inviteCode): Observable<any> {
+    const params = new HttpParams().set('invite_code', inviteCode);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.VERIFY_INVITATION_TOKEN_HUR),
+      {
+        params,
+      },
+    );
+  }
+
+  updateInvitationTokenHur(inviteCode, inviteStatus): Observable<IHackathonUserResponse> {
+    return this.http.put<IHackathonUserResponse>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.UPDATE_INVITATION_TOKEN_HUR),
+      {
+        invite_code: inviteCode,
+        invite_status: inviteStatus,
+      },
+    );
+  }
 }

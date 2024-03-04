@@ -9,4 +9,12 @@ export interface IHackathonUserResponse extends IUser {
   track_id: number;
   project_description: string;
   user_email: string;
+  invite_status: EInvitationStatus;
+}
+
+export enum EInvitationStatus {
+  INVITED = 'invited',
+  ACCEPTED = 'accepted',
+  SELF_CREATED = 'self_created',
+  REJECTED = 'rejected',
 }

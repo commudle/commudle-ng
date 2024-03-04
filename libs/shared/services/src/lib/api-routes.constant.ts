@@ -840,6 +840,8 @@ export const API_ROUTES = {
     UPDATE_TEAM_DETAILS: 'api/v2/hackathon_user_response/update_team_details', //PUT
     UPDATE_PROJECT_DETAILS: 'api/v2/hackathon_user_response/update_project_details', //PUT
     GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
+    VERIFY_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/verify_invitation_token_hur', //GET
+    UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
   },
 
   ENTITY_UPDATES: {

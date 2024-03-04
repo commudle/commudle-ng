@@ -18,6 +18,10 @@
 
 <div class="intrested-members"></div>
 
-<div class="action" *ngIf="hrgId && !userTeamDetails">
+<!-- <div class="action" *ngIf="hrgId && !userTeamDetails">
+  <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+</div> -->
+
+<div class="action" *ngIf="hrgId">
   <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
 </div>
