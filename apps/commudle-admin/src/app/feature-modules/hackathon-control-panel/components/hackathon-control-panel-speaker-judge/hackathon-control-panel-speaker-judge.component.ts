@@ -134,7 +134,9 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     }
 
     this.hackathonService.createJudge(formData, this.hackathonSlug).subscribe((data: IHackathonJudge) => {
-      this.judges.unshift(data);
+      if (data) {
+        this.judges.unshift(data);
+      }
     });
   }
 
