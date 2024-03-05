@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { countries_details } from '@commudle/shared-services';
+import { NbDialogService } from '@commudle/theme';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
+import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
 
 @Component({
   selector: 'commudle-hackathon-prize-card',
@@ -13,7 +16,8 @@ export class HackathonPrizeCardComponent implements OnInit {
   @Output() destroyPrizeEvent: EventEmitter<number> = new EventEmitter();
   countryDetails = countries_details;
   prizeCurrencySymbol: any;
-  constructor() {}
+  hackathonUserResponses: IHackathonUserResponses[];
+  constructor(private nbDialogService: NbDialogService, private hackathonService: HackathonService) {}
 
   ngOnInit() {
     this.prizeCurrencySymbol = this.countryDetails.find(
@@ -27,5 +31,14 @@ export class HackathonPrizeCardComponent implements OnInit {
 
   deletePrize(hackathonPrizeId) {
     this.destroyPrizeEvent.emit(hackathonPrizeId);
+  }
+
+  openPrizeDistributionDialogBox(dialog) {
+    this.hackathonService.indexUserResponses(this.hackathonPrize.hackathon_id).subscribe((data) => {
+      if (data) {
+        this.hackathonUserResponses = data;
+      }
+    });
+    this.nbDialogService.open(dialog, {});
   }
 }

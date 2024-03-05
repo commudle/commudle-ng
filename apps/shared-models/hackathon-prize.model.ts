@@ -10,6 +10,7 @@ export interface IHackathonPrize {
   hackathon_track_id: number;
   currency_type: string;
   order: number;
+  hackathon_id: number;
   hackathon_track?: IHackathonTrack;
   currency_symbol?: string; //used for display currency symbol not related to any API call
 }

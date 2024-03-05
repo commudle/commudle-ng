@@ -18,7 +18,32 @@
       <div class="description" [innerHTML]="hackathonPrize.description"></div>
     </div>
     <div>
-      <button nbButton fullWidth status="primary">Add Winners</button>
+      <button nbButton fullWidth status="primary" (click)="openPrizeDistributionDialogBox(prizeDistributionDialogBox)">
+        Add Winners
+      </button>
     </div>
   </nb-card-body>
 </nb-card>
+
+<ng-template #prizeDistributionDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="prize-distribution-dialog-box">
+    <nb-card-header>
+      <span> {{ hackathonPrize.name }}{{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }} </span>
+      <button nbButton ghost shape="round" (click)="ref.close()">X</button>
+    </nb-card-header>
+    <nb-card-body>
+      <table>
+        <tr>
+          <th>Team Name</th>
+          <th>Round</th>
+          <th>Build/ Project Name</th>
+        </tr>
+        <tr *ngFor="let userResponse of hackathonUserResponses">
+          <td>{{ userResponse.team.name }}</td>
+          <td>{{ userResponse.team.round?.name }}</td>
+          <td>{{ userResponse.team.community_build?.name }}</td>
+        </tr>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
