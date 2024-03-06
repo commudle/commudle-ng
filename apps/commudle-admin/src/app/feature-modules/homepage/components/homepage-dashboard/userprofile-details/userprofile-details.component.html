@@ -33,20 +33,17 @@
       </div>
       <p class="builds-published-count">{{ userProfileDetails.published_community_builds_count }}</p>
     </div>
-    <div *ngIf="userProfileDetails.events_attended_count > 0" class="attended-events">
+    <div class="attended-events">
       <div class="attended-events-text">
         <p class="icon"><fa-icon [icon]="faCalendarCheck"></fa-icon></p>
         <p *ngIf="userProfileDetails.events_attended_count > 0">Attended Events</p>
+        <a *ngIf="userProfileDetails.events_attended_count <= 0" class="link-to-event" [routerLink]="['/events']"
+          ><p>Checkout Latest Events</p></a
+        >
       </div>
-      <p class="attended-events-count">
+      <p *ngIf="userProfileDetails.events_attended_count > 0" class="attended-events-count">
         {{ userProfileDetails.events_attended_count }}
       </p>
-    </div>
-    <div *ngIf="userProfileDetails.events_attended_count < 0" class="attended-events">
-      <div class="attended-events-text">
-        <p class="icon"><fa-icon [icon]="faCalendarCheck"></fa-icon></p>
-        <a class="link-to-event" [routerLink]="['/events']"><p>Checkout Latest Events</p></a>
-      </div>
     </div>
     <div class="content-published">
       <div class="content-published-text">
