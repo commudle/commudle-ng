@@ -1,7 +1,7 @@
 .home-component {
   .banner {
     .banner-image {
-      @apply com-w-full md:com-min-h-[320px] com-object-contain md:com-w-[1262px];
+      @apply com-w-full md:com-min-h-[320px] com-object-contain md:com-w-[1262px] com-bg-tWhite;
     }
 
     .edit-button {
@@ -30,7 +30,7 @@
       @apply lg:com-h-44 lg:com-w-44;
 
       .logo {
-        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl;
+        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl com-bg-tWhite;
         @apply md:com-mr-20;
         @apply lg:com-h-44 lg:com-w-44;
       }
@@ -146,7 +146,7 @@
   .community-details {
     @apply com-flex com-space-x-3;
     .mini-logo-section {
-      @apply com-w-10 com-h-10 com-rounded-lg com-border com-border-gray-200 com-border-solid;
+      @apply com-w-10 com-h-10 com-rounded-lg com-border com-border-gray-200 com-border-solid com-bg-tWhite;
       .mini-logo {
         @apply com-my-0 com-mx-auto com-h-10 com-w-10 com-object-contain com-rounded-lg com-overflow-hidden com-px-1;
       }

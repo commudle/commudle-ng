@@ -30,6 +30,11 @@ p {
       &.is-selected,
       &:hover {
         @apply com-bg-slate-200;
+        .details {
+          .name {
+            @apply com-text-tYankees-Blue;
+          }
+        }
       }
 
       .photo {
@@ -40,7 +45,7 @@ p {
         @apply com-w-full;
 
         .name {
-          @apply com-text-sm com-text-slate-900;
+          @apply com-text-sm com-text-gray-900;
         }
 
         .model {
