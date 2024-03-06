@@ -11,46 +11,6 @@
         </select>
       </div>
 
-      <div class="form-groups-heading">Open & Close Dates</div>
-      <div class="!com-grid com-grid-cols-1 !com-gap-4 md:com-grid-cols-2">
-        <!-- Hackathon Begins -->
-        <div>
-          <label for="start_date">Hackathon Begins</label>
-          <input formControlName="start_date" id="start_date" type="datetime-local" nbInput fullWidth />
-          <commudle-alert
-            *ngIf="
-              hackathonDatesForm.controls['start_date'].invalid &&
-              hackathonDatesForm.controls['start_date'].hasError('required') &&
-              hackathonDatesForm.controls['start_date'].touched
-            "
-            [error]="true"
-            errorMessage="Hackathon Begins is required"
-          ></commudle-alert>
-        </div>
-
-        <!-- Submission Deadline-->
-        <div>
-          <label for="end_date">Submission Deadline</label>
-          <input
-            formControlName="end_date"
-            id="end_date"
-            type="datetime-local"
-            nbInput
-            fullWidth
-            [min]="hackathonDatesForm.controls['start_date'].value"
-          />
-          <commudle-alert
-            *ngIf="
-              hackathonDatesForm.controls['end_date'].invalid &&
-              hackathonDatesForm.controls['end_date'].hasError('required') &&
-              hackathonDatesForm.controls['end_date'].touched
-            "
-            [error]="true"
-            errorMessage="Submission Deadline is required"
-          ></commudle-alert>
-        </div>
-      </div>
-
       <div class="form-groups-heading">Application Dates</div>
       <div class="!com-grid com-grid-cols-1 !com-gap-4 md:com-grid-cols-2">
         <!-- Application Opens -->
@@ -62,8 +22,6 @@
             type="datetime-local"
             nbInput
             fullWidth
-            [min]="hackathonDatesForm.controls['start_date'].value"
-            [max]="hackathonDatesForm.controls['end_date'].value"
           />
           <commudle-alert
             *ngIf="
@@ -85,9 +43,6 @@
             type="datetime-local"
             nbInput
             fullWidth
-            [min]="hackathonDatesForm.controls['application_start_date'].value"
-            [min]="hackathonDatesForm.controls['start_date'].value"
-            [max]="hackathonDatesForm.controls['end_date'].value"
           />
           <commudle-alert
             *ngIf="
@@ -101,13 +56,65 @@
         </div>
       </div>
 
+      <div class="form-groups-heading">Open & Close Dates</div>
+      <div class="!com-grid com-grid-cols-1 !com-gap-4 md:com-grid-cols-2">
+        <!-- Hackathon Begins -->
+        <div>
+          <label for="start_date">Hackathon Begins</label>
+          <input
+            formControlName="start_date"
+            id="start_date"
+            type="datetime-local"
+            nbInput
+            fullWidth
+            [min]="this.hackathonDatesForm.controls['application_start_date'].value"
+            [max]="this.hackathonDatesForm.controls['application_end_date'].value"
+            (change)="validateStartsDates()"
+          />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['start_date'].invalid &&
+              hackathonDatesForm.controls['start_date'].hasError('required') &&
+              hackathonDatesForm.controls['start_date'].touched
+            "
+            [error]="true"
+            errorMessage="Hackathon Begins is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- Submission Deadline-->
+        <div>
+          <label for="end_date">Hackathon Ends</label>
+          <input
+            formControlName="end_date"
+            id="end_date"
+            type="datetime-local"
+            nbInput
+            fullWidth
+            [min]="this.hackathonDatesForm.controls['start_date'].value"
+            [min]="this.hackathonDatesForm.controls['application_start_date'].value"
+            [max]="this.hackathonDatesForm.controls['application_end_date'].value"
+            (change)="validateEndsDates()"
+          />
+          <commudle-alert
+            *ngIf="
+              hackathonDatesForm.controls['end_date'].invalid &&
+              hackathonDatesForm.controls['end_date'].hasError('required') &&
+              hackathonDatesForm.controls['end_date'].touched
+            "
+            [error]="true"
+            errorMessage="Submission Deadline is required"
+          ></commudle-alert>
+        </div>
+      </div>
+
       <button
         class="save-button"
         nbButton
         (click)="createOrUpdate()"
         fullWidth
         status="primary"
-        [disabled]="hackathonDatesForm.invalid || !hackathonDatesForm.dirty"
+        [disabled]="hackathonDatesForm.invalid || !hackathonDatesForm.dirty || invalidFormFields"
       >
         Save
       </button>

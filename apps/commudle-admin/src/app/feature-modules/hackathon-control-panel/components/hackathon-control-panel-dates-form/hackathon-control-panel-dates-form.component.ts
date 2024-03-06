@@ -22,6 +22,7 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
 
   allTimeZones;
   userTimeZone;
+  invalidFormFields = false;
 
   constructor(
     private fb: FormBuilder,
@@ -88,5 +89,27 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
 
   convertDateToLocal(submissionDeadlineLocal) {
     return new Date(submissionDeadlineLocal).toISOString();
+  }
+
+  validateStartsDates() {
+    const applicationStartDate = new Date(this.hackathonDatesForm.controls['application_start_date'].value);
+    const startDateTime = new Date(this.hackathonDatesForm.controls['start_date'].value);
+    if (startDateTime < applicationStartDate) {
+      this.invalidFormFields = true;
+      this.toastrService.warningDialog('Invalid: Hackathon start date is earlier than application start date');
+    } else {
+      this.invalidFormFields = false;
+    }
+  }
+
+  validateEndsDates() {
+    const endDateTime = new Date(this.hackathonDatesForm.controls['end_date'].value);
+    const applicationEndDate = new Date(this.hackathonDatesForm.controls['application_end_date'].value);
+    if (endDateTime > applicationEndDate) {
+      this.invalidFormFields = true;
+      this.toastrService.warningDialog('Invalid: Hackathon end date is later than application end date');
+    } else {
+      this.invalidFormFields = false;
+    }
   }
 }
