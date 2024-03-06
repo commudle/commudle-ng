@@ -25,4 +25,8 @@
 
 .toggle-dark-mode {
   @apply com-cursor-pointer;
+
+  .toggle-btn {
+    @apply com-bg-gray-200 com-h-auto #{!important};
+  }
 }

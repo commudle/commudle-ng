@@ -44,8 +44,12 @@
 
     <div class="user-login">
       <div class="toggle-dark-mode">
-        <fa-icon (click)="toggleDarkMode(true)" *ngIf="!isDarkMode" [icon]="faMoon"></fa-icon>
-        <fa-icon (click)="toggleDarkMode(false)" *ngIf="isDarkMode" [icon]="faSun"></fa-icon>
+        <button *ngIf="!isDarkMode" (click)="toggleDarkMode(true)" class="toggle-btn" nbButton>
+          <fa-icon [icon]="faMoon"></fa-icon>
+        </button>
+        <button *ngIf="isDarkMode" (click)="toggleDarkMode(false)" class="toggle-btn" nbButton>
+          <fa-icon [icon]="faSun"></fa-icon>
+        </button>
       </div>
       <div>
         <img
