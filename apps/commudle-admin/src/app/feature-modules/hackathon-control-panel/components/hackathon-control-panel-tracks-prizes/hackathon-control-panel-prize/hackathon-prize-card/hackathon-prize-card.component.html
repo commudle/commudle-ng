@@ -34,18 +34,29 @@
     <nb-card-body>
       <table>
         <tr>
-          <th>Team Name</th>
-          <th>Round</th>
-          <th>Build/ Project Name</th>
-          <th>Prize</th>
+          <th width="30%">Team Name</th>
+          <th width="10%">Round</th>
+          <th width="40%">Build/ Project Name</th>
+          <th width="20%">Prize</th>
         </tr>
         <tr
           *ngFor="let userResponse of hackathonUserResponses; let i = index"
           (click)="addWinner(userResponse.team, i)"
+          [ngClass]="{ winner: userResponse.team.hackathon_winners.length > 0 }"
         >
           <td>{{ userResponse.team.name }}</td>
           <td>{{ userResponse.team.round?.name }}</td>
           <td>{{ userResponse.team.community_build?.name }}</td>
+          <td>
+            <div *ngFor="let hackathonWinner of userResponse.team.hackathon_winners; let wi = index">
+              <span (click)="$event.stopPropagation()" class="prizes">
+                <span>
+                  {{ hackathonWinner.hackathon_prize.name }}
+                </span>
+                <fa-icon [icon]="icons.faXmark" (click)="removeWinner(hackathonWinner.id, i, wi)"></fa-icon>
+              </span>
+            </div>
+          </td>
         </tr>
       </table>
     </nb-card-body>

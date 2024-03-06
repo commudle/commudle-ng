@@ -875,5 +875,6 @@ export const API_ROUTES = {
 
   HACKATHON_WINNER: {
     ADD_WINNER: 'api/v2/hackathon_winner/add_winner', //PUT
+    REMOVE_WINNER: 'api/v2/hackathon_winner', //DELETE
   },
 };

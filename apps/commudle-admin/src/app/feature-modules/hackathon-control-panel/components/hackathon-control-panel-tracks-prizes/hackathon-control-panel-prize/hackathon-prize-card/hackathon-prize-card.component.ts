@@ -1,3 +1,4 @@
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { countries_details } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
@@ -7,7 +8,6 @@ import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-respo
 import { IHackathonWinner } from 'apps/shared-models/hackathon-winner.model';
 import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 import { HackathonWinnerService } from 'apps/commudle-admin/src/app/services/hackathon-winner.service';
-
 @Component({
   selector: 'commudle-hackathon-prize-card',
   templateUrl: './hackathon-prize-card.component.html',
@@ -20,6 +20,9 @@ export class HackathonPrizeCardComponent implements OnInit {
   countryDetails = countries_details;
   prizeCurrencySymbol: any;
   hackathonUserResponses: IHackathonUserResponses[];
+  icons = {
+    faXmark,
+  };
   constructor(
     private nbDialogService: NbDialogService,
     private hackathonService: HackathonService,
@@ -53,7 +56,17 @@ export class HackathonPrizeCardComponent implements OnInit {
     this.hackathonWinnerService
       .addHackathonWinner(this.hackathonPrize.id, team.id)
       .subscribe((data: IHackathonWinner) => {
-        // this.hackathonUserResponses[index].team.hackathon_winners.push(data);
+        this.hackathonUserResponses[index].team.hackathon_winners.push(data);
       });
+  }
+
+  removeWinner(winnerId, userResponseIndex, winnerIndex) {
+    this.hackathonWinnerService.removeHackathonWinner(winnerId).subscribe((data) => {
+      if (data) {
+        const team = this.hackathonUserResponses[userResponseIndex].team;
+        const winners = team.hackathon_winners;
+        winners.splice(winnerIndex, 1);
+      }
+    });
   }
 }

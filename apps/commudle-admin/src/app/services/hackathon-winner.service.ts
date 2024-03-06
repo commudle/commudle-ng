@@ -17,4 +17,11 @@ export class HackathonWinnerService {
       hackathon_team_id: hackathonTeamId,
     });
   }
+
+  removeHackathonWinner(hackathonWinnerId): Observable<boolean> {
+    const params = new HttpParams().set('hackathon_winner_id', hackathonWinnerId);
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_WINNER.REMOVE_WINNER), {
+      params,
+    });
+  }
 }
