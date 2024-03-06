@@ -33,7 +33,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
-      order: ['', Validators.required],
+      order: ['', Validators.required, Validators.min(0)],
     });
   }
 

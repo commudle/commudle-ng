@@ -5,12 +5,12 @@
       <div class="form-groups-heading">Hackathon's Information</div>
       <!-- Website -->
       <div>
-        <label for="website">Hackathon's Name</label>
+        <label for="website">Hackathon's website</label>
         <input formControlName="website" id="website" type="text" nbInput fullWidth placeholder="Website" />
         <commudle-alert
           *ngIf="hackathonContactForm.get('website').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 
@@ -62,14 +62,6 @@
           [error]="true"
           errorMessage="Phone Number is required"
         ></commudle-alert>
-        <commudle-alert
-          *ngIf="
-            hackathonContactForm.get('phone_number').hasError('maxlength') ||
-            hackathonContactForm.get('phone_number').hasError('minlength')
-          "
-          [error]="true"
-          errorMessage="Phone Number is not valid"
-        ></commudle-alert>
       </div>
 
       <div class="form-groups-heading">Social Links</div>
@@ -89,7 +81,7 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('twitter').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 
@@ -109,7 +101,7 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('facebook').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 
@@ -129,7 +121,7 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('instagram').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 
@@ -149,12 +141,12 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('linkedIn').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 
       <!-- discord -->
-      <div>
+      <!-- <div>
         <label for="discord">Discord</label>
         <input formControlName="discord" id="discord" type="text" nbInput fullWidth placeholder="Discord" />
         <commudle-alert
@@ -169,12 +161,12 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('discord').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
-      </div>
+      </div> -->
 
       <!-- slack -->
-      <div>
+      <!-- <div>
         <label for="slack">Slack</label>
         <input formControlName="slack" id="slack" type="text" nbInput fullWidth placeholder="Slack" />
         <commudle-alert
@@ -189,9 +181,9 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('slack').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
-      </div>
+      </div> -->
 
       <!-- github -->
       <div>
@@ -209,7 +201,7 @@
         <commudle-alert
           *ngIf="hackathonContactForm.get('github').hasError('invalidUrl')"
           [error]="true"
-          errorMessage="invalid URL enter"
+          errorMessage="Enter complete URL"
         ></commudle-alert>
       </div>
 

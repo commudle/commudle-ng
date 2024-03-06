@@ -9,7 +9,7 @@
             <input
               (change)="onFileChange($event)"
               type="file"
-              accept="image/*"
+              accept="image/png, image/jpeg, image/jpg"
               class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-20 com-z-50"
             />
             <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
@@ -133,7 +133,7 @@
         <commudle-alert
           *ngIf="hackathonForm.controls['number_of_participants'].hasError('min')"
           [error]="true"
-          errorMessage="Number of participants is always greater than 0"
+          errorMessage="Number of participants should be greater than zero"
         ></commudle-alert>
       </div>
 
@@ -294,7 +294,7 @@
         status="primary"
         [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
       >
-        Save
+        Save & Continue
       </button>
     </form>
   </nb-card-body>

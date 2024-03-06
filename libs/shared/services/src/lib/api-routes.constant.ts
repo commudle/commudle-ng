@@ -872,4 +872,8 @@ export const API_ROUTES = {
       INDEX: 'api/v2/note/public',
     },
   },
+
+  HACKATHON_WINNER: {
+    ADD_WINNER: 'api/v2/hackathon_winner/add_winner', //PUT
+  },
 };

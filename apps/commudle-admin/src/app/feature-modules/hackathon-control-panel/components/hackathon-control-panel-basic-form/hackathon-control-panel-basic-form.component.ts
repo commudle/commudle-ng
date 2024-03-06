@@ -121,6 +121,19 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
 
   onFileChange(event) {
     const file = (event.target as HTMLInputElement).files[0];
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (!allowedTypes.includes(file.type)) {
+      this.toastrService.warningDialog('Invalid file type. Please select a JPEG, JPG, or PNG file.');
+      return;
+    }
+
+    // Validate file size
+    const maxSizeInBytes = 10 * 1024 * 1024; // 10 MB
+    if (file.size > maxSizeInBytes) {
+      this.toastrService.warningDialog('File size exceeds 10 MB limit.');
+
+      return;
+    }
     this.hackathonForm.patchValue({
       banner_image: file,
     });

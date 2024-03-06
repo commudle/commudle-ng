@@ -39,7 +39,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       work_experience_months: false,
       education: false,
       phone: false,
-      email: false,
+      email: true,
       twitter: false,
       linkedin: false,
       dribbble: false,

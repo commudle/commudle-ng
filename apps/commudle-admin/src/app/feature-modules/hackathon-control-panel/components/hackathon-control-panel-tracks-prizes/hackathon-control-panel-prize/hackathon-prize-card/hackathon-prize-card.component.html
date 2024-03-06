@@ -37,8 +37,12 @@
           <th>Team Name</th>
           <th>Round</th>
           <th>Build/ Project Name</th>
+          <th>Prize</th>
         </tr>
-        <tr *ngFor="let userResponse of hackathonUserResponses">
+        <tr
+          *ngFor="let userResponse of hackathonUserResponses; let i = index"
+          (click)="addWinner(userResponse.team, i)"
+        >
           <td>{{ userResponse.team.name }}</td>
           <td>{{ userResponse.team.round?.name }}</td>
           <td>{{ userResponse.team.community_build?.name }}</td>

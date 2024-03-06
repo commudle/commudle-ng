@@ -5,6 +5,7 @@ import { ToastrService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { Subscription } from 'rxjs';
+import { environment } from '@commudle/shared-environments';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-contact-details-form',
@@ -18,6 +19,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
   countriesDetails = countries_details;
   contactInfo: IContactInfo;
   hackathonSlug = '';
+  communitySlug = '';
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +31,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
       website: ['', this.urlValidator],
       email: ['', [Validators.required, Validators.email]],
       country_code: [91, Validators.required],
-      phone_number: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
+      phone_number: ['', [Validators.required]],
       twitter: ['', this.urlValidator],
       facebook: ['', this.urlValidator],
       instagram: ['', this.urlValidator],
@@ -43,6 +45,7 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.hackathonSlug = params.get('hackathon_id');
+      this.communitySlug = params.get('community_id');
       this.fetchHackathonContactDetails(params.get('hackathon_id'));
     });
   }
@@ -71,6 +74,10 @@ export class HackathonControlPanelContactDetailsFormComponent implements OnInit 
             discord: data.discord,
             slack: data.slack,
             github: data.github,
+          });
+        } else {
+          this.hackathonContactForm.patchValue({
+            website: 'https://www.commudle.com/communities/' + this.communitySlug + '/hackathons/' + this.hackathonSlug,
           });
         }
       }),

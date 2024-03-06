@@ -48,11 +48,11 @@
           <label for="tier_priority">Tier Priority*</label>
           <br />
           <select name="tier_priority" formControlName="tier_priority">
-            <option [value]="1">1 (Higher)</option>
+            <option [value]="1">1 (Highest)</option>
             <option [value]="2">2</option>
             <option [value]="3">3</option>
             <option [value]="4">4</option>
-            <option [value]="5">5 (Lower)</option>
+            <option [value]="5">5 (Lowest)</option>
           </select>
           <!-- <input placeholder="Tier name" nbInput fullWidth formControlName="tier_priority" type="number" /> -->
           <commudle-alert
@@ -68,7 +68,7 @@
 
         <!-- name -->
         <div>
-          <label for="name">Name*</label>
+          <label for="name">Sponsor Name*</label>
           <input placeholder="Name" nbInput fullWidth formControlName="name" type="text" />
           <commudle-alert
             *ngIf="
@@ -166,7 +166,7 @@
           <commudle-alert
             *ngIf="sponsorForm.get('link').hasError('invalidUrl')"
             [error]="true"
-            errorMessage="invalid URL enter"
+            errorMessage="Enter complete URL"
           ></commudle-alert>
         </div>
       </form>

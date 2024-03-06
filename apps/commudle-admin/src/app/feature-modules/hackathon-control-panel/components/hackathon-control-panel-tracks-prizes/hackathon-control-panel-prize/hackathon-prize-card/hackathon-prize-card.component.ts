@@ -4,6 +4,9 @@ import { NbDialogService } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
+import { IHackathonWinner } from 'apps/shared-models/hackathon-winner.model';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { HackathonWinnerService } from 'apps/commudle-admin/src/app/services/hackathon-winner.service';
 
 @Component({
   selector: 'commudle-hackathon-prize-card',
@@ -17,7 +20,11 @@ export class HackathonPrizeCardComponent implements OnInit {
   countryDetails = countries_details;
   prizeCurrencySymbol: any;
   hackathonUserResponses: IHackathonUserResponses[];
-  constructor(private nbDialogService: NbDialogService, private hackathonService: HackathonService) {}
+  constructor(
+    private nbDialogService: NbDialogService,
+    private hackathonService: HackathonService,
+    private hackathonWinnerService: HackathonWinnerService,
+  ) {}
 
   ngOnInit() {
     this.prizeCurrencySymbol = this.countryDetails.find(
@@ -40,5 +47,13 @@ export class HackathonPrizeCardComponent implements OnInit {
       }
     });
     this.nbDialogService.open(dialog, {});
+  }
+
+  addWinner(team: IHackathonTeam, index: number) {
+    this.hackathonWinnerService
+      .addHackathonWinner(this.hackathonPrize.id, team.id)
+      .subscribe((data: IHackathonWinner) => {
+        // this.hackathonUserResponses[index].team.hackathon_winners.push(data);
+      });
   }
 }

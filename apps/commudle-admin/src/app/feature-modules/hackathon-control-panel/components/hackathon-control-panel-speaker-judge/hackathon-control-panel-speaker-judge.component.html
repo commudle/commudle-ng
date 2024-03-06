@@ -42,6 +42,12 @@
       </button>
     </nb-card-header>
     <nb-card-body>
+      <div class="com-mb-2">
+        <commudle-alert
+          [info]="true"
+          message="Changes made here will not change the profile of the user they will just be displayed on the hackathon page "
+        ></commudle-alert>
+      </div>
       <form [formGroup]="speakerRegistrationForm">
         <!-- profile image -->
         <div>
@@ -123,7 +129,7 @@
           <commudle-alert
             *ngIf="speakerRegistrationForm.get('twitter').hasError('invalidUrl')"
             [error]="true"
-            errorMessage="invalid URL enter"
+            errorMessage="Enter complete URL"
           ></commudle-alert>
         </div>
 
@@ -134,7 +140,7 @@
           <commudle-alert
             *ngIf="speakerRegistrationForm.get('linkedin').hasError('invalidUrl')"
             [error]="true"
-            errorMessage="invalid URL enter"
+            errorMessage="Enter complete URL"
           ></commudle-alert>
         </div>
 
@@ -145,7 +151,7 @@
           <commudle-alert
             *ngIf="speakerRegistrationForm.get('website').hasError('invalidUrl')"
             [error]="true"
-            errorMessage="invalid URL enter"
+            errorMessage="Enter complete URL"
           ></commudle-alert>
         </div>
       </form>

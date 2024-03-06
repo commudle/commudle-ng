@@ -21,6 +21,12 @@
               Profile Image
             </label>
 
+            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('email').value }">
+              <input type="checkbox" formControlName="email" />
+              <span class="checkmark"></span>
+              Email
+            </label>
+
             <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('designation').value }">
               <input type="checkbox" formControlName="designation" />
               <span class="checkmark"></span>
@@ -62,11 +68,6 @@
               <input type="checkbox" formControlName="phone" />
               <span class="checkmark"></span>
               Phone Number
-            </label>
-            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('email').value }">
-              <input type="checkbox" formControlName="email" />
-              <span class="checkmark"></span>
-              Email
             </label>
           </div>
         </div>
@@ -123,7 +124,7 @@
         </div>
 
         <div>
-          <div class="group-name">SCHWAGS</div>
+          <div class="group-name">GOODIES</div>
           <div class="group-values">
             <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('tshirt_size').value }">
               <input type="checkbox" formControlName="tshirt_size" />
