@@ -80,7 +80,7 @@ export const staticAssets = {
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2x1QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e8324303fd3f4f1df5a070d5ee27527de0fabf84/Community%20Logo%20Gradients.svg',
 
   iso_27001:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2FiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--97a087b48b3a1bfde5838275f5d3d3148b1f2067/iso27001logo.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2tRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--deedc02367ea26e9585081c611510af8813b54a2/ISO%2027001.svg',
 
   agencies_header_image:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOU1PQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4ffd0a7fb6d0f18fe75d41a2f35582dc930125dd/Agencies%20Header.png',
