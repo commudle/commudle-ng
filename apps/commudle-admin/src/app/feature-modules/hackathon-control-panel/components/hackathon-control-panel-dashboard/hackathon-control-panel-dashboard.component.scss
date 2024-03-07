@@ -1,0 +1,68 @@
+.hackathon-details {
+  @apply com-p-8 com-bg-white com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+  > div {
+    @apply com-flex com-gap-4 com-items-center com-mt-2;
+    h1 {
+      @apply com-text-3xl com-m-0;
+    }
+    .badge {
+      @apply com-py-2 com-px-3 com-rounded-[32px] com-border com-border-solid com-border-purple-700 com-bg-purple-50;
+      p {
+        @apply com-m-0 com-text-purple-700 com-text-base;
+      }
+    }
+  }
+}
+
+.sidebar {
+  @apply com-w-80 com-sticky com-top-16 com-h-[calc(100vh-70px)];
+
+  a {
+    @apply com-text-inherit com-no-underline;
+  }
+  .action-buttons {
+    @apply com-py-4;
+    .back-admin {
+      @apply com-px-4;
+      .icon {
+        @apply com-text-[#8F9BB3];
+      }
+      .heading {
+        @apply com-text-xs com-text-[#8F9BB3];
+      }
+    }
+
+    .category-heading {
+      @apply com-text-sm com-font-semibold com-my-2 com-px-4;
+    }
+    .divided-line {
+      @apply com-border com-border-solid com-border-Bright-Gray;
+    }
+    .action-button {
+      @apply com-px-5 com-my-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
+      &.active {
+        @apply com-bg-Bright-Gray-Light;
+      }
+      .icon {
+        fa-icon {
+          @apply com-text-lg com-text-[#8F9BB3];
+        }
+      }
+      .action-button-name {
+        @apply com-text-sm com-font-light;
+      }
+    }
+
+    .action-button:hover {
+      @apply com-bg-Bright-Gray-Light;
+    }
+  }
+}
+
+a {
+  @apply com-flex com-gap-2 com-items-center com-py-1;
+}
+
+.router {
+  @apply com-w-full com-my-2 com-mx-4;
+}

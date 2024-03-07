@@ -20,7 +20,7 @@ import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 import { CommunityChannelsAndForumsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-channels-and-forums/community-channels-and-forums.component';
-
+import { AdminCommunityHackathonComponent } from './components/admin-community-hackathon/admin-community-hackathon.component';
 const routes = [
   {
     path: 'new',
@@ -66,6 +66,15 @@ const routes = [
       {
         path: 'payments',
         component: CommunityPaymentsComponent,
+      },
+      {
+        path: 'hackathons',
+        children: [
+          {
+            path: '',
+            component: AdminCommunityHackathonComponent,
+          },
+        ],
       },
       {
         path: 'pages',

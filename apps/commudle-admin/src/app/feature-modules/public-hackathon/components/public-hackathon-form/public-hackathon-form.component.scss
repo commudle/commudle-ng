@@ -1,0 +1,26 @@
+.spinner {
+  @apply com-min-h-[50dvh] com-flex com-justify-center com-items-center;
+}
+.details-section {
+  @apply com-flex com-justify-between com-items-center com-py-0;
+  .details {
+    @apply com-flex com-gap-3 com-items-center;
+    .hackathon-name {
+      @apply com-text-Yankees-Blue com-text-4xl com-font-bold;
+    }
+  }
+  .social-links {
+    @apply com-flex com-gap-6 com-items-center;
+    a {
+      @apply com-text-xl com-w-9 com-h-9 com-grid com-items-center com-justify-center com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-text-primary-500 hover:com-shadow;
+    }
+  }
+}
+
+nb-stepper {
+  ::ng-deep {
+    .step-content {
+      @apply com-px-0;
+    }
+  }
+}

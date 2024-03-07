@@ -1,0 +1,27 @@
+nb-card {
+  @apply com-h-52;
+  nb-card-body {
+    @apply com-px-3 com-flex com-flex-col com-justify-between;
+    .upper-section {
+      @apply com-flex com-gap-3 com-mb-4;
+      .logo {
+        @apply com-w-14 com-h-14;
+        img {
+          @apply com-w-full com-h-full com-object-contain;
+        }
+      }
+      .name-website {
+        @apply com-w-[calc(100%-4rem)];
+        .name {
+          @apply com-my-2 com-flex com-justify-between;
+          fa-icon {
+            @apply com-text-red-500 com-text-xl com-cursor-pointer;
+          }
+        }
+      }
+    }
+    .description {
+      @apply com-line-clamp-3;
+    }
+  }
+}

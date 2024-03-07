@@ -1,0 +1,141 @@
+<div (click)="openPrizeFormDialogBox(addPrizeDialogBox)" class="add-prize-button">
+  <fa-icon [icon]="icons.faPlus"></fa-icon>
+  <br />
+  <span>Add Prize</span>
+</div>
+
+<div class="hackathon-prize-cards">
+  <div *ngFor="let hackathonPrize of hackathonPrizes; let i = index">
+    <commudle-hackathon-prize-card
+      [hackathonPrize]="hackathonPrize"
+      (editPrizeEvent)="openPrizeFormDialogBox(addPrizeDialogBox, $event, i)"
+      (destroyPrizeEvent)="confirmDeleteDialogBox(deletePrizeDilaogBox, $event, i)"
+    ></commudle-hackathon-prize-card>
+  </div>
+</div>
+
+<ng-template #addPrizeDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="prize-form">
+    <nb-card-header>
+      <span> {{ data.prize ? 'Edit Prize' : 'New Prize' }}</span>
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); prizeForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="prizeForm">
+        <!-- name -->
+        <div>
+          <label for="name">Name*</label>
+          <input type="text" id="name" nbInput fullWidth formControlName="name" placeholder="Name" />
+        </div>
+
+        <!-- hackathon_track_id -->
+        <div>
+          <label for="hackathon_track_id">Select Track</label>
+          <br />
+          <select
+            class="!com-w-full"
+            formControlName="hackathon_track_id"
+            name="hackathon_track_id"
+            id="hackathon_track_id"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': prizeForm.get('hackathon_track_id').value === null
+            }"
+          >
+            <option selected disabled [value]="null">Select Track</option>
+            <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
+          </select>
+        </div>
+
+        <!-- order -->
+        <div>
+          <label for="order">Order</label>
+          <br />
+          <select
+            class="!com-w-full"
+            formControlName="order"
+            name="order"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': prizeForm.get('order').value === null
+            }"
+          >
+            <option selected disabled [value]="null">Select Order</option>
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+          </select>
+        </div>
+
+        <!-- prize_amount -->
+        <div>
+          <label for="prize_amount">Prize Amount*</label>
+          <div class="prize-amount">
+            <select name="currency_type" id="currency_type" formControlName="currency_type">
+              <option selected [value]="countryDetails[102].currency">
+                {{ countryDetails[102].symbol }}({{ countryDetails[102].currency }})
+              </option>
+              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.currency">
+                {{ countryDetail.symbol }}({{ countryDetail.currency }})
+              </option>
+            </select>
+            <input type="text" id="prize_amount" nbInput fullWidth formControlName="prize_amount" placeholder="100" />
+          </div>
+        </div>
+
+        <!-- no_of_winners -->
+        <div>
+          <label for="no_of_winners">Number of winners*</label>
+          <input
+            type="number"
+            id="no_of_winners"
+            nbInput
+            fullWidth
+            formControlName="no_of_winners"
+            placeholder="No of winners"
+          />
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label for="description">Description*</label>
+          <editor
+            formControlName="description"
+            id="description"
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+            [init]="tinyMCE"
+          >
+          </editor>
+        </div>
+
+        <div>
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="data.prize ? updatePrize(data.prize.id, data.index) : createPrize(); ref.close()"
+            [disabled]="prizeForm.invalid || !prizeForm.dirty"
+          >
+            {{ data.prize ? 'update' : 'save' }}
+          </button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #deletePrizeDilaogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header>
+      <span>Confirm delete Prize</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete Prize?</nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="deletePrize(data.prizeId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

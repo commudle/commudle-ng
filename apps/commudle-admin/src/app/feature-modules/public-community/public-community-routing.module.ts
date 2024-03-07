@@ -10,6 +10,7 @@ import { MembersComponent } from './components/members/members.component';
 import { CustomPageComponent } from './components/custom-page/custom-page.component';
 import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
 import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
+import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/public-community-hackathons/public-community-hackathons.component';
 
 const routes = [
   {
@@ -66,6 +67,10 @@ const routes = [
       {
         path: 'notifications',
         component: PublicCommunityNotificationsComponent,
+      },
+      {
+        path: 'hackathons',
+        component: PublicCommunityHackathonsComponent,
       },
       {
         path: 'p/:page_slug',

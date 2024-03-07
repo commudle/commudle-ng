@@ -1,0 +1,28 @@
+<div class="create-button">
+  <button nbButton status="primary" [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', 'new']">
+    <fa-icon [icon]="icons.faPlus"></fa-icon>
+    Create New Hackathon
+  </button>
+</div>
+
+<section>
+  <table *ngIf="hackathons && hackathons.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>Creation Date</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let hackathon of hackathons">
+      <td>{{ hackathon.name }}</td>
+      <td>{{ moment(hackathon.created_at).format('dddd, MMM Do, YYYY') }}</td>
+      <td class="action-buttons">
+        <a [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', hackathon.slug]">
+          <button nbButton status="primary" size="tiny">Dashboard</button>
+        </a>
+        <a [routerLink]="['/communities', parentId, 'hackathons', hackathon.slug]" target="_blank">
+          <button nbButton status="primary" size="tiny">Public Page</button>
+        </a>
+      </td>
+    </tr>
+  </table>
+</section>

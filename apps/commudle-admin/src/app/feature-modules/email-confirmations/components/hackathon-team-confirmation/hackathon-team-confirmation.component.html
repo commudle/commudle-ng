@@ -1,0 +1,73 @@
+<div class="page-padding" *ngIf="this.showPageDetails">
+  <div *ngIf="hur && hur.invite_status === EInvitationStatus.ACCEPTED">
+    <nb-card>
+      <nb-card-body>
+        <div class="status">
+          <div class="role-status">
+            <nb-icon icon="person-add" status="success"></nb-icon>
+            <p>
+              <strong>{{ roleName | titlecase }}</strong
+              >! Welcome To Hackathon
+            </p>
+          </div>
+        </div>
+
+        <div class="details">
+          <div *ngIf="hackathon" class="event">
+            <p>
+              <a [routerLink]="['/communities', hackathon.community.slug, 'hackathons', hackathon.slug]">
+                Go To <strong>{{ hackathon.name }}</strong>
+              </a>
+            </p>
+          </div>
+          <div *ngIf="hackathon.community" class="community">
+            <div class="logo">
+              <img
+                alt="{{ hackathon.community.name }}"
+                src="{{ hackathon.community.logo_path }}"
+                title="{{ hackathon.community.name }}"
+              />
+            </div>
+            <p>
+              <a [routerLink]="['/communities', hackathon.community.slug]">{{ hackathon.community.name }}</a>
+            </p>
+          </div>
+
+          <div *ngIf="hackathon.community_group" class="community">
+            <div class="logo">
+              <img
+                alt="{{ hackathon.community_group.name }}"
+                src="{{ hackathon.community_group.logo }}"
+                title="{{ hackathon.community_group.name }}"
+              />
+            </div>
+            <p>
+              <a [routerLink]="['/orgs', hackathon.community_group.slug]">{{ hackathon.community_group.name }}</a>
+            </p>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div *ngIf="hur && hur.invite_status === EInvitationStatus.REJECTED">
+    <nb-card>
+      <nb-card-body>
+        <div class="status">
+          <div class="role-status">
+            <nb-icon icon="person-delete" status="danger"></nb-icon>&nbsp;
+            <h3>You have declined the invitation</h3>
+            <p class="com-mt-0">If you did this by mistake, please contact the person who sent you the invite</p>
+            <ul>
+              <li><a [routerLink]="['/']">Home Page</a></li>
+              <li><a [routerLink]="['/about']">About</a></li>
+              <li><a [routerLink]="['/jobs']">Jobs</a></li>
+              <li><a [routerLink]="['/communities']">Communities</a></li>
+            </ul>
+            <a></a>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

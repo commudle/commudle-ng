@@ -185,4 +185,9 @@ export class AppUsersService {
   getProfileStats(): Observable<IUserStat> {
     return this.http.get<IUserStat>(this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_STATS));
   }
+
+  getProfileByEmail(userEmail): Observable<IUser> {
+    const params = new HttpParams().set('user_email', userEmail);
+    return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_USER_BY_EMAIL), { params });
+  }
 }

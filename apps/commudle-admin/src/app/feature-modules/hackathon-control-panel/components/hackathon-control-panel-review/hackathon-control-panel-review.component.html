@@ -1,0 +1,238 @@
+<nb-card>
+  <nb-card-body>
+    <table>
+      <tr>
+        <th width="500px">Name</th>
+        <th width="200px">Updates</th>
+        <th width="200px">Note</th>
+        <th>Application Status</th>
+      </tr>
+      <tr
+        *ngFor="let userResponse of userResponses; let i = index"
+        (click)="openDialogBox(userResponseDetailsDialogBox, userResponse.team.id, i)"
+        class="com-cursor-pointer"
+      >
+        <td class="name">
+          <div class="team-details">
+            <div class="team-name">
+              {{ userResponse.team.name }}
+            </div>
+            <div class="date">
+              {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
+            </div>
+          </div>
+          <div *ngIf="userResponse.team.round" class="round-name">
+            {{ userResponse.team.round?.name }}
+          </div>
+        </td>
+
+        <td class="updates">
+          <div *ngIf="userResponse.team.entity_updates.length > 0">
+            <span class="details">{{
+              userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details
+            }}</span>
+            <br />
+            <span
+              class="timeago"
+              title="{{
+                moment(userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].created_at).format(
+                  'dddd Do MMM, YYYY h:mm A'
+                )
+              }}"
+            >
+              {{
+                moment(
+                  userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].created_at
+                ).fromNow()
+              }}
+            </span>
+          </div>
+        </td>
+        <td class="notes">
+          <div *ngIf="userResponse.team.notes.length > 0">
+            <span class="details">{{ userResponse.team.notes[userResponse.team.notes.length - 1].text }}</span>
+            <span class="notes-count"> {{ userResponse.team.notes.length - 1 }} Notes </span>
+          </div>
+        </td>
+        <td (click)="$event.stopPropagation()" class="com-cursor-pointer">
+          <div
+            [class]="EHackathonRegistrationStatusColor[userResponse.team.registration_status]"
+            class="select-wrapper"
+          >
+            <select
+              (change)="optionChanged($event, userResponse.team.id, i)"
+              [(ngModel)]="userResponse.team.registration_status"
+              [class]="EHackathonRegistrationStatusColor[userResponse.team.registration_status]"
+            >
+              <option
+                *ngFor="let registrationStatus of EHackathonRegistrationStatus | keyvalue"
+                [value]="registrationStatus.value"
+              >
+                {{ registrationStatus.value | titlecase }}
+              </option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #userResponseDetailsDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="response-dialog-box">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <div class="heading">
+        <span>{{ data.team.name }}</span>
+        <div class="project-submit" *ngIf="data.team.community_build">Project Submitted</div>
+      </div>
+      <button nbButton ghost (click)="ref.close()" shape="round">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="action-buttons">
+        <button
+          nbButton
+          status="primary"
+          fullWidth
+          (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
+        >
+          Accepted
+        </button>
+        <button
+          nbButton
+          status="danger"
+          fullWidth
+          (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
+        >
+          Reject
+        </button>
+        <button
+          nbButton
+          status="warning"
+          fullWidth
+          (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
+        >
+          Waitlist
+        </button>
+      </div>
+      <div
+        class="round-select"
+        *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED && hackathonRounds.length > 0"
+      >
+        <label>Round:</label>
+        <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
+          <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+            {{ hackathonRound.name }}
+          </option>
+        </select>
+      </div>
+
+      <div [formGroup]="notesForm" class="notes-form">
+        <div formArrayName="note" class="field">
+          <label>Notes: </label>
+          <div *ngIf="notes && notes.length > 0">
+            <div *ngFor="let note of notes">
+              <textarea readonly fullWidth nbInput [value]="note.text"></textarea>
+            </div>
+          </div>
+          <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
+            <div [formGroupName]="i" class="note">
+              <textarea formControlName="value" fullWidth nbInput placeholder="Notes" required></textarea>
+              <fa-icon (click)="removeNote(i)" class="clickable" [icon]="faXmark" status="danger"></fa-icon>
+            </div>
+            <span
+              *ngIf="
+                notesList.controls[i].get('value').touched &&
+                notesList.controls[i].get('value').invalid &&
+                notesList.controls[i].get('value').errors.required
+              "
+            >
+              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            </span>
+          </div>
+          <button (click)="addNote()" class="add-button" nbButton status="warning">
+            <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
+            Add Note
+          </button>
+          <button
+            (click)="updateNotes(data.team.id)"
+            class="add-button"
+            nbButton
+            status="primary"
+            [disabled]="notesList.invalid"
+          >
+            Post Note
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="data.team.entity_updates.length > 0">
+        <label>Updates:</label>
+        <div *ngFor="let update of data.team.entity_updates">
+          <textarea nbInput fullWidth readonly [value]="update.details"></textarea>
+        </div>
+      </div>
+
+      <div *ngIf="selectedUserDetails.project_description">
+        <label>Project Description:</label>
+        <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.project_description"> </textarea>
+      </div>
+
+      <div class="user-response-details">
+        <div class="user-response-tabs">
+          <div
+            *ngFor="let user of data.userResponse"
+            class="user-response-tab"
+            [ngClass]="{ active: selectedUserDetails.name === user.name }"
+          >
+            <div (click)="displayUserData(user)" class="name">{{ user.name }}</div>
+          </div>
+        </div>
+        <div *ngIf="selectedUserDetails">
+          <!-- About -->
+          <div *ngIf="selectedUserDetails.about_me">
+            <label>About:</label>
+            <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.about_me"> </textarea>
+          </div>
+
+          <!-- email -->
+          <div *ngIf="selectedUserDetails.user_email">
+            <label>Email:</label>
+            <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
+          </div>
+
+          <!-- designation -->
+          <div *ngIf="selectedUserDetails.designation">
+            <label>Designation:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.designation" />
+          </div>
+
+          <!-- Education -->
+          <div *ngIf="selectedUserDetails.education">
+            <label>Education:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.education" />
+          </div>
+
+          <!-- Work Experience -->
+          <div *ngIf="selectedUserDetails.work_experience_months">
+            <label>Work Experience in months:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.work_experience_months" />
+          </div>
+
+          <!-- Location -->
+          <div *ngIf="selectedUserDetails.location">
+            <label>Location:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.location" />
+          </div>
+
+          <!-- Phone Number -->
+          <div *ngIf="selectedUserDetails.phone">
+            <label>Phone:</label>
+            <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

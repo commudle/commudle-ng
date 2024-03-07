@@ -1,0 +1,52 @@
+.track-details {
+  @apply com-flex com-justify-between com-items-center;
+  .name {
+    @apply com-text-slate-800 com-text-lg com-font-semibold;
+  }
+}
+.prize-details {
+  .track-name {
+    @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
+  }
+
+  .prize {
+    @apply com-text-gray-400 com-text-lg com-font-semibold;
+  }
+
+  .description {
+    @apply com-text-gray-500 com-text-base;
+  }
+}
+
+.prize-distribution-dialog-box {
+  @apply com-h-full com-w-full md:com-h-[90dvh] md:com-w-[50dvw];
+  nb-card-header {
+    @apply com-flex com-items-center com-justify-between;
+  }
+  table {
+    @apply com-border-collapse com-w-full;
+
+    td,
+    th {
+      @apply com-text-left com-p-2;
+    }
+    tr:not(:first-child):not(.winner) {
+      @apply com-cursor-pointer hover:com-bg-Bright-Gray;
+    }
+    .winner {
+      @apply com-bg-primary-500 com-text-white;
+      td {
+        @apply com-text-white;
+      }
+    }
+    .prizes {
+      @apply com-flex com-items-center com-gap-2;
+      span {
+        @apply com-font-medium;
+      }
+      fa-icon {
+        @apply com-text-red-500 com-cursor-pointer;
+      }
+    }
+  }
+}

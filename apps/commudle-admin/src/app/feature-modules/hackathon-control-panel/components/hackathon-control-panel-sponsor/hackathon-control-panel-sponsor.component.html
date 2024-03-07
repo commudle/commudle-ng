@@ -1,0 +1,199 @@
+<nb-card>
+  <nb-card-header>Sponsors</nb-card-header>
+  <nb-card-body>
+    <div (click)="openSponsorDialogBox(addSponsorDialogBox)" class="add-sponsors-button">
+      <fa-icon [icon]="icons.faPlus"></fa-icon>
+      <br />
+      <span>Add Sponsors</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="sponsors-card" *ngIf="hackathonSponsors && hackathonSponsors.length > 0">
+    <div *ngFor="let hackathonSponsor of hackathonSponsors; let i = index">
+      <commudle-hackathon-control-panel-sponsor-card
+        [hackathonSponsor]="hackathonSponsor"
+        (destroySponsorEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
+        (editSponsorEvent)="openSponsorDialogBox(conformDeleteDialogBox, $event, i)"
+      ></commudle-hackathon-control-panel-sponsor-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #addSponsorDialogBox let-ref="dialogRef">
+  <nb-card class="sponsor-form-dialog-box">
+    <nb-card-header class="actions">
+      <span>Add Sponsor</span>
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); sponsorForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="sponsorForm">
+        <!-- Tier Name -->
+        <div>
+          <label for="tier_name">Tier Name*</label>
+          <input placeholder="Tier name" nbInput fullWidth formControlName="tier_name" type="text" />
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['tier_name'].touched &&
+              sponsorForm.controls['tier_name'].invalid &&
+              sponsorForm.controls['tier_name'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Tier name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- tier_priority -->
+        <div>
+          <label for="tier_priority">Tier Priority*</label>
+          <br />
+          <select name="tier_priority" formControlName="tier_priority">
+            <option [value]="1">1 (Highest)</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5 (Lowest)</option>
+          </select>
+          <!-- <input placeholder="Tier name" nbInput fullWidth formControlName="tier_priority" type="number" /> -->
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['tier_priority'].touched &&
+              sponsorForm.controls['tier_priority'].invalid &&
+              sponsorForm.controls['tier_priority'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Tier name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- name -->
+        <div>
+          <label for="name">Sponsor Name*</label>
+          <input placeholder="Name" nbInput fullWidth formControlName="name" type="text" />
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['name'].touched &&
+              sponsorForm.controls['name'].invalid &&
+              sponsorForm.controls['name'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- description -->
+        <div>
+          <label for="description">Description*</label>
+          <textarea
+            name="description"
+            fullWidth
+            nbInput
+            id="description"
+            rows="2"
+            placeholder="Description"
+            formControlName="description"
+          ></textarea>
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['description'].touched &&
+              sponsorForm.controls['description'].invalid &&
+              sponsorForm.controls['description'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Description is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- logo -->
+        <div>
+          <label for="banner_image">Logo</label>
+          <div class="com-w-full" *ngIf="!(imagePreview || sponsorForm.controls['logo'].value)">
+            <div
+              class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
+            >
+              <input
+                (change)="onFileChange($event)"
+                type="file"
+                accept="image/*"
+                class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+              />
+              <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
+                <fa-icon [icon]="icons.faFileImage" class="com-text-5xl"></fa-icon>
+                <p>
+                  Drag file here
+                  <br />
+                  or<span class="com-text-primary-500"> BROWSE </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="imagePreview || sponsorForm.controls['logo'].value" class="image-preview">
+            <div (click)="removeBannerImage()" class="delete-image">
+              <button nbButton status="danger" outline size="small">Delete</button>
+            </div>
+            <div class="com-w-56 com-h-56 com-mx-auto">
+              <img
+                class="com-w-full com-h-full com-object-contain"
+                [src]="imagePreview || sponsorForm.controls['logo'].value"
+                alt=""
+              />
+            </div>
+          </div>
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['logo'].touched &&
+              sponsorForm.controls['logo'].invalid &&
+              sponsorForm.controls['logo'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Logo is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- website -->
+        <div>
+          <label for="link">Website*</label>
+          <input placeholder="Website" nbInput fullWidth formControlName="link" type="text" />
+          <commudle-alert
+            *ngIf="
+              sponsorForm.controls['link'].touched &&
+              sponsorForm.controls['link'].invalid &&
+              sponsorForm.controls['link'].hasError('required')
+            "
+            [error]="true"
+            errorMessage="Website is required"
+          ></commudle-alert>
+          <commudle-alert
+            *ngIf="sponsorForm.get('link').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="Enter complete URL"
+          ></commudle-alert>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="createSponsor(); ref.close()" [disabled]="sponsorForm.invalid">
+        Save
+      </button>
+      <button nbButton status="danger" outline (click)="ref.close(); sponsorForm.reset()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #conformDeleteDialogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header class="actions">
+      <span>Confirm delete Sponsor</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete sponsor?</nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="destroySponsor(data.sponsorId, data.index); ref.close()">
+        Delete
+      </button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

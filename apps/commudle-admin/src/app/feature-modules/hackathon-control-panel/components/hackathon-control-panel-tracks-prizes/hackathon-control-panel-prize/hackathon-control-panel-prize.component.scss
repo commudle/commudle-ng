@@ -1,0 +1,27 @@
+.add-prize-button {
+  @apply com-border-2 com-border-dashed com-border-slate-500 com-rounded-lg com-text-center com-py-5 com-cursor-pointer com-my-6;
+}
+
+.prize-form {
+  @apply com-w-500px;
+  select {
+    @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
+  }
+
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+  }
+
+  .prize-amount {
+    @apply com-flex com-gap-2;
+  }
+}
+
+.hackathon-prize-cards {
+  @apply com-grid com-grid-cols-2 com-gap-x-3;
+}
+
+nb-card-header,
+nb-card-footer {
+  @apply com-flex com-justify-between com-items-center;
+}

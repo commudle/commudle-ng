@@ -1,0 +1,189 @@
+:host {
+  .clone-form-button {
+    margin-top: 1rem;
+  }
+
+  .required-question {
+    @apply com-text-red-500 com-ml-2px;
+  }
+
+  div.data-form-container {
+    &.center-layout {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .submit-button {
+      @apply com-mx-2;
+    }
+
+    .card-body {
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+
+      .description {
+        @apply com-mt-4;
+        label {
+          textarea {
+            @apply com-mt-2;
+            background-color: white;
+          }
+        }
+      }
+    }
+
+    label {
+      @apply com-text-base com-font-medium com-text-Charcoal;
+    }
+
+    .data-form-question-choices-container {
+      margin-bottom: 0;
+    }
+
+    .add-question-button {
+      @apply com-mb-10 com-mx-2;
+    }
+
+    .cdk-drag-animating {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+    .custom-placeholder {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+      @apply com-min-h-[120px] com-border-0 com-rounded-xl com-bg-slate-200 com-min-w-full;
+    }
+
+    .question-container {
+      @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+      .required-question {
+        @apply com-text-red-500 com-ml-2px;
+      }
+
+      textarea {
+        @apply com-mb-0 com-mt-1;
+        background-color: white;
+      }
+
+      input {
+        @apply com-mt-2 com-mb-0;
+        background-color: white;
+      }
+
+      label {
+        @apply com-text-xl com-font-semibold;
+      }
+
+      .add-description-button {
+        @apply com-mt-3 com-mb-0 com-p-0 com-text-sm com-justify-start;
+        width: max-content;
+
+        nb-icon {
+          @apply com-mr-1;
+        }
+      }
+
+      .description-textbox {
+        @apply com-m-0;
+      }
+
+      .question-settings {
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start com-flex-wrap;
+
+        label {
+          @apply com-flex com-flex-col com-font-semibold com-text-xl;
+          margin-right: 1.5rem;
+        }
+      }
+
+      .choices-container {
+        @apply com-flex com-flex-col com-font-semibold com-text-xl com-justify-start;
+
+        .choice-container {
+          nb-icon {
+            @apply com-text-base;
+          }
+        }
+      }
+    }
+  }
+
+  .questions-form-section {
+    .drag-button {
+      @apply com-p-0 com-flex com-justify-center;
+
+      button {
+        @apply com-cursor-move;
+      }
+    }
+
+    .question-form-footer {
+      @apply com-flex md:com-flex-row com-text-primary-500 com-gap-3 com-mt-12 com-justify-between com-items-end md:com-items-center;
+
+      .add-question-footer {
+        @apply com-text-sm com-font-medium com-pl-0;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      .toggles {
+        @apply md:com-border-l com-border-Bright-Gray com-border-0 com-border-solid com-border-y-0;
+        .toggle {
+          @apply com-text-sm com-font-medium com-border-0;
+          @apply com-mr-0 md:com-mb-2;
+
+          span {
+            @apply com-text-primary-500;
+          }
+        }
+      }
+
+      .delete-question-footer {
+        @apply com-text-sm com-font-medium com-p-0;
+
+        nb-icon {
+          @apply com-h-5 com-w-5;
+        }
+      }
+
+      .context-menu {
+        @apply com-flex com-justify-end;
+        height: 100%;
+        align-items: flex-end;
+      }
+
+      @media (min-width: 992px) {
+        .context-menu {
+          @apply com-hidden;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .toggles {
+          @apply com-block;
+        }
+
+        .context-menu {
+          @apply com-block;
+        }
+
+        .footer-icons {
+          @apply com-hidden;
+        }
+      }
+    }
+  }
+}
+
+.dropdown {
+  @apply com-w-max com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-2;
+  select {
+    @apply com-bg-[#eef2f7] hover:com-bg-[#eef2f7]/50 com-cursor-pointer;
+  }
+  .disable {
+    @apply com-pointer-events-none com-cursor-none;
+  }
+}

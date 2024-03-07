@@ -1,0 +1,26 @@
+<div class="two-column-layout wide">
+  <div class="main-column com-mb-20">
+    <div *ngIf="isLoading; else prizesCards">
+      <commudle-loading-spinner></commudle-loading-spinner>
+    </div>
+    <ng-template #prizesCards>
+      <div *ngFor="let prize of hackathonPrizes">
+        <nb-card>
+          <nb-card-body>
+            <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
+            <div class="track-name">{{ prize.hackathon_track.name }}</div>
+            <div class="track-discription" [innerHTML]="prize.hackathon_track.description"></div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </ng-template>
+  </div>
+  <div class="right-column">
+    <nb-card>
+      <nb-card-body>
+        <commudle-public-hackathon-details-mini-card [hackathon]="hackathon" [userTeamDetails]="userTeamDetails">
+        </commudle-public-hackathon-details-mini-card
+      ></nb-card-body>
+    </nb-card>
+  </div>
+</div>

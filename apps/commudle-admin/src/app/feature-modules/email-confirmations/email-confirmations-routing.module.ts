@@ -5,6 +5,8 @@ import { CollaborationCommunityComponent } from './components/collaboration-comm
 import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { UserRoleConfirmationComponent } from './components/user-role-confirmation/user-role-confirmation.component';
+import { HackathonJudgeConfirmationComponent } from './components/hackathon-judge-confirmation/hackathon-judge-confirmation.component';
+import { HackathonTeamConfirmationComponent } from './components/hackathon-team-confirmation/hackathon-team-confirmation.component';
 
 const routes = [
   {
@@ -18,6 +20,14 @@ const routes = [
   {
     path: 'user-role',
     component: UserRoleConfirmationComponent,
+  },
+  {
+    path: 'hackathon-judge',
+    component: HackathonJudgeConfirmationComponent,
+  },
+  {
+    path: 'hackathon-team',
+    component: HackathonTeamConfirmationComponent,
   },
   {
     path: 'subscription/:eug',

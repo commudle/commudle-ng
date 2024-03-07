@@ -74,8 +74,12 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { EntityUpdatesComponent } from './entity-updates/entity-updates.component';
+import { FaqCardComponent } from './faq-card/faq-card.component';
+import { FaqControlPanelComponent } from './faq-control-panel/faq-control-panel.component';
 import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
-
+import { EditDataFormComponent } from './edit-data-form/edit-data-form.component';
+import { BuildCardComponent } from './build-card/build-card.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -115,6 +119,11 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     BannerImageComponent,
     AlertComponent,
     MessagesComponent,
+    EntityUpdatesComponent,
+    FaqCardComponent,
+    FaqControlPanelComponent,
+    EditDataFormComponent,
+    BuildCardComponent,
   ],
   imports: [
     CommonModule,
@@ -190,6 +199,11 @@ import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
     BannerImageComponent,
     AlertComponent,
     MessagesComponent,
+    EntityUpdatesComponent,
+    FaqCardComponent,
+    FaqControlPanelComponent,
+    EditDataFormComponent,
+    BuildCardComponent,
   ],
 })
 export class SharedComponentsModule {}
