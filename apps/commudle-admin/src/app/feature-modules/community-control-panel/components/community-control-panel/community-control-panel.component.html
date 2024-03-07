@@ -73,19 +73,19 @@
               <span class="title">Forms</span>
             </a>
             <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
-              <app-badge
-                class="-com-mt-4"
-                text="New"
-                [fontColor]="'com-text-tWhite'"
-                [fontSize]="'small'"
-                [borderRadius]="'round'"
-                [color]="'com-bg-Caribbean-Green'"
-                [position]="'top right'"
-              ></app-badge>
               <fa-icon [icon]="icons.faFileLines"></fa-icon>
               <span class="title">Pages</span>
             </a>
             <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
+              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
+              <span class="title">Newsletters</span>
+            </a>
+            <a
+              *ngIf="community.hackathon_enabled"
+              [routerLink]="['hackathons']"
+              class="d-flex com-relative"
+              routerLinkActive="active"
+            >
               <app-badge
                 class="-com-mt-4"
                 text="New"
@@ -95,14 +95,18 @@
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
-              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
-              <span class="title">Newsletters</span>
+              <img src="https://json.commudle.com/icons/hackathon-icon.svg" />
+              <span class="title">Hackathon</span>
             </a>
-            <a [routerLink]="['hackathons']" class="d-flex com-relative" routerLinkActive="active">
+            <a
+              *ngIf="!community.hackathon_enabled"
+              class="d-flex disabled com-relative"
+              nbTooltip="Now we can create hackathon, please write a mail to arpan@commudle.com to enable"
+            >
               <app-badge
                 class="-com-mt-4"
                 text="New"
-                [fontColor]="'com-text-white'"
+                [fontColor]="'com-text-tWhite'"
                 [fontSize]="'small'"
                 [borderRadius]="'round'"
                 [color]="'com-bg-Caribbean-Green'"
@@ -125,7 +129,6 @@
             </a>
             <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
               <fa-icon [icon]="icons.faMessage"></fa-icon>
-              <!-- <nb-icon icon="message" status="success"></nb-icon> -->
               <span class="title">Forums</span>
             </a>
             <a
