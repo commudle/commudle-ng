@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EDbModels, IFaq, IRound } from '@commudle/shared-models';
 import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
+import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
@@ -31,6 +32,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   userTeamDetails: IHackathonTeam;
   subscriptions: Subscription[] = [];
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
+  hrgId: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,6 +41,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private roundService: RoundService,
     private authWatchService: LibAuthwatchService,
+    private hrgService: HackathonResponseGroupService,
   ) {}
 
   ngOnInit() {
@@ -66,6 +69,9 @@ export class PublicHackathonDetailsComponent implements OnInit {
             });
           }
         }
+      }),
+      this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+        this.hrgId = data.id;
       });
   }
   getSponsors() {

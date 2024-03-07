@@ -11,17 +11,16 @@
     </div>
     <div>
       <div class="heading com-mt-4">VENUE</div>
-      <a [href]="hackathon.location_map_link" class="value">{{ hackathon.location_address }}</a>
+      <a *ngIf="hackathon.location_address" [href]="hackathon.location_map_link" class="value">{{
+        hackathon.location_address
+      }}</a>
+      <span *ngIf="!hackathon.location_address" class="value">Online</span>
     </div>
   </div>
 </div>
 
 <div class="intrested-members"></div>
 
-<!-- <div class="action" *ngIf="hrgId && !userTeamDetails">
-  <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
-</div> -->
-
-<div class="action" *ngIf="hrgId">
+<div class="action" *ngIf="hrgId && !userTeamDetails">
   <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
 </div>

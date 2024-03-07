@@ -80,6 +80,7 @@
         ><commudle-public-hackathon-details-mini-card
           [hackathon]="hackathon"
           [userTeamDetails]="userTeamDetails"
+          [hrgId]="hrgId"
         ></commudle-public-hackathon-details-mini-card
       ></nb-card-body>
     </nb-card>
@@ -96,7 +97,11 @@
 
     <nb-card *ngIf="userTeamDetails" class="project-details-card">
       <nb-card-header>
-        <div class="heading">Profile Submitted for Review</div>
+        <div class="heading"></div>
+        <div>
+          Registration Status: Profile Submitted for Review
+          <a [routerLink]="['fill-form', hrgId]">Edit Your Response</a>
+        </div>
       </nb-card-header>
       <nb-card-body>
         <div class="round-details">Next: Round 1 confirmation</div>
