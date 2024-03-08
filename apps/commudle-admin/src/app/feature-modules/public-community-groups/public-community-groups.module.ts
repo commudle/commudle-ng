@@ -28,6 +28,8 @@ import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
 import { EventMediumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-medium-card/event-medium-card.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { CommunityGroupCustomPageComponent } from './components/community-group-custom-page/community-group-custom-page.component';
+import { PublicHomeListSpeakersModule } from '../listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
 
 @NgModule({
   declarations: [
@@ -48,14 +50,12 @@ import { CommunityGroupCustomPageComponent } from './components/community-group-
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
-
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,
     EventCardComponent,
     EventMediumCardComponent,
     SkeletonCardsComponent,
-
     // Nebular
     NbCardModule,
     NbIconModule,
@@ -64,6 +64,8 @@ import { CommunityGroupCustomPageComponent } from './components/community-group-
     NbTagModule,
     NbButtonModule,
     NbContextMenuModule,
+    PublicHomeListSpeakersModule,
+    PublicHomeListEventsModule,
   ],
 })
 export class PublicCommunityGroupsModule {}

@@ -1,87 +1,114 @@
-<!-- upcoming Events -->
-<nb-card *ngIf="events.length > 0">
-  <nb-card-header class="event-card-header">
-    <div class="header">
-      <div class="icon">
-        <fa-icon [icon]="faCalendar"></fa-icon>
-      </div>
-      <div>
-        <h5>Upcoming Events</h5>
-        <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
-      </div>
-    </div>
-    <div class="navigation-button">
-      <button
-        (click)="getPreviousEvents()"
-        [disabled]="!page_info?.has_previous_page"
-        class="com-mr-2"
-        nbButton
-        shape="round"
-        size="small"
-      >
-        <nb-icon icon="arrow-left-outline"></nb-icon>
-      </button>
-      <button (click)="getNextEvents()" [disabled]="!page_info?.has_next_page" nbButton shape="round" size="small">
-        <nb-icon icon="arrow-right-outline"></nb-icon>
-      </button>
-    </div>
-  </nb-card-header>
-  <nb-card-body class="card-body">
-    <div *ngIf="isLoadingEvents" class="com-h-[350px]">
-      <app-loading-spinner></app-loading-spinner>
-    </div>
-    <div class="event-card-list">
-      <commudle-event-card *ngFor="let event of events" [event]="event" [horizontalScroll]="true"></commudle-event-card>
-    </div>
-  </nb-card-body>
-</nb-card>
+<div class="base-layout">
+  <div class="container">
+    <div *appBreakpoints="'>lg'" class="two-column-layout medium">
+      <div class="main-column">
+        <!-- upcoming Events -->
+        <nb-card *ngIf="events.length > 0">
+          <nb-card-header class="event-card-header">
+            <div class="header">
+              <div class="icon">
+                <fa-icon [icon]="faCalendar"></fa-icon>
+              </div>
+              <div>
+                <h5>Upcoming Events</h5>
+                <!-- <span class="com-text-gray-400">Events for you to join and network</span> -->
+              </div>
+            </div>
+            <div class="navigation-button">
+              <button
+                (click)="getPreviousEvents()"
+                [disabled]="!page_info?.has_previous_page"
+                class="com-mr-2"
+                nbButton
+                shape="round"
+                size="small"
+              >
+                <nb-icon icon="arrow-left-outline"></nb-icon>
+              </button>
+              <button
+                (click)="getNextEvents()"
+                [disabled]="!page_info?.has_next_page"
+                nbButton
+                shape="round"
+                size="small"
+              >
+                <nb-icon icon="arrow-right-outline"></nb-icon>
+              </button>
+            </div>
+          </nb-card-header>
+          <nb-card-body class="card-body">
+            <div *ngIf="isLoadingEvents" class="com-h-[350px]">
+              <app-loading-spinner></app-loading-spinner>
+            </div>
+            <div class="event-card-list">
+              <commudle-event-card
+                *ngFor="let event of events"
+                [event]="event"
+                [horizontalScroll]="true"
+              ></commudle-event-card>
+            </div>
+          </nb-card-body>
+        </nb-card>
 
-<!-- communities -->
-<nb-card>
-  <nb-card-header>
-    <div class="header">
-      <div class="icon">
-        <fa-icon [icon]="faUsers"></fa-icon>
-      </div>
-      <div>
-        <h5>Active Communities to join</h5>
-        <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
-      </div>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="com-flex com-flex-wrap">
-      <div class="communities-cards">
-        <app-communities-card
-          *ngFor="let community of communities"
-          [community]="community"
-          [horizontalScroll]="true"
-        ></app-communities-card>
-      </div>
-    </div>
-  </nb-card-body>
-</nb-card>
+        <!-- communities -->
+        <nb-card>
+          <nb-card-header>
+            <div class="header">
+              <div class="icon">
+                <fa-icon [icon]="faUsers"></fa-icon>
+              </div>
+              <div>
+                <h5>Active Communities to join</h5>
+                <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            <div class="com-flex com-flex-wrap">
+              <div class="communities-cards">
+                <app-communities-card
+                  *ngFor="let community of communities"
+                  [community]="community"
+                  [horizontalScroll]="true"
+                ></app-communities-card>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
 
-<!-- channels -->
-<nb-card>
-  <nb-card-header class="header">
-    <div class="icon">
-      <fa-icon [icon]="faHashtag"></fa-icon>
+        <!-- channels -->
+        <nb-card>
+          <nb-card-header class="header">
+            <div class="icon">
+              <fa-icon [icon]="faHashtag"></fa-icon>
+            </div>
+            <div>
+              <h5>Active Channels to join</h5>
+              <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
+            </div>
+          </nb-card-header>
+          <nb-card-body class="card-body">
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            <div class="channels-cards-list">
+              <commudle-channel-card
+                *ngFor="let channel of channels"
+                [channel]="channel"
+                [horizontalScroll]="true"
+              ></commudle-channel-card>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="right-column">
+        <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+        <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+        <div class="speakers">
+          <commudle-public-home-list-events-speakers
+            [parentType]="'communities'"
+          ></commudle-public-home-list-events-speakers>
+        </div>
+      </div>
     </div>
-    <div>
-      <h5>Active Channels to join</h5>
-      <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
-    </div>
-  </nb-card-header>
-  <nb-card-body class="card-body">
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="channels-cards-list">
-      <commudle-channel-card
-        *ngFor="let channel of channels"
-        [channel]="channel"
-        [horizontalScroll]="true"
-      ></commudle-channel-card>
-    </div>
-  </nb-card-body>
-</nb-card>
+  </div>
+</div>
