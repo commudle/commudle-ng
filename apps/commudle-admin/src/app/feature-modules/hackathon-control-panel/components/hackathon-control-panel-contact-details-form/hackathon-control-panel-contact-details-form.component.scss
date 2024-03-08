@@ -5,7 +5,7 @@
       @apply com-flex com-flex-col com-gap-1;
     }
     select {
-      @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
+      @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5 com-w-40;
     }
 
     .form-groups-heading {

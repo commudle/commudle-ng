@@ -15,6 +15,7 @@ import {
   NbRouteTabsetModule,
   NbCheckboxModule,
   NbButtonGroupModule,
+  NbSpinnerModule,
 } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
@@ -81,6 +82,7 @@ import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src
     NbRouteTabsetModule,
     NbCheckboxModule,
     NbButtonGroupModule,
+    NbSpinnerModule,
   ],
 })
 export class HackathonControlPanelModule {}

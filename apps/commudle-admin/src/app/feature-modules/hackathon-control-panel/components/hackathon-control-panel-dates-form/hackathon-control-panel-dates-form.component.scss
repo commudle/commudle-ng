@@ -3,6 +3,9 @@
     @apply com-flex com-flex-col com-gap-3;
     > div {
       @apply com-flex com-flex-col com-gap-1;
+      > div {
+        @apply com-flex com-flex-col com-gap-2;
+      }
     }
 
     select {

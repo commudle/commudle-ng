@@ -292,7 +292,8 @@
         (click)="createOrUpdate()"
         fullWidth
         status="primary"
-        [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
+        [disabled]="hackathonForm.invalid || !hackathonForm.dirty || isLoading"
+        [nbSpinner]="isLoading"
       >
         Save & Continue
       </button>
