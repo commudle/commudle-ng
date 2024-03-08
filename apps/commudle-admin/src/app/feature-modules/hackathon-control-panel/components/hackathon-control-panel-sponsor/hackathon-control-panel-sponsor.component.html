@@ -83,7 +83,7 @@
 
         <!-- description -->
         <div>
-          <label for="description">Description*</label>
+          <label for="description">Description</label>
           <textarea
             name="description"
             fullWidth
@@ -93,15 +93,6 @@
             placeholder="Description"
             formControlName="description"
           ></textarea>
-          <commudle-alert
-            *ngIf="
-              sponsorForm.controls['description'].touched &&
-              sponsorForm.controls['description'].invalid &&
-              sponsorForm.controls['description'].hasError('required')
-            "
-            [error]="true"
-            errorMessage="Description is required"
-          ></commudle-alert>
         </div>
 
         <!-- logo -->
@@ -152,17 +143,8 @@
 
         <!-- website -->
         <div>
-          <label for="link">Website*</label>
+          <label for="link">Website</label>
           <input placeholder="Website" nbInput fullWidth formControlName="link" type="text" />
-          <commudle-alert
-            *ngIf="
-              sponsorForm.controls['link'].touched &&
-              sponsorForm.controls['link'].invalid &&
-              sponsorForm.controls['link'].hasError('required')
-            "
-            [error]="true"
-            errorMessage="Website is required"
-          ></commudle-alert>
           <commudle-alert
             *ngIf="sponsorForm.get('link').hasError('invalidUrl')"
             [error]="true"

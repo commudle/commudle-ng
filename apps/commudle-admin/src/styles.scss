@@ -391,6 +391,10 @@ nb-context-menu {
   @apply com-bg-white;
 }
 
+input::-webkit-calendar-picker-indicator {
+  @apply com-bg-tWhite;
+}
+
 :root {
   --color-white-light: #ffffff;
   --color-white-dark: #121212;

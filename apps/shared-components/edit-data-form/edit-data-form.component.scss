@@ -20,7 +20,6 @@
     .card-body {
       input {
         @apply com-mt-2 com-mb-0;
-        background-color: white;
       }
 
       .description {
@@ -28,7 +27,6 @@
         label {
           textarea {
             @apply com-mt-2;
-            background-color: white;
           }
         }
       }
@@ -63,12 +61,10 @@
 
       textarea {
         @apply com-mb-0 com-mt-1;
-        background-color: white;
       }
 
       input {
         @apply com-mt-2 com-mb-0;
-        background-color: white;
       }
 
       label {

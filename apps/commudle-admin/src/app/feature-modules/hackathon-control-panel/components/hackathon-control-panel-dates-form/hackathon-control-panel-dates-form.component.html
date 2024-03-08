@@ -43,6 +43,8 @@
             type="datetime-local"
             nbInput
             fullWidth
+            [min]="this.hackathonDatesForm.controls['application_start_date'].value"
+            (change)="validateApplicationClosedDates()"
           />
           <commudle-alert
             *ngIf="
@@ -61,16 +63,7 @@
         <!-- Hackathon Begins -->
         <div>
           <label for="start_date">Hackathon Begins</label>
-          <input
-            formControlName="start_date"
-            id="start_date"
-            type="datetime-local"
-            nbInput
-            fullWidth
-            [min]="this.hackathonDatesForm.controls['application_start_date'].value"
-            [max]="this.hackathonDatesForm.controls['application_end_date'].value"
-            (change)="validateStartsDates()"
-          />
+          <input formControlName="start_date" id="start_date" type="datetime-local" nbInput fullWidth />
           <commudle-alert
             *ngIf="
               hackathonDatesForm.controls['start_date'].invalid &&
@@ -92,8 +85,6 @@
             nbInput
             fullWidth
             [min]="this.hackathonDatesForm.controls['start_date'].value"
-            [min]="this.hackathonDatesForm.controls['application_start_date'].value"
-            [max]="this.hackathonDatesForm.controls['application_end_date'].value"
             (change)="validateEndsDates()"
           />
           <commudle-alert

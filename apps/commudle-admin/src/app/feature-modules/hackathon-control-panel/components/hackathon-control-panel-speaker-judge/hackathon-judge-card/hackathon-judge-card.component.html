@@ -40,9 +40,26 @@
           </div>
         </div>
       </a>
-      <div class="actions">
-        <button nbButton ghost fullWidth status="primary" (click)="editJudge(judge)">Edit</button>
-        <button nbButton ghost fullWidth status="danger" (click)="deleteJudge(judge.id)">Delete</button>
+      <div>
+        <div class="actions">
+          <button nbButton ghost fullWidth status="primary" (click)="editJudge(judge)">Edit</button>
+          <button nbButton ghost fullWidth status="danger" (click)="deleteJudge(judge.id)">Delete</button>
+        </div>
+        <div>
+          <button
+            *ngIf="judge.invite_status === EInvitationStatus.INVITED"
+            nbButton
+            ghost
+            fullWidth
+            status="primary"
+            (click)="resendJudgeInvite()"
+          >
+            Resend Invite
+          </button>
+          <button *ngIf="judge.invite_status !== EInvitationStatus.INVITED" nbButton ghost fullWidth status="primary">
+            {{ judge.invite_status | titlecase }}
+          </button>
+        </div>
       </div>
     </nb-card-body>
   </nb-card>

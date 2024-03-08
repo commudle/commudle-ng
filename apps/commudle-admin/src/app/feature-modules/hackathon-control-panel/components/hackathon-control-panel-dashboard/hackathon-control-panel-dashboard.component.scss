@@ -41,7 +41,7 @@
     .action-button {
       @apply com-px-5 com-my-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
       &.active {
-        @apply com-bg-Bright-Gray-Light;
+        @apply com-bg-Bright-Gray-Light com-text-tYankees-Blue;
       }
       .icon {
         fa-icon {
@@ -54,7 +54,7 @@
     }
 
     .action-button:hover {
-      @apply com-bg-Bright-Gray-Light;
+      @apply com-bg-Bright-Gray-Light com-text-tYankees-Blue;
     }
   }
 }
