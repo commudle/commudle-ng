@@ -361,9 +361,12 @@ nb-option-list.search-autocomplete {
   margin: 16px 8px;
 }
 
+.nb-theme-dark nb-toggle.status-basic .toggle-switcher {
+  background-color: #f2f2f2;
+}
+
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
-  border: #2c2c2c;
   margin: 16px 8px;
 }
 
@@ -374,10 +377,6 @@ nb-option-list.search-autocomplete {
 
 .ngx-datatable.material {
   @apply com-bg-white;
-}
-
-.ngx-datatable.material .datatable-body .datatable-row-left {
-  @apply com-bg-red-500;
 }
 
 .datatable-row-group:hover {
@@ -566,8 +565,11 @@ nb-context-menu {
   --color-Bright-Gray-opacity-30-light: #f7f8fb;
   --color-Bright-Gray-opacity-30-dark: #1e1e1e;
 
-  --color-Ghost-White-light: #f9f9f9;
-  --color-Ghost-White-dark: #121212;
+  --color-Ghost-White-light: #f7f9fc;
+  --color-Ghost-White-dark: #1e1e1e;
+
+  --color-slate-100-light: #f1f5f9;
+  --color-slate-100-dark: #121212;
 }
 
 [data-theme='light'] {
@@ -633,6 +635,7 @@ nb-context-menu {
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
   --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-light);
   --color-Ghost-White: var(--color-Ghost-White-light);
+  --color-slate-100: var(--color-slate-100-light);
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -718,6 +721,7 @@ nb-context-menu {
   --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
   --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-dark);
   --color-Ghost-White: var(--color-Ghost-White-dark);
+  --color-slate-100: var(--color-slate-100-dark);
 
   .linear-gradient-top,
   .linear-gradient-bottom,

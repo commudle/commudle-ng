@@ -9,6 +9,7 @@ import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { Subscription } from 'rxjs';
+import { EDiscussionType } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-email-join',
@@ -20,10 +21,11 @@ export class EmailJoinComponent implements OnInit {
   communityChannel: ICommunityChannel;
   channelId;
   joinToken;
-  communityName;
+  community;
   channelName;
   faShieldHeart = faShieldHeart;
   subscriptions: Subscription[] = [];
+  discussionType: string;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -36,16 +38,17 @@ export class EmailJoinComponent implements OnInit {
   ngOnInit(): void {
     this.channelId = this.activatedRoute.snapshot.queryParams.ch;
     this.getChannelInfo();
-    this.joinToken = this.activatedRoute.snapshot.params.token;
+    this.joinToken = this.activatedRoute.snapshot.params.email_token;
   }
 
   // get channel details
   getChannelInfo() {
     this.subscriptions.push(
       this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
+        this.discussionType = data.display_type === EDiscussionType.CHANNEL ? 'channels' : 'forums';
         this.communityChannel = data;
         this.channelName = data.name;
-        this.communityName = data.kommunity.name;
+        this.community = data.kommunity;
         this.onAcceptRoleButton();
       }),
     );
@@ -53,17 +56,23 @@ export class EmailJoinComponent implements OnInit {
 
   joinChannel(decline?: boolean) {
     this.subscriptions.push(
-      this.communityChannelsService.joinChannel(this.channelId, this.joinToken, decline).subscribe((data) => {
-        if (data) {
-          this.libToasLogService.successDialog('Taking you to the channel!', 2500);
-          void this.router.navigate([
-            '/communities',
-            this.activatedRoute.snapshot.params.community_id,
-            'channels',
-            this.channelId,
-          ]);
-        }
-      }),
+      this.communityChannelsService.joinChannel(this.channelId, this.joinToken, decline).subscribe(
+        (data) => {
+          if (data) {
+            this.libToasLogService.successDialog(`Taking you to the ${this.discussionType}!`, 2500);
+            if (decline) {
+              this.router.navigate(['/communities', this.community.id, this.discussionType, this.channelId], {
+                queryParams: { decline: true },
+              });
+            } else {
+              this.router.navigate(['/communities', this.community.id, this.discussionType, this.channelId]);
+            }
+          }
+        },
+        (error) => {
+          this.router.navigate(['/communities', this.community.id, this.discussionType, this.channelId]);
+        },
+      ),
     );
   }
 
@@ -77,7 +86,7 @@ export class EmailJoinComponent implements OnInit {
     const dialogRef = this.nbDialogService.open(UserConsentsComponent, {
       context: {
         consentType: ConsentTypesEnum.JoinChannelEmail,
-        communityNameEmail: this.communityName,
+        communityNameEmail: this.community.name,
         channelNameEmail: this.channelName,
       },
     });

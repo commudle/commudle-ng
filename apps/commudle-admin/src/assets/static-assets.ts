@@ -80,16 +80,16 @@ export const staticAssets = {
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2x1QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e8324303fd3f4f1df5a070d5ee27527de0fabf84/Community%20Logo%20Gradients.svg',
 
   iso_27001:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2FiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--97a087b48b3a1bfde5838275f5d3d3148b1f2067/iso27001logo.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2tRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--deedc02367ea26e9585081c611510af8813b54a2/ISO%2027001.svg',
 
   agencies_header_image:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEdjQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--fb0ecfb9d4a98cb6f20e5fd0dfc5341c268d4f07/Agencies%20Header%20Image%20Final.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOU1PQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4ffd0a7fb6d0f18fe75d41a2f35582dc930125dd/Agencies%20Header.png',
 
   orgnization_programs:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW1iQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--57f8cc58335c2715d78ef69ba9fe42bba4816e40/Organization%20and%20Programs.svg',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOUlPQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0a71a257096ba3be210369d60abcdf5c346deb79/Organization%20&%20Programs.png',
 
   unlimited_engagement_features:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOXFiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--919329b401051d827c547c43dea106b587e50c42/Unlimited%20Engagement%20Features.svg',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOUVPQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c4c6243efedb65f1c958c3c45302a0a4ef085564/Unlimited%20Engagement%20Features.png',
 
   personal_goals_checklist:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNEtjQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6f6c668dfdc544133f82855e4ed93b1cd6ef9628/Actionable%20Step%20by%20Step%20Growth.svg',

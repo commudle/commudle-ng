@@ -214,9 +214,9 @@ export class EditEventComponent implements OnInit {
 
     if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '') {
       this.endTime = moment({
-        years: this.startDate.getFullYear(), //startDate because we still don't have multiple day tracks!
-        months: this.startDate.getMonth(), //so we gonna set the end and start date same, for now
-        date: this.startDate.getDate(),
+        years: this.endDate.getFullYear(),
+        months: this.endDate.getMonth(),
+        date: this.endDate.getDate(),
         hours: this.endHour,
         minutes: this.endMinute,
       }).toDate();
