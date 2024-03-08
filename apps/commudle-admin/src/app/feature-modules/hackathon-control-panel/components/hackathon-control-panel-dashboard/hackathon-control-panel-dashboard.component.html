@@ -23,7 +23,7 @@
           </div>
           <div class="heading">Back to Admin Panel</div>
         </a>
-        <div>
+        <div class="status-buttons">
           <section>
             <nb-button-group (valueChange)="updateStatus($event[0])" filled class="border">
               <button
@@ -39,7 +39,7 @@
           </section>
         </div>
         <div class="category">
-          <div class="category-heading">Event Setup</div>
+          <div class="category-heading">Hackathon Setup</div>
           <div>
             <a
               class="action-button"
@@ -70,6 +70,12 @@
               </div>
               <div class="action-button-name">Tracks & Prizes</div>
             </a>
+            <a class="action-button" [routerLink]="['rounds']" routerLinkActive="active">
+              <div class="icon">
+                <fa-icon [icon]="icons.faArrowsRotate"></fa-icon>
+              </div>
+              <div class="action-button-name">Rounds</div>
+            </a>
             <a class="action-button" [routerLink]="['registrations']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faBook"></fa-icon>
@@ -96,7 +102,7 @@
             </a>
           </div>
           <hr class="divided-line" />
-          <div class="category-heading">Other Options</div>
+          <div class="category-heading">Manage Hackathon</div>
           <div>
             <!-- <a class="action-button" [routerLink]="['stats']" routerLinkActive="active">
               <div class="icon">
@@ -108,13 +114,13 @@
               <div class="icon">
                 <fa-icon [icon]="icons.faEye"></fa-icon>
               </div>
-              <div class="action-button-name">Review</div>
+              <div class="action-button-name">Applications & Projects</div>
             </a>
-            <a class="action-button" [routerLink]="['rounds']" routerLinkActive="active">
+            <a class="action-button" [routerLink]="['updates']" routerLinkActive="active">
               <div class="icon">
-                <fa-icon [icon]="icons.faArrowsRotate"></fa-icon>
+                <fa-icon [icon]="icons.faStar"></fa-icon>
               </div>
-              <div class="action-button-name">Rounds</div>
+              <div class="action-button-name">Post Updates</div>
             </a>
             <!-- <a class="action-button" [routerLink]="['channels']" routerLinkActive="active">
               <div class="icon">
@@ -122,12 +128,7 @@
               </div>
               <div class="action-button-name">Channels</div>
             </a> -->
-            <a class="action-button" [routerLink]="['updates']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faStar"></fa-icon>
-              </div>
-              <div class="action-button-name">Updates</div>
-            </a>
+
             <!-- <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faEnvelope"></fa-icon>

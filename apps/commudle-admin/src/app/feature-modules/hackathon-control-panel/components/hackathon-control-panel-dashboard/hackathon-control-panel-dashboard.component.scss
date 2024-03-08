@@ -22,13 +22,21 @@
   }
   .action-buttons {
     @apply com-py-4;
+
     .back-admin {
       @apply com-px-4;
       .icon {
-        @apply com-text-[#8F9BB3];
+        @apply com-text-Cadet-Grey;
       }
       .heading {
-        @apply com-text-xs com-text-[#8F9BB3];
+        @apply com-text-xs com-text-Cadet-Grey;
+      }
+    }
+
+    .status-buttons {
+      @apply com-flex com-items-center com-justify-center;
+      .border {
+        @apply com-border com-border-Bright-Gray com-border-solid com-rounded-md;
       }
     }
 
@@ -45,7 +53,7 @@
       }
       .icon {
         fa-icon {
-          @apply com-text-lg com-text-[#8F9BB3];
+          @apply com-text-lg com-text-Cadet-Grey;
         }
       }
       .action-button-name {

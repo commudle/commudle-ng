@@ -91,6 +91,7 @@ module.exports = {
         'Bright-Gray-opacity-30': 'var(--color-Bright-Gray-opacity-30)',
         'Ghost-White': 'var(--color-Ghost-White)',
         'slate-100': 'var(--color-slate-100)',
+        'Cadet-Grey': '#8F9BB3',
       },
 
       lineClamp: {
