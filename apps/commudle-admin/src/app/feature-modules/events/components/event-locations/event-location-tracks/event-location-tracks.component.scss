@@ -82,7 +82,7 @@
           .speakers {
             @apply com-flex com-flex-wrap com-gap-2 com-w-20 md:com-w-28 com-justify-end;
             .avatar {
-              @apply com-h-7 com-w-7 com-overflow-hidden com-border com-border-solid com-border-Bright-Gray;
+              @apply com-h-7 com-w-7 com-overflow-hidden com-border com-border-solid com-border-Bright-Gray com-bg-tWhite;
               border-radius: 50%;
 
               img {

@@ -60,6 +60,7 @@ p {
       }
 
       .user-social-card-favicon {
+        @apply com-bg-tWhite;
         border-radius: 50%;
         margin-top: $space-12;
         max-width: 20px;

@@ -14,6 +14,7 @@
       border: 1px dotted lightgrey;
       border-radius: 5px;
       .logo {
+        @apply com-bg-tWhite;
         width: 80px;
         height: 80px;
         overflow: hidden;
