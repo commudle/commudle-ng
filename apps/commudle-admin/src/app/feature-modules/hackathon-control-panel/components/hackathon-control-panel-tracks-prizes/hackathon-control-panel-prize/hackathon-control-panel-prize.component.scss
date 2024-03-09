@@ -3,7 +3,7 @@
 }
 
 .prize-form {
-  @apply com-w-500px;
+  @apply com-w-full com-h-full md:com-max-h-[90dvh] md:com-w-500px;
   select {
     @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
   }

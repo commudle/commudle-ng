@@ -75,20 +75,19 @@
             errorMessage="Problem Statement is required"
           ></commudle-alert>
         </div>
-
-        <div>
-          <button
-            nbButton
-            (click)="data.track ? updateTrack(data.track.id, data.index) : createTrack(); ref.close()"
-            status="primary"
-            fullWidth
-            [disabled]="trackForm.invalid || !trackForm.dirty"
-          >
-            {{ data.track ? 'Update' : 'Save' }}
-          </button>
-        </div>
       </form>
     </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        (click)="data.track ? updateTrack(data.track.id, data.index) : createTrack(); ref.close()"
+        status="primary"
+        fullWidth
+        [disabled]="trackForm.invalid || !trackForm.dirty"
+      >
+        {{ data.track ? 'Update' : 'Save' }}
+      </button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>
 

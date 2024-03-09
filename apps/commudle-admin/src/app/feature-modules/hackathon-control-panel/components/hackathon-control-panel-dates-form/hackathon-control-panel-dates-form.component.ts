@@ -91,23 +91,25 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
     return new Date(submissionDeadlineLocal).toISOString();
   }
 
-  validateStartsDates() {
+  validateApplicationClosedDates() {
     const applicationStartDate = new Date(this.hackathonDatesForm.controls['application_start_date'].value);
-    const startDateTime = new Date(this.hackathonDatesForm.controls['start_date'].value);
-    if (startDateTime < applicationStartDate) {
+    const applicationCloseDate = new Date(this.hackathonDatesForm.controls['application_end_date'].value);
+    if (applicationStartDate >= applicationCloseDate) {
       this.invalidFormFields = true;
-      this.toastrService.warningDialog('Invalid: Hackathon start date is earlier than application start date');
+      this.toastrService.warningDialog(
+        'Invalid: Application close Date and Time must greater than Application start Date and Time',
+      );
     } else {
       this.invalidFormFields = false;
     }
   }
 
   validateEndsDates() {
+    const startDateTime = new Date(this.hackathonDatesForm.controls['start_date'].value);
     const endDateTime = new Date(this.hackathonDatesForm.controls['end_date'].value);
-    const applicationEndDate = new Date(this.hackathonDatesForm.controls['application_end_date'].value);
-    if (endDateTime > applicationEndDate) {
+    if (startDateTime >= endDateTime) {
       this.invalidFormFields = true;
-      this.toastrService.warningDialog('Invalid: Hackathon end date is later than application end date');
+      this.toastrService.warningDialog('Invalid: End Date and Time must greater than Start Date and Time');
     } else {
       this.invalidFormFields = false;
     }

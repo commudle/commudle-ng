@@ -30,10 +30,10 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
   ) {
     this.sponsorForm = this.fb.group({
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      description: '',
       logo: [null, Validators.required],
       tier_name: ['', Validators.required],
-      link: ['', [Validators.required, this.urlValidator]],
+      link: ['', this.urlValidator],
       tier_priority: [1, Validators.required],
     });
   }
