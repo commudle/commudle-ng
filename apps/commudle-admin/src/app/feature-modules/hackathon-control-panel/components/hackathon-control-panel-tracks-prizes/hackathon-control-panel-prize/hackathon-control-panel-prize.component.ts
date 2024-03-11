@@ -96,7 +96,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
         description: prize.description,
         no_of_winners: prize.no_of_winners,
         prize_amount: prize.prize_amount,
-        hackathon_track_id: prize.hackathon_track.id,
+        hackathon_track_id: prize.hackathon_track ? prize.hackathon_track.id : '',
         currency_type: prize.currency_type,
         order: prize.order,
       });

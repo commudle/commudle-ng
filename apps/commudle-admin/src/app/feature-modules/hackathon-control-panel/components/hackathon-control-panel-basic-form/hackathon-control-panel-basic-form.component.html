@@ -53,7 +53,7 @@
       <!-- Tagline -->
       <div>
         <label for="tagline">Tagline*</label>
-        <input formControlName="tagline" id="tagline" type="text" nbInput fullWidth placeholder="Tagline" />
+        <textarea formControlName="tagline" id="tagline" type="text" nbInput fullWidth placeholder="Tagline"></textarea>
         <commudle-alert
           *ngIf="
             hackathonForm.controls['tagline'].invalid &&
@@ -62,6 +62,11 @@
           "
           [error]="true"
           errorMessage="Tagline is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['tagline'].hasError('maxlength')"
+          [error]="true"
+          errorMessage="Max length is 250 Words"
         ></commudle-alert>
       </div>
 

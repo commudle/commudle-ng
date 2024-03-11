@@ -56,7 +56,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   ) {
     this.hackathonForm = this.fb.group({
       name: ['', Validators.required],
-      tagline: ['', Validators.required],
+      tagline: ['', [Validators.required, Validators.maxLength(250)]],
       description: ['', Validators.required],
       hackathon_theme: '',
       number_of_participants: ['', [Validators.required, Validators.min(1)]],

@@ -44,13 +44,14 @@
             }"
           >
             <option selected disabled [value]="null">Select Track</option>
+            <option value="">No Track Selected</option>
             <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
           </select>
         </div>
 
         <!-- order -->
         <div>
-          <label for="order">Order</label>
+          <label for="order">Order*</label>
           <br />
           <select
             class="!com-w-full"
@@ -69,12 +70,9 @@
 
         <!-- prize_amount -->
         <div>
-          <label for="prize_amount">Prize Amount*</label>
+          <label for="prize_amount">Prize Amount</label>
           <div class="prize-amount">
             <select name="currency_type" id="currency_type" formControlName="currency_type">
-              <option selected [value]="countryDetails[102].currency">
-                {{ countryDetails[102].currency }} ({{ countryDetails[102].symbol }})
-              </option>
               <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.currency">
                 {{ countryDetail.currency }} ({{ countryDetail.symbol }})
               </option>
