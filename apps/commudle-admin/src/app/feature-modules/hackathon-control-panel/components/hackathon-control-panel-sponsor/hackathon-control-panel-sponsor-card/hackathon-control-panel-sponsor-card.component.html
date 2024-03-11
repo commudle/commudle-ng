@@ -17,7 +17,7 @@
       <div class="description">{{ hackathonSponsor.sponsor.description }}</div>
     </div>
     <div class="com-flex">
-      <button nbButton status="primary" ghost fullWidth>Edit</button>
+      <button nbButton status="primary" (click)="editSponsor(hackathonSponsor)" ghost fullWidth>Edit</button>
       <button nbButton status="danger" (click)="destroySponsor(hackathonSponsor)" ghost fullWidth>Delete</button>
     </div>
   </nb-card-body>

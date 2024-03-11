@@ -782,6 +782,7 @@ export const API_ROUTES = {
     SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
     UPDATE_HACKATHON_DATE: 'api/v2/hackathons/update_hackathon_dates', // POST
     CREATE_SPONSOR: 'api/v2/hackathons/create_sponsor', //POST
+    UPDATE_SPONSOR: 'api/v2/hackathons/update_sponsor', //PUT
     INDEX_SPONSORS: 'api/v2/hackathons/index_sponsors', //GET
     DESTROY_SPONSOR: 'api/v2/hackathons/destroy_sponsor', //DELETE
     CREATE_TRACK: 'api/v2/hackathons/create_track', //POST

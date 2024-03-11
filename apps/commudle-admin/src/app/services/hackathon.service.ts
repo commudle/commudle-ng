@@ -126,6 +126,14 @@ export class HackathonService {
     );
   }
 
+  updateSponsor(sponsor, sponsorId): Observable<IHackathonSponsor> {
+    sponsor.append('hackathon_sponsor_id', sponsorId);
+    return this.http.put<IHackathonSponsor>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_SPONSOR),
+      sponsor,
+    );
+  }
+
   indexSponsors(hackathonId): Observable<IHackathonSponsor[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonSponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), {

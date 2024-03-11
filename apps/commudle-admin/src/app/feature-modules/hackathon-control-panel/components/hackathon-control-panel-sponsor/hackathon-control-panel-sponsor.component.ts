@@ -52,19 +52,20 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     return null;
   }
 
-  openSponsorDialogBox(dialog, sponsor?: IHackathonSponsor, index?) {
-    if (sponsor) {
-      this.sponsorForm = this.fb.group({
-        name: '',
-        description: ['', Validators.required],
+  openSponsorDialogBox(dialog, hackathonSponsor?: IHackathonSponsor, index?) {
+    if (hackathonSponsor) {
+      this.sponsorForm.patchValue({
+        name: hackathonSponsor.sponsor.name,
+        description: hackathonSponsor.sponsor.description,
         logo: [null, Validators.required],
-        tier_name: ['', Validators.required],
-        link: ['', Validators.required],
-        tier_priority: [1, Validators.required],
+        tier_name: hackathonSponsor.tier_name,
+        link: hackathonSponsor.sponsor.link,
+        tier_priority: hackathonSponsor.tier_priority,
       });
+      this.imagePreview = hackathonSponsor.sponsor.logo.url;
     }
     this.nbDialogService.open(dialog, {
-      context: { index: index, sponsor: sponsor },
+      context: { index: index, sponsor: hackathonSponsor },
     });
   }
 
@@ -127,6 +128,24 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
   destroySponsor(sponsor, index) {
     this.hackathonService.destroySponsor(this.hackathonSponsors[index].id).subscribe((data) => {
       if (data) this.hackathonSponsors.splice(index, 1);
+    });
+  }
+
+  updateSponsor(sponsorId, index) {
+    const formData = new FormData();
+
+    Object.keys(this.sponsorForm.value).forEach((key) => {
+      const value = this.sponsorForm.value[key];
+
+      if (value instanceof File) {
+        formData.append('sponsor[' + key + ']', value, value.name); // Append the file with its name
+      } else if (key !== 'logo') {
+        formData.append('sponsor[' + key + ']', value);
+      }
+    });
+    this.hackathonService.updateSponsor(formData, sponsorId).subscribe((data) => {
+      if (data) this.hackathonSponsors[index] = data;
+      this.sponsorForm.reset();
     });
   }
 }
