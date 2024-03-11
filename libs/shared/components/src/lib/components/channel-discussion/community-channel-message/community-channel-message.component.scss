@@ -27,7 +27,7 @@
   @apply com-flex com-p-2 com-gap-3;
 
   .avatar {
-    @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0;
+    @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0 com-bg-tWhite;
   }
 
   .message {

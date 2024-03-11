@@ -15,7 +15,7 @@ nb-card {
         border-radius: 50%;
 
         img {
-          @apply com-w-full com-h-auto com-object-cover;
+          @apply com-w-full com-h-auto com-object-cover com-bg-tWhite;
         }
       }
 

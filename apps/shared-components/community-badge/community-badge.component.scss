@@ -11,7 +11,7 @@
   }
 
   .logo {
-    @apply com-flex com-justify-center com-items-center com-overflow-hidden com-m-0 com-mr-6px;
+    @apply com-flex com-justify-center com-items-center com-overflow-hidden com-m-0 com-mr-6px com-bg-tWhite;
     border-radius: 50%;
     img {
       @apply com-w-full;

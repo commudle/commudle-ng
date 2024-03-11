@@ -112,7 +112,7 @@
 
       <!-- Number of Participants* -->
       <div>
-        <label for="number_of_participants">Number of Participants*</label>
+        <label for="number_of_participants">Maximum No. of Participants / Teams*</label>
         <input
           formControlName="number_of_participants"
           id="number_of_participants"
@@ -292,7 +292,8 @@
         (click)="createOrUpdate()"
         fullWidth
         status="primary"
-        [disabled]="hackathonForm.invalid || !hackathonForm.dirty"
+        [disabled]="hackathonForm.invalid || !hackathonForm.dirty || isLoading"
+        [nbSpinner]="isLoading"
       >
         Save & Continue
       </button>

@@ -33,10 +33,10 @@
       }
 
       .user-image {
-        @apply com-rounded-full;
+        @apply com-rounded-full com-bg-tWhite;
       }
       .community-image {
-        @apply com-rounded-sm;
+        @apply com-rounded-sm com-bg-tWhite;
       }
 
       .details {

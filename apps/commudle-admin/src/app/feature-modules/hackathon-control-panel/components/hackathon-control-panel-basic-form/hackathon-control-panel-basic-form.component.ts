@@ -29,6 +29,8 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     faFileImage,
   };
 
+  isLoading = false;
+
   tinyMCE = {
     min_height: 300,
     menubar: false,
@@ -167,6 +169,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   }
 
   create() {
+    this.isLoading = true;
     const formData = new FormData();
 
     Object.keys(this.hackathonForm.value).forEach((key) => {
@@ -187,12 +190,19 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     if (this.locationForm.get('map_link').value)
       formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
-    this.hackathonService.createHackathon(formData, this.parentId, this.parentType).subscribe((data) => {
-      if (data) this.router.navigate(['/admin', 'communities', this.parentId, 'hackathon-dashboard', data.slug]);
-    });
+    this.hackathonService.createHackathon(formData, this.parentId, this.parentType).subscribe(
+      (data) => {
+        if (data) this.router.navigate(['/admin', 'communities', this.parentId, 'hackathon-dashboard', data.slug]);
+        this.isLoading = false;
+      },
+      () => {
+        this.isLoading = false;
+      },
+    );
   }
 
   update() {
+    this.isLoading = true;
     const formData = new FormData();
 
     Object.keys(this.hackathonForm.value).forEach((key) => {
@@ -213,8 +223,14 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     if (this.locationForm.get('map_link').value)
       formData.append('location[map_link]', this.locationForm.get('map_link').value);
 
-    this.hackathonService.updateHackathon(formData, this.hackathon.slug).subscribe((data) => {
-      if (data) this.toastrService.successDialog('Hackathon Details updated');
-    });
+    this.hackathonService.updateHackathon(formData, this.hackathon.slug).subscribe(
+      (data) => {
+        if (data) this.toastrService.successDialog('Hackathon Details updated');
+        this.isLoading = false;
+      },
+      () => {
+        this.isLoading = false;
+      },
+    );
   }
 }

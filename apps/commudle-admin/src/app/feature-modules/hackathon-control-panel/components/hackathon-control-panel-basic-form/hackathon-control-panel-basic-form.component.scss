@@ -1,8 +1,8 @@
 .hackathon-form {
   form {
-    @apply com-flex com-flex-col com-gap-3;
+    @apply com-flex com-flex-col com-gap-4;
     > div {
-      @apply com-flex com-flex-col com-gap-1;
+      @apply com-flex com-flex-col com-gap-2;
     }
 
     select {

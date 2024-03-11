@@ -7,7 +7,7 @@
 }
 
 .track-form {
-  @apply com-w-500px;
+  @apply com-w-full com-h-full md:com-max-h-[90dvh] md:com-w-[50vdw];
   form {
     @apply com-flex com-flex-col com-gap-3;
   }

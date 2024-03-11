@@ -30,6 +30,7 @@
         width: max-content;
 
         .community-logo {
+          @apply com-bg-tWhite;
           height: 28px;
           width: 28px;
           overflow: hidden;
