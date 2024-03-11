@@ -39,7 +39,9 @@
         @apply com-border com-border-Bright-Gray com-border-solid com-rounded-md;
       }
     }
-
+    .category {
+      @apply com-flex com-flex-col;
+    }
     .category-heading {
       @apply com-text-sm com-font-semibold com-my-2 com-px-4;
     }

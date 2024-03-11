@@ -59,7 +59,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   urlValidator(control) {
-    if (control.value && !/^(http|https)/.test(control.value)) {
+    if (control.value && !/^https?:\/\//.test(control.value)) {
       return { invalidUrl: true };
     }
     return null;

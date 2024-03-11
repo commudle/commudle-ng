@@ -16,15 +16,15 @@ export interface IHackathonTeam {
 }
 
 export enum EHackathonRegistrationStatus {
-  ACCEPTED = 'accepted',
-  REJECTED = 'rejected',
   REGISTERED = 'registered',
   WAITLISTED = 'waitlisted',
+  ACCEPTED = 'accepted',
+  REJECTED = 'rejected',
 }
 
 export enum EHackathonRegistrationStatusColor {
-  accepted = 'com-bg-green-500',
-  rejected = 'com-bg-red-500',
   registered = 'com-bg-primary-500',
   waitlisted = 'com-bg-orange-400',
+  accepted = 'com-bg-green-500',
+  rejected = 'com-bg-red-500',
 }

@@ -303,8 +303,8 @@ export class HackathonService {
     );
   }
 
-  updateHackathonStatus(hackathonId, status): Observable<boolean> {
-    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
+  updateHackathonStatus(hackathonId, status): Observable<IHackathon> {
+    return this.http.put<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
       hackathon_id: hackathonId,
       hackathon_status: status,
     });
