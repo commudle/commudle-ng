@@ -30,6 +30,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { CommunityGroupCustomPageComponent } from './components/community-group-custom-page/community-group-custom-page.component';
 import { PublicHomeListSpeakersModule } from '../listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
+import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-ev
     NbContextMenuModule,
     PublicHomeListSpeakersModule,
     PublicHomeListEventsModule,
+    FeaturedCommunityCardMediumComponent,
   ],
 })
 export class PublicCommunityGroupsModule {}

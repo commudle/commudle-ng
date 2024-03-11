@@ -19,7 +19,9 @@ export class FeaturedCommunityCardMediumComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.featuredItems);
+  }
 
   getTagNames(community) {
     this.tags = community.tags.map((tag) => tag.name);

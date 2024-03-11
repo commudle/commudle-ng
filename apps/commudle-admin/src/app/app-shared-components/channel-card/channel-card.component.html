@@ -11,14 +11,24 @@
       </div>
       <div class="details-container">
         <div class="details">
-          <div *ngIf="community" class="community-badge">
-            <app-community-badge [community]="community"></app-community-badge>
-          </div>
           <p class="name">{{ channel.name }}</p>
-          <p class="members-count">{{ channel.member_count }} Members</p>
+
           <p class="description">{{ channel.description }}</p>
+          <div class="logo-and-member-count">
+            <app-badge
+              [text]="channel.member_count"
+              [fontColor]="'com-text-tAuro-Metal-Saurus'"
+              [nbIcon]="'people-outline'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray-Light'"
+            ></app-badge>
+            <div *ngIf="community" class="community-badge">
+              <app-community-badge [community]="community"></app-community-badge>
+            </div>
+          </div>
         </div>
-        <button class="join-channel" nbButton shape="round" status="base">Join Channel</button>
+        <button class="join-channel" nbButton outline shape="round" status="primary">Join Channel</button>
       </div>
     </nb-card-body>
   </nb-card>

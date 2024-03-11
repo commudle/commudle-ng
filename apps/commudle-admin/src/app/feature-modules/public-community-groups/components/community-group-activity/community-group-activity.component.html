@@ -50,33 +50,6 @@
           </nb-card-body>
         </nb-card>
 
-        <!-- communities -->
-        <nb-card>
-          <nb-card-header>
-            <div class="header">
-              <div class="icon">
-                <fa-icon [icon]="faUsers"></fa-icon>
-              </div>
-              <div>
-                <h5>Active Communities to join</h5>
-                <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
-              </div>
-            </div>
-          </nb-card-header>
-          <nb-card-body>
-            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-            <div class="com-flex com-flex-wrap">
-              <div class="communities-cards">
-                <app-communities-card
-                  *ngFor="let community of communities"
-                  [community]="community"
-                  [horizontalScroll]="true"
-                ></app-communities-card>
-              </div>
-            </div>
-          </nb-card-body>
-        </nb-card>
-
         <!-- channels -->
         <nb-card>
           <nb-card-header class="header">
@@ -96,6 +69,37 @@
                 [channel]="channel"
                 [horizontalScroll]="true"
               ></commudle-channel-card>
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+        <!-- communities -->
+        <nb-card>
+          <nb-card-header>
+            <div class="header">
+              <div class="icon">
+                <fa-icon [icon]="faUsers"></fa-icon>
+              </div>
+              <div>
+                <h5>Active Communities to join</h5>
+                <!-- <span class="com-text-gray-400">{{ communityGroup.member_count }} Members to join and connect with</span> -->
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            <div class="com-flex com-flex-wrap">
+              <div class="communities-cards">
+                <div *ngFor="let community of communities">
+                  <!-- <commudle-featured-community-card-medium
+                  [featuredItems]="community"
+                  ></commudle-featured-community-card-medium> -->
+                </div>
+                <!-- <app-communities-card
+                  [community]="community"
+                  [horizontalScroll]="true"
+                ></app-communities-card> -->
+              </div>
             </div>
           </nb-card-body>
         </nb-card>

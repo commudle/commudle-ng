@@ -1,19 +1,19 @@
 nb-card {
-  @apply md:com-w-[600px] com-h-96  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-mx-0 com-my-2;
+  @apply md:com-w-[420px] com-h-96  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-m-0;
 
   nb-card-body {
     @apply com-overflow-hidden com-flex com-flex-col md:com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
     .logo-section {
       .logo {
-        @apply com-w-24 com-h-24 md:com-w-44 md:com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
+        @apply com-w-[52px] com-h-[52px] md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
         img {
           @apply com-w-full;
         }
       }
       .without-logo {
-        @apply com-w-24 com-h-24 md:com-w-44 md:com-h-44 com-rounded-lg com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-bg-gray-100 com-m-auto;
+        @apply com-w-[52px] com-h-[52px] md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-bg-gray-100 com-m-auto;
         nb-icon {
-          @apply com-text-5xl;
+          @apply com-text-[32px];
         }
       }
     }
@@ -28,17 +28,21 @@ nb-card {
           @apply com-m-0;
         }
         .name {
-          @apply com-font-bold com-text-xl com-leading-5 com-my-1 com-line-clamp-1;
-        }
-        .members-count {
-          @apply com-font-normal com-text-sm com-text-gray-400 com-my-1;
+          @apply com-font-bold com-text-base com-m-0 com-mb-2 com-line-clamp-1;
         }
         .description {
-          @apply com-text-base com-leading-5 com-text-gray-500 com-my-1 com-line-clamp-2;
+          @apply com-text-sm com-font-normal com-text-gray-500 com-m-0 com-mb-4 com-line-clamp-2;
+        }
+
+        .logo-and-member-count {
+          @apply com-m-0 com-mb-4;
+          .members-count {
+            @apply com-font-normal com-text-sm com-text-gray-400 com-my-1;
+          }
         }
       }
       .join-channel {
-        @apply com-bg-tWhite hover:com-bg-gray-200 com-w-40 com-mx-auto md:com-mx-0;
+        @apply hover:com-bg-gray-200 com-mx-auto md:com-mx-0;
       }
     }
   }

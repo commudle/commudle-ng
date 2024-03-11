@@ -9,6 +9,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-community-group-activity',
@@ -18,7 +19,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   limit = 6;
   communityGroup: ICommunityGroup;
-  communities: ICommunity[] = [];
+  communities: IFeaturedItems[] = [];
   channels: ICommunityChannel[] = [];
   events: IEvent[] = [];
   subscriptions: Subscription[] = [];
