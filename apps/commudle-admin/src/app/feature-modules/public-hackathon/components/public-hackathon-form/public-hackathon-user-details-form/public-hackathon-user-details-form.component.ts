@@ -44,10 +44,12 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
     // Dynamically add form controls based on configuration
     Object.keys(userDetails).forEach((key) => {
       if (userDetails[key] && key !== 'profile_image') {
+        let userValues = this.currentUser[key];
+        if (key === 'work_experience_months') {
+          userValues = userValues / 12;
+        }
         formGroupConfig[key] = [
-          this.hackathonUserResponse && this.hackathonUserResponse[key]
-            ? this.hackathonUserResponse[key]
-            : this.currentUser[key],
+          this.hackathonUserResponse && this.hackathonUserResponse[key] ? this.hackathonUserResponse[key] : userValues,
           Validators.required,
         ];
       }

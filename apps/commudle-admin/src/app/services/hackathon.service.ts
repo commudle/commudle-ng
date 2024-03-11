@@ -219,6 +219,11 @@ export class HackathonService {
     );
   }
 
+  check_duplicate_judge(email: string, hackathonId): Observable<any> {
+    const params = new HttpParams().set('email', email).set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHECK_DUPLICATE_JUDGE), { params });
+  }
+
   createJudge(formData, hackathonId): Observable<IHackathonJudge> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.post<IHackathonJudge>(
@@ -288,9 +293,13 @@ export class HackathonService {
     );
   }
 
-  getHackathonCurrentRegistrationDetails(): Observable<IHackathonTeam> {
+  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonTeam>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
+      {
+        params,
+      },
     );
   }
 

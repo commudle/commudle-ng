@@ -64,7 +64,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
       formData.append('entity_update[images][]', image);
     }
     this.images = [];
-    this.entityUpdatesService.createEntityUpdate(formData, 1, EDbModels.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.createEntityUpdate(formData, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
       this.selectedImages = [];
       this.updates.unshift(data);
       this.isLoading = false;
