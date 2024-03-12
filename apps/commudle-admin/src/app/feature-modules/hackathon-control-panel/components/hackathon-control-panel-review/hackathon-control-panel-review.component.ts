@@ -52,7 +52,6 @@ export class HackathonControlPanelReviewComponent implements OnInit {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.fetchUserResponses(params.get('hackathon_id'));
       this.indexRounds(params.get('hackathon_id'));
-      this.addNote();
     });
   }
 
@@ -111,7 +110,12 @@ export class HackathonControlPanelReviewComponent implements OnInit {
       if (note.value !== '') {
         const formData: any = new FormData();
         formData.append('note[text]', note.value);
-        this.noteService.createNote(formData, EDbModels.HACKATHON_TEAM, teamId);
+        this.noteService.createNote(formData, EDbModels.HACKATHON_TEAM, teamId).subscribe((data) => {
+          for (let index = 0; index < this.notesList.length; index++) {
+            this.removeNote(index);
+          }
+          this.notes.push(data);
+        });
       }
     }
   }
@@ -119,6 +123,9 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   notesIndex(teamId) {
     this.noteService.indexNotes(teamId, EDbModels.HACKATHON_TEAM).subscribe((data) => {
       this.notes = data;
+      if (this.notes.length === 0) {
+        this.addNote();
+      }
     });
   }
 
