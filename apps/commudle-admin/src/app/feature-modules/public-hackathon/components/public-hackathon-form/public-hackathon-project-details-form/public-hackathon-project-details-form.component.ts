@@ -17,6 +17,7 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
 
   hackathonTracks: IHackathonTrack[];
   hackathonProjectDetailsForm: FormGroup;
+  selectedTrackProblemStatement = '';
 
   constructor(private hackathonService: HackathonService, private fb: FormBuilder) {
     this.hackathonProjectDetailsForm = this.fb.group({
@@ -35,6 +36,16 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
         hackathon_track_id: this.hackathonUserResponse.track_id,
         project_description: this.hackathonUserResponse.project_description,
       });
+    }
+  }
+
+  updateProblemStatement() {
+    const selectedTrackId = this.hackathonProjectDetailsForm.get('hackathon_track_id').value;
+    const selectedTrack = this.hackathonTracks.find((track) => track.id == selectedTrackId);
+    if (selectedTrack) {
+      this.selectedTrackProblemStatement = selectedTrack.problem_statement;
+    } else {
+      this.selectedTrackProblemStatement = '';
     }
   }
 

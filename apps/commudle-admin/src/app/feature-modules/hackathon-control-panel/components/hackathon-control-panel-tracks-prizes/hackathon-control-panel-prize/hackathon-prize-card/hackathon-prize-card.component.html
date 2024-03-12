@@ -10,7 +10,9 @@
       </div>
     </div>
     <div class="prize-details">
-      <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+      <div class="track-details">
+        <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+      </div>
       <p class="prize">
         {{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
         {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}

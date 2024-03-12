@@ -59,7 +59,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   urlValidator(control) {
-    if (control.value && !/^(http|https)/.test(control.value)) {
+    if (control.value && !/^https?:\/\//.test(control.value)) {
       return { invalidUrl: true };
     }
     return null;
@@ -72,27 +72,31 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   fetchSpeakerJudgeDetails() {
-    this.appUsersService.getProfileByEmail(this.fetchSpeakerJudge.get('email').value).subscribe((data: IUser) => {
-      this.speakerRegistrationForm.reset();
-      if (data) {
-        if (data.photo.url) {
-          this.imageUrl = data.photo.url;
-          this.fetchImageBlob();
-        }
-        this.speakerRegistrationForm.patchValue({
-          name: data.name,
-          about: data.about_me,
-          email: data.email,
-          designation: data.designation,
-          twitter: data.twitter ? data.twitter : '',
-          linkedin: data.linkedin ? data.linkedin : '',
-          website: data.personal_website ? data.personal_website : '',
-          username: data.username,
+    this.hackathonService
+      .check_duplicate_judge(this.fetchSpeakerJudge.get('email').value, this.hackathonSlug)
+      .subscribe((data) => {
+        this.appUsersService.getProfileByEmail(data).subscribe((data: IUser) => {
+          this.speakerRegistrationForm.reset();
+          if (data) {
+            if (data.photo.url) {
+              this.imageUrl = data.photo.url;
+              this.fetchImageBlob();
+            }
+            this.speakerRegistrationForm.patchValue({
+              name: data.name,
+              about: data.about_me,
+              email: data.email,
+              designation: data.designation,
+              twitter: data.twitter ? data.twitter : '',
+              linkedin: data.linkedin ? data.linkedin : '',
+              website: data.personal_website ? data.personal_website : '',
+              username: data.username,
+            });
+          }
+          this.dialogService.open(this.judgeFormDialog);
+          this.fetchSpeakerJudge.reset();
         });
-      }
-      this.dialogService.open(this.judgeFormDialog);
-      this.fetchSpeakerJudge.reset();
-    });
+      });
   }
 
   openEditJudgeDialogBox(dialog, judge: IHackathonJudge, index) {

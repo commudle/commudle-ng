@@ -15,6 +15,7 @@ import {
   faCircleQuestion,
   faAward,
   faUser,
+  faLaptopCode,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -40,6 +41,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faCircleQuestion,
     faAward,
     faUser,
+    faLaptopCode,
   };
   isLoading = true;
   showBannerImage = false;

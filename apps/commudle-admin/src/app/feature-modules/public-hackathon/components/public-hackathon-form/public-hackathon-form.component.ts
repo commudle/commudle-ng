@@ -12,6 +12,9 @@ import { Subscription } from 'rxjs';
 import { faLinkedinIn, faTwitter, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe, faInfoCircle, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
+import { Location } from '@angular/common';
+import { ToastrService } from '@commudle/shared-services';
+import { DataFormEntityResponsesService } from 'apps/commudle-admin/src/app/services/data-form-entity-responses.service';
 
 @Component({
   selector: 'commudle-public-hackathon-form',
@@ -46,6 +49,9 @@ export class PublicHackathonFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private hurService: HackathonUserResponsesService,
+    private toastrService: ToastrService,
+    private location: Location,
+    private dataFormEntityResponsesService: DataFormEntityResponsesService,
   ) {}
 
   ngOnInit() {
@@ -110,7 +116,25 @@ export class PublicHackathonFormComponent implements OnInit {
 
   submitProjectDetails(formData) {
     this.hurService.updateProjectDetails(formData, this.hackathonUserResponse.id).subscribe((data) => {
-      if (data) this.stepper.next();
+      if (data) {
+        if (this.hackathonResponseGroup.data_form_entity_id) {
+          this.stepper.next();
+        } else {
+          this.toastrService.successDialog('Details has been saved');
+          this.location.back();
+        }
+      }
     });
+  }
+
+  submitFormData(formData) {
+    this.dataFormEntityResponsesService
+      .submitDataFormEntityResponse(this.hackathonResponseGroup.data_form_entity_id, formData)
+      .subscribe((data) => {
+        if (data) {
+          this.toastrService.successDialog('Details has been saved');
+          this.location.back();
+        }
+      });
   }
 }

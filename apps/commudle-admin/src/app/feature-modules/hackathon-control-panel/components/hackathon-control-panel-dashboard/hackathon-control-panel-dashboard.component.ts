@@ -12,16 +12,16 @@ import {
   faLink,
   faCalendarDays,
   faAward,
-  faBook,
   faSackDollar,
   faMicrophone,
   faStar,
   faCircleQuestion,
-  faArrowsRotate,
   faEye,
   faChartPie,
   faHashtag,
   faEnvelope,
+  faGamepad,
+  faRectangleList,
 } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
@@ -43,19 +43,19 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
     faCalendarDays,
     faAward,
     faMicrophone,
-    faBook,
     faSackDollar,
     faStar,
     faCircleQuestion,
-    faArrowsRotate,
     faEye,
     faChartPie,
     faHashtag,
     faEnvelope,
+    faGamepad,
+    faRectangleList,
   };
 
   hackathonStatuses: string[] = Object.values(EHackathonStatus);
-
+  EHackathonStatus = EHackathonStatus;
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
@@ -87,6 +87,10 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
   }
 
   updateStatus(value) {
-    this.hackathonService.updateHackathonStatus(this.hackathon.id, value).subscribe((data) => {});
+    this.hackathonService.updateHackathonStatus(this.hackathon.id, value).subscribe((data) => {
+      if (data) {
+        this.hackathon.status = data.status;
+      }
+    });
   }
 }

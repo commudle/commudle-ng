@@ -5,8 +5,11 @@
   }
 }
 .prize-details {
-  .track-name {
-    @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
+  .track-details {
+    @apply com-h-6;
+    .track-name {
+      @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
+    }
   }
 
   .prize {
@@ -14,7 +17,7 @@
   }
 
   .description {
-    @apply com-text-gray-500 com-text-base;
+    @apply com-text-gray-500 com-text-base com-line-clamp-2;
   }
 }
 

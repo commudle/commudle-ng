@@ -33,7 +33,7 @@
     <input type="text" nbInput fullWidth formControlName="designation" />
   </div>
   <div *ngIf="userForm.get('about_me')">
-    <label for="name">About</label>
+    <label for="name">About*</label>
     <textarea name="about_me" id="about_me" rows="3" nbInput fullWidth formControlName="about_me"></textarea>
   </div>
   <div *ngIf="userForm.get('location')">
@@ -41,11 +41,11 @@
     <input type="text" nbInput fullWidth formControlName="location" />
   </div>
   <div *ngIf="userForm.get('work_experience_months')">
-    <label for="name">Your Work Experience in months</label>
+    <label for="name">Your Work Experience in Years*</label>
     <input type="text" nbInput fullWidth formControlName="work_experience_months" />
   </div>
   <div *ngIf="userForm.get('education')">
-    <label for="name">Your education</label>
+    <label for="name">Your education*</label>
     <input type="text" nbInput fullWidth formControlName="education" />
   </div>
   <div *ngIf="userForm.get('phone')">
@@ -57,43 +57,43 @@
     <input type="email" nbInput fullWidth formControlName="email" />
   </div>
   <div *ngIf="userForm.get('twitter')">
-    <label for="name">Twitter</label>
+    <label for="name">Twitter*</label>
     <input type="text" nbInput fullWidth formControlName="twitter" />
   </div>
   <div *ngIf="userForm.get('linkedin')">
-    <label for="name">Linkedin</label>
+    <label for="name">Linkedin*</label>
     <input type="text" nbInput fullWidth formControlName="linkedin" />
   </div>
   <div *ngIf="userForm.get('dribbble')">
-    <label for="name">Dribbble</label>
+    <label for="name">Dribbble*</label>
     <input type="text" nbInput fullWidth formControlName="dribbble" />
   </div>
   <div *ngIf="userForm.get('youtube')">
-    <label for="name">Youtube</label>
+    <label for="name">Youtube*</label>
     <input type="text" nbInput fullWidth formControlName="youtube" />
   </div>
   <div *ngIf="userForm.get('medium')">
-    <label for="name">Medium</label>
+    <label for="name">Medium*</label>
     <input type="text" nbInput fullWidth formControlName="medium" />
   </div>
   <div *ngIf="userForm.get('behance')">
-    <label for="name">Behance</label>
+    <label for="name">Behance*</label>
     <input type="text" nbInput fullWidth formControlName="behance" />
   </div>
   <div *ngIf="userForm.get('gitlab')">
-    <label for="name">Gitlab</label>
+    <label for="name">Gitlab*</label>
     <input type="text" nbInput fullWidth formControlName="gitlab" />
   </div>
   <div *ngIf="userForm.get('github')">
-    <label for="name">Github</label>
+    <label for="name">Github*</label>
     <input type="text" nbInput fullWidth formControlName="github" />
   </div>
   <div *ngIf="userForm.get('facebook')">
-    <label for="name">Facebook</label>
+    <label for="name">Facebook*</label>
     <input type="text" nbInput fullWidth formControlName="facebook" />
   </div>
   <div *ngIf="userForm.get('tshirt_size')">
-    <label for="tshirt_size">T shirt size</label>
+    <label for="tshirt_size">T shirt size*</label>
     <input type="text" nbInput fullWidth formControlName="tshirt_size" />
   </div>
   <button class="com-w-max" status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">

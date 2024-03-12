@@ -126,6 +126,14 @@ export class HackathonService {
     );
   }
 
+  updateSponsor(sponsor, sponsorId): Observable<IHackathonSponsor> {
+    sponsor.append('hackathon_sponsor_id', sponsorId);
+    return this.http.put<IHackathonSponsor>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_SPONSOR),
+      sponsor,
+    );
+  }
+
   indexSponsors(hackathonId): Observable<IHackathonSponsor[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonSponsor[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX_SPONSORS), {
@@ -211,6 +219,11 @@ export class HackathonService {
     );
   }
 
+  check_duplicate_judge(email: string, hackathonId): Observable<any> {
+    const params = new HttpParams().set('email', email).set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHECK_DUPLICATE_JUDGE), { params });
+  }
+
   createJudge(formData, hackathonId): Observable<IHackathonJudge> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.post<IHackathonJudge>(
@@ -280,14 +293,18 @@ export class HackathonService {
     );
   }
 
-  getHackathonCurrentRegistrationDetails(): Observable<IHackathonTeam> {
+  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.get<IHackathonTeam>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
+      {
+        params,
+      },
     );
   }
 
-  updateHackathonStatus(hackathonId, status): Observable<boolean> {
-    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
+  updateHackathonStatus(hackathonId, status): Observable<IHackathon> {
+    return this.http.put<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
       hackathon_id: hackathonId,
       hackathon_status: status,
     });

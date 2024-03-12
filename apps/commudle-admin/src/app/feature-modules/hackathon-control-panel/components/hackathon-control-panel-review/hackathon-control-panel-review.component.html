@@ -91,30 +91,67 @@
     </nb-card-header>
     <nb-card-body>
       <div class="action-buttons">
-        <button
-          nbButton
-          status="primary"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
-        >
-          Accepted
-        </button>
-        <button
-          nbButton
-          status="danger"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
-        >
-          Reject
-        </button>
-        <button
-          nbButton
-          status="warning"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
-        >
-          Waitlist
-        </button>
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REGISTERED">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
+          >
+            Accepted
+          </button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
+          >
+            Reject
+          </button>
+          <button
+            nbButton
+            status="warning"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
+          >
+            Waitlist
+          </button>
+        </div>
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+          <button nbButton status="primary" fullWidth>Send Acceptance Email</button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Accept
+          </button>
+        </div>
+
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
+          <button nbButton status="primary" fullWidth>Send Rejection Email</button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Reject
+          </button>
+        </div>
+
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
+          <button nbButton status="primary" fullWidth>Send Waitlist Email</button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Waitlist
+          </button>
+        </div>
       </div>
       <div
         class="round-select"

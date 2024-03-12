@@ -46,9 +46,11 @@ export class PublicHackathonPrizesComponent implements OnInit {
 
   getHackathonCurrentRegistrationDetails() {
     this.subscriptions.push(
-      this.hackathonService.getHackathonCurrentRegistrationDetails().subscribe((data: IHackathonTeam) => {
-        this.userTeamDetails = data;
-      }),
+      this.hackathonService
+        .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+        .subscribe((data: IHackathonTeam) => {
+          if (data) this.userTeamDetails = data;
+        }),
     );
   }
 }

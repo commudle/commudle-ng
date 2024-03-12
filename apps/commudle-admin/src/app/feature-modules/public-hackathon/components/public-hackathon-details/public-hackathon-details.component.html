@@ -8,7 +8,11 @@
 
     <div *ngIf="hackathon.updates_count > 0" id="updates">
       <nb-card>
-        <nb-card-header><h2>Updates</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="updates"> Updates </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body>
           <commudle-entity-updates
             [entityId]="hackathon.id"
@@ -20,7 +24,11 @@
 
     <div *ngIf="hackathon.sponsors_count > 0" id="sponsors">
       <nb-card>
-        <nb-card-header><h2>Sponsors</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="sponsors"> Sponsors </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body class="sponsors-cards">
           <div *ngFor="let sponsor of sponsors" class="sponsor-card">
             <img [src]="sponsor.sponsor.logo.url" [alt]="sponsor.sponsor.name" />
@@ -32,7 +40,11 @@
 
     <div *ngIf="hackathon.faqs_count > 0" id="faq">
       <nb-card>
-        <nb-card-header><h2>FAQs</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="faq"> FAQs </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body>
           <div *ngFor="let faq of faqs">
             <commudle-faq-card [faq]="faq"></commudle-faq-card>
@@ -43,7 +55,11 @@
 
     <div *ngIf="hackathon.tracks_count > 0" id="tracks">
       <nb-card>
-        <nb-card-header><h2>Tracks</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="tracks"> Tracks </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body class="track-cards">
           <div *ngFor="let track of tracks" class="track-card">
             <div class="name">{{ track.name }}</div>
@@ -63,7 +79,11 @@
     </div>
 
     <nb-card id="comments">
-      <nb-card-header><h2>Comments</h2></nb-card-header>
+      <nb-card-header>
+        <h2>
+          <a [routerLink]="['.']" fragment="comments"> Comments </a>
+        </h2>
+      </nb-card-header>
       <nb-card-body>
         <commudle-discussion
           *ngIf="discussionChat"
@@ -94,8 +114,7 @@
         </div>
       </nb-card-body>
     </nb-card>
-
-    <nb-card *ngIf="userTeamDetails" class="project-details-card">
+    <nb-card *ngIf="hrgId && userTeamDetails" class="project-details-card">
       <nb-card-header>
         <div class="heading"></div>
         <div>

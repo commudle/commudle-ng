@@ -782,6 +782,7 @@ export const API_ROUTES = {
     SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
     UPDATE_HACKATHON_DATE: 'api/v2/hackathons/update_hackathon_dates', // POST
     CREATE_SPONSOR: 'api/v2/hackathons/create_sponsor', //POST
+    UPDATE_SPONSOR: 'api/v2/hackathons/update_sponsor', //PUT
     INDEX_SPONSORS: 'api/v2/hackathons/index_sponsors', //GET
     DESTROY_SPONSOR: 'api/v2/hackathons/destroy_sponsor', //DELETE
     CREATE_TRACK: 'api/v2/hackathons/create_track', //POST
@@ -793,6 +794,7 @@ export const API_ROUTES = {
     DESTROY_PRIZE: 'api/v2/hackathons/destroy_prize', //DELETE
     INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
     INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
+    CHECK_DUPLICATE_JUDGE: 'api/v2/hackathons/check_duplicate_judge', //GET
     CREATE_JUDGE: 'api/v2/hackathons/create_judge', //POST
     UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
