@@ -29,7 +29,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   rounds: IRound[];
   countryDetails = countries_details;
   moment = moment;
-  userTeamDetails: IHackathonTeam;
+  userTeamDetails: IHackathonTeam[];
   subscriptions: Subscription[] = [];
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   hrgId: number;
@@ -123,7 +123,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService
         .getHackathonCurrentRegistrationDetails(this.hackathon.id)
-        .subscribe((data: IHackathonTeam) => {
+        .subscribe((data: IHackathonTeam[]) => {
           if (data) {
             this.userTeamDetails = data;
           }

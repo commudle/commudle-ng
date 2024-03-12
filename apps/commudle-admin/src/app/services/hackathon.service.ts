@@ -303,9 +303,9 @@ export class HackathonService {
     );
   }
 
-  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam> {
+  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<IHackathonTeam>(
+    return this.http.get<IHackathonTeam[]>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
       {
         params,
