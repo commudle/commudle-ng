@@ -91,6 +91,11 @@
         </section>
         <div class="page-menu">
           <div class="menu-items d-flex">
+            <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="faCircleInfo"></fa-icon>
+              <span class="title">About</span>
+            </a>
+
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/orgs', communityGroup.slug]"
@@ -99,11 +104,6 @@
             >
               <fa-icon [icon]="faArrowTrendUp"></fa-icon>
               <span class="title">Activity</span>
-            </a>
-
-            <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
-              <fa-icon [icon]="faCircleInfo"></fa-icon>
-              <span class="title">About</span>
             </a>
 
             <a [routerLink]="['/orgs', communityGroup.slug, 'communities']" class="d-flex" routerLinkActive="active">

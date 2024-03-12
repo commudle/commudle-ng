@@ -12,6 +12,10 @@
   @screen lg {
     @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
   }
+
+  .community-card {
+    @apply md:com-w-[276px] com-w-full;
+  }
 }
 
 nb-card {

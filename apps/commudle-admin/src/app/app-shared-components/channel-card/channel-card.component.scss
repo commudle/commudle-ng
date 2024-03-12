@@ -22,8 +22,6 @@ nb-card {
       @apply com-flex com-flex-col com-justify-between com-h-full com-text-center md:com-text-start;
       .details {
         @apply com-flex md:com-block com-flex-col com-items-center md:com-items-start;
-        .community-badge {
-        }
         p {
           @apply com-m-0;
         }
@@ -35,14 +33,14 @@ nb-card {
         }
 
         .logo-and-member-count {
-          @apply com-m-0 com-mb-4;
-          .members-count {
-            @apply com-font-normal com-text-sm com-text-gray-400 com-my-1;
+          @apply com-m-0 com-mb-4 com-flex com-flex-row;
+          app-badge {
+            @apply com-w-full;
           }
         }
       }
       .join-channel {
-        @apply hover:com-bg-gray-200 com-mx-auto md:com-mx-0;
+        @apply com-mx-auto md:com-mx-0;
       }
     }
   }

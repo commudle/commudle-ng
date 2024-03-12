@@ -86,27 +86,28 @@
               </div>
             </div>
           </nb-card-header>
-          <nb-card-body>
+          <nb-card-body class="card-body">
             <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             <div class="com-flex com-flex-wrap">
               <div class="communities-cards">
-                <div *ngFor="let community of communities">
-                  <!-- <commudle-featured-community-card-medium
-                  [featuredItems]="community"
-                  ></commudle-featured-community-card-medium> -->
+                <div *ngFor="let community of communities" class="community-card">
+                  <commudle-featured-community-card-medium
+                    [community]="community"
+                    [showDescription]="true"
+                  ></commudle-featured-community-card-medium>
                 </div>
-                <!-- <app-communities-card
-                  [community]="community"
-                  [horizontalScroll]="true"
-                ></app-communities-card> -->
               </div>
             </div>
           </nb-card-body>
         </nb-card>
       </div>
       <div class="right-column">
-        <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-        <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+        <commudle-public-home-list-speakers-upcoming
+          [parentType]="'communityGroup'"
+        ></commudle-public-home-list-speakers-upcoming>
+        <div class="recent-tech">
+          <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+        </div>
         <div class="speakers">
           <commudle-public-home-list-events-speakers
             [parentType]="'communities'"
