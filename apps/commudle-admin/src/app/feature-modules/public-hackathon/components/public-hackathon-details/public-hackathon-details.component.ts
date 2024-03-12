@@ -124,7 +124,9 @@ export class PublicHackathonDetailsComponent implements OnInit {
       this.hackathonService
         .getHackathonCurrentRegistrationDetails(this.hackathon.id)
         .subscribe((data: IHackathonTeam) => {
-          if (data) this.userTeamDetails = data;
+          if (data) {
+            this.userTeamDetails = data;
+          }
         }),
     );
   }

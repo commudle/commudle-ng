@@ -118,7 +118,9 @@
           </button>
         </div>
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
-          <button nbButton status="primary" fullWidth>Send Acceptance Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Acceptance Email
+          </button>
           <button
             nbButton
             status="danger"
@@ -130,7 +132,9 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
-          <button nbButton status="primary" fullWidth>Send Rejection Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Rejection Email
+          </button>
           <button
             nbButton
             status="danger"
@@ -142,7 +146,9 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
-          <button nbButton status="primary" fullWidth>Send Waitlist Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Waitlist Email
+          </button>
           <button
             nbButton
             status="danger"

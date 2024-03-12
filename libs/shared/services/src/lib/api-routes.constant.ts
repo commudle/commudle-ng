@@ -802,6 +802,7 @@ export const API_ROUTES = {
     INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //GET
     SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
     CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
+    GENERATE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/generate_team_registration_status', //POST
     CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
     GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details', //GET
     UPDATE_STATUS: 'api/v2/hackathons/update_status', //PUT

@@ -121,4 +121,12 @@ export class HackathonControlPanelReviewComponent implements OnInit {
       this.notes = data;
     });
   }
+
+  generateTeamRegistrationStatus(teamId) {
+    this.hackathonService.generateTeamRegistrationStatus(teamId).subscribe((data) => {
+      if (data) {
+        this.toastrService.notificationDialog('Email Sent');
+      }
+    });
+  }
 }
