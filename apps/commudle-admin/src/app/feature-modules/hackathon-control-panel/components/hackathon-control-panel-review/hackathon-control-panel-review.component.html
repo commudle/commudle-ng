@@ -64,11 +64,17 @@
               [(ngModel)]="userResponse.team.registration_status"
               [class]="EHackathonRegistrationStatusColor[userResponse.team.registration_status]"
             >
-              <option
-                *ngFor="let registrationStatus of EHackathonRegistrationStatus | keyvalue"
-                [value]="registrationStatus.value"
-              >
-                {{ registrationStatus.value | titlecase }}
+              <option [value]="EHackathonRegistrationStatus.REGISTERED">
+                {{ EHackathonRegistrationStatus.REGISTERED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.WAITLISTED">
+                {{ EHackathonRegistrationStatus.WAITLISTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.ACCEPTED">
+                {{ EHackathonRegistrationStatus.ACCEPTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.REJECTED">
+                {{ EHackathonRegistrationStatus.REJECTED | titlecase }}
               </option>
             </select>
           </div>
