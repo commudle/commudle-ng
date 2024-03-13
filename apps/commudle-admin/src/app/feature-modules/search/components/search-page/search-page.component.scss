@@ -124,4 +124,10 @@
   .load-more {
     @apply com-flex com-self-center com-m-0 com-mt-4;
   }
+
+  .speakers-upcoming,
+  .tech-sessions,
+  .speakers {
+    @apply com-m-0 md:com-mt-4 com-mt-10;
+  }
 }

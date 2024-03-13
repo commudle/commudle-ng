@@ -10,17 +10,23 @@
       </a>
     </div>
     <app-communities-featured></app-communities-featured>
-    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    <div class="speakers-upcoming">
+      <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    </div>
     <div class="speakers">
       <commudle-public-home-list-events-speakers
         [parentType]="'communities'"
       ></commudle-public-home-list-events-speakers>
     </div>
     <app-communities-list></app-communities-list>
-    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-speakers-content
-      [parentType]="'communities'"
-    ></commudle-public-home-list-speakers-content>
+    <div class="tech-sessions">
+      <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+    </div>
+    <div class="speakers-content">
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
+    </div>
   </div>
   <div main-column *ngIf="!isMobileView">
     <app-communities-featured></app-communities-featured>
@@ -33,15 +39,21 @@
         Start your community
       </a>
     </div>
-    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+    <div class="speakers-upcoming">
+      <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    </div>
+    <div class="tech-sessions">
+      <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+    </div>
     <div class="speakers">
       <commudle-public-home-list-events-speakers
         [parentType]="'communities'"
       ></commudle-public-home-list-events-speakers>
     </div>
-    <commudle-public-home-list-speakers-content
-      [parentType]="'communities'"
-    ></commudle-public-home-list-speakers-content>
+    <div class="speakers-content">
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
+    </div>
   </div>
 </commudle-listing-pages-layout>

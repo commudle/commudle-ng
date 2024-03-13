@@ -9,13 +9,19 @@
     <commudle-public-home-list-speakers-profile></commudle-public-home-list-speakers-profile>
   </div>
   <div right-column>
-    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    <div class="speakers-upcoming">
+      <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+    </div>
     <div class="featured-communities">
       <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
     </div>
-    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
-    <commudle-public-home-list-speakers-content
-      [parentType]="'communities'"
-    ></commudle-public-home-list-speakers-content>
+    <div class="tech-sessions">
+      <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+    </div>
+    <div class="speakers-content">
+      <commudle-public-home-list-speakers-content
+        [parentType]="'communities'"
+      ></commudle-public-home-list-speakers-content>
+    </div>
   </div>
 </commudle-listing-pages-layout>

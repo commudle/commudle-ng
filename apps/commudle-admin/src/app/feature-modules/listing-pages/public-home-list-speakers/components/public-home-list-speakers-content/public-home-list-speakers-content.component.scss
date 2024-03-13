@@ -1,10 +1,10 @@
 nb-card {
-  @apply com-mx-0 md:com-bg-Bright-Gray-opacity-30 com-border-none com-m-0 md:com-mt-6 md:com-mb-4 com-mb-10;
+  @apply com-mx-0 md:com-bg-Bright-Gray-opacity-30 com-border-none com-m-0 md:com-mb-0 com-mb-10;
 
   nb-card-body {
     @apply com-p-0 md:com-px-3 md:com-py-4;
     .heading {
-      @apply md:com-mt-0 md:com-mb-6 com-mt-10 com-mb-4 com-mx-0 com-flex com-flex-col com-p-4 md:com-p-0 md:com-bg-transparent com-bg-Anti-Flash-White;
+      @apply com-mt-0 md:com-mb-6 com-mb-4 com-mx-0 com-flex com-flex-col com-p-4 md:com-p-0 md:com-bg-transparent com-bg-Anti-Flash-White;
 
       .title {
         @apply com-text-sm com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0;
