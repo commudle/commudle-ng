@@ -283,6 +283,16 @@ export class HackathonService {
       },
     );
   }
+
+  generateTeamRegistrationStatus(teamId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS),
+      {
+        team_id: teamId,
+      },
+    );
+  }
+
   changeTeamRound(teamId, roundId): Observable<IHackathonTeam> {
     return this.http.put<IHackathonTeam>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHANGE_TEAM_ROUND_STATUS),
@@ -293,9 +303,9 @@ export class HackathonService {
     );
   }
 
-  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam> {
+  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam[]> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
-    return this.http.get<IHackathonTeam>(
+    return this.http.get<IHackathonTeam[]>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
       {
         params,

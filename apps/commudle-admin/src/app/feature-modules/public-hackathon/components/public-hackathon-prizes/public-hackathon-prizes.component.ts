@@ -6,6 +6,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { countries_details as countryDetails } from '@commudle/shared-services';
 import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
@@ -17,9 +18,14 @@ export class PublicHackathonPrizesComponent implements OnInit {
   hackathon: IHackathon;
   hackathonPrizes: IHackathonPrize[];
   isLoading = true;
-  userTeamDetails: IHackathonTeam;
+  userTeamDetails: IHackathonTeam[];
+  hrgId: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private hackathonService: HackathonService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private hackathonService: HackathonService,
+    private hrgService: HackathonResponseGroupService,
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
@@ -29,6 +35,9 @@ export class PublicHackathonPrizesComponent implements OnInit {
         this.getHackathonCurrentRegistrationDetails();
       }),
     );
+    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+      this.hrgId = data.id;
+    });
   }
 
   getPrizes() {
@@ -48,7 +57,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService
         .getHackathonCurrentRegistrationDetails(this.hackathon.id)
-        .subscribe((data: IHackathonTeam) => {
+        .subscribe((data: IHackathonTeam[]) => {
           if (data) this.userTeamDetails = data;
         }),
     );

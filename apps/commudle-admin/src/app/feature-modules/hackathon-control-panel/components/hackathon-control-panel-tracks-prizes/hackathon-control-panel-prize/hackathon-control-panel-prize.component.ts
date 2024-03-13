@@ -52,7 +52,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
       description: ['', Validators.required],
       no_of_winners: ['', Validators.required],
       prize_amount: [''],
-      currency_type: [''],
+      currency_type: 'INR',
       order: ['', Validators.required],
       hackathon_track_id: '',
       hackathon_id: '',
@@ -86,9 +86,10 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
   }
 
   openPrizeFormDialogBox(dialog, prize?: IHackathonPrize, index?) {
-    this.prizeForm.reset();
     this.prizeForm.patchValue({
       hackathon_id: this.hackathon.id,
+      currency_type: 'INR',
+      hackathon_track_id: '',
     });
     if (prize) {
       this.prizeForm.patchValue({

@@ -390,7 +390,9 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     for (const update of this.communityBuildUpdateForm.value.update) {
       const formData = new FormData();
       formData.append('entity_update[details]', update.value);
-      this.entityUpdatesService.createEntityUpdate(formData, communityBuild.id, EDbModels.COMMUNITY_BUILD);
+      this.entityUpdatesService
+        .createEntityUpdate(formData, communityBuild.id, EDbModels.COMMUNITY_BUILD)
+        .subscribe((data) => {});
     }
   }
 

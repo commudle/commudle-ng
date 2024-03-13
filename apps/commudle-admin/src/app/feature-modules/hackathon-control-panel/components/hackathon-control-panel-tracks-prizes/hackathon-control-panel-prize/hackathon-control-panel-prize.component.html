@@ -18,7 +18,7 @@
   <nb-card class="prize-form">
     <nb-card-header>
       <span> {{ data.prize ? 'Edit Prize' : 'New Prize' }}</span>
-      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); prizeForm.reset()">
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
@@ -72,8 +72,11 @@
         <div>
           <label for="prize_amount">Prize Amount</label>
           <div class="prize-amount">
-            <select name="currency_type" id="currency_type" formControlName="currency_type">
-              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.currency">
+            <select name="currency_type" formControlName="currency_type">
+              <option selected [value]="countryDetails[0].currency">
+                {{ countryDetails[0].currency }} ({{ countryDetails[0].symbol }})
+              </option>
+              <option *ngFor="let countryDetail of countryDetails.slice(1)" [value]="countryDetail.currency">
                 {{ countryDetail.currency }} ({{ countryDetail.symbol }})
               </option>
             </select>

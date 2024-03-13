@@ -88,6 +88,7 @@ th {
 
 .notes-form {
   @apply com-my-3;
+
   .note {
     @apply com-flex com-gap-2 com-items-center com-my-3;
     fa-icon {
@@ -105,4 +106,8 @@ th {
   .project-submit {
     @apply com-text-sm com-font-medium com-bg-teal-700 com-py-2 com-px-3 com-rounded-3xl com-text-white;
   }
+}
+
+.border-box-text {
+  @apply com-border com-border-solid com-border-Bright-Gray com-rounded-md com-px-2 com-py-3 com-my-1;
 }

@@ -16,9 +16,13 @@
     </ng-template>
   </div>
   <div class="right-column">
-    <nb-card>
+    <nb-card *ngIf="userTeamDetails">
       <nb-card-body>
-        <commudle-public-hackathon-details-mini-card [hackathon]="hackathon" [userTeamDetails]="userTeamDetails">
+        <commudle-public-hackathon-details-mini-card
+          [hackathon]="hackathon"
+          [userTeamDetails]="userTeamDetails[0]"
+          [hrgId]="hrgId"
+        >
         </commudle-public-hackathon-details-mini-card
       ></nb-card-body>
     </nb-card>

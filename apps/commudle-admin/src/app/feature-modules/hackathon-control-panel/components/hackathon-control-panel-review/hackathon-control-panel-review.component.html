@@ -31,7 +31,6 @@
             <span class="details">{{
               userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details
             }}</span>
-            <br />
             <span
               class="timeago"
               title="{{
@@ -51,7 +50,7 @@
         <td class="notes">
           <div *ngIf="userResponse.team.notes.length > 0">
             <span class="details">{{ userResponse.team.notes[userResponse.team.notes.length - 1].text }}</span>
-            <span class="notes-count"> {{ userResponse.team.notes.length - 1 }} Notes </span>
+            <span class="notes-count"> {{ userResponse.team.notes.length }} Notes </span>
           </div>
         </td>
         <td (click)="$event.stopPropagation()" class="com-cursor-pointer">
@@ -64,11 +63,17 @@
               [(ngModel)]="userResponse.team.registration_status"
               [class]="EHackathonRegistrationStatusColor[userResponse.team.registration_status]"
             >
-              <option
-                *ngFor="let registrationStatus of EHackathonRegistrationStatus | keyvalue"
-                [value]="registrationStatus.value"
-              >
-                {{ registrationStatus.value | titlecase }}
+              <option [value]="EHackathonRegistrationStatus.REGISTERED">
+                {{ EHackathonRegistrationStatus.REGISTERED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.WAITLISTED">
+                {{ EHackathonRegistrationStatus.WAITLISTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.ACCEPTED">
+                {{ EHackathonRegistrationStatus.ACCEPTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.REJECTED">
+                {{ EHackathonRegistrationStatus.REJECTED | titlecase }}
               </option>
             </select>
           </div>
@@ -118,7 +123,9 @@
           </button>
         </div>
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
-          <button nbButton status="primary" fullWidth>Send Acceptance Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Acceptance Email
+          </button>
           <button
             nbButton
             status="danger"
@@ -130,7 +137,9 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
-          <button nbButton status="primary" fullWidth>Send Rejection Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Rejection Email
+          </button>
           <button
             nbButton
             status="danger"
@@ -142,7 +151,9 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
-          <button nbButton status="primary" fullWidth>Send Waitlist Email</button>
+          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+            Send Waitlist Email
+          </button>
           <button
             nbButton
             status="danger"
@@ -167,10 +178,10 @@
 
       <div [formGroup]="notesForm" class="notes-form">
         <div formArrayName="note" class="field">
-          <label>Notes: </label>
+          <label>Notes </label>
           <div *ngIf="notes && notes.length > 0">
             <div *ngFor="let note of notes">
-              <textarea readonly fullWidth nbInput [value]="note.text"></textarea>
+              <div class="border-box-text">{{ note.text }}</div>
             </div>
           </div>
           <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
@@ -197,7 +208,7 @@
             class="add-button"
             nbButton
             status="primary"
-            [disabled]="notesList.invalid"
+            [disabled]="notesList.invalid || notesList.length === 0"
           >
             Post Note
           </button>
@@ -205,15 +216,15 @@
       </div>
 
       <div *ngIf="data.team.entity_updates.length > 0">
-        <label>Updates:</label>
+        <label>Updates</label>
         <div *ngFor="let update of data.team.entity_updates">
-          <textarea nbInput fullWidth readonly [value]="update.details"></textarea>
+          <div class="border-box-text">{{ update.details }}</div>
         </div>
       </div>
 
       <div *ngIf="selectedUserDetails.project_description">
-        <label>Project Description:</label>
-        <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.project_description"> </textarea>
+        <label>Project Description</label>
+        <div class="border-box-text">{{ selectedUserDetails.project_description }}</div>
       </div>
 
       <div class="user-response-details">
@@ -229,43 +240,43 @@
         <div *ngIf="selectedUserDetails">
           <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
-            <label>About:</label>
+            <label>About</label>
             <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.about_me"> </textarea>
           </div>
 
           <!-- email -->
           <div *ngIf="selectedUserDetails.user_email">
-            <label>Email:</label>
+            <label>Email</label>
             <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
           </div>
 
           <!-- designation -->
           <div *ngIf="selectedUserDetails.designation">
-            <label>Designation:</label>
+            <label>Designation</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.designation" />
           </div>
 
           <!-- Education -->
           <div *ngIf="selectedUserDetails.education">
-            <label>Education:</label>
+            <label>Education</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.education" />
           </div>
 
           <!-- Work Experience -->
           <div *ngIf="selectedUserDetails.work_experience_months">
-            <label>Work Experience in months:</label>
+            <label>Work Experience in Year</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.work_experience_months" />
           </div>
 
           <!-- Location -->
           <div *ngIf="selectedUserDetails.location">
-            <label>Location:</label>
+            <label>Location</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.location" />
           </div>
 
           <!-- Phone Number -->
           <div *ngIf="selectedUserDetails.phone">
-            <label>Phone:</label>
+            <label>Phone</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
           </div>
         </div>
