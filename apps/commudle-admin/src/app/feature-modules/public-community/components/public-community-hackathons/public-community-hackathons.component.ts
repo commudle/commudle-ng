@@ -15,7 +15,8 @@ export class PublicCommunityHackathonsComponent implements OnInit {
   EDbModels = EDbModels;
   subscriptions: Subscription[] = [];
   community: ICommunity;
-  hackathons: IHackathon[];
+  upcomingHackathons: IHackathon[];
+  pastHackathons: IHackathon[];
   moment = moment;
   constructor(private hackathonService: HackathonService, private activatedRoute: ActivatedRoute) {}
 
@@ -30,7 +31,8 @@ export class PublicCommunityHackathonsComponent implements OnInit {
 
   fetchHackathonIndex() {
     this.hackathonService.pIndexHackathons(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
-      this.hackathons = data;
+      this.upcomingHackathons = data.upcoming_hackathons;
+      this.pastHackathons = data.past_hackathons;
     });
   }
 }

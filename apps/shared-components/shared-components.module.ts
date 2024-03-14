@@ -80,6 +80,8 @@ import { FaqControlPanelComponent } from './faq-control-panel/faq-control-panel.
 import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
 import { EditDataFormComponent } from './edit-data-form/edit-data-form.component';
 import { BuildCardComponent } from './build-card/build-card.component';
+import { HackathonLargeCardComponent } from './hackathon-cards/hackathon-large-card/hackathon-large-card.component';
+import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium-card/hackathon-medium-card.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -124,6 +126,8 @@ import { BuildCardComponent } from './build-card/build-card.component';
     FaqControlPanelComponent,
     EditDataFormComponent,
     BuildCardComponent,
+    HackathonLargeCardComponent,
+    HackathonMediumCardComponent,
   ],
   imports: [
     CommonModule,
@@ -204,6 +208,8 @@ import { BuildCardComponent } from './build-card/build-card.component';
     FaqControlPanelComponent,
     EditDataFormComponent,
     BuildCardComponent,
+    HackathonLargeCardComponent,
+    HackathonMediumCardComponent,
   ],
 })
 export class SharedComponentsModule {}

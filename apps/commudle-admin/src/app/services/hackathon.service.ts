@@ -13,6 +13,10 @@ import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-respo
 import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 import { ICommunityBuild } from '@commudle/shared-models';
 
+interface publicHackathonsList {
+  upcoming_hackathons: IHackathon[];
+  past_hackathons: IHackathon[];
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -58,7 +62,7 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
-  pIndexHackathons(parentId, parentType: string): Observable<IHackathon[]> {
+  pIndexHackathons(parentId, parentType: string): Observable<publicHackathonsList> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -70,7 +74,9 @@ export class HackathonService {
         break;
       }
     }
-    return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), { params });
+    return this.http.get<publicHackathonsList>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), {
+      params,
+    });
   }
 
   showHackathon(hackathonId): Observable<IHackathon> {
