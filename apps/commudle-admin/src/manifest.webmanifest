@@ -2,58 +2,50 @@
   "name": "Commudle",
   "short_name": "Commudle",
   "theme_color": "#3b9bdf",
-  "background_color": "#fafafa",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [
     {
-      "src": "assets/images/commudle-logo72.png",
+      "src": "assets/images/dark-mode-splash-screen72.gif",
       "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo96.png",
+      "src": "assets/images/dark-mode-splash-screen96.gif",
       "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo128.png",
+      "src": "assets/images/dark-mode-splash-screen128.gif",
       "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo144.png",
+      "src": "assets/images/dark-mode-splash-screen144.gif",
       "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo152.png",
+      "src": "assets/images/dark-mode-splash-screen152.gif",
       "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo192.png",
+      "src": "assets/images/dark-mode-splash-screen192.gif",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo384.png",
+      "src": "assets/images/dark-mode-splash-screen384.gif",
       "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     },
     {
-      "src": "assets/images/commudle-logo512.png",
+      "src": "assets/images/dark-mode-splash-screen512.gif",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/gif"
     }
   ]
 }
