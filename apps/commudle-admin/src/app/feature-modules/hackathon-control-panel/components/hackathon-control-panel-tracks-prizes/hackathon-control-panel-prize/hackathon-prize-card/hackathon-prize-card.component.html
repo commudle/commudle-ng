@@ -30,7 +30,7 @@
 <ng-template #prizeDistributionDialogBox let-ref="dialogRef" let-data>
   <nb-card class="prize-distribution-dialog-box">
     <nb-card-header>
-      <span> {{ hackathonPrize.name }}{{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }} </span>
+      <span> {{ hackathonPrize.name }} ({{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }}) </span>
       <button nbButton ghost shape="round" (click)="ref.close()">X</button>
     </nb-card-header>
     <nb-card-body>

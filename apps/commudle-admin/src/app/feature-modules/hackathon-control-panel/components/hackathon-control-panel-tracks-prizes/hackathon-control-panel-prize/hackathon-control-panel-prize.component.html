@@ -58,10 +58,10 @@
             formControlName="order"
             name="order"
             [ngClass]="{
-              'com-text-[#8E9BB3]': prizeForm.get('order').value === null
+              'com-text-[#8E9BB3]': prizeForm.get('order').value === ''
             }"
           >
-            <option selected disabled [value]="null">Select Order</option>
+            <option selected disabled value="">Select Order</option>
             <option [value]="1">1</option>
             <option [value]="2">2</option>
             <option [value]="3">3</option>

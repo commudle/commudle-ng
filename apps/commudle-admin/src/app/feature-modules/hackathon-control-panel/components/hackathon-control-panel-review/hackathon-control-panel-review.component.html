@@ -199,19 +199,21 @@
               <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
             </span>
           </div>
-          <button (click)="addNote()" class="add-button" nbButton status="warning">
-            <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
-            Add Note
-          </button>
-          <button
-            (click)="updateNotes(data.team.id)"
-            class="add-button"
-            nbButton
-            status="primary"
-            [disabled]="notesList.invalid || notesList.length === 0"
-          >
-            Post Note
-          </button>
+          <div class="com-flex com-items-center com-gap-10 com-my-3">
+            <button (click)="addNote()" class="add-button" nbButton status="warning">
+              <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
+              Add Note
+            </button>
+            <button
+              (click)="updateNotes(data.team.id)"
+              class="add-button"
+              nbButton
+              status="primary"
+              [disabled]="notesList.invalid || notesList.length === 0"
+            >
+              Post Note
+            </button>
+          </div>
         </div>
       </div>
 
@@ -237,7 +239,7 @@
             <div (click)="displayUserData(user)" class="name">{{ user.name }}</div>
           </div>
         </div>
-        <div *ngIf="selectedUserDetails">
+        <div *ngIf="selectedUserDetails" class="selected-user-details">
           <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
             <label>About</label>
