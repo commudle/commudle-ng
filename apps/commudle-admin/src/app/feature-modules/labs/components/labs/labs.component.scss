@@ -6,5 +6,11 @@
 }
 
 .labs-featured {
-  @apply com-m-0 com-mt-6;
+  @apply com-m-0 com-mt-4;
+}
+
+.speakers-content,
+.explore-experts,
+.top-builders {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
 }

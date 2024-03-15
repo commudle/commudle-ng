@@ -9,6 +9,9 @@ div {
   }
 }
 
-.speakers {
-  @apply com-mt-6;
+.speakers,
+.speakers-upcoming,
+.tech-sessions,
+.speakers-content {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
 }
