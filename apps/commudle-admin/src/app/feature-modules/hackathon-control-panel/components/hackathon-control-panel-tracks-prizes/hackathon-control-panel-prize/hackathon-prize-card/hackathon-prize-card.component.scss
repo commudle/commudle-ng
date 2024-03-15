@@ -43,7 +43,7 @@
       }
     }
     .prizes {
-      @apply com-flex com-items-center com-gap-2;
+      @apply com-flex com-items-center com-justify-between;
       span {
         @apply com-font-medium;
       }

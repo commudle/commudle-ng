@@ -1,18 +1,7 @@
-nb-card {
-  @apply com-mx-0;
-  .hackathon-cards {
-    @apply com-grid com-grid-cols-3 com-gap-2;
-    a {
-      @apply com-no-underline com-text-inherit;
-      .hackathon-card {
-        @apply hover:com-shadow-md;
-        nb-card-header {
-          @apply com-p-0;
-          img {
-            @apply com-w-full;
-          }
-        }
-      }
-    }
-  }
+.upcoming-hackathon {
+  @apply com-grid com-gap-3;
+}
+
+.past-hackathons {
+  @apply com-grid com-gap-3 com-grid-cols-1 md:com-grid-cols-3;
 }
