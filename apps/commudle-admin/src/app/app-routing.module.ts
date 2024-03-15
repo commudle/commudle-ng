@@ -114,6 +114,11 @@ const routes: Routes = [
       import('./feature-modules/public-events/public-events.module').then((m) => m.PublicEventsModule),
   },
   {
+    path: 'communities/:community_id/hackathons/:hackathon_id',
+    loadChildren: () =>
+      import('./feature-modules/public-hackathon/public-hackathon.module').then((m) => m.PublicHackathonModule),
+  },
+  {
     path: 'communities/:community_id/channels',
     loadChildren: () =>
       import('./feature-modules/community-channels/community-channels.module').then((m) => m.CommunityChannelsModule),
@@ -204,6 +209,13 @@ const routes: Routes = [
         path: 'newsletters',
         loadChildren: () =>
           import('./feature-modules/main-newsletters/main-newsletters.module').then((m) => m.MainNewslettersModule),
+      },
+      {
+        path: 'communities/:community_id/hackathon-dashboard',
+        loadChildren: () =>
+          import('./feature-modules/hackathon-control-panel/hackathon-control-panel.module').then(
+            (m) => m.HackathonControlPanelModule,
+          ),
       },
       {
         path: 'communities',

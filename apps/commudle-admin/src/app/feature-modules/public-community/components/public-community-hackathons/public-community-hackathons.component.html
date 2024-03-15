@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>Hackathons</nb-card-header>
+  <nb-card-body>
+    <section *ngIf="upcomingHackathons && upcomingHackathons.length > 0">
+      <h2>Upcoming Hackathons</h2>
+      <div
+        class="upcoming-hackathon"
+        [ngClass]="{
+          'com-grid-cols-1': upcomingHackathons.length === 1,
+          'com-grid-cols-2': upcomingHackathons.length >= 2
+        }"
+      >
+        <div *ngFor="let hackathon of upcomingHackathons">
+          <commudle-hackathon-large-card [hackathon]="hackathon"></commudle-hackathon-large-card>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="pastHackathons && pastHackathons.length > 0">
+      <h2>Past Hackathons</h2>
+      <div class="past-hackathons">
+        <div *ngFor="let hackathon of pastHackathons">
+          <commudle-hackathon-medium-card [hackathon]="hackathon"></commudle-hackathon-medium-card>
+        </div>
+      </div>
+    </section>
+  </nb-card-body>
+</nb-card>

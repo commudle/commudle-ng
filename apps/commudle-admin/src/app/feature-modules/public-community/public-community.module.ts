@@ -41,6 +41,7 @@ import { CustomPageComponent } from './components/custom-page/custom-page.compon
 import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
 import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
 import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
+import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/public-community-hackathons/public-community-hackathons.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BackButtonComponent } from 'apps/shared-components/back-button/back-but
     CustomPageComponent,
     NewslettersComponent,
     NewsletterComponent,
+    PublicCommunityHackathonsComponent,
   ],
   exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [

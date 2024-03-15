@@ -191,7 +191,7 @@ export class EditEventComponent implements OnInit {
     this.startHour = Number.parseInt(startTimePick.split(':')[0]);
     this.startMinute = Number.parseInt(startTimePick.split(':')[1]);
 
-    if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '') {
+    if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '' && this.startDate !== null) {
       this.startTime = moment({
         years: this.startDate.getFullYear(),
         months: this.startDate.getMonth(),
@@ -212,7 +212,7 @@ export class EditEventComponent implements OnInit {
     this.endHour = Number.parseInt(endTimePick.split(':')[0]);
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
 
-    if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '') {
+    if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '' && this.endDate !== null) {
       this.endTime = moment({
         years: this.endDate.getFullYear(),
         months: this.endDate.getMonth(),

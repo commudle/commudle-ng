@@ -8,7 +8,7 @@
       @apply com-flex com-flex-col md:com-flex-row com-mx-6 com-my-10 com-z-10 com-relative com-items-center md:com-items-start;
 
       .logo {
-        @apply com-my-auto com-mx-0 com-w-44 com-h-44 md:com-w-56 com-flex com-justify-center md:com-h-56 com-bg-white com-rounded-md;
+        @apply com-my-auto com-mx-0 com-w-44 com-h-44 md:com-w-56 com-flex com-justify-center md:com-h-56 com-bg-tWhite com-rounded-md;
         img {
           @apply com-w-40 md:com-w-52 com-p-1 com-object-contain;
         }

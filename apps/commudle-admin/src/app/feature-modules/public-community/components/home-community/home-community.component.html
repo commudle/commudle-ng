@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
@@ -193,6 +193,15 @@
                 <a [routerLink]="['events']" class="d-flex" routerLinkActive="active">
                   <nb-icon icon="calendar" status="info"></nb-icon>
                   <span class="title">Events</span>
+                </a>
+                <a
+                  [routerLink]="['hackathons']"
+                  class="d-flex"
+                  routerLinkActive="active"
+                  *ngIf="community.hackathon_enabled"
+                >
+                  <img src="https://json.commudle.com/icons/hackathon-icon.svg" />
+                  <span class="title">Hackathons</span>
                 </a>
                 <!-- <a [routerLink]="['resources']" routerLinkActive="active">
                   <nb-icon icon="award" status="info"></nb-icon>

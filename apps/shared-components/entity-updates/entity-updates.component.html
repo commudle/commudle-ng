@@ -1,0 +1,45 @@
+<div class="event-updates">
+  <div *ngFor="let eu of updates" class="event-update">
+    <div class="details">
+      <nb-icon icon="star" status="warning"></nb-icon>
+      <div class="com-w-4/5">
+        <commudle-editor [content]="eu.details" [editable]="false"></commudle-editor>
+        <div class="image-section" *ngIf="eu.images">
+          <div *ngFor="let img of eu.images" class="images" (click)="openImage(img, eu)">
+            <img [src]="img.i128" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="time">{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</p>
+    <div class="votes">
+      <app-votes-display
+        [icon]="'heart-outline'"
+        [votableId]="eu.id"
+        votableType="EventUpdate"
+        [textAlignment]="'after'"
+      ></app-votes-display>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="page_info?.has_next_page" (click)="getUpdates()" class="com-cursor-pointer">
+  View More
+  <nb-icon icon="arrow-ios-downward-outline"></nb-icon>
+</div>
+
+<ng-template #imageTemplate let-ref="dialogRef" let-data>
+  <nb-card class="image-window">
+    <nb-card-header>
+      <div>Image Preview</div>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="image" *ngIf="data.image.url">
+        <img [src]="data.image.url" [alt]="data.eventUpdate.details" />
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

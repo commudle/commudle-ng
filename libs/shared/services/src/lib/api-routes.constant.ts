@@ -489,6 +489,7 @@ export const API_ROUTES = {
     DEACTIVATE_PROFILE: 'api/v2/users/deactivate_profile',
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
     PROFILE_STATS: 'api/v2/users/profile_stats',
+    GET_USER_BY_EMAIL: 'api/v2/users/get_user_by_email',
   },
 
   SPEAKER_RESOURCES: {
@@ -509,6 +510,7 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat',
+    PUBLIC_GET_OR_CREATE_FOR_HACKATHON: 'api/v2/discussions/public_get_or_create_for_hackathon',
     PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
     PUBLIC_GET_OR_CREATE_FOR_SPEAKER_RESOURCE_CHAT: 'api/v2/discussions/public_get_or_create_for_speaker_resource_chat',
     PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT: 'api/v2/discussions/public_get_or_create_for_feed_item_chat',
@@ -768,5 +770,118 @@ export const API_ROUTES = {
       SHOW: 'api/v2/newsletters/public/show', //GET
       INDEX: 'api/v2/newsletters/public/index', //GET
     },
+  },
+
+  HACKATHONS: {
+    CREATE: 'api/v2/hackathons', //POST
+    UPDATE: 'api/v2/hackathons', //PUT
+    INDEX: 'api/v2/hackathons', //GET
+    SHOW: 'api/v2/hackathons/show', //GET
+    CREATE_CONTACT_INFO: 'api/v2/hackathons/create_contact_info', //POST
+    UPDATE_CONTACT_INFO: 'api/v2/hackathons/update_contact_info', //PUT
+    SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
+    UPDATE_HACKATHON_DATE: 'api/v2/hackathons/update_hackathon_dates', // POST
+    CREATE_SPONSOR: 'api/v2/hackathons/create_sponsor', //POST
+    UPDATE_SPONSOR: 'api/v2/hackathons/update_sponsor', //PUT
+    INDEX_SPONSORS: 'api/v2/hackathons/index_sponsors', //GET
+    DESTROY_SPONSOR: 'api/v2/hackathons/destroy_sponsor', //DELETE
+    CREATE_TRACK: 'api/v2/hackathons/create_track', //POST
+    UPDATE_TRACK: 'api/v2/hackathons/update_track', //PUT
+    INDEX_TRACKS: 'api/v2/hackathons/index_tracks', //GET
+    DESTROY_TRACK: 'api/v2/hackathons/destroy_track', //DELETE
+    CREATE_PRIZE: 'api/v2/hackathons/create_prize', //POST
+    UPDATE_PRIZE: 'api/v2/hackathons/update_prize', //PUT
+    DESTROY_PRIZE: 'api/v2/hackathons/destroy_prize', //DELETE
+    INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
+    INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
+    CHECK_DUPLICATE_JUDGE: 'api/v2/hackathons/check_duplicate_judge', //GET
+    CREATE_JUDGE: 'api/v2/hackathons/create_judge', //POST
+    UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
+    INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
+    DESTROY_JUDGE: 'api/v2/hackathons/destroy_judge', //DELETE
+    INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //GET
+    SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
+    CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
+    GENERATE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/generate_team_registration_status', //POST
+    CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
+    GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details', //GET
+    UPDATE_STATUS: 'api/v2/hackathons/update_status', //PUT
+    VERIFY_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/verify_invitation_token_judge', //GET
+    UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
+    PUBLIC: {
+      SHOW: 'api/v2/hackathons/public/show', //GET
+      INDEX: 'api/v2/hackathons/public/index', //GET
+      INDEX_JUDGES: 'api/v2/hackathons/public/index_judges', //GET
+      INDEX_PRIZES: 'api/v2/hackathons/public/index_prizes', //GET
+      INDEX_TRACKS: 'api/v2/hackathons/public/index_tracks', //GET
+      INDEX_SPONSORS: 'api/v2/hackathons/public/index_sponsors', //GET
+      INDEX_PROJECTS: 'api/v2/hackathons/public/index_projects', //GET
+    },
+  },
+
+  FAQ: {
+    CREATE: 'api/v2/faq', //POST
+    INDEX: 'api/v2/faq', //GET
+    DELETE: 'api/v2/faq', //DELETE
+    UPDATE: 'api/v2/faq/update', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/faq/public',
+    },
+  },
+
+  HACKATHON_RESPONSE_GROUP: {
+    CREATE: 'api/v2/hackathon_response_group', //POST
+    UPDATE: 'api/v2/hackathon_response_group', //PUT
+    SHOW: 'api/v2/hackathon_response_group/show', //GET
+    PUBLIC_SHOW: 'api/v2/hackathon_response_group', //GET
+  },
+
+  HACKATHON_USER_RESPONSE: {
+    CREATE: 'api/v2/hackathon_user_response', //POST
+    UPDATE: 'api/v2/hackathon_user_response', //PUT
+    GET_EXISTING_HACKATHON_USER_RESPONSES: 'api/v2/hackathon_user_response/get_existing_hackathon_user_responses', //GET
+    UPDATE_TEAM_DETAILS: 'api/v2/hackathon_user_response/update_team_details', //PUT
+    UPDATE_PROJECT_DETAILS: 'api/v2/hackathon_user_response/update_project_details', //PUT
+    GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
+    VERIFY_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/verify_invitation_token_hur', //GET
+    UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
+  },
+
+  ENTITY_UPDATES: {
+    INDEX: 'api/v2/entity_updates',
+    CREATE: 'api/v2/entity_updates',
+    DELETE: 'api/v2/entity_updates',
+    PUBLIC: {
+      INDEX: 'api/v2/entity_updates/public/index',
+    },
+  },
+
+  ROUND: {
+    CREATE: 'api/v2/round', //POST
+    INDEX: 'api/v2/round', //GET
+    DELETE: 'api/v2/round', //DELETE
+    UPDATE: 'api/v2/round', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/round/public',
+    },
+  },
+
+  NOTE: {
+    CREATE: 'api/v2/note', //POST
+    INDEX: 'api/v2/note', //GET
+    DELETE: 'api/v2/note', //DELETE
+    UPDATE: 'api/v2/note', //PUT
+    PUBLIC: {
+      INDEX: 'api/v2/note/public',
+    },
+  },
+
+  HACKATHON_WINNER: {
+    ADD_WINNER: 'api/v2/hackathon_winner/add_winner', //PUT
+    REMOVE_WINNER: 'api/v2/hackathon_winner', //DELETE
+  },
+
+  HACKATHON_JUDGE: {
+    RESEND_INVITE: 'api/v2/hackathon_judge/resend_invite', //PUT
   },
 };

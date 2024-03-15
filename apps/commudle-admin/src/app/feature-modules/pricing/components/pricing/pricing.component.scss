@@ -202,7 +202,7 @@ p {
         .communities-card {
           @apply com-flex com-flex-row md:com-w-[385px] md:com-h-[120px] com-h-[100px] com-w-[254px] com-border com-border-solid com-border-white com-rounded-[20px] com-bg-white md:com-p-4 com-p-3;
           .logo {
-            @apply com-flex com-items-center md:com-w-[88px] md:com-h-[88px] com-w-[66px] com-h-[66px] com-object-cover com-m-0 md:com-mr-4 com-mr-3 com-flex-shrink-0;
+            @apply com-flex com-items-center md:com-w-[88px] md:com-h-[88px] com-w-[66px] com-h-[66px] com-object-cover com-m-0 md:com-mr-4 com-mr-3 com-flex-shrink-0 com-bg-tWhite com-rounded-md;
 
             img {
               @apply com-w-full com-h-auto com-rounded-lg;

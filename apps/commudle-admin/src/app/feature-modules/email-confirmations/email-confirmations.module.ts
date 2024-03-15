@@ -10,6 +10,8 @@ import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-
 import { FormsModule } from '@angular/forms';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { HackathonJudgeConfirmationComponent } from './components/hackathon-judge-confirmation/hackathon-judge-confirmation.component';
+import { HackathonTeamConfirmationComponent } from './components/hackathon-team-confirmation/hackathon-team-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     CollaborationCommunityComponent,
     UserRoleConfirmationComponent,
     EmailUnsubscribeComponent,
+    HackathonJudgeConfirmationComponent,
+    HackathonTeamConfirmationComponent,
   ],
   imports: [
     CommonModule,

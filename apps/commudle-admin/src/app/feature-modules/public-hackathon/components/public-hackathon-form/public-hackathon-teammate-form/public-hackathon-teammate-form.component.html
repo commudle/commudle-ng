@@ -1,0 +1,61 @@
+<form [formGroup]="teammateForm">
+  <div>
+    <label for="name">{{ hasTeammateOption ? 'Team Name*' : 'What did you call your self?' }}</label>
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      formControlName="name"
+      [placeholder]="hasTeammateOption ? 'Team Name*' : 'What did you call your self?'"
+    />
+  </div>
+  <ng-container formArrayName="teammates">
+    <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i" class="teammate-form">
+      <section>
+        <label for="email">Enter Email*</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="xyz@example.com"
+          fullWidth
+          nbInput
+          (input)="checkEmail($event.target)"
+        />
+      </section>
+      <commudle-alert *ngIf="showEmailError" [error]="true" errorMessage="You can't put your own email as teammate">
+      </commudle-alert>
+
+      <section *ngIf="hackathonResponseGroup.user_details.tshirt_size">
+        <label for="tshirt_size">T-Shirt Size</label>
+        <input
+          type="text"
+          list="tshirtSize"
+          formControlName="tshirt_size"
+          fullWidth
+          nbInput
+          placeholder="T-Shirt Size"
+        />
+        <datalist id="tshirtSize">
+          <option value="S"></option>
+          <option value="M"></option>
+          <option value="L"></option>
+          <option value="XL"></option>
+          <option value="XXL"></option>
+        </datalist>
+      </section>
+
+      <button type="button" nbButton ghost status="danger" (click)="removeTeammate(i)">
+        <fa-icon [icon]="icons.faUserLargeSlash"></fa-icon>
+        <span>Remove Teammate</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <button type="button" (click)="addTeammate()" nbButton *ngIf="hasTeammateOption">
+    <fa-icon [icon]="icons.faPlus"></fa-icon>
+    <span> Add Teammate </span>
+  </button>
+  <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
+    Next
+  </button>
+</form>

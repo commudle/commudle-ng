@@ -1,13 +1,20 @@
 <div class="data-form-container">
   <form class="create-data-form" [formGroup]="createDataForm">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameField">
+      <nb-card *ngIf="showNameField && showNameDescriptionFiled">
         <nb-card-body class="card-body">
           <div role="group">
             <label fullWidth>
               Name
               <span class="required-question">*</span>
-              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
+              <input
+                type="text"
+                nbInput
+                fullWidth
+                formControlName="name"
+                placeholder="Title"
+                [readOnly]="formName.length > 0"
+              />
             </label>
             <span
               *ngIf="

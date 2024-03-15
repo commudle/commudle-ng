@@ -1,0 +1,51 @@
+nb-card {
+  @apply com-mx-0 com-my-6;
+  .updates {
+    @apply com-py-2 com-flex com-flex-col;
+  }
+}
+
+.delete-event-update {
+  fa-icon {
+    color: red;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.update-input {
+  @apply com-mb-4;
+}
+
+.image-section {
+  @apply com-flex com-gap-3 com-h-full com-items-center com-my-2 com-flex-wrap;
+  .images {
+    @apply com-w-auto com-h-32 com-aspect-1 com-border com-border-solid com-border-Bright-Gray com-rounded;
+    img {
+      @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain com-rounded;
+    }
+  }
+}
+
+.image-preview-section {
+  @apply com-flex com-gap-3 com-flex-wrap com-my-2;
+  .images {
+    @apply com-w-32 com-h-32 com-aspect-1 com-border com-border-solid com-border-Bright-Gray com-rounded;
+    img {
+      @apply com-mx-auto com-my-0 com-h-full com-w-full com-object-contain com-relative;
+    }
+  }
+  .delete {
+    transform: translate(-50%, -50%);
+    @apply com-absolute com-hidden com-cursor-pointer com-text-white com-top-2/4 com-left-2/4;
+    fa-icon {
+      @apply com-text-3xl com-text-red-500;
+    }
+  }
+  .images:hover {
+    @apply com-grayscale-[50%] com-ease-in;
+    .delete {
+      @apply com-block;
+    }
+  }
+}

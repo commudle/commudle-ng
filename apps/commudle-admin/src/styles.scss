@@ -361,6 +361,10 @@ nb-option-list.search-autocomplete {
   margin: 16px 8px;
 }
 
+.nb-theme-dark nb-toggle.status-basic .toggle-switcher {
+  background-color: #f2f2f2;
+}
+
 .nb-theme-dark nb-card {
   background-color: #1e1e1e;
   margin: 16px 8px;
@@ -383,12 +387,12 @@ nb-option-list.search-autocomplete {
   @apply com-bg-white #{!important};
 }
 
-iframe {
-  @apply com-bg-white #{!important};
-}
-
 nb-context-menu {
   @apply com-bg-white;
+}
+
+input::-webkit-calendar-picker-indicator {
+  @apply com-bg-tWhite;
 }
 
 :root {

@@ -20,6 +20,7 @@
     border: 0.5px solid lightgrey;
     padding: 0.5rem;
     .logo {
+      @apply com-bg-tWhite;
       width: 50px;
       height: 50px;
       border-radius: 50%;

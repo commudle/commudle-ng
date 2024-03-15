@@ -51,6 +51,14 @@ export class DiscussionsService {
     );
   }
 
+  PublicGetOrCreateForHackathon(hackathonId): Observable<IDiscussion> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_HACKATHON),
+      { params },
+    );
+  }
+
   pGetOrCreateForLabChat(labId): Observable<IDiscussion> {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<IDiscussion>(
