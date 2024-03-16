@@ -117,9 +117,7 @@ export class HackathonService {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.put<IHackathon>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_HACKATHON_DATE),
-      {
-        hackathon: dataForm,
-      },
+      dataForm,
       { params },
     );
   }
