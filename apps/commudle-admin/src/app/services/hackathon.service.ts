@@ -383,4 +383,11 @@ export class HackathonService {
       },
     );
   }
+
+  pInterestedUsers(hackathonId): Observable<any> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INTERESTED_USERS), {
+      params,
+    });
+  }
 }
