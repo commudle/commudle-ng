@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-body>
-    <div class="com-my-4">
-      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div *ngIf="isLoading" class="com-my-4">
+      <app-loading-spinner></app-loading-spinner>
     </div>
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
