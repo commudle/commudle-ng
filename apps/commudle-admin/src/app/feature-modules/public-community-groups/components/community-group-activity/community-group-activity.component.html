@@ -64,11 +64,9 @@
           <nb-card-body class="card-body">
             <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             <div class="channels-cards-list">
-              <commudle-channel-card
-                *ngFor="let channel of channels"
-                [channel]="channel"
-                [horizontalScroll]="true"
-              ></commudle-channel-card>
+              <div class="channel-card" *ngFor="let channel of channels">
+                <commudle-channel-card [channel]="channel" [horizontalScroll]="true"></commudle-channel-card>
+              </div>
             </div>
           </nb-card-body>
         </nb-card>
@@ -96,6 +94,26 @@
                     [showDescription]="true"
                   ></commudle-featured-community-card-medium>
                 </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+        <!--forums-->
+        <nb-card>
+          <nb-card-header class="header">
+            <div class="icon">
+              <fa-icon [icon]="faHashtag"></fa-icon>
+            </div>
+            <div>
+              <h5>Active Forums to join</h5>
+            </div>
+          </nb-card-header>
+          <nb-card-body class="card-body">
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            <div class="forums-cards-list">
+              <div class="forum-card" *ngFor="let forum of forums">
+                <commudle-forum-card [forum]="forum" [horizontalScroll]="true"></commudle-forum-card>
               </div>
             </div>
           </nb-card-body>

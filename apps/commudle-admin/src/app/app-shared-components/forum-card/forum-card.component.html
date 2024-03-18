@@ -1,0 +1,17 @@
+<div class="forum-card">
+  <a>
+    <div class="banner">
+      <div class="header com-bg-gradient-to-b com-from-[#ac94d1] com-to-white"></div>
+      <div class="forum-logo">
+        <div class="logo" *ngIf="forum.logo">
+          <img [src]="forum.logo.url" [alt]="forum.name" [title]="forum.name" />
+        </div>
+        <nb-icon *ngIf="!forum.logo" icon="hash"></nb-icon>
+      </div>
+    </div>
+    <div class="clickable forum-about">
+      <div class="description">{{ forum.description }}</div>
+      <div class="discussion-name">{{ forum.name | titlecase }}</div>
+    </div>
+  </a>
+</div>

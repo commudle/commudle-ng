@@ -31,6 +31,7 @@ import { CommunityGroupCustomPageComponent } from './components/community-group-
 import { PublicHomeListSpeakersModule } from '../listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { PublicHomeListEventsModule } from '../listing-pages/public-home-list-events/public-home-list-events.module';
 import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
+import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/forum-card/forum-card.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/ap
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,
+    ForumCardComponent,
     EventCardComponent,
     EventMediumCardComponent,
     SkeletonCardsComponent,

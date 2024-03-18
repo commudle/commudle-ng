@@ -50,4 +50,16 @@ nb-card {
 
 .channels-cards-list {
   @apply com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0 md:com-gap-4 com-gap-0;
+
+  .channel-card {
+    @apply md:com-w-[420px] com-w-full;
+  }
+}
+
+.forums-cards-list {
+  @apply com-flex com-flex-nowrap md:com-flex-wrap md:com-gap-4 com-gap-0;
+
+  .forum-card {
+    @apply md:com-w-[266px] com-w-full;
+  }
 }

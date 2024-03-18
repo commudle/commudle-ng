@@ -24,7 +24,7 @@
               [color]="'com-bg-Bright-Gray-Light'"
             ></app-badge>
             <div class="community-badge">
-              <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+              <app-community-badge *ngIf="community" [community]="community" [size]="'small'"></app-community-badge>
             </div>
           </div>
         </div>

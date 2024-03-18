@@ -1,5 +1,5 @@
 nb-card {
-  @apply md:com-w-[420px] com-h-96  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-m-0;
+  @apply com-w-full com-h-96  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-m-0;
 
   nb-card-body {
     @apply com-overflow-hidden com-flex com-flex-col md:com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
