@@ -155,21 +155,23 @@ export class FormGroupsComponent implements OnInit {
         formData.data_form_id,
       )
       .subscribe((data) => {
-        this.eventDataFormEntityGroups.push(data);
+        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, data];
         this.toastLogService.successDialog('Form Created');
-        this.eventDataFormEntityGroupForm.reset();
+        this.resetForm();
         this.changeDetectorRef.markForCheck();
       });
   }
 
-  deleteEventDataFormEntityGroup(eventDataFormEntityGroupId) {
+  deleteEventDataFormEntityGroup(eventDataFormEntityGroupId, index) {
     this.eventDataFormEntityGroupsService
       .deleteEventDataFormEntityGroup(eventDataFormEntityGroupId)
       .subscribe((data) => {
         this.toastLogService.successDialog('Deleted');
-        const removable = this.eventDataFormEntityGroups.findIndex((k) => k.id === eventDataFormEntityGroupId);
-        this.eventDataFormEntityGroups.splice(removable, 1);
-        this.changeDetectorRef.markForCheck();
+        if (index !== -1) {
+          this.eventDataFormEntityGroups.splice(index, 1);
+          this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
+          this.changeDetectorRef.markForCheck();
+        }
       });
   }
 
@@ -272,13 +274,20 @@ export class FormGroupsComponent implements OnInit {
     this.eventDataFormEntityGroupsService
       .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
       .subscribe((data) => {
-        this.eventDataFormEntityGroups = [
-          ...this.eventDataFormEntityGroups.slice(0, index),
-          data,
-          ...this.eventDataFormEntityGroups.slice(index + 1),
-        ];
-        this.changeDetectorRef.markForCheck();
+        this.eventDataFormEntityGroups[index] = data;
+        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
         this.toastLogService.successDialog('Form Updated');
+        this.changeDetectorRef.markForCheck();
       });
+  }
+
+  resetForm() {
+    this.eventDataFormEntityGroupForm.reset({
+      data_form_entity_group: {
+        name: '',
+        registration_type_id: '',
+        data_form_id: '',
+      },
+    });
   }
 }

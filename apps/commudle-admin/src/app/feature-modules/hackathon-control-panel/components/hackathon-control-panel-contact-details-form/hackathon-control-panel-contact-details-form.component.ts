@@ -5,7 +5,6 @@ import { ToastrService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { Subscription } from 'rxjs';
-import { environment } from '@commudle/shared-environments';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-contact-details-form',

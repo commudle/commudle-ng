@@ -45,7 +45,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
   };
   isLoading = true;
   showBannerImage = false;
-
+  activeFragment: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
@@ -56,6 +56,13 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
+      }
+    });
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.activeFragment = fragment;
+      } else {
+        this.activeFragment = '';
       }
     });
     this.subscriptions.push(

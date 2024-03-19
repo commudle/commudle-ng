@@ -54,13 +54,13 @@
       <nb-card class="tabs" *ngIf="!isLoading">
         <nb-card-body class="router-links">
           <div>
-            <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['.']" routerLinkActive="active">
+            <a [routerLink]="['.']" [class.active]="activeFragment === '' && !showBannerImage">
               <fa-icon [icon]="icons.faInfoCircle"></fa-icon>
               <p class="name">Overview</p>
             </a>
           </div>
           <div *ngIf="hackathon.updates_count > 0">
-            <a [routerLink]="'.'" fragment="updates">
+            <a [routerLink]="'.'" fragment="updates" [class.active]="activeFragment === 'updates'">
               <fa-icon [icon]="icons.faStar"></fa-icon>
               <p class="name">Updates</p>
             </a>
