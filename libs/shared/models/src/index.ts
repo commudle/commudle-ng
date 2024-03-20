@@ -21,3 +21,4 @@ export * from './lib/db-models.enum';
 export * from './lib/faq.model';
 export * from './lib/round.model';
 export * from './lib/note.model';
+export * from './lib/razorpay-account.model';
