@@ -1,28 +1,48 @@
-.hackathon-info {
-  @apply com-flex com-flex-row com-gap-1 com-pb-4;
-}
-.heading {
-  @apply com-text-lg com-font-bold com-text-gray-400;
-}
+// .hackathon-info {
+//   @apply com-flex com-flex-row com-gap-1 com-pb-4;
+// }
+// .heading {
+//   @apply com-text-lg com-font-bold com-text-gray-400;
+// }
 
-.value {
-  @apply com-no-underline com-text-base com-font-semibold;
-}
+// .action {
+//   @apply com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+// }
 
-.line {
-  @apply com-w-1 com-h-16  com-bg-primary-500 -com-my-1.5;
-  margin-left: 4.4px;
+.date-section {
+  .date-chip {
+    @apply com-rounded-[20px]  com-bg-teal-600;
+    > span {
+      @apply com-flex com-justify-center com-items-center com-px-1  com-text-white com-text-sm com-gap-2;
+      .dot {
+        @apply com-text-2xl;
+      }
+    }
+  }
+  .date-heading {
+    @apply com-font-semibold com-text-base com-mt-4;
+  }
+  .date-value {
+    @apply com-font-medium com-text-base com-text-gray-500;
+  }
 }
-.dot-top::before {
-  content: ' \25CF';
-  @apply com-text-primary-500;
+.prize-location {
+  .location-prize-chips {
+    @apply com-flex com-gap-6 com-items-center;
+    .chip {
+      @apply com-bg-gray-100 com-rounded-[20px];
+      > span {
+        @apply com-flex com-px-2 com-py-1.5 com-items-center com-gap-2 com-font-medium com-text-base com-text-gray-600;
+      }
+    }
+  }
+  .prize-amount {
+    @apply com-text-base;
+  }
 }
-
-.dot-bottom::before {
-  content: ' \25CF';
-  @apply com-text-primary-500;
-}
-
-.action {
-  @apply com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+.interested-members-button {
+  .interested-members {
+  }
+  .action-button {
+  }
 }

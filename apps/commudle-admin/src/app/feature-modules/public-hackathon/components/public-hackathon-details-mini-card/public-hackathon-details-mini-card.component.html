@@ -1,26 +1,45 @@
-<div class="hackathon-info">
-  <div class="left-lines">
-    <div class="dot-top"></div>
-    <div class="line"></div>
-    <div class="dot-bottom"></div>
-  </div>
-  <div>
-    <div>
-      <div class="heading">HACKATHON STARTS</div>
-      <div class="value">{{ hackathon.start_date | date : 'dd MMM yyyy' }}</div>
+<div>
+  <div class="date-section" *ngIf="hackathon.start_date && hackathon.end_date">
+    <div class="date-chip">
+      <span>
+        <span class="dot">&#x2022;</span>
+        <span>
+          Registrations starts soon -
+          {{ hackathon.start_date | date : 'dd MMM yyyy' }}
+        </span>
+      </span>
     </div>
-    <div>
-      <div class="heading com-mt-4">VENUE</div>
-      <a *ngIf="hackathon.location_address" [href]="hackathon.location_map_link" class="value">{{
-        hackathon.location_address
-      }}</a>
-      <span *ngIf="!hackathon.location_address" class="value">Online</span>
+    <div class="date-heading">Hackathon Dates</div>
+    <div class="date-value">
+      {{ hackathon.start_date | date : 'dd MMM yyyy' }} - {{ hackathon.end_date | date : 'dd MMM yyyy' }}
     </div>
   </div>
-</div>
-
-<div class="intrested-members"></div>
-
-<div class="action" *ngIf="hrgId && !userTeamDetails">
-  <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+  <hr />
+  <div class="prize-location">
+    <div class="location-prize-chips">
+      <div class="location chip">
+        <span>
+          <fa-icon [icon]="icons.faGlobe"></fa-icon>
+          <span>{{ hackathon.hackathon_location_type | titlecase }}</span>
+        </span>
+      </div>
+      <div class="prize chip">
+        <span>
+          <fa-icon [icon]="icons.faAward"></fa-icon>
+          <span>{{ hackathon.prizes_count }} Prizes</span>
+        </span>
+      </div>
+    </div>
+    <div class="prize-amount" *ngIf="totalPrizesByCurrency">
+      <strong> {{ totalPrizesByCurrency[0].currency.symbol }}{{ totalPrizesByCurrency[0].amount }}</strong>
+      <span> in prizes</span>
+    </div>
+  </div>
+  <hr />
+  <div class="interested-members-button">
+    <div class="interested-members"></div>
+    <div class="action" *ngIf="hrgId && !userTeamDetails">
+      <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+    </div>
+  </div>
 </div>

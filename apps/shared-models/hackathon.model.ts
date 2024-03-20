@@ -23,6 +23,7 @@ export interface IHackathon {
   location_address: string;
   location_map_link: string;
   updates_count: number;
+  prizes_count: number;
   faqs_count: number;
   sponsors_count: number;
   tracks_count: number;
