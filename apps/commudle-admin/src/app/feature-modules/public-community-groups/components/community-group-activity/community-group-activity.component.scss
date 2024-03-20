@@ -63,3 +63,9 @@ nb-card {
     @apply md:com-w-[266px] com-w-full;
   }
 }
+
+.speakers-upcoming,
+.recent-tech,
+.speakers {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
+}
