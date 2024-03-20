@@ -94,7 +94,22 @@
   </div>
   <div *ngIf="userForm.get('tshirt_size')">
     <label for="tshirt_size">T shirt size*</label>
-    <input type="text" nbInput fullWidth formControlName="tshirt_size" />
+    <select
+      name="tshirt_size"
+      id="tshirt_size"
+      formControlName="tshirt_size"
+      [ngClass]="{
+        'com-text-[#8E9BB3]': userForm.get('tshirt_size').value === null
+      }"
+    >
+      <option selected disabled [value]="null">Select T-shirt size</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
   </div>
   <button class="com-w-max" status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">
     Next

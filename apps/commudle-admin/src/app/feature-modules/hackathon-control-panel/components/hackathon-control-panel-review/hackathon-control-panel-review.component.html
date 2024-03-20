@@ -89,6 +89,9 @@
       <div class="heading">
         <span>{{ data.team.name }}</span>
         <div class="project-submit" *ngIf="data.team.community_build">Project Submitted</div>
+        <div class="project-link" *ngIf="data.team.community_build">
+          <a [routerLink]="['/builds', data.team.community_build.slug]"> Go to Project</a>
+        </div>
       </div>
       <button nbButton ghost (click)="ref.close()" shape="round">
         <fa-icon [icon]="faXmark"></fa-icon>
@@ -169,11 +172,21 @@
         *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED && hackathonRounds.length > 0"
       >
         <label>Round:</label>
-        <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
-          <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
-            {{ hackathonRound.name }}
-          </option>
-        </select>
+        <div *ngIf="data.team.round">
+          <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
+            <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+              {{ hackathonRound.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="!data.team.round">
+          <select (change)="changeRoundOption($event, data.team.id, data.index)">
+            <option selected disabled [value]="null">Select a round</option>
+            <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+              {{ hackathonRound.name }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div [formGroup]="notesForm" class="notes-form">
@@ -240,6 +253,7 @@
           </div>
         </div>
         <div *ngIf="selectedUserDetails" class="selected-user-details">
+          <a [routerLink]="['/users', selectedUserDetails.username]" target="_blank"> Go To Profile </a>
           <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
             <label>About</label>

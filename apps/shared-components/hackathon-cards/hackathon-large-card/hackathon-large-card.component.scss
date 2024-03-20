@@ -7,6 +7,10 @@ a {
       img {
         @apply com-w-full;
       }
+      .no-banner-image {
+        @apply com-w-full;
+        aspect-ratio: 16/6;
+      }
     }
     nb-card-body {
       @apply com-flex com-flex-col com-justify-between com-gap-3;
@@ -14,8 +18,6 @@ a {
         @apply com-flex com-items-center com-justify-between;
         .name {
           @apply com-text-2xl com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-2;
-        }
-        .members {
         }
       }
       .date-location-type {
@@ -32,8 +34,6 @@ a {
           .prize-amount {
             @apply com-text-primary-500 com-text-2xl com-font-bold;
           }
-        }
-        .action-button {
         }
       }
     }

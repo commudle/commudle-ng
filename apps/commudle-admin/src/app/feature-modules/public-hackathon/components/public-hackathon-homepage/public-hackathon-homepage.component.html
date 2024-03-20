@@ -45,10 +45,12 @@
       </nb-card>
       <nb-card class="banner-image" *ngIf="!isLoading && !showBannerImage">
         <nb-card-body>
-          <commudle-banner-image
-            [name]="hackathon.name"
-            [headerImagePath]="hackathon.banner_image.url"
-          ></commudle-banner-image>
+          <div *ngIf="hackathon.banner_image">
+            <commudle-banner-image
+              [name]="hackathon.name"
+              [headerImagePath]="hackathon.banner_image.url"
+            ></commudle-banner-image>
+          </div>
         </nb-card-body>
       </nb-card>
       <nb-card class="tabs" *ngIf="!isLoading">
