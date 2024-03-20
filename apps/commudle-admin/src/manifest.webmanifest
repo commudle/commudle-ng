@@ -8,44 +8,44 @@
   "start_url": "./",
   "icons": [
     {
-      "src": "assets/images/dark-mode-splash-screen72.gif",
+      "src": "assets/images/Splash-screen-dark-mode72.png ",
       "sizes": "72x72",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen96.gif",
+      "src": "assets/images/Splash-screen-dark-mode96.png",
       "sizes": "96x96",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen128.gif",
+      "src": "assets/images/Splash-screen-dark-mode128.png",
       "sizes": "128x128",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen144.gif",
+      "src": "assets/images/Splash-screen-dark-mode144.png",
       "sizes": "144x144",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen152.gif",
+      "src": "assets/images/Splash-screen-dark-mode152.png",
       "sizes": "152x152",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen192.gif",
+      "src": "assets/images/Splash-screen-dark-mode192.png",
       "sizes": "192x192",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen384.gif",
+      "src": "assets/images/Splash-screen-dark-mode384.png",
       "sizes": "384x384",
-      "type": "image/gif"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/dark-mode-splash-screen512.gif",
+      "src": "assets/images/Splash-screen-dark-mode512.png",
       "sizes": "512x512",
-      "type": "image/gif"
+      "type": "image/png"
     }
   ]
 }
