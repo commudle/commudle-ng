@@ -37,7 +37,9 @@
   </div>
   <hr />
   <div class="interested-members-button">
-    <div class="interested-members"></div>
+    <div class="interested-members">
+      <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
+    </div>
     <div class="action" *ngIf="hrgId && !userTeamDetails">
       <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
     </div>
