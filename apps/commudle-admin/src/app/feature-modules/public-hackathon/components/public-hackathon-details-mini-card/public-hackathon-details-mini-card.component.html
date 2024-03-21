@@ -1,20 +1,40 @@
 <div>
   <div class="date-section" *ngIf="hackathon.start_date && hackathon.end_date">
-    <div class="date-chip">
-      <span>
+    <div
+      class="date-chip"
+      [ngClass]="{ '!com-bg-red-500': hackathonStatus === 'Closed', 'com-bg-teal-600': hackathonStatus !== 'Closed' }"
+    >
+      <span *ngIf="hackathonStatus === 'Upcoming'">
         <span class="dot">&#x2022;</span>
         <span>
           Registrations starts soon -
           {{ hackathon.start_date | date : 'dd MMM yyyy' }}
         </span>
       </span>
+
+      <span *ngIf="hackathonStatus === 'Outgoing'">
+        <span class="dot">&#x2022;</span>
+        <span>{{ daysLeft }} Days Left </span>
+      </span>
+
+      <span *ngIf="hackathonStatus === 'Closed'">
+        <span class="dot">&#x2022;</span>
+        <span> Registrations closed </span>
+      </span>
     </div>
     <div class="date-heading">Hackathon Dates</div>
     <div class="date-value">
       {{ hackathon.start_date | date : 'dd MMM yyyy' }} - {{ hackathon.end_date | date : 'dd MMM yyyy' }}
     </div>
+    <div class="date-heading" *ngIf="hackathonStatus !== 'Closed'">Registration Dates</div>
+    <div class="date-value" *ngIf="hackathonStatus !== 'Closed'">
+      <span *ngIf="hackathonStatus !== 'Outgoing'"
+        >{{ hackathon.application_start_date | date : 'dd MMM yyyy' }} -
+      </span>
+      {{ hackathon.application_end_date | date : 'dd MMM yyyy' }}
+    </div>
   </div>
-  <hr />
+  <hr *ngIf="hackathon.start_date && hackathon.end_date" class="divided-line" />
   <div class="prize-location">
     <div class="location-prize-chips">
       <div class="location chip">
@@ -35,7 +55,7 @@
       <span> in prizes</span>
     </div>
   </div>
-  <hr />
+  <hr class="divided-line" />
   <div class="interested-members-button">
     <div class="interested-members">
       <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>

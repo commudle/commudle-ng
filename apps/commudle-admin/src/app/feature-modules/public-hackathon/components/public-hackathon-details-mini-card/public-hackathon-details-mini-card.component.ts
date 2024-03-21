@@ -15,6 +15,9 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
   @Input() userTeamDetails: IHackathonTeam;
   @Input() hrgId: number;
+  currentDate: Date;
+  hackathonApplicationStartDate: Date;
+  hackathonApplicationEndDate: Date;
   icons = {
     faGlobe,
     faAward,
@@ -25,16 +28,38 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   countryDetails = countries_details;
   users: IUser[];
   totalUsers: number;
+  hackathonStatus: string;
+  daysLeft: number;
 
   constructor(private hackathonService: HackathonService) {}
 
   ngOnInit() {
     this.fetchInterestedMembers();
+    if (this.hackathon.application_start_date) this.calculateHackathonDatesStatus();
     if (this.hackathon.total_prize_amount) {
       this.totalPrizesByCurrency = Object.keys(this.hackathon.total_prize_amount).map((currency) => ({
         currency: this.countryDetails.find((detail) => detail.currency === currency),
         amount: this.hackathon.total_prize_amount[currency],
       }));
+    }
+  }
+
+  calculateHackathonDatesStatus() {
+    this.currentDate = new Date(); //21 march
+    this.hackathonApplicationStartDate = new Date(this.hackathon.application_start_date); // 25 march
+    this.hackathonApplicationEndDate = new Date(this.hackathon.application_end_date); //28 march
+    if (this.currentDate < this.hackathonApplicationStartDate) {
+      this.hackathonStatus = 'Upcoming';
+    } else if (
+      this.currentDate >= this.hackathonApplicationStartDate &&
+      this.currentDate <= this.hackathonApplicationEndDate
+    ) {
+      this.hackathonStatus = 'Outgoing';
+      const millisecondsPerDay = 24 * 60 * 60 * 1000;
+      const difference = this.hackathonApplicationEndDate.getTime() - this.currentDate.getTime();
+      this.daysLeft = Math.ceil(difference / millisecondsPerDay);
+    } else if (this.currentDate > this.hackathonApplicationEndDate) {
+      this.hackathonStatus = 'Closed';
     }
   }
 

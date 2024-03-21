@@ -1,19 +1,8 @@
-// .hackathon-info {
-//   @apply com-flex com-flex-row com-gap-1 com-pb-4;
-// }
-// .heading {
-//   @apply com-text-lg com-font-bold com-text-gray-400;
-// }
-
-// .action {
-//   @apply com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
-// }
-
 .date-section {
   .date-chip {
-    @apply com-rounded-[20px]  com-bg-teal-600;
+    @apply com-rounded-[20px]   com-w-max;
     > span {
-      @apply com-flex com-justify-center com-items-center com-px-1  com-text-white com-text-sm com-gap-2;
+      @apply com-flex com-items-center com-px-3  com-text-white com-text-sm com-gap-2;
       .dot {
         @apply com-text-2xl;
       }
@@ -27,8 +16,9 @@
   }
 }
 .prize-location {
+  @apply com-my-5;
   .location-prize-chips {
-    @apply com-flex com-gap-6 com-items-center;
+    @apply com-flex com-gap-6 com-items-center com-mb-3;
     .chip {
       @apply com-bg-gray-100 com-rounded-[20px];
       > span {
@@ -40,9 +30,7 @@
     @apply com-text-base;
   }
 }
-.interested-members-button {
-  .interested-members {
-  }
-  .action-button {
-  }
+
+.divided-line {
+  @apply com-border com-border-solid com-border-Bright-Gray;
 }
