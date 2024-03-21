@@ -118,6 +118,13 @@
               <p class="name">channels</p>
             </a>
           </div> -->
+          <div>
+            <a [routerLink]="['dashboard']">
+              <button nbButton status="primary" size="tiny" shape="semi-round">
+                <fa-icon [icon]="icons.faArrowTrendUp"></fa-icon> &nbsp; Dashboard
+              </button>
+            </a>
+          </div>
         </nb-card-body>
       </nb-card>
       <div class="router" *ngIf="!isLoading">

@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PublicHackathonRoutes } from './public-hackathon.routing';
@@ -29,6 +30,8 @@ import { PublicHackathonCustomQuestionsFormComponent } from 'apps/commudle-admin
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { UserProfileComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-profile/user-profile.component';
 import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
+import { PublicHackathonUserDashboardComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-user-dashboard/public-hackathon-user-dashboard.component';
+import { PublicHackathonRegistrationComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-registration/public-hackathon-registration.component';
 
 @NgModule({
   imports: [
@@ -66,6 +69,8 @@ import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature
     PublicHackathonTeammateFormComponent,
     PublicHackathonProjectDetailsFormComponent,
     PublicHackathonCustomQuestionsFormComponent,
+    PublicHackathonUserDashboardComponent,
+    PublicHackathonRegistrationComponent,
   ],
 })
 export class PublicHackathonModule {}
