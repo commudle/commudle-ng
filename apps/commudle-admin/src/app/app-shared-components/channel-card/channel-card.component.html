@@ -1,9 +1,9 @@
-<a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" class="com-no-underline">
+<a [routerLink]="['/communities', channel.kommunity_id, 'channels', channel.id]" class="com-no-underline">
   <nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
     <nb-card-body>
       <div class="logo-section">
         <div class="logo" *ngIf="channel.logo">
-          <img [src]="channel.logo.url" [alt]="channel.name" [title]="channel.name" />
+          <img [src]="channel.logo.i64" [alt]="channel.name" [title]="channel.name" />
         </div>
         <div class="without-logo" *ngIf="!channel.logo">
           <nb-icon icon="hash"></nb-icon>
@@ -12,8 +12,8 @@
       <div class="details-container">
         <div class="details">
           <p class="name">{{ channel.name }}</p>
-
-          <p class="description">{{ channel.description }}</p>
+          <p *ngIf="showDescription" class="description">{{ channel.description }}</p>
+          <!-- <p *ngIf="!showDescription" class="latest-message">{{ channel.name }}</p> -->
           <div class="logo-and-member-count">
             <app-badge
               [text]="channel.member_count"

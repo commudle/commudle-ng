@@ -1,36 +1,51 @@
 .community-group {
-  .top {
-    @apply com-bg-green-800 com-p-10px com-rounded-tl-lg com-rounded-tr-lg;
-    .banner-image {
-      @apply com-w-full md:com-w-[1262px] com-h-[485px] md:com-h-80 com-absolute com-top-16 md:com-ml-9px;
+  .header {
+    @apply com-bg-white com-m-0 com-mb-4;
+    .banner {
+      @apply com-m-0 com-mt-4;
+      .banner-image {
+        @apply com-bg-green-800 com-w-full md:com-h-[192px] com-object-contain md:com-w-[1280px] com-rounded-tl-lg com-rounded-tr-lg;
+      }
     }
-    .basic-details {
-      @apply com-flex com-flex-col md:com-flex-row com-mx-6 com-my-10 com-z-10 com-relative com-items-center md:com-items-start;
 
-      .logo {
-        @apply com-my-auto com-mx-0 com-w-44 com-h-44 md:com-w-56 com-flex com-justify-center md:com-h-56 com-bg-tWhite com-rounded-md;
-        img {
-          @apply com-w-40 md:com-w-52 com-p-1 com-object-contain;
+    .page-header {
+      @apply com-flex md:com-flex-row com-flex-col com-content-start com-mx-0 com-pb-4;
+
+      .logo-section {
+        @apply com-w-44 com-h-44 md:com-w-[200px] md:com-h-[200px] com-rounded-[20px] -com-mt-14 md:-com-mt-28 md:com-mx-6 com-bg-tWhite com-shadow-md com-flex com-justify-center com-border com-border-solid com-border-Bright-Gray com-flex-shrink-0;
+
+        .logo {
+          @apply com-my-0 com-mx-auto com-px-2 com-w-full com-h-auto com-object-contain com-rounded-xl;
         }
       }
+
       .details {
-        @apply com-text-tWhite md:com-ml-8 com-text-center md:com-text-left com-w-full;
-        h1,
-        p {
-          @apply com-text-tWhite com-leading-3;
-        }
-        .mini-description {
-          @apply com-text-xl;
-        }
-        .social-links {
-          @apply com-flex com-space-x-3 com-mt-7 com-justify-center md:com-justify-start;
-          nb-icon {
-            @apply com-text-tWhite;
+        @apply com-mx-0 com-mt-3 com-mr-6 com-mb-6 com-w-full;
+
+        .heading {
+          @apply com-m-0 com-mb-6px com-flex com-justify-between com-w-full;
+          .name {
+            @apply com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0;
+          }
+
+          .social-links {
+            @apply com-flex com-flex-row com-space-x-4 com-justify-end com-items-center;
+            a {
+              @apply com-flex com-justify-center com-items-center com-border com-border-solid com-border-Bright-Gray com-p-2px;
+              nb-icon {
+                @apply com-text-base;
+              }
+            }
           }
         }
-      }
-      .count-details {
-        @apply com-mt-14 com-flex com-justify-between com-flex-col md:com-flex-row com-space-y-4;
+
+        .mini-description {
+          @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-4;
+        }
+
+        .links {
+          @apply com-flex com-flex-row com-space-x-2;
+        }
       }
     }
   }

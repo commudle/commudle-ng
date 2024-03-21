@@ -2,93 +2,94 @@
   <div class="container">
     <div class="one-column-layout">
       <div class="community-group" *ngIf="communityGroup">
-        <section class="top" [style.background]="communityGroup.theme_color">
-          <div class="basic-details">
-            <div class="logo">
+        <div class="header">
+          <div class="banner">
+            <div [style.background]="communityGroup.theme_color" class="banner-image"></div>
+          </div>
+          <div class="page-header">
+            <div class="logo-section">
               <img
+                class="logo"
                 alt="{{ communityGroup.name }}"
                 src="{{ communityGroup.logo.i350 }}"
                 title="{{ communityGroup.name }}"
               />
             </div>
-
             <div class="details">
-              <div
-                class="com-flex com-items-center com-space-x-3 com-align-middle com-justify-center md:com-justify-start"
-              >
-                <h1 class="name">
+              <div class="heading">
+                <h2 class="name">
                   {{ communityGroup.name }}
-                </h1>
-                <div class="com-rounded-full com-border-2 com-border-solid com-p-1">
-                  <fa-icon [icon]="faBuilding" class="com-m-1"></fa-icon>
-                </div>
-              </div>
-
-              <p class="mini-description">
-                {{ communityGroup.mini_description }}
-              </p>
-              <div class="social-links">
-                <a
-                  *ngIf="communityGroup.twitter"
-                  href="{{ communityGroup.twitter | completeurl : 'twitter' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="twitter" status="info"></nb-icon>
-                </a>
-                <a
-                  *ngIf="communityGroup.linkedin"
-                  href="{{ communityGroup.linkedin | completeurl : 'linkedin' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="linkedin" status="info"></nb-icon>
-                </a>
-                <a
-                  *ngIf="communityGroup.facebook"
-                  href="{{ communityGroup.facebook | completeurl : 'facebook' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="facebook" status="info"></nb-icon>
-                </a>
-
-                <a
-                  *ngIf="communityGroup.github"
-                  href="{{ communityGroup.github | completeurl : 'github' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="github" status="info"></nb-icon>
-                </a>
-                <a *ngIf="communityGroup.website" href="{{ communityGroup.website }}" rel="noreferrer" target="_blank">
-                  <nb-icon icon="info" status="info"></nb-icon>
-                </a>
-              </div>
-              <div class="count-details">
-                <nb-tag-list>
-                  <nb-tag text="{{ communityGroup.kommunities_count }} Communities"></nb-tag>
-                  <nb-tag text="{{ communityGroup.member_count }} Members"></nb-tag>
-                  <nb-tag
-                    class="com-hidden md:com-block"
-                    text="{{ communityGroup.community_channels_count }} Channels"
-                  ></nb-tag>
-                </nb-tag-list>
-                <div *ngIf="isOrganizer">
+                </h2>
+                <div class="social-links">
                   <a
-                    nbButton
-                    status="danger"
-                    shape="semi-round"
-                    [routerLink]="['/admin', 'orgs', communityGroup.slug]"
+                    *ngIf="communityGroup.twitter"
+                    href="{{ communityGroup.twitter | completeurl : 'twitter' }}"
+                    rel="noreferrer"
                     target="_blank"
                   >
-                    <fa-icon [icon]="faPencil" class="com-mr-2"></fa-icon> Go To Admin panel
+                    <nb-icon icon="twitter" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.linkedin"
+                    href="{{ communityGroup.linkedin | completeurl : 'linkedin' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="linkedin" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.facebook"
+                    href="{{ communityGroup.facebook | completeurl : 'facebook' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="facebook" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.github"
+                    href="{{ communityGroup.github | completeurl : 'github' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="github" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.website"
+                    href="{{ communityGroup.website }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="info" status="primary"></nb-icon>
                   </a>
                 </div>
               </div>
+              <p class="mini-description">
+                {{ communityGroup.mini_description }}
+              </p>
+              <div class="links">
+                <app-badge
+                  [text]="communityGroup.member_count + ' Employees'"
+                  [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'round'"
+                  [color]="'com-bg-Bright-Gray-opacity-60'"
+                ></app-badge>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+
+        <!-- <div *ngIf="isOrganizer">
+              <a
+                nbButton
+                status="danger"
+                shape="semi-round"
+                [routerLink]="['/admin', 'orgs', communityGroup.slug]"
+                target="_blank"
+              >
+                <fa-icon [icon]="faPencil" class="com-mr-2"></fa-icon> Go To Admin panel
+              </a>
+            </div> -->
         <div class="page-menu">
           <div class="menu-items d-flex">
             <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">

@@ -28,8 +28,9 @@ nb-card {
         .name {
           @apply com-font-bold com-text-base com-m-0 com-mb-2 com-line-clamp-1;
         }
-        .description {
-          @apply com-text-sm com-font-normal com-text-gray-500 com-m-0 com-mb-4 com-line-clamp-2;
+        .description,
+        .latest-message {
+          @apply com-text-sm com-font-normal com-text-gray-500 com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
         }
 
         .logo-and-member-count {
