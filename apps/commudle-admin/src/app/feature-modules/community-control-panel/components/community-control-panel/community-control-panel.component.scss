@@ -60,6 +60,10 @@ section {
       @apply com-text-gray-500;
     }
 
+    img {
+      @apply com-mb-1;
+    }
+
     .title {
       @apply com-self-center com-ml-2;
     }
@@ -82,9 +86,6 @@ section {
     fa-icon,
     .title {
       @apply com-text-Blueberry;
-    }
-    img {
-      filter: invert(46%) sepia(73%) saturate(6162%) hue-rotate(219deg) brightness(102%) contrast(103%);
     }
   }
 }

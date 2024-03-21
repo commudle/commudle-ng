@@ -95,7 +95,18 @@
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
-              <img src="https://json.commudle.com/icons/hackathon-icon.svg" />
+
+              <img
+                [src]="
+                  isHackathonActive
+                    ? environment.base_url + '/icons/hackathon-icon-primary.svg'
+                    : darkMode
+                    ? environment.base_url + '/icons/hackathon-icon-white.svg'
+                    : environment.base_url + '/icons/hackathon-icon-gray.svg'
+                "
+                alt="Hackathon Icon"
+              />
+
               <span class="title">Hackathons</span>
             </a>
             <a
@@ -112,7 +123,17 @@
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
-              <img src="https://json.commudle.com/icons/hackathon-icon.svg" />
+
+              <img
+                [src]="
+                  isHackathonActive
+                    ? environment.base_url + '/icons/hackathon-icon-primary.svg'
+                    : darkMode
+                    ? environment.base_url + '/icons/hackathon-icon-white.svg'
+                    : environment.base_url + '/icons/hackathon-icon-gray.svg'
+                "
+                alt="Hackathon Icon"
+              />
               <span class="title">Hackathons</span>
             </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
