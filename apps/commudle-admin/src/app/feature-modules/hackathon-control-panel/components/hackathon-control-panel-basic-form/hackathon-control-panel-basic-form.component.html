@@ -297,7 +297,7 @@
         (click)="createOrUpdate()"
         fullWidth
         status="primary"
-        [disabled]="hackathonForm.invalid || !hackathonForm.dirty || isLoading"
+        [disabled]="hackathonForm.invalid || isLoading"
         [nbSpinner]="isLoading"
       >
         Save & Continue

@@ -16,6 +16,7 @@ import {
   faAward,
   faUser,
   faLaptopCode,
+  faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -42,6 +43,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faAward,
     faUser,
     faLaptopCode,
+    faArrowTrendUp,
   };
   isLoading = true;
   showBannerImage = false;

@@ -18,7 +18,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   hackathonSlug = '';
   parentId = '';
   parentType = '';
-  imagePreview;
+  imagePreview = '';
 
   subscriptions: Subscription[] = [];
   hackathon: IHackathon;
@@ -98,7 +98,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     this.subscriptions.push(
       this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data: IHackathon) => {
         this.hackathon = data;
-        this.imagePreview = data.banner_image.url;
+        this.imagePreview = data.banner_image ? data.banner_image.url : '';
         this.hackathonForm.patchValue({
           name: data.name,
           tagline: data.tagline,

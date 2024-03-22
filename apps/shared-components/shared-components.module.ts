@@ -82,6 +82,7 @@ import { EditDataFormComponent } from './edit-data-form/edit-data-form.component
 import { BuildCardComponent } from './build-card/build-card.component';
 import { HackathonLargeCardComponent } from './hackathon-cards/hackathon-large-card/hackathon-large-card.component';
 import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium-card/hackathon-medium-card.component';
+import { InterestedMembersComponent } from './interested-members/interested-members.component';
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -128,6 +129,7 @@ import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium
     BuildCardComponent,
     HackathonLargeCardComponent,
     HackathonMediumCardComponent,
+    InterestedMembersComponent,
   ],
   imports: [
     CommonModule,
@@ -210,6 +212,7 @@ import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium
     BuildCardComponent,
     HackathonLargeCardComponent,
     HackathonMediumCardComponent,
+    InterestedMembersComponent,
   ],
 })
 export class SharedComponentsModule {}

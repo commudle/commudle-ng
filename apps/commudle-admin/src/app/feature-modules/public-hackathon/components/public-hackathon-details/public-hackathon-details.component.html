@@ -1,4 +1,4 @@
-<div class="two-column-layout wide">
+<div class="two-column-layout medium">
   <div class="main-column com-mb-20">
     <nb-card>
       <nb-card-body>
@@ -114,33 +114,11 @@
         </div>
       </nb-card-body>
     </nb-card>
-    <nb-card *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0" class="project-details-card">
-      <nb-card-header>
-        <div class="heading"></div>
-        <div>
-          Registration Status: Profile Submitted for Review
-          <a [routerLink]="['fill-form', hrgId]">Edit Your Response</a>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        <div class="round-details">Next: Round 1 confirmation</div>
-        <div *ngIf="userTeamDetails[0].registration_status === EHackathonRegistrationStatus.ACCEPTED">
-          <a
-            *ngIf="!userTeamDetails[0].community_build"
-            [routerLink]="['/builds', 'create']"
-            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails[0].id }"
-          >
-            <button nbButton status="primary" fullWidth>Submit Project</button>
-          </a>
-          <a
-            *ngIf="userTeamDetails[0].community_build"
-            [routerLink]="['/builds', userTeamDetails[0].community_build.slug, 'edit']"
-            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails[0].id }"
-          >
-            <button nbButton status="primary" fullWidth>Update My Build</button>
-          </a>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
+      <commudle-public-hackathon-registration
+        [hrgId]="hrgId"
+        [userTeamDetails]="userTeamDetails[0]"
+      ></commudle-public-hackathon-registration>
+    </div>
   </div>
 </div>

@@ -45,10 +45,12 @@
       </nb-card>
       <nb-card class="banner-image" *ngIf="!isLoading && !showBannerImage">
         <nb-card-body>
-          <commudle-banner-image
-            [name]="hackathon.name"
-            [headerImagePath]="hackathon.banner_image.url"
-          ></commudle-banner-image>
+          <div *ngIf="hackathon.banner_image">
+            <commudle-banner-image
+              [name]="hackathon.name"
+              [headerImagePath]="hackathon.banner_image.url"
+            ></commudle-banner-image>
+          </div>
         </nb-card-body>
       </nb-card>
       <nb-card class="tabs" *ngIf="!isLoading">
@@ -116,6 +118,13 @@
               <p class="name">channels</p>
             </a>
           </div> -->
+          <div>
+            <a [routerLink]="['dashboard']">
+              <button nbButton status="primary" size="tiny" shape="semi-round">
+                <fa-icon [icon]="icons.faArrowTrendUp"></fa-icon> &nbsp; Dashboard
+              </button>
+            </a>
+          </div>
         </nb-card-body>
       </nb-card>
       <div class="router" *ngIf="!isLoading">
