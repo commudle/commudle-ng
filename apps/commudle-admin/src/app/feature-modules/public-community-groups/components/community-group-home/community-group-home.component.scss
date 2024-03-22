@@ -24,8 +24,20 @@
 
         .heading {
           @apply com-m-0 com-mb-6px com-flex com-justify-between com-w-full;
-          .name {
-            @apply com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0;
+
+          .name-logo {
+            @apply com-flex com-flex-row com-items-center;
+            .name {
+              @apply com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0;
+            }
+
+            .logo {
+              @apply com-flex com-items-center com-justify-center com-rounded-full com-border com-border-solid com-text-Yankees-Blue com-border-Yankees-Blue com-p-6px com-m-0 com-ml-2  com-flex-shrink-0;
+
+              fa-icon {
+                @apply com-text-xs;
+              }
+            }
           }
 
           .social-links {
@@ -44,7 +56,7 @@
         }
 
         .links {
-          @apply com-flex com-flex-row com-space-x-2;
+          @apply com-flex com-flex-row com-justify-between;
         }
       }
     }

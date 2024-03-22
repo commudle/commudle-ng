@@ -17,9 +17,14 @@
             </div>
             <div class="details">
               <div class="heading">
-                <h2 class="name">
-                  {{ communityGroup.name }}
-                </h2>
+                <div class="name-logo">
+                  <h2 class="name">
+                    {{ communityGroup.name }}
+                  </h2>
+                  <div class="logo">
+                    <fa-icon [icon]="faBuilding"></fa-icon>
+                  </div>
+                </div>
                 <div class="social-links">
                   <a
                     *ngIf="communityGroup.twitter"
@@ -68,28 +73,28 @@
               </p>
               <div class="links">
                 <app-badge
-                  [text]="communityGroup.member_count + ' Employees'"
+                  [text]="communityGroup.member_count"
                   [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                  [nbIcon]="'people-outline'"
                   [fontSize]="'small'"
                   [borderRadius]="'round'"
-                  [color]="'com-bg-Bright-Gray-opacity-60'"
+                  [color]="'com-bg-Bright-Gray-Light'"
                 ></app-badge>
+                <div *ngIf="isOrganizer">
+                  <a
+                    nbButton
+                    status="danger"
+                    shape="semi-round"
+                    [routerLink]="['/admin', 'orgs', communityGroup.slug]"
+                    target="_blank"
+                  >
+                    <fa-icon [icon]="faPencil" class="com-mr-2"></fa-icon> Go To Admin panel
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- <div *ngIf="isOrganizer">
-              <a
-                nbButton
-                status="danger"
-                shape="semi-round"
-                [routerLink]="['/admin', 'orgs', communityGroup.slug]"
-                target="_blank"
-              >
-                <fa-icon [icon]="faPencil" class="com-mr-2"></fa-icon> Go To Admin panel
-              </a>
-            </div> -->
         <div class="page-menu">
           <div class="menu-items d-flex">
             <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
