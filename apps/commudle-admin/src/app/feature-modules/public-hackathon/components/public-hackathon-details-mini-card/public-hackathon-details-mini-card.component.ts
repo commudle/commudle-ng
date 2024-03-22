@@ -45,9 +45,9 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   }
 
   calculateHackathonDatesStatus() {
-    this.currentDate = new Date(); //21 march
-    this.hackathonApplicationStartDate = new Date(this.hackathon.application_start_date); // 25 march
-    this.hackathonApplicationEndDate = new Date(this.hackathon.application_end_date); //28 march
+    this.currentDate = new Date();
+    this.hackathonApplicationStartDate = new Date(this.hackathon.application_start_date);
+    this.hackathonApplicationEndDate = new Date(this.hackathon.application_end_date);
     if (this.currentDate < this.hackathonApplicationStartDate) {
       this.hackathonStatus = 'Upcoming';
     } else if (
