@@ -13,6 +13,7 @@ export interface IHackathonTeam {
   entity_updates?: IEventUpdate[];
   notes: INote[];
   hackathon_winners: IHackathonWinner[];
+  hackathon_id: number;
 }
 
 export enum EHackathonRegistrationStatus {
