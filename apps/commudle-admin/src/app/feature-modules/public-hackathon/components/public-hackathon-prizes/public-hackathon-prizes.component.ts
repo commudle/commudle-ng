@@ -36,7 +36,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
       }),
     );
     this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
-      this.hrgId = data.id;
+      if (data) this.hrgId = data.id;
     });
   }
 

@@ -1,3 +1,4 @@
+import { IHackathonTeam } from './../../../../../apps/shared-models/hackathon-team.model';
 import { IAttachedFile } from './attached-file.model';
 import { IUserRolesUser } from './user-roles-user.model';
 import { IUser } from './user.model';
@@ -22,6 +23,7 @@ export interface ICommunityBuild {
   user_roles_users: IUserRolesUser[];
   video_iframe: string;
   live_app_link: string;
+  hackathon_team: IHackathonTeam;
 }
 
 export interface ICommunityBuildSearch extends ICommunityBuild {

@@ -72,7 +72,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
         }
       }),
       this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
-        this.hrgId = data.id;
+        if (data) this.hrgId = data.id;
       });
   }
   getSponsors() {
@@ -94,10 +94,16 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService.pIndexHackathonTracks(this.hackathon.id).subscribe((data) => {
         this.tracks = data;
-        for (const track of this.tracks) {
-          for (const prize of track.hackathon_prizes) {
-            const prizeCurrencySymbol = this.countryDetails.find((detail) => detail.currency === prize.currency_type);
-            prize.currency_symbol = prizeCurrencySymbol.symbol;
+        if (this.tracks) {
+          for (const track of this.tracks) {
+            if (track.hackathon_prizes) {
+              for (const prize of track.hackathon_prizes) {
+                const prizeCurrencySymbol = this.countryDetails.find(
+                  (detail) => detail.currency === prize.currency_type,
+                );
+                prize.currency_symbol = prizeCurrencySymbol.symbol;
+              }
+            }
           }
         }
       }),
