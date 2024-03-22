@@ -1,0 +1,26 @@
+.who-can-apply,
+.benefits,
+.responsibilities,
+.application-process {
+  @apply com-px-6 com-pb-24 md:com-px-72px;
+
+  .content {
+    @apply com-max-w-3xl com-mx-4;
+
+    h2 {
+      a {
+        @apply com-mb-0 com-p-0 md:com-mt-12 com-text-Yankees-Blue com-no-underline;
+      }
+    }
+    p {
+      @apply com-m-0 com-mt-8 com-text-base com-text-gray-500;
+    }
+    li {
+      @apply com-m-0 com-mt-4 com-text-base com-text-gray-500;
+    }
+  }
+}
+
+.application-process-image {
+  @apply com-m-0 com-ml-0 md:com-ml-4;
+}

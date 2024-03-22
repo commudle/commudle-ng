@@ -111,4 +111,7 @@ export const staticAssets = {
 
   credit:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMEc4QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c960cf51544197333114e844a7c7fdbff1eebffe/credit%20framework.png',
+
+  expert_page_application_process:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMGNXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c1e7c298ba772dd581170535e83c420be11143ad/Application%20Process.png',
 };
