@@ -114,4 +114,7 @@ export const staticAssets = {
 
   expert_page_application_process:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMGNXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c1e7c298ba772dd581170535e83c420be11143ad/Application%20Process.png',
+
+  expert_program_header:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMFlXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--01166ee2cc3b6d1076a8ea56b266f7af66e08e8e/Header%20Frame.png',
 };
