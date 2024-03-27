@@ -35,7 +35,8 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
 
   ngOnInit() {
     this.fetchInterestedMembers();
-    if (this.hackathon.application_start_date) this.calculateHackathonDatesStatus();
+    if (this.hackathon.application_start_date && this.hackathon.application_end_date)
+      this.calculateHackathonDatesStatus();
     if (this.hackathon.total_prize_amount) {
       this.totalPrizesByCurrency = Object.keys(this.hackathon.total_prize_amount).map((currency) => ({
         currency: this.countryDetails.find((detail) => detail.currency === currency),

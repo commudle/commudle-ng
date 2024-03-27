@@ -43,14 +43,14 @@
           <span>{{ hackathon.hackathon_location_type | titlecase }}</span>
         </span>
       </div>
-      <div class="prize chip">
+      <div class="prize chip" *ngIf="hackathon.prizes_count">
         <span>
           <fa-icon [icon]="icons.faAward"></fa-icon>
           <span>{{ hackathon.prizes_count }} Prizes</span>
         </span>
       </div>
     </div>
-    <div class="prize-amount" *ngIf="totalPrizesByCurrency">
+    <div class="prize-amount" *ngIf="totalPrizesByCurrency[0]">
       <strong> {{ totalPrizesByCurrency[0].currency.symbol }}{{ totalPrizesByCurrency[0].amount }}</strong>
       <span> in prizes</span>
     </div>

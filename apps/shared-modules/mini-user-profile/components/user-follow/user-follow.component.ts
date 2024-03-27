@@ -15,7 +15,6 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
-import { IUser } from 'apps/shared-models/user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 

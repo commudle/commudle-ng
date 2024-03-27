@@ -27,6 +27,8 @@ export interface IHackathon {
   faqs_count: number;
   sponsors_count: number;
   tracks_count: number;
+  judges_count: number;
+  projects_count: number;
   min_number_of_teammates: number;
   max_number_of_teammates: number;
   status: EHackathonStatus;

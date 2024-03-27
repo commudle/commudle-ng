@@ -11,6 +11,7 @@ export interface IHackathonJudge {
   website: string;
   designation: string;
   username: string;
+  judge_user_id: number;
   profile_image?: IAttachedFile;
   invite_status: EInvitationStatus;
 }
