@@ -1,7 +1,7 @@
-import { IHackathonTeam } from './../../../../../apps/shared-models/hackathon-team.model';
 import { IAttachedFile } from './attached-file.model';
 import { IUserRolesUser } from './user-roles-user.model';
 import { IUser } from './user.model';
+import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
 
 export interface ICommunityBuild {
   id: number;
