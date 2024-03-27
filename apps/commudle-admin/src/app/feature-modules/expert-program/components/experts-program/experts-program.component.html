@@ -1,11 +1,11 @@
 <div class="com-bg-white">
-  <div class="base-layout">
-    <div class="container">
-      <div class="one-column-layout">
-        <section class="header">
-          <div class="background-image">
-            <img alt="Experts Program" [src]="staticAssets.expert_program_header" title="Experts Program" />
-          </div>
+  <section class="header">
+    <div class="background-image">
+      <img alt="Experts Program" [src]="staticAssets.expert_program_header" title="Experts Program" />
+    </div>
+    <div class="base-layout">
+      <div class="container">
+        <div class="one-column-layout">
           <div class="header-content">
             <div class="header-text">
               <h1 class="heading">
@@ -17,7 +17,13 @@
               <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="base-layout">
+    <div class="container">
+      <div class="one-column-layout">
         <section class="who-can-apply" id="who-can-apply">
           <commudle-public-page-layout>
             <div content class="content">

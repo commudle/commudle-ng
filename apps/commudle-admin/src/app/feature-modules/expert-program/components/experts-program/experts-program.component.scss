@@ -45,10 +45,14 @@
 .header {
   @apply md:com-pb-32 com-pb-12;
   .background-image {
-    @apply com-absolute md:com-h-[426px] com-h-auto md:com-w-auto com-w-full;
+    @apply com-absolute md:com-h-[426px] com-h-auto com-w-full;
     img {
       @apply com-h-full com-w-full;
     }
+  }
+
+  .base-layout {
+    @apply com-min-h-0;
   }
   .header-content {
     @apply com-relative com-flex md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
