@@ -95,6 +95,20 @@
   </div>
 
   <div class="right-column">
+    <nb-card *ngIf="isOrganizer">
+      <nb-card-body class="com-p-0">
+        <button
+          nbButton
+          status="danger"
+          fullWidth
+          [routerLink]="['/admin', 'communities', community.slug, 'hackathon-dashboard', hackathon.slug]"
+        >
+          <fa-icon [icon]="icons.faPencil"></fa-icon>
+          &nbsp;
+          <span>Go To Admin panel</span>
+        </button>
+      </nb-card-body>
+    </nb-card>
     <nb-card *ngIf="userTeamDetails">
       <nb-card-body
         ><commudle-public-hackathon-details-mini-card

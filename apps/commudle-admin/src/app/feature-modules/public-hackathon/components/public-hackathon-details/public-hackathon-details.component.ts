@@ -1,8 +1,9 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EDbModels, IFaq, IRound } from '@commudle/shared-models';
+import { EDbModels, ICommunity, IFaq, IRound } from '@commudle/shared-models';
 import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -14,7 +15,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
-
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-public-hackathon-details',
   templateUrl: './public-hackathon-details.component.html',
@@ -22,6 +23,7 @@ import { Subscription } from 'rxjs';
 })
 export class PublicHackathonDetailsComponent implements OnInit {
   hackathon: IHackathon;
+  community: ICommunity;
   EDbModels = EDbModels;
   sponsors: IHackathonSponsor[];
   faqs: IFaq[];
@@ -34,6 +36,10 @@ export class PublicHackathonDetailsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   hrgId: number;
+  isOrganizer = false;
+  icons = {
+    faPencil,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,38 +49,50 @@ export class PublicHackathonDetailsComponent implements OnInit {
     private roundService: RoundService,
     private authWatchService: LibAuthwatchService,
     private hrgService: HackathonResponseGroupService,
+    private communitiesService: CommunitiesService,
   ) {}
 
   ngOnInit() {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
+        this.community = data.community;
         this.getSponsors();
         this.getFaqs();
         this.getTracks();
         this.getDiscussionChat();
         this.getRounds();
+        this.isOrganizerCheck();
       }),
     ),
       this.authWatchService.currentUser$.subscribe((currentUser) => {
         if (currentUser) this.getHackathonCurrentRegistrationDetails();
       }),
-      this.activatedRoute.fragment.subscribe((fragment) => {
-        if (fragment) {
-          const element = document.getElementById(fragment);
-          if (element) {
-            element.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-              inline: 'nearest',
-            });
-          }
-        }
-      }),
-      this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
-        if (data) this.hrgId = data.id;
-      });
+      this.checkFragment();
+    this.getHackathonResponseGroup();
   }
+
+  checkFragment() {
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }
+      }
+    });
+  }
+
+  getHackathonResponseGroup() {
+    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+      if (data) this.hrgId = data.id;
+    });
+  }
+
   getSponsors() {
     this.subscriptions.push(
       this.hackathonService.pIndexSponsors(this.hackathon.id).subscribe((data) => {
@@ -135,6 +153,18 @@ export class PublicHackathonDetailsComponent implements OnInit {
             this.userTeamDetails = data;
           }
         }),
+    );
+  }
+
+  isOrganizerCheck() {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+          this.isOrganizer = true;
+        } else {
+          this.isOrganizer = false;
+        }
+      }),
     );
   }
 }
