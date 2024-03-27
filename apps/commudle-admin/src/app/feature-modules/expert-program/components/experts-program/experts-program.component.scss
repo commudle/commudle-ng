@@ -54,15 +54,14 @@
         @apply md:com-text-4xl com-text-3xl com-font-bold com-mt-0 com-mb-9 md:com-mb-4 com-text-tYankees-Blue;
       }
 
-      .sub_heading {
+      .sub-heading {
         @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-tYankees-Blue;
       }
 
-      .richText {
+      .rich-text {
         ::ng-deep {
           p {
-            @apply com-font-medium;
-            font-size: 18px;
+            @apply com-text-lg com-font-medium;
             color: initial;
           }
           span {

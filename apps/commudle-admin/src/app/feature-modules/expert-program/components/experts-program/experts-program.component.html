@@ -11,8 +11,8 @@
               <h1 class="heading">
                 {{ expertsProgramPageHeader?.heading }}
               </h1>
-              <p class="sub_heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
-              <div [innerHTML]="richText" class="richText"></div>
+              <p class="sub-heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
+              <div [innerHTML]="richText" class="rich-text"></div>
             </div>
             <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
               <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
