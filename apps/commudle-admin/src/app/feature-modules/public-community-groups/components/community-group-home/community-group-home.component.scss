@@ -1,6 +1,6 @@
 .community-group {
   .header {
-    @apply com-bg-white com-m-0 com-mb-4;
+    @apply com-flex com-flex-col com-bg-white com-m-0 com-mb-4;
     .banner {
       @apply com-m-0 com-mt-4;
       .banner-image {
@@ -9,10 +9,10 @@
     }
 
     .page-header {
-      @apply com-flex md:com-flex-row com-flex-col com-content-start com-mx-0 com-pb-4;
+      @apply com-flex md:com-flex-row com-flex-col com-items-center md:com-items-start com-content-start com-mx-0 com-pb-4;
 
       .logo-section {
-        @apply com-w-44 com-h-44 md:com-w-[200px] md:com-h-[200px] com-rounded-[20px] -com-mt-14 md:-com-mt-28 md:com-mx-6 com-bg-tWhite com-shadow-md com-flex com-justify-center com-border com-border-solid com-border-Bright-Gray com-flex-shrink-0;
+        @apply com-w-44 com-h-44 md:com-w-[200px] md:com-h-[200px] com-rounded-[20px] -com-mt-20 md:-com-mt-28 md:com-mx-6 com-bg-tWhite com-shadow-md com-flex com-justify-center com-border com-border-solid com-border-Bright-Gray com-flex-shrink-0;
 
         .logo {
           @apply com-my-0 com-mx-auto com-px-2 com-w-full com-h-auto com-object-contain com-rounded-xl;
@@ -20,10 +20,10 @@
       }
 
       .details {
-        @apply com-mx-0 com-mt-3 com-mr-6 com-mb-6 com-w-full;
+        @apply com-flex com-flex-col com-items-center md:com-items-start md:com-mx-0 com-mx-4 com-mt-3 md:com-mr-6 md:com-mb-6 com-mb-0 com-w-full;
 
         .heading {
-          @apply com-m-0 com-mb-6px com-flex com-justify-between com-w-full;
+          @apply com-m-0 com-mb-6px com-flex md:com-flex-row com-flex-col com-items-center com-justify-between com-w-full;
 
           .name-logo {
             @apply com-flex com-flex-row com-items-center;
@@ -56,7 +56,11 @@
         }
 
         .links {
-          @apply com-flex com-flex-row com-justify-between;
+          @apply com-flex md:com-flex-row com-flex-col md:com-justify-between com-items-center com-w-full;
+
+          app-badge {
+            @apply com-m-0 md:com-mb-0 com-mb-2;
+          }
         }
       }
     }

@@ -7,7 +7,7 @@
 }
 
 .communities-cards {
-  @apply com-flex com-flex-nowrap com-gap-4 com-overflow-auto;
+  @apply com-flex com-flex-wrap com-gap-4 com-overflow-auto;
 
   @screen lg {
     @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
@@ -49,7 +49,7 @@ nb-card {
 }
 
 .channels-cards-list {
-  @apply com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0 md:com-gap-4 com-gap-0;
+  @apply com-flex com-flex-wrap com-justify-between md:com-space-x-0 com-gap-4;
 
   .channel-card {
     @apply md:com-w-[420px] com-w-full;
@@ -57,7 +57,7 @@ nb-card {
 }
 
 .forums-cards-list {
-  @apply com-flex com-flex-nowrap md:com-flex-wrap md:com-gap-4 com-gap-0;
+  @apply com-flex com-flex-wrap com-gap-4;
 
   .forum-card {
     @apply md:com-w-[266px] com-w-full;

@@ -1,17 +1,17 @@
 nb-card {
-  @apply com-w-full com-h-96  md:com-h-52  hover:com-shadow-Card com-cursor-pointer com-m-0;
+  @apply com-w-full md:com-h-52 com-h-[270px]  hover:com-shadow-Card com-cursor-pointer com-m-0;
 
   nb-card-body {
-    @apply com-overflow-hidden com-flex com-flex-col md:com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
+    @apply com-overflow-hidden com-flex com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
     .logo-section {
       .logo {
-        @apply com-w-[52px] com-h-[52px] md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
+        @apply com-w-10 com-h-10 md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
         img {
           @apply com-w-full;
         }
       }
       .without-logo {
-        @apply com-w-[52px] com-h-[52px] md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-bg-gray-100 com-m-auto;
+        @apply com-w-10 com-h-10 md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-bg-gray-100 com-m-auto;
         nb-icon {
           @apply com-text-[32px];
         }
@@ -19,7 +19,7 @@ nb-card {
     }
 
     .details-container {
-      @apply com-flex com-flex-col com-justify-between com-h-full com-text-center md:com-text-start com-w-full;
+      @apply com-flex com-flex-col com-h-full com-text-center md:com-text-start com-w-full;
       .details {
         @apply com-flex md:com-block com-flex-col com-items-center md:com-items-start;
         p {
@@ -28,9 +28,12 @@ nb-card {
         .name {
           @apply com-font-bold com-text-base com-m-0 com-mb-2 com-line-clamp-1;
         }
-        .description,
-        .latest-message {
-          @apply com-text-sm com-font-normal com-text-gray-500 com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
+        .description-and-latest-message {
+          @apply com-m-0 com-mb-4 com-h-10;
+          .description,
+          .latest-message {
+            @apply com-text-sm com-font-normal com-text-gray-500 com-line-clamp-2;
+          }
         }
 
         .logo-and-member-count {
