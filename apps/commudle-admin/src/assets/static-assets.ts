@@ -116,5 +116,5 @@ export const staticAssets = {
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMGNXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c1e7c298ba772dd581170535e83c420be11143ad/Application%20Process.png',
 
   expert_program_header:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMFlXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--01166ee2cc3b6d1076a8ea56b266f7af66e08e8e/Header%20Frame.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd0FZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--11d25f55ae2c13a94e0c9fc8724863d43d9a5e16/Header%20Frame%20Pattern.png',
 };

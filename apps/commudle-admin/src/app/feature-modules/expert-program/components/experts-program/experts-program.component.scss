@@ -1,8 +1,7 @@
 .who-can-apply,
 .benefits,
 .responsibilities,
-.application-process,
-.heading-section {
+.application-process {
   @apply com-m-0 com-px-6 md:com-pb-28 com-pb-12 md:com-px-0;
 
   .content {
@@ -24,6 +23,14 @@
   }
   li {
     @apply com-m-0 com-mt-4 com-text-base com-text-gray-500;
+  }
+
+  ul {
+    @apply com-m-0;
+  }
+
+  .nomination-form {
+    @apply com-font-semibold;
   }
 }
 
@@ -51,23 +58,11 @@
       @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[74px] com-py-6 md:com-w-[694px] md:com-min-h-[386px] com-w-full com-h-full;
 
       .heading {
-        @apply md:com-text-4xl com-text-3xl com-font-bold com-mt-0 com-mb-9 md:com-mb-4 com-text-tYankees-Blue;
+        @apply md:com-text-4xl com-text-3xl com-font-bold com-mt-0 com-mb-9 md:com-mb-11 com-text-Yankees-Blue;
       }
 
       .sub-heading {
-        @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-tYankees-Blue;
-      }
-
-      .rich-text {
-        ::ng-deep {
-          p {
-            @apply com-text-lg com-font-medium;
-            color: initial;
-          }
-          span {
-            @apply com-text-primary-500;
-          }
-        }
+        @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-Yankees-Blue;
       }
     }
 
@@ -78,4 +73,16 @@
       }
     }
   }
+}
+
+.benefits {
+  ::ng-deep {
+    .section {
+      @apply com-items-start;
+    }
+  }
+}
+
+.apply-now-button {
+  @apply com-m-0 com-mt-6;
 }

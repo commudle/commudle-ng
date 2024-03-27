@@ -12,29 +12,11 @@
                 {{ expertsProgramPageHeader?.heading }}
               </h1>
               <p class="sub-heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
-              <div [innerHTML]="richText" class="rich-text"></div>
             </div>
             <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
               <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
             </div>
           </div>
-        </section>
-        <section class="heading-section" id="heading-section">
-          <commudle-public-page-layout>
-            <div content class="content">
-              <h2 class="heading">
-                <a [routerLink]="'.'" fragment="heading-section"
-                  >Unlocking Expertise: Join Our Experts Program Today!</a
-                >
-              </h2>
-              <div class="subheading">
-                <p>
-                  At Commudle, we embrace the power of community and firmly believe that sharing equals gaining. After
-                  all, <strong>it’s the Experts Who Share that truly become the Experts Who Gain!</strong>
-                </p>
-              </div>
-            </div>
-          </commudle-public-page-layout>
         </section>
         <section class="who-can-apply" id="who-can-apply">
           <commudle-public-page-layout>
@@ -129,17 +111,31 @@
               <div class="subheading">
                 <p>Experts are onboarded in cohorts and as per available slots after verification.</p>
                 <ol>
-                  <li>Fill the <a [routerLink]="['/fill-form', 1093]">Expert Nomination Form</a></li>
+                  <li>
+                    Fill the <a [routerLink]="['/fill-form', 1093]" class="nomination-form">Expert Nomination Form</a>
+                  </li>
                   <li>
                     Our team will review your application, you will receive an email with a status update in 10 working
                     days
                   </li>
                   <li>If selected, we will share further details for onboarding</li>
                 </ol>
-                <p>
-                  This program in no way is an employment or a paid engagement with Commudle. <br />If you are not
-                  selected, you can always re-apply.
-                </p>
+                <div>
+                  <p>
+                    This program in no way is an employment or a paid engagement with Commudle. <br />If you are not
+                    selected, you can always re-apply.
+                  </p>
+                  <button
+                    [routerLink]="['/fill-form', 1093]"
+                    nbButton
+                    status="primary"
+                    shape="rectangle"
+                    size="medium"
+                    class="apply-now-button"
+                  >
+                    Apply Now
+                  </button>
+                </div>
               </div>
             </div>
             <div image class="application-process-image">

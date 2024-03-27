@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'commudle-experts-program',
   templateUrl: './experts-program.component.html',
   styleUrls: ['./experts-program.component.scss'],
 })
-export class ExpertsProgramComponent implements OnInit {
+export class ExpertsProgramComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
-  richText: string;
   expertsProgramPageHeader: IListingPageHeader;
 
   questions = [
@@ -29,9 +29,10 @@ export class ExpertsProgramComponent implements OnInit {
     'A blue tick or an expert badge is subject to your activity on the platform. We will set an activity criteria to complete which will help you retain the expert status on Commudle.',
     'Yes, but the selection depends on not only the experience and contributions but also the available slots for that domain.',
   ];
-  constructor(private seoService: SeoService, private cmsService: CmsService) {}
+  constructor(private seoService: SeoService, private cmsService: CmsService, private footerService: FooterService) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getHeaderText();
   }
@@ -52,8 +53,11 @@ export class ExpertsProgramComponent implements OnInit {
     this.cmsService.getDataBySlug('expert-program').subscribe((data) => {
       if (data) {
         this.expertsProgramPageHeader = data;
-        this.richText = this.cmsService.getHtmlFromBlock(data);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
   }
 }
