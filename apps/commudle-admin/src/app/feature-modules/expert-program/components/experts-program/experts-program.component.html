@@ -1,20 +1,22 @@
 <div class="com-bg-white">
   <section class="header">
-    <div class="background-image">
-      <img alt="Experts Program" [src]="staticAssets.expert_program_header" title="Experts Program" />
-    </div>
-    <div class="base-layout">
-      <div class="container">
-        <div class="one-column-layout">
-          <div class="header-content">
-            <div class="header-text">
-              <h1 class="heading">
-                {{ expertsProgramPageHeader?.heading }}
-              </h1>
-              <p class="sub-heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
-            </div>
-            <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
-              <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
+    <div
+      class="background-image"
+      [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.expert_program_header + '\')' }"
+    >
+      <div class="base-layout">
+        <div class="container">
+          <div class="one-column-layout">
+            <div class="header-content">
+              <div class="header-text">
+                <h1 class="heading">
+                  {{ expertsProgramPageHeader?.heading }}
+                </h1>
+                <p class="sub-heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
+              </div>
+              <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
+                <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
+              </div>
             </div>
           </div>
         </div>
@@ -68,6 +70,9 @@
                   Being listed as an expert on Commudle helps you build recognition for your work while growing your
                   network.
                 </p>
+                <div image class="benefits-image">
+                  <img alt="Benefits" [src]="staticAssets.expert_page_benefits" title="Benefits" />
+                </div>
               </div>
             </div>
             <div content class="content-right">

@@ -34,7 +34,8 @@
   }
 }
 
-.application-process-image {
+.application-process-image,
+.benefits-image {
   @apply com-m-0 com-ml-0 md:com-ml-4 md:com-w-auto com-w-full com-h-full md:com-mt-0 com-mt-4;
 
   img {
@@ -45,7 +46,7 @@
 .header {
   @apply md:com-pb-32 com-pb-12;
   .background-image {
-    @apply com-absolute md:com-h-[426px] com-h-auto com-w-full;
+    @apply com-bg-no-repeat com-bg-cover md:com-h-[426px] com-h-auto com-w-full;
     img {
       @apply com-h-full com-w-full;
     }
@@ -66,7 +67,7 @@
       }
 
       .sub-heading {
-        @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-Yankees-Blue;
+        @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-gray-500;
       }
     }
 
