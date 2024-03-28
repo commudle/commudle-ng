@@ -21,3 +21,8 @@ export * from './lib/db-models.enum';
 export * from './lib/faq.model';
 export * from './lib/round.model';
 export * from './lib/note.model';
+export * from './lib/hackathon-team.model';
+export * from './lib/entity-update.model';
+export * from './lib/hackathon-winner.model';
+export * from './lib/hackathon-prize.model';
+export * from './lib/hackathon-track.model';

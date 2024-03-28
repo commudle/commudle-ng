@@ -3,14 +3,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import {
-  EHackathonRegistrationStatus,
-  EHackathonRegistrationStatusColor,
-} from 'apps/shared-models/hackathon-team.model';
 import * as moment from 'moment';
 import { RoundService, ToastrService, NoteService } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
-import { EDbModels, INote, IRound } from '@commudle/shared-models';
+import {
+  EDbModels,
+  EHackathonRegistrationStatus,
+  EHackathonRegistrationStatusColor,
+  INote,
+  IRound,
+} from '@commudle/shared-models';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -21,7 +23,6 @@ import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   userResponses: IHackathonUserResponses[];
-
   moment = moment;
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   EHackathonRegistrationStatusColor = EHackathonRegistrationStatusColor;

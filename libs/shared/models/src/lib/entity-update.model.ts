@@ -1,5 +1,5 @@
-import { IAttachedFile } from '@commudle/shared-models';
 import { IUser } from './user.model';
+import { IAttachedFile } from './attached-file.model';
 
 export interface IEntityUpdate {
   id: number;

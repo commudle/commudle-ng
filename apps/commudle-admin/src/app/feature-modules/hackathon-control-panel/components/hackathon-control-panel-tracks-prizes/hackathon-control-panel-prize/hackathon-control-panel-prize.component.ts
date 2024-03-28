@@ -5,10 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { IHackathonTrack, IHackathonPrize } from '@commudle/shared-models';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-prize',

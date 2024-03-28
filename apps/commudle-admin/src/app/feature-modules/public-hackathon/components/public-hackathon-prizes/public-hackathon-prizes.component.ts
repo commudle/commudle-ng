@@ -1,12 +1,12 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
-import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { countries_details as countryDetails } from '@commudle/shared-services';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
-import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { IHackathonPrize, IHackathonTeam } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
