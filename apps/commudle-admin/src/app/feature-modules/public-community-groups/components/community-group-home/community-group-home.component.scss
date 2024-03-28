@@ -52,7 +52,7 @@
         }
 
         .mini-description {
-          @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-4;
+          @apply com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-4 md:com-w-full com-w-[80%] md:com-text-start com-text-center;
         }
 
         .links {

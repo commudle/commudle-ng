@@ -1,9 +1,10 @@
 nb-card {
-  @apply com-w-full md:com-h-52 com-h-[270px]  hover:com-shadow-Card com-cursor-pointer com-m-0;
+  @apply com-w-full md:com-h-52 com-h-[198px]  hover:com-shadow-Card com-cursor-pointer com-m-0;
 
   nb-card-body {
-    @apply com-overflow-hidden com-flex com-flex-row com-space-y-4 md:com-space-y-0 md:com-space-x-4 com-px-4;
+    @apply com-overflow-hidden com-flex com-flex-row com-px-4;
     .logo-section {
+      @apply md:com-mr-4 com-mr-3;
       .logo {
         @apply com-w-10 com-h-10 md:com-w-[52px] md:com-h-[52px] com-rounded-full com-border com-border-gray-300 com-border-solid com-flex com-justify-center com-items-center com-p-1 com-m-auto md:com-m-0;
         img {
@@ -19,20 +20,20 @@ nb-card {
     }
 
     .details-container {
-      @apply com-flex com-flex-col com-h-full com-text-center md:com-text-start com-w-full;
+      @apply com-flex com-flex-col com-h-full com-text-start com-w-full;
       .details {
-        @apply com-flex md:com-block com-flex-col com-items-center md:com-items-start;
+        @apply com-flex md:com-block com-flex-col com-items-start;
         p {
           @apply com-m-0;
         }
         .name {
-          @apply com-font-bold com-text-base com-m-0 com-mb-2 com-line-clamp-1;
+          @apply com-font-bold md:com-text-base com-text-sm com-m-0 com-mb-2 com-line-clamp-1;
         }
         .description-and-latest-message {
-          @apply com-m-0 com-mb-4 com-h-10;
+          @apply com-m-0 md:com-mb-4 com-mb-3 com-h-10;
           .description,
           .latest-message {
-            @apply com-text-sm com-font-normal com-text-gray-500 com-line-clamp-2;
+            @apply md:com-text-sm com-text-xs com-font-normal com-text-gray-500 com-line-clamp-2;
           }
         }
 
@@ -44,7 +45,7 @@ nb-card {
         }
       }
       .join-channel {
-        @apply com-mx-auto md:com-mx-0;
+        @apply com-mx-0 md:com-w-full com-w-[96%];
       }
     }
   }
