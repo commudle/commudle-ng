@@ -341,6 +341,13 @@ export class HackathonService {
     );
   }
 
+  inviteUserByEmail(hackathonId, message): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INVITE_USER), {
+      hackathon_id: hackathonId,
+      message: message,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
