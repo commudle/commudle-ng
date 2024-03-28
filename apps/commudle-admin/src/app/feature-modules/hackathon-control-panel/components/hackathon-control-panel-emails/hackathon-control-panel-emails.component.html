@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-header> Communications </nb-card-header>
+  <nb-card-body>
+    <div>
+      <div class="group-name">Registrations</div>
+      <div class="group-values">
+        <button nbButton status="primary" (click)="openDialogBox(SendRegistrationsByMail)">
+          Send Registrations by mail
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #SendRegistrationsByMail>
+  <nb-card>
+    <nb-card-header> Pre-formatted email </nb-card-header>
+    <nb-card-body>
+      <label for="message">Message</label>
+      <textarea name="message" id="" placeholder="Extra message" nbInput fullWidth></textarea>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="SendRegistrationsMailer()">Send to all members</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+<!-- 
+<ng-template #SendRegistrationsByMail>
+  <nb-card>
+    <nb-card-header> </nb-card-header>
+    <nb-card-body></nb-card-body>
+  </nb-card>
+</ng-template> -->

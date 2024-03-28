@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Routes, RouterModule } from '@angular/router';
 import { HackathonControlPanelDashboardComponent } from './components/hackathon-control-panel-dashboard/hackathon-control-panel-dashboard.component';
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
@@ -15,6 +16,7 @@ import { HackathonControlPanelUpdatesComponent } from 'apps/commudle-admin/src/a
 import { QuestionTypesResolver } from 'apps/shared-resolvers/question-types.resolver';
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
 import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
+import { HackathonControlPanelEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-control-panel-emails.component';
 
 const routes: Routes = [
   {
@@ -84,6 +86,10 @@ const routes: Routes = [
           {
             path: 'rounds',
             component: HackathonControlPanelRoundsComponent,
+          },
+          {
+            path: 'emails',
+            component: HackathonControlPanelEmailsComponent,
           },
         ],
       },
