@@ -65,10 +65,6 @@
       .heading {
         @apply md:com-text-4xl com-text-3xl com-font-bold com-mt-0 com-mb-9 md:com-mb-11 com-text-Yankees-Blue;
       }
-
-      .sub-heading {
-        @apply com-text-xl com-font-semibold com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-gray-500;
-      }
     }
 
     .header-image {
@@ -90,4 +86,12 @@
 
 .apply-now-button {
   @apply com-m-0 com-mt-6;
+}
+
+.content {
+  ::ng-deep {
+    p {
+      @apply com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-gray-500;
+    }
+  }
 }

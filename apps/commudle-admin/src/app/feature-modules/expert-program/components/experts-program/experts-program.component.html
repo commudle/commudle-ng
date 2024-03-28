@@ -12,7 +12,7 @@
                 <h1 class="heading">
                   {{ expertsProgramPageHeader?.heading }}
                 </h1>
-                <p class="sub-heading">{{ expertsProgramPageHeader?.sub_heading }}</p>
+                <div [innerHTML]="richText" class="content"></div>
               </div>
               <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
                 <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
@@ -34,8 +34,8 @@
               </h2>
               <div class="subheading">
                 <p>
-                  An expert can be a student or a professional, a freelancer or a full time techie, qualifications don't
-                  matter, your work does. Also, you can be based in any part of the world!
+                  An expert can be a student or a professional, a freelancer, full time techie, DevRel or a Dev
+                  Advocate. Your qualification or location doesn't matter, your work does!
                 </p>
                 <p>Here are the requirements:</p>
                 <ul>
@@ -46,11 +46,14 @@
                   </li>
                   <ul>
                     <li>Software or App development (Web, Mobile)</li>
+                    <li>Artificial Intelligence, Machine Learning, Data Science</li>
+                    <li>Analytics</li>
                     <li>Design (UX, UI, Product)</li>
                     <li>Cloud (DevOps, Architect, Infrastructure)</li>
+                    <li>Blockchain / Web3</li>
                     <li>Product Building / Management</li>
-                    <li>Developer Relations (Developer Community Management, Dev Advocate)</li>
                     <li>IoT</li>
+                    <li>Cyber Security</li>
                     <li>Programming or Interviews (DSA, LLD, HLD)</li>
                   </ul>
                   <li>Must be able to take out time to complete the required contributions agreed upon.</li>
@@ -78,7 +81,7 @@
             <div content class="content-right">
               <ul>
                 <li>Verified profile: <strong>Blue Tick</strong> on your profile</li>
-                <li>An <strong>Expert Badge</strong> on your profile. Multiple badges for multiple profiles</li>
+                <li>An <strong>Expert Badge</strong> on your profile. Earn Multiple badges for multiple expertise</li>
                 <li>Exclusive merchandise for your contributions</li>
                 <li>
                   Featured placement of your profile on experts listings and our monthly newsletter,

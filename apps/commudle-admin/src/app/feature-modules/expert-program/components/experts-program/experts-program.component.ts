@@ -13,21 +13,22 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 export class ExpertsProgramComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   expertsProgramPageHeader: IListingPageHeader;
+  richText: string;
 
   questions = [
-    'Is this a paid program?',
+    'Can I apply for more than one expert badge?',
     'How much time does it take to get onboarded as an expert?',
     'Does filling the application form guarantee that I will get selected as an expert?',
     'Is my blue tick or expert badge permanent?',
-    'Can I apply for more than one expert badge?',
+    'Is this a paid program?',
   ];
 
   answers = [
-    'No, neither does Commudle charge any fee nor pay for participating in this program. It is a voluntary engagement',
-    'It takes about 15 working days or 3 weeks for you to be onboarded as an expert with a blue tick on your profile',
-    'No, filling the form is a show of your interest. We cannot measure your expertise, but we do follow certain criteria to find and enlist experts. We keep on improving it.',
-    'A blue tick or an expert badge is subject to your activity on the platform. We will set an activity criteria to complete which will help you retain the expert status on Commudle.',
-    'Yes, but the selection depends on not only the experience and contributions but also the available slots for that domain.',
+    'Yes, you can apply based on your expertise skillset',
+    'On submission of Expert Application Form, we will analyse it on multiple criteria including verification of the links and other details shared with us, this could take 1-2 weeks. ',
+    'The application form is your nomination for the Expert Program. Basis your input we will evaluate your profile. Make sure you keep your Commudle Profile updated even after submission.',
+    'A blue tick or an expert badge is subject to your activity on the platform. We have an activity criteria to meet which ensures that the expert badge and blue tick are present on your Commudle Profile.',
+    'Commudle does not charge any fee participating in this program. This program is designed to support and recognize techies enthusiastic to build and share their skills with the developer community.',
   ];
   constructor(private seoService: SeoService, private cmsService: CmsService, private footerService: FooterService) {}
 
@@ -53,6 +54,7 @@ export class ExpertsProgramComponent implements OnInit, OnDestroy {
     this.cmsService.getDataBySlug('expert-program').subscribe((data) => {
       if (data) {
         this.expertsProgramPageHeader = data;
+        this.richText = this.cmsService.getHtmlFromBlock(data);
       }
     });
   }
