@@ -1,8 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
-import { IEntityUpdate } from 'apps/shared-models/entity_update.model';
 import * as moment from 'moment';
-import { EDbModels, IPageInfo } from '@commudle/shared-models';
+import { EDbModels, IEntityUpdate, IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
 

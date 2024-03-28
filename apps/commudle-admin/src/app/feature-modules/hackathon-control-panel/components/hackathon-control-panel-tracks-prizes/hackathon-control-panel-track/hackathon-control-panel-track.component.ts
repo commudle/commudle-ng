@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { IHackathonTrack } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-track',

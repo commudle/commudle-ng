@@ -1,7 +1,7 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { EHackathonRegistrationStatus, ICommunity, IHackathonTeam } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
@@ -19,7 +19,6 @@ import {
   faLaptopCode,
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { IHackathonTeam, EHackathonRegistrationStatus } from 'apps/shared-models/hackathon-team.model';
 
 @Component({
   selector: 'commudle-public-hackathon-homepage',

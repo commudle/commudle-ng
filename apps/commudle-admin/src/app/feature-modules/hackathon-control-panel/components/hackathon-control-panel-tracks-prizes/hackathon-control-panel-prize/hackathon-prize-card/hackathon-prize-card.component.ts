@@ -1,13 +1,13 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
+import { HackathonWinnerService } from 'apps/commudle-admin/src/app/services/hackathon-winner.service';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { countries_details } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
-import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
-import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import { IHackathonWinner } from 'apps/shared-models/hackathon-winner.model';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
-import { HackathonWinnerService } from 'apps/commudle-admin/src/app/services/hackathon-winner.service';
+import { IHackathonPrize, IHackathonTeam, IHackathonWinner } from '@commudle/shared-models';
+
 @Component({
   selector: 'commudle-hackathon-prize-card',
   templateUrl: './hackathon-prize-card.component.html',
