@@ -33,13 +33,13 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
     this.userDetailsForm = this.fb.group({
       name: true,
       profile_image: true,
+      email: true,
       designation: false,
       about_me: false,
       location: false,
       work_experience_months: false,
       education: false,
       phone: false,
-      email: true,
       twitter: false,
       linkedin: false,
       dribbble: false,
@@ -98,53 +98,47 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
     if (formResponse.questions.length > 0) {
       this.dataFormsService.createDataForm(formResponse, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
         if (data) {
-          this.hrgService
-            .createHackathonResponseGroup(
-              JSON.stringify(this.userDetailsForm.value),
-              this.hackathon.id,
-              this.registrationTypeId,
-              `${this.hackathon.name} - Registration`,
-              data.id,
-            )
-            .subscribe((data) => {
-              if (data) this.toastrService.successDialog('Information Updated');
-            });
+          this.hackathonResponseGroupDetails
+            ? this.updateHackathonResponseGroup(data)
+            : this.createHackathonResponseGroup(data);
         }
       });
     } else {
-      this.hrgService
-        .createHackathonResponseGroup(
-          JSON.stringify(this.userDetailsForm.value),
-          this.hackathon.id,
-          this.registrationTypeId,
-          `${this.hackathon.name} - Registration`,
-        )
-        .subscribe((data) => {
-          if (data) this.toastrService.successDialog('Information Updated');
-        });
+      this.hackathonResponseGroupDetails ? this.updateHackathonResponseGroup() : this.createHackathonResponseGroup();
     }
   }
 
   updateData(formResponse) {
-    if (formResponse.questions.length > 0) {
-      this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
-        if (data) {
-          this.hrgService
-            .updateHackathonResponseGroup(
-              JSON.stringify(this.userDetailsForm.value),
-              this.hackathonResponseGroupDetails.id,
-            )
-            .subscribe((data) => {
-              if (data) this.toastrService.successDialog('Information Updated');
-            });
-        }
+    this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
+      if (data) {
+        this.updateHackathonResponseGroup(data);
+      }
+    });
+  }
+
+  createHackathonResponseGroup(data?) {
+    this.hrgService
+      .createHackathonResponseGroup(
+        JSON.stringify(this.userDetailsForm.value),
+        this.hackathon.id,
+        this.registrationTypeId,
+        `${this.hackathon.name} - Registration`,
+        data ? data.id : '',
+      )
+      .subscribe((data) => {
+        if (data) this.toastrService.successDialog('Information Updated');
       });
-    } else {
-      this.hrgService
-        .updateHackathonResponseGroup(JSON.stringify(this.userDetailsForm.value), this.hackathonResponseGroupDetails.id)
-        .subscribe((data) => {
-          if (data) this.toastrService.successDialog('Information Updated');
-        });
-    }
+  }
+
+  updateHackathonResponseGroup(data?) {
+    this.hrgService
+      .updateHackathonResponseGroup(
+        JSON.stringify(this.userDetailsForm.value),
+        this.hackathonResponseGroupDetails.id,
+        data ? data.id : '',
+      )
+      .subscribe((data) => {
+        if (data) this.toastrService.successDialog('Information Updated');
+      });
   }
 }

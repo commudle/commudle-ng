@@ -1,14 +1,20 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EDbModels, IFaq, IRound } from '@commudle/shared-models';
+import {
+  EDbModels,
+  EHackathonRegistrationStatus,
+  IFaq,
+  IHackathonTeam,
+  IHackathonTrack,
+  IRound,
+} from '@commudle/shared-models';
 import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
-import { IHackathonTeam, EHackathonRegistrationStatus } from 'apps/shared-models/hackathon-team.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import moment from 'moment';
@@ -29,7 +35,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   rounds: IRound[];
   countryDetails = countries_details;
   moment = moment;
-  userTeamDetails: IHackathonTeam;
+  userTeamDetails: IHackathonTeam[];
   subscriptions: Subscription[] = [];
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   hrgId: number;
@@ -71,7 +77,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
         }
       }),
       this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
-        this.hrgId = data.id;
+        if (data) this.hrgId = data.id;
       });
   }
   getSponsors() {
@@ -93,10 +99,16 @@ export class PublicHackathonDetailsComponent implements OnInit {
     this.subscriptions.push(
       this.hackathonService.pIndexHackathonTracks(this.hackathon.id).subscribe((data) => {
         this.tracks = data;
-        for (const track of this.tracks) {
-          for (const prize of track.hackathon_prizes) {
-            const prizeCurrencySymbol = this.countryDetails.find((detail) => detail.currency === prize.currency_type);
-            prize.currency_symbol = prizeCurrencySymbol.symbol;
+        if (this.tracks) {
+          for (const track of this.tracks) {
+            if (track.hackathon_prizes) {
+              for (const prize of track.hackathon_prizes) {
+                const prizeCurrencySymbol = this.countryDetails.find(
+                  (detail) => detail.currency === prize.currency_type,
+                );
+                prize.currency_symbol = prizeCurrencySymbol.symbol;
+              }
+            }
           }
         }
       }),
@@ -121,9 +133,13 @@ export class PublicHackathonDetailsComponent implements OnInit {
 
   getHackathonCurrentRegistrationDetails() {
     this.subscriptions.push(
-      this.hackathonService.getHackathonCurrentRegistrationDetails().subscribe((data: IHackathonTeam) => {
-        this.userTeamDetails = data;
-      }),
+      this.hackathonService
+        .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+        .subscribe((data: IHackathonTeam[]) => {
+          if (data) {
+            this.userTeamDetails = data;
+          }
+        }),
     );
   }
 }

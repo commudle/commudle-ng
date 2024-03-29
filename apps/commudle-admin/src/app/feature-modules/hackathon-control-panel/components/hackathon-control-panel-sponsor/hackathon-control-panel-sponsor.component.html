@@ -12,16 +12,16 @@
       <commudle-hackathon-control-panel-sponsor-card
         [hackathonSponsor]="hackathonSponsor"
         (destroySponsorEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
-        (editSponsorEvent)="openSponsorDialogBox(conformDeleteDialogBox, $event, i)"
+        (editSponsorEvent)="openSponsorDialogBox(addSponsorDialogBox, $event, i)"
       ></commudle-hackathon-control-panel-sponsor-card>
     </div>
   </nb-card-footer>
 </nb-card>
 
-<ng-template #addSponsorDialogBox let-ref="dialogRef">
+<ng-template #addSponsorDialogBox let-ref="dialogRef" let-data>
   <nb-card class="sponsor-form-dialog-box">
     <nb-card-header class="actions">
-      <span>Add Sponsor</span>
+      <span>{{ data.sponsor ? 'Edit Sponsor' : 'Add Sponsor' }}</span>
       <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); sponsorForm.reset()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
@@ -97,7 +97,7 @@
 
         <!-- logo -->
         <div>
-          <label for="banner_image">Logo</label>
+          <label for="banner_image">Logo*</label>
           <div class="com-w-full" *ngIf="!(imagePreview || sponsorForm.controls['logo'].value)">
             <div
               class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
@@ -154,8 +154,13 @@
       </form>
     </nb-card-body>
     <nb-card-footer class="actions">
-      <button nbButton status="primary" (click)="createSponsor(); ref.close()" [disabled]="sponsorForm.invalid">
-        Save
+      <button
+        nbButton
+        status="primary"
+        (click)="data.sponsor ? updateSponsor(data.sponsor.id, data.index) : createSponsor(); ref.close()"
+        [disabled]="sponsorForm.invalid"
+      >
+        {{ data.sponsor ? 'Update' : 'Save' }}
       </button>
       <button nbButton status="danger" outline (click)="ref.close(); sponsorForm.reset()">Cancel</button>
     </nb-card-footer>

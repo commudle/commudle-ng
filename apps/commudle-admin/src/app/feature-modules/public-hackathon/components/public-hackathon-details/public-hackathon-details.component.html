@@ -1,4 +1,4 @@
-<div class="two-column-layout wide">
+<div class="two-column-layout medium">
   <div class="main-column com-mb-20">
     <nb-card>
       <nb-card-body>
@@ -8,7 +8,11 @@
 
     <div *ngIf="hackathon.updates_count > 0" id="updates">
       <nb-card>
-        <nb-card-header><h2>Updates</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="updates"> Updates </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body>
           <commudle-entity-updates
             [entityId]="hackathon.id"
@@ -20,7 +24,11 @@
 
     <div *ngIf="hackathon.sponsors_count > 0" id="sponsors">
       <nb-card>
-        <nb-card-header><h2>Sponsors</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="sponsors"> Sponsors </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body class="sponsors-cards">
           <div *ngFor="let sponsor of sponsors" class="sponsor-card">
             <img [src]="sponsor.sponsor.logo.url" [alt]="sponsor.sponsor.name" />
@@ -32,7 +40,11 @@
 
     <div *ngIf="hackathon.faqs_count > 0" id="faq">
       <nb-card>
-        <nb-card-header><h2>FAQs</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="faq"> FAQs </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body>
           <div *ngFor="let faq of faqs">
             <commudle-faq-card [faq]="faq"></commudle-faq-card>
@@ -43,7 +55,11 @@
 
     <div *ngIf="hackathon.tracks_count > 0" id="tracks">
       <nb-card>
-        <nb-card-header><h2>Tracks</h2></nb-card-header>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="tracks"> Tracks </a>
+          </h2>
+        </nb-card-header>
         <nb-card-body class="track-cards">
           <div *ngFor="let track of tracks" class="track-card">
             <div class="name">{{ track.name }}</div>
@@ -63,7 +79,11 @@
     </div>
 
     <nb-card id="comments">
-      <nb-card-header><h2>Comments</h2></nb-card-header>
+      <nb-card-header>
+        <h2>
+          <a [routerLink]="['.']" fragment="comments"> Comments </a>
+        </h2>
+      </nb-card-header>
       <nb-card-body>
         <commudle-discussion
           *ngIf="discussionChat"
@@ -75,11 +95,11 @@
   </div>
 
   <div class="right-column">
-    <nb-card>
+    <nb-card *ngIf="userTeamDetails">
       <nb-card-body
         ><commudle-public-hackathon-details-mini-card
           [hackathon]="hackathon"
-          [userTeamDetails]="userTeamDetails"
+          [userTeamDetails]="userTeamDetails[0]"
           [hrgId]="hrgId"
         ></commudle-public-hackathon-details-mini-card
       ></nb-card-body>
@@ -94,34 +114,11 @@
         </div>
       </nb-card-body>
     </nb-card>
-
-    <nb-card *ngIf="userTeamDetails" class="project-details-card">
-      <nb-card-header>
-        <div class="heading"></div>
-        <div>
-          Registration Status: Profile Submitted for Review
-          <a [routerLink]="['fill-form', hrgId]">Edit Your Response</a>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        <div class="round-details">Next: Round 1 confirmation</div>
-        <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
-          <a
-            *ngIf="!userTeamDetails.community_build"
-            [routerLink]="['/builds', 'create']"
-            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
-          >
-            <button nbButton status="primary" fullWidth>Submit Project</button>
-          </a>
-          <a
-            *ngIf="userTeamDetails.community_build"
-            [routerLink]="['/builds', userTeamDetails.community_build.slug, 'edit']"
-            [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
-          >
-            <button nbButton status="primary" fullWidth>Update My Build</button>
-          </a>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
+      <commudle-public-hackathon-registration
+        [hrgId]="hrgId"
+        [userTeamDetails]="userTeamDetails[0]"
+      ></commudle-public-hackathon-registration>
+    </div>
   </div>
 </div>

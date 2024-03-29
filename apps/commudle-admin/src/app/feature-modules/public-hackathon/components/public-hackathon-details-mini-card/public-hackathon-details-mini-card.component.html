@@ -1,26 +1,67 @@
-<div class="hackathon-info">
-  <div class="left-lines">
-    <div class="dot-top"></div>
-    <div class="line"></div>
-    <div class="dot-bottom"></div>
-  </div>
-  <div>
-    <div>
-      <div class="heading">HACKATHON STARTS</div>
-      <div class="value">{{ hackathon.start_date | date : 'dd MMM yyyy' }}</div>
-    </div>
-    <div>
-      <div class="heading com-mt-4">VENUE</div>
-      <a *ngIf="hackathon.location_address" [href]="hackathon.location_map_link" class="value">{{
-        hackathon.location_address
-      }}</a>
-      <span *ngIf="!hackathon.location_address" class="value">Online</span>
-    </div>
-  </div>
-</div>
+<div>
+  <div class="date-section" *ngIf="hackathon.start_date && hackathon.end_date">
+    <div
+      class="date-chip"
+      [ngClass]="{ '!com-bg-red-500': hackathonStatus === 'Closed', 'com-bg-teal-600': hackathonStatus !== 'Closed' }"
+    >
+      <span *ngIf="hackathonStatus === 'Upcoming'">
+        <span class="dot">&#x2022;</span>
+        <span>
+          Registrations starts soon -
+          {{ hackathon.start_date | date : 'dd MMM yyyy' }}
+        </span>
+      </span>
 
-<div class="intrested-members"></div>
+      <span *ngIf="hackathonStatus === 'Outgoing'">
+        <span class="dot">&#x2022;</span>
+        <span>{{ daysLeft }} Days Left </span>
+      </span>
 
-<div class="action" *ngIf="hrgId && !userTeamDetails">
-  <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+      <span *ngIf="hackathonStatus === 'Closed'">
+        <span class="dot">&#x2022;</span>
+        <span> Registrations closed </span>
+      </span>
+    </div>
+    <div class="date-heading">Hackathon Dates</div>
+    <div class="date-value">
+      {{ hackathon.start_date | date : 'dd MMM yyyy' }} - {{ hackathon.end_date | date : 'dd MMM yyyy' }}
+    </div>
+    <div class="date-heading" *ngIf="hackathonStatus !== 'Closed'">Registration Dates</div>
+    <div class="date-value" *ngIf="hackathonStatus !== 'Closed'">
+      <span *ngIf="hackathonStatus !== 'Outgoing'"
+        >{{ hackathon.application_start_date | date : 'dd MMM yyyy' }} -
+      </span>
+      {{ hackathon.application_end_date | date : 'dd MMM yyyy' }}
+    </div>
+  </div>
+  <hr *ngIf="hackathon.start_date && hackathon.end_date" class="divided-line" />
+  <div class="prize-location">
+    <div class="location-prize-chips">
+      <div class="location chip">
+        <span>
+          <fa-icon [icon]="icons.faGlobe"></fa-icon>
+          <span>{{ hackathon.hackathon_location_type | titlecase }}</span>
+        </span>
+      </div>
+      <div class="prize chip" *ngIf="hackathon.prizes_count">
+        <span>
+          <fa-icon [icon]="icons.faAward"></fa-icon>
+          <span>{{ hackathon.prizes_count }} Prizes</span>
+        </span>
+      </div>
+    </div>
+    <div class="prize-amount" *ngIf="totalPrizesByCurrency[0]">
+      <strong> {{ totalPrizesByCurrency[0].currency.symbol }}{{ totalPrizesByCurrency[0].amount }}</strong>
+      <span> in prizes</span>
+    </div>
+  </div>
+  <hr class="divided-line" />
+  <div class="interested-members-button">
+    <div class="interested-members">
+      <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
+    </div>
+    <div class="action" *ngIf="hrgId && !userTeamDetails">
+      <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+    </div>
+  </div>
 </div>

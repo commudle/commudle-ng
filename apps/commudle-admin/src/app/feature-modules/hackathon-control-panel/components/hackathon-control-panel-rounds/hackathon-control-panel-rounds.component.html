@@ -30,25 +30,52 @@
       <form [formGroup]="roundForm">
         <!-- name -->
         <div>
-          <label for="name">Round Name:</label>
+          <label for="name">Round Name*</label>
           <input id="name" type="text" placeholder="Round Name" nbInput fullWidth formControlName="name" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['name'].invalid &&
+              roundForm.controls['name'].hasError('required') &&
+              roundForm.controls['name'].touched
+            "
+            [error]="true"
+            errorMessage="Name is required"
+          ></commudle-alert>
         </div>
 
         <!-- date -->
         <div>
-          <label for="name">Round Date:</label>
+          <label for="name">Round Date*</label>
           <input id="name" type="date" nbInput fullWidth formControlName="date" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['date'].invalid &&
+              roundForm.controls['date'].hasError('required') &&
+              roundForm.controls['date'].touched
+            "
+            [error]="true"
+            errorMessage="Date is required"
+          ></commudle-alert>
         </div>
 
         <!-- order -->
         <div>
-          <label for="order">Round Order:</label>
-          <input id="name" type="number" nbInput fullWidth formControlName="order" />
+          <label for="order">Round Order*</label>
+          <input id="name" type="number" nbInput fullWidth formControlName="order" placeholder="1" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['order'].invalid &&
+              roundForm.controls['order'].hasError('required') &&
+              roundForm.controls['order'].touched
+            "
+            [error]="true"
+            errorMessage="Order is required"
+          ></commudle-alert>
         </div>
 
         <!-- description -->
         <div>
-          <label for="description">Round Description:</label>
+          <label for="description">Round Description*</label>
           <textarea
             id="description"
             type="text"
@@ -58,6 +85,15 @@
             formControlName="description"
           >
           </textarea>
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['description'].invalid &&
+              roundForm.controls['description'].hasError('required') &&
+              roundForm.controls['description'].touched
+            "
+            [error]="true"
+            errorMessage="Description is required"
+          ></commudle-alert>
         </div>
       </form>
     </nb-card-body>

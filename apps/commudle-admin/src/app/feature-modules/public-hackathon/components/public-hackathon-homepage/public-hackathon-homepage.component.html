@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <div class="com-min-h-screen com-flex com-items-center com-justify-center" *ngIf="isLoading">
@@ -43,7 +43,7 @@
           </div>
         </nb-card-body>
       </nb-card>
-      <nb-card class="banner-image" *ngIf="!isLoading && !showBannerImage">
+      <nb-card class="banner-image" *ngIf="!isLoading && !showBannerImage && hackathon.banner_image">
         <nb-card-body>
           <commudle-banner-image
             [name]="hackathon.name"
@@ -54,31 +54,31 @@
       <nb-card class="tabs" *ngIf="!isLoading">
         <nb-card-body class="router-links">
           <div>
-            <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['.']" routerLinkActive="active">
+            <a [routerLink]="['.']" [class.active]="activeFragment === '' && !showBannerImage">
               <fa-icon [icon]="icons.faInfoCircle"></fa-icon>
               <p class="name">Overview</p>
             </a>
           </div>
           <div *ngIf="hackathon.updates_count > 0">
-            <a [routerLink]="'.'" fragment="updates">
+            <a [routerLink]="'.'" fragment="updates" [class.active]="activeFragment === 'updates'">
               <fa-icon [icon]="icons.faStar"></fa-icon>
               <p class="name">Updates</p>
             </a>
           </div>
           <div *ngIf="hackathon.sponsors_count > 0">
-            <a [routerLink]="'.'" fragment="sponsors">
+            <a [routerLink]="'.'" fragment="sponsors" [class.active]="activeFragment === 'sponsors'">
               <fa-icon [icon]="icons.faSackDollar"></fa-icon>
               <p class="name">Sponsors</p>
             </a>
           </div>
           <div *ngIf="hackathon.faqs_count > 0">
-            <a [routerLink]="'.'" fragment="faq">
+            <a [routerLink]="'.'" fragment="faq" [class.active]="activeFragment === 'faq'">
               <fa-icon [icon]="icons.faCircleQuestion"></fa-icon>
               <p class="name">Faq's</p>
             </a>
           </div>
           <div *ngIf="hackathon.tracks_count > 0">
-            <a [routerLink]="'.'" fragment="tracks">
+            <a [routerLink]="'.'" fragment="tracks" [class.active]="activeFragment === 'tracks'">
               <fa-icon [icon]="icons.faAward"></fa-icon>
               <p class="name">Tracks</p>
             </a>
@@ -91,22 +91,22 @@
               <p class="name">schedule</p>
             </a>
           </div> -->
-          <div>
+          <div *ngIf="hackathon.judges_count > 0">
             <a [routerLink]="['judges']" routerLinkActive="active">
               <fa-icon [icon]="icons.faUser"></fa-icon>
               <p class="name">Judges</p>
             </a>
           </div>
-          <div>
+          <div *ngIf="hackathon.prizes_count > 0">
             <a [routerLink]="['prizes']" routerLinkActive="active">
               <fa-icon [icon]="icons.faAward"></fa-icon>
               <p class="name">Prizes</p>
             </a>
           </div>
-          <div>
+          <div *ngIf="hackathon.projects_count > 0">
             <a [routerLink]="['projects']" routerLinkActive="active">
-              <fa-icon [icon]="icons.faGlobe"></fa-icon>
-              <p class="name">projects</p>
+              <fa-icon [icon]="icons.faLaptopCode"></fa-icon>
+              <p class="name">Projects</p>
             </a>
           </div>
           <!-- TODO Done to be later -->
@@ -116,6 +116,19 @@
               <p class="name">channels</p>
             </a>
           </div> -->
+          <div
+            *ngIf="
+              userTeamDetails &&
+              userTeamDetails[0] &&
+              userTeamDetails[0].registration_status === EHackathonRegistrationStatus.ACCEPTED
+            "
+          >
+            <a [routerLink]="['dashboard']">
+              <button nbButton status="primary" size="tiny" shape="semi-round">
+                <fa-icon [icon]="icons.faArrowTrendUp"></fa-icon> &nbsp; Dashboard
+              </button>
+            </a>
+          </div>
         </nb-card-body>
       </nb-card>
       <div class="router" *ngIf="!isLoading">

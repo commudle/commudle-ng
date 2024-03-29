@@ -5,8 +5,11 @@
   }
 }
 .prize-details {
-  .track-name {
-    @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
+  .track-details {
+    @apply com-h-6;
+    .track-name {
+      @apply com-border com-border-solid com-border-slate-300 com-bg-slate-100 com-py-1 com-px-3 com-text-center com-text-Yankees-Blue com-rounded com-h-max com-text-xs com-w-max;
+    }
   }
 
   .prize {
@@ -14,38 +17,56 @@
   }
 
   .description {
-    @apply com-text-gray-500 com-text-base;
+    @apply com-text-gray-500 com-text-base com-line-clamp-2;
   }
 }
 
 .prize-distribution-dialog-box {
-  @apply com-h-full com-w-full md:com-h-[90dvh] md:com-w-[50dvw];
+  @apply com-h-full com-w-full md:com-h-[90dvh] md:com-w-[70dvw];
   nb-card-header {
     @apply com-flex com-items-center com-justify-between;
   }
   table {
-    @apply com-border-collapse com-w-full;
+    @apply com-border-separate com-border-spacing-y-2 com-w-full;
 
     td,
     th {
       @apply com-text-left com-p-2;
     }
+    td:not(:first-child) {
+      @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+    }
+
     tr:not(:first-child):not(.winner) {
-      @apply com-cursor-pointer hover:com-bg-Bright-Gray;
+      @apply com-cursor-pointer hover:com-bg-gray-100;
     }
-    .winner {
-      @apply com-bg-primary-500 com-text-white;
-      td {
-        @apply com-text-white;
-      }
+
+    .team-name {
+      @apply com-text-base com-font-medium com-text-Yankees-Blue;
     }
-    .prizes {
-      @apply com-flex com-items-center com-gap-2;
+
+    .round-name {
+      @apply com-bg-primary-500 com-px-3 com-py-2 com-text-white com-h-max com-rounded-[20px] com-font-medium com-text-sm;
       span {
-        @apply com-font-medium;
+        @apply com-flex com-justify-center;
       }
-      fa-icon {
-        @apply com-text-red-500 com-cursor-pointer;
+    }
+
+    .build-name {
+      @apply com-text-sm com-font-medium com-text-Yankees-Blue;
+    }
+
+    .winner {
+      @apply com-bg-slate-200;
+    }
+
+    .prizes {
+      @apply com-flex com-items-center com-justify-between;
+      span {
+        @apply com-font-semibold com-text-xs  com-text-Yankees-Blue;
+      }
+      button {
+        @apply com-px-1.5 com-py-1;
       }
     }
   }

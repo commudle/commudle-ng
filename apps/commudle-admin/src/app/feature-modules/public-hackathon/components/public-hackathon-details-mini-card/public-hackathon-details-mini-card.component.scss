@@ -1,28 +1,36 @@
-.hackathon-info {
-  @apply com-flex com-flex-row com-gap-1 com-pb-4;
+.date-section {
+  .date-chip {
+    @apply com-rounded-[20px]   com-w-max;
+    > span {
+      @apply com-flex com-items-center com-px-3  com-text-white com-text-sm com-gap-2;
+      .dot {
+        @apply com-text-2xl;
+      }
+    }
+  }
+  .date-heading {
+    @apply com-font-semibold com-text-base com-mt-4;
+  }
+  .date-value {
+    @apply com-font-medium com-text-base com-text-gray-500;
+  }
 }
-.heading {
-  @apply com-text-lg com-font-bold com-text-gray-400;
+.prize-location {
+  @apply com-my-5;
+  .location-prize-chips {
+    @apply com-flex com-gap-6 com-items-center com-mb-3;
+    .chip {
+      @apply com-bg-gray-100 com-rounded-[20px];
+      > span {
+        @apply com-flex com-px-2 com-py-1.5 com-items-center com-gap-2 com-font-medium com-text-base com-text-gray-600;
+      }
+    }
+  }
+  .prize-amount {
+    @apply com-text-base;
+  }
 }
 
-.value {
-  @apply com-no-underline com-text-base com-font-semibold;
-}
-
-.line {
-  @apply com-w-1 com-h-16  com-bg-primary-500 -com-my-1.5;
-  margin-left: 4.4px;
-}
-.dot-top::before {
-  content: ' \25CF';
-  @apply com-text-primary-500;
-}
-
-.dot-bottom::before {
-  content: ' \25CF';
-  @apply com-text-primary-500;
-}
-
-.action {
-  @apply com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+.divided-line {
+  @apply com-border com-border-solid com-border-Bright-Gray;
 }

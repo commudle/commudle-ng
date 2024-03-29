@@ -1,33 +1,27 @@
-<nb-card>
+<nb-card class="!com-mx-0">
   <nb-card-header>Hackathons</nb-card-header>
   <nb-card-body>
-    <div class="hackathon-cards" *ngIf="hackathons && hackathons.length > 0">
-      <div *ngFor="let hackathon of hackathons">
-        <a [routerLink]="[hackathon.slug]">
-          <nb-card class="hackathon-card">
-            <nb-card-header>
-              <commudle-banner-image
-                [headerImagePath]="hackathon.banner_image.url"
-                [name]="hackathon.name"
-                [bottomLeftCurve]="false"
-                [bottomRightCurve]="false"
-              ></commudle-banner-image>
-            </nb-card-header>
-            <nb-card-body>
-              <div>
-                {{ hackathon.name }}
-              </div>
-              <div *ngIf="hackathon.start_date">
-                <span>{{ moment(hackathon.start_date).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</span>
-              </div>
-            </nb-card-body>
-          </nb-card>
-        </a>
+    <section *ngIf="upcomingHackathons && upcomingHackathons.length > 0">
+      <h2>Upcoming Hackathons</h2>
+      <div
+        class="upcoming-hackathon"
+        [ngClass]="{
+          'com-grid-cols-1': upcomingHackathons.length === 1,
+          'com-grid-cols-2': upcomingHackathons.length >= 2
+        }"
+      >
+        <div *ngFor="let hackathon of upcomingHackathons">
+          <commudle-hackathon-large-card [hackathon]="hackathon"></commudle-hackathon-large-card>
+        </div>
       </div>
-    </div>
-
-    <div *ngIf="hackathons && hackathons.length === 0">
-      <h6>No Hackathon Created Yet!</h6>
-    </div>
+    </section>
+    <section *ngIf="pastHackathons && pastHackathons.length > 0">
+      <h2>Past Hackathons</h2>
+      <div class="past-hackathons">
+        <div *ngFor="let hackathon of pastHackathons">
+          <commudle-hackathon-medium-card [hackathon]="hackathon"></commudle-hackathon-medium-card>
+        </div>
+      </div>
+    </section>
   </nb-card-body>
 </nb-card>

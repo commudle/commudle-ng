@@ -48,6 +48,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       twitter: ['', this.urlValidator],
       linkedin: ['', this.urlValidator],
       website: ['', this.urlValidator],
+      user_id: [''],
     });
   }
 
@@ -59,7 +60,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   urlValidator(control) {
-    if (control.value && !/^(http|https)/.test(control.value)) {
+    if (control.value && !/^https?:\/\//.test(control.value)) {
       return { invalidUrl: true };
     }
     return null;
@@ -72,27 +73,31 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   fetchSpeakerJudgeDetails() {
-    this.appUsersService.getProfileByEmail(this.fetchSpeakerJudge.get('email').value).subscribe((data: IUser) => {
-      this.speakerRegistrationForm.reset();
-      if (data) {
-        if (data.photo.url) {
-          this.imageUrl = data.photo.url;
-          this.fetchImageBlob();
-        }
-        this.speakerRegistrationForm.patchValue({
-          name: data.name,
-          about: data.about_me,
-          email: data.email,
-          designation: data.designation,
-          twitter: data.twitter ? data.twitter : '',
-          linkedin: data.linkedin ? data.linkedin : '',
-          website: data.personal_website ? data.personal_website : '',
-          username: data.username,
+    this.hackathonService
+      .check_duplicate_judge(this.fetchSpeakerJudge.get('email').value, this.hackathonSlug)
+      .subscribe((data) => {
+        this.appUsersService.getProfileByEmail(data).subscribe((data: IUser) => {
+          this.speakerRegistrationForm.reset();
+          if (data) {
+            if (data.photo.url) {
+              this.imageUrl = data.photo.url;
+            }
+            this.speakerRegistrationForm.patchValue({
+              name: data.name,
+              about: data.about_me,
+              email: data.email,
+              designation: data.designation,
+              twitter: data.twitter ? data.twitter : '',
+              linkedin: data.linkedin ? data.linkedin : '',
+              website: data.personal_website ? data.personal_website : '',
+              username: data.username,
+              user_id: data.id,
+            });
+          }
+          this.dialogService.open(this.judgeFormDialog);
+          this.fetchSpeakerJudge.reset();
         });
-      }
-      this.dialogService.open(this.judgeFormDialog);
-      this.fetchSpeakerJudge.reset();
-    });
+      });
   }
 
   openEditJudgeDialogBox(dialog, judge: IHackathonJudge, index) {
@@ -114,23 +119,20 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     });
   }
 
-  fetchImageBlob() {
-    this.http.get(this.imageUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
-      this.imageBlob = blob;
-    });
-  }
-
   createJudge() {
     const formData = new FormData();
-    const formValue: Record<string, string | Blob> = this.speakerRegistrationForm.value;
 
-    // Append form values to formData
-    Object.entries(formValue).forEach(([key, value]) => {
-      formData.append(`hackathon_judge[${key}]`, value);
+    Object.entries(this.speakerRegistrationForm.value).forEach(([key]) => {
+      const value = this.speakerRegistrationForm.value[key];
+      formData.append('hackathon_judge[' + key + ']', value);
     });
 
     if (this.imageUrl.length > 0) {
-      formData.append('profile_image', this.imageBlob);
+      if (this.imageBlob) {
+        formData.append('profile_image', this.imageBlob);
+      } else {
+        formData.append('fetch_from_user', true.toString());
+      }
     }
 
     this.hackathonService.createJudge(formData, this.hackathonSlug).subscribe((data: IHackathonJudge) => {
@@ -159,15 +161,16 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
 
   updateJudge(JudgeId, index) {
     const formData = new FormData();
-    const formValue: Record<string, string | Blob> = this.speakerRegistrationForm.value;
 
-    // Append form values to formData
-    Object.entries(formValue).forEach(([key, value]) => {
-      formData.append(`hackathon_judge[${key}]`, value);
+    Object.entries(this.speakerRegistrationForm.value).forEach(([key]) => {
+      const value = this.speakerRegistrationForm.value[key];
+      formData.append('hackathon_judge[' + key + ']', value);
     });
 
     if (this.imageUrl.length > 0) {
-      formData.append('profile_image', this.imageBlob);
+      if (this.imageBlob) {
+        formData.append('profile_image', this.imageBlob);
+      }
     }
 
     this.hackathonService.updateJudge(formData, JudgeId).subscribe((data: IHackathonJudge) => {

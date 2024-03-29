@@ -31,110 +31,130 @@
                 [pressed]="hackathon?.status === i"
                 [value]="i"
                 nbButtonToggle
-                class="md:!com-px-3"
+                class="md:!com-px-2"
               >
                 {{ i | titlecase }}
               </button>
             </nb-button-group>
           </section>
         </div>
-        <div class="category">
-          <div class="category-heading">Hackathon Setup</div>
+        <div class="category" [ngClass]="{ '!com-flex-col-reverse': hackathon?.status === EHackathonStatus.OPEN }">
           <div>
-            <a
-              class="action-button"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['./']"
-              routerLinkActive="active"
-            >
-              <div class="icon">
-                <fa-icon [icon]="icons.faCircleInfo"></fa-icon>
-              </div>
-              <div class="action-button-name">Basic Information</div>
-            </a>
-            <a class="action-button" [routerLink]="['contact']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faLink"></fa-icon>
-              </div>
-              <div class="action-button-name">Contact & Social Links</div>
-            </a>
-            <a class="action-button" [routerLink]="['dates']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faCalendarDays"></fa-icon>
-              </div>
-              <div class="action-button-name">Hackathon's Dates</div>
-            </a>
-            <a class="action-button" [routerLink]="['tracks']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faAward"></fa-icon>
-              </div>
-              <div class="action-button-name">Tracks & Prizes</div>
-            </a>
-            <a class="action-button" [routerLink]="['rounds']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faArrowsRotate"></fa-icon>
-              </div>
-              <div class="action-button-name">Rounds</div>
-            </a>
-            <a class="action-button" [routerLink]="['registrations']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faBook"></fa-icon>
-              </div>
-              <div class="action-button-name">Registrations</div>
-            </a>
-            <a class="action-button" [routerLink]="['sponsors']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faSackDollar"></fa-icon>
-              </div>
-              <div class="action-button-name">Sponsors</div>
-            </a>
-            <a class="action-button" [routerLink]="['speakers']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faMicrophone"></fa-icon>
-              </div>
-              <div class="action-button-name">Judges & Speakers</div>
-            </a>
-            <a class="action-button" [routerLink]="['faqs']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faCircleQuestion"></fa-icon>
-              </div>
-              <div class="action-button-name">FAQ's</div>
-            </a>
+            <div class="category-heading">Hackathon Setup</div>
+            <div>
+              <a
+                class="action-button"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="['./']"
+                routerLinkActive="active"
+              >
+                <div class="icon">
+                  <fa-icon [icon]="icons.faCircleInfo"></fa-icon>
+                </div>
+                <div class="action-button-name">Basic Information</div>
+              </a>
+              <a class="action-button" [routerLink]="['contact']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faLink"></fa-icon>
+                </div>
+                <div class="action-button-name">Contact & Social Links</div>
+              </a>
+              <a class="action-button" [routerLink]="['dates']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faCalendarDays"></fa-icon>
+                </div>
+                <div class="action-button-name">Hackathon's Dates</div>
+              </a>
+              <a class="action-button" [routerLink]="['tracks']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faAward"></fa-icon>
+                </div>
+                <div class="action-button-name">Tracks & Prizes</div>
+              </a>
+              <a class="action-button" [routerLink]="['rounds']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faGamepad"></fa-icon>
+                </div>
+                <div class="action-button-name">Rounds</div>
+              </a>
+              <a class="action-button" [routerLink]="['registrations']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faRectangleList"></fa-icon>
+                </div>
+                <div class="action-button-name">Registrations</div>
+              </a>
+              <a class="action-button" [routerLink]="['sponsors']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faSackDollar"></fa-icon>
+                </div>
+                <div class="action-button-name">Sponsors</div>
+              </a>
+              <a class="action-button" [routerLink]="['speakers']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faMicrophone"></fa-icon>
+                </div>
+                <div class="action-button-name">Judges & Speakers</div>
+              </a>
+              <a class="action-button" [routerLink]="['faqs']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faCircleQuestion"></fa-icon>
+                </div>
+                <div class="action-button-name">FAQ's</div>
+              </a>
+            </div>
           </div>
           <hr class="divided-line" />
-          <div class="category-heading">Manage Hackathon</div>
           <div>
-            <!-- <a class="action-button" [routerLink]="['stats']" routerLinkActive="active">
+            <div class="category-heading">Manage Hackathon</div>
+            <div>
+              <!-- <a class="action-button" [routerLink]="['stats']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faChartPie"></fa-icon>
               </div>
               <div class="action-button-name">Stats</div>
             </a> -->
-            <a class="action-button" [routerLink]="['review']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faEye"></fa-icon>
-              </div>
-              <div class="action-button-name">Applications & Projects</div>
-            </a>
-            <a class="action-button" [routerLink]="['updates']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faStar"></fa-icon>
-              </div>
-              <div class="action-button-name">Post Updates</div>
-            </a>
-            <!-- <a class="action-button" [routerLink]="['channels']" routerLinkActive="active">
+              <a class="action-button" [routerLink]="['review']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faEye"></fa-icon>
+                </div>
+                <div class="action-button-name">Applications & Projects</div>
+              </a>
+              <a class="action-button" [routerLink]="['updates']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faStar"></fa-icon>
+                </div>
+                <div class="action-button-name">Post Updates</div>
+              </a>
+              <!-- <a class="action-button" [routerLink]="['channels']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faHashtag"></fa-icon>
               </div>
               <div class="action-button-name">Channels</div>
             </a> -->
 
-            <!-- <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
+              <!-- <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
               <div class="icon">
                 <fa-icon [icon]="icons.faEnvelope"></fa-icon>
               </div>
               <div class="action-button-name">Emails</div>
             </a> -->
+            </div>
+          </div>
+        </div>
+        <hr class="divided-line" />
+        <div>
+          <div class="category-heading">Other Links</div>
+          <div *ngIf="hackathon && community">
+            <a
+              class="action-button"
+              [routerLink]="['/communities', community.slug, 'hackathons', hackathon.slug]"
+              target="_blank"
+            >
+              <div class="icon">
+                <fa-icon [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Public Page</div>
+            </a>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IHackathonWinner } from '@commudle/shared-models';
 import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
-import { IHackathonWinner } from 'apps/shared-models/hackathon-winner.model';
 
 @Injectable({
   providedIn: 'root',

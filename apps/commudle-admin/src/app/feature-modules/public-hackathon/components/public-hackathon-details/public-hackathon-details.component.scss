@@ -4,6 +4,9 @@
     nb-card-header {
       h2 {
         @apply com-text-Yankees-Blue com-text-2xl com-font-bold;
+        a {
+          @apply com-no-underline com-text-inherit;
+        }
       }
     }
     nb-card-body {

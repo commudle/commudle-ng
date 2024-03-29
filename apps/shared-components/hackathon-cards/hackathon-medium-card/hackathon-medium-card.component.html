@@ -1,0 +1,43 @@
+<a [routerLink]="[hackathon.slug]">
+  <nb-card class="hackathon-card">
+    <nb-card-header>
+      <div *ngIf="hackathon.banner_image; else noBannerImage">
+        <commudle-banner-image
+          [headerImagePath]="hackathon.banner_image.url"
+          [name]="hackathon.name"
+          [bottomLeftCurve]="false"
+          [bottomRightCurve]="false"
+        ></commudle-banner-image>
+      </div>
+      <ng-template #noBannerImage>
+        <div class="no-banner-image"></div>
+      </ng-template>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="name-members">
+        <div class="name">{{ hackathon.name }}</div>
+        <!-- TODO: to be done later -->
+        <div class="members"></div>
+      </div>
+      <div class="prize-action-button">
+        <div class="prize">
+          <div *ngIf="totalPrizesByCurrency.length > 0">
+            <div>Prize Money</div>
+            <div *ngFor="let item of totalPrizesByCurrency.slice(0, 1)" class="prize-amount">
+              {{ item.currency.symbol }}{{ item.amount }}
+            </div>
+          </div>
+        </div>
+        <div class="action-button" *ngIf="showRegisterButton">
+          <button nbButton status="primary">Register Now</button>
+        </div>
+      </div>
+      <div class="date-location-type">
+        <div class="date" *ngIf="hackathon.start_date">
+          <span>Starts {{ moment(hackathon.start_date).format('MMM Do, YYYY') }}</span>
+        </div>
+        <div class="location-type">{{ hackathon.hackathon_location_type | titlecase }}</div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</a>

@@ -1,5 +1,5 @@
 .labs {
-  @apply md:com-my-7 com-mx-0 com-mt-0 com-mb-10 com-p-0;
+  @apply md:com-my-7 com-mx-0 com-mt-0 com-mb-0 com-p-0;
 
   .search {
     @apply com-m-0 com-mb-6px md:com-px-0 com-px-4;
@@ -13,7 +13,10 @@
     @apply com-m-0 com-mb-8;
   }
 
-  .featured-labs {
-    @apply com-mb-10;
+  .speakers-content,
+  .explore-experts,
+  .featured-labs,
+  .top-builders {
+    @apply com-m-0 md:com-mt-4 com-mt-10;
   }
 }

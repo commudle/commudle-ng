@@ -1,6 +1,7 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { EHackathonRegistrationStatus, ICommunity, IHackathonTeam } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
@@ -15,6 +16,8 @@ import {
   faCircleQuestion,
   faAward,
   faUser,
+  faLaptopCode,
+  faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -40,10 +43,14 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faCircleQuestion,
     faAward,
     faUser,
+    faLaptopCode,
+    faArrowTrendUp,
   };
   isLoading = true;
   showBannerImage = false;
-
+  activeFragment: string;
+  userTeamDetails: IHackathonTeam[];
+  EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
@@ -51,11 +58,21 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.checkFragment();
+    this.getHackathonAndCommunity();
+    this.getHackathonCurrentRegistrationDetails();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getHackathonAndCommunity() {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
@@ -66,8 +83,14 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  checkFragment() {
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.activeFragment = fragment;
+      } else {
+        this.activeFragment = '';
+      }
+    });
   }
 
   getContactInfo() {
@@ -86,5 +109,17 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     } else {
       this.showBannerImage = false;
     }
+  }
+
+  getHackathonCurrentRegistrationDetails() {
+    this.subscriptions.push(
+      this.hackathonService
+        .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+        .subscribe((data: IHackathonTeam[]) => {
+          if (data) {
+            this.userTeamDetails = data;
+          }
+        }),
+    );
   }
 }

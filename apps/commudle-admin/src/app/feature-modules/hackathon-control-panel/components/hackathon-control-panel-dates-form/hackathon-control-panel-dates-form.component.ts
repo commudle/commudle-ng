@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { ToastrService } from '@commudle/shared-services';
   templateUrl: './hackathon-control-panel-dates-form.component.html',
   styleUrls: ['./hackathon-control-panel-dates-form.component.scss'],
 })
-export class HackathonControlPanelDatesFormComponent implements OnInit {
+export class HackathonControlPanelDatesFormComponent implements OnInit, OnDestroy {
   hackathonDatesForm: FormGroup;
   hackathonSlug = '';
 
@@ -47,6 +47,10 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
   fetchHackathonDetails(hackathonId) {
     this.subscriptions.push(
       this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
@@ -63,15 +67,14 @@ export class HackathonControlPanelDatesFormComponent implements OnInit {
   }
 
   createOrUpdate() {
-    this.hackathonDatesForm.patchValue({
-      start_date: this.convertDateToLocal(this.hackathonDatesForm.controls['start_date'].value),
-      end_date: this.convertDateToLocal(this.hackathonDatesForm.controls['end_date'].value),
-      application_start_date: this.convertDateToLocal(this.hackathonDatesForm.controls['application_start_date'].value),
-      application_end_date: this.convertDateToLocal(this.hackathonDatesForm.controls['application_end_date'].value),
+    const formData = new FormData();
+    Object.keys(this.hackathonDatesForm.value).forEach((key) => {
+      key === 'time_zone'
+        ? formData.append('hackathon[' + key + ']', this.hackathonDatesForm.value[key])
+        : formData.append('hackathon[' + key + ']', this.convertDateToLocal(this.hackathonDatesForm.value[key]));
     });
-    this.hackathonService.updateHackathonDates(this.hackathonDatesForm.value, this.hackathon.id).subscribe((data) => {
+    this.hackathonService.updateHackathonDates(formData, this.hackathon.id).subscribe((data) => {
       if (data) {
-        this.patchDatesValue(data);
         this.toastrService.successDialog('Hackathon dates was updated');
       }
     });

@@ -1,13 +1,13 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { countries_details } from '@commudle/shared-services';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { IHackathonTrack, IHackathonPrize } from '@commudle/shared-models';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-prize',
@@ -52,7 +52,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
       description: ['', Validators.required],
       no_of_winners: ['', Validators.required],
       prize_amount: [''],
-      currency_type: [''],
+      currency_type: 'INR',
       order: ['', Validators.required],
       hackathon_track_id: '',
       hackathon_id: '',
@@ -86,9 +86,10 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
   }
 
   openPrizeFormDialogBox(dialog, prize?: IHackathonPrize, index?) {
-    this.prizeForm.reset();
     this.prizeForm.patchValue({
       hackathon_id: this.hackathon.id,
+      currency_type: 'INR',
+      hackathon_track_id: '',
     });
     if (prize) {
       this.prizeForm.patchValue({
@@ -96,7 +97,7 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
         description: prize.description,
         no_of_winners: prize.no_of_winners,
         prize_amount: prize.prize_amount,
-        hackathon_track_id: prize.hackathon_track.id,
+        hackathon_track_id: prize.hackathon_track ? prize.hackathon_track.id : '',
         currency_type: prize.currency_type,
         order: prize.order,
       });

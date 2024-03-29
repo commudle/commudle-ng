@@ -1,18 +1,19 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
-import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
-import { ICommunityBuild } from '@commudle/shared-models';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API_ROUTES } from '@commudle/shared-services';
+import { Observable } from 'rxjs';
+import { ICommunityBuild, IHackathonPrize, IHackathonTeam, IHackathonTrack } from '@commudle/shared-models';
 
+interface publicHackathonsList {
+  upcoming_hackathons: IHackathon[];
+  past_hackathons: IHackathon[];
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -58,7 +59,7 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
-  pIndexHackathons(parentId, parentType: string): Observable<IHackathon[]> {
+  pIndexHackathons(parentId, parentType: string): Observable<publicHackathonsList> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -70,7 +71,9 @@ export class HackathonService {
         break;
       }
     }
-    return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), { params });
+    return this.http.get<publicHackathonsList>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), {
+      params,
+    });
   }
 
   showHackathon(hackathonId): Observable<IHackathon> {
@@ -111,9 +114,7 @@ export class HackathonService {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.put<IHackathon>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_HACKATHON_DATE),
-      {
-        hackathon: dataForm,
-      },
+      dataForm,
       { params },
     );
   }
@@ -122,6 +123,14 @@ export class HackathonService {
     sponsor.append('hackathon_id', hackathonId);
     return this.http.post<IHackathonSponsor>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CREATE_SPONSOR),
+      sponsor,
+    );
+  }
+
+  updateSponsor(sponsor, sponsorId): Observable<IHackathonSponsor> {
+    sponsor.append('hackathon_sponsor_id', sponsorId);
+    return this.http.put<IHackathonSponsor>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_SPONSOR),
       sponsor,
     );
   }
@@ -211,6 +220,11 @@ export class HackathonService {
     );
   }
 
+  check_duplicate_judge(email: string, hackathonId): Observable<any> {
+    const params = new HttpParams().set('email', email).set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHECK_DUPLICATE_JUDGE), { params });
+  }
+
   createJudge(formData, hackathonId): Observable<IHackathonJudge> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.post<IHackathonJudge>(
@@ -270,6 +284,16 @@ export class HackathonService {
       },
     );
   }
+
+  generateTeamRegistrationStatus(teamId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS),
+      {
+        team_id: teamId,
+      },
+    );
+  }
+
   changeTeamRound(teamId, roundId): Observable<IHackathonTeam> {
     return this.http.put<IHackathonTeam>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHANGE_TEAM_ROUND_STATUS),
@@ -280,14 +304,18 @@ export class HackathonService {
     );
   }
 
-  getHackathonCurrentRegistrationDetails(): Observable<IHackathonTeam> {
-    return this.http.get<IHackathonTeam>(
+  getHackathonCurrentRegistrationDetails(hackathonId): Observable<IHackathonTeam[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<IHackathonTeam[]>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GET_HACKATHON_CURRENT_REGISTRATION_DETAILS),
+      {
+        params,
+      },
     );
   }
 
-  updateHackathonStatus(hackathonId, status): Observable<boolean> {
-    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
+  updateHackathonStatus(hackathonId, status): Observable<IHackathon> {
+    return this.http.put<IHackathon>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_STATUS), {
       hackathon_id: hackathonId,
       hackathon_status: status,
     });
@@ -351,5 +379,12 @@ export class HackathonService {
         params,
       },
     );
+  }
+
+  pInterestedUsers(hackathonId): Observable<any> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INTERESTED_USERS), {
+      params,
+    });
   }
 }

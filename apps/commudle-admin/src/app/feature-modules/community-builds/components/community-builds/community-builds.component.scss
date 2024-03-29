@@ -4,3 +4,9 @@
     @apply com-w-full com-text-tChocolate-Traditional com-bg-Seashell com-border-tChocolate-Traditional com-rounded-lg;
   }
 }
+
+.top-builders,
+.explore-experts,
+.featured-projects {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
+}

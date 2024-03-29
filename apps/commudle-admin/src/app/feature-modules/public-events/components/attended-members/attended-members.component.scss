@@ -51,5 +51,11 @@ div {
     app-pagination {
       @apply com-m-0 com-mt-3;
     }
+
+    .speakers,
+    .speakers-content,
+    .volunteers-list {
+      @apply com-m-0 md:com-mt-4 com-mt-10;
+    }
   }
 }

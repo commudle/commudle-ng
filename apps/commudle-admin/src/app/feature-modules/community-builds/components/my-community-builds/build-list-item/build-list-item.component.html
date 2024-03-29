@@ -58,7 +58,27 @@
   </div>
   <div class="actions">
     <div>
-      <button [routerLink]="['/builds', cb.slug, 'edit']" fullWidth nbButton outline size="tiny" status="info">
+      <button
+        *ngIf="!cb.hackathon_team"
+        [routerLink]="['/builds', cb.slug, 'edit']"
+        fullWidth
+        nbButton
+        outline
+        size="tiny"
+        status="info"
+      >
+        <nb-icon icon="edit"></nb-icon>
+        Edit
+      </button>
+      <button
+        *ngIf="cb.hackathon_team"
+        [routerLink]="['/builds', cb.slug, 'edit']"
+        [queryParams]="{ parent_type: EDbModels.HACKATHON_TEAM, parent_id: cb.hackathon_team.id }"
+        nbButton
+        outline
+        size="tiny"
+        status="info"
+      >
         <nb-icon icon="edit"></nb-icon>
         Edit
       </button>

@@ -13,8 +13,17 @@
     <div *ngFor="let teammate of teammatesArray.controls; let i = index" [formGroupName]="i" class="teammate-form">
       <section>
         <label for="email">Enter Email*</label>
-        <input type="email" formControlName="email" placeholder="xyz@example.com" fullWidth nbInput />
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="xyz@example.com"
+          fullWidth
+          nbInput
+          (input)="checkEmail($event.target)"
+        />
       </section>
+      <commudle-alert *ngIf="showEmailError" [error]="true" errorMessage="You can't put your own email as teammate">
+      </commudle-alert>
 
       <section *ngIf="hackathonResponseGroup.user_details.tshirt_size">
         <label for="tshirt_size">T-Shirt Size</label>
