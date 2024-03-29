@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-body>
-    <table>
+    <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
         <th width="500px">Name</th>
         <th width="200px">Updates</th>
@@ -80,6 +80,11 @@
         </td>
       </tr>
     </table>
+
+    <ng-template #noUserResponse>
+      <div *ngIf="hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
+      <div *ngIf="hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
+    </ng-template>
   </nb-card-body>
 </nb-card>
 
