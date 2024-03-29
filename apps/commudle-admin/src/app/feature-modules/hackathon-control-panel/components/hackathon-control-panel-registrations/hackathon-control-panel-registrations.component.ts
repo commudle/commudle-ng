@@ -21,7 +21,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   EDbModels = EDbModels;
   dataFormId: number;
   hackathonResponseGroupDetails: IHackathonResponseGroup;
-
+  communityId: string | number;
   constructor(
     private fb: FormBuilder,
     private hrgService: HackathonResponseGroupService,
@@ -54,8 +54,9 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.parent.paramMap.subscribe((params) => {
-      this.fetchHackathonDetails(params.get('hackathon_id'));
+    this.activatedRoute.parent.params.subscribe((params) => {
+      this.fetchHackathonDetails(params['hackathon_id']);
+      this.communityId = params['community_id'];
     });
   }
   fetchHackathonDetails(hackathonId) {
@@ -126,6 +127,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         data ? data.id : '',
       )
       .subscribe((data) => {
+        console.log('🚀 ~ HackathonControlPanelRegistrationsComponent ~ .subscribe ~ data:', data);
         if (data) this.toastrService.successDialog('Information Updated');
       });
   }

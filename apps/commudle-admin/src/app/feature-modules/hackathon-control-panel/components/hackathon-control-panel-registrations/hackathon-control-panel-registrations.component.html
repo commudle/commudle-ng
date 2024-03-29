@@ -1,5 +1,20 @@
 <nb-card>
-  <nb-card-header>Registration</nb-card-header>
+  <nb-card-header>
+    <span>Registration</span>
+    <a
+      *ngIf="communityId && hackathon && hackathonResponseGroupDetails"
+      [routerLink]="[
+        '/communities',
+        communityId,
+        'hackathons',
+        hackathon.slug,
+        'fill-form',
+        hackathonResponseGroupDetails.id
+      ]"
+    >
+      <button nbButton status="primary" size="tiny">Link to register</button></a
+    >
+  </nb-card-header>
   <nb-card-body>
     <div class="heading">
       Choose which fields are absolutely necessary for registering. Remember, a shorter form leads to quicker signup
