@@ -1,0 +1,97 @@
+.who-can-apply,
+.benefits,
+.responsibilities,
+.application-process {
+  @apply com-m-0 com-px-6 md:com-pb-28 com-pb-12 md:com-px-0;
+
+  .content {
+    @apply com-max-w-3xl com-mx-0;
+  }
+
+  .content-right {
+    @apply com-max-w-[38rem] com-mx-0;
+  }
+
+  h2 {
+    @apply com-mt-0;
+    a {
+      @apply com-mb-0 com-p-0 md:com-mt-12 com-text-Yankees-Blue com-no-underline;
+    }
+  }
+  p {
+    @apply com-m-0 md:com-mt-8 com-mt-6 com-text-base com-text-gray-500;
+  }
+  li {
+    @apply com-m-0 com-mt-4 com-text-base com-text-gray-500;
+  }
+
+  ul {
+    @apply com-m-0;
+  }
+
+  .nomination-form {
+    @apply com-font-semibold;
+  }
+}
+
+.application-process-image,
+.benefits-image {
+  @apply com-m-0 com-ml-0 md:com-ml-4 md:com-w-auto com-w-full com-h-full md:com-mt-0 com-mt-4;
+
+  img {
+    @apply com-w-full com-h-full;
+  }
+}
+
+.header {
+  @apply md:com-pb-32 com-pb-12;
+  .background-image {
+    @apply com-bg-no-repeat com-bg-cover md:com-h-[426px] com-h-auto com-w-full;
+    img {
+      @apply com-h-full com-w-full;
+    }
+  }
+
+  .base-layout {
+    @apply com-min-h-0;
+  }
+  .header-content {
+    @apply com-relative com-flex md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
+    z-index: 1;
+
+    .header-text {
+      @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[74px] com-py-6 md:com-w-[694px] md:com-min-h-[386px] com-w-full com-h-full;
+
+      .heading {
+        @apply md:com-text-4xl com-text-3xl com-font-bold com-mt-0 com-mb-9 md:com-mb-11 com-text-Yankees-Blue;
+      }
+    }
+
+    .header-image {
+      @apply com-flex com-flex-shrink-0 com-items-center com-m-0;
+      img {
+        @apply md:com-h-auto com-h-full com-w-full com-mx-auto com-py-2;
+      }
+    }
+  }
+}
+
+.benefits {
+  ::ng-deep {
+    .section {
+      @apply com-items-start;
+    }
+  }
+}
+
+.apply-now-button {
+  @apply com-m-0 com-mt-6;
+}
+
+.content {
+  ::ng-deep {
+    p {
+      @apply com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-[50px] com-mb-6 com-text-gray-500;
+    }
+  }
+}

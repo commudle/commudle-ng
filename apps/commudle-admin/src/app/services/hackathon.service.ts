@@ -1,17 +1,14 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
-import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
-import { ICommunityBuild } from '@commudle/shared-models';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API_ROUTES } from '@commudle/shared-services';
+import { Observable } from 'rxjs';
+import { ICommunityBuild, IHackathonPrize, IHackathonTeam, IHackathonTrack } from '@commudle/shared-models';
 
 interface publicHackathonsList {
   upcoming_hackathons: IHackathon[];

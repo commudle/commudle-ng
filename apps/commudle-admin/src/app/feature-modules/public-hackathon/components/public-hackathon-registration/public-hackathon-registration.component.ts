@@ -1,6 +1,6 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, Input, OnInit } from '@angular/core';
-import { EHackathonRegistrationStatus, IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { EHackathonRegistrationStatus, IHackathonTeam } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-hackathon-registration',

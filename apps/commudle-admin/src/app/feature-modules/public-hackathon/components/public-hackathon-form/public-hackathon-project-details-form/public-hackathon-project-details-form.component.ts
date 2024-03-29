@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IHackathonTrack } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 

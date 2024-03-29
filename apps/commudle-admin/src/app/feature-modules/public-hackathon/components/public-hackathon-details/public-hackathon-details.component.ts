@@ -1,7 +1,15 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EDbModels, ICommunity, IFaq, IRound } from '@commudle/shared-models';
+import {
+  EDbModels,
+  EHackathonRegistrationStatus,
+  IFaq,
+  IHackathonTeam,
+  IHackathonTrack,
+  IRound,
+  ICommunity
+} from '@commudle/shared-models';
 import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
@@ -9,8 +17,6 @@ import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/servi
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
-import { IHackathonTeam, EHackathonRegistrationStatus } from 'apps/shared-models/hackathon-team.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import moment from 'moment';
