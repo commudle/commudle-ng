@@ -348,6 +348,16 @@ export class HackathonService {
     });
   }
 
+  OverallRoundSelectionUpdateEmail(hackathonId, hackathonRoundId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.OVERALL_ROUND_SELECTION_UPDATE_EMAIL),
+      {
+        hackathon_id: hackathonId,
+        hackathon_round_id: hackathonRoundId,
+      },
+    );
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {

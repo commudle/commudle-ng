@@ -35,6 +35,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   notes: INote[];
   dialogRef: NbDialogRef<unknown>;
   EHackathonStatus = EHackathonStatus;
+  roundSelectionForEmail = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -103,6 +104,10 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
       });
     });
   }
+
+  openRoundSelectionUpdateEmailDialogBox(dialog) {
+    this.dialogRef = this.nbDialogService.open(dialog);
+  }
   changeRoundOption(event, teamId, index) {
     this.hackathonService.changeTeamRound(teamId, event.target.value).subscribe((data) => {
       this.toastrService.successDialog('Details has been updated successfully');
@@ -152,5 +157,15 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
         this.toastrService.notificationDialog('Email Sent');
       }
     });
+  }
+
+  OverallRoundSelectionUpdateEmail() {
+    if (this.roundSelectionForEmail > 0) {
+      this.hackathonService
+        .OverallRoundSelectionUpdateEmail(this.hackathon.id, this.roundSelectionForEmail)
+        .subscribe((data) => {
+          if (data) this.toastrService.successDialog('Emails sent successfully');
+        });
+    }
   }
 }
