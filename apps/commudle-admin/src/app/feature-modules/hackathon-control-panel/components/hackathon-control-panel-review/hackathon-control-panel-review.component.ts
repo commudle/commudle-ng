@@ -146,8 +146,8 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  generateTeamRegistrationStatus(teamId) {
-    this.hackathonService.generateTeamRegistrationStatus(teamId).subscribe((data) => {
+  generateTeamRegistrationStatusNotification(teamId) {
+    this.hackathonService.generateTeamRegistrationStatusNotification(teamId).subscribe((data) => {
       if (data) {
         this.toastrService.notificationDialog('Email Sent');
       }
