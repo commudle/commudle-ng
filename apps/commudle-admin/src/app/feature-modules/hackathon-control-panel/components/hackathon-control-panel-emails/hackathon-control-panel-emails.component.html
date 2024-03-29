@@ -5,22 +5,34 @@
       <div class="group-name">Registrations</div>
       <div class="group-values">
         <button nbButton status="primary" (click)="openDialogBox(SendRegistrationsByMail)">
-          Send Registrations by mail
+          Send Registration Invite
         </button>
       </div>
     </div>
   </nb-card-body>
 </nb-card>
 
-<ng-template #SendRegistrationsByMail>
+<ng-template #SendRegistrationsByMail let-ref="dialogRef">
   <nb-card>
-    <nb-card-header> Pre-formatted email </nb-card-header>
+    <nb-card-header>
+      <span> Pre-formatted email</span>
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
+        <!-- <nb-icon icon="close"></nb-icon> -->X
+      </button>
+    </nb-card-header>
     <nb-card-body>
-      <label for="message">Message</label>
-      <textarea name="message" id="" placeholder="Extra message" nbInput fullWidth></textarea>
+      <commudle-alert
+        [info]="true"
+        message="This will send a pre-formatted email and a notification to all members of the community"
+      ></commudle-alert>
+      <br />
+      <div>
+        <label for="message">Message</label>
+        <textarea name="message" [(ngModel)]="message" placeholder="Extra message" nbInput fullWidth></textarea>
+      </div>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton status="primary" (click)="SendRegistrationsMailer()">Send to all members</button>
+      <button nbButton status="primary" (click)="SendRegistrationsMailer()">Send</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
