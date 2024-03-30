@@ -1,3 +1,8 @@
+<commudle-alert
+  [info]="true"
+  message="Although this is an individual participation, it would be great if you can select a team name for your project, by default it will be your name."
+></commudle-alert>
+<br />
 <form [formGroup]="teammateForm">
   <div>
     <label for="name">{{ hasTeammateOption ? 'Team Name*' : 'What did you call your self?' }}</label>
@@ -21,27 +26,21 @@
           nbInput
           (input)="checkEmail($event.target)"
         />
+        <commudle-alert *ngIf="showEmailError" [error]="true" errorMessage="You can't put your own email as teammate">
+        </commudle-alert>
       </section>
-      <commudle-alert *ngIf="showEmailError" [error]="true" errorMessage="You can't put your own email as teammate">
-      </commudle-alert>
 
       <section *ngIf="hackathonResponseGroup.user_details.tshirt_size">
-        <label for="tshirt_size">T-Shirt Size</label>
-        <input
-          type="text"
-          list="tshirtSize"
-          formControlName="tshirt_size"
-          fullWidth
-          nbInput
-          placeholder="T-Shirt Size"
-        />
-        <datalist id="tshirtSize">
-          <option value="S"></option>
-          <option value="M"></option>
-          <option value="L"></option>
-          <option value="XL"></option>
-          <option value="XXL"></option>
-        </datalist>
+        <label for="tshirt_size">T shirt size*</label>
+        <select name="tshirt_size" id="tshirt_size" formControlName="tshirt_size">
+          <option selected disabled value="">Select T-shirt size</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+          <option value="XXXL">XXXL</option>
+        </select>
       </section>
 
       <button type="button" nbButton ghost status="danger" (click)="removeTeammate(i)">
@@ -55,7 +54,11 @@
     <fa-icon [icon]="icons.faPlus"></fa-icon>
     <span> Add Teammate </span>
   </button>
-  <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
-    Next
-  </button>
+
+  <div class="action-buttons">
+    <button status="primary" nbButton>Previous</button>
+    <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
+      Next
+    </button>
+  </div>
 </form>

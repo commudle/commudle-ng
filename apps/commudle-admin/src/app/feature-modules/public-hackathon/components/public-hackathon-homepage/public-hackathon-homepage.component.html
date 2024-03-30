@@ -65,22 +65,25 @@
               <p class="name">Updates</p>
             </a>
           </div>
+
+          <div *ngIf="hackathon.tracks_count > 0">
+            <a [routerLink]="'.'" fragment="tracks" [class.active]="activeFragment === 'tracks'">
+              <fa-icon [icon]="icons.faAward"></fa-icon>
+              <p class="name">Tracks</p>
+            </a>
+          </div>
+
           <div *ngIf="hackathon.sponsors_count > 0">
             <a [routerLink]="'.'" fragment="sponsors" [class.active]="activeFragment === 'sponsors'">
               <fa-icon [icon]="icons.faSackDollar"></fa-icon>
               <p class="name">Sponsors</p>
             </a>
           </div>
+
           <div *ngIf="hackathon.faqs_count > 0">
             <a [routerLink]="'.'" fragment="faq" [class.active]="activeFragment === 'faq'">
               <fa-icon [icon]="icons.faCircleQuestion"></fa-icon>
               <p class="name">Faq's</p>
-            </a>
-          </div>
-          <div *ngIf="hackathon.tracks_count > 0">
-            <a [routerLink]="'.'" fragment="tracks" [class.active]="activeFragment === 'tracks'">
-              <fa-icon [icon]="icons.faAward"></fa-icon>
-              <p class="name">Tracks</p>
             </a>
           </div>
 
