@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
 @Component({
@@ -10,7 +10,9 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
 })
 export class HackathonControlPanelEmailsComponent implements OnInit {
   hackathonId: number | string;
-  message;
+  message: string;
+  dialogRef: NbDialogRef<any>;
+
   constructor(
     private nbDialogService: NbDialogService,
     private hackathonService: HackathonService,
@@ -24,12 +26,14 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
   }
 
   openDialogBox(dialog) {
-    this.nbDialogService.open(dialog);
+    this.dialogRef = this.nbDialogService.open(dialog);
   }
 
   SendRegistrationsMailer() {
     this.hackathonService.inviteUserByEmail(this.hackathonId, this.message).subscribe((data) => {
-      console.log('🚀 ~ HackathonControlPanelEmailsComponent ~ this.hackathonService.inviteUserByEmail ~ data:', data);
+      if (data) {
+        this.dialogRef.close();
+      }
     });
   }
 }
