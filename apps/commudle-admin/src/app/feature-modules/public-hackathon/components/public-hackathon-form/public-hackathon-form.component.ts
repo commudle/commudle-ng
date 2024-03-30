@@ -162,4 +162,8 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
         }
       });
   }
+
+  previousStepper() {
+    this.stepper.previous();
+  }
 }

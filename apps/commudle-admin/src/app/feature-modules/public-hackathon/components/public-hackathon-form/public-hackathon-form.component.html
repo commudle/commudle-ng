@@ -58,12 +58,13 @@
                   ></commudle-public-hackathon-user-details-form>
                 </div>
               </nb-step>
-              <nb-step [label]="hasTeammateOption ? 'Teammates' : ''">
+              <nb-step label="Team Details">
                 <commudle-public-hackathon-teammate-form
                   [hackathonUserResponse]="hackathonUserResponse"
                   [hasTeammateOption]="hasTeammateOption"
                   [hackathonResponseGroup]="hackathonResponseGroup"
                   (submitTeammateDetailsEvent)="submitTeammateDetails($event)"
+                  (previousButtonEvent)="previousStepper()"
                 ></commudle-public-hackathon-teammate-form>
               </nb-step>
               <nb-step label="Project Details">
@@ -73,10 +74,11 @@
                     [hackathon]="hackathon"
                     [hackathonUserResponse]="hackathonUserResponse"
                     (createOrUpdateProjectDetails)="submitProjectDetails($event)"
+                    (previousButtonEvent)="previousStepper()"
                   ></commudle-public-hackathon-project-details-form>
                 </div>
               </nb-step>
-              <nb-step label="Submit" *ngIf="hackathonResponseGroup.data_form_entity_id">
+              <nb-step label="More details" *ngIf="hackathonResponseGroup.data_form_entity_id">
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading">
                   <commudle-public-hackathon-custom-questions-form

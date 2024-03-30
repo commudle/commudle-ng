@@ -14,6 +14,7 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
   @Input() hackathon: IHackathon;
   @Input() hackathonUserResponse: IHackathonUserResponse;
   @Output() createOrUpdateProjectDetails = new EventEmitter<any>();
+  @Output() previousButtonEvent = new EventEmitter<any>();
 
   hackathonTracks: IHackathonTrack[];
   hackathonProjectDetailsForm: FormGroup;
@@ -64,5 +65,9 @@ export class PublicHackathonProjectDetailsFormComponent implements OnInit {
 
   submitProjectDetails() {
     this.createOrUpdateProjectDetails.emit(this.hackathonProjectDetailsForm.value);
+  }
+
+  previousButton() {
+    this.previousButtonEvent.emit();
   }
 }

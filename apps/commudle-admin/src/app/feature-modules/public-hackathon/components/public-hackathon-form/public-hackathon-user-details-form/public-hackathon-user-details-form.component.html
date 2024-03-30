@@ -111,7 +111,8 @@
       <option value="XXXL">XXXL</option>
     </select>
   </div>
-  <button class="com-w-max" status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">
-    Next
-  </button>
+  <div class="action-buttons">
+    <button status="primary" nbButton disabled>Previous</button>
+    <button status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">Next</button>
+  </div>
 </form>
