@@ -809,6 +809,7 @@ export const API_ROUTES = {
     VERIFY_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/verify_invitation_token_judge', //GET
     UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
     INVITE_USER: 'api/v2/hackathons/invite_user', //POST
+    OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
