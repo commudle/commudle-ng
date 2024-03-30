@@ -277,7 +277,7 @@ export class HackathonService {
 
   changeTeamStatus(teamId, registrationStatus): Observable<IHackathonTeam> {
     return this.http.put<IHackathonTeam>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.CHANGE_TEAM_REGISTRATION_STATUS),
       {
         team_id: teamId,
         registration_status: registrationStatus,
@@ -287,7 +287,7 @@ export class HackathonService {
 
   generateTeamRegistrationStatusNotification(teamId): Observable<boolean> {
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION),
       {
         team_id: teamId,
       },
