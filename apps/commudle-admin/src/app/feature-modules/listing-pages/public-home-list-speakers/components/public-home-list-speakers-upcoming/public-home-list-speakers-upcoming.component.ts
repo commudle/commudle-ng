@@ -6,6 +6,7 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-home-list-speakers-upcoming',
@@ -13,7 +14,7 @@ import { IPageInfo } from 'apps/shared-models/page-info.model';
   styleUrls: ['./public-home-list-speakers-upcoming.component.scss'],
 })
 export class PublicHomeListSpeakersUpcomingComponent implements OnInit {
-  @Input() parentType = 'community';
+  @Input() parentType = EDbModels.KOMMUNITY;
   community: ICommunity[] = [];
   communityGroup: ICommunityGroup;
   upcomingEvents: IEvent[] = [];
@@ -30,9 +31,9 @@ export class PublicHomeListSpeakersUpcomingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.parentType === 'community') {
+    if (this.parentType === EDbModels.KOMMUNITY) {
       this.getUpcomingEvents();
-    } else {
+    } else if (this.parentType === EDbModels.COMMUNITY_GROUP) {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.communityGroup = data.community_group;
         this.getCommunityGroupEvents();

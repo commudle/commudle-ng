@@ -9,6 +9,7 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-community-group-activity',
@@ -23,6 +24,7 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
   forums: ICommunityChannel[] = [];
   events: IEvent[] = [];
   subscriptions: Subscription[] = [];
+  EDbModels = EDbModels;
 
   page_info: IPageInfo;
 
