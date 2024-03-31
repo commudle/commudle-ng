@@ -1,7 +1,7 @@
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { RouterModule } from '@angular/router';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbButtonModule, NbCardModule, NbIconModule } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -15,7 +15,7 @@ import { Subscription, interval } from 'rxjs';
   templateUrl: './channel-card.component.html',
   styleUrls: ['./channel-card.component.scss'],
 })
-export class ChannelCardComponent implements OnInit, AfterViewInit {
+export class ChannelCardComponent implements OnInit, OnDestroy {
   @Input() channel: ICommunityChannel;
   @Input() community: ICommunity;
   @Input() horizontalScroll = false;
@@ -28,9 +28,7 @@ export class ChannelCardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.getCommunity();
   }
 
