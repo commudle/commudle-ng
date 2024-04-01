@@ -22,6 +22,31 @@
       </nb-card>
     </div>
 
+    <div *ngIf="hackathon.tracks_count > 0" id="tracks">
+      <nb-card>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="tracks"> Tracks </a>
+          </h2>
+        </nb-card-header>
+        <nb-card-body class="track-cards">
+          <div *ngFor="let track of tracks" class="track-card">
+            <div class="name">{{ track.name }}</div>
+            <div [innerHTML]="track.description"></div>
+            <nb-card *ngFor="let prize of track.hackathon_prizes" class="prize-card">
+              <nb-card-body>
+                <div class="hackathon-prize">
+                  <div class="prize-name">{{ prize.name }}</div>
+                  <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
+                </div>
+                <div [innerHTML]="prize.description"></div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
     <div *ngIf="hackathon.sponsors_count > 0" id="sponsors">
       <nb-card>
         <nb-card-header>
@@ -53,31 +78,6 @@
       </nb-card>
     </div>
 
-    <div *ngIf="hackathon.tracks_count > 0" id="tracks">
-      <nb-card>
-        <nb-card-header>
-          <h2>
-            <a [routerLink]="['.']" fragment="tracks"> Tracks </a>
-          </h2>
-        </nb-card-header>
-        <nb-card-body class="track-cards">
-          <div *ngFor="let track of tracks" class="track-card">
-            <div class="name">{{ track.name }}</div>
-            <div [innerHTML]="track.description"></div>
-            <nb-card *ngFor="let prize of track.hackathon_prizes" class="prize-card">
-              <nb-card-body>
-                <div class="hackathon-prize">
-                  <div class="prize-name">{{ prize.name }}</div>
-                  <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
-                </div>
-                <div [innerHTML]="prize.description"></div>
-              </nb-card-body>
-            </nb-card>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-
     <nb-card id="comments">
       <nb-card-header>
         <h2>
@@ -95,6 +95,20 @@
   </div>
 
   <div class="right-column">
+    <nb-card *ngIf="isOrganizer">
+      <nb-card-body class="com-p-0">
+        <button
+          nbButton
+          status="danger"
+          fullWidth
+          [routerLink]="['/admin', 'communities', community.slug, 'hackathon-dashboard', hackathon.slug]"
+        >
+          <fa-icon [icon]="icons.faPencil"></fa-icon>
+          &nbsp;
+          <span>Go To Admin panel</span>
+        </button>
+      </nb-card-body>
+    </nb-card>
     <nb-card *ngIf="userTeamDetails">
       <nb-card-body
         ><commudle-public-hackathon-details-mini-card

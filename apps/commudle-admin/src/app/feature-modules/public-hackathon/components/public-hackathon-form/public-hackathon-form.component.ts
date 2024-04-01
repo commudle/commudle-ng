@@ -146,6 +146,7 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
           this.stepper.next();
         } else {
           this.toastrService.successDialog('Details has been saved');
+          this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
           this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
         }
       }
@@ -158,8 +159,13 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         if (data) {
           this.toastrService.successDialog('Details has been saved');
+          this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
           this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
         }
       });
+  }
+
+  previousStepper() {
+    this.stepper.previous();
   }
 }

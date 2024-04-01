@@ -70,17 +70,16 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     branding: false,
   };
 
-  tinyMCEForUpdate: any = {
+  tinyMCEForUpdate = {
+    min_height: 50,
+    menubar: false,
+    width: '500',
     placeholder: 'Updates',
-
     statusbar: false,
     toolbar: false,
-    width: '500',
     plugins: 'autoresize',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    min_height: 50,
-    menubar: false,
     convert_urls: false,
     branding: false,
   };

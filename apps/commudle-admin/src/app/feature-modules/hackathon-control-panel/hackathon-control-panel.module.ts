@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HackathonControlPanelRoutes } from './hackathon-control-panel.routing';
@@ -37,6 +38,7 @@ import { EditorModule as NewEditorModule } from '@commudle/editor';
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
 import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
 import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-round-card/hackathon-control-panel-round-card.component';
+import { HackathonControlPanelEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-control-panel-emails.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { HackathonControlPanelRoundCardComponent } from 'apps/commudle-admin/src
     HackathonControlPanelReviewComponent,
     HackathonControlPanelRoundsComponent,
     HackathonControlPanelRoundCardComponent,
+    HackathonControlPanelEmailsComponent,
   ],
   imports: [
     CommonModule,

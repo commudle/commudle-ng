@@ -1,17 +1,12 @@
 <a [routerLink]="[hackathon.slug]">
   <nb-card class="hackathon-card">
     <nb-card-header>
-      <div *ngIf="hackathon.banner_image; else noBannerImage">
-        <commudle-banner-image
-          [headerImagePath]="hackathon.banner_image.url"
-          [name]="hackathon.name"
-          [bottomLeftCurve]="false"
-          [bottomRightCurve]="false"
-        ></commudle-banner-image>
-      </div>
-      <ng-template #noBannerImage>
-        <div class="no-banner-image"></div>
-      </ng-template>
+      <commudle-banner-image
+        [headerImagePath]="hackathon.banner_image ? hackathon.banner_image.url : staticAssets.hackathon_empty_state"
+        [name]="hackathon.name"
+        [bottomLeftCurve]="false"
+        [bottomRightCurve]="false"
+      ></commudle-banner-image>
     </nb-card-header>
     <nb-card-body>
       <div class="name-members">
