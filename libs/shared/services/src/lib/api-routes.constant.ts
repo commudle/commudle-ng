@@ -810,6 +810,7 @@ export const API_ROUTES = {
     UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
     INVITE_USER: 'api/v2/hackathons/invite_user', //POST
     OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
+    WINNER_ANNOUNCEMENT_EMAIL: 'api/v2/hackathons/winner_announcement_email', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
@@ -836,7 +837,9 @@ export const API_ROUTES = {
     CREATE: 'api/v2/hackathon_response_group', //POST
     UPDATE: 'api/v2/hackathon_response_group', //PUT
     SHOW: 'api/v2/hackathon_response_group/show', //GET
-    PUBLIC_SHOW: 'api/v2/hackathon_response_group', //GET
+    PUBLIC: {
+      SHOW: 'api/v2/hackathon_response_group/public/show', //GET
+    },
   },
 
   HACKATHON_USER_RESPONSE: {
