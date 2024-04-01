@@ -2,6 +2,10 @@ table {
   border-collapse: collapse;
   width: 100%;
 
+  .user-response {
+    @apply com-cursor-pointer hover:com-bg-gray-100;
+  }
+
   .name {
     @apply com-flex com-gap-4 com-flex-wrap com-justify-between com-mr-5;
     .team-details {
