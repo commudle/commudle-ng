@@ -33,7 +33,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
-      order: ['', Validators.required, Validators.min(0)],
+      order: ['', Validators.required],
     });
   }
 
@@ -56,6 +56,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
         name: round.name,
         description: round.description,
         date: this.datePipe.transform(round.date, 'yyyy-MM-dd'),
+        order: round.order,
       });
     }
 

@@ -10,7 +10,9 @@
       </div>
     </div>
     <div class="prize-details">
-      <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+      <div class="track-details">
+        <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
+      </div>
       <p class="prize">
         {{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
         {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}
@@ -28,15 +30,15 @@
 <ng-template #prizeDistributionDialogBox let-ref="dialogRef" let-data>
   <nb-card class="prize-distribution-dialog-box">
     <nb-card-header>
-      <span> {{ hackathonPrize.name }}{{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }} </span>
+      <span> {{ hackathonPrize.name }} ({{ prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }}) </span>
       <button nbButton ghost shape="round" (click)="ref.close()">X</button>
     </nb-card-header>
     <nb-card-body>
       <table>
         <tr>
           <th width="30%">Team Name</th>
-          <th width="10%">Round</th>
-          <th width="40%">Build/ Project Name</th>
+          <th width="20%">Round</th>
+          <th width="30%">Build/Project Name</th>
           <th width="20%">Prize</th>
         </tr>
         <tr
@@ -44,16 +46,28 @@
           (click)="addWinner(userResponse.team, i)"
           [ngClass]="{ winner: userResponse.team.hackathon_winners.length > 0 }"
         >
-          <td>{{ userResponse.team.name }}</td>
-          <td>{{ userResponse.team.round?.name }}</td>
-          <td>{{ userResponse.team.community_build?.name }}</td>
+          <td class="team-name">{{ userResponse.team.name }}</td>
           <td>
-            <div *ngFor="let hackathonWinner of userResponse.team.hackathon_winners; let wi = index">
+            <div *ngIf="userResponse.team.round" class="round-name">
+              <span>{{ userResponse.team.round.name }}</span>
+            </div>
+          </td>
+          <td class="build-name">{{ userResponse.team.community_build?.name }}</td>
+          <td>
+            <div *ngFor="let hackathonWinner of userResponse.team.hackathon_winners; let wi = index" class="com-py-2">
               <span (click)="$event.stopPropagation()" class="prizes">
                 <span>
                   {{ hackathonWinner.hackathon_prize.name }}
                 </span>
-                <fa-icon [icon]="icons.faXmark" (click)="removeWinner(hackathonWinner.id, i, wi)"></fa-icon>
+                <button
+                  nbButton
+                  shape="round"
+                  status="danger"
+                  size="tiny"
+                  (click)="removeWinner(hackathonWinner.id, i, wi)"
+                >
+                  <fa-icon [icon]="icons.faXmark"></fa-icon>
+                </button>
               </span>
             </div>
           </td>

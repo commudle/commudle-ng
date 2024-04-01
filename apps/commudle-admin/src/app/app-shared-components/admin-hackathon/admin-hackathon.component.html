@@ -10,11 +10,19 @@
     <tr>
       <th>Name</th>
       <th>Creation Date</th>
+      <th>Start Date</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
     <tr *ngFor="let hackathon of hackathons">
       <td>{{ hackathon.name }}</td>
       <td>{{ moment(hackathon.created_at).format('dddd, MMM Do, YYYY') }}</td>
+      <td>
+        <small>Start At: {{ moment(hackathon.start_date).format('dddd, MMM Do, YYYY') }}</small>
+        <br />
+        <small>Application Start At: {{ moment(hackathon.application_start_date).format('dddd, MMM Do, YYYY') }}</small>
+      </td>
+      <td>{{ hackathon.status | titlecase }}</td>
       <td class="action-buttons">
         <a [routerLink]="['/admin', 'communities', parentId, 'hackathon-dashboard', hackathon.slug]">
           <button nbButton status="primary" size="tiny">Dashboard</button>

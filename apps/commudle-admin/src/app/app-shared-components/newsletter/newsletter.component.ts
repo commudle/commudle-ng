@@ -19,7 +19,7 @@ export class NewsletterComponent implements OnInit {
   @Input() parentType: 'CommunityGroup' | 'Kommunity';
   subscriptions: Subscription[] = [];
   newsletters: INewsletter[];
-  newScheduleDateTime;
+  newScheduleDateTime: Date;
   icons = {
     faPlus,
     faClock,
@@ -97,12 +97,13 @@ export class NewsletterComponent implements OnInit {
   }
 
   openScheduleDialogBox(dialog: TemplateRef<any>, id, index) {
-    this.newScheduleDateTime = '';
+    this.newScheduleDateTime = new Date();
     this.dialogService.open(dialog, { context: { id, index } });
   }
 
   setSchedule(id, index) {
-    this.newsletterService.setSchedule(id, this.newScheduleDateTime).subscribe((data) => {
+    const scheduleDate = new Date(this.newScheduleDateTime).toISOString();
+    this.newsletterService.setSchedule(id, scheduleDate).subscribe((data) => {
       if (data) this.newsletters[index].scheduled_for = this.newScheduleDateTime;
     });
   }

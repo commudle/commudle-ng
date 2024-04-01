@@ -18,7 +18,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   hackathonSlug = '';
   parentId = '';
   parentType = '';
-  imagePreview;
+  imagePreview = '';
 
   subscriptions: Subscription[] = [];
   hackathon: IHackathon;
@@ -41,10 +41,10 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     plugins:
       'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
     toolbar:
-      'h1  h2  h3  h4  h5  h6 fontsize | bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
+      'h2  h3  h4  h5  h6 fontsize | bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
     default_link_target: '_blank',
     branding: false,
-    font_size_formats: '12pt 14pt 16pt 18pt 24pt',
+    font_size_formats: '12px 14px 16px 18px 24px',
   };
 
   constructor(
@@ -56,7 +56,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
   ) {
     this.hackathonForm = this.fb.group({
       name: ['', Validators.required],
-      tagline: ['', Validators.required],
+      tagline: ['', [Validators.required, Validators.maxLength(250)]],
       description: ['', Validators.required],
       hackathon_theme: '',
       number_of_participants: ['', [Validators.required, Validators.min(1)]],
@@ -98,7 +98,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     this.subscriptions.push(
       this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data: IHackathon) => {
         this.hackathon = data;
-        this.imagePreview = data.banner_image.url;
+        this.imagePreview = data.banner_image ? data.banner_image.url : '';
         this.hackathonForm.patchValue({
           name: data.name,
           tagline: data.tagline,

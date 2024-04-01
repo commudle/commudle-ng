@@ -3,8 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
-import { IEntityUpdate } from 'apps/shared-models/entity_update.model';
-import { EDbModels, IPagination } from '@commudle/shared-models';
+import { EDbModels, IEntityUpdate, IPagination } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',

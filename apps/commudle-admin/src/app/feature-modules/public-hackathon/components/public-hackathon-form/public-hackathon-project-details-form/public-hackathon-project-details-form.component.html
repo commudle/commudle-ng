@@ -9,10 +9,16 @@
       [ngClass]="{
         'com-text-[#8E9BB3]': hackathonProjectDetailsForm.get('hackathon_track_id').value === ''
       }"
+      (change)="updateProblemStatement()"
     >
       <option selected disabled value="">Select Track</option>
       <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
     </select>
+  </div>
+
+  <div *ngIf="selectedTrackProblemStatement">
+    Problem Statement
+    <div [innerHTML]="selectedTrackProblemStatement"></div>
   </div>
 
   <div>
@@ -29,13 +35,10 @@
     ></textarea>
   </div>
 
-  <button
-    [disabled]="hackathonProjectDetailsForm.invalid"
-    type="submit"
-    (click)="submitProjectDetails()"
-    nbButton
-    status="primary"
-  >
-    Next
-  </button>
+  <div class="action-buttons">
+    <button status="primary" nbButton (click)="previousButton()">Previous</button>
+    <button [disabled]="hackathonProjectDetailsForm.invalid" (click)="submitProjectDetails()" nbButton status="primary">
+      Next
+    </button>
+  </div>
 </form>

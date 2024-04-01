@@ -782,6 +782,7 @@ export const API_ROUTES = {
     SHOW_CONTACT_INFO: 'api/v2/hackathons/show_contact_info', //GET
     UPDATE_HACKATHON_DATE: 'api/v2/hackathons/update_hackathon_dates', // POST
     CREATE_SPONSOR: 'api/v2/hackathons/create_sponsor', //POST
+    UPDATE_SPONSOR: 'api/v2/hackathons/update_sponsor', //PUT
     INDEX_SPONSORS: 'api/v2/hackathons/index_sponsors', //GET
     DESTROY_SPONSOR: 'api/v2/hackathons/destroy_sponsor', //DELETE
     CREATE_TRACK: 'api/v2/hackathons/create_track', //POST
@@ -793,6 +794,7 @@ export const API_ROUTES = {
     DESTROY_PRIZE: 'api/v2/hackathons/destroy_prize', //DELETE
     INDEX_TRACK_PRIZE: 'api/v2/hackathons/index_track_prizes', //GET
     INDEX_HACKATHON_PRIZES: 'api/v2/hackathons/index_prizes', //GET
+    CHECK_DUPLICATE_JUDGE: 'api/v2/hackathons/check_duplicate_judge', //GET
     CREATE_JUDGE: 'api/v2/hackathons/create_judge', //POST
     UPDATE_JUDGE: 'api/v2/hackathons/update_judge', //PUT
     INDEX_JUDGES: 'api/v2/hackathons/index_judges', //GET
@@ -800,11 +802,14 @@ export const API_ROUTES = {
     INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //GET
     SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
     CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
+    GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION: 'api/v2/hackathons/generate_team_registration_status_notification', //POST
     CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
     GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details', //GET
     UPDATE_STATUS: 'api/v2/hackathons/update_status', //PUT
     VERIFY_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/verify_invitation_token_judge', //GET
     UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
+    INVITE_USER: 'api/v2/hackathons/invite_user', //POST
+    OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
@@ -813,6 +818,7 @@ export const API_ROUTES = {
       INDEX_TRACKS: 'api/v2/hackathons/public/index_tracks', //GET
       INDEX_SPONSORS: 'api/v2/hackathons/public/index_sponsors', //GET
       INDEX_PROJECTS: 'api/v2/hackathons/public/index_projects', //GET
+      INTERESTED_USERS: 'api/v2/hackathons/public/interested_users', //GET
     },
   },
 
@@ -842,6 +848,7 @@ export const API_ROUTES = {
     GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
     VERIFY_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/verify_invitation_token_hur', //GET
     UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
+    COMPLETE_HUR_STATUS: 'api/v2/hackathon_user_response/complete_hur_status', //PUT
   },
 
   ENTITY_UPDATES: {

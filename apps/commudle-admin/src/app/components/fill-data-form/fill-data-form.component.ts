@@ -33,7 +33,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   selectedFormResponse: any;
   currentUser: ICurrentUser;
   dialogRef: NbDialogRef<any>;
-
+  completeProfileText = 'Complete your profile to boost your chances of getting shortlisted';
   existingResponses;
 
   subscriptions: Subscription[] = [];
@@ -130,6 +130,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         break;
       case 'AdminSurvey':
         this.showProfileForm = false;
+        this.completeProfileText = 'Complete your profile to grow your developer network';
         // nothing need to be done here
         break;
       case 'Survey':

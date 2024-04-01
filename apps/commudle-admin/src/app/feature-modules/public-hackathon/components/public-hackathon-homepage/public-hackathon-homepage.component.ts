@@ -1,6 +1,7 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { EHackathonRegistrationStatus, ICommunity, IHackathonTeam } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
@@ -15,7 +16,10 @@ import {
   faCircleQuestion,
   faAward,
   faUser,
+  faLaptopCode,
+  faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-homepage',
@@ -40,34 +44,56 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     faCircleQuestion,
     faAward,
     faUser,
+    faLaptopCode,
+    faArrowTrendUp,
   };
   isLoading = true;
   showBannerImage = false;
-
+  activeFragment: string;
+  userTeamDetails: IHackathonTeam[];
+  EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private router: Router,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
+    this.checkFragment();
+    this.getHackathonAndCommunity();
+    this.getHackathonCurrentRegistrationDetails();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getHackathonAndCommunity() {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
         this.community = data.community;
         this.updateHeaderVariation();
         this.getContactInfo();
+        this.setSeoService();
       }),
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  checkFragment() {
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.activeFragment = fragment;
+      } else {
+        this.activeFragment = '';
+      }
+    });
   }
 
   getContactInfo() {
@@ -86,5 +112,31 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     } else {
       this.showBannerImage = false;
     }
+  }
+
+  getHackathonCurrentRegistrationDetails() {
+    this.subscriptions.push(
+      this.hackathonService
+        .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+        .subscribe((data: IHackathonTeam[]) => {
+          if (data) {
+            this.userTeamDetails = data;
+          }
+        }),
+    );
+  }
+
+  setSeoService() {
+    this.seoService.setTags(
+      this.hackathon.name + 'by' + this.community.name,
+      this.removeHtmlTags(this.hackathon.description),
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }

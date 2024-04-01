@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { DataFormEntityResponsesService } from 'apps/commudle-admin/src/app/services/data-form-entity-responses.service';
-import { Location } from '@angular/common';
-import { ToastrService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-custom-questions-form',
@@ -11,14 +9,11 @@ import { ToastrService } from '@commudle/shared-services';
 })
 export class PublicHackathonCustomQuestionsFormComponent implements OnInit {
   @Input() hackathonResponseGroup: IHackathonResponseGroup;
+  @Output() submitFormEvent = new EventEmitter<any>();
   existingResponses: any;
   selectedFormResponse: any;
 
-  constructor(
-    private dataFormEntityResponsesService: DataFormEntityResponsesService,
-    private toastrService: ToastrService,
-    private location: Location,
-  ) {}
+  constructor(private dataFormEntityResponsesService: DataFormEntityResponsesService) {}
 
   ngOnInit() {
     if (this.hackathonResponseGroup.data_form_entity_id) {
@@ -34,13 +29,6 @@ export class PublicHackathonCustomQuestionsFormComponent implements OnInit {
   }
 
   submitForm(formData) {
-    this.dataFormEntityResponsesService
-      .submitDataFormEntityResponse(this.hackathonResponseGroup.data_form_entity_id, formData)
-      .subscribe((data) => {
-        if (data) {
-          this.toastrService.successDialog('Details has been saved');
-          this.location.back();
-        }
-      });
+    this.submitFormEvent.emit(formData);
   }
 }

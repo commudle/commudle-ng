@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
-import { IEntityUpdate } from 'apps/shared-models/entity_update.model';
 import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
-import { EDbModels } from '@commudle/shared-models';
+import { EDbModels, IEntityUpdate } from '@commudle/shared-models';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
@@ -64,7 +63,7 @@ export class HackathonControlPanelUpdatesComponent implements OnInit {
       formData.append('entity_update[images][]', image);
     }
     this.images = [];
-    this.entityUpdatesService.createEntityUpdate(formData, 1, EDbModels.HACKATHON).subscribe((data) => {
+    this.entityUpdatesService.createEntityUpdate(formData, this.hackathon.id, EDbModels.HACKATHON).subscribe((data) => {
       this.selectedImages = [];
       this.updates.unshift(data);
       this.isLoading = false;

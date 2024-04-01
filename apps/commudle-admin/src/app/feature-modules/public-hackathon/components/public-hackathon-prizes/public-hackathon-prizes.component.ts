@@ -1,11 +1,12 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
-import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { countries_details as countryDetails } from '@commudle/shared-services';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
+import { IHackathonPrize, IHackathonTeam } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
@@ -17,9 +18,14 @@ export class PublicHackathonPrizesComponent implements OnInit {
   hackathon: IHackathon;
   hackathonPrizes: IHackathonPrize[];
   isLoading = true;
-  userTeamDetails: IHackathonTeam;
+  userTeamDetails: IHackathonTeam[];
+  hrgId: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private hackathonService: HackathonService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private hackathonService: HackathonService,
+    private hrgService: HackathonResponseGroupService,
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
@@ -29,6 +35,9 @@ export class PublicHackathonPrizesComponent implements OnInit {
         this.getHackathonCurrentRegistrationDetails();
       }),
     );
+    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+      if (data) this.hrgId = data.id;
+    });
   }
 
   getPrizes() {
@@ -46,9 +55,11 @@ export class PublicHackathonPrizesComponent implements OnInit {
 
   getHackathonCurrentRegistrationDetails() {
     this.subscriptions.push(
-      this.hackathonService.getHackathonCurrentRegistrationDetails().subscribe((data: IHackathonTeam) => {
-        this.userTeamDetails = data;
-      }),
+      this.hackathonService
+        .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+        .subscribe((data: IHackathonTeam[]) => {
+          if (data) this.userTeamDetails = data;
+        }),
     );
   }
 }

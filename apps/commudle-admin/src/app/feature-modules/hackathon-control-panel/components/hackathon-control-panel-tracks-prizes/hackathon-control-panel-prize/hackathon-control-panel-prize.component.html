@@ -18,7 +18,7 @@
   <nb-card class="prize-form">
     <nb-card-header>
       <span> {{ data.prize ? 'Edit Prize' : 'New Prize' }}</span>
-      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); prizeForm.reset()">
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
@@ -44,23 +44,24 @@
             }"
           >
             <option selected disabled [value]="null">Select Track</option>
+            <option value="">No Track</option>
             <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
           </select>
         </div>
 
         <!-- order -->
         <div>
-          <label for="order">Order</label>
+          <label for="order">Order*</label>
           <br />
           <select
             class="!com-w-full"
             formControlName="order"
             name="order"
             [ngClass]="{
-              'com-text-[#8E9BB3]': prizeForm.get('order').value === null
+              'com-text-[#8E9BB3]': prizeForm.get('order').value === ''
             }"
           >
-            <option selected disabled [value]="null">Select Order</option>
+            <option selected disabled value="">Select Order</option>
             <option [value]="1">1</option>
             <option [value]="2">2</option>
             <option [value]="3">3</option>
@@ -69,13 +70,13 @@
 
         <!-- prize_amount -->
         <div>
-          <label for="prize_amount">Prize Amount*</label>
+          <label for="prize_amount">Prize Amount</label>
           <div class="prize-amount">
-            <select name="currency_type" id="currency_type" formControlName="currency_type">
-              <option selected [value]="countryDetails[102].currency">
-                {{ countryDetails[102].currency }} ({{ countryDetails[102].symbol }})
+            <select name="currency_type" formControlName="currency_type">
+              <option selected [value]="countryDetails[0].currency">
+                {{ countryDetails[0].currency }} ({{ countryDetails[0].symbol }})
               </option>
-              <option *ngFor="let countryDetail of countryDetails" [value]="countryDetail.currency">
+              <option *ngFor="let countryDetail of countryDetails.slice(1)" [value]="countryDetail.currency">
                 {{ countryDetail.currency }} ({{ countryDetail.symbol }})
               </option>
             </select>

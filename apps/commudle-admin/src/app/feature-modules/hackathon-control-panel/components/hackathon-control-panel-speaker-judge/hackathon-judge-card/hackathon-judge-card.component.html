@@ -41,24 +41,39 @@
         </div>
       </a>
       <div>
-        <div class="actions">
-          <button nbButton ghost fullWidth status="primary" (click)="editJudge(judge)">Edit</button>
-          <button nbButton ghost fullWidth status="danger" (click)="deleteJudge(judge.id)">Delete</button>
+        <hr class="divided-line" />
+        <div class="invite-status">
+          <div class="status">
+            <span class="heading">Invite Status</span><br />
+            <span
+              class="value"
+              [ngClass]="{
+                'com-text-primary-500': judge.invite_status === EInvitationStatus.INVITED,
+                'com-text-green-600': judge.invite_status === EInvitationStatus.ACCEPTED,
+                'com-text-red-500': judge.invite_status === EInvitationStatus.REJECTED
+              }"
+            >
+              {{ judge.invite_status | uppercase }}</span
+            >
+          </div>
+          <div class="button">
+            <button
+              nbButton
+              ghost
+              fullWidth
+              status="primary"
+              outline
+              (click)="resendJudgeInvite()"
+              [disabled]="judge.invite_status === EInvitationStatus.ACCEPTED"
+            >
+              Resend Invite
+            </button>
+          </div>
         </div>
-        <div>
-          <button
-            *ngIf="judge.invite_status === EInvitationStatus.INVITED"
-            nbButton
-            ghost
-            fullWidth
-            status="primary"
-            (click)="resendJudgeInvite()"
-          >
-            Resend Invite
-          </button>
-          <button *ngIf="judge.invite_status !== EInvitationStatus.INVITED" nbButton ghost fullWidth status="primary">
-            {{ judge.invite_status | titlecase }}
-          </button>
+        <hr class="divided-line" />
+        <div class="actions">
+          <button nbButton ghost status="primary" (click)="editJudge(judge)">Edit</button>
+          <button nbButton ghost status="danger" (click)="deleteJudge(judge.id)">Delete</button>
         </div>
       </div>
     </nb-card-body>

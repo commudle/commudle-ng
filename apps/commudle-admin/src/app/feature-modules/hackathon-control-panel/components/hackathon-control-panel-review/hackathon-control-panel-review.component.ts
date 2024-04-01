@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import {
-  EHackathonRegistrationStatus,
-  EHackathonRegistrationStatusColor,
-} from 'apps/shared-models/hackathon-team.model';
 import * as moment from 'moment';
 import { RoundService, ToastrService, NoteService } from '@commudle/shared-services';
-import { NbDialogService } from '@commudle/theme';
-import { EDbModels, INote, IRound } from '@commudle/shared-models';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
+import {
+  EDbModels,
+  EHackathonRegistrationStatus,
+  EHackathonRegistrationStatusColor,
+  INote,
+  IRound,
+} from '@commudle/shared-models';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
+
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
   templateUrl: './hackathon-control-panel-review.component.html',
   styleUrls: ['./hackathon-control-panel-review.component.scss'],
 })
-export class HackathonControlPanelReviewComponent implements OnInit {
+export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   userResponses: IHackathonUserResponses[];
-
+  hackathon: IHackathon;
   moment = moment;
   EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   EHackathonRegistrationStatusColor = EHackathonRegistrationStatusColor;
@@ -30,6 +35,10 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   faPlus = faPlus;
   notesForm;
   notes: INote[];
+  dialogRef: NbDialogRef<unknown>;
+  EHackathonStatus = EHackathonStatus;
+  roundSelectionForEmail = 0;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
@@ -51,9 +60,19 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.fetchUserResponses(params.get('hackathon_id'));
+      this.fetchHackathon(params.get('hackathon_id'));
       this.indexRounds(params.get('hackathon_id'));
-      this.addNote();
     });
+  }
+
+  fetchHackathon(hackathonId) {
+    this.hackathonService.showHackathon(hackathonId).subscribe((data: IHackathon) => {
+      this.hackathon = data;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.dialogRef?.close();
   }
 
   fetchUserResponses(hackathonId) {
@@ -82,10 +101,14 @@ export class HackathonControlPanelReviewComponent implements OnInit {
       const userResponse = data.user_responses;
       this.notesIndex(data.team.id);
       this.selectedUserDetails = userResponse[0];
-      this.nbDialogService.open(dialog, {
+      this.dialogRef = this.nbDialogService.open(dialog, {
         context: { team: team, index: index, userResponse: userResponse },
       });
     });
+  }
+
+  openRoundSelectionUpdateEmailDialogBox(dialog) {
+    this.dialogRef = this.nbDialogService.open(dialog);
   }
   changeRoundOption(event, teamId, index) {
     this.hackathonService.changeTeamRound(teamId, event.target.value).subscribe((data) => {
@@ -109,9 +132,14 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   updateNotes(teamId) {
     for (const note of this.notesForm.value.note) {
       if (note.value !== '') {
-        const formData: any = new FormData();
+        const formData = new FormData();
         formData.append('note[text]', note.value);
-        this.noteService.createNote(formData, EDbModels.HACKATHON_TEAM, teamId);
+        this.noteService.createNote(formData, EDbModels.HACKATHON_TEAM, teamId).subscribe((data) => {
+          for (let index = 0; index < this.notesList.length; index++) {
+            this.removeNote(index);
+          }
+          this.notes.push(data);
+        });
       }
     }
   }
@@ -119,6 +147,27 @@ export class HackathonControlPanelReviewComponent implements OnInit {
   notesIndex(teamId) {
     this.noteService.indexNotes(teamId, EDbModels.HACKATHON_TEAM).subscribe((data) => {
       this.notes = data;
+      if (this.notes.length === 0) {
+        this.addNote();
+      }
     });
+  }
+
+  generateTeamRegistrationStatusNotification(teamId) {
+    this.hackathonService.generateTeamRegistrationStatusNotification(teamId).subscribe((data) => {
+      if (data) {
+        this.toastrService.notificationDialog('Email Sent');
+      }
+    });
+  }
+
+  OverallRoundSelectionUpdateEmail() {
+    if (this.roundSelectionForEmail > 0) {
+      this.hackathonService
+        .OverallRoundSelectionUpdateEmail(this.hackathon.id, this.roundSelectionForEmail)
+        .subscribe((data) => {
+          if (data) this.toastrService.successDialog('Emails sent successfully');
+        });
+    }
   }
 }

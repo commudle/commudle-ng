@@ -160,8 +160,7 @@
                 class="entity-update"
               >
                 <div class="update-details">
-                  <span> {{ update.details }}</span>
-                  <br />
+                  <div [innerHTML]="update.details"></div>
                   <span class="date">{{ moment(update.created_at).format('Do MMM YYYY') }} </span>
                 </div>
                 <nb-icon
@@ -181,7 +180,12 @@
                   class="build-updates"
                 >
                   <div [formGroupName]="i" class="build-update">
-                    <textarea formControlName="value" fullWidth nbInput placeholder="Update" required></textarea>
+                    <editor
+                      [init]="tinyMCEForUpdate"
+                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                      formControlName="value"
+                    >
+                    </editor>
                     <nb-icon (click)="removeUpdate(i)" class="clickable" icon="close-circle" status="danger"></nb-icon>
                   </div>
                   <span

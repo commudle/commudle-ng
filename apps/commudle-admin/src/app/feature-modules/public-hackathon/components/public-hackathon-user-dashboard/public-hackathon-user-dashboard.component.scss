@@ -1,0 +1,22 @@
+a {
+  @apply com-no-underline;
+}
+nb-card {
+  @apply com-mx-0;
+}
+
+.project-details {
+  nb-card-header {
+    @apply com-text-primary-500;
+  }
+  nb-card-body {
+    .project-name {
+      @apply com-text-Yankees-Blue com-text-lg com-font-semibold;
+    }
+  }
+  nb-card-footer {
+    a {
+      @apply com-text-primary-500 com-text-base com-font-semibold;
+    }
+  }
+}

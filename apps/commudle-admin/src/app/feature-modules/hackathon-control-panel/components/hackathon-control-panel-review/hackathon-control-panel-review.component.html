@@ -1,6 +1,15 @@
 <nb-card>
   <nb-card-body>
-    <table>
+    <button
+      nbButton
+      status="primary"
+      *ngIf="userResponses && userResponses.length > 0"
+      (click)="openRoundSelectionUpdateEmailDialogBox(OverallRoundSelectionUpdateEmailDialogBox)"
+      class="com-w-max"
+    >
+      Send round selection update email
+    </button>
+    <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
         <th width="500px">Name</th>
         <th width="200px">Updates</th>
@@ -31,7 +40,6 @@
             <span class="details">{{
               userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details
             }}</span>
-            <br />
             <span
               class="timeago"
               title="{{
@@ -51,7 +59,7 @@
         <td class="notes">
           <div *ngIf="userResponse.team.notes.length > 0">
             <span class="details">{{ userResponse.team.notes[userResponse.team.notes.length - 1].text }}</span>
-            <span class="notes-count"> {{ userResponse.team.notes.length - 1 }} Notes </span>
+            <span class="notes-count"> {{ userResponse.team.notes.length }} Notes </span>
           </div>
         </td>
         <td (click)="$event.stopPropagation()" class="com-cursor-pointer">
@@ -64,17 +72,28 @@
               [(ngModel)]="userResponse.team.registration_status"
               [class]="EHackathonRegistrationStatusColor[userResponse.team.registration_status]"
             >
-              <option
-                *ngFor="let registrationStatus of EHackathonRegistrationStatus | keyvalue"
-                [value]="registrationStatus.value"
-              >
-                {{ registrationStatus.value | titlecase }}
+              <option [value]="EHackathonRegistrationStatus.REGISTERED">
+                {{ EHackathonRegistrationStatus.REGISTERED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.WAITLISTED">
+                {{ EHackathonRegistrationStatus.WAITLISTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.ACCEPTED">
+                {{ EHackathonRegistrationStatus.ACCEPTED | titlecase }}
+              </option>
+              <option [value]="EHackathonRegistrationStatus.REJECTED">
+                {{ EHackathonRegistrationStatus.REJECTED | titlecase }}
               </option>
             </select>
           </div>
         </td>
       </tr>
     </table>
+
+    <ng-template #noUserResponse>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
+    </ng-template>
   </nb-card-body>
 </nb-card>
 
@@ -84,6 +103,9 @@
       <div class="heading">
         <span>{{ data.team.name }}</span>
         <div class="project-submit" *ngIf="data.team.community_build">Project Submitted</div>
+        <div class="project-link" *ngIf="data.team.community_build">
+          <a [routerLink]="['/builds', data.team.community_build.slug]"> Go to Project</a>
+        </div>
       </div>
       <button nbButton ghost (click)="ref.close()" shape="round">
         <fa-icon [icon]="faXmark"></fa-icon>
@@ -91,49 +113,117 @@
     </nb-card-header>
     <nb-card-body>
       <div class="action-buttons">
-        <button
-          nbButton
-          status="primary"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
-        >
-          Accepted
-        </button>
-        <button
-          nbButton
-          status="danger"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
-        >
-          Reject
-        </button>
-        <button
-          nbButton
-          status="warning"
-          fullWidth
-          (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
-        >
-          Waitlist
-        </button>
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REGISTERED">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
+          >
+            Accepted
+          </button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
+          >
+            Reject
+          </button>
+          <button
+            nbButton
+            status="warning"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
+          >
+            Waitlist
+          </button>
+        </div>
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
+            Send Acceptance Email
+          </button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Accept
+          </button>
+        </div>
+
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
+            Send Rejection Email
+          </button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Reject
+          </button>
+        </div>
+
+        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
+            Send Waitlist Email
+          </button>
+          <button
+            nbButton
+            status="danger"
+            fullWidth
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+          >
+            Undo Waitlist
+          </button>
+        </div>
       </div>
       <div
         class="round-select"
         *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED && hackathonRounds.length > 0"
       >
         <label>Round:</label>
-        <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
-          <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
-            {{ hackathonRound.name }}
-          </option>
-        </select>
+        <div *ngIf="data.team.round">
+          <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
+            <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+              {{ hackathonRound.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="!data.team.round">
+          <select (change)="changeRoundOption($event, data.team.id, data.index)">
+            <option selected disabled [value]="null">Select a round</option>
+            <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+              {{ hackathonRound.name }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div [formGroup]="notesForm" class="notes-form">
         <div formArrayName="note" class="field">
-          <label>Notes: </label>
+          <label>Notes </label>
           <div *ngIf="notes && notes.length > 0">
             <div *ngFor="let note of notes">
-              <textarea readonly fullWidth nbInput [value]="note.text"></textarea>
+              <div class="border-box-text">{{ note.text }}</div>
             </div>
           </div>
           <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
@@ -151,32 +241,34 @@
               <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
             </span>
           </div>
-          <button (click)="addNote()" class="add-button" nbButton status="warning">
-            <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
-            Add Note
-          </button>
-          <button
-            (click)="updateNotes(data.team.id)"
-            class="add-button"
-            nbButton
-            status="primary"
-            [disabled]="notesList.invalid"
-          >
-            Post Note
-          </button>
+          <div class="com-flex com-items-center com-gap-10 com-my-3">
+            <button (click)="addNote()" class="add-button" nbButton status="warning">
+              <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
+              Add Note
+            </button>
+            <button
+              (click)="updateNotes(data.team.id)"
+              class="add-button"
+              nbButton
+              status="primary"
+              [disabled]="notesList.invalid || notesList.length === 0"
+            >
+              Post Note
+            </button>
+          </div>
         </div>
       </div>
 
       <div *ngIf="data.team.entity_updates.length > 0">
-        <label>Updates:</label>
+        <label>Updates</label>
         <div *ngFor="let update of data.team.entity_updates">
-          <textarea nbInput fullWidth readonly [value]="update.details"></textarea>
+          <div class="border-box-text">{{ update.details }}</div>
         </div>
       </div>
 
       <div *ngIf="selectedUserDetails.project_description">
-        <label>Project Description:</label>
-        <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.project_description"> </textarea>
+        <label>Project Description</label>
+        <div class="border-box-text">{{ selectedUserDetails.project_description }}</div>
       </div>
 
       <div class="user-response-details">
@@ -189,50 +281,76 @@
             <div (click)="displayUserData(user)" class="name">{{ user.name }}</div>
           </div>
         </div>
-        <div *ngIf="selectedUserDetails">
+        <div *ngIf="selectedUserDetails" class="selected-user-details">
+          <a [routerLink]="['/users', selectedUserDetails.username]" target="_blank"> Go To Profile </a>
           <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
-            <label>About:</label>
+            <label>About</label>
             <textarea type="text" nbInput fullWidth readonly [value]="selectedUserDetails.about_me"> </textarea>
           </div>
 
           <!-- email -->
           <div *ngIf="selectedUserDetails.user_email">
-            <label>Email:</label>
+            <label>Email</label>
             <input type="email" nbInput fullWidth readonly [value]="selectedUserDetails.user_email" />
           </div>
 
           <!-- designation -->
           <div *ngIf="selectedUserDetails.designation">
-            <label>Designation:</label>
+            <label>Designation</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.designation" />
           </div>
 
           <!-- Education -->
           <div *ngIf="selectedUserDetails.education">
-            <label>Education:</label>
+            <label>Education</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.education" />
           </div>
 
           <!-- Work Experience -->
           <div *ngIf="selectedUserDetails.work_experience_months">
-            <label>Work Experience in months:</label>
+            <label>Work Experience in Year</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.work_experience_months" />
           </div>
 
           <!-- Location -->
           <div *ngIf="selectedUserDetails.location">
-            <label>Location:</label>
+            <label>Location</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.location" />
           </div>
 
           <!-- Phone Number -->
           <div *ngIf="selectedUserDetails.phone">
-            <label>Phone:</label>
+            <label>Phone</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
           </div>
         </div>
       </div>
     </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #OverallRoundSelectionUpdateEmailDialogBox let-ref="dialogRef" let-data>
+  <nb-card
+    ><nb-card-body>
+      <div class="select-wrapper">
+        <select [(ngModel)]="roundSelectionForEmail">
+          <option hidden [ngValue]="0">Select round</option>
+          <option *ngFor="let hackathonRound of hackathonRounds" [ngValue]="hackathonRound.id">
+            {{ hackathonRound.name }}
+          </option>
+        </select>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        [disabled]="roundSelectionForEmail === 0"
+        (click)="OverallRoundSelectionUpdateEmail()"
+      >
+        Send
+      </button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>

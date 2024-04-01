@@ -1,15 +1,15 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { NbWindowService } from '@commudle/theme';
-import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/community-builds.service';
 import { ICommunityBuild, EPublishStatus, EPublishStatusColors } from 'apps/shared-models/community-build.model';
 import { Component, OnInit, Input, TemplateRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 import { StatsCommunityBuildsService } from 'apps/commudle-admin/src/app/services/stats/stats-community-builds.service';
-
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-build-list-item',
   templateUrl: './build-list-item.component.html',
-  styleUrls: ['./build-list-item.component.scss']
+  styleUrls: ['./build-list-item.component.scss'],
 })
 export class BuildListItemComponent implements OnInit {
   @ViewChild('confirmDeleteTemplate') confirmDeleteTemplate: TemplateRef<any>;
@@ -21,37 +21,32 @@ export class BuildListItemComponent implements OnInit {
   moment = moment;
   windowRef;
   stats;
+  EDbModels = EDbModels;
 
   constructor(
-    private communityBuildsService: CommunityBuildsService,
     private windowService: NbWindowService,
-    private statsCommunityBuildsService: StatsCommunityBuildsService
-  ) { }
+    private statsCommunityBuildsService: StatsCommunityBuildsService,
+  ) {}
 
   ngOnInit() {
     this.getStats();
   }
 
   openDeleteConfirmation(cBuild) {
-    this.windowRef = this.windowService.open(
-      this.confirmDeleteTemplate,
-      {title: `Are you sure you want to delete ${cBuild.name}?`, context: { cb: cBuild } },
-    );
+    this.windowRef = this.windowService.open(this.confirmDeleteTemplate, {
+      title: `Are you sure you want to delete ${cBuild.name}?`,
+      context: { cb: cBuild },
+    });
   }
 
   destroyBuild(buildId) {
     this.deleteBuild.emit(buildId);
-    this.windowRef.close()
+    this.windowRef.close();
   }
 
   getStats() {
-    this.statsCommunityBuildsService.userEngagement(this.cb.id).subscribe(
-      data => {
-        this.stats = data;
-      }
-    );
+    this.statsCommunityBuildsService.userEngagement(this.cb.id).subscribe((data) => {
+      this.stats = data;
+    });
   }
-
-
-
 }

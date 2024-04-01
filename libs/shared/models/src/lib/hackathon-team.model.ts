@@ -1,6 +1,8 @@
-import { IRound, ICommunityBuild, INote } from '@commudle/shared-models';
-import { IEventUpdate } from 'apps/shared-models/event_update.model';
-import { IHackathonWinner } from 'apps/shared-models/hackathon-winner.model';
+import { ICommunityBuild } from './community-build.model';
+import { IRound } from './round.model';
+import { INote } from './note.model';
+import { IEntityUpdate } from './entity-update.model';
+import { IHackathonWinner } from './hackathon-winner.model';
 
 export interface IHackathonTeam {
   id: number;
@@ -10,21 +12,22 @@ export interface IHackathonTeam {
   registration_status: EHackathonRegistrationStatus;
   round?: IRound;
   community_build?: ICommunityBuild;
-  entity_updates?: IEventUpdate[];
+  entity_updates?: IEntityUpdate[];
   notes: INote[];
   hackathon_winners: IHackathonWinner[];
+  hackathon_id: number;
 }
 
 export enum EHackathonRegistrationStatus {
-  ACCEPTED = 'accepted',
-  REJECTED = 'rejected',
   REGISTERED = 'registered',
   WAITLISTED = 'waitlisted',
+  ACCEPTED = 'accepted',
+  REJECTED = 'rejected',
 }
 
 export enum EHackathonRegistrationStatusColor {
-  accepted = 'com-bg-green-500',
-  rejected = 'com-bg-red-500',
   registered = 'com-bg-primary-500',
   waitlisted = 'com-bg-orange-400',
+  accepted = 'com-bg-green-500',
+  rejected = 'com-bg-red-500',
 }

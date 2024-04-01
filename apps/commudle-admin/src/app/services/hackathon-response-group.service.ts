@@ -18,30 +18,43 @@ export class HackathonResponseGroupService {
     dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
+    const requestBody = {
+      hackathon_response_group: {
+        user_details: userDetails,
+        registration_type_id: registrationTypeId,
+        name: name,
+      },
+    };
+
+    if (dataFormId !== '') {
+      requestBody['data_form_id'] = dataFormId;
+    }
 
     return this.http.post<IHackathonResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.CREATE),
-      {
-        hackathon_response_group: {
-          user_details: userDetails,
-          registration_type_id: registrationTypeId,
-          name: name,
-        },
-        data_form_id: dataFormId,
-      },
+      requestBody,
       { params },
     );
   }
 
-  updateHackathonResponseGroup(userDetails, hackathonResponseGroupId): Observable<IHackathonResponseGroup> {
+  updateHackathonResponseGroup(
+    userDetails,
+    hackathonResponseGroupId,
+    dataFormId?,
+  ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    const requestBody = {
+      hackathon_response_group: {
+        user_details: userDetails,
+      },
+    };
+
+    if (dataFormId !== '') {
+      requestBody['data_form_id'] = dataFormId;
+    }
     return this.http.put<IHackathonResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.UPDATE),
-      {
-        hackathon_response_group: {
-          user_details: userDetails,
-        },
-      },
+      requestBody,
       { params },
     );
   }
