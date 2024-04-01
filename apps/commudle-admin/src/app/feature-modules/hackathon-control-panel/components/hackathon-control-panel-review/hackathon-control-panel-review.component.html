@@ -91,8 +91,8 @@
     </table>
 
     <ng-template #noUserResponse>
-      <div *ngIf="hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
-      <div *ngIf="hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
     </ng-template>
   </nb-card-body>
 </nb-card>
