@@ -31,7 +31,11 @@
           (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
           (markRead)="changeStatus(ENotificationStatuses.READ, notification)"
           [notificationType]="ENotificationSenderTypes.KOMMUNITY"
-          [notificationMessage]="notification.notification_message"
+          [notificationMessage]="
+            notification.is_dynamic || notification.message === null
+              ? notification.notification_message
+              : notification.message
+          "
           [ENotificationStatusesUnread]="notification.status === ENotificationStatuses.UNREAD"
         ></app-notifications-list-item>
       </div>
