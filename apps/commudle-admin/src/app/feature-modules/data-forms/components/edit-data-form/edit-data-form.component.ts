@@ -43,7 +43,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     toolbar: false,
     plugins: 'autoresize',
     content_style:
-      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 14px !important;}",
   };
 
   @ViewChild('cdkDrag') cdkDrag: any;
