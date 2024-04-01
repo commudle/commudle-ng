@@ -19,7 +19,6 @@ import {
   faLaptopCode,
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { IHackathonTeam, EHackathonRegistrationStatus } from 'apps/shared-models/hackathon-team.model';
 import { SeoService } from '@commudle/shared-services';
 
 @Component({
