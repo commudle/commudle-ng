@@ -1,5 +1,6 @@
 import { IAttachedFile } from './attached-file.model';
 import { IUser } from './user.model';
+import { IUserMessage } from 'apps/shared-models/user_message.model';
 
 export interface ICommunityChannel {
   id: number;
@@ -21,6 +22,7 @@ export interface ICommunityChannel {
     id: number;
     name: string;
   };
+  latest_message?: IUserMessage;
 }
 
 export interface ICommunityChannels {
