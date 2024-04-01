@@ -50,6 +50,8 @@ export class EmailerComponent implements OnInit, OnDestroy {
     height: 200,
     menubar: false,
     convert_urls: false,
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     plugins:
       'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:

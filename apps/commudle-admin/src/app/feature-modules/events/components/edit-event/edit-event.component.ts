@@ -55,11 +55,12 @@ export class EditEventComponent implements OnInit {
     height: 300,
     menubar: false,
     convert_urls: false,
-    font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     plugins:
       'advlist autolink link image charmap preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:
-      'undo redo | h2 h3 h4 fontsize | bullist numlist | formatselect | bold italic backcolor | \
+      'undo redo | bullist numlist | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           outdent indent | removeformat | help',
   };
