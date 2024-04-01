@@ -157,7 +157,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   generateTeamRegistrationStatusNotification(teamId) {
     this.hackathonService.generateTeamRegistrationStatusNotification(teamId).subscribe((data) => {
       if (data) {
-        this.toastrService.successDialog('Emails sent successfully');
+        this.toastrService.successDialog('Emails are being delivered!');
       }
     });
   }
@@ -167,7 +167,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
       this.hackathonService
         .OverallRoundSelectionUpdateEmail(this.hackathon.id, this.roundSelectionForEmail, this.message)
         .subscribe((data) => {
-          if (data) this.toastrService.successDialog('Emails sent successfully');
+          if (data) this.toastrService.successDialog('Emails are being delivered!');
         });
     }
   }

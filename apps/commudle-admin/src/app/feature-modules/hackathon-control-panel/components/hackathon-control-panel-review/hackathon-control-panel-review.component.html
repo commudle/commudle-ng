@@ -19,7 +19,7 @@
       <tr
         *ngFor="let userResponse of userResponses; let i = index"
         (click)="openDialogBox(userResponseDetailsDialogBox, userResponse.team.id, i)"
-        class="com-cursor-pointer"
+        class="user-response"
       >
         <td class="name">
           <div class="team-details">
@@ -91,8 +91,8 @@
     </table>
 
     <ng-template #noUserResponse>
-      <div *ngIf="hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
-      <div *ngIf="hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
     </ng-template>
   </nb-card-body>
 </nb-card>
