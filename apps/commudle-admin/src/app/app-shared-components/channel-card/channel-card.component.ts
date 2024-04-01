@@ -23,9 +23,9 @@ export class ChannelCardComponent implements OnInit, OnDestroy {
   showDescription = true;
 
   constructor(private communitiesService: CommunitiesService) {
-    // this.showDescriptioninterval = interval(3000).subscribe(() => {
-    //   this.showDescription = !this.showDescription;
-    // });
+    this.showDescriptioninterval = interval(3000).subscribe(() => {
+      this.showDescription = !this.showDescription;
+    });
   }
 
   ngOnInit(): void {
@@ -33,9 +33,9 @@ export class ChannelCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // if (this.showDescriptioninterval) {
-    //   this.showDescriptioninterval.unsubscribe();
-    // }
+    if (this.showDescriptioninterval) {
+      this.showDescriptioninterval.unsubscribe();
+    }
   }
 
   getCommunity() {

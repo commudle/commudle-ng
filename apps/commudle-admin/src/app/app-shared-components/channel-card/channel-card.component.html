@@ -14,7 +14,7 @@
           <p class="name">{{ channel.name }}</p>
           <div class="description-and-latest-message">
             <p *ngIf="showDescription" class="description">{{ channel.description }}</p>
-            <!-- <p *ngIf="!showDescription" class="latest-message">{{ channel.name }}</p> -->
+            <p *ngIf="!showDescription" class="latest-message">{{ channel.latest_message.content }}</p>
           </div>
           <div class="logo-and-member-count">
             <app-badge

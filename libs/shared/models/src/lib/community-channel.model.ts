@@ -21,6 +21,9 @@ export interface ICommunityChannel {
     id: number;
     name: string;
   };
+  latest_message?: {
+    content: string;
+  };
 }
 
 export interface ICommunityChannels {
