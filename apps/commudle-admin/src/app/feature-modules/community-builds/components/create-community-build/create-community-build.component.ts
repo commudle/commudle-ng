@@ -133,7 +133,6 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-    this.getParent();
   }
 
   ngOnDestroy() {
@@ -188,6 +187,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
         });
       } else {
         this.tags = this.tags.concat(this.paramsTags);
+        this.getParent();
       }
     });
   }

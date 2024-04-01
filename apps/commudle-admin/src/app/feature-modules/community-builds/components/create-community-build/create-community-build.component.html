@@ -100,7 +100,8 @@
                 <div
                   *ngIf="
                     teammate.status === eUserRolesUserStatus.INVITED ||
-                    teammate.status === eUserRolesUserStatus.ACCEPTED
+                    teammate.status === eUserRolesUserStatus.ACCEPTED ||
+                    teammate.status === eUserRolesUserStatus.AUTO_JOINED
                   "
                   class="d-flex justify-content-space-between align-items-center"
                 >
