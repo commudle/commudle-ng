@@ -19,6 +19,7 @@ import {
   faLaptopCode,
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-homepage',
@@ -55,6 +56,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private router: Router,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
@@ -79,6 +81,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
         this.community = data.community;
         this.updateHeaderVariation();
         this.getContactInfo();
+        this.setSeoService();
       }),
     );
   }
@@ -121,5 +124,19 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
           }
         }),
     );
+  }
+
+  setSeoService() {
+    this.seoService.setTags(
+      this.hackathon.name + 'by' + this.community.name,
+      this.removeHtmlTags(this.hackathon.description),
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }

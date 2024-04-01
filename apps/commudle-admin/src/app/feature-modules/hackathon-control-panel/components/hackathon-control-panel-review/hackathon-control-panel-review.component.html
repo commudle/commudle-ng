@@ -1,6 +1,15 @@
 <nb-card>
   <nb-card-body>
-    <table>
+    <button
+      nbButton
+      status="primary"
+      *ngIf="userResponses && userResponses.length > 0"
+      (click)="openRoundSelectionUpdateEmailDialogBox(OverallRoundSelectionUpdateEmailDialogBox)"
+      class="com-w-max"
+    >
+      Send round selection update email
+    </button>
+    <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
         <th width="500px">Name</th>
         <th width="200px">Updates</th>
@@ -80,6 +89,11 @@
         </td>
       </tr>
     </table>
+
+    <ng-template #noUserResponse>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.DRAFT">Applications not open</div>
+      <div *ngIf="hackathon && hackathon.status === EHackathonStatus.OPEN">No Applications received till now</div>
+    </ng-template>
   </nb-card-body>
 </nb-card>
 
@@ -126,7 +140,12 @@
           </button>
         </div>
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
-          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
             Send Acceptance Email
           </button>
           <button
@@ -140,7 +159,12 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
-          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
             Send Rejection Email
           </button>
           <button
@@ -154,7 +178,12 @@
         </div>
 
         <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
-          <button nbButton status="primary" fullWidth (click)="generateTeamRegistrationStatus(data.team.id)">
+          <button
+            nbButton
+            status="primary"
+            fullWidth
+            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+          >
             Send Waitlist Email
           </button>
           <button
@@ -298,5 +327,30 @@
         </div>
       </div>
     </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #OverallRoundSelectionUpdateEmailDialogBox let-ref="dialogRef" let-data>
+  <nb-card
+    ><nb-card-body>
+      <div class="select-wrapper">
+        <select [(ngModel)]="roundSelectionForEmail">
+          <option hidden [ngValue]="0">Select round</option>
+          <option *ngFor="let hackathonRound of hackathonRounds" [ngValue]="hackathonRound.id">
+            {{ hackathonRound.name }}
+          </option>
+        </select>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="primary"
+        [disabled]="roundSelectionForEmail === 0"
+        (click)="OverallRoundSelectionUpdateEmail()"
+      >
+        Send
+      </button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>

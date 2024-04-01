@@ -285,9 +285,9 @@ export class HackathonService {
     );
   }
 
-  generateTeamRegistrationStatus(teamId): Observable<boolean> {
+  generateTeamRegistrationStatusNotification(teamId): Observable<boolean> {
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION),
       {
         team_id: teamId,
       },
@@ -334,6 +334,23 @@ export class HackathonService {
       {
         invite_code: inviteCode,
         invite_status: inviteStatus,
+      },
+    );
+  }
+
+  inviteUserByEmail(hackathonId, message): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INVITE_USER), {
+      hackathon_id: hackathonId,
+      message: message,
+    });
+  }
+
+  OverallRoundSelectionUpdateEmail(hackathonId, hackathonRoundId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.OVERALL_ROUND_SELECTION_UPDATE_EMAIL),
+      {
+        hackathon_id: hackathonId,
+        hackathon_round_id: hackathonRoundId,
       },
     );
   }

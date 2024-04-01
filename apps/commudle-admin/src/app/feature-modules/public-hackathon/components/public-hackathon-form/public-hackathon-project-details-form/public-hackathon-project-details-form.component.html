@@ -35,13 +35,10 @@
     ></textarea>
   </div>
 
-  <button
-    [disabled]="hackathonProjectDetailsForm.invalid"
-    type="submit"
-    (click)="submitProjectDetails()"
-    nbButton
-    status="primary"
-  >
-    Next
-  </button>
+  <div class="action-buttons">
+    <button status="primary" nbButton (click)="previousButton()">Previous</button>
+    <button [disabled]="hackathonProjectDetailsForm.invalid" (click)="submitProjectDetails()" nbButton status="primary">
+      Next
+    </button>
+  </div>
 </form>

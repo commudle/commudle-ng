@@ -17,6 +17,7 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   @Input() hackathonResponseGroup: IHackathonResponseGroup;
   @Input() hasTeammateOption: boolean;
   @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
+  @Output() previousButtonEvent = new EventEmitter<any>();
   showEmailError = false;
   teammateForm: FormGroup;
   currentUser: ICurrentUser;
@@ -38,7 +39,14 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   }
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
+    this.authWatchService.currentUser$.subscribe((data) => {
+      this.currentUser = data;
+      if (!this.hasTeammateOption) {
+        this.teammateForm.patchValue({
+          name: this.currentUser.name,
+        });
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -92,5 +100,9 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
 
   submitTeammateDetails() {
     this.submitTeammateDetailsEvent.emit(this.teammateForm.value);
+  }
+
+  previousButton() {
+    this.previousButtonEvent.emit();
   }
 }

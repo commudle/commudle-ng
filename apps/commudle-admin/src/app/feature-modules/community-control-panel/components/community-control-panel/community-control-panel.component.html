@@ -53,33 +53,6 @@
               <nb-icon icon="calendar" status="info"></nb-icon>
               <span class="title">Events</span>
             </a>
-            <div class="com-relative" *ngIf="isOrganizer">
-              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
-                <nb-badge
-                  *ngIf="notificationCount > 0"
-                  [text]="notificationCount.toString()"
-                  status="danger"
-                ></nb-badge>
-                <nb-icon icon="bell" status="success"></nb-icon>
-                <span class="title">Activity</span>
-              </a>
-            </div>
-            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="people" status="success"></nb-icon>
-              <span class="title">Members</span>
-            </a>
-            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
-              <fa-icon [icon]="faScroll"></fa-icon>
-              <span class="title">Forms</span>
-            </a>
-            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
-              <fa-icon [icon]="icons.faFileLines"></fa-icon>
-              <span class="title">Pages</span>
-            </a>
-            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
-              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
-              <span class="title">Newsletters</span>
-            </a>
             <a
               *ngIf="community.hackathon_enabled"
               [routerLink]="['hackathons']"
@@ -112,7 +85,7 @@
             <a
               *ngIf="!community.hackathon_enabled"
               class="d-flex disabled com-relative"
-              nbTooltip="Now we can create hackathon, please write a mail to arpan@commudle.com to enable"
+              nbTooltip="Hackathons are now available in beta on Commudle. To gain access, please write an email to support@commudle.com"
             >
               <app-badge
                 class="-com-mt-4"
@@ -135,6 +108,33 @@
                 alt="Hackathon Icon"
               />
               <span class="title">Hackathons</span>
+            </a>
+            <div class="com-relative" *ngIf="isOrganizer">
+              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
+                <nb-badge
+                  *ngIf="notificationCount > 0"
+                  [text]="notificationCount.toString()"
+                  status="danger"
+                ></nb-badge>
+                <nb-icon icon="bell" status="success"></nb-icon>
+                <span class="title">Activity</span>
+              </a>
+            </div>
+            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Members</span>
+            </a>
+            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="faScroll"></fa-icon>
+              <span class="title">Forms</span>
+            </a>
+            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
+              <fa-icon [icon]="icons.faFileLines"></fa-icon>
+              <span class="title">Pages</span>
+            </a>
+            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
+              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
+              <span class="title">Newsletters</span>
             </a>
             <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
               <nb-icon icon="people" status="success"></nb-icon>
@@ -173,7 +173,7 @@
             <a
               *ngIf="!community.payments_enabled"
               class="d-flex disabled com-relative"
-              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to arpan@commudle.com"
+              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to support@commudle.com"
             >
               <app-badge
                 class="-com-mt-4"

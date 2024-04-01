@@ -802,12 +802,14 @@ export const API_ROUTES = {
     INDEX_USER_RESPONSES: 'api/v2/hackathons/index_user_responses', //GET
     SHOW_USER_RESPONSES_BY_TEAM: 'api/v2/hackathons/show_user_responses_by_team', //GET
     CHANGE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/change_team_registration_status', //PUT
-    GENERATE_TEAM_REGISTRATION_STATUS: 'api/v2/hackathons/generate_team_registration_status', //POST
+    GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION: 'api/v2/hackathons/generate_team_registration_status_notification', //POST
     CHANGE_TEAM_ROUND_STATUS: 'api/v2/hackathons/change_team_round_status', //PUT
     GET_HACKATHON_CURRENT_REGISTRATION_DETAILS: 'api/v2/hackathons/get_hackathon_current_registration_details', //GET
     UPDATE_STATUS: 'api/v2/hackathons/update_status', //PUT
     VERIFY_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/verify_invitation_token_judge', //GET
     UPDATE_INVITATION_TOKEN_JUDGE: 'api/v2/hackathons/update_invitation_token_judge', //PUT
+    INVITE_USER: 'api/v2/hackathons/invite_user', //POST
+    OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
@@ -846,6 +848,7 @@ export const API_ROUTES = {
     GET_TEAM_DETAILS: 'api/v2/hackathon_user_response/get_team_details', //GET
     VERIFY_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/verify_invitation_token_hur', //GET
     UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
+    COMPLETE_HUR_STATUS: 'api/v2/hackathon_user_response/complete_hur_status', //PUT
   },
 
   ENTITY_UPDATES: {
