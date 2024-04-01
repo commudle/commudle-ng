@@ -1,8 +1,13 @@
 <nb-card>
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="communities-cards-list">
-      <app-communities-card *ngFor="let community of communities" [community]="community"></app-communities-card>
+    <div class="communities-cards">
+      <div *ngFor="let community of communities" class="community-card">
+        <commudle-featured-community-card-medium
+          [community]="community"
+          [showDescription]="true"
+        ></commudle-featured-community-card-medium>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>
