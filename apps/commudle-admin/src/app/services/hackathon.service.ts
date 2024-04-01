@@ -345,12 +345,13 @@ export class HackathonService {
     });
   }
 
-  OverallRoundSelectionUpdateEmail(hackathonId, hackathonRoundId): Observable<boolean> {
+  OverallRoundSelectionUpdateEmail(hackathonId, hackathonRoundId, message: string): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.OVERALL_ROUND_SELECTION_UPDATE_EMAIL),
       {
         hackathon_id: hackathonId,
         hackathon_round_id: hackathonRoundId,
+        message: message,
       },
     );
   }

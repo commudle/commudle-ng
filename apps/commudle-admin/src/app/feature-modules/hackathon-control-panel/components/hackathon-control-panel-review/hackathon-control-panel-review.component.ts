@@ -38,6 +38,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   dialogRef: NbDialogRef<unknown>;
   EHackathonStatus = EHackathonStatus;
   roundSelectionForEmail = 0;
+  message = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -156,7 +157,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   generateTeamRegistrationStatusNotification(teamId) {
     this.hackathonService.generateTeamRegistrationStatusNotification(teamId).subscribe((data) => {
       if (data) {
-        this.toastrService.notificationDialog('Email Sent');
+        this.toastrService.successDialog('Emails sent successfully');
       }
     });
   }
@@ -164,7 +165,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   OverallRoundSelectionUpdateEmail() {
     if (this.roundSelectionForEmail > 0) {
       this.hackathonService
-        .OverallRoundSelectionUpdateEmail(this.hackathon.id, this.roundSelectionForEmail)
+        .OverallRoundSelectionUpdateEmail(this.hackathon.id, this.roundSelectionForEmail, this.message)
         .subscribe((data) => {
           if (data) this.toastrService.successDialog('Emails sent successfully');
         });

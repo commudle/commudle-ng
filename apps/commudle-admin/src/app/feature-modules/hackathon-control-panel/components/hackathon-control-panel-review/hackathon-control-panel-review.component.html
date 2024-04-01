@@ -331,15 +331,29 @@
 </ng-template>
 
 <ng-template #OverallRoundSelectionUpdateEmailDialogBox let-ref="dialogRef" let-data>
-  <nb-card
-    ><nb-card-body>
-      <div class="select-wrapper">
+  <nb-card class="round-selection-mailer">
+    <nb-card-header>
+      <span>Send round selection update email</span>
+      <button nbButton ghost (click)="ref.close()" shape="round">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <commudle-alert
+        [info]="true"
+        message="This will send a pre-formatted email and a notification to all members of the community"
+      ></commudle-alert>
+      <div class="round-select">
         <select [(ngModel)]="roundSelectionForEmail">
-          <option hidden [ngValue]="0">Select round</option>
+          <option hidden [ngValue]="0">Select round*</option>
           <option *ngFor="let hackathonRound of hackathonRounds" [ngValue]="hackathonRound.id">
             {{ hackathonRound.name }}
           </option>
         </select>
+      </div>
+      <div>
+        <label for="message">Message (optional)</label>
+        <textarea name="message" [(ngModel)]="message" placeholder="Message" nbInput fullWidth></textarea>
       </div>
     </nb-card-body>
     <nb-card-footer>
