@@ -8,7 +8,7 @@ import {
   IHackathonTeam,
   IHackathonTrack,
   IRound,
-  ICommunity
+  ICommunity,
 } from '@commudle/shared-models';
 import { FaqService, RoundService, countries_details } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';

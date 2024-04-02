@@ -1,22 +1,34 @@
+.main-column {
+  @apply com-m-0 md:com-mr-4 com-mr-0;
+}
+
+.speakers {
+  @apply com-mt-6;
+}
+
 .communities-cards {
-  @apply com-flex com-flex-nowrap com-gap-4 com-overflow-auto;
+  @apply com-flex com-flex-wrap com-gap-4 com-overflow-auto;
 
   @screen lg {
     @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
   }
+
+  .community-card {
+    @apply md:com-w-[274px] com-w-full;
+  }
 }
 
 nb-card {
-  @apply com-mx-0 md:com-mx-2;
+  @apply com-mx-0;
 }
 
 nb-card {
   .header {
     @apply com-flex com-space-x-4 com-items-center com-overflow-auto;
     .icon {
-      @apply com-bg-green-200 com-border com-border-solid com-border-green-600 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4;
+      @apply com-bg-blue-100 com-border com-border-solid com-border-primary-500 com-rounded-full com-w-6 com-h-6 md:com-w-9 md:com-h-9 com-flex com-justify-center com-items-center com-p-4;
       fa-icon {
-        @apply com-text-green-600;
+        @apply com-text-primary-500;
       }
     }
 
@@ -25,7 +37,7 @@ nb-card {
     }
   }
   .card-body {
-    @apply com-px-0 com-mx-6;
+    @apply com-px-0 com-mx-4;
   }
 }
 .event-card-header {
@@ -37,5 +49,23 @@ nb-card {
 }
 
 .channels-cards-list {
-  @apply com-flex com-flex-nowrap md:com-flex-wrap com-justify-between com-space-x-3 md:com-space-x-0;
+  @apply com-flex com-flex-wrap com-justify-between md:com-space-x-0 com-gap-4;
+
+  .channel-card {
+    @apply md:com-w-[420px] com-w-full;
+  }
+}
+
+.forums-cards-list {
+  @apply com-flex com-flex-wrap com-gap-4;
+
+  .forum-card {
+    @apply md:com-w-[266px] com-w-full;
+  }
+}
+
+.speakers-upcoming,
+.recent-tech,
+.speakers {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
 }

@@ -1,9 +1,9 @@
-<a [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]" class="com-no-underline">
+<a [routerLink]="['/communities', channel.kommunity_id, 'channels', channel.id]" class="com-no-underline">
   <nb-card [ngClass]="horizontalScroll ? 'com-w-72' : 'com-w-full'">
     <nb-card-body>
       <div class="logo-section">
         <div class="logo" *ngIf="channel.logo">
-          <img [src]="channel.logo.url" [alt]="channel.name" [title]="channel.name" />
+          <img [src]="channel.logo.i64" [alt]="channel.name" [title]="channel.name" />
         </div>
         <div class="without-logo" *ngIf="!channel.logo">
           <nb-icon icon="hash"></nb-icon>
@@ -11,14 +11,26 @@
       </div>
       <div class="details-container">
         <div class="details">
-          <div *ngIf="community" class="community-badge">
-            <app-community-badge [community]="community"></app-community-badge>
-          </div>
           <p class="name">{{ channel.name }}</p>
-          <p class="members-count">{{ channel.member_count }} Members</p>
-          <p class="description">{{ channel.description }}</p>
+          <div class="description-and-latest-message">
+            <p *ngIf="showDescription" class="description">{{ channel.description }}</p>
+            <p *ngIf="!showDescription" class="latest-message">{{ channel.latest_message.content }}</p>
+          </div>
+          <div class="logo-and-member-count">
+            <app-badge
+              [text]="channel.member_count"
+              [fontColor]="'com-text-tAuro-Metal-Saurus'"
+              [nbIcon]="'people-outline'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray-Light'"
+            ></app-badge>
+            <div class="community-badge">
+              <app-community-badge *ngIf="community" [community]="community" [size]="'small'"></app-community-badge>
+            </div>
+          </div>
         </div>
-        <button class="join-channel" nbButton shape="round" status="base">Join Channel</button>
+        <button class="join-channel" nbButton outline shape="round" status="primary">Join Channel</button>
       </div>
     </nb-card-body>
   </nb-card>

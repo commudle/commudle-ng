@@ -121,3 +121,10 @@ nb-card-body {
 .border-box-text {
   @apply com-border com-border-solid com-border-Bright-Gray com-rounded-md com-px-2 com-py-3 com-my-1;
 }
+
+.round-selection-mailer {
+  @apply md:com-w-[30dvw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+}
