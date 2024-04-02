@@ -1,4 +1,4 @@
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
+import { IHackathonPrize } from './hackathon-prize.model';
 
 export interface IHackathonWinner {
   id: number;

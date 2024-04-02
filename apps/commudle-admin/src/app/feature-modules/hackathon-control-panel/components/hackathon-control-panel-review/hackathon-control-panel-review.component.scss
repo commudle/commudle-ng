@@ -2,6 +2,10 @@ table {
   border-collapse: collapse;
   width: 100%;
 
+  .user-response {
+    @apply com-cursor-pointer hover:com-bg-gray-100;
+  }
+
   .name {
     @apply com-flex com-gap-4 com-flex-wrap com-justify-between com-mr-5;
     .team-details {
@@ -116,4 +120,11 @@ nb-card-body {
 
 .border-box-text {
   @apply com-border com-border-solid com-border-Bright-Gray com-rounded-md com-px-2 com-py-3 com-my-1;
+}
+
+.round-selection-mailer {
+  @apply md:com-w-[30dvw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
 }

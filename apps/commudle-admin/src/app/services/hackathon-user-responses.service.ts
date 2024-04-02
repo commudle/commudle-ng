@@ -86,4 +86,13 @@ export class HackathonUserResponsesService {
       },
     );
   }
+
+  updateHurStatusComplete(hackathonUserResponseId): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.COMPLETE_HUR_STATUS),
+      {
+        hackathon_user_response_id: hackathonUserResponseId,
+      },
+    );
+  }
 }

@@ -62,7 +62,7 @@ export class NewDataFormComponent implements OnInit {
     toolbar: false,
     plugins: 'autoresize',
     content_style:
-      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 14px !important;}",
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
   };
 
   initQuestion(): FormGroup {

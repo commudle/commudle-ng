@@ -132,13 +132,29 @@
               <div class="action-button-name">Channels</div>
             </a> -->
 
-              <!-- <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
-              <div class="icon">
-                <fa-icon [icon]="icons.faEnvelope"></fa-icon>
-              </div>
-              <div class="action-button-name">Emails</div>
-            </a> -->
+              <a class="action-button" [routerLink]="['emails']" routerLinkActive="active">
+                <div class="icon">
+                  <fa-icon [icon]="icons.faEnvelope"></fa-icon>
+                </div>
+                <div class="action-button-name">Communications</div>
+              </a>
             </div>
+          </div>
+        </div>
+        <hr class="divided-line" />
+        <div>
+          <div class="category-heading">Other Links</div>
+          <div *ngIf="hackathon && community">
+            <a
+              class="action-button"
+              [routerLink]="['/communities', community.slug, 'hackathons', hackathon.slug]"
+              target="_blank"
+            >
+              <div class="icon">
+                <fa-icon [icon]="icons.faArrowUpRightFromSquare"></fa-icon>
+              </div>
+              <div class="action-button-name">Public Page</div>
+            </a>
           </div>
         </div>
       </div>

@@ -36,10 +36,9 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     plugins:
       'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
     toolbar:
-      'h2  h3  h4  h5  h6 fontsize | bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
+      'bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
     default_link_target: '_blank',
     branding: false,
-    font_size_formats: '12px 14px 16px 18px 24px',
   };
 
   constructor(

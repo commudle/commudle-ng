@@ -2,7 +2,7 @@
   <nb-card class="hackathon-card">
     <nb-card-header>
       <commudle-banner-image
-        [headerImagePath]="hackathon.banner_image.url"
+        [headerImagePath]="hackathon.banner_image ? hackathon.banner_image.url : staticAssets.hackathon_empty_state"
         [name]="hackathon.name"
         [bottomLeftCurve]="false"
         [bottomRightCurve]="false"

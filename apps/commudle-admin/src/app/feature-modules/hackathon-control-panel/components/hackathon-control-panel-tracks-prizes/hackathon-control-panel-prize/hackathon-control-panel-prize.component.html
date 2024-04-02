@@ -44,7 +44,7 @@
             }"
           >
             <option selected disabled [value]="null">Select Track</option>
-            <option value="">No Track Selected</option>
+            <option value="">No Track</option>
             <option *ngFor="let track of hackathonTracks" [value]="track.id">{{ track.name }}</option>
           </select>
         </div>

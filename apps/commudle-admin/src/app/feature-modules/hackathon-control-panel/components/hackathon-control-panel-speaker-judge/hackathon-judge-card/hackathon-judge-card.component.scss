@@ -40,8 +40,19 @@
           @apply com-text-gray-400 com-text-sm;
         }
       }
+      .divided-line {
+        @apply com-border com-border-solid com-border-Bright-Gray;
+      }
+      .invite-status {
+        @apply com-flex com-justify-between com-py-3;
+        .status {
+          .heading {
+            @apply com-text-sm com-text-gray-500;
+          }
+        }
+      }
       .actions {
-        @apply com-mt-2 com-flex com-justify-evenly;
+        @apply com-mt-2;
       }
     }
   }

@@ -1,17 +1,14 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { API_ROUTES } from '@commudle/shared-services';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
-import { Observable } from 'rxjs';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
 import { IContactInfo } from 'apps/shared-models/contact-info.model';
-import { IHackathonTrack } from 'apps/shared-models/hackathon-track.model';
-import { IHackathonPrize } from 'apps/shared-models/hackathon-prize.model';
 import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
-import { IHackathonTeam } from 'apps/shared-models/hackathon-team.model';
-import { ICommunityBuild } from '@commudle/shared-models';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API_ROUTES } from '@commudle/shared-services';
+import { Observable } from 'rxjs';
+import { ICommunityBuild, IHackathonPrize, IHackathonTeam, IHackathonTrack } from '@commudle/shared-models';
 
 interface publicHackathonsList {
   upcoming_hackathons: IHackathon[];
@@ -117,9 +114,7 @@ export class HackathonService {
     const params = new HttpParams().set('hackathon_id', hackathonId);
     return this.http.put<IHackathon>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.UPDATE_HACKATHON_DATE),
-      {
-        hackathon: dataForm,
-      },
+      dataForm,
       { params },
     );
   }
@@ -290,9 +285,9 @@ export class HackathonService {
     );
   }
 
-  generateTeamRegistrationStatus(teamId): Observable<boolean> {
+  generateTeamRegistrationStatusNotification(teamId): Observable<boolean> {
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.GENERATE_TEAM_REGISTRATION_STATUS_NOTIFICATION),
       {
         team_id: teamId,
       },
@@ -343,6 +338,24 @@ export class HackathonService {
     );
   }
 
+  inviteUserByEmail(hackathonId, message): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INVITE_USER), {
+      hackathon_id: hackathonId,
+      message: message,
+    });
+  }
+
+  OverallRoundSelectionUpdateEmail(hackathonId, hackathonRoundId, message: string): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.OVERALL_ROUND_SELECTION_UPDATE_EMAIL),
+      {
+        hackathon_id: hackathonId,
+        hackathon_round_id: hackathonRoundId,
+        message: message,
+      },
+    );
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
@@ -384,5 +397,12 @@ export class HackathonService {
         params,
       },
     );
+  }
+
+  pInterestedUsers(hackathonId): Observable<any> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INTERESTED_USERS), {
+      params,
+    });
   }
 }

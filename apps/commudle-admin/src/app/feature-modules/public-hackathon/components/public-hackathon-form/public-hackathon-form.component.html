@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div *ngIf="isLoading" class="spinner">
       <commudle-loading-spinner></commudle-loading-spinner>
@@ -58,12 +58,13 @@
                   ></commudle-public-hackathon-user-details-form>
                 </div>
               </nb-step>
-              <nb-step [label]="hasTeammateOption ? 'Teammates' : ''">
+              <nb-step label="Team Details">
                 <commudle-public-hackathon-teammate-form
                   [hackathonUserResponse]="hackathonUserResponse"
                   [hasTeammateOption]="hasTeammateOption"
                   [hackathonResponseGroup]="hackathonResponseGroup"
                   (submitTeammateDetailsEvent)="submitTeammateDetails($event)"
+                  (previousButtonEvent)="previousStepper()"
                 ></commudle-public-hackathon-teammate-form>
               </nb-step>
               <nb-step label="Project Details">
@@ -73,10 +74,11 @@
                     [hackathon]="hackathon"
                     [hackathonUserResponse]="hackathonUserResponse"
                     (createOrUpdateProjectDetails)="submitProjectDetails($event)"
+                    (previousButtonEvent)="previousStepper()"
                   ></commudle-public-hackathon-project-details-form>
                 </div>
               </nb-step>
-              <nb-step label="Submit" *ngIf="hackathonResponseGroup.data_form_entity_id">
+              <nb-step label="More details" *ngIf="hackathonResponseGroup.data_form_entity_id">
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading">
                   <commudle-public-hackathon-custom-questions-form
@@ -92,3 +94,40 @@
     </div>
   </div>
 </div>
+
+<ng-template #formConfirmationDialog let-data>
+  <nb-card class="confirmation-dialog">
+    <nb-card-body>
+      <div>
+        <p class="thank-you-icon">
+          <nb-icon icon="done-all" status="success"></nb-icon>
+        </p>
+        <p class="thank-you-text">Thank You {{ currentUser.name }} for filling the form!</p>
+        <div class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.username"
+            [completeProfileText]="'Complete your profile to boost your chances of getting shortlisted'"
+          ></commudle-userprofile-details>
+        </div>
+        <div *appBreakpoints="'<=lg'" class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.username"
+            [showLowerCardUserDetails]="false"
+            [completeProfileText]="'Complete your profile to boost your chances of getting shortlisted'"
+          ></commudle-userprofile-details>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <p *ngIf="hackathon">
+        <a [routerLink]="['/communities', community.slug, 'hackathons', hackathon.slug]">
+          <p>Go to Hackathon Page &nbsp;<fa-icon [icon]="icons.faArrowRight"></fa-icon></p>
+        </a>
+      </p>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

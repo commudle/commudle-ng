@@ -48,6 +48,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       twitter: ['', this.urlValidator],
       linkedin: ['', this.urlValidator],
       website: ['', this.urlValidator],
+      user_id: [''],
     });
   }
 
@@ -80,7 +81,6 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
           if (data) {
             if (data.photo.url) {
               this.imageUrl = data.photo.url;
-              this.fetchImageBlob();
             }
             this.speakerRegistrationForm.patchValue({
               name: data.name,
@@ -91,6 +91,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
               linkedin: data.linkedin ? data.linkedin : '',
               website: data.personal_website ? data.personal_website : '',
               username: data.username,
+              user_id: data.id,
             });
           }
           this.dialogService.open(this.judgeFormDialog);
@@ -118,23 +119,20 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     });
   }
 
-  fetchImageBlob() {
-    this.http.get(this.imageUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
-      this.imageBlob = blob;
-    });
-  }
-
   createJudge() {
     const formData = new FormData();
-    const formValue: Record<string, string | Blob> = this.speakerRegistrationForm.value;
 
-    // Append form values to formData
-    Object.entries(formValue).forEach(([key, value]) => {
-      formData.append(`hackathon_judge[${key}]`, value);
+    Object.entries(this.speakerRegistrationForm.value).forEach(([key]) => {
+      const value = this.speakerRegistrationForm.value[key];
+      formData.append('hackathon_judge[' + key + ']', value);
     });
 
     if (this.imageUrl.length > 0) {
-      formData.append('profile_image', this.imageBlob);
+      if (this.imageBlob) {
+        formData.append('profile_image', this.imageBlob);
+      } else {
+        formData.append('fetch_from_user', true.toString());
+      }
     }
 
     this.hackathonService.createJudge(formData, this.hackathonSlug).subscribe((data: IHackathonJudge) => {
@@ -163,15 +161,16 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
 
   updateJudge(JudgeId, index) {
     const formData = new FormData();
-    const formValue: Record<string, string | Blob> = this.speakerRegistrationForm.value;
 
-    // Append form values to formData
-    Object.entries(formValue).forEach(([key, value]) => {
-      formData.append(`hackathon_judge[${key}]`, value);
+    Object.entries(this.speakerRegistrationForm.value).forEach(([key]) => {
+      const value = this.speakerRegistrationForm.value[key];
+      formData.append('hackathon_judge[' + key + ']', value);
     });
 
     if (this.imageUrl.length > 0) {
-      formData.append('profile_image', this.imageBlob);
+      if (this.imageBlob) {
+        formData.append('profile_image', this.imageBlob);
+      }
     }
 
     this.hackathonService.updateJudge(formData, JudgeId).subscribe((data: IHackathonJudge) => {

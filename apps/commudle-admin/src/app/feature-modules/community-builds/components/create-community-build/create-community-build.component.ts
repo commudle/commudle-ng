@@ -55,16 +55,32 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   moment = moment;
 
   tinyMCE = {
-    height: 500,
+    min_height: 500,
     menubar: false,
     convert_urls: false,
     placeholder:
       'Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too.',
     plugins:
       'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table code help wordcount autoresize',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     toolbar:
       'formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | charmap | removeformat | help',
     default_link_target: '_blank',
+    branding: false,
+  };
+
+  tinyMCEForUpdate = {
+    min_height: 50,
+    menubar: false,
+    width: '500',
+    placeholder: 'Updates',
+    statusbar: false,
+    toolbar: false,
+    plugins: 'autoresize',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    convert_urls: false,
     branding: false,
   };
 

@@ -25,12 +25,10 @@
   display: flex;
 
   > div {
-    overflow: hidden;
-    width: 100px;
+    @apply com-h-24 com-w-24 com-overflow-hidden com-my-3;
 
     img {
-      @apply com-bg-tWhite;
-      width: 100%;
+      @apply com-bg-tWhite com-h-full com-object-contain com-rounded-md com-w-full com-p-1;
     }
   }
 
@@ -62,6 +60,10 @@ section {
       @apply com-text-gray-500;
     }
 
+    img {
+      @apply com-mb-1;
+    }
+
     .title {
       @apply com-self-center com-ml-2;
     }
@@ -84,9 +86,6 @@ section {
     fa-icon,
     .title {
       @apply com-text-Blueberry;
-    }
-    img {
-      filter: invert(46%) sepia(73%) saturate(6162%) hue-rotate(219deg) brightness(102%) contrast(103%);
     }
   }
 }

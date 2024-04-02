@@ -67,6 +67,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'experts-program',
+    loadChildren: () =>
+      import('./feature-modules/expert-program/expert-program.module').then((m) => m.ExpertProgramModule),
+  },
+  {
     path: 'devrel-agencies',
     loadChildren: () =>
       import('./feature-modules/public-agencies/public-agencies.module').then((m) => m.PublicAgenciesModule),
