@@ -84,6 +84,7 @@
                 class="hackathon-user-response"
               >
                 <input
+                  *ngIf="currentUser && hackathonUserResponse.user_email !== currentUser.email"
                   fullWidth
                   nbInput
                   size="large"
