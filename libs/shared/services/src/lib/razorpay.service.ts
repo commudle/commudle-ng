@@ -8,13 +8,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class StripeHandlerService {
+export class RazorpayService {
   constructor(private baseApiService: BaseApiService, private http: HttpClient) {}
 
-  createRazorpayAccount(communityId, details): Observable<IRazorpayAccount> {
-    return this.http.post<IRazorpayAccount>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.CREATE), {
+  createRazorpayAccount(communityId, accountDetails, settlementsDetails): Observable<IRazorpayAccount> {
+    return this.http.post<IRazorpayAccount>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE), {
       community_id: communityId,
-      razorpay_account_details: details,
+      account: accountDetails,
+      settlements: settlementsDetails,
     });
   }
 

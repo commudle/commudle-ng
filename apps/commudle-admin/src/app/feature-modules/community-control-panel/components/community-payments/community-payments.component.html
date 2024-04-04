@@ -85,10 +85,10 @@
 </section>
 
 <ng-template #countrySelection let-data let-ref="dialogRef">
-  <nb-card class="com-max-h-[90dvh]">
+  <nb-card class="com-max-h-[90dvh] com-w-[50dvw]">
     <nb-card-header>
       <div class="com-flex com-justify-between">
-        <div>Create Stripe Account</div>
+        <div>CreateAccount</div>
         <button (click)="ref.close(); stripeConnectAccountForm.reset()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
         </button>
@@ -109,6 +109,7 @@
           </label>
         </form>
       </div>
+      <br />
       <!-- razorpayAccountForm -->
       <div *ngIf="selectedCountry === 'India'">
         <form [formGroup]="razorpayAccountForm">
@@ -128,7 +129,15 @@
             <!-- Email* -->
             <label>
               Email*
-              <input fieldSize="small" formControlName="email" placeholder="email" fullWidth nbInput type="string" />
+              <input
+                fieldSize="small"
+                formControlName="email"
+                placeholder="email"
+                fullWidth
+                nbInput
+                type="email"
+                autocomplete="email"
+              />
               <span
                 *ngIf="
                   razorpayAccountForm.get('email').touched &&
@@ -138,12 +147,29 @@
               >
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
+              <span *ngIf="razorpayAccountForm.get('email').hasError('email')">
+                <commudle-alert [error]="true" errorMessage="Email must be a valid email address"></commudle-alert>
+              </span>
             </label>
 
             <!-- Phone* -->
             <label>
               Phone*
-              <input fieldSize="small" formControlName="phone" placeholder="phone" fullWidth nbInput type="string" />
+              <div class="com-flex com-flex-row com-gap-2 com-h-auto">
+                <div class="select !com-w-32">
+                  <select>
+                    <option selected disabled>+{{ countries[0].phone }} ({{ countries[0].name }})</option>
+                  </select>
+                </div>
+                <input
+                  fieldSize="small"
+                  formControlName="phone"
+                  placeholder="Phone Number"
+                  fullWidth
+                  nbInput
+                  type="number"
+                />
+              </div>
               <span
                 *ngIf="
                   razorpayAccountForm.get('phone').touched &&
@@ -199,12 +225,35 @@
               </span>
             </label>
 
+            <!--  Contact Name -->
+            <label>
+              Contact Name
+              <input
+                fieldSize="small"
+                formControlName="contact_name"
+                placeholder=" Contact Name"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  razorpayAccountForm.get('contact_name').touched &&
+                  razorpayAccountForm.get('contact_name').invalid &&
+                  razorpayAccountForm.get('contact_name').hasError('required')
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
             <div formGroupName="profile">
               <!-- Category -->
               <label>
                 Category*
                 <div class="select">
-                  <select formControlName="business_type">
+                  <select formControlName="category">
+                    <option value="" selected disabled>Select category</option>
                     <option
                       *ngFor="let businessCategory of EBusinessCategory | keyvalue"
                       [value]="businessCategory.value"
@@ -223,12 +272,139 @@
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </label>
+
+              <!-- subcategory -->
+              <label>
+                Sub Category*
+                <div class="select">
+                  <select formControlName="subcategory">
+                    <option value="" selected disabled>Select Sub Category</option>
+                    <option *ngFor="let subcategory of ItAndSoftwareSubcategory | keyvalue" [value]="subcategory.value">
+                      {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                    </option>
+                  </select>
+                </div>
+                <span
+                  *ngIf="
+                    razorpayAccountForm.get('legal_info.pan').touched &&
+                    razorpayAccountForm.get('legal_info.pan').invalid &&
+                    razorpayAccountForm.get('legal_info.pan').hasError('required')
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
+
+              <div formGroupName="addresses">
+                <div formGroupName="registered">
+                  <!-- Street1 -->
+                  <label>
+                    Street1*
+                    <input
+                      fieldSize="small"
+                      formControlName="street1"
+                      placeholder="Street Address"
+                      fullWidth
+                      nbInput
+                      type="string"
+                    />
+                    <span
+                      *ngIf="
+                        razorpayAccountForm.get('profile.addresses.registered.street1').touched &&
+                        razorpayAccountForm.get('profile.addresses.registered.street1').invalid &&
+                        razorpayAccountForm.get('profile.addresses.registered.street1').hasError('required')
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span>
+                  </label>
+
+                  <!-- Street2 -->
+                  <label>
+                    Street 2
+                    <input
+                      fieldSize="small"
+                      formControlName="street2"
+                      placeholder="Street"
+                      fullWidth
+                      nbInput
+                      type="string"
+                    />
+                  </label>
+
+                  <!-- city -->
+                  <label>
+                    City
+                    <input
+                      fieldSize="small"
+                      formControlName="city"
+                      placeholder="City"
+                      fullWidth
+                      nbInput
+                      type="string"
+                    />
+                    <span
+                      *ngIf="
+                        razorpayAccountForm.get('profile.addresses.registered.city').touched &&
+                        razorpayAccountForm.get('profile.addresses.registered.city').invalid &&
+                        razorpayAccountForm.get('profile.addresses.registered.city').hasError('required')
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span>
+                  </label>
+
+                  <!-- state -->
+                  <label>
+                    state
+                    <input
+                      fieldSize="small"
+                      formControlName="state"
+                      placeholder="State"
+                      fullWidth
+                      nbInput
+                      type="string"
+                    />
+                    <span
+                      *ngIf="
+                        razorpayAccountForm.get('profile.addresses.registered.state').touched &&
+                        razorpayAccountForm.get('profile.addresses.registered.state').invalid &&
+                        razorpayAccountForm.get('profile.addresses.registered.state').hasError('required')
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span>
+                  </label>
+
+                  <!-- Postal Code -->
+                  <label>
+                    Postal Code
+                    <input
+                      fieldSize="small"
+                      formControlName="postal_code"
+                      placeholder="Postal Code"
+                      fullWidth
+                      nbInput
+                      type="Number"
+                    />
+                    <span
+                      *ngIf="
+                        razorpayAccountForm.get('profile.addresses.registered.postal_code').touched &&
+                        razorpayAccountForm.get('profile.addresses.registered.postal_code').invalid &&
+                        razorpayAccountForm.get('profile.addresses.registered.postal_code').hasError('required')
+                      "
+                    >
+                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
 
             <!-- legal_info -->
             <div formGroupName="legal_info">
-              <span>Legal Info</span>
-              <br />
+              <!-- <span>Legal Info</span>
+              <br /> -->
               <!-- PAN -->
               <label>
                 PAN*
@@ -246,19 +422,84 @@
 
               <!-- GST -->
               <label>
-                GST*
+                GST
                 <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
-                <span
-                  *ngIf="
-                    razorpayAccountForm.get('legal_info.gst').touched &&
-                    razorpayAccountForm.get('legal_info.gst').invalid &&
-                    razorpayAccountForm.get('legal_info.gst').hasError('required')
-                  "
-                >
-                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                </span>
               </label>
             </div>
+          </div>
+        </form>
+
+        <br />
+        <br />
+        <div>Bank Account Details</div>
+        <form [formGroup]="settlementDetailsForm">
+          <!-- settlements -->
+          <div formGroupName="settlements">
+            <!-- beneficiary_name -->
+            <label>
+              Beneficiary Name*
+              <input
+                fieldSize="small"
+                formControlName="beneficiary_name"
+                placeholder="Beneficiary Name"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  settlementDetailsForm.get('settlements.beneficiary_name').touched &&
+                  settlementDetailsForm.get('settlements.beneficiary_name').invalid &&
+                  settlementDetailsForm.get('settlements.beneficiary_name').hasError('required')
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- account_number -->
+            <label>
+              Account Number*
+              <input
+                fieldSize="small"
+                formControlName="account_number"
+                placeholder="Account Number"
+                fullWidth
+                nbInput
+                type="number"
+              />
+              <span
+                *ngIf="
+                  settlementDetailsForm.get('settlements.account_number').touched &&
+                  settlementDetailsForm.get('settlements.account_number').invalid &&
+                  settlementDetailsForm.get('settlements.account_number').hasError('required')
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
+
+            <!-- ifsc_code -->
+            <label>
+              IFSC Code*
+              <input
+                fieldSize="small"
+                formControlName="ifsc_code"
+                placeholder="IFSC Code"
+                fullWidth
+                nbInput
+                type="string"
+              />
+              <span
+                *ngIf="
+                  settlementDetailsForm.get('settlements.ifsc_code').touched &&
+                  settlementDetailsForm.get('settlements.ifsc_code').invalid &&
+                  settlementDetailsForm.get('settlements.ifsc_code').hasError('required')
+                "
+              >
+                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              </span>
+            </label>
           </div>
         </form>
 
@@ -445,21 +686,21 @@
             status="primary"
             type="submit"
           >
-            Proceed
+            Proceed stripe
           </button>
         </div>
 
         <div *ngIf="selectedCountry === 'India'">
           <button
             (click)="createRazorpayAccount()"
-            [disabled]="!razorpayAccountForm.valid || isLoading"
+            [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid"
             fullWidth
             nbButton
             size="small"
             status="primary"
             type="submit"
           >
-            Proceed
+            Proceed razorpay
           </button>
         </div>
       </div>

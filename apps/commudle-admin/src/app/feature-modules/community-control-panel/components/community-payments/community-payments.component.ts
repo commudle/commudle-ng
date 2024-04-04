@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StripeHandlerService, countries_details } from '@commudle/shared-services';
+import { RazorpayService, StripeHandlerService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faArrowUpRightFromSquare, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { EBusinessType, EBusinessCategory } from '@commudle/shared-models';
+import { EBusinessType, EBusinessCategory, ItAndSoftwareSubcategory } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-community-payments',
   templateUrl: './community-payments.component.html',
@@ -18,9 +18,10 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   stripeAccounts = [];
   subscriptions: Subscription[] = [];
   isUpdating = false;
+  countryForm: FormGroup;
   stripeConnectAccountForm;
   razorpayAccountForm: FormGroup;
-  countryForm: FormGroup;
+  settlementDetailsForm: FormGroup;
   dialogRef: NbDialogRef<any>;
   countries = countries_details;
   icons = {
@@ -30,6 +31,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   selectedCountry = '';
   EBusinessType = EBusinessType;
   EBusinessCategory = EBusinessCategory;
+  ItAndSoftwareSubcategory = ItAndSoftwareSubcategory;
 
   constructor(
     private stripeHandlerService: StripeHandlerService,
@@ -37,13 +39,14 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private dialogService: NbDialogService,
+    private razorPayService: RazorpayService,
   ) {
     this.countryForm = this.fb.group({
       country: ['', Validators.required],
     });
     this.stripeConnectAccountForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone_country_code: [91, Validators.required],
       phone: ['', Validators.required],
       address: ['', Validators.required],
@@ -53,17 +56,17 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
       country: ['', Validators.required],
     });
     this.razorpayAccountForm = this.fb.group({
-      email: ['', Validators.required], //DONE
+      email: ['', [Validators.required, Validators.email]], //DONE
       phone: ['', Validators.required], //DONE
       type: ['route', Validators.required],
       reference_id: [''],
       legal_business_name: ['', Validators.required], //DONE
       business_type: [EBusinessType.INDIVIDUAL, Validators.required], //DONE
       customer_facing_business_name: [''], //DONE
-      contact_name: ['', Validators.required],
+      contact_name: ['', Validators.required], //DONE
       profile: this.fb.group({
         category: ['', Validators.required],
-        subcategory: ['', Validators.required],
+        subcategory: [''],
         addresses: this.fb.group({
           registered: this.fb.group({
             street1: ['', Validators.required],
@@ -80,9 +83,18 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
         gst: [''], //DONE
       }),
     });
+    this.settlementDetailsForm = this.fb.group({
+      settlements: this.fb.group({
+        account_number: ['', Validators.required],
+        ifsc_code: ['', Validators.required],
+        beneficiary_name: ['', Validators.required],
+      }),
+      tnc_accepted: [true, Validators.required],
+    });
   }
 
   ngOnInit(): void {
+    console.log(ItAndSoftwareSubcategory);
     this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
     this.getStripeAccounts();
     this.ac = this.activatedRoute.snapshot.queryParamMap.get('ac');
@@ -149,8 +161,11 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   }
 
   createRazorpayAccount() {
-    const formData = JSON.stringify(this.razorpayAccountForm.value);
-    console.log('🚀 ~ CommunityPaymentsComponent ~ createRazorpayAccount ~ formData:', formData);
+    this.razorPayService
+      .createRazorpayAccount(this.communityId, this.razorpayAccountForm.value, this.settlementDetailsForm.value)
+      .subscribe((data) => {
+        console.log('🚀 ~ CommunityPaymentsComponent ~ this.razorPayService.createRazorpayAccount ~ data:', data);
+      });
   }
 
   onCountryChange() {

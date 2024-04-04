@@ -313,12 +313,14 @@ export enum HousingSubcategory {
   REALESTATE_CLASSIFIEDS = 'realestate_classifieds',
   SPACE_RENTAL = 'space_rental',
 }
+
 export enum NotForProfitSubcategory {
   CHARITY = 'charity',
   EDUCATIONAL = 'educational',
   RELIGIOUS = 'religious',
   PERSONAL = 'personal',
 }
+
 export enum SocialSubcategory {
   MATCHMAKING = 'matchmaking',
   SOCIAL_NETWORK = 'social_network',
@@ -330,6 +332,7 @@ export enum SocialSubcategory {
   COUNTRY_AND_ATHLETIC_CLUBS = 'country_and_athletic_clubs',
   ASSOCIATIONS_AND_MEMBERSHIP = 'associations_and_membership',
 }
+
 export enum MediaAndEntertainmentSubcategory {
   VIDEO_ON_DEMAND = 'video_on_demand',
   MUSIC_STREAMING = 'music_streaming',
@@ -344,6 +347,7 @@ export enum MediaAndEntertainmentSubcategory {
   AMUSEMENT_PARKS_AND_CIRCUSES = 'amusement_parks_and_circuses',
   TICKET_AGENCIES = 'ticket_agencies',
 }
+
 export enum GamingSubcategory {
   GAME_DEVELOPER = 'game_developer',
   ESPORTS = 'esports',
@@ -351,6 +355,7 @@ export enum GamingSubcategory {
   FANTASY_SPORTS = 'fantasy_sports',
   GAMING_MARKETPLACE = 'gaming_marketplace',
 }
+
 export enum ItAndSoftwareSubcategory {
   SAAS = 'saas',
   PAAS = 'paas',
@@ -360,6 +365,7 @@ export enum ItAndSoftwareSubcategory {
   TECHNICAL_SUPPORT = 'technical_support',
   DATA_PROCESSING = 'data_processing',
 }
+
 export enum FoodSubcategory {
   ONLINE_FOOD_ORDERING = 'online_food_ordering',
   RESTAURANT = 'restaurant',
@@ -370,6 +376,7 @@ export enum FoodSubcategory {
   DAIRY_PRODUCTS = 'dairy_products',
   BAKERIES = 'bakeries',
 }
+
 export enum UtilitiesSubcategory {
   ELECTRICITY = 'electricity',
   GAS = 'gas',
@@ -381,12 +388,14 @@ export enum UtilitiesSubcategory {
   INTERNET_PROVIDER = 'internet_provider',
   BILL_AND_RECHARGE_AGGREGATORS = 'bill_and_recharge_aggregators',
 }
+
 export enum GovernmentSubcategory {
   CENTRAL = 'central',
   STATE = 'state',
   INTRA_GOVERNMENT_PURCHASES = 'intra_government_purchases',
   GOVERMENT_POSTAL_SERVICES = 'goverment_postal_services',
 }
+
 export enum LogisticsSubcategory {
   FREIGHT = 'freight',
   COURIER = 'courier',
@@ -395,6 +404,7 @@ export enum LogisticsSubcategory {
   END_TO_END_LOGISTICS = 'end_to_end_logistics',
   COURIER_SERVICES = 'courier_services',
 }
+
 export enum ToursAndTravelSubcategory {
   // TOURS_AND_TRAVEL
   AVIATION = 'aviation',
@@ -405,7 +415,9 @@ export enum ToursAndTravelSubcategory {
   TIMESHARES = 'timeshares',
   AQUARIUMS_DOLPHINARIUMS_AND_SEAQUARIUMS = 'aquariums_dolphinariums_and_seaquariums',
 }
-export enum TransportSubcategory { // TRANSPORT
+
+export enum TransportSubcategory {
+  // TRANSPORT
   CAB_HAILING = 'cab_hailing',
   BUS = 'bus',
   TRAIN_AND_METRO = 'train_and_metro',

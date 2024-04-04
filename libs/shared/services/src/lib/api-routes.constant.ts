@@ -888,4 +888,8 @@ export const API_ROUTES = {
   HACKATHON_JUDGE: {
     RESEND_INVITE: 'api/v2/hackathon_judge/resend_invite', //PUT
   },
+
+  RAZORPAY: {
+    CREATE: 'api/v2/razorpay', //POST
+  },
 };
