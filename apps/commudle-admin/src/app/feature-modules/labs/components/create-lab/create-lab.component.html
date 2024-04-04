@@ -4,24 +4,21 @@
       <nb-card>
         <nb-card-body>
           <div class="form-container">
-            <h1 class="header">
-              <fa-icon [icon]="faFlask" size="1x"></fa-icon>
-              Let's begin with a Title!
-            </h1>
+            <div class="header">
+              <fa-icon [icon]="faFlask"></fa-icon>
+              <h1 class="heading">Let's begin with a Title!</h1>
+            </div>
             <p class="description">
               A Lab makes it easy for you to write a tutorial, divide it into steps. And it surely makes it easy for
               your readers to grasp your content.
-              <br />
-              Example:
-              <span class="text-highlight-yellow com-text-tYankees-Blue"
-                >&nbsp; How to make a resume with HTML &nbsp;</span
-              >
-              OR
-              <span class="text-highlight-yellow com-text-tYankees-Blue">&nbsp; How to make a Flutter app! &nbsp;</span>
-              <br />
-              <br />
-              What's your Lab about? You can change the title anytime later.
             </p>
+            <p class="example">
+              Example:
+              <span> &nbsp; How to make a resume with HTML &nbsp; </span>
+              &nbsp;&nbsp; OR
+              <span>&nbsp; How to make a Flutter app! &nbsp;</span>
+            </p>
+            <p class="lab-about">What's your Lab about?<span> &nbsp; (You can change the title anytime later)</span></p>
 
             <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
               <div>
@@ -48,7 +45,7 @@
               </div>
 
               <div class="submit-button">
-                <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">Let's Start!</button>
+                <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">Let's Start</button>
               </div>
             </form>
           </div>
