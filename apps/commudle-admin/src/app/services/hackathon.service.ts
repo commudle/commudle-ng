@@ -363,6 +363,20 @@ export class HackathonService {
     });
   }
 
+  StatusFilterGeneralEmail(
+    hackathonId,
+    message: string,
+    emailReason: string,
+    selectedStatus: string,
+  ): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.STATUS_FILTER_GENERAL_EMAIL), {
+      hackathon_id: hackathonId,
+      message: message,
+      email_reason: emailReason,
+      selected_status: selectedStatus,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
