@@ -10,17 +10,20 @@
       }
 
       fa-icon {
-        @apply com-text-2xl com-text-primary-500 com-mr-4;
+        @apply com-text-2xl com-text-primary-500 com-mr-4 com-mt-2px;
       }
     }
     .description {
       @apply com-text-xl com-font-normal com-m-0 com-mb-5;
     }
 
-    .example {
-      @apply com-text-primary-500 com-text-xl com-font-medium com-m-0 com-mb-8;
+    .example-steps {
+      @apply com-text-xl com-font-medium com-m-0 com-mb-8;
+      .example {
+        @apply com-text-primary-500;
+      }
 
-      span {
+      .step {
         @apply com-bg-blue-200 com-font-normal com-text-tYankees-Blue com-ml-4;
       }
     }

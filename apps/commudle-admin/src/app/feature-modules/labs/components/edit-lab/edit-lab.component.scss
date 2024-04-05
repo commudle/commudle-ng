@@ -1,100 +1,104 @@
 .create-lab {
-  .three-column-layout {
-    @apply com-flex com-flex-col md:com-grid;
+  .two-column-layout {
+    // @apply com-flex com-flex-col md:com-grid;
 
-    .left-col {
-      .help-video {
-        @apply com-bg-white com-border com-border-solid com-border-gray-300 com-rounded-lg com-relative com-w-full com-h-20;
+    .main-column {
+      @apply md:com-mr-[60px] com-mr-0;
 
-        p {
-          @apply com-absolute com-top-2/3 com-left-1/2 com-text-primary-400 -com-translate-y-2/4 -com-translate-x-2/4;
-        }
-
-        nb-icon {
-          @apply com-text-4xl;
-        }
-
-        &:hover {
-          nb-icon {
-            @apply com-text-rose-400;
-          }
-        }
+      nb-card-body {
+        @apply com-p-4;
       }
-    }
+      // .container {
+      // @apply lg:com-max-w-[1024px] lg:com-my-0 lg:com-mx-auto;
+      // .header {
+      //   @apply com-font-light;
 
-    .center-col {
-      .container {
-        @apply lg:com-max-w-[1024px] lg:com-my-0 lg:com-mx-auto;
-        .header {
-          @apply com-font-light;
+      //   fa-icon {
+      //     @apply com-text-primary-700;
+      //   }
+      // }
 
-          fa-icon {
-            @apply com-text-primary-700;
-          }
-        }
+      .heading {
+        @apply com-text-center com-text-primary-500 com-text-sm com-font-medium com-mt-4 com-mb-10;
+      }
 
-        form.lab-header-image {
-          @apply com-mb-8;
+      form.lab-header-image {
+        @apply com-mb-8;
 
-          label {
-            @apply com-relative com-py-36 com-px-0;
+        label {
+          // @apply com-relative com-py-36 com-px-0;
 
-            > span {
-              @apply com-border-2 com-border-dashed com-border-gray-300 com-rounded-lg com-text-gray-500 com-text-lg com-font-light com-h-full com-p-2;
+          .upload-header {
+            @apply com-flex com-items-start com-justify-center com-text-center com-border-2 com-border-dashed com-border-gray-300 com-rounded-lg com-text-gray-500 com-text-lg com-font-light com-h-full com-p-6 com-mb-6;
 
-              nb-icon {
-                // font-size: 4rem;
-                // margin-bottom: 0.5rem;
-                @apply com-text-6xl com-mb-2;
+            span {
+              @apply com-text-lg com-font-normal com-text-gray-500;
+
+              small {
+                @apply com-text-base com-text-primary-500;
               }
             }
 
-            input {
-              @apply com-hidden;
+            nb-icon {
+              // font-size: 4rem;
+              // margin-bottom: 0.5rem;
+              @apply com-text-2xl com-text-gray-500 com-mr-1;
             }
           }
 
-          .uploaded-header-image {
-            @apply com-overflow-hidden com-flex com-justify-center com-items-center;
-
-            img {
-              @apply com-max-w-full;
-            }
-          }
-
-          .delete-header-image-button {
-            @apply com-block com-my-0 com-mx-auto;
+          input {
+            @apply com-hidden;
           }
         }
 
-        form.lab-form {
-          .overview {
-            input {
-              @apply com-font-light com-text-xl;
-            }
+        .uploaded-header-image {
+          @apply com-overflow-hidden com-flex com-justify-center com-items-center;
 
-            > div {
-              @apply com-mb-4;
-            }
-          }
-
-          .lab-step {
-            @apply com-mt-16;
-
-            h3.steps-counter {
-              @apply com-font-light com-mb-0;
-            }
-
-            .name input {
-              @apply com-text-xl com-font-light com-mb-4;
-            }
+          img {
+            @apply com-max-w-full;
           }
         }
 
-        .tags {
-          @apply com-mt-14;
+        .delete-header-image-button {
+          @apply com-block com-mt-4 com-mx-auto;
         }
       }
+
+      form.lab-form {
+        .overview {
+          span {
+            @apply com-text-sm com-font-normal com-mb-1;
+          }
+          input {
+            @apply com-font-light com-text-xl;
+          }
+
+          > div {
+            @apply com-mb-6;
+          }
+        }
+
+        .lab-step {
+          @apply com-mt-16;
+
+          h3.steps-counter {
+            @apply com-font-light com-mb-0;
+          }
+
+          .name input {
+            @apply com-text-xl com-font-light com-mb-4;
+          }
+        }
+      }
+
+      .tags {
+        @apply com-m-0;
+
+        p {
+          @apply com-m-0 com-mb-1;
+        }
+      }
+      // }
 
       .add-step-button {
         @apply com-w-full;
@@ -113,7 +117,27 @@
       }
     }
 
-    .right-col {
+    // .left-col {
+    .help-video {
+      @apply com-bg-white com-border com-border-solid com-border-gray-300 com-rounded-lg com-relative com-w-full com-h-20;
+
+      p {
+        @apply com-absolute com-top-2/3 com-left-1/2 com-text-primary-400 -com-translate-y-2/4 -com-translate-x-2/4;
+      }
+
+      nb-icon {
+        @apply com-text-4xl;
+      }
+
+      &:hover {
+        nb-icon {
+          @apply com-text-rose-400;
+        }
+      }
+      // }
+    }
+
+    .right-column {
       > a {
         @apply com-sticky com-top-20;
       }
@@ -122,5 +146,9 @@
 
   .editor {
     @apply com-mt-4;
+  }
+
+  .publish-notification {
+    @apply com-mt-8 com-mb-6 com-text-base com-font-normal;
   }
 }
