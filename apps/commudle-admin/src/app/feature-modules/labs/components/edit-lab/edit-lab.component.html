@@ -211,20 +211,26 @@
         </div>
       </div>
       <div class="right-column">
-        <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank">
-          Preview
-          <nb-icon icon="external-link"></nb-icon>
-        </a>
-        <div class="left-col">
+        <div>
           <nb-card>
             <nb-card-body>
-              <p>A good Lab has steps / sections with images too. Here's a small guide on how to use this page:</p>
-              <div
-                (click)="openGuide(guideVideo)"
-                class="d-flex justify-content-center align-items-center help-video clickable"
-              >
+              <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank" class="preview">
+                <nb-icon icon="eye"></nb-icon>
+                <p>Preview</p>
+              </a>
+            </nb-card-body>
+          </nb-card>
+          <nb-card>
+            <nb-card-body class="guide">
+              <p>
+                A good lab has clear steps and images to help you understand.
+                <br />
+                <br />
+                Here is a quick guide on how to use this page
+              </p>
+              <div (click)="openGuide(guideVideo)" class="help-video clickable">
+                <nb-icon icon="play-circle"></nb-icon>
                 <p>Guide Video</p>
-                <nb-icon icon="play-circle-outline"></nb-icon>
               </div>
               <ng-template #guideVideo let-data>
                 <nb-card>
