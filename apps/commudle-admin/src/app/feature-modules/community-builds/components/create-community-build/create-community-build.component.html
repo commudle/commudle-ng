@@ -373,7 +373,14 @@
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
               </button>
-              <button (click)="submitForm(EPublishStatus.draft)" nbButton outline status="primary" type="submit">
+              <button
+                *ngIf="!hackathonUserResponses"
+                (click)="submitForm(EPublishStatus.draft)"
+                nbButton
+                outline
+                status="primary"
+                type="submit"
+              >
                 <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
                 Save as Draft
               </button>

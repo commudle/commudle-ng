@@ -10,6 +10,7 @@ import { PublicHackathonProjectsComponent } from 'apps/commudle-admin/src/app/fe
 import { PublicHackathonChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-channels/public-hackathon-channels.component';
 import { PublicHackathonFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-form.component';
 import { PublicHackathonUserDashboardComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-user-dashboard/public-hackathon-user-dashboard.component';
+import { AuthGuard } from 'apps/shared-services/lib-authwatch.guard';
 
 const routes: Routes = [
   {
@@ -48,7 +49,7 @@ const routes: Routes = [
             component: PublicHackathonChannelsComponent,
           },
           {
-            path: 'dashboard',
+            path: 'user-dashboard',
             component: PublicHackathonUserDashboardComponent,
           },
         ],
@@ -56,6 +57,7 @@ const routes: Routes = [
       {
         path: 'fill-form/:hackathon_response_group_id',
         component: PublicHackathonFormComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

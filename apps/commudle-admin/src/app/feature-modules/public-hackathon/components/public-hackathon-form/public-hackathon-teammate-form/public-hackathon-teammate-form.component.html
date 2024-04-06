@@ -51,10 +51,10 @@
   </ng-container>
 
   <button
+    *ngIf="hasTeammateOption && hackathon.max_number_of_teammates > teammatesArray.controls.length"
     type="button"
     (click)="addTeammate()"
     nbButton
-    *ngIf="hasTeammateOption && hackathon.max_number_of_teammates > teammatesArray.controls.length"
   >
     <fa-icon [icon]="icons.faPlus"></fa-icon>
     <span> Add Teammate </span>

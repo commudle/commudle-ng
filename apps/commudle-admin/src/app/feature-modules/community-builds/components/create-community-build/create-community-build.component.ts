@@ -200,8 +200,8 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
         });
       } else {
         this.tags = this.tags.concat(this.paramsTags);
-        this.getParent();
       }
+      this.getParent();
     });
   }
 
@@ -400,7 +400,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
         this.hackathonService.showUserResponsesByTeam(this.parentId).subscribe((data) => {
           this.hackathonUserResponses = data;
           console.log(
-            '🚀 ~ CreateCommunityBuildComponent ~ this.hackathonService.showUserResponsesByTeam ~  this.hackathonUserResponses:',
+            '🚀 ~ CreateCommunityBuildComponent ~ this.hackathonService.showUserResponsesByTeam ~ this.hackathonUserResponses:',
             this.hackathonUserResponses,
           );
         });
