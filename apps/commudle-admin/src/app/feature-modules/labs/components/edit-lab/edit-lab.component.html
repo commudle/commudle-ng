@@ -4,7 +4,6 @@
       <div class="main-column">
         <nb-card>
           <nb-card-body>
-            <!-- <div class="container"> -->
             <p class="heading">Changes will be auto saved every 10 seconds</p>
 
             <form [formGroup]="headerImageForm" class="lab-header-image">
@@ -34,7 +33,6 @@
                   [ngClass]="{ hidden: uploadedHeaderImage || (lab.header_image && lab.header_image.url) }"
                   class="clickable"
                 >
-                  <!-- <div> -->
                   <div class="upload-header">
                     <nb-icon icon="image-outline"></nb-icon>
                     <span>
@@ -43,7 +41,6 @@
                       <small> (900px X 350px) </small>
                     </span>
                   </div>
-                  <!-- </div> -->
                   <input
                     (change)="displaySelectedHeaderImage($event)"
                     accept="image/*"
@@ -89,7 +86,6 @@
                 </div>
               </div>
             </form>
-            <!-- </div> -->
           </nb-card-body>
         </nb-card>
         <div *ngIf="labForm['controls'].lab_steps['controls'].length > 0" [formGroup]="labForm">

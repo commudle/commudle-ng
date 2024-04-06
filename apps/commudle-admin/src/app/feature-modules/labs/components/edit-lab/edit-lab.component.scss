@@ -1,22 +1,11 @@
 .create-lab {
   .two-column-layout {
-    // @apply com-flex com-flex-col md:com-grid;
-
     .main-column {
       @apply md:com-mr-[60px] com-mr-0;
 
       nb-card-body {
         @apply com-p-4;
       }
-      // .container {
-      // @apply lg:com-max-w-[1024px] lg:com-my-0 lg:com-mx-auto;
-      // .header {
-      //   @apply com-font-light;
-
-      //   fa-icon {
-      //     @apply com-text-primary-700;
-      //   }
-      // }
 
       .heading {
         @apply com-text-center com-text-primary-500 com-text-sm com-font-medium com-mt-4 com-mb-10;
@@ -26,8 +15,6 @@
         @apply com-mb-8;
 
         label {
-          // @apply com-relative com-py-36 com-px-0;
-
           .upload-header {
             @apply com-flex com-items-start com-justify-center com-text-center com-border-2 com-border-dashed com-border-gray-300 com-rounded-lg com-text-gray-500 com-text-lg com-font-light com-h-full com-p-6 com-mb-6;
 
@@ -40,8 +27,6 @@
             }
 
             nb-icon {
-              // font-size: 4rem;
-              // margin-bottom: 0.5rem;
               @apply com-text-2xl com-text-gray-500 com-mr-1;
             }
           }
@@ -98,7 +83,6 @@
           @apply com-m-0 com-mb-1;
         }
       }
-      // }
 
       .add-step-button {
         @apply com-w-full;
@@ -117,7 +101,6 @@
       }
     }
 
-    // .left-col {
     .guide {
       @apply com-p-6;
 
@@ -131,20 +114,9 @@
           @apply com-text-base com-font-medium com-text-primary-500 com-m-0;
         }
 
-        // p {
-        //   @apply com-absolute com-top-2/3 com-left-1/2 com-text-primary-400 -com-translate-y-2/4 -com-translate-x-2/4;
-        // }
-
         nb-icon {
           @apply com-text-5xl com-mb-3 com-text-primary-500;
         }
-
-        // &:hover {
-        //   nb-icon {
-        //     @apply com-text-rose-400;
-        //   }
-        // }
-        // }
       }
     }
 
@@ -152,13 +124,6 @@
       > div {
         @apply com-sticky com-top-20;
       }
-      // @apply com-sticky com-top-20;
-      // nb-card {
-      //   @apply com-sticky com-top-20;
-      // }
-      // > a {
-      //   @apply com-sticky com-top-20;
-      // }
     }
   }
 
