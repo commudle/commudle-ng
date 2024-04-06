@@ -115,7 +115,12 @@
                     >
                       Resend
                     </small>
-                    <small (click)="removeTeamMember(teammate, i)" class="option clickable">Remove</small>
+                    <small
+                      (click)="removeTeamMember(teammate, i)"
+                      class="option clickable"
+                      *ngIf="!hackathonUserResponses"
+                      >Remove</small
+                    >
                   </div>
                 </div>
               </div>
@@ -157,10 +162,7 @@
 
             <!-- list of entity_updates -->
             <div *ngIf="hackathonUserResponses && hackathonUserResponses.user_responses">
-              <div
-                *ngFor="let update of hackathonUserResponses.team.entity_updates; let i = index"
-                class="entity-update"
-              >
+              <div *ngFor="let update of cBuild.entity_updates; let i = index" class="entity-update">
                 <div class="update-details">
                   <div [innerHTML]="update.details"></div>
                   <span class="date">{{ moment(update.created_at).format('Do MMM YYYY') }} </span>
