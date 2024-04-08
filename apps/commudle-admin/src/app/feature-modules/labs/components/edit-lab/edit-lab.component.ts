@@ -32,7 +32,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   faEdit = faEdit;
   tinyMCE: any = {
     placeholder:
-      'Provide a brief overview of the tutorial with some images to help users understand what they will learn.',
+      'Add a description with some pictures to help the user get a brief of what you are going to teach them in this tutorial!',
     min_height: 500,
     menubar: false,
     convert_urls: false,
