@@ -1,6 +1,6 @@
-<div class="two-column-layout medium">
+<div class="two-column-layout medium" *ngIf="userTeamDetails && userTeamDetails[0].community_build; else submitProject">
   <div class="main-column com-mb-20">
-    <nb-card class="project-details" *ngIf="userTeamDetails">
+    <nb-card class="project-details">
       <nb-card-header>PROJECT DETAILS</nb-card-header>
       <nb-card-body>
         <div class="project-name">{{ userTeamDetails[0].community_build.name }}</div>
@@ -25,3 +25,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #submitProject>
+  <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
+    <commudle-public-hackathon-registration
+      [hrgId]="hrgId"
+      [userTeamDetails]="userTeamDetails[0]"
+    ></commudle-public-hackathon-registration>
+  </div>
+</ng-template>

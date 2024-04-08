@@ -84,6 +84,7 @@
                 class="hackathon-user-response"
               >
                 <input
+                  *ngIf="currentUser && hackathonUserResponse.user_email !== currentUser.email"
                   fullWidth
                   nbInput
                   size="large"
@@ -100,7 +101,8 @@
                 <div
                   *ngIf="
                     teammate.status === eUserRolesUserStatus.INVITED ||
-                    teammate.status === eUserRolesUserStatus.ACCEPTED
+                    teammate.status === eUserRolesUserStatus.ACCEPTED ||
+                    teammate.status === eUserRolesUserStatus.AUTO_JOINED
                   "
                   class="d-flex justify-content-space-between align-items-center"
                 >
@@ -113,7 +115,12 @@
                     >
                       Resend
                     </small>
-                    <small (click)="removeTeamMember(teammate, i)" class="option clickable">Remove</small>
+                    <small
+                      (click)="removeTeamMember(teammate, i)"
+                      class="option clickable"
+                      *ngIf="!hackathonUserResponses"
+                      >Remove</small
+                    >
                   </div>
                 </div>
               </div>
@@ -155,10 +162,7 @@
 
             <!-- list of entity_updates -->
             <div *ngIf="hackathonUserResponses && hackathonUserResponses.user_responses">
-              <div
-                *ngFor="let update of hackathonUserResponses.team.entity_updates; let i = index"
-                class="entity-update"
-              >
+              <div *ngFor="let update of cBuild.entity_updates; let i = index" class="entity-update">
                 <div class="update-details">
                   <div [innerHTML]="update.details"></div>
                   <span class="date">{{ moment(update.created_at).format('Do MMM YYYY') }} </span>
@@ -371,7 +375,14 @@
                 <nb-icon icon="cloud-upload"></nb-icon>
                 Publish
               </button>
-              <button (click)="submitForm(EPublishStatus.draft)" nbButton outline status="primary" type="submit">
+              <button
+                *ngIf="!hackathonUserResponses"
+                (click)="submitForm(EPublishStatus.draft)"
+                nbButton
+                outline
+                status="primary"
+                type="submit"
+              >
                 <fa-icon [icon]="faEdit" class="com-mr-2"></fa-icon>
                 Save as Draft
               </button>

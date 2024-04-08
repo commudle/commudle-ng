@@ -20,6 +20,7 @@ export enum EUserRolesUserStatus {
   ACCEPTED = 'accepted',
   REMOVED = 'removed',
   JOINED_BY_TOKEN = 'joined_by_token',
+  AUTO_JOINED = 'auto_joined',
 }
 
 export interface IUserRolesUsers {

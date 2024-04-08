@@ -10,6 +10,7 @@ import {
   EDbModels,
   EHackathonRegistrationStatus,
   EHackathonRegistrationStatusColor,
+  IHackathonTeam,
   INote,
   IRound,
 } from '@commudle/shared-models';
@@ -39,6 +40,8 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   EHackathonStatus = EHackathonStatus;
   roundSelectionForEmail = 0;
   message = '';
+  selectedTeamDetails: IHackathonTeam;
+  selectedUserResponsesDetails: IHackathonUserResponse[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -87,6 +90,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
     this.hackathonService.changeTeamStatus(teamId, value).subscribe((data) => {
       this.toastrService.successDialog('Details has been updated successfully');
       this.userResponses[index].team = data;
+      this.selectedTeamDetails = data;
     });
   }
 
@@ -98,12 +102,12 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
 
   openDialogBox(dialog, teamId, index) {
     this.hackathonService.showUserResponsesByTeam(teamId).subscribe((data: IHackathonUserResponses) => {
-      const team = data.team;
-      const userResponse = data.user_responses;
+      this.selectedTeamDetails = data.team;
+      this.selectedUserResponsesDetails = data.user_responses;
       this.notesIndex(data.team.id);
-      this.selectedUserDetails = userResponse[0];
+      this.selectedUserDetails = this.selectedUserResponsesDetails[0];
       this.dialogRef = this.nbDialogService.open(dialog, {
-        context: { team: team, index: index, userResponse: userResponse },
+        context: { team: this.selectedTeamDetails, index: index, userResponse: this.selectedUserResponsesDetails },
       });
     });
   }
@@ -148,9 +152,6 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   notesIndex(teamId) {
     this.noteService.indexNotes(teamId, EDbModels.HACKATHON_TEAM).subscribe((data) => {
       this.notes = data;
-      if (this.notes.length === 0) {
-        this.addNote();
-      }
     });
   }
 

@@ -101,10 +101,10 @@
   <nb-card class="response-dialog-box">
     <nb-card-header class="com-flex com-justify-between com-items-center">
       <div class="heading">
-        <span>{{ data.team.name }}</span>
-        <div class="project-submit" *ngIf="data.team.community_build">Project Submitted</div>
-        <div class="project-link" *ngIf="data.team.community_build">
-          <a [routerLink]="['/builds', data.team.community_build.slug]"> Go to Project</a>
+        <span>{{ selectedTeamDetails.name }}</span>
+        <div class="project-submit" *ngIf="selectedTeamDetails.community_build">Project Submitted</div>
+        <div class="project-link" *ngIf="selectedTeamDetails.community_build">
+          <a [routerLink]="['/builds', selectedTeamDetails.community_build.slug]"> Go to Project</a>
         </div>
       </div>
       <button nbButton ghost (click)="ref.close()" shape="round">
@@ -113,12 +113,12 @@
     </nb-card-header>
     <nb-card-body>
       <div class="action-buttons">
-        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REGISTERED">
+        <div *ngIf="selectedTeamDetails.registration_status === EHackathonRegistrationStatus.REGISTERED">
           <button
             nbButton
             status="primary"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.ACCEPTED, selectedTeamDetails.id, data.index)"
           >
             Accepted
           </button>
@@ -126,7 +126,7 @@
             nbButton
             status="danger"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.REJECTED, selectedTeamDetails.id, data.index)"
           >
             Reject
           </button>
@@ -134,17 +134,17 @@
             nbButton
             status="warning"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.WAITLISTED, selectedTeamDetails.id, data.index)"
           >
             Waitlist
           </button>
         </div>
-        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+        <div *ngIf="selectedTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
           <button
             nbButton
             status="primary"
             fullWidth
-            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+            (click)="generateTeamRegistrationStatusNotification(selectedTeamDetails.id)"
           >
             Send Acceptance Email
           </button>
@@ -152,18 +152,18 @@
             nbButton
             status="danger"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, selectedTeamDetails.id, data.index)"
           >
             Undo Accept
           </button>
         </div>
 
-        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.REJECTED">
+        <div *ngIf="selectedTeamDetails.registration_status === EHackathonRegistrationStatus.REJECTED">
           <button
             nbButton
             status="primary"
             fullWidth
-            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+            (click)="generateTeamRegistrationStatusNotification(selectedTeamDetails.id)"
           >
             Send Rejection Email
           </button>
@@ -171,18 +171,18 @@
             nbButton
             status="danger"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, selectedTeamDetails.id, data.index)"
           >
             Undo Reject
           </button>
         </div>
 
-        <div *ngIf="data.team.registration_status === EHackathonRegistrationStatus.WAITLISTED">
+        <div *ngIf="selectedTeamDetails.registration_status === EHackathonRegistrationStatus.WAITLISTED">
           <button
             nbButton
             status="primary"
             fullWidth
-            (click)="generateTeamRegistrationStatusNotification(data.team.id)"
+            (click)="generateTeamRegistrationStatusNotification(selectedTeamDetails.id)"
           >
             Send Waitlist Email
           </button>
@@ -190,7 +190,7 @@
             nbButton
             status="danger"
             fullWidth
-            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, data.team.id, data.index); ref.close()"
+            (click)="optionChanged(EHackathonRegistrationStatus.REGISTERED, selectedTeamDetails.id, data.index)"
           >
             Undo Waitlist
           </button>
@@ -198,18 +198,24 @@
       </div>
       <div
         class="round-select"
-        *ngIf="data.team.registration_status === EHackathonRegistrationStatus.ACCEPTED && hackathonRounds.length > 0"
+        *ngIf="
+          selectedTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED &&
+          hackathonRounds.length > 0
+        "
       >
         <label>Round:</label>
-        <div *ngIf="data.team.round">
-          <select (change)="changeRoundOption($event, data.team.id, data.index)" [(ngModel)]="data.team.round.id">
+        <div *ngIf="selectedTeamDetails.round">
+          <select
+            (change)="changeRoundOption($event, selectedTeamDetails.id, data.index)"
+            [(ngModel)]="selectedTeamDetails.round.id"
+          >
             <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
               {{ hackathonRound.name }}
             </option>
           </select>
         </div>
-        <div *ngIf="!data.team.round">
-          <select (change)="changeRoundOption($event, data.team.id, data.index)">
+        <div *ngIf="!selectedTeamDetails.round">
+          <select (change)="changeRoundOption($event, selectedTeamDetails.id, data.index)">
             <option selected disabled [value]="null">Select a round</option>
             <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
               {{ hackathonRound.name }}
@@ -229,7 +235,23 @@
           <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
             <div [formGroupName]="i" class="note">
               <textarea formControlName="value" fullWidth nbInput placeholder="Notes" required></textarea>
-              <fa-icon (click)="removeNote(i)" class="clickable" [icon]="faXmark" status="danger"></fa-icon>
+              <div class="action-button">
+                <button (click)="removeNote(i)" status="danger" nbButton size="tiny">
+                  <fa-icon class="clickable" [icon]="faXmark"></fa-icon>
+                  Remove
+                </button>
+                <br />
+                <button
+                  size="tiny"
+                  (click)="updateNotes(selectedTeamDetails.id)"
+                  class="add-button"
+                  nbButton
+                  status="primary"
+                  [disabled]="notesList.invalid || notesList.length === 0"
+                >
+                  Post Note
+                </button>
+              </div>
             </div>
             <span
               *ngIf="
@@ -246,22 +268,13 @@
               <fa-icon class="clickable" [icon]="faPlus"></fa-icon>
               Add Note
             </button>
-            <button
-              (click)="updateNotes(data.team.id)"
-              class="add-button"
-              nbButton
-              status="primary"
-              [disabled]="notesList.invalid || notesList.length === 0"
-            >
-              Post Note
-            </button>
           </div>
         </div>
       </div>
 
-      <div *ngIf="data.team.entity_updates.length > 0">
+      <div *ngIf="selectedTeamDetails.entity_updates.length > 0">
         <label>Updates</label>
-        <div *ngFor="let update of data.team.entity_updates">
+        <div *ngFor="let update of selectedTeamDetails.entity_updates">
           <div class="border-box-text">{{ update.details }}</div>
         </div>
       </div>
