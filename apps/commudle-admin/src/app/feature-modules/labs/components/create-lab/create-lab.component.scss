@@ -3,14 +3,14 @@
     @apply lg:com-max-w-[1020px] lg:com-my-0 lg:com-mx-auto;
 
     .header {
-      @apply com-flex com-items-center com-mb-6;
+      @apply com-flex md:com-items-center com-items-start com-mb-6;
 
       .heading {
         @apply com-font-semibold com-text-[32px] com-m-0;
       }
 
       fa-icon {
-        @apply com-text-2xl com-text-primary-500 com-mr-4 com-mt-2px;
+        @apply com-text-2xl com-text-primary-500 com-mr-4 md:com-mt-2px com-mt-2;
       }
     }
     .description {
