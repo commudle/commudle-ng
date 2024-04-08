@@ -13,7 +13,7 @@ import { EInvitationStatus } from 'apps/shared-models/hackathon-user-response.mo
 export class HackathonStatusFilterGeneralEmailsComponent {
   @Input() hackathonId: number;
   message = '';
-  emailReason = '';
+  subject = '';
   faXmark = faXmark;
   isLoading = false;
   selectedRecipient = 'all';
@@ -29,7 +29,7 @@ export class HackathonStatusFilterGeneralEmailsComponent {
   SendStatusFilterGeneralMailer() {
     this.isLoading = true;
     this.hackathonService
-      .StatusFilterGeneralEmail(this.hackathonId, this.message, this.emailReason, this.selectedStatus)
+      .StatusFilterGeneralEmail(this.hackathonId, this.message, this.subject, this.selectedStatus)
       .subscribe((data) => {
         if (data) {
           this.toastrService.successDialog('Emails sent');
