@@ -363,16 +363,11 @@ export class HackathonService {
     });
   }
 
-  StatusFilterGeneralEmail(
-    hackathonId,
-    message: string,
-    emailReason: string,
-    selectedStatus: string,
-  ): Observable<boolean> {
+  StatusFilterGeneralEmail(hackathonId, message: string, subject: string, selectedStatus: string): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.STATUS_FILTER_GENERAL_EMAIL), {
       hackathon_id: hackathonId,
       message: message,
-      email_reason: emailReason,
+      subject: subject,
       selected_status: selectedStatus,
     });
   }
