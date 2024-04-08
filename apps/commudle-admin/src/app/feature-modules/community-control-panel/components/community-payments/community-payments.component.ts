@@ -5,7 +5,14 @@ import { RazorpayService, StripeHandlerService, countries_details } from '@commu
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faArrowUpRightFromSquare, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { EBusinessType, EBusinessCategory, ItAndSoftwareSubcategory } from '@commudle/shared-models';
+import {
+  EBusinessType,
+  EBusinessCategory,
+  ItAndSoftwareSubcategory,
+  IRazorpayAccount,
+  IPageInfo,
+} from '@commudle/shared-models';
+import { EDbModels } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-community-payments',
   templateUrl: './community-payments.component.html',
@@ -32,6 +39,8 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   EBusinessType = EBusinessType;
   EBusinessCategory = EBusinessCategory;
   ItAndSoftwareSubcategory = ItAndSoftwareSubcategory;
+  razorpayAccounts: IRazorpayAccount[] = [];
+  razorpayPageInfo: IPageInfo;
 
   constructor(
     private stripeHandlerService: StripeHandlerService,
@@ -94,9 +103,9 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(ItAndSoftwareSubcategory);
     this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
     this.getStripeAccounts();
+    this.getRazorpayAccounts();
     this.ac = this.activatedRoute.snapshot.queryParamMap.get('ac');
     if (this.ac) {
       this.retrieveStripeAccount(this.ac);
@@ -135,6 +144,16 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
     );
   }
 
+  getRazorpayAccounts() {
+    this.subscriptions.push(
+      this.razorPayService.indexRazorpayAccounts(this.communityId).subscribe((data) => {
+        this.razorpayAccounts = this.razorpayAccounts.concat(
+          data.page.reduce((acc, value) => [...acc, value.data], []),
+        );
+      }),
+    );
+  }
+
   retrieveStripeAccount(uuid) {
     this.isUpdating = true;
     this.subscriptions.push(
@@ -162,7 +181,12 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
 
   createRazorpayAccount() {
     this.razorPayService
-      .createRazorpayAccount(this.communityId, this.razorpayAccountForm.value, this.settlementDetailsForm.value)
+      .createRazorpayAccount(
+        this.communityId,
+        EDbModels.KOMMUNITY,
+        this.razorpayAccountForm.value,
+        this.settlementDetailsForm.value,
+      )
       .subscribe((data) => {
         console.log('🚀 ~ CommunityPaymentsComponent ~ this.razorPayService.createRazorpayAccount ~ data:', data);
       });

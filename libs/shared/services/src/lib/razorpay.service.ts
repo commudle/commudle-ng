@@ -11,17 +11,31 @@ import { Observable } from 'rxjs';
 export class RazorpayService {
   constructor(private baseApiService: BaseApiService, private http: HttpClient) {}
 
-  createRazorpayAccount(communityId, accountDetails, settlementsDetails): Observable<IRazorpayAccount> {
-    return this.http.post<IRazorpayAccount>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE), {
-      community_id: communityId,
-      account: accountDetails,
-      settlements: settlementsDetails,
-    });
+  createRazorpayAccount(parentId, parentType, accountDetails, settlementsDetails): Observable<IRazorpayAccount> {
+    let params = new HttpParams();
+    switch (parentType) {
+      case 'Kommunity': {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case 'CommunityGroup': {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.post<IRazorpayAccount>(
+      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE),
+      {
+        account: accountDetails,
+        settlements: settlementsDetails,
+      },
+      { params },
+    );
   }
 
-  indexStripeAccount(communityId): Observable<IPagination<IStripeAccount>> {
+  indexRazorpayAccounts(communityId): Observable<IPagination<IRazorpayAccount>> {
     const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<IPagination<IStripeAccount>>(this.baseApiService.getRoute(API_ROUTES.STRIPE_HANDLER.INDEX), {
+    return this.http.get<IPagination<IRazorpayAccount>>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.INDEX), {
       params,
     });
   }

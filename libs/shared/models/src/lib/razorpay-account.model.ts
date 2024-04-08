@@ -1,6 +1,10 @@
 export interface IRazorpayAccount {
   id: number;
   uuid: string;
+  account_details: JSON;
+  account_id: string;
+  bank_details: JSON;
+  product_id: string;
 }
 
 export enum EBusinessType {
