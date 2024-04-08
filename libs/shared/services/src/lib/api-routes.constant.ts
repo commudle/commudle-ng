@@ -811,6 +811,7 @@ export const API_ROUTES = {
     INVITE_USER: 'api/v2/hackathons/invite_user', //POST
     OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     WINNER_ANNOUNCEMENT_EMAIL: 'api/v2/hackathons/winner_announcement_email', //POST
+    STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
