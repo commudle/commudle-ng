@@ -356,6 +356,13 @@ export class HackathonService {
     );
   }
 
+  WinnerAnnouncementEmail(hackathonId, message): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.WINNER_ANNOUNCEMENT_EMAIL), {
+      hackathon_id: hackathonId,
+      message: message,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {

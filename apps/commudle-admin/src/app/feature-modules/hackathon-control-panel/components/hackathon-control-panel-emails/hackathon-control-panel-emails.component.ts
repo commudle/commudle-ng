@@ -1,8 +1,9 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-
+import { HackathonWinnerAnnouncementEmailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-winner-announcement-emailer/hackathon-winner-announcement-emailer.component';
 @Component({
   selector: 'commudle-hackathon-control-panel-emails',
   templateUrl: './hackathon-control-panel-emails.component.html',
@@ -27,6 +28,12 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
 
   openDialogBox(dialog) {
     this.dialogRef = this.nbDialogService.open(dialog);
+  }
+
+  openDialogBoxForWinnerAnnouncement(hackathonId) {
+    this.dialogRef = this.nbDialogService.open(HackathonWinnerAnnouncementEmailerComponent, {
+      context: { hackathonId },
+    });
   }
 
   SendRegistrationsMailer() {
