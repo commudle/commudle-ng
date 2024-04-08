@@ -124,12 +124,12 @@
               <fa-icon [icon]="faHashtag"></fa-icon>
               <span class="title">Channels</span>
             </a>
-            <div class="com-relative">
+            <!-- <div class="com-relative">
               <a [routerLink]="['/orgs', communityGroup.slug, 'team']" class="d-flex" routerLinkActive="active">
                 <fa-icon [icon]="faUserGroup"></fa-icon>
                 <span class="title">Admin Team</span>
               </a>
-            </div>
+            </div> -->
             <a class="d-flex" [nbContextMenu]="items" nbContextMenuTrigger="hover" *ngIf="items.length > 0">
               <fa-icon [icon]="faCaretDown"></fa-icon>
               <span class="title">More</span>

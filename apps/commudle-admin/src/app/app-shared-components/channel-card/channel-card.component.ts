@@ -23,7 +23,7 @@ export class ChannelCardComponent implements OnInit, OnDestroy {
   showDescription = true;
 
   constructor(private communitiesService: CommunitiesService) {
-    this.showDescriptioninterval = interval(3000).subscribe(() => {
+    this.showDescriptioninterval = interval(8000).subscribe(() => {
       this.showDescription = !this.showDescription;
     });
   }
