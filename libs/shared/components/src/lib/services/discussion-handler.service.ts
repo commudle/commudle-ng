@@ -260,6 +260,8 @@ export class DiscussionHandlerService {
     switch (this._discussionParent) {
       case 'builds':
         return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);
+      case 'hackathon':
+        return this.discussionService.getCommunityBuildMessages(this._discussionId, { limit: 10 }, fromLastRead);
       default:
         return from([]);
     }

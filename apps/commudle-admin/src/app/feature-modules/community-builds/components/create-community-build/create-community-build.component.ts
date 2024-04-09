@@ -24,6 +24,8 @@ import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon
 import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
 import moment from 'moment';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
 
 @Component({
   selector: 'app-create-community-build',
@@ -88,7 +90,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   parentId: number;
   parentType: EDbModels;
   hackathonUserResponses: IHackathonUserResponses;
-
+  currentUser: ICurrentUser;
   constructor(
     private seoService: SeoService,
     private fb: FormBuilder,
@@ -100,6 +102,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     private gtm: GoogleTagManagerService,
     private hackathonService: HackathonService,
     private entityUpdatesService: EntityUpdatesService,
+    private authWatchService: LibAuthwatchService,
   ) {
     this.communityBuildForm = this.fb.group({
       name: ['', Validators.required],
@@ -136,7 +139,13 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-    this.getParent();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+      this.currentUser = currentUser;
+    });
   }
 
   ngOnDestroy() {
@@ -192,6 +201,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       } else {
         this.tags = this.tags.concat(this.paramsTags);
       }
+      this.getParent();
     });
   }
 
@@ -389,6 +399,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       if (this.parentType === EDbModels.HACKATHON_TEAM) {
         this.hackathonService.showUserResponsesByTeam(this.parentId).subscribe((data) => {
           this.hackathonUserResponses = data;
+          console.log(
+            '🚀 ~ CreateCommunityBuildComponent ~ this.hackathonService.showUserResponsesByTeam ~ this.hackathonUserResponses:',
+            this.hackathonUserResponses,
+          );
         });
       }
     });

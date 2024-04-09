@@ -6,6 +6,7 @@ import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { IHackathon } from 'apps/shared-models/hackathon.model';
 
 @Component({
   selector: 'commudle-public-hackathon-teammate-form',
@@ -16,6 +17,7 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   @Input() hackathonUserResponse: IHackathonUserResponse;
   @Input() hackathonResponseGroup: IHackathonResponseGroup;
   @Input() hasTeammateOption: boolean;
+  @Input() hackathon: IHackathon;
   @Output() submitTeammateDetailsEvent = new EventEmitter<any>();
   @Output() previousButtonEvent = new EventEmitter<any>();
   showEmailError = false;

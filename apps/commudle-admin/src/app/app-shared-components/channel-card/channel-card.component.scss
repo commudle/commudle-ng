@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-w-full md:com-h-52 com-h-[198px]  hover:com-shadow-Card com-cursor-pointer com-m-0;
+  @apply com-w-full md:com-h-52 com-h-[198px] com-cursor-pointer com-m-0;
 
   nb-card-body {
     @apply com-overflow-hidden com-flex com-flex-row com-px-4;
@@ -31,9 +31,21 @@ nb-card {
         }
         .description-and-latest-message {
           @apply com-m-0 md:com-mb-4 com-mb-3 com-h-10;
-          .description,
-          .latest-message {
+          .description {
             @apply md:com-text-sm com-text-xs com-font-normal com-text-gray-500 com-line-clamp-2;
+            transition: opacity 0.8s ease;
+          }
+          .latest-message {
+            @apply com-flex com-items-start md:com-text-sm com-text-xs com-font-normal com-text-gray-500 com-line-clamp-2;
+            transition: opacity 0.8s ease;
+
+            span {
+              @apply md:com-text-sm com-text-xs com-font-normal com-text-gray-500 com-line-clamp-2;
+            }
+
+            .message-icon {
+              @apply com-h-4 com-w-4 com-flex com-flex-shrink-0 com-m-0 com-mr-1 com-mt-2px;
+            }
           }
         }
 

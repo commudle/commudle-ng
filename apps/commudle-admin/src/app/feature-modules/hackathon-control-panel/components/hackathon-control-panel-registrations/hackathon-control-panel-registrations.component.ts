@@ -127,7 +127,6 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         data ? data.id : '',
       )
       .subscribe((data) => {
-        console.log('🚀 ~ HackathonControlPanelRegistrationsComponent ~ .subscribe ~ data:', data);
         if (data) this.toastrService.successDialog('Information Updated');
       });
   }

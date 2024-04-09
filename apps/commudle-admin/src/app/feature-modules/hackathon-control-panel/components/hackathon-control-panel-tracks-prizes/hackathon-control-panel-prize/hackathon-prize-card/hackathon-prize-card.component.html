@@ -43,10 +43,13 @@
         </tr>
         <tr
           *ngFor="let userResponse of hackathonUserResponses; let i = index"
-          (click)="addWinner(userResponse.team, i)"
           [ngClass]="{ winner: userResponse.team.hackathon_winners.length > 0 }"
         >
-          <td class="team-name">{{ userResponse.team.name }}</td>
+          <td class="team-name">
+            <span>{{ userResponse.team.name }}</span>
+            <br />
+            <span *ngFor="let hackathonWinner of userResponse.team.hackathon_winners"> 🏆</span>
+          </td>
           <td>
             <div *ngIf="userResponse.team.round" class="round-name">
               <span>{{ userResponse.team.round.name }}</span>
@@ -54,6 +57,15 @@
           </td>
           <td class="build-name">{{ userResponse.team.community_build?.name }}</td>
           <td>
+            <button
+              *ngIf="!userResponse.team.prize_selected"
+              nbButton
+              status="primary"
+              size="tiny"
+              (click)="addWinner(userResponse.team, i)"
+            >
+              Select Winner
+            </button>
             <div *ngFor="let hackathonWinner of userResponse.team.hackathon_winners; let wi = index" class="com-py-2">
               <span (click)="$event.stopPropagation()" class="prizes">
                 <span>

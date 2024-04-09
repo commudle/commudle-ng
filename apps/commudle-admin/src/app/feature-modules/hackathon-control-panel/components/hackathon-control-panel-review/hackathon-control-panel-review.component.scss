@@ -101,8 +101,8 @@ nb-card-body {
 
   .note {
     @apply com-flex com-gap-2 com-items-center com-my-3;
-    fa-icon {
-      @apply com-text-red-500;
+    .action-button {
+      @apply com-flex com-flex-col com-justify-between;
     }
   }
   button {

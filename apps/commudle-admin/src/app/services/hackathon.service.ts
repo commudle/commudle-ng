@@ -356,6 +356,22 @@ export class HackathonService {
     );
   }
 
+  WinnerAnnouncementEmail(hackathonId, message): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.WINNER_ANNOUNCEMENT_EMAIL), {
+      hackathon_id: hackathonId,
+      message: message,
+    });
+  }
+
+  StatusFilterGeneralEmail(hackathonId, message: string, subject: string, selectedStatus: string): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.STATUS_FILTER_GENERAL_EMAIL), {
+      hackathon_id: hackathonId,
+      message: message,
+      subject: subject,
+      selected_status: selectedStatus,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {

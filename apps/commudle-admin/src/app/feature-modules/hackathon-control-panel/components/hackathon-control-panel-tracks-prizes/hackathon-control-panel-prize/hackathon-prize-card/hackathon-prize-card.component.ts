@@ -1,3 +1,4 @@
+import { ToastrService } from '@commudle/shared-services';
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
@@ -23,10 +24,12 @@ export class HackathonPrizeCardComponent implements OnInit {
   icons = {
     faXmark,
   };
+
   constructor(
     private nbDialogService: NbDialogService,
     private hackathonService: HackathonService,
     private hackathonWinnerService: HackathonWinnerService,
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -47,6 +50,16 @@ export class HackathonPrizeCardComponent implements OnInit {
     this.hackathonService.indexUserResponses(this.hackathonPrize.hackathon_id).subscribe((data) => {
       if (data) {
         this.hackathonUserResponses = data;
+        for (const hur of this.hackathonUserResponses) {
+          for (const hw of hur.team.hackathon_winners) {
+            if (hw.hackathon_prize.id === this.hackathonPrize.id) {
+              hur.team.prize_selected = true;
+              break;
+            } else {
+              hur.team.prize_selected = false;
+            }
+          }
+        }
       }
     });
     this.nbDialogService.open(dialog, {});
@@ -57,6 +70,8 @@ export class HackathonPrizeCardComponent implements OnInit {
       .addHackathonWinner(this.hackathonPrize.id, team.id)
       .subscribe((data: IHackathonWinner) => {
         this.hackathonUserResponses[index].team.hackathon_winners.push(data);
+        this.hackathonUserResponses[index].team.prize_selected = true;
+        this.toastrService.successDialog('Winner Selected');
       });
   }
 
@@ -64,8 +79,10 @@ export class HackathonPrizeCardComponent implements OnInit {
     this.hackathonWinnerService.removeHackathonWinner(winnerId).subscribe((data) => {
       if (data) {
         const team = this.hackathonUserResponses[userResponseIndex].team;
+        this.hackathonUserResponses[userResponseIndex].team.prize_selected = false;
         const winners = team.hackathon_winners;
         winners.splice(winnerIndex, 1);
+        this.toastrService.successDialog('Winner Removed');
       }
     });
   }
