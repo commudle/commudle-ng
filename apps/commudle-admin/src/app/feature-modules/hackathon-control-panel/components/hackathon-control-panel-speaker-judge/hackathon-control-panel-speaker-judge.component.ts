@@ -25,7 +25,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   };
   hackathonSlug = '';
   @ViewChild('judgeForm', { static: true }) judgeFormDialog: TemplateRef<any>;
-
+  profileExist = false;
   constructor(
     private fb: FormBuilder,
     private hackathonService: HackathonService,
@@ -44,7 +44,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       email: ['', Validators.required],
       company: ['', Validators.required],
       designation: ['', Validators.required],
-      username: ['', Validators.required],
+      username: [''],
       twitter: ['', this.urlValidator],
       linkedin: ['', this.urlValidator],
       website: ['', this.urlValidator],
@@ -73,12 +73,14 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   }
 
   fetchSpeakerJudgeDetails() {
+    this.profileExist = false;
     this.hackathonService
       .check_duplicate_judge(this.fetchSpeakerJudge.get('email').value, this.hackathonSlug)
       .subscribe((data) => {
         this.appUsersService.getProfileByEmail(data).subscribe((data: IUser) => {
-          this.speakerRegistrationForm.reset();
           if (data) {
+            this.speakerRegistrationForm.reset();
+            this.profileExist = true;
             if (data.photo.url && (data.photo.url.startsWith('http://') || data.photo.url.startsWith('https://'))) {
               this.imageUrl = data.photo.url;
             } else {

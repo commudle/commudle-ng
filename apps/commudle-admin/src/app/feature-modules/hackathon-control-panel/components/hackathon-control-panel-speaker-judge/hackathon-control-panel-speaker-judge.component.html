@@ -104,7 +104,15 @@
         <!-- email -->
         <div>
           <label for="eamil">Email*</label>
-          <input placeholder="Email" type="email" nbInput fullWidth id="email" formControlName="email" readonly />
+          <input
+            placeholder="Email"
+            type="email"
+            nbInput
+            fullWidth
+            id="email"
+            formControlName="email"
+            [readonly]="profileExist"
+          />
         </div>
 
         <!-- company -->
