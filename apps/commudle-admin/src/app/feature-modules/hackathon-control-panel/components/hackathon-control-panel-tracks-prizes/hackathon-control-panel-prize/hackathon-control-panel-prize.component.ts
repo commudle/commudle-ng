@@ -86,10 +86,13 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
   }
 
   openPrizeFormDialogBox(dialog, prize?: IHackathonPrize, index?) {
+    this.prizeForm.reset();
     this.prizeForm.patchValue({
       hackathon_id: this.hackathon.id,
       currency_type: 'INR',
       hackathon_track_id: '',
+      prize_amount: '',
+      order: '',
     });
     if (prize) {
       this.prizeForm.patchValue({
