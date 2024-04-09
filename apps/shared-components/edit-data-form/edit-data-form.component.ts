@@ -227,8 +227,7 @@ export class EditDataFormComponent implements OnInit {
       this.editDataForm.markAllAsTouched();
       return;
     }
-
-    this.updateFormDataEvent.emit(this.editDataForm.get('data_form').value);
+    this.updateFormDataEvent.emit(this.editDataForm.getRawValue().data_form);
   }
 
   cloneCommunityDataForm() {
