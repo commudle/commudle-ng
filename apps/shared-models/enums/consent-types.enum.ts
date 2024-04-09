@@ -11,8 +11,8 @@ export enum ConsentTypesEnum {
   ResumeConsent = 'resume-consent',
   AcceptRSVP = 'accept-rsvp-consent',
   DeactivateDeleteAccount = 'deactivate-delete',
-  HACKATHON_JUDGE_INVITATION = 'hackathon_judge_invitation',
-  HACKATHON_TEAMMATE_INVITATION = 'hackathon_teammate_invitation',
+  HACKATHON_JUDGE_INVITATION = 'HackathonJudgeInvitation',
+  HACKATHON_TEAMMATE_INVITATION = 'HackathonTeammateInvitation',
 }
 
 export enum ButtonStyle {

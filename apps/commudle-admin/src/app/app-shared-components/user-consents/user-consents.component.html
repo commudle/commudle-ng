@@ -70,6 +70,12 @@
         ></commudle-accept-deactivate-account-consent>
         <commudle-accept-delete-account-consent *ngIf="closeAccount"></commudle-accept-delete-account-consent>
       </div>
+      <div *ngSwitchCase="consentTypesEnum.HACKATHON_TEAMMATE_INVITATION">
+        <commudle-accept-hackathon-teammate-invite></commudle-accept-hackathon-teammate-invite>
+      </div>
+      <div *ngSwitchCase="consentTypesEnum.HACKATHON_JUDGE_INVITATION">
+        <commudle-accept-hackathon-judge-invite></commudle-accept-hackathon-judge-invite>
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <button nbButton shape="rectangle" (click)="accept()" [ngClass]="buttonStyle">
