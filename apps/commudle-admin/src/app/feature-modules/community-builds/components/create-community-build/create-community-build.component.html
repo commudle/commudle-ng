@@ -161,7 +161,14 @@
             </div>
 
             <!-- list of entity_updates -->
-            <div *ngIf="hackathonUserResponses && hackathonUserResponses.user_responses">
+            <div
+              *ngIf="
+                hackathonUserResponses &&
+                hackathonUserResponses.user_responses &&
+                cBuild &&
+                cBuild.entity_updates.length > 0
+              "
+            >
               <div *ngFor="let update of cBuild.entity_updates; let i = index" class="entity-update">
                 <div class="update-details">
                   <div [innerHTML]="update.details"></div>

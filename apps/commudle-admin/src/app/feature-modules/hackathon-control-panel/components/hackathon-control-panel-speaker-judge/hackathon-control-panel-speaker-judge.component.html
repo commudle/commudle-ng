@@ -7,6 +7,10 @@
         <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
       </div>
       <commudle-alert
+        [error]="fetchSpeakerJudge.controls['email'].hasError('email')"
+        errorMessage="Email was invalid"
+      ></commudle-alert>
+      <commudle-alert
         [error]="true"
         errorMessage="Use real email id's only, if the user is present on Commudle, the details of their profile will be fetched automatically"
       ></commudle-alert>

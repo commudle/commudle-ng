@@ -21,6 +21,9 @@ nb-card-header {
     &.active {
       @apply com-bg-primary-500 com-text-white;
     }
+    &.selected {
+      @apply com-bg-[#E4E7EC] com-pointer-events-none com-cursor-not-allowed com-text-primary-500 #{!important};
+    }
   }
 
   .custom-checkbox input:checked + .checkmark:after {

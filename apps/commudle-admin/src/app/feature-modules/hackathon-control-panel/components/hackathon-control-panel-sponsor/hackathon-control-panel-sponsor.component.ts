@@ -18,8 +18,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
     faFileImage,
     faXmark,
   };
-
-  imagePreview;
+  imagePreview: string;
 
   hackathonSponsors: IHackathonSponsor[];
   constructor(
@@ -53,6 +52,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
   }
 
   openSponsorDialogBox(dialog, hackathonSponsor?: IHackathonSponsor, index?) {
+    this.imagePreview = '';
     if (hackathonSponsor) {
       this.sponsorForm.patchValue({
         name: hackathonSponsor.sponsor.name,
@@ -64,6 +64,7 @@ export class HackathonControlPanelSponsorComponent implements OnInit {
       });
       this.imagePreview = hackathonSponsor.sponsor.logo.url;
     }
+
     this.nbDialogService.open(dialog, {
       context: { index: index, sponsor: hackathonSponsor },
     });

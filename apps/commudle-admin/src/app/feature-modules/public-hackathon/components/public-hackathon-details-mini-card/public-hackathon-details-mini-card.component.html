@@ -60,7 +60,7 @@
     <div class="interested-members">
       <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
     </div>
-    <div class="action" *ngIf="hrgId && !userTeamDetails">
+    <div class="action" *ngIf="hrgId && !userTeamDetails && hackathonStatus !== 'Closed'">
       <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
     </div>
   </div>

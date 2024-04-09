@@ -24,19 +24,19 @@
         <div>
           <div class="group-name">PERSONAL</div>
           <div class="group-values">
-            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('name').value }">
+            <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('name').value }">
               <input type="checkbox" formControlName="name" (click)="$event.preventDefault()" />
               <span class="checkmark"></span>
               Name
             </label>
 
-            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('profile_image').value }">
+            <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('profile_image').value }">
               <input type="checkbox" formControlName="profile_image" (click)="$event.preventDefault()" />
               <span class="checkmark"></span>
               Profile Image
             </label>
 
-            <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('email').value }">
+            <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('email').value }">
               <input type="checkbox" formControlName="email" (click)="$event.preventDefault()" />
               <span class="checkmark"></span>
               Email
