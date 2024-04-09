@@ -35,7 +35,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) {
     this.fetchSpeakerJudge = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
     });
 
     this.speakerRegistrationForm = this.fb.group({
@@ -79,8 +79,10 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
         this.appUsersService.getProfileByEmail(data).subscribe((data: IUser) => {
           this.speakerRegistrationForm.reset();
           if (data) {
-            if (data.photo.url) {
+            if (data.photo.url && (data.photo.url.startsWith('http://') || data.photo.url.startsWith('https://'))) {
               this.imageUrl = data.photo.url;
+            } else {
+              this.imageUrl = '';
             }
             this.speakerRegistrationForm.patchValue({
               name: data.name,
@@ -92,6 +94,10 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
               website: data.personal_website ? data.personal_website : '',
               username: data.username,
               user_id: data.id,
+            });
+          } else {
+            this.speakerRegistrationForm.patchValue({
+              email: this.fetchSpeakerJudge.get('email').value,
             });
           }
           this.dialogService.open(this.judgeFormDialog);
