@@ -13,6 +13,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
+declare const Razorpay: any;
 
 @Component({
   selector: 'commudle-root',
@@ -119,5 +120,37 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     } else {
       this.darkModeService.toggleDarkMode(false);
     }
+  }
+
+  submit() {
+    const options = {
+      key: 'rzp_test_AQ8emxZcsJoKdl', // Enter the Key ID generated from the Dashboard
+      amount: '5000', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: 'INR',
+      name: 'Acme Corp', //your business name
+      description: 'Test Transaction',
+      image:
+        'https://kommunity-app.s3.ap-south-1.amazonaws.com/yj23uqasdnls4gceke4vk0azfyh8?response-content-disposition=inline%3B%20filename%3D%22commudle-logo-full.png%22%3B%20filename%2A%3DUTF-8%27%27commudle-logo-full.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXUMQJEJBCK2EC566%2F20240408%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240408T162157Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=bccc4f5393a0dbda56fb0c5fca8f09a6490c7908a2489530225e121ece0f55ec',
+      // order_id: 'order_9A33XWu170gUtm', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      callback_url: 'https://commudle.com/',
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        name: 'Gaurav Kumar', //your customer's name
+        email: 'gaurav.kumar@example.com',
+        contact: '9000090000', //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: 'Razorpay Corporate Office',
+      },
+      theme: {
+        color: '#3399cc',
+      },
+    };
+    const rzp1 = new Razorpay(options);
+    console.log('🚀 ~ AppComponent ~ submit ~ rzp1:', rzp1);
+    // document.getElementById('rzp-button1').onclick = function (e) {
+    rzp1.open();
+    // e.preventDefault();
+    // };
   }
 }
