@@ -2,7 +2,10 @@
   <p>
     {{ moment(rowData.start_time).format('Do MMM YYYY h:mm A') }}
   </p>
-  <p class="upcoming" *ngIf="moment(rowData.start_time) > moment()">
+  <p
+    *ngIf="moment(rowData.start_time) > moment() && (rowData.status === 'open' || rowData.status === 'draft')"
+    class="upcoming"
+  >
     {{ moment(rowData.start_time).fromNow() | titlecase }}
   </p>
 </div>
