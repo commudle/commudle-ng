@@ -1,10 +1,13 @@
 <div class="about-page">
-  <section class="about-page-section">
+  <section class="about-page-section" id="about">
     <div class="about-page-heading-section">
       <h1 class="page-heading">
-        Grow with a diverse <br />
-        <span> Developer Ecosystem </span>
+        <a [routerLink]="'.'" fragment="about"
+          >Grow with a diverse <br />
+          <span> Developer Ecosystem </span></a
+        >
       </h1>
+      <h2 class="heading-developer-profile"></h2>
       <p class="page-subheading">{{ ICmsAbout?.description }}</p>
     </div>
   </section>
@@ -48,9 +51,12 @@
       *ngFor="let feature of ICmsAbout?.features; let odd = odd"
       [ngClass]="{ 'com-flex-col-reverse': odd }"
       class="grid"
+      id="{{ feature.title }}"
     >
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
-        <h2 class="title">{{ feature.title }}</h2>
+        <h2 class="title">
+          <a [routerLink]="'.'" fragment="{{ feature.title }}">{{ feature.title }}</a>
+        </h2>
         <p class="description">{{ feature.description }}</p>
         <div *ngIf="feature.Button" class="com-flex com-justify-center md:com-justify-start">
           <a [href]="feature.Button?.url" nbButton shape="semi-round">{{ feature.Button?.text }}</a>
@@ -102,10 +108,10 @@
     </div>
   </section> -->
 
-  <section class="about-page-section teams-section">
+  <section class="about-page-section teams-section" id="team">
     <div class="about-page-teams-section">
       <div class="team-section-heading">
-        <h2 class="title">A Team With A Dream</h2>
+        <h2 class="title"><a [routerLink]="'.'" fragment="team">A Team With A Dream</a></h2>
         <p class="description">We are people whose career journeys are outcomes of communities.</p>
       </div>
       <ul class="grid">
@@ -146,10 +152,10 @@
     </div>
   </section>
 
-  <section class="about-page-section advisor-section">
+  <section class="about-page-section advisor-section" id="guiding-stars">
     <div class="about-page-advisor-section">
       <div class="advisor-section-heading">
-        <h2 class="title">Our Guiding Stars</h2>
+        <h2 class="title"><a [routerLink]="'.'" fragment="guiding-stars">Our Guiding Stars</a></h2>
         <p class="description">
           We're backed by experts who have built, shaped & scaled the developer ecosystems globally.
         </p>
@@ -187,10 +193,12 @@
     </div>
   </section>
 
-  <section class="about-page-section features-list-section">
+  <section class="about-page-section features-list-section" id="scale-developer">
     <div class="grid">
       <div *ngIf="ICmsAbout">
-        <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
+        <h2 class="title">
+          <a [routerLink]="'.'" fragment="scale-developer">{{ ICmsAbout?.featuresList?.content?.title }}</a>
+        </h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
         <div class="com-flex com-justify-center md:com-justify-start">
           <a [href]="ICmsAbout?.featuresList?.content?.Button?.url" nbButton shape="semi-round">
