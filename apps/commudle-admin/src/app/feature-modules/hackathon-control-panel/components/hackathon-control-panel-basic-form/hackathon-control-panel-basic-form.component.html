@@ -165,33 +165,6 @@
         ></commudle-alert>
       </div>
 
-      <!-- min_number_of_teammates -->
-      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
-        <label for="min_number_of_teammates">Min Number of Teammates*</label>
-        <input
-          formControlName="min_number_of_teammates"
-          id="min_number_of_teammates"
-          type="number"
-          nbInput
-          fullWidth
-          placeholder="1"
-        />
-        <commudle-alert
-          *ngIf="
-            hackathonForm.controls['min_number_of_teammates'].invalid &&
-            hackathonForm.controls['min_number_of_teammates'].hasError('required') &&
-            hackathonForm.controls['min_number_of_teammates'].touched
-          "
-          [error]="true"
-          errorMessage="Number of Participants is required"
-        ></commudle-alert>
-        <commudle-alert
-          *ngIf="hackathonForm.controls['min_number_of_teammates'].hasError('min')"
-          [error]="true"
-          errorMessage="Number of participants is always greater than 0"
-        ></commudle-alert>
-      </div>
-
       <!-- max_number_of_teammates -->
       <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
         <label for="max_number_of_teammates">Max Number of Teammates*</label>
@@ -219,11 +192,37 @@
         ></commudle-alert>
       </div>
 
+      <!-- min_number_of_teammates -->
+      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
+        <label for="min_number_of_teammates">Min Number of Teammates*</label>
+        <input
+          formControlName="min_number_of_teammates"
+          id="min_number_of_teammates"
+          type="number"
+          nbInput
+          fullWidth
+          placeholder="1"
+        />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['min_number_of_teammates'].invalid &&
+            hackathonForm.controls['min_number_of_teammates'].hasError('required') &&
+            hackathonForm.controls['min_number_of_teammates'].touched
+          "
+          [error]="true"
+          errorMessage="Number of Participants is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['min_number_of_teammates'].hasError('min')"
+          [error]="true"
+          errorMessage="Number of participants is always greater than 0"
+        ></commudle-alert>
+      </div>
+
       <!--Type of location of hackathon* -->
       <div class="participate-types">
         <label for="hackathon_location_type">Type of hackathon location*</label>
 
-        <!-- Use ngFor to loop through enum values -->
         <div>
           <div *ngFor="let type of EHackathonLocationType | keyvalue">
             <input type="radio" [id]="type.key" formControlName="hackathon_location_type" [value]="type.value" />
@@ -300,7 +299,7 @@
         [disabled]="hackathonForm.invalid || isLoading"
         [nbSpinner]="isLoading"
       >
-        Save & Continue
+        {{ saveButtonText }}
       </button>
     </form>
   </nb-card-body>

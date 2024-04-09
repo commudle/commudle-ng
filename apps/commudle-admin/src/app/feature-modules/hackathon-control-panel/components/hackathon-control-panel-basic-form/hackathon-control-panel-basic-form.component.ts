@@ -1,5 +1,5 @@
 import { ToastrService } from '@commudle/shared-services';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -13,6 +13,7 @@ import { faFileImage } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./hackathon-control-panel-basic-form.component.scss'],
 })
 export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestroy {
+  @Input() saveButtonText = 'Save';
   hackathonForm: FormGroup;
   locationForm: FormGroup;
   hackathonSlug = '';

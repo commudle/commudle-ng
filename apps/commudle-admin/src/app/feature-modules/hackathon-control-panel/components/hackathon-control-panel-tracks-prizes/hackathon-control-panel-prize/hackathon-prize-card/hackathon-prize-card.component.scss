@@ -38,7 +38,12 @@
     }
 
     tr:not(:first-child):not(.winner) {
-      @apply com-cursor-pointer hover:com-bg-gray-100;
+      @apply com-cursor-pointer hover:com-bg-gray-300;
+    }
+    tr:not(:first-child):not(.winner):hover {
+      td {
+        @apply com-text-tblack;
+      }
     }
 
     .team-name {
@@ -57,7 +62,13 @@
     }
 
     .winner {
-      @apply com-bg-slate-200;
+      @apply com-bg-gray-300;
+      td {
+        @apply com-text-tblack;
+        span {
+          @apply com-text-tblack;
+        }
+      }
     }
 
     .prizes {

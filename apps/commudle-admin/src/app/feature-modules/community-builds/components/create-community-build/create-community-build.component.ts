@@ -399,10 +399,6 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       if (this.parentType === EDbModels.HACKATHON_TEAM) {
         this.hackathonService.showUserResponsesByTeam(this.parentId).subscribe((data) => {
           this.hackathonUserResponses = data;
-          console.log(
-            '🚀 ~ CreateCommunityBuildComponent ~ this.hackathonService.showUserResponsesByTeam ~ this.hackathonUserResponses:',
-            this.hackathonUserResponses,
-          );
         });
       }
     });
