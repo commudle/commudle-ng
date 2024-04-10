@@ -1,35 +1,58 @@
 .create-lab {
   .form-container {
-    @apply lg:com-max-w-[1020px] lg:com-my-0 lg:com-mx-auto;
+    @apply lg:com-max-w-[1020px];
 
     .header {
-      @apply com-font-light;
+      @apply com-flex md:com-items-center com-items-start com-mb-6;
+
+      .heading {
+        @apply com-font-semibold com-text-[32px] com-m-0;
+      }
 
       fa-icon {
-        @apply com-text-primary-500;
+        @apply com-text-2xl com-text-primary-500 com-mr-4 md:com-mt-2px com-mt-2;
       }
     }
     .description {
-      @apply com-text-xl;
+      @apply com-text-xl com-font-normal com-m-0 com-mb-5;
+    }
+
+    .example-steps {
+      @apply com-text-xl com-font-medium com-m-0 com-mb-8;
+      .example {
+        @apply com-text-primary-500;
+      }
+
+      .step {
+        @apply com-bg-blue-200 com-font-normal com-text-tYankees-Blue com-ml-4;
+      }
+    }
+
+    .lab-about {
+      @apply com-text-xl com-font-normal com-m-0 com-mb-4;
+
+      span {
+        @apply com-text-base com-text-primary-500;
+      }
     }
 
     form {
       input {
-        @apply com-text-xl;
+        @apply com-text-lg;
 
         &::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
-          @apply com-text-xl;
+          @apply com-text-lg;
         }
 
         &::-moz-placeholder {
           /* Firefox 19+ */
-          @apply com-text-xl;
+          @apply com-text-lg;
         }
       }
 
       .submit-button {
-        @apply com-mt-4;
+        @apply com-mt-8;
       }
     }
   }

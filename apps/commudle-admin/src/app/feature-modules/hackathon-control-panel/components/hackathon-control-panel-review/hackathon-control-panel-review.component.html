@@ -1,14 +1,22 @@
 <nb-card>
-  <nb-card-body>
+  <nb-card-header *ngIf="userResponses && userResponses.length > 0">
     <button
       nbButton
       status="primary"
-      *ngIf="userResponses && userResponses.length > 0"
       (click)="openRoundSelectionUpdateEmailDialogBox(OverallRoundSelectionUpdateEmailDialogBox)"
       class="com-w-max"
     >
       Send round selection update email
     </button>
+    &nbsp; &nbsp;
+    <a
+      *ngIf="hackathon"
+      [routerLink]="['/admin', 'communities', communityId, 'hackathon-dashboard', hackathon.slug, 'tracks', 'prizes']"
+    >
+      <button nbButton status="primary" class="com-w-max">Select Winner</button>
+    </a>
+  </nb-card-header>
+  <nb-card-body>
     <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
         <th width="500px">Name</th>
@@ -25,6 +33,7 @@
           <div class="team-details">
             <div class="team-name">
               {{ userResponse.team.name }}
+              <span *ngFor="let hackathonWinner of userResponse.team.hackathon_winners"> 🏆</span>
             </div>
             <div class="date">
               {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
@@ -228,8 +237,12 @@
         <div formArrayName="note" class="field">
           <label>Notes </label>
           <div *ngIf="notes && notes.length > 0">
-            <div *ngFor="let note of notes">
+            <div *ngFor="let note of notes; let i = index" class="note-list">
               <div class="border-box-text">{{ note.text }}</div>
+              <button (click)="destroyNote(note.id, i)" status="danger" nbButton size="tiny">
+                <fa-icon class="clickable" [icon]="faXmark"></fa-icon>
+                Remove
+              </button>
             </div>
           </div>
           <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
@@ -249,7 +262,7 @@
                   status="primary"
                   [disabled]="notesList.invalid || notesList.length === 0"
                 >
-                  Post Note
+                  Save
                 </button>
               </div>
             </div>
@@ -295,7 +308,9 @@
           </div>
         </div>
         <div *ngIf="selectedUserDetails" class="selected-user-details">
-          <a [routerLink]="['/users', selectedUserDetails.username]" target="_blank"> Go To Profile </a>
+          <a [routerLink]="['/users', selectedUserDetails.username]" target="_blank" class="com-w-max com-p-2">
+            Go To Profile
+          </a>
           <!-- About -->
           <div *ngIf="selectedUserDetails.about_me">
             <label>About</label>

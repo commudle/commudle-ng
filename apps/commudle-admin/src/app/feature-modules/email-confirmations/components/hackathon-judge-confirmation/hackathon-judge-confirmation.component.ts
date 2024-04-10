@@ -39,6 +39,8 @@ export class HackathonJudgeConfirmationComponent implements OnInit {
         }
         if (Number(params.status) === 2) {
           this.activateRole(this.token, EInvitationStatus.REJECTED);
+        } else {
+          this.onAcceptRoleButton();
         }
       });
     });
@@ -56,9 +58,7 @@ export class HackathonJudgeConfirmationComponent implements OnInit {
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
       dialogRef.close();
       if (result === 'rejected') {
-        const queryParams = { token: this.token, decline: true };
-        this.router.navigate([], { queryParams });
-        this.activateRole(this.token);
+        this.activateRole(this.token, EInvitationStatus.REJECTED);
       } else {
         this.activateRole(this.token, EInvitationStatus.ACCEPTED);
       }

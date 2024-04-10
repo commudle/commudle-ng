@@ -7,3 +7,7 @@ nb-card {
 .group-name {
   @apply com-my-4;
 }
+
+.mail-popup {
+  @apply md:com-w-[50dvw] md:com-max-h-[90dvh];
+}

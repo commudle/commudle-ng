@@ -56,7 +56,7 @@ export class AgendaComponent implements OnInit {
   }
 
   setSchema() {
-    if (this.event.start_time) {
+    if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
       this.seoService.setSchema({
         '@context': 'https://schema.org',
         '@type': 'Event',

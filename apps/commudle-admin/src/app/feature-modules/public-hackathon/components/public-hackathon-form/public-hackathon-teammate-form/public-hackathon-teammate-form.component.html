@@ -50,8 +50,13 @@
     </div>
   </ng-container>
 
+  <commudle-alert
+    [error]="hasTeammateOption && hackathon.min_number_of_teammates > teammatesArray.controls.length + 1"
+    errorMessage="Minimum 2 teammates are allowed"
+  ></commudle-alert>
+
   <button
-    *ngIf="hasTeammateOption && hackathon.max_number_of_teammates > teammatesArray.controls.length"
+    *ngIf="hasTeammateOption && hackathon.max_number_of_teammates - 1 > teammatesArray.controls.length"
     type="button"
     (click)="addTeammate()"
     nbButton
@@ -62,7 +67,16 @@
 
   <div class="action-buttons">
     <button status="primary" nbButton>Previous</button>
-    <button type="submit" (click)="submitTeammateDetails()" nbButton status="primary" [disabled]="teammateForm.invalid">
+    <button
+      type="submit"
+      (click)="submitTeammateDetails()"
+      nbButton
+      status="primary"
+      [disabled]="
+        teammateForm.invalid ||
+        (hasTeammateOption && hackathon.min_number_of_teammates - 1 > teammatesArray.controls.length)
+      "
+    >
       Next
     </button>
   </div>

@@ -1,5 +1,5 @@
-import { ToastrService } from '@commudle/shared-services';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SeoService, ToastrService } from '@commudle/shared-services';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -13,6 +13,7 @@ import { faFileImage } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./hackathon-control-panel-basic-form.component.scss'],
 })
 export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestroy {
+  @Input() saveButtonText = 'Save';
   hackathonForm: FormGroup;
   locationForm: FormGroup;
   hackathonSlug = '';
@@ -52,6 +53,7 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     private hackathonService: HackathonService,
     private router: Router,
     private toastrService: ToastrService,
+    private seoService: SeoService,
   ) {
     this.hackathonForm = this.fb.group({
       name: ['', Validators.required],
@@ -85,6 +87,8 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
       }
       if (this.hackathonSlug) {
         this.fetchHackathonDetails();
+      } else {
+        this.seoService.setTags('Admin | Hackathon', '', '');
       }
     });
   }
@@ -97,6 +101,11 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     this.subscriptions.push(
       this.hackathonService.showHackathon(this.hackathonSlug).subscribe((data: IHackathon) => {
         this.hackathon = data;
+        this.seoService.setTags(
+          `Admin | ${this.hackathon.name}`,
+          this.hackathon.tagline,
+          'https://commudle.com/assets/images/commudle-logo192.png',
+        );
         this.imagePreview = data.banner_image ? data.banner_image.url : '';
         this.hackathonForm.patchValue({
           name: data.name,
