@@ -1,5 +1,7 @@
 .heading {
-  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold com-text-Yankees-Blue;
+  a {
+    @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold com-text-Yankees-Blue com-no-underline;
+  }
 }
 
 .home-view-all-events {
