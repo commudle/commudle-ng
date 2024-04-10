@@ -42,6 +42,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   message = '';
   selectedTeamDetails: IHackathonTeam;
   selectedUserResponsesDetails: IHackathonUserResponse[];
+  communityId: string | number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -63,6 +64,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
+      this.communityId = params.get('community_id');
       this.fetchUserResponses(params.get('hackathon_id'));
       this.fetchHackathon(params.get('hackathon_id'));
       this.indexRounds(params.get('hackathon_id'));
@@ -82,6 +84,10 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   fetchUserResponses(hackathonId) {
     this.hackathonService.indexUserResponses(hackathonId).subscribe((data: IHackathonUserResponses[]) => {
       this.userResponses = data;
+      console.log(
+        '🚀 ~ HackathonControlPanelReviewComponent ~ this.hackathonService.indexUserResponses ~  this.userResponses:',
+        this.userResponses,
+      );
     });
   }
 
@@ -171,5 +177,11 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
           if (data) this.toastrService.successDialog('Emails are being delivered!');
         });
     }
+  }
+
+  destroyNote(noteId, index) {
+    this.noteService.destroyNote(noteId).subscribe((data) => {
+      if (data) this.notes.splice(index, 1);
+    });
   }
 }
