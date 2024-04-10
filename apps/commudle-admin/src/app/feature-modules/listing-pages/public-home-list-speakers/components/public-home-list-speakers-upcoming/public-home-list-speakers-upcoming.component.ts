@@ -44,10 +44,12 @@ export class PublicHomeListSpeakersUpcomingComponent implements OnInit {
   getUpcomingEvents() {
     this.showSpinner = true;
     this.eventsService.getEventsList('future', this.limit, this.pageInfo?.end_cursor).subscribe((data) => {
-      this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.pageInfo = data.page_info;
-      this.showSpinner = false;
+      if (data) {
+        this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.pageInfo = data.page_info;
+        this.showSpinner = false;
+      }
     });
   }
 
