@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card class="mail-popup">
   <nb-card-header>
     <span> Pre-formatted email</span>
     <button ghost nbButton size="small" shape="round" (click)="closeDialogBox()">
@@ -10,7 +10,7 @@
     <br />
     <div>
       <label for="message">Message (optional)</label>
-      <textarea name="message" [(ngModel)]="message" placeholder="Extra message" nbInput fullWidth></textarea>
+      <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
     </div>
   </nb-card-body>
   <nb-card-footer>

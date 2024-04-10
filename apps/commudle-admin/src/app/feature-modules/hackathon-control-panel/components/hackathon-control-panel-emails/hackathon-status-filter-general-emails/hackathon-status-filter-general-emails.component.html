@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card class="mail-popup">
   <nb-card-header>
     <span> Pre-formatted email</span>
     <button ghost nbButton size="small" shape="round" (click)="closeDialogBox()">
@@ -31,13 +31,15 @@
         </option>
       </select>
     </div>
+    <br />
     <div>
-      <label for="emailReason">Subject</label>
+      <label for="emailReason">Subject*</label>
       <input type="text" placeholder="Subject" [(ngModel)]="subject" nbInput fullWidth />
     </div>
+    <br />
     <div>
       <label for="message">Message (optional)</label>
-      <textarea name="message" [(ngModel)]="message" placeholder="Extra message" nbInput fullWidth></textarea>
+      <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
     </div>
   </nb-card-body>
   <nb-card-footer>
@@ -46,7 +48,7 @@
       status="primary"
       (click)="SendStatusFilterGeneralMailer()"
       [nbSpinner]="isLoading"
-      [disabled]="isLoading"
+      [disabled]="isLoading || subject.length === 0"
     >
       Send
     </button>
