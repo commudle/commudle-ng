@@ -84,10 +84,6 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   fetchUserResponses(hackathonId) {
     this.hackathonService.indexUserResponses(hackathonId).subscribe((data: IHackathonUserResponses[]) => {
       this.userResponses = data;
-      console.log(
-        '🚀 ~ HackathonControlPanelReviewComponent ~ this.hackathonService.indexUserResponses ~  this.userResponses:',
-        this.userResponses,
-      );
     });
   }
 
