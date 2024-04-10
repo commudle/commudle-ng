@@ -85,7 +85,16 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>{{ razorpayAccount.bank_details }}</td>
+      <td>
+        <details>
+          <summary>{{ razorpayAccount.bank_details.settlements.beneficiary_name }}</summary>
+          <p>
+            <span>****{{ razorpayAccount.bank_details.settlements.account_number.toString().slice(-4) }}</span>
+            <br />
+            <span>{{ razorpayAccount.bank_details.settlements.ifsc_code }}</span>
+          </p>
+        </details>
+      </td>
       <td></td>
     </tr>
   </table>
@@ -253,7 +262,7 @@
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </label>
-
+            <div class="sub-category-heading">Profile</div>
             <div formGroupName="profile">
               <!-- Category -->
               <label>
@@ -271,25 +280,205 @@
                 </div>
                 <span
                   *ngIf="
-                    razorpayAccountForm.get('legal_info.pan').touched &&
-                    razorpayAccountForm.get('legal_info.pan').invalid &&
-                    razorpayAccountForm.get('legal_info.pan').hasError('required')
+                    razorpayAccountForm.get('profile.category').touched &&
+                    razorpayAccountForm.get('profile.category').invalid &&
+                    razorpayAccountForm.get('profile.category').hasError('required')
                   "
                 >
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </label>
-
+              <br />
               <!-- subcategory -->
               <label>
                 Sub Category*
-                <div class="select">
+                <div
+                  class="select"
+                  *ngIf="razorpayAccountForm.get('profile.category').value !== EBusinessCategory.OTHERS"
+                >
                   <select formControlName="subcategory">
                     <option value="" selected disabled>Select Sub Category</option>
-                    <option *ngFor="let subcategory of ItAndSoftwareSubcategory | keyvalue" [value]="subcategory.value">
-                      {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                    </option>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.IT_AND_SOFTWARE"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.ItAndSoftwareSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.ECOMMERCE"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.EcommerceSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.EDUCATION"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.EducationSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HEALTHCARE"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.HealthcareSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SERVICES"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.ServiceSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HOUSING"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.HousingSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.NOT_FOR_PROFIT"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.NotForProfitSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SOCIAL"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.SocialSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="
+                        razorpayAccountForm.get('profile.category').value === EBusinessCategory.MEDIA_AND_ENTERTAINMENT
+                      "
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.MediaAndEntertainmentSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GAMING"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.GamingSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.FOOD">
+                      <option
+                        *ngFor="let subcategory of subCategory.FoodSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.UTILITIES"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.UtilitiesSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GOVERNMENT"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.GovernmentSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.LOGISTICS"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.LogisticsSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TOURS_AND_TRAVEL"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.ToursAndTravelSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TRANSPORT"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.TransportSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.FINANCIAL_SERVICES"
+                    >
+                      <option
+                        *ngFor="let subcategory of subCategory.FinancialServicesSubcategory | keyvalue"
+                        [value]="subcategory.value"
+                      >
+                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                      </option>
+                    </ng-container>
                   </select>
+                </div>
+                <div *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.OTHERS">
+                  <input
+                    fieldSize="small"
+                    formControlName="subcategory"
+                    placeholder="Sub Category"
+                    fullWidth
+                    nbInput
+                    type="string"
+                  />
                 </div>
                 <span
                   *ngIf="
@@ -301,7 +490,9 @@
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </label>
-
+              <br />
+              <br />
+              <div class="sub-category-heading">Address</div>
               <div formGroupName="addresses">
                 <div formGroupName="registered">
                   <!-- Street1 -->
@@ -408,6 +599,8 @@
               </div>
             </div>
 
+            <br />
+            <div class="sub-category-heading">Legal Info</div>
             <!-- legal_info -->
             <div formGroupName="legal_info">
               <!-- <span>Legal Info</span>
@@ -438,7 +631,7 @@
 
         <br />
         <br />
-        <div>Bank Account Details</div>
+        <div class="sub-category-heading">Bank Account Details</div>
         <form [formGroup]="settlementDetailsForm">
           <!-- settlements -->
           <div formGroupName="settlements">

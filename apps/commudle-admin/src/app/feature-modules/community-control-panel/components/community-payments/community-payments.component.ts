@@ -8,9 +8,25 @@ import { faArrowUpRightFromSquare, faTriangleExclamation } from '@fortawesome/fr
 import {
   EBusinessType,
   EBusinessCategory,
-  ItAndSoftwareSubcategory,
   IRazorpayAccount,
   IPageInfo,
+  FinancialServicesSubcategory,
+  EducationSubcategory,
+  HealthcareSubcategory,
+  EcommerceSubcategory,
+  ServiceSubcategory,
+  HousingSubcategory,
+  NotForProfitSubcategory,
+  SocialSubcategory,
+  MediaAndEntertainmentSubcategory,
+  GamingSubcategory,
+  ItAndSoftwareSubcategory,
+  FoodSubcategory,
+  UtilitiesSubcategory,
+  GovernmentSubcategory,
+  LogisticsSubcategory,
+  ToursAndTravelSubcategory,
+  TransportSubcategory,
 } from '@commudle/shared-models';
 import { EDbModels } from '@commudle/shared-models';
 @Component({
@@ -38,9 +54,27 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   selectedCountry = '';
   EBusinessType = EBusinessType;
   EBusinessCategory = EBusinessCategory;
-  ItAndSoftwareSubcategory = ItAndSoftwareSubcategory;
   razorpayAccounts: IRazorpayAccount[] = [];
   razorpayPageInfo: IPageInfo;
+  subCategory = {
+    FinancialServicesSubcategory,
+    EducationSubcategory,
+    HealthcareSubcategory,
+    EcommerceSubcategory,
+    ServiceSubcategory,
+    HousingSubcategory,
+    NotForProfitSubcategory,
+    SocialSubcategory,
+    MediaAndEntertainmentSubcategory,
+    GamingSubcategory,
+    ItAndSoftwareSubcategory,
+    FoodSubcategory,
+    UtilitiesSubcategory,
+    GovernmentSubcategory,
+    LogisticsSubcategory,
+    ToursAndTravelSubcategory,
+    TransportSubcategory,
+  };
 
   constructor(
     private stripeHandlerService: StripeHandlerService,

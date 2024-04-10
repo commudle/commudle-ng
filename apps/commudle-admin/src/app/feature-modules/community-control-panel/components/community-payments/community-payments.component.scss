@@ -21,3 +21,7 @@ th {
 .select:focus-within {
   @apply com-border com-border-solid com-border-primary-500;
 }
+
+.sub-category-heading {
+  @apply com-font-bold;
+}

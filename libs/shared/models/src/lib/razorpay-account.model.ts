@@ -3,8 +3,16 @@ export interface IRazorpayAccount {
   uuid: string;
   account_details: JSON;
   account_id: string;
-  bank_details: JSON;
+  bank_details: IBankDetails;
   product_id: string;
+}
+
+export interface IBankDetails {
+  settlements: {
+    account_number: number;
+    beneficiary_name: string;
+    ifsc_code: string;
+  };
 }
 
 export enum EBusinessType {
