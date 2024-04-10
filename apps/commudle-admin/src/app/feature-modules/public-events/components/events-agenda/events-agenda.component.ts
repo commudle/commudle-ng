@@ -47,10 +47,12 @@ export class EventsAgendaComponent implements OnInit {
   }
 
   setSeoService() {
-    this.seoService.setTags(
-      `Agenda - ${this.event.name} - ${this.community.name}`,
-      'Enter the world of techies and knowledge, just one step to begin your journey. Login or sign up now!',
-      'https://commudle.com/assets/images/commudle-logo192.png',
-    );
+    if (this.community) {
+      this.seoService.setTags(
+        `Agenda - ${this.event.name} - ${this.community.name}`,
+        'Enter the world of techies and knowledge, just one step to begin your journey. Login or sign up now!',
+        'https://commudle.com/assets/images/commudle-logo192.png',
+      );
+    }
   }
 }
