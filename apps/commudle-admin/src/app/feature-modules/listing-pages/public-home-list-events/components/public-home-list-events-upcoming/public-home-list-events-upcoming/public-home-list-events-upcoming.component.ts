@@ -33,12 +33,14 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
     this.isLoadingUpcoming = true;
     this.showSpinner = true;
     this.eventsService.getEventsList('future', this.limit, this.page_info?.end_cursor).subscribe((data) => {
-      this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.page_info = data.page_info;
-      this.isLoadingUpcoming = false;
-      this.showSpinner = false;
-      this.setSchema();
+      if (data) {
+        this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.page_info = data.page_info;
+        this.isLoadingUpcoming = false;
+        this.showSpinner = false;
+        this.setSchema();
+      }
     });
   }
 
