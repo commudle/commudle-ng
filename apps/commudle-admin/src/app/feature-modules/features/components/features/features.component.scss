@@ -1,0 +1,42 @@
+.features {
+  //   @apply com-border com-rounded-md  com-border-Bright-Gray;
+}
+
+nb-card {
+  @apply com-m-0;
+  nb-list {
+    nb-list-item {
+      @apply com-border-t-0 com-px-6;
+      &:last-child {
+        @apply com-border-b-0;
+      }
+
+      .feature {
+        @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2 com-w-full;
+
+        h2 {
+          @apply com-m-0;
+          a {
+            @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-1 com-no-underline;
+          }
+        }
+
+        fa-icon {
+          @apply com-flex com-justify-end com-text-xl com-font-normal com-text-gray-900;
+        }
+      }
+
+      .active {
+        @apply com-text-primary-500;
+      }
+
+      .feature-item {
+        @apply com-flex com-flex-col;
+      }
+
+      .sub-heading {
+        @apply com-m-0 com-mt-4;
+      }
+    }
+  }
+}

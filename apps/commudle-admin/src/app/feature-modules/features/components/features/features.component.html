@@ -1,0 +1,18 @@
+<div class="features">
+  <nb-card>
+    <nb-list>
+      <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
+        <div class="feature" (click)="toggleShowAnswers(i)">
+          <div class="feature-item">
+            <h2>
+              <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">Hello</a>
+              <!-- {{ feature.name }} -->
+            </h2>
+            <p *ngIf="showSubHeading[i]" class="sub-heading">{{ i }}</p>
+          </div>
+          <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>

@@ -1,0 +1,19 @@
+.features {
+  @apply md:com-py-20 com-bg-white com-flex;
+}
+
+.features-heading {
+  @apply com-text-4xl com-font-semibold com-text-black com-m-0 com-mb-4 com-text-center;
+}
+
+.features-subheading {
+  @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-text-center md:com-max-w-[920px] com-mx-auto;
+}
+
+.content {
+  //   @apply com-flex com-flex-row com-p-0 com-pt-[60px];
+}
+
+.right-column {
+  @apply md:com-w-[550px] com-w-full;
+}
