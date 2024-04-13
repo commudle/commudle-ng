@@ -1,8 +1,17 @@
 nb-card {
   @apply com-min-h-screen;
+  nb-card-header {
+    @apply com-flex com-items-center com-gap-4;
+    .image {
+      @apply com-w-20 com-h-20 com-rounded-xl;
+      img {
+        @apply com-w-full com-rounded-xl;
+      }
+    }
+  }
   nb-card-body {
     .images {
-      @apply com-grid com-grid-cols-2 md:com-grid-cols-4 lg:com-grid-cols-5  com-items-center com-justify-center;
+      @apply com-grid com-grid-cols-2 md:com-grid-cols-4 lg:com-grid-cols-5  com-items-center com-justify-center com-mb-3;
       .image-container {
         @apply com-flex com-flex-col com-items-center com-gap-4 com-border com-border-solid com-border-Bright-Gray com-px-10 com-py-8 com-h-56;
         .image {

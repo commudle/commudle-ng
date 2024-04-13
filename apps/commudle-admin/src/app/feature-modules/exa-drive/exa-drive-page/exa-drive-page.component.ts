@@ -8,31 +8,33 @@ import { SeoService } from '@commudle/shared-services';
 })
 export class ExaDrivePageComponent implements OnInit {
   images: { link: string; name: string }[] = [];
+  exaProtocolImageLink: string;
   constructor(private seoService: SeoService) {}
 
   ngOnInit() {
     this.images = [
-      { link: '/assets/crypto/Avalanche.png', name: 'Bitcoin (BTC)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Ethereum (ETH)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Tether (USDT)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'USD Coin (USDC)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'BNB (BNB)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Binance Coin USD (BUSD)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'XRP (XRP)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Cardano (ADA)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Solana (SOL)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Dogecoin (DOGE)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Polkadot (DOT)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Dai (DAI)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Polygon (MATIC)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Shiba Inu (SHIB)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'TRON (TRX)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Avalanche (AVAX)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'UNUS SED LEO (LEO)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Litecoin (LTC)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Stellar (XLM)' },
-      { link: '/assets/crypto/Bitcoin.png', name: 'Bitcoin Cash (BCH)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992122052.png', name: 'Bitcoin (BTC)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992324430.png', name: 'Ethereum (ETH)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992404273.png', name: 'Tether (USDT)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992438741.png', name: 'USD Coin (USDC)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992174408.png', name: 'BNB (BNB)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992193455.png', name: 'Binance Coin USD (BUSD)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992449011.png', name: 'XRP (XRP)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992217896.png', name: 'Cardano (ADA)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992377630.png', name: 'Solana (SOL)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992267077.png', name: 'Dogecoin (DOGE)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992342231.png', name: 'Polkadot (DOT)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992258298.png', name: 'Dai (DAI)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992351032.png', name: 'Polygon (MATIC)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992365443.png', name: 'Shiba Inu (SHIB)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992415103.png', name: 'TRON (TRX)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992095429.png', name: 'Avalanche (AVAX)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992430957.png', name: 'UNUS SED LEO (LEO)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992333376.png', name: 'Litecoin (LTC)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992393995.png', name: 'Stellar (XLM)' },
+      { link: 'https://dfs-theog-testnet.exaprotocol.com/1712992248279.png', name: 'Cronos (CRO)' },
     ];
+    this.exaProtocolImageLink = 'https://dfs-theog-testnet.exaprotocol.com/1712992879832.png';
     this.setTags();
   }
 
