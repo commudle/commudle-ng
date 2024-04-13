@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { ExaDrivePageComponent } from 'apps/commudle-admin/src/app/feature-modules/exa-drive/exa-drive-page/exa-drive-page.component';
+import { ExaDrivePageComponent } from 'apps/commudle-admin/src/app/feature-modules/exa-drive/components/exa-drive-page/exa-drive-page.component';
 
 const routes: Routes = [
   {
