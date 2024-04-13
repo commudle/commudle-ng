@@ -201,6 +201,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
   {
+    path: 'exa-drive',
+    loadChildren: () => import('./feature-modules/exa-drive/exa-drive.module').then((m) => m.ExaDriveModule),
+  },
+  {
     path: 'admin',
     children: [
       // {

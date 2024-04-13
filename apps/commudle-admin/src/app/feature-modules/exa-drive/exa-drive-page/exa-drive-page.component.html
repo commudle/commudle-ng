@@ -1,0 +1,20 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card>
+        <nb-card-header> <h1>Exa Protocol Is Live!</h1></nb-card-header>
+        <nb-card-body>
+          <h2>The assets on this page are powered by Exa Drive</h2>
+          <div class="images">
+            <div *ngFor="let image of images" class="image-container">
+              <div class="image">
+                <img [src]="image.link" [alt]="image.name" [title]="image.name" />
+              </div>
+              <span class="name">{{ image.name }}</span>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
