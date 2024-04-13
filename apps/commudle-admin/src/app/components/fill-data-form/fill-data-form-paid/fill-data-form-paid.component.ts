@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +29,10 @@ import { StripeElementsOptions } from '@stripe/stripe-js';
 import { faRotateRight, faTriangleExclamation, faUndo, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/data-form-fill.component';
+import { environment } from '@commudle/shared-environments';
+import { RazorpayService } from '@commudle/shared-services';
+import { IRazorpayOrder } from '@commudle/shared-models';
+declare const Razorpay: any;
 @Component({
   selector: 'commudle-fill-data-form-paid',
   templateUrl: './fill-data-form-paid.component.html',
@@ -118,6 +123,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private eventTicketOrderService: EventTicketOrderService,
     private stripeService: StripeService,
     private discountCodeService: DiscountCodesService,
+    private razorpayService: RazorpayService,
   ) {}
 
   ngOnInit() {
@@ -476,6 +482,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+        this.createOrUpdateRazorpayOrder(data.id);
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -487,7 +494,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
             }
           }
         }
-        this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        // this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
@@ -501,6 +508,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       .subscribe((data) => {
         this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
         this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+        this.createOrUpdateRazorpayOrder(data.id);
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -512,11 +520,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
             }
           }
         }
-        this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+
+        // this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
-  // for Payment confirm Function
+  // for Payment confirm Function from stripe
   pay() {
     this.isLoadingPayment = true;
     this.stripeService
@@ -553,5 +562,50 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
 
   reload() {
     window.location.reload();
+  }
+
+  createOrUpdateRazorpayOrder(etoId) {
+    const orderDetails = {
+      amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
+      currency: 'INR',
+    };
+    this.razorpayService.createOrFindOrder(orderDetails, etoId).subscribe((data: IRazorpayOrder) => {
+      this.razorPaySubmit(data);
+    });
+  }
+
+  razorPaySubmit(order: IRazorpayOrder) {
+    const options = {
+      key: environment.razorpay_key,
+      order_id: order.rzp_order_id,
+      handler: (response: any) => {
+        {
+          console.log(
+            '🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrder ~ options.response:',
+            response,
+          );
+          this.razorpayService.createOrUpdatePayment(response).subscribe((data) => {
+            console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
+          });
+        }
+      },
+      prefill: {
+        name: this.currentUser.name,
+        email: this.currentUser.email,
+        contact: this.currentUser.phone ? this.currentUser.phone : '',
+      },
+    };
+
+    const rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', (response: any) => {
+      {
+        console.log('🚀 ~ FillDataFormPaidComponent ~ response:', response);
+        this.razorpayService.createOrUpdatePayment(response.error).subscribe((data) => {
+          console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
+        });
+        alert(response.error.description);
+      }
+    });
+    rzp1.open();
   }
 }

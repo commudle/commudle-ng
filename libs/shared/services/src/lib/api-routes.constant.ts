@@ -896,5 +896,7 @@ export const API_ROUTES = {
   RAZORPAY: {
     CREATE: 'api/v2/razorpay', //POST
     INDEX: 'api/v2/razorpay', //GET
+    FIND_OR_CREATE_ORDER: 'api/v2/razorpay/find_or_create_order', //POST
+    CREATE_OR_UPDATE_PAYMENT: 'api/v2/razorpay/create_or_update_payment', //PUT
   },
 };
