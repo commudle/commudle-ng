@@ -52,17 +52,20 @@ export class RazorpayService {
     );
   }
 
-  createOrUpdatePayment(response, paymentId?: string): Observable<any> {
+  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: number): Observable<any> {
     let params = new HttpParams();
+    let requestBody: { has_error?: boolean; payment_error?: any; payment_details?: any } = {}; // Define the type of requestBody
+
     if (paymentId) {
       params = new HttpParams().set('payment_id', paymentId);
     }
-    return this.http.put<any>(
-      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_OR_UPDATE_PAYMENT),
-      {
-        payment_error: response,
-      },
-      { params },
-    );
+    if (hasError === true) {
+      requestBody = { has_error: hasError, payment_error: response };
+    } else {
+      requestBody = { has_error: hasError, payment_details: response };
+    }
+    return this.http.put<any>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_OR_UPDATE_PAYMENT), requestBody, {
+      params,
+    });
   }
 }

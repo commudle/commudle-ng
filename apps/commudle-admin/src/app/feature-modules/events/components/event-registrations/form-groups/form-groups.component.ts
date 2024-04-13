@@ -10,8 +10,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
-import { StripeHandlerService } from '@commudle/shared-services';
+import { ICommunity, IEvent, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
+import { RazorpayService, StripeHandlerService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -57,6 +57,7 @@ export class FormGroupsComponent implements OnInit {
   eventDataFormEntityGroupForm: FormGroup;
   updateEventDataFormEntityGroupForm: FormGroup;
   stripeAccounts: IStripeAccount[] = [];
+  razorpayAccounts: IRazorpayAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
   showDiscountCouponComponent = false;
   RegistrationTypeBackgroundColor = RegistrationTypeBackgroundColor;
@@ -75,6 +76,7 @@ export class FormGroupsComponent implements OnInit {
     private dialogService: NbDialogService,
     private changeDetectorRef: ChangeDetectorRef,
     private stripeHandlerService: StripeHandlerService,
+    private razorpayService: RazorpayService,
   ) {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
@@ -99,7 +101,10 @@ export class FormGroupsComponent implements OnInit {
 
     this.getCommunityDataForms();
     this.getEventDataFormEntityGroups();
-    if (this.community.payments_enabled) this.getStripeAccountData();
+    if (this.community.payments_enabled) {
+      this.getStripeAccountData();
+      this.getRazorpayAccountData();
+    }
   }
 
   getEventDataFormEntityGroups() {
@@ -109,11 +114,19 @@ export class FormGroupsComponent implements OnInit {
       this.changeDetectorRef.markForCheck();
     });
   }
+
   //get stripe account information
   getStripeAccountData() {
     this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
       const stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.details.charges_enabled === true);
+    });
+  }
+
+  //get razorpay account information
+  getRazorpayAccountData() {
+    this.razorpayService.indexRazorpayAccounts(this.community.id).subscribe((data) => {
+      console.log('🚀 ~ FormGroupsComponent ~ this.razorpayService.indexRazorpayAccounts ~ data:', data);
     });
   }
 

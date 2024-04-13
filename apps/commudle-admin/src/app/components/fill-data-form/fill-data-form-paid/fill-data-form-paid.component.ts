@@ -580,12 +580,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       order_id: order.rzp_order_id,
       handler: (response: any) => {
         {
-          console.log(
-            '🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrder ~ options.response:',
-            response,
-          );
-          this.razorpayService.createOrUpdatePayment(response).subscribe((data) => {
+          this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
             console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
+            this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
+            this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+              closeOnBackdropClick: false,
+            });
           });
         }
       },
@@ -599,10 +599,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const rzp1 = new Razorpay(options);
     rzp1.on('payment.failed', (response: any) => {
       {
-        console.log('🚀 ~ FillDataFormPaidComponent ~ response:', response);
-        this.razorpayService.createOrUpdatePayment(response.error).subscribe((data) => {
-          console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
-        });
+        this.razorpayService
+          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
+          .subscribe((data) => {
+            console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
+          });
         alert(response.error.description);
       }
     });

@@ -1,3 +1,5 @@
+import { IRazorpayPayment } from './razorpay-payment.model';
+
 export interface IRazorpayOrder {
   id: number;
   rzp_order_id: string;
@@ -7,4 +9,5 @@ export interface IRazorpayOrder {
   order_response: [];
   created_at: string;
   updated_at: string;
+  razorpay_payment: IRazorpayPayment;
 }
