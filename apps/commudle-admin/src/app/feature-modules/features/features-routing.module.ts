@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: FeaturesContentComponent,
   },
+  {
+    path: ':slug',
+    component: FeaturesContentComponent,
+  },
 ];
 
 @NgModule({

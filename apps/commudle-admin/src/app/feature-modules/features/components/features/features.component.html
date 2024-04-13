@@ -5,12 +5,11 @@
         <div class="feature" (click)="toggleShowAnswers(i)">
           <div class="feature-item">
             <h2>
-              <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">Hello</a>
-              <!-- {{ feature.name }} -->
+              <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">{{ feature.title }}</a>
             </h2>
-            <p *ngIf="showSubHeading[i]" class="sub-heading">{{ i }}</p>
+            <p *ngIf="showSubHeading[i] && feature.features" class="sub-heading">{{ feature.features }}</p>
           </div>
-          <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
+          <fa-icon [icon]="showSubHeading[i] && feature.features ? faMinus : faAdd"></fa-icon>
         </div>
       </nb-list-item>
     </nb-list>

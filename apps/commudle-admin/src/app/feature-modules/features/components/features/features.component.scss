@@ -1,28 +1,28 @@
 .features {
-  //   @apply com-border com-rounded-md  com-border-Bright-Gray;
+  @apply com-flex com-flex-shrink-0 com-w-full;
 }
 
 nb-card {
   @apply com-m-0;
   nb-list {
     nb-list-item {
-      @apply com-border-t-0 com-px-6;
+      @apply com-border-t-0 com-py-6 com-px-4;
       &:last-child {
         @apply com-border-b-0;
       }
 
       .feature {
-        @apply com-flex com-flex-row com-justify-between com-items-start com-mb-2 com-w-full;
+        @apply com-flex com-flex-row com-justify-between com-items-start com-w-full;
 
         h2 {
-          @apply com-m-0;
+          @apply com-flex com-m-0;
           a {
-            @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-1 com-no-underline;
+            @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-2 com-no-underline;
           }
         }
 
         fa-icon {
-          @apply com-flex com-justify-end com-text-xl com-font-normal com-text-gray-900;
+          @apply com-flex com-justify-end com-text-xl com-font-normal com-text-gray-900 com-mt-1;
         }
       }
 
@@ -35,7 +35,7 @@ nb-card {
       }
 
       .sub-heading {
-        @apply com-m-0 com-mt-4;
+        @apply com-text-lg com-font-normal com-m-0 com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
       }
     }
   }

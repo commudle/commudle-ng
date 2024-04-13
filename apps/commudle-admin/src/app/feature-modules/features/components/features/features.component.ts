@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { IFeaturesModel } from 'apps/shared-models/features.model';
 
 @Component({
   selector: 'commudle-features',
@@ -7,7 +8,7 @@ import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
-  @Input() features;
+  @Input() features: IFeaturesModel[];
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
