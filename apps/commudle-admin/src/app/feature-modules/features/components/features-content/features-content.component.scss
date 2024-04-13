@@ -10,10 +10,23 @@
   @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-text-center md:com-max-w-[920px] com-mx-auto;
 }
 
-.content {
-  //   @apply com-flex com-flex-row com-p-0 com-pt-[60px];
+.two-column-layout {
+  @apply md:com-pt-[60px];
 }
 
-.right-column {
-  @apply md:com-w-[550px] com-w-full;
+.left-column {
+  @apply com-col-span-11 com-pr-[30px];
+}
+
+.main-column {
+  grid-column: span 13 / span 13;
+
+  nb-card {
+    @apply com-m-0;
+  }
+  // @apply md:com-w-[550px] com-w-full;
+}
+
+img {
+  @apply com-w-full;
 }

@@ -7,24 +7,24 @@
         aspect of your business in one secure platform.
       </h2>
       <div class="two-column-layout">
-        <div class="content">
-          <div class="right-column">
-            <div *ngIf="features">
-              <commudle-features [features]="features"></commudle-features>
-            </div>
-            <div class="right-col">
-              <div class="main-column-content">
-                <div>
-                  <!-- <h1 class="chapter-name">{{ features }}</h1> -->
-                  <nb-card>
-                    <div *ngIf="featureData?.image" class="image">
-                      <img
-                        alt="{{ featureData.title }}"
-                        [src]="imageUrl(featureData.image).url()"
-                        title="{{ featureData.title }}"
-                      />
-                    </div>
-                    <!-- <nb-card-body *ngIf="richTextContent">
+        <!-- <div class="content"> -->
+        <div class="left-column">
+          <div *ngIf="features" class="com-w-full">
+            <commudle-features [features]="features"></commudle-features>
+          </div>
+        </div>
+        <div class="main-column">
+          <div>
+            <!-- <h1 class="chapter-name">{{ features }}</h1> -->
+            <nb-card>
+              <div *ngIf="featureData?.image" class="image">
+                <img
+                  alt="{{ featureData.title }}"
+                  [src]="imageUrl(featureData.image).url()"
+                  title="{{ featureData.title }}"
+                />
+              </div>
+              <!-- <nb-card-body *ngIf="richTextContent">
                     <article>
                       <div [innerHTML]="richTextContent" class="!com-max-w-full content"></div>
                     </article>
@@ -35,9 +35,9 @@
                       <div [innerHTML]="richTextCommudleHelps" class="!com-max-w-full content"></div>
                     </div>
                   </nb-card-body> -->
-                  </nb-card>
-                </div>
-                <!-- <div class="fixed-btn">
+            </nb-card>
+          </div>
+          <!-- <div class="fixed-btn">
                 <a
                   href="https://json.commudle.com/resources/developer-community-blueprint.pdf"
                   download
@@ -48,7 +48,7 @@
                   </button>
                 </a>
               </div> -->
-                <!-- <div class="footer">
+          <!-- <div class="footer">
                 <div class="actions">
                   <div>
                     <button
@@ -89,10 +89,8 @@
                   </div>
                 </div>
               </div> -->
-              </div>
-            </div>
-          </div>
         </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
