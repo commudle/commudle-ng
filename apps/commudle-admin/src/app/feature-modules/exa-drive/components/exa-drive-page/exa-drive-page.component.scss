@@ -2,16 +2,25 @@
   @apply com-min-h-screen;
   nb-card-header {
     @apply com-flex com-items-center com-gap-4;
-    .image {
-      @apply com-w-20 com-h-20 com-rounded-xl;
-      img {
-        @apply com-w-full com-rounded-xl;
-      }
-    }
   }
   nb-card-body {
     .images {
       @apply com-grid com-grid-cols-2 md:com-grid-cols-4  com-items-center com-justify-center com-mb-3;
     }
+  }
+}
+
+.image {
+  @apply com-w-8 com-h-8 com-rounded-xl com-mr-1;
+  img {
+    @apply com-w-full com-rounded-xl;
+  }
+}
+
+.powered-by-exa {
+  @apply com-sticky com-bottom-[150px] md:com-ml-[-80px];
+
+  p {
+    @apply com-m-0 com-text-tWhite com-text-lg;
   }
 }

@@ -3,13 +3,9 @@
     <div class="one-column-layout">
       <nb-card class="page-section">
         <nb-card-header>
-          <div class="image">
-            <img [src]="exaProtocolImageLink" alt="Exa Protocol" title="Exa Protocol" />
-          </div>
-          <h1>Exa Protocol Is Live!</h1>
+          <h1>Top Cryptocurrencies</h1>
         </nb-card-header>
         <nb-card-body>
-          <h2>The assets on this page are powered by Exa Drive</h2>
           <div class="images">
             <div *ngFor="let cryptoCurrency of cryptoCurrencies">
               <commudle-crypto-currency-card [cryptoCurrency]="cryptoCurrency"></commudle-crypto-currency-card>
@@ -17,6 +13,14 @@
           </div>
         </nb-card-body>
       </nb-card>
+      <div class="powered-by-exa">
+        <a href="https://www.exaprotocol.com" target="_blank"
+          ><button nbButton status="primary">
+            <div class="image"><img [src]="exaProtocolImageLink" alt="Exa Protocol" title="Exa Protocol" /></div>
+            <p>Image assests powered by ExaDrive</p>
+          </button></a
+        >
+      </div>
     </div>
   </div>
 </div>
