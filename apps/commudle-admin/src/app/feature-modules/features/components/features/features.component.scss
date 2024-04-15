@@ -31,11 +31,22 @@ nb-card {
       }
 
       .feature-item {
-        @apply com-flex com-flex-col;
+        @apply com-flex com-flex-col com-w-full com-mr-4;
+      }
+
+      .heading {
+        @apply com-flex com-flex-row com-items-center;
       }
 
       .sub-heading {
-        @apply com-text-lg com-font-normal com-m-0 com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-items-start;
+        p {
+          @apply com-text-lg com-font-normal com-m-0;
+        }
+      }
+
+      .logo {
+        @apply com-h-10 com-w-10 com-rounded-full com-mr-1 com-flex-shrink-0;
       }
     }
   }

@@ -4,10 +4,16 @@
       <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
         <div class="feature" (click)="toggleShowAnswers(i)">
           <div class="feature-item">
-            <h2>
-              <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">{{ feature.title }}</a>
-            </h2>
-            <p *ngIf="showSubHeading[i] && feature.features" class="sub-heading">{{ feature.features }}</p>
+            <div class="heading">
+              <div class="logo"><img src="" alt="" /></div>
+              <h2>
+                <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">{{ feature.title }}</a>
+              </h2>
+            </div>
+            <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
+              <div class="logo"><img src="" alt="" /></div>
+              <p>{{ feature.features }}</p>
+            </div>
           </div>
           <fa-icon [icon]="showSubHeading[i] && feature.features ? faMinus : faAdd"></fa-icon>
         </div>
