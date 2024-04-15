@@ -55,7 +55,7 @@
     >
       <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
         <h2 class="title">
-          <a [routerLink]="'.'" fragment="{{ feature.title }}">{{ feature.title }}</a>
+          <a [routerLink]="'.'" fragment="{{ removeFragmentSpace(feature.title) }}">{{ feature.title }}</a>
         </h2>
         <p class="description">{{ feature.description }}</p>
         <div *ngIf="feature.Button" class="com-flex com-justify-center md:com-justify-start">
