@@ -18,10 +18,6 @@ export class CryptoCurrencyCardComponent implements OnInit {
     });
   }
 
-  openPopup(dialog) {
-    this.nbDialogService.open(dialog);
-  }
-
   onOpenDialog(templateRef: TemplateRef<any>) {
     this.nbDialogService.open(templateRef);
   }

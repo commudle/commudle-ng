@@ -28,11 +28,8 @@
       @apply com-text-red-500;
     }
   }
-  .description {
-    @apply com-line-clamp-3;
-  }
 }
-.description-popup,
+
 .card-info-popup {
   @apply md:com-max-h-[90dvh] md:com-w-[50dvw];
   nb-card-header {
