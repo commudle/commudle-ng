@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NbDialogService } from '@commudle/theme';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { ExaDriveService } from 'apps/commudle-admin/src/app/feature-modules/exa-drive/service/exa-drive.service';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
@@ -20,5 +20,9 @@ export class CryptoCurrencyCardComponent implements OnInit {
 
   openPopup(dialog) {
     this.nbDialogService.open(dialog);
+  }
+
+  onOpenDialog(templateRef: TemplateRef<any>) {
+    this.nbDialogService.open(templateRef);
   }
 }

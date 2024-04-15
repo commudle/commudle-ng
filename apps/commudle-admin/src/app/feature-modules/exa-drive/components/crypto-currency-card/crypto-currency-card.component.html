@@ -6,41 +6,7 @@
         <img [src]="cryptoCurrency.link" [alt]="cryptoCurrency.name" [title]="cryptoCurrency.name" />
       </div>
     </div>
-
-    <div *ngIf="cryptoCurrency.details" class="details">
-      <section class="sentiment-votes">
-        <div
-          class="sentiment-votes-up-percentage"
-          *ngIf="cryptoCurrency.details.sentiment_votes_up_percentage"
-          nbTooltip="Sentiment Votes Up Percentage"
-        >
-          {{ cryptoCurrency.details.sentiment_votes_up_percentage }}%
-        </div>
-        <div
-          class="sentiment-votes-down-percentage"
-          *ngIf="cryptoCurrency.details.sentiment_votes_down_percentage"
-          nbTooltip="Sentiment Votes Down Percentage"
-        >
-          {{ cryptoCurrency.details.sentiment_votes_down_percentage }}%
-        </div>
-      </section>
-      <div class="market-cap-rank">Rank: #{{ cryptoCurrency.details.market_cap_rank }}</div>
-      <div class="date" *ngIf="cryptoCurrency.details.genesis_date">
-        Genesis Date: {{ cryptoCurrency.details.genesis_date }}
-      </div>
-      <div *ngIf="cryptoCurrency.details.description">
-        <div class="description" [innerHTML]="cryptoCurrency.details.description?.en"></div>
-        <span (click)="openPopup(description)" class="com-text-primary-500 com-cursor-pointer">Read more</span>
-      </div>
-      <div class="official-forum-url" *ngIf="cryptoCurrency.details.links.official_forum_url">
-        <a [href]="cryptoCurrency.details.links.official_forum_url[0]" target="_blank" rel="noopener noreferrer">
-          Forum URL</a
-        >
-      </div>
-      <div class="whitepaper">
-        <a [href]="cryptoCurrency.details.links.whitepaper" target="_blank" rel="noopener noreferrer">Whitepaper</a>
-      </div>
-    </div>
+    <button nbButton status="primary" (click)="onOpenDialog(cardInfoDialog)">Read More</button>
   </nb-card-body>
 </nb-card>
 
@@ -53,6 +19,52 @@
     ></nb-card-header>
     <nb-card-body>
       <div class="description" [innerHTML]="cryptoCurrency.details.description?.en"></div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #cardInfoDialog let-ref="dialogRef">
+  <nb-card class="card-info-popup">
+    <nb-card-header
+      ><span>{{ cryptoCurrency.name }}</span>
+      <button nbButton (click)="ref.close()" shape="round" ghost size="tiny">
+        <fa-icon [icon]="faXmark"></fa-icon></button
+    ></nb-card-header>
+    <nb-card-body>
+      <div *ngIf="cryptoCurrency.details" class="details">
+        <section class="sentiment-votes">
+          <div
+            class="sentiment-votes-up-percentage"
+            *ngIf="cryptoCurrency.details.sentiment_votes_up_percentage"
+            nbTooltip="Sentiment Votes Up Percentage"
+          >
+            {{ cryptoCurrency.details.sentiment_votes_up_percentage }}%
+          </div>
+          <div
+            class="sentiment-votes-down-percentage"
+            *ngIf="cryptoCurrency.details.sentiment_votes_down_percentage"
+            nbTooltip="Sentiment Votes Down Percentage"
+          >
+            {{ cryptoCurrency.details.sentiment_votes_down_percentage }}%
+          </div>
+        </section>
+        <div class="market-cap-rank">Rank: #{{ cryptoCurrency.details.market_cap_rank }}</div>
+        <div class="date" *ngIf="cryptoCurrency.details.genesis_date">
+          Genesis Date: {{ cryptoCurrency.details.genesis_date }}
+        </div>
+        <div *ngIf="cryptoCurrency.details.description">
+          <div class="description" [innerHTML]="cryptoCurrency.details.description?.en"></div>
+          <span (click)="openPopup(description)" class="com-text-primary-500 com-cursor-pointer">Read more</span>
+        </div>
+        <div class="official-forum-url" *ngIf="cryptoCurrency.details.links.official_forum_url">
+          <a [href]="cryptoCurrency.details.links.official_forum_url[0]" target="_blank" rel="noopener noreferrer">
+            Forum URL</a
+          >
+        </div>
+        <div class="whitepaper">
+          <a [href]="cryptoCurrency.details.links.whitepaper" target="_blank" rel="noopener noreferrer">Whitepaper</a>
+        </div>
+      </div>
     </nb-card-body>
   </nb-card>
 </ng-template>
