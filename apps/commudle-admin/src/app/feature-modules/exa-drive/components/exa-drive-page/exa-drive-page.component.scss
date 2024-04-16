@@ -18,7 +18,7 @@
 }
 
 .powered-by-exa {
-  @apply com-sticky com-bottom-[150px] md:com-ml-[-80px];
+  @apply com-flex com-justify-center com-sticky md:com-bottom-6 com-bottom-20;
 
   p {
     @apply com-m-0 com-text-tWhite com-text-lg;

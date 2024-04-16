@@ -1,7 +1,7 @@
 .card {
-  @apply com-h-[500px];
+  @apply com-h-[320px];
   nb-card-body {
-    @apply com-overflow-hidden;
+    @apply com-overflow-hidden com-flex com-flex-col com-justify-center;
   }
 }
 .image-container {
@@ -28,11 +28,9 @@
       @apply com-text-red-500;
     }
   }
-  .description {
-    @apply com-line-clamp-3;
-  }
 }
-.description-popup {
+
+.card-info-popup {
   @apply md:com-max-h-[90dvh] md:com-w-[50dvw];
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;

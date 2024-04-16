@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { NbDialogService } from '@commudle/theme';
 import { ExaDriveService } from 'apps/commudle-admin/src/app/feature-modules/exa-drive/service/exa-drive.service';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -12,13 +12,12 @@ export class CryptoCurrencyCardComponent implements OnInit {
   faXmark = faXmark;
   constructor(private exaDriveService: ExaDriveService, private nbDialogService: NbDialogService) {}
 
-  ngOnInit() {
-    this.exaDriveService.getCoinData(this.cryptoCurrency.id).then((data) => {
-      this.cryptoCurrency.details = data;
-    });
-  }
+  ngOnInit() {}
 
-  openPopup(dialog) {
-    this.nbDialogService.open(dialog);
+  fetchCoinDetails(cryptoId: string, templateRef: TemplateRef<any>) {
+    this.exaDriveService.getCoinData(cryptoId).then((data) => {
+      this.cryptoCurrency.details = data;
+      this.nbDialogService.open(templateRef);
+    });
   }
 }
