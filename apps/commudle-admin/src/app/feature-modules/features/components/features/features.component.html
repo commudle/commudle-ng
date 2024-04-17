@@ -6,21 +6,23 @@
         class="clickable"
         [class.active]="selectedFeatureIndex === i"
       >
-        <div class="feature" (click)="toggleShowAnswers(i)">
-          <div class="feature-item">
-            <div class="heading">
-              <div class="logo"><img src="" alt="" /></div>
-              <h2>
-                <a [routerLink]="['/features', feature.slug.current]">{{ feature.title }}</a>
-              </h2>
+        <a [routerLink]="['/features', feature.slug.current]">
+          <div class="feature" (click)="toggleShowAnswers(i)">
+            <div class="feature-item">
+              <div class="heading">
+                <div class="logo"><img src="" alt="" /></div>
+                <h2>
+                  {{ feature.title }}
+                </h2>
+              </div>
+              <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
+                <div class="logo"><img src="" alt="" /></div>
+                <p>{{ feature.features }}</p>
+              </div>
             </div>
-            <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
-              <div class="logo"><img src="" alt="" /></div>
-              <p>{{ feature.features }}</p>
-            </div>
+            <fa-icon [icon]="showSubHeading[i] && feature.features ? faMinus : faAdd"></fa-icon>
           </div>
-          <fa-icon [icon]="showSubHeading[i] && feature.features ? faMinus : faAdd"></fa-icon>
-        </div>
+        </a>
       </nb-list-item>
     </nb-list>
   </nb-card>

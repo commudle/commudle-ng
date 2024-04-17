@@ -19,10 +19,7 @@ nb-card {
         @apply com-flex com-flex-row com-justify-between com-items-start com-w-full;
 
         h2 {
-          @apply com-flex com-m-0;
-          // a {
-          @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-2 com-no-underline;
-          // }
+          @apply com-flex com-m-0 com-text-gray-900 com-text-lg com-font-normal com-mr-2 com-no-underline;
         }
 
         fa-icon {
@@ -50,4 +47,7 @@ nb-card {
       }
     }
   }
+}
+a {
+  @apply com-no-underline com-w-full;
 }
