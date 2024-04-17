@@ -14,7 +14,7 @@ import {
   INote,
   IRound,
 } from '@commudle/shared-models';
-import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
+import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
@@ -43,6 +43,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   selectedTeamDetails: IHackathonTeam;
   selectedUserResponsesDetails: IHackathonUserResponse[];
   communityId: string | number;
+  EInvitationStatus = EInvitationStatus;
 
   constructor(
     private activatedRoute: ActivatedRoute,
