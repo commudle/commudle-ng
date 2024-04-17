@@ -59,6 +59,6 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   removeFragmentSpace(title: string) {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title.toLowerCase().replace(/[\s,]+/g, '-');
   }
 }
