@@ -11,23 +11,23 @@ nb-card {
         @apply com-border-b-0;
       }
 
+      &.active {
+        @apply com-bg-Bright-Gray #{!important};
+      }
+
       .feature {
         @apply com-flex com-flex-row com-justify-between com-items-start com-w-full;
 
         h2 {
           @apply com-flex com-m-0;
-          a {
-            @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-2 com-no-underline;
-          }
+          // a {
+          @apply com-text-gray-900 com-text-lg com-font-normal com-m-0 com-mr-2 com-no-underline;
+          // }
         }
 
         fa-icon {
           @apply com-flex com-justify-end com-text-xl com-font-normal com-text-gray-900 com-mt-1;
         }
-      }
-
-      .active {
-        @apply com-text-primary-500;
       }
 
       .feature-item {

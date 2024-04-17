@@ -1,13 +1,17 @@
 <div class="features">
   <nb-card>
     <nb-list>
-      <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
+      <nb-list-item
+        *ngFor="let feature of features; let i = index"
+        class="clickable"
+        [class.active]="selectedFeatureIndex === i"
+      >
         <div class="feature" (click)="toggleShowAnswers(i)">
           <div class="feature-item">
             <div class="heading">
               <div class="logo"><img src="" alt="" /></div>
               <h2>
-                <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">{{ feature.title }}</a>
+                <a [routerLink]="['/features', feature.slug.current]">{{ feature.title }}</a>
               </h2>
             </div>
             <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
