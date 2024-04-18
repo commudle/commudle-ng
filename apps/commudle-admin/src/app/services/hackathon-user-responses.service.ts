@@ -95,4 +95,12 @@ export class HackathonUserResponsesService {
       },
     );
   }
+
+  getDataFormResponses(hackathonUserResponseId): Observable<any> {
+    const params = new HttpParams().set('hackathon_user_response_id', hackathonUserResponseId);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.GET_DATA_FORM_RESPONSES),
+      { params },
+    );
+  }
 }
