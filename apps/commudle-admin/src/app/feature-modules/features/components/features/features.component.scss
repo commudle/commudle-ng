@@ -33,17 +33,20 @@ nb-card {
 
       .heading {
         @apply com-flex com-flex-row com-items-center;
-      }
 
-      .sub-heading {
-        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-items-start;
-        p {
-          @apply com-text-lg com-font-normal com-m-0;
+        h2 {
+          @apply com-text-xl com-font-normal;
         }
       }
 
-      .logo {
-        @apply com-h-10 com-w-10 com-rounded-full com-mr-1 com-flex-shrink-0;
+      .sub-heading {
+        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-black com-items-start com-flex-wrap;
+        ul {
+          @apply com-m-0;
+          li {
+            @apply com-text-lg com-font-normal;
+          }
+        }
       }
     }
   }

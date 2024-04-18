@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { IFeaturesModel } from 'apps/shared-models/features.model';
@@ -30,7 +30,12 @@ export class FeaturesComponent implements OnInit {
     }
   }
 
-  toggleShowAnswers(index: number) {
+  toggleShowAnswers(index?: number) {
+    for (let i = 0; i < this.showSubHeading.length; i++) {
+      if (i !== index) {
+        this.showSubHeading[i] = false;
+      }
+    }
     this.showSubHeading[index] = !this.showSubHeading[index];
     this.selectedFeatureIndex = index;
   }

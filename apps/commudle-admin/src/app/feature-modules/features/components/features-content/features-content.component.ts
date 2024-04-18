@@ -34,7 +34,6 @@ export class FeaturesContentComponent implements OnInit {
     this.cmsService.getDataByType('featuredPage').subscribe((data) => {
       if (data) {
         this.features = data;
-        console.log(this.features, 'features');
       }
     });
   }

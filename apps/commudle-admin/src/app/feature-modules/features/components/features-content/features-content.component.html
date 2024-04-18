@@ -16,8 +16,8 @@
         <div class="main-column">
           <div>
             <!-- <h1 class="chapter-name">{{ features }}</h1> -->
-            <nb-card>
-              <div *ngIf="featureData?.image" class="image">
+            <nb-card *ngIf="featureData?.image">
+              <div class="image">
                 <img
                   alt="{{ featureData.title }}"
                   [src]="imageUrl(featureData.image).url()"
