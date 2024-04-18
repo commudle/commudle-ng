@@ -28,6 +28,16 @@ export class FeaturesComponent implements OnInit {
     } else {
       this.router.navigate(['/features', this.features[0].slug.current]);
     }
+    if (this.selectedFeatureIndex === undefined) {
+      if (this.params === this.features[0].slug.current) {
+        this.selectedFeatureIndex = 0;
+      } else {
+        const foundIndex = this.features.findIndex((feature) => feature.slug.current === this.params);
+        if (foundIndex !== -1) {
+          this.selectedFeatureIndex = foundIndex;
+        }
+      }
+    }
   }
 
   toggleShowAnswers(index?: number) {
