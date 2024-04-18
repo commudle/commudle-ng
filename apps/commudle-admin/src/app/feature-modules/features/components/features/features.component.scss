@@ -6,13 +6,9 @@ nb-card {
   @apply com-m-0;
   nb-list {
     nb-list-item {
-      @apply com-border-t-0 com-py-6 com-px-4;
+      @apply com-border-t-0 com-p-0;
       &:last-child {
         @apply com-border-b-0;
-      }
-
-      &.active {
-        @apply com-bg-Bright-Gray #{!important};
       }
 
       .feature {
@@ -52,5 +48,9 @@ nb-card {
   }
 }
 a {
-  @apply com-no-underline com-w-full;
+  @apply com-no-underline com-w-full com-p-6;
+}
+
+.active {
+  @apply com-bg-Bright-Gray #{!important};
 }

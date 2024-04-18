@@ -1,12 +1,8 @@
 <div class="features">
   <nb-card>
     <nb-list>
-      <nb-list-item
-        *ngFor="let feature of features; let i = index"
-        class="clickable"
-        [class.active]="selectedFeatureIndex === i"
-      >
-        <a [routerLink]="['/features', feature.slug.current]">
+      <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
+        <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">
           <div class="feature" (click)="toggleShowAnswers(i)">
             <div class="feature-item">
               <div class="heading">

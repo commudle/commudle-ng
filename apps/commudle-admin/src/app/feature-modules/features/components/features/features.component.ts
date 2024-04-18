@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { IFeaturesModel } from 'apps/shared-models/features.model';
@@ -27,16 +27,6 @@ export class FeaturesComponent implements OnInit {
       this.router.navigate(['/features', this.params]);
     } else {
       this.router.navigate(['/features', this.features[0].slug.current]);
-    }
-    if (this.selectedFeatureIndex === undefined) {
-      if (this.params === this.features[0].slug.current) {
-        this.selectedFeatureIndex = 0;
-      } else {
-        const foundIndex = this.features.findIndex((feature) => feature.slug.current === this.params);
-        if (foundIndex !== -1) {
-          this.selectedFeatureIndex = foundIndex;
-        }
-      }
     }
   }
 
