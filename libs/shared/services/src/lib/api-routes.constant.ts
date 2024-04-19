@@ -853,6 +853,7 @@ export const API_ROUTES = {
     VERIFY_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/verify_invitation_token_hur', //GET
     UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
     COMPLETE_HUR_STATUS: 'api/v2/hackathon_user_response/complete_hur_status', //PUT
+    GET_DATA_FORM_RESPONSES: 'api/v2/hackathon_user_response/get_data_form_responses', //GET
   },
 
   ENTITY_UPDATES: {
