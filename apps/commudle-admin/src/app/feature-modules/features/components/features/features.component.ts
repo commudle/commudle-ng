@@ -14,7 +14,6 @@ export class FeaturesComponent implements OnInit {
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
-  selectedFeatureIndex: number;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
@@ -37,6 +36,5 @@ export class FeaturesComponent implements OnInit {
       }
     }
     this.showSubHeading[index] = !this.showSubHeading[index];
-    this.selectedFeatureIndex = index;
   }
 }
