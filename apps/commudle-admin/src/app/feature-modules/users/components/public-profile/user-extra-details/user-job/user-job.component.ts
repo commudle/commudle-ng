@@ -185,14 +185,16 @@ export class UserJobComponent implements OnInit, OnChanges, OnDestroy {
         this.onCloseDialog();
         this.formSubmitLoading = false;
         this.jobs.unshift(data);
-        this.gtmService('submit-add-job', {
-          com_user_id: this.currentUser.id,
-          com_job_type: data.job_type,
-          com_position: data.position,
-          com_min_experience: data.experience,
-          com_location_type: data.location_type,
-          com_tags: data.tags.toString(),
-        });
+        if (this.currentUser) {
+          this.gtmService('submit-add-job', {
+            com_user_id: this.currentUser.id,
+            com_job_type: data.job_type,
+            com_position: data.position,
+            com_min_experience: data.experience,
+            com_location_type: data.location_type,
+            com_tags: data.tags.toString(),
+          });
+        }
       }),
     );
   }
