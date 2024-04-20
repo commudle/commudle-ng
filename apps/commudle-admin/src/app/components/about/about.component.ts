@@ -57,8 +57,4 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     return this.cmsService.getImageUrl(value);
   }
-
-  removeFragmentSpace(title: string) {
-    return title.toLowerCase().replace(/[\s,]+/g, '-');
-  }
 }
