@@ -367,15 +367,24 @@
             <div>
               Question: <strong>{{ questionAndAnswer.question.title }}</strong>
             </div>
-            <ng-container *ngIf="questionAndAnswer.question.question_type_id !== 5">
-              <div>
-                Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
-              </div>
-            </ng-container>
             <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
               <div>
                 Answer:
                 <div *ngFor="let answer of questionAndAnswer.answer">{{ answer.title }}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
+              <div>
+                Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
+              </div>
+            </ng-container>
+            <ng-container
+              *ngIf="
+                questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
+              "
+            >
+              <div>
+                Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
               </div>
             </ng-container>
           </div>
