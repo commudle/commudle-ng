@@ -77,12 +77,13 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
 import { EntityUpdatesComponent } from './entity-updates/entity-updates.component';
 import { FaqCardComponent } from './faq-card/faq-card.component';
 import { FaqControlPanelComponent } from './faq-control-panel/faq-control-panel.component';
-import { EditorModule as tinyMCEEditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule as tinyMCEEditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { EditDataFormComponent } from './edit-data-form/edit-data-form.component';
 import { BuildCardComponent } from './build-card/build-card.component';
 import { HackathonLargeCardComponent } from './hackathon-cards/hackathon-large-card/hackathon-large-card.component';
 import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium-card/hackathon-medium-card.component';
 import { InterestedMembersComponent } from './interested-members/interested-members.component';
+
 @NgModule({
   declarations: [
     WorkInProgressComponent,
@@ -214,5 +215,6 @@ import { InterestedMembersComponent } from './interested-members/interested-memb
     HackathonMediumCardComponent,
     InterestedMembersComponent,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class SharedComponentsModule {}

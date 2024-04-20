@@ -1,19 +1,19 @@
 <div class="emailer-component">
-  <form [formGroup]="eMailForm" (ngSubmit)="submitForm()">
+  <form (ngSubmit)="submitForm()" [formGroup]="eMailForm">
     <div class="fieldset">
       <p>{{ community.name }}</p>
-      <nb-radio-group name="members" formControlName="members" (valueChange)="toggleEventSpecificEmail($event)">
-        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}"> General Email (to All or a Specific Member) </nb-radio>
-        <nb-radio value="event"> Event Specific Emails </nb-radio>
+      <nb-radio-group (valueChange)="toggleEventSpecificEmail($event)" formControlName="members" name="members">
+        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}"> General Email (to All or a Specific Member)</nb-radio>
+        <nb-radio value="event"> Event Specific Emails</nb-radio>
       </nb-radio-group>
     </div>
 
-    <div class="fieldset" *ngIf="isEventSpecificEmail">
+    <div *ngIf="isEventSpecificEmail" class="fieldset">
       <nb-select
-        placeholder="Select Event"
-        formControlName="event_id"
         (selectedChange)="getEventDataFormEntityGroups($event)"
         filled
+        formControlName="event_id"
+        placeholder="Select Event"
         status="primary"
       >
         <nb-option *ngFor="let event of events" [value]="event.id">
@@ -21,30 +21,30 @@
         </nb-option>
       </nb-select>
 
-      <div class="fieldset" class="form-mail-type-selection">
-        <div class="fieldset" *ngIf="eventDataFormEntityGroups.length > 0">
+      <div class="fieldset form-mail-type-selection">
+        <div *ngIf="eventDataFormEntityGroups.length > 0" class="fieldset">
           <p>Source?</p>
           <nb-radio-group
-            name="event_data_form_entity_group_id"
-            formControlName="event_data_form_entity_group_id"
             (valueChange)="toggleEventDataFormEntityGroupType($event)"
+            formControlName="event_data_form_entity_group_id"
+            name="event_data_form_entity_group_id"
           >
             <nb-radio *ngFor="let edfeg of eventDataFormEntityGroups" [value]="edfeg.id">
               {{ edfeg.name }}
             </nb-radio>
           </nb-radio-group>
         </div>
-        <div class="fieldset" *ngIf="eventSimpleRegistration">
+        <div *ngIf="eventSimpleRegistration" class="fieldset">
           <p>Single Click Registration</p>
         </div>
 
-        <div class="fieldset" *ngIf="selectedEventDataFormEntityGroup || eventSimpleRegistration">
+        <div *ngIf="selectedEventDataFormEntityGroup || eventSimpleRegistration" class="fieldset">
           <p>Let's Be Specific!</p>
           <nb-radio-group
-            *ngIf="selectedEventDataFormEntityGroup"
-            name="registration_selection_type"
-            formControlName="registration_selection_type"
             (valueChange)="toggleEmailBodyValidation($event)"
+            *ngIf="selectedEventDataFormEntityGroup"
+            formControlName="registration_selection_type"
+            name="registration_selection_type"
           >
             <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">
               {{ reg.display }}
@@ -52,10 +52,10 @@
           </nb-radio-group>
 
           <nb-radio-group
-            *ngIf="eventSimpleRegistration"
-            name="registration_selection_type"
-            formControlName="registration_selection_type"
             (valueChange)="toggleEmailBodyValidation($event)"
+            *ngIf="eventSimpleRegistration"
+            formControlName="registration_selection_type"
+            name="registration_selection_type"
           >
             <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">
               {{ reg.display }}
@@ -65,12 +65,12 @@
       </div>
     </div>
     <div
-      class="fieldset"
       *ngIf="
         [EemailTypes.GENERAL_ALL, EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(
           selectedEmailType
         ) == true
       "
+      class="fieldset"
     >
       <div>
         <p *ngIf="recipientUsername">
@@ -81,22 +81,22 @@
         <label *ngIf="!recipientUsername">
           To
           <input
-            type="text"
-            nbInput
-            fullWidth
             formControlName="recipient_email"
+            fullWidth
+            nbInput
             placeholder="Enter 1 email addresses or leave blank for all matching members"
+            type="text"
           />
         </label>
       </div>
       <div>
-        <nb-checkbox status="basic" formControlName="resend"> Resend (if already sent) </nb-checkbox>
+        <nb-checkbox formControlName="resend" status="basic"> Resend (if already sent)</nb-checkbox>
       </div>
     </div>
     <div class="fieldset">
       <label>
         Subject*
-        <input type="text" nbInput fullWidth formControlName="subject" />
+        <input formControlName="subject" fullWidth nbInput type="text" />
       </label>
       <span
         *ngIf="
@@ -121,8 +121,7 @@
       >
         Required Field
       </span>
-      <editor formControlName="body" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" [init]="tinyMCE">
-      </editor>
+      <editor [init]="tinyMCE" formControlName="body"> </editor>
     </div>
 
     <div class="submit-button">

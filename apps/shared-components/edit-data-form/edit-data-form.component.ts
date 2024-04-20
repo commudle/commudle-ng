@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '@commudle/shared-services';
 import { NbMenuService } from '@commudle/theme';
-import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { IQuestion } from 'apps/shared-models/question.model';
@@ -46,9 +46,10 @@ export class EditDataFormComponent implements OnInit {
     convert_urls: false,
     statusbar: false,
     toolbar: false,
-    plugins: 'autoresize',
+    plugins: ['autoresize'],
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    license_key: 'gpl',
   };
 
   @ViewChild('cdkDrag') cdkDrag: any;
@@ -104,6 +105,7 @@ export class EditDataFormComponent implements OnInit {
   ngOnDestroy() {
     this.seoService.noIndex(false);
   }
+
   // drag and drop function by CDK
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
