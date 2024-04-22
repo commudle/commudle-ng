@@ -222,7 +222,9 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
         this.settlementDetailsForm.value,
       )
       .subscribe((data) => {
-        console.log('🚀 ~ CommunityPaymentsComponent ~ this.razorPayService.createRazorpayAccount ~ data:', data);
+        if (data) {
+          this.razorpayAccounts.push(data);
+        }
       });
   }
 

@@ -4,9 +4,10 @@ import { PaymentSettingService, ToastrService, countries_details } from '@commud
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
-import { IEvent, IPaymentDetail, IStripeAccount } from '@commudle/shared-models';
+import { IEvent, IPaymentDetail, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
+import { EDbModels } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -16,6 +17,7 @@ export class PaymentSettingsComponent implements OnInit {
   @Input() communityId;
   @Input() edfeg: IEventDataFormEntityGroup;
   @Input() stripeAccounts: IStripeAccount[];
+  @Input() razorpayAccounts: IRazorpayAccount[];
   @Input() event: IEvent;
   countries = countries_details;
   paidTicketingForm: FormGroup;
@@ -39,7 +41,7 @@ export class PaymentSettingsComponent implements OnInit {
     this.paidTicketingForm = this.fb.group(
       {
         paid_ticket_setting: this.fb.group({
-          bank_ac_type: ['stripe', Validators.required],
+          bank_ac_type: ['', Validators.required],
           bank_ac_id: ['', Validators.required],
           price: ['', Validators.required],
           currency: ['', Validators.required],
@@ -125,13 +127,25 @@ export class PaymentSettingsComponent implements OnInit {
       });
   }
 
-  updatePaidTicketingForm(ticketDetails) {
-    const selectedAccount = this.stripeAccounts.find(
+  updatePaidTicketingForm(ticketDetails: IPaymentDetail) {
+    const selectedAccountS = this.stripeAccounts.find(
       (stripeAccount) => stripeAccount.uuid === ticketDetails.bank_ac_id,
     );
-    this.bankAccountNo = selectedAccount.details.external_accounts.data[0].last4;
+    const selectedAccountR = this.razorpayAccounts.find(
+      (razorpayAccount) => razorpayAccount.uuid === ticketDetails.bank_ac_id,
+    );
+    this.bankAccountNo = selectedAccountS
+      ? selectedAccountS.details.external_accounts.data[0].last4
+      : selectedAccountR.bank_details.settlements.account_number.toString().slice(-4);
+    let bankAcType: string;
+
+    if (ticketDetails.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+      bankAcType = 'razorpay';
+    } else if (ticketDetails.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+      bankAcType = 'stripe';
+    }
     this.paidTicketingForm.get('paid_ticket_setting').patchValue({
-      bank_ac_type: 'stripe',
+      bank_ac_type: bankAcType,
       bank_ac_id: ticketDetails.bank_ac_id,
       price: ticketDetails.price / 100,
       currency: ticketDetails.currency,
@@ -156,5 +170,25 @@ export class PaymentSettingsComponent implements OnInit {
 
   closeDialogBox() {
     this.dialogRef.close();
+  }
+
+  selectAccount(event) {
+    const selectedAccountUuid = event.value;
+    const razorpayAccountSelected = this.razorpayAccounts.find((account) => account.uuid === selectedAccountUuid);
+    const stripeAccountSelected = this.stripeAccounts.find((account) => account.uuid === selectedAccountUuid);
+    if (razorpayAccountSelected) {
+      this.paidTicketingForm.patchValue({
+        paid_ticket_setting: {
+          bank_ac_type: 'razorpay',
+        },
+      });
+    }
+    if (stripeAccountSelected) {
+      this.paidTicketingForm.patchValue({
+        paid_ticket_setting: {
+          bank_ac_type: 'stripe',
+        },
+      });
+    }
   }
 }

@@ -31,7 +31,7 @@ import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/data-form-fill.component';
 import { environment } from '@commudle/shared-environments';
 import { RazorpayService } from '@commudle/shared-services';
-import { IRazorpayOrder } from '@commudle/shared-models';
+import { EDbModels, IRazorpayOrder } from '@commudle/shared-models';
 declare const Razorpay: any;
 @Component({
   selector: 'commudle-fill-data-form-paid',
@@ -480,9 +480,13 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     this.eventTicketOrderService
       .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
       .subscribe((data) => {
-        this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-        this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-        this.createOrUpdateRazorpayOrder(data.id);
+        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+          this.createOrUpdateRazorpayOrder(data.id);
+        }
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -494,7 +498,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
             }
           }
         }
-        // this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
@@ -506,9 +509,13 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.promoCodeApplied ? this.promoCode : '',
       )
       .subscribe((data) => {
-        this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-        this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-        this.createOrUpdateRazorpayOrder(data.id);
+        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+          this.createOrUpdateRazorpayOrder(data.id);
+        }
         if (data.discount_code_expires_at) {
           this.targetDate = new Date(data.discount_code_expires_at);
           if (this.targetDate) {
@@ -520,8 +527,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
             }
           }
         }
-
-        // this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
       });
   }
 
@@ -581,8 +586,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       handler: (response: any) => {
         {
           this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
-            console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
-            this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
+            this.isLoadingPayment = false;
+            this.toastLogService.successDialog('Your Payment Was Received Successfully');
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
               closeOnBackdropClick: false,
             });
@@ -599,11 +604,10 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const rzp1 = new Razorpay(options);
     rzp1.on('payment.failed', (response: any) => {
       {
+        console.log('🚀 ~ FillDataFormPaidComponent ~ rzp1.on ~ response:', response);
         this.razorpayService
           .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
-          .subscribe((data) => {
-            console.log('🚀 ~ FillDataFormPaidComponent ~ this.razorpayService.createOrUpdatePayment ~ data:', data);
-          });
+          .subscribe((data) => {});
         alert(response.error.description);
       }
     });

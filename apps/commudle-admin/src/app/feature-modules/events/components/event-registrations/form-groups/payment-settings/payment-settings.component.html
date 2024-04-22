@@ -105,11 +105,16 @@
                 [ngClass]="{
                   'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').value === ''
                 }"
+                (change)="selectAccount($event.target)"
               >
                 <option value="" selected disabled>Select Bank Ac</option>
                 <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
                   {{ rt.details.external_accounts.data[0].account_holder_name }}
                   (****{{ rt.details.external_accounts.data[0].last4 }})
+                </option>
+                <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
+                  {{ ra.bank_details.settlements.beneficiary_name }}
+                  (****{{ ra.bank_details.settlements.account_number.toString().slice(-4) }})
                 </option>
               </select>
             </div>

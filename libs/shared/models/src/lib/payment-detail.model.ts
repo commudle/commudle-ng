@@ -13,4 +13,5 @@ export interface IPaymentDetail {
   country: string;
   seller_name: string;
   seller_address: string;
+  bank_ac_type: string;
 }

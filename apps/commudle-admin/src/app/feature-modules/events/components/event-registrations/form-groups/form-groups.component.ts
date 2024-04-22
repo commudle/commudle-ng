@@ -126,7 +126,7 @@ export class FormGroupsComponent implements OnInit {
   //get razorpay account information
   getRazorpayAccountData() {
     this.razorpayService.indexRazorpayAccounts(this.community.id).subscribe((data) => {
-      console.log('🚀 ~ FormGroupsComponent ~ this.razorpayService.indexRazorpayAccounts ~ data:', data);
+      this.razorpayAccounts = this.razorpayAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
     });
   }
 
