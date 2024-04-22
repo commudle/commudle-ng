@@ -5,7 +5,10 @@
     @apply com-m-0 md:com-mt-0 com-mt-10;
 
     .communities-list-heading {
-      @apply com-text-Dark-Jungle-Green com-text-2xl com-font-bold com-leading-30px;
+      @apply com-m-0;
+      a {
+        @apply com-text-Dark-Jungle-Green com-text-2xl com-font-bold com-leading-30px com-no-underline;
+      }
     }
   }
 

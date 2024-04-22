@@ -1,7 +1,7 @@
-<nb-card *ngIf="speakers.length > 0">
+<nb-card *ngIf="speakers.length > 0" id="speakers">
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">Speakers to Follow</h3>
+      <h3 class="title"><a [routerLink]="'.'" fragment="speakers">Speakers to Follow</a></h3>
       <h4 class="sub-heading">Network with speakers from events</h4>
     </div>
     <div class="user-profile-card-large">
