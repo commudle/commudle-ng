@@ -12,6 +12,7 @@ import { SortByPipe } from './sort-by.pipe';
 import { TextToLinksPipe } from './text-to-links.pipe';
 import { TruncateTextPipe } from './truncate-text.pipe';
 import { GroupByDatePipe } from './group-by.pipe';
+import { ReplaceSpacePipe } from './replace-space.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { GroupByDatePipe } from './group-by.pipe';
     EnumFormatPipe,
     CapitalizeAndRemoveUnderscorePipe,
     GroupByDatePipe,
+    ReplaceSpacePipe,
   ],
   imports: [],
   exports: [
@@ -44,6 +46,7 @@ import { GroupByDatePipe } from './group-by.pipe';
     EnumFormatPipe,
     CapitalizeAndRemoveUnderscorePipe,
     GroupByDatePipe,
+    ReplaceSpacePipe,
   ],
 })
 export class SharedPipesModule {}
