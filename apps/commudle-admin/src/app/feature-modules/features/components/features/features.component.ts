@@ -14,6 +14,7 @@ export class FeaturesComponent implements OnInit {
   features: IFeaturesModel[];
   isLoading = true;
   featureData: IFeaturesModel;
+  isMobileView: boolean;
   subscriptions: Subscription[] = [];
 
   constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
@@ -23,6 +24,7 @@ export class FeaturesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 640;
     this.getIndex();
   }
 
@@ -36,10 +38,6 @@ export class FeaturesComponent implements OnInit {
         this.features = data;
       }
     });
-  }
-
-  imageUrl(source: any) {
-    return this.cmsService.getImageUrl(source);
   }
 
   getFeaturesData() {

@@ -6,9 +6,10 @@ import { FeaturesIndexComponent } from './components/features-index/features-ind
 import { FeaturesComponent } from './components/features/features.component';
 import { NbCardModule, NbListModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FeaturesContentComponent } from './components/features-content/features-content.component';
 
 @NgModule({
-  declarations: [FeaturesIndexComponent, FeaturesComponent],
+  declarations: [FeaturesIndexComponent, FeaturesComponent, FeaturesContentComponent],
   imports: [CommonModule, FeaturesRoutingModule, NbCardModule, NbListModule, FontAwesomeModule],
   exports: [],
 })

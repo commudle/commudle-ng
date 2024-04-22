@@ -10,14 +10,17 @@ import { IFeaturesModel } from 'apps/shared-models/features.model';
 })
 export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeaturesModel[];
+  @Input() featureData: IFeaturesModel;
   params = '';
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
+  isMobileView: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 640;
     this.activatedRoute.params.subscribe((value) => {
       this.params = value.slug;
     });

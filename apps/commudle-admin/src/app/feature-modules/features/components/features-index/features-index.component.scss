@@ -1,9 +1,13 @@
 .features {
-  @apply com-w-full;
+  @apply com-w-full md:com-m-0 com-mt-6;
 }
 
 nb-card {
   @apply com-m-0;
+
+  nb-card-body {
+    @apply com-p-0;
+  }
   nb-list {
     nb-list-item {
       @apply com-border-t-0 com-p-0;
@@ -48,7 +52,7 @@ nb-card {
   }
 }
 a {
-  @apply com-no-underline com-w-full com-p-6;
+  @apply com-flex com-flex-col com-no-underline com-w-full com-p-6;
 }
 
 .active {

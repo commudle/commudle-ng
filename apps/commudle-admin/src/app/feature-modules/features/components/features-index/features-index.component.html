@@ -1,28 +1,33 @@
 <div class="features">
   <nb-card>
-    <nb-list>
-      <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
-        <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">
-          <div class="feature" (click)="toggleShowAnswers(i)">
-            <div class="feature-item">
-              <div class="heading">
-                <div class="logo"><img src="" alt="" /></div>
-                <h2>
-                  {{ feature.title }}
-                </h2>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
+          <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">
+            <div class="feature" (click)="toggleShowAnswers(i)">
+              <div class="feature-item">
+                <div class="heading">
+                  <div class="logo"><img src="" alt="" /></div>
+                  <h2>
+                    {{ feature.title }}
+                  </h2>
+                </div>
+                <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
+                  <ul *ngFor="let subheading of feature.features">
+                    <li>{{ subheading }}</li>
+                  </ul>
+                </div>
               </div>
-              <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
-                <ul *ngFor="let subheading of feature.features">
-                  <li>{{ subheading }}</li>
-                </ul>
+              <div *ngIf="feature.features">
+                <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
               </div>
             </div>
-            <div *ngIf="feature.features">
-              <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
+            <div *ngIf="isMobileView && showSubHeading[i]">
+              <commudle-features-content [featureData]="featureData"></commudle-features-content>
             </div>
-          </div>
-        </a>
-      </nb-list-item>
-    </nb-list>
+          </a>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
   </nb-card>
 </div>
