@@ -119,6 +119,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
     });
   }
   getQuestionAnswer() {
+    this.selectedResponse = [];
     this.hurService.getDataFormResponses(this.selectedUserDetails.id).subscribe((data) => {
       this.selectedResponse = data;
     });
