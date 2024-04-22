@@ -1,56 +1,31 @@
 .features {
-  @apply com-w-full;
+  @apply md:com-py-20 com-bg-white com-flex;
 }
 
-nb-card {
-  @apply com-m-0;
-  nb-list {
-    nb-list-item {
-      @apply com-border-t-0 com-p-0;
-      &:last-child {
-        @apply com-border-b-0;
-      }
+.features-heading {
+  @apply com-text-4xl com-font-semibold com-text-black com-m-0 com-mb-4 com-text-center;
+}
 
-      .feature {
-        @apply com-flex com-flex-row com-justify-between com-items-start com-w-full;
+.features-subheading {
+  @apply com-text-xl com-font-medium com-text-gray-500 com-m-0 com-text-center com-mx-auto;
+}
 
-        h2 {
-          @apply com-flex com-m-0 com-text-gray-900 com-text-lg com-font-normal com-mr-2 com-no-underline;
-        }
+.two-column-layout {
+  @apply md:com-pt-[60px];
+}
 
-        fa-icon {
-          @apply com-flex com-justify-end com-text-xl com-font-normal com-text-gray-900 com-mt-1;
-        }
-      }
+.left-column {
+  @apply com-col-span-11 com-pr-[30px];
+}
 
-      .feature-item {
-        @apply com-flex com-flex-col com-w-full com-mr-4;
-      }
+.main-column {
+  grid-column: span 13 / span 13;
 
-      .heading {
-        @apply com-flex com-flex-row com-items-center;
-
-        h2 {
-          @apply com-text-xl com-font-normal;
-        }
-      }
-
-      .sub-heading {
-        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-black com-items-start com-flex-wrap;
-        ul {
-          @apply com-m-0;
-          li {
-            @apply com-text-lg com-font-normal;
-          }
-        }
-      }
-    }
+  nb-card {
+    @apply com-m-0;
   }
 }
-a {
-  @apply com-no-underline com-w-full com-p-6;
-}
 
-.active {
-  @apply com-bg-Bright-Gray #{!important};
+img {
+  @apply com-w-full com-rounded-md;
 }

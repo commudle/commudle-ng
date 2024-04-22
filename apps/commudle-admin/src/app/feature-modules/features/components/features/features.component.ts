@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IFeaturesModel } from 'apps/shared-models/features.model';
+import { CmsService } from 'apps/shared-services/cms.service';
+import { SeoService } from 'apps/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-features',
@@ -9,32 +11,57 @@ import { IFeaturesModel } from 'apps/shared-models/features.model';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
-  @Input() features: IFeaturesModel[];
-  params = '';
-  showSubHeading = [];
-  faAdd = faAdd;
-  faMinus = faMinus;
+  features: IFeaturesModel[];
+  isLoading = true;
+  featureData: IFeaturesModel;
+  subscriptions: Subscription[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
+    activatedRoute.params.subscribe(() => {
+      this.getFeaturesData();
+    });
+  }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((value) => {
-      this.params = value.slug;
-    });
-
-    if (this.params) {
-      this.router.navigate(['/features', this.params]);
-    } else {
-      this.router.navigate(['/features', this.features[0].slug.current]);
-    }
+    this.getIndex();
   }
 
-  toggleShowAnswers(index?: number) {
-    for (let i = 0; i < this.showSubHeading.length; i++) {
-      if (i !== index) {
-        this.showSubHeading[i] = false;
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getIndex() {
+    this.cmsService.getDataByType('featuredPage').subscribe((data) => {
+      if (data) {
+        this.features = data;
       }
-    }
-    this.showSubHeading[index] = !this.showSubHeading[index];
+    });
   }
+
+  imageUrl(source: any) {
+    return this.cmsService.getImageUrl(source);
+  }
+
+  getFeaturesData() {
+    this.isLoading = true;
+    this.featureData = null;
+    const slug: string = this.activatedRoute.snapshot.params.slug;
+    this.subscriptions.push(
+      this.cmsService.getDataBySlug(slug).subscribe((value) => {
+        if (value) {
+          this.featureData = value;
+          // this.setMeta(value.chapter_name, value?.meta_description);
+        }
+        this.isLoading = false;
+      }),
+    );
+  }
+
+  // setMeta(chapter_name, description) {
+  //   this.seoService.setTags(
+  //     chapter_name,
+  //     description ? description : '',
+  //     'https://commudle.com/assets/images/commudle-logo192.png',
+  //   );
+  // }
 }

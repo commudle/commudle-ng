@@ -1,28 +1,29 @@
 <div class="features">
-  <nb-card>
-    <nb-list>
-      <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
-        <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">
-          <div class="feature" (click)="toggleShowAnswers(i)">
-            <div class="feature-item">
-              <div class="heading">
-                <div class="logo"><img src="" alt="" /></div>
-                <h2>
-                  {{ feature.title }}
-                </h2>
-              </div>
-              <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
-                <ul *ngFor="let subheading of feature.features">
-                  <li>{{ subheading }}</li>
-                </ul>
-              </div>
-            </div>
-            <div *ngIf="feature.features">
-              <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
-            </div>
+  <div class="base-layout">
+    <div class="container">
+      <h1 class="features-heading">Understand your customers with better reports</h1>
+      <h2 class="features-subheading">
+        With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
+        aspect of your business in one secure platform.
+      </h2>
+      <div class="two-column-layout">
+        <div class="left-column">
+          <div *ngIf="features" class="com-w-full">
+            <commudle-features-index [features]="features"></commudle-features-index>
           </div>
-        </a>
-      </nb-list-item>
-    </nb-list>
-  </nb-card>
+        </div>
+        <div class="main-column">
+          <nb-card *ngIf="featureData">
+            <div class="image">
+              <img
+                alt="{{ featureData.title }}"
+                [src]="imageUrl(featureData.image).url()"
+                title="{{ featureData.title }}"
+              />
+            </div>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

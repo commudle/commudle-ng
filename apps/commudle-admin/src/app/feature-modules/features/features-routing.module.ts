@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeaturesContentComponent } from 'apps/commudle-admin/src/app/feature-modules/features/components/features-content/features-content.component';
+import { FeaturesComponent } from 'apps/commudle-admin/src/app/feature-modules/features/components/features/features.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FeaturesContentComponent,
+    component: FeaturesComponent,
   },
   {
     path: ':slug',
-    component: FeaturesContentComponent,
+    component: FeaturesComponent,
   },
 ];
 
