@@ -1,0 +1,30 @@
+//   sm:com-top-2 com-left-2 sm:com-left-auto
+//   @apply com-fixed com-top-[70px] com-right-2 sm:com-top-2 com-left-2 sm:com-left-auto com-max-w-xl com-rounded-3xl com-z-50 com-text-justify com-bg-tblack;
+
+nb-card {
+  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-20 com-right-64 com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
+  nb-card-header {
+    @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
+    .heading {
+      @apply com-flex;
+
+      .heading-icon {
+        @apply com-mr-2 com-h-4 com-w-4 com-text-primary-500;
+      }
+
+      .heading-text {
+        @apply com-text-primary-500 com-text-base com-font-semibold com-m-0;
+      }
+    }
+
+    .cross-icon {
+      @apply com-h-4 com-w-4 com-text-black;
+    }
+  }
+
+  nb-card-footer {
+    p {
+      @apply com-text-primary-500 com-text-base com-font-bold com-m-0;
+    }
+  }
+}

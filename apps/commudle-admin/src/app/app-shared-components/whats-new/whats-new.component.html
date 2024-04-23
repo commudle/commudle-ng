@@ -1,0 +1,11 @@
+<nb-card *ngIf="showPopup">
+  <nb-card-header>
+    <div class="heading">
+      <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
+      <p class="heading-text">What’s New</p>
+    </div>
+    <fa-icon [icon]="faXmark" class="cross-icon" (click)="closePopup()"></fa-icon
+  ></nb-card-header>
+  <nb-card-body></nb-card-body>
+  <nb-card-footer (click)="closePopup()"><p>Got It!</p></nb-card-footer>
+</nb-card>

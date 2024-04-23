@@ -39,6 +39,7 @@ import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
+import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.compo
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
+    WhatsNewComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +92,8 @@ import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.compo
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    WhatsNewComponent,
+
     // Nebular
     NbRadioModule,
     NbSelectModule,
