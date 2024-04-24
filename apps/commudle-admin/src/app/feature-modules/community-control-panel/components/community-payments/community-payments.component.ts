@@ -29,6 +29,8 @@ import {
   TransportSubcategory,
 } from '@commudle/shared-models';
 import { EDbModels } from '@commudle/shared-models';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+
 @Component({
   selector: 'commudle-community-payments',
   templateUrl: './community-payments.component.html',
@@ -75,6 +77,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
     ToursAndTravelSubcategory,
     TransportSubcategory,
   };
+  staticAssets = staticAssets;
 
   constructor(
     private stripeHandlerService: StripeHandlerService,
@@ -99,17 +102,16 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
       country: ['', Validators.required],
     });
     this.razorpayAccountForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]], //DONE
-      phone: ['', Validators.required], //DONE
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
       type: ['route', Validators.required],
-      reference_id: [''],
-      legal_business_name: ['', Validators.required], //DONE
-      business_type: [EBusinessType.INDIVIDUAL, Validators.required], //DONE
-      customer_facing_business_name: [''], //DONE
-      contact_name: ['', Validators.required], //DONE
+      legal_business_name: ['', Validators.required],
+      business_type: [EBusinessType.INDIVIDUAL, Validators.required],
+      customer_facing_business_name: [''],
+      contact_name: ['', Validators.required],
       profile: this.fb.group({
         category: ['', Validators.required],
-        subcategory: [''],
+        subcategory: ['', Validators.required],
         addresses: this.fb.group({
           registered: this.fb.group({
             street1: ['', Validators.required],
@@ -122,8 +124,8 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
         }),
       }),
       legal_info: this.fb.group({
-        pan: ['', Validators.required], //DONE
-        gst: [''], //DONE
+        pan: ['', Validators.required],
+        gst: [''],
       }),
     });
     this.settlementDetailsForm = this.fb.group({
@@ -161,12 +163,17 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.stripeHandlerService
         .connectStripeAccount(this.stripeConnectAccountForm, currentUrl, this.communityId)
-        .subscribe((data) => {
-          this.isLoading = false;
-          this.stripeConnectAccountForm.reset();
-          this.dialogRef.close();
-          window.location.href = data.url;
-        }),
+        .subscribe(
+          (data) => {
+            this.isLoading = false;
+            this.stripeConnectAccountForm.reset();
+            this.dialogRef.close();
+            window.location.href = data.url;
+          },
+          () => {
+            this.isLoading = false;
+          },
+        ),
     );
   }
 
@@ -214,6 +221,7 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
   }
 
   createRazorpayAccount() {
+    this.isLoading = true;
     this.razorPayService
       .createRazorpayAccount(
         this.communityId,
@@ -221,11 +229,18 @@ export class CommunityPaymentsComponent implements OnInit, OnDestroy {
         this.razorpayAccountForm.value,
         this.settlementDetailsForm.value,
       )
-      .subscribe((data) => {
-        if (data) {
-          this.razorpayAccounts.push(data);
-        }
-      });
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          if (data) {
+            this.razorpayAccounts.push(data);
+            this.dialogRef.close();
+          }
+        },
+        () => {
+          this.isLoading = false;
+        },
+      );
   }
 
   onCountryChange() {

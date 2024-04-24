@@ -63,9 +63,9 @@
                     'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('currency').value === ''
                   }"
                 >
-                  <option value="" selected disabled>Currency</option>
+                  <!-- <option value="" disabled>Currency</option> -->
                   <option value="inr">INR</option>
-                  <option value="usd">USD</option>
+                  <!-- <option value="usd">USD</option> -->
                 </select>
               </div>
               <span
@@ -110,11 +110,11 @@
                 <option value="" selected disabled>Select Bank Ac</option>
                 <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
                   {{ rt.details.external_accounts.data[0].account_holder_name }}
-                  (****{{ rt.details.external_accounts.data[0].last4 }})
+                  (****{{ rt.details.external_accounts.data[0].last4 }}) - (Stripe)
                 </option>
                 <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
                   {{ ra.bank_details.settlements.beneficiary_name }}
-                  (****{{ ra.bank_details.settlements.account_number.toString().slice(-4) }})
+                  (****{{ ra.bank_details.settlements.account_number.toString().slice(-4) }}) - (Razorpay)
                 </option>
               </select>
             </div>

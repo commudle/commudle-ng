@@ -25,3 +25,10 @@ th {
 .sub-category-heading {
   @apply com-font-bold;
 }
+
+.logo-image {
+  @apply com-w-36 com-h-auto;
+  img {
+    @apply com-w-full;
+  }
+}

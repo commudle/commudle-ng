@@ -15,3 +15,8 @@ export interface IPaymentDetail {
   seller_address: string;
   bank_ac_type: string;
 }
+
+export enum EPaymentBanks {
+  STRIPE = 'stripe',
+  RAZORPAY = 'razorpay',
+}

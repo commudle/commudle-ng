@@ -4,7 +4,7 @@ import { PaymentSettingService, ToastrService, countries_details } from '@commud
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
-import { IEvent, IPaymentDetail, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
+import { IEvent, IPaymentDetail, IRazorpayAccount, IStripeAccount, EPaymentBanks } from '@commudle/shared-models';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { EDbModels } from '@commudle/shared-models';
@@ -24,6 +24,7 @@ export class PaymentSettingsComponent implements OnInit {
   paymentData: IPaymentDetail;
   subscriptions: Subscription[] = [];
   paymentDetailsExist = false;
+  EPaymentBanks = EPaymentBanks;
 
   icons = {
     faPenToSquare,
@@ -44,7 +45,7 @@ export class PaymentSettingsComponent implements OnInit {
           bank_ac_type: ['', Validators.required],
           bank_ac_id: ['', Validators.required],
           price: ['', Validators.required],
-          currency: ['', Validators.required],
+          currency: ['inr', Validators.required],
           has_taxes: [false],
           tax_name: [''],
           tax_percentage: [''],

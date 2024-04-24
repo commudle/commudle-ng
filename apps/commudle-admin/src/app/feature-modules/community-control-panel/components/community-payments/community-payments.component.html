@@ -14,13 +14,19 @@
 
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
-      <th>Active</th>
+      <th>Type</th>
+      <th>Active/Status</th>
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
       <th>Bank Details</th>
       <th>Actions</th>
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
+      <td>
+        <div class="logo-image">
+          <img [src]="staticAssets.stripe.url" alt="stripe" sizes="100" />
+        </div>
+      </td>
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
@@ -82,9 +88,14 @@
       </td>
     </tr>
     <tr *ngFor="let razorpayAccount of razorpayAccounts">
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>
+        <div class="logo-image">
+          <img [src]="staticAssets.razorpay.url" alt="stripe" sizes="100" />
+        </div>
+      </td>
+      <td>{{ razorpayAccount.account_details['status'] | titlecase }}</td>
+      <td>Not Applicable</td>
+      <td>Not Applicable</td>
       <td>
         <details>
           <summary>{{ razorpayAccount.bank_details.settlements.beneficiary_name }}</summary>
@@ -104,22 +115,23 @@
   <nb-card class="com-max-h-[90dvh] com-w-[50dvw]">
     <nb-card-header>
       <div class="com-flex com-justify-between">
-        <div>CreateAccount</div>
+        <div>Create Account</div>
         <button (click)="ref.close(); stripeConnectAccountForm.reset()" ghost nbButton shape="round" size="small">
           <nb-icon icon="close"></nb-icon>
         </button>
       </div>
     </nb-card-header>
     <nb-card-body>
-      <div *ngIf="!isLoading">
+      <div>
         <!-- Country Field -->
-        <form [formGroup]="countryForm">
+        <form [formGroup]="countryForm" *ngIf="!isLoading">
           <label>
             Country*
             <div class="select">
               <select formControlName="country" (change)="onCountryChange()">
                 <option value="" disabled>Select Country</option>
-                <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+                <option [value]="countries[0].name">{{ countries[0].name }}</option>
+                <option disabled>More countries coming soon</option>
               </select>
             </div>
           </label>
@@ -127,7 +139,7 @@
       </div>
       <br />
       <!-- razorpayAccountForm -->
-      <div *ngIf="selectedCountry === 'India'">
+      <div *ngIf="selectedCountry === 'India' && !isLoading">
         <form [formGroup]="razorpayAccountForm">
           <div class="com-flex com-flex-col com-gap-3">
             <!-- business_type -->
@@ -554,7 +566,7 @@
 
                   <!-- state -->
                   <label>
-                    state
+                    State
                     <input
                       fieldSize="small"
                       formControlName="state"
@@ -702,16 +714,15 @@
             </label>
           </div>
         </form>
-
-        <div *ngIf="isLoading">
-          <p class="com-text-center com-font-bold com-mb-1">Creating Razorpay Account......</p>
-          <p class="com-text-center com-font-light com-text-xs com-my-1">This might take a moment</p>
-          <app-loading-spinner></app-loading-spinner>
-        </div>
+      </div>
+      <div *ngIf="isLoading && selectedCountry === 'India'">
+        <p class="com-text-center com-font-bold com-mb-1">Creating Razorpay Account......</p>
+        <p class="com-text-center com-font-light com-text-xs com-my-1">This might take a moment</p>
+        <app-loading-spinner></app-loading-spinner>
       </div>
 
       <!-- stripeConnectAccountForm -->
-      <div *ngIf="selectedCountry !== 'India' && selectedCountry !== ''">
+      <div *ngIf="selectedCountry !== 'India' && selectedCountry !== '' && !isLoading">
         <form [formGroup]="stripeConnectAccountForm" *ngIf="!isLoading">
           <div class="com-flex com-flex-col com-gap-3">
             <!-- Name* -->
@@ -867,11 +878,11 @@
             </div>
           </div>
         </form>
-        <div *ngIf="isLoading">
-          <p class="com-text-center com-font-bold com-mb-1">Connecting to Stripe Account......</p>
-          <p class="com-text-center com-font-light com-text-xs com-my-1">This might take a moment</p>
-          <app-loading-spinner></app-loading-spinner>
-        </div>
+      </div>
+      <div *ngIf="isLoading && selectedCountry !== 'India' && selectedCountry !== ''">
+        <p class="com-text-center com-font-bold com-mb-1">Connecting to Stripe Account......</p>
+        <p class="com-text-center com-font-light com-text-xs com-my-1">This might take a moment</p>
+        <app-loading-spinner></app-loading-spinner>
       </div>
     </nb-card-body>
     <nb-card-footer>
@@ -886,7 +897,7 @@
             status="primary"
             type="submit"
           >
-            Proceed stripe
+            Proceed with Stripe
           </button>
         </div>
 
@@ -900,7 +911,7 @@
             status="primary"
             type="submit"
           >
-            Proceed razorpay
+            Proceed with Razorpay
           </button>
         </div>
       </div>

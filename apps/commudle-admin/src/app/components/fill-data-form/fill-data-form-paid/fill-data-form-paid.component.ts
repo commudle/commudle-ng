@@ -32,6 +32,9 @@ import { DataFormFillComponent } from 'apps/shared-components/data-form-fill/dat
 import { environment } from '@commudle/shared-environments';
 import { RazorpayService } from '@commudle/shared-services';
 import { EDbModels, IRazorpayOrder } from '@commudle/shared-models';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+
 declare const Razorpay: any;
 @Component({
   selector: 'commudle-fill-data-form-paid',
@@ -94,6 +97,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
 
   stripePaymentIntendId: string;
   ticketPaidAlready: boolean;
+  ticketPaid = false;
 
   faIcon = {
     faRotateRight,
@@ -105,6 +109,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
 
   showEventTicketOrder;
   isLoadingPayment = false;
+  userProfileDetails: IUserStat;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
@@ -124,6 +130,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private stripeService: StripeService,
     private discountCodeService: DiscountCodesService,
     private razorpayService: RazorpayService,
+    private appUsersService: AppUsersService,
   ) {}
 
   ngOnInit() {
@@ -156,6 +163,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.currentUser = data;
         if (this.currentUser) {
           this.gtmData.com_user_id = this.currentUser.id;
+          this.appUsersService.getProfileStats().subscribe((data) => {
+            this.userProfileDetails = data;
+          });
         }
       }),
     );
@@ -197,7 +207,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     this.subscriptions.push(
       this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
         this.dataFormEntity = data;
-        this.fetchPaidTicketingData(this.dataFormEntity.entity_id);
+        this.fetchPaidTicketingData();
         this.gtmData.com_form_parent_type = this.dataFormEntity.entity_type;
         this.seoService.setTags(
           `${this.dataFormEntity.name}`,
@@ -214,9 +224,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   //Fetch ticket Details
-  fetchPaidTicketingData(edfegId) {
+  fetchPaidTicketingData() {
     this.subscriptions.push(
-      this.paymentSettingService.pIndexPaymentSettings(edfegId).subscribe((data) => {
+      this.paymentSettingService.pIndexPaymentSettings(this.dataFormEntity.entity_id).subscribe((data) => {
         this.paymentDetails = data;
         this.basePrice = data.price / 100;
         this.totalPrice = this.basePrice;
@@ -548,27 +558,26 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
           });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
+            // this.ticketPaid = true;
+            this.fetchPaidTicketingData();
             this.isLoadingPayment = false;
             this.paymentDialogRef.close();
             this.toastLogService.successDialog('Your Payment Was Received Successfully', 3000);
             this.eventTicketOrderService.checkPayment(this.stripePaymentIntendId).subscribe((data) => {});
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
           }
-          //TODO handle another edge cases
         }
       });
   }
 
+  //calculate tax amount
   calculateTaxAmount() {
     if (this.paymentDetails?.tax_percentage) {
       this.totalTaxAmount = (this.totalPrice * this.paymentDetails.tax_percentage) / 100;
     }
   }
 
-  reload() {
-    window.location.reload();
-  }
-
+  // create or update razorpay order
   createOrUpdateRazorpayOrder(etoId) {
     const orderDetails = {
       amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
@@ -579,15 +588,20 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     });
   }
 
+  // load and pay razorpay
   razorPaySubmit(order: IRazorpayOrder) {
+    this.isLoadingPayment = true;
     const options = {
       key: environment.razorpay_key,
       order_id: order.rzp_order_id,
       handler: (response: any) => {
         {
           this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
-            this.isLoadingPayment = false;
+            this.fetchPaidTicketingData();
+            this.checkEventTicketOrder(this.dataFormEntity.entity_id);
+            this.ticketPaidAlready = true;
             this.toastLogService.successDialog('Your Payment Was Received Successfully');
+            this.isLoadingPayment = false;
             this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
               closeOnBackdropClick: false,
             });
@@ -604,13 +618,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const rzp1 = new Razorpay(options);
     rzp1.on('payment.failed', (response: any) => {
       {
-        console.log('🚀 ~ FillDataFormPaidComponent ~ rzp1.on ~ response:', response);
         this.razorpayService
           .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
-          .subscribe((data) => {});
-        alert(response.error.description);
+          .subscribe((data) => {
+            alert('Message from Razorpay:' + response.error.description);
+          });
       }
     });
     rzp1.open();
+  }
+
+  // Reloads the current window location.
+  reload() {
+    window.location.reload();
   }
 }
