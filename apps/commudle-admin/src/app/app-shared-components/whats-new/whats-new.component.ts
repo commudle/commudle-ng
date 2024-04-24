@@ -5,6 +5,7 @@ import { faBullhorn, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { WhatsNewService } from 'apps/shared-services/whats-new.service';
+import moment from 'moment';
 
 @Component({
   selector: 'commudle-whats-new',
@@ -25,19 +26,23 @@ export class WhatsNewComponent implements OnInit {
   constructor(private whatsNewService: WhatsNewService, private seoService: SeoService) {}
 
   ngOnInit(): void {
-    if (!this.whatsNewService.getCookieByName('last_update_seen') && !this.seoService.isBot) {
-      this.updates.push(this.newUpdates);
-      this.showPopup = true;
-      this.cookieCreationTime = this.whatsNewService.setCookieCreationTime('last_update_seen');
-    }
-
-    if (this.whatsNewService.getCookieByName('last_update_seen') && !this.seoService.isBot) {
-      this.cookieCreationTime = this.whatsNewService.getCookieByName('last_update_seen');
-      if (this.lastUpdatedDate > this.cookieCreationTime && this.newUpdates) {
-        this.updates.push(this.newUpdates);
-        this.showPopup = true;
-      }
-      this.cookieCreationTime = this.whatsNewService.setCookieCreationTime('last_update_seen');
+    if (!this.seoService.isBot) {
+      this.updates = [];
+      this.whatsNewService.getNewUpdates().subscribe((data) => {
+        this.newUpdates = data;
+        const pastTime = moment().subtract(2, 'months').format('YYYY-MM-DD');
+        this.cookieCreationTime = this.whatsNewService.getCookieByName('last_update_seen');
+        const date = this.whatsNewService.getCookieByName('last_update_seen') ? this.cookieCreationTime : pastTime;
+        for (const newUpdate of this.newUpdates) {
+          if (newUpdate.date > date) {
+            this.updates.push(newUpdate);
+          }
+        }
+        if (this.updates.length > 0) {
+          this.showPopup = true;
+          this.whatsNewService.setCookieCreationTime('last_update_seen');
+        }
+      });
     }
   }
 

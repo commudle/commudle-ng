@@ -2,7 +2,7 @@
 //   @apply com-fixed com-top-[70px] com-right-2 sm:com-top-2 com-left-2 sm:com-left-auto com-max-w-xl com-rounded-3xl com-z-50 com-text-justify com-bg-tblack;
 
 nb-card {
-  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-20 com-right-64 com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
+  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-16 com-right-64 com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
   nb-card-header {
     @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
     .heading {
