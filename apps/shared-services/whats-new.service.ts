@@ -18,9 +18,8 @@ export class WhatsNewService {
   // }
 
   setCookieCreationTime(cookieName) {
-    const creationTime = moment().format('YYYY-MM-DD');
+    const creationTime = new Date().toISOString();
     this.cookieService.set(cookieName, creationTime);
-    return creationTime;
   }
 
   getNewUpdates() {

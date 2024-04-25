@@ -16,7 +16,7 @@ import moment from 'moment';
 })
 export class WhatsNewComponent implements OnInit {
   showPopup = false;
-  cookieCreationTime: string;
+  cookieCreationTime;
   lastUpdatedDate: string;
   updates = [];
   newUpdates;
@@ -30,17 +30,19 @@ export class WhatsNewComponent implements OnInit {
       this.updates = [];
       this.whatsNewService.getNewUpdates().subscribe((data) => {
         this.newUpdates = data;
-        const pastTime = moment().subtract(2, 'months').format('YYYY-MM-DD');
-        this.cookieCreationTime = this.whatsNewService.getCookieByName('last_update_seen');
+        const pastTime = new Date(moment().subtract(2, 'months').format());
+        this.cookieCreationTime = new Date(this.whatsNewService.getCookieByName('last_update_seen'));
         const date = this.whatsNewService.getCookieByName('last_update_seen') ? this.cookieCreationTime : pastTime;
         for (const newUpdate of this.newUpdates) {
-          if (newUpdate.date > date) {
+          if (new Date(newUpdate.date) > date) {
             this.updates.push(newUpdate);
           }
         }
         if (this.updates.length > 0) {
           this.showPopup = true;
-          this.whatsNewService.setCookieCreationTime('last_update_seen');
+          setTimeout(() => {
+            this.whatsNewService.setCookieCreationTime('last_update_seen');
+          }, 5000);
         }
       });
     }
