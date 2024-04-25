@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { IFeaturesModel } from 'apps/shared-models/features.model';
+import { IFeatures } from 'apps/shared-models/features.model';
 
 @Component({
   selector: 'commudle-features-index',
@@ -9,8 +9,8 @@ import { IFeaturesModel } from 'apps/shared-models/features.model';
   styleUrls: ['./features-index.component.scss'],
 })
 export class FeaturesIndexComponent implements OnInit {
-  @Input() features: IFeaturesModel[];
-  @Input() featureData: IFeaturesModel;
+  @Input() features: IFeatures[];
+  @Input() featureData: IFeatures;
   @Input() limit;
   params = '';
   showSubHeading = [];

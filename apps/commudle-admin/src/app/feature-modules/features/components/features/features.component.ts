@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IFeaturesModel } from 'apps/shared-models/features.model';
+import { IFeatures } from 'apps/shared-models/features.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
-  features: IFeaturesModel[];
+  features: IFeatures[];
   isLoading = true;
-  featureData: IFeaturesModel;
+  featureData: IFeatures;
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
 

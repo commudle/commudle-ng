@@ -1,5 +1,5 @@
 import { IAttachedFile } from './attached-file.model';
-export interface IFeaturesModel {
+export interface IFeatures {
   slug: any;
   image: IAttachedFile[];
   title: string;
