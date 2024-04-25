@@ -11,7 +11,6 @@ import { IFeatures } from 'apps/shared-models/features.model';
 export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeatures[];
   @Input() featureData: IFeatures;
-  @Input() limit;
   params = '';
   showSubHeading = [];
   faAdd = faAdd;
