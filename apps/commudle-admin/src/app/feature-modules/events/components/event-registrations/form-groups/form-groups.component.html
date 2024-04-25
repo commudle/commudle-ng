@@ -26,7 +26,7 @@
           <div>
             <!-- edfeg status dropdown -->
             <div class="edfeg-status-dropdown">
-              <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
+              <select (change)="changeVisibility($event, edfeg)" class="com-border-0">
                 <option
                   value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
                   [selected]="edfeg.data_form_entity.visibility === visibilityOptions.YET_TO_ANNOUNCE"

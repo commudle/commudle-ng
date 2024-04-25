@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
-import { RazorpayService, StripeHandlerService } from '@commudle/shared-services';
+import { PaymentSettingService, RazorpayService, StripeHandlerService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -61,6 +61,7 @@ export class FormGroupsComponent implements OnInit {
   ERegistrationTypeNames = RegistrationTypeNames;
   showDiscountCouponComponent = false;
   RegistrationTypeBackgroundColor = RegistrationTypeBackgroundColor;
+  paymentDetailsExist = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
   @Output() showDiscountCoupons = new EventEmitter<boolean>();
@@ -77,6 +78,7 @@ export class FormGroupsComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     private stripeHandlerService: StripeHandlerService,
     private razorpayService: RazorpayService,
+    private paymentSettingService: PaymentSettingService,
   ) {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
@@ -138,12 +140,30 @@ export class FormGroupsComponent implements OnInit {
     });
   }
 
-  // send a request to change the visibility_status
-  changeVisibility(newStatus, dataFormEntityId) {
-    this.dataFormEntitiesService.updateVisibilityStatus(newStatus.target.value, dataFormEntityId).subscribe(() => {
-      this.toastLogService.successDialog('Visibility Updated');
-      this.changeDetectorRef.markForCheck();
-    });
+  // check edfeg paid status before changing visibility
+  changeVisibility(newStatus, edfeg: IEventDataFormEntityGroup) {
+    if (edfeg.is_paid) {
+      this.paymentSettingService.indexPaymentSettings(edfeg.id).subscribe((data) => {
+        if (!data) {
+          this.toastLogService.warningDialog('Payment details do not exist, Please fill before changing visibility');
+          return;
+        } else {
+          this.updateVisibility(newStatus, edfeg);
+        }
+      });
+    } else {
+      this.updateVisibility(newStatus, edfeg);
+    }
+  }
+
+  // Updating the status of edfeg.data_form_entity.visibility
+  updateVisibility(newStatus, edfeg) {
+    this.dataFormEntitiesService
+      .updateVisibilityStatus(newStatus.target.value, edfeg.data_form_entity.id)
+      .subscribe(() => {
+        this.toastLogService.successDialog('Visibility Updated');
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   updateRSVP(eventDataFormEntityGroupId, index) {
@@ -301,6 +321,15 @@ export class FormGroupsComponent implements OnInit {
         registration_type_id: '',
         data_form_id: '',
       },
+    });
+  }
+
+  checkPaymentDetailsExists(edfeg) {
+    this.paymentDetailsExist = false;
+    this.paymentSettingService.indexPaymentSettings(edfeg.id).subscribe((data) => {
+      if (data) {
+        this.paymentDetailsExist = true;
+      }
     });
   }
 }
