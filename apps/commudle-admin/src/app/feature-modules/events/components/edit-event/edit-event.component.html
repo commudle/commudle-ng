@@ -39,38 +39,37 @@
             <label>Timings (Leave empty if you are yet to decide)</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date" />
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="start_date" />
                 <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
               </div>
             </div>
             <br />
 
-            <label [ngClass]="{ required: hasDate }"> Starts At </label>
+            <!-- <label [ngClass]="{ required: hasDate }"> Starts At </label>
             <div>
               <div>
                 <input nbInput type="time" formControlName="start_time_pick" />
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="event-date-details">
             <label>End Date</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="enddatepicker" placeholder="Date" formControlName="end_date" />
-                <nb-datepicker #enddatepicker></nb-datepicker>
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="end_date" />
               </div>
             </div>
             <br />
 
-            <label [ngClass]="{ required: hasDate }"> Ends At </label>
+            <!-- <label [ngClass]="{ required: hasDate }"> Ends At </label>
             <div>
               <div>
                 <div>
                   <input nbInput type="time" formControlName="end_time_pick" />
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div role="group" class="event-date-details">
@@ -106,7 +105,7 @@
             <div>
               <label fullWidth>
                 Tags*
-                <app-tag
+                <!-- <app-tag
                   (tagAdd)="onTagAdd($event)"
                   (tagDelete)="onTagDelete($event)"
                   [editable]="true"
@@ -114,7 +113,7 @@
                   [minimumTags]="minimumTags"
                   [backgroundColor]="'com-bg-tAnti-Flash'"
                   [fontColor]="'com-text-tYankees-Blue'"
-                ></app-tag>
+                ></app-tag> -->
               </label>
             </div>
           </div>

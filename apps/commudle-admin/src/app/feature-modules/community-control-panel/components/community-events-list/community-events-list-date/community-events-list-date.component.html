@@ -1,6 +1,8 @@
 <div *ngIf="rowData.start_time">
   <p>
-    {{ moment(rowData.start_time).format('Do MMM YYYY h:mm A') }}
+    {{ moment.tz(rowData.start_time, rowData.timezone).format('Do MMM YYYY h:mm A') }} - ({{
+      moment.tz(rowData.timezone).zoneAbbr()
+    }})
   </p>
   <div *ngIf="rowData.status === 'open'">
     <p *ngIf="moment(rowData.start_time) > moment()" class="upcoming">
