@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentSettingService, ToastrService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
@@ -8,6 +8,8 @@ import { IEvent, IPaymentDetail, IRazorpayAccount, IStripeAccount, EPaymentBanks
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { EDbModels } from '@commudle/shared-models';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { EPageType } from 'apps/shared-models/custom-page.model';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -33,6 +35,9 @@ export class PaymentSettingsComponent implements OnInit {
 
   dialogRef: NbDialogRef<any>;
   bankAccountNo: string;
+  EDbModels = EDbModels;
+  EPageType = EPageType;
+  @ViewChild(CustomPageFormComponent) customPageFormComponent: CustomPageFormComponent;
   constructor(
     private paymentSettingService: PaymentSettingService,
     private fb: FormBuilder,
@@ -191,5 +196,10 @@ export class PaymentSettingsComponent implements OnInit {
         },
       });
     }
+  }
+
+  createOrUpdateRefundPage() {
+    this.customPageFormComponent.createOrUpdate();
+    this.dialogRef.close();
   }
 }

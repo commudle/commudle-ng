@@ -73,6 +73,7 @@ import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.compo
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
+    CustomPageFormComponent,
   ],
   imports: [
     CommonModule,
