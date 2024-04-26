@@ -447,8 +447,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         )
         .subscribe((data) => {
           if (data.can_be_applied) {
-            this.discountAmount =
-              data.discount_type === 'fixed_amount' ? data.discount_amount / 100 : data.discount_amount;
+            this.discountAmount = data.discount_amount / 100;
             this.promoCodeApplied = true;
             this.totalPrice = this.basePrice * this.forms.length - this.discountAmount;
             this.calculateTaxAmount();
