@@ -193,13 +193,18 @@ export class EditEventComponent implements OnInit {
     this.startMinute = Number.parseInt(startTimePick.split(':')[1]);
 
     if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '' && this.startDate !== null) {
-      this.startTime = moment({
-        years: this.startDate.getFullYear(),
-        months: this.startDate.getMonth(),
-        date: this.startDate.getDate(),
-        hours: this.startHour,
-        minutes: this.startMinute,
-      }).toDate();
+      this.startTime = moment
+        .tz(
+          {
+            years: this.startDate.getFullYear(),
+            months: this.startDate.getMonth(),
+            date: this.startDate.getDate(),
+            hours: this.startHour,
+            minutes: this.startMinute,
+          },
+          this.event.timezone,
+        )
+        .toDate();
 
       return true;
     }
@@ -214,13 +219,18 @@ export class EditEventComponent implements OnInit {
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
 
     if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '' && this.endDate !== null) {
-      this.endTime = moment({
-        years: this.endDate.getFullYear(),
-        months: this.endDate.getMonth(),
-        date: this.endDate.getDate(),
-        hours: this.endHour,
-        minutes: this.endMinute,
-      }).toDate();
+      this.endTime = moment
+        .tz(
+          {
+            years: this.endDate.getFullYear(),
+            months: this.endDate.getMonth(),
+            date: this.endDate.getDate(),
+            hours: this.endHour,
+            minutes: this.endMinute,
+          },
+          this.event.timezone,
+        )
+        .toDate();
       return true;
     }
     this.endTime = null;
