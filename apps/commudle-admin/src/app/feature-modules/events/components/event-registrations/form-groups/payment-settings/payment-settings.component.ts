@@ -4,23 +4,32 @@ import { PaymentSettingService, ToastrService, countries_details } from '@commud
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
-import { IEvent, IPaymentDetail, IRazorpayAccount, IStripeAccount, EPaymentBanks } from '@commudle/shared-models';
+import {
+  IEvent,
+  IPaymentDetail,
+  IRazorpayAccount,
+  IStripeAccount,
+  EPaymentBanks,
+  ICommunity,
+} from '@commudle/shared-models';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { EDbModels } from '@commudle/shared-models';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
-import { EPageType } from 'apps/shared-models/custom-page.model';
+import { EPageType, ICustomPage } from 'apps/shared-models/custom-page.model';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
   styleUrls: ['./payment-settings.component.scss'],
 })
 export class PaymentSettingsComponent implements OnInit {
-  @Input() communityId;
+  @Input() community: ICommunity;
   @Input() edfeg: IEventDataFormEntityGroup;
   @Input() stripeAccounts: IStripeAccount[];
   @Input() razorpayAccounts: IRazorpayAccount[];
   @Input() event: IEvent;
+  @Input() refundPolicy: ICustomPage;
+
   countries = countries_details;
   paidTicketingForm: FormGroup;
   paymentData: IPaymentDetail;
@@ -51,7 +60,7 @@ export class PaymentSettingsComponent implements OnInit {
           bank_ac_id: ['', Validators.required],
           price: ['', Validators.required],
           currency: ['inr', Validators.required],
-          has_taxes: [false],
+          has_taxes: [true],
           tax_name: [''],
           tax_percentage: [''],
           seller_tax_details: [''],
@@ -201,5 +210,6 @@ export class PaymentSettingsComponent implements OnInit {
   createOrUpdateRefundPage() {
     this.customPageFormComponent.createOrUpdate();
     this.dialogRef.close();
+    this.community.has_refund_policy = true;
   }
 }

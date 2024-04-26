@@ -5,7 +5,9 @@
       Edit Payment Details
     </div>
     <div (click)="openCreateDiscountDialog()"><fa-icon [icon]="icons.faTicket"></fa-icon>Create Coupon Code</div>
-    <div (click)="open(refundPage)"><fa-icon [icon]="icons.faTicket"></fa-icon>Refund Page</div>
+    <div *ngIf="!community.has_refund_policy" (click)="open(refundPage)">
+      <fa-icon [icon]="icons.faTicket"></fa-icon>Create Refund Policy
+    </div>
   </div>
   <button
     *ngIf="!paymentDetailsExist"
@@ -133,7 +135,11 @@
           <!-- has_taxes -->
           <div>
             <label>
-              <nb-toggle formControlName="has_taxes">Include Taxes</nb-toggle>
+              <nb-toggle
+                [disabled]="paidTicketingForm.controls.paid_ticket_setting.get('has_taxes').value"
+                formControlName="has_taxes"
+                >Include Taxes</nb-toggle
+              >
             </label>
           </div>
 
@@ -310,16 +316,17 @@ If you are collecting tax for this ticket, please provide corrected information.
 <ng-template #refundPage let-ref="dialogRef">
   <nb-card class="com-max-h-[90dvh] com-w-full md:com-w-[70dvw]">
     <nb-card-header class="com-flex com-justify-between com-items-center">
-      <span>Refund Page</span>
+      <span>Refund Policy</span>
       <button ghost nbButton size="small" (click)="ref.close()" shape="round">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
     <nb-card-body class="com-px-0">
       <app-custom-page-form
-        [parentId]="communityId"
+        [parentId]="community.id"
         [parentType]="EDbModels.KOMMUNITY"
         [pageType]="EPageType.REFUND_POLICIES"
+        [pageSlug]="refundPolicy?.slug"
       ></app-custom-page-form>
     </nb-card-body>
     <nb-card-footer>

@@ -1,5 +1,5 @@
 import { Subscription, debounceTime, combineLatest } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from '@commudle/shared-services';
@@ -17,10 +17,11 @@ import { EDbModels } from '@commudle/shared-models';
 })
 export class CustomPageFormComponent implements OnInit, OnDestroy {
   customPageForm: FormGroup;
-  @Input() parentId: string;
+  @Input() parentId: string | number;
   @Input() parentType: EDbModels;
   @Input() pageType: EPageType;
-  pageSlug: string;
+  @Input() pageSlug: string;
+  @Output() pageCreated = new EventEmitter<ICustomPage>();
   icons = {
     faChevronLeft,
   };
@@ -63,14 +64,14 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.generateSlug();
-    if (this.pageType) {
+    if (this.pageType && !this.pageSlug) {
       this.customPageForm.patchValue({
         page_type: this.pageType,
       });
     }
     combineLatest([this.activatedRoute.parent.parent.paramMap, this.activatedRoute.params]).subscribe(
       ([params, data]) => {
-        this.pageSlug = data.page_slug;
+        if (!this.pageSlug) this.pageSlug = data.page_slug;
         if (params.get('community_id')) {
           this.parentId = params.get('community_id');
           this.parentType = EDbModels.KOMMUNITY;
@@ -107,17 +108,21 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.customPageService.getShow(this.pageSlug, this.parentId, this.parentType).subscribe((data: ICustomPage) => {
         if (data) {
-          this.customPageForm.patchValue({
-            title: data.title,
-            description: data.description,
-            published: data.published,
-            content: data.content,
-            slug: data.slug,
-            page_type: data.page_type,
-          });
+          this.setCustomPageForm(data);
         }
       }),
     );
+  }
+
+  setCustomPageForm(data) {
+    this.customPageForm.patchValue({
+      title: data.title,
+      description: data.description,
+      published: data.published,
+      content: data.content,
+      slug: data.slug,
+      page_type: data.page_type,
+    });
   }
 
   createOrUpdate() {
@@ -133,6 +138,7 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
       .createNewCustomPage(this.customPageForm.value, this.parentId, this.parentType)
       .subscribe((data) => {
         if (data) {
+          this.pageCreated.emit(data);
           this.toastrService.successDialog('Page Created');
           if (!this.pageType) this.backPage();
         }

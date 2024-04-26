@@ -139,4 +139,21 @@ export class CustomPageService {
       { params },
     );
   }
+
+  getRefundPolicyPage(parentId, parentType: EDbModels) {
+    let params = new HttpParams();
+    switch (parentType) {
+      case EDbModels.KOMMUNITY: {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case EDbModels.COMMUNITY_GROUP: {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.REFUND_POLICY_PAGE), {
+      params,
+    });
+  }
 }

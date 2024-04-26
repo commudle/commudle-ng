@@ -19,6 +19,7 @@ import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/da
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { RegistrationTypesService } from 'apps/commudle-admin/src/app/services/registration-types.service';
+import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { Visibility } from 'apps/shared-models/data_form_entity.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
@@ -40,7 +41,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 export class FormGroupsComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
-
+  @Input() refundPolicy: ICustomPage;
   faCopy = faCopy;
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;

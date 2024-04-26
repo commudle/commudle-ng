@@ -183,11 +183,12 @@
             </div>
             <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
               <commudle-payment-settings
-                [communityId]="community.id"
+                [community]="community"
                 [event]="event"
                 [edfeg]="edfeg"
                 [stripeAccounts]="stripeAccounts"
                 [razorpayAccounts]="razorpayAccounts"
+                [refundPolicy]="refundPolicy"
               ></commudle-payment-settings>
             </div>
           </div>
