@@ -6,6 +6,13 @@
     </div>
     <fa-icon [icon]="faXmark" class="cross-icon" (click)="closePopup()"></fa-icon
   ></nb-card-header>
-  <nb-card-body></nb-card-body>
-  <nb-card-footer (click)="closePopup()"><p>Got It!</p></nb-card-footer>
+  <nb-card-body>
+    <p class="new-features">New Features, enhancements & Bug fixes</p>
+    <div *ngFor="let update of updates">
+      <ul>
+        <commudle-whats-new-card [update]="update"></commudle-whats-new-card>
+      </ul>
+    </div>
+  </nb-card-body>
+  <nb-card-footer (click)="closePopup()"><p>Got it</p></nb-card-footer>
 </nb-card>
