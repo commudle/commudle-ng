@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IFeatures } from 'apps/shared-models/features.model';
 import { CmsService } from 'apps/shared-services/cms.service';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
+  @Input() limit;
   features: IFeatures[];
   isLoading = true;
   featureData: IFeatures;
@@ -33,11 +34,25 @@ export class FeaturesComponent implements OnInit {
   }
 
   getIndex() {
-    this.cmsService.getDataByType('featuredPage').subscribe((data) => {
-      if (data) {
-        this.features = data;
-      }
-    });
+    if (this.limit) {
+      this.subscriptions.push(
+        this.cmsService.getDataByTypeWithFilter('featuredPage', 'category', 'Event', 100).subscribe((value) => {
+          if (value) {
+            this.features = value;
+          }
+        }),
+      );
+    } else {
+      this.subscriptions.push(
+        this.cmsService.getDataByType('featuredPage').subscribe((value) => {
+          if (value) {
+            this.features = value;
+            // this.setMeta(value.chapter_name, value?.meta_description);
+          }
+          this.isLoading = false;
+        }),
+      );
+    }
   }
 
   getFeaturesData() {
