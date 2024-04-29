@@ -55,9 +55,9 @@
       <p *ngIf="event.start_time">
         <nb-icon icon="clock-outline"></nb-icon>
         <span>
-          {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }} to
-          {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-          {{ moment(event.end_time).format('z') }}
+          {{ moment.tz(event.start_time, event.timezone).format('dddd Do MMM, YYYY h:mm A') }} to
+          {{ moment.tz(event.end_time, event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
+          {{ moment(event.end_time).format('z') }} - ({{ moment.tz(event.timezone).zoneAbbr() }})
         </span>
       </p>
       <div class="com-flex com-gap-2 com-items-baseline">

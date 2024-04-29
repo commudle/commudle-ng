@@ -18,6 +18,7 @@ import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/ha
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
+import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
@@ -44,6 +45,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   selectedUserResponsesDetails: IHackathonUserResponse[];
   communityId: string | number;
   EInvitationStatus = EInvitationStatus;
+  selectedResponse;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,6 +55,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
     private roundService: RoundService,
     private noteService: NoteService,
     private fb: FormBuilder,
+    private hurService: HackathonUserResponsesService,
   ) {
     this.notesForm = this.fb.group({
       note: this.fb.array([]),
@@ -109,9 +112,16 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
       this.selectedUserResponsesDetails = data.user_responses;
       this.notesIndex(data.team.id);
       this.selectedUserDetails = this.selectedUserResponsesDetails[0];
+      this.getQuestionAnswer();
       this.dialogRef = this.nbDialogService.open(dialog, {
         context: { team: this.selectedTeamDetails, index: index, userResponse: this.selectedUserResponsesDetails },
       });
+    });
+  }
+  getQuestionAnswer() {
+    this.selectedResponse = [];
+    this.hurService.getDataFormResponses(this.selectedUserDetails.id).subscribe((data) => {
+      this.selectedResponse = data;
     });
   }
 
@@ -127,6 +137,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
 
   displayUserData(user) {
     this.selectedUserDetails = user;
+    this.getQuestionAnswer();
   }
 
   addNote(noteText = '') {
