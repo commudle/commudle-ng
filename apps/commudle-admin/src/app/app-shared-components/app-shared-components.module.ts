@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { EmailerComponent } from './emailer/emailer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbIconModule,
+  NbInputModule,
   NbRadioModule,
   NbSelectModule,
-  NbInputModule,
-  NbButtonModule,
-  NbCheckboxModule,
   NbToggleModule,
-  NbIconModule,
-  NbCardModule,
 } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
@@ -106,5 +106,6 @@ import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.compo
     FontAwesomeModule,
     SharedPipesModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class AppSharedComponentsModule {}

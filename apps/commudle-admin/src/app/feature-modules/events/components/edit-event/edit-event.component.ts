@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { NbWindowRef } from '@commudle/theme';
+
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -57,12 +58,31 @@ export class EditEventComponent implements OnInit {
     convert_urls: false,
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins:
-      'advlist autolink link image charmap preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    plugins: [
+      'advlist',
+      'autolink',
+      'link',
+      'image',
+      'charmap',
+      'preview',
+      'anchor',
+      'lists',
+      'searchreplace',
+      'visualblocks',
+      'code',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+    ],
     toolbar:
       'undo redo | bullist numlist | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           outdent indent | removeformat | help',
+    license_key: 'gpl',
   };
 
   constructor(
@@ -250,6 +270,7 @@ export class EditEventComponent implements OnInit {
       },
     );
   }
+
   close() {
     this.windowRef.close();
   }
