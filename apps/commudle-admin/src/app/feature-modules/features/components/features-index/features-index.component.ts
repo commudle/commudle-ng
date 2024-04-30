@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { IFeatures } from 'apps/shared-models/features.model';
 
@@ -11,7 +11,7 @@ import { IFeatures } from 'apps/shared-models/features.model';
 export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeatures[];
   @Input() featureData: IFeatures;
-  params = '';
+  queryParams;
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
@@ -21,15 +21,13 @@ export class FeaturesIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
-    this.activatedRoute.params.subscribe((value) => {
-      this.params = value.slug;
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.queryParams = params.query;
     });
 
-    if (this.params) {
-      this.router.navigate(['/features', this.params]);
-    } else {
-      this.router.navigate(['/features', this.features[0].slug.current]);
-    }
+    const queryParams = this.queryParams ? { query: this.queryParams } : { query: this.features[0].slug.current };
+
+    this.router.navigate([], { queryParams });
   }
 
   toggleShowAnswers(index?: number) {

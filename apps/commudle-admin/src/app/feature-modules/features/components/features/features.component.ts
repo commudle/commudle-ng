@@ -21,7 +21,7 @@ export class FeaturesComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
-    activatedRoute.params.subscribe(() => {
+    this.activatedRoute.queryParams.subscribe(() => {
       this.getFeaturesData();
     });
   }
@@ -51,7 +51,6 @@ export class FeaturesComponent implements OnInit {
         this.cmsService.getDataByType('featuredPage').subscribe((value) => {
           if (value) {
             this.features = value;
-            // this.setMeta(value.chapter_name, value?.meta_description);
           }
           this.isLoading = false;
         }),
@@ -62,7 +61,7 @@ export class FeaturesComponent implements OnInit {
   getFeaturesData() {
     this.isLoading = true;
     this.featureData = null;
-    const slug: string = this.activatedRoute.snapshot.params.slug;
+    const slug = this.activatedRoute.snapshot.queryParams['query'];
     this.subscriptions.push(
       this.cmsService.getDataBySlug(slug).subscribe((value) => {
         if (value) {

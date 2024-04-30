@@ -3,7 +3,7 @@
     <nb-card-body>
       <nb-list>
         <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
-          <a [routerLink]="['/features', feature.slug.current]" routerLinkActive="active">
+          <a [routerLink]="[]" [queryParams]="{ query: feature.slug.current }" routerLinkActive="active">
             <div class="feature" (click)="toggleShowAnswers(i)">
               <div class="feature-item">
                 <div class="heading">

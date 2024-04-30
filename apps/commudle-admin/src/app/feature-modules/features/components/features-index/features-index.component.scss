@@ -40,7 +40,7 @@ nb-card {
       }
 
       .sub-heading {
-        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-black com-items-start com-flex-wrap;
+        @apply com-flex com-flex-row com-mt-4 com-pt-4 com-border-0 com-border-t com-border-solid com-border-gray-300 com-items-start com-flex-wrap;
         ul {
           @apply com-m-0;
           li {
