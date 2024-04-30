@@ -1,13 +1,13 @@
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  NbCardModule,
   NbButtonModule,
-  NbInputModule,
-  NbIconModule,
-  NbTagModule,
-  NbRouteTabsetModule,
+  NbCardModule,
   NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbRouteTabsetModule,
+  NbTagModule,
   NbToggleModule,
 } from '@commudle/theme';
 import { NgModule } from '@angular/core';
@@ -72,5 +72,6 @@ import { CommunityGroupCustomPagesComponent } from './components/community-group
     NbFormFieldModule,
     NbToggleModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class CommunityGroupsModule {}

@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
-import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFileImage, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
-import { IHackathonTrack, IHackathonPrize } from '@commudle/shared-models';
+import { IHackathonPrize, IHackathonTrack } from '@commudle/shared-models';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
 @Component({
@@ -33,12 +33,33 @@ export class HackathonControlPanelPrizeComponent implements OnInit {
     placeholder: 'Write description for Prize',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'image',
+      'visualblocks',
+      'code',
+      'charmap',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+      'media',
+    ],
     toolbar:
       'bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
     default_link_target: '_blank',
     branding: false,
+    license_key: 'gpl',
   };
 
   constructor(

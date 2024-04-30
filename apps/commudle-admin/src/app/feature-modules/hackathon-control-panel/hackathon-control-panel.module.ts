@@ -8,14 +8,14 @@ import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.compone
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import {
-  NbInputModule,
+  NbButtonGroupModule,
   NbButtonModule,
   NbCardModule,
-  NbRouteTabsetModule,
   NbCheckboxModule,
-  NbButtonGroupModule,
+  NbInputModule,
+  NbRouteTabsetModule,
   NbSpinnerModule,
 } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
@@ -93,5 +93,6 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     NbButtonGroupModule,
     NbSpinnerModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class HackathonControlPanelModule {}

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  NbBadgeModule,
   NbButtonGroupModule,
   NbButtonModule,
   NbCardModule,
@@ -14,14 +15,13 @@ import {
   NbInputModule,
   NbRouteTabsetModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTabsetModule,
-  NbBadgeModule,
   NbTagModule,
   NbToggleModule,
-  NbSpinnerModule,
   NbTooltipModule,
 } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
@@ -121,5 +121,6 @@ import { AdminCommunityHackathonComponent } from './components/admin-community-h
     NbSpinnerModule,
     NbTooltipModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class CommunityGroupsModule {}

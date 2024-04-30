@@ -1,5 +1,5 @@
 <div class="event-edit-form-container">
-  <div class="backButton" *ngIf="type === 'save'">
+  <div *ngIf="type === 'save'" class="backButton">
     <commudle-back-button text="Back"></commudle-back-button>
   </div>
 
@@ -7,22 +7,22 @@
     <nb-card-body>
       <h3 class="com-mt-0">Edit Event</h3>
 
-      <nb-alert status="info" *ngIf="uneditable">
+      <nb-alert *ngIf="uneditable" status="info">
         <p>
           This event is <strong>{{ event.event_status?.name | titlecase }}</strong> and cannot be edited
         </p>
       </nb-alert>
       <form
-        class="event-create-form"
-        [formGroup]="eventForm"
         (ngSubmit)="type === 'Save' ? updateEvent() : cloneEvent()"
+        [formGroup]="eventForm"
+        class="event-create-form"
       >
         <div formGroupName="event">
           <div role="group">
             <div>
               <label>
                 Name*
-                <input type="text" nbInput fullWidth formControlName="name" [disabled]="true" />
+                <input [disabled]="true" formControlName="name" fullWidth nbInput type="text" />
               </label>
               <span
                 *ngIf="
@@ -31,7 +31,7 @@
                   eventForm['controls'].event['controls'].name.errors.required
                 "
               >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
               </span>
             </div>
           </div>
@@ -40,17 +40,9 @@
             <div>
               <div>
                 <input nbInput type="datetime-local" placeholder="Date" formControlName="start_date" />
-                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
               </div>
             </div>
             <br />
-
-            <!-- <label [ngClass]="{ required: hasDate }"> Starts At </label>
-            <div>
-              <div>
-                <input nbInput type="time" formControlName="start_time_pick" />
-              </div>
-            </div> -->
           </div>
 
           <div class="event-date-details">
@@ -66,15 +58,15 @@
             <div>
               <div>
                 <div>
-                  <input nbInput type="time" formControlName="end_time_pick" />
+                  <input formControlName="end_time_pick" nbInput type="time" />
                 </div>
               </div>
             </div> -->
           </div>
 
-          <div role="group" class="event-date-details">
+          <div class="event-date-details" role="group">
             <label>
-              <nb-select placeholder="TimeZone*" formControlName="timezone" status="primary" size="large" hero>
+              <nb-select formControlName="timezone" hero placeholder="TimeZone*" size="large" status="primary">
                 <nb-option *ngFor="let tz of allTimeZones" [value]="tz">
                   {{ tz }}
                 </nb-option>
@@ -91,29 +83,24 @@
                 eventForm['controls'].event['controls'].description.errors.required
               "
             >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
             </span>
-            <editor
-              formControlName="description"
-              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-              [init]="tinyMCE"
-            >
-            </editor>
+            <editor [init]="tinyMCE" formControlName="description"> </editor>
           </div>
 
           <div role="group">
             <div>
               <label fullWidth>
                 Tags*
-                <!-- <app-tag
+                <app-tag
                   (tagAdd)="onTagAdd($event)"
                   (tagDelete)="onTagDelete($event)"
-                  [editable]="true"
-                  [tags]="tags"
-                  [minimumTags]="minimumTags"
                   [backgroundColor]="'com-bg-tAnti-Flash'"
+                  [editable]="true"
                   [fontColor]="'com-text-tYankees-Blue'"
-                ></app-tag> -->
+                  [minimumTags]="minimumTags"
+                  [tags]="tags"
+                ></app-tag>
               </label>
             </div>
           </div>
@@ -123,11 +110,11 @@
           <button
             *ngIf="!uneditable"
             [disabled]="tags.length < 3 || submitIsInProcess"
-            type="submit"
-            nbButton
-            fullWidth
-            status="info"
             [nbSpinner]="submitIsInProcess"
+            fullWidth
+            nbButton
+            status="info"
+            type="submit"
           >
             {{ type }}
           </button>

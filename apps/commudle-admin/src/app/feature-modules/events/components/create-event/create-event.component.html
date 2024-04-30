@@ -7,13 +7,13 @@
   </nb-card>
   <nb-card>
     <nb-card-body>
-      <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="createEvent()">
+      <form (ngSubmit)="createEvent()" [formGroup]="eventForm" class="event-create-form">
         <div formGroupName="event">
           <div role="group">
             <div>
               <label fullWidth>
                 Name*
-                <input type="text" nbInput fullWidth formControlName="name" />
+                <input formControlName="name" fullWidth nbInput type="text" />
               </label>
               <span
                 *ngIf="
@@ -22,7 +22,7 @@
                   eventForm['controls'].event['controls'].name.errors.required
                 "
               >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
               </span>
             </div>
           </div>
@@ -32,16 +32,7 @@
             <label>Start Date</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date" />
-                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Starts At </label>
-            <div>
-              <div>
-                <input nbInput type="time" formControlName="start_time_pick" />
+                <input type="datetime-local" formControlName="start_date" nbInput placeholder="Date" />
               </div>
             </div>
           </div>
@@ -50,23 +41,14 @@
             <label>End Date</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="enddatepicker" placeholder="Date" formControlName="end_date" />
-                <nb-datepicker #enddatepicker></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Ends At </label>
-            <div>
-              <div>
-                <input nbInput type="time" formControlName="end_time_pick" />
+                <input type="datetime-local" formControlName="end_date" nbInput placeholder="Date" />
               </div>
             </div>
           </div>
 
-          <div role="group" class="event-date-details">
+          <div class="event-date-details" role="group">
             <label>
-              <nb-select placeholder="TimeZone*" formControlName="timezone" status="primary" size="large" hero>
+              <nb-select formControlName="timezone" hero placeholder="TimeZone*" size="large" status="primary">
                 <nb-option *ngFor="let tz of allTimeZones" [value]="tz">
                   {{ tz }}
                 </nb-option>
@@ -83,14 +65,9 @@
                 eventForm['controls'].event['controls'].description.errors.required
               "
             >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
             </span>
-            <editor
-              formControlName="description"
-              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-              [init]="tinyMCE"
-            >
-            </editor>
+            <editor [init]="tinyMCE" formControlName="description"> </editor>
           </div>
 
           <div role="group">
@@ -100,11 +77,11 @@
                 <app-tag
                   (tagAdd)="onTagAdd($event)"
                   (tagDelete)="onTagDelete($event)"
-                  [editable]="true"
-                  [tags]="tags"
-                  [minimumTags]="minimumTags"
                   [backgroundColor]="'com-bg-tAnti-Flash'"
+                  [editable]="true"
                   [fontColor]="'com-text-tYankees-Blue'"
+                  [minimumTags]="minimumTags"
+                  [tags]="tags"
                 ></app-tag>
               </label>
             </div>
@@ -114,11 +91,11 @@
         <div class="save-button-bottom">
           <button
             [disabled]="!eventForm.valid || tags.length < 3 || isFormSubmitting"
-            type="submit"
-            nbButton
-            fullWidth
-            status="info"
             [nbSpinner]="isFormSubmitting"
+            fullWidth
+            nbButton
+            status="info"
+            type="submit"
           >
             Save
           </button>
