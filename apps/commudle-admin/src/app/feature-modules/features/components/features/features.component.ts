@@ -11,7 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
-  @Input() limit;
+  @Input() categoryName;
+  @Input() showHeading = true;
+  @Input() showSubHeading = true;
   features: IFeatures[];
   isLoading = true;
   featureData: IFeatures;
@@ -34,13 +36,15 @@ export class FeaturesComponent implements OnInit {
   }
 
   getIndex() {
-    if (this.limit) {
+    if (this.categoryName) {
       this.subscriptions.push(
-        this.cmsService.getDataByTypeWithFilter('featuredPage', 'category', 'Event', 100).subscribe((value) => {
-          if (value) {
-            this.features = value;
-          }
-        }),
+        this.cmsService
+          .getDataByTypeWithFilter('featuredPage', 'category', this.categoryName, 100)
+          .subscribe((value) => {
+            if (value) {
+              this.features = value;
+            }
+          }),
       );
     } else {
       this.subscriptions.push(

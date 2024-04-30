@@ -1,14 +1,16 @@
 <div class="features">
   <div class="base-layout">
     <div class="container">
-      <h1 class="features-heading">Understand your customers with better reports</h1>
-      <h2 class="features-subheading">
+      <h1 *ngIf="showHeading" class="features-heading">
+        <a [routerLink]="'.'" fragment="features">Understand your customers with better reports</a>
+      </h1>
+      <h2 *ngIf="showSubHeading" class="features-subheading">
         With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every
         aspect of your business in one secure platform.
       </h2>
       <div class="two-column-layout">
         <div class="left-column">
-          <div *ngIf="features" class="com-w-full">
+          <div *ngIf="features">
             <commudle-features-index [features]="features" [featureData]="featureData"></commudle-features-index>
           </div>
         </div>

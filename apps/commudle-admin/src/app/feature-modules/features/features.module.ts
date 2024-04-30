@@ -11,6 +11,6 @@ import { FeaturesContentComponent } from './components/features-content/features
 @NgModule({
   declarations: [FeaturesIndexComponent, FeaturesComponent, FeaturesContentComponent],
   imports: [CommonModule, FeaturesRoutingModule, NbCardModule, NbListModule, FontAwesomeModule],
-  exports: [],
+  exports: [FeaturesComponent],
 })
 export class FeaturesModule {}

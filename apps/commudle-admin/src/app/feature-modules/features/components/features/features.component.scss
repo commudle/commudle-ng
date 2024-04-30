@@ -2,8 +2,15 @@
   @apply md:com-py-20 com-py-10 com-bg-white com-flex md:com-px-0 com-px-4;
 }
 
+.base-layout {
+  @apply com-min-h-0;
+}
+
 .features-heading {
-  @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-text-center;
+  @apply com-text-center;
+  a {
+    @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-no-underline;
+  }
 }
 
 .features-subheading {
@@ -16,6 +23,10 @@
 
 .left-column {
   @apply com-col-span-11 md:com-pr-[30px] com-pr-0;
+
+  div {
+    @apply com-w-full;
+  }
 }
 
 .main-column {
