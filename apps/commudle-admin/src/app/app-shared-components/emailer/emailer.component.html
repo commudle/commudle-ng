@@ -2,9 +2,10 @@
   <form (ngSubmit)="submitForm()" [formGroup]="eMailForm">
     <div class="fieldset">
       <p>{{ community.name }}</p>
-      <nb-radio-group (valueChange)="toggleEventSpecificEmail($event)" formControlName="members" name="members">
-        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}"> General Email (to All or a Specific Member)</nb-radio>
-        <nb-radio value="event"> Event Specific Emails</nb-radio>
+      <nb-radio-group name="members" formControlName="members" (valueChange)="toggleEventSpecificEmail($event)">
+        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}"> General Email (to All or a Specific Member) </nb-radio>
+        <nb-radio value="{{ EemailTypes.EVENT_SPEAKER }}"> To All Speakers</nb-radio>
+        <nb-radio value="event"> Event Specific Emails </nb-radio>
       </nb-radio-group>
     </div>
 
