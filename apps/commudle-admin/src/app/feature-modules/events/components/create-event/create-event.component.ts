@@ -109,16 +109,13 @@ export class CreateEventComponent implements OnInit {
     form.get('start_date').valueChanges.subscribe(() => {
       form.get('start_date').clearValidators();
       if (form.get('start_date').value) {
-        form.get('start_time_pick').setValidators([Validators.required]);
-        form.get('end_time_pick').setValidators([Validators.required]);
+        form.get('end_date').setValidators([Validators.required]);
         this.hasDate = true;
       } else {
-        form.get('start_time_pick').clearValidators();
-        form.get('end_time_pick').clearValidators();
+        form.get('end_date').clearValidators();
         this.hasDate = false;
       }
-      form.get('start_time_pick').updateValueAndValidity();
-      form.get('end_time_pick').updateValueAndValidity();
+      form.get('end_date').updateValueAndValidity();
     });
   }
 
@@ -150,17 +147,12 @@ export class CreateEventComponent implements OnInit {
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
     const startTimePick = this.eventForm.get('event').get('start_time_pick').value;
+    const selectedTimezone = this.eventForm.get('event').get('timezone').value;
     this.startHour = Number.parseInt(startTimePick.split(':')[0]);
     this.startMinute = Number.parseInt(startTimePick.split(':')[1]);
 
     if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '') {
-      this.startTime = moment({
-        years: this.startDate.getFullYear(),
-        months: this.startDate.getMonth(),
-        date: this.startDate.getDate(),
-        hours: this.startHour,
-        minutes: this.startMinute,
-      }).toDate();
+      this.startTime = moment.tz(this.startDate, selectedTimezone).toDate();
       return true;
     }
     return false;
@@ -169,16 +161,11 @@ export class CreateEventComponent implements OnInit {
   setEndDateTime() {
     this.endDate = this.eventForm.get('event').get('end_date').value;
     const endTimePick = this.eventForm.get('event').get('end_time_pick').value;
+    const selectedTimezone = this.eventForm.get('event').get('timezone').value;
     this.endHour = Number.parseInt(endTimePick.split(':')[0]);
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
     if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '') {
-      this.endTime = moment({
-        years: this.endDate.getFullYear(),
-        months: this.endDate.getMonth(),
-        date: this.endDate.getDate(),
-        hours: this.endHour,
-        minutes: this.endMinute,
-      }).toDate();
+      this.endTime = moment.tz(this.endDate, selectedTimezone).toDate();
       return true;
     }
     return false;
