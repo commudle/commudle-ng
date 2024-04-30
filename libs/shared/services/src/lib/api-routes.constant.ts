@@ -36,6 +36,7 @@ export const API_ROUTES = {
     PUBLIC_DETAILS: 'api/v2/communities/public_show',
     TOGGLE_EMAIL_VISIBILITY: 'api/v2/communities/toggle_email_visibility',
     TOGGLE_PAYMENTS: 'api/v2/communities/toggle_payments',
+    CSV_SPEAKERS_LIST: 'api/v2/communities/csv_speakers_list',
     PUBLIC: {
       INDEX: 'api/v2/communities/public',
       SPEAKERS: 'api/v2/communities/public/speakers',

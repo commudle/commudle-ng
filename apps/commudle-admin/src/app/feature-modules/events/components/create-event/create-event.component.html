@@ -32,16 +32,7 @@
             <label>Start Date</label>
             <div>
               <div>
-                <input [nbDatepicker]="datepicker" formControlName="start_date" nbInput placeholder="Date" />
-                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Starts At </label>
-            <div>
-              <div>
-                <input formControlName="start_time_pick" nbInput type="time" />
+                <input type="datetime-local" formControlName="start_date" nbInput placeholder="Date" />
               </div>
             </div>
           </div>
@@ -50,16 +41,7 @@
             <label>End Date</label>
             <div>
               <div>
-                <input [nbDatepicker]="enddatepicker" formControlName="end_date" nbInput placeholder="Date" />
-                <nb-datepicker #enddatepicker></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Ends At </label>
-            <div>
-              <div>
-                <input formControlName="end_time_pick" nbInput type="time" />
+                <input type="datetime-local" formControlName="end_date" nbInput placeholder="Date" />
               </div>
             </div>
           </div>

@@ -39,26 +39,17 @@
             <label>Timings (Leave empty if you are yet to decide)</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date" />
-                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="start_date" />
               </div>
             </div>
             <br />
-
-            <label [ngClass]="{ required: hasDate }"> Starts At </label>
-            <div>
-              <div>
-                <input nbInput type="time" formControlName="start_time_pick" />
-              </div>
-            </div>
           </div>
 
           <div class="event-date-details">
             <label>End Date</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="enddatepicker" placeholder="Date" formControlName="end_date" />
-                <nb-datepicker #enddatepicker></nb-datepicker>
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="end_date" />
               </div>
             </div>
             <br />
@@ -114,6 +105,8 @@
                   [minimumTags]="minimumTags"
                   [backgroundColor]="'com-bg-tAnti-Flash'"
                   [fontColor]="'com-text-tYankees-Blue'"
+                  [minimumTags]="minimumTags"
+                  [tags]="tags"
                 ></app-tag>
               </label>
             </div>
