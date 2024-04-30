@@ -27,17 +27,17 @@
                   </label>
                 </div>
                 <label class="clickable">
-                  <span> <a nbButton status="primary" outline>Change Theme Color</a> </span>
+                  <span> <a nbButton outline status="primary">Change Theme Color</a> </span>
                   <input
+                    (input)="updateThemeColor($event)"
+                    class="com-h-0 !com-w-0 !com-p-0 -com-z-10 com-relative"
+                    formControlName="theme_color"
                     id="colorPicker"
                     type="color"
-                    formControlName="theme_color"
-                    class="com-h-0 !com-w-0 !com-p-0 -com-z-10 com-relative"
-                    (input)="updateThemeColor($event)"
                   />
                 </label>
 
-                <div id="logo" class="logo" [style.backgroundColor]="themeColor">
+                <div [style.background-color]="themeColor" class="logo" id="logo">
                   <div *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)" class="uploaded-logo">
                     <img
                       alt="Profile Picture"
@@ -120,12 +120,7 @@
                 </div>
 
                 <label> About* </label>
-                <editor
-                  [init]="tinyMCE"
-                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                  formControlName="description"
-                >
-                </editor>
+                <editor [init]="tinyMCE" formControlName="description"></editor>
               </div>
             </div>
 

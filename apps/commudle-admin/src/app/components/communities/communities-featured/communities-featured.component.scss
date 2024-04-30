@@ -6,7 +6,9 @@ p {
   @apply com-mb-10 com-overflow-hidden com-relative com-p-0 com-pt-8 md:com-mx-0 com-mx-4;
 
   .communities-featured-heading {
-    @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6;
+    a {
+      @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6 com-no-underline;
+    }
   }
 
   .communities-featured-list {

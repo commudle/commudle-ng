@@ -1,9 +1,9 @@
 import { SeoService, ToastrService } from '@commudle/shared-services';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathon, EParticipateTypes, EHackathonLocationType } from 'apps/shared-models/hackathon.model';
+import { EHackathonLocationType, EParticipateTypes, IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 
@@ -39,12 +39,33 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     placeholder: 'Write description for hackathon',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'image',
+      'visualblocks',
+      'code',
+      'charmap',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+      'media',
+    ],
     toolbar:
       'bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
     default_link_target: '_blank',
     branding: false,
+    license_key: 'gpl',
   };
 
   constructor(
