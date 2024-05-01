@@ -132,14 +132,21 @@
             </span>
           </label>
 
+          <div *ngIf="commudleFeeAmount > 0">
+            <commudle-alert
+              [info]="true"
+              [message]="
+                'Commudle fees for this ticket will be 2% + GST' +
+                ((paidTicketingForm.controls.paid_ticket_setting.get('currency').value === 'inr' ? '₹' : '$') +
+                  this.commudleFeeAmount)
+              "
+            ></commudle-alert>
+          </div>
+
           <!-- has_taxes -->
           <div>
             <label>
-              <nb-toggle
-                [disabled]="paidTicketingForm.controls.paid_ticket_setting.get('has_taxes').value"
-                formControlName="has_taxes"
-                >Include Taxes</nb-toggle
-              >
+              <nb-toggle (checkedChange)="toggleHasTaxes($event)" formControlName="has_taxes">Include Taxes</nb-toggle>
             </label>
           </div>
 

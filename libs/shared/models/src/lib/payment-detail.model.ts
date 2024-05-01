@@ -14,6 +14,7 @@ export interface IPaymentDetail {
   seller_name: string;
   seller_address: string;
   bank_ac_type: string;
+  commudle_fee_percentage: number;
 }
 
 export enum EPaymentBanks {

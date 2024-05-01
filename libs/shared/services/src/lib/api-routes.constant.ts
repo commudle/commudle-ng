@@ -728,6 +728,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/paid_ticket_settings',
     UPDATE: 'api/v2/paid_ticket_settings',
     INDEX: 'api/v2/paid_ticket_settings/details',
+    CALCULATE_COMMUDLE_FEE_AMOUNT: 'api/v2/paid_ticket_settings/calculate_commudle_fee_amount',
     PUBLIC: {
       SHOW: 'api/v2/paid_ticket_settings/public/show',
     },

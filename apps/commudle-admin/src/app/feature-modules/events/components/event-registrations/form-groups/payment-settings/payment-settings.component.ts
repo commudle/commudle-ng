@@ -2,7 +2,7 @@ import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentSettingService, ToastrService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
 import { faPenToSquare, faTicket } from '@fortawesome/free-solid-svg-icons';
 import {
   IEvent,
@@ -46,6 +46,8 @@ export class PaymentSettingsComponent implements OnInit {
   bankAccountNo: string;
   EDbModels = EDbModels;
   EPageType = EPageType;
+  commudleFeePercentage = 2;
+  commudleFeeAmount = 0;
   @ViewChild(CustomPageFormComponent) customPageFormComponent: CustomPageFormComponent;
   constructor(
     private paymentSettingService: PaymentSettingService,
@@ -60,7 +62,7 @@ export class PaymentSettingsComponent implements OnInit {
           bank_ac_id: ['', Validators.required],
           price: ['', Validators.required],
           currency: ['inr', Validators.required],
-          has_taxes: [true],
+          has_taxes: [false],
           tax_name: [''],
           tax_percentage: [''],
           seller_tax_details: [''],
@@ -75,17 +77,18 @@ export class PaymentSettingsComponent implements OnInit {
             fb.get('paid_ticket_setting').get('has_taxes').value === true &&
             !fb.get('paid_ticket_setting').get('tax_name').value
               ? {
-                  tax_name: true,
-                  tax_percentage: true,
-                  seller_tax_details: true,
-                  country: true,
-                  seller_name: true,
-                  seller_address: true,
+                  tax_name: ['', Validators.required],
+                  tax_percentage: ['', Validators.required],
+                  seller_tax_details: ['', Validators.required],
+                  country: ['', Validators.required],
+                  seller_name: ['', Validators.required],
+                  seller_address: ['', Validators.required],
                 }
               : null,
         ],
       },
     );
+    this.calculateCommudleFeeAmount();
   }
 
   ngOnInit(): void {
@@ -103,6 +106,8 @@ export class PaymentSettingsComponent implements OnInit {
         if (data) {
           this.paymentData = data;
           this.paymentDetailsExist = true;
+          this.commudleFeePercentage = data.commudle_fee_percentage;
+          this.calculateCommudleFeeAmount();
           this.updatePaidTicketingForm(this.paymentData);
         }
       }),
@@ -211,5 +216,41 @@ export class PaymentSettingsComponent implements OnInit {
     this.customPageFormComponent.createOrUpdate();
     this.dialogRef.close();
     this.community.has_refund_policy = true;
+  }
+
+  toggleHasTaxes(event) {
+    if (!event) {
+      this.paidTicketingForm.patchValue({
+        tax_name: '',
+        tax_percentage: '',
+        seller_tax_details: '',
+        country: '',
+        seller_name: '',
+        seller_address: '',
+      });
+    }
+  }
+
+  calculateCommudleFeeAmount() {
+    this.paidTicketingForm
+      .get('paid_ticket_setting.price')
+      .valueChanges.pipe(debounceTime(200))
+      .subscribe(() => {
+        this.getCommudleFeeAmount();
+      });
+    this.paidTicketingForm
+      .get('paid_ticket_setting.tax_percentage')
+      .valueChanges.pipe(debounceTime(200))
+      .subscribe(() => {
+        this.getCommudleFeeAmount();
+      });
+  }
+
+  getCommudleFeeAmount() {
+    const priceValue = this.paidTicketingForm.get('paid_ticket_setting.price').value;
+    const taxValue = this.paidTicketingForm.get('paid_ticket_setting.tax_percentage').value;
+    this.paymentSettingService.calculateCommudleFeeAmount(priceValue, taxValue).subscribe((data) => {
+      this.commudleFeeAmount = data;
+    });
   }
 }
