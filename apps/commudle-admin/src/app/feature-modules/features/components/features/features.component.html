@@ -11,7 +11,11 @@
       <div class="two-column-layout">
         <div class="left-column">
           <div *ngIf="features">
-            <commudle-features-index [features]="features" [featureData]="featureData"></commudle-features-index>
+            <commudle-features-index
+              [features]="features"
+              [featureData]="featureData"
+              (featureSlug)="getFeaturesData($event)"
+            ></commudle-features-index>
           </div>
         </div>
         <div *ngIf="!isMobileView && featureData" class="main-column">

@@ -7,7 +7,7 @@
 }
 
 .features-heading {
-  @apply com-text-center md:com-pt-20 com-pt-10;
+  @apply com-text-center md:com-pt-20 com-pt-10 com-m-0;
   a {
     @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-no-underline;
   }

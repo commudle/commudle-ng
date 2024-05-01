@@ -3,29 +3,27 @@
     <nb-card-body>
       <nb-list>
         <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
-          <a [routerLink]="[]" [queryParams]="{ query: feature.slug.current }" routerLinkActive="active">
-            <div class="feature" (click)="toggleShowAnswers(i)">
-              <div class="feature-item">
-                <div class="heading">
-                  <div class="logo"><img src="" alt="" /></div>
-                  <h2>
-                    {{ feature.title }}
-                  </h2>
-                </div>
-                <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
-                  <ul *ngFor="let subheading of feature.features">
-                    <li>{{ subheading }}</li>
-                  </ul>
-                </div>
+          <div class="feature" (click)="toggleShowAnswers(feature.slug.current, i)">
+            <div class="feature-item">
+              <div class="heading">
+                <div class="logo"><img src="" alt="" /></div>
+                <h2>
+                  {{ feature.title }}
+                </h2>
               </div>
-              <div *ngIf="feature.features">
-                <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
+              <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
+                <ul *ngFor="let subheading of feature.features">
+                  <li>{{ subheading }}</li>
+                </ul>
               </div>
             </div>
-            <div *ngIf="isMobileView && showSubHeading[i]">
-              <commudle-features-content [featureData]="featureData"></commudle-features-content>
+            <div *ngIf="feature.features">
+              <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
             </div>
-          </a>
+          </div>
+          <div *ngIf="isMobileView && showSubHeading[i]">
+            <commudle-features-content [featureData]="featureData"></commudle-features-content>
+          </div>
         </nb-list-item>
       </nb-list>
     </nb-card-body>

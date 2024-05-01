@@ -10,13 +10,13 @@ nb-card {
   }
   nb-list {
     nb-list-item {
-      @apply com-border-t-0 com-p-0;
+      @apply com-border-t-0 com-p-0 com-flex com-flex-col;
       &:last-child {
         @apply com-border-b-0;
       }
 
       .feature {
-        @apply com-flex com-flex-row com-justify-between com-items-start com-w-full;
+        @apply com-flex com-flex-row com-justify-between com-items-start com-w-full com-p-6;
 
         h2 {
           @apply com-flex com-m-0 com-text-gray-900 com-text-lg com-font-normal com-mr-2 com-no-underline;
@@ -52,7 +52,6 @@ nb-card {
   }
 }
 a {
-  @apply com-flex com-flex-col com-no-underline com-w-full com-p-6;
 }
 
 .active {

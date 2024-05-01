@@ -20,11 +20,7 @@ export class FeaturesComponent implements OnInit {
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
 
-  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
-    this.activatedRoute.queryParams.subscribe(() => {
-      this.getFeaturesData();
-    });
-  }
+  constructor(private cmsService: CmsService, private seoService: SeoService) {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
@@ -58,10 +54,9 @@ export class FeaturesComponent implements OnInit {
     }
   }
 
-  getFeaturesData() {
+  getFeaturesData(slug) {
     this.isLoading = true;
     this.featureData = null;
-    const slug = this.activatedRoute.snapshot.queryParams['query'];
     this.subscriptions.push(
       this.cmsService.getDataBySlug(slug).subscribe((value) => {
         if (value) {

@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { IFeatures } from 'apps/shared-models/features.model';
 
@@ -11,26 +10,24 @@ import { IFeatures } from 'apps/shared-models/features.model';
 export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeatures[];
   @Input() featureData: IFeatures;
+  @Output() featureSlug: EventEmitter<string> = new EventEmitter<string>();
   queryParams;
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
   isMobileView: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.queryParams = params.query;
-    });
-
-    const queryParams = this.queryParams ? { query: this.queryParams } : { query: this.features[0].slug.current };
-
-    this.router.navigate([], { queryParams });
+    this.featureSlug.emit(this.features[0].slug.current);
   }
 
-  toggleShowAnswers(index?: number) {
+  toggleShowAnswers(slug, index?: number) {
+    if (slug) {
+      this.featureSlug.emit(slug);
+    }
     for (let i = 0; i < this.showSubHeading.length; i++) {
       if (i !== index) {
         this.showSubHeading[i] = false;
