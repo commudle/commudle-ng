@@ -1,5 +1,5 @@
 .features {
-  @apply md:com-py-20 com-py-10 com-bg-white com-flex md:com-px-0 com-px-4;
+  @apply com-bg-white com-flex md:com-px-0 com-px-4 com-pt-0 md:com-pb-20 com-pb-10;
 }
 
 .base-layout {
@@ -7,7 +7,7 @@
 }
 
 .features-heading {
-  @apply com-text-center;
+  @apply com-text-center md:com-pt-20 com-pt-10;
   a {
     @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-no-underline;
   }
