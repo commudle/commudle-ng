@@ -16,16 +16,19 @@ export class FeaturesIndexComponent implements OnInit {
   faAdd = faAdd;
   faMinus = faMinus;
   isMobileView: boolean;
+  selectedFeatureSlug: string;
 
   constructor() {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
     this.featureSlug.emit(this.features[0].slug.current);
+    this.selectedFeatureSlug = this.features[0].slug.current;
   }
 
   toggleShowAnswers(slug, index?: number) {
     if (slug) {
+      this.selectedFeatureSlug = slug;
       this.featureSlug.emit(slug);
     }
     for (let i = 0; i < this.showSubHeading.length; i++) {
