@@ -107,8 +107,9 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
-  getIndexByCommunity(communityId): Observable<IPagination<IEventDataFormEntityGroup[]>> {
-    const params = new HttpParams().set('community_id', communityId);
+  getIndexByCommunity(communityId: number | string, after): Observable<IPagination<IEventDataFormEntityGroup[]>> {
+    let params = new HttpParams().set('community_id', communityId);
+    if (after) params = params.set('after', after);
     return this.http.get<IPagination<IEventDataFormEntityGroup[]>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
       { params },

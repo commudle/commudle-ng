@@ -5,18 +5,8 @@
         <nb-card-header>
           <h1>Forms List</h1>
         </nb-card-header>
-        <nb-card-body>
-          <nb-card *ngFor="let edfeg of eventDataFormEntityGroup" class="edfeg">
-            <nb-card-body [routerLink]="[edfeg.id]">
-              <div>{{ edfeg.name }}::{{ edfeg.event.name }}::{{ edfeg.community.name }}</div>
-            </nb-card-body>
-          </nb-card>
-          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-        </nb-card-body>
-        <nb-card-footer *ngIf="pageInfo?.has_next_page">
-          <button (click)="getEdfegList()" ghost nbButton fullWidth>View More</button>
-        </nb-card-footer>
-      </nb-card>
+        <nb-card-body> <commudle-paid-form-list></commudle-paid-form-list> </nb-card-body
+      ></nb-card>
     </div>
   </div>
 </div>

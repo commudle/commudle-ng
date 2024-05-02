@@ -1,0 +1,58 @@
+<section>
+  <ng-container *ngIf="razorpayPaymentDetails && razorpayPaymentDetails.length > 0; else noDetailFound">
+    <table>
+      <tr>
+        <th>Payment Id</th>
+        <th>Status</th>
+        <th>Paid by</th>
+        <th>Other Users Details</th>
+        <th>Total amount</th>
+        <th>Discount amount</th>
+        <th>Tax amount</th>
+        <th>Application fee amount</th>
+        <th>Payment gateway fee</th>
+      </tr>
+      <tr *ngFor="let rpd of razorpayPaymentDetails">
+        <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
+        <td *ngIf="rpd">{{ rpd?.order.status }}</td>
+        <td *ngIf="rpd">{{ rpd?.order.orderable.user.name }}</td>
+        <td *ngIf="rpd">
+          <details>
+            <summary>Other users details</summary>
+            <div *ngIf="rpd?.order.orderable.eto_users && rpd?.order.orderable.eto_users.length > 0; else noOtherUsers">
+              <div *ngFor="let user of rpd?.order.orderable.eto_users">
+                <div *ngIf="user.email !== rpd?.order.orderable.user.email">
+                  {{ user.name }}
+                  <br />
+                  {{ user.email }}
+                </div>
+              </div>
+            </div>
+            <ng-template #noOtherUsers> No Other users Found </ng-template>
+          </details>
+        </td>
+        <td *ngIf="rpd">
+          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}
+        </td>
+        <td *ngIf="rpd">
+          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.discount_amount / 100 }}
+        </td>
+        <td *ngIf="rpd">
+          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}
+        </td>
+        <td *ngIf="rpd">
+          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
+          }}{{ rpd?.order.orderable.application_fee_amount / 100 }}
+        </td>
+        <td *ngIf="rpd">
+          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
+        </td>
+        <td *ngIf="rpd === null" colspan="3">No record Found for razorpay</td>
+      </tr>
+    </table>
+  </ng-container>
+
+  <ng-template #noDetailFound>
+    <div>No record Found for razorpay</div>
+  </ng-template>
+</section>
