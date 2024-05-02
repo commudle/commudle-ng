@@ -70,7 +70,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     "Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of your communities' activities on your own web page.",
     "Yes! And it's very easy.",
     'Absolutely, a few Design Communities are already using Commudle.',
-    'Yes, Commudle supports paid ticket events',
+    'Yes, Commudle supports paid tickets in events. Community organizers can access this feature from their community admin dashboard.',
     "We use Stripe which has standard payment rates for payments made through different countries defined on this link: https://stripe.com/en-in/pricing. Commudle charges a standard platform fee. Depending on the plan purchased by you this fee can be a part of the annual subscription as a business so that your community leaders don't have to pay for it.",
     "Yes, unless it's a premium feature, it will be a part of your existing subscription, we will notify you in advance.",
     'Yes, our users extend across the world.',
