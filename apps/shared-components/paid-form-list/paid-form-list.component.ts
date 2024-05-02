@@ -12,33 +12,37 @@ import { Subscription } from 'rxjs';
 export class PaidFormListComponent implements OnInit {
   @Input() communityId: number | string;
   eventDataFormEntityGroup: IEventDataFormEntityGroup[] = [];
-  pageInfo: IPageInfo;
   total: number;
   subscriptions: Subscription[] = [];
   isLoading = false;
+  page = 1;
+  count = 10;
 
   constructor(private edfergService: EventDataFormEntityGroupsService) {}
 
   ngOnInit() {
+    this.getEdfegData();
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getEdfegData() {
     if (this.communityId) {
       this.getEdfegListByCommunity();
     } else {
       this.getEdfegList();
     }
   }
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-  }
 
   getEdfegListByCommunity() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.edfergService.getIndexByCommunity(this.communityId, this.pageInfo?.end_cursor).subscribe((data) => {
-        this.eventDataFormEntityGroup = this.eventDataFormEntityGroup.concat(
-          data.page.reduce((acc, value) => [...acc, value.data], []),
-        );
+      this.edfergService.getIndexByCommunity(this.communityId, this.page, this.count).subscribe((data) => {
+        this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
         this.total = data.total;
-        this.pageInfo = data.page_info;
+        this.page = data.page;
+        this.count = data.count;
         this.isLoading = false;
       }),
     );
@@ -46,12 +50,11 @@ export class PaidFormListComponent implements OnInit {
   getEdfegList() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.edfergService.getList(this.pageInfo?.end_cursor).subscribe((data) => {
-        this.eventDataFormEntityGroup = this.eventDataFormEntityGroup.concat(
-          data.page.reduce((acc, value) => [...acc, value.data], []),
-        );
+      this.edfergService.getList(this.page, this.count).subscribe((data) => {
+        this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
         this.total = data.total;
-        this.pageInfo = data.page_info;
+        this.page = data.page;
+        this.count = data.count;
         this.isLoading = false;
       }),
     );

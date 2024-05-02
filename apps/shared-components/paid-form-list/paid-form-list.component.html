@@ -1,9 +1,15 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <nb-card *ngFor="let edfeg of eventDataFormEntityGroup" class="edfeg">
   <nb-card-body [routerLink]="[edfeg.id]">
     <div>{{ edfeg.name }}::{{ edfeg.event.name }}::{{ edfeg.community.name }}</div>
   </nb-card-body>
 </nb-card>
-<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<div *ngIf="pageInfo?.has_next_page">
-  <button (click)="communityId ? getEdfegListByCommunity() : getEdfegList()" ghost nbButton fullWidth>View More</button>
-</div>
+<app-pagination
+  (goTo)="page = $event; getEdfegData()"
+  (next)="page = $event; getEdfegData()"
+  (previous)="page = $event; getEdfegData()"
+  *ngIf="total > 0"
+  [count]="count"
+  [current]="page"
+  [total]="total"
+></app-pagination>

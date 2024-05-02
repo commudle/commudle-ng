@@ -107,19 +107,21 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
-  getIndexByCommunity(communityId: number | string, after): Observable<IPagination<IEventDataFormEntityGroup[]>> {
-    let params = new HttpParams().set('community_id', communityId);
-    if (after) params = params.set('after', after);
-    return this.http.get<IPagination<IEventDataFormEntityGroup[]>>(
+  getIndexByCommunity(
+    communityId: number | string,
+    page: number,
+    count: number,
+  ): Observable<IEventDataFormEntityGroups> {
+    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
       { params },
     );
   }
 
-  getList(after): Observable<IPagination<IEventDataFormEntityGroup[]>> {
-    let params = new HttpParams();
-    if (after) params = params.set('after', after);
-    return this.http.get<IPagination<IEventDataFormEntityGroup[]>>(
+  getList(page: number, count: number): Observable<IEventDataFormEntityGroups> {
+    const params = new HttpParams().set('page', page).set('count', count);
+    return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.LIST),
       { params },
     );
