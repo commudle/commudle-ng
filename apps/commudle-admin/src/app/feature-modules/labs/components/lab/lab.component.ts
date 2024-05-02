@@ -153,6 +153,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   getLab(labId) {
     this.labsService.pShow(labId).subscribe((data) => {
       this.lab = data;
+      console.log(data);
       this.setMeta();
       this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
       this.triggerDialogB = false;
