@@ -33,7 +33,7 @@
                         "
                       >
                         <div *ngFor="let user of rpd?.order.orderable.eto_users">
-                          <div *ngIf="user.email !== rpd?.order.orderable.user.email; else noOtherUsers">
+                          <div *ngIf="user.email !== rpd?.order.orderable.user.email">
                             {{ user.name }}
                             <br />
                             {{ user.email }}

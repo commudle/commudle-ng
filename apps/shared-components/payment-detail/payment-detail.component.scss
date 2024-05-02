@@ -1,0 +1,12 @@
+table {
+  @apply com-w-full com-border-collapse;
+}
+
+td,
+th {
+  @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
+}
+
+th {
+  @apply com-bg-Bright-Gray;
+}
