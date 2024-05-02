@@ -34,9 +34,9 @@ nb-card {
   }
 
   nb-card-footer {
-    @apply com-flex com-justify-end;
-    p {
-      @apply com-text-primary-500 com-text-base com-font-bold com-m-0 com-cursor-pointer;
+    @apply com-flex com-justify-end com-gap-2;
+    button {
+      @apply com-text-base com-font-bold com-m-0 com-cursor-pointer;
     }
   }
 }
