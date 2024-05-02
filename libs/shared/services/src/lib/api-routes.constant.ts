@@ -208,6 +208,8 @@ export const API_ROUTES = {
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
+    INDEX_BY_COMMUNITY: 'api/v2/event_data_form_entity_groups/index_by_community',
+    LIST: 'api/v2/event_data_form_entity_groups/list',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
@@ -902,5 +904,6 @@ export const API_ROUTES = {
     INDEX: 'api/v2/razorpay', //GET
     FIND_OR_CREATE_ORDER: 'api/v2/razorpay/find_or_create_order', //POST
     CREATE_OR_UPDATE_PAYMENT: 'api/v2/razorpay/create_or_update_payment', //PUT
+    GET_ALL_PAYMENT_DETAILS: 'api/v2/razorpay/get_all_payment_details', //GET
   },
 };

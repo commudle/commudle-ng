@@ -29,3 +29,4 @@ export * from './lib/hackathon-prize.model';
 export * from './lib/hackathon-track.model';
 export * from './lib/razorpay-order.model';
 export * from './lib/razorpay-payment.model';
+export * from './lib/event-ticket-order.model';

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IEventDataFormEntityGroups } from 'apps/shared-models/event_data_form_entity_groups.model';
+import { IPagination } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -102,6 +103,23 @@ export class EventDataFormEntityGroupsService {
     return this.http.put<IEventDataFormEntityGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.UPDATE),
       { event_data_form_entity_group: dataFormEntityGroup.value },
+      { params },
+    );
+  }
+
+  getIndexByCommunity(communityId): Observable<IPagination<IEventDataFormEntityGroup[]>> {
+    const params = new HttpParams().set('community_id', communityId);
+    return this.http.get<IPagination<IEventDataFormEntityGroup[]>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
+      { params },
+    );
+  }
+
+  getList(after): Observable<IPagination<IEventDataFormEntityGroup[]>> {
+    let params = new HttpParams();
+    if (after) params = params.set('after', after);
+    return this.http.get<IPagination<IEventDataFormEntityGroup[]>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.LIST),
       { params },
     );
   }

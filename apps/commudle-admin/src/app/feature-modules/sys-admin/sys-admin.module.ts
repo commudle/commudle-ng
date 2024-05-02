@@ -47,7 +47,8 @@ import { AdminFeaturedLabsComponent } from './components/admin-featured/admin-fe
 import { AdminFeaturedEventsComponent } from './components/admin-featured/admin-featured-events/admin-featured-events.component';
 import { AdminFeaturedUsersComponent } from './components/admin-featured/admin-featured-users/admin-featured-users.component';
 import { AdminFeaturedCommunitiesChannelsComponent } from './components/admin-featured/admin-featured-communities-channels/admin-featured-communities-channels.component';
-
+import { PaymentLogsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/payment-logs/payment-logs.component';
+import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
 @NgModule({
   declarations: [
     SysAdminComponent,
@@ -74,6 +75,7 @@ import { AdminFeaturedCommunitiesChannelsComponent } from './components/admin-fe
     AdminFeaturedEventsComponent,
     AdminFeaturedUsersComponent,
     AdminFeaturedCommunitiesChannelsComponent,
+    PaymentLogsComponent,
   ],
   imports: [
     CommonModule,
@@ -102,6 +104,7 @@ import { AdminFeaturedCommunitiesChannelsComponent } from './components/admin-fe
     NbRouteTabsetModule,
     NbDialogModule.forChild(),
     NbFormFieldModule,
+    PaymentDetailComponent,
   ],
 })
 export class SysAdminModule {}
