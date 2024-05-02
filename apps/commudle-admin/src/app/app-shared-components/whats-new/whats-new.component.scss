@@ -1,5 +1,5 @@
 .mini-popup {
-  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-16 md:com-right-64 md:com-left-auto com-left-4 com-right-4 md:com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
+  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-16 md:com-right-64 md:com-left-auto com-left-4 com-right-4 md:com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify com-bg-white;
 }
 
 nb-card-header {
@@ -23,9 +23,6 @@ nb-card-header {
 
 nb-card-body {
   @apply com-px-4 com-py-3;
-  .new-features {
-    @apply com-text-sm com-font-medium com-text-gray-400 com-m-0 com-mb-3;
-  }
 
   ul {
     @apply com-m-0 com-px-4 com-py-0;
@@ -40,5 +37,5 @@ nb-card-footer {
 }
 
 .card-info-popup {
-  @apply com-max-h-[90dvh] md:com-w-[50dvw];
+  @apply com-max-h-[90dvh] md:com-w-[50dvw] com-bg-white;
 }

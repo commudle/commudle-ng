@@ -7,6 +7,7 @@ li {
 }
 
 .content {
+  @apply com-text-gray-500;
   &::ng-deep {
     p {
       @apply com-m-0;

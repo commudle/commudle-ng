@@ -7,7 +7,6 @@
     <fa-icon [icon]="faXmark" class="cross-icon" (click)="closePopup()"></fa-icon
   ></nb-card-header>
   <nb-card-body>
-    <p class="new-features">New Features, enhancements & Bug fixes</p>
     <div *ngFor="let update of updates">
       <ul>
         <commudle-whats-new-card [update]="update"></commudle-whats-new-card>
