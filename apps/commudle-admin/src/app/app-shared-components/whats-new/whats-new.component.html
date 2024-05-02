@@ -1,4 +1,4 @@
-<nb-card *ngIf="showPopup">
+<nb-card *ngIf="showPopup" class="mini-popup">
   <nb-card-header>
     <div class="heading">
       <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
@@ -14,8 +14,32 @@
       </ul>
     </div>
   </nb-card-body>
-  <nb-card-footer (click)="closePopup()"
-    ><button nbButton status="primary" outline>View Details</button
-    ><button nbButton status="primary" outline>Got it</button></nb-card-footer
+  <nb-card-footer
+    ><button nbButton status="primary" outline size="small" (click)="openDialog(cardInfoDialog); closePopup()">
+      View Details</button
+    ><button nbButton status="primary" outline size="small" (click)="closePopup()">Got it</button></nb-card-footer
   >
 </nb-card>
+
+<ng-template #cardInfoDialog let-ref="dialogRef">
+  <nb-card class="card-info-popup">
+    <nb-card-header>
+      <div class="heading">
+        <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
+        <p class="heading-text">What’s New</p>
+      </div>
+      <fa-icon [icon]="faXmark" class="cross-icon" (click)="ref.close()"></fa-icon
+    ></nb-card-header>
+    <nb-card-body>
+      <p class="new-features">New Features, enhancements & Bug fixes</p>
+      <div *ngFor="let update of updates">
+        <ul>
+          <commudle-whats-new-card [update]="update"></commudle-whats-new-card>
+        </ul>
+      </div>
+    </nb-card-body>
+    <nb-card-footer
+      ><button nbButton status="primary" size="small" (click)="ref.close()">Got it</button></nb-card-footer
+    >
+  </nb-card>
+</ng-template>

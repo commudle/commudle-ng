@@ -1,42 +1,44 @@
-//   sm:com-top-2 com-left-2 sm:com-left-auto
-//   @apply com-fixed com-top-[70px] com-right-2 sm:com-top-2 com-left-2 sm:com-left-auto com-max-w-xl com-rounded-3xl com-z-50 com-text-justify com-bg-tblack;
+.mini-popup {
+  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-16 md:com-right-64 md:com-left-auto com-left-4 com-right-4 md:com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
+}
 
-nb-card {
-  @apply com-border-2 com-border-solid com-border-primary-500 com-fixed com-top-16 com-right-64 com-w-[480px] com-h-[228px] com-rounded-xl com-z-50 com-text-justify;
-  nb-card-header {
-    @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
-    .heading {
-      @apply com-flex;
+nb-card-header {
+  @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
+  .heading {
+    @apply com-flex;
 
-      .heading-icon {
-        @apply com-mr-2 com-h-4 com-w-4 com-text-primary-500;
-      }
-
-      .heading-text {
-        @apply com-text-primary-500 com-text-base com-font-semibold com-m-0;
-      }
+    .heading-icon {
+      @apply com-mr-2 com-h-4 com-w-4 com-text-primary-500;
     }
 
-    .cross-icon {
-      @apply com-h-4 com-w-4 com-text-black;
+    .heading-text {
+      @apply com-text-primary-500 com-text-base com-font-semibold com-m-0;
     }
   }
 
-  nb-card-body {
-    @apply com-px-4 com-py-3;
-    .new-features {
-      @apply com-text-sm com-font-medium com-text-gray-400 com-m-0 com-mb-3;
-    }
+  .cross-icon {
+    @apply com-h-4 com-w-4 com-text-black;
+  }
+}
 
-    ul {
-      @apply com-m-0 com-px-4 com-py-0;
-    }
+nb-card-body {
+  @apply com-px-4 com-py-3;
+  .new-features {
+    @apply com-text-sm com-font-medium com-text-gray-400 com-m-0 com-mb-3;
   }
 
-  nb-card-footer {
-    @apply com-flex com-justify-end com-gap-2;
-    button {
-      @apply com-text-base com-font-bold com-m-0 com-cursor-pointer;
-    }
+  ul {
+    @apply com-m-0 com-px-4 com-py-0;
   }
+}
+
+nb-card-footer {
+  @apply com-flex com-justify-end com-gap-4;
+  button {
+    @apply com-text-base com-text-primary-500 com-font-semibold com-m-0 com-p-0 com-cursor-pointer com-border-0 com-bg-transparent #{!important};
+  }
+}
+
+.card-info-popup {
+  @apply com-max-h-[90dvh] md:com-w-[50dvw];
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbCardModule } from '@commudle/theme';
+import { NbButtonModule, NbCardModule, NbDialogService } from '@commudle/theme';
 import { faBullhorn, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -14,10 +14,11 @@ import { IWhatsNew } from 'apps/shared-models/whats-new.model';
   standalone: true,
   templateUrl: './whats-new.component.html',
   styleUrls: ['./whats-new.component.scss'],
-  imports: [CommonModule, NbCardModule, FontAwesomeModule, WhatsNewCardComponent],
+  imports: [CommonModule, NbCardModule, FontAwesomeModule, WhatsNewCardComponent, NbButtonModule],
 })
 export class WhatsNewComponent implements OnInit {
   showPopup = false;
+  showDialogPopup = false;
   cookieCreationTime;
   lastUpdatedDate: string;
   updates: IWhatsNew[] = [];
@@ -25,7 +26,11 @@ export class WhatsNewComponent implements OnInit {
   faBullhorn = faBullhorn;
   faXmark = faXmark;
 
-  constructor(private whatsNewService: WhatsNewService, private seoService: SeoService) {}
+  constructor(
+    private whatsNewService: WhatsNewService,
+    private seoService: SeoService,
+    private nbDialogService: NbDialogService,
+  ) {}
 
   ngOnInit(): void {
     if (!this.seoService.isBot) {
@@ -48,6 +53,10 @@ export class WhatsNewComponent implements OnInit {
         });
       }, 5000);
     }
+  }
+
+  openDialog(templateRef: TemplateRef<any>) {
+    this.nbDialogService.open(templateRef);
   }
 
   closePopup() {
