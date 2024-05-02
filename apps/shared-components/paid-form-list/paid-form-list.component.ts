@@ -20,7 +20,6 @@ export class PaidFormListComponent implements OnInit {
   constructor(private edfergService: EventDataFormEntityGroupsService) {}
 
   ngOnInit() {
-    console.log('🚀 ~ PaidFormListComponent ~ ngOnInit ~ this.communityId:', this.communityId);
     if (this.communityId) {
       this.getEdfegListByCommunity();
     } else {

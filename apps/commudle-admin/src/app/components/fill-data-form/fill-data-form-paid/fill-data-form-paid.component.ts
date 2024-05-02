@@ -97,7 +97,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
 
   stripePaymentIntendId: string;
   ticketPaidAlready: boolean;
-  ticketPaid = false;
 
   faIcon = {
     faRotateRight,
@@ -557,7 +556,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
           });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
-            // this.ticketPaid = true;
             this.fetchPaidTicketingData();
             this.isLoadingPayment = false;
             this.paymentDialogRef.close();
