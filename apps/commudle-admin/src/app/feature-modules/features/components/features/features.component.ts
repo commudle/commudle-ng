@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IFeatures } from 'apps/shared-models/features.model';
+import { IFeature } from 'apps/shared-models/features.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
@@ -14,9 +13,9 @@ export class FeaturesComponent implements OnInit {
   @Input() categoryName;
   @Input() showHeading = true;
   @Input() showSubHeading = true;
-  features: IFeatures[];
+  features: IFeature[];
   isLoading = true;
-  featureData: IFeatures;
+  featureData: IFeature;
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
 

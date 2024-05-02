@@ -34,6 +34,14 @@ nb-card {
       .heading {
         @apply com-flex com-flex-row com-items-center;
 
+        .logo {
+          @apply com-w-10 com-h-10;
+
+          img {
+            @apply com-w-full com-h-full;
+          }
+        }
+
         h2 {
           @apply com-text-xl com-font-normal;
         }

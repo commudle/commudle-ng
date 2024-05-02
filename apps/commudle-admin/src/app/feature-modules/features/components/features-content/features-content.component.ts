@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IFeatures } from 'apps/shared-models/features.model';
+import { IFeature } from 'apps/shared-models/features.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./features-content.component.scss'],
 })
 export class FeaturesContentComponent implements OnInit {
-  @Input() featureData: IFeatures;
+  @Input() featureData: IFeature;
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {}

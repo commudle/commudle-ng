@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { IFeatures } from 'apps/shared-models/features.model';
+import { IFeature } from 'apps/shared-models/features.model';
+import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
   selector: 'commudle-features-index',
@@ -8,8 +9,8 @@ import { IFeatures } from 'apps/shared-models/features.model';
   styleUrls: ['./features-index.component.scss'],
 })
 export class FeaturesIndexComponent implements OnInit {
-  @Input() features: IFeatures[];
-  @Input() featureData: IFeatures;
+  @Input() features: IFeature[];
+  @Input() featureData: IFeature;
   @Output() featureSlug: EventEmitter<string> = new EventEmitter<string>();
   queryParams;
   showSubHeading = [];
@@ -18,12 +19,16 @@ export class FeaturesIndexComponent implements OnInit {
   isMobileView: boolean;
   selectedFeatureSlug: string;
 
-  constructor() {}
+  constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
     this.featureSlug.emit(this.features[0].slug.current);
     this.selectedFeatureSlug = this.features[0].slug.current;
+  }
+
+  imageUrl(source: any) {
+    return this.cmsService.getImageUrl(source);
   }
 
   toggleShowAnswers(slug, index?: number) {

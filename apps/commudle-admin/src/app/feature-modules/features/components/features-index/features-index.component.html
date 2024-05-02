@@ -10,7 +10,9 @@
           >
             <div class="feature-item">
               <div class="heading">
-                <div class="logo"><img src="" alt="" /></div>
+                <div *ngIf="feature.icon" class="logo">
+                  <img alt="{{ feature.title }}" [src]="imageUrl(feature.icon).url()" title="{{ feature.title }}" />
+                </div>
                 <h2>
                   {{ feature.title }}
                 </h2>
