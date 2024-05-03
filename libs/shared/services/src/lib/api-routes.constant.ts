@@ -905,5 +905,7 @@ export const API_ROUTES = {
     FIND_OR_CREATE_ORDER: 'api/v2/razorpay/find_or_create_order', //POST
     CREATE_OR_UPDATE_PAYMENT: 'api/v2/razorpay/create_or_update_payment', //PUT
     GET_ALL_PAYMENT_DETAILS: 'api/v2/razorpay/get_all_payment_details', //GET
+    CREATE_TRANSFER: 'api/v2/razorpay/create_transfer', //GET
+    GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
   },
 };

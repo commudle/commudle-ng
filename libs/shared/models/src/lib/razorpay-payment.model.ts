@@ -7,4 +7,5 @@ export interface IRazorpayPayment {
   razorpay_signature: string;
   payment_response: [];
   order: IRazorpayOrder;
+  transfer_id: string;
 }

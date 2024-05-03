@@ -84,4 +84,26 @@ export class RazorpayService {
       },
     );
   }
+
+  createPaymentTransfer(
+    razorpayOrderId: number,
+    razorpayPaymentId: number,
+  ): Observable<IPaginationCount<IRazorpayPayment>> {
+    const params = new HttpParams()
+      .set('razorpay_order_id', razorpayOrderId)
+      .set('razorpay_payment_id', razorpayPaymentId);
+    return this.http.get<IPaginationCount<IRazorpayPayment>>(
+      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_TRANSFER),
+      {
+        params,
+      },
+    );
+  }
+
+  getTransferDetails(transferId: string): Observable<any> {
+    const params = new HttpParams().set('transfer_id', transferId);
+    return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.GET_TRANSFER_DETAILS), {
+      params,
+    });
+  }
 }

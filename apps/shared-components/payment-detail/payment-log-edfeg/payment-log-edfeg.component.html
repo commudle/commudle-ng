@@ -11,6 +11,7 @@
         <th>Tax amount</th>
         <th>Application fee amount</th>
         <th>Payment gateway fee</th>
+        <th>Actions</th>
       </tr>
       <tr *ngFor="let rpd of razorpayPaymentDetails">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
@@ -47,6 +48,28 @@
         <td *ngIf="rpd">
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
         </td>
+        <td *ngIf="rpd">
+          <button
+            *ngIf="!rpd?.transfer_id"
+            nbButton
+            size="tiny"
+            outline
+            status="primary"
+            (click)="createPaymentTransfer(rpd?.id, rpd?.order.id)"
+          >
+            Create Transfer
+          </button>
+          <button
+            *ngIf="rpd?.transfer_id"
+            nbButton
+            size="tiny"
+            outline
+            status="primary"
+            (click)="viewTransferDetails(rpd?.transfer_id, transferDetails)"
+          >
+            View Transfer Details
+          </button>
+        </td>
         <td *ngIf="rpd === null" colspan="3">No record Found for razorpay</td>
       </tr>
     </table>
@@ -68,3 +91,18 @@
     <div>No record Found for razorpay</div>
   </ng-template>
 </section>
+
+<ng-template #transferDetails let-data>
+  <nb-card>
+    <nb-card-header></nb-card-header>
+    <nb-card-body>
+      <div>{{ data.currency === 'INR' ? '₹ ' : '$ ' }}{{ data.amount / 100 }}</div>
+      <div>{{ data.status }}</div>
+      <div>
+        {{ data.createdAt }}
+
+        {{ moment.unix(data.created_at).format('dddd, MMM Do, YYYY') }}
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
