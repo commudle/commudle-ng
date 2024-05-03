@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPagination, IRazorpayAccount, IRazorpayOrder, IRazorpayPayment } from '@commudle/shared-models';
+import {
+  IPagination,
+  IPaginationCount,
+  IRazorpayAccount,
+  IRazorpayOrder,
+  IRazorpayPayment,
+} from '@commudle/shared-models';
 import { API_ROUTES } from './api-routes.constant';
 import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
@@ -69,9 +75,9 @@ export class RazorpayService {
     });
   }
 
-  getAllPaymentDetails(edfegId: number | string): Observable<IRazorpayPayment[]> {
-    const params = new HttpParams().set('edfeg_id', edfegId);
-    return this.http.get<IRazorpayPayment[]>(
+  getAllPaymentDetails(edfegId: number | string, page = 1, count = 10): Observable<IPaginationCount<IRazorpayPayment>> {
+    const params = new HttpParams().set('edfeg_id', edfegId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<IRazorpayPayment>>(
       this.baseApiService.getRoute(API_ROUTES.RAZORPAY.GET_ALL_PAYMENT_DETAILS),
       {
         params,

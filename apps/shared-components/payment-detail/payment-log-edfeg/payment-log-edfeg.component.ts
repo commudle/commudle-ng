@@ -12,6 +12,9 @@ export class PaymentLogEdfegComponent implements OnInit {
   edfegId: number | string;
   razorpayPaymentDetails: IRazorpayPayment[];
   isLoading = false;
+  page = 1;
+  count = 10;
+  total: number;
   constructor(private activatedRoute: ActivatedRoute, private razorpayService: RazorpayService) {}
 
   ngOnInit() {
@@ -24,8 +27,11 @@ export class PaymentLogEdfegComponent implements OnInit {
 
   fetchPaymentDetails() {
     this.isLoading = true;
-    this.razorpayService.getAllPaymentDetails(this.edfegId).subscribe((data) => {
-      this.razorpayPaymentDetails = data;
+    this.razorpayService.getAllPaymentDetails(this.edfegId, this.page, this.count).subscribe((data) => {
+      this.razorpayPaymentDetails = data.values;
+      this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
       this.isLoading = false;
     });
   }

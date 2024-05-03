@@ -50,6 +50,18 @@
         <td *ngIf="rpd === null" colspan="3">No record Found for razorpay</td>
       </tr>
     </table>
+
+    <br />
+
+    <app-pagination
+      (goTo)="page = $event; fetchPaymentDetails()"
+      (next)="page = $event; fetchPaymentDetails()"
+      (previous)="page = $event; fetchPaymentDetails()"
+      *ngIf="total > 0"
+      [count]="count"
+      [current]="page"
+      [total]="total"
+    ></app-pagination>
   </ng-container>
 
   <ng-template #noDetailFound>
