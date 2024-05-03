@@ -8,11 +8,11 @@ nb-card-header {
     @apply com-flex;
 
     .heading-icon {
-      @apply com-mr-2 com-h-4 com-w-4 com-text-primary-500;
+      @apply com-mr-2 com-h-4 com-w-4 com-text-black;
     }
 
     .heading-text {
-      @apply com-text-primary-500 com-text-base com-font-semibold com-m-0;
+      @apply com-text-black com-text-base com-font-semibold com-m-0;
     }
   }
 
