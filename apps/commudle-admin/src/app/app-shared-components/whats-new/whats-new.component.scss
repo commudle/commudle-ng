@@ -38,10 +38,7 @@ nb-card-body {
 }
 
 nb-card-footer {
-  @apply com-flex com-justify-between;
-  button {
-    @apply com-text-base com-text-primary-500 com-font-semibold com-m-0 com-p-0 com-cursor-pointer com-border-0 com-bg-transparent #{!important};
-  }
+  @apply com-flex com-justify-between com-py-2 com-px-4;
 }
 
 .card-info-popup {

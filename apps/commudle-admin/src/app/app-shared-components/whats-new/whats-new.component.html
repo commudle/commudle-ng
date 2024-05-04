@@ -15,9 +15,11 @@
       </div>
     </nb-card-body>
     <nb-card-footer
-      ><button nbButton status="primary" outline size="small" (click)="openDialog(cardInfoDialog); closePopup()">
+      ><button nbButton status="primary" outline size="medium" ghost (click)="openDialog(cardInfoDialog); closePopup()">
         View Details</button
-      ><button nbButton status="primary" outline size="small" (click)="closePopup()">Got it</button></nb-card-footer
+      ><button nbButton status="primary" outline size="medium" ghost (click)="closePopup()">
+        Got it
+      </button></nb-card-footer
     >
   </nb-card>
 </div>
@@ -41,7 +43,7 @@
         </div>
       </nb-card-body>
       <nb-card-footer
-        ><button nbButton status="primary" size="small" (click)="ref.close()">Got it</button></nb-card-footer
+        ><button nbButton status="primary" size="medium" ghost (click)="ref.close()">Got it</button></nb-card-footer
       >
     </nb-card>
   </div>
