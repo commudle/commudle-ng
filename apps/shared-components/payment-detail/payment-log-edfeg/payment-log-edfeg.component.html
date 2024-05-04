@@ -50,7 +50,7 @@
         </td>
         <td *ngIf="rpd">
           <button
-            *ngIf="!rpd?.transfer_id"
+            *ngIf="!rpd?.transfer_id && isSystemAdmin"
             nbButton
             size="tiny"
             outline
