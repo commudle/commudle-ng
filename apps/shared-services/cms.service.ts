@@ -45,11 +45,11 @@ export class CmsService {
     );
   }
 
-  getDataByTypeFilterWithDate(type: string, fields: string, order?: string) {
+  getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
     return from(this.client.fetch(`*[_type == "${type}"]{${fields}} | order(${order}) `));
   }
 
-  getDataByTypeFieldOrder(type: string, passDate: string, order?: string) {
+  getDataByTypeFilterWithDate(type: string, passDate: string, order?: string) {
     return from(this.client.fetch(`*[_type == "${type}" && date >= "${passDate}"]| order(${order}) `));
   }
 
