@@ -45,8 +45,12 @@ export class CmsService {
     );
   }
 
-  getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
+  getDataByTypeFilterWithDate(type: string, fields: string, order?: string) {
     return from(this.client.fetch(`*[_type == "${type}"]{${fields}} | order(${order}) `));
+  }
+
+  getDataByTypeFieldOrder(type: string, passDate: string, order?: string) {
+    return from(this.client.fetch(`*[_type == "${type}" && date >= "${passDate}"]| order(${order}) `));
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
