@@ -49,6 +49,10 @@ export class CmsService {
     return from(this.client.fetch(`*[_type == "${type}"]{${fields}} | order(${order}) `));
   }
 
+  getDataByTypeFilterWithDate(type: string, passDate: string, order?: string) {
+    return from(this.client.fetch(`*[_type == "${type}" && date >= "${passDate}"]| order(${order}) `));
+  }
+
   getHtmlFromBlock(value: any, field: string = 'content'): any {
     return toHTML(value[field], {
       components: {
