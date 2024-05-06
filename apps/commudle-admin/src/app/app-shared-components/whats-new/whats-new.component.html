@@ -5,10 +5,11 @@
         <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
         <p class="heading-text">What’s New</p>
       </div>
-      <fa-icon [icon]="faXmark" class="cross-icon" (click)="closePopup()"></fa-icon
+      <button nbButton (click)="setCookie(); closePopup()">
+        <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
     ></nb-card-header>
     <nb-card-body>
-      <div *ngFor="let update of updates">
+      <div *ngFor="let update of newUpdates">
         <ul>
           <commudle-whats-new-card [update]="update"></commudle-whats-new-card>
         </ul>
@@ -17,7 +18,7 @@
     <nb-card-footer
       ><button nbButton status="primary" outline size="medium" ghost (click)="openDialog(cardInfoDialog); closePopup()">
         View Details</button
-      ><button nbButton status="primary" outline size="medium" ghost (click)="closePopup()">
+      ><button nbButton status="primary" outline size="medium" ghost (click)="setCookie(); closePopup()">
         Got it
       </button></nb-card-footer
     >
@@ -32,18 +33,21 @@
           <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
           <p class="heading-text">What’s New</p>
         </div>
-        <fa-icon [icon]="faXmark" class="cross-icon" (click)="ref.close()"></fa-icon
+        <button nbButton (click)="setCookie(); ref.close()">
+          <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
       ></nb-card-header>
       <nb-card-body>
         <p class="new-features">New Features, enhancements & Bug fixes</p>
-        <div *ngFor="let update of updates">
+        <div *ngFor="let update of newUpdates">
           <ul>
             <commudle-whats-new-card [update]="update"></commudle-whats-new-card>
           </ul>
         </div>
       </nb-card-body>
       <nb-card-footer
-        ><button nbButton status="primary" size="medium" ghost (click)="ref.close()">Got it</button></nb-card-footer
+        ><button nbButton status="primary" size="medium" ghost (click)="setCookie(); ref.close()">
+          Got it
+        </button></nb-card-footer
       >
     </nb-card>
   </div>
