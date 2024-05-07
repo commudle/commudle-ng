@@ -73,9 +73,10 @@ export class EmailerComponent implements OnInit, OnDestroy {
       'wordcount',
     ],
     toolbar:
-      'undo redo | formatselect | bold italic backcolor | \
+      'h2  h3  h4  h5 fontsize | undo redo | formatselect | bold italic backcolor forecolor | \
         alignleft aligncenter alignright alignjustify | \
         bullist numlist outdent indent | removeformat | help',
+    font_size_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px',
     license_key: 'gpl',
   };
 
