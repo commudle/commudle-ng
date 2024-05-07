@@ -18,6 +18,6 @@ export class WhatsNewService {
   }
 
   getNewUpdates(date) {
-    return this.cmsService.getDataByTypeFilterWithDate('whatNew', date);
+    return this.cmsService.getDataByTypeFilterWithDate('whatNew', date, 'date desc');
   }
 }
