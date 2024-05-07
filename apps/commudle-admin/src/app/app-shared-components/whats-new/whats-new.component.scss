@@ -1,5 +1,9 @@
 .card {
-  @apply com-fixed com-top-20 md:com-right-64 md:com-left-auto com-left-4 com-right-4 md:com-w-[480px] com-h-[228px];
+  @apply com-fixed com-top-20 md:com-w-[480px] com-h-[228px] md:com-right-auto com-right-4 md:com-left-auto com-left-4;
+}
+
+.container {
+  @apply com-flex com-justify-end;
 }
 
 .gradient-border {
