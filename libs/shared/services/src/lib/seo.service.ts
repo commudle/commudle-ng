@@ -41,7 +41,12 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      const urlWithoutQueryParams = url.split('?')[0];
+      let urlWithoutQueryParams;
+      if (url.includes('q=') || url.includes('track_slot_id=')) {
+        urlWithoutQueryParams = url;
+      } else {
+        urlWithoutQueryParams = url.split('?')[0];
+      }
       element.setAttribute('href', `${environment.app_url}${urlWithoutQueryParams}`);
     });
   }
