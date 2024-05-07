@@ -41,13 +41,13 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      let urlWithoutQueryParams = '';
+      let canonicalUrl;
       if (url.includes('q=') || url.includes('track_slot_id=')) {
-        urlWithoutQueryParams = url;
+        canonicalUrl = url;
       } else {
-        urlWithoutQueryParams = url.split('?')[0];
+        canonicalUrl = url.split('?')[0];
       }
-      element.setAttribute('href', `${environment.app_url}${urlWithoutQueryParams}`);
+      element.setAttribute('href', `${environment.app_url}${canonicalUrl}`);
     });
   }
 
