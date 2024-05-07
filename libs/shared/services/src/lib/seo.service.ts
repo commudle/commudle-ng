@@ -41,7 +41,7 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      let urlWithoutQueryParams;
+      let urlWithoutQueryParams = '';
       if (url.includes('q=') || url.includes('track_slot_id=')) {
         urlWithoutQueryParams = url;
       } else {
