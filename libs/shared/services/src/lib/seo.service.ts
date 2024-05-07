@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { DOCUMENT, Location } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -40,7 +41,8 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      element.setAttribute('href', `${environment.app_url}${url}`);
+      const urlWithoutQueryParams = url.split('?')[0];
+      element.setAttribute('href', `${environment.app_url}${urlWithoutQueryParams}`);
     });
   }
 
