@@ -4,6 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '@commudle/shared-environments';
 import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class SeoService {
     private title: Title,
     private location: Location,
     private cookieService: CookieService,
+    private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
   ) {
     // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
@@ -42,12 +44,16 @@ export class SeoService {
     }
     this.location.onUrlChange((url, state) => {
       let canonicalUrl;
-      if (url.includes('q=') || url.includes('track_slot_id=')) {
-        canonicalUrl = url;
-      } else {
-        canonicalUrl = url.split('?')[0];
-      }
-      element.setAttribute('href', `${environment.app_url}${canonicalUrl}`);
+      this.activatedRoute.queryParams.subscribe((data) => {
+        if (data) {
+          if (data['q'] || data['track_slot_id']) {
+            canonicalUrl = url;
+          } else {
+            canonicalUrl = url.split('?')[0];
+          }
+        }
+        element.setAttribute('href', `${environment.app_url}${canonicalUrl}`);
+      });
     });
   }
 
