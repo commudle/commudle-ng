@@ -32,7 +32,6 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
   editor: any = null;
   imageUrl = '';
   defaultTemplate = '';
-  tinyMceEditor = false;
 
   @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
   @ViewChild('sendTestEmailDialog') sendTestEmailDialogBox: TemplateRef<any>;
@@ -145,7 +144,9 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
             brief_description: data.brief_description,
             grapes_js_editor: data.grapes_js_editor,
           });
-          if (data.grapes_js_editor) this.initEditor();
+          if (data.grapes_js_editor) {
+            this.initEditor();
+          }
         }
       }),
     );
@@ -368,7 +369,9 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
 
   toggleEditorSwitch() {
     if (this.newsletterForm.controls['grapes_js_editor'].value) {
-      this.initEditor();
+      setTimeout(() => {
+        this.initEditor();
+      }, 5000);
     }
   }
 

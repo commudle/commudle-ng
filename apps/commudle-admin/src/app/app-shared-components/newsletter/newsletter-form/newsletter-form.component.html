@@ -93,23 +93,24 @@
     <div>
       <label for="grapes_js_editor">Editor Type*</label>
       <div class="editor-toggle">
-        <span>TinyMce Editor</span>
-        <nb-toggle formControlName="grapes_js_editor" (click)="toggleEditorSwitch()"> GrapeJs Editor</nb-toggle>
+        <span>Rich Text Editor</span>
+        <nb-toggle formControlName="grapes_js_editor" (click)="toggleEditorSwitch()">Drag Drop Editor</nb-toggle>
       </div>
     </div>
 
-    <div>{{ newsletterForm.controls['grapes_js_editor'].value }}</div>
+    <commudle-alert
+      [info]="true"
+      message="If you switch editor after adding content, some elements might not be rendered properly."
+    ></commudle-alert>
+
     <div class="content">
       <label for="content">Content*</label>
-      <div *ngIf="newsletterForm.controls['grapes_js_editor'].value">
+      <div *ngIf="newsletterForm.get('grapes_js_editor').value">
         <div id="gjs"></div>
       </div>
-      <editor
-        [init]="tinyMCE"
-        formControlName="content"
-        id="content"
-        *ngIf="!newsletterForm.controls['grapes_js_editor'].value"
-      ></editor>
+      <div *ngIf="!newsletterForm.get('grapes_js_editor').value">
+        <editor [init]="tinyMCE" formControlName="content" id="content"></editor>
+      </div>
     </div>
   </form>
   <section>
