@@ -136,6 +136,13 @@ export const API_ROUTES = {
   CLONE_COMMUNITY_DATA_FORM: 'api/v2/data_forms/clone_community_data_form',
   LIST: 'api/v2/data_forms/list',
 
+  // dapp_wallets
+  DAPP_WALLETS: {
+    INDEX: 'api/v2/dapp_wallets',
+    CREATE: 'api/v2/dapp_wallets',
+    DELETE: 'api/v2/dapp_wallets',
+  },
+
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
 
