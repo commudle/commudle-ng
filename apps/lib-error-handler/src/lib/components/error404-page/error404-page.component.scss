@@ -19,7 +19,7 @@
     }
 
     .title {
-      color: $gunmetal;
+      @apply com-text-gunmetal;
       position: relative;
       bottom: $space-32;
     }
@@ -30,6 +30,7 @@
         width: 100%;
         text-decoration: none;
         button {
+          @apply com-bg-Ghost-White com-text-Yankees-Blue;
           width: 100%;
           margin-bottom: $space-16;
         }
@@ -50,7 +51,7 @@
       }
 
       .title {
-        color: $gunmetal;
+        @apply com-text-gunmetal;
         position: relative;
         bottom: $space-32;
         width: 90%;

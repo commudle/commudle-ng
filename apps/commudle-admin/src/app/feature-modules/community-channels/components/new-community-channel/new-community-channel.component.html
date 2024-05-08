@@ -2,6 +2,9 @@
   <nb-card>
     <nb-card-header>
       <span>New {{ discussionType | titlecase }} for {{ community.name }}</span>
+      <button (click)="closeForm()" ghost nbButton size="small" shape="round">
+        <nb-icon icon="close"></nb-icon>
+      </button>
     </nb-card-header>
     <nb-card-body>
       <app-community-channel-form

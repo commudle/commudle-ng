@@ -1,5 +1,7 @@
 import { HMSPeer, selectDominantSpeaker, selectPeers, selectPeerScreenSharing } from '@100mslive/hms-video-store';
 import { Component, OnInit } from '@angular/core';
+import { faHand } from '@fortawesome/free-solid-svg-icons';
+import { HmsStageService } from 'apps/shared-modules/hms-video/services/hms-stage.service';
 import { hmsStore } from 'apps/shared-modules/hms-video/stores/hms.store';
 
 @Component({
@@ -14,10 +16,17 @@ export class ConferenceUserVideosComponent implements OnInit {
   activeSpeaker: HMSPeer;
   showAlert = true;
 
-  constructor() {}
+  latestRaisedHand: { id: number; name: string };
+  showHandRaisedAlert = false;
+  timeout: any;
+
+  faHand = faHand;
+
+  constructor(private hmsStageService: HmsStageService) {}
 
   ngOnInit() {
     this.subscribeToPeers();
+    this.subscribeToStage();
   }
 
   subscribeToPeers() {
@@ -32,4 +41,17 @@ export class ConferenceUserVideosComponent implements OnInit {
     // All peers
     this.allPeers = peers;
   };
+
+  subscribeToStage() {
+    this.hmsStageService.latestRaisedHand$.subscribe((value) => {
+      if (value) {
+        this.latestRaisedHand = value;
+        this.showHandRaisedAlert = true;
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          this.showHandRaisedAlert = false;
+        }, 3000);
+      }
+    });
+  }
 }

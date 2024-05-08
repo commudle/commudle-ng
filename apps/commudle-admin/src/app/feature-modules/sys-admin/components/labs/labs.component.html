@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <h4>Labs</h4>
@@ -31,7 +31,12 @@
                     <app-votes-display [icon]="'star'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
                   </div>
                   <div class="tags">
-                    <app-tag [tags]="lab.tags" size="tiny"></app-tag>
+                    <app-tag
+                      [tags]="lab.tags"
+                      size="tiny"
+                      [backgroundColor]="'com-bg-[#F6F9FC]'"
+                      [fontColor]="'com-text-tYankees-Blue'"
+                    ></app-tag>
                   </div>
                 </div>
                 <div class="actions">

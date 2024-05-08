@@ -4,6 +4,7 @@ import { CommunityBuildsService } from 'apps/commudle-admin/src/app/services/com
 import { ICommunityBuild } from 'apps/shared-models/community-build.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { switchMap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-community-build',
@@ -12,6 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CommunityBuildComponent implements OnInit {
   communityBuild: ICommunityBuild;
+  moment = moment;
 
   constructor(
     private seoService: SeoService,

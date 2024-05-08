@@ -5,3 +5,9 @@
 .right-column {
   @apply com-sticky com-top-0;
 }
+
+.tech-sessions,
+.speakers,
+.featured-communities {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
+}

@@ -12,8 +12,8 @@
   },
   "private": true,
   "dependencies": {
-    "@100mslive/hms-video": "0.1.18",
-    "@100mslive/hms-video-store": "0.2.71",
+    "@100mslive/hms-video-store": "0.10.9",
+    "@100mslive/hms-virtual-background": "1.11.9",
     "@angular/animations": "~14.2.0",
     "@angular/cdk": "~14.2.0",
     "@angular/common": "~14.2.0",
@@ -83,6 +83,7 @@
     "prerender-node": "^3.7.0",
     "prismjs": "^1.29.0",
     "rxjs": "~7.5.0",
+    "tinymce": "^7.0.1",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
     "zone.js": "~0.11.4"

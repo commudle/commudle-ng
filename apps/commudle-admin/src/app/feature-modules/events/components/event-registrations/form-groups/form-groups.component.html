@@ -98,7 +98,7 @@
             <div *ngIf="event.editable" class="send-email">
               <button (click)="openEmailWindow(edfeg)">
                 <fa-icon [icon]="faEnvelope"></fa-icon>
-                Send By EMail
+                Send By Email
               </button>
             </div>
             <div class="link-to-fill">
@@ -194,7 +194,7 @@
           <!-- delete and clone -->
           <div>
             <button
-              (click)="deleteEventDataFormEntityGroup(edfeg.id)"
+              (click)="deleteEventDataFormEntityGroup(edfeg.id, i)"
               nbButton
               outline
               size="small"

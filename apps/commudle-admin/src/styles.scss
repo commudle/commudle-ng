@@ -121,10 +121,6 @@ input {
   }
 }
 
-.nb-theme-default nb-card {
-  margin: 16px 8px;
-}
-
 .nb-theme-default [nbInput].size-giant,
 .nb-theme-default [nbInput].size-tiny,
 .nb-theme-default [nbInput].size-small,
@@ -358,4 +354,382 @@ nb-option-list.search-autocomplete {
 
 .pac-container {
   z-index: 1051 !important;
+}
+
+.nb-theme-default nb-card {
+  background-color: #ffffff;
+  margin: 16px 8px;
+}
+
+.nb-theme-dark nb-toggle.status-basic .toggle-switcher {
+  background-color: #f2f2f2;
+}
+
+.nb-theme-dark nb-card {
+  background-color: #1e1e1e;
+  margin: 16px 8px;
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell,
+.ngx-datatable.material .datatable-body .datatable-row-left {
+  @apply com-bg-white #{!important};
+}
+
+.ngx-datatable.material {
+  @apply com-bg-white;
+}
+
+.datatable-row-group:hover {
+  @apply com-bg-white #{!important};
+}
+
+.datatable-row-center:hover {
+  @apply com-bg-white #{!important};
+}
+
+nb-context-menu {
+  @apply com-bg-white;
+}
+
+input::-webkit-calendar-picker-indicator {
+  @apply com-bg-tWhite;
+}
+
+:root {
+  --color-white-light: #ffffff;
+  --color-white-dark: #121212;
+
+  --color-white-opacity-40-light: #fff6;
+  --color-white-opacity-40-dark: #121212;
+
+  --color-black-light: #000000;
+  --color-black-dark: #ffffff;
+
+  --color-tblack-light: #000000;
+
+  --color-blue-50-light: #eff6ff;
+  --color-blue-50-dark: #121212;
+
+  --color-gray-900-light: #111827;
+  --color-gray-900-dark: #ffffff;
+
+  --color-gray-50-light: #f9fafb;
+  --color-gray-50-dark: #121212;
+
+  --color-gray-500-light: #6b7280;
+  --color-gray-500-dark: #ffffff;
+
+  --color-gray-100-light: #f3f4f6;
+  --color-gray-100-dark: #4b5563;
+
+  --color-gray-700-light: #374151;
+  --color-gray-700-dark: #ffffff;
+
+  --color-gray-800-light: #1f2937;
+  --color-gray-800-dark: #ffffff;
+
+  --color-gray-600-light: #4b5563;
+  --color-gray-600-dark: #ffffff;
+
+  --color-spiro-disco-light: #1ac7e3;
+  --color-spiro-disco-dark: #1a1a1a;
+
+  --color-brilliant-azure-light: #2aa5ff;
+  --color-brilliant-azure-dark: #1a1a1a;
+
+  --color-caribbean-green-light: #00d68f;
+  --color-caribbean-green-dark: #1a1a1a;
+
+  --color-azureish-white-light: #dae0ff;
+  --color-azureish-white-dark: #1ac7e3;
+
+  --color-very-light-blue-light: #536eff;
+  --color-very-light-blue-dark: #1ac7e3;
+
+  --color-sonic-silver-light: #777777;
+  --color-sonic-silver-dark: #ffffff;
+
+  --color-blue-jeans-light: #29a5ff;
+  --color-blue-jeans-dark: #1ac7e3;
+
+  --color-raisin-black-light: #231f20;
+  --color-raisin-black-dark: #ffffff;
+
+  --color-spanish-gray-light: #979797;
+  --color-spanish-gray-dark: #ffffff;
+
+  --color-ultramarine-blue-light: #3366ff;
+  --color-ultramarine-blue-dark: #1ac7e3;
+
+  --color-blueberry-light: #4e74ff;
+  --color-blueberry-dark: #1ac7e3;
+
+  --color-dark-spring-green-light: #10654c;
+  --color-dark-spring-green-dark: #ffffff;
+
+  --color-blue-violet-light: #6f22df;
+  --color-blue-violet-dark: #1ac7e3;
+
+  --color-blond-light: #fff1bb;
+  --color-blond-dark: #1ac7e3;
+
+  --color-black-coral-light: #595867;
+  --color-black-coral-dark: #ffffff;
+
+  --color-charcoal-light: #344054;
+  --color-charcoal-dark: #ffffff;
+
+  --color-auro-metal-saurus-light: #667085;
+  --color-auro-metal-saurus-dark: #ffffff;
+
+  --color-dark-jungle-green-light: #101828;
+  --color-dark-jungle-green-dark: #ffffff;
+
+  --color-light-silver-light: #d0d5dd;
+  --color-light-silver-dark: #1ac7e3;
+
+  --color-bright-gray-light-light: #eaecf0;
+  --color-bright-gray-light-dark: #1ac7e3;
+
+  --color-bright-gray-light: #e4e9f2;
+  --color-bright-gray-dark: #2c2c2c;
+
+  --color-crayola-green-light: #1b9f68;
+  --color-crayola-green-dark: #1ac7e3;
+
+  --color-vampire-black-light: #0a0a0a;
+  --color-vampire-black-dark: #ffffff;
+
+  --color-yankees-blue-light: #222b45;
+  --color-yankees-blue-dark: #ffffff;
+
+  --color-new-car-light: #1d4ed8;
+  --color-new-car-dark: #ffffff;
+
+  --color-chrome-yellow-light: #ffaa00;
+  --color-chrome-yellow-dark: #1ac7e3;
+
+  --color-infra-red-light: #ff3d71;
+  --color-infra-red-dark: #1ac7e3;
+
+  --color-quartz-light: #4b4b5c;
+  --color-quartz-dark: #ffffff;
+
+  --color-chocolate-traditional-light: #7d4402;
+  --color-chocolate-traditional-dark: #ffffff;
+
+  --color-seashell-light: #fff6eb;
+  --color-seashell-dark: #1ac7e3;
+
+  --color-metallic-bronze-light: #ac7d47;
+  --color-metallic-bronze-dark: #1ac7e3;
+
+  --color-blanced-almond-light: #ffeecd;
+  --color-blanced-almond-dark: #1ac7e3;
+
+  --color-deep-carmine-pink-light: #ff3333;
+  --color-deep-carmine-pink-dark: #1ac7e3;
+
+  --color-bleu-de-france-light: #2590eb;
+  --color-bleu-de-france-dark: #1ac7e3;
+
+  --color-giants-orange-light: #ff5c1e;
+  --color-giants-orange-dark: #1ac7e3;
+
+  --color-blue-light: #001fff;
+  --color-blue-dark: #1ac7e3;
+
+  --color-bittersweet-light: #ff725e;
+  --color-bittersweet-dark: #1ac7e3;
+
+  --color-american-orange-light: #ff8a00;
+  --color-american-orange-dark: #1ac7e3;
+
+  --color-catalina-blue-light: #022c7d;
+  --color-catalina-blue-dark: #ffffff;
+
+  --color-alice-blue-light: #edf5ff;
+  --color-alice-blue-dark: #121212;
+
+  --color-gunmetal-light: #2f2e41;
+  --color-gunmetal-dark: #ffffff;
+
+  --color-anti-flash-light: #edf1f7;
+  --color-anti-flash-dark: #121212;
+
+  --color-anti-flash-white-light: #f2f2f2;
+  --color-anti-flash-white-dark: #1e1e1e;
+
+  --color-gray-500-opacity-50-light: #d7e1ed;
+
+  --color-azure-opacity-10-light: #0095ff19;
+
+  --color-Bright-Gray-opacity-60-light: #e6ecf4;
+
+  --color-Bright-Gray-opacity-30-light: #f7f8fb;
+  --color-Bright-Gray-opacity-30-dark: #1e1e1e;
+
+  --color-Ghost-White-light: #f7f9fc;
+  --color-Ghost-White-dark: #1e1e1e;
+
+  --color-slate-100-light: #f1f5f9;
+  --color-slate-100-dark: #121212;
+}
+
+[data-theme='light'] {
+  --color-white: var(--color-white-light);
+  --color-white-opacity-40: var(--color-white-opacity-40-light);
+  --color-twhite: var(--color-white-light);
+  --color-black: var(--color-black-light);
+  --color-tblack: var(--color-black-light);
+  --color-blue-50: var(--color-blue-50-light);
+  --color-gray-900: var(--color-gray-900-light);
+  --color-gray-50: var(--color-gray-50-light);
+  --color-gray-500: var(--color-gray-500-light);
+  --color-gray-100: var(--color-gray-100-light);
+  --color-gray-700: var(--color-gray-700-light);
+  --color-gray-800: var(--color-gray-800-light);
+  --color-gray-600: var(--color-gray-600-light);
+  --color-spiro-disco: var(--color-spiro-disco-light);
+  --color-brilliant-azure: var(--color-brilliant-azure-light);
+  --color-caribbean-green: var(--color-caribbean-green-light);
+  --color-azureish-white: var(--color-azureish-white-light);
+  --color-very-light-blue: var(--color-very-light-blue-light);
+  --color-sonic-silver: var(--color-sonic-silver-light);
+  --color-blue-jeans: var(--color-blue-jeans-light);
+  --color-raisin-black: var(--color-raisin-black-light);
+  --color-spanish-gray: var(--color-spanish-gray-light);
+  --color-ultramarine-blue: var(--color-ultramarine-blue-light);
+  --color-blueberry: var(--color-blueberry-light);
+  --color-dark-spring-green: var(--color-dark-spring-green-light);
+  --color-blue-violet: var(--color-blue-violet-light);
+  --color-blond: var(--color-blond-light);
+  --color-black-coral: var(--color-black-coral-light);
+  --color-charcoal: var(--color-charcoal-light);
+  --color-auro-metal-saurus: var(--color-auro-metal-saurus-light);
+  --color-dark-jungle-green: var(--color-dark-jungle-green-light);
+  --color-light-silver: var(--color-light-silver-light);
+  --color-bright-gray-light: var(--color-bright-gray-light-light);
+  --color-bright-gray: var(--color-bright-gray-light);
+  --color-crayola-green: var(--color-crayola-green-light);
+  --color-vampire-black: var(--color-vampire-black-light);
+  --color-anti-flash: var(--color-anti-flash-light);
+  --color-anti-flash-white: var(--color-anti-flash-white-light);
+  --color-yankees-blue: var(--color-yankees-blue-light);
+  --color-tyankees-blue: var(--color-yankees-blue-light);
+  --color-alice-blue: var(--color-alice-blue-light);
+  --color-new-car: var(--color-new-car-light);
+  --color-chrome-yellow: var(--color-chrome-yellow-light);
+  --color-infra-red: var(--color-infra-red-light);
+  --color-quartz: var(--color-quartz-light);
+  --color-chocolate-traditional: var(--color-chocolate-traditional-light);
+  --color-seashell: var(--color-seashell-light);
+  --color-metallic-bronze: var(--color-metallic-bronze-light);
+  --color-blanced-almond: var(--color-blanced-almond-light);
+  --color-deep-carmine-pink: var(--color-deep-carmine-pink-light);
+  --color-bleu-de-france: var(--color-bleu-de-france-light);
+  --color-giants-orange: var(--color-giants-orange-light);
+  --color-blue: var(--color-blue-light);
+  --color-bittersweet: var(--color-bittersweet-light);
+  --color-american-orange: var(--color-american-orange-light);
+  --color-catalina-blue: var(--color-catalina-blue-light);
+  --color-gunmetal: var(--color-gunmetal-light);
+  --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
+  --color-azure-opacity-10: var(--color-azure-opacity-10-light);
+  --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-light);
+  --color-Ghost-White: var(--color-Ghost-White-light);
+  --color-slate-100: var(--color-slate-100-light);
+
+  .linear-gradient-top {
+    background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
+  }
+
+  .linear-gradient-bottom {
+    background: linear-gradient(180deg, #c7dcff 0%, #ffffff 100%);
+  }
+
+  .linear-gradient {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #cde0ff 34.06%,
+      rgba(150, 189, 255, 0.539364) 58.79%,
+      rgba(190, 214, 255, 0.243146) 87.66%,
+      rgba(255, 255, 255, 0) 97.92%,
+      #ffffff 100%
+    );
+  }
+}
+
+[data-theme='dark'] {
+  --color-white: var(--color-white-dark);
+  --color-white-opacity-40: var(--color-white-opacity-40-dark);
+  --color-twhite: var(--color-white-light);
+  --color-black: var(--color-black-dark);
+  --color-tblack: var(--color-black-light);
+  --color-blue-50: var(--color-blue-50-dark);
+  --color-gray-900: var(--color-gray-900-dark);
+  --color-gray-50: var(--color-gray-50-dark);
+  --color-gray-500: var(--color-gray-500-dark);
+  --color-gray-100: var(--color-gray-100-dark);
+  --color-gray-700: var(--color-gray-700-dark);
+  --color-gray-800: var(--color-gray-800-light);
+  --color-gray-600: var(--color-gray-600-dark);
+  --color-spiro-disco: var(--color-spiro-disco-dark);
+  --color-brilliant-azure: var(--color-brilliant-azure-dark);
+  --color-caribbean-green: var(--color-caribbean-green-dark);
+  --color-azureish-white: var(--color-azureish-white-dark);
+  --color-very-light-blue: var(--color-very-light-blue-dark);
+  --color-sonic-silver: var(--color-sonic-silver-dark);
+  --color-blue-jeans: var(--color-blue-jeans-dark);
+  --color-raisin-black: var(--color-raisin-black-dark);
+  --color-spanish-gray: var(--color-spanish-gray-dark);
+  --color-ultramarine-blue: var(--color-ultramarine-blue-dark);
+  --color-blueberry: var(--color-blueberry-dark);
+  --color-dark-spring-green: var(--color-dark-spring-green-dark);
+  --color-blue-violet: var(--color-blue-violet-dark);
+  --color-blond: var(--color-blond-dark);
+  --color-black-coral: var(--color-black-coral-dark);
+  --color-charcoal: var(--color-charcoal-dark);
+  --color-auro-metal-saurus: var(--color-auro-metal-saurus-dark);
+  --color-dark-jungle-green: var(--color-dark-jungle-green-dark);
+  --color-light-silver: var(--color-light-silver-dark);
+  --color-bright-gray-light: var(--color-bright-gray-light-dark);
+  --color-bright-gray: var(--color-bright-gray-dark);
+  --color-crayola-green: var(--color-crayola-green-dark);
+  --color-vampire-black: var(--color-vampire-black-dark);
+  --color-anti-flash: var(--color-anti-flash-dark);
+  --color-anti-flash-white: var(--color-anti-flash-white-dark);
+  --color-yankees-blue: var(--color-yankees-blue-dark);
+  --color-tyankees-blue: var(--color-yankees-blue-light);
+  --color-alice-blue: var(--color-alice-blue-dark);
+  --color-new-car: var(--color-new-car-dark);
+  --color-chrome-yellow: var(--color-chrome-yellow-dark);
+  --color-infra-red: var(--color-infra-red-dark);
+  --color-quartz: var(--color-quartz-dark);
+  --color-chocolate-traditional: var(--color-chocolate-traditional-dark);
+  --color-seashell: var(--color-seashell-dark);
+  --color-metallic-bronze: var(--color-metallic-bronze-dark);
+  --color-blanced-almond: var(--color-blanced-almond-dark);
+  --color-deep-carmine-pink: var(--color-deep-carmine-pink-dark);
+  --color-bleu-de-france: var(--color-bleu-de-france-dark);
+  --color-giants-orange: var(--color-giants-orange-dark);
+  --color-blue: var(--color-blue-dark);
+  --color-bittersweet: var(--color-bittersweet-dark);
+  --color-american-orange: var(--color-american-orange-dark);
+  --color-catalina-blue: var(--color-catalina-blue-dark);
+  --color-gunmetal: var(--color-gunmetal-dark);
+  --color-gray-500-opacity-50: var(--color-gray-500-opacity-50-light);
+  --color-azure-opacity-10: var(--color-azure-opacity-10-light);
+  --color-Bright-Gray-opacity-60: var(--color-Bright-Gray-opacity-60-light);
+  --color-Bright-Gray-opacity-30: var(--color-Bright-Gray-opacity-30-dark);
+  --color-Ghost-White: var(--color-Ghost-White-dark);
+  --color-slate-100: var(--color-slate-100-dark);
+
+  .linear-gradient-top,
+  .linear-gradient-bottom,
+  .linear-gradient {
+    background: #121212;
+  }
 }

@@ -1,0 +1,13 @@
+nb-card {
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+}
+.group-name {
+  @apply com-my-4;
+}
+
+.mail-popup {
+  @apply md:com-w-[50dvw] md:com-max-h-[90dvh];
+}

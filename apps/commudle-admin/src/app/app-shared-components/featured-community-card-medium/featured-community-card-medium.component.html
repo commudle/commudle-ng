@@ -1,40 +1,44 @@
 <div class="featured-community-card">
-  <a [routerLink]="['/communities', featuredItems.community.slug]">
+  <a [routerLink]="['/communities', community.slug]">
     <div class="banner">
-      <div *ngIf="featuredItems.community.banner_image" class="banner-image">
+      <div *ngIf="community.banner_image" class="banner-image">
         <commudle-banner-image
-          [headerImagePath]="featuredItems.community.banner_image.i320"
-          [name]="featuredItems.community.name"
+          [headerImagePath]="community.banner_image.i320"
+          [name]="community.name"
           [aspectRatio]="'6/1'"
           [bottomRightCurve]="false"
           [bottomLeftCurve]="false"
         ></commudle-banner-image>
       </div>
-      <div *ngIf="!featuredItems.community.banner_image" class="no-banner-image"></div>
+      <div *ngIf="!community.banner_image" class="no-banner-image"></div>
 
       <div class="community-image">
         <img
-          alt="{{ featuredItems.community.name }}"
-          src="{{ featuredItems.community.logo_image?.i64 }}"
-          title="{{ featuredItems.community.name }}"
+          alt="{{ community.name }}"
+          src="{{ community.logo_image?.i64 || community.logo_image_path?.i64 }}"
+          title="{{ community.name }}"
         />
       </div>
     </div>
     <div class="clickable featured-community-about">
-      <h3 class="featured-community-name">{{ featuredItems.community.name }}</h3>
-      <p class="featured-community-reason">{{ featuredItems.reason }}</p>
+      <h3 class="featured-community-name">{{ community.name }}</h3>
+      <p *ngIf="featuredItemReason" class="featured-community-reason">{{ featuredItemReason }}</p>
+      <p *ngIf="showDescription" class="description">{{ community.mini_description }}</p>
       <div class="members-events">
-        <p class="members"><nb-icon icon="people-outline"></nb-icon>{{ featuredItems.community.members_count }}</p>
+        <p class="members"><nb-icon icon="people-outline"></nb-icon>{{ community.members_count }}</p>
         <p class="events-organized">
-          <nb-icon icon="calendar-outline"></nb-icon>{{ featuredItems.community.completed_events_count }}
+          <nb-icon icon="calendar-outline"></nb-icon>{{ community.completed_events_count }}
+        </p>
+        <p *ngIf="community.location" class="events-location">
+          <nb-icon icon="pin-outline"></nb-icon>{{ community.location }}
         </p>
       </div>
       <div class="featured-community-tags">
         <app-tag
-          [tags]="getTagNames(featuredItems.community)"
-          [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+          [tags]="getTagNames(community)"
+          [backgroundColor]="'com-bg-Azure-opacity-10'"
           [size]="'tiny'"
-          [fontColor]="'#101828'"
+          [fontColor]="'com-text-Dark-Jungle-Green'"
           [maximumTag]="5"
         ></app-tag>
       </div>
@@ -42,7 +46,7 @@
   </a>
   <div class="community-join-btn">
     <app-membership-toggle
-      [community]="featuredItems.community"
+      [community]="community"
       [status]="'info'"
       [shapes]="'semi-round'"
       [isMobileWidthFull]="true"

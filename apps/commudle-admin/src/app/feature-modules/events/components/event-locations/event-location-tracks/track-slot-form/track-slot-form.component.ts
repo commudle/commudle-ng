@@ -80,7 +80,7 @@ export class TrackSlotFormComponent implements OnInit {
     const endTime = new Date(startTime.getTime() + 30 * 60000);
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.eventLocTrack.id,
-      date: this.minSlotDate,
+      date: this.formatDate(this.event.start_time),
       start_time: this.timeFormat(startTime),
       end_time: this.timeFormat(endTime),
     });
@@ -91,6 +91,15 @@ export class TrackSlotFormComponent implements OnInit {
     const formattedMinutes = time.getMinutes().toString().padStart(2, '0');
     const formattedStartTime = `${formattedHours}:${formattedMinutes}`;
     return formattedStartTime;
+  }
+
+  formatDate(date: Date): string {
+    const newDate = new Date(date);
+    const year = newDate.getFullYear().toString().padStart(4, '0');
+    const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = newDate.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
   }
 
   updateExistingTrackSlot() {
@@ -116,13 +125,12 @@ export class TrackSlotFormComponent implements OnInit {
     eTimeNew.setHours(eTimeHour);
     eTimeNew.setMinutes(eTimeMinute);
 
-    const trackDate = moment(this.trackSlot.start_time).toDate();
     const tags = this.trackSlot.tags_list ? this.trackSlot.tags_list.split(' ') : [];
     this.tags = tags;
 
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.trackSlot.event_location_track_id,
-      date: trackDate,
+      date: this.formatDate(this.trackSlot.start_time),
       start_time: this.timeFormat(sTimeNew),
       end_time: this.timeFormat(eTimeNew),
       session_title: this.trackSlot.session_title,
@@ -138,12 +146,13 @@ export class TrackSlotFormComponent implements OnInit {
 
   addSlot() {
     const newSlot = this.trackSlotForm.get('track_slot').value;
+    const newDate = new Date(newSlot.date);
     const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
     newSlot.tags_list = tagsAsString;
     const startTime = moment({
-      years: newSlot.date.getFullYear(),
-      months: newSlot.date.getMonth(),
-      date: newSlot.date.getDate(),
+      years: newDate.getFullYear(),
+      months: newDate.getMonth(),
+      date: newDate.getDate(),
     });
     delete newSlot['date'];
     const sTime = newSlot['start_time'];
@@ -185,12 +194,13 @@ export class TrackSlotFormComponent implements OnInit {
 
   editSlot(trackSlotId) {
     const slot = this.trackSlotForm.get('track_slot').value;
+    const newDate = new Date(slot.date);
     const tagsAsString = this.tags.map((tag) => `${tag}`).join(' ');
     slot.tags_list = tagsAsString;
     const startTime = moment({
-      years: slot.date.getFullYear(),
-      months: slot.date.getMonth(),
-      date: slot.date.getDate(),
+      years: newDate.getFullYear(),
+      months: newDate.getMonth(),
+      date: newDate.getDate(),
     });
     delete slot['date'];
     const sTimeNew = slot['start_time'];

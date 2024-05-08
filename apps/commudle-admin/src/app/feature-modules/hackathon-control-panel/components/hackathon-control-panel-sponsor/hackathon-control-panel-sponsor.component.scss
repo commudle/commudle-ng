@@ -1,0 +1,21 @@
+.add-sponsors-button {
+  @apply com-border-2 com-border-dashed com-border-slate-500 com-rounded-lg com-text-center com-py-5 com-cursor-pointer;
+}
+
+.sponsors-card {
+  @apply com-grid com-grid-cols-3 com-bg-gray-200;
+}
+
+.sponsor-form-dialog-box {
+  @apply com-w-500px com-max-h-[90dvh];
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+    select {
+      @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5 com-w-full;
+    }
+  }
+}
+
+.actions {
+  @apply com-flex com-justify-between;
+}

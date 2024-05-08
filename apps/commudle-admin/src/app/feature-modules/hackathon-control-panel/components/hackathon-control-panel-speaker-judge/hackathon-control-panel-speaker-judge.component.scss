@@ -1,0 +1,20 @@
+.speaker-form {
+  @apply md:com-w-500px com-h-[90dvh];
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+    .profile-image {
+      @apply com-w-28 com-h-28 com-rounded;
+      img {
+        @apply com-w-full;
+      }
+    }
+  }
+}
+
+.actions {
+  @apply com-flex com-justify-between com-items-center;
+}
+
+.judge-cards {
+  @apply com-grid com-grid-cols-3 com-gap-x-5 com-bg-gray-200;
+}

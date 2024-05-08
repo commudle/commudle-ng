@@ -14,6 +14,7 @@ import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { faCaretDown, faMessage, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 
 interface CustomMenuItem {
   title: string;
@@ -44,6 +45,8 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   items = [{ title: 'pages', slug: 'pages' }];
 
   @ViewChild('updateBannerDialogBox') updateBannerDialogBox: TemplateRef<any>;
+  isHackathonActive = false;
+  darkMode: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,13 +61,19 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private customPageService: CustomPageService,
     private nbMenuService: NbMenuService,
     private newsletterService: NewsletterService,
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit(): void {
     this.items = [];
+    this.darkModeService.isDarkMode$.subscribe((data) => {
+      this.darkMode = data;
+    });
+    this.isHackathonActive = this.router.url.toString().includes('/hackathons');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
+        this.isHackathonActive = this.router.url.toString().includes('/hackathons');
       }
     });
     this.activatedRoute.data.subscribe((data) => {

@@ -1,0 +1,27 @@
+<nb-card class="mail-popup">
+  <nb-card-header>
+    <span> Pre-formatted email</span>
+    <button ghost nbButton size="small" shape="round" (click)="closeDialogBox()">
+      <fa-icon [icon]="faXmark"></fa-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <commudle-alert [info]="true" message="This will send a pre-formatted email "></commudle-alert>
+    <br />
+    <div>
+      <label for="message">Message (optional)</label>
+      <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button
+      nbButton
+      status="primary"
+      (click)="SendWinnerAnnouncementMailer()"
+      [nbSpinner]="isLoading"
+      [disabled]="isLoading"
+    >
+      Send
+    </button>
+  </nb-card-footer>
+</nb-card>

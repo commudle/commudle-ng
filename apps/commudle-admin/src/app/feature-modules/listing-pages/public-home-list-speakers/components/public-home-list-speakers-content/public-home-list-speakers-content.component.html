@@ -1,7 +1,9 @@
-<nb-card>
+<nb-card *ngIf="speakersContents.length > 0" id="speaker-resources">
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">{{ heading }}</h3>
+      <h3 class="title">
+        <a [routerLink]="'.'" fragment="speaker-resources">{{ heading }}</a>
+      </h3>
       <h4 class="sub-heading">{{ subheading }}</h4>
     </div>
     <div class="content custom-scrollbar">

@@ -77,8 +77,8 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
 
     if (inputImage?.size > 2425190) {
       this.libToastLogService.warningDialog('Files should be less than 2MB', 3000);
-    } else if (inputImage?.type !== 'image/svg+xml') {
-      this.libToastLogService.warningDialog('Only .svg files are allowed', 3000);
+    } else if (!inputImage || !inputImage.type.match(/^image\/(svg\+xml|png|jpeg)$/)) {
+      this.libToastLogService.warningDialog('Only .svg, .png, and .jpeg files are allowed', 3000);
     } else {
       if (inputImage) {
         this.uploadedImage = {

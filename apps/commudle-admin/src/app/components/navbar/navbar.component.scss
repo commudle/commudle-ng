@@ -15,6 +15,18 @@
 
   fa-icon,
   nb-icon {
-    @apply com-text-xl;
+    @apply com-text-Yankees-Blue com-text-xl;
+  }
+}
+
+.user-login {
+  @apply com-flex com-justify-self-end com-gap-4 com-items-center;
+}
+
+.toggle-dark-mode {
+  @apply com-cursor-pointer;
+
+  .toggle-btn {
+    @apply com-bg-gray-200 com-h-auto #{!important};
   }
 }

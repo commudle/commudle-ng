@@ -1,0 +1,56 @@
+<nb-card class="mail-popup">
+  <nb-card-header>
+    <span> Pre-formatted email</span>
+    <button ghost nbButton size="small" shape="round" (click)="closeDialogBox()">
+      <fa-icon [icon]="faXmark"></fa-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <commudle-alert [info]="true" message="This will send a pre-formatted email "></commudle-alert>
+    <br />
+
+    <div>
+      <label for="mailType">To Whom do you want to send?</label>
+      <br />
+      <input type="radio" name="recipient" id="All" [(ngModel)]="selectedRecipient" value="all" />
+      <label for="All">All</label>
+      <br />
+      <input
+        type="radio"
+        name="recipient"
+        id="SelectedRegistrationOption"
+        [(ngModel)]="selectedRecipient"
+        value="Selected Registration Option"
+      />
+      <label for="SelectedRegistrationOption">Selected Registration Option</label>
+      <br />
+      <select name="" id="" *ngIf="selectedRecipient === 'Selected Registration Option'" [(ngModel)]="selectedStatus">
+        <option hidden selected value="">Select Status</option>
+        <option *ngFor="let InvitationStatus of EInvitationStatus | keyvalue" [value]="InvitationStatus.value">
+          {{ InvitationStatus.value | capitalizeAndRemoveUnderscore }}
+        </option>
+      </select>
+    </div>
+    <br />
+    <div>
+      <label for="emailReason">Subject*</label>
+      <input type="text" placeholder="Subject" [(ngModel)]="subject" nbInput fullWidth />
+    </div>
+    <br />
+    <div>
+      <label for="message">Message (optional)</label>
+      <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button
+      nbButton
+      status="primary"
+      (click)="SendStatusFilterGeneralMailer()"
+      [nbSpinner]="isLoading"
+      [disabled]="isLoading || subject.length === 0"
+    >
+      Send
+    </button>
+  </nb-card-footer>
+</nb-card>

@@ -9,3 +9,17 @@
 .join-community {
   @apply md:com-w-[92px] com-w-full;
 }
+
+nb-option {
+  @apply com-text-Yankees-Blue;
+}
+
+nb-select {
+  ::ng-deep {
+    button {
+      span {
+        @apply com-text-Yankees-Blue;
+      }
+    }
+  }
+}

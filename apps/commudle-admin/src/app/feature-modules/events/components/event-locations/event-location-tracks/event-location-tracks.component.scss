@@ -10,7 +10,7 @@
 
       nb-icon {
         font-size: 1.3rem;
-        @apply com-text-white;
+        @apply com-text-tWhite;
       }
     }
 
@@ -27,7 +27,7 @@
     }
 
     nb-accordion-item-body {
-      @apply com-p-0;
+      @apply com-p-0 com-bg-white;
       .add-session {
         @apply com-flex com-justify-center com-text-primary-500 com-cursor-pointer com-text-base;
       }
@@ -37,6 +37,9 @@
             @apply com-px-0 md:com-px-1;
           }
         }
+      }
+      .group-date {
+        @apply com-mt-4 com-mb-1 com-font-bold;
       }
       nb-list {
         @apply com-m-0 com-p-0;
@@ -79,7 +82,7 @@
           .speakers {
             @apply com-flex com-flex-wrap com-gap-2 com-w-20 md:com-w-28 com-justify-end;
             .avatar {
-              @apply com-h-7 com-w-7 com-overflow-hidden com-border com-border-solid com-border-Bright-Gray;
+              @apply com-h-7 com-w-7 com-overflow-hidden com-border com-border-solid com-border-Bright-Gray com-bg-tWhite;
               border-radius: 50%;
 
               img {
@@ -185,4 +188,8 @@
   select {
     @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
   }
+}
+
+nb-accordion-item {
+  @apply com-bg-white;
 }

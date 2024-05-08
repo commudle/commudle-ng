@@ -1,6 +1,9 @@
 // All countries
 // length 252
 const countries = [
+  { name: 'India', code: 'IN', phone: 91, symbol: '₹', currency: 'INR' },
+  { name: 'United States', code: 'US', phone: 1, symbol: '$', currency: 'USD' },
+  { name: 'Austria', code: 'AT', phone: 43, symbol: '€', currency: 'EUR' },
   { name: 'Afghanistan', code: 'AF', phone: 93, symbol: '؋', currency: 'AFN' },
   { name: 'Aland Islands', code: 'AX', phone: 358, symbol: '€', currency: 'EUR' },
   { name: 'Albania', code: 'AL', phone: 355, symbol: 'Lek', currency: 'ALL' },
@@ -15,7 +18,6 @@ const countries = [
   { name: 'Armenia', code: 'AM', phone: 374, symbol: '֏', currency: 'AMD' },
   { name: 'Aruba', code: 'AW', phone: 297, symbol: 'ƒ', currency: 'AWG' },
   { name: 'Australia', code: 'AU', phone: 61, symbol: '$', currency: 'AUD' },
-  { name: 'Austria', code: 'AT', phone: 43, symbol: '€', currency: 'EUR' },
   { name: 'Azerbaijan', code: 'AZ', phone: 994, symbol: 'm', currency: 'AZN' },
   { name: 'Bahamas', code: 'BS', phone: 1242, symbol: 'B$', currency: 'BSD' },
   { name: 'Bahrain', code: 'BH', phone: 973, symbol: '.د.ب', currency: 'BHD' },
@@ -103,7 +105,6 @@ const countries = [
   { name: 'Hong Kong', code: 'HK', phone: 852, symbol: '$', currency: 'HKD' },
   { name: 'Hungary', code: 'HU', phone: 36, symbol: 'Ft', currency: 'HUF' },
   { name: 'Iceland', code: 'IS', phone: 354, symbol: 'kr', currency: 'ISK' },
-  { name: 'India', code: 'IN', phone: 91, symbol: '₹', currency: 'INR' },
   { name: 'Indonesia', code: 'ID', phone: 62, symbol: 'Rp', currency: 'IDR' },
   { name: 'Iran, Islamic Republic of', code: 'IR', phone: 98, symbol: '﷼', currency: 'IRR' },
   { name: 'Iraq', code: 'IQ', phone: 964, symbol: 'د.ع', currency: 'IQD' },
@@ -239,7 +240,6 @@ const countries = [
   { name: 'Ukraine', code: 'UA', phone: 380, symbol: '₴', currency: 'UAH' },
   { name: 'United Arab Emirates', code: 'AE', phone: 971, symbol: 'إ.د', currency: 'AED' },
   { name: 'United Kingdom', code: 'GB', phone: 44, symbol: '£', currency: 'GBP' },
-  { name: 'United States', code: 'US', phone: 1, symbol: '$', currency: 'USD' },
   { name: 'United States Minor Outlying Islands', code: 'UM', phone: 1, symbol: '$', currency: 'USD' },
   { name: 'Uruguay', code: 'UY', phone: 598, symbol: '$', currency: 'UYU' },
   { name: 'Uzbekistan', code: 'UZ', phone: 998, symbol: 'лв', currency: 'UZS' },

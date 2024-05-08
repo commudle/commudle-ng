@@ -5,6 +5,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { NbIconModule } from '@commudle/theme';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
+import { ICommunity } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-featured-community-card-medium',
@@ -14,7 +15,9 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
   imports: [CommonModule, RouterModule, SharedComponentsModule, NbIconModule, PublicCommunityModule],
 })
 export class FeaturedCommunityCardMediumComponent implements OnInit {
-  @Input() featuredItems: IFeaturedItems;
+  @Input() community: ICommunity;
+  @Input() featuredItemReason: string;
+  @Input() showDescription = false;
   tags: string[] = [];
 
   constructor() {}

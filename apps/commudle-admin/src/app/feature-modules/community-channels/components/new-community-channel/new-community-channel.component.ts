@@ -43,7 +43,7 @@ export class NewCommunityChannelComponent implements OnInit, OnDestroy {
 
   openForm() {
     this.dialogRef = this.dialogService.open(this.formTemplate, {
-      closeOnBackdropClick: false,
+      closeOnBackdropClick: true,
     });
   }
 

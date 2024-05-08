@@ -1,124 +1,86 @@
 <div class="base-layout create-lab">
   <div class="container">
-    <div *ngIf="lab" class="three-column-layout">
-      <div class="left-col">
+    <div *ngIf="lab" class="two-column-layout medium mobile-reverse">
+      <div class="main-column">
         <nb-card>
           <nb-card-body>
-            <p>A good Lab has steps / sections with images too. Here's a small guide on how to use this page:</p>
-            <div
-              (click)="openGuide(guideVideo)"
-              class="d-flex justify-content-center align-items-center help-video clickable"
-            >
-              <p>Guide Video</p>
-              <nb-icon icon="play-circle-outline"></nb-icon>
-            </div>
-            <ng-template #guideVideo let-data>
-              <nb-card>
-                <nb-card-body>
-                  <youtube-player videoId="Ef_7SgjaoEM"></youtube-player>
-                </nb-card-body>
-              </nb-card>
-            </ng-template>
-          </nb-card-body>
-        </nb-card>
-      </div>
-      <div class="center-col">
-        <nb-card>
-          <nb-card-body>
-            <div class="container">
-              <p class="text-center">
-                <span class="com-text-primary-500">Changes will be auto saved every 10 seconds</span>
-              </p>
+            <p class="heading">Changes will be auto saved every 10 seconds</p>
 
-              <form [formGroup]="headerImageForm" class="lab-header-image">
-                <div class="header-image">
-                  <div>
-                    <div *ngIf="uploadedHeaderImage || lab.header_image" class="uploaded-header-image">
-                      <img
-                        alt="lab header image"
-                        src="{{ uploadedHeaderImage || lab.header_image.url }}"
-                        title="Lab header image"
-                      />
-                    </div>
-                    <button
-                      (click)="deleteEventHeader()"
-                      *ngIf="uploadedHeaderImage || lab.header_image"
-                      class="delete-header-image-button"
-                      nbButton
-                      outline
-                      size="tiny"
-                      status="danger"
-                    >
-                      <nb-icon icon="close-circle"></nb-icon>
-                      Delete Image
-                    </button>
+            <form [formGroup]="headerImageForm" class="lab-header-image">
+              <div class="header-image">
+                <div>
+                  <div *ngIf="uploadedHeaderImage || lab.header_image" class="uploaded-header-image">
+                    <img
+                      alt="lab header image"
+                      src="{{ uploadedHeaderImage || lab.header_image.url }}"
+                      title="Lab header image"
+                    />
                   </div>
-                  <label
-                    [ngClass]="{ hidden: uploadedHeaderImage || (lab.header_image && lab.header_image.url) }"
-                    class="clickable"
+                  <button
+                    (click)="deleteEventHeader()"
+                    *ngIf="uploadedHeaderImage || lab.header_image"
+                    class="delete-header-image-button"
+                    nbButton
+                    outline
+                    size="tiny"
+                    status="danger"
                   >
-                    <span class="d-flex justify-content-center align-items-center">
-                      <span>
-                        <nb-icon icon="image-outline"></nb-icon>
-                      </span>
-                      <span>
-                        Click to upload a header image (optional)
-                        <br />
-                        <small> (900px X 350px) </small>
-                      </span>
-                    </span>
-                    <input
-                      (change)="displaySelectedHeaderImage($event)"
-                      accept="image/*"
-                      formControlName="header_image"
-                      fullWidth
-                      nbInput
-                      type="file"
-                    />
-                  </label>
+                    <nb-icon icon="close-circle"></nb-icon>
+                    Delete Image
+                  </button>
                 </div>
-              </form>
-              <form [formGroup]="labForm" class="lab-form">
-                <div class="overview">
-                  <div>
-                    <input
-                      fieldSize="giant"
-                      formControlName="name"
-                      fullWidth
-                      nbInput
-                      placeholder="Type a name..."
-                      type="text"
-                    />
-                    <span
-                      *ngIf="
-                        labForm['controls'].name.touched &&
-                        labForm['controls'].name.invalid &&
-                        labForm['controls'].name.errors.required
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                <label
+                  [ngClass]="{ hidden: uploadedHeaderImage || (lab.header_image && lab.header_image.url) }"
+                  class="clickable"
+                >
+                  <div class="upload-header">
+                    <nb-icon icon="image-outline"></nb-icon>
+                    <span>
+                      Click to upload a header image (optional)
+                      <br />
+                      <small> (900px X 350px) </small>
                     </span>
                   </div>
-                  <div>
-                    <editor
-                      [init]="tinyMCE"
-                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                      formControlName="description"
-                    >
-                    </editor>
-                    <span
-                      *ngIf="
-                        labForm['controls'].description.touched &&
-                        labForm['controls'].description.invalid &&
-                        labForm['controls'].description.errors.required
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span>
-                  </div>
+                  <input
+                    (change)="displaySelectedHeaderImage($event)"
+                    accept="image/*"
+                    formControlName="header_image"
+                    fullWidth
+                    nbInput
+                    type="file"
+                  />
+                </label>
+              </div>
+            </form>
+            <form [formGroup]="labForm" class="lab-form">
+              <div class="overview">
+                <div>
+                  <span>Your Title*</span>
+                  <input fieldSize="medium" formControlName="name" fullWidth nbInput type="text" />
+                  <span
+                    *ngIf="
+                      labForm['controls'].name.touched &&
+                      labForm['controls'].name.invalid &&
+                      labForm['controls'].name.errors.required
+                    "
+                  >
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+                  </span>
                 </div>
-              </form>
-            </div>
+                <div>
+                  <editor [init]="tinyMCE" formControlName="description"></editor>
+                  <span
+                    *ngIf="
+                      labForm['controls'].description.touched &&
+                      labForm['controls'].description.invalid &&
+                      labForm['controls'].description.errors.required
+                    "
+                  >
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+                  </span>
+                </div>
+              </div>
+            </form>
           </nb-card-body>
         </nb-card>
         <div *ngIf="labForm['controls'].lab_steps['controls'].length > 0" [formGroup]="labForm">
@@ -153,17 +115,11 @@
                       labForm.get('lab_steps')['controls'][i].get('name').errors?.required
                     "
                   >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                   </span>
 
                   <div>
-                    <editor
-                      [init]="tinyMCE"
-                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                      formControlName="description"
-                      class="editor"
-                    >
-                    </editor>
+                    <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
                     <span
                       *ngIf="
                         labForm.get('lab_steps')['controls'][i].get('description').touched &&
@@ -171,7 +127,7 @@
                         labForm.get('lab_steps')['controls'][i].get('description').errors?.required
                       "
                     >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                     </span>
                   </div>
                 </div>
@@ -193,14 +149,16 @@
         <nb-card>
           <nb-card-body>
             <div class="tags">
-              <p>Tags help you get a better visibility 😃</p>
+              <p>Adding some TAGS will help you get better visibility 😃</p>
               <span *ngIf="showTagsValidation && tags.length < 5">
-                <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags required'"></commudle-alert>
+                <commudle-alert [errorMessage]="'Minimum 5 tags required'" [error]="true"></commudle-alert>
               </span>
               <app-tag
                 (tagAdd)="onTagAdd($event)"
                 (tagDelete)="onTagDelete($event)"
+                [backgroundColor]="'com-bg-tAnti-Flash'"
                 [editable]="true"
+                [fontColor]="'com-text-tYankees-Blue'"
                 [tags]="tags"
               ></app-tag>
             </div>
@@ -237,11 +195,38 @@
           </div>
         </div>
       </div>
-      <div class="right-col">
-        <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank">
-          Preview
-          <nb-icon icon="external-link"></nb-icon>
-        </a>
+      <div class="right-column">
+        <div>
+          <nb-card>
+            <nb-card-body>
+              <a [routerLink]="['/labs', lab.slug]" class="preview" ghost nbButton target="_blank">
+                <nb-icon icon="eye"></nb-icon>
+                <p>Preview</p>
+              </a>
+            </nb-card-body>
+          </nb-card>
+          <nb-card>
+            <nb-card-body class="guide">
+              <p>
+                A good lab has clear steps and images to help you understand.
+                <br />
+                <br />
+                Here is a quick guide on how to use this page
+              </p>
+              <div (click)="openGuide(guideVideo)" class="help-video clickable">
+                <nb-icon icon="play-circle"></nb-icon>
+                <p>Guide Video</p>
+              </div>
+              <ng-template #guideVideo let-data>
+                <nb-card>
+                  <nb-card-body>
+                    <youtube-player videoId="Ef_7SgjaoEM"></youtube-player>
+                  </nb-card-body>
+                </nb-card>
+              </ng-template>
+            </nb-card-body>
+          </nb-card>
+        </div>
       </div>
     </div>
   </div>

@@ -22,3 +22,7 @@ p {
 .home-view-all-communities {
   background-color: #0095ff;
 }
+
+.featured-community-card {
+  @apply com-w-full md:com-w-[298px];
+}

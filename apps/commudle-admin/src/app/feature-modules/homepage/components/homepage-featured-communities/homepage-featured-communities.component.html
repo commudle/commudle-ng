@@ -1,7 +1,8 @@
 <div class="communities-featured-list">
   <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
     <commudle-featured-community-card-medium
-      [featuredItems]="featuredCommunity"
+      [community]="featuredCommunity.community"
+      [featuredItemReason]="featuredCommunity.reason"
     ></commudle-featured-community-card-medium>
   </div>
 </div>

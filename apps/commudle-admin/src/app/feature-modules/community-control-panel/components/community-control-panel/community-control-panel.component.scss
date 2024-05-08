@@ -25,11 +25,10 @@
   display: flex;
 
   > div {
-    overflow: hidden;
-    width: 100px;
+    @apply com-h-24 com-w-24 com-overflow-hidden com-my-3;
 
     img {
-      width: 100%;
+      @apply com-bg-tWhite com-h-full com-object-contain com-rounded-md com-w-full com-p-1;
     }
   }
 
@@ -59,6 +58,10 @@ section {
     nb-icon,
     fa-icon {
       @apply com-text-gray-500;
+    }
+
+    img {
+      @apply com-mb-1;
     }
 
     .title {

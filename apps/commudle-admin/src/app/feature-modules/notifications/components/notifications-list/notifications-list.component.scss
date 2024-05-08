@@ -1,18 +1,18 @@
 .notification-list {
   @apply com-overflow-hidden;
   nb-list-item {
-    @apply com-justify-between com-p-4;
+    @apply com-justify-between com-p-4 com-border com-border-Bright-Gray;
 
     &.active {
       @apply com-bg-gray-100;
     }
 
     &:first-child {
-      border-top: none;
+      @apply com-border com-border-t-0 com-border-Bright-Gray;
     }
 
     &:last-child {
-      border-bottom: none;
+      @apply com-border com-border-b-0 com-border-Bright-Gray;
     }
 
     .mark-as-read {
@@ -33,10 +33,10 @@
       }
 
       .user-image {
-        @apply com-rounded-full;
+        @apply com-rounded-full com-bg-tWhite;
       }
       .community-image {
-        @apply com-rounded-sm;
+        @apply com-rounded-sm com-bg-tWhite;
       }
 
       .details {

@@ -41,9 +41,10 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     convert_urls: false,
     statusbar: false,
     toolbar: false,
-    plugins: 'autoresize',
+    plugins: ['autoresize'],
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 14px !important;}",
+    license_key: 'gpl',
   };
 
   @ViewChild('cdkDrag') cdkDrag: any;
@@ -101,6 +102,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.seoService.noIndex(false);
   }
+
   // drag and drop function by CDK
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(

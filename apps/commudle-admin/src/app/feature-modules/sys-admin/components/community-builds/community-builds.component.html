@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <h4>Community Builds</h4>
@@ -37,7 +37,12 @@
                 ></app-votes-display>
               </div>
               <div class="tags" *ngIf="cb.tags">
-                <app-tag [tags]="cb.tags" size="tiny"></app-tag>
+                <app-tag
+                  [tags]="cb.tags"
+                  [backgroundColor]="'com-bg-[#F6F9FC]'"
+                  [fontColor]="'com-text-tYankees-Blue'"
+                  size="tiny"
+                ></app-tag>
               </div>
             </div>
             <div class="actions">

@@ -1,0 +1,138 @@
+<div class="two-column-layout medium">
+  <div class="main-column com-mb-20">
+    <nb-card>
+      <nb-card-body>
+        <div [innerHTML]="hackathon.description"></div>
+      </nb-card-body>
+    </nb-card>
+
+    <div *ngIf="hackathon.updates_count > 0" id="updates">
+      <nb-card>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="updates"> Updates </a>
+          </h2>
+        </nb-card-header>
+        <nb-card-body>
+          <commudle-entity-updates
+            [entityId]="hackathon.id"
+            [entityType]="EDbModels.HACKATHON"
+          ></commudle-entity-updates>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div *ngIf="hackathon.tracks_count > 0" id="tracks">
+      <nb-card>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="tracks"> Tracks </a>
+          </h2>
+        </nb-card-header>
+        <nb-card-body class="track-cards">
+          <div *ngFor="let track of tracks" class="track-card">
+            <div class="name">{{ track.name }}</div>
+            <div [innerHTML]="track.description"></div>
+            <nb-card *ngFor="let prize of track.hackathon_prizes" class="prize-card">
+              <nb-card-body>
+                <div class="hackathon-prize">
+                  <div class="prize-name">{{ prize.name }}</div>
+                  <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
+                </div>
+                <div [innerHTML]="prize.description"></div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div *ngIf="hackathon.sponsors_count > 0" id="sponsors">
+      <nb-card>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="sponsors"> Sponsors </a>
+          </h2>
+        </nb-card-header>
+        <nb-card-body class="sponsors-cards">
+          <div *ngFor="let sponsor of sponsors" class="sponsor-card">
+            <img [src]="sponsor.sponsor.logo.url" [alt]="sponsor.sponsor.name" />
+            <div class="name">{{ sponsor.sponsor.name }}</div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div *ngIf="hackathon.faqs_count > 0" id="faq">
+      <nb-card>
+        <nb-card-header>
+          <h2>
+            <a [routerLink]="['.']" fragment="faq"> FAQs </a>
+          </h2>
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngFor="let faq of faqs">
+            <commudle-faq-card [faq]="faq"></commudle-faq-card>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <nb-card id="comments">
+      <nb-card-header>
+        <h2>
+          <a [routerLink]="['.']" fragment="comments"> Comments </a>
+        </h2>
+      </nb-card-header>
+      <nb-card-body>
+        <commudle-discussion
+          *ngIf="discussionChat"
+          [discussionId]="discussionChat.id"
+          discussionParent="hackathon"
+        ></commudle-discussion>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="right-column">
+    <nb-card *ngIf="isOrganizer">
+      <nb-card-body class="com-p-0">
+        <button
+          nbButton
+          status="danger"
+          fullWidth
+          [routerLink]="['/admin', 'communities', community.slug, 'hackathon-dashboard', hackathon.slug]"
+        >
+          <fa-icon [icon]="icons.faPencil"></fa-icon>
+          &nbsp;
+          <span>Go To Admin panel</span>
+        </button>
+      </nb-card-body>
+    </nb-card>
+    <nb-card *ngIf="userTeamDetails">
+      <nb-card-body
+        ><commudle-public-hackathon-details-mini-card
+          [hackathon]="hackathon"
+          [userTeamDetails]="userTeamDetails[0]"
+          [hrgId]="hrgId"
+        ></commudle-public-hackathon-details-mini-card
+      ></nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="rounds && rounds.length > 0">
+      <nb-card-header> Rounds </nb-card-header>
+      <nb-card-body>
+        <div *ngFor="let round of rounds" class="round-card">
+          <div class="name">{{ round.name }}</div>
+          <div class="date">{{ moment(round.date).format('DD MMM YYYY') }}</div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
+      <commudle-public-hackathon-registration
+        [hrgId]="hrgId"
+        [userTeamDetails]="userTeamDetails[0]"
+      ></commudle-public-hackathon-registration>
+    </div>
+  </div>
+</div>

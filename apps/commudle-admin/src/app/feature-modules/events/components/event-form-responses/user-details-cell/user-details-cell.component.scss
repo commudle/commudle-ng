@@ -23,6 +23,10 @@
     a {
       color: black;
       margin: 0 0.5rem;
+
+      fa-icon {
+        @apply com-text-black;
+      }
     }
   }
 }

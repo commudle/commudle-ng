@@ -74,6 +74,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'experts-program',
+    loadChildren: () =>
+      import('./feature-modules/expert-program/expert-program.module').then((m) => m.ExpertProgramModule),
+  },
+  {
     path: 'devrel-agencies',
     loadChildren: () =>
       import('./feature-modules/public-agencies/public-agencies.module').then((m) => m.PublicAgenciesModule),
@@ -119,6 +124,11 @@ const routes: Routes = [
     path: 'communities/:community_id/events/:event_id',
     loadChildren: () =>
       import('./feature-modules/public-events/public-events.module').then((m) => m.PublicEventsModule),
+  },
+  {
+    path: 'communities/:community_id/hackathons/:hackathon_id',
+    loadChildren: () =>
+      import('./feature-modules/public-hackathon/public-hackathon.module').then((m) => m.PublicHackathonModule),
   },
   {
     path: 'communities/:community_id/channels',
@@ -198,6 +208,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
   {
+    path: 'exa-drive',
+    loadChildren: () => import('./feature-modules/exa-drive/exa-drive.module').then((m) => m.ExaDriveModule),
+  },
+  {
     path: 'admin',
     children: [
       // {
@@ -211,6 +225,13 @@ const routes: Routes = [
         path: 'newsletters',
         loadChildren: () =>
           import('./feature-modules/main-newsletters/main-newsletters.module').then((m) => m.MainNewslettersModule),
+      },
+      {
+        path: 'communities/:community_id/hackathon-dashboard',
+        loadChildren: () =>
+          import('./feature-modules/hackathon-control-panel/hackathon-control-panel.module').then(
+            (m) => m.HackathonControlPanelModule,
+          ),
       },
       {
         path: 'communities',

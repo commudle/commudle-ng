@@ -1,0 +1,128 @@
+<nb-card>
+  <nb-card-header>Rounds</nb-card-header>
+  <nb-card-body>
+    <div (click)="openRoundDialogBox(addRoundsDialogBox)" class="add-round-button">
+      <fa-icon [icon]="icons.faPlus"></fa-icon>
+      <br />
+      <span>Add Round</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="rounds-card" *ngIf="rounds && rounds.length > 0">
+    <div *ngFor="let round of rounds; let i = index">
+      <commudle-hackathon-control-panel-round-card
+        [round]="round"
+        (destroyRoundEvent)="openConfirmDeleteDialogBox(conformDeleteDialogBox, $event, i)"
+        (editRoundEvent)="openRoundDialogBox(addRoundsDialogBox, $event, i)"
+      ></commudle-hackathon-control-panel-round-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #addRoundsDialogBox let-ref="dialogRef" let-data>
+  <nb-card class="round-form-dialog-box">
+    <nb-card-header class="actions">
+      <span>{{ data.round ? 'Edit Round' : 'Add Round' }}</span>
+      <button nbButton ghost shape="round" (click)="ref.close(); roundForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="roundForm">
+        <!-- name -->
+        <div>
+          <label for="name">Round Name*</label>
+          <input id="name" type="text" placeholder="Round Name" nbInput fullWidth formControlName="name" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['name'].invalid &&
+              roundForm.controls['name'].hasError('required') &&
+              roundForm.controls['name'].touched
+            "
+            [error]="true"
+            errorMessage="Name is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- date -->
+        <div>
+          <label for="name">Round Date*</label>
+          <input id="name" type="date" nbInput fullWidth formControlName="date" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['date'].invalid &&
+              roundForm.controls['date'].hasError('required') &&
+              roundForm.controls['date'].touched
+            "
+            [error]="true"
+            errorMessage="Date is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- order -->
+        <div>
+          <label for="order">Round Order*</label>
+          <input id="name" type="number" nbInput fullWidth formControlName="order" placeholder="1" />
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['order'].invalid &&
+              roundForm.controls['order'].hasError('required') &&
+              roundForm.controls['order'].touched
+            "
+            [error]="true"
+            errorMessage="Order is required"
+          ></commudle-alert>
+        </div>
+
+        <!-- description -->
+        <div>
+          <label for="description">Round Description*</label>
+          <textarea
+            id="description"
+            type="text"
+            placeholder="Round Description"
+            nbInput
+            fullWidth
+            formControlName="description"
+          >
+          </textarea>
+          <commudle-alert
+            *ngIf="
+              roundForm.controls['description'].invalid &&
+              roundForm.controls['description'].hasError('required') &&
+              roundForm.controls['description'].touched
+            "
+            [error]="true"
+            errorMessage="Description is required"
+          ></commudle-alert>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="actions">
+      <button
+        nbButton
+        status="primary"
+        (click)="data.round ? updateRound(data.round, data.index) : createRound(); ref.close()"
+        [disabled]="roundForm.invalid"
+      >
+        Save
+      </button>
+      <button nbButton status="danger" outline (click)="ref.close(); roundForm.reset()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #conformDeleteDialogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header class="actions">
+      <span>Confirm delete Round</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete Round?</nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="destroyRound(data.roundId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -4,7 +4,7 @@
   @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-0 com-h-[700px] com-w-full com-rounded-lg;
 
   .community-channel-list {
-    @apply com-bg-[#F9F9F9] com-overflow-hidden com-h-full com-w-full;
+    @apply com-bg-Ghost-White com-overflow-hidden com-h-full com-w-full;
   }
 
   .community-channel-discussion {
@@ -73,7 +73,7 @@
     @apply com-text-2xl com-table-cell com-text-center com-align-middle com-mt-1;
   }
   .text {
-    @apply com-text-[10px] com-text-center;
+    @apply com-text-[10px] com-text-center com-text-tblack;
   }
   &.community &.forum {
     @apply com-bg-primary-200;

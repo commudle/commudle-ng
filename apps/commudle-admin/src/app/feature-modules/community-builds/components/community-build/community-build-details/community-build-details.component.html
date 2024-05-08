@@ -20,7 +20,11 @@
       </span>
     </div>
     <div class="community-build-tags">
-      <app-tag [tags]="cBuild.tags"></app-tag>
+      <app-tag
+        [tags]="cBuild.tags"
+        [backgroundColor]="'com-bg-Azureish-White'"
+        [fontColor]="'com-text-tYankees-Blue'"
+      ></app-tag>
     </div>
     <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
       <div *ngIf="embedCode" class="com-aspect-[16/10] com-overflow-hidden">

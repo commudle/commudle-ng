@@ -20,7 +20,14 @@
       </label>
       <label>
         Image*
-        <input #inputImage (change)="addImage($event)" accept="image/svg+xml" fullWidth nbInput type="file" />
+        <input
+          #inputImage
+          (change)="addImage($event)"
+          accept="image/svg+xml,image/png,image/jpeg"
+          fullWidth
+          nbInput
+          type="file"
+        />
       </label>
       <div *ngIf="imageSrc" class="image-container">
         <img alt="{{ uploadedImage.file?.name || uploadedImage.name }}" src="{{ imageSrc }}" />

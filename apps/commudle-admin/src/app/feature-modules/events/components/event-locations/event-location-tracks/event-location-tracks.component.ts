@@ -124,6 +124,7 @@ export class EventLocationTracksComponent implements OnInit {
       this.trackSlotVisibility[event_location_track.id] = visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
     }
+
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
 

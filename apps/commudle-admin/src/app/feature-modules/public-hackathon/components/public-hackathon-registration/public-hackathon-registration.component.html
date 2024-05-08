@@ -1,0 +1,28 @@
+<nb-card *ngIf="hrgId && userTeamDetails" class="project-details-card">
+  <nb-card-header>
+    <div class="heading"></div>
+    <div>
+      Registration Status: Profile Submitted for Review
+      <a [routerLink]="['fill-form', hrgId]">Edit Your Response</a>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="round-details">Next: Round 1 confirmation</div>
+    <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+      <a
+        *ngIf="!userTeamDetails.community_build"
+        [routerLink]="['/builds', 'create']"
+        [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
+      >
+        <button nbButton status="primary" fullWidth>Submit Project</button>
+      </a>
+      <a
+        *ngIf="userTeamDetails.community_build"
+        [routerLink]="['/builds', userTeamDetails.community_build.slug, 'edit']"
+        [queryParams]="{ parent_type: 'HackathonTeam', parent_id: userTeamDetails.id }"
+      >
+        <button nbButton status="primary" fullWidth>Update My Build</button>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>
