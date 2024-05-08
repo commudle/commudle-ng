@@ -32,10 +32,10 @@ nb-card {
       }
 
       .heading {
-        @apply com-flex com-flex-row com-items-center;
+        @apply com-flex com-flex-row md:com-items-center com-items-start md:com-m-0 com-mt-1;
 
         .logo {
-          @apply com-w-10 com-h-10;
+          @apply com-w-7 com-h-7 com-mr-3;
 
           img {
             @apply com-w-full com-h-full;

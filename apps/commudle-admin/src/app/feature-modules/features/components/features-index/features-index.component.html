@@ -2,12 +2,12 @@
   <nb-card>
     <nb-card-body>
       <nb-list>
-        <nb-list-item *ngFor="let feature of features; let i = index" class="clickable">
-          <div
-            class="feature"
-            (click)="toggleShowAnswers(feature.slug.current, i)"
-            [class.active]="feature.slug.current === selectedFeatureSlug"
-          >
+        <nb-list-item
+          *ngFor="let feature of features; let i = index"
+          class="clickable"
+          [class.active]="feature.slug.current === selectedFeatureSlug"
+        >
+          <div class="feature" (click)="toggleShowAnswers(feature.slug.current, i)">
             <div class="feature-item">
               <div class="heading">
                 <div *ngIf="feature.icon" class="logo">
