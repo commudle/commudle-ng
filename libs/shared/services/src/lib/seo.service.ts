@@ -43,13 +43,23 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      let canonicalUrl;
+      let canonicalUrl = '',
+        allowedParams = '';
+      const prohibitedQueryParams = ['q', 'track_slot_id'];
       this.activatedRoute.queryParams.subscribe((data) => {
         if (data) {
-          if (data['q'] || data['track_slot_id']) {
-            canonicalUrl = url;
-          } else {
-            canonicalUrl = url.split('?')[0];
+          if (Object.keys(data).length > 0) {
+            for (const key in data) {
+              if (prohibitedQueryParams.includes(key)) {
+                allowedParams += `${key}=${data[key]}&`;
+              }
+            }
+            allowedParams = allowedParams.slice(0, -1);
+            if (allowedParams.length > 0) {
+              canonicalUrl = `${url.split('?')[0]}?${allowedParams}`;
+            } else {
+              canonicalUrl = url.split('?')[0];
+            }
           }
         }
         element.setAttribute('href', `${environment.app_url}${canonicalUrl}`);
