@@ -13,6 +13,7 @@ export class SeoService {
   public isBot: boolean;
   private isBotLegacy: boolean;
   private host: string;
+  private prohibitedQueryParams = ['q', 'track_slot_id'];
 
   constructor(
     private meta: Meta,
@@ -45,12 +46,11 @@ export class SeoService {
     this.location.onUrlChange((url, state) => {
       let canonicalUrl = '',
         allowedParams = '';
-      const prohibitedQueryParams = ['q', 'track_slot_id'];
       this.activatedRoute.queryParams.subscribe((data) => {
         if (data) {
           if (Object.keys(data).length > 0) {
             for (const key in data) {
-              if (prohibitedQueryParams.includes(key)) {
+              if (this.prohibitedQueryParams.includes(key)) {
                 allowedParams += `${key}=${data[key]}&`;
               }
             }
