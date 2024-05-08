@@ -894,4 +894,8 @@ export const API_ROUTES = {
   HACKATHON_JUDGE: {
     RESEND_INVITE: 'api/v2/hackathon_judge/resend_invite', //PUT
   },
+
+  EXPERTS: {
+    INDEX: 'api/v2/experts',
+  },
 };

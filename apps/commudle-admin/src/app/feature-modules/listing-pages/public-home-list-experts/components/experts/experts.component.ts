@@ -7,7 +7,17 @@ import { ExpertsService } from 'apps/commudle-admin/src/app/services/experts.ser
   styleUrls: ['./experts.component.scss'],
 })
 export class ExpertsComponent implements OnInit {
+  expertBadges;
   constructor(private expertsService: ExpertsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBadges();
+  }
+
+  getBadges() {
+    this.expertsService.getExpertBadges('expert').subscribe((data) => {
+      this.expertBadges = data;
+      console.log(data, 'data');
+    });
+  }
 }

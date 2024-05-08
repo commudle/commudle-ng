@@ -20,6 +20,8 @@ export class ExpertsFeaturedComponent implements OnInit {
   getFeaturedExperts() {
     this.featuredItemsService.getFeaturedItems('User', 'experts').subscribe((data) => {
       this.experts = this.experts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      // console.log(data);
+      // console.log(this.experts);
       this.showSpinner = false;
     });
   }

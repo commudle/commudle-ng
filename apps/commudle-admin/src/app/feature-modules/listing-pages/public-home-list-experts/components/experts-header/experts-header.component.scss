@@ -7,10 +7,10 @@
     .base-layout {
       @apply com-min-h-0;
       .content {
-        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col;
+        @apply com-flex md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6;
 
         .header-text {
-          @apply com-flex com-flex-col md:com-px-6 com-px-4 md:com-py-8 com-py-6 md:com-w-[855px] md:com-h-[298px] com-w-full com-h-full;
+          @apply com-flex com-flex-col md:com-w-[855px] md:com-h-[298px] com-w-full com-h-full;
 
           .heading {
             @apply md:com-text-5xl com-text-2xl com-font-bold com-mt-0 com-mb-4 com-text-blue-500;
@@ -21,7 +21,7 @@
           }
 
           .content {
-            @apply com-hidden md:com-flex;
+            @apply com-hidden md:com-flex com-px-0;
             ::ng-deep {
               p {
                 @apply com-text-gray-900 com-font-semibold;
