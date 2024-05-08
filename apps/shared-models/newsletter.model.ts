@@ -13,4 +13,5 @@ export interface INewsletter {
   created_at: Date;
   scheduled_for: Date;
   stats: IEmailStatsOverview;
+  grapes_js_editor: boolean;
 }

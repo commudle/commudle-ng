@@ -90,9 +90,26 @@
       </div>
     </div>
 
+    <div>
+      <label for="grapes_js_editor">Editor Type*</label>
+      <div class="editor-toggle">
+        <span>TinyMce Editor</span>
+        <nb-toggle formControlName="grapes_js_editor" (click)="toggleEditorSwitch()"> GrapeJs Editor</nb-toggle>
+      </div>
+    </div>
+
+    <div>{{ newsletterForm.controls['grapes_js_editor'].value }}</div>
     <div class="content">
       <label for="content">Content*</label>
-      <div id="gjs"></div>
+      <div *ngIf="newsletterForm.controls['grapes_js_editor'].value">
+        <div id="gjs"></div>
+      </div>
+      <editor
+        [init]="tinyMCE"
+        formControlName="content"
+        id="content"
+        *ngIf="!newsletterForm.controls['grapes_js_editor'].value"
+      ></editor>
     </div>
   </form>
   <section>
