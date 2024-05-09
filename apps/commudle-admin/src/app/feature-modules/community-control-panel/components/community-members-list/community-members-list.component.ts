@@ -9,6 +9,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./community-members-list.component.scss'],
 })
 export class CommunityMembersListComponent {
+  sendingRequest = false;
   communityId: string | number;
   tabs: any[] = [
     {
@@ -30,10 +31,14 @@ export class CommunityMembersListComponent {
   ) {}
 
   sendSpeakerCSV() {
+    this.sendingRequest = true;
     this.communityService
       .sendCsvSpeakersList(this.activatedRoute.parent.snapshot.params['community_id'])
       .subscribe((data) => {
-        if (data) this.toastrService.successDialog('CSV will be sent to your email inbox');
+        if (data) {
+          this.toastrService.successDialog('CSV will be sent to your email inbox');
+          this.sendingRequest = false;
+        }
       });
   }
 }

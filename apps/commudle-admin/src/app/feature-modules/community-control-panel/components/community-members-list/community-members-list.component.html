@@ -1,6 +1,13 @@
 <div class="members-list">
   <div>
-    <button (click)="sendSpeakerCSV()" nbButton outline status="primary">
+    <button
+      (click)="sendSpeakerCSV()"
+      nbButton
+      outline
+      status="primary"
+      [nbSpinner]="sendingRequest"
+      [disabled]="sendingRequest"
+    >
       <fa-icon [icon]="faEnvelope"></fa-icon> &nbsp; List of speaker CSV
     </button>
   </div>
