@@ -102,10 +102,10 @@ const routes = [
             path: 'events',
             component: AdminFeaturedEventsComponent,
           },
-          // {
-          //   path: 'featured-users',
-          //   component: AdminFeaturedUsersComponent,
-          // },
+          {
+            path: 'featured-users',
+            component: AdminFeaturedUsersComponent,
+          },
           // {
           //   path: 'featured-channels',
           //   component: AdminFeaturedCommunitiesChannelsComponent,

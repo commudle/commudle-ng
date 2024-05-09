@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPageInfo } from '@commudle/shared-models';
+import { EDbModels, IPageInfo } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { CreateFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/create-featured-item/create-featured-item.component';
 import { DeleteFeaturedItemComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/delete-featured-item/delete-featured-item.component';
@@ -39,7 +39,7 @@ export class AdminFeaturedUsersComponent implements OnInit {
         closeOnEsc: false,
         closeOnBackdropClick: false,
         context: {
-          entityType: 'User',
+          entityType: EDbModels.USER,
         },
       })
       .onClose.subscribe((data) => {
