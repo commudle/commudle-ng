@@ -1,5 +1,13 @@
 <div class="badge-heading">
-  <div *ngFor="let expertBadge of expertBadges">
-    <h2 class="heading">{{ expertBadge.name }}</h2>
+  <div *ngFor="let expertBadge of expertBadges" class="experts">
+    <div class="heading">
+      <div *ngIf="expertBadge.image" class="image">
+        <img [src]="expertBadge.image.i64 || expertBadge.image.url" />
+      </div>
+      <h2 class="heading-name">{{ expertBadge.name }}</h2>
+    </div>
+    <div>
+      <commudle-experts-users [id]="expertBadge.id"></commudle-experts-users>
+    </div>
   </div>
 </div>

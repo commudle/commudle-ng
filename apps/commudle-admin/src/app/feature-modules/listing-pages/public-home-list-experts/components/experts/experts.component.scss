@@ -1,3 +1,17 @@
 .heading {
-  @apply com-text-2xl com-font-semibold com-text-black com-m-0 com-mb-10;
+  @apply com-flex com-items-center com-m-0 com-mb-6;
+
+  .image {
+    @apply com-h-[52px] com-w-[52px];
+    img {
+      @apply com-h-full com-w-full com-object-contain;
+    }
+  }
+  .heading-name {
+    @apply com-text-2xl com-font-semibold com-text-black com-m-0;
+  }
+}
+
+.experts {
+  @apply com-py-5;
 }

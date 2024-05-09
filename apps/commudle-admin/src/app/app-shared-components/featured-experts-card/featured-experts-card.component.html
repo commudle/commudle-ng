@@ -1,19 +1,19 @@
-<nb-card [routerLink]="['/users', expert.user.username]">
+<nb-card *ngIf="expert" [routerLink]="['/users', expert.username]">
   <nb-card-body>
     <div class="expert-card">
-      <div class="expert-image">
-        <img src="{{ expert.user.photo.i320 }}" alt="{{ expert.user.name }}" />
+      <div *ngIf="expert.photo" class="expert-image">
+        <img src="{{ expert.photo.i320 }}" alt="{{ expert.name }}" />
       </div>
       <div class="details">
-        <p class="expert-name">{{ expert.user.name }}</p>
-        <p class="expert-username">@{{ expert.user.username }}</p>
-        <p class="expert-designation">{{ expert.user.designation }}</p>
-        <app-user-follow
-          [username]="expert.user.username"
+        <p class="expert-name">{{ expert.name }}</p>
+        <p class="expert-username">@{{ expert.username }}</p>
+        <p class="expert-designation">{{ expert.designation }}</p>
+        <!-- <app-user-follow
+          [username]="expert.username"
           [isMobileWidthFull]="true"
-          [name]="expert.user.name"
+          [name]="expert.name"
           [userId]="expert.id"
-        ></app-user-follow>
+        ></app-user-follow> -->
       </div>
     </div>
   </nb-card-body>

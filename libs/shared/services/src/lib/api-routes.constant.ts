@@ -897,5 +897,6 @@ export const API_ROUTES = {
 
   EXPERTS: {
     INDEX: 'api/v2/experts',
+    INDEX_EXPERTS: 'api/v2/experts/index_experts',
   },
 };

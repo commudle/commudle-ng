@@ -11,9 +11,16 @@ import { ExpertsFeaturedComponent } from './components/experts-featured/experts-
 import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
 import { ExpertsComponent } from './components/experts/experts.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
+import { ExpertsUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-experts/components/experts-users/experts-users.component';
 
 @NgModule({
-  declarations: [PublicHomeListExpertsComponent, ExpertsHeaderComponent, ExpertsFeaturedComponent, ExpertsComponent],
+  declarations: [
+    PublicHomeListExpertsComponent,
+    ExpertsHeaderComponent,
+    ExpertsFeaturedComponent,
+    ExpertsComponent,
+    ExpertsUsersComponent,
+  ],
   imports: [
     CommonModule,
     PublicHomeListExpertsRoutingModule,

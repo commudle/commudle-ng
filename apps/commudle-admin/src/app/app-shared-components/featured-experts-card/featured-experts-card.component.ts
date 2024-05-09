@@ -14,11 +14,9 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
   imports: [CommonModule, RouterModule, NbCardModule, MiniUserProfileModule],
 })
 export class FeaturedExpertsCardComponent implements OnInit {
-  @Input() expert: IFeaturedItems;
+  @Input() expert;
   staticAssets = staticAssets;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.expert);
-  }
+  ngOnInit(): void {}
 }

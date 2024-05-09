@@ -16,6 +16,11 @@ export class ExpertsService {
       params,
     });
   }
-}
 
-// experts?badge_type=expert
+  getExpertUsers(id): Observable<any> {
+    const params = new HttpParams().set('badge_id', id);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EXPERTS.INDEX_EXPERTS), {
+      params,
+    });
+  }
+}

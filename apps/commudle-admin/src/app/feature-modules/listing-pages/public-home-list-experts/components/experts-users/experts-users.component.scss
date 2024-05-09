@@ -1,0 +1,7 @@
+.expert-card {
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1;
+}
+
+.card {
+  @apply md:com-w-[276px] com-w-full;
+}
