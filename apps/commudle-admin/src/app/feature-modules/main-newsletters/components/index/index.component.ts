@@ -10,7 +10,8 @@ import { MainNewslettersService } from '../../services/main-newsletters.service'
 })
 export class IndexComponent implements OnInit, OnDestroy {
   page = 1;
-  count = 10;
+  count = 1;
+  total = 0;
   newsletters: IMainNewsletter[];
   isLoading = true;
 
@@ -29,7 +30,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.mainNewsLettersService.adminIndex(this.page, this.count).subscribe((data) => {
       this.newsletters = data.main_newsletters;
-      this.page += 1;
+      this.page = +data.page;
+      this.total = data.total;
       this.isLoading = false;
     });
   }
