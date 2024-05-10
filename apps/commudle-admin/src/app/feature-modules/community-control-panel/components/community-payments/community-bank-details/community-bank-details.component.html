@@ -16,6 +16,7 @@
     <tr>
       <th>Type</th>
       <th>Active/Status</th>
+      <th>Email</th>
       <th>Charges Enabled</th>
       <th>Payouts Enabled</th>
       <th>Bank Details</th>
@@ -23,12 +24,15 @@
     </tr>
     <tr *ngFor="let stripeAccount of stripeAccounts">
       <td>
-        <div class="logo-image">
+        <div class="logo-image" *ngIf="stripeAccount">
           <img [src]="staticAssets.stripe.url" alt="stripe" sizes="100" />
         </div>
       </td>
       <td>
         <p>{{ stripeAccount.active }}</p>
+      </td>
+      <td>
+        <p>---</p>
       </td>
 
       <td>
@@ -89,20 +93,25 @@
     </tr>
     <tr *ngFor="let razorpayAccount of razorpayAccounts">
       <td>
-        <div class="logo-image">
-          <img [src]="staticAssets.razorpay.url" alt="stripe" sizes="100" />
+        <div class="logo-image" *ngIf="razorpayAccount">
+          <img [src]="staticAssets.razorpay.url" alt="Razorpay" sizes="100" />
         </div>
       </td>
-      <td>{{ razorpayAccount.account_details['status'] | titlecase }}</td>
+      <td>{{ razorpayAccount.account_details.attributes.status | titlecase }}</td>
+      <td>{{ razorpayAccount.account_details.attributes.email }}</td>
       <td>Not Applicable</td>
       <td>Not Applicable</td>
       <td>
         <details>
-          <summary>{{ razorpayAccount.bank_details.settlements.beneficiary_name }}</summary>
+          <summary>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.beneficiary_name }}</summary>
           <p>
-            <span>****{{ razorpayAccount.bank_details.settlements.account_number.toString().slice(-4) }}</span>
+            <span
+              >****{{
+                razorpayAccount.bank_details?.active_configuration?.settlements?.account_number.toString().slice(-4)
+              }}</span
+            >
             <br />
-            <span>{{ razorpayAccount.bank_details.settlements.ifsc_code }}</span>
+            <span>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.ifsc_code }}</span>
           </p>
         </details>
       </td>

@@ -1,17 +1,26 @@
 export interface IRazorpayAccount {
   id: number;
   uuid: string;
-  account_details: JSON;
+  account_details: IRzpAccountDetails;
   account_id: string;
   bank_details: IBankDetails;
   product_id: string;
 }
 
 export interface IBankDetails {
-  settlements: {
-    account_number: number;
-    beneficiary_name: string;
-    ifsc_code: string;
+  active_configuration: {
+    settlements: {
+      account_number: number;
+      beneficiary_name: string;
+      ifsc_code: string;
+    };
+  };
+}
+
+export interface IRzpAccountDetails {
+  attributes: {
+    email: string;
+    status: string;
   };
 }
 
