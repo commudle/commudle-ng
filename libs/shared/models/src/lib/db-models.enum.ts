@@ -1,10 +1,13 @@
 export enum EDbModels {
+  COMMUNITY_BUILD = 'CommunityBuild',
+  COMMUNITY_CHANNEL = 'CommunityChannel',
   COMMUNITY_GROUP = 'CommunityGroup',
-  KOMMUNITY = 'Kommunity',
   EVENT = 'Event',
   HACKATHON = 'Hackathon',
   HACKATHON_TEAM = 'HackathonTeam',
-  COMMUNITY_BUILD = 'CommunityBuild',
-  STRIPE_CONNECT_ACCOUNT = 'StripeConnectAccount',
+  KOMMUNITY = 'Kommunity',
+  LAB = 'Lab',
   RAZORPAY_LINKED_ACCOUNT = 'RazorpayLinkedAccount',
+  STRIPE_CONNECT_ACCOUNT = 'StripeConnectAccount',
+  USER = 'User',
 }

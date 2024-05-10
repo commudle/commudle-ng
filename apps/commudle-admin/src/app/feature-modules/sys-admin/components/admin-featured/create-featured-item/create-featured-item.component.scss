@@ -1,3 +1,17 @@
 .search-result {
   @apply com-cursor-pointer com-bg-Bright-Gray-Light hover:com-bg-Bright-Gray com-p-2 com-mt-1 com-flex com-rounded-lg;
 }
+
+.dropdown {
+  @apply com-w-full com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#eef2f7] com-my-0 com-mb-2;
+  select {
+    @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
+  }
+}
+
+.dropdown:hover {
+  @apply com-bg-[#eef2f7]/50;
+  select {
+    @apply com-bg-[#eef2f7]/30;
+  }
+}
