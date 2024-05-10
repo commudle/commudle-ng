@@ -9,7 +9,6 @@ import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { NbWindowRef } from '@commudle/theme';
-
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -58,31 +57,12 @@ export class EditEventComponent implements OnInit {
     convert_urls: false,
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins: [
-      'advlist',
-      'autolink',
-      'link',
-      'image',
-      'charmap',
-      'preview',
-      'anchor',
-      'lists',
-      'searchreplace',
-      'visualblocks',
-      'code',
-      'fullscreen',
-      'insertdatetime',
-      'media',
-      'table',
-      'code',
-      'help',
-      'wordcount',
-    ],
+    plugins:
+      'advlist autolink link image charmap preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:
       'undo redo | bullist numlist | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           outdent indent | removeformat | help',
-    license_key: 'gpl',
   };
 
   constructor(
@@ -159,11 +139,17 @@ export class EditEventComponent implements OnInit {
     });
 
     if (this.event.start_time) {
-      const sDate = moment.tz(this.event.start_time, this.event.timezone).format('YYYY-MM-DDTHH:mm');
-      const eDate = moment.tz(this.event.end_time, this.event.timezone).format('YYYY-MM-DDTHH:mm');
+      const sDate = moment(this.event.start_time).toDate();
+      const eDate = moment(this.event.end_time).toDate();
+      const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
       this.eventForm.get('event').patchValue({
+        // @ts-ignore
         start_date: sDate,
+        // @ts-ignore
         end_date: eDate,
+        start_time_pick: stime, //patching start and end time saved to the form
+        end_time_pick: etime,
       });
     }
   }
@@ -207,7 +193,13 @@ export class EditEventComponent implements OnInit {
     this.startMinute = Number.parseInt(startTimePick.split(':')[1]);
 
     if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '' && this.startDate !== null) {
-      this.startTime = moment.tz(this.startDate, this.event.timezone).toDate();
+      this.startTime = moment({
+        years: this.startDate.getFullYear(),
+        months: this.startDate.getMonth(),
+        date: this.startDate.getDate(),
+        hours: this.startHour,
+        minutes: this.startMinute,
+      }).toDate();
 
       return true;
     }
@@ -222,7 +214,13 @@ export class EditEventComponent implements OnInit {
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
 
     if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '' && this.endDate !== null) {
-      this.endTime = moment.tz(this.endDate, this.event.timezone).toDate();
+      this.endTime = moment({
+        years: this.endDate.getFullYear(),
+        months: this.endDate.getMonth(),
+        date: this.endDate.getDate(),
+        hours: this.endHour,
+        minutes: this.endMinute,
+      }).toDate();
       return true;
     }
     this.endTime = null;
@@ -270,7 +268,6 @@ export class EditEventComponent implements OnInit {
       },
     );
   }
-
   close() {
     this.windowRef.close();
   }

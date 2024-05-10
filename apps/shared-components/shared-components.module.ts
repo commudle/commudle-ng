@@ -83,6 +83,9 @@ import { BuildCardComponent } from './build-card/build-card.component';
 import { HackathonLargeCardComponent } from './hackathon-cards/hackathon-large-card/hackathon-large-card.component';
 import { HackathonMediumCardComponent } from './hackathon-cards/hackathon-medium-card/hackathon-medium-card.component';
 import { InterestedMembersComponent } from './interested-members/interested-members.component';
+import { PaidFormListComponent } from './paid-form-list/paid-form-list.component';
+import { PaymentLogEdfegComponent } from './payment-detail/payment-log-edfeg/payment-log-edfeg.component';
+import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +134,9 @@ import { InterestedMembersComponent } from './interested-members/interested-memb
     HackathonLargeCardComponent,
     HackathonMediumCardComponent,
     InterestedMembersComponent,
+    PaidFormListComponent,
+    PaymentDetailComponent,
+    PaymentLogEdfegComponent,
   ],
   imports: [
     CommonModule,
@@ -214,6 +220,9 @@ import { InterestedMembersComponent } from './interested-members/interested-memb
     HackathonLargeCardComponent,
     HackathonMediumCardComponent,
     InterestedMembersComponent,
+    PaidFormListComponent,
+    PaymentLogEdfegComponent,
+    PaymentDetailComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

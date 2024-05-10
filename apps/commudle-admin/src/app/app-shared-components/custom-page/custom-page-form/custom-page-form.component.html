@@ -1,9 +1,8 @@
 <div class="custom-page-form">
-  <div (click)="backButtonClick()" class="back-button">
-    <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon>
-    Back to list of pages
+  <div class="back-button" (click)="backButtonClick()" *ngIf="!pageType">
+    <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to list of pages
   </div>
-  <h6>Create new page</h6>
+  <h6 *ngIf="!pageType">Create new page</h6>
   <form [formGroup]="customPageForm">
     <div class="title">
       <label for="title">Title*</label>
@@ -21,6 +20,32 @@
 
     <div *ngIf="customPageForm.controls['slug'].value">
       <span> Slug: {{ customPageForm.controls['slug'].value }}</span>
+    </div>
+
+    <div class="page-type">
+      <label for="page_type">Page Type*</label>
+      <div class="select">
+        <select
+          formControlName="page_type"
+          [ngClass]="{
+            'com-text-[#8E9BB3]': customPageForm.controls['page_type'].value === ''
+          }"
+        >
+          <option value="" selected disabled>Select page type</option>
+          <option *ngFor="let pageType of EPageType | keyvalue" [value]="pageType.value">
+            {{ pageType.value | capitalizeAndRemoveUnderscore }}
+          </option>
+        </select>
+      </div>
+      <commudle-alert
+        *ngIf="
+          customPageForm.controls['page_type'].touched &&
+          customPageForm.controls['page_type'].hasError('required') &&
+          customPageForm.controls['page_type'].invalid
+        "
+        errorMessage="Description is Required"
+        [error]="true"
+      ></commudle-alert>
     </div>
     <div class="discription">
       <label for="description">Description*</label>
@@ -54,7 +79,7 @@
       ></commudle-alert>
     </div>
   </form>
-  <section>
+  <section *ngIf="!pageType">
     <div class="action-buttons">
       <button
         (click)="customPageForm.controls['published'].setValue(true); createOrUpdate()"

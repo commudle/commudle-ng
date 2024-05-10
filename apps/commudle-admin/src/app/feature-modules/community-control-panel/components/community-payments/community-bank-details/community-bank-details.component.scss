@@ -1,0 +1,34 @@
+table {
+  @apply com-w-full com-border-collapse;
+}
+
+td,
+th {
+  @apply com-border com-border-solid com-border-Bright-Gray com-text-left com-p-2;
+}
+
+th {
+  @apply com-bg-gray-100;
+}
+
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#E4E9F2]  com-w-full;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}
+
+.select:focus-within {
+  @apply com-border com-border-solid com-border-primary-500;
+}
+
+.sub-category-heading {
+  @apply com-font-bold;
+}
+
+.logo-image {
+  @apply com-w-36 com-h-auto;
+  img {
+    @apply com-w-full;
+  }
+}

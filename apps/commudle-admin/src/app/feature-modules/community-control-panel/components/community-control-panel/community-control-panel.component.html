@@ -109,6 +109,41 @@
               />
               <span class="title">Hackathons</span>
             </a>
+            <a
+              *ngIf="community.payments_enabled"
+              [routerLink]="['payments']"
+              class="d-flex com-relative"
+              routerLinkActive="active"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-tWhite'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
+              <span class="title">Bank Details</span>
+            </a>
+            <a
+              *ngIf="!community.payments_enabled"
+              class="d-flex disabled com-relative"
+              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to support@commudle.com"
+            >
+              <app-badge
+                class="-com-mt-4"
+                text="New"
+                [fontColor]="'com-text-tWhite'"
+                [fontSize]="'small'"
+                [borderRadius]="'round'"
+                [color]="'com-bg-Caribbean-Green'"
+                [position]="'top right'"
+              ></app-badge>
+              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
+              <span class="title">Bank Details</span>
+            </a>
             <div class="com-relative" *ngIf="isOrganizer">
               <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
                 <nb-badge
@@ -151,41 +186,6 @@
             <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
               <fa-icon [icon]="icons.faMessage"></fa-icon>
               <span class="title">Forums</span>
-            </a>
-            <a
-              *ngIf="community.payments_enabled"
-              [routerLink]="['payments']"
-              class="d-flex com-relative"
-              routerLinkActive="active"
-            >
-              <app-badge
-                class="-com-mt-4"
-                text="New"
-                [fontColor]="'com-text-tWhite'"
-                [fontSize]="'small'"
-                [borderRadius]="'round'"
-                [color]="'com-bg-Caribbean-Green'"
-                [position]="'top right'"
-              ></app-badge>
-              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
-              <span class="title">Bank Details</span>
-            </a>
-            <a
-              *ngIf="!community.payments_enabled"
-              class="d-flex disabled com-relative"
-              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to support@commudle.com"
-            >
-              <app-badge
-                class="-com-mt-4"
-                text="New"
-                [fontColor]="'com-text-tWhite'"
-                [fontSize]="'small'"
-                [borderRadius]="'round'"
-                [color]="'com-bg-Caribbean-Green'"
-                [position]="'top right'"
-              ></app-badge>
-              <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
-              <span class="title">Bank Details</span>
             </a>
           </div>
           <div>

@@ -17,6 +17,7 @@ import {
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { NbMenuService } from '@commudle/theme';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { EDbModels } from '@commudle/shared-models';
 
 interface CustomMenuItem {
   title: string;
@@ -46,6 +47,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
 
   items = [{ title: 'pages', slug: 'pages' }];
 
+  EDbModels = EDbModels;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
@@ -69,7 +72,7 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
 
   getCustomPages() {
     this.subscriptions.push(
-      this.customPageService.getPIndex(this.communityGroup.slug, 'CommunityGroup').subscribe((data) => {
+      this.customPageService.getPIndex(this.communityGroup.slug, EDbModels.COMMUNITY_GROUP).subscribe((data) => {
         this.items = [];
         for (const page of data) {
           const newItem = { title: page.title, slug: page.slug };

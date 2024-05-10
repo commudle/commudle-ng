@@ -15,6 +15,7 @@ import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-p
 import { faCaretDown, faMessage, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
+import { EDbModels } from '@commudle/shared-models';
 
 interface CustomMenuItem {
   title: string;
@@ -109,7 +110,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   getCustomPages() {
     this.subscriptions.push(
-      this.customPageService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
+      this.customPageService.getPIndex(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
         this.items = [];
         for (const page of data) {
           const newItem = { title: page.title, slug: page.slug };
