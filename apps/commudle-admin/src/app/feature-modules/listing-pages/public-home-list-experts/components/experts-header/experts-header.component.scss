@@ -17,14 +17,14 @@
           }
 
           .sub-heading {
-            @apply md:com-text-xl com-text-base com-font-medium com-m-0 com-text-gray-900 md:com-mr-72px com-mx-0;
+            @apply md:com-text-xl com-text-base com-font-medium com-m-0 com-text-gray-800 md:com-mr-72px com-mx-0;
           }
 
           .content {
             @apply com-hidden md:com-flex com-px-0;
             ::ng-deep {
               p {
-                @apply com-text-gray-900 com-font-semibold;
+                @apply com-text-gray-800 com-font-semibold;
                 font-size: initial;
               }
             }

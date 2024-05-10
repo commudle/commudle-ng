@@ -10,8 +10,8 @@ import { PublicHomeListSpeakersModule } from '../public-home-list-speakers/publi
 import { ExpertsFeaturedComponent } from './components/experts-featured/experts-featured.component';
 import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
 import { ExpertsComponent } from './components/experts/experts.component';
-import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { ExpertsUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-experts/components/experts-users/experts-users.component';
+import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { ExpertsUsersComponent } from 'apps/commudle-admin/src/app/feature-modul
     PublicHomeListEventsModule,
     PublicHomeListSpeakersModule,
     AppSharedComponentsModule,
-    SkeletonCardsComponent,
+    SkeletonVerticalCardsComponent,
   ],
 })
 export class PublicHomeListExpertsModule {}

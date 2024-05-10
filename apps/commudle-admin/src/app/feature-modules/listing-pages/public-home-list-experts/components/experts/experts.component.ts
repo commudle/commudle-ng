@@ -14,6 +14,7 @@ interface badgesList {
 export class ExpertsComponent implements OnInit {
   expertBadges;
   badgesList: badgesList[] = [];
+  showSpinner = true;
 
   constructor(private expertsService: ExpertsService) {}
 
@@ -24,6 +25,7 @@ export class ExpertsComponent implements OnInit {
   getBadges() {
     this.expertsService.getExpertBadges('expert').subscribe((data) => {
       this.expertBadges = data;
+      this.showSpinner = false;
     });
   }
 }

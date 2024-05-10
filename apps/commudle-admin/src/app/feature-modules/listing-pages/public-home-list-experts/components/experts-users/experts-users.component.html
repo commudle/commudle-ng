@@ -1,5 +1,8 @@
-<div *ngIf="experts" class="expert-card">
+<div *ngIf="experts.length > 0" class="expert-card">
   <div *ngFor="let expert of experts" class="card">
     <commudle-featured-experts-card [expert]="expert"></commudle-featured-experts-card>
   </div>
+</div>
+<div *ngIf="experts.length === 0">
+  <h3 class="no-user-text">Users to be added soon!</h3>
 </div>
