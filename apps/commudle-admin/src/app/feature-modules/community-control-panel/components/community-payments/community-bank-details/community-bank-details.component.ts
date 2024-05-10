@@ -250,4 +250,12 @@ export class CommunityBankDetailsComponent implements OnInit {
       });
     }
   }
+
+  categoryChanges() {
+    this.razorpayAccountForm.patchValue({
+      profile: {
+        subcategory: '',
+      },
+    });
+  }
 }

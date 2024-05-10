@@ -17,6 +17,7 @@ import { DiscountCouponFormComponent } from 'apps/commudle-admin/src/app/feature
 import { EDbModels } from '@commudle/shared-models';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
 import { EPageType, ICustomPage } from 'apps/shared-models/custom-page.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'commudle-payment-settings',
   templateUrl: './payment-settings.component.html',
@@ -54,6 +55,7 @@ export class PaymentSettingsComponent implements OnInit {
     private fb: FormBuilder,
     private dialogService: NbDialogService,
     private toastrService: ToastrService,
+    private router: Router,
   ) {
     this.paidTicketingForm = this.fb.group(
       {
@@ -181,7 +183,7 @@ export class PaymentSettingsComponent implements OnInit {
 
   openCreateDiscountDialog() {
     const dialogRef = this.dialogService.open(DiscountCouponFormComponent, {
-      closeOnBackdropClick: false,
+      closeOnBackdropClick: true,
       autoFocus: true,
       hasScroll: false,
       context: { type: 'create', event: this.event },
@@ -194,6 +196,11 @@ export class PaymentSettingsComponent implements OnInit {
 
   selectAccount(event) {
     const selectedAccountUuid = event.value;
+    if (selectedAccountUuid === 'connect-bank-account') {
+      this.closeDialogBox();
+      this.router.navigate(['./admin', 'communities', this.community.slug, 'payments']);
+      return;
+    }
     const razorpayAccountSelected = this.razorpayAccounts.find((account) => account.uuid === selectedAccountUuid);
     const stripeAccountSelected = this.stripeAccounts.find((account) => account.uuid === selectedAccountUuid);
     if (razorpayAccountSelected) {

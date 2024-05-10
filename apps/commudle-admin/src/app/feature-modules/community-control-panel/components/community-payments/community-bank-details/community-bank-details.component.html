@@ -231,6 +231,11 @@
               </span>
             </label>
 
+            <commudle-alert
+              message="In case of individual or not yet registered business, please add account holder's name here"
+              [info]="true"
+            ></commudle-alert>
+
             <!-- Customer facing business name -->
             <label>
               Customer facing business name
@@ -242,20 +247,15 @@
                 nbInput
                 type="string"
               />
-              <span
-                *ngIf="
-                  razorpayAccountForm.get('legal_business_name').touched &&
-                  razorpayAccountForm.get('legal_business_name').invalid &&
-                  razorpayAccountForm.get('legal_business_name').hasError('required')
-                "
-              >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-              </span>
             </label>
 
+            <commudle-alert
+              message="In case of individual or not yet registered business, please add account holder's name here"
+              [info]="true"
+            ></commudle-alert>
             <!--  Contact Name -->
             <label>
-              Contact Name
+              Contact Name*
               <input
                 fieldSize="small"
                 formControlName="contact_name"
@@ -280,7 +280,7 @@
               <label>
                 Category*
                 <div class="select">
-                  <select formControlName="category">
+                  <select formControlName="category" (change)="categoryChanges()">
                     <option value="" selected disabled>Select category</option>
                     <option
                       *ngFor="let businessCategory of EBusinessCategory | keyvalue"
@@ -637,6 +637,10 @@
                 GST
                 <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
               </label>
+              <commudle-alert
+                message="In case of registered business, Commudle is not responsible for your GST payment to the government. It is solely your company's responsibility to pay GST and any other taxes to the government on time."
+                [info]="true"
+              ></commudle-alert>
             </div>
           </div>
         </form>

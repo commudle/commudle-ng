@@ -86,6 +86,7 @@ import { InterestedMembersComponent } from './interested-members/interested-memb
 import { PaidFormListComponent } from './paid-form-list/paid-form-list.component';
 import { PaymentLogEdfegComponent } from './payment-detail/payment-log-edfeg/payment-log-edfeg.component';
 import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/pa
     InViewportModule,
     EditorModule,
     BadgeComponent,
+    BackButtonComponent,
 
     // Nebular
     NbButtonModule,

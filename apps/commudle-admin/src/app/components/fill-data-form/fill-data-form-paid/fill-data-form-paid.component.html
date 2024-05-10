@@ -308,7 +308,16 @@
           </div>
 
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
-            <button nbButton status="primary" fullWidth (click)="submitFormAndPay()">Submit & Pay</button>
+            <button
+              nbButton
+              status="primary"
+              fullWidth
+              (click)="submitFormAndPay()"
+              [nbSpinner]="isLoadingPayment"
+              [disabled]="isLoadingPayment"
+            >
+              Submit & Pay
+            </button>
           </div>
         </div>
       </div>
