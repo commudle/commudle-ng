@@ -1,5 +1,9 @@
 <section>
-  <ng-container *ngIf="razorpayPaymentDetails && razorpayPaymentDetails.length > 0; else noDetailFound">
+  <div (click)="goBackToPrevPage()" class="back-button">
+    <fa-icon [icon]="faChevronLeft" class="com-mr-1"></fa-icon>
+    Back to list
+  </div>
+  <ng-container>
     <table>
       <tr>
         <th>Payment Id</th>
@@ -94,7 +98,6 @@
 
 <ng-template #transferDetails let-data>
   <nb-card>
-    <nb-card-header></nb-card-header>
     <nb-card-body>
       <div>{{ data.currency === 'INR' ? '₹ ' : '$ ' }}{{ data.amount / 100 }}</div>
       <div>{{ data.status }}</div>

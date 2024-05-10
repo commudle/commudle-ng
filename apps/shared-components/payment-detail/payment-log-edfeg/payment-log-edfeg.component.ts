@@ -6,6 +6,9 @@ import { NbDialogService } from '@commudle/theme';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'commudle-payment-log-edfeg',
   templateUrl: './payment-log-edfeg.component.html',
@@ -21,11 +24,13 @@ export class PaymentLogEdfegComponent implements OnInit {
   moment = moment;
   isSystemAdmin = false;
   currentUser: ICurrentUser;
+  faChevronLeft = faChevronLeft;
   constructor(
     private activatedRoute: ActivatedRoute,
     private razorpayService: RazorpayService,
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -64,5 +69,9 @@ export class PaymentLogEdfegComponent implements OnInit {
     this.razorpayService.getTransferDetails(transferId).subscribe((data) => {
       this.dialogService.open(dialog, { context: data });
     });
+  }
+
+  goBackToPrevPage(): void {
+    this.location.back();
   }
 }

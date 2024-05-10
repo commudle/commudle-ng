@@ -618,6 +618,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.razorpayService
           .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
           .subscribe((data) => {
+            this.isLoadingPayment = false;
             alert('Message from Razorpay:' + response.error.description);
           });
       }
