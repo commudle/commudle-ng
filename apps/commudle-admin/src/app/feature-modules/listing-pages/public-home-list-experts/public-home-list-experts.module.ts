@@ -5,10 +5,10 @@ import { PublicHomeListExpertsComponent } from './components/public-home-list-ex
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { ExpertsHeaderComponent } from './components/experts-header/experts-header.component';
 import { NbButtonModule, NbIconModule } from '@commudle/theme';
-import { PublicHomeListEventsModule } from '../public-home-list-events/public-home-list-events.module';
-import { PublicHomeListSpeakersModule } from '../public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { ExpertsFeaturedComponent } from './components/experts-featured/experts-featured.component';
-import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { ExpertsComponent } from './components/experts/experts.component';
 import { ExpertsUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-experts/components/experts-users/experts-users.component';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
