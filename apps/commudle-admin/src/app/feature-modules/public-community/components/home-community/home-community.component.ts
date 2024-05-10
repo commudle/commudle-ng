@@ -89,15 +89,17 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       } else {
         this.seoService.noIndex(true);
       }
+      this.subscriptions.push(
+        this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+          if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+            this.isOrganizer = true;
+            this.getNotificationsCount(this.community.id);
+          } else {
+            this.isOrganizer = false;
+          }
+        }),
+      );
     });
-    this.subscriptions.push(
-      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
-          this.isOrganizer = true;
-          this.getNotificationsCount(this.community.id);
-        }
-      }),
-    );
   }
 
   ngOnDestroy(): void {
