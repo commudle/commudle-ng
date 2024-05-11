@@ -116,8 +116,9 @@
                   (****{{ rt.details.external_accounts.data[0].last4 }}) - (Stripe)
                 </option>
                 <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
-                  {{ ra.bank_details.settlements.beneficiary_name }}
-                  (****{{ ra.bank_details.settlements.account_number.toString().slice(-4) }}) - (Razorpay)
+                  {{ ra.bank_details.active_configuration.settlements.beneficiary_name }}
+                  (****{{ ra.bank_details.active_configuration.settlements.account_number.toString().slice(-4) }}) -
+                  (Razorpay)
                 </option>
                 <option value="connect-bank-account">+ Connect Bank Account</option>
               </select>

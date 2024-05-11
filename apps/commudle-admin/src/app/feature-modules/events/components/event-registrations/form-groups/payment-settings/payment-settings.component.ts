@@ -158,7 +158,7 @@ export class PaymentSettingsComponent implements OnInit {
     );
     this.bankAccountNo = selectedAccountS
       ? selectedAccountS.details.external_accounts.data[0].last4
-      : selectedAccountR.bank_details.settlements.account_number.toString().slice(-4);
+      : selectedAccountR.bank_details.active_configuration.settlements.account_number.toString().slice(-4);
     let bankAcType: string;
 
     if (ticketDetails.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
