@@ -14,7 +14,7 @@ import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
   imports: [CommonModule, RouterModule, NbCardModule, MiniUserProfileModule],
 })
 export class FeaturedExpertsCardComponent implements OnInit {
-  @Input() expert;
+  @Input() expert: any;
   staticAssets = staticAssets;
   constructor() {}
 
