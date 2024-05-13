@@ -9,7 +9,7 @@
     <nb-list>
       <nb-list-item *ngFor="let sp of sponsors" class="sponsor">
         <a href="{{ sp.sponsor.link }}" target="_blank">
-          <div class="logo">
+          <div *ngIf="sp.sponsor.logo" class="logo">
             <img alt="{{ sp.sponsor.name }}" src="{{ sp.sponsor.logo.url }}" title="{{ sp.sponsor.name }}" />
           </div>
           <p class="name">{{ sp.sponsor.name }}</p>
