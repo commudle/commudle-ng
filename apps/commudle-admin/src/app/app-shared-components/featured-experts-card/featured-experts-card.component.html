@@ -5,7 +5,16 @@
         <img src="{{ expert.photo.i320 }}" alt="{{ expert.name }}" />
       </div>
       <div class="details">
-        <p class="expert-name">{{ expert.name }}</p>
+        <div class="expert-name">
+          <p class="name">{{ expert.name }}</p>
+          <img
+            *ngIf="expert.is_expert"
+            alt="Expert Tick"
+            class="expert-tick"
+            src="/assets/images/Expert-Tick.svg"
+            title="Expert Tick"
+          />
+        </div>
         <p class="expert-username">@{{ expert.username }}</p>
         <p class="expert-designation">{{ expert.designation }}</p>
         <app-user-follow
