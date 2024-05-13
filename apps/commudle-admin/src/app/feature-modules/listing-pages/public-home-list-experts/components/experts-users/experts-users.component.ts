@@ -9,7 +9,7 @@ import { IUser } from 'apps/shared-models/user.model';
   styleUrls: ['./experts-users.component.scss'],
 })
 export class ExpertsUsersComponent implements OnInit {
-  @Input() id;
+  @Input() BadgeId: number;
   experts: IUser[] = [];
   pageInfo: IPageInfo;
   total: number;
@@ -24,7 +24,7 @@ export class ExpertsUsersComponent implements OnInit {
 
   getExperts() {
     this.isLoadingExperts = true;
-    this.expertsService.getExpertUsers(this.id, this.pageInfo?.end_cursor, this.limit).subscribe((data) => {
+    this.expertsService.getExpertUsers(this.BadgeId, this.pageInfo?.end_cursor, this.limit).subscribe((data) => {
       this.experts = this.experts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.total = data.total;
       this.pageInfo = data.page_info;
