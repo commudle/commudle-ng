@@ -1,0 +1,11 @@
+.expert-card {
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6;
+}
+
+.card {
+  @apply md:com-w-[276px] com-h-[444px] com-w-full;
+}
+
+.no-user-text {
+  @apply com-text-lg com-font-medium com-m-0;
+}

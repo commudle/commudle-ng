@@ -1,0 +1,15 @@
+.experts {
+  @apply com-m-0 com-mt-8 md:com-mx-0 com-mx-4 com-mb-2;
+
+  .featured-heading {
+    @apply com-m-0 com-mb-6 com-text-2xl com-font-semibold com-text-black;
+  }
+
+  .featured-experts {
+    @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6;
+  }
+
+  .featured-experts-card {
+    @apply md:com-w-[276px] com-h-[444px] com-w-full;
+  }
+}
