@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from '@commudle/shared-services';
 import { Observable } from 'rxjs';
-import { IPagination } from '@commudle/shared-models';
+import { IPagination, IUser } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class ExpertsService {
     });
   }
 
-  getExpertUsers(id, after?, limit?): Observable<IPagination<any>> {
+  getExpertUsers(id, after?, limit?): Observable<IPagination<IUser>> {
     let params = new HttpParams();
     if (id) {
       params = params.set('badge_id', id);
@@ -29,7 +29,7 @@ export class ExpertsService {
     if (limit) {
       params = params.set('limit', limit);
     }
-    return this.http.get<IPagination<any>>(this.apiRoutesService.getRoute(API_ROUTES.EXPERTS.INDEX_EXPERTS), {
+    return this.http.get<IPagination<IUser>>(this.apiRoutesService.getRoute(API_ROUTES.EXPERTS.INDEX_EXPERTS), {
       params,
     });
   }

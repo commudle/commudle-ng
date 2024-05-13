@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { ExpertsService } from 'apps/commudle-admin/src/app/services/experts.service';
+import { IUser } from 'apps/shared-models/user.model';
 
 @Component({
   selector: 'commudle-experts-users',
@@ -9,7 +10,7 @@ import { ExpertsService } from 'apps/commudle-admin/src/app/services/experts.ser
 })
 export class ExpertsUsersComponent implements OnInit {
   @Input() id;
-  experts = [];
+  experts: IUser[] = [];
   pageInfo: IPageInfo;
   total: number;
   isLoadingExperts = true;
