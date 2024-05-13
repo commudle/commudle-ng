@@ -208,6 +208,8 @@ export const API_ROUTES = {
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
+    INDEX_BY_COMMUNITY: 'api/v2/event_data_form_entity_groups/index_by_community',
+    LIST: 'api/v2/event_data_form_entity_groups/list',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
@@ -728,6 +730,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/paid_ticket_settings',
     UPDATE: 'api/v2/paid_ticket_settings',
     INDEX: 'api/v2/paid_ticket_settings/details',
+    CALCULATE_COMMUDLE_FEE_AMOUNT: 'api/v2/paid_ticket_settings/calculate_commudle_fee_amount',
     PUBLIC: {
       SHOW: 'api/v2/paid_ticket_settings/public/show',
     },
@@ -750,6 +753,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/custom_pages/show', //GET
     INDEX: 'api/v2/custom_pages', //GET
     GET_SLUG: 'api/v2/custom_pages/generate_slug',
+    REFUND_POLICY_PAGE: 'api/v2/custom_pages/refund_policy_page',
     PUBLIC: {
       SHOW: 'api/v2/custom_pages/public/show', //GET
       INDEX: 'api/v2/custom_pages/public/index', //GET
@@ -894,9 +898,19 @@ export const API_ROUTES = {
   HACKATHON_JUDGE: {
     RESEND_INVITE: 'api/v2/hackathon_judge/resend_invite', //PUT
   },
-
+  
   EXPERTS: {
     INDEX: 'api/v2/experts',
     INDEX_EXPERTS: 'api/v2/experts/index_experts',
+  },
+  
+  RAZORPAY: {
+    CREATE: 'api/v2/razorpay', //POST
+    INDEX: 'api/v2/razorpay', //GET
+    FIND_OR_CREATE_ORDER: 'api/v2/razorpay/find_or_create_order', //POST
+    CREATE_OR_UPDATE_PAYMENT: 'api/v2/razorpay/create_or_update_payment', //PUT
+    GET_ALL_PAYMENT_DETAILS: 'api/v2/razorpay/get_all_payment_details', //GET
+    CREATE_TRANSFER: 'api/v2/razorpay/create_transfer', //GET
+    GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
   },
 };

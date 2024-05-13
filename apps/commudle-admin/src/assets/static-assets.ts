@@ -123,4 +123,14 @@ export const staticAssets = {
 
   expert_program_header:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd0FZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--11d25f55ae2c13a94e0c9fc8724863d43d9a5e16/Header%20Frame%20Pattern.png',
+
+  stripe: {
+    id: 97,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOWRDQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--db7d5da8d5636d2ff9a354a98d42306a458a62b5/Stripe%20wordmark%20-%20blurple.svg',
+  },
+
+  razorpay: {
+    id: 144,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM2sxQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--401df19785a101dbb8c939863455bd55d6f49d60/razorpay.svg',
+  },
 };

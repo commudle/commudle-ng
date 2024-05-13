@@ -46,4 +46,14 @@ export class PaymentSettingService {
       },
     );
   }
+
+  calculateCommudleFeeAmount(price: number, taxPercentage: number): Observable<number> {
+    const params = new HttpParams().set('price', price).set('tax_percentage', taxPercentage);
+    return this.http.get<number>(
+      this.baseApiService.getRoute(API_ROUTES.PAID_TICKET_SETTINGS.CALCULATE_COMMUDLE_FEE_AMOUNT),
+      {
+        params,
+      },
+    );
+  }
 }

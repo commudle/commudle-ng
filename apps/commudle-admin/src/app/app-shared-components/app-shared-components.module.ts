@@ -76,6 +76,7 @@ import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-compon
     PublicPageSignupNewsletterComponent,
     FeaturedExpertsCardComponent,
     AdminHackathonComponent,
+    CustomPageFormComponent,
     WhatsNewComponent,
   ],
   imports: [
