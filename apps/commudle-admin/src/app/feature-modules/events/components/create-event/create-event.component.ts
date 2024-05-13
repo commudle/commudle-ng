@@ -130,6 +130,7 @@ export class CreateEventComponent implements OnInit {
     if (this.setStartDateTime() && this.setEndDateTime()) {
       if (this.startTime > this.endTime) {
         this.toastLogService.warningDialog('End time has to be greater then start time');
+        this.isFormSubmitting = false;
         return;
       } else {
         formValue['start_time'] = this.startTime;
@@ -137,11 +138,16 @@ export class CreateEventComponent implements OnInit {
       }
     }
 
-    this.eventsService.createEvent(formValue, this.community, this.tags).subscribe((data) => {
-      this.isFormSubmitting = false;
-      this.toastLogService.successDialog('Created!');
-      this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
-    });
+    this.eventsService.createEvent(formValue, this.community, this.tags).subscribe(
+      (data) => {
+        this.isFormSubmitting = false;
+        this.toastLogService.successDialog('Created!');
+        this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
+      },
+      (error) => {
+        this.isFormSubmitting = false;
+      },
+    );
   }
 
   setStartDateTime() {

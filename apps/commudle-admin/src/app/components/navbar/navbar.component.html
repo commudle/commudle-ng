@@ -47,8 +47,8 @@
         <button *ngIf="!isDarkMode" (click)="toggleDarkMode(true)" class="toggle-btn" nbButton>
           <fa-icon [icon]="faMoon"></fa-icon>
         </button>
-        <button *ngIf="isDarkMode" (click)="toggleDarkMode(false)" class="toggle-btn" nbButton>
-          <fa-icon [icon]="faSun"></fa-icon>
+        <button *ngIf="isDarkMode" (click)="toggleDarkMode(false)" class="toggle-btn !com-p-0" nbButton>
+          <img src="https://json.commudle.com/icons/dark-mode-sun-icon.svg" />
         </button>
       </div>
       <div>

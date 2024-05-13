@@ -20,3 +20,4 @@ export * from './lib/country-deatils.store';
 export * from './lib/faq.service';
 export * from './lib/round.service';
 export * from './lib/note.service';
+export * from './lib/razorpay.service';

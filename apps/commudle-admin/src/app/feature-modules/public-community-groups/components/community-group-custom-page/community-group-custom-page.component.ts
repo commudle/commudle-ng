@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EDbModels } from '@commudle/shared-models';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { Subscription, combineLatest } from 'rxjs';
@@ -12,6 +13,7 @@ import { Subscription, combineLatest } from 'rxjs';
 export class CommunityGroupCustomPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   page: ICustomPage;
+  EDbModels = EDbModels;
 
   constructor(private activatedRoute: ActivatedRoute, private customPageService: CustomPageService) {}
 
@@ -25,7 +27,7 @@ export class CommunityGroupCustomPageComponent implements OnInit, OnDestroy {
 
   getCustomPage(pageSlug, communityGroupId) {
     this.subscriptions.push(
-      this.customPageService.getPShow(pageSlug, communityGroupId, 'CommunityGroup').subscribe((data) => {
+      this.customPageService.getPShow(pageSlug, communityGroupId, EDbModels.COMMUNITY_GROUP).subscribe((data) => {
         this.page = data;
       }),
     );
