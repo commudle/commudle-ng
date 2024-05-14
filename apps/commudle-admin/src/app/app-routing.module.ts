@@ -43,6 +43,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'experts',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-experts/public-home-list-experts.module').then(
+        (m) => m.PublicHomeListExpertsModule,
+      ),
+  },
+  {
     path: 'newsletters',
     loadChildren: () =>
       import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),

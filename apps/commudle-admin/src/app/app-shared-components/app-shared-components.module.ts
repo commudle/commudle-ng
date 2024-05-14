@@ -38,6 +38,7 @@ import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-c
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-experts-card/featured-experts-card.component';
 import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
 import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 
@@ -73,7 +74,9 @@ import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-compon
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+    FeaturedExpertsCardComponent,
     AdminHackathonComponent,
+    CustomPageFormComponent,
     WhatsNewComponent,
   ],
   imports: [
@@ -92,6 +95,7 @@ import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-compon
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    FeaturedExpertsCardComponent,
     WhatsNewComponent,
 
     // Nebular

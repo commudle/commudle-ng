@@ -1,0 +1,45 @@
+a {
+  @apply com-no-underline;
+}
+
+nb-card {
+  @apply com-m-0 com-h-full com-w-full;
+
+  nb-card-body {
+    @apply com-p-0;
+
+    .expert-card {
+      @apply com-flex com-flex-col;
+
+      .expert-image {
+        @apply com-h-[274px];
+        img {
+          @apply com-w-full com-h-full com-rounded-t-[10px];
+        }
+      }
+
+      .details {
+        @apply com-px-4 com-pb-4 com-pt-3;
+
+        .expert-name {
+          @apply com-flex com-flex-row com-items-center com-m-0 com-mb-1;
+          .name {
+            @apply com-text-base com-font-medium com-text-black com-m-0;
+          }
+
+          .expert-tick {
+            @apply com-h-4 com-w-4 com-m-0 com-ml-2;
+          }
+        }
+
+        .expert-username {
+          @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-1;
+        }
+
+        .expert-designation {
+          @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
+        }
+      }
+    }
+  }
+}

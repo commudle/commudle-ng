@@ -1,8 +1,10 @@
+/* eslint-disable prefer-const */
 import { DOCUMENT, Location } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '@commudle/shared-environments';
 import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +13,14 @@ export class SeoService {
   public isBot: boolean;
   private isBotLegacy: boolean;
   private host: string;
+  private prohibitedQueryParams = ['q', 'track_slot_id'];
 
   constructor(
     private meta: Meta,
     private title: Title,
     private location: Location,
     private cookieService: CookieService,
+    private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
   ) {
     // using native js because angular's route takes somewhere between 100-200ms to initialize and get the query param
@@ -40,7 +44,26 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      element.setAttribute('href', `${environment.app_url}${url}`);
+      let canonicalUrl = '',
+        allowedParams = '';
+      this.activatedRoute.queryParams.subscribe((data) => {
+        if (data) {
+          if (Object.keys(data).length > 0) {
+            for (const key in data) {
+              if (this.prohibitedQueryParams.includes(key)) {
+                allowedParams += `${key}=${data[key]}&`;
+              }
+            }
+            allowedParams = allowedParams.slice(0, -1);
+            if (allowedParams.length > 0) {
+              canonicalUrl = `${url.split('?')[0]}?${allowedParams}`;
+            } else {
+              canonicalUrl = url.split('?')[0];
+            }
+          }
+        }
+        element.setAttribute('href', `${environment.app_url}${canonicalUrl}`);
+      });
     });
   }
 

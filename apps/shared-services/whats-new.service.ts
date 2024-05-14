@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import moment from 'moment';
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Injectable({
@@ -12,12 +11,13 @@ export class WhatsNewService {
   getCookieByName(cookieName) {
     return this.cookieService.get(cookieName);
   }
+
   setCookieCreationTime(cookieName) {
     const creationTime = new Date().toISOString();
     this.cookieService.set(cookieName, creationTime);
   }
 
-  getNewUpdates() {
-    return this.cmsService.getDataByType('whatNew');
+  getNewUpdates(date) {
+    return this.cmsService.getDataByTypeFilterWithDate('whatNew', date, 'date desc');
   }
 }

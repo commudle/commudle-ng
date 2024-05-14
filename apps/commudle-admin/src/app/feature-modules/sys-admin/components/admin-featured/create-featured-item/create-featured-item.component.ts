@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { EDbModels } from '@commudle/shared-models';
 import { NbDialogRef } from '@commudle/theme';
-import { groupResults } from 'apps/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { SysAdminFeaturedItemsService } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-featured-items.service';
 import { ISearch } from 'apps/shared-models/search.model';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged, switchMap } from 'rxjs';
+import { ECategoryType } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-create-featured-item',
@@ -13,7 +14,7 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 
   styleUrls: ['./create-featured-item.component.scss'],
 })
 export class CreateFeaturedItemComponent implements OnInit {
-  @Input() entityType: 'CommunityBuild' | 'Kommunity' | 'Lab' | 'Event' | 'User' | 'CommunityChannel';
+  @Input() entityType: EDbModels;
   reason: string;
   searchQuery: string;
   entityId: number;
@@ -23,6 +24,9 @@ export class CreateFeaturedItemComponent implements OnInit {
   selectedEntityValue: string;
 
   inputFormControl: FormControl;
+  EDbModels = EDbModels;
+  categoryType = '';
+  ECategoryType = ECategoryType;
 
   constructor(
     private featuredService: SysAdminFeaturedItemsService,
@@ -52,7 +56,12 @@ export class CreateFeaturedItemComponent implements OnInit {
   createFeaturedItems() {
     this.featuredService
       .createFeaturedItems({
-        featured_item: { entity_type: this.entityType, entity_id: this.entityId, reason: this.reason },
+        featured_item: {
+          entity_type: this.entityType,
+          entity_id: this.entityId,
+          reason: this.reason,
+          category_type: this.categoryType,
+        },
       })
       .subscribe((data) => {
         this.close(data);

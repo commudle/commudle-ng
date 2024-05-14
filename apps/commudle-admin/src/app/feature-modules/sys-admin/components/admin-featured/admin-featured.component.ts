@@ -27,10 +27,10 @@ export class AdminFeaturedComponent implements OnInit {
       title: 'Featured Events',
       route: ['./events'],
     },
-    // {
-    //   title: 'Featured Users',
-    //   route: ['./featured-users'],
-    // },
+    {
+      title: 'Featured Users',
+      route: ['./featured-users'],
+    },
     // {
     //   title: 'Featured channels',
     //   route: ['./featured-channels'],
