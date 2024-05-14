@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'commudle-public-home-list-experts',
@@ -8,9 +9,10 @@ import { SeoService } from 'apps/shared-services/seo.service';
 })
 export class PublicHomeListExpertsComponent implements OnInit {
   isMobileView: boolean;
-  constructor(private seoService: SeoService) {}
+  constructor(private seoService: SeoService, private footerService: FooterService) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.isMobileView = window.innerWidth <= 640;
     this.setMeta();
   }
