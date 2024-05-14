@@ -9,8 +9,7 @@ p {
     @apply com-h-max com-mt-4 com-mx-0 com-mb-0;
 
     nb-card-body {
-      @apply com-p-4;
-      @apply md:com-py-10 md:com-px-8;
+      @apply com-p-4 md:com-p-6;
 
       .heading {
         @apply com-m-0 com-text-2xl com-font-semibold com-mb-8 com-text-Yankees-Blue;
@@ -31,4 +30,16 @@ p {
       }
     }
   }
+}
+
+.title {
+  @apply com-text-2xl com-font-semibold com-text-Yankees-Blue md:com-mb-6 md:com-mt-0 com-mb-4 com-mt-0;
+}
+
+.event-horizontal-card {
+  @apply com-flex com-flex-col com-gap-4;
+}
+
+.main-column {
+  @apply lg:com-col-span-2;
 }
