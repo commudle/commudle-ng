@@ -1,9 +1,9 @@
 <div class="community-about com-grid com-grid-cols-1 lg:com-grid-cols-3 com-gap-4">
   <div class="main-column">
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <nb-card *ngIf="upcomingEvents.length > 0">
+    <nb-card *ngIf="community.upcoming_events_count > 0">
       <nb-card-body>
         <h2 class="title">Upcoming Events</h2>
+        <app-loading-spinner *ngIf="isLoadingEvents"></app-loading-spinner>
         <div class="event-horizontal-card">
           <div *ngFor="let event of upcomingEvents">
             <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>

@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   organizers: IUser[] = [];
   events: IEvent[] = [];
   upcomingEvents: IEvent[] = [];
-
+  isLoadingEvents = false;
   isLoading = false;
 
   constructor(
@@ -33,7 +33,9 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
-      this.getEvents();
+      if (this.community.upcoming_events_count > 0) {
+        this.getEvents();
+      }
       this.seoService.setTitle(this.community.name);
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
     });
@@ -51,7 +53,7 @@ export class AboutComponent implements OnInit {
   }
 
   getEvents() {
-    this.isLoading = true;
+    this.isLoadingEvents = true;
     this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
       this.events = data.events;
       this.events.forEach((event) => {
@@ -59,7 +61,7 @@ export class AboutComponent implements OnInit {
           this.upcomingEvents.push(event);
         }
       });
-      this.isLoading = false;
+      this.isLoadingEvents = false;
     });
   }
 }

@@ -43,3 +43,7 @@ p {
 .main-column {
   @apply lg:com-col-span-2;
 }
+
+app-loading-spinner {
+  @apply com-my-4;
+}
