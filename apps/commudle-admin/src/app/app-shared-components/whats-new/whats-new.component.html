@@ -7,7 +7,7 @@
             <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
             <p class="heading-text">What’s New</p>
           </div>
-          <button nbButton (click)="setCookie(); closePopup()">
+          <button nbButton ghost (click)="setCookie(); closePopup()">
             <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
         ></nb-card-header>
         <nb-card-body>
@@ -44,7 +44,7 @@
           <fa-icon [icon]="faBullhorn" class="heading-icon"></fa-icon>
           <p class="heading-text">What’s New</p>
         </div>
-        <button nbButton (click)="setCookie(); ref.close()">
+        <button nbButton ghost (click)="setCookie(); ref.close()">
           <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
       ></nb-card-header>
       <nb-card-body>

@@ -13,10 +13,14 @@ import { Observable } from 'rxjs';
 export class FeaturedItemsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getFeaturedItems(entityType): Observable<IPagination<IFeaturedItems>> {
+  getFeaturedItems(entityType, categoryType?): Observable<IPagination<IFeaturedItems>> {
     let params = new HttpParams();
     if (entityType) {
       params = params.set('entity_type', entityType);
+    }
+
+    if (categoryType) {
+      params = params.set('category', categoryType);
     }
     return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.FEATURED_ITEMS.PUBLIC.SHOW), { params });
   }
