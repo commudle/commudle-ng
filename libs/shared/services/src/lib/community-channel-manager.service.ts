@@ -130,7 +130,7 @@ export class CommunityChannelManagerService {
 
   getChannels() {
     this.communityChannelsService
-      .index(this.selectedCommunity.value.slug, this.discussionType.CHANNEL)
+      .indexChannelForum(this.selectedCommunity.value.slug, this.discussionType.CHANNEL)
       .subscribe((data) => {
         if (this.channels.length > 0) {
           this.channels = [];
@@ -143,7 +143,7 @@ export class CommunityChannelManagerService {
 
   getForums() {
     this.communityChannelsService
-      .index(this.selectedCommunity.value.slug, this.discussionType.FORUM)
+      .indexChannelForum(this.selectedCommunity.value.slug, this.discussionType.FORUM)
       .subscribe((data) => {
         if (this.forums.length > 0) {
           this.forums = [];
@@ -202,21 +202,25 @@ export class CommunityChannelManagerService {
   }
 
   createChannel(channelData) {
-    this.communityChannelsService.create(this.selectedCommunity.value.slug, channelData).subscribe((data) => {
-      // select this channel
-      this.selectedChannel.next(data);
+    this.communityChannelsService
+      .createChannelForum(this.selectedCommunity.value.slug, channelData)
+      .subscribe((data) => {
+        // select this channel
+        this.selectedChannel.next(data);
 
-      // add this channel to the group in the list of channels
-      const allChannels = this.communityChannels.value;
-      allChannels[data.group_name] ? allChannels[data.group_name].push(data) : (allChannels[data.group_name] = [data]);
-      this.communityChannels.next(allChannels);
-      this.getChannelRoles(data);
-      this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
-    });
+        // add this channel to the group in the list of channels
+        const allChannels = this.communityChannels.value;
+        allChannels[data.group_name]
+          ? allChannels[data.group_name].push(data)
+          : (allChannels[data.group_name] = [data]);
+        this.communityChannels.next(allChannels);
+        this.getChannelRoles(data);
+        this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
+      });
   }
 
   createForum(forumData) {
-    this.communityChannelsService.create(this.selectedCommunity.value.slug, forumData).subscribe((data) => {
+    this.communityChannelsService.createChannelForum(this.selectedCommunity.value.slug, forumData).subscribe((data) => {
       // select this channel
       // this.selectedForum.next(data);
 
@@ -256,7 +260,7 @@ export class CommunityChannelManagerService {
   }
 
   deleteChannel(channelId, archive) {
-    this.communityChannelsService.delete(channelId, archive).subscribe((data) => {
+    this.communityChannelsService.deleteChannelForum(channelId, archive).subscribe((data) => {
       // get all the channels
       const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
       this.toastLogService.successDialog('Channel was deleted');
