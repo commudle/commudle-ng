@@ -1,14 +1,19 @@
-<div class="header">
+<div *ngIf="caseStudyPageHeader" class="header">
   <div class="background-image" [ngStyle]="{ 'background-image': 'url(\'' + this.BackgroundImage + '\')' }">
-    <!-- <img [src]="imageUrl(caseStudyPageHeader.header_image).url()" class="com-w-full" /> -->
     <div class="base-layout">
       <div class="content">
-        <!-- <div class="header-text">
+        <div class="logo-image">
+          <img
+            [src]="imageUrl(caseStudyPageHeader.logoImage).url()"
+            alt="{{ caseStudyPageHeader.title }}"
+            title="{{ caseStudyPageHeader.title }}"
+          />
+        </div>
+        <div class="header-text">
           <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
-          <p class="heading">{{ caseStudyPageHeader.heading }}</p>
-          <div [innerHTML]="richText" class="content"></div> -->
+          <h2 class="tagline">{{ caseStudyPageHeader.tagline }}</h2>
+        </div>
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </div>

@@ -27,10 +27,7 @@ export class CaseStudyTaaranganaHeaderComponent implements OnInit {
   getHeaderText() {
     this.cmsService.getDataBySlug('taarangana').subscribe((data) => {
       this.caseStudyPageHeader = data;
-      console.log(this.caseStudyPageHeader);
-      this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.header_image).url();
-      console.log(this.BackgroundImage);
-      // this.richText = this.cmsService.getHtmlFromBlock(data);
+      this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.bannerImage).url();
     });
   }
 }

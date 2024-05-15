@@ -9,4 +9,7 @@ export interface IListingPageHeader {
   slug: { current: string };
   content: [];
   image_link?: string;
+  bannerImage: SanityImageObject;
+  tagline: string;
+  logoImage: SanityImageObject;
 }

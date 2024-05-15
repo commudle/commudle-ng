@@ -1,1 +1,25 @@
-<commudle-case-study-taarangana-header></commudle-case-study-taarangana-header>
+<div class="case-study">
+  <commudle-case-study-taarangana-header></commudle-case-study-taarangana-header>
+  <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
+  <div class="base-layout">
+    <div class="container">
+      <div class="challenges">
+        <h2>Challenges</h2>
+        <div [innerHTML]="richTextChallenges"></div>
+      </div>
+      <div class="solution">
+        <h2>How commudle solved it</h2>
+        <div [innerHTML]="richTextSolution"></div>
+      </div>
+      <div *ngIf="testimonials" id="testimonials">
+        <div class="testimonials">
+          <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></h2>
+          <h3 class="subheading">Don't just take our word for it</h3>
+          <div class="testimonial-card">
+            <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
