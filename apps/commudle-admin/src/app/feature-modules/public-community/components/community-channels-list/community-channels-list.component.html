@@ -1,6 +1,10 @@
 <nb-card>
   <nb-card-body class="com-overflow-hidden">
     <!-- pass community with input -->
-    <app-community-channels-dashboard [selectedCommunity]="community"></app-community-channels-dashboard>
+    <commudle-channel-forum-dashboard
+      [parent]="community"
+      [parentType]="EDbModels.KOMMUNITY"
+      [selectedCommunity]="community"
+    ></commudle-channel-forum-dashboard>
   </nb-card-body>
 </nb-card>

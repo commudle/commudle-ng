@@ -1,31 +1,29 @@
-/* eslint-disable @angular-eslint/component-selector */
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable no-case-declarations */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { ICommunity } from 'apps/shared-models/community.model';
-import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
-import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDbModels, EDiscussionType, ICommunity, ICommunityChannel, IUser } from '@commudle/shared-models';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
+import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
 @Component({
-  selector: 'app-community-channels-dashboard',
-  templateUrl: './community-channels-dashboard.component.html',
-  styleUrls: ['./community-channels-dashboard.component.scss'],
+  selector: 'commudle-channel-forum-dashboard',
+  templateUrl: './channel-forum-dashboard.component.html',
+  styleUrls: ['./channel-forum-dashboard.component.scss'],
 })
-export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
+export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
+  @Input() parent: ICommunity | ICommunityGroup;
+  @Input() parentType: EDbModels;
+
   communityForums: EGroupedCommunityChannels;
-  currentUser: ICurrentUser;
+  currentUser: IUser;
   communityChannels;
   channelsQueried = false;
   selectedChannelOrFormId: number;
@@ -60,7 +58,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   emailToken: string;
 
   constructor(
-    private authWatchService: LibAuthwatchService,
+    private authWatchService: AuthService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
     private seoService: SeoService,
@@ -141,14 +139,6 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-  setMeta() {
-    this.seoService.setTags(
-      `Channels - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-      this.selectedCommunity.logo_path,
-    );
-  }
-
   updateSelectedChannelOrForum(channel?) {
     if (!this.discussionTypeForum && channel) {
       this.selectedChannelOrFormId = channel.id;
@@ -174,23 +164,27 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openChannelOrForums(discussionType) {
-    if (discussionType === this.discussionType.CHANNEL) {
-      this.forumsNamesList = false;
-      this.forumMessage = false;
-      this.forumsList = false;
-      const currentUrl = this.router.url;
-      const newUrl = currentUrl.replace(/\/forums\/?(\d+)?$/, '/channels');
-      this.router.navigate([newUrl]);
-    } else if (discussionType === this.discussionType.FORUM) {
-      this.channelsList = false;
-      this.forumsNamesList = false;
-      this.forumMessage = false;
-      this.forumsList = true;
-      const currentUrl = this.router.url;
-      const newUrl = currentUrl.replace(/\/channels\/?(\d+)?$/, '/forums');
-      this.router.navigate([newUrl]);
+  openChannelOrForums(discussionType: EDiscussionType) {
+    const currentUrl = this.router.url;
+    let newUrl: string;
+    switch (discussionType) {
+      case EDiscussionType.CHANNEL:
+        this.forumsNamesList = false;
+        this.forumMessage = false;
+        this.forumsList = false;
+        newUrl = currentUrl.replace(/\/(forums|channels)(\/\d+)?(\?.*)?$/, '/channels');
+        break;
+      case EDiscussionType.FORUM:
+        this.channelsList = false;
+        this.forumsNamesList = false;
+        this.forumMessage = false;
+        this.forumsList = true;
+        newUrl = currentUrl.replace(/\/(forums|channels)(\/\d+)?(\?.*)?$/, '/forums');
+        break;
+      default:
+        console.error(`Unable to redirect to ${{ discussionType }}`);
     }
+    this.router.navigate([newUrl]);
     this.checkDiscussionType();
   }
 
@@ -198,5 +192,14 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.forumsNamesList = false;
     this.forumsCards = false;
     this.forumMessage = true;
+  }
+
+  // The `setMeta` function sets meta tags for SEO with information related to the selected community.
+  setMeta() {
+    this.seoService.setTags(
+      `Channels - ${this.selectedCommunity.name}`,
+      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
