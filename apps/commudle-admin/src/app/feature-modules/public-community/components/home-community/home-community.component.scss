@@ -98,7 +98,7 @@
   .menu-items {
     @apply com-ml-2 com-overflow-y-scroll md:com-overflow-y-hidden;
     a {
-      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
+      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline com-mt-4;
 
       nb-icon,
       fa-icon {
@@ -128,6 +128,10 @@
       }
     }
   }
+}
+
+.menu-items-footer {
+  @apply com-p-0 com-sticky com-top-16 com-z-20;
 }
 
 .banner-image {

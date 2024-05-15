@@ -42,6 +42,7 @@ import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules
 import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
 import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/public-community-hackathons/public-community-hackathons.component';
+import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,6 @@ import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/
     FontAwesomeModule,
     UserConsentsComponent,
     CommunityChannelsModule,
-
     // Nebular
     NbCardModule,
     NbListModule,
@@ -91,9 +91,9 @@ import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/
     NbDialogModule.forChild(),
     NbSpinnerModule,
     NbContextMenuModule,
-
     SkeletonVerticalCardsComponent,
     BackButtonComponent,
+    EventHorizontalCardComponent,
   ],
 })
 export class PublicCommunityModule {}
