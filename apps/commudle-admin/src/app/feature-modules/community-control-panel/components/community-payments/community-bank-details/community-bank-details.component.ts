@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,7 +36,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   templateUrl: './community-bank-details.component.html',
   styleUrls: ['./community-bank-details.component.scss'],
 })
-export class CommunityBankDetailsComponent implements OnInit {
+export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
   isLoading = false;
   communityId: number;
   ac: string;
@@ -77,6 +78,7 @@ export class CommunityBankDetailsComponent implements OnInit {
     TransportSubcategory,
   };
   staticAssets = staticAssets;
+  showPanField = false;
 
   constructor(
     private stripeHandlerService: StripeHandlerService,
@@ -123,7 +125,7 @@ export class CommunityBankDetailsComponent implements OnInit {
         }),
       }),
       legal_info: this.fb.group({
-        pan: ['', Validators.required],
+        pan: [''],
         gst: [''],
       }),
     });
@@ -141,6 +143,7 @@ export class CommunityBankDetailsComponent implements OnInit {
     this.communityId = this.activatedRoute.parent.parent.snapshot.params['community_id'];
     this.getStripeAccounts();
     this.getRazorpayAccounts();
+    this.businessTypeChanged();
     this.ac = this.activatedRoute.snapshot.queryParamMap.get('ac');
     if (this.ac) {
       this.retrieveStripeAccount(this.ac);
@@ -194,7 +197,7 @@ export class CommunityBankDetailsComponent implements OnInit {
     );
   }
 
-  retrieveStripeAccount(uuid) {
+  retrieveStripeAccount(uuid: string) {
     this.isUpdating = true;
     this.subscriptions.push(
       this.stripeHandlerService.retrieveStripeAccount(uuid).subscribe((data) => {
@@ -210,7 +213,7 @@ export class CommunityBankDetailsComponent implements OnInit {
     );
   }
 
-  updateStripeAccount(uuid) {
+  updateStripeAccount(uuid: string) {
     const currentUrl = this.router.url;
     this.subscriptions.push(
       this.stripeHandlerService.linkAccount(uuid, currentUrl).subscribe((data) => {
@@ -256,6 +259,28 @@ export class CommunityBankDetailsComponent implements OnInit {
       profile: {
         subcategory: '',
       },
+    });
+  }
+
+  businessTypeChanged() {
+    const businessTypeControl = this.razorpayAccountForm.get('business_type');
+    const panControl = this.razorpayAccountForm.get('legal_info.pan');
+
+    businessTypeControl.valueChanges.subscribe((value) => {
+      if (
+        value !== EBusinessType.INDIVIDUAL &&
+        value !== EBusinessType.NOT_YET_REGISTERED &&
+        value !== EBusinessType.OTHER
+      ) {
+        this.showPanField = true;
+
+        panControl.setValidators([Validators.required]);
+      } else {
+        this.showPanField = false;
+        panControl.setValue('');
+        panControl.clearValidators();
+      }
+      panControl.updateValueAndValidity();
     });
   }
 }
