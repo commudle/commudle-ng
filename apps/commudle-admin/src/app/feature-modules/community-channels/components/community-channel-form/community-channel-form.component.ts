@@ -118,7 +118,7 @@ export class CommunityChannelFormComponent implements OnInit {
 
     // if we are editing the community channel here, then send a request to the server to remove the logo
     if (this.existingChannel && this.existingChannel.logo) {
-      this.communityChannelsService.deleteLogo(this.existingChannel.id).subscribe((data) => {
+      this.communityChannelsService.deleteChannelForumLogo(this.existingChannel.id).subscribe((data) => {
         if (data) {
           this.existingChannel.logo = null;
           this.communityChannelManagerService.findAndUpdateChannel(this.existingChannel);
@@ -128,7 +128,7 @@ export class CommunityChannelFormComponent implements OnInit {
   }
 
   updateChannel(formData) {
-    this.communityChannelsService.update(this.existingChannel.id, formData).subscribe((data) => {
+    this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
       this.existingChannel = data;
       this.communityChannelManagerService.findAndUpdateChannel(data);
       this.toastLogService.successDialog('Updated', 3000);

@@ -36,9 +36,11 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
 
   getChannels() {
     this.subscriptions.push(
-      this.communityChannelsService.index(this.community.id, this.discussionType.CHANNEL).subscribe((data) => {
-        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      }),
+      this.communityChannelsService
+        .indexChannelForum(this.community.id, this.discussionType.CHANNEL)
+        .subscribe((data) => {
+          this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        }),
     );
   }
 

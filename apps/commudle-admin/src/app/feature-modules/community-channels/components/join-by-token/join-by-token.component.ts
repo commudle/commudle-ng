@@ -57,7 +57,7 @@ export class JoinByTokenComponent implements OnInit {
 
   verifyToken(decline?: boolean) {
     this.subscriptions.push(
-      this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
+      this.communityChannelsService.memberJoinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
         (data) => {
           this.libToasLogService.successDialog('Taking you to the channel!', 2500);
           if (decline) {

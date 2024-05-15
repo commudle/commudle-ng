@@ -42,7 +42,7 @@ export class CommunityForumMessageComponent implements OnInit, OnDestroy {
       this.forumId = this.activatedRoute.snapshot.params.community_channel_id;
     }
     this.subscriptions.push(
-      this.communityChannelsService.getChannelInfo(this.forumId).subscribe((data) => {
+      this.communityChannelsService.showChannelForm(this.forumId).subscribe((data) => {
         this.forum = data;
         this.setMeta();
       }),

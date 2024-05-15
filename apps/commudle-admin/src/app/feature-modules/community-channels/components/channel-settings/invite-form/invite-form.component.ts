@@ -82,7 +82,7 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   refreshJoinToken() {
     this.linkCopied = false;
     this.subscriptions.push(
-      this.communityChannelsService.resetJointoken(this.communityChannel.id).subscribe((data) => {
+      this.communityChannelsService.resetJoinToken(this.communityChannel.id).subscribe((data) => {
         this.joinToken = data;
       }),
     );
