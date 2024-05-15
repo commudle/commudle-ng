@@ -13,7 +13,7 @@ export class ExpertsUsersComponent implements OnInit {
   experts: IUser[] = [];
   pageInfo: IPageInfo;
   total: number;
-  isLoadingExperts = true;
+  isLoadingExperts = false;
   limit = 6;
 
   constructor(private expertsService: ExpertsService) {}
