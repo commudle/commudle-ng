@@ -14,7 +14,7 @@ nb-card {
       .expert-image {
         @apply com-h-[274px];
         img {
-          @apply com-w-full com-h-full com-rounded-t-[10px];
+          @apply com-w-full com-h-full com-rounded-t-[10px] com-object-cover;
         }
       }
 
