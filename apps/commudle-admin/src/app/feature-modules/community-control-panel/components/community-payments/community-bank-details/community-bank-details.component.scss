@@ -32,3 +32,8 @@ th {
     @apply com-w-full;
   }
 }
+
+input[formControlName='pan'],
+input[formControlName='ifsc_code'] {
+  @apply com-uppercase;
+}
