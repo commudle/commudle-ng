@@ -51,7 +51,12 @@ export class SeoService {
           if (Object.keys(data).length > 0) {
             for (const key in data) {
               if (this.prohibitedQueryParams.includes(key)) {
-                allowedParams += `${key}=${data[key]}&`;
+                if (data[key].includes(' ')) {
+                  const removeSpaceParams = data[key].replace(/\s+/g, '%20');
+                  allowedParams += `${key}=${removeSpaceParams}&`;
+                } else {
+                  allowedParams += `${key}=${data[key]}&`;
+                }
               }
             }
             allowedParams = allowedParams.slice(0, -1);
