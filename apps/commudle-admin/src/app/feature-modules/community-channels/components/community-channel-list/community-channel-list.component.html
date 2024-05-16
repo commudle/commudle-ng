@@ -85,7 +85,7 @@
                       channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
                     isCommunityOrganizer
                   "
-                  (click)="inviteDialogBox(channel.id); $event.stopPropagation()"
+                  (click)="inviteDialogBox(channel); $event.stopPropagation()"
                 >
                   <nb-icon icon="person-add"></nb-icon>
                 </a>
@@ -95,7 +95,7 @@
                     channelsRoles[channel.id] &&
                     (channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
                   "
-                  (click)="editDialogBox(channel.id); $event.stopPropagation()"
+                  (click)="editDialogBox(channel); $event.stopPropagation()"
                 >
                   <nb-icon icon="settings"></nb-icon>
                 </a>

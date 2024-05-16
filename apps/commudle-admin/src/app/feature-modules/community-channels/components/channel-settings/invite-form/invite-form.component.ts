@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit, OnDestroy {
-  @Input() channelId: string;
+  @Input() channelId: number;
   @Input() forum: ICommunityChannel;
   @Output() updateForm = new EventEmitter<string>();
   communityChannel: ICommunityChannel;

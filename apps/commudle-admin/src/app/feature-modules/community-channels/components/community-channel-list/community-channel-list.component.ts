@@ -123,13 +123,12 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     });
   }
 
-  inviteDialogBox(channelId) {
+  inviteDialogBox(channel: ICommunityChannel) {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
       hasScroll: false,
       context: {
-        channelId: channelId,
+        channel: channel,
         invite: true,
         currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
       },
@@ -139,13 +138,12 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     });
   }
 
-  editDialogBox(channelId) {
+  editDialogBox(channel: ICommunityChannel) {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
       hasScroll: false,
       context: {
-        channelId: channelId,
+        channel: channel,
         discussionType: this.discussionType.CHANNEL,
         currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
       },
