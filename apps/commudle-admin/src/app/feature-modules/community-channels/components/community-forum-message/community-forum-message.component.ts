@@ -8,9 +8,9 @@ import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { SeoService } from '@commudle/shared-services';
 import { ICommunity } from '@commudle/shared-models';
 import { Location } from '@angular/common';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
   selector: 'commudle-community-forum-message',
@@ -18,8 +18,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./community-forum-message.component.scss'],
 })
 export class CommunityForumMessageComponent implements OnInit, OnDestroy {
+  @Input() parent: ICommunity | ICommunityGroup;
   @Input() forumId;
-  @Input() selectedCommunity: ICommunity;
+  @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
   discussion: IDiscussion;
   forum: ICommunityChannel;
   faArrowLeftLong = faArrowLeftLong;
@@ -27,13 +28,10 @@ export class CommunityForumMessageComponent implements OnInit, OnDestroy {
   showMembersList = false;
   faUsers = faUsers;
 
-  @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
-
   constructor(
     private discussionsService: DiscussionsService,
     private communityChannelsService: CommunityChannelsService,
     private activatedRoute: ActivatedRoute,
-    private seoService: SeoService,
     private location: Location,
   ) {}
 
@@ -44,7 +42,6 @@ export class CommunityForumMessageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communityChannelsService.showChannelForm(this.forumId).subscribe((data) => {
         this.forum = data;
-        this.setMeta();
       }),
 
       this.discussionsService.pGetOrCreateForCommunityChannel(this.forumId).subscribe((data) => {
@@ -64,13 +61,5 @@ export class CommunityForumMessageComponent implements OnInit, OnDestroy {
 
   toggleMembersList() {
     this.showMembersList = !this.showMembersList;
-  }
-
-  setMeta() {
-    this.seoService.setTags(
-      `${this.forum.name} - ${this.selectedCommunity.name}`,
-      `Interact with members in forum for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-      this.selectedCommunity.logo_path,
-    );
   }
 }

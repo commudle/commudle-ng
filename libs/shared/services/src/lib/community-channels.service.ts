@@ -59,10 +59,21 @@ export class CommunityChannelsService {
   }
 
   indexChannelForum(
-    communityId: number | string,
+    parentId: number | string,
+    parentType: EDbModels,
     displayType: EDiscussionType,
   ): Observable<IPagination<ICommunityChannel[]>> {
-    const params = new HttpParams().set('community_id', communityId).set('display_type', displayType).set('limit', 50);
+    let params = new HttpParams().set('display_type', displayType).set('limit', '50');
+
+    switch (parentType) {
+      case EDbModels.KOMMUNITY:
+        params = params.set('community_id', parentId);
+        break;
+      case EDbModels.COMMUNITY_GROUP:
+        params = params.set('community_group_id', parentId);
+        break;
+    }
+
     return this.http.get<IPagination<ICommunityChannel[]>>(
       this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX),
       {

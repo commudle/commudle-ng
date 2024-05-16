@@ -1,30 +1,19 @@
-/* eslint-disable no-case-declarations */
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
-import {
-  EDbModels,
-  EDiscussionType,
-  ICommunity,
-  ICommunityChannel,
-  IUser,
-  IGroupedChannels,
-} from '@commudle/shared-models';
+import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels } from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-
-// interface IGroupedChannels {
-//   [groupName: string]: ICommunityChannel[];
-// }
 @Component({
   selector: 'commudle-channel-forum-dashboard',
   templateUrl: './channel-forum-dashboard.component.html',
   styleUrls: ['./channel-forum-dashboard.component.scss'],
 })
 export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
-  @Input() selectedCommunity: ICommunity;
+  // @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
   @Input() parent: ICommunity | ICommunityGroup;
   @Input() parentType: EDbModels;
@@ -80,6 +69,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.setMeta();
     this.getCurrentUser();
     // this.checkCommunityOrganizer();
+    this.setParent();
 
     this.sidebarExpanded = !(window.innerWidth <= 640);
 
@@ -89,7 +79,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.communityChannelManagerService.getChannelForum();
 
     this.subscriptions.push(
-      this.communityChannelManagerService.communityChannels$.subscribe((data) => {
+      this.communityChannelManagerService.channelsByGroups$.subscribe((data) => {
         this.channels = data;
         if (data) {
           this.channelsQueried = true;
@@ -104,6 +94,18 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  getCurrentUser() {
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.communityChannelManagerService.setCurrentUser(data);
+      }),
+    );
+  }
+
+  setParent() {
+    this.communityChannelManagerService.setParent(this.parent, this.parentType);
   }
 
   // checkCommunityOrganizer() {
@@ -138,14 +140,6 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
   }
 
-  getCurrentUser() {
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.communityChannelManagerService.setCurrentUser(data);
-      }),
-    );
-  }
-
   updateSelectedChannelOrForum(channel?) {
     if (!this.discussionTypeForum && channel) {
       this.selectedChannelOrFormId = channel.id;
@@ -153,7 +147,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
       this.channelMessage = true;
     } else if (this.discussionTypeForum && (this.forumName || channel)) {
       this.subscriptions.push(
-        this.communityChannelManagerService.communityForums$.subscribe((data) => {
+        this.communityChannelManagerService.forumsByGroup$.subscribe((data) => {
           this.communityForums = data;
           if (this.communityForums) {
             const selectedForum = Object.keys(this.communityForums)

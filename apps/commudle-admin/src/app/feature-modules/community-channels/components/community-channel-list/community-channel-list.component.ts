@@ -15,6 +15,7 @@ import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
@@ -25,7 +26,7 @@ interface EGroupedCommunityChannels {
   styleUrls: ['./community-channel-list.component.scss'],
 })
 export class CommunityChannelListComponent implements OnInit, OnDestroy {
-  @Input() selectedCommunity: ICommunity;
+  @Input() parent: ICommunity | ICommunityGroup;
   @Input() groupedChannels: EGroupedCommunityChannels;
   @Input() showCommunityBadge = false;
   @Input() isCommunityOrganizer = false;
@@ -81,14 +82,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     }
   }
 
-  setMeta() {
-    this.seoService.setTags(
-      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
-      `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`,
-      this.selectedCommunity.logo_path,
-    );
-  }
-
   markRead() {
     if (this.selectedChannel && this.channelNotifications.includes(this.selectedChannel.id)) {
       this.communityChannelNotifications.markRead(this.selectedChannel.id);
@@ -118,7 +111,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
-        parentName: this.selectedCommunity.name,
+        parentName: this.parent.name,
       },
     });
   }
@@ -130,7 +123,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       context: {
         channel: channel,
         invite: true,
-        currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
+        currentUrl: 'communities/' + this.parent.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {
@@ -145,7 +138,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       context: {
         channel: channel,
         discussionType: this.discussionType.CHANNEL,
-        currentUrl: 'communities/' + this.selectedCommunity.slug + '/channels',
+        currentUrl: 'communities/' + this.parent.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {

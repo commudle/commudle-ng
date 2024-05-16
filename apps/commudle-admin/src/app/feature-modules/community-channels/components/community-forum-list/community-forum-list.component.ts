@@ -56,7 +56,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.communityChannelManagerService.communityForums$.subscribe((data) => {
+      this.communityChannelManagerService.forumsByGroup$.subscribe((data) => {
         this.communityForums = data;
       }),
 

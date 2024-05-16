@@ -6,6 +6,8 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { Subscription } from 'rxjs';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
+import { ICommunity } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-community-channel-form',
@@ -13,6 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-channel-form.component.scss'],
 })
 export class CommunityChannelFormComponent implements OnInit {
+  @Input() parent: ICommunity | ICommunityGroup;
   @Input() existingChannel: ICommunityChannel;
   @Input() presetGroupName;
   @Input() discussionType: string;

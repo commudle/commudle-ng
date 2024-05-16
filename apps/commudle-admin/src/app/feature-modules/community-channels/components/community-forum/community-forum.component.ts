@@ -17,6 +17,7 @@ import { InviteFormComponent } from 'apps/commudle-admin/src/app/feature-modules
 import { EditChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/edit-channel/edit-channel.component';
 import { Subscription } from 'rxjs';
 import { SeoService } from '@commudle/shared-services';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
   selector: 'commudle-community-forum',
@@ -24,7 +25,7 @@ import { SeoService } from '@commudle/shared-services';
   styleUrls: ['./community-forum.component.scss'],
 })
 export class CommunityForumComponent implements OnInit {
-  @Input() selectedCommunity: ICommunity;
+  @Input() parent: ICommunity | ICommunityGroup;
   @Input() isCommunityOrganizer = false;
   selectedForum: ICommunityChannel[];
   discussion: IDiscussion;
@@ -52,15 +53,10 @@ export class CommunityForumComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getCurrentUser;
     this.subscriptions.push(
       this.communityChannelManagerService.selectedForum$.subscribe((data) => {
         this.selectedForum = data;
-        if (data) {
-          this.setMeta();
-        }
-      }),
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.currentUser = data;
       }),
       this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
         this.channelsRoles = data;
@@ -70,7 +66,15 @@ export class CommunityForumComponent implements OnInit {
 
   openChat(forumId) {
     this.updateSelectedForum.emit(forumId);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'forums', forumId]);
+    this.router.navigate(['communities', this.parent.slug, 'forums', forumId]);
+  }
+
+  getCurrentUser() {
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+      }),
+    );
   }
 
   newChannelDialogBox(groupName?) {
@@ -92,7 +96,7 @@ export class CommunityForumComponent implements OnInit {
       hasScroll: true,
       context: {
         channelId: channelId,
-        currentUrl: 'communities/' + this.selectedCommunity.slug + '/forums',
+        currentUrl: 'communities/' + this.parent.slug + '/forums',
         // discussionType: this.discussionType.CHANNEL,
       },
     });
@@ -133,13 +137,5 @@ export class CommunityForumComponent implements OnInit {
 
   pin() {
     // TODO need in future
-  }
-
-  setMeta() {
-    this.seoService.setTags(
-      `${this.selectedForum[0].group_name} - Forums - ${this.selectedCommunity.name}`,
-      `Forums under for ${this.selectedCommunity.name}`,
-      this.selectedCommunity.logo_path,
-    );
   }
 }
