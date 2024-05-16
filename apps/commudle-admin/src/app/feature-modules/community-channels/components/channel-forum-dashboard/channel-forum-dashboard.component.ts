@@ -3,14 +3,21 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
-import { EDbModels, EDiscussionType, ICommunity, ICommunityChannel, IUser } from '@commudle/shared-models';
+import {
+  EDbModels,
+  EDiscussionType,
+  ICommunity,
+  ICommunityChannel,
+  IUser,
+  IGroupedChannels,
+} from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 
-interface EGroupedCommunityChannels {
-  [groupName: string]: ICommunityChannel[];
-}
+// interface IGroupedChannels {
+//   [groupName: string]: ICommunityChannel[];
+// }
 @Component({
   selector: 'commudle-channel-forum-dashboard',
   templateUrl: './channel-forum-dashboard.component.html',
@@ -22,9 +29,9 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   @Input() parent: ICommunity | ICommunityGroup;
   @Input() parentType: EDbModels;
 
-  communityForums: EGroupedCommunityChannels;
+  communityForums: IGroupedChannels;
   currentUser: IUser;
-  communityChannels;
+  channels: IGroupedChannels;
   channelsQueried = false;
   selectedChannelOrFormId: number;
   showChannelsComponent = false;
@@ -72,18 +79,18 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
-    this.checkCommunityOrganizer();
+    // this.checkCommunityOrganizer();
 
     this.sidebarExpanded = !(window.innerWidth <= 640);
 
     if (this.discussionTypeForum && this.selectedChannelOrFormId) {
       this.checkSelectedForum();
     }
-    this.communityChannelManagerService.setCommunity(this.selectedCommunity);
+    this.communityChannelManagerService.getChannelForum();
 
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe((data) => {
-        this.communityChannels = data;
+        this.channels = data;
         if (data) {
           this.channelsQueried = true;
           if (this.selectedChannelOrFormId) {
@@ -99,15 +106,15 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  checkCommunityOrganizer() {
-    this.subscriptions.push(
-      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        if (data.find((cSlug) => cSlug.slug === this.selectedCommunity.slug) !== undefined) {
-          this.isCommunityOrganizer = true;
-        }
-      }),
-    );
-  }
+  // checkCommunityOrganizer() {
+  //   this.subscriptions.push(
+  //     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+  //       if (data.find((cSlug) => cSlug.slug === this.selectedCommunity.slug) !== undefined) {
+  //         this.isCommunityOrganizer = true;
+  //       }
+  //     }),
+  //   );
+  // }
 
   checkDiscussionType() {
     if (this.discussionTypeForum) {
@@ -197,8 +204,8 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   // The `setMeta` function sets meta tags for SEO with information related to the selected community.
   setMeta() {
     this.seoService.setTags(
-      `Channels - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      `Channels - ${this.parent.name}`,
+      `Interact with members in channels for ${this.parent.name}! Share knowledge, network & grow together!`,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }

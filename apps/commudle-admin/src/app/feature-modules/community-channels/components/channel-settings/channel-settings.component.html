@@ -8,11 +8,11 @@
   <nb-card-body class="com-p-0">
     <nb-tabset>
       <nb-tab tabTitle="Edit">
-        <app-edit-channel
+        <commudle-edit-channel
           [channelId]="channel.id"
           [discussionType]="discussionType"
           (updateForm)="updateChannelForm($event)"
-        ></app-edit-channel>
+        ></commudle-edit-channel>
       </nb-tab>
       <nb-tab tabTitle="invite" [active]="invite">
         <app-invite-form [channelId]="channel.id" (updateForm)="updateChannelForm()"></app-invite-form>

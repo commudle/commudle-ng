@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
@@ -25,7 +25,7 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   linkCopied = false;
   channelsRoles = {};
   EUserRoles = EUserRoles;
-  memberInviteForm;
+  memberInviteForm: FormGroup;
   isBrowser;
 
   constructor(

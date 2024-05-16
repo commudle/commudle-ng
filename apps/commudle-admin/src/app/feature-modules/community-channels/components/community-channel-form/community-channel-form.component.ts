@@ -8,7 +8,7 @@ import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/com
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-community-channel-form',
+  selector: 'commudle-community-channel-form',
   templateUrl: './community-channel-form.component.html',
   styleUrls: ['./community-channel-form.component.scss'],
 })

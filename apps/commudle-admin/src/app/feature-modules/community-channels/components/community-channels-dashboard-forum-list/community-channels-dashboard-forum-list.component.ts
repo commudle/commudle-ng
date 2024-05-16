@@ -16,6 +16,7 @@ interface EGroupedCommunityChannels {
   styleUrls: ['./community-channels-dashboard-forum-list.component.scss'],
 })
 export class CommunityChannelsDashboardForumListComponent implements OnInit {
+  @Input() parent: ICommunity | ICommunityGroup;
   subscriptions: Subscription[] = [];
   communityForums: EGroupedCommunityChannels;
   @Input() community: ICommunity;
