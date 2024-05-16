@@ -114,11 +114,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   newChannelDialogBox(groupName?) {
     this.newCommunityChannelPopup = this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
       hasScroll: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
+        parentName: this.selectedCommunity.name,
       },
     });
   }
