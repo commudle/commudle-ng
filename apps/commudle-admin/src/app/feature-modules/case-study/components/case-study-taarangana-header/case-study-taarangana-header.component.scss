@@ -9,9 +9,9 @@
         @apply com-flex md:com-flex-row com-flex-col com-mt-auto com-mb-6;
 
         .logo-image {
-          @apply com-h-[140px] com-w-[170px] com-mr-4 com-object-cover com-flex com-flex-shrink-0;
+          @apply com-h-[140px] com-w-[170px] com-mr-6 com-object-cover com-flex com-flex-shrink-0;
           img {
-            @apply com-h-full com-w-full com-rounded-lg;
+            @apply com-h-full com-w-full com-rounded-[20px];
           }
         }
 
@@ -19,7 +19,7 @@
           @apply com-flex com-flex-col com-p-0;
 
           .title {
-            @apply com-text-[32px] com-font-bold com-text-tWhite com-m-0;
+            @apply com-text-[32px] com-font-bold com-text-tWhite com-m-0 com-mb-3;
           }
 
           .tagline {
@@ -30,3 +30,7 @@
     }
   }
 }
+
+// .header-expert-overlay {
+//   @apply com-z-10 com-bg-gradient-to-t com-from-gray-800 com-via-transparent com-w-full com-h-full com-absolute com-left-0 com-top-0 com-m-0;
+// }
