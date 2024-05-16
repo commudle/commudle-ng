@@ -45,7 +45,7 @@ export class SeoService {
     }
     this.location.onUrlChange((url, state) => {
       this.activatedRoute.queryParams.subscribe((data) => {
-        let canonicalUrl = url.split('?')[0];
+        let canonicalUrl = url;
         let allowedParams = '';
         if (data) {
           if (Object.keys(data).length > 0) {
