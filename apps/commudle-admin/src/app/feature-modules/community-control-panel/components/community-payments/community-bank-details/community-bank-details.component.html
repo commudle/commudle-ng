@@ -503,9 +503,9 @@
                 </div>
                 <span
                   *ngIf="
-                    razorpayAccountForm.get('legal_info.pan').touched &&
-                    razorpayAccountForm.get('legal_info.pan').invalid &&
-                    razorpayAccountForm.get('legal_info.pan').hasError('required')
+                    razorpayAccountForm.get('profile.category').touched &&
+                    razorpayAccountForm.get('profile.category').invalid &&
+                    razorpayAccountForm.get('profile.category').hasError('required')
                   "
                 >
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
@@ -624,11 +624,9 @@
             <div class="sub-category-heading">Legal Info</div>
             <!-- legal_info -->
             <div formGroupName="legal_info">
-              <!-- <span>Legal Info</span>
-              <br /> -->
               <!-- PAN -->
-              <label>
-                PAN*
+              <label *ngIf="showPanField">
+                Business PAN*
                 <input fieldSize="small" formControlName="pan" placeholder="PAN" fullWidth nbInput type="string" />
                 <span
                   *ngIf="
