@@ -13,6 +13,7 @@ import { ExpertsComponent } from './components/experts/experts.component';
 import { ExpertsUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-experts/components/experts-users/experts-users.component';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     AppSharedComponentsModule,
     SkeletonVerticalCardsComponent,
     SharedComponentsModule,
+    SharedPipesModule,
   ],
 })
 export class PublicHomeListExpertsModule {}
