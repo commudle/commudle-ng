@@ -16,11 +16,13 @@ export class TestimonialCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.testimonials.forEach((testimonial) => {
-      this.usersService.getProfile(testimonial.username).subscribe((data) => {
-        if (data) {
-          testimonial.user = data;
-        }
-      });
+      if (testimonial.username) {
+        this.usersService.getProfile(testimonial.username).subscribe((data) => {
+          if (data) {
+            testimonial.user = data;
+          }
+        });
+      }
     });
     // this.setSchema();
   }

@@ -1,14 +1,20 @@
 <div class="case-study">
   <commudle-case-study-taarangana-header></commudle-case-study-taarangana-header>
-  <div *ngIf="richTextStats">
-    <div *ngFor="let stat of richTextStats">
-      <div>{{ stat }}</div>
+  <div class="stats-container">
+    <div class="base-layout">
+      <div class="container">
+        <div *ngIf="richTextStats" class="stats">
+          <div *ngFor="let stat of richTextStats">
+            <div [innerHTML]="stat"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats> -->
   <div class="base-layout">
     <div class="container">
-      <div *ngIf="richTextChallenges" class="challenges com-mb-20">
+      <div *ngIf="richTextChallenges" class="challenges">
         <h2>Challenges</h2>
         <div [innerHTML]="richTextChallenges"></div>
       </div>
@@ -16,14 +22,14 @@
         <h2>How commudle solved it</h2>
         <div [innerHTML]="richTextSolution"></div>
       </div>
-      <div *ngIf="richTextTestimonials" class="testimonials" id="testimonials">
-        <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></h2>
+      <div *ngIf="caseStudyPageHeader" class="testimonials" id="testimonials">
+        <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></h2>
         <h3 class="subheading">Don't just take our word for it</h3>
         <div class="testimonial-card">
-          <div *ngFor="let testimonial of richTextTestimonials">
-            <div>{{ testimonial }}</div>
-          </div>
-          <!-- <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card> -->
+          <!-- <commudle-testimonial-card [testimonials]="caseStudyPageHeader.testimonials"></commudle-testimonial-card> -->
+          <!-- <div *ngFor="let testimonial of richTextTestimonials">
+            <div [innerHTML]="testimonial"></div>
+          </div> -->
         </div>
       </div>
     </div>

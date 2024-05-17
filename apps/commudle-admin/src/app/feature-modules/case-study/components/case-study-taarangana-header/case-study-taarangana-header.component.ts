@@ -13,6 +13,7 @@ export class CaseStudyTaaranganaHeaderComponent implements OnInit {
   richText: string;
   BackgroundImage;
   staticAssets = staticAssets;
+  richTextTagline: string;
 
   constructor(private cmsService: CmsService) {}
 
@@ -28,6 +29,7 @@ export class CaseStudyTaaranganaHeaderComponent implements OnInit {
     this.cmsService.getDataBySlug('taarangana').subscribe((data) => {
       this.caseStudyPageHeader = data;
       this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.bannerImage).url();
+      this.richTextTagline = this.cmsService.getHtmlFromBlock(data, 'tagline');
     });
   }
 }
