@@ -44,14 +44,19 @@ export class SeoService {
       head.appendChild(element);
     }
     this.location.onUrlChange((url, state) => {
-      let canonicalUrl = '',
-        allowedParams = '';
       this.activatedRoute.queryParams.subscribe((data) => {
+        let canonicalUrl = url;
+        let allowedParams = '';
         if (data) {
           if (Object.keys(data).length > 0) {
             for (const key in data) {
               if (this.prohibitedQueryParams.includes(key)) {
-                allowedParams += `${key}=${data[key]}&`;
+                if (data[key].includes(' ')) {
+                  const removeSpaceParams = data[key].replace(/\s+/g, '%20');
+                  allowedParams += `${key}=${removeSpaceParams}&`;
+                } else {
+                  allowedParams += `${key}=${data[key]}&`;
+                }
               }
             }
             allowedParams = allowedParams.slice(0, -1);
