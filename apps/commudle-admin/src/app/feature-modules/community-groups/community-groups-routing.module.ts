@@ -14,6 +14,7 @@ import { CommunityGroupDetailsResolver } from 'apps/commudle-admin/src/app/featu
 import { CommunityGroupsSurveysComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-groups-surveys/community-groups-surveys.component';
 import { CommunityGroupCustomPagesComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-group-custom-pages/community-group-custom-pages.component';
 import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { CommunityGroupChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-group-channel/community-group-channel.component';
 
 const routes = [
   {
@@ -47,10 +48,10 @@ const routes = [
             path: 'events',
             component: EventsComponent,
           },
-          {
-            path: 'channels',
-            component: ChannelsComponent,
-          },
+          // {
+          //   path: 'channels',
+          //   component: ChannelsComponent,
+          // },
         ],
       },
       {
@@ -80,6 +81,22 @@ const routes = [
       {
         path: 'surveys',
         component: CommunityGroupsSurveysComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'channels',
+        component: CommunityGroupChannelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'forums',
+        component: CommunityGroupChannelComponent,
         canActivate: [AuthGuard],
         data: {
           expectedRoles: [EUserRoles.COMMUNITY_ADMIN],

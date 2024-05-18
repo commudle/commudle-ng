@@ -3,7 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { faUsers, faBuilding, faCalendar, faPenToSquare, faPoll, faFileLines } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUsers,
+  faBuilding,
+  faCalendar,
+  faPenToSquare,
+  faPoll,
+  faFileLines,
+  faHashtag,
+  faMessage,
+} from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
 
 @Component({
@@ -26,6 +35,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     faBuilding,
     faPoll,
     faFileLines,
+    faHashtag,
+    faMessage,
   };
 
   constructor(

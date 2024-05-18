@@ -30,6 +30,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunityGroupsSurveysComponent } from './components/community-groups-surveys/community-groups-surveys.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { CommunityGroupCustomPagesComponent } from './components/community-group-custom-pages/community-group-custom-pages.component';
+import { CommunityGroupChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-groups/components/community-group-channel/community-group-channel.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { CommunityGroupCustomPagesComponent } from './components/community-group
     CommunityComponent,
     CommunityGroupsSurveysComponent,
     CommunityGroupCustomPagesComponent,
+    CommunityGroupChannelComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +57,7 @@ import { CommunityGroupCustomPagesComponent } from './components/community-group
     SharedDirectivesModule,
     MiniUserProfileModule,
     AppSharedComponentsModule,
+    CommunityChannelsModule,
 
     //standalone components
     SidebarComponent,
