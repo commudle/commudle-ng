@@ -68,7 +68,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
-    // this.checkCommunityOrganizer();
+    if (this.parentType === EDbModels.KOMMUNITY) this.checkCommunityOrganizer();
     this.setParent();
 
     this.sidebarExpanded = !(window.innerWidth <= 640);
@@ -108,15 +108,15 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.communityChannelManagerService.setParent(this.parent, this.parentType);
   }
 
-  // checkCommunityOrganizer() {
-  //   this.subscriptions.push(
-  //     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-  //       if (data.find((cSlug) => cSlug.slug === this.selectedCommunity.slug) !== undefined) {
-  //         this.isCommunityOrganizer = true;
-  //       }
-  //     }),
-  //   );
-  // }
+  checkCommunityOrganizer() {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === this.parent.slug) !== undefined) {
+          this.isCommunityOrganizer = true;
+        }
+      }),
+    );
+  }
 
   checkDiscussionType() {
     if (this.discussionTypeForum) {

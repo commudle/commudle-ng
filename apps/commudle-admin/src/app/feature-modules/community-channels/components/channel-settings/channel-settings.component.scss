@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-w-full md:com-w-630px com-h-full md:com-h-[70dvh];
+  @apply com-w-full md:com-w-630px com-h-full md:com-min-h-[70dvh] md:com-max-h-[90dvh];
   nb-card-header {
     @apply com-flex com-justify-between;
     button {

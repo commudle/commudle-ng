@@ -20,7 +20,6 @@ interface EGroupedCommunityChannels {
 }
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-community-forum-list',
   templateUrl: './community-forum-list.component.html',
   styleUrls: ['./community-forum-list.component.scss'],
@@ -120,7 +119,6 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
       context: {
         groupName: groupName,
         discussionType: this.discussionType.FORUM,
-        parentName: this.selectedCommunity.name,
       },
     });
   }

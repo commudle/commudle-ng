@@ -227,29 +227,35 @@ export class CommunityChannelManagerService {
   }
 
   createChannel(channelData) {
-    this.communityChannelsService.createChannelForum(this.parent.value.id, channelData).subscribe((data) => {
-      // select this channel
-      this.selectedChannel.next(data);
-      // add this channel to the group in the list of channels
-      const allChannels = this.channelsByGroups.value;
-      allChannels[data.group_name] ? allChannels[data.group_name].push(data) : (allChannels[data.group_name] = [data]);
-      this.channelsByGroups.next(allChannels);
-      this.getChannelRoles(data);
-      this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
-    });
+    this.communityChannelsService
+      .createChannelForum(this.parent.value.id, this.parentType.value, channelData)
+      .subscribe((data) => {
+        // select this channel
+        this.selectedChannel.next(data);
+        // add this channel to the group in the list of channels
+        const allChannels = this.channelsByGroups.value;
+        allChannels[data.group_name]
+          ? allChannels[data.group_name].push(data)
+          : (allChannels[data.group_name] = [data]);
+        this.channelsByGroups.next(allChannels);
+        this.getChannelRoles(data);
+        this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
+      });
   }
 
   createForum(forumData) {
-    this.communityChannelsService.createChannelForum(this.parent.value.id, forumData).subscribe((data) => {
-      // select this channel
-      // this.selectedForum.next(data);
-      // add this channel to the group in the list of channels
-      const allForums = this.forumsByGroup.value;
-      allForums[data.group_name] ? allForums[data.group_name].push(data) : (allForums[data.group_name] = [data]);
-      this.forumsByGroup.next(allForums);
-      this.getForumRoles(data);
-      this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
-    });
+    this.communityChannelsService
+      .createChannelForum(this.parent.value.id, this.parentType.value, forumData)
+      .subscribe((data) => {
+        // select this channel
+        // this.selectedForum.next(data);
+        // add this channel to the group in the list of channels
+        const allForums = this.forumsByGroup.value;
+        allForums[data.group_name] ? allForums[data.group_name].push(data) : (allForums[data.group_name] = [data]);
+        this.forumsByGroup.next(allForums);
+        this.getForumRoles(data);
+        this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
+      });
   }
 
   findAndUpdateChannel(channel) {

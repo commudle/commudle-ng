@@ -1,29 +1,32 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ICommunity, ICommunityGroup, IHackathon } from '@commudle/shared-models';
+import { CommunityChannelManagerService } from '@commudle/shared-services';
 import { NbDialogRef } from '@commudle/theme';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { SeoService } from 'apps/shared-services/seo.service';
 
 @Component({
   selector: 'commudle-new-community-channel',
   templateUrl: './new-community-channel.component.html',
   styleUrls: ['./new-community-channel.component.scss'],
 })
-export class NewCommunityChannelComponent implements OnInit, OnDestroy {
+export class NewCommunityChannelComponent {
   @Input() groupName: string;
   @Input() discussionType: string;
-  @Input() parentName: string; // example community or community group name
+  parent: ICommunity | ICommunityGroup | IHackathon;
 
-  constructor(private seoService: SeoService, private dialogRef: NbDialogRef<NewCommunityChannelComponent>) {}
-
-  ngOnInit(): void {
-    this.seoService.noIndex(true);
-  }
-
-  ngOnDestroy() {
-    this.seoService.noIndex(false);
+  constructor(
+    private dialogRef: NbDialogRef<NewCommunityChannelComponent>,
+    private cmService: CommunityChannelManagerService,
+  ) {
+    this.getParent();
   }
 
   closeForm() {
     this.dialogRef.close();
+  }
+
+  getParent() {
+    this.cmService.parent$.subscribe((data) => {
+      this.parent = data;
+    });
   }
 }

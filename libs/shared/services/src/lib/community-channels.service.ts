@@ -34,8 +34,8 @@ export class CommunityChannelsService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  createChannelForum(communityId: number | string, formData: any): Observable<ICommunityChannel> {
-    const params = new HttpParams().set('community_id', communityId);
+  createChannelForum(parentId: number, parentType: EDbModels, formData: any): Observable<ICommunityChannel> {
+    const params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
     return this.http.post<ICommunityChannel>(
       this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.CREATE),
       formData,
@@ -63,16 +63,11 @@ export class CommunityChannelsService {
     parentType: EDbModels,
     displayType: EDiscussionType,
   ): Observable<IPagination<ICommunityChannel[]>> {
-    let params = new HttpParams().set('display_type', displayType).set('limit', '50');
-
-    switch (parentType) {
-      case EDbModels.KOMMUNITY:
-        params = params.set('community_id', parentId);
-        break;
-      case EDbModels.COMMUNITY_GROUP:
-        params = params.set('community_group_id', parentId);
-        break;
-    }
+    const params = new HttpParams()
+      .set('display_type', displayType)
+      .set('limit', '50')
+      .set('parent_type', parentType)
+      .set('parent_id', parentId);
 
     return this.http.get<IPagination<ICommunityChannel[]>>(
       this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX),

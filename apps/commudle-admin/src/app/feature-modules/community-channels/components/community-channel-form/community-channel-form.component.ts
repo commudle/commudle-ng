@@ -6,8 +6,6 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { Subscription } from 'rxjs';
-import { ICommunityGroup } from 'apps/shared-models/community-group.model';
-import { ICommunity } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-community-channel-form',
@@ -15,7 +13,6 @@ import { ICommunity } from '@commudle/shared-models';
   styleUrls: ['./community-channel-form.component.scss'],
 })
 export class CommunityChannelFormComponent implements OnInit {
-  @Input() parent: ICommunity | ICommunityGroup;
   @Input() existingChannel: ICommunityChannel;
   @Input() presetGroupName;
   @Input() discussionType: string;
@@ -32,7 +29,7 @@ export class CommunityChannelFormComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private communityChannelManagerService: CommunityChannelManagerService,
+    private cmService: CommunityChannelManagerService,
     private communityChannelsService: CommunityChannelsService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
@@ -89,9 +86,9 @@ export class CommunityChannelFormComponent implements OnInit {
       this.updateChannel(formData);
     } else {
       if (this.discussionType === EDiscussionType.FORUM) {
-        this.communityChannelManagerService.createForum(formData);
+        this.cmService.createForum(formData);
       } else if (this.discussionType === EDiscussionType.CHANNEL) {
-        this.communityChannelManagerService.createChannel(formData);
+        this.cmService.createChannel(formData);
       }
     }
 
@@ -124,7 +121,7 @@ export class CommunityChannelFormComponent implements OnInit {
       this.communityChannelsService.deleteChannelForumLogo(this.existingChannel.id).subscribe((data) => {
         if (data) {
           this.existingChannel.logo = null;
-          this.communityChannelManagerService.findAndUpdateChannel(this.existingChannel);
+          this.cmService.findAndUpdateChannel(this.existingChannel);
         }
       });
     }
@@ -133,7 +130,7 @@ export class CommunityChannelFormComponent implements OnInit {
   updateChannel(formData) {
     this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
       this.existingChannel = data;
-      this.communityChannelManagerService.findAndUpdateChannel(data);
+      this.cmService.findAndUpdateChannel(data);
       this.toastLogService.successDialog('Updated', 3000);
     });
   }

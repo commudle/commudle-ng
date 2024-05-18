@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-    <span>New {{ discussionType | titlecase }} for {{ parentName }}</span>
+    <span>New {{ discussionType | titlecase }} for {{ parent.name }}</span>
     <button (click)="closeForm()" ghost nbButton size="small" shape="round">
       <nb-icon icon="close"></nb-icon>
     </button>
