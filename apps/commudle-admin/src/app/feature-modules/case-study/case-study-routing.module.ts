@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CaseStudyTaaranganaComponent } from 'apps/commudle-admin/src/app/feature-modules/case-study/components/case-study-taarangana/case-study-taarangana.component';
+import { CaseStudyComponent } from 'apps/commudle-admin/src/app/feature-modules/case-study/components/case-study/case-study.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CaseStudyTaaranganaComponent,
+    component: CaseStudyComponent,
   },
   {
     path: ':id',
-    component: CaseStudyTaaranganaComponent,
+    component: CaseStudyComponent,
   },
 ];
 

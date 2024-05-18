@@ -4,11 +4,11 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
-  selector: 'commudle-case-study-taarangana-header',
-  templateUrl: './case-study-taarangana-header.component.html',
-  styleUrls: ['./case-study-taarangana-header.component.scss'],
+  selector: 'commudle-case-study-header',
+  templateUrl: './case-study-header.component.html',
+  styleUrls: ['./case-study-header.component.scss'],
 })
-export class CaseStudyTaaranganaHeaderComponent implements OnInit {
+export class CaseStudyHeaderComponent implements OnInit {
   caseStudyPageHeader: IListingPageHeader;
   richText: string;
   BackgroundImage;

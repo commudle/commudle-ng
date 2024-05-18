@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CaseStudyRoutingModule } from './case-study-routing.module';
-import { CaseStudyTaaranganaComponent } from './components/case-study-taarangana/case-study-taarangana.component';
-import { CaseStudyTaaranganaHeaderComponent } from './components/case-study-taarangana-header/case-study-taarangana-header.component';
+import { CaseStudyComponent } from './components/case-study/case-study.component';
+import { CaseStudyHeaderComponent } from './components/case-study-header/case-study-header.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
-  declarations: [CaseStudyTaaranganaComponent, CaseStudyTaaranganaHeaderComponent],
+  declarations: [CaseStudyComponent, CaseStudyHeaderComponent],
   imports: [CommonModule, CaseStudyRoutingModule, AppSharedComponentsModule],
 })
 export class CaseStudyModule {}
