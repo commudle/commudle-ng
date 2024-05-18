@@ -95,7 +95,39 @@ const routes = [
         },
       },
       {
+        path: 'channels/:community_channel_id',
+        component: CommunityGroupChannelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'channels/join/:token',
+        component: CommunityGroupChannelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
         path: 'forums',
+        component: CommunityGroupChannelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'forums/:community_channel_id',
+        component: CommunityGroupChannelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN],
+        },
+      },
+      {
+        path: 'forums/join/:token',
         component: CommunityGroupChannelComponent,
         canActivate: [AuthGuard],
         data: {

@@ -1,3 +1,9 @@
-nb-card-header {
-  @apply com-flex com-justify-between;
+nb-card {
+  @apply com-h-full md:com-max-h-[90dvh];
+  nb-card-header {
+    @apply com-flex com-justify-between;
+  }
+  nb-card-body {
+    @apply com-py-0;
+  }
 }

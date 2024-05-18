@@ -7,6 +7,7 @@ import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels } from 
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 @Component({
   selector: 'commudle-channel-forum-dashboard',
   templateUrl: './channel-forum-dashboard.component.html',
@@ -60,6 +61,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private router: Router,
     private communitiesService: CommunitiesService,
+    private communityGroupsService: CommunityGroupsService,
   ) {}
 
   ngOnInit() {
@@ -68,7 +70,17 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
-    if (this.parentType === EDbModels.KOMMUNITY) this.checkCommunityOrganizer();
+
+    switch (this.parentType) {
+      case EDbModels.KOMMUNITY:
+        this.checkCommunityOrganizer();
+        break;
+      case EDbModels.COMMUNITY_GROUP:
+        this.checkCommunityGroupOrganizer();
+        break;
+      default:
+        break;
+    }
     this.setParent();
 
     this.sidebarExpanded = !(window.innerWidth <= 640);
@@ -114,6 +126,22 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
         if (data.find((cSlug) => cSlug.slug === this.parent.slug) !== undefined) {
           this.isCommunityOrganizer = true;
         }
+      }),
+    );
+  }
+
+  checkCommunityGroupOrganizer() {
+    this.subscriptions.push(
+      this.communityGroupsService.userManagedCommunityGroups$.subscribe((data) => {
+        const communityGroups = data;
+        communityGroups.forEach((communityGroup) => {
+          if (communityGroup.id === this.parent.id) {
+            this.isCommunityOrganizer = true;
+            return;
+          } else {
+            this.isCommunityOrganizer = false;
+          }
+        });
       }),
     );
   }

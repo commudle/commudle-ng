@@ -83,7 +83,10 @@
         <input formControlName="group_name" fullWidth nbInput type="text" />
       </label>
     </div>
-
-    <button [disabled]="!communityChannelForm.valid" nbButton status="primary" type="submit">Save</button>
   </form>
+</div>
+<div class="action-button">
+  <button (click)="submitForm()" [disabled]="!communityChannelForm.valid" nbButton status="primary" type="submit">
+    Save
+  </button>
 </div>
