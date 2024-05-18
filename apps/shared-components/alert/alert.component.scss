@@ -10,12 +10,15 @@
 }
 
 .info {
-  @apply com-border com-border-solid com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-2 com-px-2 com-grid com-gap-1;
+  @apply com-grid com-gap-1;
   grid-template-columns: max-content auto;
   nb-icon {
     @apply com-text-sm com-text-New-Car  com-m-0;
   }
   p {
     @apply com-text-xs com-font-normal com-text-New-Car com-my-0;
+  }
+  &.blue-border {
+    @apply com-border com-border-solid com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-p-2;
   }
 }

@@ -2,7 +2,7 @@
   <span><nb-icon icon="info" class="info-icon"></nb-icon>{{ errorMessage }}</span>
 </div>
 
-<div class="info" *ngIf="info">
+<div class="info" *ngIf="info" [ngClass]="{ 'blue-border': border }">
   <nb-icon icon="info-outline"></nb-icon>
   <p>
     {{ message }}
