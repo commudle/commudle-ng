@@ -116,7 +116,7 @@ export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
         addresses: this.fb.group({
           registered: this.fb.group({
             street1: ['', Validators.required],
-            street2: [''],
+            street2: ['', Validators.required],
             city: ['', Validators.required],
             state: ['', Validators.required],
             postal_code: ['', Validators.required],
