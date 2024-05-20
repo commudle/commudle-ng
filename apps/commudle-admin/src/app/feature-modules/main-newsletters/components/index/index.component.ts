@@ -10,7 +10,7 @@ import { MainNewslettersService } from '../../services/main-newsletters.service'
 })
 export class IndexComponent implements OnInit, OnDestroy {
   page = 1;
-  count = 1;
+  count = 5;
   total = 0;
   newsletters: IMainNewsletter[];
   isLoading = true;
