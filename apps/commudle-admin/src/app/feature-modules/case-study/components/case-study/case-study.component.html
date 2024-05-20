@@ -5,7 +5,7 @@
       <div class="container">
         <div *ngIf="richTextStats" class="stats">
           <div *ngFor="let stat of richTextStats">
-            <div [innerHTML]="stat"></div>
+            <div [innerHTML]="stat | safe"></div>
           </div>
         </div>
       </div>
@@ -16,11 +16,11 @@
     <div class="container">
       <div *ngIf="richTextChallenges" class="challenges">
         <h2>Challenges</h2>
-        <div [innerHTML]="richTextChallenges"></div>
+        <div [innerHTML]="richTextChallenges | safe"></div>
       </div>
       <div *ngIf="richTextSolution" class="solution">
         <h2>How commudle solved it</h2>
-        <div [innerHTML]="richTextSolution"></div>
+        <div [innerHTML]="richTextSolution | safe"></div>
       </div>
       <div *ngIf="caseStudyPageHeader" class="testimonials" id="testimonials">
         <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></h2>
