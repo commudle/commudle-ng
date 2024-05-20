@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
+import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
   selector: 'commudle-case-studies-header',
@@ -6,7 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./case-studies-header.component.scss'],
 })
 export class CaseStudiesHeaderComponent implements OnInit {
-  constructor() {}
+  communitiesPageHeader: IListingPageHeader;
 
-  ngOnInit(): void {}
+  constructor(private cmsService: CmsService) {}
+
+  ngOnInit(): void {
+    this.getHeaderText();
+  }
+
+  imageUrl(source: any) {
+    return this.cmsService.getImageUrl(source);
+  }
+
+  getHeaderText() {
+    this.cmsService.getDataBySlug('case-study').subscribe((data) => {
+      this.communitiesPageHeader = data;
+    });
+  }
 }

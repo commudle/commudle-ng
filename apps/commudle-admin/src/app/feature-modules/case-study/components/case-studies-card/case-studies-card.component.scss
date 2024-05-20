@@ -1,20 +1,27 @@
 .case-study-card {
-  @aaply com-w-full;
+  @apply com-w-full com-no-underline;
 
   .banner-image {
-    @apply com-w-[624px] com-h-[228px];
+    @apply com-w-[624px] com-h-[228px] com-bg-tWhite com-rounded-lg;
 
     img {
-      @apply com-w-full com-h-full;
+      @apply com-w-full com-h-full com-rounded-lg com-object-contain;
     }
   }
 
   .title {
-    @apply com-m-0 com-p-0 com-pt-4 com-pb-2px com-text-xl com-font-bold com-text-Dark-Jungle-Green;
+    @apply com-m-0 com-p-0 com-pt-4 com-text-xl com-font-bold com-text-Dark-Jungle-Green;
   }
 
   .tagline {
-    @apply com-m-0 com-text-sm com-font-medium com-text-gray-400 com-line-clamp-3;
+    @apply com-m-0 com-text-sm com-font-medium com-text-gray-400 com-p-0 com-pr-0 md:com-pr-4 md:com-h-[70px] com-h-auto;
+    div {
+      ::ng-deep {
+        p {
+          @apply com-line-clamp-3;
+        }
+      }
+    }
   }
 
   button {

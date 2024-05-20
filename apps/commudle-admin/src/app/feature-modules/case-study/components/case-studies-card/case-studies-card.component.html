@@ -1,4 +1,4 @@
-<div class="case-study-card">
+<a class="case-study-card" [routerLink]="['/case-study', caseStudy.slug.current]">
   <div *ngIf="caseStudy.bannerImage" class="banner-image">
     <img [src]="imageUrl(caseStudy.bannerImage).url()" alt="{{ caseStudy.title }}" title="{{ caseStudy.title }}" />
   </div>
@@ -8,4 +8,4 @@
     <fa-icon [icon]="faSquareArrowUpRight"></fa-icon>
     Visit Page
   </button>
-</div>
+</a>

@@ -1,7 +1,9 @@
 .header {
   @apply md:com-max-h-[526px] com-max-h-full;
   .background-image {
-    @apply com-m-0 com-p-0 md:com-h-[526px] com-w-full com-h-full com-bg-no-repeat com-bg-cover;
+    @apply com-m-0 com-p-0 md:com-h-[526px] com-w-full com-h-full com-bg-no-repeat com-bg-contain com-bg-center;
+    // background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 85.55%);
+    // com-bg-gradient-to-b com-from-transparent com-via-black
 
     .base-layout {
       @apply com-flex com-min-h-full;
@@ -9,9 +11,9 @@
         @apply com-flex md:com-flex-row com-flex-col com-mt-auto com-mb-6;
 
         .logo-image {
-          @apply com-h-[140px] com-w-[170px] com-mr-6 com-object-cover com-flex com-flex-shrink-0;
+          @apply com-h-[140px] com-w-[170px] com-mr-6 com-flex com-flex-shrink-0 com-bg-tWhite com-rounded-[20px];
           img {
-            @apply com-h-full com-w-full com-rounded-[20px];
+            @apply com-h-full com-w-full com-rounded-[20px] com-object-cover;
           }
         }
 
@@ -20,6 +22,14 @@
 
           .title {
             @apply com-text-[32px] com-font-bold com-text-tWhite com-m-0 com-mb-3;
+          }
+
+          div {
+            ::ng-deep {
+              p {
+                @apply com-m-0;
+              }
+            }
           }
 
           // .tagline {

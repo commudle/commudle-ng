@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 import { CmsService } from 'apps/shared-services/cms.service';
@@ -15,18 +16,21 @@ export class CaseStudyHeaderComponent implements OnInit {
   staticAssets = staticAssets;
   richTextTagline: string;
 
-  constructor(private cmsService: CmsService) {}
+  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getHeaderText();
+    this.activatedRoute.params.subscribe((params) => {
+      const slug = params.slug;
+      this.getHeaderText(slug);
+    });
   }
 
   imageUrl(source: any) {
     return this.cmsService.getImageUrl(source);
   }
 
-  getHeaderText() {
-    this.cmsService.getDataBySlug('taarangana').subscribe((data) => {
+  getHeaderText(slug: string) {
+    this.cmsService.getDataBySlug(slug).subscribe((data) => {
       this.caseStudyPageHeader = data;
       this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.bannerImage).url();
       this.richTextTagline = this.cmsService.getHtmlFromBlock(data, 'tagline');

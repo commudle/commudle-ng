@@ -5,6 +5,9 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
+import { IEvent } from 'apps/shared-models/event.model';
+import moment from 'moment';
 
 @Component({
   selector: 'app-about',
@@ -15,18 +18,24 @@ export class AboutComponent implements OnInit {
   community: ICommunity = null;
   EUserRoles = EUserRoles;
   organizers: IUser[] = [];
-
+  events: IEvent[] = [];
+  upcomingEvents: IEvent[] = [];
+  isLoadingEvents = false;
   isLoading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
+    private eventsService: EventsService,
   ) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      if (this.community.upcoming_events_count > 0) {
+        this.getEvents();
+      }
       this.seoService.setTitle(this.community.name);
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
     });
@@ -40,6 +49,19 @@ export class AboutComponent implements OnInit {
         this.organizers = this.organizers.concat(data.users);
         this.isLoading = false;
       });
+    });
+  }
+
+  getEvents() {
+    this.isLoadingEvents = true;
+    this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
+      this.events = data.events;
+      this.events.forEach((event) => {
+        if (moment(event.end_time) > moment() || event.end_time === null) {
+          this.upcomingEvents.push(event);
+        }
+      });
+      this.isLoadingEvents = false;
     });
   }
 }

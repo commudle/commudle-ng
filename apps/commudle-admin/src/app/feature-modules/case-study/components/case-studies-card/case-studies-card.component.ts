@@ -15,6 +15,7 @@ export class CaseStudiesCardComponent implements OnInit {
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
+    console.log(this.caseStudy);
     this.richTextTagline = this.cmsService.getHtmlFromBlock(this.caseStudy, 'tagline');
   }
 

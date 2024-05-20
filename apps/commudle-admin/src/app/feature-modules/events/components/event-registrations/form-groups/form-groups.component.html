@@ -2,7 +2,7 @@
   <div>
     <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
       <nb-card
-        *ngFor="let edfeg of eventDataFormEntityGroups | orderBy : ['registration_type.name'] : ['asc']; let i = index"
+        *ngFor="let edfeg of eventDataFormEntityGroups | orderBy : ['registration_type.id'] : ['asc']; let i = index"
         [ngStyle]="{ 'background-color': RegistrationTypeBackgroundColor[edfeg.registration_type.name] }"
       >
         <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
@@ -178,8 +178,8 @@
           <!-- payment Details -->
           <div *ngIf="community.payments_enabled">
             <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
-              <input type="checkbox" (change)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid" />
-              <span class="com-text-primary-500"> Paid Ticketing </span>
+              <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
+              <span class="com-text-primary-500"> Paid Ticketing</span>
             </div>
             <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
               <commudle-payment-settings

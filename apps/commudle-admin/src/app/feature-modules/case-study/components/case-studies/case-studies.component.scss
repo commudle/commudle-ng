@@ -11,4 +11,11 @@ div {
       @apply com-text-xl com-font-medium com-text-gray-500 com-m-0;
     }
   }
+
+  .case-studies-cards {
+    @apply com-flex com-flex-wrap com-gap-8;
+    div {
+      @apply md:com-w-[624px] com-w-full;
+    }
+  }
 }

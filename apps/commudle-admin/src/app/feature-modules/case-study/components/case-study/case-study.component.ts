@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
@@ -14,14 +15,17 @@ export class CaseStudyComponent implements OnInit {
   richTextSolution: string;
   richTextStats: any[] = [];
 
-  constructor(private cmsService: CmsService) {}
+  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getHeaderText();
+    this.activatedRoute.params.subscribe((params) => {
+      const slug = params.slug;
+      this.getHeaderText(slug);
+    });
   }
 
-  getHeaderText() {
-    this.cmsService.getDataBySlug('taarangana').subscribe((data) => {
+  getHeaderText(slug: string) {
+    this.cmsService.getDataBySlug(slug).subscribe((data) => {
       this.caseStudyPageHeader = data;
       this.richTextChallenges = this.cmsService.getHtmlFromBlock(data, 'challenge');
       this.richTextSolution = this.cmsService.getHtmlFromBlock(data, 'solution');

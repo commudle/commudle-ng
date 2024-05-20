@@ -1,0 +1,14 @@
+.apply-expert {
+  @apply com-flex com-justify-center md:com-mx-0 com-mx-4 com-mb-0 md:com-mb-8 md:com-w-[342px] md:com-mt-0 com-mt-8;
+  .button {
+    @apply com-w-full com-rounded-lg;
+  }
+}
+
+.right-column {
+  @apply com-p-0 com-pt-8;
+}
+
+.speakers {
+  @apply com-m-0 com-mb-6;
+}

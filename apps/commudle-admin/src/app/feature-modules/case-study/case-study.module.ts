@@ -10,6 +10,8 @@ import { CaseStudiesHeaderComponent } from './components/case-studies-header/cas
 import { CaseStudiesCardComponent } from './components/case-studies-card/case-studies-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbButtonModule } from '@commudle/theme';
+import { SharedComponentsModule } from '../../../../../shared-components/shared-components.module';
+import { SharedPipesModule } from '../../../../../shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,14 @@ import { NbButtonModule } from '@commudle/theme';
     CaseStudiesHeaderComponent,
     CaseStudiesCardComponent,
   ],
-  imports: [CommonModule, CaseStudyRoutingModule, AppSharedComponentsModule, FontAwesomeModule, NbButtonModule],
+  imports: [
+    CommonModule,
+    CaseStudyRoutingModule,
+    AppSharedComponentsModule,
+    FontAwesomeModule,
+    NbButtonModule,
+    SharedComponentsModule,
+    SharedPipesModule,
+  ],
 })
 export class CaseStudyModule {}

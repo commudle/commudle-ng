@@ -11,7 +11,7 @@
         </div>
         <div class="header-text">
           <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
-          <div [innerHTML]="richTextTagline"></div>
+          <div [innerHTML]="richTextTagline | safe"></div>
         </div>
       </div>
     </div>

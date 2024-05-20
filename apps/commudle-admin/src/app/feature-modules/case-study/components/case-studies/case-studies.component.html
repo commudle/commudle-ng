@@ -10,6 +10,7 @@
           types.
         </h2>
       </div>
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div class="case-studies-cards">
         <div *ngFor="let caseStudy of caseStudies">
           <commudle-case-studies-card [caseStudy]="caseStudy"></commudle-case-studies-card>

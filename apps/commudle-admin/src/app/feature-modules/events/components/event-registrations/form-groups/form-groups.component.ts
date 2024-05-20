@@ -255,9 +255,10 @@ export class FormGroupsComponent implements OnInit {
     }
   }
 
-  onSwitchToggled(eventDataFormEntityGroupId, index) {
+  onSwitchToggled(eventDataFormEntityGroupId) {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
-      this.eventDataFormEntityGroups[index].is_paid = data;
+      const edfegIndex = this.eventDataFormEntityGroups.findIndex((edfeg) => edfeg.id === eventDataFormEntityGroupId);
+      this.eventDataFormEntityGroups[edfegIndex].is_paid = data;
       this.checkDiscountCode();
     });
   }

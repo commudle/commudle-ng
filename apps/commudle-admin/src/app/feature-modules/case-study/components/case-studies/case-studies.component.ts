@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
@@ -8,7 +8,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
   templateUrl: './case-studies.component.html',
   styleUrls: ['./case-studies.component.scss'],
 })
-export class CaseStudiesComponent implements OnInit {
+export class CaseStudiesComponent implements OnInit, OnDestroy {
   caseStudies: any[] = [];
   isLoading = true;
 
