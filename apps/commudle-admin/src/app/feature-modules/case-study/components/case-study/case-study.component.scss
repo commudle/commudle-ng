@@ -37,7 +37,7 @@ a {
   }
 
   .stats-container {
-    @apply com-bg-blue-50;
+    @apply com-bg-blue-50 md:com-py-[100px];
 
     .base-layout {
       @apply com-min-h-0;
