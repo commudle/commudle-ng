@@ -1,14 +1,6 @@
 .case-study-card {
   @apply com-w-full com-no-underline;
 
-  .banner-image {
-    @apply com-w-[624px] com-h-[228px] com-bg-tWhite com-rounded-lg;
-
-    img {
-      @apply com-w-full com-h-full com-rounded-lg com-object-contain;
-    }
-  }
-
   .title {
     @apply com-m-0 com-p-0 com-pt-4 com-text-xl com-font-bold com-text-Dark-Jungle-Green;
   }
@@ -22,6 +14,10 @@
         }
       }
     }
+  }
+
+  .meta-description {
+    @apply com-text-sm com-text-gray-400 com-font-medium com-my-3;
   }
 
   button {

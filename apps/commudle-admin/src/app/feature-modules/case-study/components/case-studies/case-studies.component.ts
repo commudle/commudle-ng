@@ -25,7 +25,7 @@ export class CaseStudiesComponent implements OnInit, OnDestroy {
   }
 
   getCaseStudies() {
-    const fields = 'title, tagline, slug, bannerImage';
+    const fields = 'title, tagline, slug, bannerImage, metaDescription';
     this.cmsService.getDataByTypeFieldOrder('caseStudy', fields).subscribe((value) => {
       this.caseStudies = value;
       this.isLoading = false;

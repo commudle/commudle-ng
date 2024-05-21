@@ -1,5 +1,10 @@
 <div *ngIf="caseStudyPageHeader" class="header">
-  <div class="background-image" [ngStyle]="{ 'background-image': 'url(\'' + this.BackgroundImage + '\')' }">
+  <div class="background-image">
+    <commudle-banner-image
+      [headerImagePath]="imageUrl(caseStudyPageHeader.bannerImage).url()"
+      [name]="caseStudyPageHeader.title"
+      [aspectRatio]="'4/1'"
+    ></commudle-banner-image>
     <div class="base-layout">
       <div class="content">
         <div class="logo-image">
@@ -17,8 +22,3 @@
     </div>
   </div>
 </div>
-
-<!-- [ngStyle]="{ 'background-image': 'url(\'' + this.BackgroundImage + '\')' }" -->
-
-<!-- background-image: linear-gradient(90deg, #000000, white), -->
-<!-- url('https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMmZQQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--af8f26c149cf39c3b91f547486c960a0be366212/linkedin-cover.png'); -->

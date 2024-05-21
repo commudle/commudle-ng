@@ -9,14 +9,13 @@ import { CmsService } from 'apps/shared-services/cms.service';
 })
 export class CaseStudiesCardComponent implements OnInit {
   @Input() caseStudy: any;
-  richTextTagline: string;
+  // richTextMetaDescription: string;
   faSquareArrowUpRight = faSquareArrowUpRight;
 
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
-    console.log(this.caseStudy);
-    this.richTextTagline = this.cmsService.getHtmlFromBlock(this.caseStudy, 'tagline');
+    // this.richTextTagline = this.cmsService.getHtmlFromBlock(this.caseStudy, 'tagline');
   }
 
   imageUrl(source: any) {
