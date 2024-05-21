@@ -1,21 +1,24 @@
-div {
+.case-studies {
   @apply com-bg-white;
-  .case-studies-heading {
-    @apply com-flex com-flex-col com-text-center md:com-my-[60px];
 
-    h1 {
-      @apply com-text-black com-m-0 com-mb-4;
+  .base-layout {
+    .case-studies-heading {
+      @apply com-flex com-flex-col com-text-center md:com-my-[60px] com-my-8;
+
+      h1 {
+        @apply com-text-black com-m-0 com-mb-4 md:com-text-4xl com-text-2xl md:com-font-bold;
+      }
+
+      h2 {
+        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0;
+      }
     }
 
-    h2 {
-      @apply com-text-xl com-font-medium com-text-gray-500 com-m-0;
-    }
-  }
-
-  .case-studies-cards {
-    @apply com-flex com-flex-wrap com-gap-8;
-    div {
-      @apply md:com-w-[624px] com-w-full;
+    .case-studies-cards {
+      @apply com-flex com-flex-wrap com-gap-8 md:com-px-0 com-px-4;
+      div {
+        @apply md:com-w-[624px] com-w-full;
+      }
     }
   }
 }

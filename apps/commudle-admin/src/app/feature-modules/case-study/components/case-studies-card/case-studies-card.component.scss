@@ -16,6 +16,13 @@
     }
   }
 
+  .no-banner-image {
+    @apply com-flex com-w-[624px] com-h-[156px] com-rounded-lg;
+    img {
+      @apply com-w-full com-h-full;
+    }
+  }
+
   .meta-description {
     @apply com-text-sm com-text-gray-400 com-font-medium com-my-3;
   }
