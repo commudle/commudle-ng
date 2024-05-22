@@ -116,6 +116,9 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
         }
       },
     );
+    this.newsletterForm.controls['grapes_js_editor'].valueChanges.subscribe(() => {
+      this.toggleEditorSwitch();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -371,7 +374,7 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
     if (this.newsletterForm.controls['grapes_js_editor'].value) {
       setTimeout(() => {
         this.initEditor();
-      }, 5000);
+      }, 500);
     }
   }
 
