@@ -12,7 +12,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 export class CaseStudyHeaderComponent implements OnInit {
   caseStudyPageHeader: ICaseStudy;
   richText: string;
-  BackgroundImage;
+  BackgroundImage: string;
   staticAssets = staticAssets;
   richTextTagline: string;
 
