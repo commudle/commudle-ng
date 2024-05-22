@@ -17,7 +17,7 @@
   }
 
   .no-banner-image {
-    @apply com-flex com-w-[624px] com-h-[156px];
+    @apply com-flex com-aspect-[4/1];
     img {
       @apply com-w-full com-h-full com-rounded-lg;
     }
