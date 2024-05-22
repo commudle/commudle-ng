@@ -1,10 +1,10 @@
-import { ESidebarPosition, ESidebarWidth } from './../../shared-models/enums/sidebar.enum';
+import { ESidebarPosition, ESidebarWidth } from './enum/sidebar.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
-import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 
 @Component({
   selector: 'commudle-sidebar',
@@ -43,6 +43,12 @@ export class SidebarComponent implements OnInit {
     if (this.sidebarService.hideSidebar$.hasOwnProperty(this.eventName)) {
       this.sidebarService.hideSidebar$[this.eventName].subscribe((data) => {
         this.hideFullSidebar = data;
+      });
+    }
+
+    if (this.sidebarService.sidebarPosition$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.sidebarPosition$[this.eventName].subscribe((data) => {
+        this.position = data;
       });
     }
   }

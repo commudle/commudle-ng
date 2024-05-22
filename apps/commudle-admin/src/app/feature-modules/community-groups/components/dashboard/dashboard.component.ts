@@ -4,7 +4,7 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faUsers, faBuilding, faCalendar, faPenToSquare, faPoll, faFileLines } from '@fortawesome/free-solid-svg-icons';
-import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 
 @Component({
   selector: 'app-dashboard',

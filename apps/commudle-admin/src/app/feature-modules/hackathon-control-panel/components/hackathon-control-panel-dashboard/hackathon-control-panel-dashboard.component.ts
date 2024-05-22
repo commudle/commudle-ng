@@ -1,4 +1,3 @@
-import { ESidebarWidth } from 'apps/shared-models/enums/sidebar.enum';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
@@ -27,6 +26,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-dashboard',
