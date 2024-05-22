@@ -1,7 +1,7 @@
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EDbModels, ICommunity } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
@@ -25,8 +25,9 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
   styleUrls: ['./community-forum.component.scss'],
 })
 export class CommunityForumComponent implements OnInit {
-  @Input() parent: ICommunity | ICommunityGroup;
   @Input() isCommunityOrganizer = false;
+  parent: ICommunity | ICommunityGroup;
+  parentType: EDbModels;
   selectedForum: ICommunityChannel[];
   discussion: IDiscussion;
   currentUser: ICurrentUser;
@@ -50,10 +51,12 @@ export class CommunityForumComponent implements OnInit {
     private router: Router,
     private authWatchService: LibAuthwatchService,
     private seoService: SeoService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUser;
+    this.getParent();
     this.subscriptions.push(
       this.communityChannelManagerService.selectedForum$.subscribe((data) => {
         this.selectedForum = data;
@@ -63,10 +66,35 @@ export class CommunityForumComponent implements OnInit {
       }),
     );
   }
+  getParent() {
+    this.communityChannelManagerService.parent$.subscribe((data) => {
+      this.parent = data;
+    });
+    this.communityChannelManagerService.parentType$.subscribe((data) => {
+      this.parentType = data;
+    });
+  }
 
   openChat(forumId) {
     this.updateSelectedForum.emit(forumId);
-    this.router.navigate(['communities', this.parent.slug, 'forums', forumId]);
+    let urlSegments = [];
+    switch (this.parentType) {
+      case EDbModels.KOMMUNITY:
+        urlSegments = ['communities', this.parent.slug, 'forums', forumId];
+        break;
+      case EDbModels.COMMUNITY_GROUP:
+        urlSegments = ['orgs', this.parent.slug, 'forums', forumId];
+        break;
+      default:
+        console.error('Invalid Parent Type:', this.parentType);
+        break;
+    }
+
+    if (this.router.url.startsWith('/admin')) {
+      urlSegments.unshift('admin');
+    }
+
+    this.router.navigate(urlSegments);
   }
 
   getCurrentUser() {

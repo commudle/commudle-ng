@@ -18,7 +18,6 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
   styleUrls: ['./community-forum-message.component.scss'],
 })
 export class CommunityForumMessageComponent implements OnInit, OnDestroy {
-  @Input() parent: ICommunity | ICommunityGroup;
   @Input() forumId;
   @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
   discussion: IDiscussion;
