@@ -8,7 +8,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./case-studies-header.component.scss'],
 })
 export class CaseStudiesHeaderComponent implements OnInit {
-  communitiesPageHeader: ICaseStudy;
+  caseStudyPageHeader: ICaseStudy;
 
   constructor(private cmsService: CmsService) {}
 
@@ -22,7 +22,7 @@ export class CaseStudiesHeaderComponent implements OnInit {
 
   getHeaderText() {
     this.cmsService.getDataBySlug('case-study').subscribe((data) => {
-      this.communitiesPageHeader = data;
+      this.caseStudyPageHeader = data;
     });
   }
 }
