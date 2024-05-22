@@ -5,11 +5,11 @@ import { ICaseStudy } from 'apps/shared-models/case-study.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
-  selector: 'commudle-case-studies-card',
-  templateUrl: './case-studies-card.component.html',
-  styleUrls: ['./case-studies-card.component.scss'],
+  selector: 'commudle-case-study-card',
+  templateUrl: './case-study-card.component.html',
+  styleUrls: ['./case-study-card.component.scss'],
 })
-export class CaseStudiesCardComponent implements OnInit {
+export class CaseStudyCardComponent implements OnInit {
   @Input() caseStudy: ICaseStudy;
   faSquareArrowUpRight = faSquareArrowUpRight;
   staticAssets = staticAssets;
