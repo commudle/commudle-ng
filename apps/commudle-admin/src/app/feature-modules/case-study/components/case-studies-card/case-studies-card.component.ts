@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { ICaseStudy } from 'apps/shared-models/case-study.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
@@ -11,6 +12,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 export class CaseStudiesCardComponent implements OnInit {
   @Input() caseStudy: ICaseStudy;
   faSquareArrowUpRight = faSquareArrowUpRight;
+  staticAssets = staticAssets;
 
   constructor(private cmsService: CmsService) {}
 

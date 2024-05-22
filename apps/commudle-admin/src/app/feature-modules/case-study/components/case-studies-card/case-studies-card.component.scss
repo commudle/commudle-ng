@@ -17,9 +17,9 @@
   }
 
   .no-banner-image {
-    @apply com-flex com-w-[624px] com-h-[156px] com-rounded-lg;
+    @apply com-flex com-w-[624px] com-h-[156px];
     img {
-      @apply com-w-full com-h-full;
+      @apply com-w-full com-h-full com-rounded-lg;
     }
   }
 

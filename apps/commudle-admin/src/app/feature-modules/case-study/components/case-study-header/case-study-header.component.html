@@ -8,7 +8,7 @@
     ></commudle-banner-image>
     <div class="base-layout">
       <div class="container">
-        <div class="content">
+        <div class="content banner">
           <div class="logo-image">
             <img
               [src]="imageUrl(caseStudyPageHeader.logoImage).url()"
@@ -16,7 +16,7 @@
               title="{{ caseStudyPageHeader.title }}"
             />
           </div>
-          <div class="header-text">
+          <div class="header-text-banner">
             <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
             <div [innerHTML]="richTextTagline"></div>
           </div>
@@ -24,9 +24,9 @@
       </div>
     </div>
   </div>
-  <!-- <div *ngIf="!caseStudyPageHeader.bannerImage" class="base-layout">
+  <div *ngIf="!caseStudyPageHeader.bannerImage" class="base-layout">
     <div class="container">
-      <div class="content">
+      <div class="content com-mt-10">
         <div class="logo-image">
           <img
             [src]="imageUrl(caseStudyPageHeader.logoImage).url()"
@@ -34,11 +34,11 @@
             title="{{ caseStudyPageHeader.title }}"
           />
         </div>
-        <div class="header-text">
+        <div class="header-text-no-banner">
           <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
           <div [innerHTML]="richTextTagline"></div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>

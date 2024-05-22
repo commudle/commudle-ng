@@ -1,4 +1,4 @@
-<a class="case-study-card" [routerLink]="['/case-study', caseStudy.slug.current]">
+<a class="case-study-card" [routerLink]="['/case-studies', caseStudy.slug.current]">
   <div *ngIf="caseStudy.bannerImage" class="banner-image">
     <commudle-banner-image
       [headerImagePath]="imageUrl(caseStudy.bannerImage).url()"
@@ -7,7 +7,7 @@
     ></commudle-banner-image>
   </div>
   <div *ngIf="!caseStudy.bannerImage" class="no-banner-image">
-    <img src="" [alt]="caseStudy.title" [title]="caseStudy.title" />
+    <img [src]="staticAssets.case_study_empty_state_banner" [alt]="caseStudy.title" [title]="caseStudy.title" />
   </div>
   <h2 class="title">{{ caseStudy.title }}</h2>
   <div class="meta-description">{{ caseStudy.metaDescription }}</div>
