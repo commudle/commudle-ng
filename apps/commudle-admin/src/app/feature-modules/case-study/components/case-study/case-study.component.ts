@@ -1,27 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 import { CmsService } from 'apps/shared-services/cms.service';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { ICaseStudy } from 'apps/shared-models/case-study.model';
 
 @Component({
   selector: 'commudle-case-study',
   templateUrl: './case-study.component.html',
   styleUrls: ['./case-study.component.scss'],
 })
-export class CaseStudyComponent implements OnInit {
-  // caseStudyPageHeader: IListingPageHeader;
-  caseStudyPageHeader;
+export class CaseStudyComponent implements OnInit, OnDestroy {
+  caseStudyPageHeader: ICaseStudy;
   richTextChallenges: string;
   richTextSolution: string;
   richTextStats: any[] = [];
 
-  constructor(private cmsService: CmsService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private cmsService: CmsService,
+    private activatedRoute: ActivatedRoute,
+    private footerService: FooterService,
+  ) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.activatedRoute.params.subscribe((params) => {
       const slug = params.slug;
       this.getHeaderText(slug);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.footerService.changeFooterStatus(false);
   }
 
   getHeaderText(slug: string) {

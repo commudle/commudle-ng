@@ -1,11 +1,31 @@
 <div *ngIf="caseStudyPageHeader" class="header">
-  <div class="background-image">
+  <div *ngIf="caseStudyPageHeader.bannerImage" class="background-image">
+    <div class="gradient-overlay"></div>
     <commudle-banner-image
       [headerImagePath]="imageUrl(caseStudyPageHeader.bannerImage).url()"
       [name]="caseStudyPageHeader.title"
       [aspectRatio]="'4/1'"
     ></commudle-banner-image>
     <div class="base-layout">
+      <div class="container">
+        <div class="content">
+          <div class="logo-image">
+            <img
+              [src]="imageUrl(caseStudyPageHeader.logoImage).url()"
+              alt="{{ caseStudyPageHeader.title }}"
+              title="{{ caseStudyPageHeader.title }}"
+            />
+          </div>
+          <div class="header-text">
+            <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
+            <div [innerHTML]="richTextTagline"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf="!caseStudyPageHeader.bannerImage" class="base-layout">
+    <div class="container">
       <div class="content">
         <div class="logo-image">
           <img
@@ -16,9 +36,9 @@
         </div>
         <div class="header-text">
           <h1 class="title">{{ caseStudyPageHeader.title }}</h1>
-          <div [innerHTML]="richTextTagline | safe"></div>
+          <div [innerHTML]="richTextTagline"></div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

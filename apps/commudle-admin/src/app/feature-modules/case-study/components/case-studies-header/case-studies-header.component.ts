@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
+import { ICaseStudy } from 'apps/shared-models/case-study.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./case-studies-header.component.scss'],
 })
 export class CaseStudiesHeaderComponent implements OnInit {
-  communitiesPageHeader: IListingPageHeader;
+  communitiesPageHeader: ICaseStudy;
 
   constructor(private cmsService: CmsService) {}
 

@@ -6,9 +6,10 @@
       [aspectRatio]="'4/1'"
     ></commudle-banner-image>
   </div>
-  <div *ngIf="!caseStudy.bannerImage" class="no-banner-image"></div>
+  <div *ngIf="!caseStudy.bannerImage" class="no-banner-image">
+    <img src="" [alt]="caseStudy.title" [title]="caseStudy.title" />
+  </div>
   <h2 class="title">{{ caseStudy.title }}</h2>
-  <!-- <div class="tagline"><div [innerHTML]="richTextTagline"></div></div> -->
   <div class="meta-description">{{ caseStudy.metaDescription }}</div>
   <button nbButton status="primary" size="large" ghost>
     <fa-icon [icon]="faSquareArrowUpRight"></fa-icon>

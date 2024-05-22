@@ -1,16 +1,16 @@
 .header {
-  @apply md:com-max-h-[526px] com-max-h-full;
+  @apply com-h-full;
   .background-image {
     @apply com-relative com-m-0 com-p-0 com-w-full com-h-full com-bg-no-repeat com-bg-contain com-bg-center;
-    // background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 85.55%);
 
     .base-layout {
       @apply com-flex com-min-h-0;
       .content {
-        @apply com-flex md:com-flex-row com-flex-col md:com-mt-auto md:com-mb-0 com-my-4 md:com-px-0 com-px-4 md:com-absolute com-relative md:com-bottom-10 md:com-text-left com-text-center md:com-items-start com-items-center;
+        @apply com-flex md:com-flex-row com-flex-col md:com-mt-auto md:com-mb-0 com-my-4 md:com-px-0 com-px-4 md:com-absolute com-relative md:com-bottom-10 md:com-text-left com-text-center md:com-max-w-[1280px] com-max-w-full md:com-items-start com-items-center;
+        z-index: 2;
 
         .logo-image {
-          @apply com-h-[140px] com-w-[170px] com-mr-6 com-flex com-flex-shrink-0 com-bg-tWhite com-rounded-[20px];
+          @apply com-h-[140px] com-w-[170px] md:com-mr-6 com-mr-0 com-flex com-flex-shrink-0 com-bg-tWhite com-rounded-[20px];
           img {
             @apply com-h-full com-w-full com-rounded-[20px] com-object-cover;
           }
@@ -20,26 +20,27 @@
           @apply com-flex com-flex-col com-p-0;
 
           .title {
-            @apply com-text-[32px] com-font-bold com-text-tWhite com-m-0 com-mb-3;
+            @apply com-text-[32px] com-font-bold md:com-text-tWhite com-text-black com-m-0 com-mb-3;
           }
 
           div {
             ::ng-deep {
               h5 {
                 @apply com-m-0;
+                span {
+                  @apply md:com-text-tWhite com-text-black #{!important};
+                }
               }
             }
           }
-
-          // .tagline {
-          //   @apply com-text-xl com-font-semibold com-text-tWhite com-m-0;
-          // }
         }
       }
     }
   }
-}
 
-// .header-expert-overlay {
-//   @apply com-z-10 com-bg-gradient-to-t com-from-gray-800 com-via-transparent com-w-full com-h-full com-absolute com-left-0 com-top-0 com-m-0;
-// }
+  .gradient-overlay {
+    @apply com-absolute com-top-0 com-left-0 com-w-full com-h-full md:com-flex com-hidden;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 85.55%);
+    z-index: 1;
+  }
+}

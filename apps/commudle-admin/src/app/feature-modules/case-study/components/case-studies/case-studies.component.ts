@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { ICaseStudy } from 'apps/shared-models/case-study.model';
 
 @Component({
   selector: 'commudle-case-studies',
@@ -9,7 +10,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
   styleUrls: ['./case-studies.component.scss'],
 })
 export class CaseStudiesComponent implements OnInit, OnDestroy {
-  caseStudies: any[] = [];
+  caseStudies: ICaseStudy[] = [];
   isLoading = true;
 
   constructor(private cmsService: CmsService, private seoService: SeoService, private footerService: FooterService) {}
@@ -33,10 +34,10 @@ export class CaseStudiesComponent implements OnInit, OnDestroy {
   }
 
   setMeta(): void {
-    // this.seoService.setTags(
-    //   'Relating with Developers & Communities',
-    //   'Blogs in the form of experiences and knowledge, authored by Developers, Designers, Community Managers and DevRels',
-    //   'https://commudle.com/assets/images/commudle-logo192.png',
-    // );
+    this.seoService.setTags(
+      'Case Studies',
+      'Get to know how DevRels around the world have used Commudle to build scalable ecosystems and engagments to solve for their specific use cases.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
-import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
+import { ICaseStudy } from 'apps/shared-models/case-study.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./case-study-header.component.scss'],
 })
 export class CaseStudyHeaderComponent implements OnInit {
-  caseStudyPageHeader: IListingPageHeader;
+  caseStudyPageHeader: ICaseStudy;
   richText: string;
   BackgroundImage;
   staticAssets = staticAssets;
@@ -32,7 +32,9 @@ export class CaseStudyHeaderComponent implements OnInit {
   getHeaderText(slug: string) {
     this.cmsService.getDataBySlug(slug).subscribe((data) => {
       this.caseStudyPageHeader = data;
-      this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.bannerImage).url();
+      if (this.caseStudyPageHeader.bannerImage) {
+        this.BackgroundImage = this.imageUrl(this.caseStudyPageHeader.bannerImage).url();
+      }
       this.richTextTagline = this.cmsService.getHtmlFromBlock(data, 'tagline');
     });
   }
