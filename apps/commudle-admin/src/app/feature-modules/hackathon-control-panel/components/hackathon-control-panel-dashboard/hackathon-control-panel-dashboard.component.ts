@@ -1,3 +1,4 @@
+import { ESidebarWidth } from 'apps/shared-models/enums/sidebar.enum';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
@@ -58,6 +59,7 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
 
   hackathonStatuses: string[] = Object.values(EHackathonStatus);
   EHackathonStatus = EHackathonStatus;
+  ESidebarWidth = ESidebarWidth;
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,

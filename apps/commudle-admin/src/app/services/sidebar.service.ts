@@ -12,10 +12,10 @@ export class SidebarService {
 
   constructor() {}
 
-  setSidebarVisibility(eventName: string, expanded: boolean) {
+  setSidebarVisibility(eventName: string, expanded: boolean, hideSidebar: boolean = false) {
     this.setSidebar[eventName] = new BehaviorSubject(expanded);
     this.setSidebar$[eventName] = this.setSidebar[eventName].asObservable();
-    this.hideSidebar[eventName] = new BehaviorSubject(false);
+    this.hideSidebar[eventName] = new BehaviorSubject(hideSidebar);
     this.hideSidebar$[eventName] = this.hideSidebar[eventName].asObservable();
   }
 

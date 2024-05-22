@@ -1,3 +1,4 @@
+import { ESidebarPosition, ESidebarWidth } from './../../shared-models/enums/sidebar.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -15,20 +16,22 @@ import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.ser
 export class SidebarComponent implements OnInit {
   @Input() isExpanded: boolean = false;
   @Input() showExpandedButton: boolean = true;
-  @Input() position: 'left' | 'right' = 'left';
-  @Input() expandedWidth: 'small' | 'medium' | 'large' | 'extra-large' = 'large';
+  @Input() position: ESidebarPosition = ESidebarPosition.LEFT;
+  @Input() expandedWidth: ESidebarWidth = ESidebarWidth.LARGE;
   @Input() heading: string;
   @Input() forWindow = true;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() eventName: string;
 
+  ESidebarPosition = ESidebarPosition;
+  ESidebarWidth = ESidebarWidth;
   hideFullSidebar = false;
   expandSidebar = false;
 
   //font-awesome icons
   faCaretLeft = faCaretLeft;
   faBars = faBars;
-  constructor(public sidebarService: SidebarService) {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
     if (this.sidebarService.setSidebar$.hasOwnProperty(this.eventName)) {
