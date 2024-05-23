@@ -26,6 +26,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { SeoService } from '@commudle/shared-services';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-dashboard',
@@ -58,6 +59,7 @@ export class HackathonControlPanelDashboardComponent implements OnInit, OnDestro
 
   hackathonStatuses: string[] = Object.values(EHackathonStatus);
   EHackathonStatus = EHackathonStatus;
+  ESidebarWidth = ESidebarWidth;
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,

@@ -243,6 +243,7 @@
             <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
+              [border]="false"
             ></commudle-alert>
 
             <!-- Customer facing business name -->
@@ -261,6 +262,7 @@
             <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
+              [border]="false"
             ></commudle-alert>
             <!--  Contact Name -->
             <label>
@@ -283,450 +285,461 @@
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
             </label>
-            <div class="sub-category-heading">Profile</div>
-            <div formGroupName="profile">
-              <!-- Category -->
-              <label>
-                Category*
-                <div class="select">
-                  <select formControlName="category" (change)="categoryChanges()">
-                    <option value="" selected disabled>Select category</option>
-                    <option
-                      *ngFor="let businessCategory of EBusinessCategory | keyvalue"
-                      [value]="businessCategory.value"
-                    >
-                      {{ businessCategory.value | capitalizeAndRemoveUnderscore }}
-                    </option>
-                  </select>
-                </div>
-                <span
-                  *ngIf="
-                    razorpayAccountForm.get('profile.category').touched &&
-                    razorpayAccountForm.get('profile.category').invalid &&
-                    razorpayAccountForm.get('profile.category').hasError('required')
-                  "
-                >
-                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                </span>
-              </label>
-              <br />
-              <!-- subcategory -->
-              <label>
-                Sub Category*
-                <div
-                  class="select"
-                  *ngIf="razorpayAccountForm.get('profile.category').value !== EBusinessCategory.OTHERS"
-                >
-                  <select formControlName="subcategory">
-                    <option value="" selected disabled>Select Sub Category</option>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.IT_AND_SOFTWARE"
-                    >
+
+            <div class="profile">
+              <div class="divider-line"></div>
+              <div class="sub-category-heading">Profile</div>
+              <div formGroupName="profile" class="sub-form">
+                <!-- Category -->
+                <label>
+                  Category*
+                  <div class="select">
+                    <select formControlName="category" (change)="categoryChanges()">
+                      <option value="" selected disabled>Select category</option>
                       <option
-                        *ngFor="let subcategory of subCategory.ItAndSoftwareSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        *ngFor="let businessCategory of EBusinessCategory | keyvalue"
+                        [value]="businessCategory.value"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        {{ businessCategory.value | capitalizeAndRemoveUnderscore }}
                       </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.ECOMMERCE"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.EcommerceSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                    </select>
+                  </div>
+                  <span
+                    *ngIf="
+                      razorpayAccountForm.get('profile.category').touched &&
+                      razorpayAccountForm.get('profile.category').invalid &&
+                      razorpayAccountForm.get('profile.category').hasError('required')
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+                <!-- subcategory -->
+                <label>
+                  Sub Category*
+                  <div
+                    class="select"
+                    *ngIf="razorpayAccountForm.get('profile.category').value !== EBusinessCategory.OTHERS"
+                  >
+                    <select formControlName="subcategory">
+                      <option value="" selected disabled>Select Sub Category</option>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.IT_AND_SOFTWARE"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.EDUCATION"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.EducationSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.ItAndSoftwareSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.ECOMMERCE"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HEALTHCARE"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.HealthcareSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.EcommerceSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.EDUCATION"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SERVICES"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.ServiceSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.EducationSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HEALTHCARE"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HOUSING"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.HousingSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.HealthcareSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SERVICES"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.NOT_FOR_PROFIT"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.NotForProfitSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.ServiceSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.HOUSING"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SOCIAL"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.SocialSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.HousingSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.NOT_FOR_PROFIT"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="
-                        razorpayAccountForm.get('profile.category').value === EBusinessCategory.MEDIA_AND_ENTERTAINMENT
-                      "
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.MediaAndEntertainmentSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.NotForProfitSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.SOCIAL"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GAMING"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.GamingSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.SocialSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="
+                          razorpayAccountForm.get('profile.category').value ===
+                          EBusinessCategory.MEDIA_AND_ENTERTAINMENT
+                        "
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.FOOD">
-                      <option
-                        *ngFor="let subcategory of subCategory.FoodSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.MediaAndEntertainmentSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GAMING"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.UTILITIES"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.UtilitiesSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.GamingSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.FOOD"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GOVERNMENT"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.GovernmentSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.FoodSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.UTILITIES"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.LOGISTICS"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.LogisticsSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.UtilitiesSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.GOVERNMENT"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TOURS_AND_TRAVEL"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.ToursAndTravelSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.GovernmentSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.LOGISTICS"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TRANSPORT"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.TransportSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.LogisticsSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TOURS_AND_TRAVEL"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.FINANCIAL_SERVICES"
-                    >
-                      <option
-                        *ngFor="let subcategory of subCategory.FinancialServicesSubcategory | keyvalue"
-                        [value]="subcategory.value"
+                        <option
+                          *ngFor="let subcategory of subCategory.ToursAndTravelSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.TRANSPORT"
                       >
-                        {{ subcategory.value | capitalizeAndRemoveUnderscore }}
-                      </option>
-                    </ng-container>
-                  </select>
-                </div>
-                <div *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.OTHERS">
-                  <input
-                    fieldSize="small"
-                    formControlName="subcategory"
-                    placeholder="Sub Category"
-                    fullWidth
-                    nbInput
-                    type="string"
-                  />
-                </div>
-                <span
-                  *ngIf="
-                    razorpayAccountForm.get('legal_info.pan').touched &&
-                    razorpayAccountForm.get('legal_info.pan').invalid &&
-                    razorpayAccountForm.get('legal_info.pan').hasError('required')
-                  "
-                >
-                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                </span>
-              </label>
-              <br />
-              <br />
-              <div class="sub-category-heading">Address</div>
-              <div formGroupName="addresses">
-                <div formGroupName="registered">
-                  <!-- Street1 -->
-                  <label>
-                    Street1*
+                        <option
+                          *ngFor="let subcategory of subCategory.TransportSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="
+                          razorpayAccountForm.get('profile.category').value === EBusinessCategory.FINANCIAL_SERVICES
+                        "
+                      >
+                        <option
+                          *ngFor="let subcategory of subCategory.FinancialServicesSubcategory | keyvalue"
+                          [value]="subcategory.value"
+                        >
+                          {{ subcategory.value | capitalizeAndRemoveUnderscore }}
+                        </option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <div *ngIf="razorpayAccountForm.get('profile.category').value === EBusinessCategory.OTHERS">
                     <input
                       fieldSize="small"
-                      formControlName="street1"
-                      placeholder="Street Address"
+                      formControlName="subcategory"
+                      placeholder="Sub Category"
                       fullWidth
                       nbInput
                       type="string"
                     />
-                    <span
-                      *ngIf="
-                        razorpayAccountForm.get('profile.addresses.registered.street1').touched &&
-                        razorpayAccountForm.get('profile.addresses.registered.street1').invalid &&
-                        razorpayAccountForm.get('profile.addresses.registered.street1').hasError('required')
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span>
-                  </label>
+                  </div>
+                  <span
+                    *ngIf="
+                      razorpayAccountForm.get('profile.category').touched &&
+                      razorpayAccountForm.get('profile.category').invalid &&
+                      razorpayAccountForm.get('profile.category').hasError('required')
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+                <!--formGroupName  addresses -->
+                <div class="addresses">
+                  <div class="divider-line"></div>
+                  <div class="sub-category-heading">Address</div>
+                  <div formGroupName="addresses">
+                    <div formGroupName="registered" class="sub-form">
+                      <!-- Street1 -->
+                      <label>
+                        Street1*
+                        <input
+                          fieldSize="small"
+                          formControlName="street1"
+                          placeholder="Street Address"
+                          fullWidth
+                          nbInput
+                          type="string"
+                        />
+                        <span
+                          *ngIf="
+                            razorpayAccountForm.get('profile.addresses.registered.street1').touched &&
+                            razorpayAccountForm.get('profile.addresses.registered.street1').invalid &&
+                            razorpayAccountForm.get('profile.addresses.registered.street1').hasError('required')
+                          "
+                        >
+                          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        </span>
+                      </label>
 
-                  <!-- Street2 -->
-                  <label>
-                    Street 2
-                    <input
-                      fieldSize="small"
-                      formControlName="street2"
-                      placeholder="Street"
-                      fullWidth
-                      nbInput
-                      type="string"
-                    />
-                  </label>
+                      <!-- Street2 -->
+                      <label>
+                        Street 2*
+                        <input
+                          fieldSize="small"
+                          formControlName="street2"
+                          placeholder="Street"
+                          fullWidth
+                          nbInput
+                          type="string"
+                        />
+                      </label>
 
-                  <!-- city -->
-                  <label>
-                    City
-                    <input
-                      fieldSize="small"
-                      formControlName="city"
-                      placeholder="City"
-                      fullWidth
-                      nbInput
-                      type="string"
-                    />
-                    <span
-                      *ngIf="
-                        razorpayAccountForm.get('profile.addresses.registered.city').touched &&
-                        razorpayAccountForm.get('profile.addresses.registered.city').invalid &&
-                        razorpayAccountForm.get('profile.addresses.registered.city').hasError('required')
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span>
-                  </label>
+                      <!-- city -->
+                      <label>
+                        City*
+                        <input
+                          fieldSize="small"
+                          formControlName="city"
+                          placeholder="City"
+                          fullWidth
+                          nbInput
+                          type="string"
+                        />
+                        <span
+                          *ngIf="
+                            razorpayAccountForm.get('profile.addresses.registered.city').touched &&
+                            razorpayAccountForm.get('profile.addresses.registered.city').invalid &&
+                            razorpayAccountForm.get('profile.addresses.registered.city').hasError('required')
+                          "
+                        >
+                          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        </span>
+                      </label>
 
-                  <!-- state -->
-                  <label>
-                    State
-                    <input
-                      fieldSize="small"
-                      formControlName="state"
-                      placeholder="State"
-                      fullWidth
-                      nbInput
-                      type="string"
-                    />
-                    <span
-                      *ngIf="
-                        razorpayAccountForm.get('profile.addresses.registered.state').touched &&
-                        razorpayAccountForm.get('profile.addresses.registered.state').invalid &&
-                        razorpayAccountForm.get('profile.addresses.registered.state').hasError('required')
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span>
-                  </label>
+                      <!-- state -->
+                      <label>
+                        State*
+                        <input
+                          fieldSize="small"
+                          formControlName="state"
+                          placeholder="State"
+                          fullWidth
+                          nbInput
+                          type="string"
+                        />
+                        <span
+                          *ngIf="
+                            razorpayAccountForm.get('profile.addresses.registered.state').touched &&
+                            razorpayAccountForm.get('profile.addresses.registered.state').invalid &&
+                            razorpayAccountForm.get('profile.addresses.registered.state').hasError('required')
+                          "
+                        >
+                          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        </span>
+                      </label>
 
-                  <!-- Postal Code -->
-                  <label>
-                    Postal Code
-                    <input
-                      fieldSize="small"
-                      formControlName="postal_code"
-                      placeholder="Postal Code"
-                      fullWidth
-                      nbInput
-                      type="Number"
-                    />
-                    <span
-                      *ngIf="
-                        razorpayAccountForm.get('profile.addresses.registered.postal_code').touched &&
-                        razorpayAccountForm.get('profile.addresses.registered.postal_code').invalid &&
-                        razorpayAccountForm.get('profile.addresses.registered.postal_code').hasError('required')
-                      "
-                    >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-                    </span>
-                  </label>
+                      <!-- Postal Code -->
+                      <label>
+                        Postal Code*
+                        <input
+                          fieldSize="small"
+                          formControlName="postal_code"
+                          placeholder="Postal Code"
+                          fullWidth
+                          nbInput
+                          type="Number"
+                        />
+                        <span
+                          *ngIf="
+                            razorpayAccountForm.get('profile.addresses.registered.postal_code').touched &&
+                            razorpayAccountForm.get('profile.addresses.registered.postal_code').invalid &&
+                            razorpayAccountForm.get('profile.addresses.registered.postal_code').hasError('required')
+                          "
+                        >
+                          <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <br />
-            <div class="sub-category-heading">Legal Info</div>
-            <!-- legal_info -->
-            <div formGroupName="legal_info">
-              <!-- <span>Legal Info</span>
-              <br /> -->
-              <!-- PAN -->
+            <div>
+              <div class="divider-line"></div>
+              <div class="sub-category-heading">Legal Info</div>
+              <!-- legal_info -->
+              <div formGroupName="legal_info" class="sub-form">
+                <!-- PAN -->
+                <label *ngIf="showPanField">
+                  Business PAN*
+                  <input fieldSize="small" formControlName="pan" placeholder="PAN" fullWidth nbInput type="string" />
+                  <span
+                    *ngIf="
+                      razorpayAccountForm.get('legal_info.pan').touched &&
+                      razorpayAccountForm.get('legal_info.pan').invalid &&
+                      razorpayAccountForm.get('legal_info.pan').hasError('required')
+                    "
+                  >
+                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                  </span>
+                </label>
+
+                <!-- GST -->
+                <label>
+                  GST
+                  <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
+                </label>
+                <commudle-alert
+                  message="In case of registered business, Commudle is not responsible for your GST payment to the government. It is solely your company's responsibility to pay GST and any other taxes to the government on time."
+                  [info]="true"
+                ></commudle-alert>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="settlements">
+          <div class="divider-line"></div>
+          <div class="sub-category-heading">Bank Account Details</div>
+          <form [formGroup]="settlementDetailsForm">
+            <!-- settlements -->
+            <div formGroupName="settlements" class="sub-form">
+              <!-- beneficiary_name -->
               <label>
-                PAN*
-                <input fieldSize="small" formControlName="pan" placeholder="PAN" fullWidth nbInput type="string" />
+                Beneficiary Name*
+                <input
+                  fieldSize="small"
+                  formControlName="beneficiary_name"
+                  placeholder="Beneficiary Name"
+                  fullWidth
+                  nbInput
+                  type="string"
+                />
                 <span
                   *ngIf="
-                    razorpayAccountForm.get('legal_info.pan').touched &&
-                    razorpayAccountForm.get('legal_info.pan').invalid &&
-                    razorpayAccountForm.get('legal_info.pan').hasError('required')
+                    settlementDetailsForm.get('settlements.beneficiary_name').touched &&
+                    settlementDetailsForm.get('settlements.beneficiary_name').invalid &&
+                    settlementDetailsForm.get('settlements.beneficiary_name').hasError('required')
                   "
                 >
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
               </label>
 
-              <!-- GST -->
+              <!-- account_number -->
               <label>
-                GST
-                <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
+                Account Number*
+                <input
+                  fieldSize="small"
+                  formControlName="account_number"
+                  placeholder="Account Number"
+                  fullWidth
+                  nbInput
+                  type="number"
+                />
+                <span
+                  *ngIf="
+                    settlementDetailsForm.get('settlements.account_number').touched &&
+                    settlementDetailsForm.get('settlements.account_number').invalid &&
+                    settlementDetailsForm.get('settlements.account_number').hasError('required')
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
               </label>
-              <commudle-alert
-                message="In case of registered business, Commudle is not responsible for your GST payment to the government. It is solely your company's responsibility to pay GST and any other taxes to the government on time."
-                [info]="true"
-              ></commudle-alert>
+
+              <!-- ifsc_code -->
+              <label>
+                IFSC Code*
+                <input
+                  fieldSize="small"
+                  formControlName="ifsc_code"
+                  placeholder="IFSC Code"
+                  fullWidth
+                  nbInput
+                  type="string"
+                />
+                <span
+                  *ngIf="
+                    settlementDetailsForm.get('settlements.ifsc_code').touched &&
+                    settlementDetailsForm.get('settlements.ifsc_code').invalid &&
+                    settlementDetailsForm.get('settlements.ifsc_code').hasError('required')
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
             </div>
-          </div>
-        </form>
-
-        <br />
-        <br />
-        <div class="sub-category-heading">Bank Account Details</div>
-        <form [formGroup]="settlementDetailsForm">
-          <!-- settlements -->
-          <div formGroupName="settlements">
-            <!-- beneficiary_name -->
-            <label>
-              Beneficiary Name*
-              <input
-                fieldSize="small"
-                formControlName="beneficiary_name"
-                placeholder="Beneficiary Name"
-                fullWidth
-                nbInput
-                type="string"
-              />
-              <span
-                *ngIf="
-                  settlementDetailsForm.get('settlements.beneficiary_name').touched &&
-                  settlementDetailsForm.get('settlements.beneficiary_name').invalid &&
-                  settlementDetailsForm.get('settlements.beneficiary_name').hasError('required')
-                "
-              >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-              </span>
-            </label>
-
-            <!-- account_number -->
-            <label>
-              Account Number*
-              <input
-                fieldSize="small"
-                formControlName="account_number"
-                placeholder="Account Number"
-                fullWidth
-                nbInput
-                type="number"
-              />
-              <span
-                *ngIf="
-                  settlementDetailsForm.get('settlements.account_number').touched &&
-                  settlementDetailsForm.get('settlements.account_number').invalid &&
-                  settlementDetailsForm.get('settlements.account_number').hasError('required')
-                "
-              >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-              </span>
-            </label>
-
-            <!-- ifsc_code -->
-            <label>
-              IFSC Code*
-              <input
-                fieldSize="small"
-                formControlName="ifsc_code"
-                placeholder="IFSC Code"
-                fullWidth
-                nbInput
-                type="string"
-              />
-              <span
-                *ngIf="
-                  settlementDetailsForm.get('settlements.ifsc_code').touched &&
-                  settlementDetailsForm.get('settlements.ifsc_code').invalid &&
-                  settlementDetailsForm.get('settlements.ifsc_code').hasError('required')
-                "
-              >
-                <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
-              </span>
-            </label>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
       <div *ngIf="isLoading && selectedCountry === 'India'">
         <p class="com-text-center com-font-bold com-mb-1">Creating Razorpay Account......</p>

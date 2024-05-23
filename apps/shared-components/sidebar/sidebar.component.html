@@ -4,12 +4,12 @@
     expanded: expandSidebar || isExpanded,
     forWindow: forWindow,
     hideFullSidebar: hideFullSidebar,
-    left: position === 'left',
-    right: position === 'right',
-    small: expandedWidth === 'small',
-    medium: expandedWidth === 'medium',
-    large: expandedWidth === 'large',
-    extraLarge: expandedWidth === 'extra-large'
+    left: position === ESidebarPosition.LEFT,
+    right: position === ESidebarPosition.RIGHT,
+    small: expandedWidth === ESidebarWidth.SMALL,
+    medium: expandedWidth === ESidebarWidth.MEDIUM,
+    large: expandedWidth === ESidebarWidth.LARGE,
+    extraLarge: expandedWidth === ESidebarWidth.XL
   }"
 >
   <div class="header" *ngIf="heading || showExpandedButton">

@@ -7,6 +7,7 @@ import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels } from 
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 @Component({
   selector: 'commudle-channel-forum-dashboard',
@@ -53,6 +54,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   currentRoute: string;
   token: string;
   emailToken: string;
+  ESidebarWidth = ESidebarWidth;
 
   constructor(
     private authWatchService: AuthService,
