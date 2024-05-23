@@ -3,7 +3,11 @@
     <div class="one-column-layout" *ngIf="communityGroup">
       <div *ngIf="showSideBar"></div>
       <div class="sidebar-container">
-        <commudle-sidebar [heading]="communityGroup.name" [expandedWidth]="'large'" [eventName]="'communityGroup'">
+        <commudle-sidebar
+          [heading]="communityGroup.name"
+          [expandedWidth]="ESidebarWidth.LARGE"
+          [eventName]="'communityGroup'"
+        >
           <div [ngClass]="{ expanded: sidebarService.getSidebarVisibility('communityGroup') | async }">
             <div class="content">
               <div class="link">
