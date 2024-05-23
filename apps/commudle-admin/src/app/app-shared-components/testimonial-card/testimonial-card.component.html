@@ -9,6 +9,9 @@
           <div *ngIf="testimonial.user" class="image">
             <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.name }}" />
           </div>
+          <div *ngIf="testimonial.image" class="image">
+            <img [src]="imageUrl(testimonial.image).url()" class="com-w-full" />
+          </div>
           <div class="user-details">
             <p class="name">{{ testimonial.name }}</p>
             <p *ngIf="testimonial.username" class="username">@{{ testimonial.username }}</p>
