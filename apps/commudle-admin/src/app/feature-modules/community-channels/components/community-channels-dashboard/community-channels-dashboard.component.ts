@@ -12,6 +12,7 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -58,6 +59,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   currentRoute: string;
   token: string;
   emailToken: string;
+  ESidebarWidth = ESidebarWidth;
 
   constructor(
     private authWatchService: LibAuthwatchService,
