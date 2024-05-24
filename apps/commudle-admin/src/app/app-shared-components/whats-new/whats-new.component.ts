@@ -23,6 +23,7 @@ export class WhatsNewComponent implements OnInit {
   newUpdates: IWhatsNew[];
   faBullhorn = faBullhorn;
   faXmark = faXmark;
+  cookieName = 'com_last_whats_new_seen';
 
   constructor(
     private whatsNewService: WhatsNewService,
@@ -35,10 +36,10 @@ export class WhatsNewComponent implements OnInit {
       setTimeout(() => {
         this.newUpdates = [];
         const currentDate = new Date();
-        this.cookieCreationTime = this.whatsNewService.getCookieByName('com-last-whats-new-seen');
+        this.cookieCreationTime = this.whatsNewService.getCookieByName(this.cookieName);
         currentDate.setMonth(currentDate.getMonth() - 2);
         const formattedPastTime = currentDate.toISOString();
-        const date = this.whatsNewService.getCookieByName('com-last-whats-new-seen')
+        const date = this.whatsNewService.getCookieByName(this.cookieName)
           ? this.cookieCreationTime
           : formattedPastTime;
         this.whatsNewService.getNewUpdates(date).subscribe((data) => {
@@ -52,7 +53,7 @@ export class WhatsNewComponent implements OnInit {
   }
 
   setCookie() {
-    this.whatsNewService.setCookieCreationTime('com-last-whats-new-seen');
+    this.whatsNewService.setCookieCreationTime(this.cookieName);
   }
 
   openDialog(templateRef: TemplateRef<any>) {

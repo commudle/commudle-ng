@@ -1,5 +1,6 @@
 .card {
   @apply com-fixed com-top-20 md:com-w-[480px] com-h-[228px] md:com-right-auto com-right-4 md:com-left-auto com-left-4;
+  z-index: 9999;
 }
 
 .base-layout {
