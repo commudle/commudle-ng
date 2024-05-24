@@ -93,6 +93,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
   },
+  {
+    path: 'case-studies',
+    loadChildren: () => import('./feature-modules/case-study/case-study.module').then((m) => m.CaseStudyModule),
+  },
   // {
   //   path: 'features',
   //   component: FeaturesComponent,

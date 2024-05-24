@@ -124,6 +124,10 @@ export const staticAssets = {
   expert_program_header:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd0FZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--11d25f55ae2c13a94e0c9fc8724863d43d9a5e16/Header%20Frame%20Pattern.png',
 
+  // id: 145
+  case_study_empty_state_banner:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMXRHQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a67b7c09eaf3b38a9bb63f98290c2042a068a16b/Case%20Study%20Empty%20State.png',
+
   stripe: {
     id: 97,
     url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOWRDQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--db7d5da8d5636d2ff9a354a98d42306a458a62b5/Stripe%20wordmark%20-%20blurple.svg',
