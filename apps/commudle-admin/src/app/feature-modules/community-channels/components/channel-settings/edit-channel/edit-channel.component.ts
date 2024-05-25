@@ -4,12 +4,12 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 
 @Component({
-  selector: 'app-edit-channel',
+  selector: 'commudle-edit-channel',
   templateUrl: './edit-channel.component.html',
   styleUrls: ['./edit-channel.component.scss'],
 })
 export class EditChannelComponent implements OnInit {
-  @Input() channelId: string;
+  @Input() channelId: number;
   @Input() forum: ICommunityChannel;
   @Input() discussionType;
   @Output() updateForm = new EventEmitter<string>();

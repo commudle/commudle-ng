@@ -1,3 +1,6 @@
 <div *ngIf="community">
-  <app-community-channels-dashboard [selectedCommunity]="community"></app-community-channels-dashboard>
+  <commudle-channel-forum-dashboard
+    [parent]="community"
+    [parentType]="EDbModels.KOMMUNITY"
+  ></commudle-channel-forum-dashboard>
 </div>

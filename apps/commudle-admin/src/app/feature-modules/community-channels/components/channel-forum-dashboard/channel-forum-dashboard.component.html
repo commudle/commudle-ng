@@ -1,7 +1,4 @@
 <div class="community-channels-dashboard page-padding">
-  <div class="community-list" *ngIf="showCommunityList">
-    <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
-  </div>
   <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-[72px]': !sidebarExpanded }">
     <commudle-sidebar
       [isExpanded]="sidebarExpanded"
@@ -34,8 +31,7 @@
           <!-- channel list -->
           <div *ngIf="channelsList && !forumsList && !discussionTypeForum">
             <app-community-channel-list
-              [groupedChannels]="communityChannels"
-              [selectedCommunity]="selectedCommunity"
+              [groupedChannels]="channels"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
               [isCommunityOrganizer]="isCommunityOrganizer"
             ></app-community-channel-list>
@@ -57,28 +53,22 @@
   <div class="community-channel-discussion">
     <!-- channel card (landing page)-->
     <div *ngIf="channelsCards && !forumsCards && !(token || emailToken)">
-      <app-community-channels-dashboard-channel-list
-        [community]="selectedCommunity"
-      ></app-community-channels-dashboard-channel-list>
+      <app-community-channels-dashboard-channel-list></app-community-channels-dashboard-channel-list>
     </div>
 
     <!-- //form cards (landing page) -->
     <div *ngIf="forumsCards && !channelsCards && !(token || emailToken)" class="com-h-full">
       <commudle-community-channels-dashboard-forum-list
-        [community]="selectedCommunity"
         (updateSelectedForum)="updateSelectedChannelOrForum($event)"
       ></commudle-community-channels-dashboard-forum-list>
     </div>
 
     <!-- //Channel message Component -->
     <div *ngIf="channelMessage && !forumMessage">
-      <app-community-channel
-        [selectedChannelId]="selectedChannelOrFormId"
-        [selectedCommunity]="selectedCommunity"
-      ></app-community-channel>
+      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
     </div>
     <div *ngIf="token">
-      <app-join-by-token [selectedCommunity]="selectedCommunity"></app-join-by-token>
+      <app-join-by-token></app-join-by-token>
     </div>
     <div *ngIf="emailToken">
       <app-email-join></app-email-join>
@@ -87,7 +77,6 @@
     <!-- //Form Name List shows after selecting form group -->
     <commudle-community-forum
       *ngIf="forumsNamesList"
-      [selectedCommunity]="selectedCommunity"
       [isCommunityOrganizer]="isCommunityOrganizer"
       (updateSelectedForum)="checkSelectedForum()"
     ></commudle-community-forum>
@@ -95,7 +84,6 @@
     <!-- //Form message component shows after selecting form name  -->
     <commudle-community-forum-message
       *ngIf="forumMessage && !forumsNamesList"
-      [selectedCommunity]="selectedCommunity"
       (updateSelectedForum)="updateSelectedChannelOrForum($event)"
     ></commudle-community-forum-message>
   </div>
