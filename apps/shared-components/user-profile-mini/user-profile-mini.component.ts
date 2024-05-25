@@ -12,8 +12,11 @@ export class UserProfileMiniComponent implements OnInit {
   @Input() designation: boolean;
   @Input() disableAnchor: boolean = false;
   @Input() showLiveStatus: boolean;
+  @Input() showOnlineText: boolean;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.showOnlineText, 'mini');
+  }
 }

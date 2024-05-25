@@ -1,1 +1,4 @@
-<div [ngClass]="{'online': online === true, 'offline': online === false}" class="user-live-status {{ position }}"></div>
+<div [ngClass]="{ online: online === true, offline: online === false }" class="user-live-status {{ position }}"></div>
+<!-- <p>{{ online }}</p>
+<p>{{ showOnlineText }}</p> -->
+<p *ngIf="online && showOnlineText" class="active-now">Active Now</p>

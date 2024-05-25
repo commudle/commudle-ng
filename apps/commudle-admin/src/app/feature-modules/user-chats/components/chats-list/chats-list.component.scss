@@ -10,7 +10,7 @@
     }
 
     nb-card-header {
-      @apply com-p-4;
+      @apply com-py-4 com-px-3;
     }
 
     nb-card-body {
@@ -25,5 +25,13 @@
     nb-icon {
       @apply com-ml-0 #{!important};
     }
+  }
+
+  nb-list-item {
+    @apply com-px-3 com-py-2;
+  }
+
+  .selectedUser {
+    @apply com-bg-slate-100;
   }
 }
