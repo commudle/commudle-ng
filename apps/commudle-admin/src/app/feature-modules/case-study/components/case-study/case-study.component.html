@@ -21,7 +21,7 @@
         <h2>How commudle solved it</h2>
         <div [innerHTML]="richTextSolution | safe"></div>
       </div>
-      <div *ngIf="caseStudyPageHeader" class="testimonials" id="testimonials">
+      <div *ngIf="caseStudyPageHeader?.testimonials" class="testimonials" id="testimonials">
         <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></h2>
         <h3 class="subheading">Don't just take our word for it</h3>
         <div class="testimonial-card">
