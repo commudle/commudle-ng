@@ -12,7 +12,6 @@ export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeature[];
   @Input() featureData: IFeature;
   @Output() featureSlug: EventEmitter<string> = new EventEmitter<string>();
-  queryParams;
   showSubHeading = [];
   faAdd = faAdd;
   faMinus = faMinus;
