@@ -1,4 +1,3 @@
-import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { BehaviorSubject } from 'rxjs';
@@ -7,6 +6,7 @@ import {
   EDiscussionType,
   ICommunity,
   ICommunityChannel,
+  ICommunityGroup,
   IUser,
   IUserMessage,
 } from '@commudle/shared-models';
