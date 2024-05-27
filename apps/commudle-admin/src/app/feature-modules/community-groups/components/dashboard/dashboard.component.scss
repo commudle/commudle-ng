@@ -17,6 +17,9 @@
     }
   }
 }
+.sidebar-container {
+  @apply com-z-[1000];
+}
 .content {
   .link {
     .children {

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { ICommunity, EDbModels } from '@commudle/shared-models';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-community-channels-and-forums',
@@ -12,10 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class CommunityChannelsAndForumsComponent implements OnInit {
   community: ICommunity;
-
-  subscriptions: Subscription[] = [];
-  communityId: string | number;
-
+  EDbModels = EDbModels;
   constructor(private activatedRoute: ActivatedRoute, private communitiesService: CommunitiesService) {}
 
   ngOnInit() {

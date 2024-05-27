@@ -44,21 +44,27 @@
     <div class="field">
       <label fullWidth>
         <span>{{ discussionType === EDiscussionType.CHANNEL ? 'Name*' : 'Topic*' }}</span>
-        <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
+        <input
+          formControlName="name"
+          fullWidth
+          nbInput
+          type="text"
+          [placeholder]="discussionType === EDiscussionType.CHANNEL ? 'Name' : 'Topic'"
+        />
       </label>
     </div>
 
     <div class="field" *ngIf="discussionType === EDiscussionType.FORUM">
       <label fullWidth>
         <span>Category Name*</span>
-        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
+        <input formControlName="group_name" fullWidth nbInput type="text" placeholder="general" />
       </label>
     </div>
 
     <div class="field">
       <label fullWidth>
         Description*
-        <textarea fieldSize="small" formControlName="description" fullWidth nbInput type="text"></textarea>
+        <textarea formControlName="description" fullWidth nbInput type="text" placeholder="Description"></textarea>
       </label>
     </div>
 
@@ -74,12 +80,13 @@
     <div class="field" class="field" *ngIf="discussionType === EDiscussionType.CHANNEL">
       <label fullWidth>
         <span>Group Name (optional)</span>
-        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
+        <input formControlName="group_name" fullWidth nbInput type="text" />
       </label>
     </div>
-
-    <button [disabled]="!communityChannelForm.valid" nbButton outline size="small" status="success" type="submit">
-      Save
-    </button>
   </form>
+</div>
+<div class="action-button">
+  <button (click)="submitForm()" [disabled]="!communityChannelForm.valid" nbButton status="primary" type="submit">
+    Save
+  </button>
 </div>

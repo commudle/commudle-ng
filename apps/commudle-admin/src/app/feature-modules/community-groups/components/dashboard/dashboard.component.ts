@@ -1,10 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ICommunityGroup } from 'apps/shared-models/community-group.model';
-import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-import { faUsers, faBuilding, faCalendar, faPenToSquare, faPoll, faFileLines } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUsers,
+  faBuilding,
+  faCalendar,
+  faPenToSquare,
+  faPoll,
+  faFileLines,
+  faHashtag,
+  faMessage,
+} from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
+import { ICommunityGroup } from '@commudle/shared-models';
+import { SeoService } from '@commudle/shared-services';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +36,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     faBuilding,
     faPoll,
     faFileLines,
+    faHashtag,
+    faMessage,
   };
+  ESidebarWidth = ESidebarWidth;
 
   constructor(
     private activatedRoute: ActivatedRoute,
