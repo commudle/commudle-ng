@@ -11,8 +11,7 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
   uuid = uuidv4();
   @Input() userId: number;
   @Input() position: string;
-  @Output() isOnline = new EventEmitter();
-  @Input() showOnlineText = false;
+  @Output() isOnline = new EventEmitter<boolean>();
   online = true;
   subscriptions = [];
   receiveDataSubscription;
@@ -28,7 +27,6 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.showOnlineText, 'status');
     // subscribe to the channel with userid
     this.userLiveStatusChannel.subscribe(this.userId, this.uuid);
     this.subscriptions.push(

@@ -37,7 +37,6 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
   ];
 
   blocked = false;
-  showOnlineText = false;
 
   constructor(
     private sDiscussionService: SDiscussionsService,
@@ -48,8 +47,7 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((data) => (this.showOnlineText = !!data));
-    console.log(this.showOnlineText, 'window');
+    // this.authWatchService.currentUser$.subscribe((data) => (this.showOnlineText = !!data));
     this.getDiscussion();
 
     //if the field 'minimized' exsists and is true the chat box will open minimized

@@ -34,7 +34,6 @@ export class ChatsListComponent implements OnInit {
 
     // Live update for new messages
     this.liveUpdates();
-    console.log(this.allPersonalChatUsers);
   }
 
   openChat(chatUser) {

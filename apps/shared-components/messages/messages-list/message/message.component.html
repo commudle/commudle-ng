@@ -24,7 +24,7 @@
           src="/assets/images/Expert-Tick.svg"
           title="Expert Tick"
         />
-        <p class="time">{{ moment(message.created_at).fromNow() }}</p>
+        <p class="time">{{ moment(message.created_at).format('MMM Do, YYYY') }}</p>
       </div>
       <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
     </div>

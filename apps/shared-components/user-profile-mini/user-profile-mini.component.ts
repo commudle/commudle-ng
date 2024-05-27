@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IUser } from 'apps/shared-models/user.model';
 
 @Component({
@@ -12,11 +12,16 @@ export class UserProfileMiniComponent implements OnInit {
   @Input() designation: boolean;
   @Input() disableAnchor: boolean = false;
   @Input() showLiveStatus: boolean;
-  @Input() showOnlineText: boolean;
+  @Input() showOnlineText = false;
+  onlineStatus = false;
 
   constructor() {}
 
   ngOnInit() {
-    console.log(this.showOnlineText, 'mini');
+    // this.HandleOnlineStatus();
+  }
+
+  HandleOnlineStatus(status) {
+    this.onlineStatus = status;
   }
 }

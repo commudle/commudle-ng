@@ -46,7 +46,6 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.sDiscussionService.getPersonalChats().subscribe((data) => {
         this.allPersonalChatUsers = data.discussion_followers;
-        console.log(this.allPersonalChatUsers);
       }),
     );
 

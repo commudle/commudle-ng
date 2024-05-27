@@ -110,6 +110,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             this.allMessagesLoaded = true;
           }
           this.messages.unshift(...data.user_messages.reverse());
+          console.log(this.messages, 'messages');
           this.loadingMessages = false;
           if (this.nextPage === 1) {
             this.scrollToBottom();

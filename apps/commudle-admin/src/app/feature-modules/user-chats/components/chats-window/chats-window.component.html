@@ -5,7 +5,7 @@
         <app-user-profile-mini
           [size]="'small'"
           [user]="discussionFollower.user"
-          [showOnlineText]="showOnlineText"
+          [showOnlineText]="true"
         ></app-user-profile-mini>
         <div *ngIf="discussion" class="com-flex com-items-center">
           <button ghost nbButton [nbContextMenu]="items" nbContextMenuTag="user-personal-chat-menu-{{ discussion.id }}">
