@@ -10,7 +10,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 })
 export class FeaturesIndexComponent implements OnInit {
   @Input() features: IFeature[];
-  @Input() featureData: IFeature;
+  @Input() selectedFeature: IFeature;
   @Output() featureSlug: EventEmitter<string> = new EventEmitter<string>();
   showSubHeading = [];
   faAdd = faAdd;

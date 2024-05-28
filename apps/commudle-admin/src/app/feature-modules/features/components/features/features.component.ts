@@ -14,7 +14,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   @Input() showSubHeading = true;
   features: IFeature[];
   isLoading = true;
-  featureData: IFeature;
+  selectedFeature: IFeature;
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
 
@@ -54,11 +54,11 @@ export class FeaturesComponent implements OnInit, OnDestroy {
 
   getFeaturesData(slug) {
     this.isLoading = true;
-    this.featureData = null;
+    this.selectedFeature = null;
     this.subscriptions.push(
       this.cmsService.getDataBySlug(slug).subscribe((value) => {
         if (value) {
-          this.featureData = value;
+          this.selectedFeature = value;
         }
         this.isLoading = false;
       }),

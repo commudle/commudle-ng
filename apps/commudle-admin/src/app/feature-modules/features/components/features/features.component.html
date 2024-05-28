@@ -13,13 +13,13 @@
           <div *ngIf="features">
             <commudle-features-index
               [features]="features"
-              [featureData]="featureData"
+              [selectedFeature]="selectedFeature"
               (featureSlug)="getFeaturesData($event)"
             ></commudle-features-index>
           </div>
         </div>
-        <div *ngIf="!isMobileView && featureData" class="main-column">
-          <commudle-features-content [featureData]="featureData"></commudle-features-content>
+        <div *ngIf="!isMobileView && selectedFeature" class="main-column">
+          <commudle-features-content [selectedFeature]="selectedFeature"></commudle-features-content>
         </div>
       </div>
     </div>

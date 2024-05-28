@@ -8,7 +8,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./features-content.component.scss'],
 })
 export class FeaturesContentComponent implements OnInit {
-  @Input() featureData: IFeature;
+  @Input() selectedFeature: IFeature;
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {}
