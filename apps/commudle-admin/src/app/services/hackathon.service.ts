@@ -421,4 +421,11 @@ export class HackathonService {
       params,
     });
   }
+
+  pCheckParentMember(hackathonId: number | string): Observable<boolean> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.IS_MEMBER_OF_PARENT), {
+      params,
+    });
+  }
 }
