@@ -21,11 +21,11 @@ export class CommunitiesComponent implements OnInit {
       title: 'Events',
       icon: 'calendar',
     },
-    {
-      route: 'channels',
-      title: 'Channels',
-      icon: 'hash',
-    },
+    // {
+    //   route: 'channels',
+    //   title: 'Channels',
+    //   icon: 'hash',
+    // },
   ];
 
   constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}

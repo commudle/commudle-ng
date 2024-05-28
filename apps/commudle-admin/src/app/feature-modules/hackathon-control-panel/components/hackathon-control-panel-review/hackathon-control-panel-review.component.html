@@ -304,7 +304,17 @@
             class="user-response-tab"
             [ngClass]="{ active: selectedUserDetails.name === user.name }"
           >
-            <div (click)="displayUserData(user)" class="name">{{ user.name }}</div>
+            <div (click)="displayUserData(user)" class="name" *ngIf="user.name">{{ user.name }}</div>
+            <div
+              class="name"
+              *ngIf="!user.name"
+              [ngClass]="{
+                'com-pointer-events-none com-text-gray-500 !com-cursor-not-allowed':
+                  user.invite_status !== EInvitationStatus.APPLICATION_COMPLETE
+              }"
+            >
+              {{ user.user_email }} <small>(Form not filled)</small>
+            </div>
           </div>
         </div>
         <div *ngIf="selectedUserDetails" class="selected-user-details">
@@ -351,6 +361,32 @@
           <div *ngIf="selectedUserDetails.phone">
             <label>Phone</label>
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
+          </div>
+
+          <div *ngFor="let questionAndAnswer of selectedResponse; let i = index">
+            <div>
+              Question: <strong>{{ questionAndAnswer.question.title }}</strong>
+            </div>
+            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
+              <div>
+                Answer:
+                <div *ngFor="let answer of questionAndAnswer.answer">{{ answer.title }}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
+              <div>
+                Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
+              </div>
+            </ng-container>
+            <ng-container
+              *ngIf="
+                questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
+              "
+            >
+              <div>
+                Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>

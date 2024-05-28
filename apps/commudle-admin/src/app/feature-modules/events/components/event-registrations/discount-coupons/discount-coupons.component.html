@@ -1,5 +1,9 @@
-<button nbButton status="primary" (click)="openFormDialog()" class="create-button">Create Discount Coupon</button>
-
+<div class="action-buttons">
+  <button nbButton status="primary" (click)="openFormDialog()" class="create-button">Create Discount Coupon</button>
+  <button nbButton status="primary" (click)="open(refundPage)">
+    {{ community.has_refund_policy ? 'Edit Refund policy' : 'Create Refund Policy' }}
+  </button>
+</div>
 <div class="discount-codes">
   <table *ngFor="let discountCode of discountCodes">
     <tr>
@@ -25,3 +29,26 @@
     </tr>
   </table>
 </div>
+
+<ng-template #refundPage let-ref="dialogRef">
+  <nb-card class="com-max-h-[90dvh] com-w-full md:com-w-[70dvw]">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <span>Refund Policy</span>
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-px-0">
+      <app-custom-page-form
+        [parentId]="community.id"
+        [parentType]="EDbModels.KOMMUNITY"
+        [pageType]="EPageType.REFUND_POLICIES"
+        [pageSlug]="refundPolicy?.slug"
+        (createdPage)="updateRefundPage($event)"
+      ></app-custom-page-form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="createOrUpdateRefundPage()">Save</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

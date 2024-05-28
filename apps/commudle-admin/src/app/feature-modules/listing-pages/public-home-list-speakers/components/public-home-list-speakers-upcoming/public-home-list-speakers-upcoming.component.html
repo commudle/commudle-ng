@@ -1,6 +1,6 @@
-<div *ngIf="upcomingEvents.length > 0">
+<div *ngIf="upcomingEvents.length > 0" id="upcoming-events">
   <div class="heading">
-    <h3 class="title">Upcoming Events</h3>
+    <h3 class="title"><a [routerLink]="'.'" fragment="upcoming-events">Upcoming Events</a></h3>
     <h4 class="sub-heading">Check out amazing events lined up</h4>
   </div>
   <app-skeleton-cards

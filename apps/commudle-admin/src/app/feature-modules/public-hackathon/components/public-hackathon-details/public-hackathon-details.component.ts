@@ -21,7 +21,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faAward, faSackDollar, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-public-hackathon-details',
   templateUrl: './public-hackathon-details.component.html',
@@ -45,6 +45,9 @@ export class PublicHackathonDetailsComponent implements OnInit {
   isOrganizer = false;
   icons = {
     faPencil,
+    faAward,
+    faSackDollar,
+    faCircleQuestion,
   };
 
   constructor(

@@ -25,6 +25,10 @@ export interface ICommunityChannel {
   latest_message?: IUserMessage;
 }
 
+export interface IGroupedChannels {
+  [groupName: string]: ICommunityChannel[];
+}
+
 export interface ICommunityChannels {
   community_channels: ICommunityChannel[];
 }

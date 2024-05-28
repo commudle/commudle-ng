@@ -29,9 +29,9 @@ export class CommunityListComponent implements OnInit, OnDestroy {
       this.communityChannelNotifications.notifications$.subscribe((data) => {
         this.channelNotifications = data.map((a) => a.kommunity_id);
       }),
-      this.communityChannelManagerService.selectedCommunity$.subscribe((data) => {
-        this.selectedCommunity = data;
-      }),
+      // this.communityChannelManagerService.selectedCommunity$.subscribe((data) => {
+      //   this.selectedCommunity = data;
+      // }),
     );
   }
 

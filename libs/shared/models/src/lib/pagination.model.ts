@@ -15,3 +15,10 @@ export interface IPageInfo {
   start_cursor: string;
   end_cursor: string;
 }
+
+export interface IPaginationCount<T> {
+  values: T[];
+  count: number;
+  total: number;
+  page: number;
+}

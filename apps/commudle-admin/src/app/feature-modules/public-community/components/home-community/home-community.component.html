@@ -178,7 +178,7 @@
               </div>
             </div>
           </nb-card-body>
-          <nb-card-footer class="com-pb-0 com-px-0 com-sticky com-top-16 com-z-20 sticky">
+          <nb-card-footer class="menu-items-footer">
             <div class="page-menu">
               <div class="menu-items d-flex">
                 <a
@@ -190,7 +190,17 @@
                   <nb-icon icon="info" status="basic"></nb-icon>
                   <span class="title">About</span>
                 </a>
-                <a [routerLink]="['events']" class="d-flex" routerLinkActive="active">
+                <a [routerLink]="['events']" class="d-flex com-relative" routerLinkActive="active">
+                  <app-badge
+                    *ngIf="community.upcoming_events_count > 0"
+                    class="-com-mt-4"
+                    text="New"
+                    [fontColor]="'com-text-tWhite'"
+                    [fontSize]="'small'"
+                    [borderRadius]="'round'"
+                    [color]="'com-bg-orange-500'"
+                    [position]="'top right'"
+                  ></app-badge>
                   <nb-icon icon="calendar" status="info"></nb-icon>
                   <span class="title">Events</span>
                 </a>

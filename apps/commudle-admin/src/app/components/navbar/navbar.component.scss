@@ -27,6 +27,9 @@
   @apply com-cursor-pointer;
 
   .toggle-btn {
-    @apply com-bg-gray-200 com-h-auto #{!important};
+    @apply com-bg-gray-200 com-h-6 com-w-6 #{!important};
+    img {
+      @apply com-w-full;
+    }
   }
 }

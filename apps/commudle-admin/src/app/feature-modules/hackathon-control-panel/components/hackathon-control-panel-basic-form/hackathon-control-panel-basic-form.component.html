@@ -4,9 +4,9 @@
     <form [formGroup]="hackathonForm">
       <div>
         <label for="banner_image">Banner Image</label>
-        <div class="banner-image-container" *ngIf="!(imagePreview || hackathonForm.controls['banner_image'].value)">
+        <div *ngIf="!(imagePreview || hackathonForm.controls['banner_image'].value)" class="banner-image-container">
           <div class="banner-image">
-            <input (change)="onFileChange($event)" type="file" accept="image/png, image/jpeg, image/jpg" />
+            <input (change)="onFileChange($event)" accept="image/png, image/jpeg, image/jpg" type="file" />
             <div class="custom-input">
               <fa-icon [icon]="icons.faFileImage"></fa-icon>
               <p>
@@ -20,7 +20,7 @@
         </div>
         <div *ngIf="imagePreview || hackathonForm.controls['banner_image'].value" class="image-preview">
           <div (click)="removeBannerImage()" class="delete-image">
-            <button nbButton status="danger" outline size="small">replace</button>
+            <button nbButton outline size="small" status="danger">replace</button>
           </div>
           <div class="com-w-2/3">
             <commudle-banner-image
@@ -33,7 +33,7 @@
       <!-- Name -->
       <div>
         <label for="name">Hackathon's Name*</label>
-        <input formControlName="name" id="name" type="text" nbInput fullWidth placeholder="Hackathon's Name" />
+        <input formControlName="name" fullWidth id="name" nbInput placeholder="Hackathon's Name" type="text" />
         <commudle-alert
           *ngIf="
             hackathonForm.controls['name'].invalid &&
@@ -48,7 +48,7 @@
       <!-- Tagline -->
       <div>
         <label for="tagline">Tagline*</label>
-        <textarea formControlName="tagline" id="tagline" type="text" nbInput fullWidth placeholder="Tagline"></textarea>
+        <textarea formControlName="tagline" fullWidth id="tagline" nbInput placeholder="Tagline" type="text"></textarea>
         <commudle-alert
           *ngIf="
             hackathonForm.controls['tagline'].invalid &&
@@ -68,13 +68,7 @@
       <!-- Description -->
       <div>
         <label for="description">Description*</label>
-        <editor
-          formControlName="description"
-          id="description"
-          apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-          [init]="tinyMCE"
-        >
-        </editor>
+        <editor [init]="tinyMCE" formControlName="description" id="description"></editor>
         <commudle-alert
           *ngIf="
             hackathonForm.controls['description'].invalid &&
@@ -115,11 +109,11 @@
         <label for="number_of_participants">Maximum No. of Participants / Teams*</label>
         <input
           formControlName="number_of_participants"
-          id="number_of_participants"
-          type="number"
-          nbInput
           fullWidth
+          id="number_of_participants"
+          nbInput
           placeholder="1"
+          type="number"
         />
         <commudle-alert
           *ngIf="
@@ -144,7 +138,7 @@
         <!-- Use ngFor to loop through enum values -->
         <div>
           <div *ngFor="let type of EParticipateTypes | keyvalue">
-            <input type="radio" [id]="type.key" formControlName="participate_types" [value]="type.value" />
+            <input [id]="type.key" [value]="type.value" formControlName="participate_types" type="radio" />
             <label [for]="type.key">{{ type.value | titlecase }}</label>
           </div>
         </div>
@@ -165,11 +159,11 @@
         <label for="max_number_of_teammates">Max Number of Teammates*</label>
         <input
           formControlName="max_number_of_teammates"
-          id="max_number_of_teammates"
-          type="number"
-          nbInput
           fullWidth
+          id="max_number_of_teammates"
+          nbInput
           placeholder="1"
+          type="number"
         />
         <commudle-alert
           *ngIf="
@@ -192,11 +186,11 @@
         <label for="min_number_of_teammates">Min Number of Teammates*</label>
         <input
           formControlName="min_number_of_teammates"
-          id="min_number_of_teammates"
-          type="number"
-          nbInput
           fullWidth
+          id="min_number_of_teammates"
+          nbInput
           placeholder="1"
+          type="number"
         />
         <commudle-alert
           *ngIf="
@@ -220,7 +214,7 @@
 
         <div>
           <div *ngFor="let type of EHackathonLocationType | keyvalue">
-            <input type="radio" [id]="type.key" formControlName="hackathon_location_type" [value]="type.value" />
+            <input [id]="type.key" [value]="type.value" formControlName="hackathon_location_type" type="radio" />
             <label [for]="type.key">{{ type.value | titlecase }}</label>
           </div>
         </div>
@@ -250,10 +244,10 @@
               <textarea
                 formControlName="address"
                 fullWidth
-                nbInput
-                type="text"
                 id="addressInput"
+                nbInput
                 placeholder="Address"
+                type="text"
               ></textarea>
             </label>
             <commudle-alert
@@ -270,7 +264,7 @@
           <div>
             <label fullWidth>
               Map Link*
-              <input placeholder="Map Link" formControlName="map_link" fullWidth nbInput type="text" />
+              <input formControlName="map_link" fullWidth nbInput placeholder="Map Link" type="text" />
             </label>
             <commudle-alert
               *ngIf="
@@ -286,13 +280,13 @@
       </div>
 
       <button
-        class="save-button"
-        nbButton
         (click)="createOrUpdate()"
-        fullWidth
-        status="primary"
         [disabled]="hackathonForm.invalid || isLoading"
         [nbSpinner]="isLoading"
+        class="save-button"
+        fullWidth
+        nbButton
+        status="primary"
       >
         {{ saveButtonText }}
       </button>

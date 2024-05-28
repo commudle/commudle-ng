@@ -141,7 +141,7 @@
                 <div class="com-flex com-justify-between com-mt-4">
                   <span class="heading">Sub Total</span>
                   <span class="value"
-                    >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice * this.forms.length }}</span
+                    >{{ paymentDetails.currency === 'inr' ? '₹' : '$' }} {{ basePrice * forms.length }}</span
                   >
                 </div>
               </div>
@@ -178,6 +178,7 @@
                     [(ngModel)]="promoCode"
                     [readonly]="promoCodeApplied"
                     placeholder="Enter Promo Code"
+                    class="promo-code"
                   />
                   <button
                     nbButton
@@ -248,7 +249,7 @@
 
                         <!-- phone number -->
                         <label>
-                          Number*
+                          Phone Number*
                           <div class="com-flex com-gap-2">
                             <div class="select">
                               <select
@@ -300,9 +301,24 @@
               </div>
             </nb-card-body>
           </nb-card>
+          <div class="com-my-2 com-px-2" *ngIf="!ticketPaidAlready">
+            <commudle-alert
+              [info]="true"
+              message="For any technical support please reach out to paid_ticket_support@commudle.com"
+            ></commudle-alert>
+          </div>
 
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
-            <button nbButton status="primary" fullWidth (click)="submitFormAndPay()">Submit & Pay</button>
+            <button
+              nbButton
+              status="primary"
+              fullWidth
+              (click)="submitFormAndPay()"
+              [nbSpinner]="isLoadingPayment"
+              [disabled]="isLoadingPayment"
+            >
+              Submit & Pay
+            </button>
           </div>
         </div>
       </div>
@@ -310,6 +326,7 @@
   </div>
 </div>
 
+<!-- stripe payment dialog box -->
 <ng-template #paymentDialog let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-justify-between com-items-center">
@@ -346,7 +363,13 @@
           <span #consentAnimation></span>
         </div>
         <p class="com-text-xl com-my-1">Purchase Successful!</p>
+        <commudle-alert
+          *ngIf="showEventTicketOrder.eto_users.length > 1"
+          [info]="true"
+          message="Your friends have been sent a confirmation email with link to the registration form, please ensure they complete it"
+        ></commudle-alert>
         <p>Thank You {{ currentUser.name }} for filling the form!</p>
+        <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
       </div>
     </nb-card-body>
     <nb-card-footer>
