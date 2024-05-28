@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { IFeature } from 'apps/shared-models/features.model';
 import { CmsService } from 'apps/shared-services/cms.service';
+import { ResponsiveService } from 'apps/shared-services/responsive.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,10 +19,10 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
 
-  constructor(private cmsService: CmsService) {}
+  constructor(private cmsService: CmsService, private responsiveService: ResponsiveService) {}
 
   ngOnInit(): void {
-    this.isMobileView = window.innerWidth <= 640;
+    this.isMobileView = this.responsiveService.isMobileView();
     this.getIndex();
   }
 
