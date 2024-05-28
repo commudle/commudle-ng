@@ -37,8 +37,8 @@
             ::ng-deep {
               p,
               li {
+                @apply com-text-black;
                 font-size: 16px;
-                color: initial;
                 margin: 0px;
               }
 
@@ -54,10 +54,10 @@
         .fun-facts {
           @apply com-bg-yellow-100 com-p-2 com-m-0 com-mt-2;
           div {
-            @apply com-text-base com-text-black com-italic com-font-light;
+            @apply com-text-base com-italic com-font-light;
             ::ng-deep {
               p {
-                @apply com-m-0;
+                @apply com-m-0 com-text-tblack;
               }
             }
           }
@@ -85,7 +85,7 @@
 
       .prev-btn,
       .next-btn {
-        @apply com-bg-Yankees-Blue com-text-tWhite com-flex-shrink-0;
+        @apply com-bg-Yankees-Blue com-text-white com-flex-shrink-0;
         flex: 0 0 20%;
       }
 

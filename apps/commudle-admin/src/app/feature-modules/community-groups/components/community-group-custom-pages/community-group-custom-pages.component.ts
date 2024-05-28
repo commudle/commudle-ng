@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EDbModels } from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
@@ -9,6 +10,7 @@ import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 })
 export class CommunityGroupCustomPagesComponent implements OnInit {
   communityGroup: ICommunityGroup;
+  EDbModels = EDbModels;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 

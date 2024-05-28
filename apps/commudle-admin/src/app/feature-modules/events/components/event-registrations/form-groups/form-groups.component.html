@@ -2,7 +2,7 @@
   <div>
     <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
       <nb-card
-        *ngFor="let edfeg of eventDataFormEntityGroups | orderBy : ['registration_type.name'] : ['asc']; let i = index"
+        *ngFor="let edfeg of eventDataFormEntityGroups | orderBy : ['registration_type.id'] : ['asc']; let i = index"
         [ngStyle]="{ 'background-color': RegistrationTypeBackgroundColor[edfeg.registration_type.name] }"
       >
         <nb-card-body *ngIf="edfeg.data_form_entity" class="edfeg-details">
@@ -26,7 +26,7 @@
           <div>
             <!-- edfeg status dropdown -->
             <div class="edfeg-status-dropdown">
-              <select (change)="changeVisibility($event, edfeg.data_form_entity.id)" class="com-border-0">
+              <select (change)="changeVisibility($event, edfeg)" class="com-border-0">
                 <option
                   value="{{ visibilityOptions.YET_TO_ANNOUNCE }}"
                   [selected]="edfeg.data_form_entity.visibility === visibilityOptions.YET_TO_ANNOUNCE"
@@ -98,7 +98,7 @@
             <div *ngIf="event.editable" class="send-email">
               <button (click)="openEmailWindow(edfeg)">
                 <fa-icon [icon]="faEnvelope"></fa-icon>
-                Send By EMail
+                Send By Email
               </button>
             </div>
             <div class="link-to-fill">
@@ -178,15 +178,17 @@
           <!-- payment Details -->
           <div *ngIf="community.payments_enabled">
             <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
-              <input type="checkbox" (change)="onSwitchToggled(edfeg.id, i)" [checked]="edfeg.is_paid" />
-              <span class="com-text-primary-500"> Paid Ticketing </span>
+              <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
+              <span class="com-text-primary-500"> Paid Ticketing</span>
             </div>
             <div *ngIf="edfeg.is_paid && community.payments_enabled" class="payment-details">
               <commudle-payment-settings
-                [communityId]="community.id"
+                [community]="community"
                 [event]="event"
                 [edfeg]="edfeg"
                 [stripeAccounts]="stripeAccounts"
+                [razorpayAccounts]="razorpayAccounts"
+                [refundPolicy]="refundPolicy"
               ></commudle-payment-settings>
             </div>
           </div>

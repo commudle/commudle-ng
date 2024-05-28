@@ -7,9 +7,14 @@
       <div *ngFor="let prize of hackathonPrizes">
         <nb-card>
           <nb-card-body>
-            <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
+            <div class="prize-amount" *ngIf="prize.prize_amount !== null">
+              PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}
+            </div>
+            <div class="prize-amount" *ngIf="prize.prize_amount === 0 || prize.prize_amount === null">
+              {{ prize.name }}
+            </div>
             <div class="track-name">{{ prize.hackathon_track?.name }}</div>
-            <div class="track-discription" [innerHTML]="prize.hackathon_track?.description"></div>
+            <div class="track-description" [innerHTML]="prize.hackathon_track?.description"></div>
           </nb-card-body>
         </nb-card>
       </div>

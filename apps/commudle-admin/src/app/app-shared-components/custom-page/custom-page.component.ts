@@ -6,6 +6,7 @@ import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-p
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { Subscription } from 'rxjs';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-custom-page',
@@ -14,7 +15,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CustomPageComponent implements OnInit {
   @Input() parentId: number | string;
-  @Input() parentType: 'CommunityGroup' | 'Kommunity';
+  @Input() parentType: EDbModels;
   subscription: Subscription[] = [];
   pages: ICustomPage[];
   faPlus = faPlus;
@@ -59,10 +60,10 @@ export class CustomPageComponent implements OnInit {
 
   redirectTo(slug) {
     let redirectUrl = '';
-    if (this.parentType === 'Kommunity') {
+    if (this.parentType === EDbModels.KOMMUNITY) {
       redirectUrl = '/communities/' + this.parentId + '/p/' + slug;
     }
-    if (this.parentType === 'CommunityGroup') {
+    if (this.parentType === EDbModels.COMMUNITY_GROUP) {
       redirectUrl = '/orgs/' + this.parentId + '/p/' + slug;
     }
     const url = this.router.serializeUrl(this.router.createUrlTree([redirectUrl]));

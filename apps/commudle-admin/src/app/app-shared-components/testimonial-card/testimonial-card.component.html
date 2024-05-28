@@ -1,20 +1,29 @@
 <div *ngIf="testimonials" class="testimonial">
   <div *ngFor="let testimonial of testimonials; let i = index" class="testimonial-container">
-    <div *ngIf="testimonial.user" class="testimonial-card">
-      <a [routerLink]="['/users', testimonial.user.username]">
+    <div class="testimonial-card">
+      <a
+        [routerLink]="['/users', testimonial.username]"
+        [ngClass]="{ 'com-pointer-events-none': !testimonial.username }"
+      >
         <div class="top-card">
-          <div class="image">
-            <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.user.name }}" />
+          <div *ngIf="testimonial.user" class="image">
+            <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.name }}" />
+          </div>
+          <div *ngIf="testimonial.image" class="image">
+            <img [src]="imageUrl(testimonial.image).url()" class="com-w-full" />
           </div>
           <div class="user-details">
-            <p class="name">{{ testimonial.user.name }}</p>
-            <p class="username">@{{ testimonial.user.username }}</p>
+            <p class="name">{{ testimonial.name }}</p>
+            <p *ngIf="testimonial.username" class="username">@{{ testimonial.username }}</p>
             <p class="designation">{{ testimonial.userDesignation }}</p>
           </div>
         </div>
       </a>
       <div *ngIf="testimonial.content">
-        <a [routerLink]="['/users', testimonial.user.username]">
+        <a
+          [routerLink]="['/users', testimonial.username]"
+          [ngClass]="{ 'com-pointer-events-none': !testimonial.username }"
+        >
           <p class="testimonial-text">
             {{ showFullTestimonial[i] ? testimonial.content : (testimonial.content | truncatetext : 350) }}
           </p>

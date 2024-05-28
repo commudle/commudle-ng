@@ -1,7 +1,4 @@
 <div class="community-channel-list">
-  <div *ngIf="showCommunityBadge" class="community">
-    <app-community-badge [community]="selectedCommunity"></app-community-badge>
-  </div>
   <div class="com-flex com-justify-between com-mt-3 com-mx-4">
     <p class="com-font-bold com-text-lg com-m-0">Channels</p>
     <button
@@ -85,7 +82,7 @@
                       channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
                     isCommunityOrganizer
                   "
-                  (click)="inviteDialogBox(channel.id); $event.stopPropagation()"
+                  (click)="inviteDialogBox(channel); $event.stopPropagation()"
                 >
                   <nb-icon icon="person-add"></nb-icon>
                 </a>
@@ -95,7 +92,7 @@
                     channelsRoles[channel.id] &&
                     (channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
                   "
-                  (click)="editDialogBox(channel.id); $event.stopPropagation()"
+                  (click)="editDialogBox(channel); $event.stopPropagation()"
                 >
                   <nb-icon icon="settings"></nb-icon>
                 </a>

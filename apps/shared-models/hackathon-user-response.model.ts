@@ -17,4 +17,5 @@ export enum EInvitationStatus {
   ACCEPTED = 'accepted',
   SELF_CREATED = 'self_created',
   REJECTED = 'rejected',
+  APPLICATION_COMPLETE = 'application_complete',
 }

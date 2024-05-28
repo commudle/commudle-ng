@@ -15,7 +15,7 @@ import {
   NbTooltipModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
 import { SharedComponentsModule as OldSharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
@@ -97,5 +97,6 @@ import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-share
     FontAwesomeModule,
   ],
   exports: [BuildsTopBuildersComponent, ExploreExpertsComponent],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class CommunityBuildsModule {}

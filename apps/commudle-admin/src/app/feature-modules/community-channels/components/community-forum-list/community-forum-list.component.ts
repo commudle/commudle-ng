@@ -14,13 +14,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { EDbModels, ICommunityGroup } from '@commudle/shared-models';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-community-forum-list',
   templateUrl: './community-forum-list.component.html',
   styleUrls: ['./community-forum-list.component.scss'],
@@ -30,7 +30,6 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   @Input() isCommunityOrganizer = false;
   @Input() selectedForumName: string;
 
-  selectedCommunity: ICommunity;
   communityForums: EGroupedCommunityChannels;
   selectedChannel: ICommunityChannel;
   currentUser: ICurrentUser;
@@ -41,6 +40,8 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   discussionType = EDiscussionType;
 
   subscriptions: Subscription[] = [];
+  parent: ICommunity | ICommunityGroup;
+  parentType: EDbModels;
 
   @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();
 
@@ -55,14 +56,12 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.getParent();
     this.subscriptions.push(
-      this.communityChannelManagerService.communityForums$.subscribe((data) => {
+      this.communityChannelManagerService.forumsByGroup$.subscribe((data) => {
         this.communityForums = data;
       }),
 
-      this.activatedRoute.parent.data.subscribe((data) => {
-        this.selectedCommunity = data.community;
-      }),
       this.authWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
       }),
@@ -78,9 +77,6 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
       }),
       this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
         this.selectedChannel = data;
-        if (this.selectedChannel) {
-          // this.setMeta();
-        }
         this.markRead();
       }),
     );
@@ -90,12 +86,13 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
-  setMeta() {
-    this.seoService.setTags(
-      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
-      `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`,
-      this.selectedCommunity.logo_path,
-    );
+  getParent() {
+    this.communityChannelManagerService.parent$.subscribe((data) => {
+      this.parent = data;
+    });
+    this.communityChannelManagerService.parentType$.subscribe((data) => {
+      this.parentType = data;
+    });
   }
 
   markRead() {
@@ -107,7 +104,24 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   selectedCommunityForum(forumName) {
     this.selectedForumName = forumName.key;
     this.updateSelectedForum.emit(forumName.value);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'forums'], {
+    let urlSegments = [];
+    switch (this.parentType) {
+      case EDbModels.KOMMUNITY:
+        urlSegments = ['communities', this.parent.slug, 'forums'];
+        break;
+      case EDbModels.COMMUNITY_GROUP:
+        urlSegments = ['orgs', this.parent.slug, 'forums'];
+        break;
+      default:
+        console.error('Invalid Parent Type:', this.parentType);
+        break;
+    }
+
+    if (this.router.url.startsWith('/admin')) {
+      urlSegments.unshift('admin');
+    }
+
+    this.router.navigate(urlSegments, {
       queryParams: { category: forumName ? forumName.key : 'general' },
     });
     this.communityChannelManagerService.setForum(forumName.value);
@@ -116,7 +130,6 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   newForumDialogBox(groupName?) {
     this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
       hasScroll: true,
       context: {
         groupName: groupName,

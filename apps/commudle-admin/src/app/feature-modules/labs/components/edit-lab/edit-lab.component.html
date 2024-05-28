@@ -64,16 +64,11 @@
                       labForm['controls'].name.errors.required
                     "
                   >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                   </span>
                 </div>
                 <div>
-                  <editor
-                    [init]="tinyMCE"
-                    apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                    formControlName="description"
-                  >
-                  </editor>
+                  <editor [init]="tinyMCE" formControlName="description"></editor>
                   <span
                     *ngIf="
                       labForm['controls'].description.touched &&
@@ -81,7 +76,7 @@
                       labForm['controls'].description.errors.required
                     "
                   >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                   </span>
                 </div>
               </div>
@@ -120,17 +115,11 @@
                       labForm.get('lab_steps')['controls'][i].get('name').errors?.required
                     "
                   >
-                    <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                    <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                   </span>
 
                   <div>
-                    <editor
-                      [init]="tinyMCE"
-                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                      formControlName="description"
-                      class="editor"
-                    >
-                    </editor>
+                    <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
                     <span
                       *ngIf="
                         labForm.get('lab_steps')['controls'][i].get('description').touched &&
@@ -138,7 +127,7 @@
                         labForm.get('lab_steps')['controls'][i].get('description').errors?.required
                       "
                     >
-                      <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                      <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                     </span>
                   </div>
                 </div>
@@ -162,15 +151,15 @@
             <div class="tags">
               <p>Adding some TAGS will help you get better visibility 😃</p>
               <span *ngIf="showTagsValidation && tags.length < 5">
-                <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags required'"></commudle-alert>
+                <commudle-alert [errorMessage]="'Minimum 5 tags required'" [error]="true"></commudle-alert>
               </span>
               <app-tag
                 (tagAdd)="onTagAdd($event)"
                 (tagDelete)="onTagDelete($event)"
-                [editable]="true"
-                [tags]="tags"
                 [backgroundColor]="'com-bg-tAnti-Flash'"
+                [editable]="true"
                 [fontColor]="'com-text-tYankees-Blue'"
+                [tags]="tags"
               ></app-tag>
             </div>
           </nb-card-body>
@@ -210,7 +199,7 @@
         <div>
           <nb-card>
             <nb-card-body>
-              <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank" class="preview">
+              <a [routerLink]="['/labs', lab.slug]" class="preview" ghost nbButton target="_blank">
                 <nb-icon icon="eye"></nb-icon>
                 <p>Preview</p>
               </a>

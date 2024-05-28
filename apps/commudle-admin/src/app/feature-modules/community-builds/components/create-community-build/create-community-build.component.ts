@@ -62,14 +62,32 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     convert_urls: false,
     placeholder:
       'Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too.',
-    plugins:
-      'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table code help wordcount autoresize',
+    plugins: [
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'visualblocks',
+      'code',
+      'table',
+      'charmap',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+    ],
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     toolbar:
       'formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | charmap | removeformat | help',
     default_link_target: '_blank',
     branding: false,
+    license_key: 'gpl',
   };
 
   tinyMCEForUpdate = {
@@ -79,11 +97,12 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     placeholder: 'Updates',
     statusbar: false,
     toolbar: false,
-    plugins: 'autoresize',
+    plugins: ['autoresize'],
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     convert_urls: false,
     branding: false,
+    license_key: 'gpl',
   };
 
   subscriptions: Subscription[] = [];
@@ -91,6 +110,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   parentType: EDbModels;
   hackathonUserResponses: IHackathonUserResponses;
   currentUser: ICurrentUser;
+
   constructor(
     private seoService: SeoService,
     private fb: FormBuilder,

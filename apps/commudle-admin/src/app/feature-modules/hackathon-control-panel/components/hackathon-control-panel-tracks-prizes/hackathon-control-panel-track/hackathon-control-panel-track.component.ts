@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IHackathonTrack } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
-import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFileImage, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 
 @Component({
@@ -29,10 +29,11 @@ export class HackathonControlPanelTrackComponent implements OnInit {
     placeholder: 'About',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins: 'emoticons lists preview table autoresize media',
+    plugins: ['emoticons', 'lists', 'preview', 'table', 'autoresize', 'media'],
     toolbar: 'bullist numlist emoticons bold italic | backcolor  media table',
     default_link_target: '_blank',
     branding: false,
+    license_key: 'gpl',
   };
 
   constructor(

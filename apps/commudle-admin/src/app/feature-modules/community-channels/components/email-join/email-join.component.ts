@@ -44,7 +44,7 @@ export class EmailJoinComponent implements OnInit {
   // get channel details
   getChannelInfo() {
     this.subscriptions.push(
-      this.communityChannelsService.getChannelInfo(this.channelId).subscribe((data) => {
+      this.communityChannelsService.showChannelForm(this.channelId).subscribe((data) => {
         this.discussionType = data.display_type === EDiscussionType.CHANNEL ? 'channels' : 'forums';
         this.communityChannel = data;
         this.channelName = data.name;

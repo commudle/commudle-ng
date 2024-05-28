@@ -37,7 +37,7 @@ import { CommunityChannelFormComponent } from './components/community-channel-fo
 import { CommunityChannelListComponent } from './components/community-channel-list/community-channel-list.component';
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 import { CommunityChannelsDashboardChannelListComponent } from './components/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list.component';
-import { CommunityChannelsDashboardComponent } from './components/community-channels-dashboard/community-channels-dashboard.component';
+import { ChannelForumDashboardComponent } from './components/channel-forum-dashboard/channel-forum-dashboard.component';
 import { CommunityListComponent } from './components/community-list/community-list.component';
 import { CommunityChannelMessageComponent } from './components/discussion-community-channel/community-channel-message/community-channel-message.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -56,7 +56,7 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
 
 @NgModule({
   declarations: [
-    CommunityChannelsDashboardComponent,
+    ChannelForumDashboardComponent,
     CommunityListComponent,
     CommunityChannelFormComponent,
     CommunityChannelListComponent,
@@ -118,6 +118,6 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
     NbAccordionModule,
     NbTabsetModule,
   ],
-  exports: [CommunityChannelsDashboardComponent, SendMessageFormComponent],
+  exports: [ChannelForumDashboardComponent, SendMessageFormComponent],
 })
 export class CommunityChannelsModule {}

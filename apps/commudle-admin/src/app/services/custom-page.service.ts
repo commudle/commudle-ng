@@ -4,6 +4,7 @@ import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { ICustomPage } from 'apps/shared-models/custom-page.model';
+import { EDbModels } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +12,14 @@ import { ICustomPage } from 'apps/shared-models/custom-page.model';
 export class CustomPageService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  createNewCustomPage(dataForm, parentId, parentType): Observable<ICustomPage> {
+  createNewCustomPage(dataForm, parentId, parentType: EDbModels): Observable<ICustomPage> {
     let params = new HttpParams();
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -32,14 +33,14 @@ export class CustomPageService {
     );
   }
 
-  getIndex(parentId: number | string, parentType: string): Observable<ICustomPage[]> {
+  getIndex(parentId: number | string, parentType: EDbModels): Observable<ICustomPage[]> {
     let params = new HttpParams();
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -63,14 +64,14 @@ export class CustomPageService {
     });
   }
 
-  getShow(customPageId, parentId, parentType): Observable<ICustomPage> {
+  getShow(customPageId, parentId, parentType: EDbModels): Observable<ICustomPage> {
     let params = new HttpParams().set('custom_page_id', customPageId);
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -79,14 +80,14 @@ export class CustomPageService {
     return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.SHOW), { params });
   }
 
-  getPIndex(parentId: number | string, parentType: string): Observable<ICustomPage[]> {
+  getPIndex(parentId: number | string, parentType: EDbModels): Observable<ICustomPage[]> {
     let params = new HttpParams();
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -96,14 +97,14 @@ export class CustomPageService {
     });
   }
 
-  getPShow(customPageId: number, parentId, parentType): Observable<ICustomPage> {
+  getPShow(customPageId: number, parentId, parentType: EDbModels): Observable<ICustomPage> {
     let params = new HttpParams().set('custom_page_id', customPageId);
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -116,14 +117,14 @@ export class CustomPageService {
     return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.DELETE), { params });
   }
 
-  getSlug(parentId, parentType: string, title: string): Observable<any> {
+  getSlug(parentId, parentType: EDbModels, title: string): Observable<any> {
     let params = new HttpParams();
     switch (parentType) {
-      case 'Kommunity': {
+      case EDbModels.KOMMUNITY: {
         params = params.set('community_id', parentId);
         break;
       }
-      case 'CommunityGroup': {
+      case EDbModels.COMMUNITY_GROUP: {
         params = params.set('community_group_id', parentId);
         break;
       }
@@ -137,5 +138,22 @@ export class CustomPageService {
       },
       { params },
     );
+  }
+
+  getRefundPolicyPage(parentId, parentType: EDbModels) {
+    let params = new HttpParams();
+    switch (parentType) {
+      case EDbModels.KOMMUNITY: {
+        params = params.set('community_id', parentId);
+        break;
+      }
+      case EDbModels.COMMUNITY_GROUP: {
+        params = params.set('community_group_id', parentId);
+        break;
+      }
+    }
+    return this.http.get<ICustomPage>(this.apiRoutesService.getRoute(API_ROUTES.CUSTOM_PAGES.REFUND_POLICY_PAGE), {
+      params,
+    });
   }
 }

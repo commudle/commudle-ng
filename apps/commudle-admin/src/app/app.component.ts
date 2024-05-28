@@ -13,7 +13,6 @@ import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'commudle-root',
   templateUrl: './app.component.html',

@@ -1,0 +1,23 @@
+.experts-card {
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6;
+}
+
+.experts {
+  @apply com-flex com-flex-col;
+}
+
+.card {
+  @apply md:com-w-[276px] com-h-[444px] com-w-full;
+}
+
+.no-user-text {
+  @apply com-text-lg com-font-medium com-m-0;
+}
+
+.load-more {
+  @apply com-my-4;
+}
+
+button {
+  @apply com-w-max com-self-center;
+}
