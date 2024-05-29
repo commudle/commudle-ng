@@ -13,6 +13,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 @Component({
   selector: 'commudle-root',
   templateUrl: './app.component.html',
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private cableService: CableService,
     private darkModeService: DarkModeService,
     private themeService: NbThemeService,
+    public helpSidebarService: SidebarService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -76,6 +78,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
+
+    this.helpSidebarService.setSidebarVisibility('helpSection', true, true);
   }
 
   ngAfterViewChecked(): void {

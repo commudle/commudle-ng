@@ -41,6 +41,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-experts-card/featured-experts-card.component';
 import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
 import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
+import { HelpSectionComponent } from './help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-compon
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
+    HelpSectionComponent,
   ],
   exports: [
     EmailerComponent,

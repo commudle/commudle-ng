@@ -120,6 +120,7 @@ import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature
 
 import * as Sentry from '@sentry/angular-ivy';
 import { Router } from '@angular/router';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -206,7 +207,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     InfiniteScrollModule,
     UserProfileComponent,
     UserprofileDetailsComponent,
-
     // external service modules
     LibErrorHandlerModule,
     AuthModule,
@@ -256,61 +256,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     //standalone component
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
-  ],
-  providers: [
-    AppInitService,
-    Title,
-    CookieService,
-    NbSidebarService,
-    IsBrowserService,
-    PrismJsHighlightCodeService,
-    AuthService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initApp,
-      deps: [AppInitService],
-      multi: true,
-    },
-    {
-      // TODO move the interceptors to a common barrel file if needed
-      // https://angular.io/guide/http#provide-the-interceptor
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiParserResponseInterceptor,
-      multi: true,
-    },
-    {
-      provide: 'AuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.google_client_id),
-          },
-        ],
-      } as AuthServiceConfig,
-    },
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: false,
-      }),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
+    SidebarComponent,
   ],
 })
 export class AppModule {}
