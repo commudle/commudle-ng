@@ -21,8 +21,8 @@ export class CommunityEditDetailsComponent implements OnInit {
   tags: string[] = [];
   minimumTags = 5;
 
-  @ViewChild('autocompleteInput', { static: true })
-  autocompleteInput: ElementRef;
+  @ViewChild('autocompleteInput', { static: true }) autocompleteInput: ElementRef;
+
   @Output() updateCommunity = new EventEmitter();
 
   communityForm;
@@ -33,13 +33,31 @@ export class CommunityEditDetailsComponent implements OnInit {
     width: '650',
     menubar: false,
     convert_urls: false,
-    skin: 'outside',
-    plugins:
-      'advlist autolink lists link image charmap  preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    plugins: [
+      'advlist',
+      'autolink',
+      'lists',
+      'link',
+      'image',
+      'charmap',
+      'preview',
+      'anchor',
+      'searchreplace',
+      'visualblocks',
+      'code',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+    ],
     toolbar:
       'undo redo | formatselect | bold italic backcolor | \
     alignleft aligncenter alignright alignjustify | \
     bullist numlist outdent indent | removeformat | help',
+    license_key: 'gpl',
   };
 
   constructor(

@@ -29,7 +29,7 @@ import {
   NbWindowModule,
 } from '@commudle/theme';
 import { NgxDatatableModule } from '@commudle/ngx-datatable';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -173,5 +173,6 @@ import { EventCheckedInListComponent } from './components/event-checked-in-list/
     NbTagModule,
     NewEditorModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class EventsModule {}

@@ -103,11 +103,13 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount(communityId) {
-    this.subscriptions.push(
-      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
-        this.notificationCount = count;
-      }),
-    );
+    if (this.notificationsStore.communityNotificationsCount$[communityId]) {
+      this.subscriptions.push(
+        this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
+          this.notificationCount = count;
+        }),
+      );
+    }
   }
 
   gtmService() {

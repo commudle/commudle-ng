@@ -31,10 +31,12 @@ a {
       @apply com-w-full com-mx-auto com-text-left md:com-w-11/12 xl:com-w-9/12 md:com-text-center;
 
       .page-heading {
-        @apply com-mb-6 com-text-4xl com-font-extrabold com-leading-none com-tracking-normal com-text-gray-900 md:com-text-6xl md:com-tracking-tight;
+        a {
+          @apply com-mb-6 com-text-4xl com-font-extrabold com-leading-none com-tracking-normal com-text-gray-900 md:com-text-6xl md:com-tracking-tight;
 
-        span {
-          @apply com-block com-w-full com-text-transparent com-bg-clip-text com-bg-gradient-to-r com-from-green-400 com-to-purple-500 lg:com-inline;
+          span {
+            @apply com-block com-w-full com-text-transparent com-bg-clip-text com-bg-gradient-to-r com-from-green-400 com-to-purple-500 lg:com-inline;
+          }
         }
       }
 

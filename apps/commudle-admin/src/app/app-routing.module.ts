@@ -43,6 +43,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'experts',
+    loadChildren: () =>
+      import('./feature-modules/listing-pages/public-home-list-experts/public-home-list-experts.module').then(
+        (m) => m.PublicHomeListExpertsModule,
+      ),
+  },
+  {
     path: 'newsletters',
     loadChildren: () =>
       import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
@@ -85,6 +92,10 @@ const routes: Routes = [
     path: 'developer-ecosystem-blueprint/book',
     loadChildren: () =>
       import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
+  },
+  {
+    path: 'case-studies',
+    loadChildren: () => import('./feature-modules/case-study/case-study.module').then((m) => m.CaseStudyModule),
   },
   // {
   //   path: 'features',
@@ -199,6 +210,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
+    path: 'exa-drive',
+    loadChildren: () => import('./feature-modules/exa-drive/exa-drive.module').then((m) => m.ExaDriveModule),
   },
   {
     path: 'admin',

@@ -99,6 +99,11 @@ export class CommunitiesService {
     });
   }
 
+  sendCsvSpeakersList(communityId): Observable<boolean> {
+    const params = new HttpParams().set('community_id', String(communityId));
+    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.CSV_SPEAKERS_LIST), { params });
+  }
+
   getSpeakersList(
     mini?: boolean,
     after?: string,

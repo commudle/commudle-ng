@@ -20,7 +20,7 @@
       padding: 150px 0;
       text-align: center;
 
-      >span {
+      > span {
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -33,7 +33,7 @@
 
         nb-icon {
           font-size: 2.5rem;
-          margin-bottom: 0.5rem
+          margin-bottom: 0.5rem;
         }
       }
 
@@ -62,5 +62,8 @@
       text-align: center;
     }
   }
+}
 
+.action-button {
+  @apply com-sticky com-bottom-0 com-w-full com-bg-white com-py-2;
 }

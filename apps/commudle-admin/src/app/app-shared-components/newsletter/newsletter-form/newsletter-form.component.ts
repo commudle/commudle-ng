@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
@@ -16,7 +16,7 @@ import { NbDialogService } from '@commudle/theme';
   templateUrl: './newsletter-form.component.html',
   styleUrls: ['./newsletter-form.component.scss'],
 })
-export class NewsletterFormComponent implements OnInit {
+export class NewsletterFormComponent implements OnInit, AfterViewInit {
   newsletterForm: FormGroup;
   parentId: string;
   parentType: string;
@@ -36,6 +36,42 @@ export class NewsletterFormComponent implements OnInit {
   @ViewChild('gjs', { static: true }) gjsElement: ElementRef;
   @ViewChild('sendTestEmailDialog') sendTestEmailDialogBox: TemplateRef<any>;
 
+  tinyMCE = {
+    min_height: 500,
+    menubar: false,
+    convert_urls: false,
+    placeholder: 'Write content for custom page',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'image',
+      'visualblocks',
+      'code',
+      'charmap',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+      'media',
+    ],
+    toolbar:
+      'bold italic backcolor forecolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
+    default_link_target: '_blank',
+    branding: false,
+    license_key: 'gpl',
+  };
+
   constructor(
     private newsletterService: NewsletterService,
     private fb: FormBuilder,
@@ -51,6 +87,7 @@ export class NewsletterFormComponent implements OnInit {
       brief_description: ['', [Validators.required, Validators.maxLength(50)]],
       content: [''],
       banner_image: [null],
+      grapes_js_editor: [true, Validators.required],
     });
     this.testEmailsForms = this.fb.group({
       emails: ['', [Validators.required, this.maxEmails(5)]],
@@ -71,12 +108,23 @@ export class NewsletterFormComponent implements OnInit {
         }
 
         if (this.pageSlug) {
-          this.fetchCustomPageDetails();
+          this.fetchNewsletterDetails();
         } else {
-          this.initEditor();
+          this.newsletterForm.patchValue({
+            grapes_js_editor: true,
+          });
         }
       },
     );
+    this.newsletterForm.controls['grapes_js_editor'].valueChanges.subscribe(() => {
+      this.toggleEditorSwitch();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.pageSlug) {
+      this.initEditor();
+    }
   }
 
   maxEmails(max: number): ValidatorFn {
@@ -86,7 +134,7 @@ export class NewsletterFormComponent implements OnInit {
     };
   }
 
-  fetchCustomPageDetails() {
+  fetchNewsletterDetails() {
     this.subscriptions.push(
       this.newsletterService.getShow(this.pageSlug).subscribe((data: INewsletter) => {
         if (data) {
@@ -97,8 +145,11 @@ export class NewsletterFormComponent implements OnInit {
             content: data.content,
             banner_image: data.banner_image?.url,
             brief_description: data.brief_description,
+            grapes_js_editor: data.grapes_js_editor,
           });
-          this.initEditor();
+          if (data.grapes_js_editor) {
+            this.initEditor();
+          }
         }
       }),
     );
@@ -138,20 +189,28 @@ export class NewsletterFormComponent implements OnInit {
   }
 
   createOrUpdate(sendTestEmail: boolean = false) {
-    this.replaceImgSrc(this.editor.getHtml())
-      .then((modifiedHtmlContent) => {
-        const code = '<style>' + this.editor.getCss() + '</style>' + modifiedHtmlContent;
-        this.newsletterForm.patchValue({ content: code });
+    if (this.newsletterForm.controls['grapes_js_editor'].value) {
+      this.replaceImgSrc(this.editor.getHtml())
+        .then((modifiedHtmlContent) => {
+          const code = '<style>' + this.editor.getCss() + '</style>' + modifiedHtmlContent;
+          this.newsletterForm.patchValue({ content: code });
 
-        if (this.pageSlug) {
-          this.update(sendTestEmail);
-        } else {
-          this.create(sendTestEmail);
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+          if (this.pageSlug) {
+            this.update(sendTestEmail);
+          } else {
+            this.create(sendTestEmail);
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      if (this.pageSlug) {
+        this.update(sendTestEmail);
+      } else {
+        this.create(sendTestEmail);
+      }
+    }
   }
 
   replaceImgSrc(htmlContent: string): Promise<string> {
@@ -309,6 +368,14 @@ export class NewsletterFormComponent implements OnInit {
     this.newsletterForm.patchValue({
       banner_image: '',
     });
+  }
+
+  toggleEditorSwitch() {
+    if (this.newsletterForm.controls['grapes_js_editor'].value) {
+      setTimeout(() => {
+        this.initEditor();
+      }, 500);
+    }
   }
 
   getDefaultTemplate(): string {

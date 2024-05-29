@@ -31,11 +31,30 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     width: '650',
     menubar: false,
     convert_urls: false,
-    skin: 'outside',
     content_style: "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter';}",
     font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt 36pt',
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor visualblocks code charmap image codesample insertdatetime table code help wordcount table autoresize',
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'visualblocks',
+      'code',
+      'charmap',
+      'image',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'table',
+      'autoresize',
+    ],
     toolbar:
       'formatselect | fontsize | paste | bold italic forecolor backcolor | image emoticons | \
       link | alignleft aligncenter alignright alignjustify | table | \
@@ -86,6 +105,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
         this.form.markAsPristine();
       });
     },
+    license_key: 'gpl',
   };
 
   constructor(
@@ -140,7 +160,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
 
-    for (let sub of this.subscriptions) {
+    for (const sub of this.subscriptions) {
       sub.unsubscribe();
     }
   }
@@ -160,7 +180,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
 
   // create or update basis existence of newsletter
   submitForm() {
-    let formData = this.form.value;
+    const formData = this.form.value;
     this.isLoading = true;
     if (this.newsLetter) {
       this.mainNewsLettersService.update(formData, this.newsLetter.id).subscribe((data) => {

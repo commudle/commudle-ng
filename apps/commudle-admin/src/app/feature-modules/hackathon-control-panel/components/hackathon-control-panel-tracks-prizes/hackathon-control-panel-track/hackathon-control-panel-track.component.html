@@ -7,18 +7,18 @@
 <div class="hackathon-cards">
   <div *ngFor="let hackathonTrack of hackathonTracks; let i = index">
     <commudle-hackathon-track-card
-      [hackathonTrack]="hackathonTrack"
       (destroyTrackEvent)="confirmDeleteDialogBox(deleteTrackDilaogBox, $event, i)"
       (editTrackEvent)="openSponsorDialogBox(addTracksDialogBox, $event, i)"
+      [hackathonTrack]="hackathonTrack"
     ></commudle-hackathon-track-card>
   </div>
 </div>
 
-<ng-template #addTracksDialogBox let-ref="dialogRef" let-data>
+<ng-template #addTracksDialogBox let-data let-ref="dialogRef">
   <nb-card class="track-form">
     <nb-card-header>
       <span> {{ data.track ? 'Edit Track' : 'New Track' }}</span>
-      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); trackForm.reset()">
+      <button (click)="ref.close(); trackForm.reset()" ghost nbButton shape="round" size="tiny">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
@@ -27,7 +27,7 @@
         <!-- name -->
         <div>
           <label for="name">Name *</label>
-          <input formControlName="name" id="name" for="name" type="text" placeholder="Name" nbInput fullWidth />
+          <input formControlName="name" fullWidth id="name" nbInput placeholder="Name" type="text" />
           <commudle-alert
             *ngIf="
               trackForm.controls['name'].invalid &&
@@ -42,13 +42,7 @@
         <!-- Description -->
         <div>
           <label for="description">Description *</label>
-          <editor
-            formControlName="description"
-            id="description"
-            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-            [init]="tinyMCE"
-          >
-          </editor>
+          <editor [init]="tinyMCE" formControlName="description" id="description"></editor>
           <commudle-alert
             *ngIf="
               trackForm.controls['description'].invalid &&
@@ -63,12 +57,7 @@
         <!-- Problem Statement -->
         <div>
           <label for="problem_statement">Problem Statements</label>
-          <editor
-            formControlName="problem_statement"
-            id="problem_statement"
-            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-            [init]="tinyMCE"
-          ></editor>
+          <editor [init]="tinyMCE" formControlName="problem_statement" id="problem_statement"></editor>
           <commudle-alert
             *ngIf="trackForm.controls['problem_statement'].invalid && trackForm.controls['problem_statement'].touched"
             [error]="true"
@@ -79,11 +68,11 @@
     </nb-card-body>
     <nb-card-footer>
       <button
-        nbButton
         (click)="data.track ? updateTrack(data.track.id, data.index) : createTrack(); ref.close()"
-        status="primary"
-        fullWidth
         [disabled]="trackForm.invalid || !trackForm.dirty"
+        fullWidth
+        nbButton
+        status="primary"
       >
         {{ data.track ? 'Update' : 'Save' }}
       </button>
@@ -91,18 +80,18 @@
   </nb-card>
 </ng-template>
 
-<ng-template #deleteTrackDilaogBox let-ref="dialogRef" let-data>
+<ng-template #deleteTrackDilaogBox let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header>
       <span>Confirm delete track</span>
-      <button nbButton ghost (click)="ref.close()">
+      <button (click)="ref.close()" ghost nbButton>
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
     <nb-card-body>Are you sure, you want to delete track?</nb-card-body>
     <nb-card-footer>
-      <button nbButton status="primary" (click)="destroyTrack(data.trackId, data.index); ref.close()">Delete</button>
-      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+      <button (click)="destroyTrack(data.trackId, data.index); ref.close()" nbButton status="primary">Delete</button>
+      <button (click)="ref.close()" nbButton outline status="danger">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

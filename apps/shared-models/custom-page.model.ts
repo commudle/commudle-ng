@@ -10,4 +10,10 @@ export interface ICustomPage {
   description: string;
   published: boolean;
   user: IUser;
+  page_type: EPageType;
+}
+
+export enum EPageType {
+  GENERAL = 'general',
+  REFUND_POLICIES = 'refund_policies',
 }

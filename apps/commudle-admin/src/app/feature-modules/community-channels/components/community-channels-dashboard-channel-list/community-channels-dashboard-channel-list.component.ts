@@ -6,6 +6,7 @@ import { CommunityChannelsService } from 'apps/commudle-admin/src/app/feature-mo
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { Subscription } from 'rxjs';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
   selector: 'app-community-channels-dashboard-channel-list',
@@ -13,17 +14,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-channels-dashboard-channel-list.component.scss'],
 })
 export class CommunityChannelsDashboardChannelListComponent implements OnInit, OnDestroy {
-  @Input() community: ICommunity;
-  channels: ICommunityChannel[] = [];
+  @Input() parent: ICommunity | ICommunityGroup;
+  channels: ICommunityChannel[];
   displayCommunityList = false;
   subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private communityChannelsService: CommunityChannelsService,
-    private communityChannelManagerService: CommunityChannelManagerService,
-  ) {}
+  constructor(private communityChannelManagerService: CommunityChannelManagerService) {}
 
   ngOnInit(): void {
     this.getChannels();
@@ -35,11 +32,11 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   }
 
   getChannels() {
-    this.subscriptions.push(
-      this.communityChannelsService.index(this.community.id, this.discussionType.CHANNEL).subscribe((data) => {
-        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      }),
-    );
+    if (this.communityChannelManagerService.channelsList$) {
+      this.communityChannelManagerService.channelsList$.subscribe((data) => {
+        this.channels = data;
+      });
+    }
   }
 
   toggleCommunityListDisplay() {

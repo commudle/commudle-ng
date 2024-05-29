@@ -6,6 +6,9 @@ table {
   tr td:nth-child(2) {
     @apply com-font-medium com-text-right;
   }
+  td {
+    @apply com-text-tblack;
+  }
 }
 
 .edit-buttons {
