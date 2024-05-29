@@ -57,10 +57,15 @@
 
 <ng-template #removeMemberDialog>
   <nb-card class="confirmation-dialog">
-    <nb-card-header>Confirmation</nb-card-header>
+    <nb-card-header>Are You Sure?</nb-card-header>
     <nb-card-body>
       <div>
-        <p>Are you sure you want to leave {{ community.name }}?</p>
+        <p>If you choose to leave this community, all the following roles will be deleted:</p>
+      </div>
+      <div>
+        <ul *ngFor="let uru of userRolesUserList">
+          <li>{{ uru.parent_name }} ({{ uru.user_role.name | capitalizeAndRemoveUnderscore }})</li>
+        </ul>
       </div>
     </nb-card-body>
     <nb-card-footer>
