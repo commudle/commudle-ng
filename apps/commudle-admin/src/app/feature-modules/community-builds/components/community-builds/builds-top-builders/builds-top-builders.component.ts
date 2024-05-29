@@ -111,8 +111,4 @@ export class BuildsTopBuildersComponent implements OnInit {
       });
     }
   }
-
-  removeFragmentSpace(title: string) {
-    return title.toLowerCase().replace(/[\s]+/g, '-');
-  }
 }
