@@ -146,7 +146,7 @@
 </div>
 
 <ng-template #removeUserDialog let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card class="com-max-h-[90dvh]">
     <nb-card-header class="com-flex com-items-center com-justify-between">
       <span class="com-flex com-items-center com-gap-2">
         <nb-icon icon="alert-triangle" status="warning"></nb-icon>
@@ -161,14 +161,18 @@
         Are you sure you want to <strong>remove</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community? (Select
         the roles you want to remove them from)
       </p>
-      <div class="com-flex com-flex-col">
-        <nb-checkbox
-          (checkedChange)="toggleUserRole(userRole.id)"
-          *ngFor="let userRole of selectedUserRoles"
-          [checked]="userRolesUserIds.value.includes(userRole.id)"
-        >
-          {{ userRole.parent_name }} ({{ userRole.user_role.name }})
-        </nb-checkbox>
+      <div class="com-flex com-flex-col com-items-start com-gap-3 com-space-x-3">
+        <div *ngFor="let userRole of selectedUserRoles">
+          <input
+            type="checkbox"
+            id="vehicle1"
+            name="vehicle1"
+            value="Bike"
+            (change)="toggleUserRole(userRole.id)"
+            [checked]="userRolesUserIds.value.includes(userRole.id)"
+          />
+          <label for="vehicle1"> {{ userRole.parent_name }} ({{ userRole.user_role.name }})</label><br />
+        </div>
       </div>
       <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
     </nb-card-body>
