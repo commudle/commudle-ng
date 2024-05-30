@@ -69,10 +69,10 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="toggleMembership(); dialogRef.close()" ghost nbButton status="link">
-        <span>Yes, I will leave</span>
+      <button (click)="toggleMembership(); dialogRef.close()" outline nbButton status="danger">
+        Yes, I will leave
       </button>
-      <button (click)="dialogRef.close()" ghost nbButton status="link"><span>No, I'm staying</span></button>
+      <button (click)="dialogRef.close()" nbButton status="primary">No, I'm staying</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
