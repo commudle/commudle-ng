@@ -55,9 +55,13 @@
   </nb-card>
 </ng-template>
 
-<ng-template #removeMemberDialog>
+<ng-template #removeMemberDialog let-ref="dialogRef">
   <nb-card class="confirmation-dialog">
-    <nb-card-header>Are You Sure?</nb-card-header>
+    <nb-card-header
+      ><span>Are You Sure?</span
+      ><button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon></button
+    ></nb-card-header>
     <nb-card-body>
       <div>
         <p>If you choose to leave this community, all the following roles will be deleted:</p>
