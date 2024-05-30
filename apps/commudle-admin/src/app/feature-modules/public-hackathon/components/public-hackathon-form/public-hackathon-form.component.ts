@@ -188,7 +188,7 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   openConsentDialogBox(formData) {
     const dialogRef = this.dialogService.open(UserConsentsComponent, {
       context: {
-        consentType: ConsentTypesEnum.JoinBuild,
+        consentType: ConsentTypesEnum.HACKATHON_REGISTRATION,
       },
     });
     dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
