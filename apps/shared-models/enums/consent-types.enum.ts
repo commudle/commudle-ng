@@ -13,6 +13,7 @@ export enum ConsentTypesEnum {
   DeactivateDeleteAccount = 'deactivate-delete',
   HACKATHON_JUDGE_INVITATION = 'HackathonJudgeInvitation',
   HACKATHON_TEAMMATE_INVITATION = 'HackathonTeammateInvitation',
+  HACKATHON_REGISTRATION = 'hackathonRegistration',
 }
 
 export enum ButtonStyle {
