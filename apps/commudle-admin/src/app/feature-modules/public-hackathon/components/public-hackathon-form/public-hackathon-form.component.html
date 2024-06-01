@@ -1,0 +1,132 @@
+<div class="base-layout">
+  <div class="container">
+    <div *ngIf="isLoading" class="spinner">
+      <commudle-loading-spinner></commudle-loading-spinner>
+    </div>
+    <div class="two-column-layout">
+      <div class="main-column">
+        <nb-card *ngIf="!isLoading">
+          <nb-card-body class="details-section">
+            <div class="details">
+              <h1 class="hackathon-name">
+                {{ hackathon.name }}
+              </h1>
+              <div>
+                <app-community-badge [community]="community"></app-community-badge>
+              </div>
+            </div>
+            <div class="social-links" *ngIf="contactInfo">
+              <ng-container *ngIf="contactInfo.website">
+                <a [href]="contactInfo.website">
+                  <fa-icon [icon]="icons.faGlobe"></fa-icon>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="contactInfo.facebook">
+                <a [href]="contactInfo.facebook">
+                  <fa-icon [icon]="icons.faFacebookF"></fa-icon>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="contactInfo.twitter">
+                <a [href]="contactInfo.twitter">
+                  <fa-icon [icon]="icons.faTwitter"></fa-icon>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="contactInfo.github">
+                <a [href]="contactInfo.github">
+                  <fa-icon [icon]="icons.faGithub"></fa-icon>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="contactInfo.linkedIn">
+                <a [href]="contactInfo.linkedIn">
+                  <fa-icon [icon]="icons.faLinkedinIn"></fa-icon>
+                </a>
+              </ng-container>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <nb-card *ngIf="!isLoading">
+          <nb-card-body>
+            <nb-stepper orientation="horizontal" [linear]="true" #stepper>
+              <nb-step label="Profile">
+                <div>
+                  <commudle-public-hackathon-user-details-form
+                    [hackathonResponseGroup]="hackathonResponseGroup"
+                    [hackathonUserResponse]="hackathonUserResponse"
+                    (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
+                  ></commudle-public-hackathon-user-details-form>
+                </div>
+              </nb-step>
+              <nb-step label="Team Details">
+                <commudle-public-hackathon-teammate-form
+                  [hackathonUserResponse]="hackathonUserResponse"
+                  [hasTeammateOption]="hasTeammateOption"
+                  [hackathonResponseGroup]="hackathonResponseGroup"
+                  [hackathon]="hackathon"
+                  (submitTeammateDetailsEvent)="submitTeammateDetails($event)"
+                  (previousButtonEvent)="previousStepper()"
+                ></commudle-public-hackathon-teammate-form>
+              </nb-step>
+              <nb-step label="Project Details">
+                <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
+                <div *ngIf="!isLoading && hackathon">
+                  <commudle-public-hackathon-project-details-form
+                    [hackathon]="hackathon"
+                    [hackathonUserResponse]="hackathonUserResponse"
+                    (createOrUpdateProjectDetails)="submitProjectDetails($event)"
+                    (previousButtonEvent)="previousStepper()"
+                  ></commudle-public-hackathon-project-details-form>
+                </div>
+              </nb-step>
+              <nb-step label="More details" *ngIf="hackathonResponseGroup.data_form_entity_id">
+                <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
+                <div *ngIf="!isLoading">
+                  <commudle-public-hackathon-custom-questions-form
+                    (submitFormEvent)="submitFormData($event)"
+                    [hackathonResponseGroup]="hackathonResponseGroup"
+                  ></commudle-public-hackathon-custom-questions-form>
+                </div>
+              </nb-step>
+            </nb-stepper>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #formConfirmationDialog let-data>
+  <nb-card class="confirmation-dialog">
+    <nb-card-body>
+      <div>
+        <p class="thank-you-icon">
+          <nb-icon icon="done-all" status="success"></nb-icon>
+        </p>
+        <p class="thank-you-text">Thank You {{ currentUser.name }} for filling the form!</p>
+        <div class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.username"
+            [completeProfileText]="'Complete your profile to boost your chances of getting shortlisted'"
+          ></commudle-userprofile-details>
+        </div>
+        <div *appBreakpoints="'<=lg'" class="user">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <commudle-userprofile-details
+            [userProfileDetails]="userProfileDetails"
+            [username]="currentUser.username"
+            [showLowerCardUserDetails]="false"
+            [completeProfileText]="'Complete your profile to boost your chances of getting shortlisted'"
+          ></commudle-userprofile-details>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <p *ngIf="hackathon">
+        <a [routerLink]="['/communities', community.slug, 'hackathons', hackathon.slug]">
+          <p>Go to Hackathon Page &nbsp;<fa-icon [icon]="icons.faArrowRight"></fa-icon></p>
+        </a>
+      </p>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

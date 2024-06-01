@@ -16,12 +16,17 @@
       <p>Registration Forms</p>
     </div>
     <div *ngIf="event.custom_registration && community.payments_enabled && showDiscountComponent">
-      <commudle-discount-coupons [event]="event"></commudle-discount-coupons>
+      <commudle-discount-coupons
+        [event]="event"
+        [community]="community"
+        [refundPolicy]="refundPolicy"
+      ></commudle-discount-coupons>
     </div>
     <app-form-groups
       *ngIf="event.custom_registration"
       [community]="community"
       [event]="event"
+      [refundPolicy]="refundPolicy"
       (showDiscountCoupons)="showDiscountComponent = $event"
     ></app-form-groups>
     <app-event-simple-registration
@@ -31,3 +36,18 @@
     ></app-event-simple-registration>
   </nb-card-body>
 </nb-card>
+
+<div class="next-step-section" *ngIf="event.event_status.id !== 5">
+  <a>
+    Next Step
+    <fa-icon [icon]="icons.faArrowRight"></fa-icon>
+  </a>
+  <commudle-next-step-card
+    routePath="agenda"
+    [nbIcon]="'calendar-outline'"
+    headingText="Setup Location & Agenda"
+    subHeadingText="Add schedule of the event from confirmed speakers"
+    [eventSlug]="event.slug"
+    [communitySlug]="community.slug"
+  ></commudle-next-step-card>
+</div>

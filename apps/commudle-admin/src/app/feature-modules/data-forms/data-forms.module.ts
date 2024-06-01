@@ -5,20 +5,21 @@ import { CreateDataFormComponent } from './components/create-data-form/create-da
 import { DataFormsRoutingModule } from './data-forms-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  NbInputModule,
-  NbCardModule,
   NbButtonModule,
-  NbSelectModule,
+  NbCardModule,
   NbCheckboxModule,
-  NbIconModule,
-  NbToggleModule,
   NbContextMenuModule,
   NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbSelectModule,
+  NbToggleModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { EditorModule as tinyMCEEditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [EditDataFormComponent, CreateDataFormComponent],
@@ -45,6 +46,9 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
     //cdk module
     DragDropModule,
+
+    tinyMCEEditorModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class DataFormsModule {}

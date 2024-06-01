@@ -1,0 +1,297 @@
+<div [ngClass]="{ 'center-layout': centerLayout }" class="data-form-container">
+  <nb-card *ngIf="showNameDescriptionFiled">
+    <nb-card-header>
+      <h3>Edit Form</h3>
+      <commudle-alert
+        [error]="true"
+        errorMessage="Some questions might be uneditable because this form has responses"
+      ></commudle-alert>
+
+      <div *ngIf="dataForm?.parent_type === 'Kommunity'">
+        <button
+          (click)="cloneCommunityDataForm()"
+          class="clone-form-button"
+          nbButton
+          outline
+          size="medium"
+          status="info"
+        >
+          Clone this form
+        </button>
+      </div>
+    </nb-card-header>
+  </nb-card>
+  <form [formGroup]="editDataForm" class="edit-data-form">
+    <div formGroupName="data_form">
+      <nb-card *ngIf="showNameDescriptionFiled">
+        <nb-card-body class="card-body">
+          <div role="group">
+            <div>
+              <label fullWidth>
+                Name
+                <span class="required-question">*</span>
+                <input formControlName="name" fullWidth nbInput placeholder="Title" type="text" />
+              </label>
+              <span
+                *ngIf="
+                  editDataForm.get('data_form').get('name').touched &&
+                  editDataForm.get('data_form').get('name').invalid &&
+                  editDataForm.get('data_form').get('name').errors.required
+                "
+              >
+                <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+              </span>
+            </div>
+          </div>
+
+          <div role="group">
+            <div class="description">
+              <label fullWidth>
+                Description
+                <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
+              </label>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <div (cdkDropListDropped)="drop($event)" cdkDropList>
+        <div
+          *ngFor="let question of editDataForm['controls'].data_form['controls'].questions['controls']; let i = index"
+          cdkDrag
+        >
+          <div *cdkDragPlaceholder class="custom-placeholder"></div>
+          <div *cdkDragPreview class="custom-preview" formArrayName="questions">
+            <nb-card [formGroupName]="i" class="questions-form-section com-w-80 md:com-w-500px">
+              <nb-card-header class="com-p-0 com-flex com-justify-center">
+                <button ghost nbButton size="small">
+                  <nb-icon icon="move-outline"></nb-icon>
+                </button>
+              </nb-card-header>
+              <nb-card-body>
+                <div class="custom-question-container">
+                  <label>
+                    Question {{ i + 1 }}
+                    <span *ngIf="question.get('required').value" class="required-question">*</span>
+                    <input formControlName="title" fullWidth nbInput placeholder="Title*" required type="text" />
+                  </label>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div formArrayName="questions">
+            <nb-card [formGroupName]="i" class="questions-form-section">
+              <nb-card-header cdkDragHandle class="drag-button">
+                <button ghost nbButton size="small">
+                  <nb-icon icon="move-outline"></nb-icon>
+                </button>
+              </nb-card-header>
+              <nb-card-body>
+                <div>
+                  <div class="question-container">
+                    <div>
+                      <label>
+                        Question {{ i + 1 }}
+                        <span *ngIf="question.get('required').value" class="required-question">*</span>
+                        <input
+                          [readonly]="question.get('has_responses').value"
+                          formControlName="title"
+                          fullWidth
+                          nbInput
+                          placeholder="Title*"
+                          required
+                          type="text"
+                        />
+                      </label>
+                      <span
+                        *ngIf="
+                          question.get('title').touched &&
+                          question.get('title').invalid &&
+                          question.get('title').errors.required
+                        "
+                      >
+                        <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+                      </span>
+
+                      <button
+                        (click)="toggleDescriptionField(i)"
+                        class="add-description-button"
+                        ghost
+                        nbButton
+                        size="small"
+                        status="primary"
+                      >
+                        <nb-icon
+                          [icon]="question?.get('show_description')?.value ? 'close-outline' : 'plus-outline'"
+                        ></nb-icon>
+                        {{ question?.get('show_description')?.value ? 'Remove Description' : 'Add Description' }}
+                      </button>
+
+                      <div *ngIf="question?.get('show_description')?.value" class="description-textbox">
+                        <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
+                      </div>
+                    </div>
+
+                    <div class="question-settings">
+                      <div
+                        [ngClass]="{
+                          '!com-cursor-not-allowed': question.get('has_responses').value
+                        }"
+                        class="dropdown"
+                      >
+                        <nb-icon icon="question-mark-circle-outline" nbPrefix></nb-icon>
+
+                        <select
+                          (change)="questionTypeChange($event, i)"
+                          [ngClass]="{
+                            disable: question.get('has_responses').value
+                          }"
+                          class="com-border-0"
+                          formControlName="question_type_id"
+                        >
+                          <option *ngFor="let qt of questionTypes" [ngValue]="qt.id">
+                            {{ qt.name | capitalizeAndRemoveUnderscore }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <span
+                        *ngIf="
+                          question.get('question_type_id').invalid && question.get('question_type_id').errors.required
+                        "
+                      >
+                        <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+                      </span>
+                    </div>
+
+                    <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
+                      <div
+                        *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
+                        class="choices-container"
+                        formArrayName="question_choices"
+                      >
+                        <div class="choice-container com-flex com-items-center">
+                          <div [formGroupName]="chi">
+                            <input
+                              [readonly]="choice.value.has_responses"
+                              formControlName="title"
+                              nbInput
+                              placeholder="Choice {{ chi + 1 }}"
+                              required
+                              type="text"
+                            />
+                            <span
+                              *ngIf="
+                                choice.get('title').touched &&
+                                choice.get('title').invalid &&
+                                choice.get('title').errors.required
+                              "
+                            >
+                              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+                            </span>
+                          </div>
+
+                          <div class="close-circle-outline">
+                            <nb-icon
+                              (click)="removeQuestionChoiceButtonClick(i, chi)"
+                              class="com-ml-2 com-mt-4"
+                              icon="close-circle-outline"
+                            ></nb-icon>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        (click)="addQuestionChoiceButtonClick(i)"
+                        class="com-mt-2"
+                        hero
+                        nbButton
+                        size="tiny"
+                        status="warning"
+                      >
+                        <nb-icon icon="plus-outline"></nb-icon>
+                        &nbsp; Add Choice
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="question-form-footer">
+                  <div class="com-align-middle com-flex">
+                    <button
+                      (click)="addQuestionButtonClick(i + 1)"
+                      class="footer-icons add-question-footer"
+                      ghost
+                      nbButton
+                      size="small"
+                      status="primary"
+                    >
+                      <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
+                      &nbsp; Add Question Below
+                    </button>
+                    <div class="toggles">
+                      <nb-toggle class="md:com-pl-3 toggle" formControlName="required" labelPosition="right" size="tiny"
+                        ><span>Required</span></nb-toggle
+                      >
+                      <nb-toggle class="toggle md:com-ml-6" formControlName="disabled" labelPosition="right" size="tiny"
+                        ><span
+                          >Disable this question
+                          <p class="com-m-0 com-text-primary-500">
+                            <small>(This question won't appear anymore)</small>
+                          </p>
+                        </span>
+                      </nb-toggle>
+                    </div>
+                  </div>
+                  <button
+                    (click)="removeQuestionButtonClick(i)"
+                    *ngIf="!question.get('has_responses').value"
+                    class="footer-icons delete-question-footer"
+                    ghost
+                    nbButton
+                    size="small"
+                    status="danger"
+                  >
+                    <nb-icon icon="trash-outline" status="danger"></nb-icon>
+                    Delete
+                  </button>
+                  <div class="context-menu">
+                    <button
+                      (click)="setContextIndex(i)"
+                      [nbContextMenu]="menuItem"
+                      class="context-menu"
+                      nbButton
+                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
+                    >
+                      <nb-icon class="com-mb-8" icon="more-vertical-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="
+              addQuestionButtonClick(editDataForm['controls'].data_form['controls'].questions['controls'].length + 1)
+            "
+            class="add-question-button"
+            nbButton
+            size="medium"
+            status="primary"
+          >
+            <nb-icon icon="plus-outline"></nb-icon>
+            &nbsp; Add Question
+          </button>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button (click)="updateDataForm()" fullWidth nbButton size="medium" status="primary" type="submit">
+          {{ submitButtonText() }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

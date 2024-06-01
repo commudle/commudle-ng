@@ -23,6 +23,17 @@
             </ng-container>
           </nb-card-body>
         </nb-card>
+        <nb-card class="updates" *ngIf="communityBuild.entity_updates.length > 0">
+          <nb-card-header>Updates</nb-card-header>
+          <nb-card-body>
+            <ul>
+              <li *ngFor="let updates of communityBuild.entity_updates">
+                <div [innerHTML]="updates.details"></div>
+                <span class="date">{{ moment(updates.created_at).format('dddd, MMM Do, YYYY') }}</span>
+              </li>
+            </ul>
+          </nb-card-body>
+        </nb-card>
       </div>
     </div>
     <div *appBreakpoints="'<=lg'" class="one-column-layout">

@@ -44,17 +44,40 @@ export class EmailerComponent implements OnInit, OnDestroy {
   eMailForm;
 
   subscriptions: Subscription[] = [];
+  isEmailSending = false;
 
   tinyMCE = {
     height: 200,
     menubar: false,
     convert_urls: false,
-    plugins:
-      'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    plugins: [
+      'advlist',
+      'autolink',
+      'lists',
+      'link',
+      'image',
+      'charmap',
+      'preview',
+      'anchor',
+      'searchreplace',
+      'visualblocks',
+      'code',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+    ],
     toolbar:
-      'undo redo | formatselect | bold italic backcolor | \
+      'h2  h3  h4  h5 fontsize | undo redo | formatselect | bold italic backcolor forecolor | \
         alignleft aligncenter alignright alignjustify | \
         bullist numlist outdent indent | removeformat | help',
+    font_size_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px',
+    license_key: 'gpl',
   };
 
   registrationSelectionType = {
@@ -438,9 +461,17 @@ export class EmailerComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
-    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe((data) => {
-      this.close();
-      this.toastLogService.successDialog('Emails are being delivered!');
-    });
+    this.isEmailSending = true;
+    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe(
+      (data) => {
+        this.isEmailSending = false;
+        this.close();
+        this.toastLogService.successDialog('Emails are being delivered!');
+      },
+      (error) => {
+        this.close();
+        this.isEmailSending = false;
+      },
+    );
   }
 }

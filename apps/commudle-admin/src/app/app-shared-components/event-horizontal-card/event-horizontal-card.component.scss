@@ -1,5 +1,5 @@
 nb-card {
-  @apply md:com-m-0 com-mb-6 com-mx-4 com-mt-0;
+  @apply com-m-0;
   nb-card-body {
     @apply com-p-0;
     .upcoming-card {
@@ -35,7 +35,7 @@ nb-card {
                   }
 
                   span {
-                    @apply com-text-xs com-font-normal com-text-AuroMetalSaurus;
+                    @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
                   }
                 }
               }

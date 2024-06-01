@@ -4,7 +4,7 @@
   nb-card {
     @apply com-mb-3;
     .form-description {
-      @apply com-mb-3 com-mt-0 com-mx-0;
+      @apply com-mb-3 com-mt-0 com-mx-4;
       p {
         @apply com-py-4 com-px-3 com-text-base com-font-normal com-leading-5 com-m-0 com-text-gray-500;
         white-space: pre-wrap;
@@ -27,6 +27,24 @@
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
+
+          nb-checkbox {
+            ::ng-deep {
+              span {
+                @apply com-text-Yankees-Blue;
+              }
+            }
+          }
+        }
+
+        nb-radio-group {
+          nb-radio {
+            ::ng-deep {
+              span {
+                @apply com-text-Yankees-Blue;
+              }
+            }
+          }
         }
       }
       .detail {
@@ -60,7 +78,7 @@
   }
 
   .submit-button {
-    @apply com-p-0 com-mx-2 com-mt-4;
+    @apply com-p-0 md:com-pb-4 com-mx-2 com-mt-4;
 
     button {
       @apply com-px-0;

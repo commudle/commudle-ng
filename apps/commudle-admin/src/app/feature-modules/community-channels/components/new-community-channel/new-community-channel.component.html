@@ -1,14 +1,15 @@
-<ng-template #newCommunityChannelFormTemplate>
-  <nb-card>
-    <nb-card-header>
-      <span>New {{ discussionType | titlecase }} for {{ community.name }}</span>
-    </nb-card-header>
-    <nb-card-body>
-      <app-community-channel-form
-        [presetGroupName]="groupName"
-        [discussionType]="discussionType"
-        (saved)="closeForm()"
-      ></app-community-channel-form>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+<nb-card>
+  <nb-card-header>
+    <span>New {{ discussionType | titlecase }} for {{ parent.name }}</span>
+    <button (click)="closeForm()" ghost nbButton size="small" shape="round">
+      <nb-icon icon="close"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <commudle-community-channel-form
+      [presetGroupName]="groupName"
+      [discussionType]="discussionType"
+      (saved)="closeForm()"
+    ></commudle-community-channel-form>
+  </nb-card-body>
+</nb-card>

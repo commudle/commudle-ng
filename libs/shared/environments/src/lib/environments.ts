@@ -10,6 +10,8 @@ type Environment = {
   vapid_public_key: string;
   google_client_id: string;
   stripe: string;
+  sentry_dsn: string;
+  razorpay_key: string;
 };
 
 const environments: { [type: string]: Environment } = {
@@ -26,6 +28,8 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
   test: {
     production: false,
@@ -40,6 +44,8 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_test_51NIQahSAaAm97WzmtpZtqYAuI1cCfN7LAJPoy8SmBpJqXQ5c7gnmOXXS9VtXa1b6YvCa1Uc9bX3Ra9ZLjm4AQBSs00en3kVojH',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
   staging: {
     production: false,
@@ -54,6 +60,8 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
   production: {
     production: true,
@@ -68,6 +76,8 @@ const environments: { [type: string]: Environment } = {
     google_client_id: '432745930633-vc668ls5qi0bf9lit9sp5fhnf18vka8l.apps.googleusercontent.com',
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
+    sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
 };
 

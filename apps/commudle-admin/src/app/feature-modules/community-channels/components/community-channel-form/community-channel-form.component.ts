@@ -8,7 +8,7 @@ import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/com
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-community-channel-form',
+  selector: 'commudle-community-channel-form',
   templateUrl: './community-channel-form.component.html',
   styleUrls: ['./community-channel-form.component.scss'],
 })
@@ -29,7 +29,7 @@ export class CommunityChannelFormComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private communityChannelManagerService: CommunityChannelManagerService,
+    private cmService: CommunityChannelManagerService,
     private communityChannelsService: CommunityChannelsService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
@@ -41,7 +41,7 @@ export class CommunityChannelFormComponent implements OnInit {
       group_name: ['General', this.discussionType === 'forum' ? Validators.required : ''],
       is_private: [false, Validators.required],
       is_readonly: [false, Validators.required],
-      display_type: [''],
+      display_type: [this.discussionType],
     });
   }
 
@@ -86,9 +86,9 @@ export class CommunityChannelFormComponent implements OnInit {
       this.updateChannel(formData);
     } else {
       if (this.discussionType === EDiscussionType.FORUM) {
-        this.communityChannelManagerService.createForum(formData);
+        this.cmService.createForum(formData);
       } else if (this.discussionType === EDiscussionType.CHANNEL) {
-        this.communityChannelManagerService.createChannel(formData);
+        this.cmService.createChannel(formData);
       }
     }
 
@@ -118,19 +118,19 @@ export class CommunityChannelFormComponent implements OnInit {
 
     // if we are editing the community channel here, then send a request to the server to remove the logo
     if (this.existingChannel && this.existingChannel.logo) {
-      this.communityChannelsService.deleteLogo(this.existingChannel.id).subscribe((data) => {
+      this.communityChannelsService.deleteChannelForumLogo(this.existingChannel.id).subscribe((data) => {
         if (data) {
           this.existingChannel.logo = null;
-          this.communityChannelManagerService.findAndUpdateChannel(this.existingChannel);
+          this.cmService.findAndUpdateChannel(this.existingChannel);
         }
       });
     }
   }
 
   updateChannel(formData) {
-    this.communityChannelsService.update(this.existingChannel.id, formData).subscribe((data) => {
+    this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
       this.existingChannel = data;
-      this.communityChannelManagerService.findAndUpdateChannel(data);
+      this.cmService.findAndUpdateChannel(data);
       this.toastLogService.successDialog('Updated', 3000);
     });
   }

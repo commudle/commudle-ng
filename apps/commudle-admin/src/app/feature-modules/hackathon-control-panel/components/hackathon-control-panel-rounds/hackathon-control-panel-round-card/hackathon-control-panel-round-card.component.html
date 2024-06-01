@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>
+    {{ round.name }}
+  </nb-card-header>
+  <nb-card-body>
+    <div class="date">{{ moment(round.date).format('DD MMM YYYY') }}</div>
+    <div class="description">{{ round.description }}</div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton ghost status="primary" (click)="editRound(round)">Edit</button>
+    <button nbButton ghost status="danger" (click)="destroyRound(round.id)">Delete</button>
+  </nb-card-footer>
+</nb-card>

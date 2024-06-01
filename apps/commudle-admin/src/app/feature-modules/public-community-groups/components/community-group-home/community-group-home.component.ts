@@ -1,8 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import {
   faUserGroup,
   faCircleInfo,
@@ -12,8 +12,17 @@ import {
   faArrowTrendUp,
   faBuilding,
   faPencil,
+  faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
+import { NbMenuService } from '@commudle/theme';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { EDbModels } from '@commudle/shared-models';
+
+interface CustomMenuItem {
+  title: string;
+  slug: string;
+}
 
 @Component({
   selector: 'app-community-group-home',
@@ -34,21 +43,49 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
   faArrowTrendUp = faArrowTrendUp;
   faBuilding = faBuilding;
   faPencil = faPencil;
+  faCaretDown = faCaretDown;
+
+  items = [{ title: 'pages', slug: 'pages' }];
+
+  EDbModels = EDbModels;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private communityGroupsService: CommunityGroupsService,
+    private nbMenuService: NbMenuService,
+    private customPageService: CustomPageService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    this.items = [];
     this.subscriptions.push(
       this.activatedRoute.data.subscribe((data) => {
         this.communityGroup = data.community_group;
         this.setMeta();
         this.checkOrganizer();
+        this.getCustomPages();
       }),
     );
+  }
+
+  getCustomPages() {
+    this.subscriptions.push(
+      this.customPageService.getPIndex(this.communityGroup.slug, EDbModels.COMMUNITY_GROUP).subscribe((data) => {
+        this.items = [];
+        for (const page of data) {
+          const newItem = { title: page.title, slug: page.slug };
+          this.items.push(newItem);
+        }
+      }),
+    );
+    this.nbMenuService
+      .onItemClick()
+      .pipe(map(({ item }) => item as CustomMenuItem))
+      .subscribe(({ title, slug }) => {
+        this.router.navigate(['orgs', this.communityGroup.slug, 'p', slug]);
+      });
   }
 
   ngOnDestroy() {

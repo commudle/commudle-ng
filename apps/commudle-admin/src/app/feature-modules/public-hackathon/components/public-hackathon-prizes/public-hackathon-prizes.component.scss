@@ -1,0 +1,38 @@
+.main-column {
+  nb-card {
+    @apply com-ml-0;
+
+    .prize-amount {
+      color: var(--blue-600, #2563eb);
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px; /* 133.333% */
+    }
+
+    .track-name {
+      color: #222b45;
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 26px; /* 144.444% */
+    }
+
+    .track-description {
+      color: #000;
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+    }
+  }
+}
+
+.right-column {
+  nb-card {
+    @apply com-mr-0;
+  }
+}

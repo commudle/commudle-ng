@@ -1,5 +1,6 @@
 import { IRegistrationType } from './registration_type.model';
 import { IDataFormEntity } from './data_form_entity.model';
+import { ICommunity, IEvent } from '@commudle/shared-models';
 
 export interface IEventDataFormEntityGroup {
   id: number;
@@ -13,4 +14,6 @@ export interface IEventDataFormEntityGroup {
   already_filled: boolean;
   is_paid: boolean;
   summary_registration_counts: any;
+  event: IEvent;
+  community: ICommunity;
 }

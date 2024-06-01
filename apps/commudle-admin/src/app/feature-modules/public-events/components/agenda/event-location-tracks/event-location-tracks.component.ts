@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import * as _ from 'lodash';
 import { SeoService } from 'apps/shared-services/seo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -25,7 +26,11 @@ export class EventLocationTracksComponent implements OnInit {
   footerText = 'View More';
   visibility: boolean;
 
-  constructor(private trackSlotsService: TrackSlotsService, private seoService: SeoService) {}
+  constructor(
+    private trackSlotsService: TrackSlotsService,
+    private seoService: SeoService,
+    private activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     if (this.seoService.isBot) {
@@ -36,6 +41,18 @@ export class EventLocationTracksComponent implements OnInit {
     for (const event_location_track of this.eventLocation.event_location_tracks) {
       this.trackSlotVisibility[event_location_track.id] = this.visibility;
       this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+    }
+    if (this.activatedRoute.snapshot.queryParamMap.get('track_id')) {
+      this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')] = true;
+      if (this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')]) {
+        setTimeout(() => {
+          document.getElementById(this.activatedRoute.snapshot.queryParamMap.get('track_id')).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }, 100);
+      }
     }
   }
 

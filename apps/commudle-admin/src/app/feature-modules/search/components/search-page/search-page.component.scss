@@ -1,28 +1,133 @@
 .base-layout {
+  @apply com-px-0 com-py-10;
+
+  .search-input {
+    @apply md:com-m-0 com-mx-4;
+  }
+
+  .query-searched {
+    @apply com-text-base com-font-normal com-text-Dark-Jungle-Green com-mt-6 com-mb-4 md:com-px-0 com-px-4;
+
+    strong {
+      @apply com-text-base com-font-medium com-text-black;
+    }
+  }
+
+  nb-tag-list {
+    @apply com-m-0 com-p-0 md:com-pb-6 com-pb-2 md:com-px-0 com-px-4 com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+
+    nb-tag {
+      @apply md:com-mb-0 com-mb-4;
+      .selected {
+        @apply com-bg-primary-500;
+      }
+    }
+  }
   .container {
-    .one-column-layout {
-      .search-results {
-        nb-card-body {
-          nb-list {
-            @apply com-mt-4;
+    .main-column {
+      @apply com-p-0 md:com-pr-30px md:com-pl-0 com-px-4;
+    }
+    .results-count {
+      @apply com-m-0 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
+    }
 
-            .search-result {
-              @apply com-px-0 com-border-0 com-cursor-pointer;
+    .option-name {
+      @apply com-m-0 com-mb-3 com-text-xl com-font-bold com-text-Dark-Jungle-Green;
+    }
 
-              nb-user {
-                &::ng-deep {
-                  .info-container {
-                    .user-name,
-                    .user-title {
-                      @apply com-line-clamp-1;
-                    }
-                  }
-                }
+    nb-list {
+      nb-list-item {
+        @apply com-p-0 com-flex com-flex-col com-items-start com-border-0;
+
+        &:first-child {
+          @apply com-border-t-0;
+        }
+
+        .query-results-heading {
+          @apply com-m-0 com-mt-6 com-mb-2 com-text-xl com-font-bold com-text-Dark-Jungle-Green com-border-0 com-border-t com-border-solid com-border-Bright-Gray com-w-full;
+
+          &:first-child {
+            @apply com-border-t-0;
+          }
+        }
+
+        .labs-card,
+        .builds-card,
+        .social-resources-card {
+          @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4 com-w-full;
+
+          .lab-card,
+          .build-card,
+          .social-resource-card {
+            @apply md:com-w-[428px] com-w-full;
+          }
+        }
+
+        .events-card {
+          @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-5 com-w-full;
+
+          .event-card {
+            @apply md:com-w-[272px] com-w-full;
+          }
+        }
+      }
+
+      .search-result {
+        @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+
+        nb-user {
+          &::ng-deep {
+            .info-container {
+              .user-name,
+              .user-title {
+                @apply com-line-clamp-1;
               }
             }
           }
         }
       }
     }
+
+    .right-column {
+      @apply com-p-0 md:com-pl-30px com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
+    }
+  }
+
+  .switch-case {
+    @apply com-w-full;
+  }
+
+  commudle-search-details {
+    @apply com-w-full;
+  }
+
+  app-loading-spinner {
+    @apply com-m-0 com-mt-6;
+  }
+
+  .can-load-more-spinner {
+    @apply com-flex com-self-center com-m-0 com-my-4;
+  }
+
+  .results-container {
+    @apply com-flex com-flex-col com-items-center;
+  }
+
+  .view-all {
+    @apply com-no-underline com-p-0 com-text-base com-font-normal com-text-Yankees-Blue;
+  }
+
+  nb-tag.appearance-filled.status-primary.selected {
+    @apply com-bg-primary-500 com-text-tWhite;
+  }
+
+  .load-more {
+    @apply com-flex com-self-center com-m-0 com-mt-4;
+  }
+
+  .speakers-upcoming,
+  .tech-sessions,
+  .speakers {
+    @apply com-m-0 md:com-mt-4 com-mt-10;
   }
 }

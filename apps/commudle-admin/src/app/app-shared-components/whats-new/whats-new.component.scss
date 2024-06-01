@@ -1,0 +1,55 @@
+.card {
+  @apply com-fixed com-top-20 md:com-w-[480px] com-h-[228px] md:com-right-auto com-right-4 md:com-left-auto com-left-4;
+  z-index: 9999;
+}
+
+.base-layout {
+  @apply com-min-h-0;
+}
+
+.container {
+  @apply com-flex com-justify-end;
+}
+
+.gradient-border {
+  @apply com-bg-gradient-to-r com-from-[#9360FF] com-to-[#3366ff] com-p-2px com-rounded-xl;
+}
+
+nb-card {
+  @apply com-m-0 com-h-full com-w-full com-bg-white;
+}
+
+nb-card-header {
+  @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
+  .heading {
+    @apply com-flex;
+
+    .heading-icon {
+      @apply com-mr-2 com-h-4 com-w-4 com-text-black;
+    }
+
+    .heading-text {
+      @apply com-text-black com-text-base com-font-semibold com-m-0;
+    }
+  }
+
+  .cross-icon {
+    @apply com-h-4 com-w-4 com-text-black;
+  }
+}
+
+nb-card-body {
+  @apply com-px-4 com-py-3;
+
+  ul {
+    @apply com-m-0 com-px-4 com-py-0;
+  }
+}
+
+nb-card-footer {
+  @apply com-flex com-justify-between com-py-2 com-px-4;
+}
+
+.card-info-popup {
+  @apply com-max-h-[90dvh] md:com-w-[50dvw] com-bg-white;
+}

@@ -1,9 +1,10 @@
+import { ESidebarPosition, ESidebarWidth } from './enum/sidebar.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faBars } from '@fortawesome/free-solid-svg-icons';
-import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.service';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 
 @Component({
   selector: 'commudle-sidebar',
@@ -15,20 +16,22 @@ import { SidebarService } from 'apps/commudle-admin/src/app/services/sidebar.ser
 export class SidebarComponent implements OnInit {
   @Input() isExpanded: boolean = false;
   @Input() showExpandedButton: boolean = true;
-  @Input() position: 'left' | 'right' = 'left';
-  @Input() expandedWidth: 'small' | 'medium' | 'large' | 'extra-large' = 'large';
+  @Input() position: ESidebarPosition = ESidebarPosition.LEFT;
+  @Input() expandedWidth: ESidebarWidth = ESidebarWidth.LARGE;
   @Input() heading: string;
   @Input() forWindow = true;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() eventName: string;
 
+  ESidebarPosition = ESidebarPosition;
+  ESidebarWidth = ESidebarWidth;
   hideFullSidebar = false;
   expandSidebar = false;
 
   //font-awesome icons
   faCaretLeft = faCaretLeft;
   faBars = faBars;
-  constructor(public sidebarService: SidebarService) {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
     if (this.sidebarService.setSidebar$.hasOwnProperty(this.eventName)) {
@@ -40,6 +43,12 @@ export class SidebarComponent implements OnInit {
     if (this.sidebarService.hideSidebar$.hasOwnProperty(this.eventName)) {
       this.sidebarService.hideSidebar$[this.eventName].subscribe((data) => {
         this.hideFullSidebar = data;
+      });
+    }
+
+    if (this.sidebarService.sidebarPosition$.hasOwnProperty(this.eventName)) {
+      this.sidebarService.sidebarPosition$[this.eventName].subscribe((data) => {
+        this.position = data;
       });
     }
   }

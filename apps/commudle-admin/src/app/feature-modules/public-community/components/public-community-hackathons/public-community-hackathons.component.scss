@@ -1,0 +1,7 @@
+.upcoming-hackathon {
+  @apply com-grid com-gap-3;
+}
+
+.past-hackathons {
+  @apply com-grid com-gap-3 com-grid-cols-1 md:com-grid-cols-3;
+}

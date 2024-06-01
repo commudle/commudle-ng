@@ -45,14 +45,14 @@ p {
       }
 
       .user-social-card-title {
-        color: $gunmetal;
+        @apply com-text-gunmetal;
         font-size: $fs-h4;
         font-weight: $fw-600;
         line-height: 19px;
       }
 
       .user-social-card-description {
-        color: $spanish-gray;
+        @apply com-text-Spanish-Gray;
         font-size: $fs-h6;
         font-style: italic;
         line-height: 14px;
@@ -60,6 +60,7 @@ p {
       }
 
       .user-social-card-favicon {
+        @apply com-bg-tWhite;
         border-radius: 50%;
         margin-top: $space-12;
         max-width: 20px;

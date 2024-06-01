@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-body *ngIf="newsletter">
+    <commudle-back-button
+      text="Back to list of newsletters"
+      [router]="'/communities/' + community.slug + '/newsletters'"
+    ></commudle-back-button>
+    <h2>{{ newsletter.title }}</h2>
+    <commudle-banner-image
+      [name]="newsletter.title"
+      [headerImagePath]="newsletter.banner_image?.url"
+    ></commudle-banner-image>
+    <div [innerHTML]="newsletter.content | safeHtml"></div>
+  </nb-card-body>
+</nb-card>

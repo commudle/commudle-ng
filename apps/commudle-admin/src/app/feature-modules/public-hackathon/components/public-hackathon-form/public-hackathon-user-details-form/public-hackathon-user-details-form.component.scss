@@ -1,0 +1,21 @@
+form {
+  @apply com-flex com-flex-col com-gap-3;
+  select {
+    @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-p-2 com-w-full;
+  }
+  .action-buttons {
+    @apply com-flex com-items-center com-justify-between;
+  }
+}
+
+.uploaded-profile {
+  @apply com-h-36 com-max-w-xs com-overflow-hidden com-relative com-my-0 com-mx-auto com-bg-gray-300;
+}
+
+.uploaded-profile-image {
+  @apply com-w-36 com-overflow-hidden com-my-auto com-ml-4 com-mr-8 com-text-center;
+
+  img {
+    @apply com-block com-mx-auto com-w-full;
+  }
+}

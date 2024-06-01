@@ -1,0 +1,41 @@
+.hackathon-form {
+  form {
+    @apply com-flex com-flex-col com-gap-4;
+    > div {
+      @apply com-flex com-flex-col com-gap-2;
+    }
+
+    .banner-image-container {
+      @apply com-w-full com-my-3;
+      .banner-image {
+        @apply com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative;
+        input {
+          @apply com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-32 com-z-50;
+        }
+        .custom-input {
+          @apply com-text-center com-absolute com-top-20 com-right-0 com-left-0 com-m-auto com-text-gray-400;
+          fa-icon {
+            @apply com-text-5xl;
+          }
+        }
+      }
+    }
+
+    select {
+      @apply com-border com-border-solid com-border-[#e4e9f2] com-rounded com-bg-[#f7f9fc] com-px-2 com-py-2.5;
+    }
+
+    .participate-types {
+      > div {
+        @apply com-flex com-gap-4;
+        > div {
+          @apply com-flex com-gap-2 com-items-center;
+        }
+      }
+    }
+
+    .save-button {
+      @apply com-mt-5;
+    }
+  }
+}

@@ -35,3 +35,8 @@ table {
     }
   }
 }
+
+.loading,
+.view-more-button {
+  @apply com-my-4;
+}

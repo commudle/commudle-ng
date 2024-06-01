@@ -15,6 +15,10 @@ export interface IDataFormEntity {
   event_data_form_entity_group: {
     is_paid: boolean;
   };
+  form_type: {
+    form_type_name: string;
+  };
+  auto_close_responses_count: number;
 }
 
 export enum Visibility {

@@ -1,6 +1,5 @@
 .community-badge {
-  @apply com-w-max com-cursor-pointer com-overflow-x-hidden;
-  background-color: rgba(0, 0, 0, 0.05);
+  @apply com-w-max com-cursor-pointer com-overflow-x-hidden com-bg-gray-100;
   border-radius: 99em;
 
   &:hover {
@@ -12,7 +11,7 @@
   }
 
   .logo {
-    @apply com-flex com-justify-center com-items-center com-overflow-hidden com-m-0 com-mr-6px;
+    @apply com-flex com-justify-center com-items-center com-overflow-hidden com-m-0 com-mr-6px com-bg-tWhite;
     border-radius: 50%;
     img {
       @apply com-w-full;
@@ -22,8 +21,7 @@
   }
 
   .name {
-    @apply com-m-0;
-    color: rgba(0, 0, 0, 0.54);
+    @apply com-m-0 com-text-black;
   }
 }
 

@@ -16,7 +16,7 @@ nb-card {
         @apply com-flex com-items-center com-no-underline;
         color: #5072ff;
         .logo {
-          @apply com-flex com-items-center com-m-0 com-mr-3 com-w-6 com-h-6 com-flex-shrink-0 com-overflow-hidden com-object-contain;
+          @apply com-flex com-items-center com-m-0 com-mr-3 com-w-6 com-h-6 com-flex-shrink-0 com-overflow-hidden com-object-contain com-bg-tWhite com-rounded-sm;
           img {
             @apply com-w-full com-h-auto;
           }

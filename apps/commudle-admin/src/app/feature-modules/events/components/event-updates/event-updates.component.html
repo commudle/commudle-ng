@@ -2,51 +2,52 @@
   <nb-card class="updates">
     <nb-card-body>
       <h6 class="com-mt-0 com-mb-2">Updates</h6>
-      <div *ngFor="let eu of eventUpdates; let i = index">
-        <p>
-          <span>
-            {{ eu.details }}
-          </span>
-          <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
-            <nb-icon icon="close"></nb-icon>
-          </span>
-
-          <br />
-          <small>
-            <span>{{ moment(eu.created_at).format('LT DD-MM-YYYY') }} by {{ eu.user.name }}</span>
-          </small>
-        </p>
-      </div>
-      <div *ngIf="event.editable">
-        <form [formGroup]="eventUpdateForm" (ngSubmit)="createEventUpdate()">
-          <div class="update-input">
-            <label>
-              <input
-                type="text"
-                nbInput
-                fullWidth
-                formControlName="details"
-                placeholder="Enter an update to publish"
-                size="small"
-              />
-            </label>
-            <span
-              *ngIf="
-                eventUpdateForm['controls'].details.touched &&
-                eventUpdateForm['controls'].details.invalid &&
-                eventUpdateForm['controls'].details.errors.required
-              "
-            >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      <div *ngFor="let eu of eventUpdates; let i = index" class="updates">
+        <div>
+          <div class="com-flex com-gap-2 com-items-baseline com-w-max com-max-w-[90%] md:com-w-max">
+            <commudle-editor [content]="eu.details" [editable]="false" class="com-w-full"></commudle-editor>
+            <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
+              <nb-icon icon="close"></nb-icon>
             </span>
           </div>
-          <div class="save-button">
-            <button [disabled]="!eventUpdateForm.valid" type="submit" nbButton fullWidth status="info" size="small">
-              Add
-            </button>
+          <div class="image-section" *ngIf="eu.images">
+            <div *ngFor="let img of eu.images" class="images">
+              <img [src]="img.i128" alt="" />
+            </div>
           </div>
-        </form>
+
+          <small>
+            <span class="com-text-Auro-Metal-Saurus"
+              >{{ moment(eu.created_at).format('LT DD-MM-YYYY') }} by {{ eu.user.name }}</span
+            >
+          </small>
+        </div>
+        <div class="votes">
+          <app-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="eu.id"
+            votableType="EventUpdate"
+            [textAlignment]="'after'"
+          ></app-votes-display>
+        </div>
       </div>
     </nb-card-body>
+    <nb-card-footer class="com-sticky com-bg-white com-bottom-0">
+      <commudle-editor
+        [addAttachment]="true"
+        (contentChange)="createEventUpdate($event)"
+        (uploadImages)="uploadImages($event)"
+      ></commudle-editor>
+
+      <div *ngIf="showPreviewImages" class="image-preview-section">
+        <div *ngFor="let image of images; let i = index" class="images">
+          <img [src]="image.url" [alt]="image.name" class="" />
+          <div class="delete" (click)="removeImage(i)">
+            <fa-icon [icon]="icons.faXmark"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </nb-card-footer>
   </nb-card>
 </div>

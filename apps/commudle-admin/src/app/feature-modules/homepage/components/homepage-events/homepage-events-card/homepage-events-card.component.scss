@@ -2,12 +2,11 @@
 
 .home-events-card-container {
   //border: 0.5px solid $silver-sand;
-  border-radius: $border-10;
   display: block;
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  @apply com-shadow com-w-80 md:com-w-auto;
+  @apply com-shadow com-w-80 md:com-w-auto com-border com-border-solid com-border-Bright-Gray com-rounded-md;
 
   .home-events-card-image-overlay {
     background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
@@ -50,6 +49,9 @@
       height: 3.5rem;
       @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
     }
+    .start-end-date {
+      @apply com-text-gray-500 com-text-base;
+    }
 
     .home-events-card-host {
       margin-top: $space-16;
@@ -58,7 +60,7 @@
         .home-events-card-community-logo {
           border: 0.5px solid $platinum;
           @apply com-h-7 com-w-7;
-          @apply com-rounded-full com-object-contain com-object-center com-align-middle;
+          @apply com-rounded-full com-object-contain com-object-center com-align-middle com-bg-tWhite;
         }
 
         .home-events-card-community-name {

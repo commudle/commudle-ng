@@ -1,7 +1,11 @@
 nb-card {
-  @apply com-mx-0 md:com-mx-2;
+  @apply com-mx-0;
 
   .channels-cards-list {
-    @apply com-flex com-flex-wrap com-justify-between com-w-full;
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-justify-between md:com-gap-4 com-gap-0;
+
+    .channel-card {
+      @apply md:com-w-[606px] com-w-full;
+    }
   }
 }

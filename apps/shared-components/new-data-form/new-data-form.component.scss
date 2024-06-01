@@ -1,13 +1,16 @@
 :host {
   div.data-form-container {
-    max-width: 920px;
-    margin: 0 auto;
+    // max-width: 920px;
+    // margin: 0 auto;
 
     .required-question {
       @apply com-text-red-500 com-ml-2px;
     }
     .submit-button {
-      @apply com-mx-2;
+      @apply com-px-2;
+      &.sticky {
+        @apply com-py-1 com-sticky com-bottom-0 com-bg-transparent;
+      }
     }
 
     .card-body {
@@ -15,7 +18,6 @@
 
       input {
         @apply com-mt-2 com-mb-0;
-        background-color: white;
       }
 
       .description {
@@ -24,7 +26,6 @@
           @apply com-mt-4;
           textarea {
             @apply com-mt-4 com-mb-0;
-            background-color: white;
           }
         }
       }
@@ -59,12 +60,10 @@
 
       input {
         @apply com-mt-4 com-mb-0;
-        background-color: white;
       }
 
       textarea {
         @apply com-mt-1 com-mb-0;
-        background-color: white;
       }
 
       .add-description-button {

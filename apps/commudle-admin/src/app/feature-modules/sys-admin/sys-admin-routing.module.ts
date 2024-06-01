@@ -22,6 +22,8 @@ import { AdminFeaturedLabsComponent } from 'apps/commudle-admin/src/app/feature-
 import { AdminFeaturedEventsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-events/admin-featured-events.component';
 import { AdminFeaturedUsersComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-users/admin-featured-users.component';
 import { AdminFeaturedCommunitiesChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/admin-featured/admin-featured-communities-channels/admin-featured-communities-channels.component';
+import { PaymentLogsComponent } from 'apps/commudle-admin/src/app/feature-modules/sys-admin/components/payment-logs/payment-logs.component';
+import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
 
 const routes = [
   {
@@ -83,6 +85,19 @@ const routes = [
         component: AdminSurveysComponent,
       },
       {
+        path: 'payment-logs',
+        children: [
+          {
+            path: '',
+            component: PaymentLogsComponent,
+          },
+          {
+            path: ':edfeg_id',
+            component: PaymentDetailComponent,
+          },
+        ],
+      },
+      {
         path: 'featured',
         component: AdminFeaturedComponent,
         children: [
@@ -102,10 +117,10 @@ const routes = [
             path: 'events',
             component: AdminFeaturedEventsComponent,
           },
-          // {
-          //   path: 'featured-users',
-          //   component: AdminFeaturedUsersComponent,
-          // },
+          {
+            path: 'featured-users',
+            component: AdminFeaturedUsersComponent,
+          },
           // {
           //   path: 'featured-channels',
           //   component: AdminFeaturedCommunitiesChannelsComponent,

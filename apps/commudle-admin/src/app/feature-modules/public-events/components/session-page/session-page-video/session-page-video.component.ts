@@ -118,7 +118,7 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
 
   getInteractionWindowStatus(windowNum: number): boolean {
     if (this.interactionWindows) {
-      return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
+      return this.interactionWindows.toArray()[windowNum]?.nativeElement.style.display === 'none';
     }
   }
 }

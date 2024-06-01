@@ -20,11 +20,13 @@ export interface INotification {
   sender: OnlyOne<IUser, ICommunity>;
   sender_type: ENotificationSenderTypes;
   notification_message: INotificationMessage[];
+  message: INotificationMessage[];
   notification_message_type: ENotificationMessageTypes;
   created_at: string;
   filter_object_id: number;
   entity_id: number;
   entity_type: ENotificationEntityTypes;
+  is_dynamic: boolean;
 }
 
 export interface INotificationMessage {

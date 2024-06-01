@@ -1,0 +1,39 @@
+.forum-card {
+  @apply com-flex com-flex-col com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-flex-shrink-0 com-overflow-hidden com-bg-white com-w-full;
+
+  a {
+    @apply com-no-underline;
+
+    .banner {
+      @apply com-grid com-relative com-h-[72px];
+
+      .header {
+        @apply com-col-start-1 com-row-start-1 com-h-[52px];
+      }
+
+      .forum-logo {
+        @apply com-border com-border-solid com-border-Bright-Gray com-rounded-md com-h-10 com-w-10 com-ml-3 com-mt-8 com-overflow-hidden com-flex com-absolute com-top-0 com-left-0 com-bg-tWhite;
+
+        img {
+          @apply com-w-full com-object-contain com-object-center;
+        }
+
+        nb-icon {
+          @apply com-text-4xl com-w-full;
+        }
+      }
+    }
+
+    .forum-about {
+      @apply com-p-3 com-relative;
+
+      .description {
+        @apply com-text-base com-font-medium com-text-Dark-Jungle-Green com-h-12 com-line-clamp-2;
+      }
+
+      .discussion-name {
+        @apply com-p-0 com-pt-4 com-text-sm com-font-medium com-text-Auro-Metal-Saurus;
+      }
+    }
+  }
+}

@@ -30,18 +30,37 @@ export class EditLabComponent implements OnInit, OnDestroy {
   headerImageForm;
   labForm: FormGroup;
   faEdit = faEdit;
+
   tinyMCE: any = {
     placeholder:
-      'Add a description with some pictures to help the user get a brief of what you are going to teach them in this tutorial!*',
+      'Add a description with some pictures to help the user get a brief of what you are going to teach them in this tutorial!',
     min_height: 500,
     menubar: false,
     convert_urls: false,
-    skin: 'outside',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 20px !important;}",
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
-
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'image',
+      'visualblocks',
+      'code',
+      'charmap',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+      'media',
+    ],
     toolbar:
       'formatselect | bold italic backcolor | codesample emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
@@ -66,12 +85,13 @@ export class EditLabComponent implements OnInit, OnDestroy {
     images_upload_handler: this.uploadTextImage.bind(this),
     toolbar_location: 'top',
     toolbar_sticky: true,
+    license_key: 'gpl',
   };
 
   @ViewChild('submitDialog') submitDialog: TemplateRef<any>;
   submitDialogRef: NbDialogRef<any>;
 
-  isBrowser;
+  isBrowser: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -308,6 +328,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
   onSubmitDialogClose() {
     this.submitDialogRef?.close();
   }
+
   gtmService() {
     this.gtm.dataLayerPushEvent('submit-lab', {
       com_lab_name: this.lab.name,

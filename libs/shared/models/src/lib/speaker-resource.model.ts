@@ -1,3 +1,4 @@
+import { IAttachedFile } from './attached-file.model';
 import { IEvent } from './event.model';
 import { ITag } from './tag.model';
 import { IUser } from './user.model';
@@ -15,4 +16,12 @@ export interface ISpeakerResource {
   tags?: ITag[];
   favicon?: string;
   description?: string;
+  presentation_file: IAttachedFile;
+  attachment_type: string;
+}
+
+export enum EAttachmentType {
+  PDF_FILE = 'pdf_file',
+  LINK = 'link',
+  EMBEDDED_LINK = 'embedded_link',
 }

@@ -1,10 +1,10 @@
 .container {
-  @apply com-mb-8;
+  @apply com-pb-8;
   .main-column {
-    @apply com-p-0 md:com-pr-[30px] md:com-mb-8 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+    @apply com-p-0 md:com-pr-[30px] md:com-mb-8 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
   }
 
   .right-column {
-    @apply com-m-0 md:com-mb-4 com-mb-0 com-pl-[30px];
+    @apply com-m-0 md:com-mb-4 com-mb-0 com-pl-[30px] md:com-pt-4 com-pt-0;
   }
 }

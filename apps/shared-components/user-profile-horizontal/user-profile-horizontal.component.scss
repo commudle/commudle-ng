@@ -13,6 +13,7 @@
     min-width: 48px;
     height: 48px;
     img {
+      @apply com-bg-tWhite;
       width: 48px;
       height: 48px;
       left: 0px;
@@ -45,8 +46,8 @@
       line-height: 20px;
       margin: 0;
       a {
+        @apply com-text-Charcoal;
         text-decoration: none;
-        color: #344054;
 
         &:hover {
           text-decoration: underline;

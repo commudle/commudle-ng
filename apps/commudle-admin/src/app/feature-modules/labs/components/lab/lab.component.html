@@ -54,7 +54,7 @@
                 </div>
                 <div class="details d-flex align-items-center">
                   <p class="d-flex align-items-center">
-                    created by&nbsp;
+                    published by&nbsp;
                     <a [routerLink]="['/users', lab.user.username]" class="name" target="_blank">{{ lab.user.name }}</a>
                     <img
                       *ngIf="lab.user.is_expert"
@@ -63,12 +63,16 @@
                       src="/assets/images/Expert-Tick.svg"
                       title="Expert Tick"
                     />&nbsp;
-                    <span class="date">{{ lab.created_at | date }}</span>
+                    <span class="date">{{ lab.published_at | date }}</span>
                   </p>
                 </div>
               </div>
               <div class="tags">
-                <app-tag [tags]="lab.tags"></app-tag>
+                <app-tag
+                  [tags]="lab.tags"
+                  [backgroundColor]="'com-bg-Azureish-White'"
+                  [fontColor]="'com-text-tYankees-Blue'"
+                ></app-tag>
               </div>
             </div>
             <div *ngIf="lab.header_image" class="header-image">

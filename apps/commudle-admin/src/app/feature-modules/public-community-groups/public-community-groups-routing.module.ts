@@ -8,6 +8,7 @@ import { CommunityGroupActivityComponent } from './components/community-group-ac
 import { CommunityGroupHomeComponent } from './components/community-group-home/community-group-home.component';
 import { CommunityGroupTeamComponent } from './components/community-group-team/community-group-team.component';
 import { CommunityGroupDetailsResolver } from './resolvers/community-group-details.resolver';
+import { CommunityGroupCustomPageComponent } from './components/community-group-custom-page/community-group-custom-page.component';
 
 const routes = [
   {
@@ -40,6 +41,10 @@ const routes = [
       {
         path: 'team',
         component: CommunityGroupTeamComponent,
+      },
+      {
+        path: 'p/:page_slug',
+        component: CommunityGroupCustomPageComponent,
       },
     ],
   },

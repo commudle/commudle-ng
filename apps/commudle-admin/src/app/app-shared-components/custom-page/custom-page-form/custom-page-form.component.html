@@ -1,0 +1,117 @@
+<div class="custom-page-form">
+  <div class="back-button" (click)="backButtonClick()" *ngIf="!pageType">
+    <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to list of pages
+  </div>
+  <h6 *ngIf="!pageType">Create new page</h6>
+  <form [formGroup]="customPageForm">
+    <div class="title">
+      <label for="title">Title*</label>
+      <input formControlName="title" fullWidth id="title" nbInput placeholder="Title" type="text" />
+      <commudle-alert
+        *ngIf="
+          customPageForm.controls['title'].touched &&
+          customPageForm.controls['title'].errors?.required &&
+          customPageForm.controls['title'].invalid
+        "
+        [error]="true"
+        errorMessage="Title is Required"
+      ></commudle-alert>
+    </div>
+
+    <div *ngIf="customPageForm.controls['slug'].value">
+      <span> Slug: {{ customPageForm.controls['slug'].value }}</span>
+    </div>
+
+    <div class="page-type">
+      <label for="page_type">Page Type*</label>
+      <div class="select">
+        <select
+          formControlName="page_type"
+          [ngClass]="{
+            'com-text-[#8E9BB3]': customPageForm.controls['page_type'].value === ''
+          }"
+        >
+          <option value="" selected disabled>Select page type</option>
+          <option *ngFor="let pageType of EPageType | keyvalue" [value]="pageType.value">
+            {{ pageType.value | capitalizeAndRemoveUnderscore }}
+          </option>
+        </select>
+      </div>
+      <commudle-alert
+        *ngIf="
+          customPageForm.controls['page_type'].touched &&
+          customPageForm.controls['page_type'].hasError('required') &&
+          customPageForm.controls['page_type'].invalid
+        "
+        errorMessage="Description is Required"
+        [error]="true"
+      ></commudle-alert>
+    </div>
+    <div class="discription">
+      <label for="description">Description*</label>
+      <textarea formControlName="description" fullWidth id="description" nbInput placeholder="Description"></textarea>
+      <commudle-alert
+        *ngIf="
+          customPageForm.controls['description'].touched &&
+          customPageForm.controls['description'].hasError('required') &&
+          customPageForm.controls['description'].invalid
+        "
+        [error]="true"
+        errorMessage="Description is Required"
+      ></commudle-alert>
+      <commudle-alert
+        *ngIf="customPageForm.controls['description'].hasError('maxlength')"
+        [error]="true"
+        errorMessage="Description cannot exceed 200 characters"
+      ></commudle-alert>
+    </div>
+    <div class="content">
+      <label for="content">Content*</label>
+      <editor [init]="tinyMCE" formControlName="content" id="content"></editor>
+      <commudle-alert
+        *ngIf="
+          customPageForm.controls['content'].touched &&
+          customPageForm.controls['content'].errors?.required &&
+          customPageForm.controls['content'].invalid
+        "
+        [error]="true"
+        errorMessage="Content is Required"
+      ></commudle-alert>
+    </div>
+  </form>
+  <section *ngIf="!pageType">
+    <div class="action-buttons">
+      <button
+        (click)="customPageForm.controls['published'].setValue(true); createOrUpdate()"
+        [disabled]="!customPageForm.valid"
+        nbButton
+        status="primary"
+      >
+        Save
+      </button>
+      <button
+        (click)="customPageForm.controls['published'].setValue(false); createOrUpdate()"
+        [disabled]="!customPageForm.valid"
+        nbButton
+        status="primary"
+      >
+        Save As Draft
+      </button>
+    </div>
+    <div (click)="backButtonClick()" class="back-button">
+      <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon>
+      Back to list of pages
+    </div>
+  </section>
+</div>
+<ng-template #cancelDialogBox let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <div>Are you sure you want to discard changes?</div>
+    </nb-card-body>
+    <nb-card-footer class="action-buttons !com-my-0">
+      <button (click)="backPage(); ref.close()" nbButton status="primary">Yes</button>
+      <button (click)="ref.close()" nbButton status="danger">No</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

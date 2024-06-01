@@ -30,3 +30,16 @@ nb-card {
     }
   }
 }
+
+.empty-state {
+  @apply com-grid com-place-items-center;
+  div {
+    @apply com-text-center;
+    .heading {
+      @apply com-text-2xl com-font-bold com-text-Yankees-Blue;
+    }
+    .sub-heading {
+      @apply com-text-lg com-text-Yankees-Blue;
+    }
+  }
+}

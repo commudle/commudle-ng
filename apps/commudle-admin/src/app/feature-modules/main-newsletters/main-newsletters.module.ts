@@ -1,8 +1,17 @@
-import { NbActionsModule, NbDialogModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTagModule, NbTooltipModule } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
-import { NbIconModule } from '@commudle/theme';
-import { NbButtonModule } from '@commudle/theme';
-import { NbCardModule } from '@commudle/theme';
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbDialogModule,
+  NbIconModule,
+  NbInputModule,
+  NbListModule,
+  NbSelectModule,
+  NbSpinnerModule,
+  NbTagModule,
+  NbTooltipModule,
+} from '@commudle/theme';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainNewslettersRoutingModule } from './main-newsletters-routing.module';
@@ -15,7 +24,7 @@ import { CheckRedirectGuard } from 'apps/shared-services/check-redirect.guard';
 import { MainNewsletterSchedulerComponent } from './components/main-newsletter-scheduler/main-newsletter-scheduler.component';
 import { MainNewsletterTestEmailerComponent } from './components/main-newsletter-test-emailer/main-newsletter-test-emailer.component';
 import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-email-stats/main-newsletter-email-stats.component';
-
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +36,7 @@ import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-
     MainNewsletterTestEmailerComponent,
     MainNewsletterEmailStatsComponent,
   ],
-  exports: [
-    MainNewsletterComponent
-  ],
+  exports: [MainNewsletterComponent],
   imports: [
     CommonModule,
     MainNewslettersRoutingModule,
@@ -48,10 +55,9 @@ import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-
     NbSelectModule,
     NbDialogModule.forChild(),
     NbTagModule,
-    NbTooltipModule
+    NbTooltipModule,
+    SharedComponentsModule,
   ],
-  providers: [
-    CheckRedirectGuard
-  ]
+  providers: [CheckRedirectGuard, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
-export class MainNewslettersModule { }
+export class MainNewslettersModule {}

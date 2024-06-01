@@ -1,0 +1,107 @@
+<div class="reading-book">
+  <div class="base-layout">
+    <div class="container commudle-agencies">
+      <div class="two-column-layout thin">
+        <div class="right-column">
+          <div *ngIf="chapterIndexes">
+            <commudle-reading-book-index [chapterIndexes]="chapterIndexes"></commudle-reading-book-index>
+          </div>
+          <div class="pdf">
+            <a href="https://json.commudle.com/resources/developer-community-blueprint.pdf" download target="_blank">
+              <button *ngIf="currentUser" nbButton status="primary" size="large" class="download-pdf mobile-hidden">
+                <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+              </button>
+            </a>
+            <button
+              *ngIf="!currentUser"
+              nbButton
+              status="primary"
+              size="large"
+              class="download-pdf mobile-hidden"
+              (click)="redirectToLogin()"
+            >
+              <fa-icon [icon]="faDownload"></fa-icon>Login to Download
+            </button>
+          </div>
+        </div>
+        <div class="main-column">
+          <div class="content">
+            <div *ngIf="chapterData">
+              <h1 class="chapter-name">{{ chapterData.chapter_name }}</h1>
+              <nb-card>
+                <nb-card-header *ngIf="chapterData.header_image">
+                  <div *ngIf="chapterData.header_image" class="image">
+                    <img
+                      alt="{{ chapterData.chapter_name }}"
+                      [src]="imageUrl(chapterData.header_image).url()"
+                      title="{{ chapterData.chapter_name }}"
+                    />
+                  </div>
+                </nb-card-header>
+                <nb-card-body *ngIf="richTextContent">
+                  <article>
+                    <div [innerHTML]="richTextContent" class="!com-max-w-full content"></div>
+                  </article>
+                  <div *ngIf="chapterData.fun_facts" class="fun-facts">
+                    <div [innerHTML]="richTextFunFact" class="!com-max-w-full content"></div>
+                  </div>
+                  <div *ngIf="chapterData.how_commudle_helps" class="how-commudle-helps">
+                    <div [innerHTML]="richTextCommudleHelps" class="!com-max-w-full content"></div>
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="fixed-btn">
+              <a href="https://json.commudle.com/resources/developer-community-blueprint.pdf" download target="_blank">
+                <button nbButton status="primary" size="large" class="download-pdf desktop-hidden" fullWidth>
+                  <fa-icon [icon]="faDownload"></fa-icon>Download PDF
+                </button>
+              </a>
+            </div>
+            <div class="footer">
+              <div class="actions">
+                <div>
+                  <button
+                    *ngIf="chapterData?.link_to_previous_page"
+                    nbButton
+                    size="large"
+                    [routerLink]="['/developer-ecosystem-blueprint/book', chapterData.link_to_previous_page]"
+                    [disabled]="!chapterData?.link_to_previous_page"
+                    class="prev-btn"
+                  >
+                    <span>
+                      <nb-icon icon="arrow-back"></nb-icon>
+                      Prev
+                    </span>
+                  </button>
+                </div>
+                <div class="desktop-hidden">
+                  <select (change)="showIndex($event)">
+                    <option *ngFor="let index of chapterIndexes" [value]="index.slug.current">
+                      {{ index.chapter_name }}
+                    </option>
+                  </select>
+                </div>
+                <div>
+                  <button
+                    *ngIf="chapterData?.link_to_next_page"
+                    nbButton
+                    size="large"
+                    [routerLink]="['/developer-ecosystem-blueprint/book', chapterData.link_to_next_page]"
+                    [disabled]="!chapterData?.link_to_next_page"
+                    class="next-btn"
+                  >
+                    <span>
+                      Next
+                      <nb-icon icon="arrow-forward"></nb-icon>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

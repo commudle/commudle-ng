@@ -5,6 +5,9 @@
       Edit Payment Details
     </div>
     <div (click)="openCreateDiscountDialog()"><fa-icon [icon]="icons.faTicket"></fa-icon>Create Coupon Code</div>
+    <div *ngIf="!community.has_refund_policy" (click)="open(refundPage)">
+      <fa-icon [icon]="icons.faTicket"></fa-icon>Create Refund Policy
+    </div>
   </div>
   <button
     *ngIf="!paymentDetailsExist"
@@ -63,9 +66,9 @@
                     'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('currency').value === ''
                   }"
                 >
-                  <option value="" selected disabled>Currency</option>
+                  <!-- <option value="" disabled>Currency</option> -->
                   <option value="inr">INR</option>
-                  <option value="usd">USD</option>
+                  <!-- <option value="usd">USD</option> -->
                 </select>
               </div>
               <span
@@ -105,12 +108,19 @@
                 [ngClass]="{
                   'com-text-[#8E9BB3]': paidTicketingForm.controls.paid_ticket_setting.get('bank_ac_id').value === ''
                 }"
+                (change)="selectAccount($event.target)"
               >
                 <option value="" selected disabled>Select Bank Ac</option>
                 <option *ngFor="let rt of stripeAccounts" [value]="rt.uuid">
                   {{ rt.details.external_accounts.data[0].account_holder_name }}
-                  (****{{ rt.details.external_accounts.data[0].last4 }})
+                  (****{{ rt.details.external_accounts.data[0].last4 }}) - (Stripe)
                 </option>
+                <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
+                  {{ ra.bank_details.active_configuration.settlements.beneficiary_name }}
+                  (****{{ ra.bank_details.active_configuration.settlements.account_number.toString().slice(-4) }}) -
+                  (Razorpay)
+                </option>
+                <option value="connect-bank-account">+ Connect Bank Account</option>
               </select>
             </div>
             <span
@@ -124,10 +134,21 @@
             </span>
           </label>
 
+          <div *ngIf="commudleFeeAmount > 0">
+            <commudle-alert
+              [info]="true"
+              [message]="
+                'Commudle fees for this ticket will be 2% + GST' +
+                ((paidTicketingForm.controls.paid_ticket_setting.get('currency').value === 'inr' ? '₹' : '$') +
+                  this.commudleFeeAmount)
+              "
+            ></commudle-alert>
+          </div>
+
           <!-- has_taxes -->
           <div>
             <label>
-              <nb-toggle formControlName="has_taxes">Include Taxes</nb-toggle>
+              <nb-toggle (checkedChange)="toggleHasTaxes($event)" formControlName="has_taxes">Include Taxes</nb-toggle>
             </label>
           </div>
 
@@ -297,6 +318,28 @@ If you are collecting tax for this ticket, please provide corrected information.
           {{ paymentDetailsExist ? 'Update' : 'Save' }}
         </button>
       </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #refundPage let-ref="dialogRef">
+  <nb-card class="com-max-h-[90dvh] com-w-full md:com-w-[70dvw]">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <span>Refund Policy</span>
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-px-0">
+      <app-custom-page-form
+        [parentId]="community.id"
+        [parentType]="EDbModels.KOMMUNITY"
+        [pageType]="EPageType.REFUND_POLICIES"
+        [pageSlug]="refundPolicy?.slug"
+      ></app-custom-page-form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="createOrUpdateRefundPage()">Save</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

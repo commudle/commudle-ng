@@ -1,10 +1,23 @@
 <div class="community-about com-grid com-grid-cols-1 lg:com-grid-cols-3 com-gap-4">
-  <nb-card [nbSpinner]="community === null" class="about lg:com-col-span-2">
-    <nb-card-body>
-      <h3 class="heading">Who we are</h3>
-      <p [innerHTML]="community.about | linky : { sanitizeHtml: false } | safeHtml" class="content"></p>
-    </nb-card-body>
-  </nb-card>
+  <div class="main-column">
+    <nb-card *ngIf="community.upcoming_events_count > 0">
+      <nb-card-body>
+        <h2 class="title">Upcoming Events</h2>
+        <app-loading-spinner *ngIf="isLoadingEvents"></app-loading-spinner>
+        <div class="event-horizontal-card">
+          <div *ngFor="let event of upcomingEvents">
+            <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-card [nbSpinner]="community === null" class="about">
+      <nb-card-body>
+        <h3 class="heading">Who we are</h3>
+        <p [innerHTML]="community.about | linky : { sanitizeHtml: false } | safeHtml" class="content"></p>
+      </nb-card-body>
+    </nb-card>
+  </div>
 
   <nb-card class="lg:com-col-span-1">
     <nb-card-body>

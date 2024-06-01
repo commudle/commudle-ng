@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { EmailerComponent } from './emailer/emailer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbIconModule,
+  NbInputModule,
   NbRadioModule,
   NbSelectModule,
-  NbInputModule,
-  NbButtonModule,
-  NbCheckboxModule,
   NbToggleModule,
-  NbIconModule,
-  NbCardModule,
 } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
@@ -25,9 +25,60 @@ import { LabsFeaturedComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { SurveysComponent } from 'apps/commudle-admin/src/app/app-shared-components/surveys/surveys.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CustomPageComponent } from './custom-page/custom-page.component';
+import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
+import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/custom-page/custom-page-form/custom-page-form.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter.component';
+import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
+import { PublicPageLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-layout/public-page-layout.component';
+import { TestimonialCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/testimonial-card/testimonial-card.component';
+import { PublicPageStatsComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-stats/public-page-stats.component';
+import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-cta/public-page-cta.component';
+import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
+import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-experts-card/featured-experts-card.component';
+import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
+import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 
 @NgModule({
-  declarations: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  declarations: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+    CustomPageFormComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
+    AdminHackathonComponent,
+  ],
+  exports: [
+    EmailerComponent,
+    SpeakerResourcePreviewComponent,
+    SurveysComponent,
+    LabsFeaturedComponent,
+    CustomPageComponent,
+    NewsletterComponent,
+    NewsletterFormComponent,
+    PublicPageLayoutComponent,
+    TestimonialCardComponent,
+    PublicPageStatsComponent,
+    PublicPageCtaComponent,
+    PublicPageFeatureCardComponent,
+    PublicPageSignupNewsletterComponent,
+    FeaturedExpertsCardComponent,
+    AdminHackathonComponent,
+    CustomPageFormComponent,
+    WhatsNewComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,7 +87,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     RouterModule,
     PublicCommunityModule,
     SharedComponentsModule,
-
+    MiniUserProfileModule,
     //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,
@@ -44,6 +95,8 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    FeaturedExpertsCardComponent,
+    WhatsNewComponent,
 
     // Nebular
     NbRadioModule,
@@ -57,7 +110,10 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
     NbToggleModule,
     NbIconModule,
     NbCardModule,
+    //FontAwesome
+    FontAwesomeModule,
+    SharedPipesModule,
   ],
-  exports: [EmailerComponent, SpeakerResourcePreviewComponent, SurveysComponent, LabsFeaturedComponent],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class AppSharedComponentsModule {}

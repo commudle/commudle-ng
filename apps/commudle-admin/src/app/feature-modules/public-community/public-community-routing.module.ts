@@ -7,8 +7,10 @@ import { CommunityChannelsListComponent } from './components/community-channels-
 import { EventsComponent } from './components/events/events.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { MembersComponent } from './components/members/members.component';
-import { CommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/community-channel/community-channel.component';
-import { ChannelMembersComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-members/channel-members.component';
+import { CustomPageComponent } from './components/custom-page/custom-page.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
+import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
+import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/public-community-hackathons/public-community-hackathons.component';
 
 const routes = [
   {
@@ -43,6 +45,14 @@ const routes = [
         component: CommunityChannelsListComponent,
       },
       {
+        path: 'channels/join/:token',
+        component: CommunityChannelsListComponent,
+      },
+      {
+        path: 'channels/email-join/:email_token',
+        component: CommunityChannelsListComponent,
+      },
+      {
         path: 'forums',
         component: CommunityChannelsListComponent,
       },
@@ -51,8 +61,33 @@ const routes = [
         component: CommunityChannelsListComponent,
       },
       {
+        path: 'forums/join/:token',
+        component: CommunityChannelsListComponent,
+      },
+      {
         path: 'notifications',
         component: PublicCommunityNotificationsComponent,
+      },
+      {
+        path: 'hackathons',
+        component: PublicCommunityHackathonsComponent,
+      },
+      {
+        path: 'p/:page_slug',
+        component: CustomPageComponent,
+      },
+      {
+        path: 'newsletters',
+        children: [
+          {
+            path: '',
+            component: NewslettersComponent,
+          },
+          {
+            path: ':newsletter_slug',
+            component: NewsletterComponent,
+          },
+        ],
       },
     ],
   },

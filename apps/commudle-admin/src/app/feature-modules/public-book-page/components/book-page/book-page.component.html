@@ -1,0 +1,147 @@
+<div class="book">
+  <div class="base-layout">
+    <div class="container commudle-agencies">
+      <div class="power-of-communities" id="developer-ecosystem">
+        <commudle-public-page-layout>
+          <div content class="left-col">
+            <div class="power-of-communities-content">
+              <a [routerLink]="'.'" fragment="developer-ecosystem">
+                <h1 class="heading-power-of-communities">
+                  The Developer Ecosystem BluePrint : Strategies for Building Thriving Communities
+                </h1>
+              </a>
+              <p class="subheading-power-of-communities">
+                A handbook for Developer Relations teams to build, sustain and grow their developer programs.
+              </p>
+            </div>
+            <div class="power-of-communities-btn mobile-hidden">
+              <a [routerLink]="'.'" fragment="download-or-read"><button nbButton size="large">Read Now</button></a>
+            </div>
+          </div>
+          <div image class="power-of-communities-image">
+            <img alt="Power Communities" [src]="staticAssets.devrel_ecosystem_blueprint" title="Power Communities" />
+            <div class="power-of-communities-btn desktop-hidden">
+              <a [routerLink]="'.'" fragment="download-or-read"><button nbButton size="large">Read Now</button></a>
+            </div>
+          </div>
+        </commudle-public-page-layout>
+      </div>
+
+      <div class="features" id="lessons-from-leaders">
+        <a [routerLink]="'.'" fragment="lessons-from-leaders"
+          ><p class="heading">Lessons From Veteran Community Leaders</p></a
+        >
+        <p class="subheading">
+          We collected insights from leaders who have built global developer ecosystems for companies like Google,
+          Microsoft, Twilio, Github & a number of startups along with leaders of some of the largest developer
+          communities globally.
+        </p>
+        <div class="all-features">
+          <div class="features-top-row">
+            <commudle-public-page-feature-card [feature]="feature1"></commudle-public-page-feature-card>
+            <div class="center-image">
+              <img alt="Features" title="Features" [src]="staticAssets.community_leaders" />
+            </div>
+            <commudle-public-page-feature-card [feature]="feature2"></commudle-public-page-feature-card>
+          </div>
+          <div class="features-bottom-row">
+            <div class="feature-card-right">
+              <commudle-public-page-feature-card [feature]="feature3"></commudle-public-page-feature-card>
+            </div>
+            <commudle-public-page-feature-card [feature]="feature4"></commudle-public-page-feature-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newsletter" id="download-or-read">
+    <div class="base-layout">
+      <div class="container">
+        <commudle-public-page-signup-newsletter></commudle-public-page-signup-newsletter>
+      </div>
+    </div>
+  </div>
+  <div class="base-layout">
+    <div class="container commudle-agencies">
+      <div class="credit">
+        <a [routerLink]="['/developer-ecosystem-blueprint/book/the-credit-framework']"
+          ><img alt="credit" src="{{ staticAssets.credit }}" title="C.R.E.D.I.T"
+        /></a>
+      </div>
+      <div class="platform" id="life-of-community">
+        <commudle-public-page-layout [imageOnLeft]="true">
+          <div content>
+            <div class="content">
+              <h1 class="heading">
+                <a [routerLink]="'.'" fragment="life-of-community">The Life Of A Community</a>
+              </h1>
+              <p class="subheading">
+                With this handbook, go through each stage of your community building process. If you already have one up
+                and running, then find the next stage of growth!
+              </p>
+              <div image class="image desktop-hidden">
+                <img
+                  alt="Developer Profile"
+                  src="{{ staticAssets.personal_goals_checklist }}"
+                  title="Developer Profile"
+                />
+              </div>
+              <ul>
+                <li>
+                  <div class="icon">
+                    <fa-icon [icon]="faShapes"></fa-icon>
+                  </div>
+                  <div>
+                    <p class="heading">Build</p>
+                    <p class="subheading">
+                      Create a proposal, find the reason why you want to build a community, launch it.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <fa-icon [icon]="faHandsHoldingCircle"></fa-icon>
+                  </div>
+                  <div>
+                    <p class="heading">Sustain</p>
+                    <p class="subheading">
+                      Manage community engagements, keep the ecosystem alive with the right tools.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <fa-icon [icon]="faChartLine"></fa-icon>
+                  </div>
+                  <div>
+                    <p class="heading">Scale</p>
+                    <p class="subheading">
+                      Grow your developer ecosystem programs to bring more users to your products.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div image class="image mobile-hidden">
+            <img alt="Developer Profile" [src]="staticAssets.personal_goals_checklist" title="Developer Profile" />
+          </div>
+        </commudle-public-page-layout>
+      </div>
+    </div>
+  </div>
+  <div class="newsletter" id="download-or-read">
+    <div class="base-layout">
+      <div class="container">
+        <commudle-public-page-signup-newsletter></commudle-public-page-signup-newsletter>
+      </div>
+    </div>
+  </div>
+  <div class="faq">
+    <div class="base-layout">
+      <div class="container">
+        <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
+      </div>
+    </div>
+  </div>
+</div>

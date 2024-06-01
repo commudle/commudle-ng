@@ -11,7 +11,9 @@ p {
   }
 
   .heading {
-    @apply com-mt-2 com-mb-0 com-text-3xl com-font-extrabold com-text-gray-900 com-tracking-tight md:com-text-4xl;
+    a {
+      @apply com-mt-2 com-mb-0 com-text-3xl com-font-extrabold com-text-gray-900 com-tracking-tight md:com-text-4xl com-no-underline;
+    }
   }
 
   .subheading {

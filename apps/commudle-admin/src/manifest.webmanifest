@@ -2,58 +2,50 @@
   "name": "Commudle",
   "short_name": "Commudle",
   "theme_color": "#3b9bdf",
-  "background_color": "#fafafa",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [
     {
-      "src": "assets/images/commudle-logo72.png",
+      "src": "assets/images/Splash-screen-light-mode72.png ",
       "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo96.png",
+      "src": "assets/images/Splash-screen-light-mode96.png",
       "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo128.png",
+      "src": "assets/images/Splash-screen-light-mode128.png",
       "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo144.png",
+      "src": "assets/images/Splash-screen-light-mode144.png",
       "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo152.png",
+      "src": "assets/images/Splash-screen-light-mode152.png",
       "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo192.png",
+      "src": "assets/images/Splash-screen-light-mode192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo384.png",
+      "src": "assets/images/Splash-screen-light-mode384.png",
       "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "assets/images/commudle-logo512.png",
+      "src": "assets/images/Splash-screen-light-mode512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     }
   ]
 }

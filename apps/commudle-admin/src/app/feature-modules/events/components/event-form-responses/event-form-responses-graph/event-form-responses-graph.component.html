@@ -1,0 +1,20 @@
+<div class="com-relative com-h-auto com-w-full" *ngIf="showGenderGraphOnly">
+  <canvas id="diversity" style="height: 100%; width: 100%"></canvas>
+</div>
+
+<!-- <nb-toggle [(ngModel)]="showChartView" status="basic">Switch To Table View</nb-toggle> -->
+
+<div class="com-relative com-h-80 com-w-full" *ngIf="showChartView && !showGenderGraphOnly">
+  <canvas id="responses" style="height: 320px; width: 100%"></canvas>
+</div>
+<div *ngIf="!showChartView && !showGenderGraphOnly" class="com-w-full">
+  <table *ngIf="responses">
+    <tr>
+      <th colspan="2">Answers</th>
+    </tr>
+    <tr *ngFor="let response of responses | keyvalue; let i = index">
+      <td VALIGN="top">{{ i + 1 }}.</td>
+      <td>{{ response.key }}</td>
+    </tr>
+  </table>
+</div>

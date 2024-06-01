@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-body>
+    <commudle-loading-spinner *ngIf="isLoading; else projectCards"></commudle-loading-spinner>
+    <ng-template #projectCards>
+      <div *ngIf="communityBuilds.length === 0">No Project to show</div>
+      <nb-card *ngFor="let build of communityBuilds" class="project-card">
+        <nb-card-body>
+          <commudle-build-card [communityBuild]="build"></commudle-build-card>
+        </nb-card-body>
+      </nb-card>
+    </ng-template>
+  </nb-card-body>
+</nb-card>

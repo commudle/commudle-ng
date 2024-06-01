@@ -1,0 +1,52 @@
+<div *ngIf="option.type === 'User'" class="user">
+  <a [routerLink]="['/users', option.username]">
+    <div class="user-details">
+      <div class="user-profile-image">
+        <img [src]="option.avatar" [alt]="option.name" [title]="option.name" />
+      </div>
+      <div class="details">
+        <p class="name">
+          {{ option.name
+          }}<img *ngIf="option.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg" />
+          <button *ngIf="option.is_community_leader" nbButton shape="round" size="tiny" outline class="leader">
+            Leader
+          </button>
+        </p>
+        <div class="designation" [title]="option.designation">
+          {{ option.designation || '--' }}
+        </div>
+        <p *ngIf="option.followers_count > 0" class="followers-count">
+          {{ option.followers_count }}<span>Followers</span>
+        </p>
+      </div>
+    </div>
+  </a>
+  <div class="follow-btn">
+    <app-user-follow [username]="option.username" [name]="option.name" [userId]="option.id"></app-user-follow>
+  </div>
+</div>
+<div *ngIf="option.type === 'Community'" class="community">
+  <a [routerLink]="['/communities', option.slug]" class="com-overflow-hidden">
+    <div class="community-details">
+      <div class="community-image">
+        <img [src]="option.logo_image?.i32" [alt]="option.name" [title]="option.name" />
+      </div>
+      <div class="details">
+        <p class="name">{{ option.name }}</p>
+        <div
+          [innerHTML]="option.about ? option.about : ('--' | linky : { sanitizeHtml: false })"
+          class="designation"
+        ></div>
+        <p class="members-count">{{ option.member_count }}<span>Members</span></p>
+      </div>
+    </div>
+  </a>
+  <div class="membership-toggle">
+    <app-membership-toggle
+      [community]="option"
+      [shapes]="'semi-round'"
+      [size]="'small'"
+      [status]="'info'"
+    ></app-membership-toggle>
+  </div>
+</div>

@@ -7,69 +7,113 @@ import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entit
 import { IDataFormEntityResponseGroups } from 'apps/shared-models/data_form_entity_response_groups.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataFormEntityResponseGroupsService {
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
-
-  getEventDataFormResponses(eventDataFormEntityGroupId, filterQuery, registrationStatusId, page, count): Observable<IDataFormEntityResponseGroups> {
-    let params = new HttpParams().set(
-      'event_data_form_entity_group_id', eventDataFormEntityGroupId)
+  getEventDataFormResponses(
+    eventDataFormEntityGroupId,
+    filterQuery,
+    registrationStatusId,
+    page,
+    count,
+    gender?,
+    eventLocationTrackId?,
+    formData?,
+  ): Observable<any> {
+    let params = new HttpParams()
+      .set('event_data_form_entity_group_id', eventDataFormEntityGroupId)
       .set('count', count)
       .set('page', page)
       .set('registration_status_id', registrationStatusId)
       .set('query', filterQuery);
-    return this.http.get<IDataFormEntityResponseGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES), { params }
+    if (gender) {
+      params = params.set('gender', gender);
+    }
+    if (eventLocationTrackId) {
+      params = params.set('event_location_track_id', eventLocationTrackId);
+    }
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES),
+      formData,
+      { params },
     );
   }
 
-  updateEventRegistrationStatus(registrationStatusId, dataFormEntityResponseGroupId): Observable<IDataFormEntityResponseGroup> {
+  getEventDataFormResponsesByFilter(
+    eventDataFormEntityGroupId,
+    filterQuery,
+    registrationStatusId,
+    page,
+    count,
+    questionId,
+    gender?,
+    eventLocationTrackId?,
+    formData?,
+  ): Observable<any> {
+    let params = new HttpParams()
+      .set('event_data_form_entity_group_id', eventDataFormEntityGroupId)
+      .set('count', count)
+      .set('page', page)
+      .set('registration_status_id', registrationStatusId)
+      .set('query', filterQuery)
+      .set('question_id', questionId);
+    if (gender) {
+      params = params.set('gender', gender);
+    }
+    if (eventLocationTrackId) {
+      params = params.set('event_location_track_id', eventLocationTrackId);
+    }
 
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.FILTERED_RESPONSE_VALUES),
+      formData,
+      { params },
+    );
+  }
+
+  updateEventRegistrationStatus(
+    registrationStatusId,
+    dataFormEntityResponseGroupId,
+  ): Observable<IDataFormEntityResponseGroup> {
     return this.http.put<IDataFormEntityResponseGroup>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_EVENT_REGISTRATION_STATUS), {
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_EVENT_REGISTRATION_STATUS),
+      {
         data_form_entity_response_group_id: dataFormEntityResponseGroupId,
-        registration_status_id: registrationStatusId
-       }
+        registration_status_id: registrationStatusId,
+      },
     );
-
   }
-
 
   getEventSpeakers(eventId): Observable<IDataFormEntityResponseGroups> {
-    let params = new HttpParams().set('event_id', eventId);
+    const params = new HttpParams().set('event_id', eventId);
     return this.http.get<IDataFormEntityResponseGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_SPEAKERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_SPEAKERS),
+      { params },
     );
   }
-
 
   updateRSVPStatus(token, rsvpStatus): Observable<any> {
-    return this.http.put<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_RSVP),
-      {token, rsvp_status: rsvpStatus}
-    );
+    return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_RSVP), {
+      token,
+      rsvp_status: rsvpStatus,
+    });
   }
 
-
-
   pGetEventSpeakers(eventId): Observable<IDataFormEntityResponseGroups> {
-    let params = new HttpParams().set('event_id', eventId);
+    const params = new HttpParams().set('event_id', eventId);
     return this.http.get<IDataFormEntityResponseGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_GET_EVENT_SPEAKERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_GET_EVENT_SPEAKERS),
+      { params },
     );
   }
 
   pEventInterestedUsers(eventId): Observable<any> {
-    let params = new HttpParams().set('event_id', eventId);
+    const params = new HttpParams().set('event_id', eventId);
     return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_EVENT_INTERESTED_USERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_EVENT_INTERESTED_USERS),
+      { params },
     );
   }
-
 }

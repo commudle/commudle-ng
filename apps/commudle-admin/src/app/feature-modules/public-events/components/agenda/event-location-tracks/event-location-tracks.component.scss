@@ -16,15 +16,21 @@
     }
 
     nb-accordion-item-header {
-      @apply com-border-0 com-rounded-[4px] com-p-2 com-bg-Anti-Flash-White;
+      @apply com-border-0 com-rounded-[4px] com-p-2 com-bg-zinc-100;
 
       .track-name {
-        @apply com-text-base com-font-semibold com-m-0;
+        @apply com-text-base com-font-semibold com-m-0 com-text-tYankees-Blue;
       }
     }
 
     nb-accordion-item-body {
       padding: 0;
+
+      ::ng-deep {
+        div {
+          @apply com-bg-white;
+        }
+      }
 
       nb-list {
         nb-list-item {

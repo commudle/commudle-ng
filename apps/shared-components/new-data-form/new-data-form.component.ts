@@ -26,6 +26,9 @@ export class NewDataFormComponent implements OnInit {
   @Input() maxQuestionCount;
   @Input() minQuestionCount;
   @Input() formPurpose;
+  @Input() stickSubmitButtonBottom = false;
+  @Input() showNameDescriptionFiled = true;
+  @Input() formName: string = '';
 
   @Output() newDataForm = new EventEmitter();
 
@@ -49,6 +52,19 @@ export class NewDataFormComponent implements OnInit {
 
   // define the form
   createDataForm: FormGroup;
+
+  tinyMCE: any = {
+    placeholder: '(Optional)',
+    min_height: 100,
+    menubar: false,
+    convert_urls: false,
+    statusbar: false,
+    toolbar: false,
+    plugins: ['autoresize'],
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    license_key: 'gpl',
+  };
 
   initQuestion(): FormGroup {
     return this.fb.group({
@@ -189,7 +205,7 @@ export class NewDataFormComponent implements OnInit {
     this.createDataForm = this.fb.group({
       data_form: this.fb.group({
         id: [''],
-        name: ['', Validators.required],
+        name: [this.formName, Validators.required],
         description: [''],
         questions: this.fb.array([]),
       }),

@@ -12,6 +12,10 @@ HTML Emmet's
     @apply com-max-w-screen-md;
   }
 
+  &.medium {
+    @apply com-max-w-screen-lg;
+  }
+
   .container {
     @apply com-container;
   }

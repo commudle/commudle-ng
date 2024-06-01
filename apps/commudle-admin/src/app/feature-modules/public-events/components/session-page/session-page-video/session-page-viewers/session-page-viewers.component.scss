@@ -38,6 +38,14 @@
       border-bottom: none;
     }
 
+    .hand-raised {
+      display: initial;
+      height: 32px;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 32px;
+    }
+
     .invite-to-stage,
     .message {
       display: none;

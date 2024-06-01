@@ -30,7 +30,7 @@ import {
   NbWindowModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -76,6 +76,12 @@ import { DiscountCouponsComponent } from './components/event-registrations/disco
 import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
 import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
+import { UserTrackSlotsComponent } from './components/event-form-responses/user-track-slots/user-track-slots.component';
+import { TrackSlotFormComponent } from './components/event-locations/event-location-tracks/track-slot-form/track-slot-form.component';
+import { EventFormResponsesGraphComponent } from './components/event-form-responses/event-form-responses-graph/event-form-responses-graph.component';
+import { EditorModule as NewEditorModule } from '@commudle/editor';
+import { NextStepCardComponent } from './components/next-step-card/next-step-card.component';
+import { EventCheckedInListComponent } from './components/event-checked-in-list/event-checked-in-list.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +119,13 @@ import { UserPaymentDetailsComponent } from './components/event-form-responses/u
     PaymentSettingsComponent,
     DiscountCouponFormComponent,
     UserPaymentDetailsComponent,
+    UserTrackSlotsComponent,
+    TrackSlotFormComponent,
+    EventFormResponsesGraphComponent,
+    NextStepCardComponent,
+    EventCheckedInListComponent,
   ],
+  exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [
     CommonModule,
     EventsRoutingModule,
@@ -127,17 +139,14 @@ import { UserPaymentDetailsComponent } from './components/event-form-responses/u
     MiniUserProfileModule,
     SharedComponentsModule,
     SharedPipesModule,
-
     // External
     FontAwesomeModule,
     NgxDatatableModule,
     LinkyModule,
     ZXingScannerModule,
-
     //standalone
     SidebarComponent,
     BackButtonComponent,
-
     //Nebular
     NbButtonModule,
     NbCardModule,
@@ -165,8 +174,8 @@ import { UserPaymentDetailsComponent } from './components/event-form-responses/u
     NbFormFieldModule,
     NbSpinnerModule,
     NbTagModule,
+    NewEditorModule,
   ],
-  exports: [UserDetailsComponent, UserEngagementDataComponent],
-  providers: [AuthService],
+  providers: [AuthService, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class EventsModule {}

@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -107,14 +107,20 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
-import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
-import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
-import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { ListingPagesLayoutComponent } from './app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { PublicHomeListSpeakersModule } from './feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from './feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
 import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
+import { UserprofileDetailsComponent } from './feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
+
+import * as Sentry from '@sentry/angular-ivy';
+import { Router } from '@angular/router';
+
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
@@ -160,6 +166,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     FillDataFormPaidComponent,
     CheckFillDataFormComponent,
   ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -197,11 +204,12 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PublicHomeListEventsModule,
     SkeletonVerticalCardsComponent,
     InfiniteScrollModule,
+    UserProfileComponent,
+    UserprofileDetailsComponent,
 
     // external service modules
     LibErrorHandlerModule,
     AuthModule,
-
     // Nebula modules
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
@@ -245,7 +253,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-
     //standalone component
     CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
@@ -292,7 +299,22 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
         ],
       } as AuthServiceConfig,
     },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: false,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

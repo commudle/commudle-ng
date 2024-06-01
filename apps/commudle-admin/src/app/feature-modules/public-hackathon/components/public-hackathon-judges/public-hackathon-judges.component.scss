@@ -1,0 +1,49 @@
+nb-card {
+  @apply com-mx-0;
+  .loading {
+    @apply com-min-h-[50vh];
+  }
+}
+
+.judges-cards {
+  @apply com-grid com-grid-cols-4 com-gap-4 com-mb-4;
+  .judge-card {
+    @apply com-cursor-pointer;
+    nb-card {
+      @apply com-m-0 hover:com-shadow-md;
+      nb-card-body {
+        @apply com-p-0;
+
+        .user-card {
+          @apply com-flex com-flex-col;
+
+          .user-image {
+            @apply com-h-[274px];
+            img {
+              @apply com-w-full com-h-full com-rounded-t-[10px];
+            }
+          }
+
+          .details {
+            @apply com-px-4 com-pb-4 com-pt-3;
+            .user-name {
+              @apply com-text-base com-font-medium com-text-black com-m-0 com-mb-1;
+            }
+
+            .user-username {
+              @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-1;
+            }
+
+            .user-designation {
+              @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+a {
+  @apply com-no-underline;
+}

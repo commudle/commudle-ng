@@ -1,11 +1,10 @@
 <div class="homepage">
-  <div class="homepage-section com-py-8 md:com-py-16">
-    <div
-      class="com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center md:com-gap-16 md:com-flex-row"
-    >
+  <div class="homepage-section com-py-8 md:com-py-16 com-px-2 md:com-px-0">
+    <div class="com-flex com-flex-col-reverse com-gap-8 com-items-center md:com-gap-16 md:com-flex-row">
       <div class="com-w-full md:com-min-h-[600px] com-relative">
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
+        <commudle-homepage-dashboard></commudle-homepage-dashboard>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
         <div *ngIf="homepageActions.length > 0" class="homepage-actions">
           <a
@@ -19,26 +18,33 @@
             {{ action.title }}
           </a>
         </div>
-        <img
+        <!-- <img
           alt="Homepage arrow"
           class="homepage-arrow"
           src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDRlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9a2418dd47ce429fb718225399df102b528a9e46/homepage-arrow.svg"
-        />
+        /> -->
       </div>
       <div class="com-w-2/3 md:com-w-full">
-        <!--        <img-->
-        <!--          alt="Homepage banner"-->
-        <!--          class="com-pointer-events-none com-w-full"-->
-        <!--          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19&#45;&#45;6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"-->
-        <!--        />-->
+        <div *ngIf="this.homePageBannerImage">
+          <ng-container *ngIf="banner?.image_link">
+            <a [href]="banner?.image_link">
+              <img alt="Homepage banner" class="com-w-full" [src]="this.homePageBannerImage" />
+            </a>
+          </ng-container>
+          <ng-container *ngIf="!banner?.image_link">
+            <div>
+              <img alt="Homepage banner" class="com-w-full" [src]="this.homePageBannerImage" />
+            </div>
+          </ng-container>
+        </div>
         <!--        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>-->
-        <div #homepageAnimation></div>
+        <div *ngIf="!this.homePageBannerImage" #homepageAnimation></div>
       </div>
     </div>
   </div>
 
   <div class="linear-gradient-top com-relative">
-    <div class="homepage-section com-pb-12">
+    <div class="homepage-section com-pb-12" id="join-community">
       <img
         alt="Group people icon"
         class="com-mb-6"
@@ -46,7 +52,7 @@
         title="Group people icon"
       />
       <div class="section-heading">
-        <h2>Join a community to learn and network</h2>
+        <h2><a [routerLink]="'.'" fragment="join-community">Join a community to learn and network</a></h2>
       </div>
       <app-homepage-featured-communities></app-homepage-featured-communities>
     </div>
@@ -59,7 +65,7 @@
     />
   </div>
 
-  <div class="linear-gradient-bottom">
+  <div class="linear-gradient-bottom" id="live-sessions">
     <div class="homepage-section com-pb-12">
       <!--    <h2 class="section-heading">Learn from developers around you</h2>-->
       <app-homepage-events></app-homepage-events>
@@ -73,7 +79,7 @@
       src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa2NmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ae109a67236190a996e0fee2aae0ae345cc2711b/Laptop%20icon.png"
       title="Laptop icon"
     />
-    <div class="com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2">
+    <div class="com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2" id="builds-lab">
       <app-homepage-builds></app-homepage-builds>
       <app-homepage-labs></app-homepage-labs>
     </div>
@@ -91,16 +97,16 @@
     />
   </div>
 
-  <div class="homepage-section com-pb-12">
+  <div class="homepage-section com-pb-12" id="experts">
     <div class="section-heading">
-      <h2>Experts</h2>
+      <h2><a [routerLink]="'.'" fragment="experts">Experts</a></h2>
       <h3 class="subheading">Techies with experience, and a blue tick</h3>
     </div>
     <app-homepage-experts></app-homepage-experts>
   </div>
 
   <div class="linear-gradient">
-    <div class="homepage-section com-pb-20 com-relative">
+    <div class="homepage-section com-pb-20 com-relative" id="commudle-developerverse">
       <img
         alt="Homepage about left icon"
         class="com-absolute com-left-0 com-top-0 com-hidden md:com-block"
@@ -117,17 +123,21 @@
     </div>
   </div>
 
-  <div class="homepage-section com-pb-12">
-    <div class="section-heading">
-      <h2>Testimonials</h2>
-      <h3 class="subheading">By DevRels, Non Profits, Communities, Developers, Experts & Mentors</h3>
+  <div *ngIf="testimonials" class="homepage-section com-pb-12" id="testimonials">
+    <div class="testimonials">
+      <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">Testimonials</a></h2>
+      <h3 class="subheading">Don't just take our word for it</h3>
+      <div class="testimonial-card">
+        <commudle-testimonial-card [testimonials]="testimonials"></commudle-testimonial-card>
+      </div>
     </div>
-    <app-homepage-testimonials></app-homepage-testimonials>
   </div>
 
-  <div class="homepage-section com-pb-36">
+  <div class="homepage-section com-pb-36" id="developers-journey">
     <div class="section-heading">
-      <h2>Commudle drives Software Developers' Journey</h2>
+      <h2 class="heading">
+        <a [routerLink]="'.'" fragment="developers-journey">Commudle drives Software Developers' Journey</a>
+      </h2>
     </div>
     <app-homepage-features></app-homepage-features>
   </div>

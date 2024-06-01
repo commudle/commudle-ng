@@ -1,0 +1,51 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card>
+        <nb-card-body>
+          <div class="heading">
+            <commudle-back-button text="Back to scanner" router=".."></commudle-back-button>
+            <div>
+              <p>Total checked in count:</p>
+              <span>
+                {{ total }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <form [formGroup]="searchForm">
+              <div class="search">
+                <nb-form-field>
+                  <nb-icon icon="search" nbPrefix></nb-icon>
+                  <input
+                    formControlName="name"
+                    fullWidth
+                    nbInput
+                    placeholder="Search for people by name..."
+                    shape="round"
+                    type="text"
+                  />
+                </nb-form-field>
+              </div>
+            </form>
+          </div>
+
+          <div class="members">
+            <div *ngFor="let member of members" class="member">
+              <app-user-profile-card-small [user]="member"></app-user-profile-card-small>
+            </div>
+          </div>
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [count]="count"
+            [current]="page"
+            [total]="total"
+          ></app-pagination>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
