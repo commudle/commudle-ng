@@ -1,6 +1,6 @@
 <div class="user {{ size }}">
   <app-user-live-status
-    *ngIf="showLiveStatus || showOnlineText"
+    *ngIf="showLiveStatus"
     [userId]="user.id"
     (isOnline)="HandleOnlineStatus($event)"
   ></app-user-live-status>
