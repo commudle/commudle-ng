@@ -8,7 +8,7 @@ import { NbButtonModule, NbCardModule, NbListModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FeaturesContentComponent } from './components/features-content/features-content.component';
 import { FeaturesHeaderComponent } from './components/features-header/features-header.component';
-import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { SharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
