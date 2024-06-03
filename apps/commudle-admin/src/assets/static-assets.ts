@@ -137,4 +137,19 @@ export const staticAssets = {
     id: 144,
     url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM2sxQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--401df19785a101dbb8c939863455bd55d6f49d60/razorpay.svg',
   },
+
+  features_page_header: {
+    id: 147,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3BOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3d98e63d356d788a6483ed7067ba6b0b5fe0eaf8/Header%20Section.png',
+  },
+
+  features_know_your_community: {
+    id: 148,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3hOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--48d2e70f97d92111d9cb7d39cad41db00d1b0fb9/Section%203%20Image.png',
+  },
+
+  features_build_your_community: {
+    id: 149,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNzFOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b38292eb21e0b5bf7fd7115cdbe50e6fe6ab4078/Section%204.png',
+  },
 };
