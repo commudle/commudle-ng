@@ -1,7 +1,7 @@
 <div class="features">
   <div class="base-layout">
     <div class="container">
-      <div class="header">
+      <div *ngIf="showHeading" class="header">
         <h1 class="heading"><span>One Stop Solution</span> For Your Developer Communities</h1>
         <h2 class="subheading">
           We understand the vast engagement needs to build a developer community network for your company.
@@ -33,7 +33,7 @@
           <commudle-features-content [selectedFeature]="selectedFeature"></commudle-features-content>
         </div>
       </div>
-      <div class="platform" id="know-your-community">
+      <div *ngIf="showHeading" class="platform" id="know-your-community">
         <h2 class="heading">
           <a [routerLink]="'.'" fragment="know-your-community">Know & Grow Your Community Like Never Before</a>
         </h2>
@@ -103,7 +103,7 @@
           </div>
         </commudle-public-page-layout>
       </div>
-      <div class="build-community" id="build-community">
+      <div *ngIf="showHeading" class="build-community" id="build-community">
         <h2 class="heading-build-community">
           <a [routerLink]="'.'" fragment="build-community">Build Your Communities with 100,000+ techies on Commudle</a>
         </h2>
@@ -115,7 +115,7 @@
           />
         </div>
       </div>
-      <div class="faq">
+      <div *ngIf="showHeading" class="faq">
         <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
       </div>
     </div>
