@@ -12,7 +12,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
   styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent implements OnInit, OnDestroy {
-  @Input() categoryName: string;
+  @Input() categoryName = 'all';
   @Input() showHeading = true;
   @Input() showSubHeading = true;
   features: IFeature[];
@@ -55,26 +55,14 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   }
 
   getIndex() {
-    if (this.categoryName) {
-      this.subscriptions.push(
-        this.cmsService
-          .getDataByTypeWithFilter('featuredPage', 'category', this.categoryName, 100)
-          .subscribe((value) => {
-            if (value) {
-              this.features = value;
-            }
-          }),
-      );
-    } else {
-      this.subscriptions.push(
-        this.cmsService.getDataByType('featuredPage').subscribe((value) => {
-          if (value) {
-            this.features = value;
-          }
-          this.isLoading = false;
-        }),
-      );
-    }
+    const filterType = 'category[].name';
+    this.subscriptions.push(
+      this.cmsService.getDataByTypeWithFilter('featuredPage', filterType, this.categoryName, 100).subscribe((value) => {
+        if (value) {
+          this.features = value;
+        }
+      }),
+    );
   }
 
   getFeaturesData(slug) {

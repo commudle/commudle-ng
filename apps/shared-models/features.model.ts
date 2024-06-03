@@ -7,4 +7,5 @@ export interface IFeature {
   features: [];
   description: string;
   icon: SanityImageObject;
+  category: any[];
 }

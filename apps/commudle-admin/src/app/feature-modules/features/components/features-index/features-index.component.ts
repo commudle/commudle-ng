@@ -22,6 +22,8 @@ export class FeaturesIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 640;
+    console.log(this.features, 'features');
+    this.sortFeaturesByCategoryOrder();
     this.featureSlug.emit(this.features[0].slug.current);
     this.selectedFeatureSlug = this.features[0].slug.current;
   }

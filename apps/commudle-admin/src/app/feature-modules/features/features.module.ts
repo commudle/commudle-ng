@@ -7,12 +7,12 @@ import { FeaturesComponent } from './components/features/features.component';
 import { NbButtonModule, NbCardModule, NbListModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FeaturesContentComponent } from './components/features-content/features-content.component';
-import { FeaturesHeaderComponent } from './components/features-header/features-header.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { SharedComponentsModule } from '@commudle/shared-components';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
-  declarations: [FeaturesIndexComponent, FeaturesComponent, FeaturesContentComponent, FeaturesHeaderComponent],
+  declarations: [FeaturesIndexComponent, FeaturesComponent, FeaturesContentComponent],
   exports: [FeaturesComponent],
   imports: [
     CommonModule,
@@ -23,6 +23,7 @@ import { SharedComponentsModule } from '@commudle/shared-components';
     AppSharedComponentsModule,
     NbButtonModule,
     SharedComponentsModule,
+    SharedPipesModule,
   ],
 })
 export class FeaturesModule {}
