@@ -58,15 +58,26 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getIndex() {
+  getIndex(): void {
     const filterType = 'category[].name';
     this.subscriptions.push(
       this.cmsService.getDataByTypeWithFilter('featuredPage', filterType, this.categoryName, 100).subscribe((value) => {
         if (value) {
-          this.features = value;
+          const sortedFeatures = this.sortFeaturesByCategory(value, this.categoryName);
+          this.features = sortedFeatures;
         }
       }),
     );
+  }
+
+  sortFeaturesByCategory(features: any[], categoryName: string): any[] {
+    return features
+      .filter((feature) => feature.category.some((cat) => cat.name === categoryName))
+      .sort((a, b) => {
+        const aOrder = a.category.find((cat) => cat.name === categoryName)?.order;
+        const bOrder = b.category.find((cat) => cat.name === categoryName)?.order;
+        return aOrder - bOrder;
+      });
   }
 
   getFeaturesData(slug) {
