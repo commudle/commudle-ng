@@ -5,6 +5,7 @@ import { ResponsiveService } from 'apps/shared-services/responsive.service';
 import { Subscription } from 'rxjs';
 import { SeoService } from '@commudle/shared-services';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
+import { faArrowRightArrowLeft, faArrowUpRightDots, faChartSimple } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-features',
@@ -21,6 +22,9 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   isMobileView: boolean;
   subscriptions: Subscription[] = [];
   staticAssets = staticAssets;
+  faArrowUpRightDots = faArrowUpRightDots;
+  faChartSimple = faChartSimple;
+  faArrowRightArrowLeft = faArrowRightArrowLeft;
 
   questions = [
     'Is there an option to run multiple communities?',
