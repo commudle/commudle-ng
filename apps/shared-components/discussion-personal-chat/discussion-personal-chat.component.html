@@ -2,7 +2,7 @@
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
     <div>
       <div *ngFor="let date of groupedMessages | keyvalue">
-        <h3>{{ date.key }}</h3>
+        <h3 class="grouped-date">{{ date.key }}</h3>
         <div class="message" *ngFor="let um of date.value">
           <app-message
             [message]="um"

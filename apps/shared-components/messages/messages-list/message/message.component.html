@@ -24,7 +24,7 @@
           src="/assets/images/Expert-Tick.svg"
           title="Expert Tick"
         />
-        <p class="time"><span>· </span>{{ moment(message.created_at).format('h:mm a') }}</p>
+        <p class="time"><span> · </span>{{ moment(message.created_at).format('h:mm a') }}</p>
       </div>
       <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
     </div>

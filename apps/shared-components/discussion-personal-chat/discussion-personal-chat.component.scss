@@ -8,7 +8,7 @@
       @apply com-h-full;
 
       .message {
-        @apply com-border-0 com-border-b com-border-solid com-border-gray-300 com-p-0 com-px-3;
+        @apply com-p-0 com-px-3;
       }
 
       .filler-message {
@@ -63,5 +63,9 @@
         }
       }
     }
+  }
+
+  .grouped-date {
+    @apply com-mb-0 com-flex com-justify-center com-text-xs com-font-medium com-text-gray-500;
   }
 }
