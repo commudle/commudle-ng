@@ -32,6 +32,7 @@
     }
 
     .ngx-datatable {
+      @apply com-bg-white;
       height: 70vh;
 
       .header-column-template {
@@ -68,6 +69,7 @@
         overflow-y: visible;
 
         white-space: normal;
+        @apply com-flex com-gap-1 com-items-baseline com-cursor-pointer;
 
         .small-text {
           font-size: 10px;
@@ -81,6 +83,19 @@
           font-size: 14px;
         }
       }
+    }
+  }
+}
+
+.name-filter {
+  @apply com-w-full com-flex com-gap-1 com-items-center;
+  input {
+    @apply com-w-full;
+  }
+  .clear-search-filter {
+    @apply com-cursor-pointer;
+    fa-icon {
+      @apply com-text-red-500 com-text-base;
     }
   }
 }
@@ -101,8 +116,34 @@
 }
 
 .dropdown {
-  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2   com-w-1/2 com-border com-border-solid com-border-primary-200;
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-md com-cursor-pointer com-bg-[#F6F9FC]  com-my-2   com-w-1/2 com-border com-border-solid com-border-primary-200 hover:com-bg-white;
+
   select {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-w-full;
   }
+}
+
+.user-detail-dropdown {
+  @apply com-flex com-items-center com-gap-1 com-h-6 com-p-0 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-border com-border-solid com-border-[#E4E9F2] com-w-full;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-w-full;
+  }
+}
+
+.track-slot-filter-dropdown {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-cursor-pointer com-bg-transparent com-my-2  com-w-max com-border-0;
+  select {
+    @apply com-bg-transparent  com-cursor-pointer com-w-full;
+  }
+}
+
+.clear-track-filter {
+  @apply com-cursor-pointer;
+  fa-icon {
+    @apply com-text-red-500 com-text-base;
+  }
+}
+
+fa-icon {
+  @apply com-text-gray-500;
 }

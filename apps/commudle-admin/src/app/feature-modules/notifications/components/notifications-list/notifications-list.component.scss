@@ -1,27 +1,54 @@
 .notification-list {
+  @apply com-overflow-hidden;
   nb-list-item {
-    @apply com-justify-between;
+    @apply com-justify-between com-p-4 com-border com-border-Bright-Gray;
 
     &.active {
       @apply com-bg-gray-100;
     }
 
     &:first-child {
-      border-top: none;
+      @apply com-border com-border-t-0 com-border-Bright-Gray;
     }
 
     &:last-child {
-      border-bottom: none;
+      @apply com-border com-border-b-0 com-border-Bright-Gray;
     }
 
     .mark-as-read {
-      @apply com-hidden;
+      @apply com-p-0 com-hidden;
     }
 
     &:hover {
       .mark-as-read {
-        @apply com-block;
+        @apply com-p-0 com-m-0 com-ml-2px com-flex com-justify-between com-items-center;
+      }
+    }
+
+    .notification-card {
+      @apply com-flex com-items-center com-w-full;
+
+      img {
+        @apply com-h-8 com-w-8 com-object-contain com-m-0 com-mr-3;
+      }
+
+      .user-image {
+        @apply com-rounded-full com-bg-tWhite;
+      }
+      .community-image {
+        @apply com-rounded-sm com-bg-tWhite;
+      }
+
+      .details {
+        @apply com-flex com-justify-between com-items-center com-line-clamp-1 com-break-all;
+      }
+
+      .time {
+        @apply com-text-10px com-m-0 com-font-normal com-text-gray-500;
       }
     }
   }
+}
+.notification-ref {
+  @apply com-flex com-justify-center com-p-4;
 }

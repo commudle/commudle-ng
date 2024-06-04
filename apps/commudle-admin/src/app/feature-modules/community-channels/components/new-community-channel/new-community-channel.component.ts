@@ -1,51 +1,32 @@
-import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogService } from '@commudle/theme';
-import { ICommunity } from 'apps/shared-models/community.model';
-import { SeoService } from 'apps/shared-services/seo.service';
-import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { ICommunity, ICommunityGroup, IHackathon } from '@commudle/shared-models';
+import { CommunityChannelManagerService } from '@commudle/shared-services';
+import { NbDialogRef } from '@commudle/theme';
 
 @Component({
-  selector: 'app-new-community-channel',
+  selector: 'commudle-new-community-channel',
   templateUrl: './new-community-channel.component.html',
   styleUrls: ['./new-community-channel.component.scss'],
 })
-export class NewCommunityChannelComponent implements OnInit, OnDestroy {
+export class NewCommunityChannelComponent {
   @Input() groupName: string;
   @Input() discussionType: string;
-  @ViewChild('newCommunityChannelFormTemplate', { static: true }) formTemplate: TemplateRef<any>;
-  dialogRef;
-  community: ICommunity;
-  subscriptions: Subscription[] = [];
+  parent: ICommunity | ICommunityGroup | IHackathon;
 
   constructor(
-    private dialogService: NbDialogService,
-    private communityChannelManagerService: CommunityChannelManagerService,
-    private seoService: SeoService,
-  ) {}
-
-  ngOnInit(): void {
-    this.subscriptions.push(
-      this.communityChannelManagerService.selectedCommunity$.subscribe((data) => {
-        this.community = data;
-      }),
-    );
-    this.openForm();
-    this.seoService.noIndex(true);
-  }
-
-  ngOnDestroy() {
-    this.dialogRef.close();
-    this.seoService.noIndex(false);
-    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-  }
-
-  openForm() {
-    this.dialogRef = this.dialogService.open(this.formTemplate);
+    private dialogRef: NbDialogRef<NewCommunityChannelComponent>,
+    private cmService: CommunityChannelManagerService,
+  ) {
+    this.getParent();
   }
 
   closeForm() {
     this.dialogRef.close();
+  }
+
+  getParent() {
+    this.cmService.parent$.subscribe((data) => {
+      this.parent = data;
+    });
   }
 }

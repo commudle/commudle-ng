@@ -6,6 +6,7 @@ import {
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
+  NbContextMenuModule,
   NbDialogModule,
   NbIconModule,
   NbInputModule,
@@ -36,6 +37,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { CustomPageComponent } from './components/custom-page/custom-page.component';
+import { NewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletter/newsletter.component';
+import { NewslettersComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/newsletters/newsletters.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
+import { PublicCommunityHackathonsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community/components/public-community-hackathons/public-community-hackathons.component';
+import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +55,10 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     CommunityChannelsListComponent,
     SpeakerCardComponent,
     PublicCommunityNotificationsComponent,
+    CustomPageComponent,
+    NewslettersComponent,
+    NewsletterComponent,
+    PublicCommunityHackathonsComponent,
   ],
   exports: [MembershipToggleComponent, SpeakerCardComponent],
   imports: [
@@ -64,7 +75,6 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     FontAwesomeModule,
     UserConsentsComponent,
     CommunityChannelsModule,
-
     // Nebular
     NbCardModule,
     NbListModule,
@@ -80,7 +90,10 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
     NbOptionModule,
     NbDialogModule.forChild(),
     NbSpinnerModule,
+    NbContextMenuModule,
     SkeletonVerticalCardsComponent,
+    BackButtonComponent,
+    EventHorizontalCardComponent,
   ],
 })
 export class PublicCommunityModule {}

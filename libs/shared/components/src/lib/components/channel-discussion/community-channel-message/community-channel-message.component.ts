@@ -1,7 +1,8 @@
+import { SeoService } from '@commudle/shared-services';
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
-import { EUserRoles, IUserMessage } from '@commudle/shared-models';
+import { EUserRoles, ICommunityChannel, IUserMessage } from '@commudle/shared-models';
 import {
   AuthService,
   CommunityChannelManagerService,
@@ -17,6 +18,7 @@ import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-community-channel-message',
@@ -27,10 +29,15 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() message!: IUserMessage;
   @Input() cursor!: string;
   @Input() canReply = true;
+  @Input() messagePinned = false;
+  @Input() channelOrForum: ICommunityChannel;
+
   channelsRoles = {};
   channelOrForumId: number;
 
   environment = environment;
+
+  faThumbtack = faThumbtack;
 
   @ViewChild('editMessageTemplate', { static: true }) editMessageTemplate: TemplateRef<any>;
   editMessageTemplateRef: NbWindowRef;
@@ -61,61 +68,65 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
     private libToastLogService: ToastrService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
+    this.seoSchema();
     this.channelOrForumId = this.activatedRoute.snapshot.params.community_channel_id;
     this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
       this.channelsRoles = data;
     });
-    this.nbMenuService
-      .onItemClick()
-      .pipe(filter(({ tag }) => tag === 'chat-menu-' + this.message.id))
-      .subscribe((event) => {
-        if (event.item.title === 'Edit') {
-          this.openEditForm();
-        } else if (event.item.title === 'Delete') {
-          this.communityChannelHandlerService.sendDelete(
-            this.message.id,
-            this.message.user.id === this.authService.getCurrentUser().id,
-          );
-        } else if (event.item.title === 'Share This Message') {
-          this.share();
-        } else if (event.item.title === 'Pin Message') {
-          // this.pinMessage(this.message);
-        } else if (event.item.title === 'Unpin Message') {
-          // this.unpinMessage(this.message);
-        } else if (event.item.title === 'Email to all members') {
-          // this.sendMessageByEmail(this.message.id);
-        }
-      });
-    if (this.authService.getCurrentUser()?.id === this.message.user.id) {
-      this.contextMenuItems.push({
-        title: 'Edit',
-      });
-    }
-    if (
-      this.authService.getCurrentUser()?.id === this.message.user.id ||
-      this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
-    ) {
-      this.contextMenuItems.push({
-        title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
-      });
-    }
-    if (this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
-      this.contextMenuItems.push({
-        title: 'Email to all members',
-      });
-    }
-    if (this.authService.getCurrentUser().id === this.message.user.id) {
-      this.contextMenuItems.push({
-        title: 'Delete',
-      });
-    }
-    if (this.authService.getCurrentUser().id) {
-      this.contextMenuItems.push({
-        title: 'Share This Message',
-      });
+    if (!this.messagePinned) {
+      this.nbMenuService
+        .onItemClick()
+        .pipe(filter(({ tag }) => tag === 'chat-menu-' + this.message.id))
+        .subscribe((event) => {
+          if (event.item.title === 'Edit') {
+            this.openEditForm();
+          } else if (event.item.title === 'Delete') {
+            this.communityChannelHandlerService.sendDelete(
+              this.message.id,
+              this.message.user.id === this.authService.getCurrentUser().id,
+            );
+          } else if (event.item.title === 'Share This Message') {
+            this.share();
+          } else if (event.item.title === 'Pin Message') {
+            this.pinMessage(this.message);
+          } else if (event.item.title === 'Unpin Message') {
+            this.unpinMessage(this.message);
+          } else if (event.item.title === 'Email to all members') {
+            this.sendMessageByEmail(this.message.id);
+          }
+        });
+      if (this.authService.getCurrentUser()?.id === this.message.user.id) {
+        this.contextMenuItems.push({
+          title: 'Edit',
+        });
+      }
+      if (
+        this.authService.getCurrentUser()?.id === this.message.user.id ||
+        this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+      ) {
+        this.contextMenuItems.push({
+          title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
+        });
+      }
+      if (this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
+        this.contextMenuItems.push({
+          title: 'Email to all members',
+        });
+      }
+      if (this.authService.getCurrentUser().id === this.message.user.id) {
+        this.contextMenuItems.push({
+          title: 'Delete',
+        });
+      }
+      if (this.authService.getCurrentUser().id) {
+        this.contextMenuItems.push({
+          title: 'Share This Message',
+        });
+      }
     }
   }
 
@@ -162,9 +173,6 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   togglePinStatus() {
-    this.communityChannelsService.pinMessage(this.message.id, this.channelOrForumId).subscribe(() => {
-      this.libToastLogService.successDialog('Pinned Message Successfully!');
-    });
     this.communityChannelManagerService.pinData$.subscribe((data) => {
       if (data) {
         switch (data.action) {
@@ -196,15 +204,25 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   pinMessage(message: IUserMessage) {
     this.communityChannelsService.pinMessage(message.id, this.channelOrForumId).subscribe(() => {
       this.libToastLogService.successDialog('Pinned Message Successfully!');
+      this.communityChannelHandlerService.updatePinnedMessage(message);
+      this.message.pinned = true;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Unpin Message';
+      }
     });
-    this.togglePinStatus();
   }
 
   unpinMessage(message: IUserMessage) {
     this.communityChannelsService.unpinMessage(message.id, this.channelOrForumId).subscribe(() => {
       this.libToastLogService.successDialog('Unpinned Message Successfully!');
+      this.communityChannelHandlerService.removePinnedMessage(message);
+      this.message.pinned = false;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Pin Message';
+      }
     });
-    this.togglePinStatus();
   }
 
   sendMessageByEmail(userMessageId) {
@@ -215,5 +233,52 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  seoSchema() {
+    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'DiscussionForumPosting',
+      url: shareLink,
+      headline: this.channelOrForum.name,
+      text: this.removeHtmlTags(this.message.content),
+      author: {
+        '@type': 'Person',
+        name: this.message.user.name ? this.message.user.name : this.message.user.username,
+        url: `https://www.commudle.com/users/${this.message.user.username}`,
+      },
+      datePublished: this.message.created_at,
+      comment: this.getUserMessages(),
+    });
+  }
+
+  getUserMessages() {
+    const resultArray = [];
+
+    for (const userMessage of this.message.user_messages) {
+      if (userMessage) {
+        const transformedMessage = {
+          '@type': 'Comment',
+          text: this.removeHtmlTags(userMessage.content),
+          author: {
+            '@type': 'Person',
+            name: userMessage.user.name ? userMessage.user.name : userMessage.user.username,
+            url: `https://www.commudle.com/users/${userMessage.user.username}`,
+          },
+          datePublished: userMessage.created_at,
+        };
+
+        resultArray.push(transformedMessage);
+      }
+    }
+
+    return resultArray;
+  }
+
+  removeHtmlTags(content): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    return doc.body.textContent || '';
   }
 }

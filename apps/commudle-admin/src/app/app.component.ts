@@ -1,7 +1,7 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { CableService } from '@commudle/shared-services';
-import { NbSidebarService, NbSidebarState } from '@commudle/theme';
+import { NbSidebarService, NbSidebarState, NbThemeService } from '@commudle/theme';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { ActionCableConnectionSocket } from 'apps/shared-services/action-cable-connection.socket';
@@ -11,7 +11,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { SeoService } from 'apps/shared-services/seo.service';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
-
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'commudle-root',
   templateUrl: './app.component.html',
@@ -23,6 +24,12 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   cookieAccepted = false;
   profileBarStatus = true;
   isBrowser;
+
+  isDarkMode = false;
+  userTheme;
+  systemTheme;
+
+  private isDarkModeSubscription: Subscription;
 
   constructor(
     private apiRoutes: ApiRoutesService,
@@ -38,6 +45,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private seoService: SeoService,
     private router: Router,
     private cableService: CableService,
+    private darkModeService: DarkModeService,
+    private themeService: NbThemeService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -66,6 +75,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
 
     this.removeSchemaOnRouteChange();
+    this.themeCheck();
   }
 
   ngAfterViewChecked(): void {
@@ -75,6 +85,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnDestroy(): void {
     // this.notificationsService.unsubscribeFromNotifications();
+    this.isDarkModeSubscription.unsubscribe();
   }
 
   closeSidebar(): void {
@@ -92,5 +103,20 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.seoService.removeSchema();
       }
     });
+  }
+
+  themeCheck() {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    });
+    this.userTheme = localStorage.getItem('theme');
+    this.systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.themeService.changeTheme(this.isDarkMode ? 'dark' : 'default');
+    if (this.userTheme === 'dark' || (!this.userTheme && this.systemTheme)) {
+      this.darkModeService.toggleDarkMode(true);
+    } else {
+      this.darkModeService.toggleDarkMode(false);
+    }
   }
 }

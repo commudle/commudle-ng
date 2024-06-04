@@ -1,19 +1,37 @@
 <div class="com-flex com-justify-between com-items-center com-gap-2 com-container com-max-w-screen-xl com-px-2">
   <a [routerLink]="['/']">
-    <img
-      *appBreakpoints="'<=md'"
-      alt="Commudle"
-      class="com-d-block com-w-8 com-h-8 com-object-contain"
-      src="{{ staticAssets.commudle_logo_72 }}"
-      title="Commudle"
-    />
-    <img
-      *appBreakpoints="'>md'"
-      alt="Commudle"
-      class="com-d-block com-w-auto com-h-8 com-object-contain"
-      src="{{ staticAssets.commudle_logo_full }}"
-      title="Commudle"
-    />
+    <div *ngIf="!isDarkMode">
+      <img
+        *appBreakpoints="'<=md'"
+        alt="Commudle"
+        class="com-d-block com-w-8 com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_72 }}"
+        title="Commudle"
+      />
+      <img
+        *appBreakpoints="'>md'"
+        alt="Commudle"
+        class="com-d-block com-w-auto com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_full }}"
+        title="Commudle"
+      />
+    </div>
+    <div *ngIf="isDarkMode">
+      <img
+        *appBreakpoints="'<=md'"
+        alt="Commudle"
+        class="com-d-block com-w-8 com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_72 }}"
+        title="Commudle"
+      />
+      <img
+        *appBreakpoints="'>md'"
+        alt="Commudle"
+        class="com-d-block com-w-auto com-h-8 com-object-contain"
+        src="{{ staticAssets.commudle_logo_dark_mode }}"
+        title="Commudle"
+      />
+    </div>
   </a>
 
   <div class="home-navbar">
@@ -24,20 +42,30 @@
 
     <app-navbar-menu *appBreakpoints="'>md'" class="com-justify-self-center"></app-navbar-menu>
 
-    <div class="com-justify-self-end">
-      <img
-        *ngIf="currentUser; else guest"
-        [alt]="currentUser.name"
-        [nbContextMenu]="userContextMenu"
-        [src]="currentUser.photo.i64"
-        class="com-w-9 com-h-9 md:com-w-11 md:com-h-11 com-object-cover com-rounded-full com-self-end"
-      />
-      <ng-template #guest>
-        <button (click)="login()" *appBreakpoints="'>lg'" nbButton outline size="small">Login / Signup</button>
-        <button (click)="login()" *appBreakpoints="'<=lg'" nbButton outline size="small" title="Login / Signup">
-          <nb-icon icon="log-in-outline"></nb-icon>
+    <div class="user-login">
+      <div class="toggle-dark-mode">
+        <button *ngIf="!isDarkMode" (click)="toggleDarkMode(true)" class="toggle-btn" nbButton>
+          <fa-icon [icon]="faMoon"></fa-icon>
         </button>
-      </ng-template>
+        <button *ngIf="isDarkMode" (click)="toggleDarkMode(false)" class="toggle-btn !com-p-0" nbButton>
+          <img src="https://json.commudle.com/icons/dark-mode-sun-icon.svg" />
+        </button>
+      </div>
+      <div>
+        <img
+          *ngIf="currentUser; else guest"
+          [alt]="currentUser.name"
+          [nbContextMenu]="userContextMenu"
+          [src]="currentUser.photo.i64"
+          class="com-w-9 com-h-9 md:com-w-11 md:com-h-11 com-object-cover com-rounded-full com-self-end com-bg-tWhite"
+        />
+        <ng-template #guest>
+          <button (click)="login()" *appBreakpoints="'>lg'" nbButton outline size="small">Login / Signup</button>
+          <button (click)="login()" *appBreakpoints="'<=lg'" nbButton outline size="small" title="Login / Signup">
+            <nb-icon icon="log-in-outline"></nb-icon>
+          </button>
+        </ng-template>
+      </div>
     </div>
   </div>
 

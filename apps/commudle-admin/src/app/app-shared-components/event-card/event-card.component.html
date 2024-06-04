@@ -5,15 +5,15 @@
   >
     <nb-card>
       <nb-card-body>
-        <div *ngIf="event.header_image_path">
+        <div *ngIf="event.header_image_path || event.header_image">
           <commudle-banner-image
-            [headerImagePath]="event.header_image_path"
+            [headerImagePath]="event.header_image_path || event.header_image?.i320"
             [name]="event.name"
             [bottomRightCurve]="false"
             [bottomLeftCurve]="false"
           ></commudle-banner-image>
         </div>
-        <div *ngIf="!event.header_image_path" class="without-header-image">
+        <div *ngIf="!(event.header_image_path || event.header_image)" class="without-header-image">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
         <div class="details-container">
@@ -26,7 +26,7 @@
               <div *ngIf="event.interested_members_count > 0" class="interested-members">
                 <app-badge
                   [text]="event.interested_members_count"
-                  [fontColor]="'com-text-Auro-Metal-Saurus'"
+                  [fontColor]="'com-text-tAuro-Metal-Saurus'"
                   [nbIcon]="'people-outline'"
                   [fontSize]="'small'"
                   [borderRadius]="'round'"

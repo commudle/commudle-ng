@@ -18,7 +18,7 @@ nb-card {
         }
 
         .upcoming-events {
-          @apply com-absolute com-right-3 com-top-3 com-bg-American-Orange com-text-white com-border-0;
+          @apply com-absolute com-right-3 com-top-3 com-bg-American-Orange com-text-tWhite com-border-0;
         }
       }
 
@@ -91,13 +91,13 @@ nb-card {
               @apply com-flex com-text-sm com-font-normal com-text-Azure com-flex-shrink-0;
 
               p {
-                @apply com-m-0;
+                @apply com-m-0 com-text-Yankees-Blue;
               }
             }
           }
         }
         .tags {
-          @apply com-overflow-hidden com-h-6 com-gap-3 com-m-0 com-p-0 com-mt-4;
+          @apply com-overflow-hidden com-h-8 com-gap-3 com-m-0 com-p-0 com-mt-4;
         }
 
         .user-follow-button {

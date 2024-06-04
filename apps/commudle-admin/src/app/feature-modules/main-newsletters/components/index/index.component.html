@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <div class="com-flex com-justify-between com-items-center com-px-2">
@@ -23,6 +23,15 @@
           </nb-list>
           <p *ngIf="!isLoading && this.newsletters.length === 0">No newsletters found</p>
         </nb-card-body>
+        <app-pagination
+          (goTo)="page = $event; getNewsLetters()"
+          (next)="page = $event; getNewsLetters()"
+          (previous)="page = $event; getNewsLetters()"
+          *ngIf="total > 0 && !isLoading"
+          [count]="count"
+          [current]="page"
+          [total]="total"
+        ></app-pagination>
       </nb-card>
     </div>
   </div>

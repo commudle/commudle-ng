@@ -1,0 +1,28 @@
+.custom-page-form {
+  @apply com-px-6 com-pb-6;
+  h6 {
+    @apply com-my-4;
+  }
+
+  form {
+    @apply com-flex com-flex-col com-gap-3;
+    div {
+      @apply com-flex com-flex-col;
+    }
+  }
+
+  .action-buttons {
+    @apply com-flex com-gap-4 com-my-3;
+  }
+
+  .back-button {
+    @apply com-mt-3 com-cursor-pointer com-w-max com-text-[#8f9bb3];
+  }
+}
+
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#E4E9F2]  com-w-full;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}

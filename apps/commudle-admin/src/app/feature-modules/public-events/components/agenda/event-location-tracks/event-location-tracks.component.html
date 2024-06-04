@@ -15,7 +15,7 @@
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
         (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
       >
-        <nb-accordion-item-header>
+        <nb-accordion-item-header [id]="elt.id">
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon
@@ -35,7 +35,7 @@
                       *ngFor="let tag of slot.tags_list.split(',')"
                       [fontSize]="'small'"
                       [text]="tag"
-                      [fontColor]="'com-text-white'"
+                      [fontColor]="'com-text-tWhite'"
                       [color]="'com-bg-primary-500'"
                     ></app-badge>
                   </div>

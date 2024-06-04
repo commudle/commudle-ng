@@ -1,0 +1,14 @@
+<a [routerLink]="'.'" fragment="faq">
+  <h2 class="heading">Frequently Asked Questions</h2>
+  <div class="faq-cards">
+    <div *ngFor="let question of questions; let i = index" class="faq-items">
+      <div (click)="toggleShowAnswers(i)" class="faq-item">
+        <div class="question">
+          <p>{{ question }}</p>
+          <fa-icon [icon]="showAnswers[i] ? faMinus : faAdd"></fa-icon>
+        </div>
+        <p *ngIf="showAnswers[i]" class="answer">{{ answers[i] }}</p>
+      </div>
+    </div>
+  </div>
+</a>

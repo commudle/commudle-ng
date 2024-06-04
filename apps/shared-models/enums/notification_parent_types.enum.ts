@@ -5,4 +5,5 @@ export enum ENotificationParentTypes {
   EVENT = 'Event',
   JOB = 'Job',
   COMMUNITY_CHANNEL = 'CommunityChannel',
+  HACKATHON = 'Hackathon',
 }

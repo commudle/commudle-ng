@@ -6,6 +6,6 @@ import * as _ from 'lodash';
 })
 export class OrderByPipe implements PipeTransform {
   transform(value: Array<any>, args: Array<string>, order: Array<'asc' | 'desc'>): any {
-    return _.sortBy(value, args, order);
+    return _.orderBy(value, args, order);
   }
 }

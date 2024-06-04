@@ -23,7 +23,11 @@ footer {
 
       li {
         a {
-          @apply com-text-base com-text-gray-500 hover:com-text-gray-900;
+          @apply com-text-sm com-text-gray-500 hover:com-text-gray-900;
+        }
+
+        .developer-community-blueprint {
+          @apply com-text-primary-500;
         }
       }
     }
@@ -35,7 +39,7 @@ footer {
   }
 
   .show-footer {
-    @apply md:com-mx-86px com-mx-4 com-mt-16 com-mb-0;
+    @apply md:com-px-86px com-px-4 com-pt-16 com-pb-0 com-bg-Anti-Flash;
 
     hr {
       @apply com-border-gray-300 com-border-solid com-border-[0.5px] com-max-w-[1280px];

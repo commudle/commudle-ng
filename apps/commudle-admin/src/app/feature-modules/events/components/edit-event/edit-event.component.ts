@@ -55,11 +55,12 @@ export class EditEventComponent implements OnInit {
     height: 300,
     menubar: false,
     convert_urls: false,
-    font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 28pt',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     plugins:
       'advlist autolink link image charmap preview anchor lists searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
     toolbar:
-      'undo redo | h2 h3 h4 fontsize | bullist numlist | formatselect | bold italic backcolor | \
+      'undo redo | bullist numlist | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           outdent indent | removeformat | help',
   };
@@ -138,17 +139,11 @@ export class EditEventComponent implements OnInit {
     });
 
     if (this.event.start_time) {
-      const sDate = moment(this.event.start_time).toDate();
-      const eDate = moment(this.event.end_time).toDate();
-      const stime = sDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-      const etime = eDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      const sDate = moment.tz(this.event.start_time, this.event.timezone).format('YYYY-MM-DDTHH:mm');
+      const eDate = moment.tz(this.event.end_time, this.event.timezone).format('YYYY-MM-DDTHH:mm');
       this.eventForm.get('event').patchValue({
-        // @ts-ignore
         start_date: sDate,
-        // @ts-ignore
         end_date: eDate,
-        start_time_pick: stime, //patching start and end time saved to the form
-        end_time_pick: etime,
       });
     }
   }
@@ -191,14 +186,8 @@ export class EditEventComponent implements OnInit {
     this.startHour = Number.parseInt(startTimePick.split(':')[0]);
     this.startMinute = Number.parseInt(startTimePick.split(':')[1]);
 
-    if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '') {
-      this.startTime = moment({
-        years: this.startDate.getFullYear(),
-        months: this.startDate.getMonth(),
-        date: this.startDate.getDate(),
-        hours: this.startHour,
-        minutes: this.startMinute,
-      }).toDate();
+    if (this.startDate !== '' && this.startHour !== '' && this.startMinute !== '' && this.startDate !== null) {
+      this.startTime = moment.tz(this.startDate, this.event.timezone).toDate();
 
       return true;
     }
@@ -207,19 +196,13 @@ export class EditEventComponent implements OnInit {
   }
 
   setEndDateTime() {
-    this.endDate = this.eventForm.get('event').get('start_date').value;
+    this.endDate = this.eventForm.get('event').get('end_date').value;
     const endTimePick = this.eventForm.get('event').get('end_time_pick').value;
     this.endHour = Number.parseInt(endTimePick.split(':')[0]);
     this.endMinute = Number.parseInt(endTimePick.split(':')[1]);
 
-    if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '') {
-      this.endTime = moment({
-        years: this.startDate.getFullYear(), //startDate because we still don't have multiple day tracks!
-        months: this.startDate.getMonth(), //so we gonna set the end and start date same, for now
-        date: this.startDate.getDate(),
-        hours: this.endHour,
-        minutes: this.endMinute,
-      }).toDate();
+    if (this.endDate !== '' && this.endHour !== '' && this.endMinute !== '' && this.endDate !== null) {
+      this.endTime = moment.tz(this.endDate, this.event.timezone).toDate();
       return true;
     }
     this.endTime = null;

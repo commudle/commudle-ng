@@ -1,0 +1,11 @@
+<nb-card *ngIf="currentUser">
+  <nb-card-body>
+    <div class="title">
+      <p class="heading">Welcome {{ currentUser.name }}!! 😀</p>
+      <p class="sub-heading">Here are some of the things to help you start your DevRel journey with us</p>
+    </div>
+    <div>
+      <commudle-first-signin [currentUser]="currentUser"></commudle-first-signin>
+    </div>
+  </nb-card-body>
+</nb-card>

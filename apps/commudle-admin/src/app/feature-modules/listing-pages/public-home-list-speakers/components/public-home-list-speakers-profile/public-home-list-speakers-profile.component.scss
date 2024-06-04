@@ -14,7 +14,7 @@
     }
   }
   .reset {
-    @apply com-text-sm com-font-normal md:com-w-[66px] com-w-full com-text-Auro-Metal-Saurus md:com-mb-0;
+    @apply com-text-sm com-font-normal md:com-w-[66px] com-w-full com-text-tAuro-Metal-Saurus md:com-mb-0;
     text-align: left;
   }
 }
@@ -32,4 +32,11 @@
 
 .loading-spinner {
   @apply com-my-4;
+}
+
+.speakers-upcoming,
+.tech-sessions,
+.speakers-content,
+.featured-communities {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
 }

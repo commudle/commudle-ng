@@ -7,7 +7,6 @@ import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +14,8 @@ import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/channel-settings/channel-settings.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
+import { EDbModels } from '@commudle/shared-models';
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
@@ -25,10 +26,10 @@ interface EGroupedCommunityChannels {
   styleUrls: ['./community-channel-list.component.scss'],
 })
 export class CommunityChannelListComponent implements OnInit, OnDestroy {
-  @Input() selectedCommunity: ICommunity;
   @Input() groupedChannels: EGroupedCommunityChannels;
-  @Input() showCommunityBadge = false;
   @Input() isCommunityOrganizer = false;
+  parent: ICommunity | ICommunityGroup;
+  parentType: EDbModels;
   selectedChannel: ICommunityChannel;
   selectedChannelId: number;
   currentUser: ICurrentUser;
@@ -40,6 +41,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
+  newCommunityChannelPopup;
 
   @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
 
@@ -47,13 +49,13 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private authWatchService: LibAuthwatchService,
     private communityChannelNotifications: CommunityChannelNotificationsChannel,
-    private seoService: SeoService,
     private router: Router,
     private dialogService: NbDialogService,
     private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    this.getParent();
     if (this.activatedRoute.snapshot.params.community_channel_id) {
       this.selectedChannelId = Number(this.activatedRoute.snapshot.params.community_channel_id);
     }
@@ -75,14 +77,18 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    if (this.newCommunityChannelPopup) {
+      this.newCommunityChannelPopup.close();
+    }
   }
 
-  setMeta() {
-    this.seoService.setTags(
-      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
-      `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`,
-      this.selectedCommunity.logo_path,
-    );
+  getParent() {
+    this.communityChannelManagerService.parent$.subscribe((data) => {
+      this.parent = data;
+    });
+    this.communityChannelManagerService.parentType$.subscribe((data) => {
+      this.parentType = data;
+    });
   }
 
   markRead() {
@@ -94,14 +100,23 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   selectedCommunityChannel(channel: ICommunityChannel) {
     this.selectedChannelId = channel.id;
     this.updateSelectedChannel.emit(channel);
-    this.router.navigate(['communities', this.selectedCommunity.slug, 'channels', channel.id]);
+    let currentUrl = this.router.url;
+
+    // Replace the channel ID if found in the URL
+    if (this.activatedRoute.snapshot.params.community_channel_id) {
+      currentUrl = currentUrl.replace(/\/channels\/\d+/, `/channels/${channel.id}`);
+    } else {
+      currentUrl = currentUrl + '/' + channel.id;
+    }
+
+    // Navigate to the updated URL
+    this.router.navigateByUrl(currentUrl);
   }
 
   newChannelDialogBox(groupName?) {
-    this.dialogService.open(NewCommunityChannelComponent, {
+    this.newCommunityChannelPopup = this.dialogService.open(NewCommunityChannelComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
         groupName: groupName,
         discussionType: this.discussionType.CHANNEL,
@@ -109,14 +124,14 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     });
   }
 
-  inviteDialogBox(channelId) {
+  inviteDialogBox(channel: ICommunityChannel) {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
-        channelId: channelId,
+        channel: channel,
         invite: true,
+        // currentUrl: 'communities/' + this.parent.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {
@@ -124,14 +139,14 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     });
   }
 
-  editDialogBox(channelId) {
+  editDialogBox(channel: ICommunityChannel) {
     const dialogRef = this.dialogService.open(ChannelSettingsComponent, {
       closeOnBackdropClick: false,
-      hasBackdrop: false,
-      hasScroll: true,
+      hasScroll: false,
       context: {
-        channelId: channelId,
+        channel: channel,
         discussionType: this.discussionType.CHANNEL,
+        // currentUrl: 'communities/' + this.parent.slug + '/channels',
       },
     });
     dialogRef.componentRef.instance.updateForm.subscribe(() => {

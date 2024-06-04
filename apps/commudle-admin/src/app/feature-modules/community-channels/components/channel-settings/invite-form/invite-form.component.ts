@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit, OnDestroy {
-  @Input() channelId: string;
+  @Input() channelId: number;
   @Input() forum: ICommunityChannel;
   @Output() updateForm = new EventEmitter<string>();
   communityChannel: ICommunityChannel;
@@ -25,7 +25,7 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   linkCopied = false;
   channelsRoles = {};
   EUserRoles = EUserRoles;
-  memberInviteForm;
+  memberInviteForm: FormGroup;
   isBrowser;
 
   constructor(
@@ -82,7 +82,7 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   refreshJoinToken() {
     this.linkCopied = false;
     this.subscriptions.push(
-      this.communityChannelsService.resetJointoken(this.communityChannel.id).subscribe((data) => {
+      this.communityChannelsService.resetJoinToken(this.communityChannel.id).subscribe((data) => {
         this.joinToken = data;
       }),
     );

@@ -57,21 +57,27 @@
           ></app-pagination>
         </div>
         <div class="right-column">
-          <commudle-events-volunteer-list
-            [event]="event"
-            [heading]="volunteerHeading"
-            [subheading]="volunteerSubheading"
-          ></commudle-events-volunteer-list>
-          <commudle-public-home-list-events-speakers
-            [parentType]="'events'"
-            [eventId]="event.slug"
-          ></commudle-public-home-list-events-speakers>
-          <commudle-public-home-list-speakers-content
-            [parentType]="'events'"
-            [eventId]="event.slug"
-            [heading]="contentHeading"
-            [subheading]="contentSubheading"
-          ></commudle-public-home-list-speakers-content>
+          <div class="volunteers-list">
+            <commudle-events-volunteer-list
+              [event]="event"
+              [heading]="volunteerHeading"
+              [subheading]="volunteerSubheading"
+            ></commudle-events-volunteer-list>
+          </div>
+          <div class="speakers">
+            <commudle-public-home-list-events-speakers
+              [parentType]="'events'"
+              [eventId]="event.slug"
+            ></commudle-public-home-list-events-speakers>
+          </div>
+          <div class="speakers-content">
+            <commudle-public-home-list-speakers-content
+              [parentType]="'events'"
+              [eventId]="event.slug"
+              [heading]="contentHeading"
+              [subheading]="contentSubheading"
+            ></commudle-public-home-list-speakers-content>
+          </div>
         </div>
       </div>
 
@@ -101,21 +107,27 @@
           [total]="total"
         ></app-pagination>
 
-        <commudle-events-volunteer-list
-          [event]="event"
-          [heading]="volunteerHeading"
-          [subheading]="volunteerSubheading"
-        ></commudle-events-volunteer-list>
-        <commudle-public-home-list-events-speakers
-          [parentType]="'events'"
-          [eventId]="event.slug"
-        ></commudle-public-home-list-events-speakers>
-        <commudle-public-home-list-speakers-content
-          [parentType]="'events'"
-          [heading]="contentHeading"
-          [subheading]="contentSubheading"
-          [eventId]="event.slug"
-        ></commudle-public-home-list-speakers-content>
+        <div class="volunteers-list">
+          <commudle-events-volunteer-list
+            [event]="event"
+            [heading]="volunteerHeading"
+            [subheading]="volunteerSubheading"
+          ></commudle-events-volunteer-list>
+        </div>
+        <div class="speakers">
+          <commudle-public-home-list-events-speakers
+            [parentType]="'events'"
+            [eventId]="event.slug"
+          ></commudle-public-home-list-events-speakers>
+        </div>
+        <div class="speakers-content">
+          <commudle-public-home-list-speakers-content
+            [parentType]="'events'"
+            [heading]="contentHeading"
+            [subheading]="contentSubheading"
+            [eventId]="event.slug"
+          ></commudle-public-home-list-speakers-content>
+        </div>
       </div>
     </div>
   </div>

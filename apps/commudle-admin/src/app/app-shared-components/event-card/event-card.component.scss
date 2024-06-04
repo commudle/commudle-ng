@@ -22,7 +22,7 @@
             @apply md:com-mb-6 com-mb-10;
 
             .details {
-              @apply com-flex com-justify-between md:com-mt-3 com-mb-4 com-mt-4;
+              @apply com-flex com-justify-between md:com-mt-3 com-mb-4 com-mt-4 com-h-[26px];
 
               .completed {
                 @apply com-flex com-items-center com-text-sm md:com-text-xs com-font-medium com-text-Crayola-Green com-my-0 md:com-mx-3 com-mx-4;

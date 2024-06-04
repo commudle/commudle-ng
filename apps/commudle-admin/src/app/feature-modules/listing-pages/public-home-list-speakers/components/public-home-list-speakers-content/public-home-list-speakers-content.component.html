@@ -1,20 +1,26 @@
-<nb-card>
+<nb-card *ngIf="speakersContents.length > 0" id="speaker-resources">
   <nb-card-body>
     <div class="heading">
-      <h3 class="title">{{ heading }}</h3>
+      <h3 class="title">
+        <a [routerLink]="'.'" fragment="speaker-resources">{{ heading }}</a>
+      </h3>
       <h4 class="sub-heading">{{ subheading }}</h4>
     </div>
     <div class="content custom-scrollbar">
       <app-skeleton-cards *ngIf="showSkeletonCard" [cards]="3" [ImageShapeCircle]="false"></app-skeleton-cards>
-      <div *ngFor="let speakersContent of speakersContents" class="content-card">
+      <div *ngFor="let speakersContent of speakersContents">
         <div *appBreakpoints="'>lg'">
-          <commudle-event-content-card [speakersContent]="speakersContent"></commudle-event-content-card>
+          <div class="content-card">
+            <commudle-event-content-card [speakersContent]="speakersContent"></commudle-event-content-card>
+          </div>
         </div>
         <div *appBreakpoints="'<=lg'">
-          <commudle-event-content-card
-            [speakersContent]="speakersContent"
-            [horizontalScroll]="true"
-          ></commudle-event-content-card>
+          <div class="content-card">
+            <commudle-event-content-card
+              [speakersContent]="speakersContent"
+              [horizontalScroll]="true"
+            ></commudle-event-content-card>
+          </div>
         </div>
       </div>
       <div class="load-more">

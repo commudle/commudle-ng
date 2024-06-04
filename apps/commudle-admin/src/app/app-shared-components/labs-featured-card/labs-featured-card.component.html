@@ -1,39 +1,39 @@
 <nb-card>
   <nb-card-body>
-    <a [routerLink]="[featuredItem.lab.slug]">
+    <a [routerLink]="['/labs', lab.slug]">
       <div class="featured-projects-card">
         <div class="details">
           <div class="heading">
             <div class="user-profile-card">
-              <app-user-profile-card-small [user]="featuredItem.lab.user"> </app-user-profile-card-small>
+              <app-user-profile-card-small [user]="lab.user"> </app-user-profile-card-small>
             </div>
             <p class="steps">
-              <span>{{ featuredItem.lab.lab_steps_count }}</span
-              >&nbsp;<span>STEP{{ featuredItem.lab.lab_steps_count > 1 ? 'S' : '' }}</span>
+              <span>{{ lab.lab_steps_count }}</span>
+              &nbsp;<span>STEP{{ lab.lab_steps_count > 1 ? 'S' : '' }}</span>
             </p>
           </div>
-          <h5 class="title">{{ featuredItem.lab.name }}</h5>
-          <p class="time">{{ moment(featuredItem.lab.created_at).format('dddd, MMM Do') }}</p>
+          <h5 class="title">{{ lab.name }}</h5>
+          <p class="time">{{ moment(lab.created_at).format('dddd, MMM Do') }}</p>
           <div class="votes-tags">
-            <div class="tags">
+            <div *ngIf="lab.tags.length > 0" class="tags">
               <app-tag
-                [tags]="featuredItem.lab.tags"
-                [backgroundColor]="'rgba(0, 149, 255, 0.1)'"
+                [tags]="lab.tags"
+                [backgroundColor]="'com-bg-Azure-opacity-10'"
                 [size]="'tiny'"
-                [fontColor]="'#101828'"
+                [fontColor]="'com-text-Dark-Jungle-Green'"
                 [maximumTag]="2"
               ></app-tag>
             </div>
             <app-votes-display
               [icon]="'heart-outline'"
-              [votableId]="featuredItem.lab.id"
+              [votableId]="lab.id"
               [votableType]="'Lab'"
               [textAlignment]="'after'"
             ></app-votes-display>
             <!-- <div class="comments">
-                <fa-icon [icon]="faMessage"></fa-icon>
-                <p>views</p>
-              </div> -->
+              <fa-icon [icon]="faMessage"></fa-icon>
+              <p>views</p>
+            </div> -->
           </div>
         </div>
       </div>

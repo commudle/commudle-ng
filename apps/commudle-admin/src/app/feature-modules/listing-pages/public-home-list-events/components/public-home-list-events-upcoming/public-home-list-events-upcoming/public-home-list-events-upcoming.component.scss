@@ -1,8 +1,8 @@
 div {
-  @apply com-m-0;
+  @apply com-m-0 md:com-px-0 com-px-4;
 
   .title {
-    @apply com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-mb-0 md:com-mt-9 com-my-6 com-ml-4 com-mr-0 md:com-mx-0;
+    @apply com-text-2xl com-font-bold com-text-Dark-Jungle-Green md:com-mb-0 md:com-mt-9 com-my-6;
 
     button {
       @apply com-mr-4;
@@ -14,7 +14,7 @@ div {
   }
 
   .event-horizontal-card {
-    @apply com-border-solid com-border-0 md:com-border-b com-border-b-0 md:com-py-6 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray-Light;
+    @apply com-border-solid com-border-0 md:com-border-b com-border-b-0 md:com-py-6 com-pb-4 com-p-0 md:com-px-0 com-mx-0 com-border-Bright-Gray;
   }
 
   .load-more {

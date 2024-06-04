@@ -33,17 +33,34 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
     this.isLoadingUpcoming = true;
     this.showSpinner = true;
     this.eventsService.getEventsList('future', this.limit, this.page_info?.end_cursor).subscribe((data) => {
-      this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.page_info = data.page_info;
-      this.isLoadingUpcoming = false;
-      this.showSpinner = false;
-      this.setSchema();
+      if (data) {
+        this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.page_info = data.page_info;
+        this.isLoadingUpcoming = false;
+        this.showSpinner = false;
+        this.setSchema();
+      }
     });
   }
 
   setSchema() {
     for (const event of this.upcomingEvents) {
+      let location: object, eventStatus: string;
+      if (event.event_locations && Object.keys(event.event_locations).length > 0) {
+        location = {
+          '@type': 'Place',
+          name: event.event_locations[0].name,
+          address: event.event_locations[0].address,
+        };
+        eventStatus = 'OfflineEventAttendanceMode';
+      } else {
+        location = {
+          '@type': 'VirtualLocation',
+          url: environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug,
+        };
+        eventStatus = 'OnlineEventAttendanceMode';
+      }
       this.eventForSchema.push({
         '@context': 'https://schema.org',
         '@type': 'Event',
@@ -53,16 +70,17 @@ export class PublicHomeListEventsUpcomingComponent implements OnInit {
         startDate: event.start_time,
         endDate: event.end_time,
         eventStatus: 'https://schema.org/EventScheduled',
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventAttendanceMode: 'https://schema.org/' + eventStatus,
+        location: location,
         organizer: {
           '@type': 'Organization',
           name: event.kommunity.name,
-          url: environment.app_url + '/communities/' + event.kommunity.slug,
+          url: environment.app_url + '/communities/' + event.kommunity_slug,
         },
         offers: {
           '@type': 'Offer',
           name: event.name,
-          url: environment.app_url + '/communities/' + event.kommunity.slug + '/events/' + event.slug,
+          url: environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug,
         },
       });
     }

@@ -1,0 +1,81 @@
+<div class="judge-card">
+  <nb-card>
+    <nb-card-body>
+      <a [routerLink]="['/users', judge.username]">
+        <div class="image-name">
+          <div class="image">
+            <img [src]="judge.profile_image?.url" [alt]="judge.name" />
+          </div>
+          <div>
+            <div class="name">{{ judge.name }}</div>
+            <div class="username">@{{ judge.username }}</div>
+          </div>
+        </div>
+        <div>
+          <div class="designation">
+            <div class="name">Job Title</div>
+            <div class="value">{{ judge.designation }}</div>
+          </div>
+          <div class="company">
+            <div class="name">Company</div>
+            <div class="value">{{ judge.company }}</div>
+          </div>
+          <div class="twitter" *ngIf="judge.twitter && judge.twitter !== null">
+            <div class="name">Twitter</div>
+            <a [href]="judge.twitter" class="value" target="_blank" (click)="$event.stopPropagation()">{{
+              judge.twitter
+            }}</a>
+          </div>
+          <div class="linkedin" *ngIf="judge.linkedin">
+            <div class="name">Linkedin</div>
+            <a [href]="judge.linkedin" class="value" target="_blank" (click)="$event.stopPropagation()">{{
+              judge.linkedin
+            }}</a>
+          </div>
+          <div class="website" *ngIf="judge.website">
+            <div class="name">Personal Website</div>
+            <a [href]="judge.website" class="value" target="_blank" (click)="$event.stopPropagation()">{{
+              judge.website
+            }}</a>
+          </div>
+        </div>
+      </a>
+      <div>
+        <hr class="divided-line" />
+        <div class="invite-status">
+          <div class="status">
+            <span class="heading">Invite Status</span><br />
+            <span
+              class="value"
+              [ngClass]="{
+                'com-text-primary-500': judge.invite_status === EInvitationStatus.INVITED,
+                'com-text-green-600': judge.invite_status === EInvitationStatus.ACCEPTED,
+                'com-text-red-500': judge.invite_status === EInvitationStatus.REJECTED
+              }"
+            >
+              {{ judge.invite_status | uppercase }}</span
+            >
+          </div>
+          <div class="button">
+            <button
+              nbButton
+              ghost
+              fullWidth
+              status="primary"
+              outline
+              (click)="resendJudgeInvite()"
+              [disabled]="judge.invite_status === EInvitationStatus.ACCEPTED"
+            >
+              Resend Invite
+            </button>
+          </div>
+        </div>
+        <hr class="divided-line" />
+        <div class="actions">
+          <button nbButton ghost status="primary" (click)="editJudge(judge)">Edit</button>
+          <button nbButton ghost status="danger" (click)="deleteJudge(judge.id)">Delete</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

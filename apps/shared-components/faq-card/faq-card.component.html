@@ -1,0 +1,23 @@
+<nb-card>
+  <nb-card-body (click)="toggleShowAnswers()" class="faq-item">
+    <div class="question">
+      <p>{{ faq.question }}</p>
+      <div class="actions">
+        <fa-icon [icon]="showAnswer ? icons.faMinus : icons.faAdd"></fa-icon>
+        <div class="admin-actions" *ngIf="isAdmin">
+          <fa-icon
+            [icon]="icons.faTrash"
+            (click)="$event.stopPropagation(); deleteFaq(faq)"
+            class="com-text-red-500"
+          ></fa-icon>
+          <fa-icon
+            [icon]="icons.faEdit"
+            (click)="$event.stopPropagation(); editFaq(faq)"
+            class="com-text-primary-500"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+    <p class="answer" *ngIf="showAnswer">{{ faq.answer }}</p>
+  </nb-card-body>
+</nb-card>

@@ -23,9 +23,12 @@ export interface ICommunity {
   is_visible: boolean;
   payments_enabled: boolean;
   emails_visible: boolean;
+  hackathon_enabled: boolean;
   community_channels_count?: number;
   completed_events_count?: number;
   upcoming_events?: IUpcomingEvents[];
+  upcoming_events_count: number;
+  has_refund_policy: boolean;
 }
 
 export interface ICommunitySearch extends ICommunity {

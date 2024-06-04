@@ -6,23 +6,30 @@
 >
   <nb-card-body>
     <div class="heading">
-      <button nbButton status="basic" class="image">
+      <button *ngIf="showStarsEmojiOnHeading" nbButton status="basic" class="image">
         <img alt="Experts" src="{{ staticAssets.emojis.stars }}" title="Experts" />
+      </button>
+      <button *ngIf="showFlaskEmojiOnHeading" nbButton class="emoji" size="small">
+        <fa-icon [icon]="faFlask"></fa-icon>
       </button>
       <div class="text">
         <h3 class="title">Featured Labs</h3>
         <h4 class="sub-heading">Check out our featured tutorial</h4>
       </div>
     </div>
-    <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    <div class="skeleton-cards">
+      <app-skeleton-cards [ImageShapeCircle]="false" [cards]="4" *ngIf="showSpinner"></app-skeleton-cards>
+    </div>
     <div
       [ngClass]="{
         'featured-communities-scroll custom-scrollbar': isMobileView || showCardsHorizontal,
         'featured-communities': !(isMobileView || showCardsHorizontal)
       }"
     >
-      <div class="featured-communities-card" *ngFor="let featuredItem of featuredItems">
-        <commudle-labs-featured-card [featuredItem]="featuredItem"></commudle-labs-featured-card>
+      <div *ngFor="let featuredItem of featuredItems">
+        <div class="featured-communities-card">
+          <commudle-labs-featured-card [lab]="featuredItem.lab"></commudle-labs-featured-card>
+        </div>
       </div>
     </div>
   </nb-card-body>

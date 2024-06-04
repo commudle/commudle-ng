@@ -1,0 +1,61 @@
+<nb-card>
+  <nb-card-header> Communications </nb-card-header>
+  <nb-card-body>
+    <div>
+      <div class="group-name">Registrations</div>
+      <div class="group-values">
+        <button nbButton status="primary" (click)="openDialogBox(SendRegistrationsByMail)">
+          Send Registration Invite
+        </button>
+      </div>
+    </div>
+    <div>
+      <div class="group-name">Winner</div>
+      <div class="group-values">
+        <button nbButton status="primary" (click)="openDialogBoxForWinnerAnnouncement(hackathonId)">
+          Send Winner Announcement Email
+        </button>
+      </div>
+    </div>
+    <div>
+      <div class="group-name">Winner</div>
+      <div class="group-values">
+        <button nbButton status="primary" (click)="openDialogBoxForStatusFilterGeneralEmail(hackathonId)">
+          Status filter general email
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #SendRegistrationsByMail let-ref="dialogRef">
+  <nb-card class="mail-popup">
+    <nb-card-header>
+      <span> Pre-formatted email</span>
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
+        <!-- <nb-icon icon="close"></nb-icon> -->X
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <commudle-alert
+        [info]="true"
+        message="This will send a pre-formatted email and a notification to all members of the community"
+      ></commudle-alert>
+      <br />
+      <div>
+        <label for="message">Message (optional)</label>
+        <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="SendRegistrationsMailer()">Send</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+<!-- 
+<ng-template #SendRegistrationsByMail>
+  <nb-card>
+    <nb-card-header> </nb-card-header>
+    <nb-card-body></nb-card-body>
+  </nb-card>
+</ng-template> -->

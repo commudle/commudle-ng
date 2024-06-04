@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { ICommunity } from '@commudle/shared-models';
 import { SeoService } from '@commudle/shared-services';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
   selector: 'app-community-channel',
@@ -15,8 +16,8 @@ import { SeoService } from '@commudle/shared-services';
   styleUrls: ['./community-channel.component.scss'],
 })
 export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() parent: ICommunity | ICommunityGroup;
   @Input() selectedChannelId: number;
-  @Input() selectedCommunity: ICommunity;
   selectedChannel: ICommunityChannel;
   subscriptions: Subscription[] = [];
   discussion: IDiscussion;
@@ -36,7 +37,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.communityChannelManagerService.communityChannels$.subscribe((data) => {
+      this.communityChannelManagerService.channelsByGroups$.subscribe((data) => {
         if (data && !this.initialized) {
           this.initialized = true;
         } else if (this.initialized && this.selectedChannel) {
@@ -57,7 +58,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
     this.initialize();
     this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
       this.selectedChannel = data;
-      this.setMeta();
     });
   }
 
@@ -89,13 +89,5 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleMembersList() {
     this.showMembersList = !this.showMembersList;
-  }
-
-  setMeta() {
-    this.seoService.setTags(
-      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
-      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-      this.selectedCommunity.logo_path,
-    );
   }
 }

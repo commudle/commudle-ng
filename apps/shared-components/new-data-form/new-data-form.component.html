@@ -1,13 +1,20 @@
 <div class="data-form-container">
-  <form class="create-data-form" [formGroup]="createDataForm">
+  <form [formGroup]="createDataForm" class="create-data-form">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameField">
+      <nb-card *ngIf="showNameField && showNameDescriptionFiled">
         <nb-card-body class="card-body">
           <div role="group">
             <label fullWidth>
               Name
               <span class="required-question">*</span>
-              <input type="text" nbInput fullWidth formControlName="name" placeholder="Title" />
+              <input
+                [readOnly]="formName.length > 0"
+                formControlName="name"
+                fullWidth
+                nbInput
+                placeholder="Title"
+                type="text"
+              />
             </label>
             <span
               *ngIf="
@@ -16,7 +23,7 @@
                 createDataForm.get('data_form').get('name').errors.required
               "
             >
-              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
             </span>
           </div>
 
@@ -24,13 +31,7 @@
             <div class="description">
               <label fullWidth>
                 Description
-                <textarea
-                  formControlName="description"
-                  nbInput
-                  fullWidth
-                  formControlName="description"
-                  placeholder="(Optional)"
-                ></textarea>
+                <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
               </label>
             </div>
           </div>
@@ -42,11 +43,11 @@
           *ngFor="let question of createDataForm['controls'].data_form['controls'].questions['controls']; let i = index"
           cdkDrag
         >
-          <div class="custom-placeholder" *cdkDragPlaceholder></div>
-          <div formArrayName="questions" class="custom-preview" *cdkDragPreview>
+          <div *cdkDragPlaceholder class="custom-placeholder"></div>
+          <div *cdkDragPreview class="custom-preview" formArrayName="questions">
             <nb-card [formGroupName]="i" class="questions-form-section com-w-80 md:com-w-500px">
               <nb-card-header class="com-p-0 com-flex com-justify-center">
-                <button nbButton ghost size="small">
+                <button ghost nbButton size="small">
                   <nb-icon icon="move-outline"></nb-icon>
                 </button>
               </nb-card-header>
@@ -55,7 +56,7 @@
                   <label>
                     Question {{ i + 1 }}
                     <span *ngIf="question.get('required').value" class="required-question">*</span>
-                    <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required />
+                    <input formControlName="title" fullWidth nbInput placeholder="Title*" required type="text" />
                   </label>
                 </div>
               </nb-card-body>
@@ -64,7 +65,7 @@
           <div formArrayName="questions">
             <nb-card [formGroupName]="i" class="questions-form-section">
               <nb-card-header cdkDragHandle class="drag-button">
-                <button nbButton ghost size="small">
+                <button ghost nbButton size="small">
                   <nb-icon icon="move-outline"></nb-icon>
                 </button>
               </nb-card-header>
@@ -75,7 +76,7 @@
                       <label>
                         Question {{ i + 1 }}
                         <span *ngIf="question.get('required').value" class="required-question">*</span>
-                        <input type="text" nbInput fullWidth formControlName="title" placeholder="Title" required />
+                        <input formControlName="title" fullWidth nbInput placeholder="Title" required type="text" />
                       </label>
                       <span
                         *ngIf="
@@ -84,15 +85,15 @@
                           question.get('title').errors.required
                         "
                       >
-                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                       </span>
                       <button
+                        (click)="toggleDescriptionField(i)"
+                        class="add-description-button"
+                        ghost
                         nbButton
                         size="small"
-                        ghost
-                        (click)="toggleDescriptionField(i)"
                         status="primary"
-                        class="add-description-button"
                       >
                         <nb-icon
                           [icon]="question?.get('show_description')?.value ? 'close-outline' : 'plus-outline'"
@@ -100,23 +101,18 @@
                         {{ question?.get('show_description')?.value ? 'Remove Description' : 'Add Description' }}
                       </button>
                       <div *ngIf="question?.get('show_description')?.value" class="description-textbox">
-                        <textarea
-                          nbInput
-                          fullWidth
-                          formControlName="description"
-                          placeholder="Description (Optional)"
-                        ></textarea>
+                        <editor [init]="tinyMCE" class="editor" formControlName="description"></editor>
                       </div>
                     </div>
 
                     <div class="question-settings">
                       <div class="dropdown">
-                        <nb-icon nbPrefix icon="question-mark-circle-outline"></nb-icon>
+                        <nb-icon icon="question-mark-circle-outline" nbPrefix></nb-icon>
 
                         <select
-                          formControlName="question_type_id"
                           (change)="questionTypeChange($event, i)"
                           class="com-border-0"
+                          formControlName="question_type_id"
                         >
                           <option *ngFor="let qt of questionTypes" [ngValue]="qt.id">
                             {{ qt.name | capitalizeAndRemoveUnderscore }}
@@ -129,24 +125,24 @@
                           question.get('question_type_id').invalid && question.get('question_type_id').errors.required
                         "
                       >
-                        <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                        <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                       </span>
                     </div>
 
                     <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
                       <div
+                        *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                         class="choices-container"
                         formArrayName="question_choices"
-                        *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
                       >
                         <div class="choice-container com-flex com-items-center">
                           <div [formGroupName]="chi" class="com-mb-2">
                             <input
-                              type="text"
-                              nbInput
                               formControlName="title"
+                              nbInput
                               placeholder="Choice {{ chi + 1 }}"
                               required
+                              type="text"
                             />
                             <span
                               *ngIf="
@@ -155,26 +151,26 @@
                                 choice.get('title').errors.required
                               "
                             >
-                              <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                             </span>
                           </div>
 
                           <div class="close-circle-outline">
                             <nb-icon
-                              icon="close-circle-outline"
                               (click)="removeQuestionChoiceButtonClick(i, chi)"
                               class="com-ml-2"
+                              icon="close-circle-outline"
                             ></nb-icon>
                           </div>
                         </div>
                       </div>
                       <button
+                        (click)="addQuestionChoiceButtonClick(i)"
+                        class="add-choice-button"
+                        hero
                         nbButton
                         size="tiny"
-                        (click)="addQuestionChoiceButtonClick(i)"
                         status="warning"
-                        hero
-                        class="add-choice-button"
                       >
                         <nb-icon icon="plus-outline"></nb-icon>
                         &nbsp; Add Choice
@@ -185,38 +181,38 @@
                 <div class="question-form-footer">
                   <div class="com-align-middle com-flex">
                     <button
+                      (click)="addQuestionButtonClick(i + 1)"
+                      class="footer-icons add-question-footer"
+                      ghost
                       nbButton
                       size="small"
-                      ghost
-                      (click)="addQuestionButtonClick(i + 1)"
                       status="primary"
-                      class="footer-icons add-question-footer"
                     >
                       <nb-icon class="footer-icons" icon="plus-circle-outline" status="primary"></nb-icon>
                       &nbsp; Add Question Below
                     </button>
-                    <nb-toggle size="tiny" labelPosition="right" class="toggle" formControlName="required"
+                    <nb-toggle class="toggle" formControlName="required" labelPosition="right" size="tiny"
                       ><span>Required</span></nb-toggle
                     >
                   </div>
                   <button
+                    (click)="removeQuestionButtonClick(i)"
+                    class="footer-icons delete-question-footer"
+                    ghost
                     nbButton
                     size="small"
-                    ghost
-                    (click)="removeQuestionButtonClick(i)"
                     status="danger"
-                    class="footer-icons delete-question-footer"
                   >
                     <nb-icon icon="trash-outline" status="danger"></nb-icon>
                     Delete
                   </button>
                   <div class="context-menu">
                     <button
-                      nbButton
                       (click)="setContextIndex(i)"
                       [nbContextMenu]="menuItem"
-                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
                       class="context-button"
+                      nbButton
+                      nbContextMenuTag="data-form-question-context-menu-{{ i }}"
                     >
                       <nb-icon icon="more-vertical-outline"></nb-icon>
                     </button>
@@ -227,15 +223,15 @@
           </div>
         </div>
         <div *ngIf="!maxQuestionCount || maxQuestionCount > totalQuestions" class="add-question-button">
-          <button nbButton size="medium" (click)="addQuestionButtonClick(totalQuestions + 1)" status="primary">
+          <button (click)="addQuestionButtonClick(totalQuestions + 1)" nbButton size="medium" status="primary">
             <nb-icon icon="plus-outline"></nb-icon>
             &nbsp; Add Question
           </button>
         </div>
       </div>
 
-      <div class="submit-button">
-        <button type="submit" status="primary" nbButton fullWidth size="medium" (click)="saveDataForm()">
+      <div [ngClass]="{ sticky: stickSubmitButtonBottom }" class="submit-button">
+        <button (click)="saveDataForm()" fullWidth nbButton size="medium" status="primary" type="submit">
           {{ submitButtonText() }}
         </button>
       </div>

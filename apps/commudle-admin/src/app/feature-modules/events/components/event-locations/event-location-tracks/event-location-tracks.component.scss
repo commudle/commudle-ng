@@ -10,7 +10,7 @@
 
       nb-icon {
         font-size: 1.3rem;
-        @apply com-text-white;
+        @apply com-text-tWhite;
       }
     }
 
@@ -27,30 +27,67 @@
     }
 
     nb-accordion-item-body {
-      @apply com-p-0;
+      @apply com-p-0 com-bg-white;
+      .add-session {
+        @apply com-flex com-justify-center com-text-primary-500 com-cursor-pointer com-text-base;
+      }
+      ::ng-deep {
+        div {
+          .item-body {
+            @apply com-px-0 md:com-px-1;
+          }
+        }
+      }
+      .group-date {
+        @apply com-mt-4 com-mb-1 com-font-bold;
+      }
       nb-list {
         @apply com-m-0 com-p-0;
         nb-list-item {
           display: flex;
-          @apply com-border-t-0 com-py-2 com-items-stretch;
+          @apply com-border-t-0 com-py-3 com-items-stretch com-px-1 md:com-px-4;
 
           .session-time {
-            @apply com-pr-2 com-flex com-justify-center com-flex-col;
-            width: 60px;
-            border-right: 3px solid lightgrey;
+            @apply com-pr-1 md:com-pr-3 md:com-flex com-gap-2 md:com-w-28 com-border-0 com-border-r-2 com-border-solid com-border-Bright-Gray com-pt-px;
 
             p {
               margin: 0;
               text-align: right;
             }
-
-            p:nth-of-type(1) {
-              font-size: 1.2rem;
+            .start-time {
+              @apply com-text-base md:com-text-sm;
+            }
+            .end-time {
+              @apply com-text-xs md:com-text-sm;
+            }
+          }
+          .session-title {
+            @apply com-w-56 md:com-w-64 com-flex com-justify-between com-flex-col;
+            p {
+              @apply com-my-0 com-text-sm md:com-text-base com-font-semibold com-ml-4;
+            }
+          }
+          .action-buttons {
+            @apply com-bg-[#6B72801A]  com-h-7 com-rounded-lg com-flex com-gap-3 com-items-center com-px-2;
+            .edit,
+            .attachment,
+            .public {
+              @apply com-text-primary-500 com-cursor-pointer;
             }
 
-            p:nth-of-type(2) {
-              margin-top: 0.2rem;
-              font-size: 0.9rem;
+            .delete {
+              @apply com-text-red-500 com-ml-2 com-cursor-pointer;
+            }
+          }
+          .speakers {
+            @apply com-flex com-flex-wrap com-gap-2 com-w-20 md:com-w-28 com-justify-end;
+            .avatar {
+              @apply com-h-7 com-w-7 com-overflow-hidden com-border com-border-solid com-border-Bright-Gray com-bg-tWhite;
+              border-radius: 50%;
+
+              img {
+                width: 100%;
+              }
             }
           }
 
@@ -75,10 +112,10 @@
             }
 
             .links {
-              @apply com-flex com-flex-row;
+              @apply com-flex com-flex-row com-gap-7;
 
               .session-links {
-                @apply com-mt-1 com-mr-7;
+                @apply com-mt-1;
 
                 .add-session,
                 .edit-session {
@@ -102,6 +139,21 @@
               }
             }
           }
+        }
+      }
+      .mobile-action-buttons {
+        @apply com-flex com-gap-4 com-ml-3 com-mt-3;
+        div {
+          @apply com-bg-[#6B72801A] com-w-7  com-h-7 com-rounded-lg com-flex com-gap-3 com-items-center com-justify-center;
+        }
+        .edit,
+        .attachment,
+        .public {
+          @apply com-text-primary-500 com-cursor-pointer;
+        }
+
+        .delete {
+          @apply com-text-red-500  com-cursor-pointer;
         }
       }
       .edit-outline {
@@ -136,4 +188,8 @@
   select {
     @apply com-bg-[#eef2f7] com-cursor-pointer com-w-full;
   }
+}
+
+nb-accordion-item {
+  @apply com-bg-white;
 }

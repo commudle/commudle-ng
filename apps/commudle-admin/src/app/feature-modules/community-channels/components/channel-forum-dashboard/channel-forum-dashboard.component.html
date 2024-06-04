@@ -1,0 +1,90 @@
+<div class="community-channels-dashboard page-padding">
+  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-[72px]': !sidebarExpanded }">
+    <commudle-sidebar
+      [isExpanded]="sidebarExpanded"
+      (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
+      [expandedWidth]="ESidebarWidth.XL"
+      [forWindow]="false"
+    >
+      <div class="com-flex">
+        <div class="left-section">
+          <div
+            class="icons !com-bg-[#EFF9FF]"
+            (click)="openChannelOrForums(discussionType.CHANNEL)"
+            title="Channels"
+            [ngClass]="{ active: !discussionTypeForum }"
+          >
+            <fa-icon [icon]="faHashtag" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
+            <span class="text">Channels</span>
+          </div>
+          <div
+            class="icons !com-bg-[#EFF9FF]"
+            (click)="openChannelOrForums(discussionType.FORUM)"
+            title="Forums"
+            [ngClass]="{ active: discussionTypeForum }"
+          >
+            <fa-icon [icon]="faMessage" class="com-mx-auto com-text-[#0095FF]"></fa-icon>
+            <span class="text">Forums</span>
+          </div>
+        </div>
+        <div *ngIf="sidebarExpanded" [ngClass]="{ show: showCommunityList }" class="community-channel-list">
+          <!-- channel list -->
+          <div *ngIf="channelsList && !forumsList && !discussionTypeForum">
+            <app-community-channel-list
+              [groupedChannels]="channels"
+              (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
+              [isCommunityOrganizer]="isCommunityOrganizer"
+            ></app-community-channel-list>
+          </div>
+
+          <!-- forum list -->
+          <div *ngIf="forumsList && !channelsList && discussionTypeForum">
+            <app-community-forum-list
+              [isCommunityOrganizer]="isCommunityOrganizer"
+              [selectedForumName]="forumName"
+              (updateSelectedForum)="updateSelectedChannelOrForum($event)"
+            ></app-community-forum-list>
+          </div>
+        </div>
+      </div>
+    </commudle-sidebar>
+  </div>
+
+  <div class="community-channel-discussion">
+    <!-- channel card (landing page)-->
+    <div *ngIf="channelsCards && !forumsCards && !(token || emailToken)">
+      <app-community-channels-dashboard-channel-list></app-community-channels-dashboard-channel-list>
+    </div>
+
+    <!-- //form cards (landing page) -->
+    <div *ngIf="forumsCards && !channelsCards && !(token || emailToken)" class="com-h-full">
+      <commudle-community-channels-dashboard-forum-list
+        (updateSelectedForum)="updateSelectedChannelOrForum($event)"
+      ></commudle-community-channels-dashboard-forum-list>
+    </div>
+
+    <!-- //Channel message Component -->
+    <div *ngIf="channelMessage && !forumMessage">
+      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
+    </div>
+    <div *ngIf="token">
+      <app-join-by-token></app-join-by-token>
+    </div>
+    <div *ngIf="emailToken">
+      <app-email-join></app-email-join>
+    </div>
+
+    <!-- //Form Name List shows after selecting form group -->
+    <commudle-community-forum
+      *ngIf="forumsNamesList"
+      [isCommunityOrganizer]="isCommunityOrganizer"
+      (updateSelectedForum)="checkSelectedForum()"
+    ></commudle-community-forum>
+
+    <!-- //Form message component shows after selecting form name  -->
+    <commudle-community-forum-message
+      *ngIf="forumMessage && !forumsNamesList"
+      (updateSelectedForum)="updateSelectedChannelOrForum($event)"
+    ></commudle-community-forum-message>
+  </div>
+</div>

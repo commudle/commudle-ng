@@ -6,7 +6,9 @@ p {
   @apply com-mb-10 com-overflow-hidden com-relative com-p-0 com-pt-8 md:com-mx-0 com-mx-4;
 
   .communities-featured-heading {
-    @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6;
+    a {
+      @apply com-text-2xl com-text-Dark-Jungle-Green com-m-0 com-mb-6 com-no-underline;
+    }
   }
 
   .communities-featured-list {
@@ -30,14 +32,14 @@ p {
           }
 
           .no-banner-image {
-            @apply com-h-[46px] com-bg-Anti-Flash-White;
+            @apply com-h-[46px] com-bg-zinc-100;
           }
 
           .community-image {
             @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-[52px] com-ml-3 com-mt-[20px] com-overflow-hidden com-w-[52px] com-flex com-absolute com-top-0 com-left-0;
 
             img {
-              @apply com-bg-white com-h-auto com-w-full com-object-contain com-object-center;
+              @apply com-bg-tWhite com-h-auto com-w-full com-object-contain com-object-center;
             }
           }
         }
@@ -50,7 +52,7 @@ p {
           }
 
           .featured-community-reason {
-            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3;
+            @apply com-mt-2 com-text-xs com-text-gunmetal com-line-clamp-3 com-h-8;
           }
 
           .members-events {
@@ -58,7 +60,7 @@ p {
 
             .members,
             .events-organized {
-              @apply com-flex com-items-center;
+              @apply com-flex com-items-center com-text-Yankees-Blue;
               nb-icon {
                 @apply com-h-4 com-w-4 com-mr-1 com-flex-shrink-0;
               }
@@ -70,7 +72,7 @@ p {
           }
 
           .featured-community-tags {
-            @apply com-h-6 com-mx-0 com-my-4 com-overflow-hidden;
+            @apply com-h-8 com-mx-0 com-my-4 com-overflow-hidden;
           }
         }
       }

@@ -1,18 +1,22 @@
 .dialog-box {
-  @apply com-bg-black com-p-4 com-rounded-lg;
+  @apply com-bg-tblack com-p-4 com-rounded-lg;
 
   h2 {
-    @apply com-m-0 com-mb-4 com-text-white;
+    @apply com-m-0 com-mb-4 com-text-tWhite;
     .user-shield {
       @apply com-text-primary-500;
     }
   }
   .consent-1,
   .consent-2 {
-    @apply com-mb-3 com-ml-1 com-text-white;
+    @apply com-mb-3 com-ml-1 com-text-tWhite;
   }
 
   .submit-button {
     @apply com-mt-2;
+  }
+
+  a {
+    @apply com-text-Chrome-Yellow;
   }
 }

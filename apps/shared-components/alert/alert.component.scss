@@ -10,13 +10,15 @@
 }
 
 .info {
-  @apply com-mb-0 com-border-solid com-flex com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-py-3 com-pl-6px com-pr-14px com-m-auto com-items-start;
-
+  @apply com-grid com-gap-1;
+  grid-template-columns: max-content auto;
   nb-icon {
-    @apply com-text-lg com-text-New-Car com-mr-6px md:com-text-2xl com-h-auto com-pt-2px com-m-0;
+    @apply com-text-sm com-text-New-Car  com-m-0;
   }
-
   p {
-    @apply com-text-xs com-font-normal com-leading-4 com-text-New-Car com-p-0 com-m-0;
+    @apply com-text-xs com-font-normal com-text-New-Car com-my-0;
+  }
+  &.blue-border {
+    @apply com-border com-border-solid com-border-primary-500 com-bg-Alice-Blue com-rounded-md com-p-2;
   }
 }

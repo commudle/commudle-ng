@@ -1,5 +1,5 @@
 nb-card {
-  @apply com-m-0 md:com-max-h-[165px] com-h-[144px] com-w-[316px] md:com-w-auto com-max-h-full md:com-h-auto;
+  @apply com-m-0 md:com-h-[166px] com-h-[144px] com-w-full;
 
   nb-card-body {
     @apply com-p-3 com-overflow-hidden;
@@ -8,10 +8,10 @@ nb-card {
       @apply com-no-underline;
 
       .tags-and-logo {
-        @apply com-flex com-justify-between md:com-mb-4 com-mb-2 com-max-h-6 com-overflow-hidden com-flex-nowrap;
+        @apply com-flex com-justify-between md:com-mb-4 com-mb-2 com-max-h-7 com-overflow-hidden com-flex-nowrap;
 
         img {
-          @apply com-h-5 com-w-5 com-rounded-full com-object-contain com-object-center com-ml-4;
+          @apply com-h-5 com-w-5 com-rounded-full com-object-contain com-object-center com-ml-4 com-bg-tWhite;
         }
       }
 

@@ -1,0 +1,41 @@
+nb-card-header {
+  @apply com-flex com-gap-4 com-flex-row;
+}
+.heading {
+  @apply com-text-Auro-Metal-Saurus com-text-lg;
+}
+.group-name {
+  @apply com-text-Yankees-Blue com-text-base com-font-semibold com-mt-6;
+}
+
+.group-values {
+  @apply com-flex com-gap-6 com-flex-wrap com-my-2;
+  label {
+    @apply com-relative com-inline-block com-border com-border-solid com-border-primary-500 com-w-64 com-pl-8 com-pr-4 com-py-2 com-text-primary-500 com-font-semibold com-text-sm  com-cursor-pointer com-rounded hover:com-bg-primary-100/50;
+    input {
+      @apply com-cursor-pointer com-absolute com-top-0 com-left-0 com-opacity-0;
+    }
+    .checkmark {
+      @apply com-absolute com-left-1.5 com-h-5 com-w-5 com-bg-white com-border com-border-solid com-border-[#ccc] com-rounded com-flex com-justify-center com-items-center;
+    }
+    &.active {
+      @apply com-bg-primary-500 com-text-white;
+    }
+    &.selected {
+      @apply com-bg-[#E4E7EC] com-pointer-events-none com-cursor-not-allowed com-text-primary-500 #{!important};
+    }
+  }
+
+  .custom-checkbox input:checked + .checkmark:after {
+    content: '\2713'; /* Unicode character for checkmark */
+    @apply com-text-primary-500 com-text-base;
+  }
+
+  .custom-checkbox:hover .checkmark {
+    @apply com-bg-Anti-Flash-White;
+  }
+}
+
+.custom-questions {
+  @apply com-py-4 com-mt-3 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+}

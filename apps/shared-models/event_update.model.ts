@@ -1,3 +1,4 @@
+import { IAttachedFile } from '@commudle/shared-models';
 import { IUser } from './user.model';
 
 export interface IEventUpdate {
@@ -6,4 +7,5 @@ export interface IEventUpdate {
   user: IUser;
   details: string;
   created_at: Date;
+  images: IAttachedFile[];
 }

@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <div *ngIf="community" class="home-component">
@@ -42,7 +42,7 @@
                   class="com-flex com-justify-between md:com-items-center com-flex-col com-my-2 md:com-flex-row md:com-m-0"
                 >
                   <div class="com-grid com-grid-cols-1 com-items-start md:com-grid-cols-2 md:com-items-center">
-                    <h1>{{ community.name }}</h1>
+                    <h1 class="com-text-Yankees-Blue">{{ community.name }}</h1>
                     <app-share-button
                       *appBreakpoints="'>md'"
                       [content]="environment.app_url + '/communities/' + community.slug"
@@ -178,7 +178,7 @@
               </div>
             </div>
           </nb-card-body>
-          <nb-card-footer class="com-pb-0 com-px-0 com-sticky com-top-16 com-z-20 sticky">
+          <nb-card-footer class="menu-items-footer">
             <div class="page-menu">
               <div class="menu-items d-flex">
                 <a
@@ -190,9 +190,37 @@
                   <nb-icon icon="info" status="basic"></nb-icon>
                   <span class="title">About</span>
                 </a>
-                <a [routerLink]="['events']" class="d-flex" routerLinkActive="active">
+                <a [routerLink]="['events']" class="d-flex com-relative" routerLinkActive="active">
+                  <app-badge
+                    *ngIf="community.upcoming_events_count > 0"
+                    class="-com-mt-4"
+                    text="New"
+                    [fontColor]="'com-text-tWhite'"
+                    [fontSize]="'small'"
+                    [borderRadius]="'round'"
+                    [color]="'com-bg-orange-500'"
+                    [position]="'top right'"
+                  ></app-badge>
                   <nb-icon icon="calendar" status="info"></nb-icon>
                   <span class="title">Events</span>
+                </a>
+                <a
+                  [routerLink]="['hackathons']"
+                  class="d-flex"
+                  routerLinkActive="active"
+                  *ngIf="community.hackathon_enabled"
+                >
+                  <img
+                    [src]="
+                      isHackathonActive
+                        ? environment.base_url + '/icons/hackathon-icon-primary.svg'
+                        : darkMode
+                        ? environment.base_url + '/icons/hackathon-icon-white.svg'
+                        : environment.base_url + '/icons/hackathon-icon-gray.svg'
+                    "
+                    alt="Hackathon Icon"
+                  />
+                  <span class="title">Hackathons</span>
                 </a>
                 <!-- <a [routerLink]="['resources']" routerLinkActive="active">
                   <nb-icon icon="award" status="info"></nb-icon>
@@ -210,6 +238,10 @@
                   <nb-icon icon="hash" status="success"></nb-icon>
                   <span class="title">Channels</span>
                 </a>
+                <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
+                  <fa-icon [icon]="faMessage" class="com-text-2xl com-leading-none"></fa-icon>
+                  <span class="title">Forums</span>
+                </a>
                 <div *ngIf="isOrganizer" class="com-relative" (click)="gtmService()">
                   <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
                     <nb-badge
@@ -217,11 +249,18 @@
                       [text]="notificationCount.toString()"
                       status="danger"
                     ></nb-badge>
-
                     <nb-icon icon="bell" status="success"></nb-icon>
                     <span class="title">Activity</span>
                   </a>
                 </div>
+                <a *ngIf="showNewslettersTab" [routerLink]="['newsletters']" class="d-flex" routerLinkActive="active">
+                  <fa-icon [icon]="faNewspaper" class="com-text-2xl com-leading-none"></fa-icon>
+                  <span class="title">Newsletters</span>
+                </a>
+                <a class="d-flex" [nbContextMenu]="items" nbContextMenuTrigger="hover" *ngIf="items.length > 0">
+                  <fa-icon [icon]="faCaretDown" class="com-text-2xl com-leading-none"></fa-icon>
+                  <span class="title">More</span>
+                </a>
               </div>
             </div>
           </nb-card-footer>

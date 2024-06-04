@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 // import getImagePalette from 'image-palette-core';
 import { FeaturedCommunitiesService } from 'apps/commudle-admin/src/app/services/featured-communities.service';
+import { FeaturedItemsService } from 'apps/commudle-admin/src/app/services/featured-items.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
-import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'app-homepage-featured-communities',
@@ -11,22 +12,21 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageFeaturedCommunitiesComponent implements OnInit {
-  featuredCommunities: IFeaturedCommunity[] = [];
+  featuredCommunities: IFeaturedItems[] = [];
 
   environment = environment;
 
-  constructor(
-    private featuredCommunitiesService: FeaturedCommunitiesService,
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(private featuredItemsService: FeaturedItemsService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getFeaturedCommunities();
   }
 
   getFeaturedCommunities(): void {
-    this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
-      this.featuredCommunities = value.featured_communities.slice(0, 4);
+    this.featuredItemsService.getFeaturedItems('Kommunity').subscribe((data) => {
+      this.featuredCommunities = this.featuredCommunities
+        .concat(data.page.reduce((acc, value) => [...acc, value.data], []))
+        .slice(0, 4);
       this.extractPalette();
       this.changeDetectorRef.markForCheck();
     });

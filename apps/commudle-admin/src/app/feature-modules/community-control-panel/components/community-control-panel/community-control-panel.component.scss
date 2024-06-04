@@ -25,11 +25,10 @@
   display: flex;
 
   > div {
-    overflow: hidden;
-    width: 100px;
+    @apply com-h-24 com-w-24 com-overflow-hidden com-my-3;
 
     img {
-      width: 100%;
+      @apply com-bg-tWhite com-h-full com-object-contain com-rounded-md com-w-full com-p-1;
     }
   }
 
@@ -52,13 +51,17 @@ section {
 }
 
 .menu {
-  @apply com-border-0 com-border-b com-border-solid com-border-gray-200 com-w-auto com-overflow-auto com-scrollbar-hide;
+  @apply com-border-0 com-border-b com-border-solid com-border-gray-200 com-w-auto com-overflow-auto com-scrollbar-hide com-pt-4 com-mx-6;
   a {
     @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
     nb-icon,
     fa-icon {
       @apply com-text-gray-500;
+    }
+
+    img {
+      @apply com-mb-1;
     }
 
     .title {
@@ -84,5 +87,12 @@ section {
     .title {
       @apply com-text-Blueberry;
     }
+  }
+}
+
+.disabled {
+  fa-icon,
+  span {
+    @apply com-text-gray-400 #{!important};
   }
 }

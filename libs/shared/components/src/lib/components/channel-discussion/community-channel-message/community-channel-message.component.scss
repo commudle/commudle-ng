@@ -27,7 +27,7 @@
   @apply com-flex com-p-2 com-gap-3;
 
   .avatar {
-    @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0;
+    @apply com-w-8 com-h-8 com-rounded-full com-object-cover com-shrink-0 com-bg-tWhite;
   }
 
   .message {
@@ -38,7 +38,7 @@
 
       .name {
         text-decoration: none;
-        @apply com-font-medium com-text-sm com-text-slate-900 hover:com-underline;
+        @apply com-font-medium com-text-sm com-text-gray-900 hover:com-underline;
       }
 
       .expert-icon {
@@ -46,7 +46,7 @@
       }
 
       .time {
-        @apply com-text-xs com-text-slate-500;
+        @apply com-text-xs com-text-gray-500;
       }
       .edited {
         @apply com-text-Auro-Metal-Saurus com-italic com-text-xs;

@@ -4,14 +4,23 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { SeoService } from 'apps/shared-services/seo.service';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { DOCUMENT } from '@angular/common';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogService, NbMenuService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { faCaretDown, faMessage, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
+import { EDbModels } from '@commudle/shared-models';
 
+interface CustomMenuItem {
+  title: string;
+  slug: string;
+}
 @Component({
   selector: 'app-home-community',
   templateUrl: './home-community.component.html',
@@ -27,10 +36,18 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   ENotificationSenderTypes = ENotificationSenderTypes;
   uploadedBannerFile: File;
   uploadedBanner: any;
+  showNewslettersTab = false;
 
   subscriptions: Subscription[] = [];
+  faCaretDown = faCaretDown;
+  faMessage = faMessage;
+  faNewspaper = faNewspaper;
+
+  items = [{ title: 'pages', slug: 'pages' }];
 
   @ViewChild('updateBannerDialogBox') updateBannerDialogBox: TemplateRef<any>;
+  isHackathonActive = false;
+  darkMode: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,33 +59,48 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private dialogService: NbDialogService,
     private gtm: GoogleTagManagerService,
     private router: Router,
+    private customPageService: CustomPageService,
+    private nbMenuService: NbMenuService,
+    private newsletterService: NewsletterService,
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit(): void {
+    this.items = [];
+    this.darkModeService.isDarkMode$.subscribe((data) => {
+      this.darkMode = data;
+    });
+    this.isHackathonActive = this.router.url.toString().includes('/hackathons');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
+        this.isHackathonActive = this.router.url.toString().includes('/hackathons');
       }
     });
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      this.getCustomPages();
       this.updateHeaderVariation();
-
-      this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '';
+      this.newsletterService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
+        if (data.length > 0) this.showNewslettersTab = true;
+      }),
+        (this.uploadedBanner = this.community.banner_image ? this.community.banner_image.url : '');
       if (this.community.is_visible) {
         this.seoService.setTags(this.community.name, this.community.mini_description, this.community.logo_path);
       } else {
         this.seoService.noIndex(true);
       }
+      this.subscriptions.push(
+        this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+          if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+            this.isOrganizer = true;
+            this.getNotificationsCount(this.community.id);
+          } else {
+            this.isOrganizer = false;
+          }
+        }),
+      );
     });
-    this.subscriptions.push(
-      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
-          this.isOrganizer = true;
-          this.getNotificationsCount(this.community.id);
-        }
-      }),
-    );
   }
 
   ngOnDestroy(): void {
@@ -76,6 +108,25 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
+  getCustomPages() {
+    this.subscriptions.push(
+      this.customPageService.getPIndex(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
+        this.items = [];
+        for (const page of data) {
+          const newItem = { title: page.title, slug: page.slug };
+          this.items.push(newItem);
+        }
+      }),
+    ),
+      this.nbMenuService
+        .onItemClick()
+        .pipe(map(({ item }) => item as CustomMenuItem))
+        .subscribe(({ title, slug }) => {
+          if (slug) {
+            this.router.navigate(['communities', this.community.slug, 'p', slug]);
+          }
+        });
+  }
   getNotificationsCount(id) {
     if (this.notificationsStore.communityNotificationsCount$[id] !== undefined) {
       this.subscriptions.push(

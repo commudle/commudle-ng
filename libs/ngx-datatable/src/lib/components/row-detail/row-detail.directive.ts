@@ -7,7 +7,7 @@ export class DatatableRowDetailDirective {
    * The detail row height is required especially
    * when virtual scroll is enabled.
    */
-  @Input() rowHeight: number | ((row?: any, index?: number) => number) = 0;
+  @Input() rowHeight: any | ((row?: any, index?: number) => number) = 0;
 
   @Input('template')
   _templateInput: TemplateRef<any>;
@@ -30,7 +30,7 @@ export class DatatableRowDetailDirective {
   toggleExpandRow(row: any): void {
     this.toggle.emit({
       type: 'row',
-      value: row
+      value: row,
     });
   }
 
@@ -40,7 +40,7 @@ export class DatatableRowDetailDirective {
   expandAllRows(): void {
     this.toggle.emit({
       type: 'all',
-      value: true
+      value: true,
     });
   }
 
@@ -50,7 +50,7 @@ export class DatatableRowDetailDirective {
   collapseAllRows(): void {
     this.toggle.emit({
       type: 'all',
-      value: false
+      value: false,
     });
   }
 }

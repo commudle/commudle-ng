@@ -1,0 +1,54 @@
+<nb-card class="hackathon-card">
+  <nb-card-body>
+    <div class="name">
+      <span>{{ hackathonTrack.name }}</span>
+      <div class="action-buttons">
+        <button nbButton status="primary" ghost (click)="edit(hackathonTrack)">Edit</button>
+        <button nbButton status="danger" ghost (click)="deleteTrack(hackathonTrack.id)">Delete</button>
+      </div>
+    </div>
+    <div class="description" [innerHTML]="hackathonTrack.description"></div>
+    <div class="problem-statement" *ngIf="hackathonTrack.problem_statement">
+      <div>Problem Statement:</div>
+      <div [innerHTML]="hackathonTrack.problem_statement"></div>
+    </div>
+    <div class="hackathon-prize-cards">
+      <div class="hackathon-prize-card" *ngFor="let hackathonPrize of hackathonTrack.hackathon_prizes; let i = index">
+        <div class="name">
+          <span>{{ hackathonPrize.name }}</span>
+          <div class="action-buttons">
+            <!-- <button nbButton status="primary" ghost (click)="editPrize(hackathonPrize)">Edit</button> -->
+            <button
+              nbButton
+              status="danger"
+              ghost
+              (click)="confirmDeleteDialogBox(deletePrizeDilaogBox, hackathonPrize.id, i)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <div class="prize">
+          {{ hackathonPrize.currency_symbol }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
+          {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #deletePrizeDilaogBox let-ref="dialogRef" let-data>
+  <nb-card class="delete-prize-dialog">
+    <nb-card-header>
+      <span>Confirm delete Prize</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete Prize?</nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="deletePrize(data.prizeId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

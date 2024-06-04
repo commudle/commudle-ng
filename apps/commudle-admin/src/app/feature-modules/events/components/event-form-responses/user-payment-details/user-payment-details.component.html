@@ -20,7 +20,9 @@
   <tr *ngIf="paidUser">
     <td class="com-italic">Paid By</td>
     <td class="com-flex com-flex-col">
-      <span class="com-text-xs">{{ paidUser.name }}</span>
+      <span class="com-text-xs"
+        ><strong>{{ paidUser.name }}</strong></span
+      >
       <span class="com-text-xs">{{ paidUser.email }}</span>
       <span class="com-text-xs">{{ paidUser.phone }}</span>
     </td>
@@ -29,20 +31,22 @@
     <td class="com-italic">Others</td>
     <td>
       <div class="com-flex com-flex-col com-mt-1" *ngFor="let otherUser of otherUsers">
-        <span class="com-text-xs">{{ otherUser.name }}</span>
+        <span class="com-text-xs"
+          ><strong>{{ otherUser.name }}</strong></span
+        >
         <span class="com-text-xs">{{ otherUser.email }}</span>
         <span class="com-text-xs">{{ otherUser.phone }}</span>
       </div>
     </td>
   </tr>
-  <tr *ngIf="detail.status === 'paid' && user.id === paidUser.user_id">
+  <!-- <tr *ngIf="detail.status === 'paid' && paidUser && user.id === paidUser.user_id">
     <td colspan="2">
       <button class="com-mt-4" fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
     </td>
-  </tr>
+  </tr> -->
 </table>
 
-<ng-template #refundDialogBox let-data let-ref="dialogRef">
+<!-- <ng-template #refundDialogBox let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header></nb-card-header>
     <nb-card-body>
@@ -55,4 +59,4 @@
       <button nbButton status="danger" outline (click)="ref.close()">No</button>
     </nb-card-footer>
   </nb-card>
-</ng-template>
+</ng-template> -->
