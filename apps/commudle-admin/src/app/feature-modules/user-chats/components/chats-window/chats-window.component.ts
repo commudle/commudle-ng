@@ -6,7 +6,6 @@ import { IDiscussionFollower } from 'apps/shared-models/discussion-follower.mode
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { NbMenuService } from '@commudle/theme';
 import { filter, map, Subscription } from 'rxjs';
-import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-chats-window',
@@ -43,11 +42,9 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
     private userChatMessagesChannel: UserChatMessagesChannel,
     private discussionChatChannel: DiscussionPersonalChatChannel,
     private nbMenuService: NbMenuService,
-    private authWatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit(): void {
-    // this.authWatchService.currentUser$.subscribe((data) => (this.showOnlineText = !!data));
     this.getDiscussion();
 
     //if the field 'minimized' exsists and is true the chat box will open minimized

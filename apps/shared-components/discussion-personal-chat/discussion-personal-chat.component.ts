@@ -11,7 +11,6 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 import { DiscussionPersonalChatChannel } from '../services/websockets/discussion-personal-chat.channel';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-discussion-personal-chat',
@@ -133,39 +132,12 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
       }
       groupedMessages[date].push(message);
     });
-    console.log(groupedMessages, 'before');
 
     return Object.keys(groupedMessages).map((date) => ({
       date,
       messages: groupedMessages[date],
     }));
   }
-
-  // getDiscussionMessages() {
-  //   if (!this.allMessagesLoaded && !this.loadingMessages) {
-  //     this.loadingMessages = true;
-  //     this.userMessagesService
-  //       .getPersonalChatDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize)
-  //       .subscribe((data) => {
-  //         if (data.user_messages.length !== this.pageSize) {
-  //           this.allMessagesLoaded = true;
-  //         }
-
-  //         this.groupedMessages = _.groupBy(data.user_messages, (message) =>
-  //           moment(message.created_at).format('MMM Do, YYYY'),
-  //         );
-  //         console.log(this.groupedMessages, 'grouped');
-  //         this.messages.unshift(...data.user_messages.reverse());
-  //         console.log(this.messages, 'messages');
-  //         this.loadingMessages = false;
-  //         if (this.nextPage === 1) {
-  //           this.scrollToBottom();
-  //         }
-
-  //         this.nextPage += 1;
-  //       });
-  //   }
-  // }
 
   toggleReplyForm(messageId) {
     this.showReplyForm = this.showReplyForm === messageId ? 0 : messageId;

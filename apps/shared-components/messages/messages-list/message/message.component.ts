@@ -49,7 +49,6 @@ export class MessageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.message, 'message');
     this.seoSchema();
   }
 
