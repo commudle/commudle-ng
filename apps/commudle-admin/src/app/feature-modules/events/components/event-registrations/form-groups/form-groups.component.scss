@@ -84,7 +84,7 @@
 }
 .dfeg-create-form {
   > div {
-    @apply com-flex com-flex-col com-items-start;
+    @apply com-space-y-3;
     > div {
       margin: 0.5rem;
     }
@@ -113,26 +113,8 @@
 
   .save-button-bottom {
     @apply md:com-mt-6 com-m-0 com-mt-4;
-  }
-
-  @media screen and (min-width: 640px) {
-    > div {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      > div {
-        margin: 0 0.25rem;
-        width: 27%;
-
-        label {
-          width: 100%;
-
-          nb-select,
-          input {
-            width: 100%;
-          }
-        }
-      }
+    button {
+      @apply com-w-full md:com-w-300px;
     }
   }
 }
@@ -142,7 +124,7 @@
 }
 
 .select {
-  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
+  @apply com-flex com-items-center com-gap-1 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-my-2  com-border com-border-solid com-border-primary-400 com-w-full com-mt-1;
   select {
     @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
   }

@@ -283,21 +283,36 @@
           <label>
             Select Form*
             <br />
-            <div class="select">
-              <select
-                formControlName="data_form_id"
-                [ngClass]="{
-                  'com-text-[#8E9BB3]':
-                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
-                }"
-                (change)="changeDataFormValue($event.target)"
+            <div class="com-flex com-items-center">
+              <div class="select">
+                <select
+                  formControlName="data_form_id"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]':
+                      eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
+                  }"
+                  (change)="changeDataFormValue($event.target)"
+                >
+                  <option disabled selected value="">Which Form?</option>
+                  <option value="createNewForm" (click)="openNewFormWindow()">
+                    <strong>+</strong> CREATE NEW FORM
+                  </option>
+                  <option *ngFor="let df of communityDataForms" [value]="df.id">
+                    {{ df.name | titlecase }}
+                  </option>
+                </select>
+              </div>
+              <a
+                *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
+                [routerLink]="[
+                  '/forms',
+                  eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value,
+                  'edit'
+                ]"
+                target="_blank"
               >
-                <option disabled selected value="">Which Form?</option>
-                <option value="createNewForm" (click)="openNewFormWindow()"><strong>+</strong> CREATE NEW FORM</option>
-                <option *ngFor="let df of communityDataForms" [value]="df.id">
-                  {{ df.name | titlecase }}
-                </option>
-              </select>
+                <nb-icon icon="eye" nbTooltip="View Form" status="info"></nb-icon>
+              </a>
             </div>
             <span
               *ngIf="
@@ -309,17 +324,6 @@
               <commudle-alert [error]="true" [errorMessage]="'Please select a form'"></commudle-alert>
             </span>
           </label>
-          <a
-            *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
-            [routerLink]="[
-              '/forms',
-              eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value,
-              'edit'
-            ]"
-            target="_blank"
-          >
-            <nb-icon icon="eye" nbTooltip="View Form" status="info"></nb-icon>
-          </a>
         </div>
       </div>
 
@@ -329,7 +333,6 @@
             !eventDataFormEntityGroupForm.valid ||
             eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === 'createNewForm'
           "
-          fullWidth
           nbButton
           outline
           size="small"
