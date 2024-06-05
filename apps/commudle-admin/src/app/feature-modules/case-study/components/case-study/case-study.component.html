@@ -18,7 +18,7 @@
         <div [innerHTML]="richTextChallenges | safe"></div>
       </div>
       <div *ngIf="richTextSolution" class="solution">
-        <h2>How commudle solved it</h2>
+        <h2>{{ solutionHeading }}</h2>
         <div [innerHTML]="richTextSolution | safe"></div>
       </div>
       <div *ngIf="caseStudyPageHeader?.testimonials" class="testimonials" id="testimonials">

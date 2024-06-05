@@ -13,6 +13,7 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
   caseStudyPageHeader: ICaseStudy;
   richTextChallenges: string;
   richTextSolution: string;
+  solutionHeading: string;
   richTextStats: any[] = [];
 
   constructor(
@@ -37,7 +38,8 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
     this.cmsService.getDataBySlug(slug).subscribe((data) => {
       this.caseStudyPageHeader = data;
       this.richTextChallenges = this.cmsService.getHtmlFromBlock(data, 'challenge');
-      this.richTextSolution = this.cmsService.getHtmlFromBlock(data, 'solution');
+      this.richTextSolution = this.cmsService.getHtmlFromBlock(this.caseStudyPageHeader.solution[0], 'solution');
+      this.solutionHeading = this.caseStudyPageHeader.solution[0].heading;
       this.caseStudyPageHeader.stats.forEach((stat) => {
         this.richTextStats.push(this.cmsService.getHtmlFromBlock(stat));
       });
