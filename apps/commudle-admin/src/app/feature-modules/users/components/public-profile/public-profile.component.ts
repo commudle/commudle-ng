@@ -82,6 +82,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
         this.setSchema();
         if (!this.user.profile_completed || this.user.deactivated) {
           this.seoService.noIndex(true);
+        } else {
+          this.seoService.noIndex(false);
         }
         this.setMeta();
       }),
