@@ -176,7 +176,6 @@ import { EventCheckedInListComponent } from './components/event-checked-in-list/
     NbTagModule,
     NewEditorModule,
   ],
-  exports: [UserDetailsComponent, UserEngagementDataComponent],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class EventsModule {}
