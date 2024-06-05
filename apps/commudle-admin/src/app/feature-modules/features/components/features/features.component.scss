@@ -1,0 +1,145 @@
+a {
+  @apply com-m-0;
+}
+
+.features {
+  @apply com-bg-white com-flex com-flex-col md:com-px-0 com-px-4 com-pt-0 md:com-pb-20 com-pb-10;
+}
+
+.base-layout {
+  @apply com-min-h-0 com-w-full;
+}
+
+.header {
+  @apply com-flex com-flex-col com-text-center com-mx-0 md:com-mt-14 com-mt-10;
+
+  .heading {
+    @apply com-my-0 md:com-text-[60px] com-text-3xl com-font-extrabold com-text-gray-900 sm:com-text-6xl com-mb-4;
+
+    //TODO: Convert style css to tailwindCss
+    span {
+      background: linear-gradient(90deg, #1d4ed8 0%, #7c3aed 22.96%, #ec4899 45.92%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .subheading {
+    @apply com-m-0 md:com-text-xl com-text-lg com-text-gray-500 md:com-font-medium com-font-normal;
+  }
+}
+
+.features-heading {
+  @apply com-text-center md:com-pt-14 com-pt-10 com-pb-4 com-m-0;
+  a {
+    @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-no-underline;
+  }
+}
+
+.features-subheading {
+  @apply md:com-text-xl com-text-lg com-font-medium com-text-gray-500 com-m-0 com-text-center com-mx-auto;
+}
+
+.two-column-layout {
+  @apply md:com-pt-20;
+}
+
+.left-column {
+  @apply com-col-span-11 md:com-pr-[30px] com-pr-0;
+
+  .features-index {
+    @apply md:com-mb-8 com-mb-4 com-w-full;
+  }
+}
+
+.main-column {
+  grid-column: span 13 / span 13;
+
+  nb-card {
+    @apply com-m-0;
+
+    nb-card-body {
+      @apply com-p-0;
+    }
+  }
+}
+
+.heading {
+  @apply com-m-0;
+  a {
+    @apply com-no-underline md:com-text-5xl com-text-3xl com-font-bold com-text-Yankees-Blue;
+  }
+}
+
+.subheading {
+  @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0 md:com-mt-6 com-mt-30px md:com-mb-[60px] com-mb-5;
+}
+
+.platform {
+  @apply com-m-0 md:com-mb-20 com-mb-0 com-p-0 md:com-mt-[126px] com-mt-14 com-flex com-flex-col com-text-center;
+  .content {
+    @apply com-flex com-flex-col com-max-w-[554px] md:com-text-left com-text-center;
+
+    ul {
+      @apply com-m-0 com-p-0 com-text-left com-list-none;
+      li {
+        @apply com-flex md:com-flex-row com-flex-col com-m-0 md:com-mb-8 com-mb-[84px] md:com-items-start com-items-center;
+
+        .icon {
+          @apply com-flex com-items-center com-justify-center com-p-20px com-bg-primary-500 com-rounded-2xl com-w-14 com-h-14 md:com-mr-6 com-mr-0 md:com-mb-0 com-mb-6;
+          fa-icon {
+            @apply com-text-3xl com-shrink-0 com-text-tWhite;
+          }
+        }
+
+        div {
+          @apply com-flex com-flex-col;
+
+          .heading {
+            @apply com-m-0 md:com-mb-14px com-mb-4 com-text-2xl com-font-bold com-text-Yankees-Blue md:com-text-left com-text-center;
+          }
+
+          .subheading {
+            @apply com-m-0 com-text-base com-font-medium com-text-gray-500 md:com-text-left com-text-center;
+          }
+        }
+      }
+    }
+  }
+
+  .image {
+    @apply md:com-w-[532px] com-w-full;
+
+    img {
+      @apply com-w-full com-h-auto;
+    }
+  }
+
+  .desktop-hidden {
+    @apply com-m-0 com-mb-20 md:com-hidden com-flex;
+  }
+
+  .mobile-hidden {
+    @apply md:com-flex com-hidden;
+  }
+}
+
+.build-community {
+  @apply com-flex com-flex-col com-items-center com-text-center md:com-mt-0 com-mt-8;
+  .heading-build-community {
+    a {
+      @apply com-m-0 md:com-mb-0 com-mb-4 com-text-4xl com-font-bold com-text-Yankees-Blue com-no-underline;
+    }
+  }
+
+  .image {
+    img {
+      @apply com-w-full;
+    }
+  }
+}
+
+.faq {
+  @apply md:com-mt-10 com-mt-8;
+}
