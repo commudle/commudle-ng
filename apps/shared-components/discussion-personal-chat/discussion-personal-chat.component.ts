@@ -135,13 +135,10 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     });
     console.log(groupedMessages, 'before');
 
-    const sortedGroupedMessages = Object.keys(groupedMessages)
-      .map((date) => ({
-        date,
-        messages: groupedMessages[date],
-      }))
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    return sortedGroupedMessages;
+    return Object.keys(groupedMessages).map((date) => ({
+      date,
+      messages: groupedMessages[date],
+    }));
   }
 
   // getDiscussionMessages() {
