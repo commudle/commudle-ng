@@ -42,7 +42,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
 
-  groupedMessages = {};
+  groupedMessages: { date: string; messages: IUserMessage[] }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -112,13 +112,8 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
           }
-
-          this.groupedMessages = _.groupBy(data.user_messages, (message) =>
-            moment(message.created_at).format('MMM Do, YYYY'),
-          );
-          console.log(this.groupedMessages, 'grouped');
           this.messages.unshift(...data.user_messages.reverse());
-          console.log(this.messages, 'messages');
+          this.groupedMessages = this.groupMessagesByDate(this.messages);
           this.loadingMessages = false;
           if (this.nextPage === 1) {
             this.scrollToBottom();
@@ -128,6 +123,52 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
         });
     }
   }
+
+  groupMessagesByDate(messages) {
+    const groupedMessages = {};
+    messages.forEach((message) => {
+      const date = new Date(message.created_at).toISOString().split('T')[0];
+      if (!groupedMessages[date]) {
+        groupedMessages[date] = [];
+      }
+      groupedMessages[date].push(message);
+    });
+    console.log(groupedMessages, 'before');
+
+    const sortedGroupedMessages = Object.keys(groupedMessages)
+      .map((date) => ({
+        date,
+        messages: groupedMessages[date],
+      }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    return sortedGroupedMessages;
+  }
+
+  // getDiscussionMessages() {
+  //   if (!this.allMessagesLoaded && !this.loadingMessages) {
+  //     this.loadingMessages = true;
+  //     this.userMessagesService
+  //       .getPersonalChatDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize)
+  //       .subscribe((data) => {
+  //         if (data.user_messages.length !== this.pageSize) {
+  //           this.allMessagesLoaded = true;
+  //         }
+
+  //         this.groupedMessages = _.groupBy(data.user_messages, (message) =>
+  //           moment(message.created_at).format('MMM Do, YYYY'),
+  //         );
+  //         console.log(this.groupedMessages, 'grouped');
+  //         this.messages.unshift(...data.user_messages.reverse());
+  //         console.log(this.messages, 'messages');
+  //         this.loadingMessages = false;
+  //         if (this.nextPage === 1) {
+  //           this.scrollToBottom();
+  //         }
+
+  //         this.nextPage += 1;
+  //       });
+  //   }
+  // }
 
   toggleReplyForm(messageId) {
     this.showReplyForm = this.showReplyForm === messageId ? 0 : messageId;

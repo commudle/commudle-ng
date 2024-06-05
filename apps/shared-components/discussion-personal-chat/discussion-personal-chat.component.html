@@ -1,16 +1,16 @@
 <div class="discussion-chat-component">
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
     <div>
-      <div *ngFor="let date of groupedMessages | keyvalue">
-        <h3 class="grouped-date">{{ date.key }}</h3>
-        <div class="message" *ngFor="let um of date.value">
+      <div *ngFor="let group of groupedMessages">
+        <h3 class="grouped-date">{{ group.date }}</h3>
+        <div *ngFor="let message of group.messages">
           <app-message
-            [message]="um"
+            [message]="message"
             [canReply]="!blocked"
             [permittedActions]="permittedActions"
             [allActions]="allActions"
             [currentUser]="currentUser"
-            (sendReply)="sendReply($event, um.id)"
+            (sendReply)="sendReply($event, message.id)"
             (sendVote)="sendVote($event)"
             (sendDelete)="delete($event)"
             (sendFlag)="sendFlag($event)"
