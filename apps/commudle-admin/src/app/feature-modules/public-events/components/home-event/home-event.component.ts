@@ -89,7 +89,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.event = event;
       this.isLoading = false;
       this.getCommunity(event.kommunity_id);
-      this.getDiscussionChat();
     });
   }
 
@@ -97,6 +96,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
       this.isOrganizerCheck(this.community.slug);
+      this.getDiscussionChat();
       if (!this.event.custom_agenda) {
         this.setSchema();
       }
@@ -144,14 +144,18 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
         if (data.find((cSlug) => cSlug.slug === community) !== undefined) {
           this.isOrganizer = true;
-          this.setContextMenu();
         }
       }),
     );
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe((data) => (this.discussionChat = data));
+    this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe((data) => {
+      this.discussionChat = data;
+      if (this.isOrganizer) {
+        this.setContextMenu();
+      }
+    });
   }
 
   setContextMenu() {

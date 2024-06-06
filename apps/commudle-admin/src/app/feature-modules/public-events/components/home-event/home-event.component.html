@@ -115,7 +115,13 @@
           <nb-card *ngIf="discussionChat" class="home-event-discussion">
             <nb-card-header>
               <h6><nb-icon icon="message-circle-outline" status="info"></nb-icon> Comments</h6>
-              <button *ngIf="isOrganizer" nbButton ghost [nbContextMenu]="items" nbContextMenuTrigger="click">
+              <button
+                *ngIf="isOrganizer && discussionChat && items"
+                nbButton
+                ghost
+                [nbContextMenu]="items"
+                nbContextMenuTrigger="click"
+              >
                 <fa-icon [icon]="faEllipsisVertical"></fa-icon>
               </button>
             </nb-card-header>
