@@ -19,7 +19,7 @@ export class ChatsWindowComponent implements OnInit, OnDestroy {
 
   // Predefined constants
   chatsWindowHeight = 50;
-  chatsWindowWidth = 350;
+  chatsWindowWidth = 376;
 
   discussionChannelSubscribed = false;
 
