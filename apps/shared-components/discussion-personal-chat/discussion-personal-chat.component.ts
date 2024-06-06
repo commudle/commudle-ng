@@ -11,6 +11,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 import { DiscussionPersonalChatChannel } from '../services/websockets/discussion-personal-chat.channel';
+import { IEditorValidator } from '@commudle/editor';
 
 @Component({
   selector: 'app-discussion-personal-chat',
@@ -40,6 +41,13 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   showEmojiForm = false;
   @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+
+  validators: IEditorValidator = {
+    required: true,
+    minLength: 1,
+    maxLength: 500,
+    noWhitespace: true,
+  };
 
   groupedMessages: { date: string; messages: IUserMessage[] }[] = [];
 
@@ -143,10 +151,10 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     this.showReplyForm = this.showReplyForm === messageId ? 0 : messageId;
   }
 
-  sendMessage() {
+  sendMessage(content) {
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.ADD, {
       user_message: {
-        content: this.chatMessageForm.get('content').value,
+        content,
       },
     });
     this.chatMessageForm.reset();
