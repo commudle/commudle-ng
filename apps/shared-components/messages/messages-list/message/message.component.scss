@@ -8,7 +8,7 @@ p {
 }
 
 .message-container {
-  @apply com-px-0 com-py-3;
+  @apply com-p-3;
 
   .prefix {
     width: 100%;
@@ -39,7 +39,13 @@ p {
         }
 
         .time {
-          @apply com-ml-3 com-text-xs com-font-medium com-text-gray-500;
+          @apply com-flex;
+          fa-icon {
+            @apply com-mx-6px com-text-[6px];
+          }
+          span {
+            @apply com-text-xs com-font-medium com-text-gray-500;
+          }
         }
       }
     }

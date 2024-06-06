@@ -240,6 +240,10 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
                 );
                 const messageIndexInDate = this.groupedMessages[messageIndex].messages.indexOf(message);
                 this.groupedMessages[messageIndex].messages.splice(messageIndexInDate, 1);
+
+                if (this.groupedMessages[messageIndex].messages.length === 0) {
+                  this.groupedMessages.splice(messageIndex, 1);
+                }
               }
             } else {
               const parentIndex = this.groupedMessages.findIndex((item) =>

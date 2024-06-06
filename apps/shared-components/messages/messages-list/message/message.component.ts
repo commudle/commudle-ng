@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { SeoService } from '@commudle/shared-services';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
@@ -24,6 +25,7 @@ export class MessageComponent implements OnInit {
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
   @Output() sendDelete = new EventEmitter();
+  faCircle = faCircle;
 
   moment = moment;
 
