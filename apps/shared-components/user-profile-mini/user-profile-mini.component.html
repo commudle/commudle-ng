@@ -1,6 +1,7 @@
 <div class="user {{ size }}">
   <app-user-live-status
-    *ngIf="showLiveStatus"
+    *ngIf="showLiveStatus || showOnlineText"
+    [showLiveStatus]="showLiveStatus"
     [userId]="user.id"
     (isOnline)="HandleOnlineStatus($event)"
   ></app-user-live-status>
@@ -20,7 +21,7 @@
         title="Expert Tick"
       />
     </p>
-    <!-- <p *ngIf="showLiveStatus && showOnlineText" class="active-now">Active Now</p> -->
+    <p *ngIf="isOnline && showOnlineText" class="active-now">Active Now</p>
     <p *ngIf="designation" class="designation {{ size }}">
       {{ user.designation | slice : 0 : 50 }}
       <span *ngIf="user.designation?.length > 25">...</span>

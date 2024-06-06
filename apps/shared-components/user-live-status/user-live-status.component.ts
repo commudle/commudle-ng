@@ -11,6 +11,7 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
   uuid = uuidv4();
   @Input() userId: number;
   @Input() position: string;
+  @Input() showLiveStatus: boolean;
   @Output() isOnline = new EventEmitter<boolean>();
   online = true;
   subscriptions = [];
