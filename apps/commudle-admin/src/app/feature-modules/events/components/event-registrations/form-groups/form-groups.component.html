@@ -130,7 +130,7 @@
                     <th>Total</th>
                     <th>{{ edfeg.summary_registration_counts?.all ? edfeg.summary_registration_counts.all : 0 }}</th>
                   </tr>
-                  <tr>
+                  <tr *ngIf="edfeg.registration_type.name !== ERegistationTypes.FEEDBACK">
                     <td>Registered</td>
                     <td>
                       {{
@@ -138,13 +138,13 @@
                       }}
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="edfeg.registration_type.name !== ERegistationTypes.FEEDBACK">
                     <td>Waiting</td>
                     <td>
                       {{ edfeg.summary_registration_counts?.waiting ? edfeg.summary_registration_counts.waiting : 0 }}
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="edfeg.registration_type.name !== ERegistationTypes.FEEDBACK">
                     <td>Shortlisted</td>
                     <td>
                       {{
@@ -154,7 +154,7 @@
                       }}
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="edfeg.registration_type.name !== ERegistationTypes.FEEDBACK">
                     <td>Confirmed</td>
                     <td>
                       {{
@@ -162,7 +162,7 @@
                       }}
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="edfeg.registration_type.name !== ERegistationTypes.FEEDBACK">
                     <td>Cancelled</td>
                     <td>
                       {{
