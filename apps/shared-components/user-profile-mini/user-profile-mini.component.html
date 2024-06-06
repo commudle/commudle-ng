@@ -20,7 +20,7 @@
         title="Expert Tick"
       />
     </p>
-    <p *ngIf="showLiveStatus && showOnlineText" class="active-now">Active Now</p>
+    <!-- <p *ngIf="showLiveStatus && showOnlineText" class="active-now">Active Now</p> -->
     <p *ngIf="designation" class="designation {{ size }}">
       {{ user.designation | slice : 0 : 50 }}
       <span *ngIf="user.designation?.length > 25">...</span>

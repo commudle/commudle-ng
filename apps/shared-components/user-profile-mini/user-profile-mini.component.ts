@@ -17,4 +17,6 @@ export class UserProfileMiniComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  HandleOnlineStatus(status) {}
 }
