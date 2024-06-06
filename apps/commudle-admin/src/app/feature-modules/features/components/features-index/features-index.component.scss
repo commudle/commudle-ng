@@ -65,3 +65,7 @@ a {
 .active {
   @apply com-bg-Bright-Gray #{!important};
 }
+
+.description {
+  @apply com-text-lg com-font-normal com-text-black com-m-0 com-mt-6;
+}

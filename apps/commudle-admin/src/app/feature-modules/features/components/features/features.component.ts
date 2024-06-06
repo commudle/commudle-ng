@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { SeoService } from '@commudle/shared-services';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { faArrowRightArrowLeft, faArrowUpRightDots, faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'commudle-features',
@@ -46,9 +47,11 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     private cmsService: CmsService,
     private responsiveService: ResponsiveService,
     private seoService: SeoService,
+    private footerService: FooterService,
   ) {}
 
   ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
     this.isMobileView = this.responsiveService.isMobileView();
     this.getIndex();
     this.setMeta();

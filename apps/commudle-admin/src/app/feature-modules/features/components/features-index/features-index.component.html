@@ -22,6 +22,7 @@
                   <li>{{ subheading }}</li>
                 </ul>
               </div>
+              <p *ngIf="showSubHeading[i]" class="description">{{ feature.description }}</p>
             </div>
             <div *ngIf="feature.features">
               <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
