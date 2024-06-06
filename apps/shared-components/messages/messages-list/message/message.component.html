@@ -4,6 +4,7 @@
   [inViewportOptions]="{ threshold: [0] }"
   class="message-container"
   inViewport
+  [ngClass]="{ 'highlight-background': !(message.user.id === currentUser.id) }"
 >
   <div class="prefix d-flex align-items-start">
     <img
