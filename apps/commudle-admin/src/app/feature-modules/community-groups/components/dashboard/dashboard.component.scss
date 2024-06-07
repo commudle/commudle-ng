@@ -18,7 +18,7 @@
   }
 }
 .sidebar-container {
-  @apply com-z-[1000];
+  @apply com-w-80 com-sticky com-top-16 com-h-screen;
 }
 .content {
   .link {
@@ -74,5 +74,11 @@
         @apply com-hidden;
       }
     }
+  }
+}
+.right-column {
+  @apply com-w-[calc(100%-320px)];
+  .router {
+    @apply com-w-full com-max-w-screen-xl com-mx-auto;
   }
 }

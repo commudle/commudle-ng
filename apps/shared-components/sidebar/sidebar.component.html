@@ -13,7 +13,14 @@
   }"
 >
   <div class="header" *ngIf="heading || showExpandedButton">
-    <h1 *ngIf="heading" class="title" (click)="handleSidebarToggle()">{{ heading }}</h1>
+    <h1
+      *ngIf="heading"
+      class="title"
+      (click)="handleSidebarToggle()"
+      [ngClass]="{ 'com-pointer-events-none': !showExpandedButton }"
+    >
+      {{ heading }}
+    </h1>
     <div *ngIf="showExpandedButton" class="toggle" (click)="handleSidebarToggle()">
       <fa-icon [icon]="expandSidebar || isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
     </div>
