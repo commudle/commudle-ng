@@ -169,7 +169,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
         .onItemClick()
         .pipe(map(({ item }) => item.title))
         .subscribe((menuItemTitle) => {
-          if (menuItemTitle === 'Close Discussion' || menuItemTitle === 'Open Discussion') {
+          if (menuItemTitle === 'Turn OFF Comments' || menuItemTitle === 'Turn ON Comments') {
             this.toggleDiscussionOpen();
           }
         }),
@@ -184,6 +184,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   }
 
   updateContextMenu() {
-    this.items = [{ title: this.discussionChat.open ? 'Close Discussion' : 'Open Discussion' }];
+    this.items = [{ title: this.discussionChat.open ? 'Turn OFF Comments' : 'Turn ON Comments' }];
   }
 }
