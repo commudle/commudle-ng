@@ -165,9 +165,6 @@
         <div *ngFor="let userRole of selectedUserRoles">
           <input
             type="checkbox"
-            id="vehicle1"
-            name="vehicle1"
-            value="Bike"
             (change)="toggleUserRole(userRole.id)"
             [checked]="userRolesUserIds.value.includes(userRole.id)"
           />
