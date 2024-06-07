@@ -80,6 +80,7 @@ import { HelpSectionComponent } from './help-section/help-section.component';
     AdminHackathonComponent,
     CustomPageFormComponent,
     WhatsNewComponent,
+    HelpSectionComponent,
   ],
   imports: [
     CommonModule,
