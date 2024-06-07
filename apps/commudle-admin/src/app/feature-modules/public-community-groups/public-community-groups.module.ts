@@ -32,6 +32,9 @@ import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/featur
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
 import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/forum-card/forum-card.component';
+import { CommunitiesChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community-groups/components/community-group-channels/communities-channels/communities-channels.component';
+import { OrgChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community-groups/components/community-group-channels/org-channels/org-channels.component';
+import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
     CommunityGroupEventsComponent,
     CommunityGroupChannelsComponent,
     CommunityGroupCustomPageComponent,
+    CommunitiesChannelsComponent,
+    OrgChannelsComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +57,7 @@ import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
+    CommunityChannelsModule,
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,

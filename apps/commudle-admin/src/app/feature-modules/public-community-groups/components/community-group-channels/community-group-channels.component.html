@@ -1,11 +1,9 @@
-<nb-card>
-  <nb-card-body>
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="channels-cards-list">
-      <div *ngFor="let channel of channels" class="channel-card">
-        <commudle-channel-card [channel]="channel"></commudle-channel-card>
-      </div>
-    </div>
-    <button (click)="getChannels()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
-  </nb-card-body>
-</nb-card>
+<div>
+  <div>
+    <a [routerLink]="['./']"> Community Channels</a>
+  </div>
+  <div>
+    <a [routerLink]="['./abcd']"> Org Channel </a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

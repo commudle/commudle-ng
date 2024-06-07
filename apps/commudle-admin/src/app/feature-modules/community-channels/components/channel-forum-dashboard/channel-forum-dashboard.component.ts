@@ -113,6 +113,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   getCurrentUser() {
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
         this.communityChannelManagerService.setCurrentUser(data);
         if (this.currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
           this.isSuperAdmin = true;
