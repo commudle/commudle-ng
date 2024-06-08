@@ -6,117 +6,149 @@
         <h2 class="subheading">
           We understand the vast engagement needs to build a developer community network for your company.
         </h2>
-        <div class="header-image">
-          <img [src]="staticAssets.features_page_header" class="com-w-full" />
-        </div>
-      </div>
-      <h2 *ngIf="showHeading" class="features-heading">
-        <a [routerLink]="'.'" fragment="features">Everything Your Developer Community Needs</a>
-      </h2>
-      <h2 *ngIf="showSubHeading" class="features-subheading">
-        Build communities with multiple types of engagements, your search for 'the right platform' ends here.
-      </h2>
-      <div class="two-column-layout">
-        <div class="left-column">
-          <div *ngIf="features" class="features-index">
-            <commudle-features-index
-              [features]="features"
-              [selectedFeature]="selectedFeature"
-              (featureSlug)="getFeaturesData($event)"
-            ></commudle-features-index>
+        <div
+          *ngIf="!isDarkMode"
+          class="background-image"
+          [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.features_page_header_background + '\')' }"
+        >
+          <div class="header-image">
+            <img [src]="staticAssets.features_page_header" />
           </div>
-          <a [routerLink]="['/pricing']" class="start-now-btn"
-            ><button nbButton status="primary" size="large" fullWidth class="read-or-download">Start Now</button></a
-          >
         </div>
-        <div *ngIf="!isMobileView && selectedFeature" class="main-column">
-          <commudle-features-content [selectedFeature]="selectedFeature"></commudle-features-content>
+        <div *ngIf="isDarkMode" class="background-image">
+          <div class="header-image">
+            <img [src]="staticAssets.features_page_header" />
+          </div>
         </div>
-      </div>
-      <div *ngIf="showHeading" class="platform" id="know-your-community">
-        <h2 class="heading">
-          <a [routerLink]="'.'" fragment="know-your-community">Know & Grow Your Community Like Never Before</a>
+        <h2 *ngIf="showHeading" class="features-heading">
+          <a [routerLink]="'.'" fragment="features">Everything Your Developer Community Needs</a>
         </h2>
-        <p class="subheading">
-          With multiple options to engage with your community members, you can gain smarter insights on what the
-          community needs.
-        </p>
-        <commudle-public-page-layout [imageOnLeft]="true">
-          <div content>
-            <div class="content">
-              <div image class="image desktop-hidden">
-                <img
-                  alt="Know your community"
-                  [src]="staticAssets.features_know_your_community"
-                  title="Know your community"
-                />
+        <h2 *ngIf="showSubHeading" class="features-subheading">
+          Build communities with multiple types of engagements, your search for 'the right platform' ends here.
+        </h2>
+        <div class="two-column-layout">
+          <div class="left-column">
+            <div *ngIf="features" class="features-index">
+              <commudle-features-index
+                [features]="features"
+                [selectedFeature]="selectedFeature"
+                (featureSlug)="getFeaturesData($event)"
+              ></commudle-features-index>
+            </div>
+            <a [routerLink]="['/pricing']" class="start-now-btn"
+              ><button nbButton status="primary" size="large" fullWidth class="read-or-download">Start Now</button></a
+            >
+          </div>
+          <div *ngIf="!isMobileView && selectedFeature" class="main-column">
+            <commudle-features-content [selectedFeature]="selectedFeature"></commudle-features-content>
+          </div>
+        </div>
+        <div *ngIf="showHeading" class="platform" id="know-your-community">
+          <h2 class="heading">
+            <a [routerLink]="'.'" fragment="know-your-community">Know & Grow Your Community Like Never Before</a>
+          </h2>
+          <p class="subheading">
+            With multiple options to engage with your community members, you can gain smarter insights on what the
+            community needs.
+          </p>
+          <commudle-public-page-layout [imageOnLeft]="true">
+            <div content>
+              <div class="content com-mt-12">
+                <div image class="image desktop-hidden">
+                  <img
+                    alt="Know your community"
+                    [src]="staticAssets.features_know_your_community"
+                    title="Know your community"
+                  />
+                </div>
+                <ul>
+                  <li>
+                    <div class="icon">
+                      <fa-icon [icon]="faArrowUpRightDots"></fa-icon>
+                    </div>
+                    <div>
+                      <p class="heading">Generative Growth</p>
+                      <p class="subheading">
+                        With thousands of techies already using Commudle, your member base keeps growing with each
+                        activity.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <fa-icon [icon]="faChartSimple"></fa-icon>
+                    </div>
+                    <div>
+                      <p class="heading">Custom Dashboards & API's</p>
+                      <p class="subheading">
+                        Need custom dashboards or API's to integrate with your existing systems? We will build them for
+                        you.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <fa-icon [icon]="faArrowRightArrowLeft"></fa-icon>
+                    </div>
+                    <div>
+                      <p class="heading">Easy Migration</p>
+                      <p class="subheading">
+                        Are you already using a community platform with limited engagements and want to migrate? Our
+                        team will guide you step-by-step on how to do it smoothly.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+                <a [routerLink]="['/pricing']" class="start-now-btn"
+                  ><button nbButton status="primary" size="large" class="read-or-download">Start Now</button></a
+                >
               </div>
-              <ul>
-                <li>
-                  <div class="icon">
-                    <fa-icon [icon]="faArrowUpRightDots"></fa-icon>
-                  </div>
-                  <div>
-                    <p class="heading">Generative Growth</p>
-                    <p class="subheading">
-                      With thousands of techies already using Commudle, your member base keeps growing with each
-                      activity.
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <fa-icon [icon]="faChartSimple"></fa-icon>
-                  </div>
-                  <div>
-                    <p class="heading">Custom Dashboards & API's</p>
-                    <p class="subheading">
-                      Need custom dashboards or API's to integrate with your existing systems? We will build them for
-                      you.
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <fa-icon [icon]="faArrowRightArrowLeft"></fa-icon>
-                  </div>
-                  <div>
-                    <p class="heading">Easy Migration</p>
-                    <p class="subheading">
-                      Are you already using a community platform with limited engagements and want to migrate? Our team
-                      will guide you step-by-step on how to do it smoothly.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-              <a [routerLink]="['/pricing']" class="start-now-btn"
-                ><button nbButton status="primary" size="large" class="read-or-download">Start Now</button></a
-              >
+            </div>
+            <div image class="image mobile-hidden">
+              <img
+                alt="Know your community"
+                [src]="staticAssets.features_know_your_community"
+                title="Know your community"
+              />
+            </div>
+          </commudle-public-page-layout>
+        </div>
+        <div *ngIf="showHeading" class="build-community com-relative" id="build-community">
+          <h2 class="heading-build-community">
+            <a [routerLink]="'.'" fragment="build-community"
+              >Build Your Communities with 100,000+ techies on Commudle</a
+            >
+          </h2>
+          <!-- <img
+            alt="Build Community"
+            class="com-absolute com-right-[-240] com-top-[164px] com-hidden md:com-block"
+            [src]="staticAssets.features_build_your_community_right_icon"
+            title="Build Community"
+          /> -->
+          <div
+            *ngIf="!isDarkMode"
+            class="background-image"
+            [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.features_build_your_community_background + '\')' }"
+          >
+            <div class="header-image">
+              <img [src]="staticAssets.features_build_your_community" />
             </div>
           </div>
-          <div image class="image mobile-hidden">
-            <img
-              alt="Know your community"
-              [src]="staticAssets.features_know_your_community"
-              title="Know your community"
-            />
+          <div *ngIf="isDarkMode" class="background-image">
+            <div class="header-image">
+              <img [src]="staticAssets.features_build_your_community" />
+            </div>
           </div>
-        </commudle-public-page-layout>
-      </div>
-      <div *ngIf="showHeading" class="build-community" id="build-community">
-        <h2 class="heading-build-community">
-          <a [routerLink]="'.'" fragment="build-community">Build Your Communities with 100,000+ techies on Commudle</a>
-        </h2>
-        <div image class="image">
-          <img
-            alt="Build your community"
-            [src]="staticAssets.features_build_your_community"
-            title="Build your community"
-          />
+          <!-- <img
+            alt="Build Community"
+            class="com-absolute com-right-[-230px] com-top-[174px] com-hidden md:com-block"
+            [src]="staticAssets.features_build_your_community_right_icon"
+            title="Build Community"
+          /> -->
         </div>
-      </div>
-      <div *ngIf="showHeading" class="faq">
-        <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
+        <div *ngIf="showHeading" class="faq">
+          <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
+        </div>
       </div>
     </div>
   </div>

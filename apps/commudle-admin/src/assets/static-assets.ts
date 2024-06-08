@@ -138,15 +138,31 @@ export const staticAssets = {
     url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM2sxQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--401df19785a101dbb8c939863455bd55d6f49d60/razorpay.svg',
   },
 
-  // id: 147,
+  // id: 151
   features_page_header:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3BOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3d98e63d356d788a6483ed7067ba6b0b5fe0eaf8/Header%20Section.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzFRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2c643d52f857a14ad268a086e2f8118029a0f7f/Header%20Asset.png',
 
-  // id: 148,
+  // id: 150
+  features_page_header_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd3hRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c1d963a646308024297b4fe5a5dfcdd5924e5a3/Header%20BG.png',
+
+  // id: 148
   features_know_your_community:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3hOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--48d2e70f97d92111d9cb7d39cad41db00d1b0fb9/Section%203%20Image.png',
 
-  // id: 149,
+  // id: 154
   features_build_your_community:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNzFOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b38292eb21e0b5bf7fd7115cdbe50e6fe6ab4078/Section%204.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEJRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5472aebc64e22eca352b7832e956b0dbf4803166/Paragraph%20Text.png',
+
+  // id: 152
+  features_build_your_community_right_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzVRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--220aa0950985fdf281a4700b8bbf1f1fdf8ca343/Group%20427319032.png',
+
+  //id: 153
+  features_build_your_community_left_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzlRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a3b4cba3b6321f31f57f8124eedfb3b2abeb8af0/Group%20427319033.png',
+
+  // id: 155
+  features_build_your_community_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEZRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--536d7996d56f77fcba3bf3af4a950d526155ce6d/Section%204%20BG.png',
 };

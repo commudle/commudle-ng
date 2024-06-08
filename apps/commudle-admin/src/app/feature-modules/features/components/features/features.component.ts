@@ -7,6 +7,7 @@ import { SeoService } from '@commudle/shared-services';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { faArrowRightArrowLeft, faArrowUpRightDots, faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 
 @Component({
   selector: 'commudle-features',
@@ -26,6 +27,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   faArrowUpRightDots = faArrowUpRightDots;
   faChartSimple = faChartSimple;
   faArrowRightArrowLeft = faArrowRightArrowLeft;
+  isDarkMode = false;
 
   questions = [
     'Is there an option to run multiple communities?',
@@ -48,11 +50,15 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     private responsiveService: ResponsiveService,
     private seoService: SeoService,
     private footerService: FooterService,
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit(): void {
     this.footerService.changeFooterStatus(true);
     this.isMobileView = this.responsiveService.isMobileView();
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
     this.getIndex();
     this.setMeta();
   }
