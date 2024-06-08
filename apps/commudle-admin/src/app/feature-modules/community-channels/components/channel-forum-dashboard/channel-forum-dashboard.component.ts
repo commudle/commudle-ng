@@ -3,7 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
-import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels } from '@commudle/shared-models';
+import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels, EUserRoles } from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -55,7 +55,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   token: string;
   emailToken: string;
   ESidebarWidth = ESidebarWidth;
-
+  isSuperAdmin = false;
   constructor(
     private authWatchService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -114,6 +114,9 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
         this.communityChannelManagerService.setCurrentUser(data);
+        if (this.currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
+          this.isSuperAdmin = true;
+        }
       }),
     );
   }

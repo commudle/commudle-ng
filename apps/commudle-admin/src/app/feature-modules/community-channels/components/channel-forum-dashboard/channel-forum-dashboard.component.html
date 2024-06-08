@@ -33,14 +33,14 @@
             <app-community-channel-list
               [groupedChannels]="channels"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
-              [isCommunityOrganizer]="isCommunityOrganizer"
+              [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
             ></app-community-channel-list>
           </div>
 
           <!-- forum list -->
           <div *ngIf="forumsList && !channelsList && discussionTypeForum">
             <app-community-forum-list
-              [isCommunityOrganizer]="isCommunityOrganizer"
+              [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
               [selectedForumName]="forumName"
               (updateSelectedForum)="updateSelectedChannelOrForum($event)"
             ></app-community-forum-list>
@@ -77,7 +77,7 @@
     <!-- //Form Name List shows after selecting form group -->
     <commudle-community-forum
       *ngIf="forumsNamesList"
-      [isCommunityOrganizer]="isCommunityOrganizer"
+      [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
       (updateSelectedForum)="checkSelectedForum()"
     ></commudle-community-forum>
 

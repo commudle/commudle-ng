@@ -1,5 +1,11 @@
 .confirmation-dialog {
   @apply com-w-500px com-max-w-[100vw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+  nb-card-footer {
+    @apply com-space-x-5;
+  }
 }
 
 .fullWidth {
