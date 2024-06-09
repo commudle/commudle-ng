@@ -18,16 +18,20 @@
         <div [innerHTML]="richTextChallenges | safe"></div>
       </div>
       <div *ngIf="richTextSolution" class="solution">
-        <h2>How commudle solved it</h2>
+        <h2>{{ caseStudyPage.solution[0].heading }}</h2>
         <div [innerHTML]="richTextSolution | safe"></div>
       </div>
-      <div *ngIf="caseStudyPageHeader?.testimonials" class="testimonials" id="testimonials">
+      <div *ngIf="caseStudyPage?.testimonials" class="testimonials" id="testimonials">
         <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></h2>
         <h3 class="subheading">Don't just take our word for it</h3>
         <div class="testimonial-card">
-          <commudle-testimonial-card [testimonials]="caseStudyPageHeader.testimonials"></commudle-testimonial-card>
+          <commudle-testimonial-card [testimonials]="caseStudyPage.testimonials"></commudle-testimonial-card>
         </div>
       </div>
+      <a [routerLink]="['/case-studies']" ghost nbButton size="small" class="back-btn">
+        <nb-icon icon="arrow-ios-back"></nb-icon>
+        Back to All Case Studies
+      </a>
     </div>
   </div>
 </div>

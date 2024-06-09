@@ -94,6 +94,10 @@ const routes: Routes = [
       import('./feature-modules/public-reading-book/public-reading-book.module').then((m) => m.PublicReadingBookModule),
   },
   {
+    path: 'features',
+    loadChildren: () => import('./feature-modules/features/features.module').then((m) => m.FeaturesModule),
+  },
+  {
     path: 'case-studies',
     loadChildren: () => import('./feature-modules/case-study/case-study.module').then((m) => m.CaseStudyModule),
   },

@@ -18,6 +18,7 @@ import {
   NbToggleModule,
   NbTooltipModule,
   NbUserModule,
+  NbContextMenuModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
@@ -118,6 +119,7 @@ import { EditorModule } from '@commudle/editor';
     NbFormFieldModule,
     NbSpinnerModule,
     NbAccordionModule,
+    NbContextMenuModule,
 
     EditorModule,
   ],

@@ -13,5 +13,10 @@ export interface ICaseStudy {
   testimonials: ITestimonial[];
   logoImage: SanityImageObject;
   challenge: [];
+  solution: ISolution[];
+}
+
+interface ISolution {
   solution: [];
+  heading: string;
 }
