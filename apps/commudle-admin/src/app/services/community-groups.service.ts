@@ -10,7 +10,7 @@ import { IPagination } from 'apps/shared-models/pagination.model';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUsers } from 'apps/shared-models/users.model';
-import { ICommunity, IPaginationCount } from '@commudle/shared-models';
+import { ICommunity, IPaginationCount, IUserRolesUsers } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -155,6 +155,14 @@ export class CommunityGroupsService {
       {
         params,
       },
+    );
+  }
+
+  pGetOrganizersAllCommunities(communityGroupId): Observable<IUserRolesUsers> {
+    const params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.ORGANIZERS_ALL_COMMUNITIES),
+      { params },
     );
   }
 }
