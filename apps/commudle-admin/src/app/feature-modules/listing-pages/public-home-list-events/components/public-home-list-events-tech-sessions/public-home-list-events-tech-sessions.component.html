@@ -1,4 +1,4 @@
-<nb-card id="tech-sessions">
+<nb-card *ngIf="techSessions.length > 0" id="tech-sessions">
   <nb-card-body>
     <div class="heading">
       <h3 class="title"><a [routerLink]="'.'" fragment="tech-sessions">Latest Tech Talks</a></h3>

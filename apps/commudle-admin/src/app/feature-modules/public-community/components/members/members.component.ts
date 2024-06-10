@@ -77,6 +77,7 @@ export class MembersComponent implements OnInit, OnDestroy {
         this.mini,
         this.page_info?.end_cursor,
         this.count,
+        null,
         this.query,
         this.month,
         this.year,
