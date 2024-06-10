@@ -1,6 +1,6 @@
-.member:not(:last-child) {
-  @apply com-border-0 com-border-b-2 com-border-solid com-border-Bright-Gray;
-}
 nb-card {
   @apply com-mx-0;
+  .members {
+    @apply com-grid md:com-grid-cols-4 sm:com-grid-cols-2 com-grid-cols-1 com-gap-4;
+  }
 }

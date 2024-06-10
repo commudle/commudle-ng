@@ -158,9 +158,16 @@ export class CommunityGroupsService {
     );
   }
 
-  pGetOrganizersAllCommunities(communityGroupId): Observable<IUserRolesUsers> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
-    return this.http.get<IUserRolesUsers>(
+  pGetOrganizersAllCommunities(
+    communityGroupId,
+    limit: number,
+    after?: string,
+  ): Observable<IPagination<IUserRolesUsers>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUserRolesUsers>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.ORGANIZERS_ALL_COMMUNITIES),
       { params },
     );
