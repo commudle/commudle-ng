@@ -14,6 +14,7 @@ import { IUser } from 'apps/shared-models/user.model';
 export class PublicHomeListEventsSpeakersComponent implements OnInit {
   @Input() parentType: string;
   @Input() eventId: string;
+  @Input() communityGroupId: number;
   faMicrophone = faMicrophone;
   speakers: IUser[] = [];
   pageInfo: IPageInfo;
@@ -23,7 +24,6 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   showSkeletonLoading = true;
   limit = 4;
   mini = true;
-  communityGroupId: number;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -32,11 +32,6 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.parent.data.subscribe((data) => {
-      if (data) {
-        this.communityGroupId = data.community_group?.id;
-      }
-    });
     switch (this.parentType) {
       case 'communities': {
         this.getAllSpeakersList();

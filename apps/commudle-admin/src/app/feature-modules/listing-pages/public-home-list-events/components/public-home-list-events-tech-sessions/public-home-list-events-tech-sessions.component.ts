@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faHeadset } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -13,6 +13,7 @@ import { ISessions } from 'apps/shared-models/sessions.model';
   styleUrls: ['./public-home-list-events-tech-sessions.component.scss'],
 })
 export class PublicHomeListEventsTechSessionsComponent implements OnInit {
+  @Input() communityGroupId: number;
   techSessions: ISessions[] = [];
   faHeadset = faHeadset;
   showSpinner = false;
@@ -21,17 +22,11 @@ export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   isLoadingTechSessions = false;
   showSkeletonCard = true;
   limit = 4;
-  communityGroupId: number;
 
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.parent.data.subscribe((data) => {
-      if (data) {
-        this.communityGroupId = data.community_group?.id;
-      }
-      this.getTechSessions();
-    });
+    this.getTechSessions();
   }
 
   getTechSessions() {

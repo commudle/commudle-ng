@@ -61,13 +61,7 @@ export class CommunityGroupEventsComponent implements OnInit {
     this.isLoadingUpcoming = true;
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(
-          this.communityGroup.slug,
-          this.limit,
-          this.upcomingPageInfo?.end_cursor,
-          'future',
-          this.upcomingPageInfo?.start_cursor,
-        )
+        .pEvents(this.communityGroup.slug, this.limit, this.upcomingPageInfo?.end_cursor, 'future')
         .subscribe((data) => {
           this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.upcomingPageInfo = data.page_info;

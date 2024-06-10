@@ -126,11 +126,14 @@
           ></commudle-public-home-list-speakers-upcoming>
         </div>
         <div class="recent-tech">
-          <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+          <commudle-public-home-list-events-tech-sessions
+            [communityGroupId]="communityGroup?.id"
+          ></commudle-public-home-list-events-tech-sessions>
         </div>
         <div class="speakers">
           <commudle-public-home-list-events-speakers
             [parentType]="'communities'"
+            [communityGroupId]="communityGroup?.id"
           ></commudle-public-home-list-events-speakers>
         </div>
       </div>
