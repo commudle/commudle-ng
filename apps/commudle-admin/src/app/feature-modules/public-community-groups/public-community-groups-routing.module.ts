@@ -39,7 +39,7 @@ const routes = [
         component: CommunityGroupChannelsComponent,
       },
       {
-        path: 'team',
+        path: 'leaders',
         component: CommunityGroupTeamComponent,
       },
       {

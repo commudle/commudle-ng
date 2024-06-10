@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
@@ -22,6 +23,7 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private userRolesUserService: UserRolesUsersService,
     private seoService: SeoService,
+    private communityGroupsService: CommunityGroupsService,
   ) {}
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
 
   getTeam() {
     this.subscriptions.push(
-      this.userRolesUserService.pGetCommunityGroupLeaders(this.communityGroup.slug).subscribe((data) => {
+      this.communityGroupsService.pGetOrganizersAllCommunities(this.communityGroup.slug).subscribe((data) => {
         this.team = data.user_roles_users;
         this.isLoading = false;
       }),
