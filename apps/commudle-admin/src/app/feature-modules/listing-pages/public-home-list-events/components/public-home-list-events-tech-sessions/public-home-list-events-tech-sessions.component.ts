@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { faHeadset } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -20,23 +21,31 @@ export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   isLoadingTechSessions = false;
   showSkeletonCard = true;
   limit = 4;
+  communityGroupId: number;
 
-  constructor(private eventsService: EventsService) {}
+  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
 
   ngOnInit(): void {
-    this.getTechSessions();
+    this.activatedRoute.parent.data.subscribe((data) => {
+      if (data) {
+        this.communityGroupId = data.community_group?.id;
+      }
+      this.getTechSessions();
+    });
   }
 
   getTechSessions() {
     this.isLoadingTechSessions = true;
     this.showSpinner = true;
-    this.eventsService.getTechSessions(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-      this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.page_info = data.page_info;
-      this.showSkeletonCard = false;
-      this.isLoadingTechSessions = false;
-      this.showSpinner = false;
-    });
+    this.eventsService
+      .getTechSessions(this.page_info?.end_cursor, this.limit, this.communityGroupId)
+      .subscribe((data) => {
+        this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.page_info = data.page_info;
+        this.showSkeletonCard = false;
+        this.isLoadingTechSessions = false;
+        this.showSpinner = false;
+      });
   }
 }

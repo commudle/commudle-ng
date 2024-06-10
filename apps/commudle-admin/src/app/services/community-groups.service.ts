@@ -114,11 +114,23 @@ export class CommunityGroupsService {
     });
   }
 
-  pCommunities(communityGroupId): Observable<ICommunities> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
-    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITIES), {
-      params,
-    });
+  pCommunities(communityGroupId, limit, after?, when?, before?): Observable<IPagination<ICommunities>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
+    if (when) {
+      params = params.set('when', when);
+    }
+    if (before) {
+      params = params.set('before', before);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<ICommunities>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITIES),
+      {
+        params,
+      },
+    );
   }
 
   pChannels(communityGroupId, limit, after?): Observable<IPagination<ICommunityChannel>> {

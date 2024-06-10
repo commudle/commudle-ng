@@ -19,25 +19,11 @@
     <section>
       <h3>Past Events</h3>
       <app-loading-spinner *ngIf="isLoadingPast"></app-loading-spinner>
-      <div
-        *appBreakpoints="'>lg'"
-        (scrolled)="getPastEvents()"
-        [infiniteScrollDisabled]="pastEvents.length >= total"
-        appInfiniteScroll
-      >
+      <div (scrolled)="getPastEvents()" [infiniteScrollDisabled]="pastEvents.length >= total" appInfiniteScroll>
         <div class="past-events-card-list">
           <commudle-event-card *ngFor="let event of pastEvents" [event]="event"></commudle-event-card>
         </div>
         <app-loading-spinner *ngIf="isLoadingPast" class="com-mt-4"></app-loading-spinner>
-      </div>
-      <div *appBreakpoints="'<=lg'">
-        <div class="past-events-card-list">
-          <commudle-event-card *ngFor="let event of pastEvents" [event]="event"></commudle-event-card>
-        </div>
-        <app-loading-spinner *ngIf="isLoadingPast" class="com-mt-4"></app-loading-spinner>
-        <button (click)="getPastEvents()" *ngIf="pastPageInfo?.has_next_page" fullWidth ghost nbButton>
-          Load More Past Events
-        </button>
       </div>
     </section>
   </nb-card-body>

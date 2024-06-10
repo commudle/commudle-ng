@@ -23,6 +23,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   showSkeletonLoading = true;
   limit = 4;
   mini = true;
+  communityGroupId: number;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -31,6 +32,11 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.parent.data.subscribe((data) => {
+      if (data) {
+        this.communityGroupId = data.community_group?.id;
+      }
+    });
     switch (this.parentType) {
       case 'communities': {
         this.getAllSpeakersList();
@@ -63,13 +69,15 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
       return;
     }
     this.isLoadingSpeakers = true;
-    this.communitiesService.getSpeakersList(this.mini, this.pageInfo?.end_cursor, this.limit).subscribe((data) => {
-      this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.pageInfo = data.page_info;
-      this.isLoadingSpeakers = false;
-      this.showSpinner = false;
-      this.showSkeletonLoading = false;
-    });
+    this.communitiesService
+      .getSpeakersList(this.mini, this.pageInfo?.end_cursor, this.limit, this.communityGroupId)
+      .subscribe((data) => {
+        this.speakers = this.speakers.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.pageInfo = data.page_info;
+        this.isLoadingSpeakers = false;
+        this.showSpinner = false;
+        this.showSkeletonLoading = false;
+      });
   }
 }

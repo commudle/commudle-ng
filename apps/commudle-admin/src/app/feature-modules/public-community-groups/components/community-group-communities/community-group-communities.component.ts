@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { ICommunity } from 'apps/shared-models/community.model';
+import { IPageInfo } from 'apps/shared-models/page-info.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
@@ -15,8 +16,10 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
   communities: ICommunity[] = [];
   subscriptions: Subscription[] = [];
-
+  pageInfo: IPageInfo;
+  limit = 6;
   isLoading = true;
+  total: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,11 +42,16 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   getCommunities() {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.communityGroupsService.pCommunities(this.communityGroup.slug).subscribe((data) => {
-        this.communities = data.communities;
-        this.isLoading = false;
-      }),
+      this.communityGroupsService
+        .pCommunities(this.communityGroup.slug, this.limit, this.pageInfo?.end_cursor)
+        .subscribe((data) => {
+          this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.pageInfo = data.page_info;
+          this.total = data.total;
+          this.isLoading = false;
+        }),
     );
   }
 
