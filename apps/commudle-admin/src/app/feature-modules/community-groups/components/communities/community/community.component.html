@@ -120,8 +120,14 @@
   <div *ngIf="isLoading" class="loading">
     <app-loading-spinner></app-loading-spinner>
   </div>
-
-  <div *ngIf="pageInfo?.has_next_page" class="view-more-button">
-    <button (click)="getCommunities()" nbButton fullWidth>View More</button>
-  </div>
+  <br />
+  <app-pagination
+    (goTo)="page = $event; getCommunities()"
+    (next)="page = $event; getCommunities()"
+    (previous)="page = $event; getCommunities()"
+    *ngIf="total > 0"
+    [count]="count"
+    [current]="page"
+    [total]="total"
+  ></app-pagination>
 </div>

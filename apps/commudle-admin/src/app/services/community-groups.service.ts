@@ -10,6 +10,7 @@ import { IPagination } from 'apps/shared-models/pagination.model';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUsers } from 'apps/shared-models/users.model';
+import { ICommunity, IPaginationCount } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -53,12 +54,9 @@ export class CommunityGroupsService {
       );
   }
 
-  communities(communityGroupId, after): Observable<IPagination<ICommunities>> {
-    let params = new HttpParams().set('community_group_id', communityGroupId);
-    if (after) {
-      params = params.set('after', after);
-    }
-    return this.http.get<IPagination<ICommunities>>(
+  communities(communityGroupId, page: number, count: number): Observable<IPaginationCount<ICommunity>> {
+    const params = new HttpParams().set('community_group_id', communityGroupId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<ICommunity>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.COMMUNITIES),
       {
         params,
@@ -66,12 +64,9 @@ export class CommunityGroupsService {
     );
   }
 
-  events(communityGroupId, after): Observable<IPagination<IEvent>> {
-    let params = new HttpParams().set('community_group_id', communityGroupId);
-    if (after) {
-      params = params.set('after', after);
-    }
-    return this.http.get<IPagination<IEvent>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.EVENTS), {
+  events(communityGroupId, page: number, count: number): Observable<IPaginationCount<IEvent>> {
+    const params = new HttpParams().set('community_group_id', communityGroupId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<IEvent>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.EVENTS), {
       params,
     });
   }
