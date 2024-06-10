@@ -40,10 +40,9 @@ export class EventStreamingComponent implements OnInit {
 
   getToken() {
     this.subscriptions.push(
-      this.communityAuthTokensService.getToken(this.embeddedVideoStream.id, 'youtube').subscribe((res) => {
-        if (res) {
-          this.communityAuthToken = res;
-        }
+      this.communityAuthTokensService.getToken(this.embeddedVideoStream.id, 'youtube').subscribe({
+        next: (res) => (this.communityAuthToken = res),
+        error: () => (this.communityAuthToken = null),
       }),
     );
   }
@@ -64,7 +63,7 @@ export class EventStreamingComponent implements OnInit {
 
   loginToYoutube() {
     this.authService.getAccessToken(YoutubeLoginProvider.PROVIDER_ID).then((authorization_code) => {
-      this.createToken(authorization_code);
+      if (authorization_code) this.createToken(authorization_code);
     });
   }
 
