@@ -23,7 +23,7 @@ export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   showSkeletonCard = true;
   limit = 4;
 
-  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
+  constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
     this.getTechSessions();

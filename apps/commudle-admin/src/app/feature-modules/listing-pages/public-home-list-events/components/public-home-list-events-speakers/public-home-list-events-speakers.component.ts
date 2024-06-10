@@ -25,11 +25,7 @@ export class PublicHomeListEventsSpeakersComponent implements OnInit {
   limit = 4;
   mini = true;
 
-  constructor(
-    private communitiesService: CommunitiesService,
-    private eventsService: EventsService,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+  constructor(private communitiesService: CommunitiesService, private eventsService: EventsService) {}
 
   ngOnInit(): void {
     switch (this.parentType) {
