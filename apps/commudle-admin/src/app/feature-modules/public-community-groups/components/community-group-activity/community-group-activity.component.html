@@ -51,7 +51,7 @@
         </nb-card>
 
         <!-- channels -->
-        <nb-card>
+        <nb-card *ngIf="channels.length > 0">
           <nb-card-header class="header">
             <div class="icon">
               <fa-icon [icon]="faHashtag"></fa-icon>
@@ -72,7 +72,7 @@
         </nb-card>
 
         <!-- communities -->
-        <nb-card>
+        <nb-card *ngIf="communities.length > 0">
           <nb-card-header>
             <div class="header">
               <div class="icon">
@@ -100,7 +100,7 @@
         </nb-card>
 
         <!--forums-->
-        <nb-card>
+        <nb-card *ngIf="forums.length > 0">
           <nb-card-header class="header">
             <div class="icon">
               <fa-icon [icon]="faHashtag"></fa-icon>

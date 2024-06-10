@@ -134,7 +134,7 @@ export class CommunityGroupsService {
     );
   }
 
-  pEvents(communityGroupId, limit, before?, after?, when?): Observable<IPagination<IEvent>> {
+  pEvents(communityGroupId, limit, after?, when?, before?): Observable<IPagination<IEvent>> {
     let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
     if (when) {
       params = params.set('when', when);

@@ -77,8 +77,8 @@ export class CommunityGroupActivityComponent implements OnInit, OnDestroy {
           this.communityGroup.slug,
           this.limit,
           this.page_info?.end_cursor,
-          this.page_info?.start_cursor,
           'future',
+          this.page_info?.start_cursor,
         )
         .subscribe((data) => {
           this.events = this.events.concat(data.page.reduce((acc, value) => [...acc, value.data], []));

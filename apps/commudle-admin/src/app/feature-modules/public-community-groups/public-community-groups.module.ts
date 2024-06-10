@@ -32,6 +32,7 @@ import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/featur
 import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
 import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
 import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/forum-card/forum-card.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
+    InfiniteScrollModule,
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,
