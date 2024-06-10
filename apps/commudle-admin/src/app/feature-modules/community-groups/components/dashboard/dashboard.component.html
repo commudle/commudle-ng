@@ -7,77 +7,64 @@
       [forWindow]="false"
       [showExpandedButton]="false"
     >
-      <div [ngClass]="{ expanded: sidebarService.getSidebarVisibility('communityGroup') | async }">
-        <div class="content">
-          <div class="link">
-            <div
-              class="content"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['./']"
-              [routerLinkActive]="'active'"
-            >
-              <div class="icon">
-                <fa-icon [icon]="icons.faCalendar"></fa-icon>
-              </div>
-              <div class="title">Communities</div>
+      <div class="action-buttons">
+        <div class="category">
+          <!-- <div class="category-heading">
+            <span>Event Setup</span>
+          </div> -->
+          <a
+            class="action-button"
+            [routerLink]="['./']"
+            [routerLinkActive]="'active'"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <div class="icon">
+              <nb-icon icon="info-outline"></nb-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['members']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faUsers"></fa-icon>
-              </div>
-              <div class="title">All Members</div>
+            <div class="heading">Communities</div>
+          </a>
+          <a class="action-button" [routerLink]="['members']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faUsers"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faBuilding"></fa-icon>
-              </div>
-              <div class="title">Admin Team</div>
+            <div class="heading">All Members</div>
+          </a>
+          <a class="action-button" [routerLink]="['admin-team']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faBuilding"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['edit']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
-              </div>
-              <div class="title">Edit Details</div>
+            <div class="heading">Admin Team</div>
+          </a>
+          <a class="action-button" [routerLink]="['edit']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faPenToSquare"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['surveys']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faPoll"></fa-icon>
-              </div>
-              <div class="title">Surveys</div>
+            <div class="heading">Edit Details</div>
+          </a>
+          <a class="action-button" [routerLink]="['surveys']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faPoll"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['pages']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faFileLines"></fa-icon>
-              </div>
-              <div class="title">Pages</div>
+            <div class="heading">Surveys</div>
+          </a>
+          <a class="action-button" [routerLink]="['pages']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faFileLines"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['channels']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faHashtag"></fa-icon>
-              </div>
-              <div class="title">Channels</div>
+            <div class="heading">Pages</div>
+          </a>
+          <a class="action-button" [routerLink]="['channels']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faHashtag"></fa-icon>
             </div>
-          </div>
-          <div class="link">
-            <div class="content" [routerLink]="['forums']" [routerLinkActive]="'active'">
-              <div class="icon">
-                <fa-icon [icon]="icons.faMessage"></fa-icon>
-              </div>
-              <div class="title">forums</div>
+            <div class="heading">Channels</div>
+          </a>
+          <a class="action-button" [routerLink]="['forums']" [routerLinkActive]="'active'">
+            <div class="icon">
+              <fa-icon [icon]="icons.faMessage"></fa-icon>
             </div>
-          </div>
+            <div class="heading">forums</div>
+          </a>
         </div>
       </div>
     </commudle-sidebar>

@@ -1,4 +1,4 @@
-<div *ngIf="communityGroup" class="com-mt-4">
+<div *ngIf="communityGroup && communities" class="com-mt-4">
   <button
     nbButton
     status="primary"
@@ -12,7 +12,7 @@
   </button>
 </div>
 <div class="com-my-4" style="overflow-x: auto">
-  <table *ngIf="communities.length > 0">
+  <table *ngIf="communities && communities.length > 0">
     <thead>
       <tr class="heading">
         <th class="name">Name</th>
