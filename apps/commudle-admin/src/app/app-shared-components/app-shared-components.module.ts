@@ -12,6 +12,7 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbToggleModule,
+  NbTooltipModule,
 } from '@commudle/theme';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
@@ -42,6 +43,7 @@ import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
 import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 import { HelpSectionComponent } from './help-section/help-section.component';
+import { HelpDictionaryIframeComponent } from './help-dictionary-iframe/help-dictionary-iframe.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { HelpSectionComponent } from './help-section/help-section.component';
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
     HelpSectionComponent,
+    HelpDictionaryIframeComponent,
   ],
   exports: [
     EmailerComponent,
@@ -81,6 +84,7 @@ import { HelpSectionComponent } from './help-section/help-section.component';
     CustomPageFormComponent,
     WhatsNewComponent,
     HelpSectionComponent,
+    HelpDictionaryIframeComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +117,7 @@ import { HelpSectionComponent } from './help-section/help-section.component';
     NbToggleModule,
     NbIconModule,
     NbCardModule,
+    NbTooltipModule,
     //FontAwesome
     FontAwesomeModule,
     SharedPipesModule,

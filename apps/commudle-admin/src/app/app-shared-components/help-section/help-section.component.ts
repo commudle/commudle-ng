@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
-import { helpDictionary } from '@commudle/shared-services';
+import { help_dictionary } from '@commudle/shared-services';
+import { IHelpDictionary } from 'apps/shared-models/help-dictionary.model';
+import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
 
 @Component({
   selector: 'commudle-help-section',
@@ -11,18 +13,22 @@ import { helpDictionary } from '@commudle/shared-services';
 export class HelpSectionComponent implements OnInit {
   @Input() helpDictionaryName: string;
   faCircleQuestion = faCircleQuestion;
-  helpDictionary = helpDictionary;
-  helpDictionaryData = {};
-  constructor(private helpSidebarService: SidebarService) {}
+  helpDictionary = help_dictionary;
+  helpDictionaryData: IHelpDictionary;
+  constructor(private helpSidebarService: SidebarService, private helpDictionaryService: HelpDictionaryService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getHelpSectionData();
+  }
 
   openSidebar() {
     this.helpSidebarService.openSidebar('helpSection');
   }
 
   getHelpSectionData() {
-    this.helpDictionaryData = helpDictionary[this.helpDictionaryName];
-    console.log(this.helpDictionaryData);
+    this.helpDictionaryData = this.helpDictionary[this.helpDictionaryName];
+    if (this.helpDictionaryData.type === 'url') {
+      this.helpDictionaryService.getHelpDictionaryIframe(this.helpDictionaryData.url);
+    }
   }
 }

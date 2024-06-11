@@ -1,12 +1,12 @@
-export const helpDictionary: {
+const helpDictionary = {
   'help-event-edit-details': {
-    type: 'url/text';
-    url: 'https://documentation.commudle.com';
-    text: '<p>Hello</p>';
-  };
+    type: 'text',
+    text: 'Hello',
+  },
   'help-event': {
-    type: 'url/text';
-    url: 'https://documentation.commudle.com';
-    text: '<p>Bye</p>';
-  };
+    type: 'url',
+    url: 'www.commudle.com',
+  },
 };
+
+export const help_dictionary = helpDictionary;

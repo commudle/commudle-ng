@@ -1,1 +1,6 @@
-<fa-icon [icon]="faCircleQuestion" (click)="openSidebar()"></fa-icon>
+<fa-icon
+  [icon]="faCircleQuestion"
+  (click)="openSidebar()"
+  [nbTooltip]="helpDictionaryData.type === 'text' ? helpDictionaryData.text : null"
+>
+</fa-icon>
