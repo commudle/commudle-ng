@@ -74,7 +74,7 @@
                 }
               }
               .collaboration-badges {
-                @apply com-flex com-gap-3 com-items-center com-line-clamp-1 com-mt-2;
+                @apply com-gap-3 com-items-center com-line-clamp-1 com-mt-2 com-hidden md:com-flex;
               }
             }
 
