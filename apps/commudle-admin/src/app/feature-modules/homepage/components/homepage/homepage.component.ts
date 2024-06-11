@@ -99,7 +99,7 @@ export class HomepageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getTestimonials() {
     this.cmsService
-      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 10)
+      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType[]', 'Community_Leader', 10)
       .subscribe((data) => {
         if (data) {
           this.testimonials = data;

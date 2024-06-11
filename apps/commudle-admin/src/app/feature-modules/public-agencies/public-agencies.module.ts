@@ -8,6 +8,7 @@ import { SharedComponentsModule } from '@commudle/shared-components';
 import { BadgeComponent } from 'apps/shared-components/badge/badge.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PublicPagesRoutingModule } from 'apps/commudle-admin/src/app/feature-modules/public-agencies/public-agencies-routing.module';
+import { FeaturesModule } from 'apps/commudle-admin/src/app/feature-modules/features/features.module';
 
 @NgModule({
   declarations: [AggenciesComponent],
@@ -18,6 +19,7 @@ import { PublicPagesRoutingModule } from 'apps/commudle-admin/src/app/feature-mo
     NbButtonModule,
     SharedComponentsModule,
     BadgeComponent,
+    FeaturesModule,
 
     //Nebular
     NbInputModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { faHeadset } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -12,6 +13,7 @@ import { ISessions } from 'apps/shared-models/sessions.model';
   styleUrls: ['./public-home-list-events-tech-sessions.component.scss'],
 })
 export class PublicHomeListEventsTechSessionsComponent implements OnInit {
+  @Input() communityGroupId: number;
   techSessions: ISessions[] = [];
   faHeadset = faHeadset;
   showSpinner = false;
@@ -30,13 +32,15 @@ export class PublicHomeListEventsTechSessionsComponent implements OnInit {
   getTechSessions() {
     this.isLoadingTechSessions = true;
     this.showSpinner = true;
-    this.eventsService.getTechSessions(this.page_info?.end_cursor, this.limit).subscribe((data) => {
-      this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      this.total = data.total;
-      this.page_info = data.page_info;
-      this.showSkeletonCard = false;
-      this.isLoadingTechSessions = false;
-      this.showSpinner = false;
-    });
+    this.eventsService
+      .getTechSessions(this.page_info?.end_cursor, this.limit, this.communityGroupId)
+      .subscribe((data) => {
+        this.techSessions = this.techSessions.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.total = data.total;
+        this.page_info = data.page_info;
+        this.showSkeletonCard = false;
+        this.isLoadingTechSessions = false;
+        this.showSpinner = false;
+      });
   }
 }

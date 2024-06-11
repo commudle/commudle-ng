@@ -76,6 +76,9 @@
       <div *ngSwitchCase="consentTypesEnum.HACKATHON_JUDGE_INVITATION">
         <commudle-accept-hackathon-judge-invite></commudle-accept-hackathon-judge-invite>
       </div>
+      <div *ngSwitchCase="consentTypesEnum.HACKATHON_REGISTRATION">
+        <commudle-hackathon-registration-consent></commudle-hackathon-registration-consent>
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <button nbButton shape="rectangle" (click)="accept()" [ngClass]="buttonStyle">

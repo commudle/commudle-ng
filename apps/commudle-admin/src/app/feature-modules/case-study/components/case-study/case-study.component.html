@@ -1,0 +1,37 @@
+<div class="case-study">
+  <commudle-case-study-header></commudle-case-study-header>
+  <div class="stats-container">
+    <div class="base-layout">
+      <div class="container">
+        <div *ngIf="richTextStats" class="stats">
+          <div *ngFor="let stat of richTextStats">
+            <div [innerHTML]="stat | safe"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="base-layout case-study-container">
+    <div class="container">
+      <div *ngIf="richTextChallenges" class="challenges">
+        <h2>Challenges</h2>
+        <div [innerHTML]="richTextChallenges | safe"></div>
+      </div>
+      <div *ngIf="richTextSolution" class="solution">
+        <h2>{{ caseStudyPage.solution[0].heading }}</h2>
+        <div [innerHTML]="richTextSolution | safe"></div>
+      </div>
+      <div *ngIf="caseStudyPage?.testimonials" class="testimonials" id="testimonials">
+        <h2 class="heading"><a [routerLink]="'.'" fragment="testimonials">TESTIMONIALS</a></h2>
+        <h3 class="subheading">Don't just take our word for it</h3>
+        <div class="testimonial-card">
+          <commudle-testimonial-card [testimonials]="caseStudyPage.testimonials"></commudle-testimonial-card>
+        </div>
+      </div>
+      <a [routerLink]="['/case-studies']" ghost nbButton size="small" class="back-btn">
+        <nb-icon icon="arrow-ios-back"></nb-icon>
+        Back to All Case Studies
+      </a>
+    </div>
+  </div>
+</div>

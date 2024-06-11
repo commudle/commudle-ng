@@ -17,6 +17,7 @@ export class CommunityGroupEventsComponent implements OnInit {
   pastEvents: IEvent[] = [];
   upcomingEvents: IEvent[] = [];
   subscriptions: Subscription[] = [];
+  total: number;
 
   pastPageInfo: IPageInfo;
   upcomingPageInfo: IPageInfo;
@@ -46,10 +47,11 @@ export class CommunityGroupEventsComponent implements OnInit {
     this.isLoadingPast = true;
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.communityGroup.slug, this.limit, '', this.pastPageInfo?.end_cursor, 'past')
+        .pEvents(this.communityGroup.slug, this.limit, this.pastPageInfo?.end_cursor, 'past')
         .subscribe((data) => {
           this.pastEvents = this.pastEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.pastPageInfo = data.page_info;
+          this.total = data.total;
           this.isLoadingPast = false;
         }),
     );
@@ -59,10 +61,11 @@ export class CommunityGroupEventsComponent implements OnInit {
     this.isLoadingUpcoming = true;
     this.subscriptions.push(
       this.communityGroupsService
-        .pEvents(this.communityGroup.slug, this.limit, '', this.upcomingPageInfo?.end_cursor, 'future')
+        .pEvents(this.communityGroup.slug, this.limit, this.upcomingPageInfo?.end_cursor, 'future')
         .subscribe((data) => {
           this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
           this.upcomingPageInfo = data.page_info;
+          this.total = data.total;
           this.isLoadingUpcoming = false;
         }),
     );

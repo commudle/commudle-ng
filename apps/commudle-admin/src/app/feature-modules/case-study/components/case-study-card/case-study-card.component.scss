@@ -1,0 +1,39 @@
+.case-study-card {
+  @apply com-w-full com-no-underline;
+
+  .title {
+    @apply com-m-0 com-p-0 com-pt-4 com-text-xl com-font-bold com-text-Dark-Jungle-Green;
+  }
+
+  .tagline {
+    @apply com-m-0 com-text-sm com-font-medium com-text-gray-400 com-p-0 com-pr-0 md:com-pr-4 md:com-h-[70px] com-h-auto;
+    div {
+      ::ng-deep {
+        p {
+          @apply com-line-clamp-3;
+        }
+      }
+    }
+  }
+
+  .no-banner-image {
+    @apply com-flex com-aspect-[4/1];
+    img {
+      @apply com-w-full com-h-full com-rounded-lg;
+    }
+  }
+
+  .meta-description {
+    @apply com-text-sm com-text-gray-400 com-font-medium com-my-3 com-h-10;
+  }
+
+  button {
+    @apply com-flex com-items-center com-p-0;
+    fa-icon {
+      @apply com-text-base com-mr-1 com-flex-shrink-0;
+    }
+    p {
+      @apply com-m-0 com-text-base com-font-medium;
+    }
+  }
+}

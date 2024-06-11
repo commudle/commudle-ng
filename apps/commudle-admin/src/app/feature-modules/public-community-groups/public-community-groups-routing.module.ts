@@ -71,7 +71,7 @@ const routes = [
         ],
       },
       {
-        path: 'team',
+        path: 'leaders',
         component: CommunityGroupTeamComponent,
       },
       {

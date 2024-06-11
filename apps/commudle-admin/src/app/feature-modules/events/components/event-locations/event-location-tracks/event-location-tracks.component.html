@@ -41,7 +41,11 @@
           </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
-          <div class="add-session" (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()">
+          <div
+            class="add-session"
+            (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
+            *ngIf="event.editable"
+          >
             <fa-icon [icon]="faPlus"></fa-icon>
             &nbsp; Add New Session
           </div>

@@ -68,6 +68,8 @@
           </div>
         </form>
       </div>
+
+      <app-loading-spinner *ngIf="loadingVolunteers"></app-loading-spinner>
       <div *ngIf="volunteers.length > 0">
         <div class="volunteers">
           <table>

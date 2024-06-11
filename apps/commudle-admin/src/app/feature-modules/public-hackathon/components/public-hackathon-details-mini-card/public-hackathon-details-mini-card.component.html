@@ -50,7 +50,7 @@
         </span>
       </div>
     </div>
-    <div class="prize-amount" *ngIf="totalPrizesByCurrency[0]">
+    <div class="prize-amount" *ngIf="totalPrizesByCurrency[0] && totalPrizesByCurrency[0].amount !== 0">
       <strong> {{ totalPrizesByCurrency[0].currency.symbol }}{{ totalPrizesByCurrency[0].amount }}</strong>
       <span> in prizes</span>
     </div>

@@ -1,3 +1,4 @@
+import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { IUser } from 'apps/shared-models/user.model';
 
 export interface ITestimonial {
@@ -7,4 +8,5 @@ export interface ITestimonial {
   user: IUser;
   createdAt: string;
   name: string;
+  image: SanityImageObject;
 }

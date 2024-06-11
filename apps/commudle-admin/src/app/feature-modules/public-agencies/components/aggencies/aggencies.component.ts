@@ -14,7 +14,7 @@ export class AggenciesComponent implements OnInit {
   staticAssets = staticAssets;
   stats: any[] = [
     {
-      number: '79k',
+      number: '107+k',
       name: 'Developers',
       description: 'Thousands of developers use Commudle to share knowledge, build recognition and find opportunities.',
     },
@@ -72,7 +72,7 @@ export class AggenciesComponent implements OnInit {
 
   getTestimonials() {
     this.cmsService
-      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType', 'Community_Leader', 10)
+      .getDataByTypeWithFilter('publicTestimonials', 'testimonialType[]', 'Community_Leader', 10)
       .subscribe((data) => {
         if (data) {
           this.testimonials = data;

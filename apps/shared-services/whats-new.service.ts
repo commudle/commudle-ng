@@ -14,7 +14,7 @@ export class WhatsNewService {
 
   setCookieCreationTime(cookieName) {
     const creationTime = new Date().toISOString();
-    this.cookieService.set(cookieName, creationTime);
+    this.cookieService.set(cookieName, creationTime, 365);
   }
 
   getNewUpdates(date) {

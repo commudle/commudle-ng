@@ -52,9 +52,7 @@
                   <commudle-public-hackathon-user-details-form
                     [hackathonResponseGroup]="hackathonResponseGroup"
                     [hackathonUserResponse]="hackathonUserResponse"
-                    (submitUserDetailsEvent)="
-                      hackathonUserResponse ? updateUserResponse($event) : submitUserResponse($event)
-                    "
+                    (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
                   ></commudle-public-hackathon-user-details-form>
                 </div>
               </nb-step>

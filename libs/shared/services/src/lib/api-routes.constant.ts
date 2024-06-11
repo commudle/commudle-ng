@@ -120,6 +120,7 @@ export const API_ROUTES = {
       EVENTS: 'api/v2/community_groups/public/events',
       COMMUNITY_CHANNELS: 'api/v2/community_groups/public/community_channels',
       ACTIVE_COMMUNITIES_AND_CHANNELS: 'api/v2/community_groups/public/active_communities_and_channels',
+      ORGANIZERS_ALL_COMMUNITIES: 'api/v2/community_groups/public/organizers_all_communities',
     },
   },
 
@@ -520,6 +521,8 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT:
       'api/v2/discussions/public_get_or_create_for_community_channel_chat',
     PUBLIC_COMMUNITY_BUILD_MESSAGES: 'api/v2/discussions/public_community_build_messages',
+    TOGGLE_DISCUSSION_OPEN: 'api/v2/discussions/toggle_discussion_open',
+
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
       UPDATE_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/update_attachment_message',
@@ -826,6 +829,7 @@ export const API_ROUTES = {
       INDEX_SPONSORS: 'api/v2/hackathons/public/index_sponsors', //GET
       INDEX_PROJECTS: 'api/v2/hackathons/public/index_projects', //GET
       INTERESTED_USERS: 'api/v2/hackathons/public/interested_users', //GET
+      IS_MEMBER_OF_PARENT: 'api/v2/hackathons/public/is_member_of_parent', //GET
     },
   },
 

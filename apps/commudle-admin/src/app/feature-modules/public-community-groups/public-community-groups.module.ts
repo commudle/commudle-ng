@@ -35,6 +35,7 @@ import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
 import { CommunitiesChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community-groups/components/community-group-channels/communities-channels/communities-channels.component';
 import { OrgChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/public-community-groups/components/community-group-channels/org-channels/org-channels.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     FontAwesomeModule,
     PublicCommunityModule,
     CommunityChannelsModule,
+    InfiniteScrollModule,
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,

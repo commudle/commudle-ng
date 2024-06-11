@@ -10,6 +10,7 @@ import { IPagination } from 'apps/shared-models/pagination.model';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { IUsers } from 'apps/shared-models/users.model';
+import { ICommunity, IPaginationCount, IUserRolesUsers } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -53,12 +54,9 @@ export class CommunityGroupsService {
       );
   }
 
-  communities(communityGroupId, after): Observable<IPagination<ICommunities>> {
-    let params = new HttpParams().set('community_group_id', communityGroupId);
-    if (after) {
-      params = params.set('after', after);
-    }
-    return this.http.get<IPagination<ICommunities>>(
+  communities(communityGroupId, page: number, count: number): Observable<IPaginationCount<ICommunity>> {
+    const params = new HttpParams().set('community_group_id', communityGroupId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<ICommunity>>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.COMMUNITIES),
       {
         params,
@@ -66,12 +64,9 @@ export class CommunityGroupsService {
     );
   }
 
-  events(communityGroupId, after): Observable<IPagination<IEvent>> {
-    let params = new HttpParams().set('community_group_id', communityGroupId);
-    if (after) {
-      params = params.set('after', after);
-    }
-    return this.http.get<IPagination<IEvent>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.EVENTS), {
+  events(communityGroupId, page: number, count: number): Observable<IPaginationCount<IEvent>> {
+    const params = new HttpParams().set('community_group_id', communityGroupId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<IEvent>>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.EVENTS), {
       params,
     });
   }
@@ -114,11 +109,20 @@ export class CommunityGroupsService {
     });
   }
 
-  pCommunities(communityGroupId): Observable<ICommunities> {
-    const params = new HttpParams().set('community_group_id', communityGroupId);
-    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITIES), {
-      params,
-    });
+  pCommunities(communityGroupId, limit, after?, when?): Observable<IPagination<ICommunities>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
+    if (when) {
+      params = params.set('when', when);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<ICommunities>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITIES),
+      {
+        params,
+      },
+    );
   }
 
   pChannels(communityGroupId, limit, after?): Observable<IPagination<ICommunityChannel>> {
@@ -134,13 +138,10 @@ export class CommunityGroupsService {
     );
   }
 
-  pEvents(communityGroupId, limit, before?, after?, when?): Observable<IPagination<IEvent>> {
+  pEvents(communityGroupId, limit, after?, when?): Observable<IPagination<IEvent>> {
     let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
     if (when) {
       params = params.set('when', when);
-    }
-    if (before) {
-      params = params.set('before', before);
     }
     if (after) {
       params = params.set('after', after);
@@ -160,6 +161,21 @@ export class CommunityGroupsService {
       {
         params,
       },
+    );
+  }
+
+  pGetOrganizersAllCommunities(
+    communityGroupId,
+    limit: number,
+    after?: string,
+  ): Observable<IPagination<IUserRolesUsers>> {
+    let params = new HttpParams().set('community_group_id', communityGroupId).set('limit', limit);
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IUserRolesUsers>>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.ORGANIZERS_ALL_COMMUNITIES),
+      { params },
     );
   }
 }
