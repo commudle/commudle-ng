@@ -73,6 +73,9 @@
                   @apply md:com-mt-2;
                 }
               }
+              .collaboration-badges {
+                @apply com-flex com-gap-3 com-items-center com-line-clamp-1 com-mt-2;
+              }
             }
 
             .interested-members {
