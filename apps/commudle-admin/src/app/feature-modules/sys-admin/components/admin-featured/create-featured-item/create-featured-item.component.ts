@@ -38,6 +38,11 @@ export class CreateFeaturedItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.observeInput();
+    if (this.entityType !== EDbModels.USER) {
+      this.categoryType = ECategoryType.ITEMS;
+    } else {
+      this.categoryType = '';
+    }
   }
 
   observeInput() {
