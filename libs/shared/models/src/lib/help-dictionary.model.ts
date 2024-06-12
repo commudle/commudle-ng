@@ -1,5 +1,5 @@
 export interface IHelpDictionary {
-  type: string;
+  type: EHelpDictionaryType;
   text: string;
   url: string;
 }

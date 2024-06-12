@@ -5,7 +5,7 @@ const helpDictionary = {
   },
   'help-event': {
     type: 'url',
-    url: 'www.commudle.com',
+    url: 'https://www.commudle.com',
   },
 };
 
