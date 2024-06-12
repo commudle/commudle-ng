@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
-import { IHelpDictionary } from 'apps/shared-models/help-dictionary.model';
 
 @Component({
   selector: 'commudle-help-dictionary-iframe',
@@ -10,7 +8,7 @@ import { IHelpDictionary } from 'apps/shared-models/help-dictionary.model';
 })
 export class HelpDictionaryIframeComponent implements OnInit {
   helpDictionaryUrl: string;
-  constructor(private helpDictionaryService: HelpDictionaryService, private sanitizer: DomSanitizer) {}
+  constructor(private helpDictionaryService: HelpDictionaryService) {}
 
   ngOnInit(): void {
     this.helpDictionaryService.helpDictionary$.subscribe((data) => {

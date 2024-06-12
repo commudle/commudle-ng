@@ -1,6 +1,3 @@
-<fa-icon
-  [icon]="faCircleQuestion"
-  (click)="openSidebar()"
-  [nbTooltip]="helpDictionaryData.type === 'text' ? helpDictionaryData.text : null"
->
+<fa-icon *ngIf="helpDictionaryData.type === 'url'" [icon]="faCircleQuestion" (click)="openSidebar()"></fa-icon>
+<fa-icon *ngIf="helpDictionaryData.type === 'text'" [icon]="faCircleQuestion" [nbTooltip]="helpDictionaryData.text">
 </fa-icon>

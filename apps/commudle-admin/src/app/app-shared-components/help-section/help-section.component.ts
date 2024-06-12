@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 import { help_dictionary } from '@commudle/shared-services';
-import { IHelpDictionary } from 'apps/shared-models/help-dictionary.model';
+import { IHelpDictionary } from '@commudle/shared-models';
 import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
 
 @Component({
