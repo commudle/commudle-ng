@@ -8,6 +8,8 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import moment from 'moment';
+import { CommunityChannelsService } from '@commudle/shared-services';
+import { EDbModels, ICommunityChannel } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-about',
@@ -22,17 +24,20 @@ export class AboutComponent implements OnInit {
   upcomingEvents: IEvent[] = [];
   isLoadingEvents = false;
   isLoading = false;
+  defaultChannel: ICommunityChannel;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
     private eventsService: EventsService,
+    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      this.getDefaultChannel();
       if (this.community.upcoming_events_count > 0) {
         this.getEvents();
       }
@@ -63,5 +68,13 @@ export class AboutComponent implements OnInit {
       });
       this.isLoadingEvents = false;
     });
+  }
+
+  getDefaultChannel() {
+    this.communityChannelsService
+      .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
+      .subscribe((data: ICommunityChannel) => {
+        this.defaultChannel = data;
+      });
   }
 }
