@@ -15,7 +15,6 @@ import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/com
   styleUrls: ['./channel-forum-dashboard.component.scss'],
 })
 export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
-  // @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
   @Input() parent: ICommunity | ICommunityGroup;
   @Input() parentType: EDbModels;
@@ -169,7 +168,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   getQueryParamsData() {
     this.token = this.activatedRoute.snapshot.params.token;
     this.emailToken = this.activatedRoute.snapshot.params.email_token;
-    this.discussionTypeForum = this.activatedRoute.snapshot.url.join('/').includes('forums');
+    this.discussionTypeForum = this.router.url.includes('/forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
     this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
   }

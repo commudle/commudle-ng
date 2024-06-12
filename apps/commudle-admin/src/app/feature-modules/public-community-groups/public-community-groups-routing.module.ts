@@ -41,31 +41,41 @@ const routes = [
         component: CommunityGroupChannelsComponent,
         children: [
           {
-            path: '',
+            path: 'community-channels',
             component: CommunitiesChannelsComponent,
           },
           {
-            path: 'abcd',
+            path: '',
             component: OrgChannelsComponent,
           },
           {
-            path: 'abcd/:community_channel_id',
+            path: ':community_channel_id',
             component: OrgChannelsComponent,
           },
           {
-            path: 'abcd/join/:token',
+            path: 'join/:token',
+            component: OrgChannelsComponent,
+          },
+        ],
+      },
+      {
+        path: 'forums',
+        component: CommunityGroupChannelsComponent,
+        children: [
+          {
+            path: 'community-channels',
+            component: CommunitiesChannelsComponent,
+          },
+          {
+            path: '',
             component: OrgChannelsComponent,
           },
           {
-            path: 'forums',
+            path: ':community_channel_id',
             component: OrgChannelsComponent,
           },
           {
-            path: 'forums/:community_channel_id',
-            component: OrgChannelsComponent,
-          },
-          {
-            path: 'forums/join/:token',
+            path: 'join/:token',
             component: OrgChannelsComponent,
           },
         ],

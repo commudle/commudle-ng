@@ -1,0 +1,9 @@
+.router-tags {
+  @apply com-flex com-gap-4 com-my-4;
+  .router-tag {
+    @apply com-bg-[#EFF3FF] com-text-primary-500 com-px-3 com-py-1 com-border com-border-solid com-border-primary-500 com-rounded-2xl com-no-underline;
+    &.active {
+      @apply com-bg-primary-500 com-text-white;
+    }
+  }
+}

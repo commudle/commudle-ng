@@ -1,9 +1,7 @@
-<div>
-  <div>
-    <a [routerLink]="['./']"> Community Channels</a>
-  </div>
-  <div>
-    <a [routerLink]="['./abcd']"> Org Channel </a>
-  </div>
-  <router-outlet></router-outlet>
+<div class="router-tags">
+  <a class="router-tag" [routerLink]="['./']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+    >Org Channels</a
+  >
+  <a class="router-tag" [routerLink]="['./community-channels']" routerLinkActive="active">Community Channels</a>
 </div>
+<router-outlet></router-outlet>
