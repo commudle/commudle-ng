@@ -1,0 +1,7 @@
+.header-image {
+  @apply com-flex md:com-min-h-[438px] com-min-h-[78px] com-h-full;
+
+  img {
+    @apply com-h-full;
+  }
+}
