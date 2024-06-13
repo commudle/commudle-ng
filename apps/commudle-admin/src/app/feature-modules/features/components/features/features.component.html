@@ -118,12 +118,13 @@
         <h2 class="heading-build-community">
           <a [routerLink]="'.'" fragment="build-community">Build Your Communities with 100,000+ techies on Commudle</a>
         </h2>
-        <!-- <img
-            alt="Build Community"
-            class="com-absolute com-right-[-240] com-top-[164px] com-hidden md:com-block"
-            [src]="staticAssets.features_build_your_community_right_icon"
-            title="Build Community"
-          /> -->
+        <img
+          *ngIf="!isMobileView"
+          alt="Build Community"
+          class="com-absolute com-left-[-300px] com-bottom-[-120px] com-hidden md:com-block"
+          [src]="staticAssets.features_build_your_community_left_icon"
+          title="Build Community"
+        />
         <div
           *ngIf="!isDarkMode"
           class="background-image"
@@ -138,12 +139,13 @@
             <img [src]="staticAssets.features_build_your_community" />
           </div>
         </div>
-        <!-- <img
-            alt="Build Community"
-            class="com-absolute com-right-[-230px] com-top-[174px] com-hidden md:com-block"
-            [src]="staticAssets.features_build_your_community_right_icon"
-            title="Build Community"
-          /> -->
+        <img
+          *ngIf="!isMobileView"
+          alt="Build Community"
+          class="com-absolute com-right-[-300px] com-top-[180px] com-hidden md:com-block"
+          [src]="staticAssets.features_build_your_community_right_icon"
+          title="Build Community"
+        />
       </div>
       <div *ngIf="showHeading" class="faq">
         <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
