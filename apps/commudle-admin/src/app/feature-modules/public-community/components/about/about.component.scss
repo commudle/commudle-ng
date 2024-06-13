@@ -47,3 +47,15 @@ p {
 app-loading-spinner {
   @apply com-my-4;
 }
+
+.default-channel-container {
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+    .channel-name {
+      @apply com-font-semibold com-text-Auro-Metal-Saurus com-text-base;
+    }
+  }
+  commudle-channel-discussion {
+    @apply com-h-500px;
+  }
+}

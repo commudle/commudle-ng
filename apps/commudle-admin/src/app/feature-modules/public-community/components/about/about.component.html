@@ -17,8 +17,12 @@
         <p [innerHTML]="community.about | linky : { sanitizeHtml: false } | safeHtml" class="content"></p>
       </nb-card-body>
     </nb-card>
-    <!-- <nb-card>
-      <nb-card-body *ngIf="defaultChannel">
+    <nb-card *ngIf="defaultChannel" class="default-channel-container">
+      <nb-card-header>
+        <span class="channel-name">{{ defaultChannel.name }}</span>
+        <button nbButton status="primary" [routerLink]="['channels']" shape="semi-round">View More</button>
+      </nb-card-header>
+      <nb-card-body class="!com-p-0">
         <commudle-channel-discussion
           [discussionId]="defaultChannel.discussion_id"
           [channelOrForum]="defaultChannel"
@@ -26,7 +30,7 @@
           discussionType="channel"
         ></commudle-channel-discussion>
       </nb-card-body>
-    </nb-card> -->
+    </nb-card>
   </div>
 
   <nb-card class="lg:com-col-span-1">
