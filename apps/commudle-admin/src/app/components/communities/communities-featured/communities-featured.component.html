@@ -1,7 +1,7 @@
 <div class="communities-featured-container" id="featured-communities">
   <h2 class="communities-featured-heading">
     <a [routerLink]="'.'" fragment="featured-communities">Featured Communities</a>
-    <commudle-help-section [helpDictionaryName]="'help-event'"></commudle-help-section>
+    <commudle-help-section [helpDictionaryName]="'help-event-details'"></commudle-help-section>
   </h2>
   <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
     <commudle-skeleton-vertical-cards [cards]="6"></commudle-skeleton-vertical-cards>

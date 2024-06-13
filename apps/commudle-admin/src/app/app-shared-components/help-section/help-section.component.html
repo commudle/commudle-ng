@@ -1,7 +1,7 @@
 <fa-icon
   *ngIf="helpDictionaryData.type === EHelpDictionaryType.URL"
   [icon]="faCircleQuestion"
-  (click)="openSidebar()"
+  (click)="openSidebar(); getHelpSectionUrl()"
 ></fa-icon>
 <fa-icon
   *ngIf="helpDictionaryData.type === EHelpDictionaryType.TEXT"
