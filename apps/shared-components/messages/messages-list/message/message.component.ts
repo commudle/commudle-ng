@@ -1,9 +1,19 @@
-import { Component, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  HostListener,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { SeoService } from '@commudle/shared-services';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
@@ -26,6 +36,8 @@ export class MessageComponent implements OnInit {
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
   @Output() sendDelete = new EventEmitter();
   faCircle = faCircle;
+  faTrash = faTrash;
+  showActionButton: boolean[] = [false];
 
   moment = moment;
 
@@ -128,5 +140,14 @@ export class MessageComponent implements OnInit {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
     return doc.body.textContent || '';
+  }
+
+  // @HostListener('mouseover')
+  onHoverEnter(id) {
+    this.showActionButton[id] = true;
+  }
+
+  onHoverLeave(id) {
+    this.showActionButton[id] = false;
   }
 }

@@ -58,24 +58,31 @@ p {
       &::ng-deep {
         .votes {
           p {
-            font-size: $fs-h6;
-            height: 18px;
+            @apply com-text-xs;
+            // font-size: $fs-h6;
+            // height: 18px;
 
             .count {
               color: $spanish-gray;
             }
 
             nb-icon {
-              font-size: $fs-13;
+              @apply com-text-xs com-text-gray-400;
+              // font-size: $fs-13;
             }
           }
         }
       }
     }
 
+    nb-actions {
+      @apply com-border com-border-solid com-shadow-md;
+    }
+
     nb-action {
-      border: none;
-      padding: 0 $space-8;
+      @apply com-p-0;
+      // border: none;
+      // padding: 0 $space-8;
 
       p {
         color: $spanish-gray;
@@ -84,8 +91,8 @@ p {
         margin-top: $space-1;
       }
 
-      nb-icon {
-        @apply com-text-lg;
+      fa-icon {
+        @apply com-text-xs com-text-gray-400;
       }
     }
   }
@@ -118,4 +125,8 @@ p {
 
 .highlight-background {
   @apply com-bg-blue-50;
+}
+
+.action-icons-hover {
+  @apply com-flex com-justify-end;
 }
