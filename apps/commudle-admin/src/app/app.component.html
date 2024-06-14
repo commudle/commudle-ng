@@ -23,7 +23,10 @@
       <div id="mini-user-profile-container"></div>
       <app-profile-status-bar *ngIf="currentUser && profileBarStatus"></app-profile-status-bar>
       <div class="com-min-h-screen router-outlet">
-        <commudle-sidebar [eventName]="'helpSection'"
+        <commudle-sidebar
+          [eventName]="'helpSection'"
+          [position]="ESidebarPosition.RIGHT"
+          [expandedWidth]="ESidebarWidth.XL"
           ><commudle-help-dictionary-iframe></commudle-help-dictionary-iframe
         ></commudle-sidebar>
         <router-outlet></router-outlet>

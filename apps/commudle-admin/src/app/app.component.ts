@@ -14,6 +14,7 @@ import { ProfileStatusBarService } from './services/profile-status-bar.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
+import { ESidebarPosition, ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 @Component({
   selector: 'commudle-root',
   templateUrl: './app.component.html',
@@ -29,6 +30,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   isDarkMode = false;
   userTheme;
   systemTheme;
+  ESidebarPosition = ESidebarPosition;
+  ESidebarWidth = ESidebarWidth;
 
   private isDarkModeSubscription: Subscription;
 

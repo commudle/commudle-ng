@@ -10,7 +10,7 @@ const helpDictionary = {
   },
   'help-event': {
     type: EHelpDictionaryType.URL,
-    url: 'https://www.commudle.com/policies/all-policies',
+    url: 'https://documentation.commudle.com/hackathons/overview-of-features',
   },
 };
 
