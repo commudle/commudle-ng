@@ -24,6 +24,7 @@ export class HelpSectionComponent implements OnInit {
 
   openSidebar() {
     this.helpSidebarService.openSidebar('helpSection');
+    this.getHelpSectionUrl();
   }
 
   getHelpSectionData() {

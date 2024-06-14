@@ -1,14 +1,15 @@
+import { EHelpDictionaryType } from '@commudle/shared-models';
 const helpDictionary = {
   'help-event-details': {
-    type: 'text',
+    type: EHelpDictionaryType.TEXT,
     text: 'Hello',
   },
   'help-event-edit-details': {
-    type: 'url',
+    type: EHelpDictionaryType.URL,
     url: 'https://www.commudle.com/',
   },
   'help-event': {
-    type: 'url',
+    type: EHelpDictionaryType.URL,
     url: 'https://www.commudle.com/policies/all-policies',
   },
 };
