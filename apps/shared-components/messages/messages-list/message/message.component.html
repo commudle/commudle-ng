@@ -4,37 +4,38 @@
   [inViewportOptions]="{ threshold: [0] }"
   class="message-container"
   inViewport
-  [ngClass]="{ 'highlight-background': !(message.user.id === currentUser.id) }"
+  (mouseenter)="onHoverEnter(message.id)"
+  (mouseleave)="onHoverLeave(message.id)"
 >
-  <div (mouseenter)="onHoverEnter(message.id)" (mouseleave)="onHoverLeave(message.id)">
-    <div class="action-icons-hover">
-      <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix" size="tiny">
-        <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
-          <app-votes-display
-            (isBlocked)="isVotingBlocked = $event"
-            [votableId]="message.id"
-            icon="heart-outline"
-            size="small"
-            votableType="UserMessage"
-            [textAlignment]="'after'"
-          ></app-votes-display>
-        </nb-action>
-        <nb-action
-          *ngIf="
-            permittedActions.includes(allActions.DELETE_ANY) ||
-            (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id) ||
-            message.user.id === currentUser.id
-          "
-        >
-          <fa-icon
-            (click)="emitDelete(message.id, message.user.id === currentUser.id)"
-            class="clickable"
-            [icon]="faTrash"
-            nbTooltip="Delete this message"
-          ></fa-icon>
-        </nb-action>
-      </nb-actions>
-    </div>
+  <div class="action-icons-hover">
+    <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix" size="tiny">
+      <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
+        <app-votes-display
+          (isBlocked)="isVotingBlocked = $event"
+          [votableId]="message.id"
+          icon="heart-outline"
+          size="small"
+          votableType="UserMessage"
+          [textAlignment]="'after'"
+        ></app-votes-display>
+      </nb-action>
+      <nb-action
+        *ngIf="
+          permittedActions.includes(allActions.DELETE_ANY) ||
+          (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id) ||
+          message.user.id === currentUser.id
+        "
+      >
+        <fa-icon
+          (click)="emitDelete(message.id, message.user.id === currentUser.id)"
+          class="clickable"
+          [icon]="faTrash"
+          nbTooltip="Delete this message"
+        ></fa-icon>
+      </nb-action>
+    </nb-actions>
+  </div>
+  <div [ngClass]="{ 'highlight-background': !(message.user.id === currentUser.id) }" class="message">
     <div class="prefix d-flex align-items-start">
       <img
         alt="{{ message.user.name }}"
@@ -55,25 +56,27 @@
             title="Expert Tick"
           />
           <p class="time">
-            <fa-icon [icon]="faCircle"></fa-icon><span>{{ moment(message.created_at).format('h:mm A') }}</span>
+            {{ moment(message.created_at).format('h:mm A') }}
           </p>
         </div>
         <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
       </div>
     </div>
+    <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
+      <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
+        <app-votes-display
+          (isBlocked)="isVotingBlocked = $event"
+          [votableId]="message.id"
+          icon="heart-outline"
+          size="small"
+          votableType="UserMessage"
+          [textAlignment]="'after'"
+        ></app-votes-display>
+      </nb-action>
+    </nb-actions>
   </div>
-  <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
-    <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
-      <app-votes-display
-        (isBlocked)="isVotingBlocked = $event"
-        [votableId]="message.id"
-        icon="heart-outline"
-        size="small"
-        votableType="UserMessage"
-        [textAlignment]="'after'"
-      ></app-votes-display>
-    </nb-action>
-    <!-- <nb-action
+</div>
+<!-- <nb-action
       *ngIf="(permittedActions.includes(allActions.REPLY) && canReply) || permittedActions.includes(allActions.BLOCKED)"
       [disabled]="permittedActions.includes(allActions.BLOCKED)"
       [ngClass]="{ 'com-pointer-events-none': permittedActions.includes(allActions.BLOCKED) }"
@@ -85,7 +88,7 @@
         nbTooltip="Reply to this message"
       ></nb-icon>
     </nb-action> -->
-    <!-- <nb-action
+<!-- <nb-action
       *ngIf="
         permittedActions.includes(allActions.DELETE_ANY) ||
         (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id) ||
@@ -99,7 +102,7 @@
         nbTooltip="Delete this message"
       ></nb-icon>
     </nb-action> -->
-    <!-- <nb-action
+<!-- <nb-action
       *ngIf="permittedActions.includes(allActions.FLAG) || permittedActions.includes(allActions.BLOCKED)"
       [disabled]="permittedActions.includes(allActions.BLOCKED)"
       [ngClass]="{ 'com-pointer-events-none': permittedActions.includes(allActions.BLOCKED) }"
@@ -112,8 +115,7 @@
         nbTooltip="Report this message (3 reports deletes it)"
       ></nb-icon>
     </nb-action> -->
-  </nb-actions>
-  <div *ngIf="canReply" class="replies">
+<!-- <div *ngIf="canReply" class="replies">
     <app-message
       (sendDelete)="emitDelete(reply.id, reply.user.id === currentUser.id)"
       (sendFlag)="emitFlag($event)"
@@ -163,5 +165,4 @@
         </nb-form-field>
       </form>
     </div>
-  </div>
-</div>
+  </div> -->

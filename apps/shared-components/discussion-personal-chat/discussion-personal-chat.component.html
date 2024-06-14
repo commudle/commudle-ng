@@ -2,7 +2,7 @@
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
     <div class="com-h-full">
       <div *ngFor="let group of groupedMessages">
-        <h3 class="grouped-date">{{ moment(group.date).format('MMMM D, YYYY') }}</h3>
+        <h3 class="grouped-date com-py-2">{{ moment(group.date).format('MMMM D, YYYY') }}</h3>
         <div *ngFor="let message of group.messages">
           <app-message
             [message]="message"

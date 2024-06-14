@@ -66,6 +66,6 @@
   }
 
   .grouped-date {
-    @apply com-mb-0 com-flex com-justify-center com-text-xs com-font-medium com-text-gray-500;
+    @apply com-flex com-justify-center com-text-xs com-font-medium com-text-gray-500 #{!important};
   }
 }

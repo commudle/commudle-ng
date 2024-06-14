@@ -8,7 +8,7 @@ p {
 }
 
 .message-container {
-  @apply com-p-3;
+  @apply com-p-0;
 
   .prefix {
     width: 100%;
@@ -24,11 +24,7 @@ p {
       .user {
         .name {
           a {
-            @apply com-text-sm com-font-semibold com-text-black com-no-underline;
-
-            &:hover {
-              text-decoration: underline;
-            }
+            @apply com-text-xs com-font-medium com-text-black com-no-underline;
           }
         }
 
@@ -39,60 +35,8 @@ p {
         }
 
         .time {
-          @apply com-flex;
-          fa-icon {
-            @apply com-mx-6px com-text-[6px];
-          }
-          span {
-            @apply com-text-xs com-font-medium com-text-gray-500;
-          }
+          @apply com-flex com-text-xs com-font-normal com-text-gray-500 com-ml-2;
         }
-      }
-    }
-  }
-
-  .suffix {
-    margin-left: $space-32;
-
-    app-votes-display {
-      &::ng-deep {
-        .votes {
-          p {
-            @apply com-text-xs;
-            // font-size: $fs-h6;
-            // height: 18px;
-
-            .count {
-              color: $spanish-gray;
-            }
-
-            nb-icon {
-              @apply com-text-xs com-text-gray-400;
-              // font-size: $fs-13;
-            }
-          }
-        }
-      }
-    }
-
-    nb-actions {
-      @apply com-border com-border-solid com-shadow-md;
-    }
-
-    nb-action {
-      @apply com-p-0;
-      // border: none;
-      // padding: 0 $space-8;
-
-      p {
-        color: $spanish-gray;
-        font-size: $fs-h6;
-        line-height: 14px;
-        margin-top: $space-1;
-      }
-
-      fa-icon {
-        @apply com-text-xs com-text-gray-400;
       }
     }
   }
@@ -128,5 +72,41 @@ p {
 }
 
 .action-icons-hover {
-  @apply com-flex com-justify-end;
+  @apply com-flex com-justify-end com-mb-[-12px] com-mr-6;
+}
+
+nb-action {
+  @apply com-flex com-flex-shrink-0 com-h-6 com-p-6px com-m-0 hover:com-bg-gray-100 #{!important};
+
+  p {
+    color: $spanish-gray;
+    font-size: $fs-h6;
+    line-height: 14px;
+    margin-top: $space-1;
+  }
+
+  fa-icon {
+    @apply com-text-xs com-text-gray-400;
+  }
+}
+
+.suffix {
+  @apply com-ml-10 com-border com-border-solid com-shadow-md com-rounded com-p-0 com-border-gray-100 com-m-0 com-w-fit com-bg-white;
+  app-votes-display {
+    &::ng-deep {
+      .votes {
+        p {
+          @apply com-text-xs com-font-medium com-text-gray-500;
+
+          nb-icon {
+            @apply com-text-xs com-text-gray-400;
+          }
+        }
+      }
+    }
+  }
+}
+
+.message {
+  @apply com-px-3 com-py-2;
 }
