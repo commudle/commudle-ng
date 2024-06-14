@@ -31,7 +31,7 @@ a {
 }
 
 .features-heading {
-  @apply com-text-center md:com-pt-14 com-pt-10 com-pb-4 com-m-0;
+  @apply com-text-center md:com-pt-28 com-pt-10 com-pb-4 com-m-0;
   a {
     @apply md:com-text-4xl com-text-3xl com-font-semibold com-text-black com-m-0 com-mb-4 com-no-underline;
   }
@@ -73,7 +73,7 @@ a {
 }
 
 .subheading {
-  @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0 md:com-mt-6 com-mt-30px md:com-mb-[60px] com-mb-5;
+  @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 md:com-mt-6 com-mt-30px md:com-mb-[60px] com-mb-5;
 }
 
 .platform {
@@ -142,4 +142,14 @@ a {
 
 .faq {
   @apply md:com-mt-10 com-mt-8;
+}
+
+.background-image {
+  @apply com-bg-no-repeat com-bg-cover md:com-h-[499px] com-h-auto com-w-full com-mt-6;
+  .header-image {
+    @apply com-flex com-flex-shrink-0 com-items-center com-m-0 com-h-full;
+    img {
+      @apply com-h-full com-w-full com-mx-auto;
+    }
+  }
 }
