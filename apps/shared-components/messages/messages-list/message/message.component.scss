@@ -91,7 +91,7 @@ nb-action {
 }
 
 .suffix {
-  @apply com-ml-10 com-border com-border-solid com-shadow-md com-rounded com-p-0 com-border-gray-100 com-m-0 com-w-fit com-bg-white;
+  @apply com-ml-10 com-border com-border-solid com-shadow-md com-rounded com-p-0 com-border-gray-100 com-m-0 com-w-fit;
   app-votes-display {
     &::ng-deep {
       .votes {

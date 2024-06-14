@@ -8,7 +8,7 @@
   (mouseleave)="onHoverLeave(message.id)"
 >
   <div class="action-icons-hover">
-    <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix" size="tiny">
+    <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix com-bg-white" size="tiny">
       <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
         <app-votes-display
           (isBlocked)="isVotingBlocked = $event"
