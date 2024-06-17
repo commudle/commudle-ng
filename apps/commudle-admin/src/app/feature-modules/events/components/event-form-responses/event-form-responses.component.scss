@@ -7,6 +7,18 @@
     }
   }
 
+  nb-card-header {
+    @apply com-m-0 com-flex com-items-center;
+
+    p {
+      @apply com-m-0;
+    }
+  }
+
+  .change-bulk-btn {
+    @apply com-m-0 com-flex com-items-center;
+  }
+
   .data-table-container {
     @media screen and (max-width: 800px) {
       .desktop-hidden {

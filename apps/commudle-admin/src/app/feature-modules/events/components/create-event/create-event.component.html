@@ -5,7 +5,10 @@
   </div>
   <nb-card>
     <nb-card-body>
-      <h3>Create an Event For {{ community.name }}</h3>
+      <h3>
+        Create an Event For {{ community.name }}
+        <commudle-help-section [helpDictionaryName]="'event-create'"></commudle-help-section>
+      </h3>
       <p>Let's begin by adding some details</p>
     </nb-card-body>
   </nb-card>

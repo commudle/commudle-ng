@@ -1,3 +1,7 @@
 fa-icon {
-  @apply com-text-sm com-ml-4;
+  @apply com-text-sm com-ml-1 com-mr-2px;
+}
+
+span {
+  @apply com-flex com-items-center com-cursor-pointer;
 }

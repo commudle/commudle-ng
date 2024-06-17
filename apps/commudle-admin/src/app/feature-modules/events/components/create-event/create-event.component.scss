@@ -39,3 +39,7 @@
     content: ' *';
   }
 }
+
+h3 {
+  @apply com-flex com-items-center;
+}
