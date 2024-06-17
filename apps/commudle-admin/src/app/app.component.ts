@@ -82,7 +82,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.removeSchemaOnRouteChange();
     this.themeCheck();
 
-    this.helpSidebarService.setSidebarVisibility('helpSection', false, true);
+    this.helpSidebarService.setSidebarVisibility('helpSection', false, true, ESidebarPosition.RIGHT);
   }
 
   ngAfterViewChecked(): void {
