@@ -8,7 +8,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import moment from 'moment';
-import { CommunityChannelsService } from '@commudle/shared-services';
+import { AuthService, CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 import { EDbModels, ICommunityChannel } from '@commudle/shared-models';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,17 +37,26 @@ export class AboutComponent implements OnInit {
     private seoService: SeoService,
     private eventsService: EventsService,
     private communityChannelsService: CommunityChannelsService,
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private authWatchService: AuthService,
   ) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
-      this.getDefaultChannel();
       if (this.community.upcoming_events_count > 0) {
         this.getEvents();
       }
       this.seoService.setTitle(this.community.name);
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
+    });
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    this.authWatchService.currentUser$.subscribe((data) => {
+      this.communityChannelManagerService.setCurrentUser(data);
+      this.getDefaultChannel();
     });
   }
 
@@ -79,6 +88,7 @@ export class AboutComponent implements OnInit {
     this.communityChannelsService
       .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
       .subscribe((data: ICommunityChannel) => {
+        this.communityChannelManagerService.getChannelRoles(data);
         this.defaultChannel = data;
       });
   }
