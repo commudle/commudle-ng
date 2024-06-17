@@ -1,6 +1,6 @@
 nb-card {
   @apply com-mx-0;
   .members {
-    @apply com-grid md:com-grid-cols-4 sm:com-grid-cols-2 com-grid-cols-1 com-gap-4;
+    @apply com-flex com-flex-wrap com-gap-6 com-my-3;
   }
 }

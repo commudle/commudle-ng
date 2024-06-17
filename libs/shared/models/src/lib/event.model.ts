@@ -35,6 +35,7 @@ export interface IEvent {
   speaker_resource?: ISpeakerResource;
   event_locations?: object;
   status?: string;
+  collaboration_communities: ICommunity[];
 }
 
 export interface IEventSearch extends IEvent {

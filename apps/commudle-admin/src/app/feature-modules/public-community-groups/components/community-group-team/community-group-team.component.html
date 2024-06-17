@@ -3,7 +3,7 @@
     <nb-card-body>
       <div class="members" (scrolled)="getTeam()" [infiniteScrollDisabled]="team.length >= total" appInfiniteScroll>
         <div class="member" *ngFor="let member of team">
-          <app-speaker-card [speaker]="member.user"></app-speaker-card>
+          <app-speaker-card [speaker]="member"></app-speaker-card>
         </div>
       </div>
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
