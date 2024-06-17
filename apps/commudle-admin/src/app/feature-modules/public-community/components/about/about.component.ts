@@ -10,6 +10,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 import moment from 'moment';
 import { CommunityChannelsService } from '@commudle/shared-services';
 import { EDbModels, ICommunityChannel } from '@commudle/shared-models';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about',
@@ -25,6 +26,10 @@ export class AboutComponent implements OnInit {
   isLoadingEvents = false;
   isLoading = false;
   defaultChannel: ICommunityChannel;
+
+  icons = {
+    faUsers,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,

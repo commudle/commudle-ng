@@ -49,10 +49,17 @@ app-loading-spinner {
 }
 
 .default-channel-container {
+  @apply com-border-primary-500;
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;
-    .channel-name {
-      @apply com-font-semibold com-text-Auro-Metal-Saurus com-text-base;
+    .name-count {
+      @apply com-flex com-items-center com-gap-4;
+      .channel-name {
+        @apply com-font-semibold com-text-Auro-Metal-Saurus com-text-base;
+      }
+      .members-count {
+        @apply com-bg-slate-200 com-rounded-3xl com-px-3 com-py-1;
+      }
     }
   }
   commudle-channel-discussion {

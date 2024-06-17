@@ -24,6 +24,7 @@ export interface ICommunityChannel {
   };
   latest_message?: IUserMessage;
   discussion_id: number;
+  user_roles_users_count: number;
 }
 
 export interface IGroupedChannels {
