@@ -44,6 +44,7 @@ export class MessageComponent implements OnInit {
   showReplyForm = false;
   showEmojiPicker = false;
   isVotingBlocked = false;
+  totalVotesCount: number;
 
   replyForm;
 

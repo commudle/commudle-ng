@@ -12,6 +12,7 @@
       <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
         <app-votes-display
           (isBlocked)="isVotingBlocked = $event"
+          (votesCount)="totalVotesCount = $event"
           [votableId]="message.id"
           icon="heart-outline"
           size="small"
@@ -63,9 +64,14 @@
       </div>
     </div>
     <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
-      <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
+      <nb-action
+        *ngIf="totalVotesCount > 0"
+        [disabled]="isVotingBlocked"
+        [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }"
+      >
         <app-votes-display
           (isBlocked)="isVotingBlocked = $event"
+          (votesCount)="totalVotesCount = $event"
           [votableId]="message.id"
           icon="heart-outline"
           size="small"
