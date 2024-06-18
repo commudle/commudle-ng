@@ -34,9 +34,13 @@
     }
 
     .status-buttons {
-      @apply com-flex com-items-center com-justify-center;
+      @apply com-flex com-flex-col com-justify-center;
       .border {
         @apply com-border com-border-Bright-Gray com-border-solid com-rounded-md;
+      }
+
+      section {
+        @apply com-flex com-justify-center com-mb-5;
       }
     }
     .category {
