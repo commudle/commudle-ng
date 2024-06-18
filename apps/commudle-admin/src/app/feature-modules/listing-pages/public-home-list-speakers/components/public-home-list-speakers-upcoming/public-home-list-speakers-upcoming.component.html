@@ -1,9 +1,7 @@
 <div *ngIf="upcomingEvents.length > 0" id="upcoming-events">
   <div class="heading">
     <h3 class="title"><a [routerLink]="'.'" fragment="upcoming-events">Upcoming Events</a></h3>
-    <span><commudle-help-section [helpDictionaryName]="'help-event-edit-details'"></commudle-help-section></span>
     <h4 class="sub-heading">Check out amazing events lined up</h4>
-    <commudle-help-section [helpDictionaryName]="'help-event'"></commudle-help-section>
   </div>
   <app-skeleton-cards
     *ngIf="showSpinner"

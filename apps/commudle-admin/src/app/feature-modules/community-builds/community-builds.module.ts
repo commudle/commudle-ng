@@ -43,6 +43,7 @@ import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modu
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects/featured-projects.component';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     SkeletonCardsComponent,
     ListingPagesLayoutComponent,
     FeaturedProjectsComponent,
+    HelpSectionComponent,
     // Nebular
     NbCardModule,
     NbSelectModule,
