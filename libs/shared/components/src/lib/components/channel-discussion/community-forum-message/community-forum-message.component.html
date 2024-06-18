@@ -39,7 +39,7 @@
         inViewport
       ></commudle-editor>
       <div *ngIf="authService.currentUser$ | async" class="suffix">
-        <div class="com-flex com-gap-3 com-items-center">
+        <div class="com-flex com-gap-1 com-items-center">
           <commudle-vote [votableId]="message.id" votableType="UserMessage"></commudle-vote>
           <ng-container
             *ngIf="canReply && (communityChannelHandlerService.permittedActions$ | async)?.includes('reply')"
