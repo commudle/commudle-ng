@@ -165,4 +165,8 @@ export const staticAssets = {
   // id: 155
   features_build_your_community_background:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEZRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--536d7996d56f77fcba3bf3af4a950d526155ce6d/Section%204%20BG.png',
+
+  // id: 156
+  newsletter_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNFpUQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f68dde89134d2901fe34429c761a69c02cfcefe4/Newsletter%20Empty%20State.png',
 };
