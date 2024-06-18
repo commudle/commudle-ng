@@ -27,7 +27,8 @@
           [eventName]="'helpSection'"
           [position]="ESidebarPosition.RIGHT"
           [expandedWidth]="ESidebarWidth.XL"
-          ><commudle-help-dictionary-iframe></commudle-help-dictionary-iframe
+          [showExpandedButton]="false"
+          ><commudle-help-dictionary-iframe [eventName]="'helpSection'"></commudle-help-dictionary-iframe
         ></commudle-sidebar>
         <router-outlet></router-outlet>
       </div>

@@ -1,0 +1,11 @@
+.container {
+  @apply com-relative com-w-full com-h-full;
+}
+
+.toggle {
+  @apply com-absolute com-top-[68px] com-left-2 com-z-50;
+
+  fa-icon {
+    @apply com-text-xl com-text-tWhite;
+  }
+}
