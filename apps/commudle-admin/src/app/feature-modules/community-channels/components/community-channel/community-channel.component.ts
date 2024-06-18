@@ -93,7 +93,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onLongPress(dialog) {
-    console.log('Long press detected!');
     this.nbDialogService.open(dialog);
   }
 }

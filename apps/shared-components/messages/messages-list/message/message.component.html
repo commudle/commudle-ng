@@ -6,6 +6,8 @@
   inViewport
   (mouseenter)="onHoverEnter(message.id)"
   (mouseleave)="onHoverLeave(message.id)"
+  longPress
+  (longPress)="onLongPress(message.id)"
 >
   <div class="action-icons-hover">
     <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix com-bg-white" size="tiny">

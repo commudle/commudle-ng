@@ -143,12 +143,15 @@ export class MessageComponent implements OnInit {
     return doc.body.textContent || '';
   }
 
-  // @HostListener('mouseover')
   onHoverEnter(id) {
     this.showActionButton[id] = true;
   }
 
   onHoverLeave(id) {
     this.showActionButton[id] = false;
+  }
+
+  onLongPress(id) {
+    this.showActionButton[id] = true;
   }
 }
