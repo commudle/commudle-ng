@@ -62,7 +62,6 @@ import { HelpDictionaryIframeComponent } from './help-dictionary-iframe/help-dic
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
-    HelpSectionComponent,
     HelpDictionaryIframeComponent,
   ],
   exports: [
@@ -104,6 +103,7 @@ import { HelpDictionaryIframeComponent } from './help-dictionary-iframe/help-dic
     SkeletonCardsComponent,
     FeaturedExpertsCardComponent,
     WhatsNewComponent,
+    HelpSectionComponent,
 
     // Nebular
     NbRadioModule,

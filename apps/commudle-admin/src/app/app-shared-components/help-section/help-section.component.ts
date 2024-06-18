@@ -4,11 +4,17 @@ import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.s
 import { help_dictionary } from '@commudle/shared-services';
 import { IHelpDictionary, EHelpDictionaryType } from '@commudle/shared-models';
 import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { NbTooltipModule } from '@commudle/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'commudle-help-section',
   templateUrl: './help-section.component.html',
   styleUrls: ['./help-section.component.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterModule, FontAwesomeModule, NbTooltipModule],
 })
 export class HelpSectionComponent implements OnInit {
   @Input() helpDictionaryName: string;

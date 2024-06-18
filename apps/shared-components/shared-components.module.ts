@@ -87,7 +87,7 @@ import { PaidFormListComponent } from './paid-form-list/paid-form-list.component
 import { PaymentLogEdfegComponent } from './payment-detail/payment-log-edfeg/payment-log-edfeg.component';
 import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
 import { BackButtonComponent } from './back-button/back-button.component';
-// import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +158,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     EditorModule,
     BadgeComponent,
     BackButtonComponent,
-    // AppSharedComponentsModule,
+    HelpSectionComponent,
 
     // Nebular
     NbButtonModule,
