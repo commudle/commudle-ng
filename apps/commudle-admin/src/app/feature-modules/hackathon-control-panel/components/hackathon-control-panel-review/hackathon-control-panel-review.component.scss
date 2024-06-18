@@ -131,3 +131,7 @@ nb-card-body {
     @apply com-flex com-justify-between com-items-center;
   }
 }
+
+.header {
+  @apply com-flex com-items-center com-mb-2;
+}
