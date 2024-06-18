@@ -25,8 +25,8 @@ export class HelpSectionComponent implements OnInit {
   openSidebar() {
     if (this.helpDictionaryData && this.helpDictionaryData.type === EHelpDictionaryType.URL) {
       this.helpDictionaryService.getHelpDictionaryIframe(this.helpDictionaryData.url);
+      this.helpSidebarService.openSidebar('helpSection');
     }
-    this.helpSidebarService.openSidebar('helpSection');
   }
 
   getHelpSectionData() {
