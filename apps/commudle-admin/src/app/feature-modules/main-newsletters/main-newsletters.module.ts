@@ -24,6 +24,7 @@ import { CheckRedirectGuard } from 'apps/shared-services/check-redirect.guard';
 import { MainNewsletterSchedulerComponent } from './components/main-newsletter-scheduler/main-newsletter-scheduler.component';
 import { MainNewsletterTestEmailerComponent } from './components/main-newsletter-test-emailer/main-newsletter-test-emailer.component';
 import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-email-stats/main-newsletter-email-stats.component';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-
     NbDialogModule.forChild(),
     NbTagModule,
     NbTooltipModule,
+    SharedComponentsModule,
   ],
   providers: [CheckRedirectGuard, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

@@ -42,4 +42,10 @@
 <sitemap>
   <loc>https://json.commudle.com/sitemaps/sitemap_community_groups.xml</loc>
 </sitemap>
+<sitemap>
+  <loc>https://json.commudle.com/sitemaps/sitemap_hackathons.xml</loc>
+</sitemap>
+<sitemap>
+  <loc>https://json.commudle.com/sitemaps/sitemap_case_studies.xml</loc>
+</sitemap>
 </sitemapindex>

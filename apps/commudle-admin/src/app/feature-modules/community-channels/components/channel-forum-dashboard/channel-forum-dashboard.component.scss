@@ -1,4 +1,4 @@
-@import './apps/commudle-admin/src/assets/styles/variables';
+// @import './apps/commudle-admin/src/assets/styles/variables';
 
 .community-channels-dashboard {
   @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-0 com-h-[700px] com-w-full com-rounded-lg;
@@ -23,7 +23,7 @@
     .community-channel-discussion {
       flex-grow: 1;
       width: 1000px;
-      @apply com-ml-2px  com-border-0 com-border-l com-border-gray-200 com-border-solid;
+      @apply com-ml-2px  com-border-0 com-border-l com-border-Bright-Gray com-border-solid;
     }
   }
 

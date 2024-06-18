@@ -11,6 +11,10 @@ import { EEventStatuses } from 'apps/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'apps/shared-models/event.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { DiscussionService } from '@commudle/shared-services';
+import { NbMenuService } from '@commudle/theme';
+import { map } from 'rxjs';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-event',
@@ -43,7 +47,9 @@ export class HomeEventComponent implements OnInit, OnDestroy {
 
   isOrganizer = false;
   isLoading = true;
+  faEllipsisVertical = faEllipsisVertical;
 
+  items: [{ title: string }];
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('agendaSection', { static: false }) agendaSectionRef: ElementRef<HTMLDivElement>;
@@ -60,6 +66,8 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private seoService: SeoService,
     private discussionsService: DiscussionsService,
+    private discussionService: DiscussionService,
+    private menuService: NbMenuService,
   ) {}
 
   ngOnInit() {
@@ -81,7 +89,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
       this.event = event;
       this.isLoading = false;
       this.getCommunity(event.kommunity_id);
-      this.getDiscussionChat();
     });
   }
 
@@ -89,6 +96,7 @@ export class HomeEventComponent implements OnInit, OnDestroy {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
       this.isOrganizerCheck(this.community.slug);
+      this.getDiscussionChat();
       if (!this.event.custom_agenda) {
         this.setSchema();
       }
@@ -142,6 +150,40 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe((data) => (this.discussionChat = data));
+    this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe((data) => {
+      this.discussionChat = data;
+      if (this.isOrganizer) {
+        this.setContextMenu();
+      }
+    });
+  }
+
+  setContextMenu() {
+    this.updateContextMenu();
+    this.handleContextMenuItemClick();
+  }
+
+  handleContextMenuItemClick() {
+    this.subscriptions.push(
+      this.menuService
+        .onItemClick()
+        .pipe(map(({ item }) => item.title))
+        .subscribe((menuItemTitle) => {
+          if (menuItemTitle === 'Turn OFF Comments' || menuItemTitle === 'Turn ON Comments') {
+            this.toggleDiscussionOpen();
+          }
+        }),
+    );
+  }
+
+  toggleDiscussionOpen() {
+    this.discussionService.toggleDiscussionOpen(this.discussionChat.id).subscribe((value: boolean) => {
+      this.discussionChat.open = value;
+      this.updateContextMenu();
+    });
+  }
+
+  updateContextMenu() {
+    this.items = [{ title: this.discussionChat.open ? 'Turn OFF Comments' : 'Turn ON Comments' }];
   }
 }

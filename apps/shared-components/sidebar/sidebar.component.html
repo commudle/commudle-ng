@@ -4,16 +4,23 @@
     expanded: expandSidebar || isExpanded,
     forWindow: forWindow,
     hideFullSidebar: hideFullSidebar,
-    left: position === 'left',
-    right: position === 'right',
-    small: expandedWidth === 'small',
-    medium: expandedWidth === 'medium',
-    large: expandedWidth === 'large',
-    extraLarge: expandedWidth === 'extra-large'
+    left: position === ESidebarPosition.LEFT,
+    right: position === ESidebarPosition.RIGHT,
+    small: expandedWidth === ESidebarWidth.SMALL,
+    medium: expandedWidth === ESidebarWidth.MEDIUM,
+    large: expandedWidth === ESidebarWidth.LARGE,
+    extraLarge: expandedWidth === ESidebarWidth.XL
   }"
 >
   <div class="header" *ngIf="heading || showExpandedButton">
-    <h1 *ngIf="heading" class="title" (click)="handleSidebarToggle()">{{ heading }}</h1>
+    <h1
+      *ngIf="heading"
+      class="title"
+      (click)="handleSidebarToggle()"
+      [ngClass]="{ 'com-pointer-events-none': !showExpandedButton }"
+    >
+      {{ heading }}
+    </h1>
     <div *ngIf="showExpandedButton" class="toggle" (click)="handleSidebarToggle()">
       <fa-icon [icon]="expandSidebar || isExpanded ? faCaretLeft : faBars" class="com-cursor-pointer"></fa-icon>
     </div>

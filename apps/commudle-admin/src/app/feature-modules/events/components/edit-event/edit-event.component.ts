@@ -40,7 +40,6 @@ export class EditEventComponent implements OnInit {
   startTime;
   endTime;
 
-  uneditable = false;
   hasDate = false;
 
   eventForm;
@@ -125,9 +124,8 @@ export class EditEventComponent implements OnInit {
 
   fetchData() {
     this.event.tags.forEach((value) => this.tags.push(value.name));
-    // event is editable only if it's not canceled or completed)
-    this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
-    if (this.uneditable) {
+
+    if (!this.event.editable) {
       this.eventForm.get('event').disable();
     }
 

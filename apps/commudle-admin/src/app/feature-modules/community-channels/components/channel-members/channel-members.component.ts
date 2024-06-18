@@ -40,6 +40,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   channelRoles = {};
   forumsRoles = {};
   @ViewChild('notificationRef') notificationRef: ElementRef;
+  isSuperAdmin = true;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -52,7 +53,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
-        // this.getMembers();
+        if (this.currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
+          this.isSuperAdmin = true;
+        }
       }),
     );
     if (this.discussionType === 'channel') {
@@ -108,14 +111,16 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     if (!this.total || this.channelUsers.length < this.total) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.communityChannelsService.membersList(this.channelOrForum.id, this.page, this.count).subscribe((data) => {
-          if (data.user_roles_users) {
-            this.channelUsers = this.channelUsers.concat(data.user_roles_users);
-            this.page = data.page + 1;
-            this.total = data.total;
-            this.isLoading = false;
-          }
-        }),
+        this.communityChannelsService
+          .channelForumMembersIndex(this.channelOrForum.id, this.page, this.count)
+          .subscribe((data) => {
+            if (data.user_roles_users) {
+              this.channelUsers = this.channelUsers.concat(data.user_roles_users);
+              this.page = data.page + 1;
+              this.total = data.total;
+              this.isLoading = false;
+            }
+          }),
       );
     }
   }
@@ -133,7 +138,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
       alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
     }
     if (window.confirm(alertMessage)) {
-      this.communityChannelsService.toggleAdmin(this.channelUsers[index].id).subscribe((data) => {
+      this.communityChannelsService.memberToggleAdmin(this.channelUsers[index].id).subscribe((data) => {
         this.channelUsers[index] = data;
         if (isAdmin && this.channelUsers[index].id === this.currentUser.id) {
           window.location.reload();
@@ -145,7 +150,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   leaveChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
     if (window.confirm(`Are you sure you want to exit ${this.channelOrForum.name}?`)) {
-      this.communityChannelsService.exitChannel(this.channelOrForum.id).subscribe((data) => {
+      this.communityChannelsService.memberExitChannel(this.channelOrForum.id).subscribe((data) => {
         this.allUsers.splice(index, 1);
         this.toastLogService.successDialog('You have exited this channel');
         window.location.reload();
@@ -160,7 +165,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
         `Are you sure you want to remove ${this.channelUsers[index].user.name} from ${this.channelOrForum.name}?`,
       )
     ) {
-      this.communityChannelsService.removeMembership(this.channelUsers[index].id).subscribe((data) => {
+      this.communityChannelsService.removeMemberFromChannelForum(this.channelUsers[index].id).subscribe((data) => {
         this.channelUsers.splice(index, 1);
         this.toastLogService.successDialog('Removed');
       });

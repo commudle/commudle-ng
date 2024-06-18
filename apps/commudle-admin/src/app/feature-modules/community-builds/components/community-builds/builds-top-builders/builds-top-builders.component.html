@@ -1,4 +1,4 @@
-<nb-card [ngStyle]="{ background: backgroundColor }">
+<nb-card [ngStyle]="{ background: backgroundColor }" id="{{ heading }}">
   <nb-card-body>
     <div class="heading">
       <button nbButton status="basic" class="image">
@@ -6,7 +6,9 @@
       </button>
       <div class="text">
         <div class="title">
-          <h3>{{ heading }}</h3>
+          <h3>
+            <a [routerLink]="'.'" fragment="{{ heading | replaceSpace }}">{{ heading }}</a>
+          </h3>
           <nb-icon icon="question-mark-circle-outline" nbTooltip="{{ toolTipText }}"></nb-icon>
         </div>
         <h4 class="sub-heading">{{ subHeading }}</h4>

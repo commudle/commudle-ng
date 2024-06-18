@@ -37,4 +37,10 @@ export class DiscussionService {
       },
     );
   }
+
+  toggleDiscussionOpen(discussionId: number): Observable<boolean> {
+    return this.http.put<boolean>(this.baseApiService.getRoute(API_ROUTES.DISCUSSIONS.TOGGLE_DISCUSSION_OPEN), {
+      discussion_id: discussionId,
+    });
+  }
 }

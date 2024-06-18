@@ -6,10 +6,11 @@ import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-co
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { Subscription } from 'rxjs';
-import { EDiscussionType } from '@commudle/shared-models';
+import { EDiscussionType, ICommunity } from '@commudle/shared-models';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/public-api';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 
 @Component({
   selector: 'app-join-by-token',
@@ -17,7 +18,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
   styleUrls: ['./join-by-token.component.scss'],
 })
 export class JoinByTokenComponent implements OnInit {
-  @Input() selectedCommunity;
+  @Input() parent: ICommunity | ICommunityGroup;
   joined = false;
   communityName;
   channelId;
@@ -57,20 +58,20 @@ export class JoinByTokenComponent implements OnInit {
 
   verifyToken(decline?: boolean) {
     this.subscriptions.push(
-      this.communityChannelsService.joinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
+      this.communityChannelsService.memberJoinByToken(this.activatedRoute.snapshot.params.token, decline).subscribe(
         (data) => {
           this.libToasLogService.successDialog('Taking you to the channel!', 2500);
           if (decline) {
-            this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, this.channelId], {
+            this.router.navigate(['/communities', this.parent.slug, this.discussionType, this.channelId], {
               queryParams: { decline: true },
             });
           } else {
             this.joined = true;
-            this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, data]);
+            this.router.navigate(['/communities', this.parent.slug, this.discussionType, data]);
           }
         },
         (error) => {
-          this.router.navigate(['/communities', this.selectedCommunity.slug, this.discussionType, this.channelId]);
+          this.router.navigate(['/communities', this.parent.slug, this.discussionType, this.channelId]);
         },
       ),
     );

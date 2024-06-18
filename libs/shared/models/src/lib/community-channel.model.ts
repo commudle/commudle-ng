@@ -23,6 +23,12 @@ export interface ICommunityChannel {
     name: string;
   };
   latest_message?: IUserMessage;
+  discussion_id: number;
+  user_roles_users_count: number;
+}
+
+export interface IGroupedChannels {
+  [groupName: string]: ICommunityChannel[];
 }
 
 export interface ICommunityChannels {

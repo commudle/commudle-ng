@@ -124,6 +124,10 @@ export const staticAssets = {
   expert_program_header:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd0FZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--11d25f55ae2c13a94e0c9fc8724863d43d9a5e16/Header%20Frame%20Pattern.png',
 
+  // id: 145
+  case_study_empty_state_banner:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMXRHQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a67b7c09eaf3b38a9bb63f98290c2042a068a16b/Case%20Study%20Empty%20State.png',
+
   stripe: {
     id: 97,
     url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOWRDQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--db7d5da8d5636d2ff9a354a98d42306a458a62b5/Stripe%20wordmark%20-%20blurple.svg',
@@ -133,4 +137,32 @@ export const staticAssets = {
     id: 144,
     url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM2sxQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--401df19785a101dbb8c939863455bd55d6f49d60/razorpay.svg',
   },
+
+  // id: 151
+  features_page_header:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzFRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2c643d52f857a14ad268a086e2f8118029a0f7f/Header%20Asset.png',
+
+  // id: 150
+  features_page_header_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd3hRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c1d963a646308024297b4fe5a5dfcdd5924e5a3/Header%20BG.png',
+
+  // id: 148
+  features_know_your_community:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3hOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--48d2e70f97d92111d9cb7d39cad41db00d1b0fb9/Section%203%20Image.png',
+
+  // id: 154
+  features_build_your_community:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEJRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5472aebc64e22eca352b7832e956b0dbf4803166/Paragraph%20Text.png',
+
+  // id: 152
+  features_build_your_community_right_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzVRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--220aa0950985fdf281a4700b8bbf1f1fdf8ca343/Group%20427319032.png',
+
+  //id: 153
+  features_build_your_community_left_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzlRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a3b4cba3b6321f31f57f8124eedfb3b2abeb8af0/Group%20427319033.png',
+
+  // id: 155
+  features_build_your_community_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEZRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--536d7996d56f77fcba3bf3af4a950d526155ce6d/Section%204%20BG.png',
 };

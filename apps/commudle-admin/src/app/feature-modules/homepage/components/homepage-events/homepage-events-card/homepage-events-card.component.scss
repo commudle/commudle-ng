@@ -49,6 +49,9 @@
       height: 3.5rem;
       @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
     }
+    .start-end-date {
+      @apply com-text-gray-500 com-text-base;
+    }
 
     .home-events-card-host {
       margin-top: $space-16;

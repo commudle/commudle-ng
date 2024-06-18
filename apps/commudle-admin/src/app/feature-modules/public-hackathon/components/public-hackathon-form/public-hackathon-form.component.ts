@@ -19,6 +19,8 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 
 @Component({
   selector: 'commudle-public-hackathon-form',
@@ -119,6 +121,20 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
       });
   }
 
+  UpdateOrSubmitResponse(formData) {
+    this.hackathonService.pCheckParentMember(this.hackathon.id).subscribe((data) => {
+      if (data) {
+        if (this.hackathonUserResponse) {
+          this.updateUserResponse(formData);
+        } else {
+          this.submitUserResponse(formData);
+        }
+      } else {
+        this.openConsentDialogBox(formData);
+      }
+    });
+  }
+
   submitUserResponse(formData) {
     this.hurService.createHackathonResponseGroup(formData, this.hackathonResponseGroup.id).subscribe((data) => {
       this.hackathonUserResponse = data;
@@ -167,5 +183,25 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
 
   previousStepper() {
     this.stepper.previous();
+  }
+
+  openConsentDialogBox(formData) {
+    const dialogRef = this.dialogService.open(UserConsentsComponent, {
+      context: {
+        consentType: ConsentTypesEnum.HACKATHON_REGISTRATION,
+      },
+    });
+    dialogRef.componentRef.instance.consentOutput.subscribe((result) => {
+      dialogRef.close();
+      if (result === 'rejected') {
+        return;
+      } else {
+        if (this.hackathonUserResponse) {
+          this.updateUserResponse(formData);
+        } else {
+          this.submitUserResponse(formData);
+        }
+      }
+    });
   }
 }

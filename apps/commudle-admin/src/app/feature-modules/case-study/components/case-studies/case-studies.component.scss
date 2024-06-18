@@ -1,0 +1,24 @@
+.case-studies {
+  @apply com-bg-white;
+
+  .base-layout {
+    .case-studies-heading {
+      @apply com-flex com-flex-col com-text-center md:com-my-[60px] com-my-8;
+
+      h1 {
+        @apply com-text-black com-m-0 com-mb-4 md:com-text-4xl com-text-2xl md:com-font-bold;
+      }
+
+      h2 {
+        @apply md:com-text-xl com-text-base com-font-medium com-text-gray-500 com-m-0;
+      }
+    }
+
+    .case-studies-cards {
+      @apply com-flex com-flex-wrap com-gap-8 md:com-px-0 com-px-4;
+      div {
+        @apply md:com-w-[620px] com-w-full com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-p-4 com-shadow-lg;
+      }
+    }
+  }
+}

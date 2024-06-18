@@ -46,9 +46,10 @@
 
         <td class="updates">
           <div *ngIf="userResponse.team.entity_updates.length > 0">
-            <span class="details">{{
-              userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details
-            }}</span>
+            <span
+              class="details"
+              [innerHTML]="userResponse.team.entity_updates[userResponse.team.entity_updates.length - 1].details"
+            ></span>
             <span
               class="timeago"
               title="{{

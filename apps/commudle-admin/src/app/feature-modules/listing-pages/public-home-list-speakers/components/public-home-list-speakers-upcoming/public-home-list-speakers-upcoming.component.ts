@@ -56,7 +56,7 @@ export class PublicHomeListSpeakersUpcomingComponent implements OnInit {
   getCommunityGroupEvents() {
     this.showSpinner = true;
     this.communityGroupsService
-      .pEvents(this.communityGroup.slug, this.limit, this.page_info?.end_cursor, this.page_info?.start_cursor, 'future')
+      .pEvents(this.communityGroup.slug, this.limit, this.page_info?.end_cursor, 'future')
       .subscribe((data) => {
         this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.page_info = data.page_info;

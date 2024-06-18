@@ -61,7 +61,7 @@ const environments: { [type: string]: Environment } = {
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
     sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
-    razorpay_key: 'rzp_live_nqGSJl7Jt6bsZx',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
   production: {
     production: true,
@@ -77,7 +77,7 @@ const environments: { [type: string]: Environment } = {
     stripe:
       'pk_live_51NIQahSAaAm97Wzm6Nthh2SsbFH123ckuvoO9P4fEghH2IeC5laeiJmYSBHbOt9bFE1fHY1Hwig5lqiHko0bn7Yi00EWLt1AuB',
     sentry_dsn: 'https://008ea5f833883ac6e933856b26757b7e@o566989.ingest.sentry.io/4506098297405440',
-    razorpay_key: 'rzp_live_nqGSJl7Jt6bsZx',
+    razorpay_key: 'rzp_test_AQ8emxZcsJoKdl',
   },
 };
 

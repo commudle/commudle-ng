@@ -5,4 +5,5 @@ export interface IDiscussion {
   parent_name: string;
   discussion_type: string;
   user_messages_count: string;
+  open: boolean;
 }

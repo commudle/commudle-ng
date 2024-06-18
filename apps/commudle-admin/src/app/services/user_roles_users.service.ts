@@ -148,10 +148,11 @@ export class UserRolesUsersService {
     });
   }
 
-  pToggleMembership(communityId): Observable<boolean> {
+  pToggleMembership(communityId, userRolesUserIds?): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_TOGGLE_MEMBERSHIP),
       {
+        user_roles_user_ids: userRolesUserIds,
         community_id: communityId,
       },
     );
