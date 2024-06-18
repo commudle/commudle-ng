@@ -71,18 +71,56 @@ const helpDictionary = {
     type: EHelpDictionaryType.URL,
     url: 'https://documentation.commudle.com/community-dashboard/emails-and-newsletters/publish-newsletters',
   },
-  // 'help-event-details': {
-  //   type: EHelpDictionaryType.TEXT,
-  //   text: 'Hello',
-  // },
-  // 'help-event-edit-details': {
-  //   type: EHelpDictionaryType.URL,
-  //   url: 'https://www.commudle.com/',
-  // },
-  // 'help-event': {
-  //   type: EHelpDictionaryType.URL,
-  //   url: 'https://documentation.commudle.com/hackathons/overview-of-features',
-  // },
+
+  //Hacakthons
+  'hackathon-updates': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/post-updates',
+  },
+  'hackathon-communications': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/hackathon-communications',
+  },
+  'hackathon-applications-projects': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/manage-applications-and-projects',
+  },
+  'hackathon-statuses': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/hackathon-statuses',
+  },
+  'hackathon-faq': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/add-faqs',
+  },
+  'hackathon-judges-speakers': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/add-judges-speakers-and-mentors',
+  },
+  'hackathon-sponsors': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/sponsors',
+  },
+  'hackathon-registrations': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/setup-participant-registrations',
+  },
+  'hackathon-rounds': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/set-hackathon-rounds',
+  },
+  'hackathon-tracks-prizes': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/add-tracks-and-prizes',
+  },
+  'hackathon-dates': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/set-hackathon-dates',
+  },
+  'hackathon-contacts-social-links': {
+    type: EHelpDictionaryType.URL,
+    url: 'https://documentation.commudle.com/hackathons/add-links-and-other-details',
+  },
 };
 
 export const help_dictionary = helpDictionary;
