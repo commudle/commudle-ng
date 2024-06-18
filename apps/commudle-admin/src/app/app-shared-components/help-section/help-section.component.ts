@@ -23,17 +23,13 @@ export class HelpSectionComponent implements OnInit {
   }
 
   openSidebar() {
+    if (this.helpDictionaryData && this.helpDictionaryData.type === EHelpDictionaryType.URL) {
+      this.helpDictionaryService.getHelpDictionaryIframe(this.helpDictionaryData.url);
+    }
     this.helpSidebarService.openSidebar('helpSection');
-    this.getHelpSectionUrl();
   }
 
   getHelpSectionData() {
     this.helpDictionaryData = this.helpDictionary[this.helpDictionaryName];
-  }
-
-  getHelpSectionUrl() {
-    if (this.helpDictionaryData && this.helpDictionaryData.type === EHelpDictionaryType.URL) {
-      this.helpDictionaryService.getHelpDictionaryIframe(this.helpDictionaryData.url);
-    }
   }
 }
