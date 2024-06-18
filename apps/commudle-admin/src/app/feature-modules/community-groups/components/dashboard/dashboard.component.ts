@@ -15,6 +15,7 @@ import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.s
 import { ICommunityGroup } from '@commudle/shared-models';
 import { SeoService } from '@commudle/shared-services';
 import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,10 +45,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
+    private footerService: FooterService,
     public sidebarService: SidebarService,
   ) {}
 
   ngOnInit() {
+    this.footerService.changeMiniFooterStatus(false);
+
     this.seoService.noIndex(true);
     this.subscriptions.push(
       this.activatedRoute.data.subscribe((data) => {
@@ -60,6 +64,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
     this.seoService.noIndex(false);
   }
 

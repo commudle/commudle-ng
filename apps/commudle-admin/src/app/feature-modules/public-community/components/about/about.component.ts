@@ -8,6 +8,9 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import moment from 'moment';
+import { AuthService, CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
+import { EDbModels, ICommunityChannel } from '@commudle/shared-models';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about',
@@ -22,12 +25,20 @@ export class AboutComponent implements OnInit {
   upcomingEvents: IEvent[] = [];
   isLoadingEvents = false;
   isLoading = false;
+  defaultChannel: ICommunityChannel;
+
+  icons = {
+    faUsers,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
     private eventsService: EventsService,
+    private communityChannelsService: CommunityChannelsService,
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private authWatchService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -38,6 +49,14 @@ export class AboutComponent implements OnInit {
       }
       this.seoService.setTitle(this.community.name);
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
+    });
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    this.authWatchService.currentUser$.subscribe((data) => {
+      this.communityChannelManagerService.setCurrentUser(data);
+      this.getDefaultChannel();
     });
   }
 
@@ -63,5 +82,14 @@ export class AboutComponent implements OnInit {
       });
       this.isLoadingEvents = false;
     });
+  }
+
+  getDefaultChannel() {
+    this.communityChannelsService
+      .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
+      .subscribe((data: ICommunityChannel) => {
+        this.communityChannelManagerService.getChannelRoles(data);
+        this.defaultChannel = data;
+      });
   }
 }

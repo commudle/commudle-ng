@@ -56,10 +56,10 @@
         }
 
         .events-location {
-          @apply com-flex com-items-center com-text-Azure com-m-0;
+          @apply com-flex com-items-start com-text-Azure com-m-0;
 
           nb-icon {
-            @apply com-h-4 com-w-4 com-mr-1 com-flex-shrink-0;
+            @apply com-h-4 com-w-4 com-mr-1 com-mt-2px com-flex-shrink-0;
           }
 
           p {

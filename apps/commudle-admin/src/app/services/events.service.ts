@@ -215,13 +215,16 @@ export class EventsService {
     );
   }
 
-  getTechSessions(after?, limit?): Observable<IPagination<ISessions>> {
+  getTechSessions(after?, limit?, community_group_id?): Observable<IPagination<ISessions>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
     }
     if (limit) {
       params = params.set('limit', limit);
+    }
+    if (community_group_id) {
+      params = params.set('community_group_id', community_group_id);
     }
     return this.http.get<IPagination<ISessions>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS),

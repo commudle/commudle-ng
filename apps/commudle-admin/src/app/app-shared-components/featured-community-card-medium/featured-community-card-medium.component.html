@@ -30,7 +30,7 @@
           <nb-icon icon="calendar-outline"></nb-icon>{{ community.completed_events_count }}
         </p>
         <p *ngIf="community.location" class="events-location">
-          <nb-icon icon="pin-outline"></nb-icon>{{ community.location }}
+          <nb-icon icon="pin-outline"></nb-icon><span>{{ community.location }}</span>
         </p>
       </div>
       <div class="featured-community-tags">

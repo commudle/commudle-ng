@@ -8,7 +8,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
 import { CaseStudiesComponent } from './components/case-studies/case-studies.component';
 import { CaseStudiesHeaderComponent } from './components/case-studies-header/case-studies-header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NbButtonModule } from '@commudle/theme';
+import { NbButtonModule, NbIconModule } from '@commudle/theme';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { CaseStudyCardComponent } from 'apps/commudle-admin/src/app/feature-modules/case-study/components/case-study-card/case-study-card.component';
@@ -28,6 +28,7 @@ import { CaseStudyCardComponent } from 'apps/commudle-admin/src/app/feature-modu
     NbButtonModule,
     SharedComponentsModule,
     SharedPipesModule,
+    NbIconModule,
   ],
 })
 export class CaseStudyModule {}

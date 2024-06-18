@@ -19,7 +19,14 @@
           <p>Registrations</p>
 
           <div class="group-actions">
-            <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">
+            <button
+              (click)="openEntryPassEmailWindow()"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+              *ngIf="event.editable"
+            >
               Send All Entry Passes
             </button>
 

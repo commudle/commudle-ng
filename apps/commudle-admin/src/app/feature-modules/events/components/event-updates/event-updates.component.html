@@ -35,6 +35,7 @@
     </nb-card-body>
     <nb-card-footer class="com-sticky com-bg-white com-bottom-0">
       <commudle-editor
+        *ngIf="event.editable"
         [addAttachment]="true"
         (contentChange)="createEventUpdate($event)"
         (uploadImages)="uploadImages($event)"

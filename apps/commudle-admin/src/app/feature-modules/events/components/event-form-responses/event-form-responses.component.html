@@ -9,10 +9,24 @@
   ></nb-card-header>
   <nb-card-body>
     <div class="group-actions">
-      <button (click)="openRSVPEmailWindow()" nbButton outline size="small" status="primary">
+      <button
+        (click)="openRSVPEmailWindow()"
+        nbButton
+        outline
+        size="small"
+        status="primary"
+        *ngIf="event.editable && eventDataFormEntityGroup?.registration_type.name !== RegistrationTypeNames.FEEDBACK"
+      >
         Send All RSVP Emails
       </button>
-      <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">
+      <button
+        (click)="openEntryPassEmailWindow()"
+        nbButton
+        outline
+        size="small"
+        status="primary"
+        *ngIf="event.editable && eventDataFormEntityGroup?.registration_type.name !== RegistrationTypeNames.FEEDBACK"
+      >
         Send All Entry Passes
       </button>
 
@@ -65,7 +79,15 @@
         CSV
       </button>
 
-      <button (click)="bulkStatusChangeConfirmation()" nbButton size="small" status="info">Change Bulk Status</button>
+      <button
+        *ngIf="event.editable && eventDataFormEntityGroup?.registration_type.name !== RegistrationTypeNames.FEEDBACK"
+        (click)="bulkStatusChangeConfirmation()"
+        nbButton
+        size="small"
+        status="info"
+      >
+        Change Bulk Status
+      </button>
     </div>
   </nb-card-body>
 </nb-card>

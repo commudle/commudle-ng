@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SeoService } from '@commudle/shared-services';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
@@ -34,7 +33,9 @@ export class CommunityChannelsDashboardForumListComponent implements OnInit {
     this.subscriptions.push(
       this.communityChannelManagerService.forumsByGroup$.subscribe((data) => {
         this.communityForums = data;
-        Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
+        if (this.communityForums) {
+          Object.keys(this.communityForums).length > 0 ? (this.hasForms = true) : (this.hasForms = false);
+        }
       }),
     );
   }

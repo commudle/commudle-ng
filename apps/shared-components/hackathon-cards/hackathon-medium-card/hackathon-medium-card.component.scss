@@ -24,7 +24,7 @@ a {
         @apply com-flex com-gap-3 com-items-center;
         .date,
         .location-type {
-          @apply com-bg-[#F1F5F9] com-px-3 com-py-1 com-text-sm  com-rounded;
+          @apply com-bg-[#F1F5F9] com-px-3 com-py-1 com-text-sm  com-rounded com-text-gray-800;
         }
       }
       .prize-action-button {

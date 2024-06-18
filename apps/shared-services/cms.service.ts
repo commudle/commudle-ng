@@ -39,7 +39,7 @@ export class CmsService {
     initialCount: number = 0,
   ) {
     return from(
-      this.client.fetch(`*[_type == "${type}" && $keyword in ${filterType}[]] [${initialCount}...${finalCount}]`, {
+      this.client.fetch(`*[_type == "${type}" && $keyword in ${filterType}] [${initialCount}...${finalCount}]`, {
         keyword,
       }),
     );

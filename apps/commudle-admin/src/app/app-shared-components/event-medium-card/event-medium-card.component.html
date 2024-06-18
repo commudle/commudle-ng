@@ -38,6 +38,11 @@
                     {{ event.event_type }} Event
                   </button>
                 </div>
+                <div class="collaboration-badges">
+                  <div *ngFor="let community of event.collaboration_communities">
+                    <app-community-badge [community]="community" size="small"></app-community-badge>
+                  </div>
+                </div>
               </div>
 
               <div class="interested-members">

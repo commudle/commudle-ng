@@ -70,10 +70,18 @@ article {
       h3,
       h4,
       h5,
-      h6 {
+      h6,
+      span {
         @apply com-text-gray-700 #{!important};
         strong {
           @apply com-text-gray-700 #{!important};
+        }
+      }
+      ol {
+        li {
+          strong {
+            @apply com-text-gray-700 #{!important};
+          }
         }
       }
     }

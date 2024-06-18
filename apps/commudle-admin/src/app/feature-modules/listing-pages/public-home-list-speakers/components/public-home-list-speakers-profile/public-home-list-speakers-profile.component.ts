@@ -185,6 +185,7 @@ export class PublicHomeListSpeakersProfileComponent implements OnInit {
         false,
         this.page_info?.end_cursor,
         this.limit,
+        null,
         this.query,
         this.month,
         this.year,

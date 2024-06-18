@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPageInfo } from '@commudle/shared-models';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
@@ -15,11 +14,14 @@ import { Subscription } from 'rxjs';
 })
 export class CommunityComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
-  communities: ICommunity[] = [];
+  communities: ICommunity[];
   subscriptions: Subscription[] = [];
 
   isLoading = false;
-  pageInfo: IPageInfo;
+
+  count = 10;
+  page = 1;
+  total = 0;
 
   constructor(
     private communityGroupsService: CommunityGroupsService,
@@ -44,10 +46,12 @@ export class CommunityComponent implements OnInit, OnDestroy {
   getCommunities() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.communityGroupsService.communities(this.communityGroup.slug, this.pageInfo?.end_cursor).subscribe((data) => {
-        this.communities = this.communities.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+      this.communityGroupsService.communities(this.communityGroup.slug, this.page, this.count).subscribe((data) => {
+        this.communities = data.values;
         this.isLoading = false;
-        this.pageInfo = data.page_info;
+        this.total = data.total;
+        this.page = data.page;
+        this.count = data.count;
       }),
     );
   }

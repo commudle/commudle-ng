@@ -236,4 +236,14 @@ export class CommunityChannelsService {
       params,
     });
   }
+
+  getDefaultChannel(parentId: number, parentType: EDbModels): Observable<ICommunityChannel> {
+    const params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
+    return this.http.get<ICommunityChannel>(
+      this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.GET_DEFAULT_CHANNEL),
+      {
+        params,
+      },
+    );
+  }
 }

@@ -78,7 +78,11 @@ nb-card-body {
 
 .updates {
   .details {
-    @apply com-text-primary-500 com-text-base com-font-medium com-line-clamp-1;
+    ::ng-deep {
+      p {
+        @apply com-text-primary-500 com-my-0 com-text-base com-font-medium com-line-clamp-1;
+      }
+    }
   }
 
   .timeago {

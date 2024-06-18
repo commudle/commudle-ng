@@ -11,7 +11,7 @@
   }
 
   tiptap {
-    @apply com-block com-bg-transparent com-w-full com-outline-none com-py-1.5 com-min-h-[40px];
+    @apply com-block com-bg-transparent com-w-full com-outline-none com-pt-1.5 com-min-h-max;
 
     ::ng-deep {
       div.ProseMirror {
@@ -36,7 +36,7 @@
     }
 
     &.editable {
-      @apply com-border com-border-gray-300 com-border-solid com-rounded com-max-h-24 com-px-1.5 com-overflow-y-auto;
+      @apply com-border com-border-gray-300 com-border-solid com-rounded com-max-h-24 com-px-1.5 com-overflow-y-auto com-min-h-[40px];
 
       ::ng-deep {
         div.ProseMirror {

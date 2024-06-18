@@ -40,6 +40,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
   channelRoles = {};
   forumsRoles = {};
   @ViewChild('notificationRef') notificationRef: ElementRef;
+  isSuperAdmin = true;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
@@ -52,7 +53,9 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
-        // this.getMembers();
+        if (this.currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
+          this.isSuperAdmin = true;
+        }
       }),
     );
     if (this.discussionType === 'channel') {

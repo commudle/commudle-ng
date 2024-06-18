@@ -14,7 +14,10 @@
         <div *ngIf="hackathonPrize.hackathon_track" class="track-name">{{ hackathonPrize.hackathon_track.name }}</div>
       </div>
       <p class="prize">
-        {{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }}, {{ hackathonPrize.no_of_winners }}
+        <span *ngIf="hackathonPrize.prize_amount && hackathonPrize.prize_amount > 0">
+          {{ this.prizeCurrencySymbol?.symbol }}{{ hackathonPrize.prize_amount }},
+        </span>
+        {{ hackathonPrize.no_of_winners }}
         {{ hackathonPrize.no_of_winners === 1 ? 'Winner' : 'Winners' }}
       </p>
       <div class="description" [innerHTML]="hackathonPrize.description"></div>
