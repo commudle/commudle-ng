@@ -325,13 +325,23 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
 
   onFileChange(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.newsletterForm.patchValue({
-      banner_image: file,
-    });
-    this.newsletterForm.get('banner_image').updateValueAndValidity();
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const maxSize = 3 * 1024 * 1024; // 3 MB in bytes
+    if (file) {
+      if (!allowedTypes.includes(file.type)) {
+        this.toastrService.warningDialog('Please upload a valid image file (PNG, JPG, JPEG)');
+      } else if (file.size > maxSize) {
+        this.toastrService.warningDialog('The image size should not exceed 5 MB.');
+      } else {
+        this.newsletterForm.patchValue({
+          banner_image: file,
+        });
+        this.newsletterForm.get('banner_image').updateValueAndValidity();
 
-    // Display image preview
-    this.previewImage(file);
+        // Display image preview
+        this.previewImage(file);
+      }
+    }
   }
 
   previewImage(file: File) {
