@@ -81,6 +81,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
+    this.closeSidebarOnRouteChange();
 
     this.helpSidebarService.setSidebarVisibility('helpSection', false, true, ESidebarPosition.RIGHT);
   }
@@ -108,6 +109,17 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.seoService.removeSchema();
+      }
+    });
+  }
+
+  closeSidebarOnRouteChange(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        const isVisible = this.helpSidebarService.getSidebarVisibility('helpSection');
+        if (isVisible) {
+          this.helpSidebarService.closeSidebar('helpSection');
+        }
       }
     });
   }

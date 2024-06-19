@@ -3,9 +3,13 @@
 }
 
 .toggle {
-  @apply com-absolute com-top-[68px] com-left-2 com-z-50;
+  @apply com-absolute com-top-6px com-right-[18px] com-z-50;
 
   fa-icon {
-    @apply com-text-xl com-text-tWhite;
+    @apply com-text-2xl com-text-tWhite;
   }
+}
+
+app-loading-spinner {
+  @apply com-flex com-justify-center com-items-center com-h-full;
 }

@@ -57,7 +57,7 @@ const helpDictionary = {
   },
   forums: {
     type: EHelpDictionaryType.URL,
-    url: 'https://documentation.commudle.com/community-dashboard/forums',
+    url: 'https://documentation.commudle.com/community-dashboard/channels-1',
   },
   'event-specific-mails': {
     type: EHelpDictionaryType.URL,
@@ -72,7 +72,7 @@ const helpDictionary = {
     url: 'https://documentation.commudle.com/community-dashboard/emails-and-newsletters/publish-newsletters',
   },
 
-  //Hacakthons
+  //Hackathons
   'hackathon-updates': {
     type: EHelpDictionaryType.URL,
     url: 'https://documentation.commudle.com/hackathons/post-updates',
