@@ -1,5 +1,10 @@
 <nb-card>
   <nb-card-header *ngIf="userResponses && userResponses.length > 0">
+    <div class="header">
+      Applications & Projects<commudle-help-section
+        [helpDictionaryName]="'hackathon-applications-projects'"
+      ></commudle-help-section>
+    </div>
     <button
       nbButton
       status="primary"

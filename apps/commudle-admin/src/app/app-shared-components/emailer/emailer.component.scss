@@ -13,16 +13,21 @@
 
 .fieldset {
   margin: 1rem 0;
+  nb-radio {
+    &::ng-deep {
+      span {
+        @apply com-flex com-items-center;
+      }
+    }
+  }
 }
-
 
 .form-mail-type-selection {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 
-  >.fieldset{
+  > .fieldset {
     margin-right: 1.5rem;
   }
-
 }

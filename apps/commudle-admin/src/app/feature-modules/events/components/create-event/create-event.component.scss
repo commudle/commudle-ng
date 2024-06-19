@@ -39,3 +39,11 @@
     content: ' *';
   }
 }
+
+.help-section {
+  @apply com-flex com-items-center;
+
+  h3 {
+    @apply com-m-0;
+  }
+}

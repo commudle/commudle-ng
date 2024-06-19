@@ -3,9 +3,11 @@
 </div>
 
 <nb-card class="com-mx-0 com-my-6">
+  <nb-card-header
+    ><p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
+    <commudle-help-section [helpDictionaryName]="'event-registrations-manage'"></commudle-help-section
+  ></nb-card-header>
   <nb-card-body>
-    <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
-
     <div class="group-actions">
       <button
         (click)="openRSVPEmailWindow()"
