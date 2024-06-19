@@ -9,3 +9,7 @@
     @apply com-text-2xl com-text-tWhite;
   }
 }
+
+app-loading-spinner {
+  @apply com-flex com-justify-center com-items-center com-h-full;
+}
