@@ -40,7 +40,6 @@ export class NewslettersComponent implements OnInit {
     this.subscriptions.push(
       this.newsletterService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
         this.newsletters = data;
-        console.log(this.newsletters);
         this.setMeta();
       }),
     );
