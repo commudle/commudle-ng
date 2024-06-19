@@ -27,7 +27,12 @@
           "apps/commudle-admin/src/assets",
           "apps/commudle-admin/src/manifest.webmanifest",
           "apps/commudle-admin/src/sitemap.xml",
-          "apps/commudle-admin/src/robots.txt"
+          "apps/commudle-admin/src/robots.txt",
+          {
+            "glob": "**/*",
+            "input": "node_modules/tinymce",
+            "output": "/tinymce/"
+          }
         ],
         "styles": [
           "node_modules/@fortawesome/fontawesome-svg-core/styles.css",

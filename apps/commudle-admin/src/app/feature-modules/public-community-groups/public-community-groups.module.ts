@@ -28,6 +28,11 @@ import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
 import { EventMediumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-medium-card/event-medium-card.component';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { CommunityGroupCustomPageComponent } from './components/community-group-custom-page/community-group-custom-page.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { FeaturedCommunityCardMediumComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-community-card-medium/featured-community-card-medium.component';
+import { ForumCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/forum-card/forum-card.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [
@@ -48,14 +53,14 @@ import { CommunityGroupCustomPageComponent } from './components/community-group-
     SharedDirectivesModule,
     FontAwesomeModule,
     PublicCommunityModule,
-
+    InfiniteScrollModule,
     //standalone component
     CommunitiesCardComponent,
     ChannelCardComponent,
+    ForumCardComponent,
     EventCardComponent,
     EventMediumCardComponent,
     SkeletonCardsComponent,
-
     // Nebular
     NbCardModule,
     NbIconModule,
@@ -64,6 +69,9 @@ import { CommunityGroupCustomPageComponent } from './components/community-group-
     NbTagModule,
     NbButtonModule,
     NbContextMenuModule,
+    PublicHomeListSpeakersModule,
+    PublicHomeListEventsModule,
+    FeaturedCommunityCardMediumComponent,
   ],
 })
 export class PublicCommunityGroupsModule {}

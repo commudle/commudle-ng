@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { EmailerComponent } from './emailer/emailer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbIconModule,
+  NbInputModule,
   NbRadioModule,
   NbSelectModule,
-  NbInputModule,
-  NbButtonModule,
-  NbCheckboxModule,
   NbToggleModule,
-  NbIconModule,
-  NbCardModule,
 } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
 import { PublicCommunityModule } from 'apps/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { FeaturedCommunitiesCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-communities-card/featured-communities-card.component';
@@ -38,6 +38,9 @@ import { PublicPageCtaComponent } from 'apps/commudle-admin/src/app/app-shared-c
 import { PublicPageFeatureCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-feature-card/public-page-feature-card.component';
 import { PublicPageSignupNewsletterComponent } from 'apps/commudle-admin/src/app/app-shared-components/public-page-signup-newsletter/public-page-signup-newsletter.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { FeaturedExpertsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-experts-card/featured-experts-card.component';
+import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.component';
+import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+    AdminHackathonComponent,
   ],
   exports: [
     EmailerComponent,
@@ -70,6 +74,10 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     PublicPageCtaComponent,
     PublicPageFeatureCardComponent,
     PublicPageSignupNewsletterComponent,
+    FeaturedExpertsCardComponent,
+    AdminHackathonComponent,
+    CustomPageFormComponent,
+    WhatsNewComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +95,9 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     TopBuildersCardComponent,
     LabsFeaturedCardComponent,
     SkeletonCardsComponent,
+    FeaturedExpertsCardComponent,
+    WhatsNewComponent,
+
     // Nebular
     NbRadioModule,
     NbSelectModule,
@@ -103,5 +114,6 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     FontAwesomeModule,
     SharedPipesModule,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class AppSharedComponentsModule {}

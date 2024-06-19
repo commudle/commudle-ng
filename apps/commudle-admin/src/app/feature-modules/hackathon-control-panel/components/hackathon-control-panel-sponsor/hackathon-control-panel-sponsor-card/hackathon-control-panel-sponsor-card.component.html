@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-body>
+    <div>
+      <div class="upper-section">
+        <div class="logo">
+          <img [src]="hackathonSponsor.sponsor.logo?.url" [alt]="hackathonSponsor.sponsor.name" />
+        </div>
+        <div class="name-website">
+          <div class="name">
+            <span>{{ hackathonSponsor.sponsor.name }}</span>
+          </div>
+          <a [href]="hackathonSponsor.sponsor.link" target="_blank" class="website">{{
+            hackathonSponsor.sponsor.link
+          }}</a>
+        </div>
+      </div>
+      <div class="description">{{ hackathonSponsor.sponsor.description }}</div>
+    </div>
+    <div class="com-flex">
+      <button nbButton status="primary" (click)="editSponsor(hackathonSponsor)" ghost fullWidth>Edit</button>
+      <button nbButton status="danger" (click)="destroySponsor(hackathonSponsor)" ghost fullWidth>Delete</button>
+    </div>
+  </nb-card-body>
+</nb-card>

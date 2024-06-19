@@ -17,7 +17,7 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@commudle/theme';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { LinkyModule } from 'ngx-linky';
 import { RecommendationsModule } from 'apps/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -103,5 +103,6 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     SkeletonVerticalCardsComponent,
     SkeletonCardsComponent,
   ],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class LabsModule {}

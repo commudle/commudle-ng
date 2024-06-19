@@ -12,12 +12,24 @@
       title="{{ event.name }}"
     />
   </div>
-  <div *ngIf="event.start_time" [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-card-date">
+  <div
+    *ngIf="event.start_time"
+    [ngClass]="{ old: moment(event.start_time) < moment() && moment(event.end_time) < moment() }"
+    class="home-events-card-date"
+  >
     {{ moment(event.start_time).format('MMM DD') }}
   </div>
   <div class="com-aspect-w-16 com-aspect-h-9">
     <div class="home-events-card-details">
-      <h3 class="home-events-card-name">{{ event.name }}</h3>
+      <div>
+        <h3 class="home-events-card-name">{{ event.name }}</h3>
+        <div
+          class="start-end-date"
+          *ngIf="moment(event.start_time).format('DD MMM') !== moment(event.end_time).format('DD MMM')"
+        >
+          {{ moment(event.start_time).format('DD MMM') }} - {{ moment(event.end_time).format('DD MMM') }}
+        </div>
+      </div>
       <div class="home-events-card-host d-flex justify-content-space-between align-items-center">
         <div class="home-events-card-community d-flex align-items-center">
           <img

@@ -31,7 +31,7 @@
 
               .user-profile {
                 .avatar {
-                  @apply com-rounded-3xl com-h-6 com-overflow-hidden com-w-6;
+                  @apply com-rounded-3xl com-h-6 com-overflow-hidden com-w-6 com-bg-tWhite;
 
                   img {
                     @apply com-w-full;
@@ -132,7 +132,7 @@
         }
 
         nb-card-footer {
-          @apply com-bg-[#EDF1F7] com-border-0 com-pt-6 com-px-0 com-pb-0;
+          @apply com-bg-Anti-Flash com-border-0 com-pt-6 com-px-0 com-pb-0;
         }
 
         @media all and (max-width: 768px) {

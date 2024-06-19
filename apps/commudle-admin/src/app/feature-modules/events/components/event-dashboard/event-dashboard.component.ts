@@ -21,6 +21,7 @@ import { NbWindowService } from '@commudle/theme';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
+import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -47,6 +48,7 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     faEnvelope,
   };
 
+  ESidebarWidth = ESidebarWidth;
   constructor(
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,

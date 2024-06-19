@@ -27,6 +27,24 @@
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
+
+          nb-checkbox {
+            ::ng-deep {
+              span {
+                @apply com-text-Yankees-Blue;
+              }
+            }
+          }
+        }
+
+        nb-radio-group {
+          nb-radio {
+            ::ng-deep {
+              span {
+                @apply com-text-Yankees-Blue;
+              }
+            }
+          }
         }
       }
       .detail {
@@ -60,7 +78,7 @@
   }
 
   .submit-button {
-    @apply com-p-0 com-mx-2 com-mt-4;
+    @apply com-p-0 md:com-pb-4 com-mx-2 com-mt-4;
 
     button {
       @apply com-px-0;

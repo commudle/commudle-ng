@@ -22,7 +22,7 @@
             (makeAdmin)="toggleAdmin(i)"
             (removeAdmin)="toggleAdmin(i)"
             (removeFromChannel)="removeFromChannel(i)"
-            [currentUserIsAdmin]="currentUserIsAdmin"
+            [currentUserIsAdmin]="currentUserIsAdmin || isSuperAdmin"
             [userRolesUser]="u"
           ></app-member>
         </ng-container>

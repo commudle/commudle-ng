@@ -1,10 +1,12 @@
 <div class="team">
   <nb-card>
     <nb-card-body>
-      <app-skeleton-cards *ngIf="isLoading"></app-skeleton-cards>
-      <div class="member" *ngFor="let member of team">
-        <app-user-profile-horizontal [user]="member.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+      <div class="members" (scrolled)="getTeam()" [infiniteScrollDisabled]="team.length >= total" appInfiniteScroll>
+        <div class="member" *ngFor="let member of team">
+          <app-speaker-card [speaker]="member"></app-speaker-card>
+        </div>
       </div>
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     </nb-card-body>
   </nb-card>
 </div>

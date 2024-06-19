@@ -20,7 +20,10 @@ import { CustomPageFormComponent } from 'apps/commudle-admin/src/app/app-shared-
 import { CommunityNewsletterComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-newsletter/community-newsletter.component';
 import { NewsletterFormComponent } from 'apps/commudle-admin/src/app/app-shared-components/newsletter/newsletter-form/newsletter-form.component';
 import { CommunityChannelsAndForumsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-channels-and-forums/community-channels-and-forums.component';
-
+import { AdminCommunityHackathonComponent } from './components/admin-community-hackathon/admin-community-hackathon.component';
+import { CommunityBankDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-payments/community-bank-details/community-bank-details.component';
+import { CommunityPaymentLogsComponent } from 'apps/commudle-admin/src/app/feature-modules/community-control-panel/components/community-payments/community-payment-logs/community-payment-logs.component';
+import { PaymentLogEdfegComponent } from 'apps/shared-components/payment-detail/payment-log-edfeg/payment-log-edfeg.component';
 const routes = [
   {
     path: 'new',
@@ -66,6 +69,20 @@ const routes = [
       {
         path: 'payments',
         component: CommunityPaymentsComponent,
+        children: [
+          { path: '', component: CommunityBankDetailsComponent },
+          { path: 'logs', component: CommunityPaymentLogsComponent },
+          { path: 'logs/:edfeg_id', component: PaymentLogEdfegComponent },
+        ],
+      },
+      {
+        path: 'hackathons',
+        children: [
+          {
+            path: '',
+            component: AdminCommunityHackathonComponent,
+          },
+        ],
       },
       {
         path: 'pages',

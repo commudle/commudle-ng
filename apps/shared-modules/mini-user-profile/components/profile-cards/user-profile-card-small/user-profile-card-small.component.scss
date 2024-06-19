@@ -12,7 +12,7 @@ a:active {
   @apply com-bg-transparent;
 
   .avatar {
-    @apply com-h-6 com-w-6 com-overflow-hidden;
+    @apply com-h-6 com-w-6 com-overflow-hidden com-bg-tWhite;
     border-radius: 50%;
 
     img {

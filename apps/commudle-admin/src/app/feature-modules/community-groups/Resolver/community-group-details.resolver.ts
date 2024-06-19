@@ -16,7 +16,7 @@ export class CommunityGroupDetailsResolver implements Resolve<ICommunityGroup> {
     // if organizer communities are already fetched then bring it from there, else fetch the communities and then filter from the list
     const communityGroupId = route.parent.params.community_group_id || route.params.community_group_id;
     const params = new HttpParams().set('community_group_id', communityGroupId);
-    return this.http.get<ICommunityGroup>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.SHOW), {
+    return this.http.get<ICommunityGroup>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.SHOW), {
       params,
     });
   }

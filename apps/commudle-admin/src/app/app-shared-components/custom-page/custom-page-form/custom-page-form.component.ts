@@ -1,13 +1,14 @@
 import { Subscription, debounceTime, combineLatest } from 'rxjs';
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from '@commudle/shared-services';
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { Location } from '@angular/common';
-import { ICustomPage } from 'apps/shared-models/custom-page.model';
+import { ICustomPage, EPageType } from 'apps/shared-models/custom-page.model';
 import { NbDialogService } from '@commudle/theme';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-custom-page-form',
@@ -16,16 +17,18 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class CustomPageFormComponent implements OnInit, OnDestroy {
   customPageForm: FormGroup;
-  parentId: string;
-  parentType: string;
-  pageSlug: string;
+  @Input() parentId: string | number;
+  @Input() parentType: EDbModels;
+  @Input() pageType: EPageType;
+  @Input() pageSlug: string;
+  @Output() pageCreated = new EventEmitter<ICustomPage>();
   icons = {
     faChevronLeft,
   };
+  EPageType = EPageType;
 
   subscriptions: Subscription[] = [];
   @ViewChild('cancelDialogBox') cancelDialogBox: TemplateRef<any>;
-
   tinyMCE = {
     min_height: 500,
     menubar: false,
@@ -33,13 +36,33 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     placeholder: 'Write content for custom page',
     content_style:
       "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
-    plugins:
-      'emoticons advlist lists autolink link charmap preview anchor image visualblocks code charmap codesample insertdatetime table code help wordcount autoresize media',
+    plugins: [
+      'emoticons',
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'image',
+      'visualblocks',
+      'code',
+      'charmap',
+      'codesample',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+      'media',
+    ],
     toolbar:
-      'h1  h2  h3  h4  h5  h6 fontsize | bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
+      'bold italic backcolor | codesample emoticons | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media code | removeformat | table',
     default_link_target: '_blank',
     branding: false,
-    font_size_formats: '12pt 14pt 16pt 18pt 24pt',
+    license_key: 'gpl',
   };
 
   constructor(
@@ -56,21 +79,27 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
       published: [true],
       content: ['', Validators.required],
       slug: ['', Validators.required],
+      page_type: ['', Validators.required],
     });
   }
 
   ngOnInit() {
     this.generateSlug();
+    if (this.pageType && !this.pageSlug) {
+      this.customPageForm.patchValue({
+        page_type: this.pageType,
+      });
+    }
     combineLatest([this.activatedRoute.parent.parent.paramMap, this.activatedRoute.params]).subscribe(
       ([params, data]) => {
-        this.pageSlug = data.page_slug;
+        if (!this.pageSlug) this.pageSlug = data.page_slug;
         if (params.get('community_id')) {
           this.parentId = params.get('community_id');
-          this.parentType = 'Kommunity';
+          this.parentType = EDbModels.KOMMUNITY;
         }
         if (params.get('community_group_id')) {
           this.parentId = params.get('community_group_id');
-          this.parentType = 'CommunityGroup';
+          this.parentType = EDbModels.COMMUNITY_GROUP;
         }
 
         if (this.pageSlug) {
@@ -100,16 +129,21 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.customPageService.getShow(this.pageSlug, this.parentId, this.parentType).subscribe((data: ICustomPage) => {
         if (data) {
-          this.customPageForm.patchValue({
-            title: data.title,
-            description: data.description,
-            published: data.published,
-            content: data.content,
-            slug: data.slug,
-          });
+          this.setCustomPageForm(data);
         }
       }),
     );
+  }
+
+  setCustomPageForm(data) {
+    this.customPageForm.patchValue({
+      title: data.title,
+      description: data.description,
+      published: data.published,
+      content: data.content,
+      slug: data.slug,
+      page_type: data.page_type,
+    });
   }
 
   createOrUpdate() {
@@ -125,8 +159,9 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
       .createNewCustomPage(this.customPageForm.value, this.parentId, this.parentType)
       .subscribe((data) => {
         if (data) {
+          this.pageCreated.emit(data);
           this.toastrService.successDialog('Page Created');
-          this.backPage();
+          if (!this.pageType) this.backPage();
         }
       });
   }
@@ -135,7 +170,7 @@ export class CustomPageFormComponent implements OnInit, OnDestroy {
     this.customPageService.update(this.customPageForm.value, this.pageSlug).subscribe((data) => {
       if (data) {
         this.toastrService.successDialog('Page Updated');
-        this.backPage();
+        if (!this.pageType) this.backPage();
       }
     });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-community-page',
@@ -8,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommunityPageComponent implements OnInit {
   parentId: number;
+  EDbModels = EDbModels;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 

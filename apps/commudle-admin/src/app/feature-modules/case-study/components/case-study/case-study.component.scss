@@ -1,0 +1,61 @@
+a {
+  @apply com-no-underline;
+}
+
+.case-study {
+  @apply com-bg-white;
+  .challenges,
+  .solution {
+    @apply com-p-0 com-pb-4;
+    h2 {
+      @apply com-text-4xl com-font-bold com-text-Yankees-Blue com-m-0 com-mb-5 com-mt-10;
+    }
+
+    div {
+      ::ng-deep {
+        p {
+          @apply com-m-0;
+        }
+      }
+    }
+  }
+
+  .case-study-container {
+    @apply com-min-h-0  md:com-px-0 com-px-4;
+  }
+
+  .testimonials {
+    @apply com-flex com-flex-col com-m-0 md:com-mt-20 com-mt-11 md:com-mb-0 com-mb-2;
+
+    .heading {
+      @apply com-text-center md:com-text-xl com-text-base com-font-bold com-text-primary-500 com-m-0 md:com-mb-4 com-mb-6;
+    }
+
+    .subheading {
+      @apply com-text-center md:com-text-4xl com-text-2xl com-font-bold com-text-black com-m-0 md:com-mb-[52px] com-mb-6;
+    }
+
+    .testimonial-card {
+      @apply com-flex com-justify-center;
+    }
+  }
+
+  .stats-container {
+    @apply com-bg-blue-50 md:com-py-[100px] com-py-8;
+
+    .base-layout {
+      @apply com-min-h-0;
+      .stats {
+        @apply com-flex md:com-flex-row com-flex-col md:com-justify-between com-justify-center com-text-center md:com-text-left md:com-gap-0 com-gap-4 md:com-px-0 com-px-4;
+
+        div {
+          @apply md:com-w-[380px] com-w-full;
+        }
+      }
+    }
+  }
+}
+
+.back-btn {
+  @apply com-w-max com-mt-6 com-mb-24;
+}

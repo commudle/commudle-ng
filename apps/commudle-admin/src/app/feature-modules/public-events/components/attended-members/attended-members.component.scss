@@ -10,7 +10,7 @@ div {
     @apply com-bg-white;
 
     .main-column {
-      @apply com-p-0 md:com-pr-[30px] md:com-mb-8 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray-Light;
+      @apply com-p-0 md:com-pr-[30px] md:com-mb-8 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
     }
 
     .right-column {
@@ -37,10 +37,10 @@ div {
     .filters {
       @apply com-flex com-justify-between com-mb-8 com-mt-6 md:com-mx-0 com-mx-4;
       .filter {
-        @apply com-rounded-3xl com-px-3 com-py-2 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-bg-Bright-Gray-opacity-60 com-border-0;
+        @apply com-rounded-3xl com-px-3 com-py-2 com-text-sm com-font-medium com-text-tYankees-Blue com-bg-Bright-Gray-opacity-60 com-border-0;
       }
       .reset {
-        @apply com-text-sm com-font-medium md:com-w-[66px] com-w-max com-text-Dark-Jungle-Green com-m-0;
+        @apply com-text-sm com-font-medium md:com-w-[66px] com-w-max com-text-tYankees-Blue com-m-0;
       }
     }
 
@@ -50,6 +50,12 @@ div {
 
     app-pagination {
       @apply com-m-0 com-mt-3;
+    }
+
+    .speakers,
+    .speakers-content,
+    .volunteers-list {
+      @apply com-m-0 md:com-mt-4 com-mt-10;
     }
   }
 }

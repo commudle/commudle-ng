@@ -49,6 +49,9 @@
       height: 3.5rem;
       @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
     }
+    .start-end-date {
+      @apply com-text-gray-500 com-text-base;
+    }
 
     .home-events-card-host {
       margin-top: $space-16;
@@ -57,7 +60,7 @@
         .home-events-card-community-logo {
           border: 0.5px solid $platinum;
           @apply com-h-7 com-w-7;
-          @apply com-rounded-full com-object-contain com-object-center com-align-middle;
+          @apply com-rounded-full com-object-contain com-object-center com-align-middle com-bg-tWhite;
         }
 
         .home-events-card-community-name {

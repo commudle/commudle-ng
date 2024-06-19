@@ -19,6 +19,9 @@ import { AcceptJoinChannelEmailConsentComponent } from 'apps/commudle-admin/src/
 import { AcceptDeactivateAccountConsentComponent } from './accept-deactivate-account-consent/accept-deactivate-account-consent.component';
 import { AcceptDeleteAccountConsentComponent } from './accept-delete-account-consent/accept-delete-account-consent.component';
 import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { AcceptHackathonTeammateInviteComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/accept-hackathon-teammate-invite/accept-hackathon-teammate-invite.component';
+import { AcceptHackathonJudgeInviteComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/accept-hackathon-judge-invite/accept-hackathon-judge-invite.component';
+import { HackathonRegistrationConsentComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents//hackathon-registration-consent/hackathon-registration-consent.component';
 @Component({
   selector: 'commudle-user-consents',
   standalone: true,
@@ -44,6 +47,9 @@ import { ButtonStyle, ButtonText, ConsentTypesEnum } from 'apps/shared-models/en
     AcceptJoinChannelEmailConsentComponent,
     AcceptDeactivateAccountConsentComponent,
     AcceptDeleteAccountConsentComponent,
+    AcceptHackathonTeammateInviteComponent,
+    AcceptHackathonJudgeInviteComponent,
+    HackathonRegistrationConsentComponent,
   ],
 })
 export class UserConsentsComponent implements OnInit {

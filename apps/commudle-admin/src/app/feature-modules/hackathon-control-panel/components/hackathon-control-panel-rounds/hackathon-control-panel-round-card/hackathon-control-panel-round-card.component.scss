@@ -1,0 +1,18 @@
+nb-card {
+  @apply com-h-64;
+  nb-card-header {
+    @apply com-bg-blue-50;
+  }
+  nb-card-body {
+    .date {
+      @apply com-text-gray-500 com-text-sm com-py-3;
+    }
+    .description {
+      @apply com-text-Quartz com-text-sm com-line-clamp-4;
+    }
+  }
+
+  nb-card-footer {
+    @apply com-px-1 com-py-2;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="badge-heading">
+  <div *ngIf="showSpinner" class="skeleton-cards">
+    <commudle-skeleton-vertical-cards [displayFollowButton]="true" [cards]="3"></commudle-skeleton-vertical-cards>
+  </div>
+  <div *ngFor="let expertBadge of expertBadges" class="experts" id="{{ expertBadge.name | replaceSpace }}">
+    <div class="heading">
+      <div *ngIf="expertBadge.image" class="image">
+        <img [src]="expertBadge.image.i64 || expertBadge.image.url" />
+      </div>
+      <h2 class="heading-name">
+        <a [routerLink]="'.'" fragment="{{ expertBadge.name | replaceSpace }}">{{ expertBadge.name }}</a>
+      </h2>
+    </div>
+    <div>
+      <commudle-experts-users [BadgeId]="expertBadge.id"></commudle-experts-users>
+    </div>
+  </div>
+</div>

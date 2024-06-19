@@ -39,7 +39,7 @@ export class CmsService {
     initialCount: number = 0,
   ) {
     return from(
-      this.client.fetch(`*[_type == "${type}" && $keyword in ${filterType}[]] [${initialCount}...${finalCount}]`, {
+      this.client.fetch(`*[_type == "${type}" && $keyword in ${filterType}] [${initialCount}...${finalCount}]`, {
         keyword,
       }),
     );
@@ -47,6 +47,10 @@ export class CmsService {
 
   getDataByTypeFieldOrder(type: string, fields: string, order?: string) {
     return from(this.client.fetch(`*[_type == "${type}"]{${fields}} | order(${order}) `));
+  }
+
+  getDataByTypeFilterWithDate(type: string, passDate: string, order?: string) {
+    return from(this.client.fetch(`*[_type == "${type}" && date >= "${passDate}"]| order(${order}) `));
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
@@ -62,6 +66,22 @@ export class CmsService {
           },
           image: ({ value }) => {
             return `<img src="${this.getImageUrl(value.asset)}" alt="${value.alt}" class="!com-max-w-full" />`;
+          },
+        },
+        marks: {
+          color: ({ value, children }) => {
+            return `<span style="color: ${value.hex};">${children}</span>`;
+          },
+        },
+        block: {
+          '36px': ({ value, children }) => {
+            return `<span style="font-size: ${value.style}; line-height: 40px;">${children}</span>`;
+          },
+          '24px': ({ value, children }) => {
+            return `<span style="font-size: ${value.style}; line-height: 28px;">${children}</span>`;
+          },
+          '16px': ({ value, children }) => {
+            return `<span style="font-size: ${value.style}; line-height: 24px;">${children}</span>`;
           },
         },
       },

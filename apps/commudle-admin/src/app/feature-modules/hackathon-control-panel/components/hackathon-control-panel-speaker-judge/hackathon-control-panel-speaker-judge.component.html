@@ -1,0 +1,200 @@
+<nb-card>
+  <nb-card-header>Judges/Speakers</nb-card-header>
+  <nb-card-body>
+    <form action="" [formGroup]="fetchSpeakerJudge">
+      <div>
+        <label for="email">Enter Email*</label>
+        <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
+      </div>
+      <commudle-alert
+        [error]="fetchSpeakerJudge.controls['email'].hasError('email')"
+        errorMessage="Email was invalid"
+      ></commudle-alert>
+      <commudle-alert
+        [error]="true"
+        errorMessage="Use real email id's only, if the user is present on Commudle, the details of their profile will be fetched automatically"
+      ></commudle-alert>
+      <button
+        [disabled]="fetchSpeakerJudge.invalid"
+        class="com-w-max com-mt-3"
+        nbButton
+        status="primary"
+        type="submit"
+        (click)="fetchSpeakerJudgeDetails()"
+      >
+        Add Speaker
+      </button>
+    </form>
+  </nb-card-body>
+  <nb-card-footer *ngIf="judges && judges.length > 0" class="judge-cards">
+    <div *ngFor="let judge of judges; let i = index">
+      <commudle-hackathon-judge-card
+        [judge]="judge"
+        (destroyJudgeEvent)="confirmDeleteDialogBox(deleteJudgeDilaogBox, $event, i)"
+        (editJudgeEvent)="openEditJudgeDialogBox(judgeForm, $event, i)"
+      ></commudle-hackathon-judge-card>
+    </div>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #judgeForm let-data let-ref="dialogRef">
+  <nb-card class="speaker-form">
+    <nb-card-header class="actions">
+      <span> Add New Speaker</span>
+      <button nbButton ghost shape="round" size="tiny" (click)="ref.close(); speakerRegistrationForm.reset()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="com-mb-2">
+        <commudle-alert
+          [info]="true"
+          message="Changes made here will not change the profile of the user they will just be displayed on the hackathon page "
+        ></commudle-alert>
+      </div>
+      <form [formGroup]="speakerRegistrationForm">
+        <!-- profile image -->
+        <div>
+          <div class="com-flex com-gap-4 com-items-start">
+            <label for="profile_image_url">Profile Image*</label>
+            <div *ngIf="imageUrl" (click)="removeBannerImage()" class="delete-image">
+              <button nbButton status="danger" outline size="small">Replace</button>
+            </div>
+          </div>
+          <div class="com-w-full" *ngIf="!imageUrl">
+            <div
+              class="com-border com-rounded-lg com-border-dashed com-bg-[#E4E9F2]/40 com-border-gray-500 com-relative"
+            >
+              <input
+                (change)="onImageChange($event)"
+                type="file"
+                accept="image/*"
+                class="com-cursor-pointer com-relative com-block com-opacity-0 com-w-full com-h-full com-p-16 com-z-50"
+              />
+              <div class="com-text-center com-absolute com-top-8 com-right-0 com-left-0 com-m-auto com-text-gray-400">
+                <fa-icon [icon]="icons.faFileImage" class="com-text-5xl"></fa-icon>
+                <p>
+                  Drag file here
+                  <br />
+                  or<span class="com-text-primary-500"> BROWSE </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="imageUrl" class="image-preview">
+            <div class="com-w-28 com-h-28 com-mx-auto">
+              <img class="com-w-full com-h-full com-object-contain" [src]="imageUrl" />
+            </div>
+          </div>
+          <!-- <input placeholder="" type="text" nbInput fullWidth id="" formControlName /> -->
+        </div>
+
+        <!-- name -->
+        <div>
+          <label for="name">Name* </label>
+          <input placeholder="Name" type="text" nbInput fullWidth id="name" formControlName="name" />
+        </div>
+
+        <!-- about -->
+        <div>
+          <label for="about">About*</label>
+          <textarea formControlName="about" nbInput fullWidth id="about" placeholder="About Me"> </textarea>
+        </div>
+
+        <!-- email -->
+        <div>
+          <label for="eamil">Email*</label>
+          <input
+            placeholder="Email"
+            type="email"
+            nbInput
+            fullWidth
+            id="email"
+            formControlName="email"
+            [readonly]="profileExist"
+          />
+        </div>
+
+        <!-- company -->
+        <div>
+          <label for="company">Company*</label>
+          <input placeholder="Company" type="text" nbInput fullWidth id="company" formControlName="company" />
+        </div>
+
+        <!-- designation -->
+        <div>
+          <label for="designation">Designation*</label>
+          <input
+            placeholder="Designation"
+            type="text"
+            nbInput
+            fullWidth
+            id="designation"
+            formControlName="designation"
+          />
+        </div>
+
+        <!-- twitter -->
+        <div>
+          <label for="twitter">Twitter</label>
+          <input placeholder="Twitter" type="text" nbInput fullWidth id="twitter" formControlName="twitter" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('twitter').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="Enter complete URL"
+          ></commudle-alert>
+        </div>
+
+        <!-- linkedin -->
+        <div>
+          <label for="linkedin">linkedin</label>
+          <input placeholder="Linkedin" type="text" nbInput fullWidth id="linkedin" formControlName="linkedin" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('linkedin').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="Enter complete URL"
+          ></commudle-alert>
+        </div>
+
+        <!-- website -->
+        <div>
+          <label for="website">Website</label>
+          <input placeholder="Website" type="text" nbInput fullWidth id="website" formControlName="website" />
+          <commudle-alert
+            *ngIf="speakerRegistrationForm.get('website').hasError('invalidUrl')"
+            [error]="true"
+            errorMessage="Enter complete URL"
+          ></commudle-alert>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        [disabled]="speakerRegistrationForm.invalid || imageUrl?.length === 0"
+        type="submit"
+        nbButton
+        fullWidth
+        status="primary"
+        (click)="data?.judge ? updateJudge(data.judge.id, data.index) : createJudge(); ref.close()"
+      >
+        {{ data?.judge ? 'Update' : 'Save' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #deleteJudgeDilaogBox let-ref="dialogRef" let-data>
+  <nb-card>
+    <nb-card-header class="actions">
+      <span>Confirm delete Judge</span>
+      <button nbButton ghost (click)="ref.close()">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>Are you sure, you want to delete Judge?</nb-card-body>
+    <nb-card-footer class="actions">
+      <button nbButton status="primary" (click)="destroyJudge(data.judgeId, data.index); ref.close()">Delete</button>
+      <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

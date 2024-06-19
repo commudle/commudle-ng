@@ -1,11 +1,11 @@
-<nb-card>
+<nb-card id="experts">
   <nb-card-body>
     <div class="heading">
       <button nbButton status="basic" class="image">
         <img alt="Experts" src="{{ staticAssets.emojis.shield }}" title="Experts" />
       </button>
       <div class="text">
-        <h3 class="title">EXPERTS TO FOLLOW</h3>
+        <h3 class="title"><a [routerLink]="'.'" fragment="experts">EXPERTS TO FOLLOW</a></h3>
         <h4 class="sub-heading">Grow your network</h4>
       </div>
     </div>

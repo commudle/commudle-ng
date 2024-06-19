@@ -3,3 +3,15 @@
     @apply com-mb-0;
   }
 }
+.updates {
+  nb-card-body {
+    @apply com-pl-0;
+    .date {
+      @apply com-text-xs com-text-gray-600;
+    }
+
+    li:not(:last-child) {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-pb-2;
+    }
+  }
+}

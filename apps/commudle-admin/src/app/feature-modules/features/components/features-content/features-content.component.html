@@ -1,0 +1,9 @@
+<div *ngIf="selectedFeature" class="feature-content">
+  <div *ngIf="selectedFeature.image" class="image">
+    <img
+      alt="{{ selectedFeature.title }}"
+      [src]="imageUrl(selectedFeature.image).url()"
+      title="{{ selectedFeature.title }}"
+    />
+  </div>
+</div>

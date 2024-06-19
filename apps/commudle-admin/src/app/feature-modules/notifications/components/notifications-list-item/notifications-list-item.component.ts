@@ -81,11 +81,12 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
   }
 
   replaceLinkValue() {
-    this.notificationMessage
-      .filter((message) => message.value.startsWith('{{') && message.value.endsWith('}}'))
-      .forEach((message) => {
-        message.value = this.getValue(message.value.replace(/{{|}}/g, ''), message);
-      });
+    if (this.notificationMessage)
+      this.notificationMessage
+        .filter((message) => message.value.startsWith('{{') && message.value.endsWith('}}'))
+        .forEach((message) => {
+          message.value = this.getValue(message.value.replace(/{{|}}/g, ''), message);
+        });
   }
 
   redirectTo(notificationMessage: INotificationMessage) {
@@ -127,6 +128,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       case ENotificationParentTypes.COMMUNITY_CHANNEL:
         addQueryParams = true;
         url = ['/communities', value['kommunity_slug'], value['display_type'] + 's', slug];
+        break;
+      case ENotificationParentTypes.HACKATHON:
+        url = ['/communities', value['kommunity_slug'], 'hackathons', slug];
         break;
     }
 

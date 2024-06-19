@@ -1,0 +1,85 @@
+// @import './apps/commudle-admin/src/assets/styles/variables';
+
+.community-channels-dashboard {
+  @apply com-flex com-flex-nowrap com-justify-center com-overflow-hidden  com-p-0 com-h-[700px] com-w-full com-rounded-lg;
+
+  .community-channel-list {
+    @apply com-bg-Ghost-White com-overflow-hidden com-h-full com-w-full;
+  }
+
+  .community-channel-discussion {
+    @apply com-bg-white com-overflow-auto;
+  }
+
+  @media screen and (min-width: 1080px) {
+    .community-list {
+      width: 80px;
+    }
+
+    .community-channel-list {
+      @apply com-w-full;
+    }
+
+    .community-channel-discussion {
+      flex-grow: 1;
+      width: 1000px;
+      @apply com-ml-2px  com-border-0 com-border-l com-border-gray-200 com-border-solid;
+    }
+  }
+
+  @media screen and (max-width: 1079px) {
+    position: relative;
+
+    .community-list {
+      overflow: hidden;
+
+      &.show {
+        background-color: #f7f7f7;
+        // height: 100vh;
+        left: 0;
+        overflow-y: auto;
+        position: absolute;
+        width: 80px;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-list {
+      overflow: hidden;
+      @apply com-w-full;
+
+      &.show {
+        background-color: white;
+        // height: 100vh;
+        left: 80px;
+        overflow-y: auto;
+        position: absolute;
+        width: 200px;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-discussion {
+      flex-grow: 1;
+      width: 1000px;
+    }
+  }
+}
+
+.icons {
+  @apply com-m-2 com-w-14 com-h-14 com-rounded-lg  com-flex com-flex-col com-cursor-pointer;
+
+  fa-icon {
+    @apply com-text-2xl com-table-cell com-text-center com-align-middle com-mt-1;
+  }
+  .text {
+    @apply com-text-[10px] com-text-center com-text-tblack;
+  }
+  &.community &.forum {
+    @apply com-bg-primary-200;
+  }
+}
+
+.active {
+  @apply com-border-[1.5px] com-border-solid com-border-[#0095FF];
+}

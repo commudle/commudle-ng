@@ -278,6 +278,7 @@
     }
 
     .page-count {
+      @apply com-text-gray-600;
       flex: 1 1 20%;
     }
 
@@ -296,19 +297,26 @@
       .pager {
         li,
         li a {
+          @apply com-text-gray-600;
           outline: none;
         }
 
         li {
           a {
+            @apply com-text-gray-600;
             cursor: pointer;
             display: inline-block;
           }
 
           &.disabled a {
+            @apply com-text-gray-600 #{!important};
             cursor: not-allowed;
           }
         }
+      }
+
+      a {
+        @apply com-text-gray-600 #{!important};
       }
     }
   }

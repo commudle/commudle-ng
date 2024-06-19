@@ -237,11 +237,17 @@
           </div>
 
           <div class="right-column">
-            <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-            <commudle-public-home-list-events-speakers
-              [parentType]="'communities'"
-            ></commudle-public-home-list-events-speakers>
-            <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+            <div class="speakers-upcoming">
+              <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+            </div>
+            <div class="speakers">
+              <commudle-public-home-list-events-speakers
+                [parentType]="'communities'"
+              ></commudle-public-home-list-events-speakers>
+            </div>
+            <div class="tech-sessions">
+              <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+            </div>
           </div>
         </div>
       </div>

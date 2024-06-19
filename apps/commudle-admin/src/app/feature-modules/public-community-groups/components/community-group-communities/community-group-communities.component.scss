@@ -1,11 +1,19 @@
 nb-card {
-  @apply com-mx-0 md:com-mx-2;
+  @apply com-mx-0;
 }
 
-.communities-cards-list {
-  @apply com-flex com-flex-wrap com-gap-4;
+.communities-cards {
+  @apply com-flex com-flex-wrap com-gap-4 com-overflow-auto;
 
   @screen lg {
     @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
   }
+
+  .community-card {
+    @apply md:com-w-[398px] com-w-full;
+  }
+}
+
+app-loading-spinner {
+  @apply com-mt-4;
 }

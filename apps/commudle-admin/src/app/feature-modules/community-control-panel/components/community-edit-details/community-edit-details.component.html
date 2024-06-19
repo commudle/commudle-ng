@@ -1,4 +1,3 @@
-<!-- eslint-disable prettier/prettier -->
 <div class="com-bg-white com-rounded-[10px]">
   <form (ngSubmit)="updateCommunityDetails()" [formGroup]="communityForm" class="community-edit-details-form">
     <div formGroupName="community">
@@ -15,7 +14,7 @@
               communityForm.get('community').get('name').errors.required
             "
           >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>
@@ -27,7 +26,7 @@
             <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file" />
           </label>
           <span *ngIf="!uploadedLogo">
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>
@@ -61,7 +60,7 @@
         </label>
         <div *ngIf="uploadedBanner" class="uploaded-banner-image">
           <div class="com-flex com-justify-center com-mb-2">
-            <button *ngIf="uploadedBanner" (click)="uploadedBanner = ''" nbButton outline size="tiny" status="danger">
+            <button (click)="uploadedBanner = ''" *ngIf="uploadedBanner" nbButton outline size="tiny" status="danger">
               <nb-icon icon="trash-2-outline"></nb-icon>
               Delete
             </button>
@@ -83,7 +82,7 @@
               communityForm.get('community').get('contact_email').errors.required
             "
           >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>
@@ -101,7 +100,7 @@
               communityForm.get('community').get('location').errors.required
             "
           >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>
@@ -125,10 +124,9 @@
               communityForm.get('community').get('about').errors.required
             "
           >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
-          <editor [init]="tinyMCE" apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs" formControlName="about">
-          </editor>
+          <editor [init]="tinyMCE" formControlName="about"></editor>
         </label>
       </div>
 
@@ -145,7 +143,7 @@
               communityForm.get('community').get('mini_description').errors.required
             "
           >
-            <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>
@@ -193,13 +191,15 @@
             <app-tag
               (tagAdd)="onTagAdd($event)"
               (tagDelete)="onTagDelete($event)"
+              [backgroundColor]="'com-bg-tAnti-Flash'"
               [editable]="true"
-              [tags]="tags"
+              [fontColor]="'com-text-tYankees-Blue'"
               [minimumTags]="minimumTags"
+              [tags]="tags"
             ></app-tag>
           </label>
           <span *ngIf="tags.length < 5">
-            <commudle-alert [error]="true" [errorMessage]="'Minimum 5 tags need to be added'"></commudle-alert>
+            <commudle-alert [errorMessage]="'Minimum 5 tags need to be added'" [error]="true"></commudle-alert>
           </span>
         </div>
       </div>

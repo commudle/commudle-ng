@@ -14,6 +14,8 @@ import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_
 import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
 import { faCaretDown, faMessage, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
+import { EDbModels } from '@commudle/shared-models';
 
 interface CustomMenuItem {
   title: string;
@@ -44,6 +46,8 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
   items = [{ title: 'pages', slug: 'pages' }];
 
   @ViewChild('updateBannerDialogBox') updateBannerDialogBox: TemplateRef<any>;
+  isHackathonActive = false;
+  darkMode: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,13 +62,19 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
     private customPageService: CustomPageService,
     private nbMenuService: NbMenuService,
     private newsletterService: NewsletterService,
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit(): void {
     this.items = [];
+    this.darkModeService.isDarkMode$.subscribe((data) => {
+      this.darkMode = data;
+    });
+    this.isHackathonActive = this.router.url.toString().includes('/hackathons');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
+        this.isHackathonActive = this.router.url.toString().includes('/hackathons');
       }
     });
     this.activatedRoute.data.subscribe((data) => {
@@ -80,15 +90,17 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       } else {
         this.seoService.noIndex(true);
       }
+      this.subscriptions.push(
+        this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+          if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+            this.isOrganizer = true;
+            this.getNotificationsCount(this.community.id);
+          } else {
+            this.isOrganizer = false;
+          }
+        }),
+      );
     });
-    this.subscriptions.push(
-      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-        if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
-          this.isOrganizer = true;
-          this.getNotificationsCount(this.community.id);
-        }
-      }),
-    );
   }
 
   ngOnDestroy(): void {
@@ -98,7 +110,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
 
   getCustomPages() {
     this.subscriptions.push(
-      this.customPageService.getPIndex(this.community.id, 'Kommunity').subscribe((data) => {
+      this.customPageService.getPIndex(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
         this.items = [];
         for (const page of data) {
           const newItem = { title: page.title, slug: page.slug };

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NbWindowService } from '@commudle/theme';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -12,6 +12,8 @@ import { NotificationsStore } from 'apps/commudle-admin/src/app/feature-modules/
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { ENotificationSenderTypes } from 'apps/shared-models/enums/notification_sender_types.enum';
 import { faBuildingColumns, faFileLines, faNewspaper, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { environment } from '@commudle/shared-environments';
+import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -34,6 +36,9 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     faNewspaper,
     faMessage,
   };
+  environment = environment;
+  darkMode: boolean;
+  isHackathonActive = false;
 
   constructor(
     private communitiesService: CommunitiesService,
@@ -42,11 +47,22 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private notificationsStore: NotificationsStore,
     private gtm: GoogleTagManagerService,
+    private darkModeService: DarkModeService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
     this.setCommunity();
     this.seoService.noIndex(true);
+    this.darkModeService.isDarkMode$.subscribe((data) => {
+      this.darkMode = data;
+    });
+    this.isHackathonActive = this.router.url.toString().includes('/hackathons');
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isHackathonActive = this.router.url.toString().includes('/hackathons');
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -87,11 +103,13 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount(communityId) {
-    this.subscriptions.push(
-      this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
-        this.notificationCount = count;
-      }),
-    );
+    if (this.notificationsStore.communityNotificationsCount$[communityId]) {
+      this.subscriptions.push(
+        this.notificationsStore.communityNotificationsCount$[communityId].subscribe((count: number) => {
+          this.notificationCount = count;
+        }),
+      );
+    }
   }
 
   gtmService() {

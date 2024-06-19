@@ -1,0 +1,295 @@
+<nb-card>
+  <nb-card-header>{{ hackathon ? 'Basic Information' : 'New Hackathon Form' }}</nb-card-header>
+  <nb-card-body class="hackathon-form">
+    <form [formGroup]="hackathonForm">
+      <div>
+        <label for="banner_image">Banner Image</label>
+        <div *ngIf="!(imagePreview || hackathonForm.controls['banner_image'].value)" class="banner-image-container">
+          <div class="banner-image">
+            <input (change)="onFileChange($event)" accept="image/png, image/jpeg, image/jpg" type="file" />
+            <div class="custom-input">
+              <fa-icon [icon]="icons.faFileImage"></fa-icon>
+              <p>
+                Drag file here
+                <br />
+                or<span class="com-text-primary-500"> BROWSE </span> <br />
+                <span class="com-text-base"><small>(1260 x 460)</small></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="imagePreview || hackathonForm.controls['banner_image'].value" class="image-preview">
+          <div (click)="removeBannerImage()" class="delete-image">
+            <button nbButton outline size="small" status="danger">replace</button>
+          </div>
+          <div class="com-w-2/3">
+            <commudle-banner-image
+              [headerImagePath]="imagePreview || hackathonForm.controls['banner_image'].value"
+            ></commudle-banner-image>
+          </div>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div>
+        <label for="name">Hackathon's Name*</label>
+        <input formControlName="name" fullWidth id="name" nbInput placeholder="Hackathon's Name" type="text" />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['name'].invalid &&
+            hackathonForm.controls['name'].hasError('required') &&
+            hackathonForm.controls['name'].touched
+          "
+          [error]="true"
+          errorMessage="Name is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- Tagline -->
+      <div>
+        <label for="tagline">Tagline*</label>
+        <textarea formControlName="tagline" fullWidth id="tagline" nbInput placeholder="Tagline" type="text"></textarea>
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['tagline'].invalid &&
+            hackathonForm.controls['tagline'].hasError('required') &&
+            hackathonForm.controls['tagline'].touched
+          "
+          [error]="true"
+          errorMessage="Tagline is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['tagline'].hasError('maxlength')"
+          [error]="true"
+          errorMessage="Max length is 250 Words"
+        ></commudle-alert>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label for="description">Description*</label>
+        <editor [init]="tinyMCE" formControlName="description" id="description"></editor>
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['description'].invalid &&
+            hackathonForm.controls['description'].hasError('required') &&
+            hackathonForm.controls['description'].touched
+          "
+          [error]="true"
+          errorMessage="Description is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- Hackathon's Theme* -->
+      <!-- <div>
+        <label for="hackathon_theme">Hackathon's Theme*</label>
+        <select
+          formControlName="hackathon_theme"
+          [ngClass]="{
+            'com-text-[#8E9BB3]': hackathonForm.controls['hackathon_theme'].value === ''
+          }"
+        >
+          <option value="" disabled selected>Select Hackathon Theme</option>
+          <option value="theme1">Theme 1</option>
+          <option value="theme2">Theme 2</option>
+        </select>
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['hackathon_theme'].invalid &&
+            hackathonForm.controls['hackathon_theme'].hasError('required') &&
+            hackathonForm.controls['hackathon_theme'].touched
+          "
+          [error]="true"
+          errorMessage="Name is required"
+        ></commudle-alert>
+      </div> -->
+
+      <!-- Number of Participants* -->
+      <div>
+        <label for="number_of_participants">Maximum No. of Participants / Teams*</label>
+        <input
+          formControlName="number_of_participants"
+          fullWidth
+          id="number_of_participants"
+          nbInput
+          placeholder="1"
+          type="number"
+        />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['number_of_participants'].invalid &&
+            hackathonForm.controls['number_of_participants'].hasError('required') &&
+            hackathonForm.controls['number_of_participants'].touched
+          "
+          [error]="true"
+          errorMessage="Number of Participants is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['number_of_participants'].hasError('min')"
+          [error]="true"
+          errorMessage="Number of participants should be greater than zero"
+        ></commudle-alert>
+      </div>
+
+      <!-- Who can apply for this hackathon?* -->
+      <div class="participate-types">
+        <label for="participate_types">Who can apply for this hackathon?*</label>
+
+        <!-- Use ngFor to loop through enum values -->
+        <div>
+          <div *ngFor="let type of EParticipateTypes | keyvalue">
+            <input [id]="type.key" [value]="type.value" formControlName="participate_types" type="radio" />
+            <label [for]="type.key">{{ type.value | titlecase }}</label>
+          </div>
+        </div>
+
+        <commudle-alert
+          *ngIf="
+            hackathonForm.get('participate_types').invalid &&
+            hackathonForm.get('participate_types').hasError('required') &&
+            hackathonForm.get('participate_types').touched
+          "
+          [error]="true"
+          errorMessage="Field is required"
+        ></commudle-alert>
+      </div>
+
+      <!-- max_number_of_teammates -->
+      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
+        <label for="max_number_of_teammates">Max Number of Teammates*</label>
+        <input
+          formControlName="max_number_of_teammates"
+          fullWidth
+          id="max_number_of_teammates"
+          nbInput
+          placeholder="1"
+          type="number"
+        />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['max_number_of_teammates'].invalid &&
+            hackathonForm.controls['max_number_of_teammates'].hasError('required') &&
+            hackathonForm.controls['max_number_of_teammates'].touched
+          "
+          [error]="true"
+          errorMessage="Number of Participants is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['number_of_participants'].hasError('min')"
+          [error]="true"
+          errorMessage="Number of participants is always greater than 0"
+        ></commudle-alert>
+      </div>
+
+      <!-- min_number_of_teammates -->
+      <div *ngIf="hackathonForm.get('participate_types').value === EParticipateTypes.TEAM">
+        <label for="min_number_of_teammates">Min Number of Teammates*</label>
+        <input
+          formControlName="min_number_of_teammates"
+          fullWidth
+          id="min_number_of_teammates"
+          nbInput
+          placeholder="1"
+          type="number"
+        />
+        <commudle-alert
+          *ngIf="
+            hackathonForm.controls['min_number_of_teammates'].invalid &&
+            hackathonForm.controls['min_number_of_teammates'].hasError('required') &&
+            hackathonForm.controls['min_number_of_teammates'].touched
+          "
+          [error]="true"
+          errorMessage="Number of Participants is required"
+        ></commudle-alert>
+        <commudle-alert
+          *ngIf="hackathonForm.controls['min_number_of_teammates'].hasError('min')"
+          [error]="true"
+          errorMessage="Number of participants is always greater than 0"
+        ></commudle-alert>
+      </div>
+
+      <!--Type of location of hackathon* -->
+      <div class="participate-types">
+        <label for="hackathon_location_type">Type of hackathon location*</label>
+
+        <div>
+          <div *ngFor="let type of EHackathonLocationType | keyvalue">
+            <input [id]="type.key" [value]="type.value" formControlName="hackathon_location_type" type="radio" />
+            <label [for]="type.key">{{ type.value | titlecase }}</label>
+          </div>
+        </div>
+
+        <commudle-alert
+          *ngIf="
+            hackathonForm.get('hackathon_location_type').invalid &&
+            hackathonForm.get('hackathon_location_type').hasError('required') &&
+            hackathonForm.get('hackathon_location_type').touched
+          "
+          [error]="true"
+          errorMessage="Field is required"
+        ></commudle-alert>
+      </div>
+
+      <div
+        *ngIf="
+          hackathonForm.get('hackathon_location_type').value === EHackathonLocationType.OFFLINE ||
+          hackathonForm.get('hackathon_location_type').value === EHackathonLocationType.HYBRID
+        "
+      >
+        <form [formGroup]="locationForm">
+          <!-- address -->
+          <div>
+            <label fullWidth>
+              Address*
+              <textarea
+                formControlName="address"
+                fullWidth
+                id="addressInput"
+                nbInput
+                placeholder="Address"
+                type="text"
+              ></textarea>
+            </label>
+            <commudle-alert
+              *ngIf="
+                locationForm.get('address').invalid &&
+                locationForm.get('address').hasError('required') &&
+                locationForm.get('address').touched
+              "
+              [error]="true"
+              errorMessage="Field is required"
+            ></commudle-alert>
+          </div>
+
+          <div>
+            <label fullWidth>
+              Map Link*
+              <input formControlName="map_link" fullWidth nbInput placeholder="Map Link" type="text" />
+            </label>
+            <commudle-alert
+              *ngIf="
+                locationForm.get('map_link').invalid &&
+                locationForm.get('map_link').hasError('required') &&
+                locationForm.get('map_link').touched
+              "
+              [error]="true"
+              errorMessage="Field is required"
+            ></commudle-alert>
+          </div>
+        </form>
+      </div>
+
+      <button
+        (click)="createOrUpdate()"
+        [disabled]="hackathonForm.invalid || isLoading"
+        [nbSpinner]="isLoading"
+        class="save-button"
+        fullWidth
+        nbButton
+        status="primary"
+      >
+        {{ saveButtonText }}
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>

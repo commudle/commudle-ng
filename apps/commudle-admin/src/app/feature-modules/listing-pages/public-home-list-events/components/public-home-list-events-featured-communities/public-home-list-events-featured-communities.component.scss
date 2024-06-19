@@ -6,7 +6,7 @@
       @apply com-m-0 com-p-4 com-bg-Anti-Flash-White com-flex com-flex-row com-items-center;
 
       button {
-        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12;
+        @apply com-bg-white com-text-Yankees-Blue com-mr-3 com-rounded-xl md:com-h-12 md:com-w-12 com-border-none;
 
         fa-icon {
           @apply com-text-lg;
@@ -27,14 +27,14 @@
     .featured-communities-scroll {
       @apply com-flex com-flex-nowrap com-overflow-x-auto com-mx-4 com-my-0 com-gap-4 com-mt-3 com-p-0;
       .featured-communities-card {
-        @apply com-m-0 com-border com-border-solid com-border-Bright-Gray-Light com-rounded-xl com-p-4 md:com-w-[318px] com-w-[304px];
+        @apply com-m-0 com-border com-border-solid com-border-Bright-Gray com-rounded-xl com-p-4 md:com-w-[318px] com-w-[304px];
       }
     }
   }
 }
 
 .container {
-  @apply com-mt-0 com-mb-6 com-mx-0 com-bg-Bright-Gray/30;
+  @apply com-m-0 com-mx-0 com-bg-Bright-Gray-opacity-30;
   nb-card-body {
     @apply com-px-3 com-pt-4 com-pb-0;
     .heading {

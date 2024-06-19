@@ -38,7 +38,7 @@
     .action-button {
       @apply com-p-1 com-flex com-gap-2 com-items-center com-cursor-pointer;
       &.active {
-        @apply com-bg-Bright-Gray-Light;
+        @apply com-bg-Bright-Gray-Light com-text-tYankees-Blue;
       }
       .icon {
         @apply com-text-lg com-text-[#8F9BB3];
@@ -61,7 +61,7 @@
     }
 
     .action-button:hover {
-      @apply com-bg-Bright-Gray-Light;
+      @apply com-bg-Bright-Gray-Light com-text-tYankees-Blue;
     }
   }
 }
@@ -69,7 +69,7 @@ a {
   @apply com-flex com-gap-2 com-items-center;
 }
 .right-column {
-  @apply com-w-full  md:com-w-[calc(100%-320px)];
+  @apply com-w-full  com-max-w-screen-xl com-mx-auto;
 }
 
 .event-dashboard-menu {

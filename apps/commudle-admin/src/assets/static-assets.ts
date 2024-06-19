@@ -60,11 +60,12 @@ export const staticAssets = {
 
   content_empty_state:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNUt0QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5b2ccc739fd77ba1a8608864352b8608733279f3/Content.svg',
+
   pricing_students:
-    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnRWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--614dc5593f001909952dcaf51aaebb28634c5f83/Students%20&%20Individuals.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNlBVQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--239f0b40cbdaf2e55f8e5da07a7f767262f4770d/Commudle%20for%20Students.png',
 
   pricing_enterprise:
-    'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnhWQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f2d3ee8f767ad2d0a1cd11a236f2cd898bfc8e35/Enterprises%20&%20Startups.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNlRVQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--93d3ffeb355bd0a57e15c1c0eb2b0fea62e436f4/Commudle%20for%20Enterprise.png',
 
   pricing_usecase_cards_desktop:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnBnQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--19af23aeba1556ddef013ced2d20db12ab1b2c4e/Usecase%20Cards%20Desktop.svg',
@@ -79,16 +80,16 @@ export const staticAssets = {
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2x1QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e8324303fd3f4f1df5a070d5ee27527de0fabf84/Community%20Logo%20Gradients.svg',
 
   iso_27001:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2FiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--97a087b48b3a1bfde5838275f5d3d3148b1f2067/iso27001logo.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN2tRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--deedc02367ea26e9585081c611510af8813b54a2/ISO%2027001.svg',
 
   agencies_header_image:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEdjQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--fb0ecfb9d4a98cb6f20e5fd0dfc5341c268d4f07/Agencies%20Header%20Image%20Final.png',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOU1PQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4ffd0a7fb6d0f18fe75d41a2f35582dc930125dd/Agencies%20Header.png',
 
   orgnization_programs:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW1iQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--57f8cc58335c2715d78ef69ba9fe42bba4816e40/Organization%20and%20Programs.svg',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOUlPQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0a71a257096ba3be210369d60abcdf5c346deb79/Organization%20&%20Programs.png',
 
   unlimited_engagement_features:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOXFiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--919329b401051d827c547c43dea106b587e50c42/Unlimited%20Engagement%20Features.svg',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOUVPQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c4c6243efedb65f1c958c3c45302a0a4ef085564/Unlimited%20Engagement%20Features.png',
 
   personal_goals_checklist:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNEtjQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6f6c668dfdc544133f82855e4ed93b1cd6ef9628/Actionable%20Step%20by%20Step%20Growth.svg',
@@ -110,4 +111,58 @@ export const staticAssets = {
 
   credit:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMEc4QVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c960cf51544197333114e844a7c7fdbff1eebffe/credit%20framework.png',
+
+  hackathon_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMTBkQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--68f7dca4a4e81beaf8e741edc641d5b00ae469db/Large.png',
+
+  expert_page_application_process:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMGNXQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c1e7c298ba772dd581170535e83c420be11143ad/Application%20Process.png',
+
+  expert_page_benefits:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBekVZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7dcbc31f709499a62022ab6e99f1562a80f1a902/Benefits%20Image.png',
+
+  expert_program_header:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd0FZQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--11d25f55ae2c13a94e0c9fc8724863d43d9a5e16/Header%20Frame%20Pattern.png',
+
+  // id: 145
+  case_study_empty_state_banner:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMXRHQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a67b7c09eaf3b38a9bb63f98290c2042a068a16b/Case%20Study%20Empty%20State.png',
+
+  stripe: {
+    id: 97,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOWRDQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--db7d5da8d5636d2ff9a354a98d42306a458a62b5/Stripe%20wordmark%20-%20blurple.svg',
+  },
+
+  razorpay: {
+    id: 144,
+    url: 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM2sxQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--401df19785a101dbb8c939863455bd55d6f49d60/razorpay.svg',
+  },
+
+  // id: 151
+  features_page_header:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzFRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c2c643d52f857a14ad268a086e2f8118029a0f7f/Header%20Asset.png',
+
+  // id: 150
+  features_page_header_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd3hRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c1d963a646308024297b4fe5a5dfcdd5924e5a3/Header%20BG.png',
+
+  // id: 148
+  features_know_your_community:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN3hOQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--48d2e70f97d92111d9cb7d39cad41db00d1b0fb9/Section%203%20Image.png',
+
+  // id: 154
+  features_build_your_community:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEJRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5472aebc64e22eca352b7832e956b0dbf4803166/Paragraph%20Text.png',
+
+  // id: 152
+  features_build_your_community_right_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzVRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--220aa0950985fdf281a4700b8bbf1f1fdf8ca343/Group%20427319032.png',
+
+  //id: 153
+  features_build_your_community_left_icon:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdzlRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a3b4cba3b6321f31f57f8124eedfb3b2abeb8af0/Group%20427319033.png',
+
+  // id: 155
+  features_build_your_community_background:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeEZRQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--536d7996d56f77fcba3bf3af4a950d526155ce6d/Section%204%20BG.png',
 };

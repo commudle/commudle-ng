@@ -1,4 +1,4 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
       <nb-card *ngIf="community">
@@ -53,26 +53,12 @@
               <nb-icon icon="calendar" status="info"></nb-icon>
               <span class="title">Events</span>
             </a>
-            <div class="com-relative" *ngIf="isOrganizer">
-              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
-                <nb-badge
-                  *ngIf="notificationCount > 0"
-                  [text]="notificationCount.toString()"
-                  status="danger"
-                ></nb-badge>
-                <nb-icon icon="bell" status="success"></nb-icon>
-                <span class="title">Activity</span>
-              </a>
-            </div>
-            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="people" status="success"></nb-icon>
-              <span class="title">Members</span>
-            </a>
-            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
-              <fa-icon [icon]="faScroll"></fa-icon>
-              <span class="title">Forms</span>
-            </a>
-            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
+            <a
+              *ngIf="community.hackathon_enabled"
+              [routerLink]="['hackathons']"
+              class="d-flex com-relative"
+              routerLinkActive="active"
+            >
               <app-badge
                 class="-com-mt-4"
                 text="New"
@@ -82,10 +68,25 @@
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
-              <fa-icon [icon]="icons.faFileLines"></fa-icon>
-              <span class="title">Pages</span>
+
+              <img
+                [src]="
+                  isHackathonActive
+                    ? environment.base_url + '/icons/hackathon-icon-primary.svg'
+                    : darkMode
+                    ? environment.base_url + '/icons/hackathon-icon-white.svg'
+                    : environment.base_url + '/icons/hackathon-icon-gray.svg'
+                "
+                alt="Hackathon Icon"
+              />
+
+              <span class="title">Hackathons</span>
             </a>
-            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
+            <a
+              *ngIf="!community.hackathon_enabled"
+              class="d-flex disabled com-relative"
+              nbTooltip="Hackathons are now available in beta on Commudle. To gain access, please write an email to support@commudle.com"
+            >
               <app-badge
                 class="-com-mt-4"
                 text="New"
@@ -95,25 +96,18 @@
                 [color]="'com-bg-Caribbean-Green'"
                 [position]="'top right'"
               ></app-badge>
-              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
-              <span class="title">Newsletters</span>
-            </a>
-            <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="people" status="success"></nb-icon>
-              <span class="title">Team</span>
-            </a>
-            <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="edit" status="success"></nb-icon>
-              <span class="title">Edit Details</span>
-            </a>
-            <a [routerLink]="['channels']" class="d-flex" routerLinkActive="active">
-              <nb-icon icon="hash" status="success"></nb-icon>
-              <span class="title">Channels</span>
-            </a>
-            <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
-              <fa-icon [icon]="icons.faMessage"></fa-icon>
-              <!-- <nb-icon icon="message" status="success"></nb-icon> -->
-              <span class="title">Forums</span>
+
+              <img
+                [src]="
+                  isHackathonActive
+                    ? environment.base_url + '/icons/hackathon-icon-primary.svg'
+                    : darkMode
+                    ? environment.base_url + '/icons/hackathon-icon-white.svg'
+                    : environment.base_url + '/icons/hackathon-icon-gray.svg'
+                "
+                alt="Hackathon Icon"
+              />
+              <span class="title">Hackathons</span>
             </a>
             <a
               *ngIf="community.payments_enabled"
@@ -136,7 +130,7 @@
             <a
               *ngIf="!community.payments_enabled"
               class="d-flex disabled com-relative"
-              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to arpan@commudle.com"
+              nbTooltip="We now support payments with Stripe! To enable on your community, please write a mail to support@commudle.com"
             >
               <app-badge
                 class="-com-mt-4"
@@ -150,8 +144,51 @@
               <fa-icon [icon]="icons.faBuildingColumns"></fa-icon>
               <span class="title">Bank Details</span>
             </a>
+            <div class="com-relative" *ngIf="isOrganizer">
+              <a [routerLink]="['notifications']" class="d-flex" routerLinkActive="active">
+                <nb-badge
+                  *ngIf="notificationCount > 0"
+                  [text]="notificationCount.toString()"
+                  status="danger"
+                ></nb-badge>
+                <nb-icon icon="bell" status="success"></nb-icon>
+                <span class="title">Activity</span>
+              </a>
+            </div>
+            <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Members</span>
+            </a>
+            <a [routerLink]="['forms']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="faScroll"></fa-icon>
+              <span class="title">Forms</span>
+            </a>
+            <a [routerLink]="['pages']" class="d-flex com-relative" routerLinkActive="active">
+              <fa-icon [icon]="icons.faFileLines"></fa-icon>
+              <span class="title">Pages</span>
+            </a>
+            <a [routerLink]="['newsletters']" class="d-flex com-relative" routerLinkActive="active">
+              <fa-icon [icon]="icons.faNewspaper"></fa-icon>
+              <span class="title">Newsletters</span>
+            </a>
+            <a [routerLink]="['team']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="people" status="success"></nb-icon>
+              <span class="title">Team</span>
+            </a>
+            <a [routerLink]="['edit']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="edit" status="success"></nb-icon>
+              <span class="title">Edit Details</span>
+            </a>
+            <a [routerLink]="['channels']" class="d-flex" routerLinkActive="active">
+              <nb-icon icon="hash" status="success"></nb-icon>
+              <span class="title">Channels</span>
+            </a>
+            <a [routerLink]="['forums']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="icons.faMessage"></fa-icon>
+              <span class="title">Forums</span>
+            </a>
           </div>
-          <div class="router-outlet">
+          <div>
             <router-outlet></router-outlet>
           </div>
         </nb-card-body>

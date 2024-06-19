@@ -2,10 +2,10 @@
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="channels-cards-list">
-      <div *ngFor="let channel of channels" class="com-w-full md:com-w-auto">
+      <div *ngFor="let channel of channels" class="channel-card">
         <commudle-channel-card [channel]="channel"></commudle-channel-card>
       </div>
     </div>
-    <button (click)="getChannels()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More Jobs</button>
+    <button (click)="getChannels()" *ngIf="page_info?.has_next_page" fullWidth ghost nbButton>Load More</button>
   </nb-card-body>
 </nb-card>

@@ -17,10 +17,6 @@ nb-form-field {
         @apply com-text-lg com-font-normal;
       }
     }
-
-    .main-search-bar {
-      @apply com-text-Yankees-Blue;
-    }
   }
 
   ::placeholder {
@@ -68,7 +64,7 @@ nb-option {
       .build-image,
       .event-image,
       .content-image {
-        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-full com-bg-Bright-Gray com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
+        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-full com-bg-tWhite com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
         img {
           @apply com-w-full com-h-auto com-object-cover;
         }
@@ -90,7 +86,7 @@ nb-option {
       }
 
       .community-image {
-        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-[4px] com-bg-Bright-Gray com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
+        @apply com-flex com-items-center com-justify-center com-w-8 com-h-8 com-rounded-[4px] com-bg-tWhite com-m-0 com-mr-3 com-flex-shrink-0 com-overflow-hidden;
 
         img {
           @apply com-w-full com-h-auto com-object-cover;
@@ -99,7 +95,14 @@ nb-option {
     }
 
     .navigate:hover {
-      @apply com-bg-gray-200 com-text-tYankees-Blue;
+      @apply com-bg-gray-200;
+      .name,
+      .designation,
+      .member-count,
+      .event-date,
+      .dot {
+        @apply com-text-tYankees-Blue;
+      }
     }
   }
 }

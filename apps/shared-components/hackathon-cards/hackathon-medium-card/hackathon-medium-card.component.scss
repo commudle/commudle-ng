@@ -1,0 +1,41 @@
+a {
+  @apply com-no-underline com-text-inherit;
+  .hackathon-card {
+    @apply hover:com-shadow-md com-h-[364px];
+    nb-card-header {
+      @apply com-p-0;
+      img {
+        @apply com-w-full;
+      }
+      .no-banner-image {
+        @apply com-w-full;
+        aspect-ratio: 16/6;
+      }
+    }
+    nb-card-body {
+      @apply com-flex com-flex-col com-justify-between;
+      .name-members {
+        @apply com-flex com-items-center com-justify-between;
+        .name {
+          @apply com-text-2xl com-text-Dark-Jungle-Green com-font-semibold com-line-clamp-2;
+        }
+      }
+      .date-location-type {
+        @apply com-flex com-gap-3 com-items-center;
+        .date,
+        .location-type {
+          @apply com-bg-[#F1F5F9] com-px-3 com-py-1 com-text-sm  com-rounded com-text-gray-800;
+        }
+      }
+      .prize-action-button {
+        @apply com-flex com-items-center com-justify-between;
+        .prize {
+          @apply com-text-[#667085] com-text-base com-font-medium;
+          .prize-amount {
+            @apply com-text-primary-500 com-text-2xl com-font-bold;
+          }
+        }
+      }
+    }
+  }
+}

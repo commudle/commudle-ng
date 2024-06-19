@@ -1,0 +1,172 @@
+<div class="com-bg-white">
+  <section class="header">
+    <div
+      class="background-image"
+      [ngStyle]="{ 'background-image': 'url(\'' + staticAssets.expert_program_header + '\')' }"
+    >
+      <div class="base-layout">
+        <div class="container">
+          <div class="one-column-layout">
+            <div class="header-content">
+              <div class="header-text">
+                <h1 class="heading">
+                  {{ expertsProgramPageHeader?.heading }}
+                </h1>
+                <div [innerHTML]="richText" class="content"></div>
+              </div>
+              <div *ngIf="expertsProgramPageHeader?.header_image" class="header-image">
+                <img [src]="imageUrl(expertsProgramPageHeader.header_image).url()" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="base-layout">
+    <div class="container">
+      <div class="one-column-layout">
+        <section class="who-can-apply" id="who-can-apply">
+          <commudle-public-page-layout>
+            <div content class="content">
+              <h2 class="heading">
+                <a [routerLink]="'.'" fragment="who-can-apply">Who can apply?</a>
+              </h2>
+              <div class="subheading">
+                <p>
+                  An expert can be a student or a professional, a freelancer, full time techie, DevRel or a Dev
+                  Advocate. Your qualification or location doesn't matter, your work does!
+                </p>
+                <p>Here are the requirements:</p>
+                <ul>
+                  <li>Need to be above 18 years of age</li>
+                  <li>
+                    Have at least 3 years of experience in the domain you are applying for. The domain can be any
+                    technology field, including but not limited to:
+                  </li>
+                  <ul>
+                    <li>Software or App development (Web, Mobile)</li>
+                    <li>Artificial Intelligence, Machine Learning, Data Science</li>
+                    <li>Analytics</li>
+                    <li>Design (UX, UI, Product)</li>
+                    <li>Cloud (DevOps, Architect, Infrastructure)</li>
+                    <li>Blockchain / Web3</li>
+                    <li>Product Building / Management</li>
+                    <li>IoT</li>
+                    <li>Cyber Security</li>
+                    <li>Programming or Interviews (DSA, LLD, HLD)</li>
+                  </ul>
+                  <li>Must be able to take out time to complete the required contributions agreed upon.</li>
+                </ul>
+              </div>
+            </div>
+          </commudle-public-page-layout>
+        </section>
+        <section class="benefits" id="benefits">
+          <commudle-public-page-layout>
+            <div content class="content-right">
+              <h2 class="heading">
+                <a [routerLink]="'.'" fragment="benefits">Benefits</a>
+              </h2>
+              <div class="subheading">
+                <p>
+                  Being listed as an expert on Commudle helps you build recognition for your work while growing your
+                  network.
+                </p>
+                <div image class="benefits-image">
+                  <img alt="Benefits" [src]="staticAssets.expert_page_benefits" title="Benefits" />
+                </div>
+              </div>
+            </div>
+            <div content class="content-right">
+              <ul>
+                <li>Verified profile: <strong>Blue Tick</strong> on your profile</li>
+                <li>An <strong>Expert Badge</strong> on your profile. Earn Multiple badges for multiple expertise</li>
+                <li>Exclusive merchandise for your contributions</li>
+                <li>
+                  Featured placement of your profile on experts listings and our monthly newsletter,
+                  <a [routerLink]="['/newsletters']">Commudle IDE</a>
+                </li>
+                <li>Early access to new features on Commudle</li>
+                <br />
+                <li>In addition to this, you will be able to get</li>
+                <ul>
+                  <li>A huge network of followers & mentors to expand their professional network</li>
+                  <li>Premium invites & discount codes by Commudle & its affiliates</li>
+                  <li>Marketing support to boost the visibility of your content and profile</li>
+                </ul>
+              </ul>
+            </div>
+          </commudle-public-page-layout>
+        </section>
+        <section class="responsibilities" id="responsibilities">
+          <commudle-public-page-layout>
+            <div content class="content">
+              <h2 class="heading">
+                <a [routerLink]="'.'" fragment="responsibilities">Responsibilities</a>
+              </h2>
+              <div class="subheading">
+                <p>
+                  We expect you to be an active contributor towards the developer ecosystem on Commudle and beyond. A
+                  list of the different types of possible contributions will be shared with you if you are onboarded. It
+                  will include speaking at tech events, share tutorials and other useful content, share feedback on
+                  projects, mentor other techies.
+                </p>
+              </div>
+            </div>
+          </commudle-public-page-layout>
+        </section>
+        <section class="application-process" id="application-process">
+          <commudle-public-page-layout>
+            <div content class="content">
+              <h2 class="heading">
+                <a [routerLink]="'.'" fragment="application-process">What is the Application Process</a>
+              </h2>
+              <div class="subheading">
+                <p>Experts are onboarded in cohorts and as per available slots after verification.</p>
+                <ol>
+                  <li>
+                    Fill the <a [routerLink]="['/fill-form', 1093]" class="nomination-form">Expert Nomination Form</a>
+                  </li>
+                  <li>
+                    Our team will review your application, you will receive an email with a status update in 10 working
+                    days
+                  </li>
+                  <li>If selected, we will share further details for onboarding</li>
+                </ol>
+                <div>
+                  <p>
+                    This program in no way is an employment or a paid engagement with Commudle. <br />If you are not
+                    selected, you can always re-apply.
+                  </p>
+                  <button
+                    [routerLink]="['/fill-form', 1093]"
+                    nbButton
+                    status="primary"
+                    shape="rectangle"
+                    size="medium"
+                    class="apply-now-button"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div image class="application-process-image">
+              <img
+                alt="Application Process"
+                [src]="staticAssets.expert_page_application_process"
+                title="Application Process"
+              />
+            </div>
+          </commudle-public-page-layout>
+        </section>
+        <section id="faq">
+          <div class="faq">
+            <commudle-faq [answers]="answers" [questions]="questions"></commudle-faq>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

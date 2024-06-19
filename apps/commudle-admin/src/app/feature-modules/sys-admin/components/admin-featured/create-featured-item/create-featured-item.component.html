@@ -24,6 +24,22 @@
           {{ result.name }}
         </nb-option>
       </nb-autocomplete>
+      <div *ngIf="entityType === EDbModels.USER">
+        <div class="dropdown">
+          <select
+            [(ngModel)]="categoryType"
+            class="com-border-0"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': categoryType === ''
+            }"
+          >
+            <option value="" selected disabled>Select Category</option>
+            <option *ngFor="let categoryType of ECategoryType | keyvalue" [value]="categoryType.value">
+              {{ categoryType.value | titlecase }}
+            </option>
+          </select>
+        </div>
+      </div>
       <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
     </div>
   </nb-card-body>

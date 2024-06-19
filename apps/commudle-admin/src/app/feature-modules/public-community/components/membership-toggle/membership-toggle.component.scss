@@ -1,5 +1,11 @@
 .confirmation-dialog {
   @apply com-w-500px com-max-w-[100vw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+  nb-card-footer {
+    @apply com-space-x-5;
+  }
 }
 
 .fullWidth {
@@ -8,4 +14,24 @@
 
 .join-community {
   @apply md:com-w-[92px] com-w-full;
+}
+
+nb-option {
+  @apply com-text-Yankees-Blue;
+}
+
+nb-select {
+  ::ng-deep {
+    button {
+      span {
+        @apply com-text-Yankees-Blue;
+      }
+    }
+  }
+}
+
+button {
+  span {
+    @apply com-text-Yankees-Blue;
+  }
 }

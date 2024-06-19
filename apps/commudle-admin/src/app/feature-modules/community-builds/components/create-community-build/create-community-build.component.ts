@@ -19,6 +19,13 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
+import { EDbModels } from '@commudle/shared-models';
+import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
+import { EntityUpdatesService } from 'apps/commudle-admin/src/app/services/entity-updates.service';
+import moment from 'moment';
+import { IHackathonUserResponses } from 'apps/shared-models/hackathon-user-responses.model';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
 
 @Component({
   selector: 'app-create-community-build',
@@ -46,22 +53,63 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   faEdit = faEdit;
 
   communityBuildForm;
+  communityBuildUpdateForm;
+  moment = moment;
 
   tinyMCE = {
-    height: 500,
+    min_height: 500,
     menubar: false,
     convert_urls: false,
     placeholder:
       'Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too.',
-    plugins:
-      'advlist lists autolink link charmap preview anchor visualblocks code table charmap insertdatetime table code help wordcount autoresize',
+    plugins: [
+      'advlist',
+      'lists',
+      'autolink',
+      'link',
+      'charmap',
+      'preview',
+      'anchor',
+      'visualblocks',
+      'code',
+      'table',
+      'charmap',
+      'insertdatetime',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+      'autoresize',
+    ],
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
     toolbar:
       'formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | charmap | removeformat | help',
     default_link_target: '_blank',
     branding: false,
+    license_key: 'gpl',
+  };
+
+  tinyMCEForUpdate = {
+    min_height: 50,
+    menubar: false,
+    width: '500',
+    placeholder: 'Updates',
+    statusbar: false,
+    toolbar: false,
+    plugins: ['autoresize'],
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    convert_urls: false,
+    branding: false,
+    license_key: 'gpl',
   };
 
   subscriptions: Subscription[] = [];
+  parentId: number;
+  parentType: EDbModels;
+  hackathonUserResponses: IHackathonUserResponses;
+  currentUser: ICurrentUser;
 
   constructor(
     private seoService: SeoService,
@@ -72,6 +120,9 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     private communityBuildsService: CommunityBuildsService,
     private toastLogService: LibToastLogService,
     private gtm: GoogleTagManagerService,
+    private hackathonService: HackathonService,
+    private entityUpdatesService: EntityUpdatesService,
+    private authWatchService: LibAuthwatchService,
   ) {
     this.communityBuildForm = this.fb.group({
       name: ['', Validators.required],
@@ -83,10 +134,17 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       video_iframe: ['', [this.embedded()]],
       team: this.fb.array([]),
     });
+    this.communityBuildUpdateForm = this.fb.group({
+      update: this.fb.array([]),
+    });
   }
 
   get emailList() {
     return this.communityBuildForm.get('team') as FormArray;
+  }
+
+  get updateList() {
+    return this.communityBuildUpdateForm.get('update') as FormArray;
   }
 
   ngOnInit() {
@@ -97,9 +155,17 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     );
 
     this.paramsTags = this.activatedRoute.snapshot.queryParamMap.getAll('tags[]');
+    this.activatedRoute.snapshot.queryParamMap;
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
+      this.currentUser = currentUser;
+    });
   }
 
   ngOnDestroy() {
@@ -155,6 +221,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       } else {
         this.tags = this.tags.concat(this.paramsTags);
       }
+      this.getParent();
     });
   }
 
@@ -295,18 +362,26 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   createCommunityBuild(publishStatus: EPublishStatus) {
-    this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe((data: ICommunityBuild) => {
-      this.cBuild = data;
-      this.submitTags();
-    });
+    this.communityBuildsService
+      .create(this.buildFormData(publishStatus), this.parentId, this.parentType)
+      .subscribe((data: ICommunityBuild) => {
+        this.cBuild = data;
+        this.submitTags();
+        if (this.communityBuildUpdateForm.value) {
+          this.saveUpdates(this.cBuild);
+        }
+      });
   }
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
     this.communityBuildsService
-      .update(this.cBuild.id, this.buildFormData(publishStatus))
+      .update(this.cBuild.id, this.buildFormData(publishStatus), this.parentId, this.parentType)
       .subscribe((data: ICommunityBuild) => {
         this.cBuild = data;
         this.submitTags();
+        if (this.communityBuildUpdateForm.value) {
+          this.saveUpdates(this.cBuild);
+        }
       });
   }
 
@@ -334,6 +409,42 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       com_build_id: this.cBuild.id,
       com_build_tags: this.tags.toString(),
       com_build_submit_type: this.cBuild.publish_status,
+    });
+  }
+
+  getParent() {
+    this.activatedRoute.queryParams.subscribe((data: Params) => {
+      this.parentId = data['parent_id'];
+      this.parentType = data['parent_type'];
+      if (this.parentType === EDbModels.HACKATHON_TEAM) {
+        this.hackathonService.showUserResponsesByTeam(this.parentId).subscribe((data) => {
+          this.hackathonUserResponses = data;
+        });
+      }
+    });
+  }
+
+  addUpdate() {
+    this.updateList.push(this.fb.group({ value: new FormControl('', [Validators.required]) }));
+  }
+
+  removeUpdate(index) {
+    this.updateList.removeAt(index);
+  }
+
+  saveUpdates(communityBuild) {
+    for (const update of this.communityBuildUpdateForm.value.update) {
+      const formData = new FormData();
+      formData.append('entity_update[details]', update.value);
+      this.entityUpdatesService
+        .createEntityUpdate(formData, communityBuild.id, EDbModels.COMMUNITY_BUILD)
+        .subscribe((data) => {});
+    }
+  }
+
+  removeEntityUpdate(updateId, index) {
+    this.entityUpdatesService.deleteEntityUpdate(updateId).subscribe((data) => {
+      if (data) this.hackathonUserResponses.team.entity_updates.splice(index, 1);
     });
   }
 }

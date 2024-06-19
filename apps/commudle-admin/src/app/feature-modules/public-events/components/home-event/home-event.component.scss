@@ -1,5 +1,5 @@
 .base-layout {
-  @apply com-mt-4 com-mb-8;
+  @apply com-p-4 com-pb-8;
   .container {
     .details-section {
       @apply com-mx-0;
@@ -56,7 +56,7 @@
       .home-event-discussion {
         @apply com-mx-0 md:com-rounded-[10px] com-rounded-none;
         nb-card-header {
-          @apply com-py-4 md:com-px-6 com-px-4;
+          @apply com-py-4 md:com-px-6 com-px-4 com-flex com-items-center com-justify-between;
           h6 {
             @apply md:com-font-semibold com-font-bold;
           }

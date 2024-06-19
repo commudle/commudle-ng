@@ -23,12 +23,33 @@ export class CommunityGroupFormComponent implements OnInit {
     height: 300,
     menubar: false,
     convert_urls: false,
-    plugins:
-      'advlist autolink lists link image charmap  preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    plugins: [
+      'advlist',
+      'autolink',
+      'lists',
+      'link',
+      'image',
+      'charmap',
+      'preview',
+      'anchor',
+      'searchreplace',
+      'visualblocks',
+      'code',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+    ],
     toolbar:
       'undo redo | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           bullist numlist outdent indent | removeformat | help',
+    license_key: 'gpl',
   };
 
   constructor(

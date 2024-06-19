@@ -37,7 +37,9 @@
       @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-left;
 
       h2 {
-        @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold com-text-Yankees-Blue;
+        a {
+          @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold com-text-Yankees-Blue com-no-underline;
+        }
       }
     }
 
@@ -49,7 +51,7 @@
       &::ng-deep {
         nb-form-field {
           .main-search-bar {
-            @apply com-bg-white;
+            @apply com-bg-white com-text-black;
           }
         }
       }

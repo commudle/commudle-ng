@@ -1,0 +1,21 @@
+<div class="case-studies">
+  <commudle-case-studies-header></commudle-case-studies-header>
+  <div class="base-layout">
+    <div class="container">
+      <div class="case-studies-heading">
+        <h1>Event Success Stories</h1>
+        <h2>
+          Dive deep into real-world examples of how our platform empowered event creators to achieve their goals.
+          Explore how we tackled challenges, maximized engagement, and delivered impactful results across various event
+          types.
+        </h2>
+      </div>
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      <div class="case-studies-cards">
+        <div *ngFor="let caseStudy of caseStudies">
+          <commudle-case-study-card [caseStudy]="caseStudy"></commudle-case-study-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

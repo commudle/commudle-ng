@@ -13,3 +13,23 @@ nb-card {
     }
   }
 }
+
+nb-select {
+  ::ng-deep {
+    button {
+      span {
+        @apply com-text-Yankees-Blue;
+      }
+    }
+  }
+}
+
+.nb-tag-list {
+  input {
+    @apply com-text-tYankees-Blue;
+  }
+}
+
+.nb-tag-input.status-basic {
+  @apply com-text-tYankees-Blue;
+}

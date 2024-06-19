@@ -1,7 +1,7 @@
 .home-component {
   .banner {
     .banner-image {
-      @apply com-w-full md:com-min-h-[320px] com-object-contain md:com-w-[1262px];
+      @apply com-w-full md:com-min-h-[316px] com-object-contain md:com-w-[1262px] com-bg-tWhite;
     }
 
     .edit-button {
@@ -30,7 +30,7 @@
       @apply lg:com-h-44 lg:com-w-44;
 
       .logo {
-        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl;
+        @apply com-my-0 com-mx-auto com-h-28 com-w-28 com-px-2  com-object-contain com-rounded-xl com-bg-tWhite;
         @apply md:com-mr-20;
         @apply lg:com-h-44 lg:com-w-44;
       }
@@ -71,7 +71,6 @@
       ::ng-deep {
         nb-select {
           button {
-            background-color: initial;
             color: initial;
             @apply com-p-1 com-w-44;
           }
@@ -99,7 +98,7 @@
   .menu-items {
     @apply com-ml-2 com-overflow-y-scroll md:com-overflow-y-hidden;
     a {
-      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
+      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline com-mt-4;
 
       nb-icon,
       fa-icon {
@@ -131,6 +130,10 @@
   }
 }
 
+.menu-items-footer {
+  @apply com-p-0 com-sticky com-top-16 com-z-20;
+}
+
 .banner-image {
   @apply com-aspect-4 com-object-contain com-w-[1262px];
   background: linear-gradient(
@@ -147,7 +150,7 @@
   .community-details {
     @apply com-flex com-space-x-3;
     .mini-logo-section {
-      @apply com-w-10 com-h-10 com-rounded-lg com-border com-border-gray-200 com-border-solid;
+      @apply com-w-10 com-h-10 com-rounded-lg com-border com-border-gray-200 com-border-solid com-bg-tWhite;
       .mini-logo {
         @apply com-my-0 com-mx-auto com-h-10 com-w-10 com-object-contain com-rounded-lg com-overflow-hidden com-px-1;
       }
@@ -155,7 +158,7 @@
 
     .details {
       .name {
-        @apply com-text-base com-font-semibold com-m-0 com-line-clamp-1;
+        @apply com-text-base com-font-semibold com-m-0 com-line-clamp-1 com-text-Yankees-Blue;
       }
       .members-count {
         @apply com-text-sm com-font-normal com-text-Quartz com-m-0;

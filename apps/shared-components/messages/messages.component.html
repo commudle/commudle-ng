@@ -13,15 +13,16 @@
   ></app-messages-list>
   <ng-template #noMessages>
     <div class="no-messages">
-      <p>Be the first to post a message!</p>
+      <p *ngIf="discussion.open">Be the first to post a message!</p>
     </div>
   </ng-template>
 
-  <commudle-editor
-    (contentChange)="sendMessage($event)"
-    *ngIf="currentUser; else noUser"
-    [validators]="validators"
-  ></commudle-editor>
+  <ng-container *ngIf="discussion.open; else discussionClose">
+    <ng-container *ngIf="currentUser; else noUser">
+      <commudle-editor (contentChange)="sendMessage($event)" [validators]="validators"></commudle-editor>
+    </ng-container>
+  </ng-container>
+
   <ng-template #noUser>
     <button (click)="login()" *ngIf="!isBlocked" fullWidth nbButton status="info">
       <nb-icon icon="person-outline"></nb-icon>
@@ -30,6 +31,11 @@
 
     <div *ngIf="isBlocked" class="blocked">
       <p>You have been blocked from this discussion</p>
+    </div>
+  </ng-template>
+  <ng-template #discussionClose>
+    <div class="discussion-closed">
+      <commudle-alert [info]="true" message="Comments are turned off."></commudle-alert>
     </div>
   </ng-template>
 </div>

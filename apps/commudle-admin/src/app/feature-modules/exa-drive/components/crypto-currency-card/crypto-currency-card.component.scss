@@ -1,0 +1,38 @@
+.card {
+  @apply com-h-[320px];
+  nb-card-body {
+    @apply com-overflow-hidden com-flex com-flex-col com-justify-center;
+  }
+}
+.image-container {
+  @apply com-flex com-flex-col com-items-center com-gap-4 com-px-10 com-py-8;
+  .image {
+    @apply com-w-32 com-h-32;
+    img {
+      @apply com-w-full;
+    }
+  }
+  .name {
+    @apply com-text-sm com-font-semibold com-text-center;
+  }
+}
+
+.details {
+  @apply com-flex com-flex-col com-gap-2;
+  .sentiment-votes {
+    @apply com-flex com-justify-between com-items-center;
+    .sentiment-votes-up-percentage {
+      @apply com-text-green-500;
+    }
+    .sentiment-votes-down-percentage {
+      @apply com-text-red-500;
+    }
+  }
+}
+
+.card-info-popup {
+  @apply md:com-max-h-[90dvh] md:com-w-[50dvw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+}

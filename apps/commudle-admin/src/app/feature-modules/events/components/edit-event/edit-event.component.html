@@ -7,7 +7,7 @@
     <nb-card-body>
       <h3 class="com-mt-0">Edit Event</h3>
 
-      <nb-alert status="info" *ngIf="uneditable">
+      <nb-alert status="info" *ngIf="!event.editable">
         <p>
           This event is <strong>{{ event.event_status?.name | titlecase }}</strong> and cannot be edited
         </p>
@@ -39,16 +39,7 @@
             <label>Timings (Leave empty if you are yet to decide)</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date" />
-                <nb-datepicker #datepicker [min]="minDate"></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Starts At </label>
-            <div>
-              <div>
-                <input nbInput type="time" formControlName="start_time_pick" />
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="start_date" />
               </div>
             </div>
           </div>
@@ -57,18 +48,7 @@
             <label>End Date</label>
             <div>
               <div>
-                <input nbInput [nbDatepicker]="enddatepicker" placeholder="Date" formControlName="end_date" />
-                <nb-datepicker #enddatepicker></nb-datepicker>
-              </div>
-            </div>
-            <br />
-
-            <label [ngClass]="{ required: hasDate }"> Ends At </label>
-            <div>
-              <div>
-                <div>
-                  <input nbInput type="time" formControlName="end_time_pick" />
-                </div>
+                <input nbInput type="datetime-local" placeholder="Date" formControlName="end_date" />
               </div>
             </div>
           </div>
@@ -112,6 +92,10 @@
                   [editable]="true"
                   [tags]="tags"
                   [minimumTags]="minimumTags"
+                  [backgroundColor]="'com-bg-tAnti-Flash'"
+                  [fontColor]="'com-text-tYankees-Blue'"
+                  [minimumTags]="minimumTags"
+                  [tags]="tags"
                 ></app-tag>
               </label>
             </div>
@@ -120,7 +104,7 @@
 
         <div class="save-button-bottom">
           <button
-            *ngIf="!uneditable"
+            *ngIf="event.editable"
             [disabled]="tags.length < 3 || submitIsInProcess"
             type="submit"
             nbButton

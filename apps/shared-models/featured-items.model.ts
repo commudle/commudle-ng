@@ -13,4 +13,10 @@ export interface IFeaturedItems {
   lab: ILab;
   user: IUser;
   community_channel: ICommunityChannel;
+  category_type: ECategoryType;
+}
+
+export enum ECategoryType {
+  EXPERTS = 'experts',
+  ITEMS = 'items',
 }

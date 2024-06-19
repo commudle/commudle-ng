@@ -9,6 +9,7 @@ import { FeaturedProjectsCardComponent } from 'apps/commudle-admin/src/app/app-s
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'commudle-featured-projects',
@@ -22,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FeaturedProjectsCardComponent,
     SkeletonCardsComponent,
     FontAwesomeModule,
+    RouterModule,
   ],
 })
 export class FeaturedProjectsComponent implements OnInit {

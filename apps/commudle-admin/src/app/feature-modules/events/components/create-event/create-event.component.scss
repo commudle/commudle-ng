@@ -1,33 +1,34 @@
 :host {
-
-  .event-create-form-container{
+  .event-create-form-container {
     max-width: 920px;
     margin: 0 auto;
+    .back-button {
+      @apply com-pl-2;
+    }
   }
 
-  .save-button-top{
+  .save-button-top {
     margin: 0 0 1.5rem 0;
   }
-  .save-button-bottom{
+  .save-button-bottom {
     margin: 1.5rem 0 0 0;
   }
 
-
-  div[role='group']{
+  div[role='group'] {
     margin: 1rem 0;
   }
 
-  .event-date-details{
+  .event-date-details {
     margin: 1rem 0 0 0;
-    >div{
+    > div {
       display: flex;
       flex-wrap: wrap;
-      >div{
+      > div {
         margin-right: 1.5rem;
       }
 
       @media screen and (max-width: 640px) {
-        >div {
+        > div {
           margin: 0.5rem 0;
         }
       }
@@ -35,6 +36,6 @@
   }
 
   .required::after {
-      content: ' *';
-    }
+    content: ' *';
+  }
 }

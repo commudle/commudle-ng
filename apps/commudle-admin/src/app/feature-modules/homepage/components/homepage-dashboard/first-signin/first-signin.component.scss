@@ -6,15 +6,19 @@
   }
 
   .right-column {
-    @apply com-p-0 md:com-px-6 com-pl-0 com-pt-4 md:com-pt-0 com-border-0 md:com-border-l com-border-l-0 com-border-t md:com-border-t-0 com-border-solid com-border-Bright-Gray md:com-w-[742px] md:com-pb-0;
+    @apply com-p-0 md:com-px-6 com-pl-0 com-pt-0 com-border-0 md:com-border-l com-border-l-0 com-border-t md:com-border-t-0 com-border-solid com-border-Bright-Gray md:com-w-[742px] md:com-pb-0;
 
     .featured-communities,
     .featured-projects {
-      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mb-6;
+      @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mb-6 com-m-0 com-mt-4;
     }
 
     .labs-featured {
       @apply com-border com-border-solid com-border-Bright-Gray com-rounded-lg com-pb-4 com-mt-6;
     }
+  }
+
+  .speakers-content {
+    @apply com-m-0 com-mt-4;
   }
 }

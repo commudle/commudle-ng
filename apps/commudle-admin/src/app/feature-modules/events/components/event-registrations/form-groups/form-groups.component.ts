@@ -10,8 +10,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICommunity, IEvent, IStripeAccount } from '@commudle/shared-models';
-import { StripeHandlerService } from '@commudle/shared-services';
+import { ICommunity, IEvent, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
+import { PaymentSettingService, RazorpayService, StripeHandlerService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -19,6 +19,7 @@ import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/da
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { RegistrationTypesService } from 'apps/commudle-admin/src/app/services/registration-types.service';
+import { ICustomPage } from 'apps/shared-models/custom-page.model';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { Visibility } from 'apps/shared-models/data_form_entity.model';
 import { EemailTypes } from 'apps/shared-models/enums/email_types.enum';
@@ -40,7 +41,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 export class FormGroupsComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
-
+  @Input() refundPolicy: ICustomPage;
   faCopy = faCopy;
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;
@@ -57,9 +58,11 @@ export class FormGroupsComponent implements OnInit {
   eventDataFormEntityGroupForm: FormGroup;
   updateEventDataFormEntityGroupForm: FormGroup;
   stripeAccounts: IStripeAccount[] = [];
+  razorpayAccounts: IRazorpayAccount[] = [];
   ERegistrationTypeNames = RegistrationTypeNames;
   showDiscountCouponComponent = false;
   RegistrationTypeBackgroundColor = RegistrationTypeBackgroundColor;
+  paymentDetailsExist = false;
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
   @Output() showDiscountCoupons = new EventEmitter<boolean>();
@@ -75,6 +78,8 @@ export class FormGroupsComponent implements OnInit {
     private dialogService: NbDialogService,
     private changeDetectorRef: ChangeDetectorRef,
     private stripeHandlerService: StripeHandlerService,
+    private razorpayService: RazorpayService,
+    private paymentSettingService: PaymentSettingService,
   ) {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
@@ -99,7 +104,10 @@ export class FormGroupsComponent implements OnInit {
 
     this.getCommunityDataForms();
     this.getEventDataFormEntityGroups();
-    if (this.community.payments_enabled) this.getStripeAccountData();
+    if (this.community.payments_enabled) {
+      this.getStripeAccountData();
+      this.getRazorpayAccountData();
+    }
   }
 
   getEventDataFormEntityGroups() {
@@ -109,11 +117,19 @@ export class FormGroupsComponent implements OnInit {
       this.changeDetectorRef.markForCheck();
     });
   }
+
   //get stripe account information
   getStripeAccountData() {
     this.stripeHandlerService.indexStripeAccount(this.community.id).subscribe((data) => {
       const stripeAccounts = this.stripeAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       this.stripeAccounts = stripeAccounts.filter((stripeAccount) => stripeAccount.details.charges_enabled === true);
+    });
+  }
+
+  //get razorpay account information
+  getRazorpayAccountData() {
+    this.razorpayService.indexRazorpayAccounts(this.community.id).subscribe((data) => {
+      this.razorpayAccounts = this.razorpayAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
     });
   }
 
@@ -125,12 +141,30 @@ export class FormGroupsComponent implements OnInit {
     });
   }
 
-  // send a request to change the visibility_status
-  changeVisibility(newStatus, dataFormEntityId) {
-    this.dataFormEntitiesService.updateVisibilityStatus(newStatus.target.value, dataFormEntityId).subscribe(() => {
-      this.toastLogService.successDialog('Visibility Updated');
-      this.changeDetectorRef.markForCheck();
-    });
+  // check edfeg paid status before changing visibility
+  changeVisibility(newStatus, edfeg: IEventDataFormEntityGroup) {
+    if (edfeg.is_paid) {
+      this.paymentSettingService.indexPaymentSettings(edfeg.id).subscribe((data) => {
+        if (!data) {
+          this.toastLogService.warningDialog('Payment details do not exist, Please fill before changing visibility');
+          return;
+        } else {
+          this.updateVisibility(newStatus, edfeg);
+        }
+      });
+    } else {
+      this.updateVisibility(newStatus, edfeg);
+    }
+  }
+
+  // Updating the status of edfeg.data_form_entity.visibility
+  updateVisibility(newStatus, edfeg) {
+    this.dataFormEntitiesService
+      .updateVisibilityStatus(newStatus.target.value, edfeg.data_form_entity.id)
+      .subscribe(() => {
+        this.toastLogService.successDialog('Visibility Updated');
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   updateRSVP(eventDataFormEntityGroupId, index) {
@@ -155,21 +189,23 @@ export class FormGroupsComponent implements OnInit {
         formData.data_form_id,
       )
       .subscribe((data) => {
-        this.eventDataFormEntityGroups.push(data);
+        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, data];
         this.toastLogService.successDialog('Form Created');
-        this.eventDataFormEntityGroupForm.reset();
+        this.resetForm();
         this.changeDetectorRef.markForCheck();
       });
   }
 
-  deleteEventDataFormEntityGroup(eventDataFormEntityGroupId) {
+  deleteEventDataFormEntityGroup(eventDataFormEntityGroupId, index) {
     this.eventDataFormEntityGroupsService
       .deleteEventDataFormEntityGroup(eventDataFormEntityGroupId)
       .subscribe((data) => {
         this.toastLogService.successDialog('Deleted');
-        const removable = this.eventDataFormEntityGroups.findIndex((k) => k.id === eventDataFormEntityGroupId);
-        this.eventDataFormEntityGroups.splice(removable, 1);
-        this.changeDetectorRef.markForCheck();
+        if (index !== -1) {
+          this.eventDataFormEntityGroups.splice(index, 1);
+          this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
+          this.changeDetectorRef.markForCheck();
+        }
       });
   }
 
@@ -219,9 +255,10 @@ export class FormGroupsComponent implements OnInit {
     }
   }
 
-  onSwitchToggled(eventDataFormEntityGroupId, index) {
+  onSwitchToggled(eventDataFormEntityGroupId) {
     this.eventDataFormEntityGroupsService.togglePaidTicket(eventDataFormEntityGroupId).subscribe((data) => {
-      this.eventDataFormEntityGroups[index].is_paid = data;
+      const edfegIndex = this.eventDataFormEntityGroups.findIndex((edfeg) => edfeg.id === eventDataFormEntityGroupId);
+      this.eventDataFormEntityGroups[edfegIndex].is_paid = data;
       this.checkDiscountCode();
     });
   }
@@ -272,13 +309,29 @@ export class FormGroupsComponent implements OnInit {
     this.eventDataFormEntityGroupsService
       .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
       .subscribe((data) => {
-        this.eventDataFormEntityGroups = [
-          ...this.eventDataFormEntityGroups.slice(0, index),
-          data,
-          ...this.eventDataFormEntityGroups.slice(index + 1),
-        ];
-        this.changeDetectorRef.markForCheck();
+        this.eventDataFormEntityGroups[index] = data;
+        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
         this.toastLogService.successDialog('Form Updated');
+        this.changeDetectorRef.markForCheck();
       });
+  }
+
+  resetForm() {
+    this.eventDataFormEntityGroupForm.reset({
+      data_form_entity_group: {
+        name: '',
+        registration_type_id: '',
+        data_form_id: '',
+      },
+    });
+  }
+
+  checkPaymentDetailsExists(edfeg) {
+    this.paymentDetailsExist = false;
+    this.paymentSettingService.indexPaymentSettings(edfeg.id).subscribe((data) => {
+      if (data) {
+        this.paymentDetailsExist = true;
+      }
+    });
   }
 }

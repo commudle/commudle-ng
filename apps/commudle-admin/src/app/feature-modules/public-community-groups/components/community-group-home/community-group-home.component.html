@@ -2,78 +2,84 @@
   <div class="container">
     <div class="one-column-layout">
       <div class="community-group" *ngIf="communityGroup">
-        <section class="top" [style.background]="communityGroup.theme_color">
-          <div class="basic-details">
-            <div class="logo">
+        <div class="header">
+          <div class="banner">
+            <div [style.background]="communityGroup.theme_color" class="banner-image"></div>
+          </div>
+          <div class="page-header">
+            <div class="logo-section">
               <img
+                class="logo"
                 alt="{{ communityGroup.name }}"
                 src="{{ communityGroup.logo.i350 }}"
                 title="{{ communityGroup.name }}"
               />
             </div>
-
             <div class="details">
-              <div
-                class="com-flex com-items-center com-space-x-3 com-align-middle com-justify-center md:com-justify-start"
-              >
-                <h1 class="name">
-                  {{ communityGroup.name }}
-                </h1>
-                <div class="com-rounded-full com-border-2 com-border-solid com-p-1">
-                  <fa-icon [icon]="faBuilding" class="com-m-1"></fa-icon>
+              <div class="heading">
+                <div class="name-logo">
+                  <h2 class="name">
+                    {{ communityGroup.name }}
+                  </h2>
+                  <div class="logo">
+                    <fa-icon [icon]="faBuilding"></fa-icon>
+                  </div>
+                </div>
+                <div class="social-links">
+                  <a
+                    *ngIf="communityGroup.twitter"
+                    href="{{ communityGroup.twitter | completeurl : 'twitter' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="twitter" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.linkedin"
+                    href="{{ communityGroup.linkedin | completeurl : 'linkedin' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="linkedin" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.facebook"
+                    href="{{ communityGroup.facebook | completeurl : 'facebook' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="facebook" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.github"
+                    href="{{ communityGroup.github | completeurl : 'github' }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="github" status="primary"></nb-icon>
+                  </a>
+                  <a
+                    *ngIf="communityGroup.website"
+                    href="{{ communityGroup.website }}"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <nb-icon icon="info" status="primary"></nb-icon>
+                  </a>
                 </div>
               </div>
-
               <p class="mini-description">
                 {{ communityGroup.mini_description }}
               </p>
-              <div class="social-links">
-                <a
-                  *ngIf="communityGroup.twitter"
-                  href="{{ communityGroup.twitter | completeurl : 'twitter' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="twitter" status="info"></nb-icon>
-                </a>
-                <a
-                  *ngIf="communityGroup.linkedin"
-                  href="{{ communityGroup.linkedin | completeurl : 'linkedin' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="linkedin" status="info"></nb-icon>
-                </a>
-                <a
-                  *ngIf="communityGroup.facebook"
-                  href="{{ communityGroup.facebook | completeurl : 'facebook' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="facebook" status="info"></nb-icon>
-                </a>
-
-                <a
-                  *ngIf="communityGroup.github"
-                  href="{{ communityGroup.github | completeurl : 'github' }}"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <nb-icon icon="github" status="info"></nb-icon>
-                </a>
-                <a *ngIf="communityGroup.website" href="{{ communityGroup.website }}" rel="noreferrer" target="_blank">
-                  <nb-icon icon="info" status="info"></nb-icon>
-                </a>
-              </div>
-              <div class="count-details">
-                <nb-tag-list>
-                  <nb-tag text="{{ communityGroup.kommunities_count }} Communities"></nb-tag>
-                  <nb-tag text="{{ communityGroup.member_count }} Members"></nb-tag>
-                  <nb-tag
-                    class="com-hidden md:com-block"
-                    text="{{ communityGroup.community_channels_count }} Channels"
-                  ></nb-tag>
-                </nb-tag-list>
+              <div class="links">
+                <app-badge
+                  [text]="communityGroup.member_count"
+                  [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                  [nbIcon]="'people-outline'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'round'"
+                  [color]="'com-bg-Bright-Gray-Light'"
+                ></app-badge>
                 <div *ngIf="isOrganizer">
                   <a
                     nbButton
@@ -88,9 +94,14 @@
               </div>
             </div>
           </div>
-        </section>
+        </div>
         <div class="page-menu">
           <div class="menu-items d-flex">
+            <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
+              <fa-icon [icon]="faCircleInfo"></fa-icon>
+              <span class="title">About</span>
+            </a>
+
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/orgs', communityGroup.slug]"
@@ -99,11 +110,6 @@
             >
               <fa-icon [icon]="faArrowTrendUp"></fa-icon>
               <span class="title">Activity</span>
-            </a>
-
-            <a [routerLink]="['/orgs', communityGroup.slug, 'about']" class="d-flex" routerLinkActive="active">
-              <fa-icon [icon]="faCircleInfo"></fa-icon>
-              <span class="title">About</span>
             </a>
 
             <a [routerLink]="['/orgs', communityGroup.slug, 'communities']" class="d-flex" routerLinkActive="active">
@@ -119,9 +125,9 @@
               <span class="title">Channels</span>
             </a>
             <div class="com-relative">
-              <a [routerLink]="['/orgs', communityGroup.slug, 'team']" class="d-flex" routerLinkActive="active">
+              <a [routerLink]="['/orgs', communityGroup.slug, 'leaders']" class="d-flex" routerLinkActive="active">
                 <fa-icon [icon]="faUserGroup"></fa-icon>
-                <span class="title">Admin Team</span>
+                <span class="title">Leaders</span>
               </a>
             </div>
             <a class="d-flex" [nbContextMenu]="items" nbContextMenuTrigger="hover" *ngIf="items.length > 0">
