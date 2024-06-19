@@ -7,7 +7,9 @@
           <div class="image">
             <commudle-banner-image
               [name]="newsletter.title"
-              [headerImagePath]="newsletter.banner_image?.url"
+              [headerImagePath]="
+                newsletter.banner_image ? newsletter.banner_image?.url : staticAssets.newsletter_empty_state
+              "
               [bottomLeftCurve]="false"
               [bottomRightCurve]="false"
             ></commudle-banner-image>
