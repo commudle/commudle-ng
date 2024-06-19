@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
@@ -9,12 +9,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './help-dictionary-iframe.component.html',
   styleUrls: ['./help-dictionary-iframe.component.scss'],
 })
-export class HelpDictionaryIframeComponent implements OnInit {
+export class HelpDictionaryIframeComponent implements OnInit, OnDestroy {
   @Input() eventName: string;
   helpDictionaryUrl: string;
   faXmark = faXmark;
   faBars = faBars;
-  showLoader = true;
   private subscription: Subscription;
   constructor(private helpDictionaryService: HelpDictionaryService, private sidebarService: SidebarService) {}
 
@@ -22,17 +21,12 @@ export class HelpDictionaryIframeComponent implements OnInit {
     this.helpDictionaryService.helpDictionary$.subscribe((data) => {
       if (data) {
         this.helpDictionaryUrl = data;
-        this.showLoader = false;
       }
     });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  onIframeLoad() {
-    this.showLoader = false;
   }
 
   closeSidebar() {
