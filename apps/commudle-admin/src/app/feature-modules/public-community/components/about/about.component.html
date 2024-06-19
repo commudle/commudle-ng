@@ -29,7 +29,12 @@
         </div>
         <button nbButton status="primary" [routerLink]="['channels']" shape="semi-round">View More</button>
       </nb-card-header>
-      <nb-card-body class="!com-p-1">
+      <nb-card-body>
+        <div class="description-container" [nbTooltip]="defaultChannel.description">
+          <span class="description">
+            {{ defaultChannel.description }}
+          </span>
+        </div>
         <commudle-channel-discussion
           [discussionId]="defaultChannel.discussion_id"
           [channelOrForum]="defaultChannel"

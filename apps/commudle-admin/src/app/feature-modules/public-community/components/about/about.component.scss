@@ -62,7 +62,16 @@ app-loading-spinner {
       }
     }
   }
-  commudle-channel-discussion {
-    @apply com-h-500px;
+  nb-card-body {
+    @apply com-p-0 #{!important};
+    .description-container {
+      @apply com-bg-blue-50 com-h-14 com-flex com-items-center com-px-4;
+      .description {
+        @apply com-line-clamp-1 com-text-Yankees-Blue;
+      }
+    }
+    commudle-channel-discussion {
+      @apply com-pb-1.5 com-h-500px com-bg-white;
+    }
   }
 }
