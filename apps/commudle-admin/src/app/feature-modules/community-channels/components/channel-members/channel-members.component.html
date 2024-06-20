@@ -5,7 +5,7 @@
         <p class="margin0 fontw-300">
           <nb-icon icon="people" status="basic"></nb-icon>
           Members
-          <span *ngIf="total"> ({{ total }}) </span>
+          <span *ngIf="totalOrganizers || totalMembers"> ({{ totalOrganizers + totalMembers }}) </span>
         </p>
       </div>
       <span (click)="close()" class="clickable">
@@ -16,18 +16,29 @@
     </nb-card-header>
     <nb-card-body>
       <div>
-        <ng-container *ngFor="let u of channelUsers; let i = index" class="com-my-3">
+        <div *ngFor="let u of organizers; let i = index" class="com-my-3">
           <app-member
             (exitChannel)="leaveChannel(i)"
-            (makeAdmin)="toggleAdmin(i)"
-            (removeAdmin)="toggleAdmin(i)"
+            (removeAdmin)="removeAdmin(i, u.id)"
             (removeFromChannel)="removeFromChannel(i)"
             [currentUserIsAdmin]="currentUserIsAdmin || isSuperAdmin"
             [userRolesUser]="u"
           ></app-member>
-        </ng-container>
-        <div #notificationRef>
-          <div class="com-h-5" *ngIf="channelUsers.length < total"></div>
+        </div>
+        <div
+          *ngFor="let u of channelMembers; let i = index"
+          (scrolled)="getMembers()"
+          [infiniteScrollDisabled]="channelMembers.length >= totalMembers"
+          appInfiniteScroll
+          class="com-my-3"
+        >
+          <app-member
+            (exitChannel)="leaveChannel(i)"
+            (makeAdmin)="addAdmin(i, u.id)"
+            (removeFromChannel)="removeFromChannel(i)"
+            [currentUserIsAdmin]="currentUserIsAdmin || isSuperAdmin"
+            [userRolesUser]="u"
+          ></app-member>
         </div>
         <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       </div>
