@@ -159,3 +159,14 @@
 fa-icon {
   @apply com-text-gray-500;
 }
+
+.change-status-dialog {
+  @apply md:com-w-500px;
+
+  nb-card-header {
+    @apply com-flex com-flex-row com-items-center;
+    p {
+      @apply com-m-0 com-text-base com-text-black com-font-medium;
+    }
+  }
+}
