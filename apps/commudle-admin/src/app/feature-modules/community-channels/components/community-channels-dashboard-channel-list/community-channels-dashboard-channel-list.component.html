@@ -1,5 +1,8 @@
 <nb-card *ngIf="channels.length > 0">
-  <nb-card-header> All Channels </nb-card-header>
+  <nb-card-header>
+    <p>All Channels</p>
+    <commudle-help-section [helpDictionaryName]="'channels'"></commudle-help-section
+  ></nb-card-header>
   <nb-card-body class="channels-list-cards">
     <div *ngFor="let channel of channels">
       <a [routerLink]="[channel.id]">

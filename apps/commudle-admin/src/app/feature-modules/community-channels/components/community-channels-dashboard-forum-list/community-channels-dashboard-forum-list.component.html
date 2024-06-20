@@ -1,5 +1,8 @@
 <nb-card *ngIf="hasForms">
-  <nb-card-header> All Forums </nb-card-header>
+  <nb-card-header>
+    <p>All Forums</p>
+    <commudle-help-section [helpDictionaryName]="'forums'"></commudle-help-section
+  ></nb-card-header>
   <nb-card-body>
     <div class="forums-cards">
       <div
