@@ -15,9 +15,10 @@
   ],
   "compilerOptions": {
     "target": "es2022",
+    "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
-    "noImplicitAny": false,
+    "noImplicitAny": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
