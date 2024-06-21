@@ -133,6 +133,7 @@ export class CommunityChannelFormComponent implements OnInit {
     this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
       this.existingChannel = data;
       this.cmService.findAndUpdateChannel(data);
+      this.cmService.updateChannel(data);
       this.toastLogService.successDialog('Updated', 3000);
     });
   }

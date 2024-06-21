@@ -88,7 +88,7 @@ export class AboutComponent implements OnInit {
     this.communityChannelsService
       .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
       .subscribe((data: ICommunityChannel) => {
-        this.communityChannelManagerService.getChannelRoles(data);
+        if (data) this.communityChannelManagerService.getChannelRoles(data);
         this.defaultChannel = data;
       });
   }
