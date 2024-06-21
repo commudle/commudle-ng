@@ -243,6 +243,7 @@ export class CommunityChannelHandlerService {
   }
 
   getMessagesAfter() {
+    console.log('🚀 ~ CommunityChannelHandlerService ~ getMessages ~ fromLastRead:');
     if (!this.loading.value) {
       this.loading.next(true);
       this._getMessagesAfter().subscribe((data) => {
@@ -254,6 +255,8 @@ export class CommunityChannelHandlerService {
         });
         this.loading.next(false);
       });
+    } else {
+      this.loading.next(false);
     }
   }
 
