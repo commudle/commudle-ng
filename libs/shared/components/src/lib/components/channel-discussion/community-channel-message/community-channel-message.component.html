@@ -45,7 +45,7 @@
       </div>
       <div *ngIf="canReply" class="replies">
         <div
-          class="com-border-0 com-border-l com-border-solid com-border-gray-300"
+          class="com-border-0 com-border-l-[0.5px] com-border-solid com-border-gray-300"
           *ngFor="let reply of message.user_messages"
         >
           <commudle-community-channel-message
@@ -95,7 +95,13 @@
       ></commudle-editor>
     </div>
   </div>
-  <div class="com-mr-4 com-cursor-pointer">
+  <div
+    class="com-mr-4 com-cursor-pointer"
+    *ngIf="
+      authService.getCurrentUser()?.id === this.message.user.id ||
+      this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+    "
+  >
     <fa-icon
       *ngIf="message.pinned"
       class="com-text-primary-500"

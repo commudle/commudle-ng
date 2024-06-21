@@ -32,6 +32,8 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() messagePinned = false;
   @Input() channelOrForum: ICommunityChannel;
 
+  EUserRoles = EUserRoles;
+
   channelsRoles = {};
   channelOrForumId: number;
 
