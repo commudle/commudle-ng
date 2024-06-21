@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { CommunityChannelManagerService, CommunityChannelsService, ToastrService } from '@commudle/shared-services';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
   templateUrl: './channel-members.component.html',
   styleUrls: ['./channel-members.component.scss'],
 })
-export class ChannelMembersComponent implements OnInit, OnDestroy {
+export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   @Input() channelOrForum: ICommunityChannel;
   @Input() discussionType;
   subscriptions: Subscription[] = [];
@@ -38,8 +38,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.getOrganizers();
-    this.getMembers();
+    // this.getOrganizers();
+    // this.getMembers();
     this.getCurrentUser();
 
     // get roles as per discussion type
@@ -52,6 +52,13 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+  }
+
+  ngOnChanges(): void {
+    this.channelMembers = [];
+    this.organizers = [];
+    this.getOrganizers();
+    this.getMembers();
   }
 
   // details of current user
