@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EditorModule } from '@commudle/editor';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { InfiniteScrollModule } from '@commudle/infinite-scroll';
-import { NbButtonModule, NbContextMenuModule, NbIconModule, NbTooltipModule } from '@commudle/theme';
+import { NbButtonModule, NbCardModule, NbContextMenuModule, NbIconModule, NbTooltipModule } from '@commudle/theme';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { MessageComponent } from './components/discussion/message/message.component';
 import { VoteComponent } from './components/vote/vote.component';
@@ -33,6 +33,7 @@ import { FaqComponent } from './components/faq/faq.component';
     NbIconModule,
     NbTooltipModule,
     NbButtonModule,
+    NbCardModule,
     InViewportDirective,
     NbContextMenuModule,
     FontAwesomeModule,
