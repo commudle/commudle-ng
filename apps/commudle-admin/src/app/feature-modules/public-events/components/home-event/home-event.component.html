@@ -44,23 +44,23 @@
         <nb-actions>
           <nb-action (click)="scroll(updatesSectionRef)" *ngIf="hasUpdates" class="clickable">
             <nb-icon icon="star-outline" status="warning"></nb-icon>
-            <span>Updates</span>
+            <span><a [routerLink]="'.'" fragment="updates">Updates</a></span>
           </nb-action>
           <nb-action (click)="scroll(descriptionSectionRef)" class="clickable">
             <nb-icon icon="info-outline" status="info"></nb-icon>
-            <span>Details</span>
+            <span><a [routerLink]="'.'" fragment="details">Details</a></span>
           </nb-action>
           <nb-action (click)="scroll(agendaSectionRef)" *ngIf="event.event_locations_count > 0" class="clickable">
             <nb-icon icon="calendar-outline" status="primary"></nb-icon>
-            <span>Agenda</span>
+            <span><a [routerLink]="'.'" fragment="agenda">Agenda</a></span>
           </nb-action>
           <nb-action (click)="scroll(speakersSectionRef)" *ngIf="event.event_speakers_count > 0" class="clickable">
             <nb-icon icon="people-outline" status="success"></nb-icon>
-            <span>Speakers</span>
+            <span><a [routerLink]="'.'" fragment="speakers">Speakers</a></span>
           </nb-action>
           <nb-action (click)="scroll(sponsorsSectionRef)" *ngIf="hasSponsors" class="clickable">
             <nb-icon icon="briefcase-outline" status="danger"></nb-icon>
-            <span>Sponsors</span>
+            <span><a [routerLink]="'.'" fragment="sponsors">Sponsors</a></span>
           </nb-action>
           <nb-action
             (click)="scroll(collaborationCommunitiesSectionRef)"
@@ -68,15 +68,16 @@
             class="clickable"
           >
             <nb-icon icon="pricetags-outline" status="warning"></nb-icon>
-            <span>Collaborations</span>
+            <span><a [routerLink]="'.'" fragment="collaborations">Collaborations</a></span>
           </nb-action>
           <nb-action (click)="scroll(commentsSectionRef)" *ngIf="discussionChat" class="clickable">
             <nb-icon icon="message-circle-outline" status="info"></nb-icon>
-            <span>Comments</span>
+            <span><a [routerLink]="'.'" fragment="comments">Comments</a></span>
+            <span></span>
           </nb-action>
           <nb-action (click)="scroll(volunteersSectionRef)" *ngIf="event.event_volunteers_count > 0" class="clickable">
             <nb-icon icon="headphones-outline" status="basic"></nb-icon>
-            <span>Team</span>
+            <span><a [routerLink]="'.'" fragment="team">Team</a></span>
           </nb-action>
         </nb-actions>
       </nb-card-body>
@@ -85,33 +86,33 @@
     <div class="two-column-layout wide mobile-reverse">
       <div class="main-column">
         <app-live-sessions [community]="community" [event]="event"></app-live-sessions>
-        <div #updatesSection>
+        <div #updatesSection id="updates">
           <app-event-updates
             (hasUpdates)="hasUpdates = $event"
             [community]="community"
             [event]="event"
           ></app-event-updates>
         </div>
-        <div #descriptionSection>
+        <div #descriptionSection id="details">
           <app-event-description [community]="community" [event]="event" [share]="true"></app-event-description>
         </div>
-        <div #agendaSection *ngIf="event.event_locations_count > 0">
+        <div #agendaSection *ngIf="event.event_locations_count > 0" id="agenda">
           <app-agenda [community]="community" [event]="event"></app-agenda>
         </div>
-        <div #speakersSection *ngIf="event.event_speakers_count > 0">
+        <div #speakersSection *ngIf="event.event_speakers_count > 0" id="speakers">
           <app-speakers [community]="community" [event]="event"></app-speakers>
         </div>
-        <div #sponsorsSection>
+        <div #sponsorsSection id="sponsors">
           <app-sponsors (hasSponsors)="hasSponsors = $event" [event]="event"></app-sponsors>
         </div>
-        <div #collaborationCommunitiesSection>
+        <div #collaborationCommunitiesSection id="collaborations">
           <app-collaboration-communities
             (hasCollaborationCommunities)="hasCollaborationCommunities = $event"
             [community]="community"
             [event]="event"
           ></app-collaboration-communities>
         </div>
-        <div #commentsSection>
+        <div #commentsSection id="comments">
           <nb-card *ngIf="discussionChat" class="home-event-discussion">
             <nb-card-header>
               <h6><nb-icon icon="message-circle-outline" status="info"></nb-icon> Comments</h6>
@@ -130,7 +131,7 @@
             </nb-card-body>
           </nb-card>
         </div>
-        <div #volunteersSection *ngIf="event.event_volunteers_count > 0">
+        <div #volunteersSection *ngIf="event.event_volunteers_count > 0" id="team">
           <app-team [community]="community" [event]="event"></app-team>
         </div>
       </div>
