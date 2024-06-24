@@ -1,6 +1,9 @@
 <div class="community-channel-list">
   <div class="com-flex com-justify-between com-mt-3 com-mx-4">
-    <p class="com-font-bold com-text-lg com-m-0">Forums</p>
+    <div class="com-flex com-items-center">
+      <p class="com-font-bold com-text-lg com-m-0">Forums</p>
+      <commudle-help-section [helpDictionaryName]="'forums'"></commudle-help-section>
+    </div>
     <button
       *ngIf="currentUser && (communityRoles.includes(EUserRoles.ORGANIZER) || isCommunityOrganizer)"
       (click)="newForumDialogBox()"

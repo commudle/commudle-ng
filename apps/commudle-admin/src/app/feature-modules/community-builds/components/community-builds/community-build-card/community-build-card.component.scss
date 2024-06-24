@@ -27,7 +27,7 @@ p {
           }
         }
         .description {
-          @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 com-hidden md:com-flex;
+          @apply com-text-xs md:com-text-sm com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-mb-2 com-hidden md:com-flex com-break-all;
           @apply com-line-clamp-2;
         }
       }
