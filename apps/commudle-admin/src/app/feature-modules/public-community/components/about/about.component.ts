@@ -57,9 +57,9 @@ export class AboutComponent implements OnInit {
     this.authWatchService.currentUser$.subscribe((data) => {
       this.currentUser = data;
       this.getDefaultChannel();
+      this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
       if (data) {
         this.communityChannelManagerService.setCurrentUser(data);
-        this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
       }
     });
   }
