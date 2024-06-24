@@ -28,6 +28,10 @@ export class AboutComponent implements OnInit {
   defaultChannel: ICommunityChannel;
   currentUser: IUser;
 
+  count = 10;
+  page = 1;
+  total = 0;
+
   icons = {
     faUsers,
   };
@@ -77,14 +81,17 @@ export class AboutComponent implements OnInit {
 
   getEvents() {
     this.isLoadingEvents = true;
-    this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
-      this.events = data.events;
+    this.eventsService.pGetCommunityEvents(this.community.id, this.page, this.count).subscribe((data) => {
+      this.events = data.values;
       this.events.forEach((event) => {
         if (moment(event.end_time) > moment() || event.end_time === null) {
           this.upcomingEvents.push(event);
         }
       });
       this.isLoadingEvents = false;
+      this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
     });
   }
 

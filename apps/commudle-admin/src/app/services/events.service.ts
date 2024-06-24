@@ -13,6 +13,7 @@ import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { ISessions } from 'apps/shared-models/sessions.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
+import { IPaginationCount } from '@commudle/shared-models';
 @Injectable({
   providedIn: 'root',
 })
@@ -123,11 +124,14 @@ export class EventsService {
     return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.RANDOM_PAST), { params });
   }
 
-  pGetCommunityEvents(communityId): Observable<IEvents> {
-    const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY), {
-      params,
-    });
+  pGetCommunityEvents(communityId, page: number, count: number): Observable<IPaginationCount<IEvent>> {
+    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<IEvent>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY),
+      {
+        params,
+      },
+    );
   }
 
   pGetEvent(eventId): Observable<IEvent> {
