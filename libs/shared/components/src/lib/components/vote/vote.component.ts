@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { VoteChannel } from '@commudle/shared-channels';
 import { AuthService, CableService, VoteService } from '@commudle/shared-services';
+import { VotersComponent } from './voters/voters.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -12,6 +13,8 @@ import { BehaviorSubject } from 'rxjs';
 export class VoteComponent implements OnInit, OnDestroy {
   @Input() votableType!: string;
   @Input() votableId!: number;
+
+  VotersComponent = VotersComponent;
 
   voteChannel!: VoteChannel;
 
