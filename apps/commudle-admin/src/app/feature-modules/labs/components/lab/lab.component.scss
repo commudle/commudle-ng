@@ -116,6 +116,20 @@
                   @apply com-whitespace-pre-wrap;
                 }
 
+                p {
+                  span {
+                    @apply com-bg-Bright-Gray-opacity-30 #{!important};
+                  }
+                }
+
+                ul {
+                  li {
+                    span {
+                      @apply com-bg-Bright-Gray-opacity-30 #{!important};
+                    }
+                  }
+                }
+
                 @for $index from 1 through 6 {
                   h#{$index} {
                     @apply com-text-gunmetal;
