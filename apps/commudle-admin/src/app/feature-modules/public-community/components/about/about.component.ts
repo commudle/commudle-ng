@@ -26,6 +26,7 @@ export class AboutComponent implements OnInit {
   isLoadingEvents = false;
   isLoading = false;
   defaultChannel: ICommunityChannel;
+  currentUser: IUser;
 
   icons = {
     faUsers,
@@ -48,15 +49,18 @@ export class AboutComponent implements OnInit {
         this.getEvents();
       }
       this.seoService.setTitle(this.community.name);
-      this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
     });
     this.setCurrentUser();
   }
 
   setCurrentUser() {
     this.authWatchService.currentUser$.subscribe((data) => {
-      this.communityChannelManagerService.setCurrentUser(data);
+      this.currentUser = data;
       this.getDefaultChannel();
+      if (data) {
+        this.communityChannelManagerService.setCurrentUser(data);
+        this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
+      }
     });
   }
 
@@ -88,7 +92,7 @@ export class AboutComponent implements OnInit {
     this.communityChannelsService
       .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
       .subscribe((data: ICommunityChannel) => {
-        this.communityChannelManagerService.getChannelRoles(data);
+        if (this.currentUser) this.communityChannelManagerService.getChannelRoles(data);
         this.defaultChannel = data;
       });
   }
