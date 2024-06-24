@@ -50,7 +50,11 @@
             <nb-icon icon="info-outline" status="info"></nb-icon>
             <span><a [routerLink]="'.'" fragment="details">Details</a></span>
           </nb-action>
-          <nb-action (click)="scroll(agendaSectionRef)" *ngIf="event.event_locations_count > 0" class="clickable">
+          <nb-action
+            (click)="scroll(agendaSectionRef)"
+            *ngIf="event.custom_agenda && event.event_locations_count > 0"
+            class="clickable"
+          >
             <nb-icon icon="calendar-outline" status="primary"></nb-icon>
             <span><a [routerLink]="'.'" fragment="agenda">Agenda</a></span>
           </nb-action>
@@ -96,7 +100,7 @@
         <div #descriptionSection id="details">
           <app-event-description [community]="community" [event]="event" [share]="true"></app-event-description>
         </div>
-        <div #agendaSection *ngIf="event.event_locations_count > 0" id="agenda">
+        <div #agendaSection *ngIf="event.custom_agenda && event.event_locations_count > 0" id="agenda">
           <app-agenda [community]="community" [event]="event"></app-agenda>
         </div>
         <div #speakersSection *ngIf="event.event_speakers_count > 0" id="speakers">
