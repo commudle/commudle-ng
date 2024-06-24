@@ -16,7 +16,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   subscriptions: Subscription[] = [];
   EUserRoles = EUserRoles;
   channelMembers: IUserRolesUser[] = [];
-  organizers: IUserRolesUser[] = [];
+  admins: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
   currentUser: IUser;
   currentUserIsAdmin = false;
@@ -38,8 +38,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    // this.getOrganizers();
-    // this.getMembers();
     this.getCurrentUser();
 
     // get roles as per discussion type
@@ -56,8 +54,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(): void {
     this.channelMembers = [];
-    this.organizers = [];
-    this.getOrganizers();
+    this.admins = [];
+    this.getAdmins();
     this.getMembers();
   }
 
@@ -118,11 +116,11 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  // get organizers/admin of channels not members
-  getOrganizers() {
+  // get admin of channels not members
+  getAdmins() {
     this.subscriptions.push(
       this.communityChannelsService.getChannelOrganizersIndex(this.channelOrForum.id).subscribe((data) => {
-        this.organizers = this.organizers.concat(data.user_roles_users);
+        this.admins = this.admins.concat(data.user_roles_users);
         this.totalOrganizers = data.total;
       }),
     );
@@ -135,7 +133,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
         this.channelMembers.splice(index, 1);
-        this.organizers.push(data);
+        this.admins.push(data);
       });
     }
   }
@@ -146,7 +144,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
     const alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
-        this.organizers.splice(index, 1);
+        this.admins.splice(index, 1);
         this.channelMembers.unshift(data);
       });
     }

@@ -16,7 +16,7 @@
     </nb-card-header>
     <nb-card-body>
       <div>
-        <div *ngFor="let u of organizers; let i = index" class="com-my-3">
+        <div *ngFor="let u of admins; let i = index" class="com-my-3">
           <app-member
             (exitChannel)="leaveChannel(i)"
             (removeAdmin)="removeAdmin(i, u.id)"
