@@ -90,6 +90,7 @@ export const API_ROUTES = {
     DISCUSSION_MESSAGES_SCROLL: 'api/v2/community_channels/discussion_messages_paginated',
     SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS: 'api/v2/community_channels/send_message_by_email_to_all_members',
     GET_DEFAULT_CHANNEL: 'api/v2/community_channels/get_default_channel',
+    GET_CHANNEL_ORGANIZERS: 'api/v2/community_channels/get_channel_organizers',
     MEMBERS: {
       INDEX: 'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',
