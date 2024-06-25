@@ -253,10 +253,10 @@ export class CommunityChannelsService {
     );
   }
 
-  getChannelOrganizersIndex(channelId: number): Observable<IUserRolesUsers> {
+  getChannelAdmins(channelId: number): Observable<IUserRolesUsers> {
     const params = new HttpParams().set('community_channel_id', channelId);
     return this.http.get<IUserRolesUsers>(
-      this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.GET_CHANNEL_ORGANIZERS),
+      this.baseApiService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.GET_CHANNEL_ADMINS),
       {
         params,
       },

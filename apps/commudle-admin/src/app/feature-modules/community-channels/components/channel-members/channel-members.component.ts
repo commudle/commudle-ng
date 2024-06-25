@@ -119,7 +119,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   // get admin of channels not members
   getAdmins() {
     this.subscriptions.push(
-      this.communityChannelsService.getChannelOrganizersIndex(this.channelOrForum.id).subscribe((data) => {
+      this.communityChannelsService.getChannelAdmins(this.channelOrForum.id).subscribe((data) => {
         this.admins = this.admins.concat(data.user_roles_users);
         this.totalOrganizers = data.total;
       }),
