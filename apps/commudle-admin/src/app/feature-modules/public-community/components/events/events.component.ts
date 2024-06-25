@@ -19,7 +19,8 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
-  isLoading = true;
+  isLoadingPastEvents = true;
+  isLoadingUpcomingEvents = true;
 
   eventForSchema = [];
 
@@ -28,6 +29,10 @@ export class EventsComponent implements OnInit {
   faMapPin = faMapPin;
   faCalendarDays = faCalendarDays;
   faCalendarCheck = faCalendarCheck;
+
+  count = 10;
+  page = 1;
+  total = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,24 +43,30 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
-      this.getEvents();
+      this.getUpcomingEvents();
+      this.getPastEvents();
       this.seoService.setTitle(`Events | ${this.community.name}`);
     });
   }
 
-  getEvents() {
-    this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
-      this.events = data.events;
-
-      this.events.forEach((event) => {
-        if (moment(event.end_time) > moment() || event.end_time === null) {
-          this.upcomingEvents.push(event);
-        } else {
-          this.pastEvents.push(event);
-        }
-      });
+  getPastEvents() {
+    this.isLoadingPastEvents = true;
+    this.eventsService.pGetCommunityEvents('past', this.community.id, this.page, this.count).subscribe((data) => {
+      this.pastEvents = data.values;
       this.setSchema();
-      this.isLoading = false;
+      this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
+      this.isLoadingPastEvents = false;
+    });
+  }
+
+  getUpcomingEvents() {
+    this.isLoadingUpcomingEvents = true;
+    this.eventsService.pGetCommunityEvents('future', this.community.id).subscribe((data) => {
+      this.upcomingEvents = data.values;
+      this.setSchema();
+      this.isLoadingUpcomingEvents = false;
     });
   }
 

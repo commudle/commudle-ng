@@ -198,3 +198,8 @@ nb-card {
     }
   }
 }
+
+app-pagination,
+app-loading-spinner {
+  @apply com-p-4;
+}

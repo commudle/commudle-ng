@@ -1,9 +1,9 @@
 <nb-card>
   <nb-card-body>
-    <div *ngIf="isLoading" class="com-my-4">
-      <app-loading-spinner></app-loading-spinner>
-    </div>
     <div class="events">
+      <div *ngIf="isLoadingUpcomingEvents" class="com-my-4">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
         <p class="heading">
           <button nbButton status="basic" size="small" shape="semi-round">
@@ -80,6 +80,9 @@
         </div>
       </section>
 
+      <div *ngIf="isLoadingPastEvents" class="com-my-4">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <section *ngIf="pastEvents.length >= 1" class="past-events">
         <h3 class="heading">
           <button nbButton status="basic" size="small" shape="semi-round">
@@ -132,6 +135,15 @@
             </nb-card>
           </a>
         </div>
+        <app-pagination
+          (goTo)="page = $event; getPastEvents()"
+          (next)="page = $event; getPastEvents()"
+          (previous)="page = $event; getPastEvents()"
+          *ngIf="total > 0"
+          [count]="count"
+          [current]="page"
+          [total]="total"
+        ></app-pagination>
       </section>
     </div>
   </nb-card-body>
