@@ -42,27 +42,27 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
-      this.getEvents();
+      this.getUpcomingEvents();
+      this.getPastEvents();
       this.seoService.setTitle(`Events | ${this.community.name}`);
     });
   }
 
-  getEvents() {
-    this.eventsService.pGetCommunityEvents(this.community.id, this.page, this.count).subscribe((data) => {
-      this.events = data.values;
-
-      this.events.forEach((event) => {
-        if (moment(event.end_time) > moment() || event.end_time === null) {
-          this.upcomingEvents.push(event);
-        } else {
-          this.pastEvents.push(event);
-        }
-      });
+  getPastEvents() {
+    this.eventsService.pGetCommunityEvents('past', this.community.id, this.page, this.count).subscribe((data) => {
+      this.pastEvents = data.values;
       this.setSchema();
       this.isLoading = false;
+      this.page = +data.page;
       this.total = data.total;
-      this.page = data.page;
-      this.count = data.count;
+    });
+  }
+
+  getUpcomingEvents() {
+    this.eventsService.pGetCommunityEvents('future', this.community.id).subscribe((data) => {
+      this.upcomingEvents = data.values;
+      this.setSchema();
+      this.isLoading = false;
     });
   }
 

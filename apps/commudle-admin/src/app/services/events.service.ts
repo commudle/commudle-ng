@@ -124,8 +124,14 @@ export class EventsService {
     return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.RANDOM_PAST), { params });
   }
 
-  pGetCommunityEvents(communityId, page: number, count: number): Observable<IPaginationCount<IEvent>> {
-    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+  pGetCommunityEvents(when, communityId, page?: number, count?: number): Observable<IPaginationCount<IEvent>> {
+    let params = new HttpParams().set('when', when).set('community_id', communityId);
+    if (page) {
+      params = params.set('page', page);
+    }
+    if (count) {
+      params = params.set('count', count);
+    }
     return this.http.get<IPaginationCount<IEvent>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY),
       {

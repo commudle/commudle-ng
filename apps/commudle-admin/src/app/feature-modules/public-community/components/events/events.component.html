@@ -132,6 +132,15 @@
             </nb-card>
           </a>
         </div>
+        <app-pagination
+          (goTo)="page = $event; getPastEvents()"
+          (next)="page = $event; getPastEvents()"
+          (previous)="page = $event; getPastEvents()"
+          *ngIf="total > 0"
+          [count]="count"
+          [current]="page"
+          [total]="total"
+        ></app-pagination>
       </section>
     </div>
   </nb-card-body>
