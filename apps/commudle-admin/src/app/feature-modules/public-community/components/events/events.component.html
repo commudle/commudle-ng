@@ -3,9 +3,8 @@
     <div class="events">
       <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
         <h2 class="heading">
-          <button nbButton status="basic" size="small" shape="semi-round">
-            <fa-icon [icon]="faCalendarDays"></fa-icon></button
-          >Upcoming Events
+          <div class="heading-btn"><fa-icon [icon]="faCalendarDays"></fa-icon></div>
+          Upcoming Events
         </h2>
         <div class="upcoming-events-container">
           <a
@@ -80,11 +79,10 @@
         <app-loading-spinner></app-loading-spinner>
       </div>
       <section *ngIf="pastEvents.length >= 1" class="past-events">
-        <h3 class="heading">
-          <button nbButton status="basic" size="small" shape="semi-round">
-            <fa-icon [icon]="faCalendarCheck"></fa-icon></button
-          >Past Events
-        </h3>
+        <h2 class="heading">
+          <div class="heading-btn"><fa-icon [icon]="faCalendarCheck"></fa-icon></div>
+          Past Events
+        </h2>
         <div *ngIf="isLoadingPastEvents">
           <app-loading-spinner></app-loading-spinner>
         </div>

@@ -8,7 +8,7 @@ nb-card {
       @apply com-bg-white com-rounded-xl;
 
       .heading {
-        @apply com-flex com-items-center com-font-bold com-text-2xl com-m-0 com-pt-9 com-pb-6 com-text-center com-leading-4 com-text-Dark-Jungle-Green;
+        @apply com-m-0 com-pt-9 com-pb-6 com-text-center com-leading-4 com-no-underline com-flex com-items-center com-font-bold com-text-2xl com-text-Dark-Jungle-Green;
         @apply md:com-text-3xl md:com-text-start md:com-py-8 com-ml-6;
 
         button {
@@ -201,7 +201,7 @@ app-loading-spinner {
 }
 
 .heading-btn {
-  @apply com-flex com-justify-center com-items-center com-px-4 com-py-2 com-bg-Auro-Metal-Saurus com-rounded-lg com-mr-4;
+  @apply com-flex com-justify-center com-items-center com-px-4 com-py-2 com-bg-[#f7f9fc] com-rounded-lg com-mr-4;
 }
 
 fa-icon {
