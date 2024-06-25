@@ -19,7 +19,8 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
-  isLoading = true;
+  isLoadingPastEvents = true;
+  isLoadingUpcomingEvents = true;
 
   eventForSchema = [];
 
@@ -49,20 +50,23 @@ export class EventsComponent implements OnInit {
   }
 
   getPastEvents() {
+    this.isLoadingPastEvents = true;
     this.eventsService.pGetCommunityEvents('past', this.community.id, this.page, this.count).subscribe((data) => {
       this.pastEvents = data.values;
       this.setSchema();
-      this.isLoading = false;
-      this.page = +data.page;
       this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
+      this.isLoadingPastEvents = false;
     });
   }
 
   getUpcomingEvents() {
+    this.isLoadingUpcomingEvents = true;
     this.eventsService.pGetCommunityEvents('future', this.community.id).subscribe((data) => {
       this.upcomingEvents = data.values;
       this.setSchema();
-      this.isLoading = false;
+      this.isLoadingUpcomingEvents = false;
     });
   }
 
