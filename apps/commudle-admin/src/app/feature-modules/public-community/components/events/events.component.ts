@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -21,6 +21,7 @@ export class EventsComponent implements OnInit {
   events: IEvent[] = [];
   isLoadingPastEvents = true;
   isLoadingUpcomingEvents = true;
+  isLoading = true;
 
   eventForSchema = [];
 
@@ -30,7 +31,7 @@ export class EventsComponent implements OnInit {
   faCalendarDays = faCalendarDays;
   faCalendarCheck = faCalendarCheck;
 
-  count = 10;
+  count = 9;
   page = 1;
   total = 0;
 
@@ -38,9 +39,17 @@ export class EventsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private seoService: SeoService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.page) {
+        this.page = Number(params.page);
+      }
+    }
+
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.getUpcomingEvents();
@@ -58,6 +67,8 @@ export class EventsComponent implements OnInit {
       this.page = data.page;
       this.count = data.count;
       this.isLoadingPastEvents = false;
+      this.isLoading = false;
+      this.router.navigate([], { queryParams: { page: this.page } });
     });
   }
 
