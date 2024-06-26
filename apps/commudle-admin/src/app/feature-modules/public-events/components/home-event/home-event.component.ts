@@ -87,7 +87,6 @@ export class HomeEventComponent implements OnInit, OnDestroy {
   getEvent(eventId) {
     this.eventsService.pGetEvent(eventId).subscribe((event) => {
       this.event = event;
-      console.log(this.event);
       this.isLoading = false;
       this.getCommunity(event.kommunity_id);
     });
