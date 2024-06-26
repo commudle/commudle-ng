@@ -1,15 +1,11 @@
 <nb-card>
   <nb-card-body>
     <div class="events">
-      <div *ngIf="isLoadingUpcomingEvents" class="com-my-4">
-        <app-loading-spinner></app-loading-spinner>
-      </div>
       <section *ngIf="upcomingEvents.length >= 1" class="upcoming-events-section">
-        <p class="heading">
-          <button nbButton status="basic" size="small" shape="semi-round">
-            <fa-icon [icon]="faCalendarDays"></fa-icon></button
-          >Upcoming Events
-        </p>
+        <h2 class="heading">
+          <div class="heading-btn"><fa-icon [icon]="faCalendarDays"></fa-icon></div>
+          Upcoming Events
+        </h2>
         <div class="upcoming-events-container">
           <a
             *ngFor="let event of upcomingEvents"
@@ -79,17 +75,18 @@
           </a>
         </div>
       </section>
-
-      <div *ngIf="isLoadingPastEvents" class="com-my-4">
+      <div *ngIf="isLoading">
         <app-loading-spinner></app-loading-spinner>
       </div>
       <section *ngIf="pastEvents.length >= 1" class="past-events">
-        <h3 class="heading">
-          <button nbButton status="basic" size="small" shape="semi-round">
-            <fa-icon [icon]="faCalendarCheck"></fa-icon></button
-          >Past Events
-        </h3>
-        <div class="past-events-container">
+        <h2 class="heading">
+          <div class="heading-btn"><fa-icon [icon]="faCalendarCheck"></fa-icon></div>
+          Past Events
+        </h2>
+        <div *ngIf="isLoadingPastEvents">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div *ngIf="!isLoadingPastEvents" class="past-events-container">
           <a
             *ngFor="let event of pastEvents"
             [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
