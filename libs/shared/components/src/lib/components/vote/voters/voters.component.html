@@ -1,8 +1,12 @@
-<div>
+<div class="voters-list-container">
   <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
   <ul>
     <li *ngFor="let voter of voters">
-      <!-- <app-user-profile-mini [size]="'small'" [user]="voter" [designation]="true"></app-user-profile-mini> -->
+      <commudle-user-profile-mini-card
+        [size]="'small'"
+        [user]="voter"
+        [designation]="true"
+      ></commudle-user-profile-mini-card>
     </li>
   </ul>
 
@@ -20,7 +24,7 @@
     ></nb-card-header>
     <nb-card-body>
       <div *ngFor="let voter of voters" class="users">
-        <!-- <app-user-profile-card-medium [user]="voter"></app-user-profile-card-medium> -->
+        <commudle-user-profile-mini-card [user]="voter"></commudle-user-profile-mini-card>
       </div>
 
       <div class="load-more-button" *ngIf="total && voters.length < total">

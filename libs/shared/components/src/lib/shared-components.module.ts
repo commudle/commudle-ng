@@ -22,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { VotersComponent } from './components/vote/voters/voters.component';
+import { UserProfileMiniCardComponent } from './components/user-profile/user-profile-mini-card/user-profile-mini-card.component';
 @NgModule({
   declarations: [
     DiscussionComponent,
@@ -33,6 +34,7 @@ import { VotersComponent } from './components/vote/voters/voters.component';
     LoadingSpinnerComponent,
     FaqComponent,
     VotersComponent,
+    UserProfileMiniCardComponent,
   ],
   imports: [
     CommonModule,

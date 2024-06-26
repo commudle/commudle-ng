@@ -13,7 +13,7 @@ export class VotersComponent implements OnInit {
   @Input() votableId;
   page = 1;
   count = 10;
-  total;
+  total = 0;
   isLoading = true;
 
   voters: IUser[] = [];
