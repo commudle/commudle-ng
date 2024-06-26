@@ -20,6 +20,8 @@ import { EEventType, IEventLocation } from 'apps/shared-models/event-location.mo
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
+import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-event-locations',
@@ -40,6 +42,9 @@ export class EventLocationsComponent implements OnInit {
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   activeTabIndex = -1;
+
+  moment = moment;
+  eventDates;
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
@@ -63,6 +68,7 @@ export class EventLocationsComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
     private changeDetectorRef: ChangeDetectorRef,
+    private trackSlotsService: TrackSlotsService,
   ) {
     this.eventLocationForm = this.fb.group({
       location: this.fb.group({
@@ -81,6 +87,7 @@ export class EventLocationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getEventsDate();
     this.getEventLocations();
     this.getEventSpeakers();
   }
@@ -309,5 +316,11 @@ export class EventLocationsComponent implements OnInit {
       .get('address')
       .setValue(place.name + ', ' + place.formatted_address);
     this.eventLocationForm.get('location').get('map_link').setValue(place.url);
+  }
+
+  getEventsDate() {
+    this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
+      this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
+    });
   }
 }

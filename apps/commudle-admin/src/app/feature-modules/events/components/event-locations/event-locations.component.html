@@ -8,8 +8,8 @@
   </div>
   <div *ngIf="event.editable">
     <button (click)="showAddEventLocationForm()" nbButton status="primary">
-      <nb-icon icon="plus-circle-outline"></nb-icon>
-      &nbsp; Add Location
+      <nb-icon icon="pin"></nb-icon>
+      Add Location
     </button>
   </div>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
@@ -17,6 +17,18 @@
     <nb-card *ngIf="eventLocations.length > 0" class="event-locations-list">
       <div class="event-location">
         <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
+          <nb-tab
+            *ngFor="let date of eventDates; let i = index"
+            tabTitle="{{ date }}"
+            class="tab"
+            [active]="i === activeTabIndex"
+            id="addTab"
+            name="addTab"
+            #addTab
+          >
+          </nb-tab>
+        </nb-tabset>
+        <!-- <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
           <nb-tab
             *ngFor="let el of eventLocations; let i = index"
             badgePosition="top right"
@@ -77,7 +89,7 @@
               </app-event-location-tracks>
             </div>
           </nb-tab>
-        </nb-tabset>
+        </nb-tabset> -->
       </div>
     </nb-card>
   </div>

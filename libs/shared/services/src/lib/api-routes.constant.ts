@@ -404,6 +404,7 @@ export const API_ROUTES = {
       LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions',
       POLLS: 'api/v2/track_slots/public/polls',
     },
+    TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/track_slots_by_date',
   },
 
   // communication_mailers
