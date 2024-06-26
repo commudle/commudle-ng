@@ -32,6 +32,8 @@ export class MessageComponent implements OnInit {
   @Input() currentUser: ICurrentUser;
   @Input() allActions;
   @Input() permittedActions;
+  @Input() showFlagIcon = true;
+  @Input() showReplyIcon = true;
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
   @Output() sendDelete = new EventEmitter();

@@ -10,6 +10,8 @@
             [permittedActions]="permittedActions"
             [allActions]="allActions"
             [currentUser]="currentUser"
+            [showFlagIcon]="false"
+            [showReplyIcon]="false"
             (sendReply)="sendReply($event, message.id)"
             (sendVote)="sendVote($event)"
             (sendDelete)="delete($event)"
