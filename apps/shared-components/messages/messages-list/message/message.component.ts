@@ -17,6 +17,7 @@ import { faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
+import { IEditorValidator } from '@commudle/editor';
 // import { UserMessageReceiptHandlerService } from '@commudle/shared-services';
 import * as moment from 'moment';
 
@@ -64,6 +65,13 @@ export class MessageComponent implements OnInit {
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });
   }
+
+  validators: IEditorValidator = {
+    required: true,
+    minLength: 1,
+    maxLength: 200,
+    noWhitespace: true,
+  };
 
   ngOnInit(): void {
     this.seoSchema();
