@@ -73,8 +73,6 @@ input {
 // Override Nebular
 
 .nb-theme-default {
-  width: 100%;
-  overflow-x: hidden;
   nb-layout-footer {
     &.fixed {
       background-color: $white;
@@ -364,8 +362,6 @@ nb-option-list.search-autocomplete {
 }
 
 .nb-theme-dark {
-  width: 100%;
-  overflow-x: hidden;
   nb-toggle.status-basic .toggle-switcher {
     background-color: #f2f2f2;
   }
