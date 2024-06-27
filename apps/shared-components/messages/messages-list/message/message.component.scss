@@ -110,3 +110,7 @@ nb-action {
 .message {
   @apply com-px-3 com-py-2;
 }
+
+.votes-display {
+  @apply com-ml-10 com-border com-border-solid com-rounded com-p-0 com-border-gray-300 com-m-0 com-w-fit;
+}
